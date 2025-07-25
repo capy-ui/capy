@@ -93,21 +93,27 @@ pub const WNNC_NET_LANMAN = @as(u32, 131072);
 // Section: Types (21)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'FilterClose', what can Zig do with this information?
-pub const HFILTER = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HFILTER = *opaque{};
 
 // TODO: this type has a FreeFunc 'FilterInstanceClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HFILTER_INSTANCE = isize;
 
 // TODO: this type has a FreeFunc 'FilterFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterVolumeFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterVolumeFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterInstanceFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterInstanceFindHandle = isize;
 
 // TODO: this type has a FreeFunc 'FilterVolumeInstanceFindClose', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const FilterVolumeInstanceFindHandle = isize;
 
 pub const FLT_FILESYSTEM_TYPE = enum(i32) {
@@ -333,6 +339,7 @@ pub const FILTER_REPLY_HEADER = extern struct {
     MessageId: u64,
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
@@ -540,15 +547,10 @@ pub extern "fltlib" fn FilterGetDosName(
     dwDosNameBufferSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
@@ -560,13 +562,13 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

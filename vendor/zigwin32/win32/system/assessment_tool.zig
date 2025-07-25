@@ -37,12 +37,12 @@ pub const WINSAT_OEM_NO_DATA_SUPPLIED = WINSAT_OEM_DATA_TYPE.NO_DATA_SUPPLIED;
 
 pub const WINSAT_ASSESSMENT_STATE = enum(i32) {
     MIN = 0,
-    // UNKNOWN = 0, this enum value conflicts with MIN
     VALID = 1,
     INCOHERENT_WITH_HARDWARE = 2,
     NOT_AVAILABLE = 3,
     INVALID = 4,
-    // MAX = 4, this enum value conflicts with INVALID
+    pub const UNKNOWN = .MIN;
+    pub const MAX = .INVALID;
 };
 pub const WINSAT_ASSESSMENT_STATE_MIN = WINSAT_ASSESSMENT_STATE.MIN;
 pub const WINSAT_ASSESSMENT_STATE_UNKNOWN = WINSAT_ASSESSMENT_STATE.MIN;
@@ -75,473 +75,262 @@ pub const WINSAT_BITMAP_SIZE_NORMAL = WINSAT_BITMAP_SIZE.NORMAL;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProvideWinSATAssessmentInfo_Value = Guid.initString("0cd1c380-52d3-4678-ac6f-e929e480be9e");
 pub const IID_IProvideWinSATAssessmentInfo = &IID_IProvideWinSATAssessmentInfo_Value;
-pub const IProvideWinSATAssessmentInfo = extern struct {
+pub const IProvideWinSATAssessmentInfo = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Score: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATAssessmentInfo,
-                score: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATAssessmentInfo,
-                score: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Score: *const fn(
+            self: *const IProvideWinSATAssessmentInfo,
+            score: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Title: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATAssessmentInfo,
-                title: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATAssessmentInfo,
-                title: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Title: *const fn(
+            self: *const IProvideWinSATAssessmentInfo,
+            title: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATAssessmentInfo,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATAssessmentInfo,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Description: *const fn(
+            self: *const IProvideWinSATAssessmentInfo,
+            description: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATAssessmentInfo_get_Score(self: *const T, score: ?*f32) HRESULT {
-                return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Score(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), score);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATAssessmentInfo_get_Title(self: *const T, title: ?*?BSTR) HRESULT {
-                return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Title(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), title);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATAssessmentInfo_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @as(*const IProvideWinSATAssessmentInfo.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IProvideWinSATAssessmentInfo, @ptrCast(self)), description);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Score(self: *const IProvideWinSATAssessmentInfo, score: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Score(self, score);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Title(self: *const IProvideWinSATAssessmentInfo, title: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Title(self, title);
+    }
+    pub fn get_Description(self: *const IProvideWinSATAssessmentInfo, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProvideWinSATResultsInfo_Value = Guid.initString("f8334d5d-568e-4075-875f-9df341506640");
 pub const IID_IProvideWinSATResultsInfo = &IID_IProvideWinSATResultsInfo_Value;
-pub const IProvideWinSATResultsInfo = extern struct {
+pub const IProvideWinSATResultsInfo = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetAssessmentInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IProvideWinSATResultsInfo,
-                assessment: WINSAT_ASSESSMENT_TYPE,
-                ppinfo: ?*?*IProvideWinSATAssessmentInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IProvideWinSATResultsInfo,
-                assessment: WINSAT_ASSESSMENT_TYPE,
-                ppinfo: ?*?*IProvideWinSATAssessmentInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAssessmentInfo: *const fn(
+            self: *const IProvideWinSATResultsInfo,
+            assessment: WINSAT_ASSESSMENT_TYPE,
+            ppinfo: ?*?*IProvideWinSATAssessmentInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AssessmentState: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATResultsInfo,
-                state: ?*WINSAT_ASSESSMENT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATResultsInfo,
-                state: ?*WINSAT_ASSESSMENT_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AssessmentState: *const fn(
+            self: *const IProvideWinSATResultsInfo,
+            state: ?*WINSAT_ASSESSMENT_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AssessmentDateTime: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATResultsInfo,
-                fileTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATResultsInfo,
-                fileTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AssessmentDateTime: *const fn(
+            self: *const IProvideWinSATResultsInfo,
+            fileTime: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SystemRating: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATResultsInfo,
-                level: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATResultsInfo,
-                level: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SystemRating: *const fn(
+            self: *const IProvideWinSATResultsInfo,
+            level: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RatingStateDesc: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATResultsInfo,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATResultsInfo,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RatingStateDesc: *const fn(
+            self: *const IProvideWinSATResultsInfo,
+            description: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATResultsInfo_GetAssessmentInfo(self: *const T, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: ?*?*IProvideWinSATAssessmentInfo) HRESULT {
-                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).GetAssessmentInfo(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), assessment, ppinfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATResultsInfo_get_AssessmentState(self: *const T, state: ?*WINSAT_ASSESSMENT_STATE) HRESULT {
-                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentState(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), state);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATResultsInfo_get_AssessmentDateTime(self: *const T, fileTime: ?*VARIANT) HRESULT {
-                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_AssessmentDateTime(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), fileTime);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATResultsInfo_get_SystemRating(self: *const T, level: ?*f32) HRESULT {
-                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_SystemRating(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), level);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATResultsInfo_get_RatingStateDesc(self: *const T, description: ?*?BSTR) HRESULT {
-                return @as(*const IProvideWinSATResultsInfo.VTable, @ptrCast(self.vtable)).get_RatingStateDesc(@as(*const IProvideWinSATResultsInfo, @ptrCast(self)), description);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetAssessmentInfo(self: *const IProvideWinSATResultsInfo, assessment: WINSAT_ASSESSMENT_TYPE, ppinfo: ?*?*IProvideWinSATAssessmentInfo) callconv(.Inline) HRESULT {
+        return self.vtable.GetAssessmentInfo(self, assessment, ppinfo);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_AssessmentState(self: *const IProvideWinSATResultsInfo, state: ?*WINSAT_ASSESSMENT_STATE) callconv(.Inline) HRESULT {
+        return self.vtable.get_AssessmentState(self, state);
+    }
+    pub fn get_AssessmentDateTime(self: *const IProvideWinSATResultsInfo, fileTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_AssessmentDateTime(self, fileTime);
+    }
+    pub fn get_SystemRating(self: *const IProvideWinSATResultsInfo, level: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.get_SystemRating(self, level);
+    }
+    pub fn get_RatingStateDesc(self: *const IProvideWinSATResultsInfo, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_RatingStateDesc(self, description);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IQueryRecentWinSATAssessment_Value = Guid.initString("f8ad5d1f-3b47-4bdc-9375-7c6b1da4eca7");
 pub const IID_IQueryRecentWinSATAssessment = &IID_IQueryRecentWinSATAssessment_Value;
-pub const IQueryRecentWinSATAssessment = extern struct {
+pub const IQueryRecentWinSATAssessment = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
+        get_XML: *const fn(
+            self: *const IQueryRecentWinSATAssessment,
+            xPath: ?BSTR,
+            namespaces: ?BSTR,
+            ppDomNodeList: ?*?*IXMLDOMNodeList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_XML: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IQueryRecentWinSATAssessment,
-                xPath: ?BSTR,
-                namespaces: ?BSTR,
-                ppDomNodeList: ?*?*IXMLDOMNodeList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IQueryRecentWinSATAssessment,
-                xPath: ?BSTR,
-                namespaces: ?BSTR,
-                ppDomNodeList: ?*?*IXMLDOMNodeList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Info: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IQueryRecentWinSATAssessment,
-                ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IQueryRecentWinSATAssessment,
-                ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Info: *const fn(
+            self: *const IQueryRecentWinSATAssessment,
+            ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IQueryRecentWinSATAssessment_get_XML(self: *const T, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_XML(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IQueryRecentWinSATAssessment_get_Info(self: *const T, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) HRESULT {
-                return @as(*const IQueryRecentWinSATAssessment.VTable, @ptrCast(self.vtable)).get_Info(@as(*const IQueryRecentWinSATAssessment, @ptrCast(self)), ppWinSATAssessmentInfo);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_XML(self: *const IQueryRecentWinSATAssessment, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return self.vtable.get_XML(self, xPath, namespaces, ppDomNodeList);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Info(self: *const IQueryRecentWinSATAssessment, ppWinSATAssessmentInfo: ?*?*IProvideWinSATResultsInfo) callconv(.Inline) HRESULT {
+        return self.vtable.get_Info(self, ppWinSATAssessmentInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IProvideWinSATVisuals_Value = Guid.initString("a9f4ade0-871a-42a3-b813-3078d25162c9");
 pub const IID_IProvideWinSATVisuals = &IID_IProvideWinSATVisuals_Value;
-pub const IProvideWinSATVisuals = extern struct {
+pub const IProvideWinSATVisuals = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Bitmap: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IProvideWinSATVisuals,
-                bitmapSize: WINSAT_BITMAP_SIZE,
-                state: WINSAT_ASSESSMENT_STATE,
-                rating: f32,
-                pBitmap: ?*?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IProvideWinSATVisuals,
-                bitmapSize: WINSAT_BITMAP_SIZE,
-                state: WINSAT_ASSESSMENT_STATE,
-                rating: f32,
-                pBitmap: ?*?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Bitmap: *const fn(
+            self: *const IProvideWinSATVisuals,
+            bitmapSize: WINSAT_BITMAP_SIZE,
+            state: WINSAT_ASSESSMENT_STATE,
+            rating: f32,
+            pBitmap: ?*?HBITMAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProvideWinSATVisuals_get_Bitmap(self: *const T, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: ?*?HBITMAP) HRESULT {
-                return @as(*const IProvideWinSATVisuals.VTable, @ptrCast(self.vtable)).get_Bitmap(@as(*const IProvideWinSATVisuals, @ptrCast(self)), bitmapSize, state, rating, pBitmap);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn get_Bitmap(self: *const IProvideWinSATVisuals, bitmapSize: WINSAT_BITMAP_SIZE, state: WINSAT_ASSESSMENT_STATE, rating: f32, pBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+        return self.vtable.get_Bitmap(self, bitmapSize, state, rating, pBitmap);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IQueryAllWinSATAssessments_Value = Guid.initString("0b89ed1d-6398-4fea-87fc-567d8d19176f");
 pub const IID_IQueryAllWinSATAssessments = &IID_IQueryAllWinSATAssessments_Value;
-pub const IQueryAllWinSATAssessments = extern struct {
+pub const IQueryAllWinSATAssessments = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllXML: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IQueryAllWinSATAssessments,
-                xPath: ?BSTR,
-                namespaces: ?BSTR,
-                ppDomNodeList: ?*?*IXMLDOMNodeList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IQueryAllWinSATAssessments,
-                xPath: ?BSTR,
-                namespaces: ?BSTR,
-                ppDomNodeList: ?*?*IXMLDOMNodeList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AllXML: *const fn(
+            self: *const IQueryAllWinSATAssessments,
+            xPath: ?BSTR,
+            namespaces: ?BSTR,
+            ppDomNodeList: ?*?*IXMLDOMNodeList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IQueryAllWinSATAssessments_get_AllXML(self: *const T, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) HRESULT {
-                return @as(*const IQueryAllWinSATAssessments.VTable, @ptrCast(self.vtable)).get_AllXML(@as(*const IQueryAllWinSATAssessments, @ptrCast(self)), xPath, namespaces, ppDomNodeList);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AllXML(self: *const IQueryAllWinSATAssessments, xPath: ?BSTR, namespaces: ?BSTR, ppDomNodeList: ?*?*IXMLDOMNodeList) callconv(.Inline) HRESULT {
+        return self.vtable.get_AllXML(self, xPath, namespaces, ppDomNodeList);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IWinSATInitiateEvents_Value = Guid.initString("262a1918-ba0d-41d5-92c2-fab4633ee74f");
 pub const IID_IWinSATInitiateEvents = &IID_IWinSATInitiateEvents_Value;
-pub const IWinSATInitiateEvents = extern struct {
+pub const IWinSATInitiateEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        WinSATComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinSATInitiateEvents,
-                hresult: HRESULT,
-                strDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinSATInitiateEvents,
-                hresult: HRESULT,
-                strDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WinSATUpdate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinSATInitiateEvents,
-                uCurrentTick: u32,
-                uTickTotal: u32,
-                strCurrentState: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinSATInitiateEvents,
-                uCurrentTick: u32,
-                uTickTotal: u32,
-                strCurrentState: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        WinSATComplete: *const fn(
+            self: *const IWinSATInitiateEvents,
+            hresult: HRESULT,
+            strDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WinSATUpdate: *const fn(
+            self: *const IWinSATInitiateEvents,
+            uCurrentTick: u32,
+            uTickTotal: u32,
+            strCurrentState: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinSATInitiateEvents_WinSATComplete(self: *const T, hresult: HRESULT, strDescription: ?[*:0]const u16) HRESULT {
-                return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATComplete(@as(*const IWinSATInitiateEvents, @ptrCast(self)), hresult, strDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinSATInitiateEvents_WinSATUpdate(self: *const T, uCurrentTick: u32, uTickTotal: u32, strCurrentState: ?[*:0]const u16) HRESULT {
-                return @as(*const IWinSATInitiateEvents.VTable, @ptrCast(self.vtable)).WinSATUpdate(@as(*const IWinSATInitiateEvents, @ptrCast(self)), uCurrentTick, uTickTotal, strCurrentState);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn WinSATComplete(self: *const IWinSATInitiateEvents, hresult: HRESULT, strDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WinSATComplete(self, hresult, strDescription);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn WinSATUpdate(self: *const IWinSATInitiateEvents, uCurrentTick: u32, uTickTotal: u32, strCurrentState: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WinSATUpdate(self, uCurrentTick, uTickTotal, strCurrentState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IInitiateWinSATAssessment_Value = Guid.initString("d983fc50-f5bf-49d5-b5ed-cccb18aa7fc1");
 pub const IID_IInitiateWinSATAssessment = &IID_IInitiateWinSATAssessment_Value;
-pub const IInitiateWinSATAssessment = extern struct {
+pub const IInitiateWinSATAssessment = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitiateAssessment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IInitiateWinSATAssessment,
-                cmdLine: ?[*:0]const u16,
-                pCallbacks: ?*IWinSATInitiateEvents,
-                callerHwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IInitiateWinSATAssessment,
-                cmdLine: ?[*:0]const u16,
-                pCallbacks: ?*IWinSATInitiateEvents,
-                callerHwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InitiateFormalAssessment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IInitiateWinSATAssessment,
-                pCallbacks: ?*IWinSATInitiateEvents,
-                callerHwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IInitiateWinSATAssessment,
-                pCallbacks: ?*IWinSATInitiateEvents,
-                callerHwnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CancelAssessment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IInitiateWinSATAssessment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IInitiateWinSATAssessment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InitiateAssessment: *const fn(
+            self: *const IInitiateWinSATAssessment,
+            cmdLine: ?[*:0]const u16,
+            pCallbacks: ?*IWinSATInitiateEvents,
+            callerHwnd: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InitiateFormalAssessment: *const fn(
+            self: *const IInitiateWinSATAssessment,
+            pCallbacks: ?*IWinSATInitiateEvents,
+            callerHwnd: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CancelAssessment: *const fn(
+            self: *const IInitiateWinSATAssessment,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IInitiateWinSATAssessment_InitiateAssessment(self: *const T, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) HRESULT {
-                return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), cmdLine, pCallbacks, callerHwnd);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IInitiateWinSATAssessment_InitiateFormalAssessment(self: *const T, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) HRESULT {
-                return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).InitiateFormalAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)), pCallbacks, callerHwnd);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IInitiateWinSATAssessment_CancelAssessment(self: *const T) HRESULT {
-                return @as(*const IInitiateWinSATAssessment.VTable, @ptrCast(self.vtable)).CancelAssessment(@as(*const IInitiateWinSATAssessment, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn InitiateAssessment(self: *const IInitiateWinSATAssessment, cmdLine: ?[*:0]const u16, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.Inline) HRESULT {
+        return self.vtable.InitiateAssessment(self, cmdLine, pCallbacks, callerHwnd);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn InitiateFormalAssessment(self: *const IInitiateWinSATAssessment, pCallbacks: ?*IWinSATInitiateEvents, callerHwnd: ?HWND) callconv(.Inline) HRESULT {
+        return self.vtable.InitiateFormalAssessment(self, pCallbacks, callerHwnd);
+    }
+    pub fn CancelAssessment(self: *const IInitiateWinSATAssessment) callconv(.Inline) HRESULT {
+        return self.vtable.CancelAssessment(self);
+    }
 };
 
 const IID_IAccessibleWinSAT_Value = Guid.initString("30e6018a-94a8-4ff8-a69a-71b67413f07b");
 pub const IID_IAccessibleWinSAT = &IID_IAccessibleWinSAT_Value;
-pub const IAccessibleWinSAT = extern struct {
+pub const IAccessibleWinSAT = extern union {
     pub const VTable = extern struct {
         base: IAccessible.VTable,
-        SetAccessiblityData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IAccessibleWinSAT,
-                wsName: ?[*:0]const u16,
-                wsValue: ?[*:0]const u16,
-                wsDesc: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IAccessibleWinSAT,
-                wsName: ?[*:0]const u16,
-                wsValue: ?[*:0]const u16,
-                wsDesc: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetAccessiblityData: *const fn(
+            self: *const IAccessibleWinSAT,
+            wsName: ?[*:0]const u16,
+            wsValue: ?[*:0]const u16,
+            wsDesc: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IAccessible.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IAccessibleWinSAT_SetAccessiblityData(self: *const T, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) HRESULT {
-                return @as(*const IAccessibleWinSAT.VTable, @ptrCast(self.vtable)).SetAccessiblityData(@as(*const IAccessibleWinSAT, @ptrCast(self)), wsName, wsValue, wsDesc);
-            }
-        };
+    IAccessible: IAccessible,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn SetAccessiblityData(self: *const IAccessibleWinSAT, wsName: ?[*:0]const u16, wsValue: ?[*:0]const u16, wsDesc: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetAccessiblityData(self, wsName, wsValue, wsDesc);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IQueryOEMWinSATCustomization_Value = Guid.initString("bc9a6a9f-ad4e-420e-9953-b34671e9df22");
 pub const IID_IQueryOEMWinSATCustomization = &IID_IQueryOEMWinSATCustomization_Value;
-pub const IQueryOEMWinSATCustomization = extern struct {
+pub const IQueryOEMWinSATCustomization = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOEMPrePopulationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IQueryOEMWinSATCustomization,
-                state: ?*WINSAT_OEM_DATA_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IQueryOEMWinSATCustomization,
-                state: ?*WINSAT_OEM_DATA_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOEMPrePopulationInfo: *const fn(
+            self: *const IQueryOEMWinSATCustomization,
+            state: ?*WINSAT_OEM_DATA_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IQueryOEMWinSATCustomization_GetOEMPrePopulationInfo(self: *const T, state: ?*WINSAT_OEM_DATA_TYPE) HRESULT {
-                return @as(*const IQueryOEMWinSATCustomization.VTable, @ptrCast(self.vtable)).GetOEMPrePopulationInfo(@as(*const IQueryOEMWinSATCustomization, @ptrCast(self)), state);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOEMPrePopulationInfo(self: *const IQueryOEMWinSATCustomization, state: ?*WINSAT_OEM_DATA_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetOEMPrePopulationInfo(self, state);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -550,12 +339,6 @@ pub const IQueryOEMWinSATCustomization = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
@@ -572,13 +355,13 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

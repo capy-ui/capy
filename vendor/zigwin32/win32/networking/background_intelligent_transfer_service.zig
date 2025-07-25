@@ -234,147 +234,80 @@ pub const BG_FILE_PROGRESS = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyFile_Value = Guid.initString("01b7bd23-fb88-4a77-8490-5891d3e4653a");
 pub const IID_IBackgroundCopyFile = &IID_IBackgroundCopyFile_Value;
-pub const IBackgroundCopyFile = extern struct {
+pub const IBackgroundCopyFile = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRemoteName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocalName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile,
-                pVal: ?*BG_FILE_PROGRESS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile,
-                pVal: ?*BG_FILE_PROGRESS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetRemoteName: *const fn(
+            self: *const IBackgroundCopyFile,
+            pVal: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalName: *const fn(
+            self: *const IBackgroundCopyFile,
+            pVal: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProgress: *const fn(
+            self: *const IBackgroundCopyFile,
+            pVal: ?*BG_FILE_PROGRESS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile_GetRemoteName(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetRemoteName(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile_GetLocalName(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetLocalName(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile_GetProgress(self: *const T, pVal: ?*BG_FILE_PROGRESS) HRESULT {
-                return @as(*const IBackgroundCopyFile.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyFile, @ptrCast(self)), pVal);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetRemoteName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRemoteName(self, pVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetLocalName(self: *const IBackgroundCopyFile, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetLocalName(self, pVal);
+    }
+    pub fn GetProgress(self: *const IBackgroundCopyFile, pVal: ?*BG_FILE_PROGRESS) callconv(.Inline) HRESULT {
+        return self.vtable.GetProgress(self, pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyFiles_Value = Guid.initString("ca51e165-c365-424c-8d41-24aaa4ff3c40");
 pub const IID_IEnumBackgroundCopyFiles = &IID_IEnumBackgroundCopyFiles_Value;
-pub const IEnumBackgroundCopyFiles = extern struct {
+pub const IEnumBackgroundCopyFiles = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyFiles,
-                celt: u32,
-                rgelt: ?*?*IBackgroundCopyFile,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyFiles,
-                celt: u32,
-                rgelt: ?*?*IBackgroundCopyFile,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyFiles,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyFiles,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyFiles,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyFiles,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyFiles,
-                ppenum: ?*?*IEnumBackgroundCopyFiles,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyFiles,
-                ppenum: ?*?*IEnumBackgroundCopyFiles,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyFiles,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyFiles,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumBackgroundCopyFiles,
+            celt: u32,
+            rgelt: ?*?*IBackgroundCopyFile,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBackgroundCopyFiles,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBackgroundCopyFiles,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBackgroundCopyFiles,
+            ppenum: ?*?*IEnumBackgroundCopyFiles,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBackgroundCopyFiles,
+            puCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyFiles_Next(self: *const T, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyFiles_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyFiles_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyFiles_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyFiles) HRESULT {
-                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), ppenum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyFiles_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyFiles.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyFiles, @ptrCast(self)), puCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBackgroundCopyFiles, celt: u32, rgelt: ?*?*IBackgroundCopyFile, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumBackgroundCopyFiles, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBackgroundCopyFiles, ppenum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBackgroundCopyFiles, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
 };
 
 pub const BG_ERROR_CONTEXT = enum(i32) {
@@ -401,93 +334,50 @@ pub const BG_ERROR_CONTEXT_SERVER_CERTIFICATE_CALLBACK = BG_ERROR_CONTEXT.SERVER
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyError_Value = Guid.initString("19c613a0-fcb8-4f28-81ae-897c3d078f81");
 pub const IID_IBackgroundCopyError = &IID_IBackgroundCopyError_Value;
-pub const IBackgroundCopyError = extern struct {
+pub const IBackgroundCopyError = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyError,
-                pContext: ?*BG_ERROR_CONTEXT,
-                pCode: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyError,
-                pContext: ?*BG_ERROR_CONTEXT,
-                pCode: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyError,
-                pVal: ?*?*IBackgroundCopyFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyError,
-                pVal: ?*?*IBackgroundCopyFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyError,
-                LanguageId: u32,
-                pErrorDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyError,
-                LanguageId: u32,
-                pErrorDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorContextDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyError,
-                LanguageId: u32,
-                pContextDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyError,
-                LanguageId: u32,
-                pContextDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProtocol: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyError,
-                pProtocol: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyError,
-                pProtocol: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetError: *const fn(
+            self: *const IBackgroundCopyError,
+            pContext: ?*BG_ERROR_CONTEXT,
+            pCode: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFile: *const fn(
+            self: *const IBackgroundCopyError,
+            pVal: ?*?*IBackgroundCopyFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorDescription: *const fn(
+            self: *const IBackgroundCopyError,
+            LanguageId: u32,
+            pErrorDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorContextDescription: *const fn(
+            self: *const IBackgroundCopyError,
+            LanguageId: u32,
+            pContextDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProtocol: *const fn(
+            self: *const IBackgroundCopyError,
+            pProtocol: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyError_GetError(self: *const T, pContext: ?*BG_ERROR_CONTEXT, pCode: ?*HRESULT) HRESULT {
-                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetError(@as(*const IBackgroundCopyError, @ptrCast(self)), pContext, pCode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyError_GetFile(self: *const T, pVal: ?*?*IBackgroundCopyFile) HRESULT {
-                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetFile(@as(*const IBackgroundCopyError, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyError_GetErrorDescription(self: *const T, LanguageId: u32, pErrorDescription: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IBackgroundCopyError, @ptrCast(self)), LanguageId, pErrorDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyError_GetErrorContextDescription(self: *const T, LanguageId: u32, pContextDescription: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetErrorContextDescription(@as(*const IBackgroundCopyError, @ptrCast(self)), LanguageId, pContextDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyError_GetProtocol(self: *const T, pProtocol: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyError.VTable, @ptrCast(self.vtable)).GetProtocol(@as(*const IBackgroundCopyError, @ptrCast(self)), pProtocol);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetError(self: *const IBackgroundCopyError, pContext: ?*BG_ERROR_CONTEXT, pCode: ?*HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.GetError(self, pContext, pCode);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFile(self: *const IBackgroundCopyError, pVal: ?*?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
+        return self.vtable.GetFile(self, pVal);
+    }
+    pub fn GetErrorDescription(self: *const IBackgroundCopyError, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetErrorDescription(self, LanguageId, pErrorDescription);
+    }
+    pub fn GetErrorContextDescription(self: *const IBackgroundCopyError, LanguageId: u32, pContextDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetErrorContextDescription(self, LanguageId, pContextDescription);
+    }
+    pub fn GetProtocol(self: *const IBackgroundCopyError, pProtocol: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetProtocol(self, pProtocol);
+    }
 };
 
 pub const BG_FILE_INFO = extern struct {
@@ -563,800 +453,415 @@ pub const BG_JOB_PROXY_USAGE_AUTODETECT = BG_JOB_PROXY_USAGE.AUTODETECT;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyJob_Value = Guid.initString("37668d37-507e-4160-9316-26306d150b12");
 pub const IID_IBackgroundCopyJob = &IID_IBackgroundCopyJob_Value;
-pub const IBackgroundCopyJob = extern struct {
+pub const IBackgroundCopyJob = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddFileSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                cFileCount: u32,
-                pFileSet: [*]BG_FILE_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                cFileCount: u32,
-                pFileSet: [*]BG_FILE_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                RemoteUrl: ?[*:0]const u16,
-                LocalName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                RemoteUrl: ?[*:0]const u16,
-                LocalName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pEnum: ?*?*IEnumBackgroundCopyFiles,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pEnum: ?*?*IEnumBackgroundCopyFiles,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Suspend: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Resume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Complete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_PROGRESS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_PROGRESS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTimes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_TIMES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_TIMES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                ppError: ?*?*IBackgroundCopyError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                ppError: ?*?*IBackgroundCopyError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Val: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Val: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Val: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Val: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Val: BG_JOB_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Val: BG_JOB_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*BG_JOB_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNotifyFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Val: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Val: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNotifyFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNotifyInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Val: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Val: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNotifyInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pVal: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMinimumRetryDelay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMinimumRetryDelay: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNoProgressTimeout: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNoProgressTimeout: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Seconds: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                Errors: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                Errors: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProxySettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                ProxyUsage: BG_JOB_PROXY_USAGE,
-                ProxyList: ?[*:0]const u16,
-                ProxyBypassList: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                ProxyUsage: BG_JOB_PROXY_USAGE,
-                ProxyList: ?[*:0]const u16,
-                ProxyBypassList: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProxySettings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-                pProxyUsage: ?*BG_JOB_PROXY_USAGE,
-                pProxyList: ?*?PWSTR,
-                pProxyBypassList: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-                pProxyUsage: ?*BG_JOB_PROXY_USAGE,
-                pProxyList: ?*?PWSTR,
-                pProxyBypassList: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TakeOwnership: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFileSet: *const fn(
+            self: *const IBackgroundCopyJob,
+            cFileCount: u32,
+            pFileSet: [*]BG_FILE_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFile: *const fn(
+            self: *const IBackgroundCopyJob,
+            RemoteUrl: ?[*:0]const u16,
+            LocalName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumFiles: *const fn(
+            self: *const IBackgroundCopyJob,
+            pEnum: ?*?*IEnumBackgroundCopyFiles,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Suspend: *const fn(
+            self: *const IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Resume: *const fn(
+            self: *const IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: *const fn(
+            self: *const IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Complete: *const fn(
+            self: *const IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetId: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*BG_JOB_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProgress: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*BG_JOB_PROGRESS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTimes: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*BG_JOB_TIMES,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetState: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*BG_JOB_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetError: *const fn(
+            self: *const IBackgroundCopyJob,
+            ppError: ?*?*IBackgroundCopyError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOwner: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDisplayName: *const fn(
+            self: *const IBackgroundCopyJob,
+            Val: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplayName: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDescription: *const fn(
+            self: *const IBackgroundCopyJob,
+            Val: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescription: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPriority: *const fn(
+            self: *const IBackgroundCopyJob,
+            Val: BG_JOB_PRIORITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPriority: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*BG_JOB_PRIORITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNotifyFlags: *const fn(
+            self: *const IBackgroundCopyJob,
+            Val: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNotifyFlags: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNotifyInterface: *const fn(
+            self: *const IBackgroundCopyJob,
+            Val: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNotifyInterface: *const fn(
+            self: *const IBackgroundCopyJob,
+            pVal: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMinimumRetryDelay: *const fn(
+            self: *const IBackgroundCopyJob,
+            Seconds: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMinimumRetryDelay: *const fn(
+            self: *const IBackgroundCopyJob,
+            Seconds: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNoProgressTimeout: *const fn(
+            self: *const IBackgroundCopyJob,
+            Seconds: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNoProgressTimeout: *const fn(
+            self: *const IBackgroundCopyJob,
+            Seconds: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorCount: *const fn(
+            self: *const IBackgroundCopyJob,
+            Errors: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProxySettings: *const fn(
+            self: *const IBackgroundCopyJob,
+            ProxyUsage: BG_JOB_PROXY_USAGE,
+            ProxyList: ?[*:0]const u16,
+            ProxyBypassList: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProxySettings: *const fn(
+            self: *const IBackgroundCopyJob,
+            pProxyUsage: ?*BG_JOB_PROXY_USAGE,
+            pProxyList: ?*?PWSTR,
+            pProxyBypassList: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TakeOwnership: *const fn(
+            self: *const IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_AddFileSet(self: *const T, cFileCount: u32, pFileSet: [*]BG_FILE_INFO) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).AddFileSet(@as(*const IBackgroundCopyJob, @ptrCast(self)), cFileCount, pFileSet);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_AddFile(self: *const T, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).AddFile(@as(*const IBackgroundCopyJob, @ptrCast(self)), RemoteUrl, LocalName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_EnumFiles(self: *const T, pEnum: ?*?*IEnumBackgroundCopyFiles) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).EnumFiles(@as(*const IBackgroundCopyJob, @ptrCast(self)), pEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_Suspend(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Suspend(@as(*const IBackgroundCopyJob, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_Resume(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Resume(@as(*const IBackgroundCopyJob, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_Cancel(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IBackgroundCopyJob, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_Complete(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).Complete(@as(*const IBackgroundCopyJob, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetId(self: *const T, pVal: ?*Guid) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetId(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetType(self: *const T, pVal: ?*BG_JOB_TYPE) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetType(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetProgress(self: *const T, pVal: ?*BG_JOB_PROGRESS) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetTimes(self: *const T, pVal: ?*BG_JOB_TIMES) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetTimes(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetState(self: *const T, pVal: ?*BG_JOB_STATE) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetState(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetError(self: *const T, ppError: ?*?*IBackgroundCopyError) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetError(@as(*const IBackgroundCopyJob, @ptrCast(self)), ppError);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetOwner(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetDisplayName(self: *const T, Val: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetDisplayName(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetDisplayName(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetDisplayName(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetDescription(self: *const T, Val: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetDescription(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetPriority(self: *const T, Val: BG_JOB_PRIORITY) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetPriority(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetPriority(self: *const T, pVal: ?*BG_JOB_PRIORITY) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetPriority(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetNotifyFlags(self: *const T, Val: u32) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNotifyFlags(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetNotifyFlags(self: *const T, pVal: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNotifyFlags(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetNotifyInterface(self: *const T, Val: ?*IUnknown) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNotifyInterface(@as(*const IBackgroundCopyJob, @ptrCast(self)), Val);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetNotifyInterface(self: *const T, pVal: ?*?*IUnknown) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNotifyInterface(@as(*const IBackgroundCopyJob, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetMinimumRetryDelay(self: *const T, Seconds: u32) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetMinimumRetryDelay(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetMinimumRetryDelay(self: *const T, Seconds: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetMinimumRetryDelay(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetNoProgressTimeout(self: *const T, Seconds: u32) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetNoProgressTimeout(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetNoProgressTimeout(self: *const T, Seconds: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetNoProgressTimeout(@as(*const IBackgroundCopyJob, @ptrCast(self)), Seconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetErrorCount(self: *const T, Errors: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetErrorCount(@as(*const IBackgroundCopyJob, @ptrCast(self)), Errors);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_SetProxySettings(self: *const T, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).SetProxySettings(@as(*const IBackgroundCopyJob, @ptrCast(self)), ProxyUsage, ProxyList, ProxyBypassList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_GetProxySettings(self: *const T, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).GetProxySettings(@as(*const IBackgroundCopyJob, @ptrCast(self)), pProxyUsage, pProxyList, pProxyBypassList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob_TakeOwnership(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJob.VTable, @ptrCast(self.vtable)).TakeOwnership(@as(*const IBackgroundCopyJob, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AddFileSet(self: *const IBackgroundCopyJob, cFileCount: u32, pFileSet: [*]BG_FILE_INFO) callconv(.Inline) HRESULT {
+        return self.vtable.AddFileSet(self, cFileCount, pFileSet);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddFile(self: *const IBackgroundCopyJob, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.AddFile(self, RemoteUrl, LocalName);
+    }
+    pub fn EnumFiles(self: *const IBackgroundCopyJob, pEnum: ?*?*IEnumBackgroundCopyFiles) callconv(.Inline) HRESULT {
+        return self.vtable.EnumFiles(self, pEnum);
+    }
+    pub fn Suspend(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.Suspend(self);
+    }
+    pub fn Resume(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.Resume(self);
+    }
+    pub fn Cancel(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn Complete(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.Complete(self);
+    }
+    pub fn GetId(self: *const IBackgroundCopyJob, pVal: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetId(self, pVal);
+    }
+    pub fn GetType(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetType(self, pVal);
+    }
+    pub fn GetProgress(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PROGRESS) callconv(.Inline) HRESULT {
+        return self.vtable.GetProgress(self, pVal);
+    }
+    pub fn GetTimes(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_TIMES) callconv(.Inline) HRESULT {
+        return self.vtable.GetTimes(self, pVal);
+    }
+    pub fn GetState(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_STATE) callconv(.Inline) HRESULT {
+        return self.vtable.GetState(self, pVal);
+    }
+    pub fn GetError(self: *const IBackgroundCopyJob, ppError: ?*?*IBackgroundCopyError) callconv(.Inline) HRESULT {
+        return self.vtable.GetError(self, ppError);
+    }
+    pub fn GetOwner(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, pVal);
+    }
+    pub fn SetDisplayName(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetDisplayName(self, Val);
+    }
+    pub fn GetDisplayName(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetDisplayName(self, pVal);
+    }
+    pub fn SetDescription(self: *const IBackgroundCopyJob, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetDescription(self, Val);
+    }
+    pub fn GetDescription(self: *const IBackgroundCopyJob, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetDescription(self, pVal);
+    }
+    pub fn SetPriority(self: *const IBackgroundCopyJob, Val: BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
+        return self.vtable.SetPriority(self, Val);
+    }
+    pub fn GetPriority(self: *const IBackgroundCopyJob, pVal: ?*BG_JOB_PRIORITY) callconv(.Inline) HRESULT {
+        return self.vtable.GetPriority(self, pVal);
+    }
+    pub fn SetNotifyFlags(self: *const IBackgroundCopyJob, Val: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetNotifyFlags(self, Val);
+    }
+    pub fn GetNotifyFlags(self: *const IBackgroundCopyJob, pVal: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetNotifyFlags(self, pVal);
+    }
+    pub fn SetNotifyInterface(self: *const IBackgroundCopyJob, Val: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetNotifyInterface(self, Val);
+    }
+    pub fn GetNotifyInterface(self: *const IBackgroundCopyJob, pVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetNotifyInterface(self, pVal);
+    }
+    pub fn SetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetMinimumRetryDelay(self, Seconds);
+    }
+    pub fn GetMinimumRetryDelay(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetMinimumRetryDelay(self, Seconds);
+    }
+    pub fn SetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetNoProgressTimeout(self, Seconds);
+    }
+    pub fn GetNoProgressTimeout(self: *const IBackgroundCopyJob, Seconds: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetNoProgressTimeout(self, Seconds);
+    }
+    pub fn GetErrorCount(self: *const IBackgroundCopyJob, Errors: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetErrorCount(self, Errors);
+    }
+    pub fn SetProxySettings(self: *const IBackgroundCopyJob, ProxyUsage: BG_JOB_PROXY_USAGE, ProxyList: ?[*:0]const u16, ProxyBypassList: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetProxySettings(self, ProxyUsage, ProxyList, ProxyBypassList);
+    }
+    pub fn GetProxySettings(self: *const IBackgroundCopyJob, pProxyUsage: ?*BG_JOB_PROXY_USAGE, pProxyList: ?*?PWSTR, pProxyBypassList: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetProxySettings(self, pProxyUsage, pProxyList, pProxyBypassList);
+    }
+    pub fn TakeOwnership(self: *const IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.TakeOwnership(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyJobs_Value = Guid.initString("1af4f612-3b71-466f-8f58-7b6f73ac57ad");
 pub const IID_IEnumBackgroundCopyJobs = &IID_IEnumBackgroundCopyJobs_Value;
-pub const IEnumBackgroundCopyJobs = extern struct {
+pub const IEnumBackgroundCopyJobs = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs,
-                celt: u32,
-                rgelt: ?*?*IBackgroundCopyJob,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs,
-                celt: u32,
-                rgelt: ?*?*IBackgroundCopyJob,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs,
-                ppenum: ?*?*IEnumBackgroundCopyJobs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs,
-                ppenum: ?*?*IEnumBackgroundCopyJobs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            celt: u32,
+            rgelt: ?*?*IBackgroundCopyJob,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            ppenum: ?*?*IEnumBackgroundCopyJobs,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBackgroundCopyJobs,
+            puCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs_Next(self: *const T, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyJobs) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), ppenum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyJobs, @ptrCast(self)), puCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBackgroundCopyJobs, celt: u32, rgelt: ?*?*IBackgroundCopyJob, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumBackgroundCopyJobs, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBackgroundCopyJobs, ppenum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBackgroundCopyJobs, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyCallback_Value = Guid.initString("97ea99c7-0186-4ad4-8df9-c5b4e0ed6b22");
 pub const IID_IBackgroundCopyCallback = &IID_IBackgroundCopyCallback_Value;
-pub const IBackgroundCopyCallback = extern struct {
+pub const IBackgroundCopyCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        JobTransferred: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        JobError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                pError: ?*IBackgroundCopyError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                pError: ?*IBackgroundCopyError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        JobModification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        JobTransferred: *const fn(
+            self: *const IBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        JobError: *const fn(
+            self: *const IBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            pError: ?*IBackgroundCopyError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        JobModification: *const fn(
+            self: *const IBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            dwReserved: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback_JobTransferred(self: *const T, pJob: ?*IBackgroundCopyJob) HRESULT {
-                return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobTransferred(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback_JobError(self: *const T, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) HRESULT {
-                return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobError(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob, pError);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback_JobModification(self: *const T, pJob: ?*IBackgroundCopyJob, dwReserved: u32) HRESULT {
-                return @as(*const IBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).JobModification(@as(*const IBackgroundCopyCallback, @ptrCast(self)), pJob, dwReserved);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn JobTransferred(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.JobTransferred(self, pJob);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn JobError(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
+        return self.vtable.JobError(self, pJob, pError);
+    }
+    pub fn JobModification(self: *const IBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
+        return self.vtable.JobModification(self, pJob, dwReserved);
+    }
 };
 
 const IID_AsyncIBackgroundCopyCallback_Value = Guid.initString("ca29d251-b4bb-4679-a3d9-ae8006119d54");
 pub const IID_AsyncIBackgroundCopyCallback = &IID_AsyncIBackgroundCopyCallback_Value;
-pub const AsyncIBackgroundCopyCallback = extern struct {
+pub const AsyncIBackgroundCopyCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Begin_JobTransferred: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const AsyncIBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const AsyncIBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_JobTransferred: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const AsyncIBackgroundCopyCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const AsyncIBackgroundCopyCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_JobError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const AsyncIBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                pError: ?*IBackgroundCopyError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const AsyncIBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                pError: ?*IBackgroundCopyError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_JobError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const AsyncIBackgroundCopyCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const AsyncIBackgroundCopyCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Begin_JobModification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const AsyncIBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const AsyncIBackgroundCopyCallback,
-                pJob: ?*IBackgroundCopyJob,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Finish_JobModification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const AsyncIBackgroundCopyCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const AsyncIBackgroundCopyCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Begin_JobTransferred: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_JobTransferred: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_JobError: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            pError: ?*IBackgroundCopyError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_JobError: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Begin_JobModification: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+            pJob: ?*IBackgroundCopyJob,
+            dwReserved: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Finish_JobModification: *const fn(
+            self: *const AsyncIBackgroundCopyCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn AsyncIBackgroundCopyCallback_Begin_JobTransferred(self: *const T, pJob: ?*IBackgroundCopyJob) HRESULT {
-                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobTransferred(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn AsyncIBackgroundCopyCallback_Finish_JobTransferred(self: *const T) HRESULT {
-                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobTransferred(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn AsyncIBackgroundCopyCallback_Begin_JobError(self: *const T, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) HRESULT {
-                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobError(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob, pError);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn AsyncIBackgroundCopyCallback_Finish_JobError(self: *const T) HRESULT {
-                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobError(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn AsyncIBackgroundCopyCallback_Begin_JobModification(self: *const T, pJob: ?*IBackgroundCopyJob, dwReserved: u32) HRESULT {
-                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Begin_JobModification(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)), pJob, dwReserved);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn AsyncIBackgroundCopyCallback_Finish_JobModification(self: *const T) HRESULT {
-                return @as(*const AsyncIBackgroundCopyCallback.VTable, @ptrCast(self.vtable)).Finish_JobModification(@as(*const AsyncIBackgroundCopyCallback, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Begin_JobTransferred(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.Begin_JobTransferred(self, pJob);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Finish_JobTransferred(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
+        return self.vtable.Finish_JobTransferred(self);
+    }
+    pub fn Begin_JobError(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, pError: ?*IBackgroundCopyError) callconv(.Inline) HRESULT {
+        return self.vtable.Begin_JobError(self, pJob, pError);
+    }
+    pub fn Finish_JobError(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
+        return self.vtable.Finish_JobError(self);
+    }
+    pub fn Begin_JobModification(self: *const AsyncIBackgroundCopyCallback, pJob: ?*IBackgroundCopyJob, dwReserved: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Begin_JobModification(self, pJob, dwReserved);
+    }
+    pub fn Finish_JobModification(self: *const AsyncIBackgroundCopyCallback) callconv(.Inline) HRESULT {
+        return self.vtable.Finish_JobModification(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyManager_Value = Guid.initString("5ce34c0d-0dc9-4c1f-897c-daa1b78cee7c");
 pub const IID_IBackgroundCopyManager = &IID_IBackgroundCopyManager_Value;
-pub const IBackgroundCopyManager = extern struct {
+pub const IBackgroundCopyManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyManager,
-                DisplayName: ?[*:0]const u16,
-                Type: BG_JOB_TYPE,
-                pJobId: ?*Guid,
-                ppJob: ?*?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyManager,
-                DisplayName: ?[*:0]const u16,
-                Type: BG_JOB_TYPE,
-                pJobId: ?*Guid,
-                ppJob: ?*?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyManager,
-                jobID: ?*const Guid,
-                ppJob: ?*?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyManager,
-                jobID: ?*const Guid,
-                ppJob: ?*?*IBackgroundCopyJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumJobs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyManager,
-                dwFlags: u32,
-                ppEnum: ?*?*IEnumBackgroundCopyJobs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyManager,
-                dwFlags: u32,
-                ppEnum: ?*?*IEnumBackgroundCopyJobs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyManager,
-                hResult: HRESULT,
-                LanguageId: u32,
-                pErrorDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyManager,
-                hResult: HRESULT,
-                LanguageId: u32,
-                pErrorDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateJob: *const fn(
+            self: *const IBackgroundCopyManager,
+            DisplayName: ?[*:0]const u16,
+            Type: BG_JOB_TYPE,
+            pJobId: ?*Guid,
+            ppJob: ?*?*IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJob: *const fn(
+            self: *const IBackgroundCopyManager,
+            jobID: ?*const Guid,
+            ppJob: ?*?*IBackgroundCopyJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumJobs: *const fn(
+            self: *const IBackgroundCopyManager,
+            dwFlags: u32,
+            ppEnum: ?*?*IEnumBackgroundCopyJobs,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorDescription: *const fn(
+            self: *const IBackgroundCopyManager,
+            hResult: HRESULT,
+            LanguageId: u32,
+            pErrorDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyManager_CreateJob(self: *const T, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) HRESULT {
-                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).CreateJob(@as(*const IBackgroundCopyManager, @ptrCast(self)), DisplayName, Type, pJobId, ppJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyManager_GetJob(self: *const T, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) HRESULT {
-                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IBackgroundCopyManager, @ptrCast(self)), jobID, ppJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyManager_EnumJobs(self: *const T, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) HRESULT {
-                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).EnumJobs(@as(*const IBackgroundCopyManager, @ptrCast(self)), dwFlags, ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyManager_GetErrorDescription(self: *const T, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyManager.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IBackgroundCopyManager, @ptrCast(self)), hResult, LanguageId, pErrorDescription);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateJob(self: *const IBackgroundCopyManager, DisplayName: ?[*:0]const u16, Type: BG_JOB_TYPE, pJobId: ?*Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.CreateJob(self, DisplayName, Type, pJobId, ppJob);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetJob(self: *const IBackgroundCopyManager, jobID: ?*const Guid, ppJob: ?*?*IBackgroundCopyJob) callconv(.Inline) HRESULT {
+        return self.vtable.GetJob(self, jobID, ppJob);
+    }
+    pub fn EnumJobs(self: *const IBackgroundCopyManager, dwFlags: u32, ppEnum: ?*?*IEnumBackgroundCopyJobs) callconv(.Inline) HRESULT {
+        return self.vtable.EnumJobs(self, dwFlags, ppEnum);
+    }
+    pub fn GetErrorDescription(self: *const IBackgroundCopyManager, hResult: HRESULT, LanguageId: u32, pErrorDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetErrorDescription(self, hResult, LanguageId, pErrorDescription);
+    }
 };
 
 const CLSID_BackgroundCopyManager1_5_Value = Guid.initString("f087771f-d74f-4c1a-bb8a-e16aca9124ea");
@@ -1405,137 +910,73 @@ pub const BG_AUTH_CREDENTIALS = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob2_Value = Guid.initString("54b50739-686f-45eb-9dff-d6a9a0faa9af");
 pub const IID_IBackgroundCopyJob2 = &IID_IBackgroundCopyJob2_Value;
-pub const IBackgroundCopyJob2 = extern struct {
+pub const IBackgroundCopyJob2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob.VTable,
-        SetNotifyCmdLine: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                Program: ?[*:0]const u16,
-                Parameters: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                Program: ?[*:0]const u16,
-                Parameters: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNotifyCmdLine: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                pProgram: ?*?PWSTR,
-                pParameters: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                pProgram: ?*?PWSTR,
-                pParameters: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReplyProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                pProgress: ?*BG_JOB_REPLY_PROGRESS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                pProgress: ?*BG_JOB_REPLY_PROGRESS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReplyData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                ppBuffer: ?*?*u8,
-                pLength: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                ppBuffer: ?*?*u8,
-                pLength: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetReplyFileName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                ReplyFileName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                ReplyFileName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReplyFileName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                pReplyFileName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                pReplyFileName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCredentials: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                credentials: ?*BG_AUTH_CREDENTIALS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                credentials: ?*BG_AUTH_CREDENTIALS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveCredentials: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob2,
-                Target: BG_AUTH_TARGET,
-                Scheme: BG_AUTH_SCHEME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob2,
-                Target: BG_AUTH_TARGET,
-                Scheme: BG_AUTH_SCHEME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetNotifyCmdLine: *const fn(
+            self: *const IBackgroundCopyJob2,
+            Program: ?[*:0]const u16,
+            Parameters: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNotifyCmdLine: *const fn(
+            self: *const IBackgroundCopyJob2,
+            pProgram: ?*?PWSTR,
+            pParameters: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReplyProgress: *const fn(
+            self: *const IBackgroundCopyJob2,
+            pProgress: ?*BG_JOB_REPLY_PROGRESS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReplyData: *const fn(
+            self: *const IBackgroundCopyJob2,
+            ppBuffer: ?*?*u8,
+            pLength: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetReplyFileName: *const fn(
+            self: *const IBackgroundCopyJob2,
+            ReplyFileName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReplyFileName: *const fn(
+            self: *const IBackgroundCopyJob2,
+            pReplyFileName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCredentials: *const fn(
+            self: *const IBackgroundCopyJob2,
+            credentials: ?*BG_AUTH_CREDENTIALS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveCredentials: *const fn(
+            self: *const IBackgroundCopyJob2,
+            Target: BG_AUTH_TARGET,
+            Scheme: BG_AUTH_SCHEME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyJob.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_SetNotifyCmdLine(self: *const T, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetNotifyCmdLine(@as(*const IBackgroundCopyJob2, @ptrCast(self)), Program, Parameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_GetNotifyCmdLine(self: *const T, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetNotifyCmdLine(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pProgram, pParameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_GetReplyProgress(self: *const T, pProgress: ?*BG_JOB_REPLY_PROGRESS) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyProgress(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pProgress);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_GetReplyData(self: *const T, ppBuffer: ?*?*u8, pLength: ?*u64) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyData(@as(*const IBackgroundCopyJob2, @ptrCast(self)), ppBuffer, pLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_SetReplyFileName(self: *const T, ReplyFileName: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetReplyFileName(@as(*const IBackgroundCopyJob2, @ptrCast(self)), ReplyFileName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_GetReplyFileName(self: *const T, pReplyFileName: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).GetReplyFileName(@as(*const IBackgroundCopyJob2, @ptrCast(self)), pReplyFileName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_SetCredentials(self: *const T, credentials: ?*BG_AUTH_CREDENTIALS) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).SetCredentials(@as(*const IBackgroundCopyJob2, @ptrCast(self)), credentials);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob2_RemoveCredentials(self: *const T, Target: BG_AUTH_TARGET, Scheme: BG_AUTH_SCHEME) HRESULT {
-                return @as(*const IBackgroundCopyJob2.VTable, @ptrCast(self.vtable)).RemoveCredentials(@as(*const IBackgroundCopyJob2, @ptrCast(self)), Target, Scheme);
-            }
-        };
+    IBackgroundCopyJob: IBackgroundCopyJob,
+    IUnknown: IUnknown,
+    pub fn SetNotifyCmdLine(self: *const IBackgroundCopyJob2, Program: ?[*:0]const u16, Parameters: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetNotifyCmdLine(self, Program, Parameters);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetNotifyCmdLine(self: *const IBackgroundCopyJob2, pProgram: ?*?PWSTR, pParameters: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetNotifyCmdLine(self, pProgram, pParameters);
+    }
+    pub fn GetReplyProgress(self: *const IBackgroundCopyJob2, pProgress: ?*BG_JOB_REPLY_PROGRESS) callconv(.Inline) HRESULT {
+        return self.vtable.GetReplyProgress(self, pProgress);
+    }
+    pub fn GetReplyData(self: *const IBackgroundCopyJob2, ppBuffer: ?*?*u8, pLength: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetReplyData(self, ppBuffer, pLength);
+    }
+    pub fn SetReplyFileName(self: *const IBackgroundCopyJob2, ReplyFileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetReplyFileName(self, ReplyFileName);
+    }
+    pub fn GetReplyFileName(self: *const IBackgroundCopyJob2, pReplyFileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetReplyFileName(self, pReplyFileName);
+    }
+    pub fn SetCredentials(self: *const IBackgroundCopyJob2, credentials: ?*BG_AUTH_CREDENTIALS) callconv(.Inline) HRESULT {
+        return self.vtable.SetCredentials(self, credentials);
+    }
+    pub fn RemoveCredentials(self: *const IBackgroundCopyJob2, Target: BG_AUTH_TARGET, Scheme: BG_AUTH_SCHEME) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveCredentials(self, Target, Scheme);
+    }
 };
 
 const CLSID_BackgroundCopyManager2_0_Value = Guid.initString("6d18ad12-bde3-4393-b311-099c346e6df9");
@@ -1549,127 +990,73 @@ pub const BG_FILE_RANGE = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob3_Value = Guid.initString("443c8934-90ff-48ed-bcde-26f5c7450042");
 pub const IID_IBackgroundCopyJob3 = &IID_IBackgroundCopyJob3_Value;
-pub const IBackgroundCopyJob3 = extern struct {
+pub const IBackgroundCopyJob3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob2.VTable,
-        ReplaceRemotePrefix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob3,
-                OldPrefix: ?[*:0]const u16,
-                NewPrefix: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob3,
-                OldPrefix: ?[*:0]const u16,
-                NewPrefix: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFileWithRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob3,
-                RemoteUrl: ?[*:0]const u16,
-                LocalName: ?[*:0]const u16,
-                RangeCount: u32,
-                Ranges: [*]BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob3,
-                RemoteUrl: ?[*:0]const u16,
-                LocalName: ?[*:0]const u16,
-                RangeCount: u32,
-                Ranges: [*]BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFileACLFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob3,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob3,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileACLFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob3,
-                Flags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob3,
-                Flags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ReplaceRemotePrefix: *const fn(
+            self: *const IBackgroundCopyJob3,
+            OldPrefix: ?[*:0]const u16,
+            NewPrefix: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFileWithRanges: *const fn(
+            self: *const IBackgroundCopyJob3,
+            RemoteUrl: ?[*:0]const u16,
+            LocalName: ?[*:0]const u16,
+            RangeCount: u32,
+            Ranges: [*]BG_FILE_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFileACLFlags: *const fn(
+            self: *const IBackgroundCopyJob3,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileACLFlags: *const fn(
+            self: *const IBackgroundCopyJob3,
+            Flags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyJob2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob3_ReplaceRemotePrefix(self: *const T, OldPrefix: ?[*:0]const u16, NewPrefix: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).ReplaceRemotePrefix(@as(*const IBackgroundCopyJob3, @ptrCast(self)), OldPrefix, NewPrefix);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob3_AddFileWithRanges(self: *const T, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) HRESULT {
-                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).AddFileWithRanges(@as(*const IBackgroundCopyJob3, @ptrCast(self)), RemoteUrl, LocalName, RangeCount, Ranges);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob3_SetFileACLFlags(self: *const T, Flags: u32) HRESULT {
-                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).SetFileACLFlags(@as(*const IBackgroundCopyJob3, @ptrCast(self)), Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob3_GetFileACLFlags(self: *const T, Flags: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob3.VTable, @ptrCast(self.vtable)).GetFileACLFlags(@as(*const IBackgroundCopyJob3, @ptrCast(self)), Flags);
-            }
-        };
+    IBackgroundCopyJob2: IBackgroundCopyJob2,
+    IBackgroundCopyJob: IBackgroundCopyJob,
+    IUnknown: IUnknown,
+    pub fn ReplaceRemotePrefix(self: *const IBackgroundCopyJob3, OldPrefix: ?[*:0]const u16, NewPrefix: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.ReplaceRemotePrefix(self, OldPrefix, NewPrefix);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddFileWithRanges(self: *const IBackgroundCopyJob3, RemoteUrl: ?[*:0]const u16, LocalName: ?[*:0]const u16, RangeCount: u32, Ranges: [*]BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        return self.vtable.AddFileWithRanges(self, RemoteUrl, LocalName, RangeCount, Ranges);
+    }
+    pub fn SetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetFileACLFlags(self, Flags);
+    }
+    pub fn GetFileACLFlags(self: *const IBackgroundCopyJob3, Flags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileACLFlags(self, Flags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyFile2_Value = Guid.initString("83e81b93-0873-474d-8a8c-f2018b1a939c");
 pub const IID_IBackgroundCopyFile2 = &IID_IBackgroundCopyFile2_Value;
-pub const IBackgroundCopyFile2 = extern struct {
+pub const IBackgroundCopyFile2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile.VTable,
-        GetFileRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile2,
-                RangeCount: ?*u32,
-                Ranges: [*]?*BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile2,
-                RangeCount: ?*u32,
-                Ranges: [*]?*BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRemoteName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile2,
-                Val: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile2,
-                Val: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFileRanges: *const fn(
+            self: *const IBackgroundCopyFile2,
+            RangeCount: ?*u32,
+            Ranges: [*]?*BG_FILE_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRemoteName: *const fn(
+            self: *const IBackgroundCopyFile2,
+            Val: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyFile.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile2_GetFileRanges(self: *const T, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) HRESULT {
-                return @as(*const IBackgroundCopyFile2.VTable, @ptrCast(self.vtable)).GetFileRanges(@as(*const IBackgroundCopyFile2, @ptrCast(self)), RangeCount, Ranges);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile2_SetRemoteName(self: *const T, Val: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyFile2.VTable, @ptrCast(self.vtable)).SetRemoteName(@as(*const IBackgroundCopyFile2, @ptrCast(self)), Val);
-            }
-        };
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn GetFileRanges(self: *const IBackgroundCopyFile2, RangeCount: ?*u32, Ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileRanges(self, RangeCount, Ranges);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetRemoteName(self: *const IBackgroundCopyFile2, Val: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetRemoteName(self, Val);
+    }
 };
 
 const CLSID_BackgroundCopyManager2_5_Value = Guid.initString("03ca98d6-ff5d-49b8-abc6-03dd84127020");
@@ -1697,141 +1084,74 @@ pub const BG_CERT_STORE_LOCATION_LOCAL_MACHINE_ENTERPRISE = BG_CERT_STORE_LOCATI
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJobHttpOptions_Value = Guid.initString("f1bd1079-9f01-4bdc-8036-f09b70095066");
 pub const IID_IBackgroundCopyJobHttpOptions = &IID_IBackgroundCopyJobHttpOptions_Value;
-pub const IBackgroundCopyJobHttpOptions = extern struct {
+pub const IBackgroundCopyJobHttpOptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetClientCertificateByID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                StoreLocation: BG_CERT_STORE_LOCATION,
-                StoreName: ?[*:0]const u16,
-                pCertHashBlob: *[20]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                StoreLocation: BG_CERT_STORE_LOCATION,
-                StoreName: ?[*:0]const u16,
-                pCertHashBlob: *[20]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClientCertificateByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                StoreLocation: BG_CERT_STORE_LOCATION,
-                StoreName: ?[*:0]const u16,
-                SubjectName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                StoreLocation: BG_CERT_STORE_LOCATION,
-                StoreName: ?[*:0]const u16,
-                SubjectName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveClientCertificate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClientCertificate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                pStoreLocation: ?*BG_CERT_STORE_LOCATION,
-                pStoreName: ?*?PWSTR,
-                ppCertHashBlob: ?*[20]?*u8,
-                pSubjectName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                pStoreLocation: ?*BG_CERT_STORE_LOCATION,
-                pStoreName: ?*?PWSTR,
-                ppCertHashBlob: ?*[20]?*u8,
-                pSubjectName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCustomHeaders: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                RequestHeaders: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                RequestHeaders: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCustomHeaders: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                pRequestHeaders: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                pRequestHeaders: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSecurityFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSecurityFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetClientCertificateByID: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+            StoreLocation: BG_CERT_STORE_LOCATION,
+            StoreName: ?[*:0]const u16,
+            pCertHashBlob: *[20]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClientCertificateByName: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+            StoreLocation: BG_CERT_STORE_LOCATION,
+            StoreName: ?[*:0]const u16,
+            SubjectName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveClientCertificate: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClientCertificate: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+            pStoreLocation: ?*BG_CERT_STORE_LOCATION,
+            pStoreName: ?*?PWSTR,
+            ppCertHashBlob: *[20]?*u8,
+            pSubjectName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCustomHeaders: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+            RequestHeaders: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCustomHeaders: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+            pRequestHeaders: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSecurityFlags: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSecurityFlags: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions,
+            pFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_SetClientCertificateByID(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, pCertHashBlob: *[20]u8) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetClientCertificateByID(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), StoreLocation, StoreName, pCertHashBlob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_SetClientCertificateByName(self: *const T, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, SubjectName: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetClientCertificateByName(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), StoreLocation, StoreName, SubjectName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_RemoveClientCertificate(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).RemoveClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_GetClientCertificate(self: *const T, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: ?*[20]?*u8, pSubjectName: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetClientCertificate(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_SetCustomHeaders(self: *const T, RequestHeaders: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetCustomHeaders(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), RequestHeaders);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_GetCustomHeaders(self: *const T, pRequestHeaders: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetCustomHeaders(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pRequestHeaders);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_SetSecurityFlags(self: *const T, Flags: u32) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).SetSecurityFlags(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions_GetSecurityFlags(self: *const T, pFlags: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions.VTable, @ptrCast(self.vtable)).GetSecurityFlags(@as(*const IBackgroundCopyJobHttpOptions, @ptrCast(self)), pFlags);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetClientCertificateByID(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, pCertHashBlob: *[20]u8) callconv(.Inline) HRESULT {
+        return self.vtable.SetClientCertificateByID(self, StoreLocation, StoreName, pCertHashBlob);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetClientCertificateByName(self: *const IBackgroundCopyJobHttpOptions, StoreLocation: BG_CERT_STORE_LOCATION, StoreName: ?[*:0]const u16, SubjectName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetClientCertificateByName(self, StoreLocation, StoreName, SubjectName);
+    }
+    pub fn RemoveClientCertificate(self: *const IBackgroundCopyJobHttpOptions) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveClientCertificate(self);
+    }
+    pub fn GetClientCertificate(self: *const IBackgroundCopyJobHttpOptions, pStoreLocation: ?*BG_CERT_STORE_LOCATION, pStoreName: ?*?PWSTR, ppCertHashBlob: *[20]?*u8, pSubjectName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetClientCertificate(self, pStoreLocation, pStoreName, ppCertHashBlob, pSubjectName);
+    }
+    pub fn SetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, RequestHeaders: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetCustomHeaders(self, RequestHeaders);
+    }
+    pub fn GetCustomHeaders(self: *const IBackgroundCopyJobHttpOptions, pRequestHeaders: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetCustomHeaders(self, pRequestHeaders);
+    }
+    pub fn SetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetSecurityFlags(self, Flags);
+    }
+    pub fn GetSecurityFlags(self: *const IBackgroundCopyJobHttpOptions, pFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSecurityFlags(self, pFlags);
+    }
 };
 
 const CLSID_BackgroundCopyManager3_0_Value = Guid.initString("659cdea7-489e-11d9-a9cd-000d56965251");
@@ -1840,761 +1160,411 @@ pub const CLSID_BackgroundCopyManager3_0 = &CLSID_BackgroundCopyManager3_0_Value
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeerCacheRecord_Value = Guid.initString("659cdeaf-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheRecord = &IID_IBitsPeerCacheRecord_Value;
-pub const IBitsPeerCacheRecord = extern struct {
+pub const IBitsPeerCacheRecord = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOriginUrl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileModificationTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastAccessTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheRecord,
-                pVal: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsFileValidated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheRecord,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheRecord,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheRecord,
-                pRangeCount: ?*u32,
-                ppRanges: [*]?*BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheRecord,
-                pRangeCount: ?*u32,
-                ppRanges: [*]?*BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetId: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOriginUrl: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileSize: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileModificationTime: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastAccessTime: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pVal: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsFileValidated: *const fn(
+            self: *const IBitsPeerCacheRecord,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileRanges: *const fn(
+            self: *const IBitsPeerCacheRecord,
+            pRangeCount: ?*u32,
+            ppRanges: [*]?*BG_FILE_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheRecord_GetId(self: *const T, pVal: ?*Guid) HRESULT {
-                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetId(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheRecord_GetOriginUrl(self: *const T, pVal: ?*?PWSTR) HRESULT {
-                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetOriginUrl(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheRecord_GetFileSize(self: *const T, pVal: ?*u64) HRESULT {
-                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileSize(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheRecord_GetFileModificationTime(self: *const T, pVal: ?*FILETIME) HRESULT {
-                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileModificationTime(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheRecord_GetLastAccessTime(self: *const T, pVal: ?*FILETIME) HRESULT {
-                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetLastAccessTime(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheRecord_IsFileValidated(self: *const T) HRESULT {
-                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).IsFileValidated(@as(*const IBitsPeerCacheRecord, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheRecord_GetFileRanges(self: *const T, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) HRESULT {
-                return @as(*const IBitsPeerCacheRecord.VTable, @ptrCast(self.vtable)).GetFileRanges(@as(*const IBitsPeerCacheRecord, @ptrCast(self)), pRangeCount, ppRanges);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetId(self: *const IBitsPeerCacheRecord, pVal: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetId(self, pVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetOriginUrl(self: *const IBitsPeerCacheRecord, pVal: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetOriginUrl(self, pVal);
+    }
+    pub fn GetFileSize(self: *const IBitsPeerCacheRecord, pVal: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileSize(self, pVal);
+    }
+    pub fn GetFileModificationTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileModificationTime(self, pVal);
+    }
+    pub fn GetLastAccessTime(self: *const IBitsPeerCacheRecord, pVal: ?*FILETIME) callconv(.Inline) HRESULT {
+        return self.vtable.GetLastAccessTime(self, pVal);
+    }
+    pub fn IsFileValidated(self: *const IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
+        return self.vtable.IsFileValidated(self);
+    }
+    pub fn GetFileRanges(self: *const IBitsPeerCacheRecord, pRangeCount: ?*u32, ppRanges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileRanges(self, pRangeCount, ppRanges);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumBitsPeerCacheRecords_Value = Guid.initString("659cdea4-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeerCacheRecords = &IID_IEnumBitsPeerCacheRecords_Value;
-pub const IEnumBitsPeerCacheRecords = extern struct {
+pub const IEnumBitsPeerCacheRecords = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                celt: u32,
-                rgelt: ?*?*IBitsPeerCacheRecord,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                celt: u32,
-                rgelt: ?*?*IBitsPeerCacheRecord,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeerCacheRecords,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeerCacheRecords,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                ppenum: ?*?*IEnumBitsPeerCacheRecords,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                ppenum: ?*?*IEnumBitsPeerCacheRecords,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeerCacheRecords,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            celt: u32,
+            rgelt: ?*?*IBitsPeerCacheRecord,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            ppenum: ?*?*IEnumBitsPeerCacheRecords,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBitsPeerCacheRecords,
+            puCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeerCacheRecords_Next(self: *const T, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeerCacheRecords_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeerCacheRecords_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeerCacheRecords_Clone(self: *const T, ppenum: ?*?*IEnumBitsPeerCacheRecords) HRESULT {
-                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), ppenum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeerCacheRecords_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @as(*const IEnumBitsPeerCacheRecords.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBitsPeerCacheRecords, @ptrCast(self)), puCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBitsPeerCacheRecords, celt: u32, rgelt: ?*?*IBitsPeerCacheRecord, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumBitsPeerCacheRecords, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBitsPeerCacheRecords, ppenum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBitsPeerCacheRecords, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeer_Value = Guid.initString("659cdea2-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeer = &IID_IBitsPeer_Value;
-pub const IBitsPeer = extern struct {
+pub const IBitsPeer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPeerName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeer,
-                pName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeer,
-                pName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsAuthenticated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeer,
-                pAuth: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeer,
-                pAuth: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsAvailable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeer,
-                pOnline: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeer,
-                pOnline: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPeerName: *const fn(
+            self: *const IBitsPeer,
+            pName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsAuthenticated: *const fn(
+            self: *const IBitsPeer,
+            pAuth: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsAvailable: *const fn(
+            self: *const IBitsPeer,
+            pOnline: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeer_GetPeerName(self: *const T, pName: ?*?PWSTR) HRESULT {
-                return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).GetPeerName(@as(*const IBitsPeer, @ptrCast(self)), pName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeer_IsAuthenticated(self: *const T, pAuth: ?*BOOL) HRESULT {
-                return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).IsAuthenticated(@as(*const IBitsPeer, @ptrCast(self)), pAuth);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeer_IsAvailable(self: *const T, pOnline: ?*BOOL) HRESULT {
-                return @as(*const IBitsPeer.VTable, @ptrCast(self.vtable)).IsAvailable(@as(*const IBitsPeer, @ptrCast(self)), pOnline);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetPeerName(self: *const IBitsPeer, pName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPeerName(self, pName);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn IsAuthenticated(self: *const IBitsPeer, pAuth: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsAuthenticated(self, pAuth);
+    }
+    pub fn IsAvailable(self: *const IBitsPeer, pOnline: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsAvailable(self, pOnline);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IEnumBitsPeers_Value = Guid.initString("659cdea5-489e-11d9-a9cd-000d56965251");
 pub const IID_IEnumBitsPeers = &IID_IEnumBitsPeers_Value;
-pub const IEnumBitsPeers = extern struct {
+pub const IEnumBitsPeers = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeers,
-                celt: u32,
-                rgelt: ?*?*IBitsPeer,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeers,
-                celt: u32,
-                rgelt: ?*?*IBitsPeer,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeers,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeers,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeers,
-                ppenum: ?*?*IEnumBitsPeers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeers,
-                ppenum: ?*?*IEnumBitsPeers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBitsPeers,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBitsPeers,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumBitsPeers,
+            celt: u32,
+            rgelt: ?*?*IBitsPeer,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBitsPeers,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBitsPeers,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBitsPeers,
+            ppenum: ?*?*IEnumBitsPeers,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBitsPeers,
+            puCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeers_Next(self: *const T, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBitsPeers, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeers_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBitsPeers, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeers_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBitsPeers, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeers_Clone(self: *const T, ppenum: ?*?*IEnumBitsPeers) HRESULT {
-                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBitsPeers, @ptrCast(self)), ppenum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBitsPeers_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @as(*const IEnumBitsPeers.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBitsPeers, @ptrCast(self)), puCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBitsPeers, celt: u32, rgelt: ?*?*IBitsPeer, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumBitsPeers, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBitsPeers) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBitsPeers, ppenum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBitsPeers, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBitsPeerCacheAdministration_Value = Guid.initString("659cdead-489e-11d9-a9cd-000d56965251");
 pub const IID_IBitsPeerCacheAdministration = &IID_IBitsPeerCacheAdministration_Value;
-pub const IBitsPeerCacheAdministration = extern struct {
+pub const IBitsPeerCacheAdministration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMaximumCacheSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                pBytes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                pBytes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMaximumCacheSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                Bytes: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                Bytes: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaximumContentAge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                pSeconds: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                pSeconds: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMaximumContentAge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                Seconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                Seconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConfigurationFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConfigurationFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRecords: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                ppEnum: ?*?*IEnumBitsPeerCacheRecords,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                ppEnum: ?*?*IEnumBitsPeerCacheRecords,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                id: ?*const Guid,
-                ppRecord: ?*?*IBitsPeerCacheRecord,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                id: ?*const Guid,
-                ppRecord: ?*?*IBitsPeerCacheRecord,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearRecords: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteRecord: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                id: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                id: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteUrl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                url: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                url: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumPeers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-                ppEnum: ?*?*IEnumBitsPeers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-                ppEnum: ?*?*IEnumBitsPeers,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearPeers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DiscoverPeers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsPeerCacheAdministration,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsPeerCacheAdministration,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMaximumCacheSize: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            pBytes: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMaximumCacheSize: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            Bytes: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaximumContentAge: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            pSeconds: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMaximumContentAge: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            Seconds: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConfigurationFlags: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            pFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConfigurationFlags: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRecords: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            ppEnum: ?*?*IEnumBitsPeerCacheRecords,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecord: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            id: ?*const Guid,
+            ppRecord: ?*?*IBitsPeerCacheRecord,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearRecords: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteRecord: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            id: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteUrl: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            url: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumPeers: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+            ppEnum: ?*?*IEnumBitsPeers,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearPeers: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DiscoverPeers: *const fn(
+            self: *const IBitsPeerCacheAdministration,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_GetMaximumCacheSize(self: *const T, pBytes: ?*u32) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetMaximumCacheSize(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pBytes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_SetMaximumCacheSize(self: *const T, Bytes: u32) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetMaximumCacheSize(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Bytes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_GetMaximumContentAge(self: *const T, pSeconds: ?*u32) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetMaximumContentAge(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pSeconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_SetMaximumContentAge(self: *const T, Seconds: u32) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetMaximumContentAge(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Seconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_GetConfigurationFlags(self: *const T, pFlags: ?*u32) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetConfigurationFlags(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), pFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_SetConfigurationFlags(self: *const T, Flags: u32) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).SetConfigurationFlags(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_EnumRecords(self: *const T, ppEnum: ?*?*IEnumBitsPeerCacheRecords) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).EnumRecords(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_GetRecord(self: *const T, id: ?*const Guid, ppRecord: ?*?*IBitsPeerCacheRecord) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).GetRecord(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), id, ppRecord);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_ClearRecords(self: *const T) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).ClearRecords(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_DeleteRecord(self: *const T, id: ?*const Guid) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DeleteRecord(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), id);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_DeleteUrl(self: *const T, url: ?[*:0]const u16) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DeleteUrl(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), url);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_EnumPeers(self: *const T, ppEnum: ?*?*IEnumBitsPeers) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).EnumPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)), ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_ClearPeers(self: *const T) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).ClearPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsPeerCacheAdministration_DiscoverPeers(self: *const T) HRESULT {
-                return @as(*const IBitsPeerCacheAdministration.VTable, @ptrCast(self.vtable)).DiscoverPeers(@as(*const IBitsPeerCacheAdministration, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, pBytes: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetMaximumCacheSize(self, pBytes);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetMaximumCacheSize(self: *const IBitsPeerCacheAdministration, Bytes: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetMaximumCacheSize(self, Bytes);
+    }
+    pub fn GetMaximumContentAge(self: *const IBitsPeerCacheAdministration, pSeconds: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetMaximumContentAge(self, pSeconds);
+    }
+    pub fn SetMaximumContentAge(self: *const IBitsPeerCacheAdministration, Seconds: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetMaximumContentAge(self, Seconds);
+    }
+    pub fn GetConfigurationFlags(self: *const IBitsPeerCacheAdministration, pFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetConfigurationFlags(self, pFlags);
+    }
+    pub fn SetConfigurationFlags(self: *const IBitsPeerCacheAdministration, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetConfigurationFlags(self, Flags);
+    }
+    pub fn EnumRecords(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeerCacheRecords) callconv(.Inline) HRESULT {
+        return self.vtable.EnumRecords(self, ppEnum);
+    }
+    pub fn GetRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid, ppRecord: ?*?*IBitsPeerCacheRecord) callconv(.Inline) HRESULT {
+        return self.vtable.GetRecord(self, id, ppRecord);
+    }
+    pub fn ClearRecords(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
+        return self.vtable.ClearRecords(self);
+    }
+    pub fn DeleteRecord(self: *const IBitsPeerCacheAdministration, id: ?*const Guid) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteRecord(self, id);
+    }
+    pub fn DeleteUrl(self: *const IBitsPeerCacheAdministration, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteUrl(self, url);
+    }
+    pub fn EnumPeers(self: *const IBitsPeerCacheAdministration, ppEnum: ?*?*IEnumBitsPeers) callconv(.Inline) HRESULT {
+        return self.vtable.EnumPeers(self, ppEnum);
+    }
+    pub fn ClearPeers(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
+        return self.vtable.ClearPeers(self);
+    }
+    pub fn DiscoverPeers(self: *const IBitsPeerCacheAdministration) callconv(.Inline) HRESULT {
+        return self.vtable.DiscoverPeers(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyJob4_Value = Guid.initString("659cdeae-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyJob4 = &IID_IBackgroundCopyJob4_Value;
-pub const IBackgroundCopyJob4 = extern struct {
+pub const IBackgroundCopyJob4 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob3.VTable,
-        SetPeerCachingFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob4,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob4,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPeerCachingFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob4,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob4,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOwnerIntegrityLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob4,
-                pLevel: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob4,
-                pLevel: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOwnerElevationState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob4,
-                pElevated: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob4,
-                pElevated: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMaximumDownloadTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob4,
-                Timeout: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob4,
-                Timeout: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaximumDownloadTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob4,
-                pTimeout: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob4,
-                pTimeout: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetPeerCachingFlags: *const fn(
+            self: *const IBackgroundCopyJob4,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPeerCachingFlags: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOwnerIntegrityLevel: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pLevel: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOwnerElevationState: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pElevated: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMaximumDownloadTime: *const fn(
+            self: *const IBackgroundCopyJob4,
+            Timeout: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaximumDownloadTime: *const fn(
+            self: *const IBackgroundCopyJob4,
+            pTimeout: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyJob3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob4_SetPeerCachingFlags(self: *const T, Flags: u32) HRESULT {
-                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).SetPeerCachingFlags(@as(*const IBackgroundCopyJob4, @ptrCast(self)), Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob4_GetPeerCachingFlags(self: *const T, pFlags: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetPeerCachingFlags(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob4_GetOwnerIntegrityLevel(self: *const T, pLevel: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetOwnerIntegrityLevel(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob4_GetOwnerElevationState(self: *const T, pElevated: ?*BOOL) HRESULT {
-                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetOwnerElevationState(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pElevated);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob4_SetMaximumDownloadTime(self: *const T, Timeout: u32) HRESULT {
-                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).SetMaximumDownloadTime(@as(*const IBackgroundCopyJob4, @ptrCast(self)), Timeout);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob4_GetMaximumDownloadTime(self: *const T, pTimeout: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob4.VTable, @ptrCast(self.vtable)).GetMaximumDownloadTime(@as(*const IBackgroundCopyJob4, @ptrCast(self)), pTimeout);
-            }
-        };
+    IBackgroundCopyJob3: IBackgroundCopyJob3,
+    IBackgroundCopyJob2: IBackgroundCopyJob2,
+    IBackgroundCopyJob: IBackgroundCopyJob,
+    IUnknown: IUnknown,
+    pub fn SetPeerCachingFlags(self: *const IBackgroundCopyJob4, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetPeerCachingFlags(self, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetPeerCachingFlags(self: *const IBackgroundCopyJob4, pFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetPeerCachingFlags(self, pFlags);
+    }
+    pub fn GetOwnerIntegrityLevel(self: *const IBackgroundCopyJob4, pLevel: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwnerIntegrityLevel(self, pLevel);
+    }
+    pub fn GetOwnerElevationState(self: *const IBackgroundCopyJob4, pElevated: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwnerElevationState(self, pElevated);
+    }
+    pub fn SetMaximumDownloadTime(self: *const IBackgroundCopyJob4, Timeout: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetMaximumDownloadTime(self, Timeout);
+    }
+    pub fn GetMaximumDownloadTime(self: *const IBackgroundCopyJob4, pTimeout: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetMaximumDownloadTime(self, pTimeout);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyFile3_Value = Guid.initString("659cdeaa-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyFile3 = &IID_IBackgroundCopyFile3_Value;
-pub const IBackgroundCopyFile3 = extern struct {
+pub const IBackgroundCopyFile3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile2.VTable,
-        GetTemporaryName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile3,
-                pFilename: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile3,
-                pFilename: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetValidationState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile3,
-                state: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile3,
-                state: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValidationState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile3,
-                pState: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile3,
-                pState: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsDownloadedFromPeer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile3,
-                pVal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile3,
-                pVal: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTemporaryName: *const fn(
+            self: *const IBackgroundCopyFile3,
+            pFilename: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetValidationState: *const fn(
+            self: *const IBackgroundCopyFile3,
+            state: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValidationState: *const fn(
+            self: *const IBackgroundCopyFile3,
+            pState: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsDownloadedFromPeer: *const fn(
+            self: *const IBackgroundCopyFile3,
+            pVal: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyFile2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile3_GetTemporaryName(self: *const T, pFilename: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).GetTemporaryName(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pFilename);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile3_SetValidationState(self: *const T, state: BOOL) HRESULT {
-                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).SetValidationState(@as(*const IBackgroundCopyFile3, @ptrCast(self)), state);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile3_GetValidationState(self: *const T, pState: ?*BOOL) HRESULT {
-                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).GetValidationState(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile3_IsDownloadedFromPeer(self: *const T, pVal: ?*BOOL) HRESULT {
-                return @as(*const IBackgroundCopyFile3.VTable, @ptrCast(self.vtable)).IsDownloadedFromPeer(@as(*const IBackgroundCopyFile3, @ptrCast(self)), pVal);
-            }
-        };
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn GetTemporaryName(self: *const IBackgroundCopyFile3, pFilename: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetTemporaryName(self, pFilename);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetValidationState(self: *const IBackgroundCopyFile3, state: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetValidationState(self, state);
+    }
+    pub fn GetValidationState(self: *const IBackgroundCopyFile3, pState: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetValidationState(self, pState);
+    }
+    pub fn IsDownloadedFromPeer(self: *const IBackgroundCopyFile3, pVal: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsDownloadedFromPeer(self, pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBackgroundCopyCallback2_Value = Guid.initString("659cdeac-489e-11d9-a9cd-000d56965251");
 pub const IID_IBackgroundCopyCallback2 = &IID_IBackgroundCopyCallback2_Value;
-pub const IBackgroundCopyCallback2 = extern struct {
+pub const IBackgroundCopyCallback2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyCallback.VTable,
-        FileTransferred: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback2,
-                pJob: ?*IBackgroundCopyJob,
-                pFile: ?*IBackgroundCopyFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback2,
-                pJob: ?*IBackgroundCopyJob,
-                pFile: ?*IBackgroundCopyFile,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FileTransferred: *const fn(
+            self: *const IBackgroundCopyCallback2,
+            pJob: ?*IBackgroundCopyJob,
+            pFile: ?*IBackgroundCopyFile,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyCallback.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback2_FileTransferred(self: *const T, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) HRESULT {
-                return @as(*const IBackgroundCopyCallback2.VTable, @ptrCast(self.vtable)).FileTransferred(@as(*const IBackgroundCopyCallback2, @ptrCast(self)), pJob, pFile);
-            }
-        };
+    IBackgroundCopyCallback: IBackgroundCopyCallback,
+    IUnknown: IUnknown,
+    pub fn FileTransferred(self: *const IBackgroundCopyCallback2, pJob: ?*IBackgroundCopyJob, pFile: ?*IBackgroundCopyFile) callconv(.Inline) HRESULT {
+        return self.vtable.FileTransferred(self, pJob, pFile);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const CLSID_BackgroundCopyManager4_0_Value = Guid.initString("bb6df56b-cace-11dc-9992-0019b93a3a84");
@@ -2603,115 +1573,67 @@ pub const CLSID_BackgroundCopyManager4_0 = &CLSID_BackgroundCopyManager4_0_Value
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IBitsTokenOptions_Value = Guid.initString("9a2584c3-f7d2-457a-9a5e-22b67bffc7d2");
 pub const IID_IBitsTokenOptions = &IID_IBitsTokenOptions_Value;
-pub const IBitsTokenOptions = extern struct {
+pub const IBitsTokenOptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetHelperTokenFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsTokenOptions,
-                UsageFlags: BG_TOKEN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsTokenOptions,
-                UsageFlags: BG_TOKEN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHelperTokenFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsTokenOptions,
-                pFlags: ?*BG_TOKEN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsTokenOptions,
-                pFlags: ?*BG_TOKEN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHelperToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsTokenOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsTokenOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearHelperToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsTokenOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsTokenOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHelperTokenSid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitsTokenOptions,
-                pSid: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitsTokenOptions,
-                pSid: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetHelperTokenFlags: *const fn(
+            self: *const IBitsTokenOptions,
+            UsageFlags: BG_TOKEN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHelperTokenFlags: *const fn(
+            self: *const IBitsTokenOptions,
+            pFlags: ?*BG_TOKEN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHelperToken: *const fn(
+            self: *const IBitsTokenOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearHelperToken: *const fn(
+            self: *const IBitsTokenOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHelperTokenSid: *const fn(
+            self: *const IBitsTokenOptions,
+            pSid: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsTokenOptions_SetHelperTokenFlags(self: *const T, UsageFlags: BG_TOKEN) HRESULT {
-                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).SetHelperTokenFlags(@as(*const IBitsTokenOptions, @ptrCast(self)), UsageFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsTokenOptions_GetHelperTokenFlags(self: *const T, pFlags: ?*BG_TOKEN) HRESULT {
-                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).GetHelperTokenFlags(@as(*const IBitsTokenOptions, @ptrCast(self)), pFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsTokenOptions_SetHelperToken(self: *const T) HRESULT {
-                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).SetHelperToken(@as(*const IBitsTokenOptions, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsTokenOptions_ClearHelperToken(self: *const T) HRESULT {
-                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).ClearHelperToken(@as(*const IBitsTokenOptions, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitsTokenOptions_GetHelperTokenSid(self: *const T, pSid: ?*?PWSTR) HRESULT {
-                return @as(*const IBitsTokenOptions.VTable, @ptrCast(self.vtable)).GetHelperTokenSid(@as(*const IBitsTokenOptions, @ptrCast(self)), pSid);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetHelperTokenFlags(self: *const IBitsTokenOptions, UsageFlags: BG_TOKEN) callconv(.Inline) HRESULT {
+        return self.vtable.SetHelperTokenFlags(self, UsageFlags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetHelperTokenFlags(self: *const IBitsTokenOptions, pFlags: ?*BG_TOKEN) callconv(.Inline) HRESULT {
+        return self.vtable.GetHelperTokenFlags(self, pFlags);
+    }
+    pub fn SetHelperToken(self: *const IBitsTokenOptions) callconv(.Inline) HRESULT {
+        return self.vtable.SetHelperToken(self);
+    }
+    pub fn ClearHelperToken(self: *const IBitsTokenOptions) callconv(.Inline) HRESULT {
+        return self.vtable.ClearHelperToken(self);
+    }
+    pub fn GetHelperTokenSid(self: *const IBitsTokenOptions, pSid: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetHelperTokenSid(self, pSid);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IBackgroundCopyFile4_Value = Guid.initString("ef7e0655-7888-4960-b0e5-730846e03492");
 pub const IID_IBackgroundCopyFile4 = &IID_IBackgroundCopyFile4_Value;
-pub const IBackgroundCopyFile4 = extern struct {
+pub const IBackgroundCopyFile4 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile3.VTable,
-        GetPeerDownloadStats: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile4,
-                pFromOrigin: ?*u64,
-                pFromPeers: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile4,
-                pFromOrigin: ?*u64,
-                pFromPeers: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPeerDownloadStats: *const fn(
+            self: *const IBackgroundCopyFile4,
+            pFromOrigin: ?*u64,
+            pFromPeers: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyFile3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile4_GetPeerDownloadStats(self: *const T, pFromOrigin: ?*u64, pFromPeers: ?*u64) HRESULT {
-                return @as(*const IBackgroundCopyFile4.VTable, @ptrCast(self.vtable)).GetPeerDownloadStats(@as(*const IBackgroundCopyFile4, @ptrCast(self)), pFromOrigin, pFromPeers);
-            }
-        };
+    IBackgroundCopyFile3: IBackgroundCopyFile3,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn GetPeerDownloadStats(self: *const IBackgroundCopyFile4, pFromOrigin: ?*u64, pFromPeers: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetPeerDownloadStats(self, pFromOrigin, pFromPeers);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const CLSID_BackgroundCopyManager5_0_Value = Guid.initString("1ecca34c-e88a-44e3-8d6a-8921bde9e452");
@@ -2769,97 +1691,63 @@ pub const BITS_FILE_PROPERTY_VALUE = extern union {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IBackgroundCopyJob5_Value = Guid.initString("e847030c-bbba-4657-af6d-484aa42bf1fe");
 pub const IID_IBackgroundCopyJob5 = &IID_IBackgroundCopyJob5_Value;
-pub const IBackgroundCopyJob5 = extern struct {
+pub const IBackgroundCopyJob5 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJob4.VTable,
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob5,
-                PropertyId: BITS_JOB_PROPERTY_ID,
-                PropertyValue: BITS_JOB_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob5,
-                PropertyId: BITS_JOB_PROPERTY_ID,
-                PropertyValue: BITS_JOB_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob5,
-                PropertyId: BITS_JOB_PROPERTY_ID,
-                PropertyValue: ?*BITS_JOB_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob5,
-                PropertyId: BITS_JOB_PROPERTY_ID,
-                PropertyValue: ?*BITS_JOB_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetProperty: *const fn(
+            self: *const IBackgroundCopyJob5,
+            PropertyId: BITS_JOB_PROPERTY_ID,
+            PropertyValue: BITS_JOB_PROPERTY_VALUE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IBackgroundCopyJob5,
+            PropertyId: BITS_JOB_PROPERTY_ID,
+            PropertyValue: ?*BITS_JOB_PROPERTY_VALUE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyJob4.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob5_SetProperty(self: *const T, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) HRESULT {
-                return @as(*const IBackgroundCopyJob5.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IBackgroundCopyJob5, @ptrCast(self)), PropertyId, PropertyValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob5_GetProperty(self: *const T, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) HRESULT {
-                return @as(*const IBackgroundCopyJob5.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IBackgroundCopyJob5, @ptrCast(self)), PropertyId, PropertyValue);
-            }
-        };
+    IBackgroundCopyJob4: IBackgroundCopyJob4,
+    IBackgroundCopyJob3: IBackgroundCopyJob3,
+    IBackgroundCopyJob2: IBackgroundCopyJob2,
+    IBackgroundCopyJob: IBackgroundCopyJob,
+    IUnknown: IUnknown,
+    pub fn SetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProperty(self: *const IBackgroundCopyJob5, PropertyId: BITS_JOB_PROPERTY_ID, PropertyValue: ?*BITS_JOB_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IBackgroundCopyFile5_Value = Guid.initString("85c1657f-dafc-40e8-8834-df18ea25717e");
 pub const IID_IBackgroundCopyFile5 = &IID_IBackgroundCopyFile5_Value;
-pub const IBackgroundCopyFile5 = extern struct {
+pub const IBackgroundCopyFile5 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile4.VTable,
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile5,
-                PropertyId: BITS_FILE_PROPERTY_ID,
-                PropertyValue: BITS_FILE_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile5,
-                PropertyId: BITS_FILE_PROPERTY_ID,
-                PropertyValue: BITS_FILE_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile5,
-                PropertyId: BITS_FILE_PROPERTY_ID,
-                PropertyValue: ?*BITS_FILE_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile5,
-                PropertyId: BITS_FILE_PROPERTY_ID,
-                PropertyValue: ?*BITS_FILE_PROPERTY_VALUE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetProperty: *const fn(
+            self: *const IBackgroundCopyFile5,
+            PropertyId: BITS_FILE_PROPERTY_ID,
+            PropertyValue: BITS_FILE_PROPERTY_VALUE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IBackgroundCopyFile5,
+            PropertyId: BITS_FILE_PROPERTY_ID,
+            PropertyValue: ?*BITS_FILE_PROPERTY_VALUE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyFile4.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile5_SetProperty(self: *const T, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) HRESULT {
-                return @as(*const IBackgroundCopyFile5.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IBackgroundCopyFile5, @ptrCast(self)), PropertyId, PropertyValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile5_GetProperty(self: *const T, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) HRESULT {
-                return @as(*const IBackgroundCopyFile5.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IBackgroundCopyFile5, @ptrCast(self)), PropertyId, PropertyValue);
-            }
-        };
+    IBackgroundCopyFile4: IBackgroundCopyFile4,
+    IBackgroundCopyFile3: IBackgroundCopyFile3,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn SetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+        return self.vtable.SetProperty(self, PropertyId, PropertyValue);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProperty(self: *const IBackgroundCopyFile5, PropertyId: BITS_FILE_PROPERTY_ID, PropertyValue: ?*BITS_FILE_PROPERTY_VALUE) callconv(.Inline) HRESULT {
+        return self.vtable.GetProperty(self, PropertyId, PropertyValue);
+    }
 };
 
 const CLSID_BackgroundCopyManager10_1_Value = Guid.initString("4bd3e4e1-7bd4-4a2b-9964-496400de5193");
@@ -2868,99 +1756,63 @@ pub const CLSID_BackgroundCopyManager10_1 = &CLSID_BackgroundCopyManager10_1_Val
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IBackgroundCopyCallback3_Value = Guid.initString("98c97bd2-e32b-4ad8-a528-95fd8b16bd42");
 pub const IID_IBackgroundCopyCallback3 = &IID_IBackgroundCopyCallback3_Value;
-pub const IBackgroundCopyCallback3 = extern struct {
+pub const IBackgroundCopyCallback3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyCallback2.VTable,
-        FileRangesTransferred: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback3,
-                job: ?*IBackgroundCopyJob,
-                file: ?*IBackgroundCopyFile,
-                rangeCount: u32,
-                ranges: [*]const BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback3,
-                job: ?*IBackgroundCopyJob,
-                file: ?*IBackgroundCopyFile,
-                rangeCount: u32,
-                ranges: [*]const BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FileRangesTransferred: *const fn(
+            self: *const IBackgroundCopyCallback3,
+            job: ?*IBackgroundCopyJob,
+            file: ?*IBackgroundCopyFile,
+            rangeCount: u32,
+            ranges: [*]const BG_FILE_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyCallback2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback3_FileRangesTransferred(self: *const T, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) HRESULT {
-                return @as(*const IBackgroundCopyCallback3.VTable, @ptrCast(self.vtable)).FileRangesTransferred(@as(*const IBackgroundCopyCallback3, @ptrCast(self)), job, file, rangeCount, ranges);
-            }
-        };
+    IBackgroundCopyCallback2: IBackgroundCopyCallback2,
+    IBackgroundCopyCallback: IBackgroundCopyCallback,
+    IUnknown: IUnknown,
+    pub fn FileRangesTransferred(self: *const IBackgroundCopyCallback3, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        return self.vtable.FileRangesTransferred(self, job, file, rangeCount, ranges);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IBackgroundCopyFile6_Value = Guid.initString("cf6784f7-d677-49fd-9368-cb47aee9d1ad");
 pub const IID_IBackgroundCopyFile6 = &IID_IBackgroundCopyFile6_Value;
-pub const IBackgroundCopyFile6 = extern struct {
+pub const IBackgroundCopyFile6 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyFile5.VTable,
-        UpdateDownloadPosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile6,
-                offset: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile6,
-                offset: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestFileRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile6,
-                rangeCount: u32,
-                ranges: [*]const BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile6,
-                rangeCount: u32,
-                ranges: [*]const BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilledFileRanges: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyFile6,
-                rangeCount: ?*u32,
-                ranges: [*]?*BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyFile6,
-                rangeCount: ?*u32,
-                ranges: [*]?*BG_FILE_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        UpdateDownloadPosition: *const fn(
+            self: *const IBackgroundCopyFile6,
+            offset: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestFileRanges: *const fn(
+            self: *const IBackgroundCopyFile6,
+            rangeCount: u32,
+            ranges: [*]const BG_FILE_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilledFileRanges: *const fn(
+            self: *const IBackgroundCopyFile6,
+            rangeCount: ?*u32,
+            ranges: [*]?*BG_FILE_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyFile5.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile6_UpdateDownloadPosition(self: *const T, offset: u64) HRESULT {
-                return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).UpdateDownloadPosition(@as(*const IBackgroundCopyFile6, @ptrCast(self)), offset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile6_RequestFileRanges(self: *const T, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) HRESULT {
-                return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).RequestFileRanges(@as(*const IBackgroundCopyFile6, @ptrCast(self)), rangeCount, ranges);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyFile6_GetFilledFileRanges(self: *const T, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) HRESULT {
-                return @as(*const IBackgroundCopyFile6.VTable, @ptrCast(self.vtable)).GetFilledFileRanges(@as(*const IBackgroundCopyFile6, @ptrCast(self)), rangeCount, ranges);
-            }
-        };
+    IBackgroundCopyFile5: IBackgroundCopyFile5,
+    IBackgroundCopyFile4: IBackgroundCopyFile4,
+    IBackgroundCopyFile3: IBackgroundCopyFile3,
+    IBackgroundCopyFile2: IBackgroundCopyFile2,
+    IBackgroundCopyFile: IBackgroundCopyFile,
+    IUnknown: IUnknown,
+    pub fn UpdateDownloadPosition(self: *const IBackgroundCopyFile6, offset: u64) callconv(.Inline) HRESULT {
+        return self.vtable.UpdateDownloadPosition(self, offset);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn RequestFileRanges(self: *const IBackgroundCopyFile6, rangeCount: u32, ranges: [*]const BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        return self.vtable.RequestFileRanges(self, rangeCount, ranges);
+    }
+    pub fn GetFilledFileRanges(self: *const IBackgroundCopyFile6, rangeCount: ?*u32, ranges: [*]?*BG_FILE_RANGE) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilledFileRanges(self, rangeCount, ranges);
+    }
 };
 
 const CLSID_BackgroundCopyManager10_2_Value = Guid.initString("4575438f-a6c8-4976-b0fe-2f26b80d959e");
@@ -2969,45 +1821,27 @@ pub const CLSID_BackgroundCopyManager10_2 = &CLSID_BackgroundCopyManager10_2_Val
 // TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IBackgroundCopyJobHttpOptions2_Value = Guid.initString("b591a192-a405-4fc3-8323-4c5c542578fc");
 pub const IID_IBackgroundCopyJobHttpOptions2 = &IID_IBackgroundCopyJobHttpOptions2_Value;
-pub const IBackgroundCopyJobHttpOptions2 = extern struct {
+pub const IBackgroundCopyJobHttpOptions2 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJobHttpOptions.VTable,
-        SetHttpMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions2,
-                method: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions2,
-                method: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHttpMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions2,
-                method: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions2,
-                method: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetHttpMethod: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions2,
+            method: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHttpMethod: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions2,
+            method: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyJobHttpOptions.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions2_SetHttpMethod(self: *const T, method: ?[*:0]const u16) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions2.VTable, @ptrCast(self.vtable)).SetHttpMethod(@as(*const IBackgroundCopyJobHttpOptions2, @ptrCast(self)), method);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions2_GetHttpMethod(self: *const T, method: ?*?PWSTR) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions2.VTable, @ptrCast(self.vtable)).GetHttpMethod(@as(*const IBackgroundCopyJobHttpOptions2, @ptrCast(self)), method);
-            }
-        };
+    IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
+    IUnknown: IUnknown,
+    pub fn SetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetHttpMethod(self, method);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetHttpMethod(self: *const IBackgroundCopyJobHttpOptions2, method: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetHttpMethod(self, method);
+    }
 };
 
 const CLSID_BackgroundCopyManager10_3_Value = Guid.initString("5fd42ad5-c04e-4d36-adc7-e08ff15737ad");
@@ -3015,84 +1849,50 @@ pub const CLSID_BackgroundCopyManager10_3 = &CLSID_BackgroundCopyManager10_3_Val
 
 const IID_IBackgroundCopyServerCertificateValidationCallback_Value = Guid.initString("4cec0d02-def7-4158-813a-c32a46945ff7");
 pub const IID_IBackgroundCopyServerCertificateValidationCallback = &IID_IBackgroundCopyServerCertificateValidationCallback_Value;
-pub const IBackgroundCopyServerCertificateValidationCallback = extern struct {
+pub const IBackgroundCopyServerCertificateValidationCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ValidateServerCertificate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyServerCertificateValidationCallback,
-                job: ?*IBackgroundCopyJob,
-                file: ?*IBackgroundCopyFile,
-                certLength: u32,
-                certData: [*:0]const u8,
-                certEncodingType: u32,
-                certStoreLength: u32,
-                certStoreData: [*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyServerCertificateValidationCallback,
-                job: ?*IBackgroundCopyJob,
-                file: ?*IBackgroundCopyFile,
-                certLength: u32,
-                certData: [*:0]const u8,
-                certEncodingType: u32,
-                certStoreLength: u32,
-                certStoreData: [*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ValidateServerCertificate: *const fn(
+            self: *const IBackgroundCopyServerCertificateValidationCallback,
+            job: ?*IBackgroundCopyJob,
+            file: ?*IBackgroundCopyFile,
+            certLength: u32,
+            certData: [*:0]const u8,
+            certEncodingType: u32,
+            certStoreLength: u32,
+            certStoreData: [*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyServerCertificateValidationCallback_ValidateServerCertificate(self: *const T, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) HRESULT {
-                return @as(*const IBackgroundCopyServerCertificateValidationCallback.VTable, @ptrCast(self.vtable)).ValidateServerCertificate(@as(*const IBackgroundCopyServerCertificateValidationCallback, @ptrCast(self)), job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ValidateServerCertificate(self: *const IBackgroundCopyServerCertificateValidationCallback, job: ?*IBackgroundCopyJob, file: ?*IBackgroundCopyFile, certLength: u32, certData: [*:0]const u8, certEncodingType: u32, certStoreLength: u32, certStoreData: [*:0]const u8) callconv(.Inline) HRESULT {
+        return self.vtable.ValidateServerCertificate(self, job, file, certLength, certData, certEncodingType, certStoreLength, certStoreData);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IBackgroundCopyJobHttpOptions3_Value = Guid.initString("8a9263d3-fd4c-4eda-9b28-30132a4d4e3c");
 pub const IID_IBackgroundCopyJobHttpOptions3 = &IID_IBackgroundCopyJobHttpOptions3_Value;
-pub const IBackgroundCopyJobHttpOptions3 = extern struct {
+pub const IBackgroundCopyJobHttpOptions3 = extern union {
     pub const VTable = extern struct {
         base: IBackgroundCopyJobHttpOptions2.VTable,
-        SetServerCertificateValidationInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions3,
-                certValidationCallback: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions3,
-                certValidationCallback: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MakeCustomHeadersWriteOnly: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJobHttpOptions3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJobHttpOptions3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetServerCertificateValidationInterface: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions3,
+            certValidationCallback: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MakeCustomHeadersWriteOnly: *const fn(
+            self: *const IBackgroundCopyJobHttpOptions3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IBackgroundCopyJobHttpOptions2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions3_SetServerCertificateValidationInterface(self: *const T, certValidationCallback: ?*IUnknown) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions3.VTable, @ptrCast(self.vtable)).SetServerCertificateValidationInterface(@as(*const IBackgroundCopyJobHttpOptions3, @ptrCast(self)), certValidationCallback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJobHttpOptions3_MakeCustomHeadersWriteOnly(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJobHttpOptions3.VTable, @ptrCast(self.vtable)).MakeCustomHeadersWriteOnly(@as(*const IBackgroundCopyJobHttpOptions3, @ptrCast(self)));
-            }
-        };
+    IBackgroundCopyJobHttpOptions2: IBackgroundCopyJobHttpOptions2,
+    IBackgroundCopyJobHttpOptions: IBackgroundCopyJobHttpOptions,
+    IUnknown: IUnknown,
+    pub fn SetServerCertificateValidationInterface(self: *const IBackgroundCopyJobHttpOptions3, certValidationCallback: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetServerCertificateValidationInterface(self, certValidationCallback);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn MakeCustomHeadersWriteOnly(self: *const IBackgroundCopyJobHttpOptions3) callconv(.Inline) HRESULT {
+        return self.vtable.MakeCustomHeadersWriteOnly(self);
+    }
 };
 
 const CLSID_BITSExtensionSetupFactory_Value = Guid.initString("efbbab68-7286-4783-94bf-9461d8b7e7e9");
@@ -3101,103 +1901,60 @@ pub const CLSID_BITSExtensionSetupFactory = &CLSID_BITSExtensionSetupFactory_Val
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBITSExtensionSetup_Value = Guid.initString("29cfbbf7-09e4-4b97-b0bc-f2287e3d8eb3");
 pub const IID_IBITSExtensionSetup = &IID_IBITSExtensionSetup_Value;
-pub const IBITSExtensionSetup = extern struct {
+pub const IBITSExtensionSetup = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        EnableBITSUploads: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBITSExtensionSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBITSExtensionSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisableBITSUploads: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBITSExtensionSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBITSExtensionSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCleanupTaskName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBITSExtensionSetup,
-                pTaskName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBITSExtensionSetup,
-                pTaskName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCleanupTask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBITSExtensionSetup,
-                riid: ?*const Guid,
-                ppUnk: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBITSExtensionSetup,
-                riid: ?*const Guid,
-                ppUnk: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnableBITSUploads: *const fn(
+            self: *const IBITSExtensionSetup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisableBITSUploads: *const fn(
+            self: *const IBITSExtensionSetup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCleanupTaskName: *const fn(
+            self: *const IBITSExtensionSetup,
+            pTaskName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCleanupTask: *const fn(
+            self: *const IBITSExtensionSetup,
+            riid: ?*const Guid,
+            ppUnk: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBITSExtensionSetup_EnableBITSUploads(self: *const T) HRESULT {
-                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).EnableBITSUploads(@as(*const IBITSExtensionSetup, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBITSExtensionSetup_DisableBITSUploads(self: *const T) HRESULT {
-                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).DisableBITSUploads(@as(*const IBITSExtensionSetup, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBITSExtensionSetup_GetCleanupTaskName(self: *const T, pTaskName: ?*?BSTR) HRESULT {
-                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).GetCleanupTaskName(@as(*const IBITSExtensionSetup, @ptrCast(self)), pTaskName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBITSExtensionSetup_GetCleanupTask(self: *const T, riid: ?*const Guid, ppUnk: ?*?*IUnknown) HRESULT {
-                return @as(*const IBITSExtensionSetup.VTable, @ptrCast(self.vtable)).GetCleanupTask(@as(*const IBITSExtensionSetup, @ptrCast(self)), riid, ppUnk);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn EnableBITSUploads(self: *const IBITSExtensionSetup) callconv(.Inline) HRESULT {
+        return self.vtable.EnableBITSUploads(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn DisableBITSUploads(self: *const IBITSExtensionSetup) callconv(.Inline) HRESULT {
+        return self.vtable.DisableBITSUploads(self);
+    }
+    pub fn GetCleanupTaskName(self: *const IBITSExtensionSetup, pTaskName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetCleanupTaskName(self, pTaskName);
+    }
+    pub fn GetCleanupTask(self: *const IBITSExtensionSetup, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetCleanupTask(self, riid, ppUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IBITSExtensionSetupFactory_Value = Guid.initString("d5d2d542-5503-4e64-8b48-72ef91a32ee1");
 pub const IID_IBITSExtensionSetupFactory = &IID_IBITSExtensionSetupFactory_Value;
-pub const IBITSExtensionSetupFactory = extern struct {
+pub const IBITSExtensionSetupFactory = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBITSExtensionSetupFactory,
-                Path: ?BSTR,
-                ppExtensionSetup: ?*?*IBITSExtensionSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBITSExtensionSetupFactory,
-                Path: ?BSTR,
-                ppExtensionSetup: ?*?*IBITSExtensionSetup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetObject: *const fn(
+            self: *const IBITSExtensionSetupFactory,
+            Path: ?BSTR,
+            ppExtensionSetup: ?*?*IBITSExtensionSetup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBITSExtensionSetupFactory_GetObject(self: *const T, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) HRESULT {
-                return @as(*const IBITSExtensionSetupFactory.VTable, @ptrCast(self.vtable)).GetObject(@as(*const IBITSExtensionSetupFactory, @ptrCast(self)), Path, ppExtensionSetup);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetObject(self: *const IBITSExtensionSetupFactory, Path: ?BSTR, ppExtensionSetup: ?*?*IBITSExtensionSetup) callconv(.Inline) HRESULT {
+        return self.vtable.GetObject(self, Path, ppExtensionSetup);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const CLSID_BackgroundCopyQMgr_Value = Guid.initString("69ad4aee-51be-439b-a92c-86ae490e8b30");
@@ -3212,228 +1969,120 @@ pub const FILESETINFO = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyJob1_Value = Guid.initString("59f5553c-2031-4629-bb18-2645a6970947");
 pub const IID_IBackgroundCopyJob1 = &IID_IBackgroundCopyJob1_Value;
-pub const IBackgroundCopyJob1 = extern struct {
+pub const IBackgroundCopyJob1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CancelJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-                dwFlags: u32,
-                pdwProgress: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-                dwFlags: u32,
-                pdwProgress: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-                pdwStatus: ?*u32,
-                pdwWin32Result: ?*u32,
-                pdwTransportResult: ?*u32,
-                pdwNumOfRetries: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-                pdwStatus: ?*u32,
-                pdwWin32Result: ?*u32,
-                pdwTransportResult: ?*u32,
-                pdwNumOfRetries: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-                cFileCount: u32,
-                ppFileSet: [*]?*FILESETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-                cFileCount: u32,
-                ppFileSet: [*]?*FILESETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-                cFileIndex: u32,
-                pFileInfo: ?*FILESETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-                cFileIndex: u32,
-                pFileInfo: ?*FILESETINFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-                pdwFileCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-                pdwFileCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SwitchToForeground: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CancelJob: *const fn(
+            self: *const IBackgroundCopyJob1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProgress: *const fn(
+            self: *const IBackgroundCopyJob1,
+            dwFlags: u32,
+            pdwProgress: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatus: *const fn(
+            self: *const IBackgroundCopyJob1,
+            pdwStatus: ?*u32,
+            pdwWin32Result: ?*u32,
+            pdwTransportResult: ?*u32,
+            pdwNumOfRetries: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFiles: *const fn(
+            self: *const IBackgroundCopyJob1,
+            cFileCount: u32,
+            ppFileSet: [*]?*FILESETINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFile: *const fn(
+            self: *const IBackgroundCopyJob1,
+            cFileIndex: u32,
+            pFileInfo: ?*FILESETINFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileCount: *const fn(
+            self: *const IBackgroundCopyJob1,
+            pdwFileCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SwitchToForeground: *const fn(
+            self: *const IBackgroundCopyJob1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_JobID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IBackgroundCopyJob1,
-                pguidJobID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IBackgroundCopyJob1,
-                pguidJobID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_JobID: *const fn(
+            self: *const IBackgroundCopyJob1,
+            pguidJobID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_CancelJob(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).CancelJob(@as(*const IBackgroundCopyJob1, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_GetProgress(self: *const T, dwFlags: u32, pdwProgress: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyJob1, @ptrCast(self)), dwFlags, pdwProgress);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_GetStatus(self: *const T, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_AddFiles(self: *const T, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).AddFiles(@as(*const IBackgroundCopyJob1, @ptrCast(self)), cFileCount, ppFileSet);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_GetFile(self: *const T, cFileIndex: u32, pFileInfo: ?*FILESETINFO) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetFile(@as(*const IBackgroundCopyJob1, @ptrCast(self)), cFileIndex, pFileInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_GetFileCount(self: *const T, pdwFileCount: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).GetFileCount(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pdwFileCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_SwitchToForeground(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).SwitchToForeground(@as(*const IBackgroundCopyJob1, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyJob1_get_JobID(self: *const T, pguidJobID: ?*Guid) HRESULT {
-                return @as(*const IBackgroundCopyJob1.VTable, @ptrCast(self.vtable)).get_JobID(@as(*const IBackgroundCopyJob1, @ptrCast(self)), pguidJobID);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CancelJob(self: *const IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+        return self.vtable.CancelJob(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProgress(self: *const IBackgroundCopyJob1, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
+    }
+    pub fn GetStatus(self: *const IBackgroundCopyJob1, pdwStatus: ?*u32, pdwWin32Result: ?*u32, pdwTransportResult: ?*u32, pdwNumOfRetries: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus, pdwWin32Result, pdwTransportResult, pdwNumOfRetries);
+    }
+    pub fn AddFiles(self: *const IBackgroundCopyJob1, cFileCount: u32, ppFileSet: [*]?*FILESETINFO) callconv(.Inline) HRESULT {
+        return self.vtable.AddFiles(self, cFileCount, ppFileSet);
+    }
+    pub fn GetFile(self: *const IBackgroundCopyJob1, cFileIndex: u32, pFileInfo: ?*FILESETINFO) callconv(.Inline) HRESULT {
+        return self.vtable.GetFile(self, cFileIndex, pFileInfo);
+    }
+    pub fn GetFileCount(self: *const IBackgroundCopyJob1, pdwFileCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileCount(self, pdwFileCount);
+    }
+    pub fn SwitchToForeground(self: *const IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+        return self.vtable.SwitchToForeground(self);
+    }
+    pub fn get_JobID(self: *const IBackgroundCopyJob1, pguidJobID: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.get_JobID(self, pguidJobID);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyJobs1_Value = Guid.initString("8baeba9d-8f1c-42c4-b82c-09ae79980d25");
 pub const IID_IEnumBackgroundCopyJobs1 = &IID_IEnumBackgroundCopyJobs1_Value;
-pub const IEnumBackgroundCopyJobs1 = extern struct {
+pub const IEnumBackgroundCopyJobs1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                celt: u32,
-                rgelt: [*]Guid,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                celt: u32,
-                rgelt: [*]Guid,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                ppenum: ?*?*IEnumBackgroundCopyJobs1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                ppenum: ?*?*IEnumBackgroundCopyJobs1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyJobs1,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            celt: u32,
+            rgelt: [*]Guid,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            ppenum: ?*?*IEnumBackgroundCopyJobs1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBackgroundCopyJobs1,
+            puCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs1_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs1_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs1_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs1_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyJobs1) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), ppenum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyJobs1_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyJobs1.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyJobs1, @ptrCast(self)), puCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBackgroundCopyJobs1, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumBackgroundCopyJobs1, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBackgroundCopyJobs1, ppenum: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBackgroundCopyJobs1, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
 };
 
 pub const GROUPPROP = enum(i32) {
@@ -3468,486 +2117,256 @@ pub const GROUPPROP_DESCRIPTION = GROUPPROP.DESCRIPTION;
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyGroup_Value = Guid.initString("1ded80a7-53ea-424f-8a04-17fea9adc4f5");
 pub const IID_IBackgroundCopyGroup = &IID_IBackgroundCopyGroup_Value;
-pub const IBackgroundCopyGroup = extern struct {
+pub const IBackgroundCopyGroup = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetProp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                propID: GROUPPROP,
-                pvarVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                propID: GROUPPROP,
-                pvarVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                propID: GROUPPROP,
-                pvarVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                propID: GROUPPROP,
-                pvarVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                dwFlags: u32,
-                pdwProgress: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                dwFlags: u32,
-                pdwProgress: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                pdwStatus: ?*u32,
-                pdwJobIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                pdwStatus: ?*u32,
-                pdwJobIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                jobID: Guid,
-                ppJob: ?*?*IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                jobID: Guid,
-                ppJob: ?*?*IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SuspendGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResumeGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CancelGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetProp: *const fn(
+            self: *const IBackgroundCopyGroup,
+            propID: GROUPPROP,
+            pvarVal: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProp: *const fn(
+            self: *const IBackgroundCopyGroup,
+            propID: GROUPPROP,
+            pvarVal: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProgress: *const fn(
+            self: *const IBackgroundCopyGroup,
+            dwFlags: u32,
+            pdwProgress: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatus: *const fn(
+            self: *const IBackgroundCopyGroup,
+            pdwStatus: ?*u32,
+            pdwJobIndex: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJob: *const fn(
+            self: *const IBackgroundCopyGroup,
+            jobID: Guid,
+            ppJob: ?*?*IBackgroundCopyJob1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SuspendGroup: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResumeGroup: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CancelGroup: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Size: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                pdwSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                pdwSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Size: *const fn(
+            self: *const IBackgroundCopyGroup,
+            pdwSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GroupID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                pguidGroupID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                pguidGroupID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                guidJobID: Guid,
-                ppJob: ?*?*IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                guidJobID: Guid,
-                ppJob: ?*?*IBackgroundCopyJob1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumJobs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                dwFlags: u32,
-                ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                dwFlags: u32,
-                ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SwitchToForeground: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryNewJobInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                iid: ?*const Guid,
-                pUnk: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                iid: ?*const Guid,
-                pUnk: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetNotificationPointer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyGroup,
-                iid: ?*const Guid,
-                pUnk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyGroup,
-                iid: ?*const Guid,
-                pUnk: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_GroupID: *const fn(
+            self: *const IBackgroundCopyGroup,
+            pguidGroupID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateJob: *const fn(
+            self: *const IBackgroundCopyGroup,
+            guidJobID: Guid,
+            ppJob: ?*?*IBackgroundCopyJob1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumJobs: *const fn(
+            self: *const IBackgroundCopyGroup,
+            dwFlags: u32,
+            ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SwitchToForeground: *const fn(
+            self: *const IBackgroundCopyGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryNewJobInterface: *const fn(
+            self: *const IBackgroundCopyGroup,
+            iid: ?*const Guid,
+            pUnk: **IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetNotificationPointer: *const fn(
+            self: *const IBackgroundCopyGroup,
+            iid: ?*const Guid,
+            pUnk: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_GetProp(self: *const T, propID: GROUPPROP, pvarVal: ?*VARIANT) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetProp(@as(*const IBackgroundCopyGroup, @ptrCast(self)), propID, pvarVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_SetProp(self: *const T, propID: GROUPPROP, pvarVal: ?*VARIANT) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SetProp(@as(*const IBackgroundCopyGroup, @ptrCast(self)), propID, pvarVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_GetProgress(self: *const T, dwFlags: u32, pdwProgress: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetProgress(@as(*const IBackgroundCopyGroup, @ptrCast(self)), dwFlags, pdwProgress);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_GetStatus(self: *const T, pdwStatus: ?*u32, pdwJobIndex: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pdwStatus, pdwJobIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_GetJob(self: *const T, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).GetJob(@as(*const IBackgroundCopyGroup, @ptrCast(self)), jobID, ppJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_SuspendGroup(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SuspendGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_ResumeGroup(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).ResumeGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_CancelGroup(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).CancelGroup(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_get_Size(self: *const T, pdwSize: ?*u32) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pdwSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_get_GroupID(self: *const T, pguidGroupID: ?*Guid) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).get_GroupID(@as(*const IBackgroundCopyGroup, @ptrCast(self)), pguidGroupID);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_CreateJob(self: *const T, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).CreateJob(@as(*const IBackgroundCopyGroup, @ptrCast(self)), guidJobID, ppJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_EnumJobs(self: *const T, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).EnumJobs(@as(*const IBackgroundCopyGroup, @ptrCast(self)), dwFlags, ppEnumJobs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_SwitchToForeground(self: *const T) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SwitchToForeground(@as(*const IBackgroundCopyGroup, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_QueryNewJobInterface(self: *const T, iid: ?*const Guid, pUnk: ?*?*IUnknown) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).QueryNewJobInterface(@as(*const IBackgroundCopyGroup, @ptrCast(self)), iid, pUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyGroup_SetNotificationPointer(self: *const T, iid: ?*const Guid, pUnk: ?*IUnknown) HRESULT {
-                return @as(*const IBackgroundCopyGroup.VTable, @ptrCast(self.vtable)).SetNotificationPointer(@as(*const IBackgroundCopyGroup, @ptrCast(self)), iid, pUnk);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetProp(self, propID, pvarVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetProp(self: *const IBackgroundCopyGroup, propID: GROUPPROP, pvarVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetProp(self, propID, pvarVal);
+    }
+    pub fn GetProgress(self: *const IBackgroundCopyGroup, dwFlags: u32, pdwProgress: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetProgress(self, dwFlags, pdwProgress);
+    }
+    pub fn GetStatus(self: *const IBackgroundCopyGroup, pdwStatus: ?*u32, pdwJobIndex: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStatus(self, pdwStatus, pdwJobIndex);
+    }
+    pub fn GetJob(self: *const IBackgroundCopyGroup, jobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+        return self.vtable.GetJob(self, jobID, ppJob);
+    }
+    pub fn SuspendGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        return self.vtable.SuspendGroup(self);
+    }
+    pub fn ResumeGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        return self.vtable.ResumeGroup(self);
+    }
+    pub fn CancelGroup(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        return self.vtable.CancelGroup(self);
+    }
+    pub fn get_Size(self: *const IBackgroundCopyGroup, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Size(self, pdwSize);
+    }
+    pub fn get_GroupID(self: *const IBackgroundCopyGroup, pguidGroupID: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.get_GroupID(self, pguidGroupID);
+    }
+    pub fn CreateJob(self: *const IBackgroundCopyGroup, guidJobID: Guid, ppJob: ?*?*IBackgroundCopyJob1) callconv(.Inline) HRESULT {
+        return self.vtable.CreateJob(self, guidJobID, ppJob);
+    }
+    pub fn EnumJobs(self: *const IBackgroundCopyGroup, dwFlags: u32, ppEnumJobs: ?*?*IEnumBackgroundCopyJobs1) callconv(.Inline) HRESULT {
+        return self.vtable.EnumJobs(self, dwFlags, ppEnumJobs);
+    }
+    pub fn SwitchToForeground(self: *const IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        return self.vtable.SwitchToForeground(self);
+    }
+    pub fn QueryNewJobInterface(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: **IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.QueryNewJobInterface(self, iid, pUnk);
+    }
+    pub fn SetNotificationPointer(self: *const IBackgroundCopyGroup, iid: ?*const Guid, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetNotificationPointer(self, iid, pUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IEnumBackgroundCopyGroups_Value = Guid.initString("d993e603-4aa4-47c5-8665-c20d39c2ba4f");
 pub const IID_IEnumBackgroundCopyGroups = &IID_IEnumBackgroundCopyGroups_Value;
-pub const IEnumBackgroundCopyGroups = extern struct {
+pub const IEnumBackgroundCopyGroups = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyGroups,
-                celt: u32,
-                rgelt: [*]Guid,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyGroups,
-                celt: u32,
-                rgelt: [*]Guid,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyGroups,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyGroups,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyGroups,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyGroups,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyGroups,
-                ppenum: ?*?*IEnumBackgroundCopyGroups,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyGroups,
-                ppenum: ?*?*IEnumBackgroundCopyGroups,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumBackgroundCopyGroups,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumBackgroundCopyGroups,
-                puCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumBackgroundCopyGroups,
+            celt: u32,
+            rgelt: [*]Guid,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumBackgroundCopyGroups,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumBackgroundCopyGroups,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumBackgroundCopyGroups,
+            ppenum: ?*?*IEnumBackgroundCopyGroups,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const IEnumBackgroundCopyGroups,
+            puCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyGroups_Next(self: *const T, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyGroups_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyGroups_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyGroups_Clone(self: *const T, ppenum: ?*?*IEnumBackgroundCopyGroups) HRESULT {
-                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), ppenum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumBackgroundCopyGroups_GetCount(self: *const T, puCount: ?*u32) HRESULT {
-                return @as(*const IEnumBackgroundCopyGroups.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IEnumBackgroundCopyGroups, @ptrCast(self)), puCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumBackgroundCopyGroups, celt: u32, rgelt: [*]Guid, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumBackgroundCopyGroups, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumBackgroundCopyGroups, ppenum: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
+    pub fn GetCount(self: *const IEnumBackgroundCopyGroups, puCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, puCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyCallback1_Value = Guid.initString("084f6593-3800-4e08-9b59-99fa59addf82");
 pub const IID_IBackgroundCopyCallback1 = &IID_IBackgroundCopyCallback1_Value;
-pub const IBackgroundCopyCallback1 = extern struct {
+pub const IBackgroundCopyCallback1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback1,
-                pGroup: ?*IBackgroundCopyGroup,
-                pJob: ?*IBackgroundCopyJob1,
-                dwFileIndex: u32,
-                dwStatus: u32,
-                dwNumOfRetries: u32,
-                dwWin32Result: u32,
-                dwTransportResult: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback1,
-                pGroup: ?*IBackgroundCopyGroup,
-                pJob: ?*IBackgroundCopyJob1,
-                dwFileIndex: u32,
-                dwStatus: u32,
-                dwNumOfRetries: u32,
-                dwWin32Result: u32,
-                dwTransportResult: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback1,
-                ProgressType: u32,
-                pGroup: ?*IBackgroundCopyGroup,
-                pJob: ?*IBackgroundCopyJob1,
-                dwFileIndex: u32,
-                dwProgressValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback1,
-                ProgressType: u32,
-                pGroup: ?*IBackgroundCopyGroup,
-                pJob: ?*IBackgroundCopyJob1,
-                dwFileIndex: u32,
-                dwProgressValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnProgressEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyCallback1,
-                ProgressType: u32,
-                pGroup: ?*IBackgroundCopyGroup,
-                pJob: ?*IBackgroundCopyJob1,
-                dwFileIndex: u32,
-                dwProgressValue: u32,
-                dwByteArraySize: u32,
-                pByte: [*:0]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyCallback1,
-                ProgressType: u32,
-                pGroup: ?*IBackgroundCopyGroup,
-                pJob: ?*IBackgroundCopyJob1,
-                dwFileIndex: u32,
-                dwProgressValue: u32,
-                dwByteArraySize: u32,
-                pByte: [*:0]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnStatus: *const fn(
+            self: *const IBackgroundCopyCallback1,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
+            dwFileIndex: u32,
+            dwStatus: u32,
+            dwNumOfRetries: u32,
+            dwWin32Result: u32,
+            dwTransportResult: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnProgress: *const fn(
+            self: *const IBackgroundCopyCallback1,
+            ProgressType: u32,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
+            dwFileIndex: u32,
+            dwProgressValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnProgressEx: *const fn(
+            self: *const IBackgroundCopyCallback1,
+            ProgressType: u32,
+            pGroup: ?*IBackgroundCopyGroup,
+            pJob: ?*IBackgroundCopyJob1,
+            dwFileIndex: u32,
+            dwProgressValue: u32,
+            dwByteArraySize: u32,
+            pByte: [*:0]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback1_OnStatus(self: *const T, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) HRESULT {
-                return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnStatus(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback1_OnProgress(self: *const T, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) HRESULT {
-                return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyCallback1_OnProgressEx(self: *const T, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) HRESULT {
-                return @as(*const IBackgroundCopyCallback1.VTable, @ptrCast(self.vtable)).OnProgressEx(@as(*const IBackgroundCopyCallback1, @ptrCast(self)), ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnStatus(self: *const IBackgroundCopyCallback1, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwStatus: u32, dwNumOfRetries: u32, dwWin32Result: u32, dwTransportResult: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnStatus(self, pGroup, pJob, dwFileIndex, dwStatus, dwNumOfRetries, dwWin32Result, dwTransportResult);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnProgress(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnProgress(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue);
+    }
+    pub fn OnProgressEx(self: *const IBackgroundCopyCallback1, ProgressType: u32, pGroup: ?*IBackgroundCopyGroup, pJob: ?*IBackgroundCopyJob1, dwFileIndex: u32, dwProgressValue: u32, dwByteArraySize: u32, pByte: [*:0]u8) callconv(.Inline) HRESULT {
+        return self.vtable.OnProgressEx(self, ProgressType, pGroup, pJob, dwFileIndex, dwProgressValue, dwByteArraySize, pByte);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IBackgroundCopyQMgr_Value = Guid.initString("16f41c69-09f5-41d2-8cd8-3c08c47bc8a8");
 pub const IID_IBackgroundCopyQMgr = &IID_IBackgroundCopyQMgr_Value;
-pub const IBackgroundCopyQMgr = extern struct {
+pub const IBackgroundCopyQMgr = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyQMgr,
-                guidGroupID: Guid,
-                ppGroup: ?*?*IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyQMgr,
-                guidGroupID: Guid,
-                ppGroup: ?*?*IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyQMgr,
-                groupID: Guid,
-                ppGroup: ?*?*IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyQMgr,
-                groupID: Guid,
-                ppGroup: ?*?*IBackgroundCopyGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBackgroundCopyQMgr,
-                dwFlags: u32,
-                ppEnumGroups: ?*?*IEnumBackgroundCopyGroups,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBackgroundCopyQMgr,
-                dwFlags: u32,
-                ppEnumGroups: ?*?*IEnumBackgroundCopyGroups,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateGroup: *const fn(
+            self: *const IBackgroundCopyQMgr,
+            guidGroupID: Guid,
+            ppGroup: ?*?*IBackgroundCopyGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGroup: *const fn(
+            self: *const IBackgroundCopyQMgr,
+            groupID: Guid,
+            ppGroup: ?*?*IBackgroundCopyGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumGroups: *const fn(
+            self: *const IBackgroundCopyQMgr,
+            dwFlags: u32,
+            ppEnumGroups: ?*?*IEnumBackgroundCopyGroups,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyQMgr_CreateGroup(self: *const T, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) HRESULT {
-                return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).CreateGroup(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), guidGroupID, ppGroup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyQMgr_GetGroup(self: *const T, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) HRESULT {
-                return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).GetGroup(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), groupID, ppGroup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBackgroundCopyQMgr_EnumGroups(self: *const T, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) HRESULT {
-                return @as(*const IBackgroundCopyQMgr.VTable, @ptrCast(self.vtable)).EnumGroups(@as(*const IBackgroundCopyQMgr, @ptrCast(self)), dwFlags, ppEnumGroups);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateGroup(self: *const IBackgroundCopyQMgr, guidGroupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        return self.vtable.CreateGroup(self, guidGroupID, ppGroup);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetGroup(self: *const IBackgroundCopyQMgr, groupID: Guid, ppGroup: ?*?*IBackgroundCopyGroup) callconv(.Inline) HRESULT {
+        return self.vtable.GetGroup(self, groupID, ppGroup);
+    }
+    pub fn EnumGroups(self: *const IBackgroundCopyQMgr, dwFlags: u32, ppEnumGroups: ?*?*IEnumBackgroundCopyGroups) callconv(.Inline) HRESULT {
+        return self.vtable.EnumGroups(self, dwFlags, ppEnumGroups);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -3956,12 +2375,6 @@ pub const IBackgroundCopyQMgr = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
@@ -3976,13 +2389,13 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

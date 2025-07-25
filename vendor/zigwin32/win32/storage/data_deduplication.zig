@@ -31,117 +31,65 @@ pub const DEDUP_RECONSTRUCT_OPTIMIZED = DEDUP_BACKUP_SUPPORT_PARAM_TYPE.OPTIMIZE
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IDedupReadFileCallback_Value = Guid.initString("7bacc67a-2f1d-42d0-897e-6ff62dd533bb");
 pub const IID_IDedupReadFileCallback = &IID_IDedupReadFileCallback_Value;
-pub const IDedupReadFileCallback = extern struct {
+pub const IDedupReadFileCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReadBackupFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupReadFileCallback,
-                FileFullPath: ?BSTR,
-                FileOffset: i64,
-                SizeToRead: u32,
-                FileBuffer: [*:0]u8,
-                ReturnedSize: ?*u32,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupReadFileCallback,
-                FileFullPath: ?BSTR,
-                FileOffset: i64,
-                SizeToRead: u32,
-                FileBuffer: [*:0]u8,
-                ReturnedSize: ?*u32,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OrderContainersRestore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupReadFileCallback,
-                NumberOfContainers: u32,
-                ContainerPaths: [*]?BSTR,
-                ReadPlanEntries: ?*u32,
-                ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupReadFileCallback,
-                NumberOfContainers: u32,
-                ContainerPaths: [*]?BSTR,
-                ReadPlanEntries: ?*u32,
-                ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PreviewContainerRead: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupReadFileCallback,
-                FileFullPath: ?BSTR,
-                NumberOfReads: u32,
-                ReadOffsets: [*]DDP_FILE_EXTENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupReadFileCallback,
-                FileFullPath: ?BSTR,
-                NumberOfReads: u32,
-                ReadOffsets: [*]DDP_FILE_EXTENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ReadBackupFile: *const fn(
+            self: *const IDedupReadFileCallback,
+            FileFullPath: ?BSTR,
+            FileOffset: i64,
+            SizeToRead: u32,
+            FileBuffer: [*:0]u8,
+            ReturnedSize: ?*u32,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OrderContainersRestore: *const fn(
+            self: *const IDedupReadFileCallback,
+            NumberOfContainers: u32,
+            ContainerPaths: [*]?BSTR,
+            ReadPlanEntries: ?*u32,
+            ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PreviewContainerRead: *const fn(
+            self: *const IDedupReadFileCallback,
+            FileFullPath: ?BSTR,
+            NumberOfReads: u32,
+            ReadOffsets: [*]DDP_FILE_EXTENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupReadFileCallback_ReadBackupFile(self: *const T, FileFullPath: ?BSTR, FileOffset: i64, SizeToRead: u32, FileBuffer: [*:0]u8, ReturnedSize: ?*u32, Flags: u32) HRESULT {
-                return @as(*const IDedupReadFileCallback.VTable, @ptrCast(self.vtable)).ReadBackupFile(@as(*const IDedupReadFileCallback, @ptrCast(self)), FileFullPath, FileOffset, SizeToRead, FileBuffer, ReturnedSize, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupReadFileCallback_OrderContainersRestore(self: *const T, NumberOfContainers: u32, ContainerPaths: [*]?BSTR, ReadPlanEntries: ?*u32, ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT) HRESULT {
-                return @as(*const IDedupReadFileCallback.VTable, @ptrCast(self.vtable)).OrderContainersRestore(@as(*const IDedupReadFileCallback, @ptrCast(self)), NumberOfContainers, ContainerPaths, ReadPlanEntries, ReadPlan);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupReadFileCallback_PreviewContainerRead(self: *const T, FileFullPath: ?BSTR, NumberOfReads: u32, ReadOffsets: [*]DDP_FILE_EXTENT) HRESULT {
-                return @as(*const IDedupReadFileCallback.VTable, @ptrCast(self.vtable)).PreviewContainerRead(@as(*const IDedupReadFileCallback, @ptrCast(self)), FileFullPath, NumberOfReads, ReadOffsets);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ReadBackupFile(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, FileOffset: i64, SizeToRead: u32, FileBuffer: [*:0]u8, ReturnedSize: ?*u32, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.ReadBackupFile(self, FileFullPath, FileOffset, SizeToRead, FileBuffer, ReturnedSize, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OrderContainersRestore(self: *const IDedupReadFileCallback, NumberOfContainers: u32, ContainerPaths: [*]?BSTR, ReadPlanEntries: ?*u32, ReadPlan: [*]?*DEDUP_CONTAINER_EXTENT) callconv(.Inline) HRESULT {
+        return self.vtable.OrderContainersRestore(self, NumberOfContainers, ContainerPaths, ReadPlanEntries, ReadPlan);
+    }
+    pub fn PreviewContainerRead(self: *const IDedupReadFileCallback, FileFullPath: ?BSTR, NumberOfReads: u32, ReadOffsets: [*]DDP_FILE_EXTENT) callconv(.Inline) HRESULT {
+        return self.vtable.PreviewContainerRead(self, FileFullPath, NumberOfReads, ReadOffsets);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IDedupBackupSupport_Value = Guid.initString("c719d963-2b2d-415e-acf7-7eb7ca596ff4");
 pub const IID_IDedupBackupSupport = &IID_IDedupBackupSupport_Value;
-pub const IDedupBackupSupport = extern struct {
+pub const IDedupBackupSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RestoreFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupBackupSupport,
-                NumberOfFiles: u32,
-                FileFullPaths: [*]?BSTR,
-                Store: ?*IDedupReadFileCallback,
-                Flags: u32,
-                FileResults: [*]HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupBackupSupport,
-                NumberOfFiles: u32,
-                FileFullPaths: [*]?BSTR,
-                Store: ?*IDedupReadFileCallback,
-                Flags: u32,
-                FileResults: [*]HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RestoreFiles: *const fn(
+            self: *const IDedupBackupSupport,
+            NumberOfFiles: u32,
+            FileFullPaths: [*]?BSTR,
+            Store: ?*IDedupReadFileCallback,
+            Flags: u32,
+            FileResults: [*]HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupBackupSupport_RestoreFiles(self: *const T, NumberOfFiles: u32, FileFullPaths: [*]?BSTR, Store: ?*IDedupReadFileCallback, Flags: u32, FileResults: [*]HRESULT) HRESULT {
-                return @as(*const IDedupBackupSupport.VTable, @ptrCast(self.vtable)).RestoreFiles(@as(*const IDedupBackupSupport, @ptrCast(self)), NumberOfFiles, FileFullPaths, Store, Flags, FileResults);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn RestoreFiles(self: *const IDedupBackupSupport, NumberOfFiles: u32, FileFullPaths: [*]?BSTR, Store: ?*IDedupReadFileCallback, Flags: u32, FileResults: [*]HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.RestoreFiles(self, NumberOfFiles, FileFullPaths, Store, Flags, FileResults);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DEDUP_SET_PARAM_TYPE = enum(i32) {
@@ -166,146 +114,79 @@ pub const DEDUP_CHUNK_INFO_HASH32 = extern struct {
 
 const IID_IDedupChunkLibrary_Value = Guid.initString("bb5144d7-2720-4dcc-8777-78597416ec23");
 pub const IID_IDedupChunkLibrary = &IID_IDedupChunkLibrary_Value;
-pub const IDedupChunkLibrary = extern struct {
+pub const IDedupChunkLibrary = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InitializeForPushBuffers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupChunkLibrary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupChunkLibrary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Uninitialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupChunkLibrary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupChunkLibrary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupChunkLibrary,
-                dwParamType: u32,
-                vParamValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupChunkLibrary,
-                dwParamType: u32,
-                vParamValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        StartChunking: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupChunkLibrary,
-                iidIteratorInterfaceID: Guid,
-                ppChunksEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupChunkLibrary,
-                iidIteratorInterfaceID: Guid,
-                ppChunksEnum: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InitializeForPushBuffers: *const fn(
+            self: *const IDedupChunkLibrary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Uninitialize: *const fn(
+            self: *const IDedupChunkLibrary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetParameter: *const fn(
+            self: *const IDedupChunkLibrary,
+            dwParamType: u32,
+            vParamValue: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartChunking: *const fn(
+            self: *const IDedupChunkLibrary,
+            iidIteratorInterfaceID: Guid,
+            ppChunksEnum: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupChunkLibrary_InitializeForPushBuffers(self: *const T) HRESULT {
-                return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).InitializeForPushBuffers(@as(*const IDedupChunkLibrary, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupChunkLibrary_Uninitialize(self: *const T) HRESULT {
-                return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IDedupChunkLibrary, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupChunkLibrary_SetParameter(self: *const T, dwParamType: u32, vParamValue: VARIANT) HRESULT {
-                return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).SetParameter(@as(*const IDedupChunkLibrary, @ptrCast(self)), dwParamType, vParamValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupChunkLibrary_StartChunking(self: *const T, iidIteratorInterfaceID: Guid, ppChunksEnum: ?*?*IUnknown) HRESULT {
-                return @as(*const IDedupChunkLibrary.VTable, @ptrCast(self.vtable)).StartChunking(@as(*const IDedupChunkLibrary, @ptrCast(self)), iidIteratorInterfaceID, ppChunksEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn InitializeForPushBuffers(self: *const IDedupChunkLibrary) callconv(.Inline) HRESULT {
+        return self.vtable.InitializeForPushBuffers(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Uninitialize(self: *const IDedupChunkLibrary) callconv(.Inline) HRESULT {
+        return self.vtable.Uninitialize(self);
+    }
+    pub fn SetParameter(self: *const IDedupChunkLibrary, dwParamType: u32, vParamValue: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetParameter(self, dwParamType, vParamValue);
+    }
+    pub fn StartChunking(self: *const IDedupChunkLibrary, iidIteratorInterfaceID: Guid, ppChunksEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.StartChunking(self, iidIteratorInterfaceID, ppChunksEnum);
+    }
 };
 
 const IID_IDedupIterateChunksHash32_Value = Guid.initString("90b584d3-72aa-400f-9767-cad866a5a2d8");
 pub const IID_IDedupIterateChunksHash32 = &IID_IDedupIterateChunksHash32_Value;
-pub const IDedupIterateChunksHash32 = extern struct {
+pub const IDedupIterateChunksHash32 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PushBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupIterateChunksHash32,
-                pBuffer: [*:0]u8,
-                ulBufferLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupIterateChunksHash32,
-                pBuffer: [*:0]u8,
-                ulBufferLength: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupIterateChunksHash32,
-                ulMaxChunks: u32,
-                pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32,
-                pulFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupIterateChunksHash32,
-                ulMaxChunks: u32,
-                pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32,
-                pulFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Drain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupIterateChunksHash32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupIterateChunksHash32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupIterateChunksHash32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupIterateChunksHash32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        PushBuffer: *const fn(
+            self: *const IDedupIterateChunksHash32,
+            pBuffer: [*:0]u8,
+            ulBufferLength: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Next: *const fn(
+            self: *const IDedupIterateChunksHash32,
+            ulMaxChunks: u32,
+            pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32,
+            pulFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Drain: *const fn(
+            self: *const IDedupIterateChunksHash32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IDedupIterateChunksHash32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupIterateChunksHash32_PushBuffer(self: *const T, pBuffer: [*:0]u8, ulBufferLength: u32) HRESULT {
-                return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).PushBuffer(@as(*const IDedupIterateChunksHash32, @ptrCast(self)), pBuffer, ulBufferLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupIterateChunksHash32_Next(self: *const T, ulMaxChunks: u32, pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32, pulFetched: ?*u32) HRESULT {
-                return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).Next(@as(*const IDedupIterateChunksHash32, @ptrCast(self)), ulMaxChunks, pArrChunks, pulFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupIterateChunksHash32_Drain(self: *const T) HRESULT {
-                return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).Drain(@as(*const IDedupIterateChunksHash32, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupIterateChunksHash32_Reset(self: *const T) HRESULT {
-                return @as(*const IDedupIterateChunksHash32.VTable, @ptrCast(self.vtable)).Reset(@as(*const IDedupIterateChunksHash32, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn PushBuffer(self: *const IDedupIterateChunksHash32, pBuffer: [*:0]u8, ulBufferLength: u32) callconv(.Inline) HRESULT {
+        return self.vtable.PushBuffer(self, pBuffer, ulBufferLength);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Next(self: *const IDedupIterateChunksHash32, ulMaxChunks: u32, pArrChunks: [*]DEDUP_CHUNK_INFO_HASH32, pulFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, ulMaxChunks, pArrChunks, pulFetched);
+    }
+    pub fn Drain(self: *const IDedupIterateChunksHash32) callconv(.Inline) HRESULT {
+        return self.vtable.Drain(self);
+    }
+    pub fn Reset(self: *const IDedupIterateChunksHash32) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
 };
 
 pub const DedupDataPortManagerOption = enum(i32) {
@@ -406,349 +287,182 @@ pub const CLSID_DedupDataPort = &CLSID_DedupDataPort_Value;
 
 const IID_IDedupDataPort_Value = Guid.initString("7963d734-40a9-4ea3-bbf6-5a89d26f7ae8");
 pub const IID_IDedupDataPort = &IID_IDedupDataPort_Value;
-pub const IDedupDataPort = extern struct {
+pub const IDedupDataPort = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                pStatus: ?*DedupDataPortVolumeStatus,
-                pDataHeadroomMb: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                pStatus: ?*DedupDataPortVolumeStatus,
-                pDataHeadroomMb: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LookupChunks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                Count: u32,
-                pHashes: [*]DedupHash,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                Count: u32,
-                pHashes: [*]DedupHash,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertChunks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                ChunkCount: u32,
-                pChunkMetadata: [*]DedupChunk,
-                DataByteCount: u32,
-                pChunkData: [*:0]u8,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                ChunkCount: u32,
-                pChunkMetadata: [*]DedupChunk,
-                DataByteCount: u32,
-                pChunkData: [*:0]u8,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertChunksWithStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                ChunkCount: u32,
-                pChunkMetadata: [*]DedupChunk,
-                DataByteCount: u32,
-                pChunkDataStream: ?*IStream,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                ChunkCount: u32,
-                pChunkMetadata: [*]DedupChunk,
-                DataByteCount: u32,
-                pChunkDataStream: ?*IStream,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CommitStreams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                StreamCount: u32,
-                pStreams: [*]DedupStream,
-                EntryCount: u32,
-                pEntries: [*]DedupStreamEntry,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                StreamCount: u32,
-                pStreams: [*]DedupStream,
-                EntryCount: u32,
-                pEntries: [*]DedupStreamEntry,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CommitStreamsWithStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                StreamCount: u32,
-                pStreams: [*]DedupStream,
-                EntryCount: u32,
-                pEntriesStream: ?*IStream,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                StreamCount: u32,
-                pStreams: [*]DedupStream,
-                EntryCount: u32,
-                pEntriesStream: ?*IStream,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStreams: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                StreamCount: u32,
-                pStreamPaths: [*]?BSTR,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                StreamCount: u32,
-                pStreamPaths: [*]?BSTR,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStreamsResults: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                MaxWaitMs: u32,
-                StreamEntryIndex: u32,
-                pStreamCount: ?*u32,
-                ppStreams: [*]?*DedupStream,
-                pEntryCount: ?*u32,
-                ppEntries: [*]?*DedupStreamEntry,
-                pStatus: ?*DedupDataPortRequestStatus,
-                ppItemResults: [*]?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                MaxWaitMs: u32,
-                StreamEntryIndex: u32,
-                pStreamCount: ?*u32,
-                ppStreams: [*]?*DedupStream,
-                pEntryCount: ?*u32,
-                ppEntries: [*]?*DedupStreamEntry,
-                pStatus: ?*DedupDataPortRequestStatus,
-                ppItemResults: [*]?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChunks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                Count: u32,
-                pHashes: [*]DedupHash,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                Count: u32,
-                pHashes: [*]DedupHash,
-                pRequestId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChunksResults: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                MaxWaitMs: u32,
-                ChunkIndex: u32,
-                pChunkCount: ?*u32,
-                ppChunkMetadata: [*]?*DedupChunk,
-                pDataByteCount: ?*u32,
-                ppChunkData: [*]?*u8,
-                pStatus: ?*DedupDataPortRequestStatus,
-                ppItemResults: [*]?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                MaxWaitMs: u32,
-                ChunkIndex: u32,
-                pChunkCount: ?*u32,
-                ppChunkMetadata: [*]?*DedupChunk,
-                pDataByteCount: ?*u32,
-                ppChunkData: [*]?*u8,
-                pStatus: ?*DedupDataPortRequestStatus,
-                ppItemResults: [*]?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRequestStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                pStatus: ?*DedupDataPortRequestStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                pStatus: ?*DedupDataPortRequestStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRequestResults: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                MaxWaitMs: u32,
-                pBatchResult: ?*HRESULT,
-                pBatchCount: ?*u32,
-                pStatus: ?*DedupDataPortRequestStatus,
-                ppItemResults: [*]?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPort,
-                RequestId: Guid,
-                MaxWaitMs: u32,
-                pBatchResult: ?*HRESULT,
-                pBatchCount: ?*u32,
-                pStatus: ?*DedupDataPortRequestStatus,
-                ppItemResults: [*]?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStatus: *const fn(
+            self: *const IDedupDataPort,
+            pStatus: ?*DedupDataPortVolumeStatus,
+            pDataHeadroomMb: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LookupChunks: *const fn(
+            self: *const IDedupDataPort,
+            Count: u32,
+            pHashes: [*]DedupHash,
+            pRequestId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertChunks: *const fn(
+            self: *const IDedupDataPort,
+            ChunkCount: u32,
+            pChunkMetadata: [*]DedupChunk,
+            DataByteCount: u32,
+            pChunkData: [*:0]u8,
+            pRequestId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertChunksWithStream: *const fn(
+            self: *const IDedupDataPort,
+            ChunkCount: u32,
+            pChunkMetadata: [*]DedupChunk,
+            DataByteCount: u32,
+            pChunkDataStream: ?*IStream,
+            pRequestId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CommitStreams: *const fn(
+            self: *const IDedupDataPort,
+            StreamCount: u32,
+            pStreams: [*]DedupStream,
+            EntryCount: u32,
+            pEntries: [*]DedupStreamEntry,
+            pRequestId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CommitStreamsWithStream: *const fn(
+            self: *const IDedupDataPort,
+            StreamCount: u32,
+            pStreams: [*]DedupStream,
+            EntryCount: u32,
+            pEntriesStream: ?*IStream,
+            pRequestId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStreams: *const fn(
+            self: *const IDedupDataPort,
+            StreamCount: u32,
+            pStreamPaths: [*]?BSTR,
+            pRequestId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStreamsResults: *const fn(
+            self: *const IDedupDataPort,
+            RequestId: Guid,
+            MaxWaitMs: u32,
+            StreamEntryIndex: u32,
+            pStreamCount: ?*u32,
+            ppStreams: [*]?*DedupStream,
+            pEntryCount: ?*u32,
+            ppEntries: [*]?*DedupStreamEntry,
+            pStatus: ?*DedupDataPortRequestStatus,
+            ppItemResults: [*]?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChunks: *const fn(
+            self: *const IDedupDataPort,
+            Count: u32,
+            pHashes: [*]DedupHash,
+            pRequestId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChunksResults: *const fn(
+            self: *const IDedupDataPort,
+            RequestId: Guid,
+            MaxWaitMs: u32,
+            ChunkIndex: u32,
+            pChunkCount: ?*u32,
+            ppChunkMetadata: [*]?*DedupChunk,
+            pDataByteCount: ?*u32,
+            ppChunkData: [*]?*u8,
+            pStatus: ?*DedupDataPortRequestStatus,
+            ppItemResults: [*]?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRequestStatus: *const fn(
+            self: *const IDedupDataPort,
+            RequestId: Guid,
+            pStatus: ?*DedupDataPortRequestStatus,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRequestResults: *const fn(
+            self: *const IDedupDataPort,
+            RequestId: Guid,
+            MaxWaitMs: u32,
+            pBatchResult: ?*HRESULT,
+            pBatchCount: ?*u32,
+            pStatus: ?*DedupDataPortRequestStatus,
+            ppItemResults: [*]?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_GetStatus(self: *const T, pStatus: ?*DedupDataPortVolumeStatus, pDataHeadroomMb: ?*u32) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetStatus(@as(*const IDedupDataPort, @ptrCast(self)), pStatus, pDataHeadroomMb);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_LookupChunks(self: *const T, Count: u32, pHashes: [*]DedupHash, pRequestId: ?*Guid) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).LookupChunks(@as(*const IDedupDataPort, @ptrCast(self)), Count, pHashes, pRequestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_InsertChunks(self: *const T, ChunkCount: u32, pChunkMetadata: [*]DedupChunk, DataByteCount: u32, pChunkData: [*:0]u8, pRequestId: ?*Guid) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).InsertChunks(@as(*const IDedupDataPort, @ptrCast(self)), ChunkCount, pChunkMetadata, DataByteCount, pChunkData, pRequestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_InsertChunksWithStream(self: *const T, ChunkCount: u32, pChunkMetadata: [*]DedupChunk, DataByteCount: u32, pChunkDataStream: ?*IStream, pRequestId: ?*Guid) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).InsertChunksWithStream(@as(*const IDedupDataPort, @ptrCast(self)), ChunkCount, pChunkMetadata, DataByteCount, pChunkDataStream, pRequestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_CommitStreams(self: *const T, StreamCount: u32, pStreams: [*]DedupStream, EntryCount: u32, pEntries: [*]DedupStreamEntry, pRequestId: ?*Guid) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).CommitStreams(@as(*const IDedupDataPort, @ptrCast(self)), StreamCount, pStreams, EntryCount, pEntries, pRequestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_CommitStreamsWithStream(self: *const T, StreamCount: u32, pStreams: [*]DedupStream, EntryCount: u32, pEntriesStream: ?*IStream, pRequestId: ?*Guid) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).CommitStreamsWithStream(@as(*const IDedupDataPort, @ptrCast(self)), StreamCount, pStreams, EntryCount, pEntriesStream, pRequestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_GetStreams(self: *const T, StreamCount: u32, pStreamPaths: [*]?BSTR, pRequestId: ?*Guid) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetStreams(@as(*const IDedupDataPort, @ptrCast(self)), StreamCount, pStreamPaths, pRequestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_GetStreamsResults(self: *const T, RequestId: Guid, MaxWaitMs: u32, StreamEntryIndex: u32, pStreamCount: ?*u32, ppStreams: [*]?*DedupStream, pEntryCount: ?*u32, ppEntries: [*]?*DedupStreamEntry, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetStreamsResults(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, MaxWaitMs, StreamEntryIndex, pStreamCount, ppStreams, pEntryCount, ppEntries, pStatus, ppItemResults);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_GetChunks(self: *const T, Count: u32, pHashes: [*]DedupHash, pRequestId: ?*Guid) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetChunks(@as(*const IDedupDataPort, @ptrCast(self)), Count, pHashes, pRequestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_GetChunksResults(self: *const T, RequestId: Guid, MaxWaitMs: u32, ChunkIndex: u32, pChunkCount: ?*u32, ppChunkMetadata: [*]?*DedupChunk, pDataByteCount: ?*u32, ppChunkData: [*]?*u8, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetChunksResults(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, MaxWaitMs, ChunkIndex, pChunkCount, ppChunkMetadata, pDataByteCount, ppChunkData, pStatus, ppItemResults);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_GetRequestStatus(self: *const T, RequestId: Guid, pStatus: ?*DedupDataPortRequestStatus) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetRequestStatus(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, pStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPort_GetRequestResults(self: *const T, RequestId: Guid, MaxWaitMs: u32, pBatchResult: ?*HRESULT, pBatchCount: ?*u32, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) HRESULT {
-                return @as(*const IDedupDataPort.VTable, @ptrCast(self.vtable)).GetRequestResults(@as(*const IDedupDataPort, @ptrCast(self)), RequestId, MaxWaitMs, pBatchResult, pBatchCount, pStatus, ppItemResults);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetStatus(self: *const IDedupDataPort, pStatus: ?*DedupDataPortVolumeStatus, pDataHeadroomMb: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStatus(self, pStatus, pDataHeadroomMb);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LookupChunks(self: *const IDedupDataPort, Count: u32, pHashes: [*]DedupHash, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.LookupChunks(self, Count, pHashes, pRequestId);
+    }
+    pub fn InsertChunks(self: *const IDedupDataPort, ChunkCount: u32, pChunkMetadata: [*]DedupChunk, DataByteCount: u32, pChunkData: [*:0]u8, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.InsertChunks(self, ChunkCount, pChunkMetadata, DataByteCount, pChunkData, pRequestId);
+    }
+    pub fn InsertChunksWithStream(self: *const IDedupDataPort, ChunkCount: u32, pChunkMetadata: [*]DedupChunk, DataByteCount: u32, pChunkDataStream: ?*IStream, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.InsertChunksWithStream(self, ChunkCount, pChunkMetadata, DataByteCount, pChunkDataStream, pRequestId);
+    }
+    pub fn CommitStreams(self: *const IDedupDataPort, StreamCount: u32, pStreams: [*]DedupStream, EntryCount: u32, pEntries: [*]DedupStreamEntry, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.CommitStreams(self, StreamCount, pStreams, EntryCount, pEntries, pRequestId);
+    }
+    pub fn CommitStreamsWithStream(self: *const IDedupDataPort, StreamCount: u32, pStreams: [*]DedupStream, EntryCount: u32, pEntriesStream: ?*IStream, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.CommitStreamsWithStream(self, StreamCount, pStreams, EntryCount, pEntriesStream, pRequestId);
+    }
+    pub fn GetStreams(self: *const IDedupDataPort, StreamCount: u32, pStreamPaths: [*]?BSTR, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetStreams(self, StreamCount, pStreamPaths, pRequestId);
+    }
+    pub fn GetStreamsResults(self: *const IDedupDataPort, RequestId: Guid, MaxWaitMs: u32, StreamEntryIndex: u32, pStreamCount: ?*u32, ppStreams: [*]?*DedupStream, pEntryCount: ?*u32, ppEntries: [*]?*DedupStreamEntry, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.GetStreamsResults(self, RequestId, MaxWaitMs, StreamEntryIndex, pStreamCount, ppStreams, pEntryCount, ppEntries, pStatus, ppItemResults);
+    }
+    pub fn GetChunks(self: *const IDedupDataPort, Count: u32, pHashes: [*]DedupHash, pRequestId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetChunks(self, Count, pHashes, pRequestId);
+    }
+    pub fn GetChunksResults(self: *const IDedupDataPort, RequestId: Guid, MaxWaitMs: u32, ChunkIndex: u32, pChunkCount: ?*u32, ppChunkMetadata: [*]?*DedupChunk, pDataByteCount: ?*u32, ppChunkData: [*]?*u8, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.GetChunksResults(self, RequestId, MaxWaitMs, ChunkIndex, pChunkCount, ppChunkMetadata, pDataByteCount, ppChunkData, pStatus, ppItemResults);
+    }
+    pub fn GetRequestStatus(self: *const IDedupDataPort, RequestId: Guid, pStatus: ?*DedupDataPortRequestStatus) callconv(.Inline) HRESULT {
+        return self.vtable.GetRequestStatus(self, RequestId, pStatus);
+    }
+    pub fn GetRequestResults(self: *const IDedupDataPort, RequestId: Guid, MaxWaitMs: u32, pBatchResult: ?*HRESULT, pBatchCount: ?*u32, pStatus: ?*DedupDataPortRequestStatus, ppItemResults: [*]?*HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.GetRequestResults(self, RequestId, MaxWaitMs, pBatchResult, pBatchCount, pStatus, ppItemResults);
+    }
 };
 
 const IID_IDedupDataPortManager_Value = Guid.initString("44677452-b90a-445e-8192-cdcfe81511fb");
 pub const IID_IDedupDataPortManager = &IID_IDedupDataPortManager_Value;
-pub const IDedupDataPortManager = extern struct {
+pub const IDedupDataPortManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetConfiguration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPortManager,
-                pMinChunkSize: ?*u32,
-                pMaxChunkSize: ?*u32,
-                pChunkingAlgorithm: ?*DedupChunkingAlgorithm,
-                pHashingAlgorithm: ?*DedupHashingAlgorithm,
-                pCompressionAlgorithm: ?*DedupCompressionAlgorithm,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPortManager,
-                pMinChunkSize: ?*u32,
-                pMaxChunkSize: ?*u32,
-                pChunkingAlgorithm: ?*DedupChunkingAlgorithm,
-                pHashingAlgorithm: ?*DedupHashingAlgorithm,
-                pCompressionAlgorithm: ?*DedupCompressionAlgorithm,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVolumeStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPortManager,
-                Options: u32,
-                Path: ?BSTR,
-                pStatus: ?*DedupDataPortVolumeStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPortManager,
-                Options: u32,
-                Path: ?BSTR,
-                pStatus: ?*DedupDataPortVolumeStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVolumeDataPort: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDedupDataPortManager,
-                Options: u32,
-                Path: ?BSTR,
-                ppDataPort: ?*?*IDedupDataPort,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDedupDataPortManager,
-                Options: u32,
-                Path: ?BSTR,
-                ppDataPort: ?*?*IDedupDataPort,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetConfiguration: *const fn(
+            self: *const IDedupDataPortManager,
+            pMinChunkSize: ?*u32,
+            pMaxChunkSize: ?*u32,
+            pChunkingAlgorithm: ?*DedupChunkingAlgorithm,
+            pHashingAlgorithm: ?*DedupHashingAlgorithm,
+            pCompressionAlgorithm: ?*DedupCompressionAlgorithm,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVolumeStatus: *const fn(
+            self: *const IDedupDataPortManager,
+            Options: u32,
+            Path: ?BSTR,
+            pStatus: ?*DedupDataPortVolumeStatus,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVolumeDataPort: *const fn(
+            self: *const IDedupDataPortManager,
+            Options: u32,
+            Path: ?BSTR,
+            ppDataPort: ?*?*IDedupDataPort,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPortManager_GetConfiguration(self: *const T, pMinChunkSize: ?*u32, pMaxChunkSize: ?*u32, pChunkingAlgorithm: ?*DedupChunkingAlgorithm, pHashingAlgorithm: ?*DedupHashingAlgorithm, pCompressionAlgorithm: ?*DedupCompressionAlgorithm) HRESULT {
-                return @as(*const IDedupDataPortManager.VTable, @ptrCast(self.vtable)).GetConfiguration(@as(*const IDedupDataPortManager, @ptrCast(self)), pMinChunkSize, pMaxChunkSize, pChunkingAlgorithm, pHashingAlgorithm, pCompressionAlgorithm);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPortManager_GetVolumeStatus(self: *const T, Options: u32, Path: ?BSTR, pStatus: ?*DedupDataPortVolumeStatus) HRESULT {
-                return @as(*const IDedupDataPortManager.VTable, @ptrCast(self.vtable)).GetVolumeStatus(@as(*const IDedupDataPortManager, @ptrCast(self)), Options, Path, pStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDedupDataPortManager_GetVolumeDataPort(self: *const T, Options: u32, Path: ?BSTR, ppDataPort: ?*?*IDedupDataPort) HRESULT {
-                return @as(*const IDedupDataPortManager.VTable, @ptrCast(self.vtable)).GetVolumeDataPort(@as(*const IDedupDataPortManager, @ptrCast(self)), Options, Path, ppDataPort);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetConfiguration(self: *const IDedupDataPortManager, pMinChunkSize: ?*u32, pMaxChunkSize: ?*u32, pChunkingAlgorithm: ?*DedupChunkingAlgorithm, pHashingAlgorithm: ?*DedupHashingAlgorithm, pCompressionAlgorithm: ?*DedupCompressionAlgorithm) callconv(.Inline) HRESULT {
+        return self.vtable.GetConfiguration(self, pMinChunkSize, pMaxChunkSize, pChunkingAlgorithm, pHashingAlgorithm, pCompressionAlgorithm);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetVolumeStatus(self: *const IDedupDataPortManager, Options: u32, Path: ?BSTR, pStatus: ?*DedupDataPortVolumeStatus) callconv(.Inline) HRESULT {
+        return self.vtable.GetVolumeStatus(self, Options, Path, pStatus);
+    }
+    pub fn GetVolumeDataPort(self: *const IDedupDataPortManager, Options: u32, Path: ?BSTR, ppDataPort: ?*?*IDedupDataPort) callconv(.Inline) HRESULT {
+        return self.vtable.GetVolumeDataPort(self, Options, Path, ppDataPort);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -757,12 +471,6 @@ pub const IDedupDataPortManager = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
@@ -774,13 +482,13 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

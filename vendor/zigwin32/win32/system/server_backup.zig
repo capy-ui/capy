@@ -12,177 +12,98 @@ pub const WSBAPP_ASYNC_IN_PROGRESS = @import("../zig.zig").typedConst(HRESULT, @
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWsbApplicationBackupSupport_Value = Guid.initString("1eff3510-4a27-46ad-b9e0-08332f0f4f6d");
 pub const IID_IWsbApplicationBackupSupport = &IID_IWsbApplicationBackupSupport_Value;
-pub const IWsbApplicationBackupSupport = extern struct {
+pub const IWsbApplicationBackupSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CheckConsistency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWsbApplicationBackupSupport,
-                wszWriterMetadata: ?PWSTR,
-                wszComponentName: ?PWSTR,
-                wszComponentLogicalPath: ?PWSTR,
-                cVolumes: u32,
-                rgwszSourceVolumePath: [*]?PWSTR,
-                rgwszSnapshotVolumePath: [*]?PWSTR,
-                ppAsync: ?*?*IWsbApplicationAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWsbApplicationBackupSupport,
-                wszWriterMetadata: ?PWSTR,
-                wszComponentName: ?PWSTR,
-                wszComponentLogicalPath: ?PWSTR,
-                cVolumes: u32,
-                rgwszSourceVolumePath: [*]?PWSTR,
-                rgwszSnapshotVolumePath: [*]?PWSTR,
-                ppAsync: ?*?*IWsbApplicationAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CheckConsistency: *const fn(
+            self: *const IWsbApplicationBackupSupport,
+            wszWriterMetadata: ?PWSTR,
+            wszComponentName: ?PWSTR,
+            wszComponentLogicalPath: ?PWSTR,
+            cVolumes: u32,
+            rgwszSourceVolumePath: [*]?PWSTR,
+            rgwszSnapshotVolumePath: [*]?PWSTR,
+            ppAsync: ?*?*IWsbApplicationAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWsbApplicationBackupSupport_CheckConsistency(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, cVolumes: u32, rgwszSourceVolumePath: [*]?PWSTR, rgwszSnapshotVolumePath: [*]?PWSTR, ppAsync: ?*?*IWsbApplicationAsync) HRESULT {
-                return @as(*const IWsbApplicationBackupSupport.VTable, @ptrCast(self.vtable)).CheckConsistency(@as(*const IWsbApplicationBackupSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CheckConsistency(self: *const IWsbApplicationBackupSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, cVolumes: u32, rgwszSourceVolumePath: [*]?PWSTR, rgwszSnapshotVolumePath: [*]?PWSTR, ppAsync: ?*?*IWsbApplicationAsync) callconv(.Inline) HRESULT {
+        return self.vtable.CheckConsistency(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, cVolumes, rgwszSourceVolumePath, rgwszSnapshotVolumePath, ppAsync);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWsbApplicationRestoreSupport_Value = Guid.initString("8d3bdb38-4ee8-4718-85f9-c7dbc4ab77aa");
 pub const IID_IWsbApplicationRestoreSupport = &IID_IWsbApplicationRestoreSupport_Value;
-pub const IWsbApplicationRestoreSupport = extern struct {
+pub const IWsbApplicationRestoreSupport = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PreRestore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWsbApplicationRestoreSupport,
-                wszWriterMetadata: ?PWSTR,
-                wszComponentName: ?PWSTR,
-                wszComponentLogicalPath: ?PWSTR,
-                bNoRollForward: BOOLEAN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWsbApplicationRestoreSupport,
-                wszWriterMetadata: ?PWSTR,
-                wszComponentName: ?PWSTR,
-                wszComponentLogicalPath: ?PWSTR,
-                bNoRollForward: BOOLEAN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PostRestore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWsbApplicationRestoreSupport,
-                wszWriterMetadata: ?PWSTR,
-                wszComponentName: ?PWSTR,
-                wszComponentLogicalPath: ?PWSTR,
-                bNoRollForward: BOOLEAN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWsbApplicationRestoreSupport,
-                wszWriterMetadata: ?PWSTR,
-                wszComponentName: ?PWSTR,
-                wszComponentLogicalPath: ?PWSTR,
-                bNoRollForward: BOOLEAN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OrderComponents: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWsbApplicationRestoreSupport,
-                cComponents: u32,
-                rgComponentName: [*]?PWSTR,
-                rgComponentLogicalPaths: [*]?PWSTR,
-                prgComponentName: [*]?*?PWSTR,
-                prgComponentLogicalPath: [*]?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWsbApplicationRestoreSupport,
-                cComponents: u32,
-                rgComponentName: [*]?PWSTR,
-                rgComponentLogicalPaths: [*]?PWSTR,
-                prgComponentName: [*]?*?PWSTR,
-                prgComponentLogicalPath: [*]?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsRollForwardSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWsbApplicationRestoreSupport,
-                pbRollForwardSupported: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWsbApplicationRestoreSupport,
-                pbRollForwardSupported: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        PreRestore: *const fn(
+            self: *const IWsbApplicationRestoreSupport,
+            wszWriterMetadata: ?PWSTR,
+            wszComponentName: ?PWSTR,
+            wszComponentLogicalPath: ?PWSTR,
+            bNoRollForward: BOOLEAN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PostRestore: *const fn(
+            self: *const IWsbApplicationRestoreSupport,
+            wszWriterMetadata: ?PWSTR,
+            wszComponentName: ?PWSTR,
+            wszComponentLogicalPath: ?PWSTR,
+            bNoRollForward: BOOLEAN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OrderComponents: *const fn(
+            self: *const IWsbApplicationRestoreSupport,
+            cComponents: u32,
+            rgComponentName: [*]?PWSTR,
+            rgComponentLogicalPaths: [*]?PWSTR,
+            prgComponentName: [*]?*?PWSTR,
+            prgComponentLogicalPath: [*]?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsRollForwardSupported: *const fn(
+            self: *const IWsbApplicationRestoreSupport,
+            pbRollForwardSupported: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWsbApplicationRestoreSupport_PreRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) HRESULT {
-                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).PreRestore(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWsbApplicationRestoreSupport_PostRestore(self: *const T, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) HRESULT {
-                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).PostRestore(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWsbApplicationRestoreSupport_OrderComponents(self: *const T, cComponents: u32, rgComponentName: [*]?PWSTR, rgComponentLogicalPaths: [*]?PWSTR, prgComponentName: [*]?*?PWSTR, prgComponentLogicalPath: [*]?*?PWSTR) HRESULT {
-                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).OrderComponents(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), cComponents, rgComponentName, rgComponentLogicalPaths, prgComponentName, prgComponentLogicalPath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWsbApplicationRestoreSupport_IsRollForwardSupported(self: *const T, pbRollForwardSupported: ?*u8) HRESULT {
-                return @as(*const IWsbApplicationRestoreSupport.VTable, @ptrCast(self.vtable)).IsRollForwardSupported(@as(*const IWsbApplicationRestoreSupport, @ptrCast(self)), pbRollForwardSupported);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn PreRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
+        return self.vtable.PreRestore(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn PostRestore(self: *const IWsbApplicationRestoreSupport, wszWriterMetadata: ?PWSTR, wszComponentName: ?PWSTR, wszComponentLogicalPath: ?PWSTR, bNoRollForward: BOOLEAN) callconv(.Inline) HRESULT {
+        return self.vtable.PostRestore(self, wszWriterMetadata, wszComponentName, wszComponentLogicalPath, bNoRollForward);
+    }
+    pub fn OrderComponents(self: *const IWsbApplicationRestoreSupport, cComponents: u32, rgComponentName: [*]?PWSTR, rgComponentLogicalPaths: [*]?PWSTR, prgComponentName: [*]?*?PWSTR, prgComponentLogicalPath: [*]?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.OrderComponents(self, cComponents, rgComponentName, rgComponentLogicalPaths, prgComponentName, prgComponentLogicalPath);
+    }
+    pub fn IsRollForwardSupported(self: *const IWsbApplicationRestoreSupport, pbRollForwardSupported: ?*u8) callconv(.Inline) HRESULT {
+        return self.vtable.IsRollForwardSupported(self, pbRollForwardSupported);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IWsbApplicationAsync_Value = Guid.initString("0843f6f7-895c-44a6-b0c2-05a5022aa3a1");
 pub const IID_IWsbApplicationAsync = &IID_IWsbApplicationAsync_Value;
-pub const IWsbApplicationAsync = extern struct {
+pub const IWsbApplicationAsync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        QueryStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWsbApplicationAsync,
-                phrResult: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWsbApplicationAsync,
-                phrResult: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Abort: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWsbApplicationAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWsbApplicationAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        QueryStatus: *const fn(
+            self: *const IWsbApplicationAsync,
+            phrResult: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Abort: *const fn(
+            self: *const IWsbApplicationAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWsbApplicationAsync_QueryStatus(self: *const T, phrResult: ?*HRESULT) HRESULT {
-                return @as(*const IWsbApplicationAsync.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IWsbApplicationAsync, @ptrCast(self)), phrResult);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWsbApplicationAsync_Abort(self: *const T) HRESULT {
-                return @as(*const IWsbApplicationAsync.VTable, @ptrCast(self.vtable)).Abort(@as(*const IWsbApplicationAsync, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn QueryStatus(self: *const IWsbApplicationAsync, phrResult: ?*HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.QueryStatus(self, phrResult);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Abort(self: *const IWsbApplicationAsync) callconv(.Inline) HRESULT {
+        return self.vtable.Abort(self);
+    }
 };
 
 pub const WSB_OB_STATUS_ENTRY_PAIR_TYPE = enum(i32) {
@@ -229,6 +150,7 @@ pub const WSB_OB_REGISTRATION_INFO = extern struct {
     m_bSupportsRemoting: BOOLEAN,
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -236,12 +158,6 @@ pub const WSB_OB_REGISTRATION_INFO = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
@@ -252,13 +168,13 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

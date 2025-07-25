@@ -8,36 +8,24 @@
 //--------------------------------------------------------------------------------
 const IID_ICoreFrameworkInputViewInterop_Value = Guid.initString("0e3da342-b11c-484b-9c1c-be0d61c2f6c5");
 pub const IID_ICoreFrameworkInputViewInterop = &IID_ICoreFrameworkInputViewInterop_Value;
-pub const ICoreFrameworkInputViewInterop = extern struct {
+pub const ICoreFrameworkInputViewInterop = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetForWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFrameworkInputViewInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                coreFrameworkInputView: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFrameworkInputViewInterop,
-                appWindow: ?HWND,
-                riid: ?*const Guid,
-                coreFrameworkInputView: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetForWindow: *const fn(
+            self: *const ICoreFrameworkInputViewInterop,
+            appWindow: ?HWND,
+            riid: ?*const Guid,
+            coreFrameworkInputView: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IInspectable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFrameworkInputViewInterop_GetForWindow(self: *const T, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: ?*?*anyopaque) HRESULT {
-                return @as(*const ICoreFrameworkInputViewInterop.VTable, @ptrCast(self.vtable)).GetForWindow(@as(*const ICoreFrameworkInputViewInterop, @ptrCast(self)), appWindow, riid, coreFrameworkInputView);
-            }
-        };
+    IInspectable: IInspectable,
+    IUnknown: IUnknown,
+    pub fn GetForWindow(self: *const ICoreFrameworkInputViewInterop, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetForWindow(self, appWindow, riid, coreFrameworkInputView);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -46,28 +34,23 @@ pub const ICoreFrameworkInputViewInterop = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
-// Section: Imports (4)
+// Section: Imports (5)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
 const IInspectable = @import("../../system/win_rt.zig").IInspectable;
+const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

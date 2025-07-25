@@ -7,32 +7,51 @@ pub const PSS_PERF_RESOLUTION = @as(u32, 1000000);
 //--------------------------------------------------------------------------------
 // Section: Types (23)
 //--------------------------------------------------------------------------------
-pub const HPSS = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HPSS = *opaque{};
 
-pub const HPSSWALK = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HPSSWALK = *opaque{};
 
-pub const PSS_HANDLE_FLAGS = enum(u32) {
-    NONE = 0,
-    HAVE_TYPE = 1,
-    HAVE_NAME = 2,
-    HAVE_BASIC_INFORMATION = 4,
-    HAVE_TYPE_SPECIFIC_INFORMATION = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        HAVE_TYPE: u1 = 0,
-        HAVE_NAME: u1 = 0,
-        HAVE_BASIC_INFORMATION: u1 = 0,
-        HAVE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
-    }) PSS_HANDLE_FLAGS {
-        return @as(PSS_HANDLE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(PSS_HANDLE_FLAGS.NONE) else 0) | (if (o.HAVE_TYPE == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_TYPE) else 0) | (if (o.HAVE_NAME == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_NAME) else 0) | (if (o.HAVE_BASIC_INFORMATION == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_BASIC_INFORMATION) else 0) | (if (o.HAVE_TYPE_SPECIFIC_INFORMATION == 1) @intFromEnum(PSS_HANDLE_FLAGS.HAVE_TYPE_SPECIFIC_INFORMATION) else 0)));
-    }
+pub const PSS_HANDLE_FLAGS = packed struct(u32) {
+    HAVE_TYPE: u1 = 0,
+    HAVE_NAME: u1 = 0,
+    HAVE_BASIC_INFORMATION: u1 = 0,
+    HAVE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PSS_HANDLE_NONE = PSS_HANDLE_FLAGS.NONE;
-pub const PSS_HANDLE_HAVE_TYPE = PSS_HANDLE_FLAGS.HAVE_TYPE;
-pub const PSS_HANDLE_HAVE_NAME = PSS_HANDLE_FLAGS.HAVE_NAME;
-pub const PSS_HANDLE_HAVE_BASIC_INFORMATION = PSS_HANDLE_FLAGS.HAVE_BASIC_INFORMATION;
-pub const PSS_HANDLE_HAVE_TYPE_SPECIFIC_INFORMATION = PSS_HANDLE_FLAGS.HAVE_TYPE_SPECIFIC_INFORMATION;
+pub const PSS_HANDLE_NONE = PSS_HANDLE_FLAGS{ };
+pub const PSS_HANDLE_HAVE_TYPE = PSS_HANDLE_FLAGS{ .HAVE_TYPE = 1 };
+pub const PSS_HANDLE_HAVE_NAME = PSS_HANDLE_FLAGS{ .HAVE_NAME = 1 };
+pub const PSS_HANDLE_HAVE_BASIC_INFORMATION = PSS_HANDLE_FLAGS{ .HAVE_BASIC_INFORMATION = 1 };
+pub const PSS_HANDLE_HAVE_TYPE_SPECIFIC_INFORMATION = PSS_HANDLE_FLAGS{ .HAVE_TYPE_SPECIFIC_INFORMATION = 1 };
 
 pub const PSS_OBJECT_TYPE = enum(i32) {
     UNKNOWN = 0,
@@ -51,79 +70,62 @@ pub const PSS_OBJECT_TYPE_EVENT = PSS_OBJECT_TYPE.EVENT;
 pub const PSS_OBJECT_TYPE_SECTION = PSS_OBJECT_TYPE.SECTION;
 pub const PSS_OBJECT_TYPE_SEMAPHORE = PSS_OBJECT_TYPE.SEMAPHORE;
 
-pub const PSS_CAPTURE_FLAGS = enum(u32) {
-    APTURE_NONE = 0,
-    APTURE_VA_CLONE = 1,
-    APTURE_RESERVED_00000002 = 2,
-    APTURE_HANDLES = 4,
-    APTURE_HANDLE_NAME_INFORMATION = 8,
-    APTURE_HANDLE_BASIC_INFORMATION = 16,
-    APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION = 32,
-    APTURE_HANDLE_TRACE = 64,
-    APTURE_THREADS = 128,
-    APTURE_THREAD_CONTEXT = 256,
-    APTURE_THREAD_CONTEXT_EXTENDED = 512,
-    APTURE_RESERVED_00000400 = 1024,
-    APTURE_VA_SPACE = 2048,
-    APTURE_VA_SPACE_SECTION_INFORMATION = 4096,
-    APTURE_IPT_TRACE = 8192,
-    APTURE_RESERVED_00004000 = 16384,
-    REATE_BREAKAWAY_OPTIONAL = 67108864,
-    REATE_BREAKAWAY = 134217728,
-    REATE_FORCE_BREAKAWAY = 268435456,
-    REATE_USE_VM_ALLOCATIONS = 536870912,
-    REATE_MEASURE_PERFORMANCE = 1073741824,
-    REATE_RELEASE_SECTION = 2147483648,
-    _,
-    pub fn initFlags(o: struct {
-        APTURE_NONE: u1 = 0,
-        APTURE_VA_CLONE: u1 = 0,
-        APTURE_RESERVED_00000002: u1 = 0,
-        APTURE_HANDLES: u1 = 0,
-        APTURE_HANDLE_NAME_INFORMATION: u1 = 0,
-        APTURE_HANDLE_BASIC_INFORMATION: u1 = 0,
-        APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
-        APTURE_HANDLE_TRACE: u1 = 0,
-        APTURE_THREADS: u1 = 0,
-        APTURE_THREAD_CONTEXT: u1 = 0,
-        APTURE_THREAD_CONTEXT_EXTENDED: u1 = 0,
-        APTURE_RESERVED_00000400: u1 = 0,
-        APTURE_VA_SPACE: u1 = 0,
-        APTURE_VA_SPACE_SECTION_INFORMATION: u1 = 0,
-        APTURE_IPT_TRACE: u1 = 0,
-        APTURE_RESERVED_00004000: u1 = 0,
-        REATE_BREAKAWAY_OPTIONAL: u1 = 0,
-        REATE_BREAKAWAY: u1 = 0,
-        REATE_FORCE_BREAKAWAY: u1 = 0,
-        REATE_USE_VM_ALLOCATIONS: u1 = 0,
-        REATE_MEASURE_PERFORMANCE: u1 = 0,
-        REATE_RELEASE_SECTION: u1 = 0,
-    }) PSS_CAPTURE_FLAGS {
-        return @as(PSS_CAPTURE_FLAGS, @enumFromInt((if (o.APTURE_NONE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_NONE) else 0) | (if (o.APTURE_VA_CLONE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_VA_CLONE) else 0) | (if (o.APTURE_RESERVED_00000002 == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000002) else 0) | (if (o.APTURE_HANDLES == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLES) else 0) | (if (o.APTURE_HANDLE_NAME_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_NAME_INFORMATION) else 0) | (if (o.APTURE_HANDLE_BASIC_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_BASIC_INFORMATION) else 0) | (if (o.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION) else 0) | (if (o.APTURE_HANDLE_TRACE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_HANDLE_TRACE) else 0) | (if (o.APTURE_THREADS == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_THREADS) else 0) | (if (o.APTURE_THREAD_CONTEXT == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT) else 0) | (if (o.APTURE_THREAD_CONTEXT_EXTENDED == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT_EXTENDED) else 0) | (if (o.APTURE_RESERVED_00000400 == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000400) else 0) | (if (o.APTURE_VA_SPACE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE) else 0) | (if (o.APTURE_VA_SPACE_SECTION_INFORMATION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_VA_SPACE_SECTION_INFORMATION) else 0) | (if (o.APTURE_IPT_TRACE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_IPT_TRACE) else 0) | (if (o.APTURE_RESERVED_00004000 == 1) @intFromEnum(PSS_CAPTURE_FLAGS.APTURE_RESERVED_00004000) else 0) | (if (o.REATE_BREAKAWAY_OPTIONAL == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY_OPTIONAL) else 0) | (if (o.REATE_BREAKAWAY == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_BREAKAWAY) else 0) | (if (o.REATE_FORCE_BREAKAWAY == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_FORCE_BREAKAWAY) else 0) | (if (o.REATE_USE_VM_ALLOCATIONS == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_USE_VM_ALLOCATIONS) else 0) | (if (o.REATE_MEASURE_PERFORMANCE == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_MEASURE_PERFORMANCE) else 0) | (if (o.REATE_RELEASE_SECTION == 1) @intFromEnum(PSS_CAPTURE_FLAGS.REATE_RELEASE_SECTION) else 0)));
-    }
+pub const PSS_CAPTURE_FLAGS = packed struct(u32) {
+    APTURE_VA_CLONE: u1 = 0,
+    APTURE_RESERVED_00000002: u1 = 0,
+    APTURE_HANDLES: u1 = 0,
+    APTURE_HANDLE_NAME_INFORMATION: u1 = 0,
+    APTURE_HANDLE_BASIC_INFORMATION: u1 = 0,
+    APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION: u1 = 0,
+    APTURE_HANDLE_TRACE: u1 = 0,
+    APTURE_THREADS: u1 = 0,
+    APTURE_THREAD_CONTEXT: u1 = 0,
+    APTURE_THREAD_CONTEXT_EXTENDED: u1 = 0,
+    APTURE_RESERVED_00000400: u1 = 0,
+    APTURE_VA_SPACE: u1 = 0,
+    APTURE_VA_SPACE_SECTION_INFORMATION: u1 = 0,
+    APTURE_IPT_TRACE: u1 = 0,
+    APTURE_RESERVED_00004000: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    REATE_BREAKAWAY_OPTIONAL: u1 = 0,
+    REATE_BREAKAWAY: u1 = 0,
+    REATE_FORCE_BREAKAWAY: u1 = 0,
+    REATE_USE_VM_ALLOCATIONS: u1 = 0,
+    REATE_MEASURE_PERFORMANCE: u1 = 0,
+    REATE_RELEASE_SECTION: u1 = 0,
 };
-pub const PSS_CAPTURE_NONE = PSS_CAPTURE_FLAGS.APTURE_NONE;
-pub const PSS_CAPTURE_VA_CLONE = PSS_CAPTURE_FLAGS.APTURE_VA_CLONE;
-pub const PSS_CAPTURE_RESERVED_00000002 = PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000002;
-pub const PSS_CAPTURE_HANDLES = PSS_CAPTURE_FLAGS.APTURE_HANDLES;
-pub const PSS_CAPTURE_HANDLE_NAME_INFORMATION = PSS_CAPTURE_FLAGS.APTURE_HANDLE_NAME_INFORMATION;
-pub const PSS_CAPTURE_HANDLE_BASIC_INFORMATION = PSS_CAPTURE_FLAGS.APTURE_HANDLE_BASIC_INFORMATION;
-pub const PSS_CAPTURE_HANDLE_TYPE_SPECIFIC_INFORMATION = PSS_CAPTURE_FLAGS.APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION;
-pub const PSS_CAPTURE_HANDLE_TRACE = PSS_CAPTURE_FLAGS.APTURE_HANDLE_TRACE;
-pub const PSS_CAPTURE_THREADS = PSS_CAPTURE_FLAGS.APTURE_THREADS;
-pub const PSS_CAPTURE_THREAD_CONTEXT = PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT;
-pub const PSS_CAPTURE_THREAD_CONTEXT_EXTENDED = PSS_CAPTURE_FLAGS.APTURE_THREAD_CONTEXT_EXTENDED;
-pub const PSS_CAPTURE_RESERVED_00000400 = PSS_CAPTURE_FLAGS.APTURE_RESERVED_00000400;
-pub const PSS_CAPTURE_VA_SPACE = PSS_CAPTURE_FLAGS.APTURE_VA_SPACE;
-pub const PSS_CAPTURE_VA_SPACE_SECTION_INFORMATION = PSS_CAPTURE_FLAGS.APTURE_VA_SPACE_SECTION_INFORMATION;
-pub const PSS_CAPTURE_IPT_TRACE = PSS_CAPTURE_FLAGS.APTURE_IPT_TRACE;
-pub const PSS_CAPTURE_RESERVED_00004000 = PSS_CAPTURE_FLAGS.APTURE_RESERVED_00004000;
-pub const PSS_CREATE_BREAKAWAY_OPTIONAL = PSS_CAPTURE_FLAGS.REATE_BREAKAWAY_OPTIONAL;
-pub const PSS_CREATE_BREAKAWAY = PSS_CAPTURE_FLAGS.REATE_BREAKAWAY;
-pub const PSS_CREATE_FORCE_BREAKAWAY = PSS_CAPTURE_FLAGS.REATE_FORCE_BREAKAWAY;
-pub const PSS_CREATE_USE_VM_ALLOCATIONS = PSS_CAPTURE_FLAGS.REATE_USE_VM_ALLOCATIONS;
-pub const PSS_CREATE_MEASURE_PERFORMANCE = PSS_CAPTURE_FLAGS.REATE_MEASURE_PERFORMANCE;
-pub const PSS_CREATE_RELEASE_SECTION = PSS_CAPTURE_FLAGS.REATE_RELEASE_SECTION;
+pub const PSS_CAPTURE_NONE = PSS_CAPTURE_FLAGS{ };
+pub const PSS_CAPTURE_VA_CLONE = PSS_CAPTURE_FLAGS{ .APTURE_VA_CLONE = 1 };
+pub const PSS_CAPTURE_RESERVED_00000002 = PSS_CAPTURE_FLAGS{ .APTURE_RESERVED_00000002 = 1 };
+pub const PSS_CAPTURE_HANDLES = PSS_CAPTURE_FLAGS{ .APTURE_HANDLES = 1 };
+pub const PSS_CAPTURE_HANDLE_NAME_INFORMATION = PSS_CAPTURE_FLAGS{ .APTURE_HANDLE_NAME_INFORMATION = 1 };
+pub const PSS_CAPTURE_HANDLE_BASIC_INFORMATION = PSS_CAPTURE_FLAGS{ .APTURE_HANDLE_BASIC_INFORMATION = 1 };
+pub const PSS_CAPTURE_HANDLE_TYPE_SPECIFIC_INFORMATION = PSS_CAPTURE_FLAGS{ .APTURE_HANDLE_TYPE_SPECIFIC_INFORMATION = 1 };
+pub const PSS_CAPTURE_HANDLE_TRACE = PSS_CAPTURE_FLAGS{ .APTURE_HANDLE_TRACE = 1 };
+pub const PSS_CAPTURE_THREADS = PSS_CAPTURE_FLAGS{ .APTURE_THREADS = 1 };
+pub const PSS_CAPTURE_THREAD_CONTEXT = PSS_CAPTURE_FLAGS{ .APTURE_THREAD_CONTEXT = 1 };
+pub const PSS_CAPTURE_THREAD_CONTEXT_EXTENDED = PSS_CAPTURE_FLAGS{ .APTURE_THREAD_CONTEXT_EXTENDED = 1 };
+pub const PSS_CAPTURE_RESERVED_00000400 = PSS_CAPTURE_FLAGS{ .APTURE_RESERVED_00000400 = 1 };
+pub const PSS_CAPTURE_VA_SPACE = PSS_CAPTURE_FLAGS{ .APTURE_VA_SPACE = 1 };
+pub const PSS_CAPTURE_VA_SPACE_SECTION_INFORMATION = PSS_CAPTURE_FLAGS{ .APTURE_VA_SPACE_SECTION_INFORMATION = 1 };
+pub const PSS_CAPTURE_IPT_TRACE = PSS_CAPTURE_FLAGS{ .APTURE_IPT_TRACE = 1 };
+pub const PSS_CAPTURE_RESERVED_00004000 = PSS_CAPTURE_FLAGS{ .APTURE_RESERVED_00004000 = 1 };
+pub const PSS_CREATE_BREAKAWAY_OPTIONAL = PSS_CAPTURE_FLAGS{ .REATE_BREAKAWAY_OPTIONAL = 1 };
+pub const PSS_CREATE_BREAKAWAY = PSS_CAPTURE_FLAGS{ .REATE_BREAKAWAY = 1 };
+pub const PSS_CREATE_FORCE_BREAKAWAY = PSS_CAPTURE_FLAGS{ .REATE_FORCE_BREAKAWAY = 1 };
+pub const PSS_CREATE_USE_VM_ALLOCATIONS = PSS_CAPTURE_FLAGS{ .REATE_USE_VM_ALLOCATIONS = 1 };
+pub const PSS_CREATE_MEASURE_PERFORMANCE = PSS_CAPTURE_FLAGS{ .REATE_MEASURE_PERFORMANCE = 1 };
+pub const PSS_CREATE_RELEASE_SECTION = PSS_CAPTURE_FLAGS{ .REATE_RELEASE_SECTION = 1 };
 
 pub const PSS_QUERY_INFORMATION_CLASS = enum(i32) {
     PROCESS_INFORMATION = 0,
@@ -155,45 +157,83 @@ pub const PSS_WALK_VA_SPACE = PSS_WALK_INFORMATION_CLASS.VA_SPACE;
 pub const PSS_WALK_HANDLES = PSS_WALK_INFORMATION_CLASS.HANDLES;
 pub const PSS_WALK_THREADS = PSS_WALK_INFORMATION_CLASS.THREADS;
 
-pub const PSS_DUPLICATE_FLAGS = enum(u32) {
-    NONE = 0,
-    CLOSE_SOURCE = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        CLOSE_SOURCE: u1 = 0,
-    }) PSS_DUPLICATE_FLAGS {
-        return @as(PSS_DUPLICATE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(PSS_DUPLICATE_FLAGS.NONE) else 0) | (if (o.CLOSE_SOURCE == 1) @intFromEnum(PSS_DUPLICATE_FLAGS.CLOSE_SOURCE) else 0)));
-    }
+pub const PSS_DUPLICATE_FLAGS = packed struct(u32) {
+    CLOSE_SOURCE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PSS_DUPLICATE_NONE = PSS_DUPLICATE_FLAGS.NONE;
-pub const PSS_DUPLICATE_CLOSE_SOURCE = PSS_DUPLICATE_FLAGS.CLOSE_SOURCE;
+pub const PSS_DUPLICATE_NONE = PSS_DUPLICATE_FLAGS{ };
+pub const PSS_DUPLICATE_CLOSE_SOURCE = PSS_DUPLICATE_FLAGS{ .CLOSE_SOURCE = 1 };
 
-pub const PSS_PROCESS_FLAGS = enum(u32) {
-    NONE = 0,
-    PROTECTED = 1,
-    WOW64 = 2,
-    RESERVED_03 = 4,
-    RESERVED_04 = 8,
-    FROZEN = 16,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        PROTECTED: u1 = 0,
-        WOW64: u1 = 0,
-        RESERVED_03: u1 = 0,
-        RESERVED_04: u1 = 0,
-        FROZEN: u1 = 0,
-    }) PSS_PROCESS_FLAGS {
-        return @as(PSS_PROCESS_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(PSS_PROCESS_FLAGS.NONE) else 0) | (if (o.PROTECTED == 1) @intFromEnum(PSS_PROCESS_FLAGS.PROTECTED) else 0) | (if (o.WOW64 == 1) @intFromEnum(PSS_PROCESS_FLAGS.WOW64) else 0) | (if (o.RESERVED_03 == 1) @intFromEnum(PSS_PROCESS_FLAGS.RESERVED_03) else 0) | (if (o.RESERVED_04 == 1) @intFromEnum(PSS_PROCESS_FLAGS.RESERVED_04) else 0) | (if (o.FROZEN == 1) @intFromEnum(PSS_PROCESS_FLAGS.FROZEN) else 0)));
-    }
+pub const PSS_PROCESS_FLAGS = packed struct(u32) {
+    PROTECTED: u1 = 0,
+    WOW64: u1 = 0,
+    RESERVED_03: u1 = 0,
+    RESERVED_04: u1 = 0,
+    FROZEN: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PSS_PROCESS_FLAGS_NONE = PSS_PROCESS_FLAGS.NONE;
-pub const PSS_PROCESS_FLAGS_PROTECTED = PSS_PROCESS_FLAGS.PROTECTED;
-pub const PSS_PROCESS_FLAGS_WOW64 = PSS_PROCESS_FLAGS.WOW64;
-pub const PSS_PROCESS_FLAGS_RESERVED_03 = PSS_PROCESS_FLAGS.RESERVED_03;
-pub const PSS_PROCESS_FLAGS_RESERVED_04 = PSS_PROCESS_FLAGS.RESERVED_04;
-pub const PSS_PROCESS_FLAGS_FROZEN = PSS_PROCESS_FLAGS.FROZEN;
+pub const PSS_PROCESS_FLAGS_NONE = PSS_PROCESS_FLAGS{ };
+pub const PSS_PROCESS_FLAGS_PROTECTED = PSS_PROCESS_FLAGS{ .PROTECTED = 1 };
+pub const PSS_PROCESS_FLAGS_WOW64 = PSS_PROCESS_FLAGS{ .WOW64 = 1 };
+pub const PSS_PROCESS_FLAGS_RESERVED_03 = PSS_PROCESS_FLAGS{ .RESERVED_03 = 1 };
+pub const PSS_PROCESS_FLAGS_RESERVED_04 = PSS_PROCESS_FLAGS{ .RESERVED_04 = 1 };
+pub const PSS_PROCESS_FLAGS_FROZEN = PSS_PROCESS_FLAGS{ .FROZEN = 1 };
 
 pub const PSS_PROCESS_INFORMATION = extern struct {
     ExitStatus: u32,
@@ -347,19 +387,42 @@ pub const PSS_HANDLE_ENTRY = extern struct {
     },
 };
 
-pub const PSS_THREAD_FLAGS = enum(u32) {
-    NONE = 0,
-    TERMINATED = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TERMINATED: u1 = 0,
-    }) PSS_THREAD_FLAGS {
-        return @as(PSS_THREAD_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(PSS_THREAD_FLAGS.NONE) else 0) | (if (o.TERMINATED == 1) @intFromEnum(PSS_THREAD_FLAGS.TERMINATED) else 0)));
-    }
+pub const PSS_THREAD_FLAGS = packed struct(u32) {
+    TERMINATED: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PSS_THREAD_FLAGS_NONE = PSS_THREAD_FLAGS.NONE;
-pub const PSS_THREAD_FLAGS_TERMINATED = PSS_THREAD_FLAGS.TERMINATED;
+pub const PSS_THREAD_FLAGS_NONE = PSS_THREAD_FLAGS{ };
+pub const PSS_THREAD_FLAGS_TERMINATED = PSS_THREAD_FLAGS{ .TERMINATED = 1 };
 
 pub const PSS_THREAD_ENTRY = extern struct {
     ExitStatus: u32,
@@ -388,6 +451,7 @@ pub const PSS_ALLOCATOR = extern struct {
     AllocRoutine: isize,
     FreeRoutine: isize,
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -426,9 +490,7 @@ pub extern "kernel32" fn PssWalkSnapshot(
 
 // TODO: this type is limited to platform 'windows8.1'
 // This function from dll 'KERNEL32' is being skipped because it has some sort of issue
-pub fn PssDuplicateSnapshot() void {
-    @panic("this function is not working");
-}
+pub fn PssDuplicateSnapshot() void { @panic("this function is not working"); }
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerCreate(
@@ -458,15 +520,10 @@ pub extern "kernel32" fn PssWalkMarkerSeekToBeginning(
     WalkMarkerHandle: ?HPSSWALK,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
@@ -479,13 +536,13 @@ const MEMORY_BASIC_INFORMATION = @import("../../system/memory.zig").MEMORY_BASIC
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

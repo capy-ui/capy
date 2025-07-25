@@ -177,201 +177,110 @@ pub const WINML_MODEL_DESC = extern struct {
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLModel_Value = Guid.initString("e2eeb6a9-f31f-4055-a521-e30b5b33664a");
 pub const IID_IWinMLModel = &IID_IWinMLModel_Value;
-pub const IWinMLModel = extern struct {
+pub const IWinMLModel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLModel,
-                ppDescription: ?*?*WINML_MODEL_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLModel,
-                ppDescription: ?*?*WINML_MODEL_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLModel,
-                Index: u32,
-                pKey: ?*?PWSTR,
-                pValue: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLModel,
-                Index: u32,
-                pKey: ?*?PWSTR,
-                pValue: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateModelInputs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLModel,
-                Index: u32,
-                ppInputDescriptor: ?*?*WINML_VARIABLE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLModel,
-                Index: u32,
-                ppInputDescriptor: ?*?*WINML_VARIABLE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateModelOutputs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLModel,
-                Index: u32,
-                ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLModel,
-                Index: u32,
-                ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDescription: *const fn(
+            self: *const IWinMLModel,
+            ppDescription: ?*?*WINML_MODEL_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateMetadata: *const fn(
+            self: *const IWinMLModel,
+            Index: u32,
+            pKey: ?*?PWSTR,
+            pValue: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateModelInputs: *const fn(
+            self: *const IWinMLModel,
+            Index: u32,
+            ppInputDescriptor: ?*?*WINML_VARIABLE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateModelOutputs: *const fn(
+            self: *const IWinMLModel,
+            Index: u32,
+            ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLModel_GetDescription(self: *const T, ppDescription: ?*?*WINML_MODEL_DESC) HRESULT {
-                return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IWinMLModel, @ptrCast(self)), ppDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLModel_EnumerateMetadata(self: *const T, Index: u32, pKey: ?*?PWSTR, pValue: ?*?PWSTR) HRESULT {
-                return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).EnumerateMetadata(@as(*const IWinMLModel, @ptrCast(self)), Index, pKey, pValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLModel_EnumerateModelInputs(self: *const T, Index: u32, ppInputDescriptor: ?*?*WINML_VARIABLE_DESC) HRESULT {
-                return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).EnumerateModelInputs(@as(*const IWinMLModel, @ptrCast(self)), Index, ppInputDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLModel_EnumerateModelOutputs(self: *const T, Index: u32, ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC) HRESULT {
-                return @as(*const IWinMLModel.VTable, @ptrCast(self.vtable)).EnumerateModelOutputs(@as(*const IWinMLModel, @ptrCast(self)), Index, ppOutputDescriptor);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDescription(self: *const IWinMLModel, ppDescription: ?*?*WINML_MODEL_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDescription(self, ppDescription);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn EnumerateMetadata(self: *const IWinMLModel, Index: u32, pKey: ?*?PWSTR, pValue: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.EnumerateMetadata(self, Index, pKey, pValue);
+    }
+    pub fn EnumerateModelInputs(self: *const IWinMLModel, Index: u32, ppInputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.EnumerateModelInputs(self, Index, ppInputDescriptor);
+    }
+    pub fn EnumerateModelOutputs(self: *const IWinMLModel, Index: u32, ppOutputDescriptor: ?*?*WINML_VARIABLE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.EnumerateModelOutputs(self, Index, ppOutputDescriptor);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLEvaluationContext_Value = Guid.initString("95848f9e-583d-4054-af12-916387cd8426");
 pub const IID_IWinMLEvaluationContext = &IID_IWinMLEvaluationContext_Value;
-pub const IWinMLEvaluationContext = extern struct {
+pub const IWinMLEvaluationContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BindValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLEvaluationContext,
-                pDescriptor: ?*WINML_BINDING_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLEvaluationContext,
-                pDescriptor: ?*WINML_BINDING_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValueByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLEvaluationContext,
-                Name: ?[*:0]const u16,
-                pDescriptor: ?*?*WINML_BINDING_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLEvaluationContext,
-                Name: ?[*:0]const u16,
-                pDescriptor: ?*?*WINML_BINDING_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLEvaluationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLEvaluationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BindValue: *const fn(
+            self: *const IWinMLEvaluationContext,
+            pDescriptor: ?*WINML_BINDING_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValueByName: *const fn(
+            self: *const IWinMLEvaluationContext,
+            Name: ?[*:0]const u16,
+            pDescriptor: ?*?*WINML_BINDING_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clear: *const fn(
+            self: *const IWinMLEvaluationContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLEvaluationContext_BindValue(self: *const T, pDescriptor: ?*WINML_BINDING_DESC) HRESULT {
-                return @as(*const IWinMLEvaluationContext.VTable, @ptrCast(self.vtable)).BindValue(@as(*const IWinMLEvaluationContext, @ptrCast(self)), pDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLEvaluationContext_GetValueByName(self: *const T, Name: ?[*:0]const u16, pDescriptor: ?*?*WINML_BINDING_DESC) HRESULT {
-                return @as(*const IWinMLEvaluationContext.VTable, @ptrCast(self.vtable)).GetValueByName(@as(*const IWinMLEvaluationContext, @ptrCast(self)), Name, pDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLEvaluationContext_Clear(self: *const T) HRESULT {
-                return @as(*const IWinMLEvaluationContext.VTable, @ptrCast(self.vtable)).Clear(@as(*const IWinMLEvaluationContext, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn BindValue(self: *const IWinMLEvaluationContext, pDescriptor: ?*WINML_BINDING_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.BindValue(self, pDescriptor);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetValueByName(self: *const IWinMLEvaluationContext, Name: ?[*:0]const u16, pDescriptor: ?*?*WINML_BINDING_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetValueByName(self, Name, pDescriptor);
+    }
+    pub fn Clear(self: *const IWinMLEvaluationContext) callconv(.Inline) HRESULT {
+        return self.vtable.Clear(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLRuntime_Value = Guid.initString("a0425329-40ae-48d9-bce3-829ef7b8a41a");
 pub const IID_IWinMLRuntime = &IID_IWinMLRuntime_Value;
-pub const IWinMLRuntime = extern struct {
+pub const IWinMLRuntime = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LoadModel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLRuntime,
-                Path: ?[*:0]const u16,
-                ppModel: ?*?*IWinMLModel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLRuntime,
-                Path: ?[*:0]const u16,
-                ppModel: ?*?*IWinMLModel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateEvaluationContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLRuntime,
-                device: ?*ID3D12Device,
-                ppContext: ?*?*IWinMLEvaluationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLRuntime,
-                device: ?*ID3D12Device,
-                ppContext: ?*?*IWinMLEvaluationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EvaluateModel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLRuntime,
-                pContext: ?*IWinMLEvaluationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLRuntime,
-                pContext: ?*IWinMLEvaluationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LoadModel: *const fn(
+            self: *const IWinMLRuntime,
+            Path: ?[*:0]const u16,
+            ppModel: **IWinMLModel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateEvaluationContext: *const fn(
+            self: *const IWinMLRuntime,
+            device: ?*ID3D12Device,
+            ppContext: **IWinMLEvaluationContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EvaluateModel: *const fn(
+            self: *const IWinMLRuntime,
+            pContext: ?*IWinMLEvaluationContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLRuntime_LoadModel(self: *const T, Path: ?[*:0]const u16, ppModel: ?*?*IWinMLModel) HRESULT {
-                return @as(*const IWinMLRuntime.VTable, @ptrCast(self.vtable)).LoadModel(@as(*const IWinMLRuntime, @ptrCast(self)), Path, ppModel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLRuntime_CreateEvaluationContext(self: *const T, device: ?*ID3D12Device, ppContext: ?*?*IWinMLEvaluationContext) HRESULT {
-                return @as(*const IWinMLRuntime.VTable, @ptrCast(self.vtable)).CreateEvaluationContext(@as(*const IWinMLRuntime, @ptrCast(self)), device, ppContext);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLRuntime_EvaluateModel(self: *const T, pContext: ?*IWinMLEvaluationContext) HRESULT {
-                return @as(*const IWinMLRuntime.VTable, @ptrCast(self.vtable)).EvaluateModel(@as(*const IWinMLRuntime, @ptrCast(self)), pContext);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn LoadModel(self: *const IWinMLRuntime, Path: ?[*:0]const u16, ppModel: **IWinMLModel) callconv(.Inline) HRESULT {
+        return self.vtable.LoadModel(self, Path, ppModel);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateEvaluationContext(self: *const IWinMLRuntime, device: ?*ID3D12Device, ppContext: **IWinMLEvaluationContext) callconv(.Inline) HRESULT {
+        return self.vtable.CreateEvaluationContext(self, device, ppContext);
+    }
+    pub fn EvaluateModel(self: *const IWinMLRuntime, pContext: ?*IWinMLEvaluationContext) callconv(.Inline) HRESULT {
+        return self.vtable.EvaluateModel(self, pContext);
+    }
 };
 
 pub const WINML_RUNTIME_TYPE = enum(i32) {
@@ -382,33 +291,20 @@ pub const WINML_RUNTIME_CNTK = WINML_RUNTIME_TYPE.K;
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IWinMLRuntimeFactory_Value = Guid.initString("a807b84d-4ae5-4bc0-a76a-941aa246bd41");
 pub const IID_IWinMLRuntimeFactory = &IID_IWinMLRuntimeFactory_Value;
-pub const IWinMLRuntimeFactory = extern struct {
+pub const IWinMLRuntimeFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateRuntime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWinMLRuntimeFactory,
-                RuntimeType: WINML_RUNTIME_TYPE,
-                ppRuntime: ?*?*IWinMLRuntime,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWinMLRuntimeFactory,
-                RuntimeType: WINML_RUNTIME_TYPE,
-                ppRuntime: ?*?*IWinMLRuntime,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateRuntime: *const fn(
+            self: *const IWinMLRuntimeFactory,
+            RuntimeType: WINML_RUNTIME_TYPE,
+            ppRuntime: **IWinMLRuntime,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWinMLRuntimeFactory_CreateRuntime(self: *const T, RuntimeType: WINML_RUNTIME_TYPE, ppRuntime: ?*?*IWinMLRuntime) HRESULT {
-                return @as(*const IWinMLRuntimeFactory.VTable, @ptrCast(self.vtable)).CreateRuntime(@as(*const IWinMLRuntimeFactory, @ptrCast(self)), RuntimeType, ppRuntime);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateRuntime(self: *const IWinMLRuntimeFactory, RuntimeType: WINML_RUNTIME_TYPE, ppRuntime: **IWinMLRuntime) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRuntime(self, RuntimeType, ppRuntime);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const MLOperatorAttributeType = enum(u32) {
@@ -458,574 +354,333 @@ pub const MLOperatorEdgeDescription = extern struct {
 
 const IID_IMLOperatorAttributes_Value = Guid.initString("4b1b1759-ec40-466c-aab4-beb5347fd24c");
 pub const IID_IMLOperatorAttributes = &IID_IMLOperatorAttributes_Value;
-pub const IMLOperatorAttributes = extern struct {
+pub const IMLOperatorAttributes = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAttributeElementCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                type: MLOperatorAttributeType,
-                elementCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                type: MLOperatorAttributeType,
-                elementCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                type: MLOperatorAttributeType,
-                elementCount: u32,
-                elementByteSize: usize,
-                value: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                type: MLOperatorAttributeType,
-                elementCount: u32,
-                elementByteSize: usize,
-                value: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStringAttributeElementLength: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                elementIndex: u32,
-                attributeElementByteSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                elementIndex: u32,
-                attributeElementByteSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStringAttributeElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                elementIndex: u32,
-                attributeElementByteSize: u32,
-                attributeElement: [*:0]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorAttributes,
-                name: ?[*:0]const u8,
-                elementIndex: u32,
-                attributeElementByteSize: u32,
-                attributeElement: [*:0]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAttributeElementCount: *const fn(
+            self: *const IMLOperatorAttributes,
+            name: ?[*:0]const u8,
+            type: MLOperatorAttributeType,
+            elementCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttribute: *const fn(
+            self: *const IMLOperatorAttributes,
+            name: ?[*:0]const u8,
+            type: MLOperatorAttributeType,
+            elementCount: u32,
+            elementByteSize: usize,
+            value: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStringAttributeElementLength: *const fn(
+            self: *const IMLOperatorAttributes,
+            name: ?[*:0]const u8,
+            elementIndex: u32,
+            attributeElementByteSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStringAttributeElement: *const fn(
+            self: *const IMLOperatorAttributes,
+            name: ?[*:0]const u8,
+            elementIndex: u32,
+            attributeElementByteSize: u32,
+            attributeElement: [*:0]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorAttributes_GetAttributeElementCount(self: *const T, name: ?[*:0]const u8, type_: MLOperatorAttributeType, elementCount: ?*u32) HRESULT {
-                return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetAttributeElementCount(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, type_, elementCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorAttributes_GetAttribute(self: *const T, name: ?[*:0]const u8, type_: MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: ?*anyopaque) HRESULT {
-                return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetAttribute(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, type_, elementCount, elementByteSize, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorAttributes_GetStringAttributeElementLength(self: *const T, name: ?[*:0]const u8, elementIndex: u32, attributeElementByteSize: ?*u32) HRESULT {
-                return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetStringAttributeElementLength(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, elementIndex, attributeElementByteSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorAttributes_GetStringAttributeElement(self: *const T, name: ?[*:0]const u8, elementIndex: u32, attributeElementByteSize: u32, attributeElement: [*:0]u8) HRESULT {
-                return @as(*const IMLOperatorAttributes.VTable, @ptrCast(self.vtable)).GetStringAttributeElement(@as(*const IMLOperatorAttributes, @ptrCast(self)), name, elementIndex, attributeElementByteSize, attributeElement);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetAttributeElementCount(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, @"type": MLOperatorAttributeType, elementCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetAttributeElementCount(self, name, @"type", elementCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAttribute(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, @"type": MLOperatorAttributeType, elementCount: u32, elementByteSize: usize, value: ?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetAttribute(self, name, @"type", elementCount, elementByteSize, value);
+    }
+    pub fn GetStringAttributeElementLength(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, elementIndex: u32, attributeElementByteSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStringAttributeElementLength(self, name, elementIndex, attributeElementByteSize);
+    }
+    pub fn GetStringAttributeElement(self: *const IMLOperatorAttributes, name: ?[*:0]const u8, elementIndex: u32, attributeElementByteSize: u32, attributeElement: [*:0]u8) callconv(.Inline) HRESULT {
+        return self.vtable.GetStringAttributeElement(self, name, elementIndex, attributeElementByteSize, attributeElement);
+    }
 };
 
 const IID_IMLOperatorTensorShapeDescription_Value = Guid.initString("f20e8cbe-3b28-4248-be95-f96fbc6e4643");
 pub const IID_IMLOperatorTensorShapeDescription = &IID_IMLOperatorTensorShapeDescription_Value;
-pub const IMLOperatorTensorShapeDescription = extern struct {
+pub const IMLOperatorTensorShapeDescription = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInputTensorDimensionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                inputIndex: u32,
-                dimensionCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                inputIndex: u32,
-                dimensionCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputTensorShape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                inputIndex: u32,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                inputIndex: u32,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasOutputShapeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensorShapeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorTensorShapeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        GetOutputTensorDimensionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                outputIndex: u32,
-                dimensionCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                outputIndex: u32,
-                dimensionCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputTensorShape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                outputIndex: u32,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTensorShapeDescription,
-                outputIndex: u32,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInputTensorDimensionCount: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            inputIndex: u32,
+            dimensionCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputTensorShape: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            inputIndex: u32,
+            dimensionCount: u32,
+            dimensions: [*]u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasOutputShapeDescription: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        GetOutputTensorDimensionCount: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            outputIndex: u32,
+            dimensionCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputTensorShape: *const fn(
+            self: *const IMLOperatorTensorShapeDescription,
+            outputIndex: u32,
+            dimensionCount: u32,
+            dimensions: [*]u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensorShapeDescription_GetInputTensorDimensionCount(self: *const T, inputIndex: u32, dimensionCount: ?*u32) HRESULT {
-                return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetInputTensorDimensionCount(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), inputIndex, dimensionCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensorShapeDescription_GetInputTensorShape(self: *const T, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) HRESULT {
-                return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetInputTensorShape(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), inputIndex, dimensionCount, dimensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensorShapeDescription_HasOutputShapeDescription(self: *const T) bool {
-                return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).HasOutputShapeDescription(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensorShapeDescription_GetOutputTensorDimensionCount(self: *const T, outputIndex: u32, dimensionCount: ?*u32) HRESULT {
-                return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetOutputTensorDimensionCount(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), outputIndex, dimensionCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensorShapeDescription_GetOutputTensorShape(self: *const T, outputIndex: u32, dimensionCount: u32, dimensions: [*]u32) HRESULT {
-                return @as(*const IMLOperatorTensorShapeDescription.VTable, @ptrCast(self.vtable)).GetOutputTensorShape(@as(*const IMLOperatorTensorShapeDescription, @ptrCast(self)), outputIndex, dimensionCount, dimensions);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetInputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputTensorDimensionCount(self, inputIndex, dimensionCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetInputTensorShape(self: *const IMLOperatorTensorShapeDescription, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputTensorShape(self, inputIndex, dimensionCount, dimensions);
+    }
+    pub fn HasOutputShapeDescription(self: *const IMLOperatorTensorShapeDescription) callconv(.Inline) bool {
+        return self.vtable.HasOutputShapeDescription(self);
+    }
+    pub fn GetOutputTensorDimensionCount(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOutputTensorDimensionCount(self, outputIndex, dimensionCount);
+    }
+    pub fn GetOutputTensorShape(self: *const IMLOperatorTensorShapeDescription, outputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOutputTensorShape(self, outputIndex, dimensionCount, dimensions);
+    }
 };
 
 const IID_IMLOperatorKernelCreationContext_Value = Guid.initString("5459b53d-a0fc-4665-addd-70171ef7e631");
 pub const IID_IMLOperatorKernelCreationContext = &IID_IMLOperatorKernelCreationContext_Value;
-pub const IMLOperatorKernelCreationContext = extern struct {
+pub const IMLOperatorKernelCreationContext = extern union {
     pub const VTable = extern struct {
         base: IMLOperatorAttributes.VTable,
-        GetInputCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetOutputCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        IsInputValid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-                inputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-                inputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        IsOutputValid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-                outputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-                outputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        GetInputEdgeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-                inputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-                inputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputEdgeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-                outputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-                outputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasTensorShapeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        GetTensorShapeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-                shapeDescription: ?*?*IMLOperatorTensorShapeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-                shapeDescription: ?*?*IMLOperatorTensorShapeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetExecutionInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelCreationContext,
-                executionObject: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IMLOperatorKernelCreationContext,
-                executionObject: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        GetInputCount: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetOutputCount: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        IsInputValid: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+            inputIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        IsOutputValid: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+            outputIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        GetInputEdgeDescription: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+            inputIndex: u32,
+            edgeDescription: ?*MLOperatorEdgeDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputEdgeDescription: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+            outputIndex: u32,
+            edgeDescription: ?*MLOperatorEdgeDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasTensorShapeDescription: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        GetTensorShapeDescription: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+            shapeDescription: **IMLOperatorTensorShapeDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetExecutionInterface: *const fn(
+            self: *const IMLOperatorKernelCreationContext,
+            executionObject: ?**IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IMLOperatorAttributes.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_GetInputCount(self: *const T) u32 {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_GetOutputCount(self: *const T) u32 {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_IsInputValid(self: *const T, inputIndex: u32) bool {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).IsInputValid(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), inputIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_IsOutputValid(self: *const T, outputIndex: u32) bool {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).IsOutputValid(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), outputIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_GetInputEdgeDescription(self: *const T, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) HRESULT {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetInputEdgeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), inputIndex, edgeDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_GetOutputEdgeDescription(self: *const T, outputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) HRESULT {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetOutputEdgeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), outputIndex, edgeDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_HasTensorShapeDescription(self: *const T) bool {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).HasTensorShapeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_GetTensorShapeDescription(self: *const T, shapeDescription: ?*?*IMLOperatorTensorShapeDescription) HRESULT {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetTensorShapeDescription(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), shapeDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelCreationContext_GetExecutionInterface(self: *const T, executionObject: ?*?*IUnknown) void {
-                return @as(*const IMLOperatorKernelCreationContext.VTable, @ptrCast(self.vtable)).GetExecutionInterface(@as(*const IMLOperatorKernelCreationContext, @ptrCast(self)), executionObject);
-            }
-        };
+    IMLOperatorAttributes: IMLOperatorAttributes,
+    IUnknown: IUnknown,
+    pub fn GetInputCount(self: *const IMLOperatorKernelCreationContext) callconv(.Inline) u32 {
+        return self.vtable.GetInputCount(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetOutputCount(self: *const IMLOperatorKernelCreationContext) callconv(.Inline) u32 {
+        return self.vtable.GetOutputCount(self);
+    }
+    pub fn IsInputValid(self: *const IMLOperatorKernelCreationContext, inputIndex: u32) callconv(.Inline) bool {
+        return self.vtable.IsInputValid(self, inputIndex);
+    }
+    pub fn IsOutputValid(self: *const IMLOperatorKernelCreationContext, outputIndex: u32) callconv(.Inline) bool {
+        return self.vtable.IsOutputValid(self, outputIndex);
+    }
+    pub fn GetInputEdgeDescription(self: *const IMLOperatorKernelCreationContext, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputEdgeDescription(self, inputIndex, edgeDescription);
+    }
+    pub fn GetOutputEdgeDescription(self: *const IMLOperatorKernelCreationContext, outputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
+        return self.vtable.GetOutputEdgeDescription(self, outputIndex, edgeDescription);
+    }
+    pub fn HasTensorShapeDescription(self: *const IMLOperatorKernelCreationContext) callconv(.Inline) bool {
+        return self.vtable.HasTensorShapeDescription(self);
+    }
+    pub fn GetTensorShapeDescription(self: *const IMLOperatorKernelCreationContext, shapeDescription: **IMLOperatorTensorShapeDescription) callconv(.Inline) HRESULT {
+        return self.vtable.GetTensorShapeDescription(self, shapeDescription);
+    }
+    pub fn GetExecutionInterface(self: *const IMLOperatorKernelCreationContext, executionObject: ?**IUnknown) callconv(.Inline) void {
+        return self.vtable.GetExecutionInterface(self, executionObject);
+    }
 };
 
 const IID_IMLOperatorTensor_Value = Guid.initString("7fe41f41-f430-440e-aece-54416dc8b9db");
 pub const IID_IMLOperatorTensor = &IID_IMLOperatorTensor_Value;
-pub const IMLOperatorTensor = extern struct {
+pub const IMLOperatorTensor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDimensionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetShape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensor,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTensor,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTensorDataType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) MLOperatorTensorDataType,
-            else => *const fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) MLOperatorTensorDataType,
-        },
-        IsCpuData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        IsDataInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        GetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-            else => *const fn (
-                self: *const IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-        },
-        GetDataInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTensor,
-                dataInterface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IMLOperatorTensor,
-                dataInterface: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        GetDimensionCount: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetShape: *const fn(
+            self: *const IMLOperatorTensor,
+            dimensionCount: u32,
+            dimensions: [*]u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTensorDataType: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) MLOperatorTensorDataType,
+        IsCpuData: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        IsDataInterface: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        GetData: *const fn(
+            self: *const IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        GetDataInterface: *const fn(
+            self: *const IMLOperatorTensor,
+            dataInterface: ?**IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensor_GetDimensionCount(self: *const T) u32 {
-                return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetDimensionCount(@as(*const IMLOperatorTensor, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensor_GetShape(self: *const T, dimensionCount: u32, dimensions: [*]u32) HRESULT {
-                return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetShape(@as(*const IMLOperatorTensor, @ptrCast(self)), dimensionCount, dimensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensor_GetTensorDataType(self: *const T) MLOperatorTensorDataType {
-                return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetTensorDataType(@as(*const IMLOperatorTensor, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensor_IsCpuData(self: *const T) bool {
-                return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).IsCpuData(@as(*const IMLOperatorTensor, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensor_IsDataInterface(self: *const T) bool {
-                return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).IsDataInterface(@as(*const IMLOperatorTensor, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensor_GetData(self: *const T) ?*anyopaque {
-                return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetData(@as(*const IMLOperatorTensor, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTensor_GetDataInterface(self: *const T, dataInterface: ?*?*IUnknown) void {
-                return @as(*const IMLOperatorTensor.VTable, @ptrCast(self.vtable)).GetDataInterface(@as(*const IMLOperatorTensor, @ptrCast(self)), dataInterface);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDimensionCount(self: *const IMLOperatorTensor) callconv(.Inline) u32 {
+        return self.vtable.GetDimensionCount(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetShape(self: *const IMLOperatorTensor, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetShape(self, dimensionCount, dimensions);
+    }
+    pub fn GetTensorDataType(self: *const IMLOperatorTensor) callconv(.Inline) MLOperatorTensorDataType {
+        return self.vtable.GetTensorDataType(self);
+    }
+    pub fn IsCpuData(self: *const IMLOperatorTensor) callconv(.Inline) bool {
+        return self.vtable.IsCpuData(self);
+    }
+    pub fn IsDataInterface(self: *const IMLOperatorTensor) callconv(.Inline) bool {
+        return self.vtable.IsDataInterface(self);
+    }
+    pub fn GetData(self: *const IMLOperatorTensor) callconv(.Inline) ?*anyopaque {
+        return self.vtable.GetData(self);
+    }
+    pub fn GetDataInterface(self: *const IMLOperatorTensor, dataInterface: ?**IUnknown) callconv(.Inline) void {
+        return self.vtable.GetDataInterface(self, dataInterface);
+    }
 };
 
 const IID_IMLOperatorKernelContext_Value = Guid.initString("82536a28-f022-4769-9d3f-8b278f84c0c3");
 pub const IID_IMLOperatorKernelContext = &IID_IMLOperatorKernelContext_Value;
-pub const IMLOperatorKernelContext = extern struct {
+pub const IMLOperatorKernelContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetInputTensor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelContext,
-                inputIndex: u32,
-                tensor: ?*?*IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelContext,
-                inputIndex: u32,
-                tensor: ?*?*IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputTensor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelContext,
-                outputIndex: u32,
-                dimensionCount: u32,
-                dimensionSizes: [*]const u32,
-                tensor: ?*?*IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelContext,
-                outputIndex: u32,
-                dimensionCount: u32,
-                dimensionSizes: [*]const u32,
-                tensor: ?*?*IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputTensor1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelContext,
-                outputIndex: u32,
-                tensor: ?*?*IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelContext,
-                outputIndex: u32,
-                tensor: ?*?*IMLOperatorTensor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AllocateTemporaryData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelContext,
-                size: usize,
-                data: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelContext,
-                size: usize,
-                data: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetExecutionInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelContext,
-                executionObject: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IMLOperatorKernelContext,
-                executionObject: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        GetInputTensor: *const fn(
+            self: *const IMLOperatorKernelContext,
+            inputIndex: u32,
+            tensor: ?**IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputTensorWithShape: *const fn(
+            self: *const IMLOperatorKernelContext,
+            outputIndex: u32,
+            dimensionCount: u32,
+            dimensionSizes: [*]const u32,
+            tensor: ?**IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputTensorDefault: *const fn(
+            self: *const IMLOperatorKernelContext,
+            outputIndex: u32,
+            tensor: ?**IMLOperatorTensor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AllocateTemporaryData: *const fn(
+            self: *const IMLOperatorKernelContext,
+            size: usize,
+            data: **IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetExecutionInterface: *const fn(
+            self: *const IMLOperatorKernelContext,
+            executionObject: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelContext_GetInputTensor(self: *const T, inputIndex: u32, tensor: ?*?*IMLOperatorTensor) HRESULT {
-                return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetInputTensor(@as(*const IMLOperatorKernelContext, @ptrCast(self)), inputIndex, tensor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelContext_GetOutputTensor(self: *const T, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?*?*IMLOperatorTensor) HRESULT {
-                return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetOutputTensor(@as(*const IMLOperatorKernelContext, @ptrCast(self)), outputIndex, dimensionCount, dimensionSizes, tensor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelContext_GetOutputTensor1(self: *const T, outputIndex: u32, tensor: ?*?*IMLOperatorTensor) HRESULT {
-                return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetOutputTensor(@as(*const IMLOperatorKernelContext, @ptrCast(self)), outputIndex, tensor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelContext_AllocateTemporaryData(self: *const T, size: usize, data: ?*?*IUnknown) HRESULT {
-                return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).AllocateTemporaryData(@as(*const IMLOperatorKernelContext, @ptrCast(self)), size, data);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelContext_GetExecutionInterface(self: *const T, executionObject: ?*?*IUnknown) void {
-                return @as(*const IMLOperatorKernelContext.VTable, @ptrCast(self.vtable)).GetExecutionInterface(@as(*const IMLOperatorKernelContext, @ptrCast(self)), executionObject);
-            }
-        };
+    IUnknown: IUnknown,
+    pub const GetOutputTensor = @compileError("COM method 'GetOutputTensor' must be called using one of the following overload names: GetOutputTensorDefault, GetOutputTensorWithShape");
+    pub fn GetInputTensor(self: *const IMLOperatorKernelContext, inputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputTensor(self, inputIndex, tensor);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetOutputTensorWithShape(self: *const IMLOperatorKernelContext, outputIndex: u32, dimensionCount: u32, dimensionSizes: [*]const u32, tensor: ?**IMLOperatorTensor) callconv(.Inline) HRESULT {
+        return self.vtable.GetOutputTensorWithShape(self, outputIndex, dimensionCount, dimensionSizes, tensor);
+    }
+    pub fn GetOutputTensorDefault(self: *const IMLOperatorKernelContext, outputIndex: u32, tensor: ?**IMLOperatorTensor) callconv(.Inline) HRESULT {
+        return self.vtable.GetOutputTensorDefault(self, outputIndex, tensor);
+    }
+    pub fn AllocateTemporaryData(self: *const IMLOperatorKernelContext, size: usize, data: **IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.AllocateTemporaryData(self, size, data);
+    }
+    pub fn GetExecutionInterface(self: *const IMLOperatorKernelContext, executionObject: ?*?*IUnknown) callconv(.Inline) void {
+        return self.vtable.GetExecutionInterface(self, executionObject);
+    }
 };
 
 const IID_IMLOperatorKernel_Value = Guid.initString("11c4b4a0-b467-4eaa-a1a6-b961d8d0ed79");
 pub const IID_IMLOperatorKernel = &IID_IMLOperatorKernel_Value;
-pub const IMLOperatorKernel = extern struct {
+pub const IMLOperatorKernel = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Compute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernel,
-                context: ?*IMLOperatorKernelContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernel,
-                context: ?*IMLOperatorKernelContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Compute: *const fn(
+            self: *const IMLOperatorKernel,
+            context: ?*IMLOperatorKernelContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernel_Compute(self: *const T, context: ?*IMLOperatorKernelContext) HRESULT {
-                return @as(*const IMLOperatorKernel.VTable, @ptrCast(self.vtable)).Compute(@as(*const IMLOperatorKernel, @ptrCast(self)), context);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Compute(self: *const IMLOperatorKernel, context: ?*IMLOperatorKernelContext) callconv(.Inline) HRESULT {
+        return self.vtable.Compute(self, context);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
-pub const MLOperatorParameterOptions = enum(u32) {
-    Single = 0,
-    Optional = 1,
-    Variadic = 2,
-    _,
-    pub fn initFlags(o: struct {
-        Single: u1 = 0,
-        Optional: u1 = 0,
-        Variadic: u1 = 0,
-    }) MLOperatorParameterOptions {
-        return @as(MLOperatorParameterOptions, @enumFromInt((if (o.Single == 1) @intFromEnum(MLOperatorParameterOptions.Single) else 0) | (if (o.Optional == 1) @intFromEnum(MLOperatorParameterOptions.Optional) else 0) | (if (o.Variadic == 1) @intFromEnum(MLOperatorParameterOptions.Variadic) else 0)));
-    }
+pub const MLOperatorParameterOptions = packed struct(u32) {
+    Optional: u1 = 0,
+    Variadic: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
@@ -1053,294 +708,160 @@ pub const MLOperatorEdgeTypeConstraint = extern struct {
 
 const IID_IMLOperatorShapeInferenceContext_Value = Guid.initString("105b6b29-5408-4a68-9959-09b5955a3492");
 pub const IID_IMLOperatorShapeInferenceContext = &IID_IMLOperatorShapeInferenceContext_Value;
-pub const IMLOperatorShapeInferenceContext = extern struct {
+pub const IMLOperatorShapeInferenceContext = extern union {
     pub const VTable = extern struct {
         base: IMLOperatorAttributes.VTable,
-        GetInputCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetOutputCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        IsInputValid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        IsOutputValid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                outputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                outputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        GetInputEdgeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputTensorDimensionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-                dimensionCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-                dimensionCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputTensorShape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                inputIndex: u32,
-                dimensionCount: u32,
-                dimensions: [*]u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOutputTensorShape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                outputIndex: u32,
-                dimensionCount: u32,
-                dimensions: ?*const u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferenceContext,
-                outputIndex: u32,
-                dimensionCount: u32,
-                dimensions: ?*const u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInputCount: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetOutputCount: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        IsInputValid: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+            inputIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        IsOutputValid: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+            outputIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        GetInputEdgeDescription: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+            inputIndex: u32,
+            edgeDescription: ?*MLOperatorEdgeDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputTensorDimensionCount: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+            inputIndex: u32,
+            dimensionCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputTensorShape: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+            inputIndex: u32,
+            dimensionCount: u32,
+            dimensions: [*]u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutputTensorShape: *const fn(
+            self: *const IMLOperatorShapeInferenceContext,
+            outputIndex: u32,
+            dimensionCount: u32,
+            dimensions: ?*const u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IMLOperatorAttributes.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_GetInputCount(self: *const T) u32 {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_GetOutputCount(self: *const T) u32 {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_IsInputValid(self: *const T, inputIndex: u32) bool {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).IsInputValid(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_IsOutputValid(self: *const T, outputIndex: u32) bool {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).IsOutputValid(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), outputIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_GetInputEdgeDescription(self: *const T, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) HRESULT {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputEdgeDescription(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex, edgeDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_GetInputTensorDimensionCount(self: *const T, inputIndex: u32, dimensionCount: ?*u32) HRESULT {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputTensorDimensionCount(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex, dimensionCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_GetInputTensorShape(self: *const T, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) HRESULT {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputTensorShape(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), inputIndex, dimensionCount, dimensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferenceContext_SetOutputTensorShape(self: *const T, outputIndex: u32, dimensionCount: u32, dimensions: ?*const u32) HRESULT {
-                return @as(*const IMLOperatorShapeInferenceContext.VTable, @ptrCast(self.vtable)).SetOutputTensorShape(@as(*const IMLOperatorShapeInferenceContext, @ptrCast(self)), outputIndex, dimensionCount, dimensions);
-            }
-        };
+    IMLOperatorAttributes: IMLOperatorAttributes,
+    IUnknown: IUnknown,
+    pub fn GetInputCount(self: *const IMLOperatorShapeInferenceContext) callconv(.Inline) u32 {
+        return self.vtable.GetInputCount(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetOutputCount(self: *const IMLOperatorShapeInferenceContext) callconv(.Inline) u32 {
+        return self.vtable.GetOutputCount(self);
+    }
+    pub fn IsInputValid(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32) callconv(.Inline) bool {
+        return self.vtable.IsInputValid(self, inputIndex);
+    }
+    pub fn IsOutputValid(self: *const IMLOperatorShapeInferenceContext, outputIndex: u32) callconv(.Inline) bool {
+        return self.vtable.IsOutputValid(self, outputIndex);
+    }
+    pub fn GetInputEdgeDescription(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputEdgeDescription(self, inputIndex, edgeDescription);
+    }
+    pub fn GetInputTensorDimensionCount(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32, dimensionCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputTensorDimensionCount(self, inputIndex, dimensionCount);
+    }
+    pub fn GetInputTensorShape(self: *const IMLOperatorShapeInferenceContext, inputIndex: u32, dimensionCount: u32, dimensions: [*]u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputTensorShape(self, inputIndex, dimensionCount, dimensions);
+    }
+    pub fn SetOutputTensorShape(self: *const IMLOperatorShapeInferenceContext, outputIndex: u32, dimensionCount: u32, dimensions: ?*const u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetOutputTensorShape(self, outputIndex, dimensionCount, dimensions);
+    }
 };
 
 const IID_IMLOperatorTypeInferenceContext_Value = Guid.initString("ec893bb1-f938-427b-8488-c8dcf775f138");
 pub const IID_IMLOperatorTypeInferenceContext = &IID_IMLOperatorTypeInferenceContext_Value;
-pub const IMLOperatorTypeInferenceContext = extern struct {
+pub const IMLOperatorTypeInferenceContext = extern union {
     pub const VTable = extern struct {
         base: IMLOperatorAttributes.VTable,
-        GetInputCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTypeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IMLOperatorTypeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetOutputCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTypeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IMLOperatorTypeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        IsInputValid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                inputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                inputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        IsOutputValid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                outputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                outputIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        GetInputEdgeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                inputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                inputIndex: u32,
-                edgeDescription: ?*MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOutputEdgeDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                outputIndex: u32,
-                edgeDescription: ?*const MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTypeInferenceContext,
-                outputIndex: u32,
-                edgeDescription: ?*const MLOperatorEdgeDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetInputCount: *const fn(
+            self: *const IMLOperatorTypeInferenceContext,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetOutputCount: *const fn(
+            self: *const IMLOperatorTypeInferenceContext,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        IsInputValid: *const fn(
+            self: *const IMLOperatorTypeInferenceContext,
+            inputIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        IsOutputValid: *const fn(
+            self: *const IMLOperatorTypeInferenceContext,
+            outputIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        GetInputEdgeDescription: *const fn(
+            self: *const IMLOperatorTypeInferenceContext,
+            inputIndex: u32,
+            edgeDescription: ?*MLOperatorEdgeDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutputEdgeDescription: *const fn(
+            self: *const IMLOperatorTypeInferenceContext,
+            outputIndex: u32,
+            edgeDescription: ?*const MLOperatorEdgeDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IMLOperatorAttributes.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTypeInferenceContext_GetInputCount(self: *const T) u32 {
-                return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputCount(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTypeInferenceContext_GetOutputCount(self: *const T) u32 {
-                return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).GetOutputCount(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTypeInferenceContext_IsInputValid(self: *const T, inputIndex: u32) bool {
-                return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).IsInputValid(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), inputIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTypeInferenceContext_IsOutputValid(self: *const T, outputIndex: u32) bool {
-                return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).IsOutputValid(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), outputIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTypeInferenceContext_GetInputEdgeDescription(self: *const T, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) HRESULT {
-                return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).GetInputEdgeDescription(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), inputIndex, edgeDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTypeInferenceContext_SetOutputEdgeDescription(self: *const T, outputIndex: u32, edgeDescription: ?*const MLOperatorEdgeDescription) HRESULT {
-                return @as(*const IMLOperatorTypeInferenceContext.VTable, @ptrCast(self.vtable)).SetOutputEdgeDescription(@as(*const IMLOperatorTypeInferenceContext, @ptrCast(self)), outputIndex, edgeDescription);
-            }
-        };
+    IMLOperatorAttributes: IMLOperatorAttributes,
+    IUnknown: IUnknown,
+    pub fn GetInputCount(self: *const IMLOperatorTypeInferenceContext) callconv(.Inline) u32 {
+        return self.vtable.GetInputCount(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetOutputCount(self: *const IMLOperatorTypeInferenceContext) callconv(.Inline) u32 {
+        return self.vtable.GetOutputCount(self);
+    }
+    pub fn IsInputValid(self: *const IMLOperatorTypeInferenceContext, inputIndex: u32) callconv(.Inline) bool {
+        return self.vtable.IsInputValid(self, inputIndex);
+    }
+    pub fn IsOutputValid(self: *const IMLOperatorTypeInferenceContext, outputIndex: u32) callconv(.Inline) bool {
+        return self.vtable.IsOutputValid(self, outputIndex);
+    }
+    pub fn GetInputEdgeDescription(self: *const IMLOperatorTypeInferenceContext, inputIndex: u32, edgeDescription: ?*MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputEdgeDescription(self, inputIndex, edgeDescription);
+    }
+    pub fn SetOutputEdgeDescription(self: *const IMLOperatorTypeInferenceContext, outputIndex: u32, edgeDescription: ?*const MLOperatorEdgeDescription) callconv(.Inline) HRESULT {
+        return self.vtable.SetOutputEdgeDescription(self, outputIndex, edgeDescription);
+    }
 };
 
 const IID_IMLOperatorTypeInferrer_Value = Guid.initString("781aeb48-9bcb-4797-bf77-8bf455217beb");
 pub const IID_IMLOperatorTypeInferrer = &IID_IMLOperatorTypeInferrer_Value;
-pub const IMLOperatorTypeInferrer = extern struct {
+pub const IMLOperatorTypeInferrer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InferOutputTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorTypeInferrer,
-                context: ?*IMLOperatorTypeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorTypeInferrer,
-                context: ?*IMLOperatorTypeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InferOutputTypes: *const fn(
+            self: *const IMLOperatorTypeInferrer,
+            context: ?*IMLOperatorTypeInferenceContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorTypeInferrer_InferOutputTypes(self: *const T, context: ?*IMLOperatorTypeInferenceContext) HRESULT {
-                return @as(*const IMLOperatorTypeInferrer.VTable, @ptrCast(self.vtable)).InferOutputTypes(@as(*const IMLOperatorTypeInferrer, @ptrCast(self)), context);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn InferOutputTypes(self: *const IMLOperatorTypeInferrer, context: ?*IMLOperatorTypeInferenceContext) callconv(.Inline) HRESULT {
+        return self.vtable.InferOutputTypes(self, context);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IMLOperatorShapeInferrer_Value = Guid.initString("540be5be-a6c9-40ee-83f6-d2b8b40a7798");
 pub const IID_IMLOperatorShapeInferrer = &IID_IMLOperatorShapeInferrer_Value;
-pub const IMLOperatorShapeInferrer = extern struct {
+pub const IMLOperatorShapeInferrer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        InferOutputShapes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorShapeInferrer,
-                context: ?*IMLOperatorShapeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorShapeInferrer,
-                context: ?*IMLOperatorShapeInferenceContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        InferOutputShapes: *const fn(
+            self: *const IMLOperatorShapeInferrer,
+            context: ?*IMLOperatorShapeInferenceContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorShapeInferrer_InferOutputShapes(self: *const T, context: ?*IMLOperatorShapeInferenceContext) HRESULT {
-                return @as(*const IMLOperatorShapeInferrer.VTable, @ptrCast(self.vtable)).InferOutputShapes(@as(*const IMLOperatorShapeInferrer, @ptrCast(self)), context);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn InferOutputShapes(self: *const IMLOperatorShapeInferrer, context: ?*IMLOperatorShapeInferenceContext) callconv(.Inline) HRESULT {
+        return self.vtable.InferOutputShapes(self, context);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const MLOperatorAttribute = extern struct {
@@ -1381,16 +902,39 @@ pub const MLOperatorSetId = extern struct {
     version: i32,
 };
 
-pub const MLOperatorKernelOptions = enum(u32) {
-    None = 0,
-    s = 1,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        s: u1 = 0,
-    }) MLOperatorKernelOptions {
-        return @as(MLOperatorKernelOptions, @enumFromInt((if (o.None == 1) @intFromEnum(MLOperatorKernelOptions.None) else 0) | (if (o.s == 1) @intFromEnum(MLOperatorKernelOptions.s) else 0)));
-    }
+pub const MLOperatorKernelOptions = packed struct(u32) {
+    s: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
 // NOTE: not creating aliases because this enum is 'Scoped'
 
@@ -1416,112 +960,69 @@ pub const MLOperatorKernelDescription = extern struct {
 
 const IID_IMLOperatorKernelFactory_Value = Guid.initString("ef15ad6f-0dc9-4908-ab35-a575a30dfbf8");
 pub const IID_IMLOperatorKernelFactory = &IID_IMLOperatorKernelFactory_Value;
-pub const IMLOperatorKernelFactory = extern struct {
+pub const IMLOperatorKernelFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateKernel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorKernelFactory,
-                context: ?*IMLOperatorKernelCreationContext,
-                kernel: ?*?*IMLOperatorKernel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorKernelFactory,
-                context: ?*IMLOperatorKernelCreationContext,
-                kernel: ?*?*IMLOperatorKernel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateKernel: *const fn(
+            self: *const IMLOperatorKernelFactory,
+            context: ?*IMLOperatorKernelCreationContext,
+            kernel: **IMLOperatorKernel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorKernelFactory_CreateKernel(self: *const T, context: ?*IMLOperatorKernelCreationContext, kernel: ?*?*IMLOperatorKernel) HRESULT {
-                return @as(*const IMLOperatorKernelFactory.VTable, @ptrCast(self.vtable)).CreateKernel(@as(*const IMLOperatorKernelFactory, @ptrCast(self)), context, kernel);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateKernel(self: *const IMLOperatorKernelFactory, context: ?*IMLOperatorKernelCreationContext, kernel: **IMLOperatorKernel) callconv(.Inline) HRESULT {
+        return self.vtable.CreateKernel(self, context, kernel);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IMLOperatorRegistry_Value = Guid.initString("2af9dd2d-b516-4672-9ab5-530c208493ad");
 pub const IID_IMLOperatorRegistry = &IID_IMLOperatorRegistry_Value;
-pub const IMLOperatorRegistry = extern struct {
+pub const IMLOperatorRegistry = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterOperatorSetSchema: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorRegistry,
-                operatorSetId: ?*const MLOperatorSetId,
-                baselineVersion: i32,
-                schema: ?[*]const ?*const MLOperatorSchemaDescription,
-                schemaCount: u32,
-                typeInferrer: ?*IMLOperatorTypeInferrer,
-                shapeInferrer: ?*IMLOperatorShapeInferrer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorRegistry,
-                operatorSetId: ?*const MLOperatorSetId,
-                baselineVersion: i32,
-                schema: ?[*]const ?*const MLOperatorSchemaDescription,
-                schemaCount: u32,
-                typeInferrer: ?*IMLOperatorTypeInferrer,
-                shapeInferrer: ?*IMLOperatorShapeInferrer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterOperatorKernel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMLOperatorRegistry,
-                operatorKernel: ?*const MLOperatorKernelDescription,
-                operatorKernelFactory: ?*IMLOperatorKernelFactory,
-                shapeInferrer: ?*IMLOperatorShapeInferrer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMLOperatorRegistry,
-                operatorKernel: ?*const MLOperatorKernelDescription,
-                operatorKernelFactory: ?*IMLOperatorKernelFactory,
-                shapeInferrer: ?*IMLOperatorShapeInferrer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterOperatorSetSchema: *const fn(
+            self: *const IMLOperatorRegistry,
+            operatorSetId: ?*const MLOperatorSetId,
+            baselineVersion: i32,
+            schema: ?[*]const ?*const MLOperatorSchemaDescription,
+            schemaCount: u32,
+            typeInferrer: ?*IMLOperatorTypeInferrer,
+            shapeInferrer: ?*IMLOperatorShapeInferrer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterOperatorKernel: *const fn(
+            self: *const IMLOperatorRegistry,
+            operatorKernel: ?*const MLOperatorKernelDescription,
+            operatorKernelFactory: ?*IMLOperatorKernelFactory,
+            shapeInferrer: ?*IMLOperatorShapeInferrer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorRegistry_RegisterOperatorSetSchema(self: *const T, operatorSetId: ?*const MLOperatorSetId, baselineVersion: i32, schema: ?[*]const ?*const MLOperatorSchemaDescription, schemaCount: u32, typeInferrer: ?*IMLOperatorTypeInferrer, shapeInferrer: ?*IMLOperatorShapeInferrer) HRESULT {
-                return @as(*const IMLOperatorRegistry.VTable, @ptrCast(self.vtable)).RegisterOperatorSetSchema(@as(*const IMLOperatorRegistry, @ptrCast(self)), operatorSetId, baselineVersion, schema, schemaCount, typeInferrer, shapeInferrer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMLOperatorRegistry_RegisterOperatorKernel(self: *const T, operatorKernel: ?*const MLOperatorKernelDescription, operatorKernelFactory: ?*IMLOperatorKernelFactory, shapeInferrer: ?*IMLOperatorShapeInferrer) HRESULT {
-                return @as(*const IMLOperatorRegistry.VTable, @ptrCast(self.vtable)).RegisterOperatorKernel(@as(*const IMLOperatorRegistry, @ptrCast(self)), operatorKernel, operatorKernelFactory, shapeInferrer);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn RegisterOperatorSetSchema(self: *const IMLOperatorRegistry, operatorSetId: ?*const MLOperatorSetId, baselineVersion: i32, schema: ?[*]const ?*const MLOperatorSchemaDescription, schemaCount: u32, typeInferrer: ?*IMLOperatorTypeInferrer, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterOperatorSetSchema(self, operatorSetId, baselineVersion, schema, schemaCount, typeInferrer, shapeInferrer);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn RegisterOperatorKernel(self: *const IMLOperatorRegistry, operatorKernel: ?*const MLOperatorKernelDescription, operatorKernelFactory: ?*IMLOperatorKernelFactory, shapeInferrer: ?*IMLOperatorShapeInferrer) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterOperatorKernel(self, operatorKernel, operatorKernelFactory, shapeInferrer);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
 //--------------------------------------------------------------------------------
 pub extern "winml" fn WinMLCreateRuntime(
-    runtime: ?*?*IWinMLRuntime,
+    runtime: **IWinMLRuntime,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "windows.ai.machinelearning" fn MLCreateOperatorRegistry(
-    registry: ?*?*IMLOperatorRegistry,
+    registry: **IMLOperatorRegistry,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
 //--------------------------------------------------------------------------------
@@ -1535,13 +1036,13 @@ const PSTR = @import("../../foundation.zig").PSTR;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -117,39 +117,117 @@ pub const NTDDI_VERSION = @as(u32, 167772171);
 pub const SCEX2_ALT_NETBIOS_NAME = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (37)
+// Section: Types (38)
 //--------------------------------------------------------------------------------
-pub const VER_FLAGS = enum(u32) {
-    MINORVERSION = 1,
-    MAJORVERSION = 2,
-    BUILDNUMBER = 4,
-    PLATFORMID = 8,
-    SERVICEPACKMINOR = 16,
-    SERVICEPACKMAJOR = 32,
-    SUITENAME = 64,
-    PRODUCT_TYPE = 128,
-    _,
-    pub fn initFlags(o: struct {
-        MINORVERSION: u1 = 0,
-        MAJORVERSION: u1 = 0,
-        BUILDNUMBER: u1 = 0,
-        PLATFORMID: u1 = 0,
-        SERVICEPACKMINOR: u1 = 0,
-        SERVICEPACKMAJOR: u1 = 0,
-        SUITENAME: u1 = 0,
-        PRODUCT_TYPE: u1 = 0,
-    }) VER_FLAGS {
-        return @as(VER_FLAGS, @enumFromInt((if (o.MINORVERSION == 1) @intFromEnum(VER_FLAGS.MINORVERSION) else 0) | (if (o.MAJORVERSION == 1) @intFromEnum(VER_FLAGS.MAJORVERSION) else 0) | (if (o.BUILDNUMBER == 1) @intFromEnum(VER_FLAGS.BUILDNUMBER) else 0) | (if (o.PLATFORMID == 1) @intFromEnum(VER_FLAGS.PLATFORMID) else 0) | (if (o.SERVICEPACKMINOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMINOR) else 0) | (if (o.SERVICEPACKMAJOR == 1) @intFromEnum(VER_FLAGS.SERVICEPACKMAJOR) else 0) | (if (o.SUITENAME == 1) @intFromEnum(VER_FLAGS.SUITENAME) else 0) | (if (o.PRODUCT_TYPE == 1) @intFromEnum(VER_FLAGS.PRODUCT_TYPE) else 0)));
-    }
+pub const VER_FLAGS = packed struct(u32) {
+    MINORVERSION: u1 = 0,
+    MAJORVERSION: u1 = 0,
+    BUILDNUMBER: u1 = 0,
+    PLATFORMID: u1 = 0,
+    SERVICEPACKMINOR: u1 = 0,
+    SERVICEPACKMAJOR: u1 = 0,
+    SUITENAME: u1 = 0,
+    PRODUCT_TYPE: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const VER_MINORVERSION = VER_FLAGS.MINORVERSION;
-pub const VER_MAJORVERSION = VER_FLAGS.MAJORVERSION;
-pub const VER_BUILDNUMBER = VER_FLAGS.BUILDNUMBER;
-pub const VER_PLATFORMID = VER_FLAGS.PLATFORMID;
-pub const VER_SERVICEPACKMINOR = VER_FLAGS.SERVICEPACKMINOR;
-pub const VER_SERVICEPACKMAJOR = VER_FLAGS.SERVICEPACKMAJOR;
-pub const VER_SUITENAME = VER_FLAGS.SUITENAME;
-pub const VER_PRODUCT_TYPE = VER_FLAGS.PRODUCT_TYPE;
+pub const VER_MINORVERSION = VER_FLAGS{ .MINORVERSION = 1 };
+pub const VER_MAJORVERSION = VER_FLAGS{ .MAJORVERSION = 1 };
+pub const VER_BUILDNUMBER = VER_FLAGS{ .BUILDNUMBER = 1 };
+pub const VER_PLATFORMID = VER_FLAGS{ .PLATFORMID = 1 };
+pub const VER_SERVICEPACKMINOR = VER_FLAGS{ .SERVICEPACKMINOR = 1 };
+pub const VER_SERVICEPACKMAJOR = VER_FLAGS{ .SERVICEPACKMAJOR = 1 };
+pub const VER_SUITENAME = VER_FLAGS{ .SUITENAME = 1 };
+pub const VER_PRODUCT_TYPE = VER_FLAGS{ .PRODUCT_TYPE = 1 };
+
+pub const IMAGE_FILE_MACHINE = enum(u16) {
+    AXP64 = 644,
+    I386 = 332,
+    IA64 = 512,
+    AMD64 = 34404,
+    UNKNOWN = 0,
+    TARGET_HOST = 1,
+    R3000 = 354,
+    R4000 = 358,
+    R10000 = 360,
+    WCEMIPSV2 = 361,
+    ALPHA = 388,
+    SH3 = 418,
+    SH3DSP = 419,
+    SH3E = 420,
+    SH4 = 422,
+    SH5 = 424,
+    ARM = 448,
+    THUMB = 450,
+    ARMNT = 452,
+    AM33 = 467,
+    POWERPC = 496,
+    POWERPCFP = 497,
+    MIPS16 = 614,
+    MIPSFPU = 870,
+    MIPSFPU16 = 1126,
+    TRICORE = 1312,
+    CEF = 3311,
+    EBC = 3772,
+    M32R = 36929,
+    ARM64 = 43620,
+    CEE = 49390,
+    pub const ALPHA64 = .AXP64;
+};
+pub const IMAGE_FILE_MACHINE_AXP64 = IMAGE_FILE_MACHINE.AXP64;
+pub const IMAGE_FILE_MACHINE_I386 = IMAGE_FILE_MACHINE.I386;
+pub const IMAGE_FILE_MACHINE_IA64 = IMAGE_FILE_MACHINE.IA64;
+pub const IMAGE_FILE_MACHINE_AMD64 = IMAGE_FILE_MACHINE.AMD64;
+pub const IMAGE_FILE_MACHINE_UNKNOWN = IMAGE_FILE_MACHINE.UNKNOWN;
+pub const IMAGE_FILE_MACHINE_TARGET_HOST = IMAGE_FILE_MACHINE.TARGET_HOST;
+pub const IMAGE_FILE_MACHINE_R3000 = IMAGE_FILE_MACHINE.R3000;
+pub const IMAGE_FILE_MACHINE_R4000 = IMAGE_FILE_MACHINE.R4000;
+pub const IMAGE_FILE_MACHINE_R10000 = IMAGE_FILE_MACHINE.R10000;
+pub const IMAGE_FILE_MACHINE_WCEMIPSV2 = IMAGE_FILE_MACHINE.WCEMIPSV2;
+pub const IMAGE_FILE_MACHINE_ALPHA = IMAGE_FILE_MACHINE.ALPHA;
+pub const IMAGE_FILE_MACHINE_SH3 = IMAGE_FILE_MACHINE.SH3;
+pub const IMAGE_FILE_MACHINE_SH3DSP = IMAGE_FILE_MACHINE.SH3DSP;
+pub const IMAGE_FILE_MACHINE_SH3E = IMAGE_FILE_MACHINE.SH3E;
+pub const IMAGE_FILE_MACHINE_SH4 = IMAGE_FILE_MACHINE.SH4;
+pub const IMAGE_FILE_MACHINE_SH5 = IMAGE_FILE_MACHINE.SH5;
+pub const IMAGE_FILE_MACHINE_ARM = IMAGE_FILE_MACHINE.ARM;
+pub const IMAGE_FILE_MACHINE_THUMB = IMAGE_FILE_MACHINE.THUMB;
+pub const IMAGE_FILE_MACHINE_ARMNT = IMAGE_FILE_MACHINE.ARMNT;
+pub const IMAGE_FILE_MACHINE_AM33 = IMAGE_FILE_MACHINE.AM33;
+pub const IMAGE_FILE_MACHINE_POWERPC = IMAGE_FILE_MACHINE.POWERPC;
+pub const IMAGE_FILE_MACHINE_POWERPCFP = IMAGE_FILE_MACHINE.POWERPCFP;
+pub const IMAGE_FILE_MACHINE_MIPS16 = IMAGE_FILE_MACHINE.MIPS16;
+pub const IMAGE_FILE_MACHINE_ALPHA64 = IMAGE_FILE_MACHINE.AXP64;
+pub const IMAGE_FILE_MACHINE_MIPSFPU = IMAGE_FILE_MACHINE.MIPSFPU;
+pub const IMAGE_FILE_MACHINE_MIPSFPU16 = IMAGE_FILE_MACHINE.MIPSFPU16;
+pub const IMAGE_FILE_MACHINE_TRICORE = IMAGE_FILE_MACHINE.TRICORE;
+pub const IMAGE_FILE_MACHINE_CEF = IMAGE_FILE_MACHINE.CEF;
+pub const IMAGE_FILE_MACHINE_EBC = IMAGE_FILE_MACHINE.EBC;
+pub const IMAGE_FILE_MACHINE_M32R = IMAGE_FILE_MACHINE.M32R;
+pub const IMAGE_FILE_MACHINE_ARM64 = IMAGE_FILE_MACHINE.ARM64;
+pub const IMAGE_FILE_MACHINE_CEE = IMAGE_FILE_MACHINE.CEE;
 
 pub const FIRMWARE_TABLE_PROVIDER = enum(u32) {
     ACPI = 1094930505,
@@ -385,7 +463,7 @@ pub const DEVICEFAMILYINFOENUM = enum(u32) {
     @"7067329" = 15,
     WINDOWS_CORE = 16,
     WINDOWS_CORE_HEADLESS = 17,
-    // MAX = 17, this enum value conflicts with WINDOWS_CORE_HEADLESS
+    pub const MAX = .WINDOWS_CORE_HEADLESS;
 };
 pub const DEVICEFAMILYINFOENUM_UAP = DEVICEFAMILYINFOENUM.UAP;
 pub const DEVICEFAMILYINFOENUM_WINDOWS_8X = DEVICEFAMILYINFOENUM.WINDOWS_8X;
@@ -454,7 +532,7 @@ pub const DEVICEFAMILYDEVICEFORM = enum(u32) {
     XBOX_RESERVED_07 = 43,
     XBOX_RESERVED_08 = 44,
     XBOX_RESERVED_09 = 45,
-    // MAX = 45, this enum value conflicts with XBOX_RESERVED_09
+    pub const MAX = .XBOX_RESERVED_09;
 };
 pub const DEVICEFAMILYDEVICEFORM_UNKNOWN = DEVICEFAMILYDEVICEFORM.UNKNOWN;
 pub const DEVICEFAMILYDEVICEFORM_PHONE = DEVICEFAMILYDEVICEFORM.PHONE;
@@ -839,27 +917,16 @@ pub const DEPPolicyOptIn = DEP_SYSTEM_POLICY_TYPE.PolicyOptIn;
 pub const DEPPolicyOptOut = DEP_SYSTEM_POLICY_TYPE.PolicyOptOut;
 pub const DEPTotalPolicyCount = DEP_SYSTEM_POLICY_TYPE.TotalPolicyCount;
 
-pub const PGET_SYSTEM_WOW64_DIRECTORY_A = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        lpBuffer: ?[*:0]u8,
-        uSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn (
-        lpBuffer: ?[*:0]u8,
-        uSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-};
+pub const PGET_SYSTEM_WOW64_DIRECTORY_A = *const fn(
+    lpBuffer: ?[*:0]u8,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const PGET_SYSTEM_WOW64_DIRECTORY_W = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        lpBuffer: ?[*:0]u16,
-        uSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn (
-        lpBuffer: ?[*:0]u16,
-        uSize: u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-};
+pub const PGET_SYSTEM_WOW64_DIRECTORY_W = *const fn(
+    lpBuffer: ?[*:0]u16,
+    uSize: u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (62)
@@ -899,7 +966,8 @@ pub extern "kernel32" fn GetSystemLeapSecondInformation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetVersion() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetVersion(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn SetLocalTime(
@@ -907,10 +975,12 @@ pub extern "kernel32" fn SetLocalTime(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "kernel32" fn GetTickCount() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "kernel32" fn GetTickCount(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetTickCount64() callconv(@import("std").os.windows.WINAPI) u64;
+pub extern "kernel32" fn GetTickCount64(
+) callconv(@import("std").os.windows.WINAPI) u64;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetSystemTimeAdjustment(
@@ -1146,19 +1216,19 @@ pub extern "kernel32" fn GetSystemWow64DirectoryW(
 pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2A(
     lpBuffer: ?[*:0]u8,
     uSize: u32,
-    ImageFileMachineType: u16,
+    ImageFileMachineType: IMAGE_FILE_MACHINE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.10586'
 pub extern "api-ms-win-core-wow64-l1-1-1" fn GetSystemWow64Directory2W(
     lpBuffer: ?[*:0]u16,
     uSize: u32,
-    ImageFileMachineType: u16,
+    ImageFileMachineType: IMAGE_FILE_MACHINE,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.16299'
 pub extern "kernel32" fn IsWow64GuestMachineSupported(
-    WowGuestMachine: u16,
+    WowGuestMachine: IMAGE_FILE_MACHINE,
     MachineIsSupported: ?*BOOL,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
@@ -1207,7 +1277,8 @@ pub extern "kernel32" fn GlobalMemoryStatus(
 ) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "kernel32" fn GetSystemDEPPolicy() callconv(@import("std").os.windows.WINAPI) DEP_SYSTEM_POLICY_TYPE;
+pub extern "kernel32" fn GetSystemDEPPolicy(
+) callconv(@import("std").os.windows.WINAPI) DEP_SYSTEM_POLICY_TYPE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetFirmwareType(
@@ -1228,70 +1299,100 @@ pub extern "kernel32" fn VerifyVersionInfoW(
     dwlConditionMask: u64,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const OSVERSIONINFO = thismodule.OSVERSIONINFOA;
-        pub const OSVERSIONINFOEX = thismodule.OSVERSIONINFOEXA;
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = thismodule.PGET_SYSTEM_WOW64_DIRECTORY_A;
-        pub const GetSystemDirectory = thismodule.GetSystemDirectoryA;
-        pub const GetWindowsDirectory = thismodule.GetWindowsDirectoryA;
-        pub const GetSystemWindowsDirectory = thismodule.GetSystemWindowsDirectoryA;
-        pub const GetComputerNameEx = thismodule.GetComputerNameExA;
-        pub const SetComputerNameEx = thismodule.SetComputerNameExA;
-        pub const GetVersionEx = thismodule.GetVersionExA;
-        pub const SetComputerName = thismodule.SetComputerNameA;
-        pub const GetSystemWow64Directory = thismodule.GetSystemWow64DirectoryA;
-        pub const GetSystemWow64Directory2 = thismodule.GetSystemWow64Directory2A;
-        pub const VerifyVersionInfo = thismodule.VerifyVersionInfoA;
-    },
-    .wide => struct {
-        pub const OSVERSIONINFO = thismodule.OSVERSIONINFOW;
-        pub const OSVERSIONINFOEX = thismodule.OSVERSIONINFOEXW;
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = thismodule.PGET_SYSTEM_WOW64_DIRECTORY_W;
-        pub const GetSystemDirectory = thismodule.GetSystemDirectoryW;
-        pub const GetWindowsDirectory = thismodule.GetWindowsDirectoryW;
-        pub const GetSystemWindowsDirectory = thismodule.GetSystemWindowsDirectoryW;
-        pub const GetComputerNameEx = thismodule.GetComputerNameExW;
-        pub const SetComputerNameEx = thismodule.SetComputerNameExW;
-        pub const GetVersionEx = thismodule.GetVersionExW;
-        pub const SetComputerName = thismodule.SetComputerNameW;
-        pub const GetSystemWow64Directory = thismodule.GetSystemWow64DirectoryW;
-        pub const GetSystemWow64Directory2 = thismodule.GetSystemWow64Directory2W;
-        pub const VerifyVersionInfo = thismodule.VerifyVersionInfoW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const OSVERSIONINFO = *opaque {};
-        pub const OSVERSIONINFOEX = *opaque {};
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = *opaque {};
-        pub const GetSystemDirectory = *opaque {};
-        pub const GetWindowsDirectory = *opaque {};
-        pub const GetSystemWindowsDirectory = *opaque {};
-        pub const GetComputerNameEx = *opaque {};
-        pub const SetComputerNameEx = *opaque {};
-        pub const GetVersionEx = *opaque {};
-        pub const SetComputerName = *opaque {};
-        pub const GetSystemWow64Directory = *opaque {};
-        pub const GetSystemWow64Directory2 = *opaque {};
-        pub const VerifyVersionInfo = *opaque {};
-    } else struct {
-        pub const OSVERSIONINFO = @compileError("'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module");
-        pub const OSVERSIONINFOEX = @compileError("'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module");
-        pub const PGET_SYSTEM_WOW64_DIRECTORY_ = @compileError("'PGET_SYSTEM_WOW64_DIRECTORY_' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemDirectory = @compileError("'GetSystemDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetWindowsDirectory = @compileError("'GetWindowsDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWindowsDirectory = @compileError("'GetSystemWindowsDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetComputerNameEx = @compileError("'GetComputerNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetComputerNameEx = @compileError("'SetComputerNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetVersionEx = @compileError("'GetVersionEx' requires that UNICODE be set to true or false in the root module");
-        pub const SetComputerName = @compileError("'SetComputerName' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory = @compileError("'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module");
-        pub const GetSystemWow64Directory2 = @compileError("'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module");
-        pub const VerifyVersionInfo = @compileError("'VerifyVersionInfo' requires that UNICODE be set to true or false in the root module");
-    },
+pub const OSVERSIONINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OSVERSIONINFOA,
+    .wide => @This().OSVERSIONINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OSVERSIONINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OSVERSIONINFOEX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OSVERSIONINFOEXA,
+    .wide => @This().OSVERSIONINFOEXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OSVERSIONINFOEX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PGET_SYSTEM_WOW64_DIRECTORY_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PGET_SYSTEM_WOW64_DIRECTORY_A,
+    .wide => @This().PGET_SYSTEM_WOW64_DIRECTORY_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PGET_SYSTEM_WOW64_DIRECTORY_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemDirectoryA,
+    .wide => @This().GetSystemDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetWindowsDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetWindowsDirectoryA,
+    .wide => @This().GetWindowsDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetWindowsDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemWindowsDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemWindowsDirectoryA,
+    .wide => @This().GetSystemWindowsDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemWindowsDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetComputerNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetComputerNameExA,
+    .wide => @This().GetComputerNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetComputerNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetComputerNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetComputerNameExA,
+    .wide => @This().SetComputerNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetComputerNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetVersionEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetVersionExA,
+    .wide => @This().GetVersionExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetVersionEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetComputerName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetComputerNameA,
+    .wide => @This().SetComputerNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetComputerName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemWow64Directory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemWow64DirectoryA,
+    .wide => @This().GetSystemWow64DirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemWow64Directory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetSystemWow64Directory2 = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetSystemWow64Directory2A,
+    .wide => @This().GetSystemWow64Directory2W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetSystemWow64Directory2' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const VerifyVersionInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().VerifyVersionInfoA,
+    .wide => @This().VerifyVersionInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'VerifyVersionInfo' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
@@ -1309,20 +1410,16 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_A")) {
-        _ = PGET_SYSTEM_WOW64_DIRECTORY_A;
-    }
-    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_W")) {
-        _ = PGET_SYSTEM_WOW64_DIRECTORY_W;
-    }
+    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_A")) { _ = PGET_SYSTEM_WOW64_DIRECTORY_A; }
+    if (@hasDecl(@This(), "PGET_SYSTEM_WOW64_DIRECTORY_W")) { _ = PGET_SYSTEM_WOW64_DIRECTORY_W; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

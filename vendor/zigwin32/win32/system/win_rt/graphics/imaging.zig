@@ -9,97 +9,58 @@ pub const CLSID_SoftwareBitmapNativeFactory = Guid.initString("84e65691-8602-4a8
 //--------------------------------------------------------------------------------
 const IID_ISoftwareBitmapNative_Value = Guid.initString("94bc8415-04ea-4b2e-af13-4de95aa898eb");
 pub const IID_ISoftwareBitmapNative = &IID_ISoftwareBitmapNative_Value;
-pub const ISoftwareBitmapNative = extern struct {
+pub const ISoftwareBitmapNative = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        GetData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISoftwareBitmapNative,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISoftwareBitmapNative,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetData: *const fn(
+            self: *const ISoftwareBitmapNative,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IInspectable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISoftwareBitmapNative_GetData(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @as(*const ISoftwareBitmapNative.VTable, @ptrCast(self.vtable)).GetData(@as(*const ISoftwareBitmapNative, @ptrCast(self)), riid, ppv);
-            }
-        };
+    IInspectable: IInspectable,
+    IUnknown: IUnknown,
+    pub fn GetData(self: *const ISoftwareBitmapNative, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetData(self, riid, ppv);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_ISoftwareBitmapNativeFactory_Value = Guid.initString("c3c181ec-2914-4791-af02-02d224a10b43");
 pub const IID_ISoftwareBitmapNativeFactory = &IID_ISoftwareBitmapNativeFactory_Value;
-pub const ISoftwareBitmapNativeFactory = extern struct {
+pub const ISoftwareBitmapNativeFactory = extern union {
     pub const VTable = extern struct {
         base: IInspectable.VTable,
-        CreateFromWICBitmap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IWICBitmap,
-                forceReadOnly: BOOL,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IWICBitmap,
-                forceReadOnly: BOOL,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFromMF2DBuffer2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IMF2DBuffer2,
-                subtype: ?*const Guid,
-                width: u32,
-                height: u32,
-                forceReadOnly: BOOL,
-                minDisplayAperture: ?*const MFVideoArea,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISoftwareBitmapNativeFactory,
-                data: ?*IMF2DBuffer2,
-                subtype: ?*const Guid,
-                width: u32,
-                height: u32,
-                forceReadOnly: BOOL,
-                minDisplayAperture: ?*const MFVideoArea,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFromWICBitmap: *const fn(
+            self: *const ISoftwareBitmapNativeFactory,
+            data: ?*IWICBitmap,
+            forceReadOnly: BOOL,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFromMF2DBuffer2: *const fn(
+            self: *const ISoftwareBitmapNativeFactory,
+            data: ?*IMF2DBuffer2,
+            subtype: ?*const Guid,
+            width: u32,
+            height: u32,
+            forceReadOnly: BOOL,
+            minDisplayAperture: ?*const MFVideoArea,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IInspectable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISoftwareBitmapNativeFactory_CreateFromWICBitmap(self: *const T, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromWICBitmap(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, forceReadOnly, riid, ppv);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISoftwareBitmapNativeFactory_CreateFromMF2DBuffer2(self: *const T, data: ?*IMF2DBuffer2, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @as(*const ISoftwareBitmapNativeFactory.VTable, @ptrCast(self.vtable)).CreateFromMF2DBuffer2(@as(*const ISoftwareBitmapNativeFactory, @ptrCast(self)), data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
-            }
-        };
+    IInspectable: IInspectable,
+    IUnknown: IUnknown,
+    pub fn CreateFromWICBitmap(self: *const ISoftwareBitmapNativeFactory, data: ?*IWICBitmap, forceReadOnly: BOOL, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFromWICBitmap(self, data, forceReadOnly, riid, ppv);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateFromMF2DBuffer2(self: *const ISoftwareBitmapNativeFactory, data: ?*IMF2DBuffer2, subtype: ?*const Guid, width: u32, height: u32, forceReadOnly: BOOL, minDisplayAperture: ?*const MFVideoArea, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFromMF2DBuffer2(self, data, subtype, width, height, forceReadOnly, minDisplayAperture, riid, ppv);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -108,31 +69,26 @@ pub const ISoftwareBitmapNativeFactory = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
-// Section: Imports (7)
+// Section: Imports (8)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../../zig.zig").Guid;
 const BOOL = @import("../../../foundation.zig").BOOL;
 const HRESULT = @import("../../../foundation.zig").HRESULT;
 const IInspectable = @import("../../../system/win_rt.zig").IInspectable;
 const IMF2DBuffer2 = @import("../../../media/media_foundation.zig").IMF2DBuffer2;
+const IUnknown = @import("../../../system/com.zig").IUnknown;
 const IWICBitmap = @import("../../../graphics/imaging.zig").IWICBitmap;
 const MFVideoArea = @import("../../../media/media_foundation.zig").MFVideoArea;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

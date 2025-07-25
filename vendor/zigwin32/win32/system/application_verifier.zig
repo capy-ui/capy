@@ -7,19 +7,42 @@ pub const AVRF_MAX_TRACES = @as(u32, 32);
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
-pub const VERIFIER_ENUM_RESOURCE_FLAGS = enum(u32) {
-    DONT_RESOLVE_TRACES = 2,
-    SUSPEND = 1,
-    _,
-    pub fn initFlags(o: struct {
-        DONT_RESOLVE_TRACES: u1 = 0,
-        SUSPEND: u1 = 0,
-    }) VERIFIER_ENUM_RESOURCE_FLAGS {
-        return @as(VERIFIER_ENUM_RESOURCE_FLAGS, @enumFromInt((if (o.DONT_RESOLVE_TRACES == 1) @intFromEnum(VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES) else 0) | (if (o.SUSPEND == 1) @intFromEnum(VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND) else 0)));
-    }
+pub const VERIFIER_ENUM_RESOURCE_FLAGS = packed struct(u32) {
+    SUSPEND: u1 = 0,
+    DONT_RESOLVE_TRACES: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS.DONT_RESOLVE_TRACES;
-pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS.SUSPEND;
+pub const AVRF_ENUM_RESOURCES_FLAGS_DONT_RESOLVE_TRACES = VERIFIER_ENUM_RESOURCE_FLAGS{ .DONT_RESOLVE_TRACES = 1 };
+pub const AVRF_ENUM_RESOURCES_FLAGS_SUSPEND = VERIFIER_ENUM_RESOURCE_FLAGS{ .SUSPEND = 1 };
 
 pub const AVRF_BACKTRACE_INFORMATION = extern struct {
     Depth: u32,
@@ -93,44 +116,24 @@ pub const AvrfResourceHeapAllocation = eAvrfResourceTypes.HeapAllocation;
 pub const AvrfResourceHandleTrace = eAvrfResourceTypes.HandleTrace;
 pub const AvrfResourceMax = eAvrfResourceTypes.Max;
 
-pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        ResourceDescription: ?*anyopaque,
-        EnumerationContext: ?*anyopaque,
-        EnumerationLevel: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn (
-        ResourceDescription: ?*anyopaque,
-        EnumerationContext: ?*anyopaque,
-        EnumerationLevel: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-};
+pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = *const fn(
+    ResourceDescription: ?*anyopaque,
+    EnumerationContext: ?*anyopaque,
+    EnumerationLevel: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
-        EnumerationContext: ?*anyopaque,
-        EnumerationLevel: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn (
-        HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
-        EnumerationContext: ?*anyopaque,
-        EnumerationLevel: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-};
+pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = *const fn(
+    HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
+    EnumerationContext: ?*anyopaque,
+    EnumerationLevel: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
-pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        HandleOperation: ?*AVRF_HANDLE_OPERATION,
-        EnumerationContext: ?*anyopaque,
-        EnumerationLevel: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn (
-        HandleOperation: ?*AVRF_HANDLE_OPERATION,
-        EnumerationContext: ?*anyopaque,
-        EnumerationLevel: ?*u32,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-};
+pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = *const fn(
+    HandleOperation: ?*AVRF_HANDLE_OPERATION,
+    EnumerationContext: ?*anyopaque,
+    EnumerationLevel: ?*u32,
+) callconv(@import("std").os.windows.WINAPI) u32;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -143,15 +146,10 @@ pub extern "verifier" fn VerifierEnumerateResource(
     EnumerationContext: ?*anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (1)
 //--------------------------------------------------------------------------------
@@ -159,23 +157,17 @@ const HANDLE = @import("../foundation.zig").HANDLE;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "AVRF_RESOURCE_ENUMERATE_CALLBACK")) {
-        _ = AVRF_RESOURCE_ENUMERATE_CALLBACK;
-    }
-    if (@hasDecl(@This(), "AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK")) {
-        _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK;
-    }
-    if (@hasDecl(@This(), "AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK")) {
-        _ = AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK;
-    }
+    if (@hasDecl(@This(), "AVRF_RESOURCE_ENUMERATE_CALLBACK")) { _ = AVRF_RESOURCE_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK")) { _ = AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK; }
+    if (@hasDecl(@This(), "AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK")) { _ = AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

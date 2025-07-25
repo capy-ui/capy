@@ -20,55 +20,54 @@ pub const LOAD_LIBRARY_OS_INTEGRITY_CONTINUITY = @as(u32, 32768);
 //--------------------------------------------------------------------------------
 // Section: Types (12)
 //--------------------------------------------------------------------------------
-pub const LOAD_LIBRARY_FLAGS = enum(u32) {
-    DONT_RESOLVE_DLL_REFERENCES = 1,
-    LOAD_LIBRARY_AS_DATAFILE = 2,
-    LOAD_WITH_ALTERED_SEARCH_PATH = 8,
-    LOAD_IGNORE_CODE_AUTHZ_LEVEL = 16,
-    LOAD_LIBRARY_AS_IMAGE_RESOURCE = 32,
-    LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = 64,
-    LOAD_LIBRARY_REQUIRE_SIGNED_TARGET = 128,
-    LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR = 256,
-    LOAD_LIBRARY_SEARCH_APPLICATION_DIR = 512,
-    LOAD_LIBRARY_SEARCH_USER_DIRS = 1024,
-    LOAD_LIBRARY_SEARCH_SYSTEM32 = 2048,
-    LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 4096,
-    LOAD_LIBRARY_SAFE_CURRENT_DIRS = 8192,
-    LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = 16384,
-    _,
-    pub fn initFlags(o: struct {
-        DONT_RESOLVE_DLL_REFERENCES: u1 = 0,
-        LOAD_LIBRARY_AS_DATAFILE: u1 = 0,
-        LOAD_WITH_ALTERED_SEARCH_PATH: u1 = 0,
-        LOAD_IGNORE_CODE_AUTHZ_LEVEL: u1 = 0,
-        LOAD_LIBRARY_AS_IMAGE_RESOURCE: u1 = 0,
-        LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE: u1 = 0,
-        LOAD_LIBRARY_REQUIRE_SIGNED_TARGET: u1 = 0,
-        LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR: u1 = 0,
-        LOAD_LIBRARY_SEARCH_APPLICATION_DIR: u1 = 0,
-        LOAD_LIBRARY_SEARCH_USER_DIRS: u1 = 0,
-        LOAD_LIBRARY_SEARCH_SYSTEM32: u1 = 0,
-        LOAD_LIBRARY_SEARCH_DEFAULT_DIRS: u1 = 0,
-        LOAD_LIBRARY_SAFE_CURRENT_DIRS: u1 = 0,
-        LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER: u1 = 0,
-    }) LOAD_LIBRARY_FLAGS {
-        return @as(LOAD_LIBRARY_FLAGS, @enumFromInt((if (o.DONT_RESOLVE_DLL_REFERENCES == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES) else 0) | (if (o.LOAD_LIBRARY_AS_DATAFILE == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE) else 0) | (if (o.LOAD_WITH_ALTERED_SEARCH_PATH == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_WITH_ALTERED_SEARCH_PATH) else 0) | (if (o.LOAD_IGNORE_CODE_AUTHZ_LEVEL == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_IGNORE_CODE_AUTHZ_LEVEL) else 0) | (if (o.LOAD_LIBRARY_AS_IMAGE_RESOURCE == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_IMAGE_RESOURCE) else 0) | (if (o.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE) else 0) | (if (o.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET) else 0) | (if (o.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR) else 0) | (if (o.LOAD_LIBRARY_SEARCH_APPLICATION_DIR == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_APPLICATION_DIR) else 0) | (if (o.LOAD_LIBRARY_SEARCH_USER_DIRS == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_USER_DIRS) else 0) | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32 == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32) else 0) | (if (o.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS) else 0) | (if (o.LOAD_LIBRARY_SAFE_CURRENT_DIRS == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SAFE_CURRENT_DIRS) else 0) | (if (o.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER == 1) @intFromEnum(LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER) else 0)));
-    }
+pub const LOAD_LIBRARY_FLAGS = packed struct(u32) {
+    DONT_RESOLVE_DLL_REFERENCES: u1 = 0,
+    LOAD_LIBRARY_AS_DATAFILE: u1 = 0,
+    _2: u1 = 0,
+    LOAD_WITH_ALTERED_SEARCH_PATH: u1 = 0,
+    LOAD_IGNORE_CODE_AUTHZ_LEVEL: u1 = 0,
+    LOAD_LIBRARY_AS_IMAGE_RESOURCE: u1 = 0,
+    LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE: u1 = 0,
+    LOAD_LIBRARY_REQUIRE_SIGNED_TARGET: u1 = 0,
+    LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR: u1 = 0,
+    LOAD_LIBRARY_SEARCH_APPLICATION_DIR: u1 = 0,
+    LOAD_LIBRARY_SEARCH_USER_DIRS: u1 = 0,
+    LOAD_LIBRARY_SEARCH_SYSTEM32: u1 = 0,
+    LOAD_LIBRARY_SEARCH_DEFAULT_DIRS: u1 = 0,
+    LOAD_LIBRARY_SAFE_CURRENT_DIRS: u1 = 0,
+    LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DONT_RESOLVE_DLL_REFERENCES = LOAD_LIBRARY_FLAGS.DONT_RESOLVE_DLL_REFERENCES;
-pub const LOAD_LIBRARY_AS_DATAFILE = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE;
-pub const LOAD_WITH_ALTERED_SEARCH_PATH = LOAD_LIBRARY_FLAGS.LOAD_WITH_ALTERED_SEARCH_PATH;
-pub const LOAD_IGNORE_CODE_AUTHZ_LEVEL = LOAD_LIBRARY_FLAGS.LOAD_IGNORE_CODE_AUTHZ_LEVEL;
-pub const LOAD_LIBRARY_AS_IMAGE_RESOURCE = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_IMAGE_RESOURCE;
-pub const LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE;
-pub const LOAD_LIBRARY_REQUIRE_SIGNED_TARGET = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_REQUIRE_SIGNED_TARGET;
-pub const LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR;
-pub const LOAD_LIBRARY_SEARCH_APPLICATION_DIR = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_APPLICATION_DIR;
-pub const LOAD_LIBRARY_SEARCH_USER_DIRS = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_USER_DIRS;
-pub const LOAD_LIBRARY_SEARCH_SYSTEM32 = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32;
-pub const LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_DEFAULT_DIRS;
-pub const LOAD_LIBRARY_SAFE_CURRENT_DIRS = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SAFE_CURRENT_DIRS;
-pub const LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = LOAD_LIBRARY_FLAGS.LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER;
+pub const DONT_RESOLVE_DLL_REFERENCES = LOAD_LIBRARY_FLAGS{ .DONT_RESOLVE_DLL_REFERENCES = 1 };
+pub const LOAD_LIBRARY_AS_DATAFILE = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_AS_DATAFILE = 1 };
+pub const LOAD_WITH_ALTERED_SEARCH_PATH = LOAD_LIBRARY_FLAGS{ .LOAD_WITH_ALTERED_SEARCH_PATH = 1 };
+pub const LOAD_IGNORE_CODE_AUTHZ_LEVEL = LOAD_LIBRARY_FLAGS{ .LOAD_IGNORE_CODE_AUTHZ_LEVEL = 1 };
+pub const LOAD_LIBRARY_AS_IMAGE_RESOURCE = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_AS_IMAGE_RESOURCE = 1 };
+pub const LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE = 1 };
+pub const LOAD_LIBRARY_REQUIRE_SIGNED_TARGET = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_REQUIRE_SIGNED_TARGET = 1 };
+pub const LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SEARCH_DLL_LOAD_DIR = 1 };
+pub const LOAD_LIBRARY_SEARCH_APPLICATION_DIR = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SEARCH_APPLICATION_DIR = 1 };
+pub const LOAD_LIBRARY_SEARCH_USER_DIRS = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SEARCH_USER_DIRS = 1 };
+pub const LOAD_LIBRARY_SEARCH_SYSTEM32 = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SEARCH_SYSTEM32 = 1 };
+pub const LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 1 };
+pub const LOAD_LIBRARY_SAFE_CURRENT_DIRS = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SAFE_CURRENT_DIRS = 1 };
+pub const LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = LOAD_LIBRARY_FLAGS{ .LOAD_LIBRARY_SEARCH_SYSTEM32_NO_FORWARDER = 1 };
 
 pub const ENUMUILANG = extern struct {
     NumOfEnumUILang: u32,
@@ -76,121 +75,59 @@ pub const ENUMUILANG = extern struct {
     pEnumUIBuffer: ?*u16,
 };
 
-pub const ENUMRESLANGPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u8,
-        lpName: ?[*:0]const u8,
-        wLanguage: u16,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u8,
-        lpName: ?[*:0]const u8,
-        wLanguage: u16,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const ENUMRESLANGPROCA = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpName: ?[*:0]const u8,
+    wLanguage: u16,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ENUMRESLANGPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
-        lpName: ?[*:0]const u16,
-        wLanguage: u16,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
-        lpName: ?[*:0]const u16,
-        wLanguage: u16,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const ENUMRESLANGPROCW = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]align(1) const u16,
+    lpName: ?[*:0]const u16,
+    wLanguage: u16,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ENUMRESNAMEPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u8,
-        lpName: ?PSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u8,
-        lpName: ?PSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const ENUMRESNAMEPROCA = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]const u8,
+    lpName: ?PSTR,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ENUMRESNAMEPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
-        lpName: ?PWSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        hModule: ?HINSTANCE,
-        lpType: ?[*:0]const u16,
-        lpName: ?PWSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const ENUMRESNAMEPROCW = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?[*:0]align(1) const u16,
+    lpName: ?PWSTR,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ENUMRESTYPEPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        hModule: ?HINSTANCE,
-        lpType: ?PSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        hModule: ?HINSTANCE,
-        lpType: ?PSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const ENUMRESTYPEPROCA = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?PSTR,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const ENUMRESTYPEPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        hModule: ?HINSTANCE,
-        lpType: ?PWSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        hModule: ?HINSTANCE,
-        lpType: ?PWSTR,
-        lParam: isize,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const ENUMRESTYPEPROCW = *const fn(
+    hModule: ?HINSTANCE,
+    lpType: ?PWSTR,
+    lParam: isize,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PGET_MODULE_HANDLE_EXA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        dwFlags: u32,
-        lpModuleName: ?[*:0]const u8,
-        phModule: ?*?HINSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        dwFlags: u32,
-        lpModuleName: ?[*:0]const u8,
-        phModule: ?*?HINSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const PGET_MODULE_HANDLE_EXA = *const fn(
+    dwFlags: u32,
+    lpModuleName: ?[*:0]const u8,
+    phModule: ?*?HINSTANCE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PGET_MODULE_HANDLE_EXW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        dwFlags: u32,
-        lpModuleName: ?[*:0]const u16,
-        phModule: ?*?HINSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        dwFlags: u32,
-        lpModuleName: ?[*:0]const u16,
-        phModule: ?*?HINSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const PGET_MODULE_HANDLE_EXW = *const fn(
+    dwFlags: u32,
+    lpModuleName: ?[*:0]const u16,
+    phModule: ?*?HINSTANCE,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const REDIRECTION_FUNCTION_DESCRIPTOR = extern struct {
     DllName: ?[*:0]const u8,
@@ -204,6 +141,7 @@ pub const REDIRECTION_DESCRIPTOR = extern struct {
     Redirections: ?*REDIRECTION_FUNCTION_DESCRIPTOR,
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (49)
 //--------------------------------------------------------------------------------
@@ -214,8 +152,8 @@ pub extern "kernel32" fn DisableThreadLibraryCalls(
 
 pub extern "kernel32" fn FindResourceExW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
+    lpName: ?[*:0]align(1) const u16,
     wLanguage: u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
@@ -228,7 +166,7 @@ pub extern "kernel32" fn FreeLibrary(
 pub extern "kernel32" fn FreeLibraryAndExitThread(
     hLibModule: ?HINSTANCE,
     dwExitCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(@import("std").os.windows.WINAPI) noreturn;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn FreeResource(
@@ -339,7 +277,7 @@ pub extern "kernel32" fn EnumResourceLanguagesExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn EnumResourceLanguagesExW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpName: ?[*:0]const u16,
     lpEnumFunc: ?ENUMRESLANGPROCW,
     lParam: isize,
@@ -360,7 +298,7 @@ pub extern "kernel32" fn EnumResourceNamesExA(
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn EnumResourceNamesExW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpEnumFunc: ?ENUMRESNAMEPROCW,
     lParam: isize,
     dwFlags: u32,
@@ -387,8 +325,8 @@ pub extern "kernel32" fn EnumResourceTypesExW(
 
 pub extern "kernel32" fn FindResourceW(
     hModule: ?HINSTANCE,
-    lpName: ?[*:0]const u16,
-    lpType: ?[*:0]const u16,
+    lpName: ?[*:0]align(1) const u16,
+    lpType: ?[*:0]align(1) const u16,
 ) callconv(@import("std").os.windows.WINAPI) ?HRSRC;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
@@ -403,7 +341,7 @@ pub extern "kernel32" fn LoadLibraryW(
 
 pub extern "kernel32" fn EnumResourceNamesW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpEnumFunc: ?ENUMRESNAMEPROCW,
     lParam: isize,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
@@ -469,7 +407,7 @@ pub extern "kernel32" fn EnumResourceLanguagesA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn EnumResourceLanguagesW(
     hModule: ?HINSTANCE,
-    lpType: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
     lpName: ?[*:0]const u16,
     lpEnumFunc: ?ENUMRESLANGPROCW,
     lParam: isize,
@@ -501,8 +439,8 @@ pub extern "kernel32" fn UpdateResourceA(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn UpdateResourceW(
     hUpdate: ?HANDLE,
-    lpType: ?[*:0]const u16,
-    lpName: ?[*:0]const u16,
+    lpType: ?[*:0]align(1) const u16,
+    lpName: ?[*:0]align(1) const u16,
     wLanguage: u16,
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*anyopaque,
@@ -543,106 +481,163 @@ pub extern "kernel32" fn GetDllDirectoryW(
     lpBuffer: ?[*:0]u16,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (22)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ENUMRESLANGPROC = thismodule.ENUMRESLANGPROCA;
-        pub const ENUMRESNAMEPROC = thismodule.ENUMRESNAMEPROCA;
-        pub const ENUMRESTYPEPROC = thismodule.ENUMRESTYPEPROCA;
-        pub const PGET_MODULE_HANDLE_EX = thismodule.PGET_MODULE_HANDLE_EXA;
-        pub const FindResourceEx = thismodule.FindResourceExA;
-        pub const GetModuleFileName = thismodule.GetModuleFileNameA;
-        pub const GetModuleHandle = thismodule.GetModuleHandleA;
-        pub const GetModuleHandleEx = thismodule.GetModuleHandleExA;
-        pub const LoadLibraryEx = thismodule.LoadLibraryExA;
-        pub const EnumResourceLanguagesEx = thismodule.EnumResourceLanguagesExA;
-        pub const EnumResourceNamesEx = thismodule.EnumResourceNamesExA;
-        pub const EnumResourceTypesEx = thismodule.EnumResourceTypesExA;
-        pub const FindResource = thismodule.FindResourceA;
-        pub const LoadLibrary = thismodule.LoadLibraryA;
-        pub const EnumResourceNames = thismodule.EnumResourceNamesA;
-        pub const EnumResourceTypes = thismodule.EnumResourceTypesA;
-        pub const EnumResourceLanguages = thismodule.EnumResourceLanguagesA;
-        pub const BeginUpdateResource = thismodule.BeginUpdateResourceA;
-        pub const UpdateResource = thismodule.UpdateResourceA;
-        pub const EndUpdateResource = thismodule.EndUpdateResourceA;
-        pub const SetDllDirectory = thismodule.SetDllDirectoryA;
-        pub const GetDllDirectory = thismodule.GetDllDirectoryA;
-    },
-    .wide => struct {
-        pub const ENUMRESLANGPROC = thismodule.ENUMRESLANGPROCW;
-        pub const ENUMRESNAMEPROC = thismodule.ENUMRESNAMEPROCW;
-        pub const ENUMRESTYPEPROC = thismodule.ENUMRESTYPEPROCW;
-        pub const PGET_MODULE_HANDLE_EX = thismodule.PGET_MODULE_HANDLE_EXW;
-        pub const FindResourceEx = thismodule.FindResourceExW;
-        pub const GetModuleFileName = thismodule.GetModuleFileNameW;
-        pub const GetModuleHandle = thismodule.GetModuleHandleW;
-        pub const GetModuleHandleEx = thismodule.GetModuleHandleExW;
-        pub const LoadLibraryEx = thismodule.LoadLibraryExW;
-        pub const EnumResourceLanguagesEx = thismodule.EnumResourceLanguagesExW;
-        pub const EnumResourceNamesEx = thismodule.EnumResourceNamesExW;
-        pub const EnumResourceTypesEx = thismodule.EnumResourceTypesExW;
-        pub const FindResource = thismodule.FindResourceW;
-        pub const LoadLibrary = thismodule.LoadLibraryW;
-        pub const EnumResourceNames = thismodule.EnumResourceNamesW;
-        pub const EnumResourceTypes = thismodule.EnumResourceTypesW;
-        pub const EnumResourceLanguages = thismodule.EnumResourceLanguagesW;
-        pub const BeginUpdateResource = thismodule.BeginUpdateResourceW;
-        pub const UpdateResource = thismodule.UpdateResourceW;
-        pub const EndUpdateResource = thismodule.EndUpdateResourceW;
-        pub const SetDllDirectory = thismodule.SetDllDirectoryW;
-        pub const GetDllDirectory = thismodule.GetDllDirectoryW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ENUMRESLANGPROC = *opaque {};
-        pub const ENUMRESNAMEPROC = *opaque {};
-        pub const ENUMRESTYPEPROC = *opaque {};
-        pub const PGET_MODULE_HANDLE_EX = *opaque {};
-        pub const FindResourceEx = *opaque {};
-        pub const GetModuleFileName = *opaque {};
-        pub const GetModuleHandle = *opaque {};
-        pub const GetModuleHandleEx = *opaque {};
-        pub const LoadLibraryEx = *opaque {};
-        pub const EnumResourceLanguagesEx = *opaque {};
-        pub const EnumResourceNamesEx = *opaque {};
-        pub const EnumResourceTypesEx = *opaque {};
-        pub const FindResource = *opaque {};
-        pub const LoadLibrary = *opaque {};
-        pub const EnumResourceNames = *opaque {};
-        pub const EnumResourceTypes = *opaque {};
-        pub const EnumResourceLanguages = *opaque {};
-        pub const BeginUpdateResource = *opaque {};
-        pub const UpdateResource = *opaque {};
-        pub const EndUpdateResource = *opaque {};
-        pub const SetDllDirectory = *opaque {};
-        pub const GetDllDirectory = *opaque {};
-    } else struct {
-        pub const ENUMRESLANGPROC = @compileError("'ENUMRESLANGPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMRESNAMEPROC = @compileError("'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module");
-        pub const ENUMRESTYPEPROC = @compileError("'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module");
-        pub const PGET_MODULE_HANDLE_EX = @compileError("'PGET_MODULE_HANDLE_EX' requires that UNICODE be set to true or false in the root module");
-        pub const FindResourceEx = @compileError("'FindResourceEx' requires that UNICODE be set to true or false in the root module");
-        pub const GetModuleFileName = @compileError("'GetModuleFileName' requires that UNICODE be set to true or false in the root module");
-        pub const GetModuleHandle = @compileError("'GetModuleHandle' requires that UNICODE be set to true or false in the root module");
-        pub const GetModuleHandleEx = @compileError("'GetModuleHandleEx' requires that UNICODE be set to true or false in the root module");
-        pub const LoadLibraryEx = @compileError("'LoadLibraryEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceLanguagesEx = @compileError("'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceNamesEx = @compileError("'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceTypesEx = @compileError("'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module");
-        pub const FindResource = @compileError("'FindResource' requires that UNICODE be set to true or false in the root module");
-        pub const LoadLibrary = @compileError("'LoadLibrary' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceNames = @compileError("'EnumResourceNames' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceTypes = @compileError("'EnumResourceTypes' requires that UNICODE be set to true or false in the root module");
-        pub const EnumResourceLanguages = @compileError("'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module");
-        pub const BeginUpdateResource = @compileError("'BeginUpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const UpdateResource = @compileError("'UpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const EndUpdateResource = @compileError("'EndUpdateResource' requires that UNICODE be set to true or false in the root module");
-        pub const SetDllDirectory = @compileError("'SetDllDirectory' requires that UNICODE be set to true or false in the root module");
-        pub const GetDllDirectory = @compileError("'GetDllDirectory' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ENUMRESLANGPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMRESLANGPROCA,
+    .wide => @This().ENUMRESLANGPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMRESLANGPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMRESNAMEPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMRESNAMEPROCA,
+    .wide => @This().ENUMRESNAMEPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMRESNAMEPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ENUMRESTYPEPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ENUMRESTYPEPROCA,
+    .wide => @This().ENUMRESTYPEPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ENUMRESTYPEPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const PGET_MODULE_HANDLE_EX = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PGET_MODULE_HANDLE_EXA,
+    .wide => @This().PGET_MODULE_HANDLE_EXW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PGET_MODULE_HANDLE_EX' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindResourceEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindResourceExA,
+    .wide => @This().FindResourceExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindResourceEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetModuleFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetModuleFileNameA,
+    .wide => @This().GetModuleFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetModuleFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetModuleHandle = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetModuleHandleA,
+    .wide => @This().GetModuleHandleW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetModuleHandle' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetModuleHandleEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetModuleHandleExA,
+    .wide => @This().GetModuleHandleExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetModuleHandleEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadLibraryEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadLibraryExA,
+    .wide => @This().LoadLibraryExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadLibraryEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceLanguagesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceLanguagesExA,
+    .wide => @This().EnumResourceLanguagesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceLanguagesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceNamesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceNamesExA,
+    .wide => @This().EnumResourceNamesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceNamesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceTypesEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceTypesExA,
+    .wide => @This().EnumResourceTypesExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceTypesEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const FindResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().FindResourceA,
+    .wide => @This().FindResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'FindResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const LoadLibrary = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().LoadLibraryA,
+    .wide => @This().LoadLibraryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'LoadLibrary' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceNames = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceNamesA,
+    .wide => @This().EnumResourceNamesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceNames' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceTypes = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceTypesA,
+    .wide => @This().EnumResourceTypesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceTypes' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumResourceLanguages = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumResourceLanguagesA,
+    .wide => @This().EnumResourceLanguagesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumResourceLanguages' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BeginUpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BeginUpdateResourceA,
+    .wide => @This().BeginUpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BeginUpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const UpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().UpdateResourceA,
+    .wide => @This().UpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'UpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EndUpdateResource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EndUpdateResourceA,
+    .wide => @This().EndUpdateResourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EndUpdateResource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetDllDirectoryA,
+    .wide => @This().SetDllDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetDllDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDllDirectory = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDllDirectoryA,
+    .wide => @This().GetDllDirectoryW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDllDirectory' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -657,38 +652,22 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "ENUMRESLANGPROCA")) {
-        _ = ENUMRESLANGPROCA;
-    }
-    if (@hasDecl(@This(), "ENUMRESLANGPROCW")) {
-        _ = ENUMRESLANGPROCW;
-    }
-    if (@hasDecl(@This(), "ENUMRESNAMEPROCA")) {
-        _ = ENUMRESNAMEPROCA;
-    }
-    if (@hasDecl(@This(), "ENUMRESNAMEPROCW")) {
-        _ = ENUMRESNAMEPROCW;
-    }
-    if (@hasDecl(@This(), "ENUMRESTYPEPROCA")) {
-        _ = ENUMRESTYPEPROCA;
-    }
-    if (@hasDecl(@This(), "ENUMRESTYPEPROCW")) {
-        _ = ENUMRESTYPEPROCW;
-    }
-    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXA")) {
-        _ = PGET_MODULE_HANDLE_EXA;
-    }
-    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXW")) {
-        _ = PGET_MODULE_HANDLE_EXW;
-    }
+    if (@hasDecl(@This(), "ENUMRESLANGPROCA")) { _ = ENUMRESLANGPROCA; }
+    if (@hasDecl(@This(), "ENUMRESLANGPROCW")) { _ = ENUMRESLANGPROCW; }
+    if (@hasDecl(@This(), "ENUMRESNAMEPROCA")) { _ = ENUMRESNAMEPROCA; }
+    if (@hasDecl(@This(), "ENUMRESNAMEPROCW")) { _ = ENUMRESNAMEPROCW; }
+    if (@hasDecl(@This(), "ENUMRESTYPEPROCA")) { _ = ENUMRESTYPEPROCA; }
+    if (@hasDecl(@This(), "ENUMRESTYPEPROCW")) { _ = ENUMRESTYPEPROCW; }
+    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXA")) { _ = PGET_MODULE_HANDLE_EXA; }
+    if (@hasDecl(@This(), "PGET_MODULE_HANDLE_EXW")) { _ = PGET_MODULE_HANDLE_EXW; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

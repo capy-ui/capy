@@ -2,7 +2,7 @@
 //--------------------------------------------------------------------------------
 // Section: Constants (134)
 //--------------------------------------------------------------------------------
-pub const PROCESSOR_NUMBER_PKEY = PROPERTYKEY{ .fmtid = Guid.initString("5724c81d-d5af-4c1f-a103-a06e28f204c6"), .pid = 1 };
+pub const PROCESSOR_NUMBER_PKEY = DEVPROPKEY { .fmtid = Guid.initString("5724c81d-d5af-4c1f-a103-a06e28f204c6"), .pid = 1 };
 pub const GUID_DEVICE_BATTERY = Guid.initString("72631e54-78a4-11d0-bcf7-00aa00b7b32a");
 pub const GUID_DEVICE_APPLICATIONLAUNCH_BUTTON = Guid.initString("629758ee-986e-4d9e-8e47-de27f8ab054d");
 pub const GUID_DEVICE_SYS_BUTTON = Guid.initString("4afa3d53-74a7-11d0-be5e-00a0c9062857");
@@ -138,8 +138,33 @@ pub const PDCAP_S5_SUPPORTED = @as(u32, 33554432);
 pub const THERMAL_EVENT_VERSION = @as(u32, 1);
 
 //--------------------------------------------------------------------------------
-// Section: Types (70)
+// Section: Types (73)
 //--------------------------------------------------------------------------------
+pub const POWER_COOLING_MODE = enum(u16) {
+    ACTIVE = 0,
+    PASSIVE = 1,
+    INVALID_MODE = 2,
+};
+pub const PO_TZ_ACTIVE = POWER_COOLING_MODE.ACTIVE;
+pub const PO_TZ_PASSIVE = POWER_COOLING_MODE.PASSIVE;
+pub const PO_TZ_INVALID_MODE = POWER_COOLING_MODE.INVALID_MODE;
+
+pub const PROCESSOR_POWER_INFORMATION = extern struct {
+    Number: u64,
+    MaxMhz: u64,
+    CurrentMhz: u64,
+    MhzLimit: u64,
+    MaxIdleState: u64,
+    CurrentIdleState: u64,
+};
+
+pub const SYSTEM_POWER_INFORMATION = extern struct {
+    MaxIdlenessAllowed: u64,
+    Idleness: u64,
+    TimeRemaining: u64,
+    CoolingMode: POWER_COOLING_MODE,
+};
+
 pub const POWER_PLATFORM_ROLE_VERSION = enum(u32) {
     @"1" = 1,
     @"2" = 2,
@@ -155,57 +180,90 @@ pub const DEVICE_NOTIFY_SERVICE_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLA
 pub const DEVICE_NOTIFY_CALLBACK = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.CALLBACK;
 pub const DEVICE_NOTIFY_WINDOW_HANDLE = POWER_SETTING_REGISTER_NOTIFICATION_FLAGS.WINDOW_HANDLE;
 
-pub const EXECUTION_STATE = enum(u32) {
-    AWAYMODE_REQUIRED = 64,
-    CONTINUOUS = 2147483648,
-    DISPLAY_REQUIRED = 2,
-    SYSTEM_REQUIRED = 1,
-    USER_PRESENT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        AWAYMODE_REQUIRED: u1 = 0,
-        CONTINUOUS: u1 = 0,
-        DISPLAY_REQUIRED: u1 = 0,
-        SYSTEM_REQUIRED: u1 = 0,
-        USER_PRESENT: u1 = 0,
-    }) EXECUTION_STATE {
-        return @as(EXECUTION_STATE, @enumFromInt((if (o.AWAYMODE_REQUIRED == 1) @intFromEnum(EXECUTION_STATE.AWAYMODE_REQUIRED) else 0) | (if (o.CONTINUOUS == 1) @intFromEnum(EXECUTION_STATE.CONTINUOUS) else 0) | (if (o.DISPLAY_REQUIRED == 1) @intFromEnum(EXECUTION_STATE.DISPLAY_REQUIRED) else 0) | (if (o.SYSTEM_REQUIRED == 1) @intFromEnum(EXECUTION_STATE.SYSTEM_REQUIRED) else 0) | (if (o.USER_PRESENT == 1) @intFromEnum(EXECUTION_STATE.USER_PRESENT) else 0)));
-    }
+pub const EXECUTION_STATE = packed struct(u32) {
+    SYSTEM_REQUIRED: u1 = 0,
+    DISPLAY_REQUIRED: u1 = 0,
+    USER_PRESENT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    AWAYMODE_REQUIRED: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    CONTINUOUS: u1 = 0,
 };
-pub const ES_AWAYMODE_REQUIRED = EXECUTION_STATE.AWAYMODE_REQUIRED;
-pub const ES_CONTINUOUS = EXECUTION_STATE.CONTINUOUS;
-pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE.DISPLAY_REQUIRED;
-pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE.SYSTEM_REQUIRED;
-pub const ES_USER_PRESENT = EXECUTION_STATE.USER_PRESENT;
+pub const ES_AWAYMODE_REQUIRED = EXECUTION_STATE{ .AWAYMODE_REQUIRED = 1 };
+pub const ES_CONTINUOUS = EXECUTION_STATE{ .CONTINUOUS = 1 };
+pub const ES_DISPLAY_REQUIRED = EXECUTION_STATE{ .DISPLAY_REQUIRED = 1 };
+pub const ES_SYSTEM_REQUIRED = EXECUTION_STATE{ .SYSTEM_REQUIRED = 1 };
+pub const ES_USER_PRESENT = EXECUTION_STATE{ .USER_PRESENT = 1 };
 
-pub const POWER_ACTION_POLICY_EVENT_CODE = enum(u32) {
-    FORCE_TRIGGER_RESET = 2147483648,
-    LEVEL_USER_NOTIFY_EXEC = 4,
-    LEVEL_USER_NOTIFY_SOUND = 2,
-    LEVEL_USER_NOTIFY_TEXT = 1,
-    USER_NOTIFY_BUTTON = 8,
-    USER_NOTIFY_SHUTDOWN = 16,
-    _,
-    pub fn initFlags(o: struct {
-        FORCE_TRIGGER_RESET: u1 = 0,
-        LEVEL_USER_NOTIFY_EXEC: u1 = 0,
-        LEVEL_USER_NOTIFY_SOUND: u1 = 0,
-        LEVEL_USER_NOTIFY_TEXT: u1 = 0,
-        USER_NOTIFY_BUTTON: u1 = 0,
-        USER_NOTIFY_SHUTDOWN: u1 = 0,
-    }) POWER_ACTION_POLICY_EVENT_CODE {
-        return @as(POWER_ACTION_POLICY_EVENT_CODE, @enumFromInt((if (o.FORCE_TRIGGER_RESET == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET) else 0) | (if (o.LEVEL_USER_NOTIFY_EXEC == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC) else 0) | (if (o.LEVEL_USER_NOTIFY_SOUND == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND) else 0) | (if (o.LEVEL_USER_NOTIFY_TEXT == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT) else 0) | (if (o.USER_NOTIFY_BUTTON == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON) else 0) | (if (o.USER_NOTIFY_SHUTDOWN == 1) @intFromEnum(POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN) else 0)));
-    }
+pub const POWER_ACTION_POLICY_EVENT_CODE = packed struct(u32) {
+    LEVEL_USER_NOTIFY_TEXT: u1 = 0,
+    LEVEL_USER_NOTIFY_SOUND: u1 = 0,
+    LEVEL_USER_NOTIFY_EXEC: u1 = 0,
+    USER_NOTIFY_BUTTON: u1 = 0,
+    USER_NOTIFY_SHUTDOWN: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    FORCE_TRIGGER_RESET: u1 = 0,
 };
-pub const POWER_FORCE_TRIGGER_RESET = POWER_ACTION_POLICY_EVENT_CODE.FORCE_TRIGGER_RESET;
-pub const POWER_LEVEL_USER_NOTIFY_EXEC = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_EXEC;
-pub const POWER_LEVEL_USER_NOTIFY_SOUND = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_SOUND;
-pub const POWER_LEVEL_USER_NOTIFY_TEXT = POWER_ACTION_POLICY_EVENT_CODE.LEVEL_USER_NOTIFY_TEXT;
-pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_BUTTON;
-pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE.USER_NOTIFY_SHUTDOWN;
+pub const POWER_FORCE_TRIGGER_RESET = POWER_ACTION_POLICY_EVENT_CODE{ .FORCE_TRIGGER_RESET = 1 };
+pub const POWER_LEVEL_USER_NOTIFY_EXEC = POWER_ACTION_POLICY_EVENT_CODE{ .LEVEL_USER_NOTIFY_EXEC = 1 };
+pub const POWER_LEVEL_USER_NOTIFY_SOUND = POWER_ACTION_POLICY_EVENT_CODE{ .LEVEL_USER_NOTIFY_SOUND = 1 };
+pub const POWER_LEVEL_USER_NOTIFY_TEXT = POWER_ACTION_POLICY_EVENT_CODE{ .LEVEL_USER_NOTIFY_TEXT = 1 };
+pub const POWER_USER_NOTIFY_BUTTON = POWER_ACTION_POLICY_EVENT_CODE{ .USER_NOTIFY_BUTTON = 1 };
+pub const POWER_USER_NOTIFY_SHUTDOWN = POWER_ACTION_POLICY_EVENT_CODE{ .USER_NOTIFY_SHUTDOWN = 1 };
 
 // TODO: this type has a FreeFunc 'UnregisterPowerSettingNotification', what can Zig do with this information?
-pub const HPOWERNOTIFY = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HPOWERNOTIFY = *opaque{};
 
 pub const EFFECTIVE_POWER_MODE = enum(i32) {
     BatterySaver = 0,
@@ -225,16 +283,10 @@ pub const EffectivePowerModeGameMode = EFFECTIVE_POWER_MODE.GameMode;
 pub const EffectivePowerModeMixedReality = EFFECTIVE_POWER_MODE.MixedReality;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
-pub const EFFECTIVE_POWER_MODE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Mode: EFFECTIVE_POWER_MODE,
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        Mode: EFFECTIVE_POWER_MODE,
-        Context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const EFFECTIVE_POWER_MODE_CALLBACK = *const fn(
+    Mode: EFFECTIVE_POWER_MODE,
+    Context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLOBAL_MACHINE_POWER_POLICY = extern struct {
     Revision: u32,
@@ -313,55 +365,29 @@ pub const POWER_POLICY = extern struct {
     mach: MACHINE_POWER_POLICY,
 };
 
-pub const PWRSCHEMESENUMPROC_V1 = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?*i8,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?*i8,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn (
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?*i8,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?*i8,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-};
+pub const PWRSCHEMESENUMPROC_V1 = *const fn(
+    Index: u32,
+    NameSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
+    Name: ?*i8,
+    DescriptionSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Description: ?*i8,
+    Policy: ?*POWER_POLICY,
+    Context: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
-pub const PWRSCHEMESENUMPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?PWSTR,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?PWSTR,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-    else => *const fn (
-        Index: u32,
-        NameSize: u32,
-        // TODO: what to do with BytesParamIndex 1?
-        Name: ?PWSTR,
-        DescriptionSize: u32,
-        // TODO: what to do with BytesParamIndex 3?
-        Description: ?PWSTR,
-        Policy: ?*POWER_POLICY,
-        Context: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOLEAN,
-};
+pub const PWRSCHEMESENUMPROC = *const fn(
+    Index: u32,
+    NameSize: u32,
+    // TODO: what to do with BytesParamIndex 1?
+    Name: ?PWSTR,
+    DescriptionSize: u32,
+    // TODO: what to do with BytesParamIndex 3?
+    Description: ?PWSTR,
+    Policy: ?*POWER_POLICY,
+    Context: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub const POWER_DATA_ACCESSOR = enum(i32) {
     AC_POWER_SETTING_INDEX = 0,
@@ -422,18 +448,11 @@ pub const ACCESS_PROFILE = POWER_DATA_ACCESSOR.PROFILE;
 pub const ACCESS_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.OVERLAY_SCHEME;
 pub const ACCESS_ACTIVE_OVERLAY_SCHEME = POWER_DATA_ACCESSOR.ACTIVE_OVERLAY_SCHEME;
 
-pub const PDEVICE_NOTIFY_CALLBACK_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Context: ?*anyopaque,
-        Type: u32,
-        Setting: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn (
-        Context: ?*anyopaque,
-        Type: u32,
-        Setting: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-};
+pub const PDEVICE_NOTIFY_CALLBACK_ROUTINE = *const fn(
+    Context: ?*anyopaque,
+    Type: u32,
+    Setting: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const DEVICE_NOTIFY_SUBSCRIBE_PARAMETERS = extern struct {
     Callback: ?PDEVICE_NOTIFY_CALLBACK_ROUTINE,
@@ -1155,6 +1174,7 @@ pub const SYSTEM_POWER_STATUS = extern struct {
     BatteryFullLifeTime: u32,
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (97)
 //--------------------------------------------------------------------------------
@@ -1167,7 +1187,7 @@ pub extern "powrprof" fn CallNtPowerInformation(
     // TODO: what to do with BytesParamIndex 4?
     OutputBuffer: ?*anyopaque,
     OutputBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "powrprof" fn GetPwrCapabilities(
@@ -1325,13 +1345,16 @@ pub extern "powrprof" fn SetActivePwrScheme(
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn IsPwrSuspendAllowed() callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub extern "powrprof" fn IsPwrSuspendAllowed(
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn IsPwrHibernateAllowed() callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub extern "powrprof" fn IsPwrHibernateAllowed(
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn IsPwrShutdownAllowed() callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub extern "powrprof" fn IsPwrShutdownAllowed(
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 pub extern "powrprof" fn IsAdminOverrideActive(
     papp: ?*ADMINISTRATOR_POWER_POLICY,
@@ -1351,7 +1374,8 @@ pub extern "powrprof" fn GetCurrentPowerPolicies(
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "powrprof" fn CanUserWritePwrScheme() callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub extern "powrprof" fn CanUserWritePwrScheme(
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "powrprof" fn ReadProcessorPwrScheme(
@@ -1734,13 +1758,16 @@ pub extern "powrprof" fn PowerRestoreIndividualDefaultPowerScheme(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerRestoreDefaultPowerSchemes() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "powrprof" fn PowerRestoreDefaultPowerSchemes(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerReplaceDefaultPowerSchemes() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "powrprof" fn PowerReplaceDefaultPowerSchemes(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn PowerDeterminePlatformRole() callconv(@import("std").os.windows.WINAPI) POWER_PLATFORM_ROLE;
+pub extern "powrprof" fn PowerDeterminePlatformRole(
+) callconv(@import("std").os.windows.WINAPI) POWER_PLATFORM_ROLE;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "powrprof" fn DevicePowerEnumDevices(
@@ -1765,7 +1792,8 @@ pub extern "powrprof" fn DevicePowerOpen(
 ) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "powrprof" fn DevicePowerClose() callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+pub extern "powrprof" fn DevicePowerClose(
+) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "powrprof" fn PowerReportThermalEvent(
@@ -1801,7 +1829,8 @@ pub extern "kernel32" fn RequestWakeupLatency(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
-pub extern "kernel32" fn IsSystemResumeAutomatic() callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "kernel32" fn IsSystemResumeAutomatic(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn SetThreadExecutionState(
@@ -1842,52 +1871,40 @@ pub extern "kernel32" fn GetSystemPowerStatus(
     lpSystemPowerStatus: ?*SYSTEM_POWER_STATUS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
-// Section: Imports (11)
+// Section: Imports (12)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
 const BOOL = @import("../foundation.zig").BOOL;
 const BOOLEAN = @import("../foundation.zig").BOOLEAN;
+const DEVPROPKEY = @import("../devices/properties.zig").DEVPROPKEY;
 const HANDLE = @import("../foundation.zig").HANDLE;
 const HKEY = @import("../system/registry.zig").HKEY;
 const HRESULT = @import("../foundation.zig").HRESULT;
 const LPARAM = @import("../foundation.zig").LPARAM;
-const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
+const NTSTATUS = @import("../foundation.zig").NTSTATUS;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const REASON_CONTEXT = @import("../system/threading.zig").REASON_CONTEXT;
 const REG_SAM_FLAGS = @import("../system/registry.zig").REG_SAM_FLAGS;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "EFFECTIVE_POWER_MODE_CALLBACK")) {
-        _ = EFFECTIVE_POWER_MODE_CALLBACK;
-    }
-    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC_V1")) {
-        _ = PWRSCHEMESENUMPROC_V1;
-    }
-    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC")) {
-        _ = PWRSCHEMESENUMPROC;
-    }
-    if (@hasDecl(@This(), "PDEVICE_NOTIFY_CALLBACK_ROUTINE")) {
-        _ = PDEVICE_NOTIFY_CALLBACK_ROUTINE;
-    }
+    if (@hasDecl(@This(), "EFFECTIVE_POWER_MODE_CALLBACK")) { _ = EFFECTIVE_POWER_MODE_CALLBACK; }
+    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC_V1")) { _ = PWRSCHEMESENUMPROC_V1; }
+    if (@hasDecl(@This(), "PWRSCHEMESENUMPROC")) { _ = PWRSCHEMESENUMPROC; }
+    if (@hasDecl(@This(), "PDEVICE_NOTIFY_CALLBACK_ROUTINE")) { _ = PDEVICE_NOTIFY_CALLBACK_ROUTINE; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -64,6 +64,7 @@ pub const DFS_INFO_1 = extern struct {
     EntryPath: ?PWSTR,
 };
 
+
 pub const DFS_INFO_2 = extern struct {
     EntryPath: ?PWSTR,
     Comment: ?PWSTR,
@@ -71,11 +72,13 @@ pub const DFS_INFO_2 = extern struct {
     NumberOfStorages: u32,
 };
 
+
 pub const DFS_STORAGE_INFO = extern struct {
     State: u32,
     ServerName: ?PWSTR,
     ShareName: ?PWSTR,
 };
+
 
 pub const DFS_STORAGE_INFO_1 = extern struct {
     State: u32,
@@ -92,6 +95,7 @@ pub const DFS_INFO_3 = extern struct {
     Storage: ?*DFS_STORAGE_INFO,
 };
 
+
 pub const DFS_INFO_4 = extern struct {
     EntryPath: ?PWSTR,
     Comment: ?PWSTR,
@@ -101,6 +105,7 @@ pub const DFS_INFO_4 = extern struct {
     NumberOfStorages: u32,
     Storage: ?*DFS_STORAGE_INFO,
 };
+
 
 pub const DFS_INFO_5 = extern struct {
     EntryPath: ?PWSTR,
@@ -138,7 +143,7 @@ pub const DFS_INFO_8 = extern struct {
     PropertyFlags: u32,
     MetadataSize: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     NumberOfStorages: u32,
 };
 
@@ -151,7 +156,7 @@ pub const DFS_INFO_9 = extern struct {
     PropertyFlags: u32,
     MetadataSize: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     NumberOfStorages: u32,
     Storage: ?*DFS_STORAGE_INFO_1,
 };
@@ -203,12 +208,12 @@ pub const DFS_INFO_107 = extern struct {
     PropertyFlagMask: u32,
     PropertyFlags: u32,
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const DFS_INFO_150 = extern struct {
     SdLengthReserved: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 };
 
 pub const DFS_INFO_200 = extern struct {
@@ -256,13 +261,13 @@ pub const DFS_GET_PKT_ENTRY_STATE_ARG = extern struct {
     Buffer: [1]u16,
 };
 
-pub const DFS_INFO_1_32 = switch (@import("../zig.zig").arch) {
+pub const DFS_INFO_1_32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_INFO_2_32 = switch (@import("../zig.zig").arch) {
+pub const DFS_INFO_2_32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
         Comment: u32,
@@ -271,7 +276,7 @@ pub const DFS_INFO_2_32 = switch (@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_STORAGE_INFO_0_32 = switch (@import("../zig.zig").arch) {
+pub const DFS_STORAGE_INFO_0_32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         State: u32,
         ServerName: u32,
@@ -279,7 +284,7 @@ pub const DFS_STORAGE_INFO_0_32 = switch (@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_INFO_3_32 = switch (@import("../zig.zig").arch) {
+pub const DFS_INFO_3_32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
         Comment: u32,
@@ -289,7 +294,7 @@ pub const DFS_INFO_3_32 = switch (@import("../zig.zig").arch) {
     },
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
-pub const DFS_INFO_4_32 = switch (@import("../zig.zig").arch) {
+pub const DFS_INFO_4_32 = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern struct {
         EntryPath: u32,
         Comment: u32,
@@ -435,7 +440,7 @@ pub extern "netapi32" fn NetDfsRemoveRootTarget(
 pub extern "netapi32" fn NetDfsGetSecurity(
     DfsEntryPath: ?PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -443,14 +448,14 @@ pub extern "netapi32" fn NetDfsGetSecurity(
 pub extern "netapi32" fn NetDfsSetSecurity(
     DfsEntryPath: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn NetDfsGetStdContainerSecurity(
     MachineName: ?PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -458,14 +463,14 @@ pub extern "netapi32" fn NetDfsGetStdContainerSecurity(
 pub extern "netapi32" fn NetDfsSetStdContainerSecurity(
     MachineName: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "netapi32" fn NetDfsGetFtContainerSecurity(
     DomainName: ?PWSTR,
     SecurityInformation: u32,
-    ppSecurityDescriptor: ?*?*SECURITY_DESCRIPTOR,
+    ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
@@ -473,7 +478,7 @@ pub extern "netapi32" fn NetDfsGetFtContainerSecurity(
 pub extern "netapi32" fn NetDfsSetFtContainerSecurity(
     DomainName: ?PWSTR,
     SecurityInformation: u32,
-    pSecurityDescriptor: ?*SECURITY_DESCRIPTOR,
+    pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
@@ -483,30 +488,25 @@ pub extern "netapi32" fn NetDfsGetSupportedNamespaceVersion(
     ppVersionInfo: ?*?*DFS_SUPPORTED_NAMESPACE_VERSION_INFO,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (3)
 //--------------------------------------------------------------------------------
 const Guid = @import("../zig.zig").Guid;
+const PSECURITY_DESCRIPTOR = @import("../security.zig").PSECURITY_DESCRIPTOR;
 const PWSTR = @import("../foundation.zig").PWSTR;
-const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

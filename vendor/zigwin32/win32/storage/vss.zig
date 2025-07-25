@@ -488,133 +488,73 @@ pub const VSS_OBJECT_PROP = extern struct {
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVssEnumObject_Value = Guid.initString("ae1c7110-2f60-11d3-8a39-00c04f72d8e3");
 pub const IID_IVssEnumObject = &IID_IVssEnumObject_Value;
-pub const IVssEnumObject = extern struct {
+pub const IVssEnumObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumObject,
-                celt: u32,
-                rgelt: [*]VSS_OBJECT_PROP,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumObject,
-                celt: u32,
-                rgelt: [*]VSS_OBJECT_PROP,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumObject,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumObject,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumObject,
-                ppenum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumObject,
-                ppenum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IVssEnumObject,
+            celt: u32,
+            rgelt: [*]VSS_OBJECT_PROP,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IVssEnumObject,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IVssEnumObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IVssEnumObject,
+            ppenum: ?*?*IVssEnumObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumObject_Next(self: *const T, celt: u32, rgelt: [*]VSS_OBJECT_PROP, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IVssEnumObject, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumObject_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IVssEnumObject, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumObject_Reset(self: *const T) HRESULT {
-                return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVssEnumObject, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumObject_Clone(self: *const T, ppenum: ?*?*IVssEnumObject) HRESULT {
-                return @as(*const IVssEnumObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IVssEnumObject, @ptrCast(self)), ppenum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IVssEnumObject, celt: u32, rgelt: [*]VSS_OBJECT_PROP, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IVssEnumObject, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IVssEnumObject) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IVssEnumObject, ppenum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 const IID_IVssAsync_Value = Guid.initString("507c37b4-cf5b-4e95-b0af-14eb9767467e");
 pub const IID_IVssAsync = &IID_IVssAsync_Value;
-pub const IVssAsync = extern struct {
+pub const IVssAsync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Wait: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAsync,
-                dwMilliseconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAsync,
-                dwMilliseconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAsync,
-                pHrResult: ?*HRESULT,
-                pReserved: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAsync,
-                pHrResult: ?*HRESULT,
-                pReserved: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Cancel: *const fn(
+            self: *const IVssAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Wait: *const fn(
+            self: *const IVssAsync,
+            dwMilliseconds: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryStatus: *const fn(
+            self: *const IVssAsync,
+            pHrResult: ?*HRESULT,
+            pReserved: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAsync_Cancel(self: *const T) HRESULT {
-                return @as(*const IVssAsync.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IVssAsync, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAsync_Wait(self: *const T, dwMilliseconds: u32) HRESULT {
-                return @as(*const IVssAsync.VTable, @ptrCast(self.vtable)).Wait(@as(*const IVssAsync, @ptrCast(self)), dwMilliseconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAsync_QueryStatus(self: *const T, pHrResult: ?*HRESULT, pReserved: ?*i32) HRESULT {
-                return @as(*const IVssAsync.VTable, @ptrCast(self.vtable)).QueryStatus(@as(*const IVssAsync, @ptrCast(self)), pHrResult, pReserved);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Cancel(self: *const IVssAsync) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Wait(self: *const IVssAsync, dwMilliseconds: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Wait(self, dwMilliseconds);
+    }
+    pub fn QueryStatus(self: *const IVssAsync, pHrResult: ?*HRESULT, pReserved: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.QueryStatus(self, pHrResult, pReserved);
+    }
 };
 
 pub const VSS_USAGE_TYPE = enum(i32) {
@@ -743,1814 +683,930 @@ pub const IVssExamineWriterMetadata = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const IVssWMFiledesc = extern struct {
+pub const IVssWMFiledesc = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMFiledesc,
-                pbstrPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMFiledesc,
-                pbstrPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilespec: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMFiledesc,
-                pbstrFilespec: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMFiledesc,
-                pbstrFilespec: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecursive: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMFiledesc,
-                pbRecursive: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMFiledesc,
-                pbRecursive: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAlternateLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMFiledesc,
-                pbstrAlternateLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMFiledesc,
-                pbstrAlternateLocation: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBackupTypeMask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMFiledesc,
-                pdwTypeMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMFiledesc,
-                pdwTypeMask: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPath: *const fn(
+            self: *const IVssWMFiledesc,
+            pbstrPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilespec: *const fn(
+            self: *const IVssWMFiledesc,
+            pbstrFilespec: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecursive: *const fn(
+            self: *const IVssWMFiledesc,
+            pbRecursive: ?*bool,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAlternateLocation: *const fn(
+            self: *const IVssWMFiledesc,
+            pbstrAlternateLocation: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBackupTypeMask: *const fn(
+            self: *const IVssWMFiledesc,
+            pdwTypeMask: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMFiledesc_GetPath(self: *const T, pbstrPath: ?*?BSTR) HRESULT {
-                return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetPath(@as(*const IVssWMFiledesc, @ptrCast(self)), pbstrPath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMFiledesc_GetFilespec(self: *const T, pbstrFilespec: ?*?BSTR) HRESULT {
-                return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetFilespec(@as(*const IVssWMFiledesc, @ptrCast(self)), pbstrFilespec);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMFiledesc_GetRecursive(self: *const T, pbRecursive: ?*bool) HRESULT {
-                return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetRecursive(@as(*const IVssWMFiledesc, @ptrCast(self)), pbRecursive);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMFiledesc_GetAlternateLocation(self: *const T, pbstrAlternateLocation: ?*?BSTR) HRESULT {
-                return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetAlternateLocation(@as(*const IVssWMFiledesc, @ptrCast(self)), pbstrAlternateLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMFiledesc_GetBackupTypeMask(self: *const T, pdwTypeMask: ?*u32) HRESULT {
-                return @as(*const IVssWMFiledesc.VTable, @ptrCast(self.vtable)).GetBackupTypeMask(@as(*const IVssWMFiledesc, @ptrCast(self)), pdwTypeMask);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetPath(self: *const IVssWMFiledesc, pbstrPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPath(self, pbstrPath);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFilespec(self: *const IVssWMFiledesc, pbstrFilespec: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilespec(self, pbstrFilespec);
+    }
+    pub fn GetRecursive(self: *const IVssWMFiledesc, pbRecursive: ?*bool) callconv(.Inline) HRESULT {
+        return self.vtable.GetRecursive(self, pbRecursive);
+    }
+    pub fn GetAlternateLocation(self: *const IVssWMFiledesc, pbstrAlternateLocation: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetAlternateLocation(self, pbstrAlternateLocation);
+    }
+    pub fn GetBackupTypeMask(self: *const IVssWMFiledesc, pdwTypeMask: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetBackupTypeMask(self, pdwTypeMask);
+    }
 };
 
-pub const IVssWMDependency = extern struct {
+pub const IVssWMDependency = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWriterId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMDependency,
-                pWriterId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMDependency,
-                pWriterId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLogicalPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMDependency,
-                pbstrLogicalPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMDependency,
-                pbstrLogicalPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetComponentName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWMDependency,
-                pbstrComponentName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWMDependency,
-                pbstrComponentName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetWriterId: *const fn(
+            self: *const IVssWMDependency,
+            pWriterId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLogicalPath: *const fn(
+            self: *const IVssWMDependency,
+            pbstrLogicalPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetComponentName: *const fn(
+            self: *const IVssWMDependency,
+            pbstrComponentName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMDependency_GetWriterId(self: *const T, pWriterId: ?*Guid) HRESULT {
-                return @as(*const IVssWMDependency.VTable, @ptrCast(self.vtable)).GetWriterId(@as(*const IVssWMDependency, @ptrCast(self)), pWriterId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMDependency_GetLogicalPath(self: *const T, pbstrLogicalPath: ?*?BSTR) HRESULT {
-                return @as(*const IVssWMDependency.VTable, @ptrCast(self.vtable)).GetLogicalPath(@as(*const IVssWMDependency, @ptrCast(self)), pbstrLogicalPath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWMDependency_GetComponentName(self: *const T, pbstrComponentName: ?*?BSTR) HRESULT {
-                return @as(*const IVssWMDependency.VTable, @ptrCast(self.vtable)).GetComponentName(@as(*const IVssWMDependency, @ptrCast(self)), pbstrComponentName);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetWriterId(self: *const IVssWMDependency, pWriterId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetWriterId(self, pWriterId);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetLogicalPath(self: *const IVssWMDependency, pbstrLogicalPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetLogicalPath(self, pbstrLogicalPath);
+    }
+    pub fn GetComponentName(self: *const IVssWMDependency, pbstrComponentName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetComponentName(self, pbstrComponentName);
+    }
 };
 
 const IID_IVssComponent_Value = Guid.initString("d2c72c96-c121-4518-b627-e5a93d010ead");
 pub const IID_IVssComponent = &IID_IVssComponent_Value;
-pub const IVssComponent = extern struct {
+pub const IVssComponent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLogicalPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetComponentType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pct: ?*VSS_COMPONENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pct: ?*VSS_COMPONENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetComponentName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBackupSucceeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbSucceeded: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbSucceeded: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAlternateLocationMappingCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pcMappings: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pcMappings: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAlternateLocationMapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                iMapping: u32,
-                ppFiledesc: ?*?*IVssWMFiledesc,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                iMapping: u32,
-                ppFiledesc: ?*?*IVssWMFiledesc,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBackupMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBackupMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrData: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrData: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddPartialFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszPath: ?[*:0]const u16,
-                wszFilename: ?[*:0]const u16,
-                wszRanges: ?[*:0]const u16,
-                wszMetadata: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszPath: ?[*:0]const u16,
-                wszFilename: ?[*:0]const u16,
-                wszRanges: ?[*:0]const u16,
-                wszMetadata: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPartialFileCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pcPartialFiles: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pcPartialFiles: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPartialFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                iPartialFile: u32,
-                pbstrPath: ?*?BSTR,
-                pbstrFilename: ?*?BSTR,
-                pbstrRange: ?*?BSTR,
-                pbstrMetadata: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                iPartialFile: u32,
-                pbstrPath: ?*?BSTR,
-                pbstrFilename: ?*?BSTR,
-                pbstrRange: ?*?BSTR,
-                pbstrMetadata: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsSelectedForRestore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbSelectedForRestore: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbSelectedForRestore: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAdditionalRestores: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbAdditionalRestores: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbAdditionalRestores: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNewTargetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pcNewTarget: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pcNewTarget: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNewTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                iNewTarget: u32,
-                ppFiledesc: ?*?*IVssWMFiledesc,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                iNewTarget: u32,
-                ppFiledesc: ?*?*IVssWMFiledesc,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddDirectedTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszSourcePath: ?[*:0]const u16,
-                wszSourceFilename: ?[*:0]const u16,
-                wszSourceRangeList: ?[*:0]const u16,
-                wszDestinationPath: ?[*:0]const u16,
-                wszDestinationFilename: ?[*:0]const u16,
-                wszDestinationRangeList: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszSourcePath: ?[*:0]const u16,
-                wszSourceFilename: ?[*:0]const u16,
-                wszSourceRangeList: ?[*:0]const u16,
-                wszDestinationPath: ?[*:0]const u16,
-                wszDestinationFilename: ?[*:0]const u16,
-                wszDestinationRangeList: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDirectedTargetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pcDirectedTarget: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pcDirectedTarget: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDirectedTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                iDirectedTarget: u32,
-                pbstrSourcePath: ?*?BSTR,
-                pbstrSourceFileName: ?*?BSTR,
-                pbstrSourceRangeList: ?*?BSTR,
-                pbstrDestinationPath: ?*?BSTR,
-                pbstrDestinationFilename: ?*?BSTR,
-                pbstrDestinationRangeList: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                iDirectedTarget: u32,
-                pbstrSourcePath: ?*?BSTR,
-                pbstrSourceFileName: ?*?BSTR,
-                pbstrSourceRangeList: ?*?BSTR,
-                pbstrDestinationPath: ?*?BSTR,
-                pbstrDestinationFilename: ?*?BSTR,
-                pbstrDestinationRangeList: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRestoreMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszRestoreMetadata: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszRestoreMetadata: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestoreMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrRestoreMetadata: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrRestoreMetadata: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRestoreTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                target: VSS_RESTORE_TARGET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                target: VSS_RESTORE_TARGET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestoreTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pTarget: ?*VSS_RESTORE_TARGET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pTarget: ?*VSS_RESTORE_TARGET,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPreRestoreFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszPreRestoreFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszPreRestoreFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPreRestoreFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrPreRestoreFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrPreRestoreFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPostRestoreFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszPostRestoreFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszPostRestoreFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPostRestoreFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrPostRestoreFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrPostRestoreFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBackupStamp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszBackupStamp: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszBackupStamp: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBackupStamp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrBackupStamp: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrBackupStamp: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPreviousBackupStamp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrBackupStamp: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrBackupStamp: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBackupOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrBackupOptions: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrBackupOptions: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestoreOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pbstrRestoreOptions: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pbstrRestoreOptions: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestoreSubcomponentCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pcRestoreSubcomponent: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pcRestoreSubcomponent: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestoreSubcomponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                iComponent: u32,
-                pbstrLogicalPath: ?*?BSTR,
-                pbstrComponentName: ?*?BSTR,
-                pbRepair: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                iComponent: u32,
-                pbstrLogicalPath: ?*?BSTR,
-                pbstrComponentName: ?*?BSTR,
-                pbRepair: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileRestoreStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pStatus: ?*VSS_FILE_RESTORE_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pStatus: ?*VSS_FILE_RESTORE_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddDifferencedFilesByLastModifyTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: BOOL,
-                ftLastModifyTime: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: BOOL,
-                ftLastModifyTime: FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddDifferencedFilesByLastModifyLSN: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: BOOL,
-                bstrLsnString: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: BOOL,
-                bstrLsnString: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDifferencedFilesCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                pcDifferencedFiles: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                pcDifferencedFiles: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDifferencedFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponent,
-                iDifferencedFile: u32,
-                pbstrPath: ?*?BSTR,
-                pbstrFilespec: ?*?BSTR,
-                pbRecursive: ?*BOOL,
-                pbstrLsnString: ?*?BSTR,
-                pftLastModifyTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponent,
-                iDifferencedFile: u32,
-                pbstrPath: ?*?BSTR,
-                pbstrFilespec: ?*?BSTR,
-                pbRecursive: ?*BOOL,
-                pbstrLsnString: ?*?BSTR,
-                pftLastModifyTime: ?*FILETIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetLogicalPath: *const fn(
+            self: *const IVssComponent,
+            pbstrPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetComponentType: *const fn(
+            self: *const IVssComponent,
+            pct: ?*VSS_COMPONENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetComponentName: *const fn(
+            self: *const IVssComponent,
+            pbstrName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBackupSucceeded: *const fn(
+            self: *const IVssComponent,
+            pbSucceeded: ?*bool,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAlternateLocationMappingCount: *const fn(
+            self: *const IVssComponent,
+            pcMappings: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAlternateLocationMapping: *const fn(
+            self: *const IVssComponent,
+            iMapping: u32,
+            ppFiledesc: ?*?*IVssWMFiledesc,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBackupMetadata: *const fn(
+            self: *const IVssComponent,
+            wszData: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBackupMetadata: *const fn(
+            self: *const IVssComponent,
+            pbstrData: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddPartialFile: *const fn(
+            self: *const IVssComponent,
+            wszPath: ?[*:0]const u16,
+            wszFilename: ?[*:0]const u16,
+            wszRanges: ?[*:0]const u16,
+            wszMetadata: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPartialFileCount: *const fn(
+            self: *const IVssComponent,
+            pcPartialFiles: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPartialFile: *const fn(
+            self: *const IVssComponent,
+            iPartialFile: u32,
+            pbstrPath: ?*?BSTR,
+            pbstrFilename: ?*?BSTR,
+            pbstrRange: ?*?BSTR,
+            pbstrMetadata: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsSelectedForRestore: *const fn(
+            self: *const IVssComponent,
+            pbSelectedForRestore: ?*bool,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAdditionalRestores: *const fn(
+            self: *const IVssComponent,
+            pbAdditionalRestores: ?*bool,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNewTargetCount: *const fn(
+            self: *const IVssComponent,
+            pcNewTarget: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNewTarget: *const fn(
+            self: *const IVssComponent,
+            iNewTarget: u32,
+            ppFiledesc: ?*?*IVssWMFiledesc,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDirectedTarget: *const fn(
+            self: *const IVssComponent,
+            wszSourcePath: ?[*:0]const u16,
+            wszSourceFilename: ?[*:0]const u16,
+            wszSourceRangeList: ?[*:0]const u16,
+            wszDestinationPath: ?[*:0]const u16,
+            wszDestinationFilename: ?[*:0]const u16,
+            wszDestinationRangeList: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDirectedTargetCount: *const fn(
+            self: *const IVssComponent,
+            pcDirectedTarget: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDirectedTarget: *const fn(
+            self: *const IVssComponent,
+            iDirectedTarget: u32,
+            pbstrSourcePath: ?*?BSTR,
+            pbstrSourceFileName: ?*?BSTR,
+            pbstrSourceRangeList: ?*?BSTR,
+            pbstrDestinationPath: ?*?BSTR,
+            pbstrDestinationFilename: ?*?BSTR,
+            pbstrDestinationRangeList: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRestoreMetadata: *const fn(
+            self: *const IVssComponent,
+            wszRestoreMetadata: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestoreMetadata: *const fn(
+            self: *const IVssComponent,
+            pbstrRestoreMetadata: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRestoreTarget: *const fn(
+            self: *const IVssComponent,
+            target: VSS_RESTORE_TARGET,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestoreTarget: *const fn(
+            self: *const IVssComponent,
+            pTarget: ?*VSS_RESTORE_TARGET,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPreRestoreFailureMsg: *const fn(
+            self: *const IVssComponent,
+            wszPreRestoreFailureMsg: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPreRestoreFailureMsg: *const fn(
+            self: *const IVssComponent,
+            pbstrPreRestoreFailureMsg: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPostRestoreFailureMsg: *const fn(
+            self: *const IVssComponent,
+            wszPostRestoreFailureMsg: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPostRestoreFailureMsg: *const fn(
+            self: *const IVssComponent,
+            pbstrPostRestoreFailureMsg: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBackupStamp: *const fn(
+            self: *const IVssComponent,
+            wszBackupStamp: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBackupStamp: *const fn(
+            self: *const IVssComponent,
+            pbstrBackupStamp: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPreviousBackupStamp: *const fn(
+            self: *const IVssComponent,
+            pbstrBackupStamp: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBackupOptions: *const fn(
+            self: *const IVssComponent,
+            pbstrBackupOptions: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestoreOptions: *const fn(
+            self: *const IVssComponent,
+            pbstrRestoreOptions: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestoreSubcomponentCount: *const fn(
+            self: *const IVssComponent,
+            pcRestoreSubcomponent: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestoreSubcomponent: *const fn(
+            self: *const IVssComponent,
+            iComponent: u32,
+            pbstrLogicalPath: ?*?BSTR,
+            pbstrComponentName: ?*?BSTR,
+            pbRepair: ?*bool,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileRestoreStatus: *const fn(
+            self: *const IVssComponent,
+            pStatus: ?*VSS_FILE_RESTORE_STATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDifferencedFilesByLastModifyTime: *const fn(
+            self: *const IVssComponent,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: BOOL,
+            ftLastModifyTime: FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDifferencedFilesByLastModifyLSN: *const fn(
+            self: *const IVssComponent,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: BOOL,
+            bstrLsnString: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDifferencedFilesCount: *const fn(
+            self: *const IVssComponent,
+            pcDifferencedFiles: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDifferencedFile: *const fn(
+            self: *const IVssComponent,
+            iDifferencedFile: u32,
+            pbstrPath: ?*?BSTR,
+            pbstrFilespec: ?*?BSTR,
+            pbRecursive: ?*BOOL,
+            pbstrLsnString: ?*?BSTR,
+            pftLastModifyTime: ?*FILETIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetLogicalPath(self: *const T, pbstrPath: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetLogicalPath(@as(*const IVssComponent, @ptrCast(self)), pbstrPath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetComponentType(self: *const T, pct: ?*VSS_COMPONENT_TYPE) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetComponentType(@as(*const IVssComponent, @ptrCast(self)), pct);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetComponentName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetComponentName(@as(*const IVssComponent, @ptrCast(self)), pbstrName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetBackupSucceeded(self: *const T, pbSucceeded: ?*bool) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupSucceeded(@as(*const IVssComponent, @ptrCast(self)), pbSucceeded);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetAlternateLocationMappingCount(self: *const T, pcMappings: ?*u32) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetAlternateLocationMappingCount(@as(*const IVssComponent, @ptrCast(self)), pcMappings);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetAlternateLocationMapping(self: *const T, iMapping: u32, ppFiledesc: ?*?*IVssWMFiledesc) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetAlternateLocationMapping(@as(*const IVssComponent, @ptrCast(self)), iMapping, ppFiledesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_SetBackupMetadata(self: *const T, wszData: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetBackupMetadata(@as(*const IVssComponent, @ptrCast(self)), wszData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetBackupMetadata(self: *const T, pbstrData: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupMetadata(@as(*const IVssComponent, @ptrCast(self)), pbstrData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_AddPartialFile(self: *const T, wszPath: ?[*:0]const u16, wszFilename: ?[*:0]const u16, wszRanges: ?[*:0]const u16, wszMetadata: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddPartialFile(@as(*const IVssComponent, @ptrCast(self)), wszPath, wszFilename, wszRanges, wszMetadata);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetPartialFileCount(self: *const T, pcPartialFiles: ?*u32) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPartialFileCount(@as(*const IVssComponent, @ptrCast(self)), pcPartialFiles);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetPartialFile(self: *const T, iPartialFile: u32, pbstrPath: ?*?BSTR, pbstrFilename: ?*?BSTR, pbstrRange: ?*?BSTR, pbstrMetadata: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPartialFile(@as(*const IVssComponent, @ptrCast(self)), iPartialFile, pbstrPath, pbstrFilename, pbstrRange, pbstrMetadata);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_IsSelectedForRestore(self: *const T, pbSelectedForRestore: ?*bool) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).IsSelectedForRestore(@as(*const IVssComponent, @ptrCast(self)), pbSelectedForRestore);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetAdditionalRestores(self: *const T, pbAdditionalRestores: ?*bool) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetAdditionalRestores(@as(*const IVssComponent, @ptrCast(self)), pbAdditionalRestores);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetNewTargetCount(self: *const T, pcNewTarget: ?*u32) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetNewTargetCount(@as(*const IVssComponent, @ptrCast(self)), pcNewTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetNewTarget(self: *const T, iNewTarget: u32, ppFiledesc: ?*?*IVssWMFiledesc) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetNewTarget(@as(*const IVssComponent, @ptrCast(self)), iNewTarget, ppFiledesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_AddDirectedTarget(self: *const T, wszSourcePath: ?[*:0]const u16, wszSourceFilename: ?[*:0]const u16, wszSourceRangeList: ?[*:0]const u16, wszDestinationPath: ?[*:0]const u16, wszDestinationFilename: ?[*:0]const u16, wszDestinationRangeList: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddDirectedTarget(@as(*const IVssComponent, @ptrCast(self)), wszSourcePath, wszSourceFilename, wszSourceRangeList, wszDestinationPath, wszDestinationFilename, wszDestinationRangeList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetDirectedTargetCount(self: *const T, pcDirectedTarget: ?*u32) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDirectedTargetCount(@as(*const IVssComponent, @ptrCast(self)), pcDirectedTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetDirectedTarget(self: *const T, iDirectedTarget: u32, pbstrSourcePath: ?*?BSTR, pbstrSourceFileName: ?*?BSTR, pbstrSourceRangeList: ?*?BSTR, pbstrDestinationPath: ?*?BSTR, pbstrDestinationFilename: ?*?BSTR, pbstrDestinationRangeList: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDirectedTarget(@as(*const IVssComponent, @ptrCast(self)), iDirectedTarget, pbstrSourcePath, pbstrSourceFileName, pbstrSourceRangeList, pbstrDestinationPath, pbstrDestinationFilename, pbstrDestinationRangeList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_SetRestoreMetadata(self: *const T, wszRestoreMetadata: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetRestoreMetadata(@as(*const IVssComponent, @ptrCast(self)), wszRestoreMetadata);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetRestoreMetadata(self: *const T, pbstrRestoreMetadata: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreMetadata(@as(*const IVssComponent, @ptrCast(self)), pbstrRestoreMetadata);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_SetRestoreTarget(self: *const T, target: VSS_RESTORE_TARGET) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetRestoreTarget(@as(*const IVssComponent, @ptrCast(self)), target);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetRestoreTarget(self: *const T, pTarget: ?*VSS_RESTORE_TARGET) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreTarget(@as(*const IVssComponent, @ptrCast(self)), pTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_SetPreRestoreFailureMsg(self: *const T, wszPreRestoreFailureMsg: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetPreRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), wszPreRestoreFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetPreRestoreFailureMsg(self: *const T, pbstrPreRestoreFailureMsg: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPreRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), pbstrPreRestoreFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_SetPostRestoreFailureMsg(self: *const T, wszPostRestoreFailureMsg: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetPostRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), wszPostRestoreFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetPostRestoreFailureMsg(self: *const T, pbstrPostRestoreFailureMsg: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPostRestoreFailureMsg(@as(*const IVssComponent, @ptrCast(self)), pbstrPostRestoreFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_SetBackupStamp(self: *const T, wszBackupStamp: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).SetBackupStamp(@as(*const IVssComponent, @ptrCast(self)), wszBackupStamp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetBackupStamp(self: *const T, pbstrBackupStamp: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupStamp(@as(*const IVssComponent, @ptrCast(self)), pbstrBackupStamp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetPreviousBackupStamp(self: *const T, pbstrBackupStamp: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetPreviousBackupStamp(@as(*const IVssComponent, @ptrCast(self)), pbstrBackupStamp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetBackupOptions(self: *const T, pbstrBackupOptions: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetBackupOptions(@as(*const IVssComponent, @ptrCast(self)), pbstrBackupOptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetRestoreOptions(self: *const T, pbstrRestoreOptions: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreOptions(@as(*const IVssComponent, @ptrCast(self)), pbstrRestoreOptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetRestoreSubcomponentCount(self: *const T, pcRestoreSubcomponent: ?*u32) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreSubcomponentCount(@as(*const IVssComponent, @ptrCast(self)), pcRestoreSubcomponent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetRestoreSubcomponent(self: *const T, iComponent: u32, pbstrLogicalPath: ?*?BSTR, pbstrComponentName: ?*?BSTR, pbRepair: ?*bool) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetRestoreSubcomponent(@as(*const IVssComponent, @ptrCast(self)), iComponent, pbstrLogicalPath, pbstrComponentName, pbRepair);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetFileRestoreStatus(self: *const T, pStatus: ?*VSS_FILE_RESTORE_STATUS) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetFileRestoreStatus(@as(*const IVssComponent, @ptrCast(self)), pStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_AddDifferencedFilesByLastModifyTime(self: *const T, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: BOOL, ftLastModifyTime: FILETIME) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddDifferencedFilesByLastModifyTime(@as(*const IVssComponent, @ptrCast(self)), wszPath, wszFilespec, bRecursive, ftLastModifyTime);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_AddDifferencedFilesByLastModifyLSN(self: *const T, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: BOOL, bstrLsnString: ?BSTR) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).AddDifferencedFilesByLastModifyLSN(@as(*const IVssComponent, @ptrCast(self)), wszPath, wszFilespec, bRecursive, bstrLsnString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetDifferencedFilesCount(self: *const T, pcDifferencedFiles: ?*u32) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDifferencedFilesCount(@as(*const IVssComponent, @ptrCast(self)), pcDifferencedFiles);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponent_GetDifferencedFile(self: *const T, iDifferencedFile: u32, pbstrPath: ?*?BSTR, pbstrFilespec: ?*?BSTR, pbRecursive: ?*BOOL, pbstrLsnString: ?*?BSTR, pftLastModifyTime: ?*FILETIME) HRESULT {
-                return @as(*const IVssComponent.VTable, @ptrCast(self.vtable)).GetDifferencedFile(@as(*const IVssComponent, @ptrCast(self)), iDifferencedFile, pbstrPath, pbstrFilespec, pbRecursive, pbstrLsnString, pftLastModifyTime);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetLogicalPath(self: *const IVssComponent, pbstrPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetLogicalPath(self, pbstrPath);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetComponentType(self: *const IVssComponent, pct: ?*VSS_COMPONENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetComponentType(self, pct);
+    }
+    pub fn GetComponentName(self: *const IVssComponent, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetComponentName(self, pbstrName);
+    }
+    pub fn GetBackupSucceeded(self: *const IVssComponent, pbSucceeded: ?*bool) callconv(.Inline) HRESULT {
+        return self.vtable.GetBackupSucceeded(self, pbSucceeded);
+    }
+    pub fn GetAlternateLocationMappingCount(self: *const IVssComponent, pcMappings: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetAlternateLocationMappingCount(self, pcMappings);
+    }
+    pub fn GetAlternateLocationMapping(self: *const IVssComponent, iMapping: u32, ppFiledesc: ?*?*IVssWMFiledesc) callconv(.Inline) HRESULT {
+        return self.vtable.GetAlternateLocationMapping(self, iMapping, ppFiledesc);
+    }
+    pub fn SetBackupMetadata(self: *const IVssComponent, wszData: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetBackupMetadata(self, wszData);
+    }
+    pub fn GetBackupMetadata(self: *const IVssComponent, pbstrData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetBackupMetadata(self, pbstrData);
+    }
+    pub fn AddPartialFile(self: *const IVssComponent, wszPath: ?[*:0]const u16, wszFilename: ?[*:0]const u16, wszRanges: ?[*:0]const u16, wszMetadata: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.AddPartialFile(self, wszPath, wszFilename, wszRanges, wszMetadata);
+    }
+    pub fn GetPartialFileCount(self: *const IVssComponent, pcPartialFiles: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetPartialFileCount(self, pcPartialFiles);
+    }
+    pub fn GetPartialFile(self: *const IVssComponent, iPartialFile: u32, pbstrPath: ?*?BSTR, pbstrFilename: ?*?BSTR, pbstrRange: ?*?BSTR, pbstrMetadata: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPartialFile(self, iPartialFile, pbstrPath, pbstrFilename, pbstrRange, pbstrMetadata);
+    }
+    pub fn IsSelectedForRestore(self: *const IVssComponent, pbSelectedForRestore: ?*bool) callconv(.Inline) HRESULT {
+        return self.vtable.IsSelectedForRestore(self, pbSelectedForRestore);
+    }
+    pub fn GetAdditionalRestores(self: *const IVssComponent, pbAdditionalRestores: ?*bool) callconv(.Inline) HRESULT {
+        return self.vtable.GetAdditionalRestores(self, pbAdditionalRestores);
+    }
+    pub fn GetNewTargetCount(self: *const IVssComponent, pcNewTarget: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetNewTargetCount(self, pcNewTarget);
+    }
+    pub fn GetNewTarget(self: *const IVssComponent, iNewTarget: u32, ppFiledesc: ?*?*IVssWMFiledesc) callconv(.Inline) HRESULT {
+        return self.vtable.GetNewTarget(self, iNewTarget, ppFiledesc);
+    }
+    pub fn AddDirectedTarget(self: *const IVssComponent, wszSourcePath: ?[*:0]const u16, wszSourceFilename: ?[*:0]const u16, wszSourceRangeList: ?[*:0]const u16, wszDestinationPath: ?[*:0]const u16, wszDestinationFilename: ?[*:0]const u16, wszDestinationRangeList: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.AddDirectedTarget(self, wszSourcePath, wszSourceFilename, wszSourceRangeList, wszDestinationPath, wszDestinationFilename, wszDestinationRangeList);
+    }
+    pub fn GetDirectedTargetCount(self: *const IVssComponent, pcDirectedTarget: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDirectedTargetCount(self, pcDirectedTarget);
+    }
+    pub fn GetDirectedTarget(self: *const IVssComponent, iDirectedTarget: u32, pbstrSourcePath: ?*?BSTR, pbstrSourceFileName: ?*?BSTR, pbstrSourceRangeList: ?*?BSTR, pbstrDestinationPath: ?*?BSTR, pbstrDestinationFilename: ?*?BSTR, pbstrDestinationRangeList: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetDirectedTarget(self, iDirectedTarget, pbstrSourcePath, pbstrSourceFileName, pbstrSourceRangeList, pbstrDestinationPath, pbstrDestinationFilename, pbstrDestinationRangeList);
+    }
+    pub fn SetRestoreMetadata(self: *const IVssComponent, wszRestoreMetadata: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetRestoreMetadata(self, wszRestoreMetadata);
+    }
+    pub fn GetRestoreMetadata(self: *const IVssComponent, pbstrRestoreMetadata: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestoreMetadata(self, pbstrRestoreMetadata);
+    }
+    pub fn SetRestoreTarget(self: *const IVssComponent, target: VSS_RESTORE_TARGET) callconv(.Inline) HRESULT {
+        return self.vtable.SetRestoreTarget(self, target);
+    }
+    pub fn GetRestoreTarget(self: *const IVssComponent, pTarget: ?*VSS_RESTORE_TARGET) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestoreTarget(self, pTarget);
+    }
+    pub fn SetPreRestoreFailureMsg(self: *const IVssComponent, wszPreRestoreFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetPreRestoreFailureMsg(self, wszPreRestoreFailureMsg);
+    }
+    pub fn GetPreRestoreFailureMsg(self: *const IVssComponent, pbstrPreRestoreFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPreRestoreFailureMsg(self, pbstrPreRestoreFailureMsg);
+    }
+    pub fn SetPostRestoreFailureMsg(self: *const IVssComponent, wszPostRestoreFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetPostRestoreFailureMsg(self, wszPostRestoreFailureMsg);
+    }
+    pub fn GetPostRestoreFailureMsg(self: *const IVssComponent, pbstrPostRestoreFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPostRestoreFailureMsg(self, pbstrPostRestoreFailureMsg);
+    }
+    pub fn SetBackupStamp(self: *const IVssComponent, wszBackupStamp: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetBackupStamp(self, wszBackupStamp);
+    }
+    pub fn GetBackupStamp(self: *const IVssComponent, pbstrBackupStamp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetBackupStamp(self, pbstrBackupStamp);
+    }
+    pub fn GetPreviousBackupStamp(self: *const IVssComponent, pbstrBackupStamp: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPreviousBackupStamp(self, pbstrBackupStamp);
+    }
+    pub fn GetBackupOptions(self: *const IVssComponent, pbstrBackupOptions: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetBackupOptions(self, pbstrBackupOptions);
+    }
+    pub fn GetRestoreOptions(self: *const IVssComponent, pbstrRestoreOptions: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestoreOptions(self, pbstrRestoreOptions);
+    }
+    pub fn GetRestoreSubcomponentCount(self: *const IVssComponent, pcRestoreSubcomponent: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestoreSubcomponentCount(self, pcRestoreSubcomponent);
+    }
+    pub fn GetRestoreSubcomponent(self: *const IVssComponent, iComponent: u32, pbstrLogicalPath: ?*?BSTR, pbstrComponentName: ?*?BSTR, pbRepair: ?*bool) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestoreSubcomponent(self, iComponent, pbstrLogicalPath, pbstrComponentName, pbRepair);
+    }
+    pub fn GetFileRestoreStatus(self: *const IVssComponent, pStatus: ?*VSS_FILE_RESTORE_STATUS) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileRestoreStatus(self, pStatus);
+    }
+    pub fn AddDifferencedFilesByLastModifyTime(self: *const IVssComponent, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: BOOL, ftLastModifyTime: FILETIME) callconv(.Inline) HRESULT {
+        return self.vtable.AddDifferencedFilesByLastModifyTime(self, wszPath, wszFilespec, bRecursive, ftLastModifyTime);
+    }
+    pub fn AddDifferencedFilesByLastModifyLSN(self: *const IVssComponent, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: BOOL, bstrLsnString: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.AddDifferencedFilesByLastModifyLSN(self, wszPath, wszFilespec, bRecursive, bstrLsnString);
+    }
+    pub fn GetDifferencedFilesCount(self: *const IVssComponent, pcDifferencedFiles: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDifferencedFilesCount(self, pcDifferencedFiles);
+    }
+    pub fn GetDifferencedFile(self: *const IVssComponent, iDifferencedFile: u32, pbstrPath: ?*?BSTR, pbstrFilespec: ?*?BSTR, pbRecursive: ?*BOOL, pbstrLsnString: ?*?BSTR, pftLastModifyTime: ?*FILETIME) callconv(.Inline) HRESULT {
+        return self.vtable.GetDifferencedFile(self, iDifferencedFile, pbstrPath, pbstrFilespec, pbRecursive, pbstrLsnString, pftLastModifyTime);
+    }
 };
 
-pub const IVssWriterComponents = extern struct {
+pub const IVssWriterComponents = extern union {
     pub const VTable = extern struct {
-        GetComponentCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterComponents,
-                pcComponents: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterComponents,
-                pcComponents: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWriterInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterComponents,
-                pidInstance: ?*Guid,
-                pidWriter: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterComponents,
-                pidInstance: ?*Guid,
-                pidWriter: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterComponents,
-                iComponent: u32,
-                ppComponent: ?*?*IVssComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterComponents,
-                iComponent: u32,
-                ppComponent: ?*?*IVssComponent,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetComponentCount: *const fn(
+            self: *const IVssWriterComponents,
+            pcComponents: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWriterInfo: *const fn(
+            self: *const IVssWriterComponents,
+            pidInstance: ?*Guid,
+            pidWriter: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetComponent: *const fn(
+            self: *const IVssWriterComponents,
+            iComponent: u32,
+            ppComponent: ?*?*IVssComponent,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterComponents_GetComponentCount(self: *const T, pcComponents: ?*u32) HRESULT {
-                return @as(*const IVssWriterComponents.VTable, @ptrCast(self.vtable)).GetComponentCount(@as(*const IVssWriterComponents, @ptrCast(self)), pcComponents);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterComponents_GetWriterInfo(self: *const T, pidInstance: ?*Guid, pidWriter: ?*Guid) HRESULT {
-                return @as(*const IVssWriterComponents.VTable, @ptrCast(self.vtable)).GetWriterInfo(@as(*const IVssWriterComponents, @ptrCast(self)), pidInstance, pidWriter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterComponents_GetComponent(self: *const T, iComponent: u32, ppComponent: ?*?*IVssComponent) HRESULT {
-                return @as(*const IVssWriterComponents.VTable, @ptrCast(self.vtable)).GetComponent(@as(*const IVssWriterComponents, @ptrCast(self)), iComponent, ppComponent);
-            }
-        };
+    pub fn GetComponentCount(self: *const IVssWriterComponents, pcComponents: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetComponentCount(self, pcComponents);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetWriterInfo(self: *const IVssWriterComponents, pidInstance: ?*Guid, pidWriter: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetWriterInfo(self, pidInstance, pidWriter);
+    }
+    pub fn GetComponent(self: *const IVssWriterComponents, iComponent: u32, ppComponent: ?*?*IVssComponent) callconv(.Inline) HRESULT {
+        return self.vtable.GetComponent(self, iComponent, ppComponent);
+    }
 };
 
 const IID_IVssComponentEx_Value = Guid.initString("156c8b5e-f131-4bd7-9c97-d1923be7e1fa");
 pub const IID_IVssComponentEx = &IID_IVssComponentEx_Value;
-pub const IVssComponentEx = extern struct {
+pub const IVssComponentEx = extern union {
     pub const VTable = extern struct {
         base: IVssComponent.VTable,
-        SetPrepareForBackupFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx,
-                wszFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx,
-                wszFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPostSnapshotFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx,
-                wszFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx,
-                wszFailureMsg: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrepareForBackupFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx,
-                pbstrFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx,
-                pbstrFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPostSnapshotFailureMsg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx,
-                pbstrFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx,
-                pbstrFailureMsg: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAuthoritativeRestore: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx,
-                pbAuth: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx,
-                pbAuth: ?*bool,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRollForward: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx,
-                pRollType: ?*VSS_ROLLFORWARD_TYPE,
-                pbstrPoint: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx,
-                pRollType: ?*VSS_ROLLFORWARD_TYPE,
-                pbstrPoint: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestoreName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx,
-                pbstrName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx,
-                pbstrName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetPrepareForBackupFailureMsg: *const fn(
+            self: *const IVssComponentEx,
+            wszFailureMsg: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPostSnapshotFailureMsg: *const fn(
+            self: *const IVssComponentEx,
+            wszFailureMsg: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrepareForBackupFailureMsg: *const fn(
+            self: *const IVssComponentEx,
+            pbstrFailureMsg: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPostSnapshotFailureMsg: *const fn(
+            self: *const IVssComponentEx,
+            pbstrFailureMsg: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAuthoritativeRestore: *const fn(
+            self: *const IVssComponentEx,
+            pbAuth: ?*bool,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRollForward: *const fn(
+            self: *const IVssComponentEx,
+            pRollType: ?*VSS_ROLLFORWARD_TYPE,
+            pbstrPoint: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestoreName: *const fn(
+            self: *const IVssComponentEx,
+            pbstrName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVssComponent.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx_SetPrepareForBackupFailureMsg(self: *const T, wszFailureMsg: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).SetPrepareForBackupFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), wszFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx_SetPostSnapshotFailureMsg(self: *const T, wszFailureMsg: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).SetPostSnapshotFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), wszFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx_GetPrepareForBackupFailureMsg(self: *const T, pbstrFailureMsg: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetPrepareForBackupFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), pbstrFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx_GetPostSnapshotFailureMsg(self: *const T, pbstrFailureMsg: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetPostSnapshotFailureMsg(@as(*const IVssComponentEx, @ptrCast(self)), pbstrFailureMsg);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx_GetAuthoritativeRestore(self: *const T, pbAuth: ?*bool) HRESULT {
-                return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetAuthoritativeRestore(@as(*const IVssComponentEx, @ptrCast(self)), pbAuth);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx_GetRollForward(self: *const T, pRollType: ?*VSS_ROLLFORWARD_TYPE, pbstrPoint: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetRollForward(@as(*const IVssComponentEx, @ptrCast(self)), pRollType, pbstrPoint);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx_GetRestoreName(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @as(*const IVssComponentEx.VTable, @ptrCast(self.vtable)).GetRestoreName(@as(*const IVssComponentEx, @ptrCast(self)), pbstrName);
-            }
-        };
+    IVssComponent: IVssComponent,
+    IUnknown: IUnknown,
+    pub fn SetPrepareForBackupFailureMsg(self: *const IVssComponentEx, wszFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrepareForBackupFailureMsg(self, wszFailureMsg);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetPostSnapshotFailureMsg(self: *const IVssComponentEx, wszFailureMsg: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetPostSnapshotFailureMsg(self, wszFailureMsg);
+    }
+    pub fn GetPrepareForBackupFailureMsg(self: *const IVssComponentEx, pbstrFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrepareForBackupFailureMsg(self, pbstrFailureMsg);
+    }
+    pub fn GetPostSnapshotFailureMsg(self: *const IVssComponentEx, pbstrFailureMsg: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetPostSnapshotFailureMsg(self, pbstrFailureMsg);
+    }
+    pub fn GetAuthoritativeRestore(self: *const IVssComponentEx, pbAuth: ?*bool) callconv(.Inline) HRESULT {
+        return self.vtable.GetAuthoritativeRestore(self, pbAuth);
+    }
+    pub fn GetRollForward(self: *const IVssComponentEx, pRollType: ?*VSS_ROLLFORWARD_TYPE, pbstrPoint: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRollForward(self, pRollType, pbstrPoint);
+    }
+    pub fn GetRestoreName(self: *const IVssComponentEx, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestoreName(self, pbstrName);
+    }
 };
 
 const IID_IVssComponentEx2_Value = Guid.initString("3b5be0f2-07a9-4e4b-bdd3-cfdc8e2c0d2d");
 pub const IID_IVssComponentEx2 = &IID_IVssComponentEx2_Value;
-pub const IVssComponentEx2 = extern struct {
+pub const IVssComponentEx2 = extern union {
     pub const VTable = extern struct {
         base: IVssComponentEx.VTable,
-        SetFailure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx2,
-                hr: HRESULT,
-                hrApplication: HRESULT,
-                wszApplicationMessage: ?[*:0]const u16,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx2,
-                hr: HRESULT,
-                hrApplication: HRESULT,
-                wszApplicationMessage: ?[*:0]const u16,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFailure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssComponentEx2,
-                phr: ?*HRESULT,
-                phrApplication: ?*HRESULT,
-                pbstrApplicationMessage: ?*?BSTR,
-                pdwReserved: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssComponentEx2,
-                phr: ?*HRESULT,
-                phrApplication: ?*HRESULT,
-                pbstrApplicationMessage: ?*?BSTR,
-                pdwReserved: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetFailure: *const fn(
+            self: *const IVssComponentEx2,
+            hr: HRESULT,
+            hrApplication: HRESULT,
+            wszApplicationMessage: ?[*:0]const u16,
+            dwReserved: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFailure: *const fn(
+            self: *const IVssComponentEx2,
+            phr: ?*HRESULT,
+            phrApplication: ?*HRESULT,
+            pbstrApplicationMessage: ?*?BSTR,
+            pdwReserved: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVssComponentEx.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx2_SetFailure(self: *const T, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16, dwReserved: u32) HRESULT {
-                return @as(*const IVssComponentEx2.VTable, @ptrCast(self.vtable)).SetFailure(@as(*const IVssComponentEx2, @ptrCast(self)), hr, hrApplication, wszApplicationMessage, dwReserved);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssComponentEx2_GetFailure(self: *const T, phr: ?*HRESULT, phrApplication: ?*HRESULT, pbstrApplicationMessage: ?*?BSTR, pdwReserved: ?*u32) HRESULT {
-                return @as(*const IVssComponentEx2.VTable, @ptrCast(self.vtable)).GetFailure(@as(*const IVssComponentEx2, @ptrCast(self)), phr, phrApplication, pbstrApplicationMessage, pdwReserved);
-            }
-        };
+    IVssComponentEx: IVssComponentEx,
+    IVssComponent: IVssComponent,
+    IUnknown: IUnknown,
+    pub fn SetFailure(self: *const IVssComponentEx2, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16, dwReserved: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetFailure(self, hr, hrApplication, wszApplicationMessage, dwReserved);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFailure(self: *const IVssComponentEx2, phr: ?*HRESULT, phrApplication: ?*HRESULT, pbstrApplicationMessage: ?*?BSTR, pdwReserved: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFailure(self, phr, phrApplication, pbstrApplicationMessage, pdwReserved);
+    }
 };
 
-pub const IVssCreateWriterMetadata = extern struct {
+pub const IVssCreateWriterMetadata = extern union {
     pub const VTable = extern struct {
-        AddIncludeFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszAlternateLocation: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszAlternateLocation: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddExcludeFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                ct: VSS_COMPONENT_TYPE,
-                wszLogicalPath: ?[*:0]const u16,
-                wszComponentName: ?[*:0]const u16,
-                wszCaption: ?[*:0]const u16,
-                pbIcon: ?*const u8,
-                cbIcon: u32,
-                bRestoreMetadata: u8,
-                bNotifyOnBackupComplete: u8,
-                bSelectable: u8,
-                bSelectableForRestore: u8,
-                dwComponentFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                ct: VSS_COMPONENT_TYPE,
-                wszLogicalPath: ?[*:0]const u16,
-                wszComponentName: ?[*:0]const u16,
-                wszCaption: ?[*:0]const u16,
-                pbIcon: ?*const u8,
-                cbIcon: u32,
-                bRestoreMetadata: u8,
-                bNotifyOnBackupComplete: u8,
-                bSelectable: u8,
-                bSelectableForRestore: u8,
-                dwComponentFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddDatabaseFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszDatabaseName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszDatabaseName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddDatabaseLogFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszDatabaseName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszDatabaseName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFilesToFileGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszGroupName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszAlternateLocation: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszGroupName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszAlternateLocation: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRestoreMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                method: VSS_RESTOREMETHOD_ENUM,
-                wszService: ?[*:0]const u16,
-                wszUserProcedure: ?[*:0]const u16,
-                writerRestore: VSS_WRITERRESTORE_ENUM,
-                bRebootRequired: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                method: VSS_RESTOREMETHOD_ENUM,
-                wszService: ?[*:0]const u16,
-                wszUserProcedure: ?[*:0]const u16,
-                writerRestore: VSS_WRITERRESTORE_ENUM,
-                bRebootRequired: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddAlternateLocationMapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                wszSourcePath: ?[*:0]const u16,
-                wszSourceFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszDestination: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                wszSourcePath: ?[*:0]const u16,
-                wszSourceFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszDestination: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddComponentDependency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                wszForLogicalPath: ?[*:0]const u16,
-                wszForComponentName: ?[*:0]const u16,
-                onWriterId: Guid,
-                wszOnLogicalPath: ?[*:0]const u16,
-                wszOnComponentName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                wszForLogicalPath: ?[*:0]const u16,
-                wszForComponentName: ?[*:0]const u16,
-                onWriterId: Guid,
-                wszOnLogicalPath: ?[*:0]const u16,
-                wszOnComponentName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBackupSchema: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                dwSchemaMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                dwSchemaMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                pDoc: ?*?*IXMLDOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                pDoc: ?*?*IXMLDOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SaveAsXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateWriterMetadata,
-                pbstrXML: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateWriterMetadata,
-                pbstrXML: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddIncludeFiles: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+            wszAlternateLocation: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddExcludeFiles: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddComponent: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            ct: VSS_COMPONENT_TYPE,
+            wszLogicalPath: ?[*:0]const u16,
+            wszComponentName: ?[*:0]const u16,
+            wszCaption: ?[*:0]const u16,
+            pbIcon: ?*const u8,
+            cbIcon: u32,
+            bRestoreMetadata: u8,
+            bNotifyOnBackupComplete: u8,
+            bSelectable: u8,
+            bSelectableForRestore: u8,
+            dwComponentFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDatabaseFiles: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            wszLogicalPath: ?[*:0]const u16,
+            wszDatabaseName: ?[*:0]const u16,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            dwBackupTypeMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDatabaseLogFiles: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            wszLogicalPath: ?[*:0]const u16,
+            wszDatabaseName: ?[*:0]const u16,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            dwBackupTypeMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFilesToFileGroup: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            wszLogicalPath: ?[*:0]const u16,
+            wszGroupName: ?[*:0]const u16,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+            wszAlternateLocation: ?[*:0]const u16,
+            dwBackupTypeMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRestoreMethod: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            method: VSS_RESTOREMETHOD_ENUM,
+            wszService: ?[*:0]const u16,
+            wszUserProcedure: ?[*:0]const u16,
+            writerRestore: VSS_WRITERRESTORE_ENUM,
+            bRebootRequired: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddAlternateLocationMapping: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            wszSourcePath: ?[*:0]const u16,
+            wszSourceFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+            wszDestination: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddComponentDependency: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            wszForLogicalPath: ?[*:0]const u16,
+            wszForComponentName: ?[*:0]const u16,
+            onWriterId: Guid,
+            wszOnLogicalPath: ?[*:0]const u16,
+            wszOnComponentName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBackupSchema: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            dwSchemaMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocument: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            pDoc: ?*?*IXMLDOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SaveAsXML: *const fn(
+            self: *const IVssCreateWriterMetadata,
+            pbstrXML: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddIncludeFiles(self: *const T, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddIncludeFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszPath, wszFilespec, bRecursive, wszAlternateLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddExcludeFiles(self: *const T, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddExcludeFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszPath, wszFilespec, bRecursive);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddComponent(self: *const T, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponent(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddDatabaseFiles(self: *const T, wszLogicalPath: ?[*:0]const u16, wszDatabaseName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, dwBackupTypeMask: u32) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddDatabaseFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddDatabaseLogFiles(self: *const T, wszLogicalPath: ?[*:0]const u16, wszDatabaseName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, dwBackupTypeMask: u32) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddDatabaseLogFiles(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddFilesToFileGroup(self: *const T, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddFilesToFileGroup(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_SetRestoreMethod(self: *const T, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).SetRestoreMethod(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddAlternateLocationMapping(self: *const T, wszSourcePath: ?[*:0]const u16, wszSourceFilespec: ?[*:0]const u16, bRecursive: u8, wszDestination: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddAlternateLocationMapping(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszSourcePath, wszSourceFilespec, bRecursive, wszDestination);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_AddComponentDependency(self: *const T, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponentDependency(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_SetBackupSchema(self: *const T, dwSchemaMask: u32) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).SetBackupSchema(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), dwSchemaMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_GetDocument(self: *const T, pDoc: ?*?*IXMLDOMDocument) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).GetDocument(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), pDoc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateWriterMetadata_SaveAsXML(self: *const T, pbstrXML: ?*?BSTR) HRESULT {
-                return @as(*const IVssCreateWriterMetadata.VTable, @ptrCast(self.vtable)).SaveAsXML(@as(*const IVssCreateWriterMetadata, @ptrCast(self)), pbstrXML);
-            }
-        };
+    pub fn AddIncludeFiles(self: *const IVssCreateWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.AddIncludeFiles(self, wszPath, wszFilespec, bRecursive, wszAlternateLocation);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddExcludeFiles(self: *const IVssCreateWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) callconv(.Inline) HRESULT {
+        return self.vtable.AddExcludeFiles(self, wszPath, wszFilespec, bRecursive);
+    }
+    pub fn AddComponent(self: *const IVssCreateWriterMetadata, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddComponent(self, ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
+    }
+    pub fn AddDatabaseFiles(self: *const IVssCreateWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszDatabaseName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddDatabaseFiles(self, wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
+    }
+    pub fn AddDatabaseLogFiles(self: *const IVssCreateWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszDatabaseName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddDatabaseLogFiles(self, wszLogicalPath, wszDatabaseName, wszPath, wszFilespec, dwBackupTypeMask);
+    }
+    pub fn AddFilesToFileGroup(self: *const IVssCreateWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddFilesToFileGroup(self, wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
+    }
+    pub fn SetRestoreMethod(self: *const IVssCreateWriterMetadata, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) callconv(.Inline) HRESULT {
+        return self.vtable.SetRestoreMethod(self, method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
+    }
+    pub fn AddAlternateLocationMapping(self: *const IVssCreateWriterMetadata, wszSourcePath: ?[*:0]const u16, wszSourceFilespec: ?[*:0]const u16, bRecursive: u8, wszDestination: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.AddAlternateLocationMapping(self, wszSourcePath, wszSourceFilespec, bRecursive, wszDestination);
+    }
+    pub fn AddComponentDependency(self: *const IVssCreateWriterMetadata, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.AddComponentDependency(self, wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
+    }
+    pub fn SetBackupSchema(self: *const IVssCreateWriterMetadata, dwSchemaMask: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetBackupSchema(self, dwSchemaMask);
+    }
+    pub fn GetDocument(self: *const IVssCreateWriterMetadata, pDoc: ?*?*IXMLDOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocument(self, pDoc);
+    }
+    pub fn SaveAsXML(self: *const IVssCreateWriterMetadata, pbstrXML: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.SaveAsXML(self, pbstrXML);
+    }
 };
 
-pub const IVssWriterImpl = extern struct {
+pub const IVssWriterImpl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                writerId: Guid,
-                wszWriterName: ?[*:0]const u16,
-                wszWriterInstanceName: ?[*:0]const u16,
-                dwMajorVersion: u32,
-                dwMinorVersion: u32,
-                ut: VSS_USAGE_TYPE,
-                st: VSS_SOURCE_TYPE,
-                nLevel: VSS_APPLICATION_LEVEL,
-                dwTimeout: u32,
-                aws: VSS_ALTERNATE_WRITER_STATE,
-                bIOThrottlingOnly: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                writerId: Guid,
-                wszWriterName: ?[*:0]const u16,
-                wszWriterInstanceName: ?[*:0]const u16,
-                dwMajorVersion: u32,
-                dwMinorVersion: u32,
-                ut: VSS_USAGE_TYPE,
-                st: VSS_SOURCE_TYPE,
-                nLevel: VSS_APPLICATION_LEVEL,
-                dwTimeout: u32,
-                aws: VSS_ALTERNATE_WRITER_STATE,
-                bIOThrottlingOnly: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Subscribe: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                dwSubscribeTimeout: u32,
-                dwEventFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                dwSubscribeTimeout: u32,
-                dwEventFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unsubscribe: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Uninitialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetCurrentVolumeArray: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR,
-        },
-        GetCurrentVolumeCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetSnapshotDeviceName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                wszOriginalVolume: ?[*:0]const u16,
-                ppwszSnapshotDevice: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                wszOriginalVolume: ?[*:0]const u16,
-                ppwszSnapshotDevice: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentSnapshotSetId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) Guid,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) Guid,
-        },
-        GetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) i32,
-        },
-        GetCurrentLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) VSS_APPLICATION_LEVEL,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) VSS_APPLICATION_LEVEL,
-        },
-        IsPathAffected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                wszPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                wszPath: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        IsBootableSystemStateBackedUp: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        AreComponentsSelected: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        GetBackupType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) VSS_BACKUP_TYPE,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) VSS_BACKUP_TYPE,
-        },
-        GetRestoreType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) VSS_RESTORE_TYPE,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) VSS_RESTORE_TYPE,
-        },
-        SetWriterFailure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                hr: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                hr: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPartialFileSupportEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
-        InstallAlternateWriter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                idWriter: Guid,
-                clsid: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                idWriter: Guid,
-                clsid: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIdentityInformation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) ?*IVssExamineWriterMetadata,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) ?*IVssExamineWriterMetadata,
-        },
-        SetWriterFailureEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                hr: HRESULT,
-                hrApplication: HRESULT,
-                wszApplicationMessage: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                hr: HRESULT,
-                hrApplication: HRESULT,
-                wszApplicationMessage: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSessionId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-                idSession: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-                idSession: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsWriterShuttingDown: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-            else => *const fn (
-                self: *const IVssWriterImpl,
-            ) callconv(@import("std").os.windows.WINAPI) bool,
-        },
+        Initialize: *const fn(
+            self: *const IVssWriterImpl,
+            writerId: Guid,
+            wszWriterName: ?[*:0]const u16,
+            wszWriterInstanceName: ?[*:0]const u16,
+            dwMajorVersion: u32,
+            dwMinorVersion: u32,
+            ut: VSS_USAGE_TYPE,
+            st: VSS_SOURCE_TYPE,
+            nLevel: VSS_APPLICATION_LEVEL,
+            dwTimeout: u32,
+            aws: VSS_ALTERNATE_WRITER_STATE,
+            bIOThrottlingOnly: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Subscribe: *const fn(
+            self: *const IVssWriterImpl,
+            dwSubscribeTimeout: u32,
+            dwEventFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unsubscribe: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Uninitialize: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetCurrentVolumeArray: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR,
+        GetCurrentVolumeCount: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetSnapshotDeviceName: *const fn(
+            self: *const IVssWriterImpl,
+            wszOriginalVolume: ?[*:0]const u16,
+            ppwszSnapshotDevice: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentSnapshotSetId: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) Guid,
+        GetContext: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) i32,
+        GetCurrentLevel: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) VSS_APPLICATION_LEVEL,
+        IsPathAffected: *const fn(
+            self: *const IVssWriterImpl,
+            wszPath: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        IsBootableSystemStateBackedUp: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        AreComponentsSelected: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        GetBackupType: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) VSS_BACKUP_TYPE,
+        GetRestoreType: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) VSS_RESTORE_TYPE,
+        SetWriterFailure: *const fn(
+            self: *const IVssWriterImpl,
+            hr: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPartialFileSupportEnabled: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
+        InstallAlternateWriter: *const fn(
+            self: *const IVssWriterImpl,
+            idWriter: Guid,
+            clsid: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIdentityInformation: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) ?*IVssExamineWriterMetadata,
+        SetWriterFailureEx: *const fn(
+            self: *const IVssWriterImpl,
+            hr: HRESULT,
+            hrApplication: HRESULT,
+            wszApplicationMessage: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSessionId: *const fn(
+            self: *const IVssWriterImpl,
+            idSession: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsWriterShuttingDown: *const fn(
+            self: *const IVssWriterImpl,
+        ) callconv(@import("std").os.windows.WINAPI) bool,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_Initialize(self: *const T, writerId: Guid, wszWriterName: ?[*:0]const u16, wszWriterInstanceName: ?[*:0]const u16, dwMajorVersion: u32, dwMinorVersion: u32, ut: VSS_USAGE_TYPE, st: VSS_SOURCE_TYPE, nLevel: VSS_APPLICATION_LEVEL, dwTimeout: u32, aws: VSS_ALTERNATE_WRITER_STATE, bIOThrottlingOnly: u8) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IVssWriterImpl, @ptrCast(self)), writerId, wszWriterName, wszWriterInstanceName, dwMajorVersion, dwMinorVersion, ut, st, nLevel, dwTimeout, aws, bIOThrottlingOnly);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_Subscribe(self: *const T, dwSubscribeTimeout: u32, dwEventFlags: u32) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Subscribe(@as(*const IVssWriterImpl, @ptrCast(self)), dwSubscribeTimeout, dwEventFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_Unsubscribe(self: *const T) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Unsubscribe(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_Uninitialize(self: *const T) void {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).Uninitialize(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetCurrentVolumeArray(self: *const T) ?*?PWSTR {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentVolumeArray(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetCurrentVolumeCount(self: *const T) u32 {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentVolumeCount(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetSnapshotDeviceName(self: *const T, wszOriginalVolume: ?[*:0]const u16, ppwszSnapshotDevice: ?*?PWSTR) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetSnapshotDeviceName(@as(*const IVssWriterImpl, @ptrCast(self)), wszOriginalVolume, ppwszSnapshotDevice);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetCurrentSnapshotSetId(self: *const T) Guid {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentSnapshotSetId(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetContext(self: *const T) i32 {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetContext(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetCurrentLevel(self: *const T) VSS_APPLICATION_LEVEL {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetCurrentLevel(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_IsPathAffected(self: *const T, wszPath: ?[*:0]const u16) bool {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsPathAffected(@as(*const IVssWriterImpl, @ptrCast(self)), wszPath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_IsBootableSystemStateBackedUp(self: *const T) bool {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsBootableSystemStateBackedUp(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_AreComponentsSelected(self: *const T) bool {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).AreComponentsSelected(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetBackupType(self: *const T) VSS_BACKUP_TYPE {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetBackupType(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetRestoreType(self: *const T) VSS_RESTORE_TYPE {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetRestoreType(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_SetWriterFailure(self: *const T, hr: HRESULT) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).SetWriterFailure(@as(*const IVssWriterImpl, @ptrCast(self)), hr);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_IsPartialFileSupportEnabled(self: *const T) bool {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsPartialFileSupportEnabled(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_InstallAlternateWriter(self: *const T, idWriter: Guid, clsid: Guid) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).InstallAlternateWriter(@as(*const IVssWriterImpl, @ptrCast(self)), idWriter, clsid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetIdentityInformation(self: *const T) ?*IVssExamineWriterMetadata {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetIdentityInformation(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_SetWriterFailureEx(self: *const T, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).SetWriterFailureEx(@as(*const IVssWriterImpl, @ptrCast(self)), hr, hrApplication, wszApplicationMessage);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_GetSessionId(self: *const T, idSession: ?*Guid) HRESULT {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).GetSessionId(@as(*const IVssWriterImpl, @ptrCast(self)), idSession);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssWriterImpl_IsWriterShuttingDown(self: *const T) bool {
-                return @as(*const IVssWriterImpl.VTable, @ptrCast(self.vtable)).IsWriterShuttingDown(@as(*const IVssWriterImpl, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IVssWriterImpl, writerId: Guid, wszWriterName: ?[*:0]const u16, wszWriterInstanceName: ?[*:0]const u16, dwMajorVersion: u32, dwMinorVersion: u32, ut: VSS_USAGE_TYPE, st: VSS_SOURCE_TYPE, nLevel: VSS_APPLICATION_LEVEL, dwTimeout: u32, aws: VSS_ALTERNATE_WRITER_STATE, bIOThrottlingOnly: u8) callconv(.Inline) HRESULT {
+        return self.vtable.Initialize(self, writerId, wszWriterName, wszWriterInstanceName, dwMajorVersion, dwMinorVersion, ut, st, nLevel, dwTimeout, aws, bIOThrottlingOnly);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Subscribe(self: *const IVssWriterImpl, dwSubscribeTimeout: u32, dwEventFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Subscribe(self, dwSubscribeTimeout, dwEventFlags);
+    }
+    pub fn Unsubscribe(self: *const IVssWriterImpl) callconv(.Inline) HRESULT {
+        return self.vtable.Unsubscribe(self);
+    }
+    pub fn Uninitialize(self: *const IVssWriterImpl) callconv(.Inline) void {
+        return self.vtable.Uninitialize(self);
+    }
+    pub fn GetCurrentVolumeArray(self: *const IVssWriterImpl) callconv(.Inline) ?*?PWSTR {
+        return self.vtable.GetCurrentVolumeArray(self);
+    }
+    pub fn GetCurrentVolumeCount(self: *const IVssWriterImpl) callconv(.Inline) u32 {
+        return self.vtable.GetCurrentVolumeCount(self);
+    }
+    pub fn GetSnapshotDeviceName(self: *const IVssWriterImpl, wszOriginalVolume: ?[*:0]const u16, ppwszSnapshotDevice: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetSnapshotDeviceName(self, wszOriginalVolume, ppwszSnapshotDevice);
+    }
+    pub fn GetCurrentSnapshotSetId(self: *const IVssWriterImpl) callconv(.Inline) Guid {
+        return self.vtable.GetCurrentSnapshotSetId(self);
+    }
+    pub fn GetContext(self: *const IVssWriterImpl) callconv(.Inline) i32 {
+        return self.vtable.GetContext(self);
+    }
+    pub fn GetCurrentLevel(self: *const IVssWriterImpl) callconv(.Inline) VSS_APPLICATION_LEVEL {
+        return self.vtable.GetCurrentLevel(self);
+    }
+    pub fn IsPathAffected(self: *const IVssWriterImpl, wszPath: ?[*:0]const u16) callconv(.Inline) bool {
+        return self.vtable.IsPathAffected(self, wszPath);
+    }
+    pub fn IsBootableSystemStateBackedUp(self: *const IVssWriterImpl) callconv(.Inline) bool {
+        return self.vtable.IsBootableSystemStateBackedUp(self);
+    }
+    pub fn AreComponentsSelected(self: *const IVssWriterImpl) callconv(.Inline) bool {
+        return self.vtable.AreComponentsSelected(self);
+    }
+    pub fn GetBackupType(self: *const IVssWriterImpl) callconv(.Inline) VSS_BACKUP_TYPE {
+        return self.vtable.GetBackupType(self);
+    }
+    pub fn GetRestoreType(self: *const IVssWriterImpl) callconv(.Inline) VSS_RESTORE_TYPE {
+        return self.vtable.GetRestoreType(self);
+    }
+    pub fn SetWriterFailure(self: *const IVssWriterImpl, hr: HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.SetWriterFailure(self, hr);
+    }
+    pub fn IsPartialFileSupportEnabled(self: *const IVssWriterImpl) callconv(.Inline) bool {
+        return self.vtable.IsPartialFileSupportEnabled(self);
+    }
+    pub fn InstallAlternateWriter(self: *const IVssWriterImpl, idWriter: Guid, clsid: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.InstallAlternateWriter(self, idWriter, clsid);
+    }
+    pub fn GetIdentityInformation(self: *const IVssWriterImpl) callconv(.Inline) ?*IVssExamineWriterMetadata {
+        return self.vtable.GetIdentityInformation(self);
+    }
+    pub fn SetWriterFailureEx(self: *const IVssWriterImpl, hr: HRESULT, hrApplication: HRESULT, wszApplicationMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetWriterFailureEx(self, hr, hrApplication, wszApplicationMessage);
+    }
+    pub fn GetSessionId(self: *const IVssWriterImpl, idSession: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetSessionId(self, idSession);
+    }
+    pub fn IsWriterShuttingDown(self: *const IVssWriterImpl) callconv(.Inline) bool {
+        return self.vtable.IsWriterShuttingDown(self);
+    }
 };
 
 const IID_IVssCreateExpressWriterMetadata_Value = Guid.initString("9c772e77-b26e-427f-92dd-c996f41ea5e3");
 pub const IID_IVssCreateExpressWriterMetadata = &IID_IVssCreateExpressWriterMetadata_Value;
-pub const IVssCreateExpressWriterMetadata = extern struct {
+pub const IVssCreateExpressWriterMetadata = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddExcludeFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddComponent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                ct: VSS_COMPONENT_TYPE,
-                wszLogicalPath: ?[*:0]const u16,
-                wszComponentName: ?[*:0]const u16,
-                wszCaption: ?[*:0]const u16,
-                pbIcon: ?*const u8,
-                cbIcon: u32,
-                bRestoreMetadata: u8,
-                bNotifyOnBackupComplete: u8,
-                bSelectable: u8,
-                bSelectableForRestore: u8,
-                dwComponentFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                ct: VSS_COMPONENT_TYPE,
-                wszLogicalPath: ?[*:0]const u16,
-                wszComponentName: ?[*:0]const u16,
-                wszCaption: ?[*:0]const u16,
-                pbIcon: ?*const u8,
-                cbIcon: u32,
-                bRestoreMetadata: u8,
-                bNotifyOnBackupComplete: u8,
-                bSelectable: u8,
-                bSelectableForRestore: u8,
-                dwComponentFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFilesToFileGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszGroupName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszAlternateLocation: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                wszLogicalPath: ?[*:0]const u16,
-                wszGroupName: ?[*:0]const u16,
-                wszPath: ?[*:0]const u16,
-                wszFilespec: ?[*:0]const u16,
-                bRecursive: u8,
-                wszAlternateLocation: ?[*:0]const u16,
-                dwBackupTypeMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRestoreMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                method: VSS_RESTOREMETHOD_ENUM,
-                wszService: ?[*:0]const u16,
-                wszUserProcedure: ?[*:0]const u16,
-                writerRestore: VSS_WRITERRESTORE_ENUM,
-                bRebootRequired: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                method: VSS_RESTOREMETHOD_ENUM,
-                wszService: ?[*:0]const u16,
-                wszUserProcedure: ?[*:0]const u16,
-                writerRestore: VSS_WRITERRESTORE_ENUM,
-                bRebootRequired: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddComponentDependency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                wszForLogicalPath: ?[*:0]const u16,
-                wszForComponentName: ?[*:0]const u16,
-                onWriterId: Guid,
-                wszOnLogicalPath: ?[*:0]const u16,
-                wszOnComponentName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                wszForLogicalPath: ?[*:0]const u16,
-                wszForComponentName: ?[*:0]const u16,
-                onWriterId: Guid,
-                wszOnLogicalPath: ?[*:0]const u16,
-                wszOnComponentName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBackupSchema: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                dwSchemaMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                dwSchemaMask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SaveAsXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                pbstrXML: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssCreateExpressWriterMetadata,
-                pbstrXML: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddExcludeFiles: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddComponent: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            ct: VSS_COMPONENT_TYPE,
+            wszLogicalPath: ?[*:0]const u16,
+            wszComponentName: ?[*:0]const u16,
+            wszCaption: ?[*:0]const u16,
+            pbIcon: ?*const u8,
+            cbIcon: u32,
+            bRestoreMetadata: u8,
+            bNotifyOnBackupComplete: u8,
+            bSelectable: u8,
+            bSelectableForRestore: u8,
+            dwComponentFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFilesToFileGroup: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            wszLogicalPath: ?[*:0]const u16,
+            wszGroupName: ?[*:0]const u16,
+            wszPath: ?[*:0]const u16,
+            wszFilespec: ?[*:0]const u16,
+            bRecursive: u8,
+            wszAlternateLocation: ?[*:0]const u16,
+            dwBackupTypeMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRestoreMethod: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            method: VSS_RESTOREMETHOD_ENUM,
+            wszService: ?[*:0]const u16,
+            wszUserProcedure: ?[*:0]const u16,
+            writerRestore: VSS_WRITERRESTORE_ENUM,
+            bRebootRequired: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddComponentDependency: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            wszForLogicalPath: ?[*:0]const u16,
+            wszForComponentName: ?[*:0]const u16,
+            onWriterId: Guid,
+            wszOnLogicalPath: ?[*:0]const u16,
+            wszOnComponentName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBackupSchema: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            dwSchemaMask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SaveAsXML: *const fn(
+            self: *const IVssCreateExpressWriterMetadata,
+            pbstrXML: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateExpressWriterMetadata_AddExcludeFiles(self: *const T, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) HRESULT {
-                return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddExcludeFiles(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), wszPath, wszFilespec, bRecursive);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateExpressWriterMetadata_AddComponent(self: *const T, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) HRESULT {
-                return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponent(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateExpressWriterMetadata_AddFilesToFileGroup(self: *const T, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) HRESULT {
-                return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddFilesToFileGroup(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateExpressWriterMetadata_SetRestoreMethod(self: *const T, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) HRESULT {
-                return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).SetRestoreMethod(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateExpressWriterMetadata_AddComponentDependency(self: *const T, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) HRESULT {
-                return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).AddComponentDependency(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateExpressWriterMetadata_SetBackupSchema(self: *const T, dwSchemaMask: u32) HRESULT {
-                return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).SetBackupSchema(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), dwSchemaMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssCreateExpressWriterMetadata_SaveAsXML(self: *const T, pbstrXML: ?*?BSTR) HRESULT {
-                return @as(*const IVssCreateExpressWriterMetadata.VTable, @ptrCast(self.vtable)).SaveAsXML(@as(*const IVssCreateExpressWriterMetadata, @ptrCast(self)), pbstrXML);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AddExcludeFiles(self: *const IVssCreateExpressWriterMetadata, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8) callconv(.Inline) HRESULT {
+        return self.vtable.AddExcludeFiles(self, wszPath, wszFilespec, bRecursive);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddComponent(self: *const IVssCreateExpressWriterMetadata, ct: VSS_COMPONENT_TYPE, wszLogicalPath: ?[*:0]const u16, wszComponentName: ?[*:0]const u16, wszCaption: ?[*:0]const u16, pbIcon: ?*const u8, cbIcon: u32, bRestoreMetadata: u8, bNotifyOnBackupComplete: u8, bSelectable: u8, bSelectableForRestore: u8, dwComponentFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddComponent(self, ct, wszLogicalPath, wszComponentName, wszCaption, pbIcon, cbIcon, bRestoreMetadata, bNotifyOnBackupComplete, bSelectable, bSelectableForRestore, dwComponentFlags);
+    }
+    pub fn AddFilesToFileGroup(self: *const IVssCreateExpressWriterMetadata, wszLogicalPath: ?[*:0]const u16, wszGroupName: ?[*:0]const u16, wszPath: ?[*:0]const u16, wszFilespec: ?[*:0]const u16, bRecursive: u8, wszAlternateLocation: ?[*:0]const u16, dwBackupTypeMask: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddFilesToFileGroup(self, wszLogicalPath, wszGroupName, wszPath, wszFilespec, bRecursive, wszAlternateLocation, dwBackupTypeMask);
+    }
+    pub fn SetRestoreMethod(self: *const IVssCreateExpressWriterMetadata, method: VSS_RESTOREMETHOD_ENUM, wszService: ?[*:0]const u16, wszUserProcedure: ?[*:0]const u16, writerRestore: VSS_WRITERRESTORE_ENUM, bRebootRequired: u8) callconv(.Inline) HRESULT {
+        return self.vtable.SetRestoreMethod(self, method, wszService, wszUserProcedure, writerRestore, bRebootRequired);
+    }
+    pub fn AddComponentDependency(self: *const IVssCreateExpressWriterMetadata, wszForLogicalPath: ?[*:0]const u16, wszForComponentName: ?[*:0]const u16, onWriterId: Guid, wszOnLogicalPath: ?[*:0]const u16, wszOnComponentName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.AddComponentDependency(self, wszForLogicalPath, wszForComponentName, onWriterId, wszOnLogicalPath, wszOnComponentName);
+    }
+    pub fn SetBackupSchema(self: *const IVssCreateExpressWriterMetadata, dwSchemaMask: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetBackupSchema(self, dwSchemaMask);
+    }
+    pub fn SaveAsXML(self: *const IVssCreateExpressWriterMetadata, pbstrXML: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.SaveAsXML(self, pbstrXML);
+    }
 };
 
 const IID_IVssExpressWriter_Value = Guid.initString("e33affdc-59c7-47b1-97d5-4266598f6235");
 pub const IID_IVssExpressWriter = &IID_IVssExpressWriter_Value;
-pub const IVssExpressWriter = extern struct {
+pub const IVssExpressWriter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssExpressWriter,
-                writerId: Guid,
-                writerName: ?[*:0]const u16,
-                usageType: VSS_USAGE_TYPE,
-                versionMajor: u32,
-                versionMinor: u32,
-                reserved: u32,
-                ppMetadata: ?*?*IVssCreateExpressWriterMetadata,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssExpressWriter,
-                writerId: Guid,
-                writerName: ?[*:0]const u16,
-                usageType: VSS_USAGE_TYPE,
-                versionMajor: u32,
-                versionMinor: u32,
-                reserved: u32,
-                ppMetadata: ?*?*IVssCreateExpressWriterMetadata,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssExpressWriter,
-                metadata: ?[*:0]const u16,
-                reserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssExpressWriter,
-                metadata: ?[*:0]const u16,
-                reserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Register: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssExpressWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssExpressWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unregister: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssExpressWriter,
-                writerId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssExpressWriter,
-                writerId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateMetadata: *const fn(
+            self: *const IVssExpressWriter,
+            writerId: Guid,
+            writerName: ?[*:0]const u16,
+            usageType: VSS_USAGE_TYPE,
+            versionMajor: u32,
+            versionMinor: u32,
+            reserved: u32,
+            ppMetadata: ?*?*IVssCreateExpressWriterMetadata,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadMetadata: *const fn(
+            self: *const IVssExpressWriter,
+            metadata: ?[*:0]const u16,
+            reserved: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Register: *const fn(
+            self: *const IVssExpressWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unregister: *const fn(
+            self: *const IVssExpressWriter,
+            writerId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssExpressWriter_CreateMetadata(self: *const T, writerId: Guid, writerName: ?[*:0]const u16, usageType: VSS_USAGE_TYPE, versionMajor: u32, versionMinor: u32, reserved: u32, ppMetadata: ?*?*IVssCreateExpressWriterMetadata) HRESULT {
-                return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).CreateMetadata(@as(*const IVssExpressWriter, @ptrCast(self)), writerId, writerName, usageType, versionMajor, versionMinor, reserved, ppMetadata);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssExpressWriter_LoadMetadata(self: *const T, metadata: ?[*:0]const u16, reserved: u32) HRESULT {
-                return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).LoadMetadata(@as(*const IVssExpressWriter, @ptrCast(self)), metadata, reserved);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssExpressWriter_Register(self: *const T) HRESULT {
-                return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).Register(@as(*const IVssExpressWriter, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssExpressWriter_Unregister(self: *const T, writerId: Guid) HRESULT {
-                return @as(*const IVssExpressWriter.VTable, @ptrCast(self.vtable)).Unregister(@as(*const IVssExpressWriter, @ptrCast(self)), writerId);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateMetadata(self: *const IVssExpressWriter, writerId: Guid, writerName: ?[*:0]const u16, usageType: VSS_USAGE_TYPE, versionMajor: u32, versionMinor: u32, reserved: u32, ppMetadata: ?*?*IVssCreateExpressWriterMetadata) callconv(.Inline) HRESULT {
+        return self.vtable.CreateMetadata(self, writerId, writerName, usageType, versionMajor, versionMinor, reserved, ppMetadata);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LoadMetadata(self: *const IVssExpressWriter, metadata: ?[*:0]const u16, reserved: u32) callconv(.Inline) HRESULT {
+        return self.vtable.LoadMetadata(self, metadata, reserved);
+    }
+    pub fn Register(self: *const IVssExpressWriter) callconv(.Inline) HRESULT {
+        return self.vtable.Register(self);
+    }
+    pub fn Unregister(self: *const IVssExpressWriter, writerId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.Unregister(self, writerId);
+    }
 };
 
 const CLSID_VssSnapshotMgmt_Value = Guid.initString("0b5a2c52-3eb9-470a-96e2-6c6d4570e40f");
@@ -2654,477 +1710,260 @@ pub const VSS_VOLUME_PROTECTION_INFO = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssSnapshotMgmt_Value = Guid.initString("fa7df749-66e7-4986-a27f-e2f04ae53772");
 pub const IID_IVssSnapshotMgmt = &IID_IVssSnapshotMgmt_Value;
-pub const IVssSnapshotMgmt = extern struct {
+pub const IVssSnapshotMgmt = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetProviderMgmtInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSnapshotMgmt,
-                ProviderId: Guid,
-                InterfaceId: ?*const Guid,
-                ppItf: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSnapshotMgmt,
-                ProviderId: Guid,
-                InterfaceId: ?*const Guid,
-                ppItf: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryVolumesSupportedForSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSnapshotMgmt,
-                ProviderId: Guid,
-                lContext: i32,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSnapshotMgmt,
-                ProviderId: Guid,
-                lContext: i32,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QuerySnapshotsByVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                ProviderId: Guid,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                ProviderId: Guid,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetProviderMgmtInterface: *const fn(
+            self: *const IVssSnapshotMgmt,
+            ProviderId: Guid,
+            InterfaceId: ?*const Guid,
+            ppItf: **IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryVolumesSupportedForSnapshots: *const fn(
+            self: *const IVssSnapshotMgmt,
+            ProviderId: Guid,
+            lContext: i32,
+            ppEnum: ?*?*IVssEnumMgmtObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QuerySnapshotsByVolume: *const fn(
+            self: *const IVssSnapshotMgmt,
+            pwszVolumeName: ?*u16,
+            ProviderId: Guid,
+            ppEnum: ?*?*IVssEnumObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSnapshotMgmt_GetProviderMgmtInterface(self: *const T, ProviderId: Guid, InterfaceId: ?*const Guid, ppItf: ?*?*IUnknown) HRESULT {
-                return @as(*const IVssSnapshotMgmt.VTable, @ptrCast(self.vtable)).GetProviderMgmtInterface(@as(*const IVssSnapshotMgmt, @ptrCast(self)), ProviderId, InterfaceId, ppItf);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSnapshotMgmt_QueryVolumesSupportedForSnapshots(self: *const T, ProviderId: Guid, lContext: i32, ppEnum: ?*?*IVssEnumMgmtObject) HRESULT {
-                return @as(*const IVssSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryVolumesSupportedForSnapshots(@as(*const IVssSnapshotMgmt, @ptrCast(self)), ProviderId, lContext, ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSnapshotMgmt_QuerySnapshotsByVolume(self: *const T, pwszVolumeName: ?*u16, ProviderId: Guid, ppEnum: ?*?*IVssEnumObject) HRESULT {
-                return @as(*const IVssSnapshotMgmt.VTable, @ptrCast(self.vtable)).QuerySnapshotsByVolume(@as(*const IVssSnapshotMgmt, @ptrCast(self)), pwszVolumeName, ProviderId, ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetProviderMgmtInterface(self: *const IVssSnapshotMgmt, ProviderId: Guid, InterfaceId: ?*const Guid, ppItf: **IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetProviderMgmtInterface(self, ProviderId, InterfaceId, ppItf);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn QueryVolumesSupportedForSnapshots(self: *const IVssSnapshotMgmt, ProviderId: Guid, lContext: i32, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
+        return self.vtable.QueryVolumesSupportedForSnapshots(self, ProviderId, lContext, ppEnum);
+    }
+    pub fn QuerySnapshotsByVolume(self: *const IVssSnapshotMgmt, pwszVolumeName: ?*u16, ProviderId: Guid, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
+        return self.vtable.QuerySnapshotsByVolume(self, pwszVolumeName, ProviderId, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssSnapshotMgmt2_Value = Guid.initString("0f61ec39-fe82-45f2-a3f0-768b5d427102");
 pub const IID_IVssSnapshotMgmt2 = &IID_IVssSnapshotMgmt2_Value;
-pub const IVssSnapshotMgmt2 = extern struct {
+pub const IVssSnapshotMgmt2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetMinDiffAreaSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSnapshotMgmt2,
-                pllMinDiffAreaSize: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSnapshotMgmt2,
-                pllMinDiffAreaSize: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMinDiffAreaSize: *const fn(
+            self: *const IVssSnapshotMgmt2,
+            pllMinDiffAreaSize: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSnapshotMgmt2_GetMinDiffAreaSize(self: *const T, pllMinDiffAreaSize: ?*i64) HRESULT {
-                return @as(*const IVssSnapshotMgmt2.VTable, @ptrCast(self.vtable)).GetMinDiffAreaSize(@as(*const IVssSnapshotMgmt2, @ptrCast(self)), pllMinDiffAreaSize);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetMinDiffAreaSize(self: *const IVssSnapshotMgmt2, pllMinDiffAreaSize: ?*i64) callconv(.Inline) HRESULT {
+        return self.vtable.GetMinDiffAreaSize(self, pllMinDiffAreaSize);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssDifferentialSoftwareSnapshotMgmt_Value = Guid.initString("214a0f28-b737-4026-b847-4f9e37d79529");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt = &IID_IVssDifferentialSoftwareSnapshotMgmt_Value;
-pub const IVssDifferentialSoftwareSnapshotMgmt = extern struct {
+pub const IVssDifferentialSoftwareSnapshotMgmt = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddDiffArea: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                llMaximumDiffSpace: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                llMaximumDiffSpace: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ChangeDiffAreaMaximumSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                llMaximumDiffSpace: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                llMaximumDiffSpace: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryVolumesSupportedForDiffAreas: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszOriginalVolumeName: ?*u16,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszOriginalVolumeName: ?*u16,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryDiffAreasForVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryDiffAreasOnVolume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                pwszVolumeName: ?*u16,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryDiffAreasForSnapshot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                SnapshotId: Guid,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt,
-                SnapshotId: Guid,
-                ppEnum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddDiffArea: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt,
+            pwszVolumeName: ?*u16,
+            pwszDiffAreaVolumeName: ?*u16,
+            llMaximumDiffSpace: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ChangeDiffAreaMaximumSize: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt,
+            pwszVolumeName: ?*u16,
+            pwszDiffAreaVolumeName: ?*u16,
+            llMaximumDiffSpace: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryVolumesSupportedForDiffAreas: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt,
+            pwszOriginalVolumeName: ?*u16,
+            ppEnum: ?*?*IVssEnumMgmtObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryDiffAreasForVolume: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt,
+            pwszVolumeName: ?*u16,
+            ppEnum: ?*?*IVssEnumMgmtObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryDiffAreasOnVolume: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt,
+            pwszVolumeName: ?*u16,
+            ppEnum: ?*?*IVssEnumMgmtObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryDiffAreasForSnapshot: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt,
+            SnapshotId: Guid,
+            ppEnum: ?*?*IVssEnumMgmtObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt_AddDiffArea(self: *const T, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).AddDiffArea(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt_ChangeDiffAreaMaximumSize(self: *const T, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).ChangeDiffAreaMaximumSize(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt_QueryVolumesSupportedForDiffAreas(self: *const T, pwszOriginalVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryVolumesSupportedForDiffAreas(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszOriginalVolumeName, ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt_QueryDiffAreasForVolume(self: *const T, pwszVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryDiffAreasForVolume(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt_QueryDiffAreasOnVolume(self: *const T, pwszVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryDiffAreasOnVolume(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), pwszVolumeName, ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt_QueryDiffAreasForSnapshot(self: *const T, SnapshotId: Guid, ppEnum: ?*?*IVssEnumMgmtObject) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt.VTable, @ptrCast(self.vtable)).QueryDiffAreasForSnapshot(@as(*const IVssDifferentialSoftwareSnapshotMgmt, @ptrCast(self)), SnapshotId, ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AddDiffArea(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64) callconv(.Inline) HRESULT {
+        return self.vtable.AddDiffArea(self, pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ChangeDiffAreaMaximumSize(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64) callconv(.Inline) HRESULT {
+        return self.vtable.ChangeDiffAreaMaximumSize(self, pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace);
+    }
+    pub fn QueryVolumesSupportedForDiffAreas(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszOriginalVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
+        return self.vtable.QueryVolumesSupportedForDiffAreas(self, pwszOriginalVolumeName, ppEnum);
+    }
+    pub fn QueryDiffAreasForVolume(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
+        return self.vtable.QueryDiffAreasForVolume(self, pwszVolumeName, ppEnum);
+    }
+    pub fn QueryDiffAreasOnVolume(self: *const IVssDifferentialSoftwareSnapshotMgmt, pwszVolumeName: ?*u16, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
+        return self.vtable.QueryDiffAreasOnVolume(self, pwszVolumeName, ppEnum);
+    }
+    pub fn QueryDiffAreasForSnapshot(self: *const IVssDifferentialSoftwareSnapshotMgmt, SnapshotId: Guid, ppEnum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
+        return self.vtable.QueryDiffAreasForSnapshot(self, SnapshotId, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssDifferentialSoftwareSnapshotMgmt2_Value = Guid.initString("949d7353-675f-4275-8969-f044c6277815");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt2 = &IID_IVssDifferentialSoftwareSnapshotMgmt2_Value;
-pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern struct {
+pub const IVssDifferentialSoftwareSnapshotMgmt2 = extern union {
     pub const VTable = extern struct {
         base: IVssDifferentialSoftwareSnapshotMgmt.VTable,
-        ChangeDiffAreaMaximumSizeEx: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                llMaximumDiffSpace: i64,
-                bVolatile: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                llMaximumDiffSpace: i64,
-                bVolatile: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MigrateDiffAreas: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                pwszNewDiffAreaVolumeName: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                pwszNewDiffAreaVolumeName: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryMigrationStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                ppAsync: ?*?*IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                pwszVolumeName: ?*u16,
-                pwszDiffAreaVolumeName: ?*u16,
-                ppAsync: ?*?*IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSnapshotPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                idSnapshot: Guid,
-                priority: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt2,
-                idSnapshot: Guid,
-                priority: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ChangeDiffAreaMaximumSizeEx: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt2,
+            pwszVolumeName: ?*u16,
+            pwszDiffAreaVolumeName: ?*u16,
+            llMaximumDiffSpace: i64,
+            bVolatile: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MigrateDiffAreas: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt2,
+            pwszVolumeName: ?*u16,
+            pwszDiffAreaVolumeName: ?*u16,
+            pwszNewDiffAreaVolumeName: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryMigrationStatus: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt2,
+            pwszVolumeName: ?*u16,
+            pwszDiffAreaVolumeName: ?*u16,
+            ppAsync: ?*?*IVssAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSnapshotPriority: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt2,
+            idSnapshot: Guid,
+            priority: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVssDifferentialSoftwareSnapshotMgmt.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt2_ChangeDiffAreaMaximumSizeEx(self: *const T, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64, bVolatile: BOOL) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).ChangeDiffAreaMaximumSizeEx(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace, bVolatile);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt2_MigrateDiffAreas(self: *const T, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, pwszNewDiffAreaVolumeName: ?*u16) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).MigrateDiffAreas(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, pwszNewDiffAreaVolumeName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt2_QueryMigrationStatus(self: *const T, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, ppAsync: ?*?*IVssAsync) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).QueryMigrationStatus(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), pwszVolumeName, pwszDiffAreaVolumeName, ppAsync);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt2_SetSnapshotPriority(self: *const T, idSnapshot: Guid, priority: u8) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt2.VTable, @ptrCast(self.vtable)).SetSnapshotPriority(@as(*const IVssDifferentialSoftwareSnapshotMgmt2, @ptrCast(self)), idSnapshot, priority);
-            }
-        };
+    IVssDifferentialSoftwareSnapshotMgmt: IVssDifferentialSoftwareSnapshotMgmt,
+    IUnknown: IUnknown,
+    pub fn ChangeDiffAreaMaximumSizeEx(self: *const IVssDifferentialSoftwareSnapshotMgmt2, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, llMaximumDiffSpace: i64, bVolatile: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.ChangeDiffAreaMaximumSizeEx(self, pwszVolumeName, pwszDiffAreaVolumeName, llMaximumDiffSpace, bVolatile);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn MigrateDiffAreas(self: *const IVssDifferentialSoftwareSnapshotMgmt2, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, pwszNewDiffAreaVolumeName: ?*u16) callconv(.Inline) HRESULT {
+        return self.vtable.MigrateDiffAreas(self, pwszVolumeName, pwszDiffAreaVolumeName, pwszNewDiffAreaVolumeName);
+    }
+    pub fn QueryMigrationStatus(self: *const IVssDifferentialSoftwareSnapshotMgmt2, pwszVolumeName: ?*u16, pwszDiffAreaVolumeName: ?*u16, ppAsync: ?*?*IVssAsync) callconv(.Inline) HRESULT {
+        return self.vtable.QueryMigrationStatus(self, pwszVolumeName, pwszDiffAreaVolumeName, ppAsync);
+    }
+    pub fn SetSnapshotPriority(self: *const IVssDifferentialSoftwareSnapshotMgmt2, idSnapshot: Guid, priority: u8) callconv(.Inline) HRESULT {
+        return self.vtable.SetSnapshotPriority(self, idSnapshot, priority);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssDifferentialSoftwareSnapshotMgmt3_Value = Guid.initString("383f7e71-a4c5-401f-b27f-f826289f8458");
 pub const IID_IVssDifferentialSoftwareSnapshotMgmt3 = &IID_IVssDifferentialSoftwareSnapshotMgmt3_Value;
-pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern struct {
+pub const IVssDifferentialSoftwareSnapshotMgmt3 = extern union {
     pub const VTable = extern struct {
         base: IVssDifferentialSoftwareSnapshotMgmt2.VTable,
-        SetVolumeProtectLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszVolumeName: ?*u16,
-                protectionLevel: VSS_PROTECTION_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszVolumeName: ?*u16,
-                protectionLevel: VSS_PROTECTION_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVolumeProtectLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszVolumeName: ?*u16,
-                protectionLevel: ?*VSS_VOLUME_PROTECTION_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszVolumeName: ?*u16,
-                protectionLevel: ?*VSS_VOLUME_PROTECTION_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearVolumeProtectFault: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszVolumeName: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszVolumeName: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteUnusedDiffAreas: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszDiffAreaVolumeName: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                pwszDiffAreaVolumeName: ?*u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QuerySnapshotDeltaBitmap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                idSnapshotOlder: Guid,
-                idSnapshotYounger: Guid,
-                pcBlockSizePerBit: ?*u32,
-                pcBitmapLength: ?*u32,
-                ppbBitmap: [*]?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssDifferentialSoftwareSnapshotMgmt3,
-                idSnapshotOlder: Guid,
-                idSnapshotYounger: Guid,
-                pcBlockSizePerBit: ?*u32,
-                pcBitmapLength: ?*u32,
-                ppbBitmap: [*]?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetVolumeProtectLevel: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt3,
+            pwszVolumeName: ?*u16,
+            protectionLevel: VSS_PROTECTION_LEVEL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVolumeProtectLevel: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt3,
+            pwszVolumeName: ?*u16,
+            protectionLevel: ?*VSS_VOLUME_PROTECTION_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearVolumeProtectFault: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt3,
+            pwszVolumeName: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteUnusedDiffAreas: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt3,
+            pwszDiffAreaVolumeName: ?*u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QuerySnapshotDeltaBitmap: *const fn(
+            self: *const IVssDifferentialSoftwareSnapshotMgmt3,
+            idSnapshotOlder: Guid,
+            idSnapshotYounger: Guid,
+            pcBlockSizePerBit: ?*u32,
+            pcBitmapLength: ?*u32,
+            ppbBitmap: [*]?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVssDifferentialSoftwareSnapshotMgmt2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt3_SetVolumeProtectLevel(self: *const T, pwszVolumeName: ?*u16, protectionLevel: VSS_PROTECTION_LEVEL) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).SetVolumeProtectLevel(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszVolumeName, protectionLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt3_GetVolumeProtectLevel(self: *const T, pwszVolumeName: ?*u16, protectionLevel: ?*VSS_VOLUME_PROTECTION_INFO) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).GetVolumeProtectLevel(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszVolumeName, protectionLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt3_ClearVolumeProtectFault(self: *const T, pwszVolumeName: ?*u16) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).ClearVolumeProtectFault(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszVolumeName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt3_DeleteUnusedDiffAreas(self: *const T, pwszDiffAreaVolumeName: ?*u16) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).DeleteUnusedDiffAreas(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), pwszDiffAreaVolumeName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssDifferentialSoftwareSnapshotMgmt3_QuerySnapshotDeltaBitmap(self: *const T, idSnapshotOlder: Guid, idSnapshotYounger: Guid, pcBlockSizePerBit: ?*u32, pcBitmapLength: ?*u32, ppbBitmap: [*]?*u8) HRESULT {
-                return @as(*const IVssDifferentialSoftwareSnapshotMgmt3.VTable, @ptrCast(self.vtable)).QuerySnapshotDeltaBitmap(@as(*const IVssDifferentialSoftwareSnapshotMgmt3, @ptrCast(self)), idSnapshotOlder, idSnapshotYounger, pcBlockSizePerBit, pcBitmapLength, ppbBitmap);
-            }
-        };
+    IVssDifferentialSoftwareSnapshotMgmt2: IVssDifferentialSoftwareSnapshotMgmt2,
+    IVssDifferentialSoftwareSnapshotMgmt: IVssDifferentialSoftwareSnapshotMgmt,
+    IUnknown: IUnknown,
+    pub fn SetVolumeProtectLevel(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszVolumeName: ?*u16, protectionLevel: VSS_PROTECTION_LEVEL) callconv(.Inline) HRESULT {
+        return self.vtable.SetVolumeProtectLevel(self, pwszVolumeName, protectionLevel);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetVolumeProtectLevel(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszVolumeName: ?*u16, protectionLevel: ?*VSS_VOLUME_PROTECTION_INFO) callconv(.Inline) HRESULT {
+        return self.vtable.GetVolumeProtectLevel(self, pwszVolumeName, protectionLevel);
+    }
+    pub fn ClearVolumeProtectFault(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszVolumeName: ?*u16) callconv(.Inline) HRESULT {
+        return self.vtable.ClearVolumeProtectFault(self, pwszVolumeName);
+    }
+    pub fn DeleteUnusedDiffAreas(self: *const IVssDifferentialSoftwareSnapshotMgmt3, pwszDiffAreaVolumeName: ?*u16) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteUnusedDiffAreas(self, pwszDiffAreaVolumeName);
+    }
+    pub fn QuerySnapshotDeltaBitmap(self: *const IVssDifferentialSoftwareSnapshotMgmt3, idSnapshotOlder: Guid, idSnapshotYounger: Guid, pcBlockSizePerBit: ?*u32, pcBitmapLength: ?*u32, ppbBitmap: [*]?*u8) callconv(.Inline) HRESULT {
+        return self.vtable.QuerySnapshotDeltaBitmap(self, idSnapshotOlder, idSnapshotYounger, pcBlockSizePerBit, pcBitmapLength, ppbBitmap);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssEnumMgmtObject_Value = Guid.initString("01954e6b-9254-4e6e-808c-c9e05d007696");
 pub const IID_IVssEnumMgmtObject = &IID_IVssEnumMgmtObject_Value;
-pub const IVssEnumMgmtObject = extern struct {
+pub const IVssEnumMgmtObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumMgmtObject,
-                celt: u32,
-                rgelt: [*]VSS_MGMT_OBJECT_PROP,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumMgmtObject,
-                celt: u32,
-                rgelt: [*]VSS_MGMT_OBJECT_PROP,
-                pceltFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumMgmtObject,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumMgmtObject,
-                celt: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssEnumMgmtObject,
-                ppenum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssEnumMgmtObject,
-                ppenum: ?*?*IVssEnumMgmtObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IVssEnumMgmtObject,
+            celt: u32,
+            rgelt: [*]VSS_MGMT_OBJECT_PROP,
+            pceltFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IVssEnumMgmtObject,
+            celt: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IVssEnumMgmtObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IVssEnumMgmtObject,
+            ppenum: ?*?*IVssEnumMgmtObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumMgmtObject_Next(self: *const T, celt: u32, rgelt: [*]VSS_MGMT_OBJECT_PROP, pceltFetched: ?*u32) HRESULT {
-                return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Next(@as(*const IVssEnumMgmtObject, @ptrCast(self)), celt, rgelt, pceltFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumMgmtObject_Skip(self: *const T, celt: u32) HRESULT {
-                return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Skip(@as(*const IVssEnumMgmtObject, @ptrCast(self)), celt);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumMgmtObject_Reset(self: *const T) HRESULT {
-                return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Reset(@as(*const IVssEnumMgmtObject, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssEnumMgmtObject_Clone(self: *const T, ppenum: ?*?*IVssEnumMgmtObject) HRESULT {
-                return @as(*const IVssEnumMgmtObject.VTable, @ptrCast(self.vtable)).Clone(@as(*const IVssEnumMgmtObject, @ptrCast(self)), ppenum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IVssEnumMgmtObject, celt: u32, rgelt: [*]VSS_MGMT_OBJECT_PROP, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IVssEnumMgmtObject, celt: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, celt);
+    }
+    pub fn Reset(self: *const IVssEnumMgmtObject) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IVssEnumMgmtObject, ppenum: ?*?*IVssEnumMgmtObject) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppenum);
+    }
 };
 
 const CLSID_VSSCoordinator_Value = Guid.initString("e579ab5f-1cc4-44b4-bed9-de0991ff0623");
@@ -3133,877 +1972,466 @@ pub const CLSID_VSSCoordinator = &CLSID_VSSCoordinator_Value;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssAdmin_Value = Guid.initString("77ed5996-2f63-11d3-8a39-00c04f72d8e3");
 pub const IID_IVssAdmin = &IID_IVssAdmin_Value;
-pub const IVssAdmin = extern struct {
+pub const IVssAdmin = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAdmin,
-                pProviderId: Guid,
-                ClassId: Guid,
-                pwszProviderName: ?*u16,
-                eProviderType: VSS_PROVIDER_TYPE,
-                pwszProviderVersion: ?*u16,
-                ProviderVersionId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAdmin,
-                pProviderId: Guid,
-                ClassId: Guid,
-                pwszProviderName: ?*u16,
-                eProviderType: VSS_PROVIDER_TYPE,
-                pwszProviderVersion: ?*u16,
-                ProviderVersionId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAdmin,
-                ProviderId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAdmin,
-                ProviderId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryProviders: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAdmin,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAdmin,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AbortAllSnapshotsInProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAdmin,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAdmin,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterProvider: *const fn(
+            self: *const IVssAdmin,
+            pProviderId: Guid,
+            ClassId: Guid,
+            pwszProviderName: ?*u16,
+            eProviderType: VSS_PROVIDER_TYPE,
+            pwszProviderVersion: ?*u16,
+            ProviderVersionId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterProvider: *const fn(
+            self: *const IVssAdmin,
+            ProviderId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryProviders: *const fn(
+            self: *const IVssAdmin,
+            ppEnum: ?*?*IVssEnumObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AbortAllSnapshotsInProgress: *const fn(
+            self: *const IVssAdmin,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAdmin_RegisterProvider(self: *const T, pProviderId: Guid, ClassId: Guid, pwszProviderName: ?*u16, eProviderType: VSS_PROVIDER_TYPE, pwszProviderVersion: ?*u16, ProviderVersionId: Guid) HRESULT {
-                return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).RegisterProvider(@as(*const IVssAdmin, @ptrCast(self)), pProviderId, ClassId, pwszProviderName, eProviderType, pwszProviderVersion, ProviderVersionId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAdmin_UnregisterProvider(self: *const T, ProviderId: Guid) HRESULT {
-                return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).UnregisterProvider(@as(*const IVssAdmin, @ptrCast(self)), ProviderId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAdmin_QueryProviders(self: *const T, ppEnum: ?*?*IVssEnumObject) HRESULT {
-                return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).QueryProviders(@as(*const IVssAdmin, @ptrCast(self)), ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAdmin_AbortAllSnapshotsInProgress(self: *const T) HRESULT {
-                return @as(*const IVssAdmin.VTable, @ptrCast(self.vtable)).AbortAllSnapshotsInProgress(@as(*const IVssAdmin, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn RegisterProvider(self: *const IVssAdmin, pProviderId: Guid, ClassId: Guid, pwszProviderName: ?*u16, eProviderType: VSS_PROVIDER_TYPE, pwszProviderVersion: ?*u16, ProviderVersionId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterProvider(self, pProviderId, ClassId, pwszProviderName, eProviderType, pwszProviderVersion, ProviderVersionId);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UnregisterProvider(self: *const IVssAdmin, ProviderId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.UnregisterProvider(self, ProviderId);
+    }
+    pub fn QueryProviders(self: *const IVssAdmin, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
+        return self.vtable.QueryProviders(self, ppEnum);
+    }
+    pub fn AbortAllSnapshotsInProgress(self: *const IVssAdmin) callconv(.Inline) HRESULT {
+        return self.vtable.AbortAllSnapshotsInProgress(self);
+    }
 };
 
 const IID_IVssAdminEx_Value = Guid.initString("7858a9f8-b1fa-41a6-964f-b9b36b8cd8d8");
 pub const IID_IVssAdminEx = &IID_IVssAdminEx_Value;
-pub const IVssAdminEx = extern struct {
+pub const IVssAdminEx = extern union {
     pub const VTable = extern struct {
         base: IVssAdmin.VTable,
-        GetProviderCapability: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAdminEx,
-                pProviderId: Guid,
-                pllOriginalCapabilityMask: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAdminEx,
-                pProviderId: Guid,
-                pllOriginalCapabilityMask: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProviderContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAdminEx,
-                ProviderId: Guid,
-                plContext: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAdminEx,
-                ProviderId: Guid,
-                plContext: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProviderContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssAdminEx,
-                ProviderId: Guid,
-                lContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssAdminEx,
-                ProviderId: Guid,
-                lContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetProviderCapability: *const fn(
+            self: *const IVssAdminEx,
+            pProviderId: Guid,
+            pllOriginalCapabilityMask: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProviderContext: *const fn(
+            self: *const IVssAdminEx,
+            ProviderId: Guid,
+            plContext: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProviderContext: *const fn(
+            self: *const IVssAdminEx,
+            ProviderId: Guid,
+            lContext: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVssAdmin.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAdminEx_GetProviderCapability(self: *const T, pProviderId: Guid, pllOriginalCapabilityMask: ?*u64) HRESULT {
-                return @as(*const IVssAdminEx.VTable, @ptrCast(self.vtable)).GetProviderCapability(@as(*const IVssAdminEx, @ptrCast(self)), pProviderId, pllOriginalCapabilityMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAdminEx_GetProviderContext(self: *const T, ProviderId: Guid, plContext: ?*i32) HRESULT {
-                return @as(*const IVssAdminEx.VTable, @ptrCast(self.vtable)).GetProviderContext(@as(*const IVssAdminEx, @ptrCast(self)), ProviderId, plContext);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssAdminEx_SetProviderContext(self: *const T, ProviderId: Guid, lContext: i32) HRESULT {
-                return @as(*const IVssAdminEx.VTable, @ptrCast(self.vtable)).SetProviderContext(@as(*const IVssAdminEx, @ptrCast(self)), ProviderId, lContext);
-            }
-        };
+    IVssAdmin: IVssAdmin,
+    IUnknown: IUnknown,
+    pub fn GetProviderCapability(self: *const IVssAdminEx, pProviderId: Guid, pllOriginalCapabilityMask: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetProviderCapability(self, pProviderId, pllOriginalCapabilityMask);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, plContext: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.GetProviderContext(self, ProviderId, plContext);
+    }
+    pub fn SetProviderContext(self: *const IVssAdminEx, ProviderId: Guid, lContext: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SetProviderContext(self, ProviderId, lContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssSoftwareSnapshotProvider_Value = Guid.initString("609e123e-2c5a-44d3-8f01-0b1d9a47d1ff");
 pub const IID_IVssSoftwareSnapshotProvider = &IID_IVssSoftwareSnapshotProvider_Value;
-pub const IVssSoftwareSnapshotProvider = extern struct {
+pub const IVssSoftwareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                lContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                lContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSnapshotProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotId: Guid,
-                pProp: ?*VSS_SNAPSHOT_PROP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotId: Guid,
-                pProp: ?*VSS_SNAPSHOT_PROP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Query: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                QueriedObjectId: Guid,
-                eQueriedObjectType: VSS_OBJECT_TYPE,
-                eReturnedObjectsType: VSS_OBJECT_TYPE,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                QueriedObjectId: Guid,
-                eQueriedObjectType: VSS_OBJECT_TYPE,
-                eReturnedObjectsType: VSS_OBJECT_TYPE,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SourceObjectId: Guid,
-                eSourceObjectType: VSS_OBJECT_TYPE,
-                bForceDelete: BOOL,
-                plDeletedSnapshots: ?*i32,
-                pNondeletedSnapshotID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SourceObjectId: Guid,
-                eSourceObjectType: VSS_OBJECT_TYPE,
-                bForceDelete: BOOL,
-                plDeletedSnapshots: ?*i32,
-                pNondeletedSnapshotID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginPrepareSnapshot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotSetId: Guid,
-                SnapshotId: Guid,
-                pwszVolumeName: ?*u16,
-                lNewContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotSetId: Guid,
-                SnapshotId: Guid,
-                pwszVolumeName: ?*u16,
-                lNewContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsVolumeSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                pwszVolumeName: ?*u16,
-                pbSupportedByThisProvider: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                pwszVolumeName: ?*u16,
-                pbSupportedByThisProvider: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsVolumeSnapshotted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                pwszVolumeName: ?*u16,
-                pbSnapshotsPresent: ?*BOOL,
-                plSnapshotCompatibility: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                pwszVolumeName: ?*u16,
-                pbSnapshotsPresent: ?*BOOL,
-                plSnapshotCompatibility: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSnapshotProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotId: Guid,
-                eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
-                vProperty: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotId: Guid,
-                eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
-                vProperty: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RevertToSnapshot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                SnapshotId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryRevertStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                pwszVolume: ?*u16,
-                ppAsync: ?*?*IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssSoftwareSnapshotProvider,
-                pwszVolume: ?*u16,
-                ppAsync: ?*?*IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetContext: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            lContext: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSnapshotProperties: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            SnapshotId: Guid,
+            pProp: ?*VSS_SNAPSHOT_PROP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Query: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            QueriedObjectId: Guid,
+            eQueriedObjectType: VSS_OBJECT_TYPE,
+            eReturnedObjectsType: VSS_OBJECT_TYPE,
+            ppEnum: ?*?*IVssEnumObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteSnapshots: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            SourceObjectId: Guid,
+            eSourceObjectType: VSS_OBJECT_TYPE,
+            bForceDelete: BOOL,
+            plDeletedSnapshots: ?*i32,
+            pNondeletedSnapshotID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginPrepareSnapshot: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            SnapshotSetId: Guid,
+            SnapshotId: Guid,
+            pwszVolumeName: ?*u16,
+            lNewContext: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsVolumeSupported: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            pwszVolumeName: ?*u16,
+            pbSupportedByThisProvider: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsVolumeSnapshotted: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            pwszVolumeName: ?*u16,
+            pbSnapshotsPresent: ?*BOOL,
+            plSnapshotCompatibility: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSnapshotProperty: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            SnapshotId: Guid,
+            eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
+            vProperty: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RevertToSnapshot: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            SnapshotId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryRevertStatus: *const fn(
+            self: *const IVssSoftwareSnapshotProvider,
+            pwszVolume: ?*u16,
+            ppAsync: ?*?*IVssAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_SetContext(self: *const T, lContext: i32) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), lContext);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_GetSnapshotProperties(self: *const T, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).GetSnapshotProperties(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotId, pProp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_Query(self: *const T, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).Query(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_DeleteSnapshots(self: *const T, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).DeleteSnapshots(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_BeginPrepareSnapshot(self: *const T, SnapshotSetId: Guid, SnapshotId: Guid, pwszVolumeName: ?*u16, lNewContext: i32) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).BeginPrepareSnapshot(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotSetId, SnapshotId, pwszVolumeName, lNewContext);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_IsVolumeSupported(self: *const T, pwszVolumeName: ?*u16, pbSupportedByThisProvider: ?*BOOL) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsVolumeSupported(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), pwszVolumeName, pbSupportedByThisProvider);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_IsVolumeSnapshotted(self: *const T, pwszVolumeName: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsVolumeSnapshotted(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), pwszVolumeName, pbSnapshotsPresent, plSnapshotCompatibility);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_SetSnapshotProperty(self: *const T, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetSnapshotProperty(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotId, eSnapshotPropertyId, vProperty);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_RevertToSnapshot(self: *const T, SnapshotId: Guid) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).RevertToSnapshot(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), SnapshotId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssSoftwareSnapshotProvider_QueryRevertStatus(self: *const T, pwszVolume: ?*u16, ppAsync: ?*?*IVssAsync) HRESULT {
-                return @as(*const IVssSoftwareSnapshotProvider.VTable, @ptrCast(self.vtable)).QueryRevertStatus(@as(*const IVssSoftwareSnapshotProvider, @ptrCast(self)), pwszVolume, ppAsync);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetContext(self: *const IVssSoftwareSnapshotProvider, lContext: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SetContext(self, lContext);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSnapshotProperties(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.Inline) HRESULT {
+        return self.vtable.GetSnapshotProperties(self, SnapshotId, pProp);
+    }
+    pub fn Query(self: *const IVssSoftwareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
+        return self.vtable.Query(self, QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
+    }
+    pub fn DeleteSnapshots(self: *const IVssSoftwareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteSnapshots(self, SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
+    }
+    pub fn BeginPrepareSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszVolumeName: ?*u16, lNewContext: i32) callconv(.Inline) HRESULT {
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszVolumeName, lNewContext);
+    }
+    pub fn IsVolumeSupported(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsVolumeSupported(self, pwszVolumeName, pbSupportedByThisProvider);
+    }
+    pub fn IsVolumeSnapshotted(self: *const IVssSoftwareSnapshotProvider, pwszVolumeName: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.IsVolumeSnapshotted(self, pwszVolumeName, pbSnapshotsPresent, plSnapshotCompatibility);
+    }
+    pub fn SetSnapshotProperty(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetSnapshotProperty(self, SnapshotId, eSnapshotPropertyId, vProperty);
+    }
+    pub fn RevertToSnapshot(self: *const IVssSoftwareSnapshotProvider, SnapshotId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.RevertToSnapshot(self, SnapshotId);
+    }
+    pub fn QueryRevertStatus(self: *const IVssSoftwareSnapshotProvider, pwszVolume: ?*u16, ppAsync: ?*?*IVssAsync) callconv(.Inline) HRESULT {
+        return self.vtable.QueryRevertStatus(self, pwszVolume, ppAsync);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssProviderCreateSnapshotSet_Value = Guid.initString("5f894e5b-1e39-4778-8e23-9abad9f0e08c");
 pub const IID_IVssProviderCreateSnapshotSet = &IID_IVssProviderCreateSnapshotSet_Value;
-pub const IVssProviderCreateSnapshotSet = extern struct {
+pub const IVssProviderCreateSnapshotSet = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EndPrepareSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PreCommitSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CommitSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PostCommitSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-                lSnapshotsCount: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-                lSnapshotsCount: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PreFinalCommitSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PostFinalCommitSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AbortSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderCreateSnapshotSet,
-                SnapshotSetId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EndPrepareSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PreCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PostCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+            lSnapshotsCount: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PreFinalCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PostFinalCommitSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AbortSnapshots: *const fn(
+            self: *const IVssProviderCreateSnapshotSet,
+            SnapshotSetId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderCreateSnapshotSet_EndPrepareSnapshots(self: *const T, SnapshotSetId: Guid) HRESULT {
-                return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).EndPrepareSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderCreateSnapshotSet_PreCommitSnapshots(self: *const T, SnapshotSetId: Guid) HRESULT {
-                return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PreCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderCreateSnapshotSet_CommitSnapshots(self: *const T, SnapshotSetId: Guid) HRESULT {
-                return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).CommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderCreateSnapshotSet_PostCommitSnapshots(self: *const T, SnapshotSetId: Guid, lSnapshotsCount: i32) HRESULT {
-                return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PostCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId, lSnapshotsCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderCreateSnapshotSet_PreFinalCommitSnapshots(self: *const T, SnapshotSetId: Guid) HRESULT {
-                return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PreFinalCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderCreateSnapshotSet_PostFinalCommitSnapshots(self: *const T, SnapshotSetId: Guid) HRESULT {
-                return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).PostFinalCommitSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderCreateSnapshotSet_AbortSnapshots(self: *const T, SnapshotSetId: Guid) HRESULT {
-                return @as(*const IVssProviderCreateSnapshotSet.VTable, @ptrCast(self.vtable)).AbortSnapshots(@as(*const IVssProviderCreateSnapshotSet, @ptrCast(self)), SnapshotSetId);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn EndPrepareSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.EndPrepareSnapshots(self, SnapshotSetId);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn PreCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PreCommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn CommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.CommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn PostCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid, lSnapshotsCount: i32) callconv(.Inline) HRESULT {
+        return self.vtable.PostCommitSnapshots(self, SnapshotSetId, lSnapshotsCount);
+    }
+    pub fn PreFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PreFinalCommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn PostFinalCommitSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PostFinalCommitSnapshots(self, SnapshotSetId);
+    }
+    pub fn AbortSnapshots(self: *const IVssProviderCreateSnapshotSet, SnapshotSetId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.AbortSnapshots(self, SnapshotSetId);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IVssProviderNotifications_Value = Guid.initString("e561901f-03a5-4afe-86d0-72baeece7004");
 pub const IID_IVssProviderNotifications = &IID_IVssProviderNotifications_Value;
-pub const IVssProviderNotifications = extern struct {
+pub const IVssProviderNotifications = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnLoad: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderNotifications,
-                pCallback: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderNotifications,
-                pCallback: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnUnload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssProviderNotifications,
-                bForceUnload: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssProviderNotifications,
-                bForceUnload: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnLoad: *const fn(
+            self: *const IVssProviderNotifications,
+            pCallback: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnUnload: *const fn(
+            self: *const IVssProviderNotifications,
+            bForceUnload: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderNotifications_OnLoad(self: *const T, pCallback: ?*IUnknown) HRESULT {
-                return @as(*const IVssProviderNotifications.VTable, @ptrCast(self.vtable)).OnLoad(@as(*const IVssProviderNotifications, @ptrCast(self)), pCallback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssProviderNotifications_OnUnload(self: *const T, bForceUnload: BOOL) HRESULT {
-                return @as(*const IVssProviderNotifications.VTable, @ptrCast(self.vtable)).OnUnload(@as(*const IVssProviderNotifications, @ptrCast(self)), bForceUnload);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnLoad(self: *const IVssProviderNotifications, pCallback: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.OnLoad(self, pCallback);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnUnload(self: *const IVssProviderNotifications, bForceUnload: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.OnUnload(self, bForceUnload);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2003'
 const IID_IVssHardwareSnapshotProvider_Value = Guid.initString("9593a157-44e9-4344-bbeb-44fbf9b06b10");
 pub const IID_IVssHardwareSnapshotProvider = &IID_IVssHardwareSnapshotProvider_Value;
-pub const IVssHardwareSnapshotProvider = extern struct {
+pub const IVssHardwareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AreLunsSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProvider,
-                lLunCount: i32,
-                lContext: i32,
-                rgwszDevices: [*]?*u16,
-                pLunInformation: [*]VDS_LUN_INFORMATION,
-                pbIsSupported: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProvider,
-                lLunCount: i32,
-                lContext: i32,
-                rgwszDevices: [*]?*u16,
-                pLunInformation: [*]VDS_LUN_INFORMATION,
-                pbIsSupported: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FillInLunInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProvider,
-                wszDeviceName: ?*u16,
-                pLunInfo: ?*VDS_LUN_INFORMATION,
-                pbIsSupported: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProvider,
-                wszDeviceName: ?*u16,
-                pLunInfo: ?*VDS_LUN_INFORMATION,
-                pbIsSupported: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginPrepareSnapshot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProvider,
-                SnapshotSetId: Guid,
-                SnapshotId: Guid,
-                lContext: i32,
-                lLunCount: i32,
-                rgDeviceNames: [*]?*u16,
-                rgLunInformation: [*]VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProvider,
-                SnapshotSetId: Guid,
-                SnapshotId: Guid,
-                lContext: i32,
-                lLunCount: i32,
-                rgDeviceNames: [*]?*u16,
-                rgLunInformation: [*]VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTargetLuns: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProvider,
-                lLunCount: i32,
-                rgDeviceNames: [*]?*u16,
-                rgSourceLuns: [*]VDS_LUN_INFORMATION,
-                rgDestinationLuns: [*]VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProvider,
-                lLunCount: i32,
-                rgDeviceNames: [*]?*u16,
-                rgSourceLuns: [*]VDS_LUN_INFORMATION,
-                rgDestinationLuns: [*]VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LocateLuns: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProvider,
-                lLunCount: i32,
-                rgSourceLuns: [*]VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProvider,
-                lLunCount: i32,
-                rgSourceLuns: [*]VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnLunEmpty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProvider,
-                wszDeviceName: ?*u16,
-                pInformation: ?*VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProvider,
-                wszDeviceName: ?*u16,
-                pInformation: ?*VDS_LUN_INFORMATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AreLunsSupported: *const fn(
+            self: *const IVssHardwareSnapshotProvider,
+            lLunCount: i32,
+            lContext: i32,
+            rgwszDevices: [*]?*u16,
+            pLunInformation: [*]VDS_LUN_INFORMATION,
+            pbIsSupported: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FillInLunInfo: *const fn(
+            self: *const IVssHardwareSnapshotProvider,
+            wszDeviceName: ?*u16,
+            pLunInfo: ?*VDS_LUN_INFORMATION,
+            pbIsSupported: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginPrepareSnapshot: *const fn(
+            self: *const IVssHardwareSnapshotProvider,
+            SnapshotSetId: Guid,
+            SnapshotId: Guid,
+            lContext: i32,
+            lLunCount: i32,
+            rgDeviceNames: [*]?*u16,
+            rgLunInformation: [*]VDS_LUN_INFORMATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTargetLuns: *const fn(
+            self: *const IVssHardwareSnapshotProvider,
+            lLunCount: i32,
+            rgDeviceNames: [*]?*u16,
+            rgSourceLuns: [*]VDS_LUN_INFORMATION,
+            rgDestinationLuns: [*]VDS_LUN_INFORMATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LocateLuns: *const fn(
+            self: *const IVssHardwareSnapshotProvider,
+            lLunCount: i32,
+            rgSourceLuns: [*]VDS_LUN_INFORMATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnLunEmpty: *const fn(
+            self: *const IVssHardwareSnapshotProvider,
+            wszDeviceName: ?*u16,
+            pInformation: ?*VDS_LUN_INFORMATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProvider_AreLunsSupported(self: *const T, lLunCount: i32, lContext: i32, rgwszDevices: [*]?*u16, pLunInformation: [*]VDS_LUN_INFORMATION, pbIsSupported: ?*BOOL) HRESULT {
-                return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).AreLunsSupported(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), lLunCount, lContext, rgwszDevices, pLunInformation, pbIsSupported);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProvider_FillInLunInfo(self: *const T, wszDeviceName: ?*u16, pLunInfo: ?*VDS_LUN_INFORMATION, pbIsSupported: ?*BOOL) HRESULT {
-                return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).FillInLunInfo(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), wszDeviceName, pLunInfo, pbIsSupported);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProvider_BeginPrepareSnapshot(self: *const T, SnapshotSetId: Guid, SnapshotId: Guid, lContext: i32, lLunCount: i32, rgDeviceNames: [*]?*u16, rgLunInformation: [*]VDS_LUN_INFORMATION) HRESULT {
-                return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).BeginPrepareSnapshot(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), SnapshotSetId, SnapshotId, lContext, lLunCount, rgDeviceNames, rgLunInformation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProvider_GetTargetLuns(self: *const T, lLunCount: i32, rgDeviceNames: [*]?*u16, rgSourceLuns: [*]VDS_LUN_INFORMATION, rgDestinationLuns: [*]VDS_LUN_INFORMATION) HRESULT {
-                return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).GetTargetLuns(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), lLunCount, rgDeviceNames, rgSourceLuns, rgDestinationLuns);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProvider_LocateLuns(self: *const T, lLunCount: i32, rgSourceLuns: [*]VDS_LUN_INFORMATION) HRESULT {
-                return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).LocateLuns(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), lLunCount, rgSourceLuns);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProvider_OnLunEmpty(self: *const T, wszDeviceName: ?*u16, pInformation: ?*VDS_LUN_INFORMATION) HRESULT {
-                return @as(*const IVssHardwareSnapshotProvider.VTable, @ptrCast(self.vtable)).OnLunEmpty(@as(*const IVssHardwareSnapshotProvider, @ptrCast(self)), wszDeviceName, pInformation);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AreLunsSupported(self: *const IVssHardwareSnapshotProvider, lLunCount: i32, lContext: i32, rgwszDevices: [*]?*u16, pLunInformation: [*]VDS_LUN_INFORMATION, pbIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.AreLunsSupported(self, lLunCount, lContext, rgwszDevices, pLunInformation, pbIsSupported);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn FillInLunInfo(self: *const IVssHardwareSnapshotProvider, wszDeviceName: ?*u16, pLunInfo: ?*VDS_LUN_INFORMATION, pbIsSupported: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.FillInLunInfo(self, wszDeviceName, pLunInfo, pbIsSupported);
+    }
+    pub fn BeginPrepareSnapshot(self: *const IVssHardwareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, lContext: i32, lLunCount: i32, rgDeviceNames: [*]?*u16, rgLunInformation: [*]VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, lContext, lLunCount, rgDeviceNames, rgLunInformation);
+    }
+    pub fn GetTargetLuns(self: *const IVssHardwareSnapshotProvider, lLunCount: i32, rgDeviceNames: [*]?*u16, rgSourceLuns: [*]VDS_LUN_INFORMATION, rgDestinationLuns: [*]VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
+        return self.vtable.GetTargetLuns(self, lLunCount, rgDeviceNames, rgSourceLuns, rgDestinationLuns);
+    }
+    pub fn LocateLuns(self: *const IVssHardwareSnapshotProvider, lLunCount: i32, rgSourceLuns: [*]VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
+        return self.vtable.LocateLuns(self, lLunCount, rgSourceLuns);
+    }
+    pub fn OnLunEmpty(self: *const IVssHardwareSnapshotProvider, wszDeviceName: ?*u16, pInformation: ?*VDS_LUN_INFORMATION) callconv(.Inline) HRESULT {
+        return self.vtable.OnLunEmpty(self, wszDeviceName, pInformation);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IVssHardwareSnapshotProviderEx_Value = Guid.initString("7f5ba925-cdb1-4d11-a71f-339eb7e709fd");
 pub const IID_IVssHardwareSnapshotProviderEx = &IID_IVssHardwareSnapshotProviderEx_Value;
-pub const IVssHardwareSnapshotProviderEx = extern struct {
+pub const IVssHardwareSnapshotProviderEx = extern union {
     pub const VTable = extern struct {
         base: IVssHardwareSnapshotProvider.VTable,
-        GetProviderCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pllOriginalCapabilityMask: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pllOriginalCapabilityMask: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnLunStateChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pSnapshotLuns: [*]VDS_LUN_INFORMATION,
-                pOriginalLuns: [*]VDS_LUN_INFORMATION,
-                dwCount: u32,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pSnapshotLuns: [*]VDS_LUN_INFORMATION,
-                pOriginalLuns: [*]VDS_LUN_INFORMATION,
-                dwCount: u32,
-                dwFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResyncLuns: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pSourceLuns: [*]VDS_LUN_INFORMATION,
-                pTargetLuns: [*]VDS_LUN_INFORMATION,
-                dwCount: u32,
-                ppAsync: ?*?*IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pSourceLuns: [*]VDS_LUN_INFORMATION,
-                pTargetLuns: [*]VDS_LUN_INFORMATION,
-                dwCount: u32,
-                ppAsync: ?*?*IVssAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnReuseLuns: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pSnapshotLuns: [*]VDS_LUN_INFORMATION,
-                pOriginalLuns: [*]VDS_LUN_INFORMATION,
-                dwCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssHardwareSnapshotProviderEx,
-                pSnapshotLuns: [*]VDS_LUN_INFORMATION,
-                pOriginalLuns: [*]VDS_LUN_INFORMATION,
-                dwCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetProviderCapabilities: *const fn(
+            self: *const IVssHardwareSnapshotProviderEx,
+            pllOriginalCapabilityMask: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnLunStateChange: *const fn(
+            self: *const IVssHardwareSnapshotProviderEx,
+            pSnapshotLuns: [*]VDS_LUN_INFORMATION,
+            pOriginalLuns: [*]VDS_LUN_INFORMATION,
+            dwCount: u32,
+            dwFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResyncLuns: *const fn(
+            self: *const IVssHardwareSnapshotProviderEx,
+            pSourceLuns: [*]VDS_LUN_INFORMATION,
+            pTargetLuns: [*]VDS_LUN_INFORMATION,
+            dwCount: u32,
+            ppAsync: ?*?*IVssAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnReuseLuns: *const fn(
+            self: *const IVssHardwareSnapshotProviderEx,
+            pSnapshotLuns: [*]VDS_LUN_INFORMATION,
+            pOriginalLuns: [*]VDS_LUN_INFORMATION,
+            dwCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVssHardwareSnapshotProvider.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProviderEx_GetProviderCapabilities(self: *const T, pllOriginalCapabilityMask: ?*u64) HRESULT {
-                return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).GetProviderCapabilities(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pllOriginalCapabilityMask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProviderEx_OnLunStateChange(self: *const T, pSnapshotLuns: [*]VDS_LUN_INFORMATION, pOriginalLuns: [*]VDS_LUN_INFORMATION, dwCount: u32, dwFlags: u32) HRESULT {
-                return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).OnLunStateChange(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pSnapshotLuns, pOriginalLuns, dwCount, dwFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProviderEx_ResyncLuns(self: *const T, pSourceLuns: [*]VDS_LUN_INFORMATION, pTargetLuns: [*]VDS_LUN_INFORMATION, dwCount: u32, ppAsync: ?*?*IVssAsync) HRESULT {
-                return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).ResyncLuns(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pSourceLuns, pTargetLuns, dwCount, ppAsync);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssHardwareSnapshotProviderEx_OnReuseLuns(self: *const T, pSnapshotLuns: [*]VDS_LUN_INFORMATION, pOriginalLuns: [*]VDS_LUN_INFORMATION, dwCount: u32) HRESULT {
-                return @as(*const IVssHardwareSnapshotProviderEx.VTable, @ptrCast(self.vtable)).OnReuseLuns(@as(*const IVssHardwareSnapshotProviderEx, @ptrCast(self)), pSnapshotLuns, pOriginalLuns, dwCount);
-            }
-        };
+    IVssHardwareSnapshotProvider: IVssHardwareSnapshotProvider,
+    IUnknown: IUnknown,
+    pub fn GetProviderCapabilities(self: *const IVssHardwareSnapshotProviderEx, pllOriginalCapabilityMask: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetProviderCapabilities(self, pllOriginalCapabilityMask);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnLunStateChange(self: *const IVssHardwareSnapshotProviderEx, pSnapshotLuns: [*]VDS_LUN_INFORMATION, pOriginalLuns: [*]VDS_LUN_INFORMATION, dwCount: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnLunStateChange(self, pSnapshotLuns, pOriginalLuns, dwCount, dwFlags);
+    }
+    pub fn ResyncLuns(self: *const IVssHardwareSnapshotProviderEx, pSourceLuns: [*]VDS_LUN_INFORMATION, pTargetLuns: [*]VDS_LUN_INFORMATION, dwCount: u32, ppAsync: ?*?*IVssAsync) callconv(.Inline) HRESULT {
+        return self.vtable.ResyncLuns(self, pSourceLuns, pTargetLuns, dwCount, ppAsync);
+    }
+    pub fn OnReuseLuns(self: *const IVssHardwareSnapshotProviderEx, pSnapshotLuns: [*]VDS_LUN_INFORMATION, pOriginalLuns: [*]VDS_LUN_INFORMATION, dwCount: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnReuseLuns(self, pSnapshotLuns, pOriginalLuns, dwCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IVssFileShareSnapshotProvider_Value = Guid.initString("c8636060-7c2e-11df-8c4a-0800200c9a66");
 pub const IID_IVssFileShareSnapshotProvider = &IID_IVssFileShareSnapshotProvider_Value;
-pub const IVssFileShareSnapshotProvider = extern struct {
+pub const IVssFileShareSnapshotProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetContext: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                lContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                lContext: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSnapshotProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SnapshotId: Guid,
-                pProp: ?*VSS_SNAPSHOT_PROP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SnapshotId: Guid,
-                pProp: ?*VSS_SNAPSHOT_PROP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Query: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                QueriedObjectId: Guid,
-                eQueriedObjectType: VSS_OBJECT_TYPE,
-                eReturnedObjectsType: VSS_OBJECT_TYPE,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                QueriedObjectId: Guid,
-                eQueriedObjectType: VSS_OBJECT_TYPE,
-                eReturnedObjectsType: VSS_OBJECT_TYPE,
-                ppEnum: ?*?*IVssEnumObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteSnapshots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SourceObjectId: Guid,
-                eSourceObjectType: VSS_OBJECT_TYPE,
-                bForceDelete: BOOL,
-                plDeletedSnapshots: ?*i32,
-                pNondeletedSnapshotID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SourceObjectId: Guid,
-                eSourceObjectType: VSS_OBJECT_TYPE,
-                bForceDelete: BOOL,
-                plDeletedSnapshots: ?*i32,
-                pNondeletedSnapshotID: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginPrepareSnapshot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SnapshotSetId: Guid,
-                SnapshotId: Guid,
-                pwszSharePath: ?*u16,
-                lNewContext: i32,
-                ProviderId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SnapshotSetId: Guid,
-                SnapshotId: Guid,
-                pwszSharePath: ?*u16,
-                lNewContext: i32,
-                ProviderId: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPathSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                pwszSharePath: ?*u16,
-                pbSupportedByThisProvider: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                pwszSharePath: ?*u16,
-                pbSupportedByThisProvider: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPathSnapshotted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                pwszSharePath: ?*u16,
-                pbSnapshotsPresent: ?*BOOL,
-                plSnapshotCompatibility: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                pwszSharePath: ?*u16,
-                pbSnapshotsPresent: ?*BOOL,
-                plSnapshotCompatibility: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSnapshotProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SnapshotId: Guid,
-                eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
-                vProperty: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVssFileShareSnapshotProvider,
-                SnapshotId: Guid,
-                eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
-                vProperty: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetContext: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            lContext: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSnapshotProperties: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            SnapshotId: Guid,
+            pProp: ?*VSS_SNAPSHOT_PROP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Query: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            QueriedObjectId: Guid,
+            eQueriedObjectType: VSS_OBJECT_TYPE,
+            eReturnedObjectsType: VSS_OBJECT_TYPE,
+            ppEnum: ?*?*IVssEnumObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteSnapshots: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            SourceObjectId: Guid,
+            eSourceObjectType: VSS_OBJECT_TYPE,
+            bForceDelete: BOOL,
+            plDeletedSnapshots: ?*i32,
+            pNondeletedSnapshotID: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginPrepareSnapshot: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            SnapshotSetId: Guid,
+            SnapshotId: Guid,
+            pwszSharePath: ?*u16,
+            lNewContext: i32,
+            ProviderId: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPathSupported: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            pwszSharePath: ?*u16,
+            pbSupportedByThisProvider: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPathSnapshotted: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            pwszSharePath: ?*u16,
+            pbSnapshotsPresent: ?*BOOL,
+            plSnapshotCompatibility: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSnapshotProperty: *const fn(
+            self: *const IVssFileShareSnapshotProvider,
+            SnapshotId: Guid,
+            eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID,
+            vProperty: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_SetContext(self: *const T, lContext: i32) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetContext(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), lContext);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_GetSnapshotProperties(self: *const T, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).GetSnapshotProperties(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SnapshotId, pProp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_Query(self: *const T, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).Query(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_DeleteSnapshots(self: *const T, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).DeleteSnapshots(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_BeginPrepareSnapshot(self: *const T, SnapshotSetId: Guid, SnapshotId: Guid, pwszSharePath: ?*u16, lNewContext: i32, ProviderId: Guid) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).BeginPrepareSnapshot(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SnapshotSetId, SnapshotId, pwszSharePath, lNewContext, ProviderId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_IsPathSupported(self: *const T, pwszSharePath: ?*u16, pbSupportedByThisProvider: ?*BOOL) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsPathSupported(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), pwszSharePath, pbSupportedByThisProvider);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_IsPathSnapshotted(self: *const T, pwszSharePath: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).IsPathSnapshotted(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), pwszSharePath, pbSnapshotsPresent, plSnapshotCompatibility);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVssFileShareSnapshotProvider_SetSnapshotProperty(self: *const T, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) HRESULT {
-                return @as(*const IVssFileShareSnapshotProvider.VTable, @ptrCast(self.vtable)).SetSnapshotProperty(@as(*const IVssFileShareSnapshotProvider, @ptrCast(self)), SnapshotId, eSnapshotPropertyId, vProperty);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetContext(self: *const IVssFileShareSnapshotProvider, lContext: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SetContext(self, lContext);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSnapshotProperties(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, pProp: ?*VSS_SNAPSHOT_PROP) callconv(.Inline) HRESULT {
+        return self.vtable.GetSnapshotProperties(self, SnapshotId, pProp);
+    }
+    pub fn Query(self: *const IVssFileShareSnapshotProvider, QueriedObjectId: Guid, eQueriedObjectType: VSS_OBJECT_TYPE, eReturnedObjectsType: VSS_OBJECT_TYPE, ppEnum: ?*?*IVssEnumObject) callconv(.Inline) HRESULT {
+        return self.vtable.Query(self, QueriedObjectId, eQueriedObjectType, eReturnedObjectsType, ppEnum);
+    }
+    pub fn DeleteSnapshots(self: *const IVssFileShareSnapshotProvider, SourceObjectId: Guid, eSourceObjectType: VSS_OBJECT_TYPE, bForceDelete: BOOL, plDeletedSnapshots: ?*i32, pNondeletedSnapshotID: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteSnapshots(self, SourceObjectId, eSourceObjectType, bForceDelete, plDeletedSnapshots, pNondeletedSnapshotID);
+    }
+    pub fn BeginPrepareSnapshot(self: *const IVssFileShareSnapshotProvider, SnapshotSetId: Guid, SnapshotId: Guid, pwszSharePath: ?*u16, lNewContext: i32, ProviderId: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.BeginPrepareSnapshot(self, SnapshotSetId, SnapshotId, pwszSharePath, lNewContext, ProviderId);
+    }
+    pub fn IsPathSupported(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSupportedByThisProvider: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsPathSupported(self, pwszSharePath, pbSupportedByThisProvider);
+    }
+    pub fn IsPathSnapshotted(self: *const IVssFileShareSnapshotProvider, pwszSharePath: ?*u16, pbSnapshotsPresent: ?*BOOL, plSnapshotCompatibility: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.IsPathSnapshotted(self, pwszSharePath, pbSnapshotsPresent, plSnapshotCompatibility);
+    }
+    pub fn SetSnapshotProperty(self: *const IVssFileShareSnapshotProvider, SnapshotId: Guid, eSnapshotPropertyId: VSS_SNAPSHOT_PROPERTY_ID, vProperty: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetSnapshotProperty(self, SnapshotId, eSnapshotPropertyId, vProperty);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -4013,15 +2441,10 @@ pub extern "vssapi" fn CreateVssExpressWriterInternal(
     ppWriter: ?*?*IVssExpressWriter,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
@@ -4037,13 +2460,13 @@ const VARIANT = @import("../system/com.zig").VARIANT;
 const VDS_LUN_INFORMATION = @import("../storage/virtual_disk_service.zig").VDS_LUN_INFORMATION;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

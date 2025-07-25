@@ -6,25 +6,45 @@
 //--------------------------------------------------------------------------------
 // Section: Types (1)
 //--------------------------------------------------------------------------------
-pub const WSL_DISTRIBUTION_FLAGS = enum(u32) {
-    NONE = 0,
-    ENABLE_INTEROP = 1,
-    APPEND_NT_PATH = 2,
-    ENABLE_DRIVE_MOUNTING = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ENABLE_INTEROP: u1 = 0,
-        APPEND_NT_PATH: u1 = 0,
-        ENABLE_DRIVE_MOUNTING: u1 = 0,
-    }) WSL_DISTRIBUTION_FLAGS {
-        return @as(WSL_DISTRIBUTION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(WSL_DISTRIBUTION_FLAGS.NONE) else 0) | (if (o.ENABLE_INTEROP == 1) @intFromEnum(WSL_DISTRIBUTION_FLAGS.ENABLE_INTEROP) else 0) | (if (o.APPEND_NT_PATH == 1) @intFromEnum(WSL_DISTRIBUTION_FLAGS.APPEND_NT_PATH) else 0) | (if (o.ENABLE_DRIVE_MOUNTING == 1) @intFromEnum(WSL_DISTRIBUTION_FLAGS.ENABLE_DRIVE_MOUNTING) else 0)));
-    }
+pub const WSL_DISTRIBUTION_FLAGS = packed struct(u32) {
+    ENABLE_INTEROP: u1 = 0,
+    APPEND_NT_PATH: u1 = 0,
+    ENABLE_DRIVE_MOUNTING: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const WSL_DISTRIBUTION_FLAGS_NONE = WSL_DISTRIBUTION_FLAGS.NONE;
-pub const WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP = WSL_DISTRIBUTION_FLAGS.ENABLE_INTEROP;
-pub const WSL_DISTRIBUTION_FLAGS_APPEND_NT_PATH = WSL_DISTRIBUTION_FLAGS.APPEND_NT_PATH;
-pub const WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING = WSL_DISTRIBUTION_FLAGS.ENABLE_DRIVE_MOUNTING;
+pub const WSL_DISTRIBUTION_FLAGS_NONE = WSL_DISTRIBUTION_FLAGS{ };
+pub const WSL_DISTRIBUTION_FLAGS_ENABLE_INTEROP = WSL_DISTRIBUTION_FLAGS{ .ENABLE_INTEROP = 1 };
+pub const WSL_DISTRIBUTION_FLAGS_APPEND_NT_PATH = WSL_DISTRIBUTION_FLAGS{ .APPEND_NT_PATH = 1 };
+pub const WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING = WSL_DISTRIBUTION_FLAGS{ .ENABLE_DRIVE_MOUNTING = 1 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (7)
@@ -74,15 +94,10 @@ pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunch(
     process: ?*?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
@@ -93,13 +108,13 @@ const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

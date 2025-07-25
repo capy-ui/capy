@@ -4,7 +4,7 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// Section: Types (28)
+// Section: Types (29)
 //--------------------------------------------------------------------------------
 pub const D2D_COLOR_F = extern struct {
     r: f32,
@@ -13,12 +13,7 @@ pub const D2D_COLOR_F = extern struct {
     a: f32,
 };
 
-pub const D2D1_COLOR_F = extern struct {
-    r: f32,
-    g: f32,
-    b: f32,
-    a: f32,
-};
+// Struct Type 'D2D1_COLOR_F' has been substituted with 'D2D_COLOR_F'
 
 pub const D2D1_ALPHA_MODE = enum(u32) {
     UNKNOWN = 0,
@@ -208,25 +203,77 @@ pub const D2D1_BEZIER_SEGMENT = extern struct {
     point3: D2D_POINT_2F,
 };
 
-pub const D2D1_PATH_SEGMENT = enum(u32) {
-    NONE = 0,
-    FORCE_UNSTROKED = 1,
-    FORCE_ROUND_LINE_JOIN = 2,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        FORCE_UNSTROKED: u1 = 0,
-        FORCE_ROUND_LINE_JOIN: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) D2D1_PATH_SEGMENT {
-        return @as(D2D1_PATH_SEGMENT, @enumFromInt((if (o.NONE == 1) @intFromEnum(D2D1_PATH_SEGMENT.NONE) else 0) | (if (o.FORCE_UNSTROKED == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_UNSTROKED) else 0) | (if (o.FORCE_ROUND_LINE_JOIN == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_ROUND_LINE_JOIN) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(D2D1_PATH_SEGMENT.FORCE_DWORD) else 0)));
-    }
+pub const D2D1_PATH_SEGMENT = packed struct(u32) {
+    FORCE_UNSTROKED: u1 = 0,
+    FORCE_ROUND_LINE_JOIN: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D2D1_PATH_SEGMENT_NONE = D2D1_PATH_SEGMENT.NONE;
-pub const D2D1_PATH_SEGMENT_FORCE_UNSTROKED = D2D1_PATH_SEGMENT.FORCE_UNSTROKED;
-pub const D2D1_PATH_SEGMENT_FORCE_ROUND_LINE_JOIN = D2D1_PATH_SEGMENT.FORCE_ROUND_LINE_JOIN;
-pub const D2D1_PATH_SEGMENT_FORCE_DWORD = D2D1_PATH_SEGMENT.FORCE_DWORD;
+pub const D2D1_PATH_SEGMENT_NONE = D2D1_PATH_SEGMENT{ };
+pub const D2D1_PATH_SEGMENT_FORCE_UNSTROKED = D2D1_PATH_SEGMENT{ .FORCE_UNSTROKED = 1 };
+pub const D2D1_PATH_SEGMENT_FORCE_ROUND_LINE_JOIN = D2D1_PATH_SEGMENT{ .FORCE_ROUND_LINE_JOIN = 1 };
+pub const D2D1_PATH_SEGMENT_FORCE_DWORD = D2D1_PATH_SEGMENT{
+    .FORCE_UNSTROKED = 1,
+    .FORCE_ROUND_LINE_JOIN = 1,
+    ._2 = 1,
+    ._3 = 1,
+    ._4 = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const D2D1_FILL_MODE = enum(u32) {
     ALTERNATE = 0,
@@ -240,119 +287,63 @@ pub const D2D1_FILL_MODE_FORCE_DWORD = D2D1_FILL_MODE.FORCE_DWORD;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ID2D1SimplifiedGeometrySink_Value = Guid.initString("2cd9069e-12e2-11dc-9fed-001143a055f9");
 pub const IID_ID2D1SimplifiedGeometrySink = &IID_ID2D1SimplifiedGeometrySink_Value;
-pub const ID2D1SimplifiedGeometrySink = extern struct {
+pub const ID2D1SimplifiedGeometrySink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetFillMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                fillMode: D2D1_FILL_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                fillMode: D2D1_FILL_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetSegmentFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                vertexFlags: D2D1_PATH_SEGMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                vertexFlags: D2D1_PATH_SEGMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        BeginFigure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                startPoint: D2D_POINT_2F,
-                figureBegin: D2D1_FIGURE_BEGIN,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                startPoint: D2D_POINT_2F,
-                figureBegin: D2D1_FIGURE_BEGIN,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        AddLines: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                points: [*]const D2D_POINT_2F,
-                pointsCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                points: [*]const D2D_POINT_2F,
-                pointsCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        AddBeziers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                beziers: [*]const D2D1_BEZIER_SEGMENT,
-                beziersCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                beziers: [*]const D2D1_BEZIER_SEGMENT,
-                beziersCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndFigure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                figureEnd: D2D1_FIGURE_END,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-                figureEnd: D2D1_FIGURE_END,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID2D1SimplifiedGeometrySink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetFillMode: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            fillMode: D2D1_FILL_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetSegmentFlags: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            vertexFlags: D2D1_PATH_SEGMENT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        BeginFigure: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            startPoint: D2D_POINT_2F,
+            figureBegin: D2D1_FIGURE_BEGIN,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        AddLines: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            points: [*]const D2D_POINT_2F,
+            pointsCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        AddBeziers: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            beziers: [*]const D2D1_BEZIER_SEGMENT,
+            beziersCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndFigure: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+            figureEnd: D2D1_FIGURE_END,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        Close: *const fn(
+            self: *const ID2D1SimplifiedGeometrySink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID2D1SimplifiedGeometrySink_SetFillMode(self: *const T, fillMode: D2D1_FILL_MODE) void {
-                return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).SetFillMode(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), fillMode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID2D1SimplifiedGeometrySink_SetSegmentFlags(self: *const T, vertexFlags: D2D1_PATH_SEGMENT) void {
-                return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).SetSegmentFlags(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), vertexFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID2D1SimplifiedGeometrySink_BeginFigure(self: *const T, startPoint: D2D_POINT_2F, figureBegin: D2D1_FIGURE_BEGIN) void {
-                return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).BeginFigure(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), startPoint, figureBegin);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID2D1SimplifiedGeometrySink_AddLines(self: *const T, points: [*]const D2D_POINT_2F, pointsCount: u32) void {
-                return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).AddLines(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), points, pointsCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID2D1SimplifiedGeometrySink_AddBeziers(self: *const T, beziers: [*]const D2D1_BEZIER_SEGMENT, beziersCount: u32) void {
-                return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).AddBeziers(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), beziers, beziersCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID2D1SimplifiedGeometrySink_EndFigure(self: *const T, figureEnd: D2D1_FIGURE_END) void {
-                return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).EndFigure(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)), figureEnd);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID2D1SimplifiedGeometrySink_Close(self: *const T) HRESULT {
-                return @as(*const ID2D1SimplifiedGeometrySink.VTable, @ptrCast(self.vtable)).Close(@as(*const ID2D1SimplifiedGeometrySink, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetFillMode(self: *const ID2D1SimplifiedGeometrySink, fillMode: D2D1_FILL_MODE) callconv(.Inline) void {
+        return self.vtable.SetFillMode(self, fillMode);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetSegmentFlags(self: *const ID2D1SimplifiedGeometrySink, vertexFlags: D2D1_PATH_SEGMENT) callconv(.Inline) void {
+        return self.vtable.SetSegmentFlags(self, vertexFlags);
+    }
+    pub fn BeginFigure(self: *const ID2D1SimplifiedGeometrySink, startPoint: D2D_POINT_2F, figureBegin: D2D1_FIGURE_BEGIN) callconv(.Inline) void {
+        return self.vtable.BeginFigure(self, startPoint, figureBegin);
+    }
+    pub fn AddLines(self: *const ID2D1SimplifiedGeometrySink, points: [*]const D2D_POINT_2F, pointsCount: u32) callconv(.Inline) void {
+        return self.vtable.AddLines(self, points, pointsCount);
+    }
+    pub fn AddBeziers(self: *const ID2D1SimplifiedGeometrySink, beziers: [*]const D2D1_BEZIER_SEGMENT, beziersCount: u32) callconv(.Inline) void {
+        return self.vtable.AddBeziers(self, beziers, beziersCount);
+    }
+    pub fn EndFigure(self: *const ID2D1SimplifiedGeometrySink, figureEnd: D2D1_FIGURE_END) callconv(.Inline) void {
+        return self.vtable.EndFigure(self, figureEnd);
+    }
+    pub fn Close(self: *const ID2D1SimplifiedGeometrySink) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self);
+    }
 };
 
 pub const D2D1_BORDER_MODE = enum(u32) {
@@ -430,6 +421,23 @@ pub const D2D1_COLORMATRIX_ALPHA_MODE_PREMULTIPLIED = D2D1_COLORMATRIX_ALPHA_MOD
 pub const D2D1_COLORMATRIX_ALPHA_MODE_STRAIGHT = D2D1_COLORMATRIX_ALPHA_MODE.STRAIGHT;
 pub const D2D1_COLORMATRIX_ALPHA_MODE_FORCE_DWORD = D2D1_COLORMATRIX_ALPHA_MODE.FORCE_DWORD;
 
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE = enum(u32) {
+    NEAREST_NEIGHBOR = 0,
+    LINEAR = 1,
+    CUBIC = 2,
+    MULTI_SAMPLE_LINEAR = 3,
+    ANISOTROPIC = 4,
+    HIGH_QUALITY_CUBIC = 5,
+    FORCE_DWORD = 4294967295,
+};
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_NEAREST_NEIGHBOR = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.NEAREST_NEIGHBOR;
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_LINEAR = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.LINEAR;
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_CUBIC = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.CUBIC;
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_MULTI_SAMPLE_LINEAR = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.MULTI_SAMPLE_LINEAR;
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_ANISOTROPIC = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.ANISOTROPIC;
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_HIGH_QUALITY_CUBIC = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.HIGH_QUALITY_CUBIC;
+pub const D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE_FORCE_DWORD = D2D1_2DAFFINETRANSFORM_INTERPOLATION_MODE.FORCE_DWORD;
+
 pub const D2D1_TURBULENCE_NOISE = enum(u32) {
     FRACTAL_SUM = 0,
     TURBULENCE = 1,
@@ -470,6 +478,7 @@ pub const D2D1_COMPOSITE_MODE_BOUNDED_SOURCE_COPY = D2D1_COMPOSITE_MODE.BOUNDED_
 pub const D2D1_COMPOSITE_MODE_MASK_INVERT = D2D1_COMPOSITE_MODE.MASK_INVERT;
 pub const D2D1_COMPOSITE_MODE_FORCE_DWORD = D2D1_COMPOSITE_MODE.FORCE_DWORD;
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -477,12 +486,6 @@ pub const D2D1_COMPOSITE_MODE_FORCE_DWORD = D2D1_COMPOSITE_MODE.FORCE_DWORD;
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
@@ -492,13 +495,13 @@ const HRESULT = @import("../../foundation.zig").HRESULT;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

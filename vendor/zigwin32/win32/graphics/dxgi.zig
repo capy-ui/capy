@@ -202,974 +202,562 @@ pub const DXGI_SWAP_CHAIN_DESC = extern struct {
 
 const IID_IDXGIObject_Value = Guid.initString("aec22fb8-76f3-4639-9be0-28eb43a67a2e");
 pub const IID_IDXGIObject = &IID_IDXGIObject_Value;
-pub const IDXGIObject = extern struct {
+pub const IDXGIObject = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetPrivateData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIObject,
-                Name: ?*const Guid,
-                DataSize: u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*const anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIObject,
-                Name: ?*const Guid,
-                DataSize: u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*const anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPrivateDataInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIObject,
-                Name: ?*const Guid,
-                pUnknown: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIObject,
-                Name: ?*const Guid,
-                pUnknown: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrivateData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIObject,
-                Name: ?*const Guid,
-                pDataSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIObject,
-                Name: ?*const Guid,
-                pDataSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetParent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIObject,
-                riid: ?*const Guid,
-                ppParent: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIObject,
-                riid: ?*const Guid,
-                ppParent: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetPrivateData: *const fn(
+            self: *const IDXGIObject,
+            Name: ?*const Guid,
+            DataSize: u32,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrivateDataInterface: *const fn(
+            self: *const IDXGIObject,
+            Name: ?*const Guid,
+            pUnknown: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrivateData: *const fn(
+            self: *const IDXGIObject,
+            Name: ?*const Guid,
+            pDataSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetParent: *const fn(
+            self: *const IDXGIObject,
+            riid: ?*const Guid,
+            ppParent: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIObject_SetPrivateData(self: *const T, Name: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) HRESULT {
-                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const IDXGIObject, @ptrCast(self)), Name, DataSize, pData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIObject_SetPrivateDataInterface(self: *const T, Name: ?*const Guid, pUnknown: ?*IUnknown) HRESULT {
-                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const IDXGIObject, @ptrCast(self)), Name, pUnknown);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIObject_GetPrivateData(self: *const T, Name: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) HRESULT {
-                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const IDXGIObject, @ptrCast(self)), Name, pDataSize, pData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIObject_GetParent(self: *const T, riid: ?*const Guid, ppParent: ?*?*anyopaque) HRESULT {
-                return @as(*const IDXGIObject.VTable, @ptrCast(self.vtable)).GetParent(@as(*const IDXGIObject, @ptrCast(self)), riid, ppParent);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetPrivateData(self: *const IDXGIObject, Name: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrivateData(self, Name, DataSize, pData);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetPrivateDataInterface(self: *const IDXGIObject, Name: ?*const Guid, pUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrivateDataInterface(self, Name, pUnknown);
+    }
+    pub fn GetPrivateData(self: *const IDXGIObject, Name: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrivateData(self, Name, pDataSize, pData);
+    }
+    pub fn GetParent(self: *const IDXGIObject, riid: ?*const Guid, ppParent: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetParent(self, riid, ppParent);
+    }
 };
 
 const IID_IDXGIDeviceSubObject_Value = Guid.initString("3d3e0379-f9de-4d58-bb6c-18d62992f1a6");
 pub const IID_IDXGIDeviceSubObject = &IID_IDXGIDeviceSubObject_Value;
-pub const IDXGIDeviceSubObject = extern struct {
+pub const IDXGIDeviceSubObject = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
-        GetDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDeviceSubObject,
-                riid: ?*const Guid,
-                ppDevice: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDeviceSubObject,
-                riid: ?*const Guid,
-                ppDevice: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDevice: *const fn(
+            self: *const IDXGIDeviceSubObject,
+            riid: ?*const Guid,
+            ppDevice: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDeviceSubObject_GetDevice(self: *const T, riid: ?*const Guid, ppDevice: ?*?*anyopaque) HRESULT {
-                return @as(*const IDXGIDeviceSubObject.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const IDXGIDeviceSubObject, @ptrCast(self)), riid, ppDevice);
-            }
-        };
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDevice(self: *const IDXGIDeviceSubObject, riid: ?*const Guid, ppDevice: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetDevice(self, riid, ppDevice);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IDXGIResource_Value = Guid.initString("035f3ab4-482e-4e50-b41f-8a7f8bd8960b");
 pub const IID_IDXGIResource = &IID_IDXGIResource_Value;
-pub const IDXGIResource = extern struct {
+pub const IDXGIResource = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
-        GetSharedHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIResource,
-                pSharedHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIResource,
-                pSharedHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUsage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIResource,
-                pUsage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIResource,
-                pUsage: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEvictionPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIResource,
-                EvictionPriority: DXGI_RESOURCE_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIResource,
-                EvictionPriority: DXGI_RESOURCE_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEvictionPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIResource,
-                pEvictionPriority: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIResource,
-                pEvictionPriority: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSharedHandle: *const fn(
+            self: *const IDXGIResource,
+            pSharedHandle: ?*?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUsage: *const fn(
+            self: *const IDXGIResource,
+            pUsage: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEvictionPriority: *const fn(
+            self: *const IDXGIResource,
+            EvictionPriority: DXGI_RESOURCE_PRIORITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEvictionPriority: *const fn(
+            self: *const IDXGIResource,
+            pEvictionPriority: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIResource_GetSharedHandle(self: *const T, pSharedHandle: ?*?HANDLE) HRESULT {
-                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).GetSharedHandle(@as(*const IDXGIResource, @ptrCast(self)), pSharedHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIResource_GetUsage(self: *const T, pUsage: ?*u32) HRESULT {
-                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).GetUsage(@as(*const IDXGIResource, @ptrCast(self)), pUsage);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIResource_SetEvictionPriority(self: *const T, EvictionPriority: DXGI_RESOURCE_PRIORITY) HRESULT {
-                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).SetEvictionPriority(@as(*const IDXGIResource, @ptrCast(self)), EvictionPriority);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIResource_GetEvictionPriority(self: *const T, pEvictionPriority: ?*u32) HRESULT {
-                return @as(*const IDXGIResource.VTable, @ptrCast(self.vtable)).GetEvictionPriority(@as(*const IDXGIResource, @ptrCast(self)), pEvictionPriority);
-            }
-        };
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetSharedHandle(self: *const IDXGIResource, pSharedHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.GetSharedHandle(self, pSharedHandle);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetUsage(self: *const IDXGIResource, pUsage: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetUsage(self, pUsage);
+    }
+    pub fn SetEvictionPriority(self: *const IDXGIResource, EvictionPriority: DXGI_RESOURCE_PRIORITY) callconv(.Inline) HRESULT {
+        return self.vtable.SetEvictionPriority(self, EvictionPriority);
+    }
+    pub fn GetEvictionPriority(self: *const IDXGIResource, pEvictionPriority: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetEvictionPriority(self, pEvictionPriority);
+    }
 };
 
 const IID_IDXGIKeyedMutex_Value = Guid.initString("9d8e1289-d7b3-465f-8126-250e349af85d");
 pub const IID_IDXGIKeyedMutex = &IID_IDXGIKeyedMutex_Value;
-pub const IDXGIKeyedMutex = extern struct {
+pub const IDXGIKeyedMutex = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
-        AcquireSync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIKeyedMutex,
-                Key: u64,
-                dwMilliseconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIKeyedMutex,
-                Key: u64,
-                dwMilliseconds: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseSync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIKeyedMutex,
-                Key: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIKeyedMutex,
-                Key: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AcquireSync: *const fn(
+            self: *const IDXGIKeyedMutex,
+            Key: u64,
+            dwMilliseconds: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseSync: *const fn(
+            self: *const IDXGIKeyedMutex,
+            Key: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIKeyedMutex_AcquireSync(self: *const T, Key: u64, dwMilliseconds: u32) HRESULT {
-                return @as(*const IDXGIKeyedMutex.VTable, @ptrCast(self.vtable)).AcquireSync(@as(*const IDXGIKeyedMutex, @ptrCast(self)), Key, dwMilliseconds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIKeyedMutex_ReleaseSync(self: *const T, Key: u64) HRESULT {
-                return @as(*const IDXGIKeyedMutex.VTable, @ptrCast(self.vtable)).ReleaseSync(@as(*const IDXGIKeyedMutex, @ptrCast(self)), Key);
-            }
-        };
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn AcquireSync(self: *const IDXGIKeyedMutex, Key: u64, dwMilliseconds: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AcquireSync(self, Key, dwMilliseconds);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ReleaseSync(self: *const IDXGIKeyedMutex, Key: u64) callconv(.Inline) HRESULT {
+        return self.vtable.ReleaseSync(self, Key);
+    }
 };
 
 const IID_IDXGISurface_Value = Guid.initString("cafcb56c-6ac3-4889-bf47-9e23bbd260ec");
 pub const IID_IDXGISurface = &IID_IDXGISurface_Value;
-pub const IDXGISurface = extern struct {
+pub const IDXGISurface = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISurface,
-                pDesc: ?*DXGI_SURFACE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISurface,
-                pDesc: ?*DXGI_SURFACE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Map: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISurface,
-                pLockedRect: ?*DXGI_MAPPED_RECT,
-                MapFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISurface,
-                pLockedRect: ?*DXGI_MAPPED_RECT,
-                MapFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unmap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc: *const fn(
+            self: *const IDXGISurface,
+            pDesc: ?*DXGI_SURFACE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Map: *const fn(
+            self: *const IDXGISurface,
+            pLockedRect: ?*DXGI_MAPPED_RECT,
+            MapFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unmap: *const fn(
+            self: *const IDXGISurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISurface_GetDesc(self: *const T, pDesc: ?*DXGI_SURFACE_DESC) HRESULT {
-                return @as(*const IDXGISurface.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGISurface, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISurface_Map(self: *const T, pLockedRect: ?*DXGI_MAPPED_RECT, MapFlags: u32) HRESULT {
-                return @as(*const IDXGISurface.VTable, @ptrCast(self.vtable)).Map(@as(*const IDXGISurface, @ptrCast(self)), pLockedRect, MapFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISurface_Unmap(self: *const T) HRESULT {
-                return @as(*const IDXGISurface.VTable, @ptrCast(self.vtable)).Unmap(@as(*const IDXGISurface, @ptrCast(self)));
-            }
-        };
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const IDXGISurface, pDesc: ?*DXGI_SURFACE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Map(self: *const IDXGISurface, pLockedRect: ?*DXGI_MAPPED_RECT, MapFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Map(self, pLockedRect, MapFlags);
+    }
+    pub fn Unmap(self: *const IDXGISurface) callconv(.Inline) HRESULT {
+        return self.vtable.Unmap(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGISurface1_Value = Guid.initString("4ae63092-6327-4c1b-80ae-bfe12ea32b86");
 pub const IID_IDXGISurface1 = &IID_IDXGISurface1_Value;
-pub const IDXGISurface1 = extern struct {
+pub const IDXGISurface1 = extern union {
     pub const VTable = extern struct {
         base: IDXGISurface.VTable,
-        GetDC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISurface1,
-                Discard: BOOL,
-                phdc: ?*?HDC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISurface1,
-                Discard: BOOL,
-                phdc: ?*?HDC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseDC: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISurface1,
-                pDirtyRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISurface1,
-                pDirtyRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDC: *const fn(
+            self: *const IDXGISurface1,
+            Discard: BOOL,
+            phdc: ?*?HDC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseDC: *const fn(
+            self: *const IDXGISurface1,
+            pDirtyRect: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGISurface.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISurface1_GetDC(self: *const T, Discard: BOOL, phdc: ?*?HDC) HRESULT {
-                return @as(*const IDXGISurface1.VTable, @ptrCast(self.vtable)).GetDC(@as(*const IDXGISurface1, @ptrCast(self)), Discard, phdc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISurface1_ReleaseDC(self: *const T, pDirtyRect: ?*RECT) HRESULT {
-                return @as(*const IDXGISurface1.VTable, @ptrCast(self.vtable)).ReleaseDC(@as(*const IDXGISurface1, @ptrCast(self)), pDirtyRect);
-            }
-        };
+    IDXGISurface: IDXGISurface,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDC(self: *const IDXGISurface1, Discard: BOOL, phdc: ?*?HDC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDC(self, Discard, phdc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ReleaseDC(self: *const IDXGISurface1, pDirtyRect: ?*RECT) callconv(.Inline) HRESULT {
+        return self.vtable.ReleaseDC(self, pDirtyRect);
+    }
 };
 
 const IID_IDXGIAdapter_Value = Guid.initString("2411e7e1-12ac-4ccf-bd14-9798e8534dc0");
 pub const IID_IDXGIAdapter = &IID_IDXGIAdapter_Value;
-pub const IDXGIAdapter = extern struct {
+pub const IDXGIAdapter = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
-        EnumOutputs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter,
-                Output: u32,
-                ppOutput: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter,
-                Output: u32,
-                ppOutput: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter,
-                pDesc: ?*DXGI_ADAPTER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter,
-                pDesc: ?*DXGI_ADAPTER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckInterfaceSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter,
-                InterfaceName: ?*const Guid,
-                pUMDVersion: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter,
-                InterfaceName: ?*const Guid,
-                pUMDVersion: ?*LARGE_INTEGER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumOutputs: *const fn(
+            self: *const IDXGIAdapter,
+            Output: u32,
+            ppOutput: **IDXGIOutput,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDesc: *const fn(
+            self: *const IDXGIAdapter,
+            pDesc: ?*DXGI_ADAPTER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckInterfaceSupport: *const fn(
+            self: *const IDXGIAdapter,
+            InterfaceName: ?*const Guid,
+            pUMDVersion: ?*LARGE_INTEGER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter_EnumOutputs(self: *const T, Output: u32, ppOutput: ?*?*IDXGIOutput) HRESULT {
-                return @as(*const IDXGIAdapter.VTable, @ptrCast(self.vtable)).EnumOutputs(@as(*const IDXGIAdapter, @ptrCast(self)), Output, ppOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter_GetDesc(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC) HRESULT {
-                return @as(*const IDXGIAdapter.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGIAdapter, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter_CheckInterfaceSupport(self: *const T, InterfaceName: ?*const Guid, pUMDVersion: ?*LARGE_INTEGER) HRESULT {
-                return @as(*const IDXGIAdapter.VTable, @ptrCast(self.vtable)).CheckInterfaceSupport(@as(*const IDXGIAdapter, @ptrCast(self)), InterfaceName, pUMDVersion);
-            }
-        };
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn EnumOutputs(self: *const IDXGIAdapter, Output: u32, ppOutput: **IDXGIOutput) callconv(.Inline) HRESULT {
+        return self.vtable.EnumOutputs(self, Output, ppOutput);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDesc(self: *const IDXGIAdapter, pDesc: ?*DXGI_ADAPTER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
+    }
+    pub fn CheckInterfaceSupport(self: *const IDXGIAdapter, InterfaceName: ?*const Guid, pUMDVersion: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+        return self.vtable.CheckInterfaceSupport(self, InterfaceName, pUMDVersion);
+    }
 };
 
 const IID_IDXGIOutput_Value = Guid.initString("ae02eedb-c735-4690-8d52-5a8dc20213aa");
 pub const IID_IDXGIOutput = &IID_IDXGIOutput_Value;
-pub const IDXGIOutput = extern struct {
+pub const IDXGIOutput = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pDesc: ?*DXGI_OUTPUT_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pDesc: ?*DXGI_OUTPUT_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDisplayModeList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                EnumFormat: DXGI_FORMAT,
-                Flags: u32,
-                pNumModes: ?*u32,
-                pDesc: ?[*]DXGI_MODE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                EnumFormat: DXGI_FORMAT,
-                Flags: u32,
-                pNumModes: ?*u32,
-                pDesc: ?[*]DXGI_MODE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindClosestMatchingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pModeToMatch: ?*const DXGI_MODE_DESC,
-                pClosestMatch: ?*DXGI_MODE_DESC,
-                pConcernedDevice: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pModeToMatch: ?*const DXGI_MODE_DESC,
-                pClosestMatch: ?*DXGI_MODE_DESC,
-                pConcernedDevice: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WaitForVBlank: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TakeOwnership: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pDevice: ?*IUnknown,
-                Exclusive: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pDevice: ?*IUnknown,
-                Exclusive: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseOwnership: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetGammaControlCapabilities: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pGammaCaps: ?*DXGI_GAMMA_CONTROL_CAPABILITIES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pGammaCaps: ?*DXGI_GAMMA_CONTROL_CAPABILITIES,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGammaControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pArray: ?*const DXGI_GAMMA_CONTROL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pArray: ?*const DXGI_GAMMA_CONTROL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGammaControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pArray: ?*DXGI_GAMMA_CONTROL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pArray: ?*DXGI_GAMMA_CONTROL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDisplaySurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pScanoutSurface: ?*IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pScanoutSurface: ?*IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDisplaySurfaceData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pDestination: ?*IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pDestination: ?*IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput,
-                pStats: ?*DXGI_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput,
-                pStats: ?*DXGI_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc: *const fn(
+            self: *const IDXGIOutput,
+            pDesc: ?*DXGI_OUTPUT_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplayModeList: *const fn(
+            self: *const IDXGIOutput,
+            EnumFormat: DXGI_FORMAT,
+            Flags: u32,
+            pNumModes: ?*u32,
+            pDesc: ?[*]DXGI_MODE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindClosestMatchingMode: *const fn(
+            self: *const IDXGIOutput,
+            pModeToMatch: ?*const DXGI_MODE_DESC,
+            pClosestMatch: ?*DXGI_MODE_DESC,
+            pConcernedDevice: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WaitForVBlank: *const fn(
+            self: *const IDXGIOutput,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TakeOwnership: *const fn(
+            self: *const IDXGIOutput,
+            pDevice: ?*IUnknown,
+            Exclusive: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseOwnership: *const fn(
+            self: *const IDXGIOutput,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetGammaControlCapabilities: *const fn(
+            self: *const IDXGIOutput,
+            pGammaCaps: ?*DXGI_GAMMA_CONTROL_CAPABILITIES,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGammaControl: *const fn(
+            self: *const IDXGIOutput,
+            pArray: ?*const DXGI_GAMMA_CONTROL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGammaControl: *const fn(
+            self: *const IDXGIOutput,
+            pArray: ?*DXGI_GAMMA_CONTROL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDisplaySurface: *const fn(
+            self: *const IDXGIOutput,
+            pScanoutSurface: ?*IDXGISurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplaySurfaceData: *const fn(
+            self: *const IDXGIOutput,
+            pDestination: ?*IDXGISurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameStatistics: *const fn(
+            self: *const IDXGIOutput,
+            pStats: ?*DXGI_FRAME_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_GetDesc(self: *const T, pDesc: ?*DXGI_OUTPUT_DESC) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGIOutput, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_GetDisplayModeList(self: *const T, EnumFormat: DXGI_FORMAT, Flags: u32, pNumModes: ?*u32, pDesc: ?[*]DXGI_MODE_DESC) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetDisplayModeList(@as(*const IDXGIOutput, @ptrCast(self)), EnumFormat, Flags, pNumModes, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_FindClosestMatchingMode(self: *const T, pModeToMatch: ?*const DXGI_MODE_DESC, pClosestMatch: ?*DXGI_MODE_DESC, pConcernedDevice: ?*IUnknown) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).FindClosestMatchingMode(@as(*const IDXGIOutput, @ptrCast(self)), pModeToMatch, pClosestMatch, pConcernedDevice);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_WaitForVBlank(self: *const T) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).WaitForVBlank(@as(*const IDXGIOutput, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_TakeOwnership(self: *const T, pDevice: ?*IUnknown, Exclusive: BOOL) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).TakeOwnership(@as(*const IDXGIOutput, @ptrCast(self)), pDevice, Exclusive);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_ReleaseOwnership(self: *const T) void {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).ReleaseOwnership(@as(*const IDXGIOutput, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_GetGammaControlCapabilities(self: *const T, pGammaCaps: ?*DXGI_GAMMA_CONTROL_CAPABILITIES) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetGammaControlCapabilities(@as(*const IDXGIOutput, @ptrCast(self)), pGammaCaps);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_SetGammaControl(self: *const T, pArray: ?*const DXGI_GAMMA_CONTROL) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).SetGammaControl(@as(*const IDXGIOutput, @ptrCast(self)), pArray);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_GetGammaControl(self: *const T, pArray: ?*DXGI_GAMMA_CONTROL) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetGammaControl(@as(*const IDXGIOutput, @ptrCast(self)), pArray);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_SetDisplaySurface(self: *const T, pScanoutSurface: ?*IDXGISurface) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).SetDisplaySurface(@as(*const IDXGIOutput, @ptrCast(self)), pScanoutSurface);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_GetDisplaySurfaceData(self: *const T, pDestination: ?*IDXGISurface) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetDisplaySurfaceData(@as(*const IDXGIOutput, @ptrCast(self)), pDestination);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput_GetFrameStatistics(self: *const T, pStats: ?*DXGI_FRAME_STATISTICS) HRESULT {
-                return @as(*const IDXGIOutput.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDXGIOutput, @ptrCast(self)), pStats);
-            }
-        };
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const IDXGIOutput, pDesc: ?*DXGI_OUTPUT_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDisplayModeList(self: *const IDXGIOutput, EnumFormat: DXGI_FORMAT, Flags: u32, pNumModes: ?*u32, pDesc: ?[*]DXGI_MODE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDisplayModeList(self, EnumFormat, Flags, pNumModes, pDesc);
+    }
+    pub fn FindClosestMatchingMode(self: *const IDXGIOutput, pModeToMatch: ?*const DXGI_MODE_DESC, pClosestMatch: ?*DXGI_MODE_DESC, pConcernedDevice: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.FindClosestMatchingMode(self, pModeToMatch, pClosestMatch, pConcernedDevice);
+    }
+    pub fn WaitForVBlank(self: *const IDXGIOutput) callconv(.Inline) HRESULT {
+        return self.vtable.WaitForVBlank(self);
+    }
+    pub fn TakeOwnership(self: *const IDXGIOutput, pDevice: ?*IUnknown, Exclusive: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.TakeOwnership(self, pDevice, Exclusive);
+    }
+    pub fn ReleaseOwnership(self: *const IDXGIOutput) callconv(.Inline) void {
+        return self.vtable.ReleaseOwnership(self);
+    }
+    pub fn GetGammaControlCapabilities(self: *const IDXGIOutput, pGammaCaps: ?*DXGI_GAMMA_CONTROL_CAPABILITIES) callconv(.Inline) HRESULT {
+        return self.vtable.GetGammaControlCapabilities(self, pGammaCaps);
+    }
+    pub fn SetGammaControl(self: *const IDXGIOutput, pArray: ?*const DXGI_GAMMA_CONTROL) callconv(.Inline) HRESULT {
+        return self.vtable.SetGammaControl(self, pArray);
+    }
+    pub fn GetGammaControl(self: *const IDXGIOutput, pArray: ?*DXGI_GAMMA_CONTROL) callconv(.Inline) HRESULT {
+        return self.vtable.GetGammaControl(self, pArray);
+    }
+    pub fn SetDisplaySurface(self: *const IDXGIOutput, pScanoutSurface: ?*IDXGISurface) callconv(.Inline) HRESULT {
+        return self.vtable.SetDisplaySurface(self, pScanoutSurface);
+    }
+    pub fn GetDisplaySurfaceData(self: *const IDXGIOutput, pDestination: ?*IDXGISurface) callconv(.Inline) HRESULT {
+        return self.vtable.GetDisplaySurfaceData(self, pDestination);
+    }
+    pub fn GetFrameStatistics(self: *const IDXGIOutput, pStats: ?*DXGI_FRAME_STATISTICS) callconv(.Inline) HRESULT {
+        return self.vtable.GetFrameStatistics(self, pStats);
+    }
 };
 
 const IID_IDXGISwapChain_Value = Guid.initString("310d36a0-d2e7-4c0a-aa04-6a9d23b8886a");
 pub const IID_IDXGISwapChain = &IID_IDXGISwapChain_Value;
-pub const IDXGISwapChain = extern struct {
+pub const IDXGISwapChain = extern union {
     pub const VTable = extern struct {
         base: IDXGIDeviceSubObject.VTable,
-        Present: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                SyncInterval: u32,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                SyncInterval: u32,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                Buffer: u32,
-                riid: ?*const Guid,
-                ppSurface: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                Buffer: u32,
-                riid: ?*const Guid,
-                ppSurface: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFullscreenState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                Fullscreen: BOOL,
-                pTarget: ?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                Fullscreen: BOOL,
-                pTarget: ?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFullscreenState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                pFullscreen: ?*BOOL,
-                ppTarget: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                pFullscreen: ?*BOOL,
-                ppTarget: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                pDesc: ?*DXGI_SWAP_CHAIN_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                pDesc: ?*DXGI_SWAP_CHAIN_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResizeBuffers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                BufferCount: u32,
-                Width: u32,
-                Height: u32,
-                NewFormat: DXGI_FORMAT,
-                SwapChainFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                BufferCount: u32,
-                Width: u32,
-                Height: u32,
-                NewFormat: DXGI_FORMAT,
-                SwapChainFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResizeTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                pNewTargetParameters: ?*const DXGI_MODE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                pNewTargetParameters: ?*const DXGI_MODE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContainingOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                ppOutput: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                ppOutput: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                pStats: ?*DXGI_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                pStats: ?*DXGI_FRAME_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastPresentCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain,
-                pLastPresentCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain,
-                pLastPresentCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Present: *const fn(
+            self: *const IDXGISwapChain,
+            SyncInterval: u32,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBuffer: *const fn(
+            self: *const IDXGISwapChain,
+            Buffer: u32,
+            riid: ?*const Guid,
+            ppSurface: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFullscreenState: *const fn(
+            self: *const IDXGISwapChain,
+            Fullscreen: BOOL,
+            pTarget: ?*IDXGIOutput,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFullscreenState: *const fn(
+            self: *const IDXGISwapChain,
+            pFullscreen: ?*BOOL,
+            ppTarget: ?**IDXGIOutput,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDesc: *const fn(
+            self: *const IDXGISwapChain,
+            pDesc: ?*DXGI_SWAP_CHAIN_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResizeBuffers: *const fn(
+            self: *const IDXGISwapChain,
+            BufferCount: u32,
+            Width: u32,
+            Height: u32,
+            NewFormat: DXGI_FORMAT,
+            SwapChainFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResizeTarget: *const fn(
+            self: *const IDXGISwapChain,
+            pNewTargetParameters: ?*const DXGI_MODE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContainingOutput: *const fn(
+            self: *const IDXGISwapChain,
+            ppOutput: **IDXGIOutput,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameStatistics: *const fn(
+            self: *const IDXGISwapChain,
+            pStats: ?*DXGI_FRAME_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastPresentCount: *const fn(
+            self: *const IDXGISwapChain,
+            pLastPresentCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDeviceSubObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_Present(self: *const T, SyncInterval: u32, Flags: u32) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).Present(@as(*const IDXGISwapChain, @ptrCast(self)), SyncInterval, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_GetBuffer(self: *const T, Buffer: u32, riid: ?*const Guid, ppSurface: ?*?*anyopaque) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IDXGISwapChain, @ptrCast(self)), Buffer, riid, ppSurface);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_SetFullscreenState(self: *const T, Fullscreen: BOOL, pTarget: ?*IDXGIOutput) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).SetFullscreenState(@as(*const IDXGISwapChain, @ptrCast(self)), Fullscreen, pTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_GetFullscreenState(self: *const T, pFullscreen: ?*BOOL, ppTarget: ?*?*IDXGIOutput) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetFullscreenState(@as(*const IDXGISwapChain, @ptrCast(self)), pFullscreen, ppTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_GetDesc(self: *const T, pDesc: ?*DXGI_SWAP_CHAIN_DESC) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGISwapChain, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_ResizeBuffers(self: *const T, BufferCount: u32, Width: u32, Height: u32, NewFormat: DXGI_FORMAT, SwapChainFlags: u32) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).ResizeBuffers(@as(*const IDXGISwapChain, @ptrCast(self)), BufferCount, Width, Height, NewFormat, SwapChainFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_ResizeTarget(self: *const T, pNewTargetParameters: ?*const DXGI_MODE_DESC) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).ResizeTarget(@as(*const IDXGISwapChain, @ptrCast(self)), pNewTargetParameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_GetContainingOutput(self: *const T, ppOutput: ?*?*IDXGIOutput) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetContainingOutput(@as(*const IDXGISwapChain, @ptrCast(self)), ppOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_GetFrameStatistics(self: *const T, pStats: ?*DXGI_FRAME_STATISTICS) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetFrameStatistics(@as(*const IDXGISwapChain, @ptrCast(self)), pStats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain_GetLastPresentCount(self: *const T, pLastPresentCount: ?*u32) HRESULT {
-                return @as(*const IDXGISwapChain.VTable, @ptrCast(self.vtable)).GetLastPresentCount(@as(*const IDXGISwapChain, @ptrCast(self)), pLastPresentCount);
-            }
-        };
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn Present(self: *const IDXGISwapChain, SyncInterval: u32, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Present(self, SyncInterval, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetBuffer(self: *const IDXGISwapChain, Buffer: u32, riid: ?*const Guid, ppSurface: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetBuffer(self, Buffer, riid, ppSurface);
+    }
+    pub fn SetFullscreenState(self: *const IDXGISwapChain, Fullscreen: BOOL, pTarget: ?*IDXGIOutput) callconv(.Inline) HRESULT {
+        return self.vtable.SetFullscreenState(self, Fullscreen, pTarget);
+    }
+    pub fn GetFullscreenState(self: *const IDXGISwapChain, pFullscreen: ?*BOOL, ppTarget: ?**IDXGIOutput) callconv(.Inline) HRESULT {
+        return self.vtable.GetFullscreenState(self, pFullscreen, ppTarget);
+    }
+    pub fn GetDesc(self: *const IDXGISwapChain, pDesc: ?*DXGI_SWAP_CHAIN_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
+    }
+    pub fn ResizeBuffers(self: *const IDXGISwapChain, BufferCount: u32, Width: u32, Height: u32, NewFormat: DXGI_FORMAT, SwapChainFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.ResizeBuffers(self, BufferCount, Width, Height, NewFormat, SwapChainFlags);
+    }
+    pub fn ResizeTarget(self: *const IDXGISwapChain, pNewTargetParameters: ?*const DXGI_MODE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.ResizeTarget(self, pNewTargetParameters);
+    }
+    pub fn GetContainingOutput(self: *const IDXGISwapChain, ppOutput: **IDXGIOutput) callconv(.Inline) HRESULT {
+        return self.vtable.GetContainingOutput(self, ppOutput);
+    }
+    pub fn GetFrameStatistics(self: *const IDXGISwapChain, pStats: ?*DXGI_FRAME_STATISTICS) callconv(.Inline) HRESULT {
+        return self.vtable.GetFrameStatistics(self, pStats);
+    }
+    pub fn GetLastPresentCount(self: *const IDXGISwapChain, pLastPresentCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetLastPresentCount(self, pLastPresentCount);
+    }
 };
 
 const IID_IDXGIFactory_Value = Guid.initString("7b7166ec-21c7-44ae-b21a-c9ae321ae369");
 pub const IID_IDXGIFactory = &IID_IDXGIFactory_Value;
-pub const IDXGIFactory = extern struct {
+pub const IDXGIFactory = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
-        EnumAdapters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory,
-                Adapter: u32,
-                ppAdapter: ?*?*IDXGIAdapter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory,
-                Adapter: u32,
-                ppAdapter: ?*?*IDXGIAdapter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MakeWindowAssociation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory,
-                WindowHandle: ?HWND,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory,
-                WindowHandle: ?HWND,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWindowAssociation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory,
-                pWindowHandle: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory,
-                pWindowHandle: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSwapChain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory,
-                pDevice: ?*IUnknown,
-                pDesc: ?*DXGI_SWAP_CHAIN_DESC,
-                ppSwapChain: ?*?*IDXGISwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory,
-                pDevice: ?*IUnknown,
-                pDesc: ?*DXGI_SWAP_CHAIN_DESC,
-                ppSwapChain: ?*?*IDXGISwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSoftwareAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory,
-                Module: ?HINSTANCE,
-                ppAdapter: ?*?*IDXGIAdapter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory,
-                Module: ?HINSTANCE,
-                ppAdapter: ?*?*IDXGIAdapter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumAdapters: *const fn(
+            self: *const IDXGIFactory,
+            Adapter: u32,
+            ppAdapter: **IDXGIAdapter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MakeWindowAssociation: *const fn(
+            self: *const IDXGIFactory,
+            WindowHandle: ?HWND,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWindowAssociation: *const fn(
+            self: *const IDXGIFactory,
+            pWindowHandle: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSwapChain: *const fn(
+            self: *const IDXGIFactory,
+            pDevice: ?*IUnknown,
+            pDesc: ?*DXGI_SWAP_CHAIN_DESC,
+            ppSwapChain: **IDXGISwapChain,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSoftwareAdapter: *const fn(
+            self: *const IDXGIFactory,
+            Module: ?HINSTANCE,
+            ppAdapter: **IDXGIAdapter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory_EnumAdapters(self: *const T, Adapter: u32, ppAdapter: ?*?*IDXGIAdapter) HRESULT {
-                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).EnumAdapters(@as(*const IDXGIFactory, @ptrCast(self)), Adapter, ppAdapter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory_MakeWindowAssociation(self: *const T, WindowHandle: ?HWND, Flags: u32) HRESULT {
-                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).MakeWindowAssociation(@as(*const IDXGIFactory, @ptrCast(self)), WindowHandle, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory_GetWindowAssociation(self: *const T, pWindowHandle: ?*?HWND) HRESULT {
-                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).GetWindowAssociation(@as(*const IDXGIFactory, @ptrCast(self)), pWindowHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory_CreateSwapChain(self: *const T, pDevice: ?*IUnknown, pDesc: ?*DXGI_SWAP_CHAIN_DESC, ppSwapChain: ?*?*IDXGISwapChain) HRESULT {
-                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).CreateSwapChain(@as(*const IDXGIFactory, @ptrCast(self)), pDevice, pDesc, ppSwapChain);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory_CreateSoftwareAdapter(self: *const T, Module: ?HINSTANCE, ppAdapter: ?*?*IDXGIAdapter) HRESULT {
-                return @as(*const IDXGIFactory.VTable, @ptrCast(self.vtable)).CreateSoftwareAdapter(@as(*const IDXGIFactory, @ptrCast(self)), Module, ppAdapter);
-            }
-        };
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn EnumAdapters(self: *const IDXGIFactory, Adapter: u32, ppAdapter: **IDXGIAdapter) callconv(.Inline) HRESULT {
+        return self.vtable.EnumAdapters(self, Adapter, ppAdapter);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn MakeWindowAssociation(self: *const IDXGIFactory, WindowHandle: ?HWND, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.MakeWindowAssociation(self, WindowHandle, Flags);
+    }
+    pub fn GetWindowAssociation(self: *const IDXGIFactory, pWindowHandle: ?*?HWND) callconv(.Inline) HRESULT {
+        return self.vtable.GetWindowAssociation(self, pWindowHandle);
+    }
+    pub fn CreateSwapChain(self: *const IDXGIFactory, pDevice: ?*IUnknown, pDesc: ?*DXGI_SWAP_CHAIN_DESC, ppSwapChain: **IDXGISwapChain) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSwapChain(self, pDevice, pDesc, ppSwapChain);
+    }
+    pub fn CreateSoftwareAdapter(self: *const IDXGIFactory, Module: ?HINSTANCE, ppAdapter: **IDXGIAdapter) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSoftwareAdapter(self, Module, ppAdapter);
+    }
 };
 
 const IID_IDXGIDevice_Value = Guid.initString("54ec77fa-1377-44e6-8c32-88fd5f44c84c");
 pub const IID_IDXGIDevice = &IID_IDXGIDevice_Value;
-pub const IDXGIDevice = extern struct {
+pub const IDXGIDevice = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
-        GetAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice,
-                pAdapter: ?*?*IDXGIAdapter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice,
-                pAdapter: ?*?*IDXGIAdapter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice,
-                pDesc: ?*const DXGI_SURFACE_DESC,
-                NumSurfaces: u32,
-                Usage: u32,
-                pSharedResource: ?*const DXGI_SHARED_RESOURCE,
-                ppSurface: [*]?*IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice,
-                pDesc: ?*const DXGI_SURFACE_DESC,
-                NumSurfaces: u32,
-                Usage: u32,
-                pSharedResource: ?*const DXGI_SHARED_RESOURCE,
-                ppSurface: [*]?*IDXGISurface,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        QueryResourceResidency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice,
-                ppResources: [*]?*IUnknown,
-                pResidencyStatus: [*]DXGI_RESIDENCY,
-                NumResources: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice,
-                ppResources: [*]?*IUnknown,
-                pResidencyStatus: [*]DXGI_RESIDENCY,
-                NumResources: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGPUThreadPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice,
-                Priority: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice,
-                Priority: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGPUThreadPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice,
-                pPriority: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice,
-                pPriority: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAdapter: *const fn(
+            self: *const IDXGIDevice,
+            pAdapter: **IDXGIAdapter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSurface: *const fn(
+            self: *const IDXGIDevice,
+            pDesc: ?*const DXGI_SURFACE_DESC,
+            NumSurfaces: u32,
+            Usage: u32,
+            pSharedResource: ?*const DXGI_SHARED_RESOURCE,
+            ppSurface: [*]?*IDXGISurface,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        QueryResourceResidency: *const fn(
+            self: *const IDXGIDevice,
+            ppResources: [*]?*IUnknown,
+            pResidencyStatus: [*]DXGI_RESIDENCY,
+            NumResources: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGPUThreadPriority: *const fn(
+            self: *const IDXGIDevice,
+            Priority: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGPUThreadPriority: *const fn(
+            self: *const IDXGIDevice,
+            pPriority: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice_GetAdapter(self: *const T, pAdapter: ?*?*IDXGIAdapter) HRESULT {
-                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).GetAdapter(@as(*const IDXGIDevice, @ptrCast(self)), pAdapter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice_CreateSurface(self: *const T, pDesc: ?*const DXGI_SURFACE_DESC, NumSurfaces: u32, Usage: u32, pSharedResource: ?*const DXGI_SHARED_RESOURCE, ppSurface: [*]?*IDXGISurface) HRESULT {
-                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).CreateSurface(@as(*const IDXGIDevice, @ptrCast(self)), pDesc, NumSurfaces, Usage, pSharedResource, ppSurface);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice_QueryResourceResidency(self: *const T, ppResources: [*]?*IUnknown, pResidencyStatus: [*]DXGI_RESIDENCY, NumResources: u32) HRESULT {
-                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).QueryResourceResidency(@as(*const IDXGIDevice, @ptrCast(self)), ppResources, pResidencyStatus, NumResources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice_SetGPUThreadPriority(self: *const T, Priority: i32) HRESULT {
-                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).SetGPUThreadPriority(@as(*const IDXGIDevice, @ptrCast(self)), Priority);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice_GetGPUThreadPriority(self: *const T, pPriority: ?*i32) HRESULT {
-                return @as(*const IDXGIDevice.VTable, @ptrCast(self.vtable)).GetGPUThreadPriority(@as(*const IDXGIDevice, @ptrCast(self)), pPriority);
-            }
-        };
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetAdapter(self: *const IDXGIDevice, pAdapter: **IDXGIAdapter) callconv(.Inline) HRESULT {
+        return self.vtable.GetAdapter(self, pAdapter);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateSurface(self: *const IDXGIDevice, pDesc: ?*const DXGI_SURFACE_DESC, NumSurfaces: u32, Usage: u32, pSharedResource: ?*const DXGI_SHARED_RESOURCE, ppSurface: [*]?*IDXGISurface) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSurface(self, pDesc, NumSurfaces, Usage, pSharedResource, ppSurface);
+    }
+    pub fn QueryResourceResidency(self: *const IDXGIDevice, ppResources: [*]?*IUnknown, pResidencyStatus: [*]DXGI_RESIDENCY, NumResources: u32) callconv(.Inline) HRESULT {
+        return self.vtable.QueryResourceResidency(self, ppResources, pResidencyStatus, NumResources);
+    }
+    pub fn SetGPUThreadPriority(self: *const IDXGIDevice, Priority: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SetGPUThreadPriority(self, Priority);
+    }
+    pub fn GetGPUThreadPriority(self: *const IDXGIDevice, pPriority: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.GetGPUThreadPriority(self, pPriority);
+    }
 };
 
-pub const DXGI_ADAPTER_FLAG = enum(u32) {
-    NONE = 0,
-    REMOTE = 1,
-    SOFTWARE = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        REMOTE: u1 = 0,
-        SOFTWARE: u1 = 0,
-    }) DXGI_ADAPTER_FLAG {
-        return @as(DXGI_ADAPTER_FLAG, @enumFromInt((if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.NONE) else 0) | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.REMOTE) else 0) | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG.SOFTWARE) else 0)));
-    }
+pub const DXGI_ADAPTER_FLAG = packed struct(u32) {
+    REMOTE: u1 = 0,
+    SOFTWARE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_ADAPTER_FLAG_NONE = DXGI_ADAPTER_FLAG.NONE;
-pub const DXGI_ADAPTER_FLAG_REMOTE = DXGI_ADAPTER_FLAG.REMOTE;
-pub const DXGI_ADAPTER_FLAG_SOFTWARE = DXGI_ADAPTER_FLAG.SOFTWARE;
+pub const DXGI_ADAPTER_FLAG_NONE = DXGI_ADAPTER_FLAG{ };
+pub const DXGI_ADAPTER_FLAG_REMOTE = DXGI_ADAPTER_FLAG{ .REMOTE = 1 };
+pub const DXGI_ADAPTER_FLAG_SOFTWARE = DXGI_ADAPTER_FLAG{ .SOFTWARE = 1 };
 
 pub const DXGI_ADAPTER_DESC1 = extern struct {
     Description: [128]u16,
@@ -1192,161 +780,99 @@ pub const DXGI_DISPLAY_COLOR_SPACE = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIFactory1_Value = Guid.initString("770aae78-f26f-4dba-a829-253c83d1b387");
 pub const IID_IDXGIFactory1 = &IID_IDXGIFactory1_Value;
-pub const IDXGIFactory1 = extern struct {
+pub const IDXGIFactory1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory.VTable,
-        EnumAdapters1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory1,
-                Adapter: u32,
-                ppAdapter: ?*?*IDXGIAdapter1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory1,
-                Adapter: u32,
-                ppAdapter: ?*?*IDXGIAdapter1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsCurrent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIFactory1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        EnumAdapters1: *const fn(
+            self: *const IDXGIFactory1,
+            Adapter: u32,
+            ppAdapter: **IDXGIAdapter1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsCurrent: *const fn(
+            self: *const IDXGIFactory1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIFactory.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory1_EnumAdapters1(self: *const T, Adapter: u32, ppAdapter: ?*?*IDXGIAdapter1) HRESULT {
-                return @as(*const IDXGIFactory1.VTable, @ptrCast(self.vtable)).EnumAdapters1(@as(*const IDXGIFactory1, @ptrCast(self)), Adapter, ppAdapter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory1_IsCurrent(self: *const T) BOOL {
-                return @as(*const IDXGIFactory1.VTable, @ptrCast(self.vtable)).IsCurrent(@as(*const IDXGIFactory1, @ptrCast(self)));
-            }
-        };
+    IDXGIFactory: IDXGIFactory,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn EnumAdapters1(self: *const IDXGIFactory1, Adapter: u32, ppAdapter: **IDXGIAdapter1) callconv(.Inline) HRESULT {
+        return self.vtable.EnumAdapters1(self, Adapter, ppAdapter);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn IsCurrent(self: *const IDXGIFactory1) callconv(.Inline) BOOL {
+        return self.vtable.IsCurrent(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIAdapter1_Value = Guid.initString("29038f61-3839-4626-91fd-086879011a05");
 pub const IID_IDXGIAdapter1 = &IID_IDXGIAdapter1_Value;
-pub const IDXGIAdapter1 = extern struct {
+pub const IDXGIAdapter1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter.VTable,
-        GetDesc1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter1,
-                pDesc: ?*DXGI_ADAPTER_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter1,
-                pDesc: ?*DXGI_ADAPTER_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc1: *const fn(
+            self: *const IDXGIAdapter1,
+            pDesc: ?*DXGI_ADAPTER_DESC1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIAdapter.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter1_GetDesc1(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC1) HRESULT {
-                return @as(*const IDXGIAdapter1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const IDXGIAdapter1, @ptrCast(self)), pDesc);
-            }
-        };
+    IDXGIAdapter: IDXGIAdapter,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc1(self: *const IDXGIAdapter1, pDesc: ?*DXGI_ADAPTER_DESC1) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc1(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDXGIDevice1_Value = Guid.initString("77db970f-6276-48ba-ba28-070143b4392c");
 pub const IID_IDXGIDevice1 = &IID_IDXGIDevice1_Value;
-pub const IDXGIDevice1 = extern struct {
+pub const IDXGIDevice1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice.VTable,
-        SetMaximumFrameLatency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice1,
-                MaxLatency: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice1,
-                MaxLatency: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaximumFrameLatency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice1,
-                pMaxLatency: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice1,
-                pMaxLatency: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetMaximumFrameLatency: *const fn(
+            self: *const IDXGIDevice1,
+            MaxLatency: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaximumFrameLatency: *const fn(
+            self: *const IDXGIDevice1,
+            pMaxLatency: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDevice.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice1_SetMaximumFrameLatency(self: *const T, MaxLatency: u32) HRESULT {
-                return @as(*const IDXGIDevice1.VTable, @ptrCast(self.vtable)).SetMaximumFrameLatency(@as(*const IDXGIDevice1, @ptrCast(self)), MaxLatency);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice1_GetMaximumFrameLatency(self: *const T, pMaxLatency: ?*u32) HRESULT {
-                return @as(*const IDXGIDevice1.VTable, @ptrCast(self.vtable)).GetMaximumFrameLatency(@as(*const IDXGIDevice1, @ptrCast(self)), pMaxLatency);
-            }
-        };
+    IDXGIDevice: IDXGIDevice,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn SetMaximumFrameLatency(self: *const IDXGIDevice1, MaxLatency: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetMaximumFrameLatency(self, MaxLatency);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetMaximumFrameLatency(self: *const IDXGIDevice1, pMaxLatency: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetMaximumFrameLatency(self, pMaxLatency);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDisplayControl_Value = Guid.initString("ea9dbf1a-c88e-4486-854a-98aa0138f30c");
 pub const IID_IDXGIDisplayControl = &IID_IDXGIDisplayControl_Value;
-pub const IDXGIDisplayControl = extern struct {
+pub const IDXGIDisplayControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsStereoEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDisplayControl,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIDisplayControl,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        SetStereoEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDisplayControl,
-                enabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIDisplayControl,
-                enabled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        IsStereoEnabled: *const fn(
+            self: *const IDXGIDisplayControl,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetStereoEnabled: *const fn(
+            self: *const IDXGIDisplayControl,
+            enabled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDisplayControl_IsStereoEnabled(self: *const T) BOOL {
-                return @as(*const IDXGIDisplayControl.VTable, @ptrCast(self.vtable)).IsStereoEnabled(@as(*const IDXGIDisplayControl, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDisplayControl_SetStereoEnabled(self: *const T, enabled: BOOL) void {
-                return @as(*const IDXGIDisplayControl.VTable, @ptrCast(self.vtable)).SetStereoEnabled(@as(*const IDXGIDisplayControl, @ptrCast(self)), enabled);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn IsStereoEnabled(self: *const IDXGIDisplayControl) callconv(.Inline) BOOL {
+        return self.vtable.IsStereoEnabled(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetStereoEnabled(self: *const IDXGIDisplayControl, enabled: BOOL) callconv(.Inline) void {
+        return self.vtable.SetStereoEnabled(self, enabled);
+    }
 };
 
 pub const DXGI_OUTDUPL_MOVE_RECT = extern struct {
@@ -1396,235 +922,135 @@ pub const DXGI_OUTDUPL_FRAME_INFO = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutputDuplication_Value = Guid.initString("191cfac3-a341-470d-b26e-a864f428319c");
 pub const IID_IDXGIOutputDuplication = &IID_IDXGIOutputDuplication_Value;
-pub const IDXGIOutputDuplication = extern struct {
+pub const IDXGIOutputDuplication = extern union {
     pub const VTable = extern struct {
         base: IDXGIObject.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-                pDesc: ?*DXGI_OUTDUPL_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-                pDesc: ?*DXGI_OUTDUPL_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        AcquireNextFrame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-                TimeoutInMilliseconds: u32,
-                pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO,
-                ppDesktopResource: ?*?*IDXGIResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-                TimeoutInMilliseconds: u32,
-                pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO,
-                ppDesktopResource: ?*?*IDXGIResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameDirtyRects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-                DirtyRectsBufferSize: u32,
-                // TODO: what to do with BytesParamIndex 0?
-                pDirtyRectsBuffer: ?*RECT,
-                pDirtyRectsBufferSizeRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-                DirtyRectsBufferSize: u32,
-                // TODO: what to do with BytesParamIndex 0?
-                pDirtyRectsBuffer: ?*RECT,
-                pDirtyRectsBufferSizeRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameMoveRects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-                MoveRectsBufferSize: u32,
-                // TODO: what to do with BytesParamIndex 0?
-                pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT,
-                pMoveRectsBufferSizeRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-                MoveRectsBufferSize: u32,
-                // TODO: what to do with BytesParamIndex 0?
-                pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT,
-                pMoveRectsBufferSizeRequired: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFramePointerShape: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-                PointerShapeBufferSize: u32,
-                // TODO: what to do with BytesParamIndex 0?
-                pPointerShapeBuffer: ?*anyopaque,
-                pPointerShapeBufferSizeRequired: ?*u32,
-                pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-                PointerShapeBufferSize: u32,
-                // TODO: what to do with BytesParamIndex 0?
-                pPointerShapeBuffer: ?*anyopaque,
-                pPointerShapeBufferSizeRequired: ?*u32,
-                pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MapDesktopSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-                pLockedRect: ?*DXGI_MAPPED_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-                pLockedRect: ?*DXGI_MAPPED_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnMapDesktopSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseFrame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc: *const fn(
+            self: *const IDXGIOutputDuplication,
+            pDesc: ?*DXGI_OUTDUPL_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        AcquireNextFrame: *const fn(
+            self: *const IDXGIOutputDuplication,
+            TimeoutInMilliseconds: u32,
+            pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO,
+            ppDesktopResource: **IDXGIResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameDirtyRects: *const fn(
+            self: *const IDXGIOutputDuplication,
+            DirtyRectsBufferSize: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            pDirtyRectsBuffer: ?*RECT,
+            pDirtyRectsBufferSizeRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameMoveRects: *const fn(
+            self: *const IDXGIOutputDuplication,
+            MoveRectsBufferSize: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT,
+            pMoveRectsBufferSizeRequired: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFramePointerShape: *const fn(
+            self: *const IDXGIOutputDuplication,
+            PointerShapeBufferSize: u32,
+            // TODO: what to do with BytesParamIndex 0?
+            pPointerShapeBuffer: ?*anyopaque,
+            pPointerShapeBufferSizeRequired: ?*u32,
+            pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapDesktopSurface: *const fn(
+            self: *const IDXGIOutputDuplication,
+            pLockedRect: ?*DXGI_MAPPED_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnMapDesktopSurface: *const fn(
+            self: *const IDXGIOutputDuplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseFrame: *const fn(
+            self: *const IDXGIOutputDuplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_GetDesc(self: *const T, pDesc: ?*DXGI_OUTDUPL_DESC) void {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const IDXGIOutputDuplication, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_AcquireNextFrame(self: *const T, TimeoutInMilliseconds: u32, pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO, ppDesktopResource: ?*?*IDXGIResource) HRESULT {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).AcquireNextFrame(@as(*const IDXGIOutputDuplication, @ptrCast(self)), TimeoutInMilliseconds, pFrameInfo, ppDesktopResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_GetFrameDirtyRects(self: *const T, DirtyRectsBufferSize: u32, pDirtyRectsBuffer: ?*RECT, pDirtyRectsBufferSizeRequired: ?*u32) HRESULT {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetFrameDirtyRects(@as(*const IDXGIOutputDuplication, @ptrCast(self)), DirtyRectsBufferSize, pDirtyRectsBuffer, pDirtyRectsBufferSizeRequired);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_GetFrameMoveRects(self: *const T, MoveRectsBufferSize: u32, pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT, pMoveRectsBufferSizeRequired: ?*u32) HRESULT {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetFrameMoveRects(@as(*const IDXGIOutputDuplication, @ptrCast(self)), MoveRectsBufferSize, pMoveRectBuffer, pMoveRectsBufferSizeRequired);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_GetFramePointerShape(self: *const T, PointerShapeBufferSize: u32, pPointerShapeBuffer: ?*anyopaque, pPointerShapeBufferSizeRequired: ?*u32, pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO) HRESULT {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).GetFramePointerShape(@as(*const IDXGIOutputDuplication, @ptrCast(self)), PointerShapeBufferSize, pPointerShapeBuffer, pPointerShapeBufferSizeRequired, pPointerShapeInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_MapDesktopSurface(self: *const T, pLockedRect: ?*DXGI_MAPPED_RECT) HRESULT {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).MapDesktopSurface(@as(*const IDXGIOutputDuplication, @ptrCast(self)), pLockedRect);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_UnMapDesktopSurface(self: *const T) HRESULT {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).UnMapDesktopSurface(@as(*const IDXGIOutputDuplication, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutputDuplication_ReleaseFrame(self: *const T) HRESULT {
-                return @as(*const IDXGIOutputDuplication.VTable, @ptrCast(self.vtable)).ReleaseFrame(@as(*const IDXGIOutputDuplication, @ptrCast(self)));
-            }
-        };
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const IDXGIOutputDuplication, pDesc: ?*DXGI_OUTDUPL_DESC) callconv(.Inline) void {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AcquireNextFrame(self: *const IDXGIOutputDuplication, TimeoutInMilliseconds: u32, pFrameInfo: ?*DXGI_OUTDUPL_FRAME_INFO, ppDesktopResource: **IDXGIResource) callconv(.Inline) HRESULT {
+        return self.vtable.AcquireNextFrame(self, TimeoutInMilliseconds, pFrameInfo, ppDesktopResource);
+    }
+    pub fn GetFrameDirtyRects(self: *const IDXGIOutputDuplication, DirtyRectsBufferSize: u32, pDirtyRectsBuffer: ?*RECT, pDirtyRectsBufferSizeRequired: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFrameDirtyRects(self, DirtyRectsBufferSize, pDirtyRectsBuffer, pDirtyRectsBufferSizeRequired);
+    }
+    pub fn GetFrameMoveRects(self: *const IDXGIOutputDuplication, MoveRectsBufferSize: u32, pMoveRectBuffer: ?*DXGI_OUTDUPL_MOVE_RECT, pMoveRectsBufferSizeRequired: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFrameMoveRects(self, MoveRectsBufferSize, pMoveRectBuffer, pMoveRectsBufferSizeRequired);
+    }
+    pub fn GetFramePointerShape(self: *const IDXGIOutputDuplication, PointerShapeBufferSize: u32, pPointerShapeBuffer: ?*anyopaque, pPointerShapeBufferSizeRequired: ?*u32, pPointerShapeInfo: ?*DXGI_OUTDUPL_POINTER_SHAPE_INFO) callconv(.Inline) HRESULT {
+        return self.vtable.GetFramePointerShape(self, PointerShapeBufferSize, pPointerShapeBuffer, pPointerShapeBufferSizeRequired, pPointerShapeInfo);
+    }
+    pub fn MapDesktopSurface(self: *const IDXGIOutputDuplication, pLockedRect: ?*DXGI_MAPPED_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.MapDesktopSurface(self, pLockedRect);
+    }
+    pub fn UnMapDesktopSurface(self: *const IDXGIOutputDuplication) callconv(.Inline) HRESULT {
+        return self.vtable.UnMapDesktopSurface(self);
+    }
+    pub fn ReleaseFrame(self: *const IDXGIOutputDuplication) callconv(.Inline) HRESULT {
+        return self.vtable.ReleaseFrame(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISurface2_Value = Guid.initString("aba496dd-b617-4cb8-a866-bc44d7eb1fa2");
 pub const IID_IDXGISurface2 = &IID_IDXGISurface2_Value;
-pub const IDXGISurface2 = extern struct {
+pub const IDXGISurface2 = extern union {
     pub const VTable = extern struct {
         base: IDXGISurface1.VTable,
-        GetResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISurface2,
-                riid: ?*const Guid,
-                ppParentResource: ?*?*anyopaque,
-                pSubresourceIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISurface2,
-                riid: ?*const Guid,
-                ppParentResource: ?*?*anyopaque,
-                pSubresourceIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetResource: *const fn(
+            self: *const IDXGISurface2,
+            riid: ?*const Guid,
+            ppParentResource: **anyopaque,
+            pSubresourceIndex: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGISurface1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISurface2_GetResource(self: *const T, riid: ?*const Guid, ppParentResource: ?*?*anyopaque, pSubresourceIndex: ?*u32) HRESULT {
-                return @as(*const IDXGISurface2.VTable, @ptrCast(self.vtable)).GetResource(@as(*const IDXGISurface2, @ptrCast(self)), riid, ppParentResource, pSubresourceIndex);
-            }
-        };
+    IDXGISurface1: IDXGISurface1,
+    IDXGISurface: IDXGISurface,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetResource(self: *const IDXGISurface2, riid: ?*const Guid, ppParentResource: **anyopaque, pSubresourceIndex: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetResource(self, riid, ppParentResource, pSubresourceIndex);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIResource1_Value = Guid.initString("30961379-4609-4a41-998e-54fe567ee0c1");
 pub const IID_IDXGIResource1 = &IID_IDXGIResource1_Value;
-pub const IDXGIResource1 = extern struct {
+pub const IDXGIResource1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIResource.VTable,
-        CreateSubresourceSurface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIResource1,
-                index: u32,
-                ppSurface: ?*?*IDXGISurface2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIResource1,
-                index: u32,
-                ppSurface: ?*?*IDXGISurface2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSharedHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIResource1,
-                pAttributes: ?*const SECURITY_ATTRIBUTES,
-                dwAccess: u32,
-                lpName: ?[*:0]const u16,
-                pHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIResource1,
-                pAttributes: ?*const SECURITY_ATTRIBUTES,
-                dwAccess: u32,
-                lpName: ?[*:0]const u16,
-                pHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateSubresourceSurface: *const fn(
+            self: *const IDXGIResource1,
+            index: u32,
+            ppSurface: **IDXGISurface2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSharedHandle: *const fn(
+            self: *const IDXGIResource1,
+            pAttributes: ?*const SECURITY_ATTRIBUTES,
+            dwAccess: u32,
+            lpName: ?[*:0]const u16,
+            pHandle: ?*?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIResource1_CreateSubresourceSurface(self: *const T, index: u32, ppSurface: ?*?*IDXGISurface2) HRESULT {
-                return @as(*const IDXGIResource1.VTable, @ptrCast(self.vtable)).CreateSubresourceSurface(@as(*const IDXGIResource1, @ptrCast(self)), index, ppSurface);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIResource1_CreateSharedHandle(self: *const T, pAttributes: ?*const SECURITY_ATTRIBUTES, dwAccess: u32, lpName: ?[*:0]const u16, pHandle: ?*?HANDLE) HRESULT {
-                return @as(*const IDXGIResource1.VTable, @ptrCast(self.vtable)).CreateSharedHandle(@as(*const IDXGIResource1, @ptrCast(self)), pAttributes, dwAccess, lpName, pHandle);
-            }
-        };
+    IDXGIResource: IDXGIResource,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn CreateSubresourceSurface(self: *const IDXGIResource1, index: u32, ppSurface: **IDXGISurface2) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSubresourceSurface(self, index, ppSurface);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateSharedHandle(self: *const IDXGIResource1, pAttributes: ?*const SECURITY_ATTRIBUTES, dwAccess: u32, lpName: ?[*:0]const u16, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSharedHandle(self, pAttributes, dwAccess, lpName, pHandle);
+    }
 };
 
 pub const DXGI_OFFER_RESOURCE_PRIORITY = enum(i32) {
@@ -1639,67 +1065,40 @@ pub const DXGI_OFFER_RESOURCE_PRIORITY_HIGH = DXGI_OFFER_RESOURCE_PRIORITY.HIGH;
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDevice2_Value = Guid.initString("05008617-fbfd-4051-a790-144884b4f6a9");
 pub const IID_IDXGIDevice2 = &IID_IDXGIDevice2_Value;
-pub const IDXGIDevice2 = extern struct {
+pub const IDXGIDevice2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice1.VTable,
-        OfferResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice2,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                Priority: DXGI_OFFER_RESOURCE_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice2,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                Priority: DXGI_OFFER_RESOURCE_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReclaimResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice2,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                pDiscarded: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice2,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                pDiscarded: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnqueueSetEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice2,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice2,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OfferResources: *const fn(
+            self: *const IDXGIDevice2,
+            NumResources: u32,
+            ppResources: [*]?*IDXGIResource,
+            Priority: DXGI_OFFER_RESOURCE_PRIORITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReclaimResources: *const fn(
+            self: *const IDXGIDevice2,
+            NumResources: u32,
+            ppResources: [*]?*IDXGIResource,
+            pDiscarded: ?[*]BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnqueueSetEvent: *const fn(
+            self: *const IDXGIDevice2,
+            hEvent: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDevice1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice2_OfferResources(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY) HRESULT {
-                return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).OfferResources(@as(*const IDXGIDevice2, @ptrCast(self)), NumResources, ppResources, Priority);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice2_ReclaimResources(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pDiscarded: ?*BOOL) HRESULT {
-                return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).ReclaimResources(@as(*const IDXGIDevice2, @ptrCast(self)), NumResources, ppResources, pDiscarded);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice2_EnqueueSetEvent(self: *const T, hEvent: ?HANDLE) HRESULT {
-                return @as(*const IDXGIDevice2.VTable, @ptrCast(self.vtable)).EnqueueSetEvent(@as(*const IDXGIDevice2, @ptrCast(self)), hEvent);
-            }
-        };
+    IDXGIDevice1: IDXGIDevice1,
+    IDXGIDevice: IDXGIDevice,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn OfferResources(self: *const IDXGIDevice2, NumResources: u32, ppResources: [*]?*IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY) callconv(.Inline) HRESULT {
+        return self.vtable.OfferResources(self, NumResources, ppResources, Priority);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ReclaimResources(self: *const IDXGIDevice2, NumResources: u32, ppResources: [*]?*IDXGIResource, pDiscarded: ?[*]BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.ReclaimResources(self, NumResources, ppResources, pDiscarded);
+    }
+    pub fn EnqueueSetEvent(self: *const IDXGIDevice2, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.EnqueueSetEvent(self, hEvent);
+    }
 };
 
 pub const DXGI_MODE_DESC1 = extern struct {
@@ -1752,381 +1151,203 @@ pub const DXGI_PRESENT_PARAMETERS = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGISwapChain1_Value = Guid.initString("790a45f7-0d42-4876-983a-0a55cfe6f4aa");
 pub const IID_IDXGISwapChain1 = &IID_IDXGISwapChain1_Value;
-pub const IDXGISwapChain1 = extern struct {
+pub const IDXGISwapChain1 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain.VTable,
-        GetDesc1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                pDesc: ?*DXGI_SWAP_CHAIN_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                pDesc: ?*DXGI_SWAP_CHAIN_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFullscreenDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                pDesc: ?*DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                pDesc: ?*DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHwnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                pHwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                pHwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCoreWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                refiid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                refiid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Present1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                SyncInterval: u32,
-                PresentFlags: u32,
-                pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                SyncInterval: u32,
-                PresentFlags: u32,
-                pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsTemporaryMonoSupported: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetRestrictToOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                ppRestrictToOutput: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                ppRestrictToOutput: ?*?*IDXGIOutput,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBackgroundColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                pColor: ?*const DXGI_RGBA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                pColor: ?*const DXGI_RGBA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBackgroundColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                pColor: ?*DXGI_RGBA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                pColor: ?*DXGI_RGBA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRotation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                Rotation: DXGI_MODE_ROTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                Rotation: DXGI_MODE_ROTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRotation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain1,
-                pRotation: ?*DXGI_MODE_ROTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain1,
-                pRotation: ?*DXGI_MODE_ROTATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc1: *const fn(
+            self: *const IDXGISwapChain1,
+            pDesc: ?*DXGI_SWAP_CHAIN_DESC1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFullscreenDesc: *const fn(
+            self: *const IDXGISwapChain1,
+            pDesc: ?*DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHwnd: *const fn(
+            self: *const IDXGISwapChain1,
+            pHwnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCoreWindow: *const fn(
+            self: *const IDXGISwapChain1,
+            refiid: ?*const Guid,
+            ppUnk: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Present1: *const fn(
+            self: *const IDXGISwapChain1,
+            SyncInterval: u32,
+            PresentFlags: u32,
+            pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsTemporaryMonoSupported: *const fn(
+            self: *const IDXGISwapChain1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetRestrictToOutput: *const fn(
+            self: *const IDXGISwapChain1,
+            ppRestrictToOutput: ?*?*IDXGIOutput,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBackgroundColor: *const fn(
+            self: *const IDXGISwapChain1,
+            pColor: ?*const DXGI_RGBA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBackgroundColor: *const fn(
+            self: *const IDXGISwapChain1,
+            pColor: ?*DXGI_RGBA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRotation: *const fn(
+            self: *const IDXGISwapChain1,
+            Rotation: DXGI_MODE_ROTATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRotation: *const fn(
+            self: *const IDXGISwapChain1,
+            pRotation: ?*DXGI_MODE_ROTATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGISwapChain.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_GetDesc1(self: *const T, pDesc: ?*DXGI_SWAP_CHAIN_DESC1) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const IDXGISwapChain1, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_GetFullscreenDesc(self: *const T, pDesc: ?*DXGI_SWAP_CHAIN_FULLSCREEN_DESC) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetFullscreenDesc(@as(*const IDXGISwapChain1, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_GetHwnd(self: *const T, pHwnd: ?*?HWND) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetHwnd(@as(*const IDXGISwapChain1, @ptrCast(self)), pHwnd);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_GetCoreWindow(self: *const T, refiid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetCoreWindow(@as(*const IDXGISwapChain1, @ptrCast(self)), refiid, ppUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_Present1(self: *const T, SyncInterval: u32, PresentFlags: u32, pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).Present1(@as(*const IDXGISwapChain1, @ptrCast(self)), SyncInterval, PresentFlags, pPresentParameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_IsTemporaryMonoSupported(self: *const T) BOOL {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).IsTemporaryMonoSupported(@as(*const IDXGISwapChain1, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_GetRestrictToOutput(self: *const T, ppRestrictToOutput: ?*?*IDXGIOutput) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetRestrictToOutput(@as(*const IDXGISwapChain1, @ptrCast(self)), ppRestrictToOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_SetBackgroundColor(self: *const T, pColor: ?*const DXGI_RGBA) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).SetBackgroundColor(@as(*const IDXGISwapChain1, @ptrCast(self)), pColor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_GetBackgroundColor(self: *const T, pColor: ?*DXGI_RGBA) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetBackgroundColor(@as(*const IDXGISwapChain1, @ptrCast(self)), pColor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_SetRotation(self: *const T, Rotation: DXGI_MODE_ROTATION) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).SetRotation(@as(*const IDXGISwapChain1, @ptrCast(self)), Rotation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain1_GetRotation(self: *const T, pRotation: ?*DXGI_MODE_ROTATION) HRESULT {
-                return @as(*const IDXGISwapChain1.VTable, @ptrCast(self.vtable)).GetRotation(@as(*const IDXGISwapChain1, @ptrCast(self)), pRotation);
-            }
-        };
+    IDXGISwapChain: IDXGISwapChain,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc1(self: *const IDXGISwapChain1, pDesc: ?*DXGI_SWAP_CHAIN_DESC1) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc1(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFullscreenDesc(self: *const IDXGISwapChain1, pDesc: ?*DXGI_SWAP_CHAIN_FULLSCREEN_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetFullscreenDesc(self, pDesc);
+    }
+    pub fn GetHwnd(self: *const IDXGISwapChain1, pHwnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return self.vtable.GetHwnd(self, pHwnd);
+    }
+    pub fn GetCoreWindow(self: *const IDXGISwapChain1, refiid: ?*const Guid, ppUnk: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetCoreWindow(self, refiid, ppUnk);
+    }
+    pub fn Present1(self: *const IDXGISwapChain1, SyncInterval: u32, PresentFlags: u32, pPresentParameters: ?*const DXGI_PRESENT_PARAMETERS) callconv(.Inline) HRESULT {
+        return self.vtable.Present1(self, SyncInterval, PresentFlags, pPresentParameters);
+    }
+    pub fn IsTemporaryMonoSupported(self: *const IDXGISwapChain1) callconv(.Inline) BOOL {
+        return self.vtable.IsTemporaryMonoSupported(self);
+    }
+    pub fn GetRestrictToOutput(self: *const IDXGISwapChain1, ppRestrictToOutput: ?*?*IDXGIOutput) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestrictToOutput(self, ppRestrictToOutput);
+    }
+    pub fn SetBackgroundColor(self: *const IDXGISwapChain1, pColor: ?*const DXGI_RGBA) callconv(.Inline) HRESULT {
+        return self.vtable.SetBackgroundColor(self, pColor);
+    }
+    pub fn GetBackgroundColor(self: *const IDXGISwapChain1, pColor: ?*DXGI_RGBA) callconv(.Inline) HRESULT {
+        return self.vtable.GetBackgroundColor(self, pColor);
+    }
+    pub fn SetRotation(self: *const IDXGISwapChain1, Rotation: DXGI_MODE_ROTATION) callconv(.Inline) HRESULT {
+        return self.vtable.SetRotation(self, Rotation);
+    }
+    pub fn GetRotation(self: *const IDXGISwapChain1, pRotation: ?*DXGI_MODE_ROTATION) callconv(.Inline) HRESULT {
+        return self.vtable.GetRotation(self, pRotation);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIFactory2_Value = Guid.initString("50c83a1c-e072-4c48-87b0-3630fa36a6d0");
 pub const IID_IDXGIFactory2 = &IID_IDXGIFactory2_Value;
-pub const IDXGIFactory2 = extern struct {
+pub const IDXGIFactory2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory1.VTable,
-        IsWindowedStereoEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        CreateSwapChainForHwnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                pDevice: ?*IUnknown,
-                hWnd: ?HWND,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                pDevice: ?*IUnknown,
-                hWnd: ?HWND,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSwapChainForCoreWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                pDevice: ?*IUnknown,
-                pWindow: ?*IUnknown,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                pDevice: ?*IUnknown,
-                pWindow: ?*IUnknown,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSharedResourceAdapterLuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                hResource: ?HANDLE,
-                pLuid: ?*LUID,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                hResource: ?HANDLE,
-                pLuid: ?*LUID,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterStereoStatusWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                WindowHandle: ?HWND,
-                wMsg: u32,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                WindowHandle: ?HWND,
-                wMsg: u32,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterStereoStatusEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterStereoStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        RegisterOcclusionStatusWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                WindowHandle: ?HWND,
-                wMsg: u32,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                WindowHandle: ?HWND,
-                wMsg: u32,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterOcclusionStatusEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterOcclusionStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CreateSwapChainForComposition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory2,
-                pDevice: ?*IUnknown,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory2,
-                pDevice: ?*IUnknown,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsWindowedStereoEnabled: *const fn(
+            self: *const IDXGIFactory2,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        CreateSwapChainForHwnd: *const fn(
+            self: *const IDXGIFactory2,
+            pDevice: ?*IUnknown,
+            hWnd: ?HWND,
+            pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
+            pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC,
+            pRestrictToOutput: ?*IDXGIOutput,
+            ppSwapChain: **IDXGISwapChain1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSwapChainForCoreWindow: *const fn(
+            self: *const IDXGIFactory2,
+            pDevice: ?*IUnknown,
+            pWindow: ?*IUnknown,
+            pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
+            pRestrictToOutput: ?*IDXGIOutput,
+            ppSwapChain: **IDXGISwapChain1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSharedResourceAdapterLuid: *const fn(
+            self: *const IDXGIFactory2,
+            hResource: ?HANDLE,
+            pLuid: ?*LUID,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterStereoStatusWindow: *const fn(
+            self: *const IDXGIFactory2,
+            WindowHandle: ?HWND,
+            wMsg: u32,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterStereoStatusEvent: *const fn(
+            self: *const IDXGIFactory2,
+            hEvent: ?HANDLE,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterStereoStatus: *const fn(
+            self: *const IDXGIFactory2,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        RegisterOcclusionStatusWindow: *const fn(
+            self: *const IDXGIFactory2,
+            WindowHandle: ?HWND,
+            wMsg: u32,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterOcclusionStatusEvent: *const fn(
+            self: *const IDXGIFactory2,
+            hEvent: ?HANDLE,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterOcclusionStatus: *const fn(
+            self: *const IDXGIFactory2,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CreateSwapChainForComposition: *const fn(
+            self: *const IDXGIFactory2,
+            pDevice: ?*IUnknown,
+            pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
+            pRestrictToOutput: ?*IDXGIOutput,
+            ppSwapChain: **IDXGISwapChain1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIFactory1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_IsWindowedStereoEnabled(self: *const T) BOOL {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).IsWindowedStereoEnabled(@as(*const IDXGIFactory2, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_CreateSwapChainForHwnd(self: *const T, pDevice: ?*IUnknown, hWnd: ?HWND, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).CreateSwapChainForHwnd(@as(*const IDXGIFactory2, @ptrCast(self)), pDevice, hWnd, pDesc, pFullscreenDesc, pRestrictToOutput, ppSwapChain);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_CreateSwapChainForCoreWindow(self: *const T, pDevice: ?*IUnknown, pWindow: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).CreateSwapChainForCoreWindow(@as(*const IDXGIFactory2, @ptrCast(self)), pDevice, pWindow, pDesc, pRestrictToOutput, ppSwapChain);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_GetSharedResourceAdapterLuid(self: *const T, hResource: ?HANDLE, pLuid: ?*LUID) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).GetSharedResourceAdapterLuid(@as(*const IDXGIFactory2, @ptrCast(self)), hResource, pLuid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_RegisterStereoStatusWindow(self: *const T, WindowHandle: ?HWND, wMsg: u32, pdwCookie: ?*u32) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterStereoStatusWindow(@as(*const IDXGIFactory2, @ptrCast(self)), WindowHandle, wMsg, pdwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_RegisterStereoStatusEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterStereoStatusEvent(@as(*const IDXGIFactory2, @ptrCast(self)), hEvent, pdwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_UnregisterStereoStatus(self: *const T, dwCookie: u32) void {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).UnregisterStereoStatus(@as(*const IDXGIFactory2, @ptrCast(self)), dwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_RegisterOcclusionStatusWindow(self: *const T, WindowHandle: ?HWND, wMsg: u32, pdwCookie: ?*u32) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterOcclusionStatusWindow(@as(*const IDXGIFactory2, @ptrCast(self)), WindowHandle, wMsg, pdwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_RegisterOcclusionStatusEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).RegisterOcclusionStatusEvent(@as(*const IDXGIFactory2, @ptrCast(self)), hEvent, pdwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_UnregisterOcclusionStatus(self: *const T, dwCookie: u32) void {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).UnregisterOcclusionStatus(@as(*const IDXGIFactory2, @ptrCast(self)), dwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory2_CreateSwapChainForComposition(self: *const T, pDevice: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @as(*const IDXGIFactory2.VTable, @ptrCast(self.vtable)).CreateSwapChainForComposition(@as(*const IDXGIFactory2, @ptrCast(self)), pDevice, pDesc, pRestrictToOutput, ppSwapChain);
-            }
-        };
+    IDXGIFactory1: IDXGIFactory1,
+    IDXGIFactory: IDXGIFactory,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn IsWindowedStereoEnabled(self: *const IDXGIFactory2) callconv(.Inline) BOOL {
+        return self.vtable.IsWindowedStereoEnabled(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateSwapChainForHwnd(self: *const IDXGIFactory2, pDevice: ?*IUnknown, hWnd: ?HWND, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pFullscreenDesc: ?*const DXGI_SWAP_CHAIN_FULLSCREEN_DESC, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSwapChainForHwnd(self, pDevice, hWnd, pDesc, pFullscreenDesc, pRestrictToOutput, ppSwapChain);
+    }
+    pub fn CreateSwapChainForCoreWindow(self: *const IDXGIFactory2, pDevice: ?*IUnknown, pWindow: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSwapChainForCoreWindow(self, pDevice, pWindow, pDesc, pRestrictToOutput, ppSwapChain);
+    }
+    pub fn GetSharedResourceAdapterLuid(self: *const IDXGIFactory2, hResource: ?HANDLE, pLuid: ?*LUID) callconv(.Inline) HRESULT {
+        return self.vtable.GetSharedResourceAdapterLuid(self, hResource, pLuid);
+    }
+    pub fn RegisterStereoStatusWindow(self: *const IDXGIFactory2, WindowHandle: ?HWND, wMsg: u32, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterStereoStatusWindow(self, WindowHandle, wMsg, pdwCookie);
+    }
+    pub fn RegisterStereoStatusEvent(self: *const IDXGIFactory2, hEvent: ?HANDLE, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterStereoStatusEvent(self, hEvent, pdwCookie);
+    }
+    pub fn UnregisterStereoStatus(self: *const IDXGIFactory2, dwCookie: u32) callconv(.Inline) void {
+        return self.vtable.UnregisterStereoStatus(self, dwCookie);
+    }
+    pub fn RegisterOcclusionStatusWindow(self: *const IDXGIFactory2, WindowHandle: ?HWND, wMsg: u32, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterOcclusionStatusWindow(self, WindowHandle, wMsg, pdwCookie);
+    }
+    pub fn RegisterOcclusionStatusEvent(self: *const IDXGIFactory2, hEvent: ?HANDLE, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterOcclusionStatusEvent(self, hEvent, pdwCookie);
+    }
+    pub fn UnregisterOcclusionStatus(self: *const IDXGIFactory2, dwCookie: u32) callconv(.Inline) void {
+        return self.vtable.UnregisterOcclusionStatus(self, dwCookie);
+    }
+    pub fn CreateSwapChainForComposition(self: *const IDXGIFactory2, pDevice: ?*IUnknown, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSwapChainForComposition(self, pDevice, pDesc, pRestrictToOutput, ppSwapChain);
+    }
 };
 
 pub const DXGI_GRAPHICS_PREEMPTION_GRANULARITY = enum(i32) {
@@ -2173,143 +1394,90 @@ pub const DXGI_ADAPTER_DESC2 = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIAdapter2_Value = Guid.initString("0aa1ae0a-fa0e-4b84-8644-e05ff8e5acb5");
 pub const IID_IDXGIAdapter2 = &IID_IDXGIAdapter2_Value;
-pub const IDXGIAdapter2 = extern struct {
+pub const IDXGIAdapter2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter1.VTable,
-        GetDesc2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter2,
-                pDesc: ?*DXGI_ADAPTER_DESC2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter2,
-                pDesc: ?*DXGI_ADAPTER_DESC2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc2: *const fn(
+            self: *const IDXGIAdapter2,
+            pDesc: ?*DXGI_ADAPTER_DESC2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIAdapter1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter2_GetDesc2(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC2) HRESULT {
-                return @as(*const IDXGIAdapter2.VTable, @ptrCast(self.vtable)).GetDesc2(@as(*const IDXGIAdapter2, @ptrCast(self)), pDesc);
-            }
-        };
+    IDXGIAdapter1: IDXGIAdapter1,
+    IDXGIAdapter: IDXGIAdapter,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc2(self: *const IDXGIAdapter2, pDesc: ?*DXGI_ADAPTER_DESC2) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc2(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIOutput1_Value = Guid.initString("00cddea8-939b-4b83-a340-a685226666cc");
 pub const IID_IDXGIOutput1 = &IID_IDXGIOutput1_Value;
-pub const IDXGIOutput1 = extern struct {
+pub const IDXGIOutput1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput.VTable,
-        GetDisplayModeList1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput1,
-                EnumFormat: DXGI_FORMAT,
-                Flags: u32,
-                pNumModes: ?*u32,
-                pDesc: ?[*]DXGI_MODE_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput1,
-                EnumFormat: DXGI_FORMAT,
-                Flags: u32,
-                pNumModes: ?*u32,
-                pDesc: ?[*]DXGI_MODE_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindClosestMatchingMode1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput1,
-                pModeToMatch: ?*const DXGI_MODE_DESC1,
-                pClosestMatch: ?*DXGI_MODE_DESC1,
-                pConcernedDevice: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput1,
-                pModeToMatch: ?*const DXGI_MODE_DESC1,
-                pClosestMatch: ?*DXGI_MODE_DESC1,
-                pConcernedDevice: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDisplaySurfaceData1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput1,
-                pDestination: ?*IDXGIResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput1,
-                pDestination: ?*IDXGIResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DuplicateOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput1,
-                pDevice: ?*IUnknown,
-                ppOutputDuplication: ?*?*IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput1,
-                pDevice: ?*IUnknown,
-                ppOutputDuplication: ?*?*IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDisplayModeList1: *const fn(
+            self: *const IDXGIOutput1,
+            EnumFormat: DXGI_FORMAT,
+            Flags: u32,
+            pNumModes: ?*u32,
+            pDesc: ?[*]DXGI_MODE_DESC1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindClosestMatchingMode1: *const fn(
+            self: *const IDXGIOutput1,
+            pModeToMatch: ?*const DXGI_MODE_DESC1,
+            pClosestMatch: ?*DXGI_MODE_DESC1,
+            pConcernedDevice: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDisplaySurfaceData1: *const fn(
+            self: *const IDXGIOutput1,
+            pDestination: ?*IDXGIResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DuplicateOutput: *const fn(
+            self: *const IDXGIOutput1,
+            pDevice: ?*IUnknown,
+            ppOutputDuplication: **IDXGIOutputDuplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIOutput.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput1_GetDisplayModeList1(self: *const T, EnumFormat: DXGI_FORMAT, Flags: u32, pNumModes: ?*u32, pDesc: ?[*]DXGI_MODE_DESC1) HRESULT {
-                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).GetDisplayModeList1(@as(*const IDXGIOutput1, @ptrCast(self)), EnumFormat, Flags, pNumModes, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput1_FindClosestMatchingMode1(self: *const T, pModeToMatch: ?*const DXGI_MODE_DESC1, pClosestMatch: ?*DXGI_MODE_DESC1, pConcernedDevice: ?*IUnknown) HRESULT {
-                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).FindClosestMatchingMode1(@as(*const IDXGIOutput1, @ptrCast(self)), pModeToMatch, pClosestMatch, pConcernedDevice);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput1_GetDisplaySurfaceData1(self: *const T, pDestination: ?*IDXGIResource) HRESULT {
-                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).GetDisplaySurfaceData1(@as(*const IDXGIOutput1, @ptrCast(self)), pDestination);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput1_DuplicateOutput(self: *const T, pDevice: ?*IUnknown, ppOutputDuplication: ?*?*IDXGIOutputDuplication) HRESULT {
-                return @as(*const IDXGIOutput1.VTable, @ptrCast(self.vtable)).DuplicateOutput(@as(*const IDXGIOutput1, @ptrCast(self)), pDevice, ppOutputDuplication);
-            }
-        };
+    IDXGIOutput: IDXGIOutput,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDisplayModeList1(self: *const IDXGIOutput1, EnumFormat: DXGI_FORMAT, Flags: u32, pNumModes: ?*u32, pDesc: ?[*]DXGI_MODE_DESC1) callconv(.Inline) HRESULT {
+        return self.vtable.GetDisplayModeList1(self, EnumFormat, Flags, pNumModes, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn FindClosestMatchingMode1(self: *const IDXGIOutput1, pModeToMatch: ?*const DXGI_MODE_DESC1, pClosestMatch: ?*DXGI_MODE_DESC1, pConcernedDevice: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.FindClosestMatchingMode1(self, pModeToMatch, pClosestMatch, pConcernedDevice);
+    }
+    pub fn GetDisplaySurfaceData1(self: *const IDXGIOutput1, pDestination: ?*IDXGIResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetDisplaySurfaceData1(self, pDestination);
+    }
+    pub fn DuplicateOutput(self: *const IDXGIOutput1, pDevice: ?*IUnknown, ppOutputDuplication: **IDXGIOutputDuplication) callconv(.Inline) HRESULT {
+        return self.vtable.DuplicateOutput(self, pDevice, ppOutputDuplication);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIDevice3_Value = Guid.initString("6007896c-3244-4afd-bf18-a6d3beda5023");
 pub const IID_IDXGIDevice3 = &IID_IDXGIDevice3_Value;
-pub const IDXGIDevice3 = extern struct {
+pub const IDXGIDevice3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice2.VTable,
-        Trim: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice3,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIDevice3,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        Trim: *const fn(
+            self: *const IDXGIDevice3,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDevice2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice3_Trim(self: *const T) void {
-                return @as(*const IDXGIDevice3.VTable, @ptrCast(self.vtable)).Trim(@as(*const IDXGIDevice3, @ptrCast(self)));
-            }
-        };
+    IDXGIDevice2: IDXGIDevice2,
+    IDXGIDevice1: IDXGIDevice1,
+    IDXGIDevice: IDXGIDevice,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn Trim(self: *const IDXGIDevice3) callconv(.Inline) void {
+        return self.vtable.Trim(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DXGI_MATRIX_3X2_F = extern struct {
@@ -2324,173 +1492,107 @@ pub const DXGI_MATRIX_3X2_F = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGISwapChain2_Value = Guid.initString("a8be2ac4-199f-4946-b331-79599fb98de7");
 pub const IID_IDXGISwapChain2 = &IID_IDXGISwapChain2_Value;
-pub const IDXGISwapChain2 = extern struct {
+pub const IDXGISwapChain2 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain1.VTable,
-        SetSourceSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain2,
-                Width: u32,
-                Height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain2,
-                Width: u32,
-                Height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain2,
-                pWidth: ?*u32,
-                pHeight: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain2,
-                pWidth: ?*u32,
-                pHeight: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMaximumFrameLatency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain2,
-                MaxLatency: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain2,
-                MaxLatency: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMaximumFrameLatency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain2,
-                pMaxLatency: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain2,
-                pMaxLatency: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameLatencyWaitableObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain2,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-            else => *const fn (
-                self: *const IDXGISwapChain2,
-            ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
-        },
-        SetMatrixTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain2,
-                pMatrix: ?*const DXGI_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain2,
-                pMatrix: ?*const DXGI_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMatrixTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain2,
-                pMatrix: ?*DXGI_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain2,
-                pMatrix: ?*DXGI_MATRIX_3X2_F,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetSourceSize: *const fn(
+            self: *const IDXGISwapChain2,
+            Width: u32,
+            Height: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceSize: *const fn(
+            self: *const IDXGISwapChain2,
+            pWidth: ?*u32,
+            pHeight: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMaximumFrameLatency: *const fn(
+            self: *const IDXGISwapChain2,
+            MaxLatency: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMaximumFrameLatency: *const fn(
+            self: *const IDXGISwapChain2,
+            pMaxLatency: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameLatencyWaitableObject: *const fn(
+            self: *const IDXGISwapChain2,
+        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        SetMatrixTransform: *const fn(
+            self: *const IDXGISwapChain2,
+            pMatrix: ?*const DXGI_MATRIX_3X2_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMatrixTransform: *const fn(
+            self: *const IDXGISwapChain2,
+            pMatrix: ?*DXGI_MATRIX_3X2_F,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGISwapChain1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain2_SetSourceSize(self: *const T, Width: u32, Height: u32) HRESULT {
-                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).SetSourceSize(@as(*const IDXGISwapChain2, @ptrCast(self)), Width, Height);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain2_GetSourceSize(self: *const T, pWidth: ?*u32, pHeight: ?*u32) HRESULT {
-                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetSourceSize(@as(*const IDXGISwapChain2, @ptrCast(self)), pWidth, pHeight);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain2_SetMaximumFrameLatency(self: *const T, MaxLatency: u32) HRESULT {
-                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).SetMaximumFrameLatency(@as(*const IDXGISwapChain2, @ptrCast(self)), MaxLatency);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain2_GetMaximumFrameLatency(self: *const T, pMaxLatency: ?*u32) HRESULT {
-                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetMaximumFrameLatency(@as(*const IDXGISwapChain2, @ptrCast(self)), pMaxLatency);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain2_GetFrameLatencyWaitableObject(self: *const T) ?HANDLE {
-                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetFrameLatencyWaitableObject(@as(*const IDXGISwapChain2, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain2_SetMatrixTransform(self: *const T, pMatrix: ?*const DXGI_MATRIX_3X2_F) HRESULT {
-                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).SetMatrixTransform(@as(*const IDXGISwapChain2, @ptrCast(self)), pMatrix);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain2_GetMatrixTransform(self: *const T, pMatrix: ?*DXGI_MATRIX_3X2_F) HRESULT {
-                return @as(*const IDXGISwapChain2.VTable, @ptrCast(self.vtable)).GetMatrixTransform(@as(*const IDXGISwapChain2, @ptrCast(self)), pMatrix);
-            }
-        };
+    IDXGISwapChain1: IDXGISwapChain1,
+    IDXGISwapChain: IDXGISwapChain,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn SetSourceSize(self: *const IDXGISwapChain2, Width: u32, Height: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetSourceSize(self, Width, Height);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSourceSize(self: *const IDXGISwapChain2, pWidth: ?*u32, pHeight: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceSize(self, pWidth, pHeight);
+    }
+    pub fn SetMaximumFrameLatency(self: *const IDXGISwapChain2, MaxLatency: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetMaximumFrameLatency(self, MaxLatency);
+    }
+    pub fn GetMaximumFrameLatency(self: *const IDXGISwapChain2, pMaxLatency: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetMaximumFrameLatency(self, pMaxLatency);
+    }
+    pub fn GetFrameLatencyWaitableObject(self: *const IDXGISwapChain2) callconv(.Inline) ?HANDLE {
+        return self.vtable.GetFrameLatencyWaitableObject(self);
+    }
+    pub fn SetMatrixTransform(self: *const IDXGISwapChain2, pMatrix: ?*const DXGI_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+        return self.vtable.SetMatrixTransform(self, pMatrix);
+    }
+    pub fn GetMatrixTransform(self: *const IDXGISwapChain2, pMatrix: ?*DXGI_MATRIX_3X2_F) callconv(.Inline) HRESULT {
+        return self.vtable.GetMatrixTransform(self, pMatrix);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIOutput2_Value = Guid.initString("595e39d1-2724-4663-99b1-da969de28364");
 pub const IID_IDXGIOutput2 = &IID_IDXGIOutput2_Value;
-pub const IDXGIOutput2 = extern struct {
+pub const IDXGIOutput2 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput1.VTable,
-        SupportsOverlays: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIOutput2,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        SupportsOverlays: *const fn(
+            self: *const IDXGIOutput2,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIOutput1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput2_SupportsOverlays(self: *const T) BOOL {
-                return @as(*const IDXGIOutput2.VTable, @ptrCast(self.vtable)).SupportsOverlays(@as(*const IDXGIOutput2, @ptrCast(self)));
-            }
-        };
+    IDXGIOutput1: IDXGIOutput1,
+    IDXGIOutput: IDXGIOutput,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn SupportsOverlays(self: *const IDXGIOutput2) callconv(.Inline) BOOL {
+        return self.vtable.SupportsOverlays(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIFactory3_Value = Guid.initString("25483823-cd46-4c7d-86ca-47aa95b837bd");
 pub const IID_IDXGIFactory3 = &IID_IDXGIFactory3_Value;
-pub const IDXGIFactory3 = extern struct {
+pub const IDXGIFactory3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory2.VTable,
-        GetCreationFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory3,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IDXGIFactory3,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
+        GetCreationFlags: *const fn(
+            self: *const IDXGIFactory3,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIFactory2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory3_GetCreationFlags(self: *const T) u32 {
-                return @as(*const IDXGIFactory3.VTable, @ptrCast(self.vtable)).GetCreationFlags(@as(*const IDXGIFactory3, @ptrCast(self)));
-            }
-        };
+    IDXGIFactory2: IDXGIFactory2,
+    IDXGIFactory1: IDXGIFactory1,
+    IDXGIFactory: IDXGIFactory,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetCreationFlags(self: *const IDXGIFactory3) callconv(.Inline) u32 {
+        return self.vtable.GetCreationFlags(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DXGI_DECODE_SWAP_CHAIN_DESC = extern struct {
@@ -2509,211 +1611,112 @@ pub const DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAG_xvYCC = DXGI_MULTIPLANE_OVERLAY_YCb
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIDecodeSwapChain_Value = Guid.initString("2633066b-4514-4c7a-8fd8-12ea98059d18");
 pub const IID_IDXGIDecodeSwapChain = &IID_IDXGIDecodeSwapChain_Value;
-pub const IDXGIDecodeSwapChain = extern struct {
+pub const IDXGIDecodeSwapChain = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        PresentBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                BufferToPresent: u32,
-                SyncInterval: u32,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                BufferToPresent: u32,
-                SyncInterval: u32,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSourceRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTargetRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDestSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                Width: u32,
-                Height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                Width: u32,
-                Height: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTargetRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                pRect: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                pWidth: ?*u32,
-                pHeight: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                pWidth: ?*u32,
-                pHeight: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetColorSpace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-                ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-                ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColorSpace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDecodeSwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
-            else => *const fn (
-                self: *const IDXGIDecodeSwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
-        },
+        PresentBuffer: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            BufferToPresent: u32,
+            SyncInterval: u32,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSourceRect: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            pRect: ?*const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTargetRect: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            pRect: ?*const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDestSize: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            Width: u32,
+            Height: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceRect: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            pRect: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTargetRect: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            pRect: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestSize: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            pWidth: ?*u32,
+            pHeight: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetColorSpace: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+            ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColorSpace: *const fn(
+            self: *const IDXGIDecodeSwapChain,
+        ) callconv(@import("std").os.windows.WINAPI) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_PresentBuffer(self: *const T, BufferToPresent: u32, SyncInterval: u32, Flags: u32) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).PresentBuffer(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), BufferToPresent, SyncInterval, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_SetSourceRect(self: *const T, pRect: ?*const RECT) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetSourceRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_SetTargetRect(self: *const T, pRect: ?*const RECT) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetTargetRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_SetDestSize(self: *const T, Width: u32, Height: u32) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetDestSize(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), Width, Height);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_GetSourceRect(self: *const T, pRect: ?*RECT) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetSourceRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_GetTargetRect(self: *const T, pRect: ?*RECT) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetTargetRect(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pRect);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_GetDestSize(self: *const T, pWidth: ?*u32, pHeight: ?*u32) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetDestSize(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), pWidth, pHeight);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_SetColorSpace(self: *const T, ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS) HRESULT {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).SetColorSpace(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)), ColorSpace);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDecodeSwapChain_GetColorSpace(self: *const T) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS {
-                return @as(*const IDXGIDecodeSwapChain.VTable, @ptrCast(self.vtable)).GetColorSpace(@as(*const IDXGIDecodeSwapChain, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn PresentBuffer(self: *const IDXGIDecodeSwapChain, BufferToPresent: u32, SyncInterval: u32, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.PresentBuffer(self, BufferToPresent, SyncInterval, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetSourceRect(self: *const IDXGIDecodeSwapChain, pRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return self.vtable.SetSourceRect(self, pRect);
+    }
+    pub fn SetTargetRect(self: *const IDXGIDecodeSwapChain, pRect: ?*const RECT) callconv(.Inline) HRESULT {
+        return self.vtable.SetTargetRect(self, pRect);
+    }
+    pub fn SetDestSize(self: *const IDXGIDecodeSwapChain, Width: u32, Height: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetDestSize(self, Width, Height);
+    }
+    pub fn GetSourceRect(self: *const IDXGIDecodeSwapChain, pRect: ?*RECT) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceRect(self, pRect);
+    }
+    pub fn GetTargetRect(self: *const IDXGIDecodeSwapChain, pRect: ?*RECT) callconv(.Inline) HRESULT {
+        return self.vtable.GetTargetRect(self, pRect);
+    }
+    pub fn GetDestSize(self: *const IDXGIDecodeSwapChain, pWidth: ?*u32, pHeight: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDestSize(self, pWidth, pHeight);
+    }
+    pub fn SetColorSpace(self: *const IDXGIDecodeSwapChain, ColorSpace: DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.SetColorSpace(self, ColorSpace);
+    }
+    pub fn GetColorSpace(self: *const IDXGIDecodeSwapChain) callconv(.Inline) DXGI_MULTIPLANE_OVERLAY_YCbCr_FLAGS {
+        return self.vtable.GetColorSpace(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIFactoryMedia_Value = Guid.initString("41e7d1f2-a591-4f7b-a2e5-fa9c843e1c12");
 pub const IID_IDXGIFactoryMedia = &IID_IDXGIFactoryMedia_Value;
-pub const IDXGIFactoryMedia = extern struct {
+pub const IDXGIFactoryMedia = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateSwapChainForCompositionSurfaceHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactoryMedia,
-                pDevice: ?*IUnknown,
-                hSurface: ?HANDLE,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactoryMedia,
-                pDevice: ?*IUnknown,
-                hSurface: ?HANDLE,
-                pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGISwapChain1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateDecodeSwapChainForCompositionSurfaceHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactoryMedia,
-                pDevice: ?*IUnknown,
-                hSurface: ?HANDLE,
-                pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC,
-                pYuvDecodeBuffers: ?*IDXGIResource,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGIDecodeSwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactoryMedia,
-                pDevice: ?*IUnknown,
-                hSurface: ?HANDLE,
-                pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC,
-                pYuvDecodeBuffers: ?*IDXGIResource,
-                pRestrictToOutput: ?*IDXGIOutput,
-                ppSwapChain: ?*?*IDXGIDecodeSwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateSwapChainForCompositionSurfaceHandle: *const fn(
+            self: *const IDXGIFactoryMedia,
+            pDevice: ?*IUnknown,
+            hSurface: ?HANDLE,
+            pDesc: ?*const DXGI_SWAP_CHAIN_DESC1,
+            pRestrictToOutput: ?*IDXGIOutput,
+            ppSwapChain: **IDXGISwapChain1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDecodeSwapChainForCompositionSurfaceHandle: *const fn(
+            self: *const IDXGIFactoryMedia,
+            pDevice: ?*IUnknown,
+            hSurface: ?HANDLE,
+            pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC,
+            pYuvDecodeBuffers: ?*IDXGIResource,
+            pRestrictToOutput: ?*IDXGIOutput,
+            ppSwapChain: **IDXGIDecodeSwapChain,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactoryMedia_CreateSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGISwapChain1) HRESULT {
-                return @as(*const IDXGIFactoryMedia.VTable, @ptrCast(self.vtable)).CreateSwapChainForCompositionSurfaceHandle(@as(*const IDXGIFactoryMedia, @ptrCast(self)), pDevice, hSurface, pDesc, pRestrictToOutput, ppSwapChain);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactoryMedia_CreateDecodeSwapChainForCompositionSurfaceHandle(self: *const T, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: ?*IDXGIResource, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: ?*?*IDXGIDecodeSwapChain) HRESULT {
-                return @as(*const IDXGIFactoryMedia.VTable, @ptrCast(self.vtable)).CreateDecodeSwapChainForCompositionSurfaceHandle(@as(*const IDXGIFactoryMedia, @ptrCast(self)), pDevice, hSurface, pDesc, pYuvDecodeBuffers, pRestrictToOutput, ppSwapChain);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateSwapChainForCompositionSurfaceHandle(self: *const IDXGIFactoryMedia, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*const DXGI_SWAP_CHAIN_DESC1, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGISwapChain1) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSwapChainForCompositionSurfaceHandle(self, pDevice, hSurface, pDesc, pRestrictToOutput, ppSwapChain);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateDecodeSwapChainForCompositionSurfaceHandle(self: *const IDXGIFactoryMedia, pDevice: ?*IUnknown, hSurface: ?HANDLE, pDesc: ?*DXGI_DECODE_SWAP_CHAIN_DESC, pYuvDecodeBuffers: ?*IDXGIResource, pRestrictToOutput: ?*IDXGIOutput, ppSwapChain: **IDXGIDecodeSwapChain) callconv(.Inline) HRESULT {
+        return self.vtable.CreateDecodeSwapChainForCompositionSurfaceHandle(self, pDevice, hSurface, pDesc, pYuvDecodeBuffers, pRestrictToOutput, ppSwapChain);
+    }
 };
 
 pub const DXGI_FRAME_PRESENTATION_MODE = enum(i32) {
@@ -2740,63 +1743,35 @@ pub const DXGI_FRAME_STATISTICS_MEDIA = extern struct {
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGISwapChainMedia_Value = Guid.initString("dd95b90b-f05f-4f6a-bd65-25bfb264bd84");
 pub const IID_IDXGISwapChainMedia = &IID_IDXGISwapChainMedia_Value;
-pub const IDXGISwapChainMedia = extern struct {
+pub const IDXGISwapChainMedia = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFrameStatisticsMedia: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChainMedia,
-                pStats: ?*DXGI_FRAME_STATISTICS_MEDIA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChainMedia,
-                pStats: ?*DXGI_FRAME_STATISTICS_MEDIA,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPresentDuration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChainMedia,
-                Duration: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChainMedia,
-                Duration: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckPresentDurationSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChainMedia,
-                DesiredPresentDuration: u32,
-                pClosestSmallerPresentDuration: ?*u32,
-                pClosestLargerPresentDuration: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChainMedia,
-                DesiredPresentDuration: u32,
-                pClosestSmallerPresentDuration: ?*u32,
-                pClosestLargerPresentDuration: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFrameStatisticsMedia: *const fn(
+            self: *const IDXGISwapChainMedia,
+            pStats: ?*DXGI_FRAME_STATISTICS_MEDIA,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPresentDuration: *const fn(
+            self: *const IDXGISwapChainMedia,
+            Duration: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckPresentDurationSupport: *const fn(
+            self: *const IDXGISwapChainMedia,
+            DesiredPresentDuration: u32,
+            pClosestSmallerPresentDuration: ?*u32,
+            pClosestLargerPresentDuration: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChainMedia_GetFrameStatisticsMedia(self: *const T, pStats: ?*DXGI_FRAME_STATISTICS_MEDIA) HRESULT {
-                return @as(*const IDXGISwapChainMedia.VTable, @ptrCast(self.vtable)).GetFrameStatisticsMedia(@as(*const IDXGISwapChainMedia, @ptrCast(self)), pStats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChainMedia_SetPresentDuration(self: *const T, Duration: u32) HRESULT {
-                return @as(*const IDXGISwapChainMedia.VTable, @ptrCast(self.vtable)).SetPresentDuration(@as(*const IDXGISwapChainMedia, @ptrCast(self)), Duration);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChainMedia_CheckPresentDurationSupport(self: *const T, DesiredPresentDuration: u32, pClosestSmallerPresentDuration: ?*u32, pClosestLargerPresentDuration: ?*u32) HRESULT {
-                return @as(*const IDXGISwapChainMedia.VTable, @ptrCast(self.vtable)).CheckPresentDurationSupport(@as(*const IDXGISwapChainMedia, @ptrCast(self)), DesiredPresentDuration, pClosestSmallerPresentDuration, pClosestLargerPresentDuration);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetFrameStatisticsMedia(self: *const IDXGISwapChainMedia, pStats: ?*DXGI_FRAME_STATISTICS_MEDIA) callconv(.Inline) HRESULT {
+        return self.vtable.GetFrameStatisticsMedia(self, pStats);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetPresentDuration(self: *const IDXGISwapChainMedia, Duration: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetPresentDuration(self, Duration);
+    }
+    pub fn CheckPresentDurationSupport(self: *const IDXGISwapChainMedia, DesiredPresentDuration: u32, pClosestSmallerPresentDuration: ?*u32, pClosestLargerPresentDuration: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.CheckPresentDurationSupport(self, DesiredPresentDuration, pClosestSmallerPresentDuration, pClosestLargerPresentDuration);
+    }
 };
 
 pub const DXGI_OVERLAY_SUPPORT_FLAG = enum(i32) {
@@ -2809,35 +1784,25 @@ pub const DXGI_OVERLAY_SUPPORT_FLAG_SCALING = DXGI_OVERLAY_SUPPORT_FLAG.SCALING;
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIOutput3_Value = Guid.initString("8a6bb301-7e7e-41f4-a8e0-5b32f7f99b18");
 pub const IID_IDXGIOutput3 = &IID_IDXGIOutput3_Value;
-pub const IDXGIOutput3 = extern struct {
+pub const IDXGIOutput3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput2.VTable,
-        CheckOverlaySupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput3,
-                EnumFormat: DXGI_FORMAT,
-                pConcernedDevice: ?*IUnknown,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput3,
-                EnumFormat: DXGI_FORMAT,
-                pConcernedDevice: ?*IUnknown,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CheckOverlaySupport: *const fn(
+            self: *const IDXGIOutput3,
+            EnumFormat: DXGI_FORMAT,
+            pConcernedDevice: ?*IUnknown,
+            pFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIOutput2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput3_CheckOverlaySupport(self: *const T, EnumFormat: DXGI_FORMAT, pConcernedDevice: ?*IUnknown, pFlags: ?*u32) HRESULT {
-                return @as(*const IDXGIOutput3.VTable, @ptrCast(self.vtable)).CheckOverlaySupport(@as(*const IDXGIOutput3, @ptrCast(self)), EnumFormat, pConcernedDevice, pFlags);
-            }
-        };
+    IDXGIOutput2: IDXGIOutput2,
+    IDXGIOutput1: IDXGIOutput1,
+    IDXGIOutput: IDXGIOutput,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn CheckOverlaySupport(self: *const IDXGIOutput3, EnumFormat: DXGI_FORMAT, pConcernedDevice: ?*IUnknown, pFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.CheckOverlaySupport(self, EnumFormat, pConcernedDevice, pFlags);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG = enum(i32) {
@@ -2850,85 +1815,51 @@ pub const DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAG_OVERLAY_PRESENT = DXGI_SWAP_C
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGISwapChain3_Value = Guid.initString("94d99bdb-f1f8-4ab0-b236-7da0170edab1");
 pub const IID_IDXGISwapChain3 = &IID_IDXGISwapChain3_Value;
-pub const IDXGISwapChain3 = extern struct {
+pub const IDXGISwapChain3 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain2.VTable,
-        GetCurrentBackBufferIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain3,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IDXGISwapChain3,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        CheckColorSpaceSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain3,
-                ColorSpace: DXGI_COLOR_SPACE_TYPE,
-                pColorSpaceSupport: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain3,
-                ColorSpace: DXGI_COLOR_SPACE_TYPE,
-                pColorSpaceSupport: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetColorSpace1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain3,
-                ColorSpace: DXGI_COLOR_SPACE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain3,
-                ColorSpace: DXGI_COLOR_SPACE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResizeBuffers1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain3,
-                BufferCount: u32,
-                Width: u32,
-                Height: u32,
-                Format: DXGI_FORMAT,
-                SwapChainFlags: u32,
-                pCreationNodeMask: [*]const u32,
-                ppPresentQueue: [*]?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain3,
-                BufferCount: u32,
-                Width: u32,
-                Height: u32,
-                Format: DXGI_FORMAT,
-                SwapChainFlags: u32,
-                pCreationNodeMask: [*]const u32,
-                ppPresentQueue: [*]?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCurrentBackBufferIndex: *const fn(
+            self: *const IDXGISwapChain3,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        CheckColorSpaceSupport: *const fn(
+            self: *const IDXGISwapChain3,
+            ColorSpace: DXGI_COLOR_SPACE_TYPE,
+            pColorSpaceSupport: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetColorSpace1: *const fn(
+            self: *const IDXGISwapChain3,
+            ColorSpace: DXGI_COLOR_SPACE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResizeBuffers1: *const fn(
+            self: *const IDXGISwapChain3,
+            BufferCount: u32,
+            Width: u32,
+            Height: u32,
+            Format: DXGI_FORMAT,
+            SwapChainFlags: u32,
+            pCreationNodeMask: [*]const u32,
+            ppPresentQueue: [*]?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGISwapChain2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain3_GetCurrentBackBufferIndex(self: *const T) u32 {
-                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).GetCurrentBackBufferIndex(@as(*const IDXGISwapChain3, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain3_CheckColorSpaceSupport(self: *const T, ColorSpace: DXGI_COLOR_SPACE_TYPE, pColorSpaceSupport: ?*u32) HRESULT {
-                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).CheckColorSpaceSupport(@as(*const IDXGISwapChain3, @ptrCast(self)), ColorSpace, pColorSpaceSupport);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain3_SetColorSpace1(self: *const T, ColorSpace: DXGI_COLOR_SPACE_TYPE) HRESULT {
-                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).SetColorSpace1(@as(*const IDXGISwapChain3, @ptrCast(self)), ColorSpace);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain3_ResizeBuffers1(self: *const T, BufferCount: u32, Width: u32, Height: u32, Format: DXGI_FORMAT, SwapChainFlags: u32, pCreationNodeMask: [*]const u32, ppPresentQueue: [*]?*IUnknown) HRESULT {
-                return @as(*const IDXGISwapChain3.VTable, @ptrCast(self.vtable)).ResizeBuffers1(@as(*const IDXGISwapChain3, @ptrCast(self)), BufferCount, Width, Height, Format, SwapChainFlags, pCreationNodeMask, ppPresentQueue);
-            }
-        };
+    IDXGISwapChain2: IDXGISwapChain2,
+    IDXGISwapChain1: IDXGISwapChain1,
+    IDXGISwapChain: IDXGISwapChain,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetCurrentBackBufferIndex(self: *const IDXGISwapChain3) callconv(.Inline) u32 {
+        return self.vtable.GetCurrentBackBufferIndex(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CheckColorSpaceSupport(self: *const IDXGISwapChain3, ColorSpace: DXGI_COLOR_SPACE_TYPE, pColorSpaceSupport: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.CheckColorSpaceSupport(self, ColorSpace, pColorSpaceSupport);
+    }
+    pub fn SetColorSpace1(self: *const IDXGISwapChain3, ColorSpace: DXGI_COLOR_SPACE_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.SetColorSpace1(self, ColorSpace);
+    }
+    pub fn ResizeBuffers1(self: *const IDXGISwapChain3, BufferCount: u32, Width: u32, Height: u32, Format: DXGI_FORMAT, SwapChainFlags: u32, pCreationNodeMask: [*]const u32, ppPresentQueue: [*]?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.ResizeBuffers1(self, BufferCount, Width, Height, Format, SwapChainFlags, pCreationNodeMask, ppPresentQueue);
+    }
 };
 
 pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG = enum(i32) {
@@ -2939,86 +1870,59 @@ pub const DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG_PRESENT = DXGI_OVERLAY_COLOR_SPA
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput4_Value = Guid.initString("dc7dca35-2196-414d-9f53-617884032a60");
 pub const IID_IDXGIOutput4 = &IID_IDXGIOutput4_Value;
-pub const IDXGIOutput4 = extern struct {
+pub const IDXGIOutput4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput3.VTable,
-        CheckOverlayColorSpaceSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput4,
-                Format: DXGI_FORMAT,
-                ColorSpace: DXGI_COLOR_SPACE_TYPE,
-                pConcernedDevice: ?*IUnknown,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput4,
-                Format: DXGI_FORMAT,
-                ColorSpace: DXGI_COLOR_SPACE_TYPE,
-                pConcernedDevice: ?*IUnknown,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CheckOverlayColorSpaceSupport: *const fn(
+            self: *const IDXGIOutput4,
+            Format: DXGI_FORMAT,
+            ColorSpace: DXGI_COLOR_SPACE_TYPE,
+            pConcernedDevice: ?*IUnknown,
+            pFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIOutput3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput4_CheckOverlayColorSpaceSupport(self: *const T, Format: DXGI_FORMAT, ColorSpace: DXGI_COLOR_SPACE_TYPE, pConcernedDevice: ?*IUnknown, pFlags: ?*u32) HRESULT {
-                return @as(*const IDXGIOutput4.VTable, @ptrCast(self.vtable)).CheckOverlayColorSpaceSupport(@as(*const IDXGIOutput4, @ptrCast(self)), Format, ColorSpace, pConcernedDevice, pFlags);
-            }
-        };
+    IDXGIOutput3: IDXGIOutput3,
+    IDXGIOutput2: IDXGIOutput2,
+    IDXGIOutput1: IDXGIOutput1,
+    IDXGIOutput: IDXGIOutput,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn CheckOverlayColorSpaceSupport(self: *const IDXGIOutput4, Format: DXGI_FORMAT, ColorSpace: DXGI_COLOR_SPACE_TYPE, pConcernedDevice: ?*IUnknown, pFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.CheckOverlayColorSpaceSupport(self, Format, ColorSpace, pConcernedDevice, pFlags);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IDXGIFactory4_Value = Guid.initString("1bc6ea02-ef36-464f-bf0c-21ca39e5168a");
 pub const IID_IDXGIFactory4 = &IID_IDXGIFactory4_Value;
-pub const IDXGIFactory4 = extern struct {
+pub const IDXGIFactory4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory3.VTable,
-        EnumAdapterByLuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory4,
-                AdapterLuid: LUID,
-                riid: ?*const Guid,
-                ppvAdapter: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory4,
-                AdapterLuid: LUID,
-                riid: ?*const Guid,
-                ppvAdapter: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumWarpAdapter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory4,
-                riid: ?*const Guid,
-                ppvAdapter: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory4,
-                riid: ?*const Guid,
-                ppvAdapter: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumAdapterByLuid: *const fn(
+            self: *const IDXGIFactory4,
+            AdapterLuid: LUID,
+            riid: ?*const Guid,
+            ppvAdapter: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumWarpAdapter: *const fn(
+            self: *const IDXGIFactory4,
+            riid: ?*const Guid,
+            ppvAdapter: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIFactory3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory4_EnumAdapterByLuid(self: *const T, AdapterLuid: LUID, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @as(*const IDXGIFactory4.VTable, @ptrCast(self.vtable)).EnumAdapterByLuid(@as(*const IDXGIFactory4, @ptrCast(self)), AdapterLuid, riid, ppvAdapter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory4_EnumWarpAdapter(self: *const T, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @as(*const IDXGIFactory4.VTable, @ptrCast(self.vtable)).EnumWarpAdapter(@as(*const IDXGIFactory4, @ptrCast(self)), riid, ppvAdapter);
-            }
-        };
+    IDXGIFactory3: IDXGIFactory3,
+    IDXGIFactory2: IDXGIFactory2,
+    IDXGIFactory1: IDXGIFactory1,
+    IDXGIFactory: IDXGIFactory,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn EnumAdapterByLuid(self: *const IDXGIFactory4, AdapterLuid: LUID, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.EnumAdapterByLuid(self, AdapterLuid, riid, ppvAdapter);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn EnumWarpAdapter(self: *const IDXGIFactory4, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.EnumWarpAdapter(self, riid, ppvAdapter);
+    }
 };
 
 pub const DXGI_MEMORY_SEGMENT_GROUP = enum(i32) {
@@ -3037,113 +1941,64 @@ pub const DXGI_QUERY_VIDEO_MEMORY_INFO = extern struct {
 
 const IID_IDXGIAdapter3_Value = Guid.initString("645967a4-1392-4310-a798-8053ce3e93fd");
 pub const IID_IDXGIAdapter3 = &IID_IDXGIAdapter3_Value;
-pub const IDXGIAdapter3 = extern struct {
+pub const IDXGIAdapter3 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter2.VTable,
-        RegisterHardwareContentProtectionTeardownStatusEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter3,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter3,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterHardwareContentProtectionTeardownStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter3,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIAdapter3,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        QueryVideoMemoryInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter3,
-                NodeIndex: u32,
-                MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
-                pVideoMemoryInfo: ?*DXGI_QUERY_VIDEO_MEMORY_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter3,
-                NodeIndex: u32,
-                MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
-                pVideoMemoryInfo: ?*DXGI_QUERY_VIDEO_MEMORY_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetVideoMemoryReservation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter3,
-                NodeIndex: u32,
-                MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
-                Reservation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter3,
-                NodeIndex: u32,
-                MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
-                Reservation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterVideoMemoryBudgetChangeNotificationEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter3,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter3,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterVideoMemoryBudgetChangeNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter3,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIAdapter3,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        RegisterHardwareContentProtectionTeardownStatusEvent: *const fn(
+            self: *const IDXGIAdapter3,
+            hEvent: ?HANDLE,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterHardwareContentProtectionTeardownStatus: *const fn(
+            self: *const IDXGIAdapter3,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        QueryVideoMemoryInfo: *const fn(
+            self: *const IDXGIAdapter3,
+            NodeIndex: u32,
+            MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
+            pVideoMemoryInfo: ?*DXGI_QUERY_VIDEO_MEMORY_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetVideoMemoryReservation: *const fn(
+            self: *const IDXGIAdapter3,
+            NodeIndex: u32,
+            MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP,
+            Reservation: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterVideoMemoryBudgetChangeNotificationEvent: *const fn(
+            self: *const IDXGIAdapter3,
+            hEvent: ?HANDLE,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterVideoMemoryBudgetChangeNotification: *const fn(
+            self: *const IDXGIAdapter3,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIAdapter2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter3_RegisterHardwareContentProtectionTeardownStatusEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).RegisterHardwareContentProtectionTeardownStatusEvent(@as(*const IDXGIAdapter3, @ptrCast(self)), hEvent, pdwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter3_UnregisterHardwareContentProtectionTeardownStatus(self: *const T, dwCookie: u32) void {
-                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).UnregisterHardwareContentProtectionTeardownStatus(@as(*const IDXGIAdapter3, @ptrCast(self)), dwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter3_QueryVideoMemoryInfo(self: *const T, NodeIndex: u32, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, pVideoMemoryInfo: ?*DXGI_QUERY_VIDEO_MEMORY_INFO) HRESULT {
-                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).QueryVideoMemoryInfo(@as(*const IDXGIAdapter3, @ptrCast(self)), NodeIndex, MemorySegmentGroup, pVideoMemoryInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter3_SetVideoMemoryReservation(self: *const T, NodeIndex: u32, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, Reservation: u64) HRESULT {
-                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).SetVideoMemoryReservation(@as(*const IDXGIAdapter3, @ptrCast(self)), NodeIndex, MemorySegmentGroup, Reservation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter3_RegisterVideoMemoryBudgetChangeNotificationEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).RegisterVideoMemoryBudgetChangeNotificationEvent(@as(*const IDXGIAdapter3, @ptrCast(self)), hEvent, pdwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter3_UnregisterVideoMemoryBudgetChangeNotification(self: *const T, dwCookie: u32) void {
-                return @as(*const IDXGIAdapter3.VTable, @ptrCast(self.vtable)).UnregisterVideoMemoryBudgetChangeNotification(@as(*const IDXGIAdapter3, @ptrCast(self)), dwCookie);
-            }
-        };
+    IDXGIAdapter2: IDXGIAdapter2,
+    IDXGIAdapter1: IDXGIAdapter1,
+    IDXGIAdapter: IDXGIAdapter,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn RegisterHardwareContentProtectionTeardownStatusEvent(self: *const IDXGIAdapter3, hEvent: ?HANDLE, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterHardwareContentProtectionTeardownStatusEvent(self, hEvent, pdwCookie);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UnregisterHardwareContentProtectionTeardownStatus(self: *const IDXGIAdapter3, dwCookie: u32) callconv(.Inline) void {
+        return self.vtable.UnregisterHardwareContentProtectionTeardownStatus(self, dwCookie);
+    }
+    pub fn QueryVideoMemoryInfo(self: *const IDXGIAdapter3, NodeIndex: u32, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, pVideoMemoryInfo: ?*DXGI_QUERY_VIDEO_MEMORY_INFO) callconv(.Inline) HRESULT {
+        return self.vtable.QueryVideoMemoryInfo(self, NodeIndex, MemorySegmentGroup, pVideoMemoryInfo);
+    }
+    pub fn SetVideoMemoryReservation(self: *const IDXGIAdapter3, NodeIndex: u32, MemorySegmentGroup: DXGI_MEMORY_SEGMENT_GROUP, Reservation: u64) callconv(.Inline) HRESULT {
+        return self.vtable.SetVideoMemoryReservation(self, NodeIndex, MemorySegmentGroup, Reservation);
+    }
+    pub fn RegisterVideoMemoryBudgetChangeNotificationEvent(self: *const IDXGIAdapter3, hEvent: ?HANDLE, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterVideoMemoryBudgetChangeNotificationEvent(self, hEvent, pdwCookie);
+    }
+    pub fn UnregisterVideoMemoryBudgetChangeNotification(self: *const IDXGIAdapter3, dwCookie: u32) callconv(.Inline) void {
+        return self.vtable.UnregisterVideoMemoryBudgetChangeNotification(self, dwCookie);
+    }
 };
 
 pub const DXGI_OUTDUPL_FLAG = enum(i32) {
@@ -3154,39 +2009,29 @@ pub const DXGI_OUTDUPL_COMPOSITED_UI_CAPTURE_ONLY = DXGI_OUTDUPL_FLAG.Y;
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput5_Value = Guid.initString("80a07424-ab52-42eb-833c-0c42fd282d98");
 pub const IID_IDXGIOutput5 = &IID_IDXGIOutput5_Value;
-pub const IDXGIOutput5 = extern struct {
+pub const IDXGIOutput5 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput4.VTable,
-        DuplicateOutput1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput5,
-                pDevice: ?*IUnknown,
-                Flags: u32,
-                SupportedFormatsCount: u32,
-                pSupportedFormats: [*]const DXGI_FORMAT,
-                ppOutputDuplication: ?*?*IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput5,
-                pDevice: ?*IUnknown,
-                Flags: u32,
-                SupportedFormatsCount: u32,
-                pSupportedFormats: [*]const DXGI_FORMAT,
-                ppOutputDuplication: ?*?*IDXGIOutputDuplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DuplicateOutput1: *const fn(
+            self: *const IDXGIOutput5,
+            pDevice: ?*IUnknown,
+            Flags: u32,
+            SupportedFormatsCount: u32,
+            pSupportedFormats: [*]const DXGI_FORMAT,
+            ppOutputDuplication: **IDXGIOutputDuplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIOutput4.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput5_DuplicateOutput1(self: *const T, pDevice: ?*IUnknown, Flags: u32, SupportedFormatsCount: u32, pSupportedFormats: [*]const DXGI_FORMAT, ppOutputDuplication: ?*?*IDXGIOutputDuplication) HRESULT {
-                return @as(*const IDXGIOutput5.VTable, @ptrCast(self.vtable)).DuplicateOutput1(@as(*const IDXGIOutput5, @ptrCast(self)), pDevice, Flags, SupportedFormatsCount, pSupportedFormats, ppOutputDuplication);
-            }
-        };
+    IDXGIOutput4: IDXGIOutput4,
+    IDXGIOutput3: IDXGIOutput3,
+    IDXGIOutput2: IDXGIOutput2,
+    IDXGIOutput1: IDXGIOutput1,
+    IDXGIOutput: IDXGIOutput,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn DuplicateOutput1(self: *const IDXGIOutput5, pDevice: ?*IUnknown, Flags: u32, SupportedFormatsCount: u32, pSupportedFormats: [*]const DXGI_FORMAT, ppOutputDuplication: **IDXGIOutputDuplication) callconv(.Inline) HRESULT {
+        return self.vtable.DuplicateOutput1(self, pDevice, Flags, SupportedFormatsCount, pSupportedFormats, ppOutputDuplication);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DXGI_HDR_METADATA_TYPE = enum(i32) {
@@ -3215,35 +2060,27 @@ pub const DXGI_HDR_METADATA_HDR10PLUS = extern struct {
 
 const IID_IDXGISwapChain4_Value = Guid.initString("3d585d5a-bd4a-489e-b1f4-3dbcb6452ffb");
 pub const IID_IDXGISwapChain4 = &IID_IDXGISwapChain4_Value;
-pub const IDXGISwapChain4 = extern struct {
+pub const IDXGISwapChain4 = extern union {
     pub const VTable = extern struct {
         base: IDXGISwapChain3.VTable,
-        SetHDRMetaData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGISwapChain4,
-                Type: DXGI_HDR_METADATA_TYPE,
-                Size: u32,
-                pMetaData: ?[*]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGISwapChain4,
-                Type: DXGI_HDR_METADATA_TYPE,
-                Size: u32,
-                pMetaData: ?[*]u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetHDRMetaData: *const fn(
+            self: *const IDXGISwapChain4,
+            Type: DXGI_HDR_METADATA_TYPE,
+            Size: u32,
+            pMetaData: ?[*]u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGISwapChain3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGISwapChain4_SetHDRMetaData(self: *const T, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?[*]u8) HRESULT {
-                return @as(*const IDXGISwapChain4.VTable, @ptrCast(self.vtable)).SetHDRMetaData(@as(*const IDXGISwapChain4, @ptrCast(self)), Type, Size, pMetaData);
-            }
-        };
+    IDXGISwapChain3: IDXGISwapChain3,
+    IDXGISwapChain2: IDXGISwapChain2,
+    IDXGISwapChain1: IDXGISwapChain1,
+    IDXGISwapChain: IDXGISwapChain,
+    IDXGIDeviceSubObject: IDXGIDeviceSubObject,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn SetHDRMetaData(self: *const IDXGISwapChain4, Type: DXGI_HDR_METADATA_TYPE, Size: u32, pMetaData: ?[*]u8) callconv(.Inline) HRESULT {
+        return self.vtable.SetHDRMetaData(self, Type, Size, pMetaData);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DXGI_OFFER_RESOURCE_FLAGS = enum(i32) {
@@ -3262,55 +2099,36 @@ pub const DXGI_RECLAIM_RESOURCE_RESULT_NOT_COMMITTED = DXGI_RECLAIM_RESOURCE_RES
 
 const IID_IDXGIDevice4_Value = Guid.initString("95b4f95f-d8da-4ca4-9ee6-3b76d5968a10");
 pub const IID_IDXGIDevice4 = &IID_IDXGIDevice4_Value;
-pub const IDXGIDevice4 = extern struct {
+pub const IDXGIDevice4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDevice3.VTable,
-        OfferResources1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice4,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                Priority: DXGI_OFFER_RESOURCE_PRIORITY,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice4,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                Priority: DXGI_OFFER_RESOURCE_PRIORITY,
-                Flags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReclaimResources1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDevice4,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                pResults: ?*DXGI_RECLAIM_RESOURCE_RESULTS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDevice4,
-                NumResources: u32,
-                ppResources: [*]?*IDXGIResource,
-                pResults: ?*DXGI_RECLAIM_RESOURCE_RESULTS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OfferResources1: *const fn(
+            self: *const IDXGIDevice4,
+            NumResources: u32,
+            ppResources: [*]?*IDXGIResource,
+            Priority: DXGI_OFFER_RESOURCE_PRIORITY,
+            Flags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReclaimResources1: *const fn(
+            self: *const IDXGIDevice4,
+            NumResources: u32,
+            ppResources: [*]?*IDXGIResource,
+            pResults: [*]DXGI_RECLAIM_RESOURCE_RESULTS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDevice3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice4_OfferResources1(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY, Flags: u32) HRESULT {
-                return @as(*const IDXGIDevice4.VTable, @ptrCast(self.vtable)).OfferResources1(@as(*const IDXGIDevice4, @ptrCast(self)), NumResources, ppResources, Priority, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDevice4_ReclaimResources1(self: *const T, NumResources: u32, ppResources: [*]?*IDXGIResource, pResults: ?*DXGI_RECLAIM_RESOURCE_RESULTS) HRESULT {
-                return @as(*const IDXGIDevice4.VTable, @ptrCast(self.vtable)).ReclaimResources1(@as(*const IDXGIDevice4, @ptrCast(self)), NumResources, ppResources, pResults);
-            }
-        };
+    IDXGIDevice3: IDXGIDevice3,
+    IDXGIDevice2: IDXGIDevice2,
+    IDXGIDevice1: IDXGIDevice1,
+    IDXGIDevice: IDXGIDevice,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn OfferResources1(self: *const IDXGIDevice4, NumResources: u32, ppResources: [*]?*IDXGIResource, Priority: DXGI_OFFER_RESOURCE_PRIORITY, Flags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OfferResources1(self, NumResources, ppResources, Priority, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ReclaimResources1(self: *const IDXGIDevice4, NumResources: u32, ppResources: [*]?*IDXGIResource, pResults: [*]DXGI_RECLAIM_RESOURCE_RESULTS) callconv(.Inline) HRESULT {
+        return self.vtable.ReclaimResources1(self, NumResources, ppResources, pResults);
+    }
 };
 
 pub const DXGI_FEATURE = enum(i32) {
@@ -3320,70 +2138,105 @@ pub const DXGI_FEATURE_PRESENT_ALLOW_TEARING = DXGI_FEATURE.G;
 
 const IID_IDXGIFactory5_Value = Guid.initString("7632e1f5-ee65-4dca-87fd-84cd75f8838d");
 pub const IID_IDXGIFactory5 = &IID_IDXGIFactory5_Value;
-pub const IDXGIFactory5 = extern struct {
+pub const IDXGIFactory5 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory4.VTable,
-        CheckFeatureSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory5,
-                Feature: DXGI_FEATURE,
-                // TODO: what to do with BytesParamIndex 2?
-                pFeatureSupportData: ?*anyopaque,
-                FeatureSupportDataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory5,
-                Feature: DXGI_FEATURE,
-                // TODO: what to do with BytesParamIndex 2?
-                pFeatureSupportData: ?*anyopaque,
-                FeatureSupportDataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CheckFeatureSupport: *const fn(
+            self: *const IDXGIFactory5,
+            Feature: DXGI_FEATURE,
+            // TODO: what to do with BytesParamIndex 2?
+            pFeatureSupportData: ?*anyopaque,
+            FeatureSupportDataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIFactory4.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory5_CheckFeatureSupport(self: *const T, Feature: DXGI_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) HRESULT {
-                return @as(*const IDXGIFactory5.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const IDXGIFactory5, @ptrCast(self)), Feature, pFeatureSupportData, FeatureSupportDataSize);
-            }
-        };
+    IDXGIFactory4: IDXGIFactory4,
+    IDXGIFactory3: IDXGIFactory3,
+    IDXGIFactory2: IDXGIFactory2,
+    IDXGIFactory1: IDXGIFactory1,
+    IDXGIFactory: IDXGIFactory,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn CheckFeatureSupport(self: *const IDXGIFactory5, Feature: DXGI_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.CheckFeatureSupport(self, Feature, pFeatureSupportData, FeatureSupportDataSize);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
-pub const DXGI_ADAPTER_FLAG3 = enum(u32) {
-    NONE = 0,
-    REMOTE = 1,
-    SOFTWARE = 2,
-    ACG_COMPATIBLE = 4,
-    SUPPORT_MONITORED_FENCES = 8,
-    SUPPORT_NON_MONITORED_FENCES = 16,
-    KEYED_MUTEX_CONFORMANCE = 32,
-    FORCE_DWORD = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        REMOTE: u1 = 0,
-        SOFTWARE: u1 = 0,
-        ACG_COMPATIBLE: u1 = 0,
-        SUPPORT_MONITORED_FENCES: u1 = 0,
-        SUPPORT_NON_MONITORED_FENCES: u1 = 0,
-        KEYED_MUTEX_CONFORMANCE: u1 = 0,
-        FORCE_DWORD: u1 = 0,
-    }) DXGI_ADAPTER_FLAG3 {
-        return @as(DXGI_ADAPTER_FLAG3, @enumFromInt((if (o.NONE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.NONE) else 0) | (if (o.REMOTE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.REMOTE) else 0) | (if (o.SOFTWARE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SOFTWARE) else 0) | (if (o.ACG_COMPATIBLE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.ACG_COMPATIBLE) else 0) | (if (o.SUPPORT_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_MONITORED_FENCES) else 0) | (if (o.SUPPORT_NON_MONITORED_FENCES == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.SUPPORT_NON_MONITORED_FENCES) else 0) | (if (o.KEYED_MUTEX_CONFORMANCE == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.KEYED_MUTEX_CONFORMANCE) else 0) | (if (o.FORCE_DWORD == 1) @intFromEnum(DXGI_ADAPTER_FLAG3.FORCE_DWORD) else 0)));
-    }
+pub const DXGI_ADAPTER_FLAG3 = packed struct(u32) {
+    REMOTE: u1 = 0,
+    SOFTWARE: u1 = 0,
+    ACG_COMPATIBLE: u1 = 0,
+    SUPPORT_MONITORED_FENCES: u1 = 0,
+    SUPPORT_NON_MONITORED_FENCES: u1 = 0,
+    KEYED_MUTEX_CONFORMANCE: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_ADAPTER_FLAG3_NONE = DXGI_ADAPTER_FLAG3.NONE;
-pub const DXGI_ADAPTER_FLAG3_REMOTE = DXGI_ADAPTER_FLAG3.REMOTE;
-pub const DXGI_ADAPTER_FLAG3_SOFTWARE = DXGI_ADAPTER_FLAG3.SOFTWARE;
-pub const DXGI_ADAPTER_FLAG3_ACG_COMPATIBLE = DXGI_ADAPTER_FLAG3.ACG_COMPATIBLE;
-pub const DXGI_ADAPTER_FLAG3_SUPPORT_MONITORED_FENCES = DXGI_ADAPTER_FLAG3.SUPPORT_MONITORED_FENCES;
-pub const DXGI_ADAPTER_FLAG3_SUPPORT_NON_MONITORED_FENCES = DXGI_ADAPTER_FLAG3.SUPPORT_NON_MONITORED_FENCES;
-pub const DXGI_ADAPTER_FLAG3_KEYED_MUTEX_CONFORMANCE = DXGI_ADAPTER_FLAG3.KEYED_MUTEX_CONFORMANCE;
-pub const DXGI_ADAPTER_FLAG3_FORCE_DWORD = DXGI_ADAPTER_FLAG3.FORCE_DWORD;
+pub const DXGI_ADAPTER_FLAG3_NONE = DXGI_ADAPTER_FLAG3{ };
+pub const DXGI_ADAPTER_FLAG3_REMOTE = DXGI_ADAPTER_FLAG3{ .REMOTE = 1 };
+pub const DXGI_ADAPTER_FLAG3_SOFTWARE = DXGI_ADAPTER_FLAG3{ .SOFTWARE = 1 };
+pub const DXGI_ADAPTER_FLAG3_ACG_COMPATIBLE = DXGI_ADAPTER_FLAG3{ .ACG_COMPATIBLE = 1 };
+pub const DXGI_ADAPTER_FLAG3_SUPPORT_MONITORED_FENCES = DXGI_ADAPTER_FLAG3{ .SUPPORT_MONITORED_FENCES = 1 };
+pub const DXGI_ADAPTER_FLAG3_SUPPORT_NON_MONITORED_FENCES = DXGI_ADAPTER_FLAG3{ .SUPPORT_NON_MONITORED_FENCES = 1 };
+pub const DXGI_ADAPTER_FLAG3_KEYED_MUTEX_CONFORMANCE = DXGI_ADAPTER_FLAG3{ .KEYED_MUTEX_CONFORMANCE = 1 };
+pub const DXGI_ADAPTER_FLAG3_FORCE_DWORD = DXGI_ADAPTER_FLAG3{
+    .REMOTE = 1,
+    .SOFTWARE = 1,
+    .ACG_COMPATIBLE = 1,
+    .SUPPORT_MONITORED_FENCES = 1,
+    .SUPPORT_NON_MONITORED_FENCES = 1,
+    .KEYED_MUTEX_CONFORMANCE = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const DXGI_ADAPTER_DESC3 = extern struct {
     Description: [128]u16,
@@ -3402,31 +2255,24 @@ pub const DXGI_ADAPTER_DESC3 = extern struct {
 
 const IID_IDXGIAdapter4_Value = Guid.initString("3c8d99d1-4fbf-4181-a82c-af66bf7bd24e");
 pub const IID_IDXGIAdapter4 = &IID_IDXGIAdapter4_Value;
-pub const IDXGIAdapter4 = extern struct {
+pub const IDXGIAdapter4 = extern union {
     pub const VTable = extern struct {
         base: IDXGIAdapter3.VTable,
-        GetDesc3: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIAdapter4,
-                pDesc: ?*DXGI_ADAPTER_DESC3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIAdapter4,
-                pDesc: ?*DXGI_ADAPTER_DESC3,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc3: *const fn(
+            self: *const IDXGIAdapter4,
+            pDesc: ?*DXGI_ADAPTER_DESC3,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIAdapter3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIAdapter4_GetDesc3(self: *const T, pDesc: ?*DXGI_ADAPTER_DESC3) HRESULT {
-                return @as(*const IDXGIAdapter4.VTable, @ptrCast(self.vtable)).GetDesc3(@as(*const IDXGIAdapter4, @ptrCast(self)), pDesc);
-            }
-        };
+    IDXGIAdapter3: IDXGIAdapter3,
+    IDXGIAdapter2: IDXGIAdapter2,
+    IDXGIAdapter1: IDXGIAdapter1,
+    IDXGIAdapter: IDXGIAdapter,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc3(self: *const IDXGIAdapter4, pDesc: ?*DXGI_ADAPTER_DESC3) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc3(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const DXGI_OUTPUT_DESC1 = extern struct {
@@ -3446,65 +2292,74 @@ pub const DXGI_OUTPUT_DESC1 = extern struct {
     MaxFullFrameLuminance: f32,
 };
 
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = enum(u32) {
-    FULLSCREEN = 1,
-    WINDOWED = 2,
-    CURSOR_STRETCHED = 4,
-    _,
-    pub fn initFlags(o: struct {
-        FULLSCREEN: u1 = 0,
-        WINDOWED: u1 = 0,
-        CURSOR_STRETCHED: u1 = 0,
-    }) DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS {
-        return @as(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS, @enumFromInt((if (o.FULLSCREEN == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN) else 0) | (if (o.WINDOWED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED) else 0) | (if (o.CURSOR_STRETCHED == 1) @intFromEnum(DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED) else 0)));
-    }
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS = packed struct(u32) {
+    FULLSCREEN: u1 = 0,
+    WINDOWED: u1 = 0,
+    CURSOR_STRETCHED: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.FULLSCREEN;
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.WINDOWED;
-pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS.CURSOR_STRETCHED;
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_FULLSCREEN = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS{ .FULLSCREEN = 1 };
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_WINDOWED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS{ .WINDOWED = 1 };
+pub const DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAG_CURSOR_STRETCHED = DXGI_HARDWARE_COMPOSITION_SUPPORT_FLAGS{ .CURSOR_STRETCHED = 1 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IDXGIOutput6_Value = Guid.initString("068346e8-aaec-4b84-add7-137f513f77a1");
 pub const IID_IDXGIOutput6 = &IID_IDXGIOutput6_Value;
-pub const IDXGIOutput6 = extern struct {
+pub const IDXGIOutput6 = extern union {
     pub const VTable = extern struct {
         base: IDXGIOutput5.VTable,
-        GetDesc1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput6,
-                pDesc: ?*DXGI_OUTPUT_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput6,
-                pDesc: ?*DXGI_OUTPUT_DESC1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckHardwareCompositionSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIOutput6,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIOutput6,
-                pFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc1: *const fn(
+            self: *const IDXGIOutput6,
+            pDesc: ?*DXGI_OUTPUT_DESC1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckHardwareCompositionSupport: *const fn(
+            self: *const IDXGIOutput6,
+            pFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIOutput5.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput6_GetDesc1(self: *const T, pDesc: ?*DXGI_OUTPUT_DESC1) HRESULT {
-                return @as(*const IDXGIOutput6.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const IDXGIOutput6, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIOutput6_CheckHardwareCompositionSupport(self: *const T, pFlags: ?*u32) HRESULT {
-                return @as(*const IDXGIOutput6.VTable, @ptrCast(self.vtable)).CheckHardwareCompositionSupport(@as(*const IDXGIOutput6, @ptrCast(self)), pFlags);
-            }
-        };
+    IDXGIOutput5: IDXGIOutput5,
+    IDXGIOutput4: IDXGIOutput4,
+    IDXGIOutput3: IDXGIOutput3,
+    IDXGIOutput2: IDXGIOutput2,
+    IDXGIOutput1: IDXGIOutput1,
+    IDXGIOutput: IDXGIOutput,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn GetDesc1(self: *const IDXGIOutput6, pDesc: ?*DXGI_OUTPUT_DESC1) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc1(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CheckHardwareCompositionSupport(self: *const IDXGIOutput6, pFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.CheckHardwareCompositionSupport(self, pFlags);
+    }
 };
 
 pub const DXGI_GPU_PREFERENCE = enum(i32) {
@@ -3519,104 +2374,107 @@ pub const DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE = DXGI_GPU_PREFERENCE.HIGH_PERFOR
 // TODO: this type is limited to platform 'windows10.0.17134'
 const IID_IDXGIFactory6_Value = Guid.initString("c1b6694f-ff09-44a9-b03c-77900a0a1d17");
 pub const IID_IDXGIFactory6 = &IID_IDXGIFactory6_Value;
-pub const IDXGIFactory6 = extern struct {
+pub const IDXGIFactory6 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory5.VTable,
-        EnumAdapterByGpuPreference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory6,
-                Adapter: u32,
-                GpuPreference: DXGI_GPU_PREFERENCE,
-                riid: ?*const Guid,
-                ppvAdapter: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory6,
-                Adapter: u32,
-                GpuPreference: DXGI_GPU_PREFERENCE,
-                riid: ?*const Guid,
-                ppvAdapter: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumAdapterByGpuPreference: *const fn(
+            self: *const IDXGIFactory6,
+            Adapter: u32,
+            GpuPreference: DXGI_GPU_PREFERENCE,
+            riid: ?*const Guid,
+            ppvAdapter: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIFactory5.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory6_EnumAdapterByGpuPreference(self: *const T, Adapter: u32, GpuPreference: DXGI_GPU_PREFERENCE, riid: ?*const Guid, ppvAdapter: ?*?*anyopaque) HRESULT {
-                return @as(*const IDXGIFactory6.VTable, @ptrCast(self.vtable)).EnumAdapterByGpuPreference(@as(*const IDXGIFactory6, @ptrCast(self)), Adapter, GpuPreference, riid, ppvAdapter);
-            }
-        };
+    IDXGIFactory5: IDXGIFactory5,
+    IDXGIFactory4: IDXGIFactory4,
+    IDXGIFactory3: IDXGIFactory3,
+    IDXGIFactory2: IDXGIFactory2,
+    IDXGIFactory1: IDXGIFactory1,
+    IDXGIFactory: IDXGIFactory,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn EnumAdapterByGpuPreference(self: *const IDXGIFactory6, Adapter: u32, GpuPreference: DXGI_GPU_PREFERENCE, riid: ?*const Guid, ppvAdapter: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.EnumAdapterByGpuPreference(self, Adapter, GpuPreference, riid, ppvAdapter);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows10.0.17763'
 const IID_IDXGIFactory7_Value = Guid.initString("a4966eed-76db-44da-84c1-ee9a7afb20a8");
 pub const IID_IDXGIFactory7 = &IID_IDXGIFactory7_Value;
-pub const IDXGIFactory7 = extern struct {
+pub const IDXGIFactory7 = extern union {
     pub const VTable = extern struct {
         base: IDXGIFactory6.VTable,
-        RegisterAdaptersChangedEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory7,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory7,
-                hEvent: ?HANDLE,
-                pdwCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterAdaptersChangedEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIFactory7,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIFactory7,
-                dwCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterAdaptersChangedEvent: *const fn(
+            self: *const IDXGIFactory7,
+            hEvent: ?HANDLE,
+            pdwCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterAdaptersChangedEvent: *const fn(
+            self: *const IDXGIFactory7,
+            dwCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIFactory6.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory7_RegisterAdaptersChangedEvent(self: *const T, hEvent: ?HANDLE, pdwCookie: ?*u32) HRESULT {
-                return @as(*const IDXGIFactory7.VTable, @ptrCast(self.vtable)).RegisterAdaptersChangedEvent(@as(*const IDXGIFactory7, @ptrCast(self)), hEvent, pdwCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIFactory7_UnregisterAdaptersChangedEvent(self: *const T, dwCookie: u32) HRESULT {
-                return @as(*const IDXGIFactory7.VTable, @ptrCast(self.vtable)).UnregisterAdaptersChangedEvent(@as(*const IDXGIFactory7, @ptrCast(self)), dwCookie);
-            }
-        };
+    IDXGIFactory6: IDXGIFactory6,
+    IDXGIFactory5: IDXGIFactory5,
+    IDXGIFactory4: IDXGIFactory4,
+    IDXGIFactory3: IDXGIFactory3,
+    IDXGIFactory2: IDXGIFactory2,
+    IDXGIFactory1: IDXGIFactory1,
+    IDXGIFactory: IDXGIFactory,
+    IDXGIObject: IDXGIObject,
+    IUnknown: IUnknown,
+    pub fn RegisterAdaptersChangedEvent(self: *const IDXGIFactory7, hEvent: ?HANDLE, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterAdaptersChangedEvent(self, hEvent, pdwCookie);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UnregisterAdaptersChangedEvent(self: *const IDXGIFactory7, dwCookie: u32) callconv(.Inline) HRESULT {
+        return self.vtable.UnregisterAdaptersChangedEvent(self, dwCookie);
+    }
 };
 
-pub const DXGI_DEBUG_RLO_FLAGS = enum(u32) {
-    SUMMARY = 1,
-    DETAIL = 2,
-    IGNORE_INTERNAL = 4,
-    ALL = 7,
-    _,
-    pub fn initFlags(o: struct {
-        SUMMARY: u1 = 0,
-        DETAIL: u1 = 0,
-        IGNORE_INTERNAL: u1 = 0,
-        ALL: u1 = 0,
-    }) DXGI_DEBUG_RLO_FLAGS {
-        return @as(DXGI_DEBUG_RLO_FLAGS, @enumFromInt((if (o.SUMMARY == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.SUMMARY) else 0) | (if (o.DETAIL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.DETAIL) else 0) | (if (o.IGNORE_INTERNAL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL) else 0) | (if (o.ALL == 1) @intFromEnum(DXGI_DEBUG_RLO_FLAGS.ALL) else 0)));
-    }
+pub const DXGI_DEBUG_RLO_FLAGS = packed struct(u32) {
+    SUMMARY: u1 = 0,
+    DETAIL: u1 = 0,
+    IGNORE_INTERNAL: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DXGI_DEBUG_RLO_SUMMARY = DXGI_DEBUG_RLO_FLAGS.SUMMARY;
-pub const DXGI_DEBUG_RLO_DETAIL = DXGI_DEBUG_RLO_FLAGS.DETAIL;
-pub const DXGI_DEBUG_RLO_IGNORE_INTERNAL = DXGI_DEBUG_RLO_FLAGS.IGNORE_INTERNAL;
-pub const DXGI_DEBUG_RLO_ALL = DXGI_DEBUG_RLO_FLAGS.ALL;
+pub const DXGI_DEBUG_RLO_SUMMARY = DXGI_DEBUG_RLO_FLAGS{ .SUMMARY = 1 };
+pub const DXGI_DEBUG_RLO_DETAIL = DXGI_DEBUG_RLO_FLAGS{ .DETAIL = 1 };
+pub const DXGI_DEBUG_RLO_IGNORE_INTERNAL = DXGI_DEBUG_RLO_FLAGS{ .IGNORE_INTERNAL = 1 };
+pub const DXGI_DEBUG_RLO_ALL = DXGI_DEBUG_RLO_FLAGS{
+    .SUMMARY = 1,
+    .DETAIL = 1,
+    .IGNORE_INTERNAL = 1,
+};
 
 pub const DXGI_INFO_QUEUE_MESSAGE_CATEGORY = enum(i32) {
     UNKNOWN = 0,
@@ -3682,679 +2540,350 @@ pub const DXGI_INFO_QUEUE_FILTER = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIInfoQueue_Value = Guid.initString("d67441c7-672a-476f-9e82-cd55b44949ce");
 pub const IID_IDXGIInfoQueue = &IID_IDXGIInfoQueue_Value;
-pub const IDXGIInfoQueue = extern struct {
+pub const IDXGIInfoQueue = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetMessageCountLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                MessageCountLimit: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                MessageCountLimit: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearStoredMessages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                MessageIndex: u64,
-                // TODO: what to do with BytesParamIndex 3?
-                pMessage: ?*DXGI_INFO_QUEUE_MESSAGE,
-                pMessageByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                MessageIndex: u64,
-                // TODO: what to do with BytesParamIndex 3?
-                pMessage: ?*DXGI_INFO_QUEUE_MESSAGE,
-                pMessageByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumStoredMessagesAllowedByRetrievalFilters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumStoredMessages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumMessagesDiscardedByMessageCountLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetMessageCountLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumMessagesAllowedByStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumMessagesDeniedByStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        AddStorageFilterEntries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                // TODO: what to do with BytesParamIndex 2?
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                // TODO: what to do with BytesParamIndex 2?
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        PushEmptyStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushDenyAllStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushCopyOfStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PopStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetStorageFilterStackSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        AddRetrievalFilterEntries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                // TODO: what to do with BytesParamIndex 2?
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                // TODO: what to do with BytesParamIndex 2?
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        PushEmptyRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushDenyAllRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushCopyOfRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                pFilter: ?*DXGI_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PopRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetRetrievalFilterStackSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        AddMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-                ID: i32,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-                ID: i32,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddApplicationMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBreakOnCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBreakOnSeverity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBreakOnID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                ID: i32,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                ID: i32,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBreakOnCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetBreakOnSeverity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetBreakOnID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                ID: i32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                ID: i32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        SetMuteDebugOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                bMute: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-                bMute: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetMuteDebugOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIInfoQueue,
-                Producer: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        SetMessageCountLimit: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            MessageCountLimit: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearStoredMessages: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetMessage: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            MessageIndex: u64,
+            // TODO: what to do with BytesParamIndex 3?
+            pMessage: ?*DXGI_INFO_QUEUE_MESSAGE,
+            pMessageByteLength: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumStoredMessagesAllowedByRetrievalFilters: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumStoredMessages: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumMessagesDiscardedByMessageCountLimit: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetMessageCountLimit: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumMessagesAllowedByStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumMessagesDeniedByStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        AddStorageFilterEntries: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            pFilter: ?*DXGI_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            // TODO: what to do with BytesParamIndex 2?
+            pFilter: ?*DXGI_INFO_QUEUE_FILTER,
+            pFilterByteLength: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PushEmptyStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushDenyAllStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushCopyOfStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            pFilter: ?*DXGI_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PopStorageFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetStorageFilterStackSize: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        AddRetrievalFilterEntries: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            pFilter: ?*DXGI_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRetrievalFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            // TODO: what to do with BytesParamIndex 2?
+            pFilter: ?*DXGI_INFO_QUEUE_FILTER,
+            pFilterByteLength: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearRetrievalFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PushEmptyRetrievalFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushDenyAllRetrievalFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushCopyOfRetrievalFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushRetrievalFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            pFilter: ?*DXGI_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PopRetrievalFilter: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetRetrievalFilterStackSize: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        AddMessage: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
+            Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
+            ID: i32,
+            pDescription: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddApplicationMessage: *const fn(
+            self: *const IDXGIInfoQueue,
+            Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
+            pDescription: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBreakOnCategory: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
+            bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBreakOnSeverity: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
+            bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBreakOnID: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            ID: i32,
+            bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBreakOnCategory: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetBreakOnSeverity: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetBreakOnID: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            ID: i32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetMuteDebugOutput: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+            bMute: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetMuteDebugOutput: *const fn(
+            self: *const IDXGIInfoQueue,
+            Producer: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_SetMessageCountLimit(self: *const T, Producer: Guid, MessageCountLimit: u64) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetMessageCountLimit(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, MessageCountLimit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_ClearStoredMessages(self: *const T, Producer: Guid) void {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).ClearStoredMessages(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetMessage(self: *const T, Producer: Guid, MessageIndex: u64, pMessage: ?*DXGI_INFO_QUEUE_MESSAGE, pMessageByteLength: ?*usize) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, MessageIndex, pMessage, pMessageByteLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetNumStoredMessagesAllowedByRetrievalFilters(self: *const T, Producer: Guid) u64 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessagesAllowedByRetrievalFilters(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetNumStoredMessages(self: *const T, Producer: Guid) u64 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessages(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetNumMessagesDiscardedByMessageCountLimit(self: *const T, Producer: Guid) u64 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDiscardedByMessageCountLimit(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetMessageCountLimit(self: *const T, Producer: Guid) u64 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetMessageCountLimit(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T, Producer: Guid) u64 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesAllowedByStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetNumMessagesDeniedByStorageFilter(self: *const T, Producer: Guid) u64 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDeniedByStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_AddStorageFilterEntries(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddStorageFilterEntries(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetStorageFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter, pFilterByteLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_ClearStorageFilter(self: *const T, Producer: Guid) void {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).ClearStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushEmptyStorageFilter(self: *const T, Producer: Guid) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushDenyAllStorageFilter(self: *const T, Producer: Guid) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushDenyAllStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushCopyOfStorageFilter(self: *const T, Producer: Guid) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushStorageFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PopStorageFilter(self: *const T, Producer: Guid) void {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PopStorageFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetStorageFilterStackSize(self: *const T, Producer: Guid) u32 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilterStackSize(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_AddRetrievalFilterEntries(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddRetrievalFilterEntries(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetRetrievalFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter, pFilterByteLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_ClearRetrievalFilter(self: *const T, Producer: Guid) void {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).ClearRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushEmptyRetrievalFilter(self: *const T, Producer: Guid) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushDenyAllRetrievalFilter(self: *const T, Producer: Guid) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushDenyAllRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushCopyOfRetrievalFilter(self: *const T, Producer: Guid) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PushRetrievalFilter(self: *const T, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PushRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_PopRetrievalFilter(self: *const T, Producer: Guid) void {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).PopRetrievalFilter(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetRetrievalFilterStackSize(self: *const T, Producer: Guid) u32 {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilterStackSize(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_AddMessage(self: *const T, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, ID: i32, pDescription: ?[*:0]const u8) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Category, Severity, ID, pDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_AddApplicationMessage(self: *const T, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).AddApplicationMessage(@as(*const IDXGIInfoQueue, @ptrCast(self)), Severity, pDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_SetBreakOnCategory(self: *const T, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY, bEnable: BOOL) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnCategory(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Category, bEnable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_SetBreakOnSeverity(self: *const T, Producer: Guid, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, bEnable: BOOL) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnSeverity(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Severity, bEnable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_SetBreakOnID(self: *const T, Producer: Guid, ID: i32, bEnable: BOOL) HRESULT {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnID(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, ID, bEnable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetBreakOnCategory(self: *const T, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY) BOOL {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnCategory(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Category);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetBreakOnSeverity(self: *const T, Producer: Guid, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY) BOOL {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnSeverity(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, Severity);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetBreakOnID(self: *const T, Producer: Guid, ID: i32) BOOL {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnID(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, ID);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_SetMuteDebugOutput(self: *const T, Producer: Guid, bMute: BOOL) void {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer, bMute);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIInfoQueue_GetMuteDebugOutput(self: *const T, Producer: Guid) BOOL {
-                return @as(*const IDXGIInfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const IDXGIInfoQueue, @ptrCast(self)), Producer);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetMessageCountLimit(self: *const IDXGIInfoQueue, Producer: Guid, MessageCountLimit: u64) callconv(.Inline) HRESULT {
+        return self.vtable.SetMessageCountLimit(self, Producer, MessageCountLimit);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ClearStoredMessages(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) void {
+        return self.vtable.ClearStoredMessages(self, Producer);
+    }
+    pub fn GetMessage(self: *const IDXGIInfoQueue, Producer: Guid, MessageIndex: u64, pMessage: ?*DXGI_INFO_QUEUE_MESSAGE, pMessageByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.GetMessage(self, Producer, MessageIndex, pMessage, pMessageByteLength);
+    }
+    pub fn GetNumStoredMessagesAllowedByRetrievalFilters(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u64 {
+        return self.vtable.GetNumStoredMessagesAllowedByRetrievalFilters(self, Producer);
+    }
+    pub fn GetNumStoredMessages(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u64 {
+        return self.vtable.GetNumStoredMessages(self, Producer);
+    }
+    pub fn GetNumMessagesDiscardedByMessageCountLimit(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u64 {
+        return self.vtable.GetNumMessagesDiscardedByMessageCountLimit(self, Producer);
+    }
+    pub fn GetMessageCountLimit(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u64 {
+        return self.vtable.GetMessageCountLimit(self, Producer);
+    }
+    pub fn GetNumMessagesAllowedByStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u64 {
+        return self.vtable.GetNumMessagesAllowedByStorageFilter(self, Producer);
+    }
+    pub fn GetNumMessagesDeniedByStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u64 {
+        return self.vtable.GetNumMessagesDeniedByStorageFilter(self, Producer);
+    }
+    pub fn AddStorageFilterEntries(self: *const IDXGIInfoQueue, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.AddStorageFilterEntries(self, Producer, pFilter);
+    }
+    pub fn GetStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.GetStorageFilter(self, Producer, pFilter, pFilterByteLength);
+    }
+    pub fn ClearStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) void {
+        return self.vtable.ClearStorageFilter(self, Producer);
+    }
+    pub fn PushEmptyStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PushEmptyStorageFilter(self, Producer);
+    }
+    pub fn PushDenyAllStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PushDenyAllStorageFilter(self, Producer);
+    }
+    pub fn PushCopyOfStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PushCopyOfStorageFilter(self, Producer);
+    }
+    pub fn PushStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.PushStorageFilter(self, Producer, pFilter);
+    }
+    pub fn PopStorageFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) void {
+        return self.vtable.PopStorageFilter(self, Producer);
+    }
+    pub fn GetStorageFilterStackSize(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u32 {
+        return self.vtable.GetStorageFilterStackSize(self, Producer);
+    }
+    pub fn AddRetrievalFilterEntries(self: *const IDXGIInfoQueue, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.AddRetrievalFilterEntries(self, Producer, pFilter);
+    }
+    pub fn GetRetrievalFilter(self: *const IDXGIInfoQueue, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.GetRetrievalFilter(self, Producer, pFilter, pFilterByteLength);
+    }
+    pub fn ClearRetrievalFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) void {
+        return self.vtable.ClearRetrievalFilter(self, Producer);
+    }
+    pub fn PushEmptyRetrievalFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PushEmptyRetrievalFilter(self, Producer);
+    }
+    pub fn PushDenyAllRetrievalFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PushDenyAllRetrievalFilter(self, Producer);
+    }
+    pub fn PushCopyOfRetrievalFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.PushCopyOfRetrievalFilter(self, Producer);
+    }
+    pub fn PushRetrievalFilter(self: *const IDXGIInfoQueue, Producer: Guid, pFilter: ?*DXGI_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.PushRetrievalFilter(self, Producer, pFilter);
+    }
+    pub fn PopRetrievalFilter(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) void {
+        return self.vtable.PopRetrievalFilter(self, Producer);
+    }
+    pub fn GetRetrievalFilterStackSize(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) u32 {
+        return self.vtable.GetRetrievalFilterStackSize(self, Producer);
+    }
+    pub fn AddMessage(self: *const IDXGIInfoQueue, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, ID: i32, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return self.vtable.AddMessage(self, Producer, Category, Severity, ID, pDescription);
+    }
+    pub fn AddApplicationMessage(self: *const IDXGIInfoQueue, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return self.vtable.AddApplicationMessage(self, Severity, pDescription);
+    }
+    pub fn SetBreakOnCategory(self: *const IDXGIInfoQueue, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetBreakOnCategory(self, Producer, Category, bEnable);
+    }
+    pub fn SetBreakOnSeverity(self: *const IDXGIInfoQueue, Producer: Guid, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetBreakOnSeverity(self, Producer, Severity, bEnable);
+    }
+    pub fn SetBreakOnID(self: *const IDXGIInfoQueue, Producer: Guid, ID: i32, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetBreakOnID(self, Producer, ID, bEnable);
+    }
+    pub fn GetBreakOnCategory(self: *const IDXGIInfoQueue, Producer: Guid, Category: DXGI_INFO_QUEUE_MESSAGE_CATEGORY) callconv(.Inline) BOOL {
+        return self.vtable.GetBreakOnCategory(self, Producer, Category);
+    }
+    pub fn GetBreakOnSeverity(self: *const IDXGIInfoQueue, Producer: Guid, Severity: DXGI_INFO_QUEUE_MESSAGE_SEVERITY) callconv(.Inline) BOOL {
+        return self.vtable.GetBreakOnSeverity(self, Producer, Severity);
+    }
+    pub fn GetBreakOnID(self: *const IDXGIInfoQueue, Producer: Guid, ID: i32) callconv(.Inline) BOOL {
+        return self.vtable.GetBreakOnID(self, Producer, ID);
+    }
+    pub fn SetMuteDebugOutput(self: *const IDXGIInfoQueue, Producer: Guid, bMute: BOOL) callconv(.Inline) void {
+        return self.vtable.SetMuteDebugOutput(self, Producer, bMute);
+    }
+    pub fn GetMuteDebugOutput(self: *const IDXGIInfoQueue, Producer: Guid) callconv(.Inline) BOOL {
+        return self.vtable.GetMuteDebugOutput(self, Producer);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IDXGIDebug_Value = Guid.initString("119e7452-de9e-40fe-8806-88f90c12b441");
 pub const IID_IDXGIDebug = &IID_IDXGIDebug_Value;
-pub const IDXGIDebug = extern struct {
+pub const IDXGIDebug = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReportLiveObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDebug,
-                apiid: Guid,
-                flags: DXGI_DEBUG_RLO_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDXGIDebug,
-                apiid: Guid,
-                flags: DXGI_DEBUG_RLO_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ReportLiveObjects: *const fn(
+            self: *const IDXGIDebug,
+            apiid: Guid,
+            flags: DXGI_DEBUG_RLO_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDebug_ReportLiveObjects(self: *const T, apiid: Guid, flags: DXGI_DEBUG_RLO_FLAGS) HRESULT {
-                return @as(*const IDXGIDebug.VTable, @ptrCast(self.vtable)).ReportLiveObjects(@as(*const IDXGIDebug, @ptrCast(self)), apiid, flags);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ReportLiveObjects(self: *const IDXGIDebug, apiid: Guid, flags: DXGI_DEBUG_RLO_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.ReportLiveObjects(self, apiid, flags);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IDXGIDebug1_Value = Guid.initString("c5a05f0c-16f2-4adf-9f4d-a8c4d58ac550");
 pub const IID_IDXGIDebug1 = &IID_IDXGIDebug1_Value;
-pub const IDXGIDebug1 = extern struct {
+pub const IDXGIDebug1 = extern union {
     pub const VTable = extern struct {
         base: IDXGIDebug.VTable,
-        EnableLeakTrackingForThread: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDebug1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIDebug1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        DisableLeakTrackingForThread: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDebug1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGIDebug1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        IsLeakTrackingEnabledForThread: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGIDebug1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IDXGIDebug1,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        EnableLeakTrackingForThread: *const fn(
+            self: *const IDXGIDebug1,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        DisableLeakTrackingForThread: *const fn(
+            self: *const IDXGIDebug1,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        IsLeakTrackingEnabledForThread: *const fn(
+            self: *const IDXGIDebug1,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDXGIDebug.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDebug1_EnableLeakTrackingForThread(self: *const T) void {
-                return @as(*const IDXGIDebug1.VTable, @ptrCast(self.vtable)).EnableLeakTrackingForThread(@as(*const IDXGIDebug1, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDebug1_DisableLeakTrackingForThread(self: *const T) void {
-                return @as(*const IDXGIDebug1.VTable, @ptrCast(self.vtable)).DisableLeakTrackingForThread(@as(*const IDXGIDebug1, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGIDebug1_IsLeakTrackingEnabledForThread(self: *const T) BOOL {
-                return @as(*const IDXGIDebug1.VTable, @ptrCast(self.vtable)).IsLeakTrackingEnabledForThread(@as(*const IDXGIDebug1, @ptrCast(self)));
-            }
-        };
+    IDXGIDebug: IDXGIDebug,
+    IUnknown: IUnknown,
+    pub fn EnableLeakTrackingForThread(self: *const IDXGIDebug1) callconv(.Inline) void {
+        return self.vtable.EnableLeakTrackingForThread(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn DisableLeakTrackingForThread(self: *const IDXGIDebug1) callconv(.Inline) void {
+        return self.vtable.DisableLeakTrackingForThread(self);
+    }
+    pub fn IsLeakTrackingEnabledForThread(self: *const IDXGIDebug1) callconv(.Inline) BOOL {
+        return self.vtable.IsLeakTrackingEnabledForThread(self);
+    }
 };
 
 pub const DXGI_Message_Id = enum(i32) {
@@ -5024,83 +3553,63 @@ pub const DXGI_MSG_Phone_IDXGISwapChain_GetBackgroundColor_FlipSequentialRequire
 
 const IID_IDXGraphicsAnalysis_Value = Guid.initString("9f251514-9d4d-4902-9d60-18988ab7d4b5");
 pub const IID_IDXGraphicsAnalysis = &IID_IDXGraphicsAnalysis_Value;
-pub const IDXGraphicsAnalysis = extern struct {
+pub const IDXGraphicsAnalysis = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeginCapture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGraphicsAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGraphicsAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndCapture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDXGraphicsAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IDXGraphicsAnalysis,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        BeginCapture: *const fn(
+            self: *const IDXGraphicsAnalysis,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndCapture: *const fn(
+            self: *const IDXGraphicsAnalysis,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGraphicsAnalysis_BeginCapture(self: *const T) void {
-                return @as(*const IDXGraphicsAnalysis.VTable, @ptrCast(self.vtable)).BeginCapture(@as(*const IDXGraphicsAnalysis, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDXGraphicsAnalysis_EndCapture(self: *const T) void {
-                return @as(*const IDXGraphicsAnalysis.VTable, @ptrCast(self.vtable)).EndCapture(@as(*const IDXGraphicsAnalysis, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn BeginCapture(self: *const IDXGraphicsAnalysis) callconv(.Inline) void {
+        return self.vtable.BeginCapture(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn EndCapture(self: *const IDXGraphicsAnalysis) callconv(.Inline) void {
+        return self.vtable.EndCapture(self);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (5)
 //--------------------------------------------------------------------------------
 pub extern "dxgi" fn CreateDXGIFactory(
     riid: ?*const Guid,
-    ppFactory: ?*?*anyopaque,
+    ppFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "dxgi" fn CreateDXGIFactory1(
     riid: ?*const Guid,
-    ppFactory: ?*?*anyopaque,
+    ppFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dxgi" fn CreateDXGIFactory2(
     Flags: u32,
     riid: ?*const Guid,
-    ppFactory: ?*?*anyopaque,
+    ppFactory: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "dxgi" fn DXGIGetDebugInterface1(
     Flags: u32,
     riid: ?*const Guid,
-    pDebug: ?*?*anyopaque,
+    pDebug: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
-pub extern "dxgi" fn DXGIDeclareAdapterRemovalSupport() callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "dxgi" fn DXGIDeclareAdapterRemovalSupport(
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (27)
 //--------------------------------------------------------------------------------
@@ -5133,14 +3642,14 @@ const RECT = @import("../foundation.zig").RECT;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }
 //--------------------------------------------------------------------------------

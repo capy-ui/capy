@@ -16,36 +16,23 @@ pub const IsolatedAppLauncherTelemetryParameters = extern struct {
 
 const IID_IIsolatedAppLauncher_Value = Guid.initString("f686878f-7b42-4cc4-96fb-f4f3b6e3d24d");
 pub const IID_IIsolatedAppLauncher = &IID_IIsolatedAppLauncher_Value;
-pub const IIsolatedAppLauncher = extern struct {
+pub const IIsolatedAppLauncher = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Launch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IIsolatedAppLauncher,
-                appUserModelId: ?[*:0]const u16,
-                arguments: ?[*:0]const u16,
-                telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IIsolatedAppLauncher,
-                appUserModelId: ?[*:0]const u16,
-                arguments: ?[*:0]const u16,
-                telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Launch: *const fn(
+            self: *const IIsolatedAppLauncher,
+            appUserModelId: ?[*:0]const u16,
+            arguments: ?[*:0]const u16,
+            telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IIsolatedAppLauncher_Launch(self: *const T, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) HRESULT {
-                return @as(*const IIsolatedAppLauncher.VTable, @ptrCast(self.vtable)).Launch(@as(*const IIsolatedAppLauncher, @ptrCast(self)), appUserModelId, arguments, telemetryParameters);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Launch(self: *const IIsolatedAppLauncher, appUserModelId: ?[*:0]const u16, arguments: ?[*:0]const u16, telemetryParameters: ?*const IsolatedAppLauncherTelemetryParameters) callconv(.Inline) HRESULT {
+        return self.vtable.Launch(self, appUserModelId, arguments, telemetryParameters);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
@@ -112,15 +99,10 @@ pub extern "userenv" fn DeriveAppContainerSidFromAppContainerName(
     ppsidAppContainerSid: ?*?PSID,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
@@ -135,13 +117,13 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SID_AND_ATTRIBUTES = @import("../security.zig").SID_AND_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -12,28 +12,28 @@ pub const SYNC_FILTER_INFO_COMBINED = @as(u32, 8);
 pub const SYNC_CHANGE_FLAG_DELETED = @as(u32, 1);
 pub const SYNC_CHANGE_FLAG_DOES_NOT_EXIST = @as(u32, 2);
 pub const SYNC_CHANGE_FLAG_GHOST = @as(u32, 4);
-pub const PKEY_PROVIDER_INSTANCEID = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 2 };
-pub const PKEY_PROVIDER_CLSID = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 3 };
-pub const PKEY_PROVIDER_CONFIGUI = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 4 };
-pub const PKEY_PROVIDER_CONTENTTYPE = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 5 };
-pub const PKEY_PROVIDER_CAPABILITIES = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 6 };
-pub const PKEY_PROVIDER_SUPPORTED_ARCHITECTURE = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 7 };
-pub const PKEY_PROVIDER_NAME = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 8 };
-pub const PKEY_PROVIDER_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 9 };
-pub const PKEY_PROVIDER_TOOLTIPS = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 10 };
-pub const PKEY_PROVIDER_ICON = PROPERTYKEY{ .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 11 };
-pub const PKEY_CONFIGUI_INSTANCEID = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 2 };
-pub const PKEY_CONFIGUI_CLSID = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 3 };
-pub const PKEY_CONFIGUI_CONTENTTYPE = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 4 };
-pub const PKEY_CONFIGUI_CAPABILITIES = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 5 };
-pub const PKEY_CONFIGUI_SUPPORTED_ARCHITECTURE = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 6 };
-pub const PKEY_CONFIGUI_IS_GLOBAL = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 7 };
-pub const PKEY_CONFIGUI_NAME = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 8 };
-pub const PKEY_CONFIGUI_DESCRIPTION = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 9 };
-pub const PKEY_CONFIGUI_TOOLTIPS = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 10 };
-pub const PKEY_CONFIGUI_ICON = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 11 };
-pub const PKEY_CONFIGUI_MENUITEM_NOUI = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 12 };
-pub const PKEY_CONFIGUI_MENUITEM = PROPERTYKEY{ .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 13 };
+pub const PKEY_PROVIDER_INSTANCEID = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 2 };
+pub const PKEY_PROVIDER_CLSID = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 3 };
+pub const PKEY_PROVIDER_CONFIGUI = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 4 };
+pub const PKEY_PROVIDER_CONTENTTYPE = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 5 };
+pub const PKEY_PROVIDER_CAPABILITIES = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 6 };
+pub const PKEY_PROVIDER_SUPPORTED_ARCHITECTURE = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 7 };
+pub const PKEY_PROVIDER_NAME = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 8 };
+pub const PKEY_PROVIDER_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 9 };
+pub const PKEY_PROVIDER_TOOLTIPS = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 10 };
+pub const PKEY_PROVIDER_ICON = PROPERTYKEY { .fmtid = Guid.initString("84179e61-60f6-4c1c-88ed-f1c531b32bda"), .pid = 11 };
+pub const PKEY_CONFIGUI_INSTANCEID = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 2 };
+pub const PKEY_CONFIGUI_CLSID = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 3 };
+pub const PKEY_CONFIGUI_CONTENTTYPE = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 4 };
+pub const PKEY_CONFIGUI_CAPABILITIES = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 5 };
+pub const PKEY_CONFIGUI_SUPPORTED_ARCHITECTURE = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 6 };
+pub const PKEY_CONFIGUI_IS_GLOBAL = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 7 };
+pub const PKEY_CONFIGUI_NAME = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 8 };
+pub const PKEY_CONFIGUI_DESCRIPTION = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 9 };
+pub const PKEY_CONFIGUI_TOOLTIPS = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 10 };
+pub const PKEY_CONFIGUI_ICON = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 11 };
+pub const PKEY_CONFIGUI_MENUITEM_NOUI = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 12 };
+pub const PKEY_CONFIGUI_MENUITEM = PROPERTYKEY { .fmtid = Guid.initString("554b24ea-e8e3-45ba-9352-dfb561e171e4"), .pid = 13 };
 
 //--------------------------------------------------------------------------------
 // Section: Types (102)
@@ -189,2752 +189,1491 @@ pub const KCCR_COOKIE_KNOWLEDGE_NOT_COMPARABLE = KNOWLEDGE_COOKIE_COMPARISON_RES
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IClockVectorElement_Value = Guid.initString("e71c4250-adf8-4a07-8fae-5669596909c1");
 pub const IID_IClockVectorElement = &IID_IClockVectorElement_Value;
-pub const IClockVectorElement = extern struct {
+pub const IClockVectorElement = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetReplicaKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IClockVectorElement,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IClockVectorElement,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTickCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IClockVectorElement,
-                pullTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IClockVectorElement,
-                pullTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetReplicaKey: *const fn(
+            self: *const IClockVectorElement,
+            pdwReplicaKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTickCount: *const fn(
+            self: *const IClockVectorElement,
+            pullTickCount: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IClockVectorElement_GetReplicaKey(self: *const T, pdwReplicaKey: ?*u32) HRESULT {
-                return @as(*const IClockVectorElement.VTable, @ptrCast(self.vtable)).GetReplicaKey(@as(*const IClockVectorElement, @ptrCast(self)), pdwReplicaKey);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IClockVectorElement_GetTickCount(self: *const T, pullTickCount: ?*u64) HRESULT {
-                return @as(*const IClockVectorElement.VTable, @ptrCast(self.vtable)).GetTickCount(@as(*const IClockVectorElement, @ptrCast(self)), pullTickCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetReplicaKey(self: *const IClockVectorElement, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetReplicaKey(self, pdwReplicaKey);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetTickCount(self: *const IClockVectorElement, pullTickCount: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetTickCount(self, pullTickCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IFeedClockVectorElement_Value = Guid.initString("a40b46d2-e97b-4156-b6da-991f501b0f05");
 pub const IID_IFeedClockVectorElement = &IID_IFeedClockVectorElement_Value;
-pub const IFeedClockVectorElement = extern struct {
+pub const IFeedClockVectorElement = extern union {
     pub const VTable = extern struct {
         base: IClockVectorElement.VTable,
-        GetSyncTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFeedClockVectorElement,
-                pSyncTime: ?*SYNC_TIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFeedClockVectorElement,
-                pSyncTime: ?*SYNC_TIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFeedClockVectorElement,
-                pbFlags: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFeedClockVectorElement,
-                pbFlags: ?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncTime: *const fn(
+            self: *const IFeedClockVectorElement,
+            pSyncTime: ?*SYNC_TIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: *const fn(
+            self: *const IFeedClockVectorElement,
+            pbFlags: ?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IClockVectorElement.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFeedClockVectorElement_GetSyncTime(self: *const T, pSyncTime: ?*SYNC_TIME) HRESULT {
-                return @as(*const IFeedClockVectorElement.VTable, @ptrCast(self.vtable)).GetSyncTime(@as(*const IFeedClockVectorElement, @ptrCast(self)), pSyncTime);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFeedClockVectorElement_GetFlags(self: *const T, pbFlags: ?*u8) HRESULT {
-                return @as(*const IFeedClockVectorElement.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IFeedClockVectorElement, @ptrCast(self)), pbFlags);
-            }
-        };
+    IClockVectorElement: IClockVectorElement,
+    IUnknown: IUnknown,
+    pub fn GetSyncTime(self: *const IFeedClockVectorElement, pSyncTime: ?*SYNC_TIME) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncTime(self, pSyncTime);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFlags(self: *const IFeedClockVectorElement, pbFlags: ?*u8) callconv(.Inline) HRESULT {
+        return self.vtable.GetFlags(self, pbFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IClockVector_Value = Guid.initString("14b2274a-8698-4cc6-9333-f89bd1d47bc4");
 pub const IID_IClockVector = &IID_IClockVector_Value;
-pub const IClockVector = extern struct {
+pub const IClockVector = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClockVectorElements: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IClockVector,
-                riid: ?*const Guid,
-                ppiEnumClockVector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IClockVector,
-                riid: ?*const Guid,
-                ppiEnumClockVector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVectorElementCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IClockVector,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IClockVector,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetClockVectorElements: *const fn(
+            self: *const IClockVector,
+            riid: ?*const Guid,
+            ppiEnumClockVector: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVectorElementCount: *const fn(
+            self: *const IClockVector,
+            pdwCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IClockVector_GetClockVectorElements(self: *const T, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) HRESULT {
-                return @as(*const IClockVector.VTable, @ptrCast(self.vtable)).GetClockVectorElements(@as(*const IClockVector, @ptrCast(self)), riid, ppiEnumClockVector);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IClockVector_GetClockVectorElementCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @as(*const IClockVector.VTable, @ptrCast(self.vtable)).GetClockVectorElementCount(@as(*const IClockVector, @ptrCast(self)), pdwCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetClockVectorElements(self: *const IClockVector, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetClockVectorElements(self, riid, ppiEnumClockVector);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetClockVectorElementCount(self: *const IClockVector, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetClockVectorElementCount(self, pdwCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IFeedClockVector_Value = Guid.initString("8d1d98d1-9fb8-4ec9-a553-54dd924e0f67");
 pub const IID_IFeedClockVector = &IID_IFeedClockVector_Value;
-pub const IFeedClockVector = extern struct {
+pub const IFeedClockVector = extern union {
     pub const VTable = extern struct {
         base: IClockVector.VTable,
-        GetUpdateCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFeedClockVector,
-                pdwUpdateCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFeedClockVector,
-                pdwUpdateCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsNoConflictsSpecified: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFeedClockVector,
-                pfIsNoConflictsSpecified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFeedClockVector,
-                pfIsNoConflictsSpecified: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetUpdateCount: *const fn(
+            self: *const IFeedClockVector,
+            pdwUpdateCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsNoConflictsSpecified: *const fn(
+            self: *const IFeedClockVector,
+            pfIsNoConflictsSpecified: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IClockVector.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFeedClockVector_GetUpdateCount(self: *const T, pdwUpdateCount: ?*u32) HRESULT {
-                return @as(*const IFeedClockVector.VTable, @ptrCast(self.vtable)).GetUpdateCount(@as(*const IFeedClockVector, @ptrCast(self)), pdwUpdateCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFeedClockVector_IsNoConflictsSpecified(self: *const T, pfIsNoConflictsSpecified: ?*BOOL) HRESULT {
-                return @as(*const IFeedClockVector.VTable, @ptrCast(self.vtable)).IsNoConflictsSpecified(@as(*const IFeedClockVector, @ptrCast(self)), pfIsNoConflictsSpecified);
-            }
-        };
+    IClockVector: IClockVector,
+    IUnknown: IUnknown,
+    pub fn GetUpdateCount(self: *const IFeedClockVector, pdwUpdateCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetUpdateCount(self, pdwUpdateCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn IsNoConflictsSpecified(self: *const IFeedClockVector, pfIsNoConflictsSpecified: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsNoConflictsSpecified(self, pfIsNoConflictsSpecified);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumClockVector_Value = Guid.initString("525844db-2837-4799-9e80-81a66e02220c");
 pub const IID_IEnumClockVector = &IID_IEnumClockVector_Value;
-pub const IEnumClockVector = extern struct {
+pub const IEnumClockVector = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumClockVector,
-                ppiEnum: ?*?*IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumClockVector,
-                ppiEnum: ?*?*IEnumClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumClockVector,
+            cClockVectorElements: u32,
+            ppiClockVectorElements: ?*?*IClockVectorElement,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumClockVector,
+            cSyncVersions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumClockVector,
+            ppiEnum: ?*?*IEnumClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumClockVector, @ptrCast(self)), cClockVectorElements, ppiClockVectorElements, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumClockVector_Skip(self: *const T, cSyncVersions: u32) HRESULT {
-                return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumClockVector, @ptrCast(self)), cSyncVersions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumClockVector_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumClockVector, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumClockVector_Clone(self: *const T, ppiEnum: ?*?*IEnumClockVector) HRESULT {
-                return @as(*const IEnumClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumClockVector, @ptrCast(self)), ppiEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cClockVectorElements, ppiClockVectorElements, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumClockVector, cSyncVersions: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cSyncVersions);
+    }
+    pub fn Reset(self: *const IEnumClockVector) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumClockVector, ppiEnum: ?*?*IEnumClockVector) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppiEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumFeedClockVector_Value = Guid.initString("550f763d-146a-48f6-abeb-6c88c7f70514");
 pub const IID_IEnumFeedClockVector = &IID_IEnumFeedClockVector_Value;
-pub const IEnumFeedClockVector = extern struct {
+pub const IEnumFeedClockVector = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumFeedClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IFeedClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumFeedClockVector,
-                cClockVectorElements: u32,
-                ppiClockVectorElements: ?*?*IFeedClockVectorElement,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumFeedClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumFeedClockVector,
-                cSyncVersions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumFeedClockVector,
-                ppiEnum: ?*?*IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumFeedClockVector,
-                ppiEnum: ?*?*IEnumFeedClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumFeedClockVector,
+            cClockVectorElements: u32,
+            ppiClockVectorElements: ?*?*IFeedClockVectorElement,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumFeedClockVector,
+            cSyncVersions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumFeedClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumFeedClockVector,
+            ppiEnum: ?*?*IEnumFeedClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumFeedClockVector_Next(self: *const T, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumFeedClockVector, @ptrCast(self)), cClockVectorElements, ppiClockVectorElements, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumFeedClockVector_Skip(self: *const T, cSyncVersions: u32) HRESULT {
-                return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumFeedClockVector, @ptrCast(self)), cSyncVersions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumFeedClockVector_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumFeedClockVector, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumFeedClockVector_Clone(self: *const T, ppiEnum: ?*?*IEnumFeedClockVector) HRESULT {
-                return @as(*const IEnumFeedClockVector.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumFeedClockVector, @ptrCast(self)), ppiEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumFeedClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cClockVectorElements, ppiClockVectorElements, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumFeedClockVector, cSyncVersions: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cSyncVersions);
+    }
+    pub fn Reset(self: *const IEnumFeedClockVector) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumFeedClockVector, ppiEnum: ?*?*IEnumFeedClockVector) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppiEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ICoreFragment_Value = Guid.initString("613b2ab5-b304-47d9-9c31-ce6c54401a15");
 pub const IID_ICoreFragment = &IID_ICoreFragment_Value;
-pub const ICoreFragment = extern struct {
+pub const ICoreFragment = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NextColumn: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFragment,
-                pChangeUnitId: ?*u8,
-                pChangeUnitIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFragment,
-                pChangeUnitId: ?*u8,
-                pChangeUnitIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NextRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFragment,
-                pItemId: ?*u8,
-                pItemIdSize: ?*u32,
-                piClockVector: ?*?*IClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFragment,
-                pItemId: ?*u8,
-                pItemIdSize: ?*u32,
-                piClockVector: ?*?*IClockVector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFragment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFragment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColumnCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFragment,
-                pColumnCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFragment,
-                pColumnCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRangeCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFragment,
-                pRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFragment,
-                pRangeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        NextColumn: *const fn(
+            self: *const ICoreFragment,
+            pChangeUnitId: ?*u8,
+            pChangeUnitIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NextRange: *const fn(
+            self: *const ICoreFragment,
+            pItemId: ?*u8,
+            pItemIdSize: ?*u32,
+            piClockVector: ?*?*IClockVector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ICoreFragment,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColumnCount: *const fn(
+            self: *const ICoreFragment,
+            pColumnCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRangeCount: *const fn(
+            self: *const ICoreFragment,
+            pRangeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFragment_NextColumn(self: *const T, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) HRESULT {
-                return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).NextColumn(@as(*const ICoreFragment, @ptrCast(self)), pChangeUnitId, pChangeUnitIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFragment_NextRange(self: *const T, pItemId: ?*u8, pItemIdSize: ?*u32, piClockVector: ?*?*IClockVector) HRESULT {
-                return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).NextRange(@as(*const ICoreFragment, @ptrCast(self)), pItemId, pItemIdSize, piClockVector);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFragment_Reset(self: *const T) HRESULT {
-                return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICoreFragment, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFragment_GetColumnCount(self: *const T, pColumnCount: ?*u32) HRESULT {
-                return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).GetColumnCount(@as(*const ICoreFragment, @ptrCast(self)), pColumnCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFragment_GetRangeCount(self: *const T, pRangeCount: ?*u32) HRESULT {
-                return @as(*const ICoreFragment.VTable, @ptrCast(self.vtable)).GetRangeCount(@as(*const ICoreFragment, @ptrCast(self)), pRangeCount);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn NextColumn(self: *const ICoreFragment, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.NextColumn(self, pChangeUnitId, pChangeUnitIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn NextRange(self: *const ICoreFragment, pItemId: ?*u8, pItemIdSize: ?*u32, piClockVector: ?*?*IClockVector) callconv(.Inline) HRESULT {
+        return self.vtable.NextRange(self, pItemId, pItemIdSize, piClockVector);
+    }
+    pub fn Reset(self: *const ICoreFragment) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn GetColumnCount(self: *const ICoreFragment, pColumnCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetColumnCount(self, pColumnCount);
+    }
+    pub fn GetRangeCount(self: *const ICoreFragment, pRangeCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetRangeCount(self, pRangeCount);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ICoreFragmentInspector_Value = Guid.initString("f7fcc5fd-ae26-4679-ba16-96aac583c134");
 pub const IID_ICoreFragmentInspector = &IID_ICoreFragmentInspector_Value;
-pub const ICoreFragmentInspector = extern struct {
+pub const ICoreFragmentInspector = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        NextCoreFragments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFragmentInspector,
-                requestedCount: u32,
-                ppiCoreFragments: ?*?*ICoreFragment,
-                pFetchedCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFragmentInspector,
-                requestedCount: u32,
-                ppiCoreFragments: ?*?*ICoreFragment,
-                pFetchedCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICoreFragmentInspector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICoreFragmentInspector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        NextCoreFragments: *const fn(
+            self: *const ICoreFragmentInspector,
+            requestedCount: u32,
+            ppiCoreFragments: ?*?*ICoreFragment,
+            pFetchedCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ICoreFragmentInspector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFragmentInspector_NextCoreFragments(self: *const T, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) HRESULT {
-                return @as(*const ICoreFragmentInspector.VTable, @ptrCast(self.vtable)).NextCoreFragments(@as(*const ICoreFragmentInspector, @ptrCast(self)), requestedCount, ppiCoreFragments, pFetchedCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICoreFragmentInspector_Reset(self: *const T) HRESULT {
-                return @as(*const ICoreFragmentInspector.VTable, @ptrCast(self.vtable)).Reset(@as(*const ICoreFragmentInspector, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn NextCoreFragments(self: *const ICoreFragmentInspector, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.NextCoreFragments(self, requestedCount, ppiCoreFragments, pFetchedCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Reset(self: *const ICoreFragmentInspector) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRangeException_Value = Guid.initString("75ae8777-6848-49f7-956c-a3a92f5096e8");
 pub const IID_IRangeException = &IID_IRangeException_Value;
-pub const IRangeException = extern struct {
+pub const IRangeException = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetClosedRangeStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRangeException,
-                pbClosedRangeStart: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRangeException,
-                pbClosedRangeStart: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClosedRangeEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRangeException,
-                pbClosedRangeEnd: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRangeException,
-                pbClosedRangeEnd: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRangeException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRangeException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetClosedRangeStart: *const fn(
+            self: *const IRangeException,
+            pbClosedRangeStart: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClosedRangeEnd: *const fn(
+            self: *const IRangeException,
+            pbClosedRangeEnd: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVector: *const fn(
+            self: *const IRangeException,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRangeException_GetClosedRangeStart(self: *const T, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClosedRangeStart(@as(*const IRangeException, @ptrCast(self)), pbClosedRangeStart, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRangeException_GetClosedRangeEnd(self: *const T, pbClosedRangeEnd: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClosedRangeEnd(@as(*const IRangeException, @ptrCast(self)), pbClosedRangeEnd, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRangeException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const IRangeException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IRangeException, @ptrCast(self)), riid, ppUnk);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetClosedRangeStart(self: *const IRangeException, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetClosedRangeStart(self, pbClosedRangeStart, pcbIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetClosedRangeEnd(self: *const IRangeException, pbClosedRangeEnd: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetClosedRangeEnd(self, pbClosedRangeEnd, pcbIdSize);
+    }
+    pub fn GetClockVector(self: *const IRangeException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetClockVector(self, riid, ppUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumRangeExceptions_Value = Guid.initString("0944439f-ddb1-4176-b703-046ff22a2386");
 pub const IID_IEnumRangeExceptions = &IID_IEnumRangeExceptions_Value;
-pub const IEnumRangeExceptions = extern struct {
+pub const IEnumRangeExceptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-                ppRangeException: ?*?*IRangeException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-                ppRangeException: ?*?*IRangeException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumRangeExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumRangeExceptions,
-                ppEnum: ?*?*IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumRangeExceptions,
-                ppEnum: ?*?*IEnumRangeExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumRangeExceptions,
+            cExceptions: u32,
+            ppRangeException: ?*?*IRangeException,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumRangeExceptions,
+            cExceptions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumRangeExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumRangeExceptions,
+            ppEnum: ?*?*IEnumRangeExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumRangeExceptions_Next(self: *const T, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumRangeExceptions, @ptrCast(self)), cExceptions, ppRangeException, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumRangeExceptions_Skip(self: *const T, cExceptions: u32) HRESULT {
-                return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumRangeExceptions, @ptrCast(self)), cExceptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumRangeExceptions_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumRangeExceptions, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumRangeExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumRangeExceptions) HRESULT {
-                return @as(*const IEnumRangeExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumRangeExceptions, @ptrCast(self)), ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumRangeExceptions, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cExceptions, ppRangeException, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumRangeExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cExceptions);
+    }
+    pub fn Reset(self: *const IEnumRangeExceptions) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumRangeExceptions, ppEnum: ?*?*IEnumRangeExceptions) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISingleItemException_Value = Guid.initString("892fb9b0-7c55-4a18-9316-fdf449569b64");
 pub const IID_ISingleItemException = &IID_ISingleItemException_Value;
-pub const ISingleItemException = extern struct {
+pub const ISingleItemException = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISingleItemException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISingleItemException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISingleItemException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISingleItemException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemId: *const fn(
+            self: *const ISingleItemException,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVector: *const fn(
+            self: *const ISingleItemException,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISingleItemException_GetItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISingleItemException.VTable, @ptrCast(self.vtable)).GetItemId(@as(*const ISingleItemException, @ptrCast(self)), pbItemId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISingleItemException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const ISingleItemException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const ISingleItemException, @ptrCast(self)), riid, ppUnk);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetItemId(self: *const ISingleItemException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetItemId(self, pbItemId, pcbIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetClockVector(self: *const ISingleItemException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetClockVector(self, riid, ppUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSingleItemExceptions_Value = Guid.initString("e563381c-1b4d-4c66-9796-c86faccdcd40");
 pub const IID_IEnumSingleItemExceptions = &IID_IEnumSingleItemExceptions_Value;
-pub const IEnumSingleItemExceptions = extern struct {
+pub const IEnumSingleItemExceptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-                ppSingleItemException: ?*?*ISingleItemException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-                ppSingleItemException: ?*?*ISingleItemException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSingleItemExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSingleItemExceptions,
-                ppEnum: ?*?*IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSingleItemExceptions,
-                ppEnum: ?*?*IEnumSingleItemExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSingleItemExceptions,
+            cExceptions: u32,
+            ppSingleItemException: ?*?*ISingleItemException,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSingleItemExceptions,
+            cExceptions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSingleItemExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSingleItemExceptions,
+            ppEnum: ?*?*IEnumSingleItemExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSingleItemExceptions_Next(self: *const T, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), cExceptions, ppSingleItemException, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSingleItemExceptions_Skip(self: *const T, cExceptions: u32) HRESULT {
-                return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), cExceptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSingleItemExceptions_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSingleItemExceptions, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSingleItemExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumSingleItemExceptions) HRESULT {
-                return @as(*const IEnumSingleItemExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSingleItemExceptions, @ptrCast(self)), ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSingleItemExceptions, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cExceptions, ppSingleItemException, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumSingleItemExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cExceptions);
+    }
+    pub fn Reset(self: *const IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumSingleItemExceptions, ppEnum: ?*?*IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IChangeUnitException_Value = Guid.initString("0cd7ee7c-fec0-4021-99ee-f0e5348f2a5f");
 pub const IID_IChangeUnitException = &IID_IChangeUnitException_Value;
-pub const IChangeUnitException = extern struct {
+pub const IChangeUnitException = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeUnitException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeUnitException,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeUnitException,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeUnitException,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeUnitException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeUnitException,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemId: *const fn(
+            self: *const IChangeUnitException,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitId: *const fn(
+            self: *const IChangeUnitException,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockVector: *const fn(
+            self: *const IChangeUnitException,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeUnitException_GetItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetItemId(@as(*const IChangeUnitException, @ptrCast(self)), pbItemId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeUnitException_GetChangeUnitId(self: *const T, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const IChangeUnitException, @ptrCast(self)), pbChangeUnitId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeUnitException_GetClockVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const IChangeUnitException.VTable, @ptrCast(self.vtable)).GetClockVector(@as(*const IChangeUnitException, @ptrCast(self)), riid, ppUnk);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetItemId(self: *const IChangeUnitException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetItemId(self, pbItemId, pcbIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetChangeUnitId(self: *const IChangeUnitException, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnitId(self, pbChangeUnitId, pcbIdSize);
+    }
+    pub fn GetClockVector(self: *const IChangeUnitException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetClockVector(self, riid, ppUnk);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumChangeUnitExceptions_Value = Guid.initString("3074e802-9319-4420-be21-1022e2e21da8");
 pub const IID_IEnumChangeUnitExceptions = &IID_IEnumChangeUnitExceptions_Value;
-pub const IEnumChangeUnitExceptions = extern struct {
+pub const IEnumChangeUnitExceptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-                ppChangeUnitException: ?*?*IChangeUnitException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-                ppChangeUnitException: ?*?*IChangeUnitException,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumChangeUnitExceptions,
-                cExceptions: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumChangeUnitExceptions,
-                ppEnum: ?*?*IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumChangeUnitExceptions,
-                ppEnum: ?*?*IEnumChangeUnitExceptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+            cExceptions: u32,
+            ppChangeUnitException: ?*?*IChangeUnitException,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+            cExceptions: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumChangeUnitExceptions,
+            ppEnum: ?*?*IEnumChangeUnitExceptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumChangeUnitExceptions_Next(self: *const T, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), cExceptions, ppChangeUnitException, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumChangeUnitExceptions_Skip(self: *const T, cExceptions: u32) HRESULT {
-                return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), cExceptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumChangeUnitExceptions_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumChangeUnitExceptions_Clone(self: *const T, ppEnum: ?*?*IEnumChangeUnitExceptions) HRESULT {
-                return @as(*const IEnumChangeUnitExceptions.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumChangeUnitExceptions, @ptrCast(self)), ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumChangeUnitExceptions, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cExceptions, ppChangeUnitException, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumChangeUnitExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cExceptions);
+    }
+    pub fn Reset(self: *const IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumChangeUnitExceptions, ppEnum: ?*?*IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IReplicaKeyMap_Value = Guid.initString("2209f4fc-fd10-4ff0-84a8-f0a1982e440e");
 pub const IID_IReplicaKeyMap = &IID_IReplicaKeyMap_Value;
-pub const IReplicaKeyMap = extern struct {
+pub const IReplicaKeyMap = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LookupReplicaKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LookupReplicaId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReplicaKeyMap,
-                dwReplicaKey: u32,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReplicaKeyMap,
-                dwReplicaKey: u32,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReplicaKeyMap,
-                pbReplicaKeyMap: ?*u8,
-                pcbReplicaKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReplicaKeyMap,
-                pbReplicaKeyMap: ?*u8,
-                pcbReplicaKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LookupReplicaKey: *const fn(
+            self: *const IReplicaKeyMap,
+            pbReplicaId: ?*const u8,
+            pdwReplicaKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LookupReplicaId: *const fn(
+            self: *const IReplicaKeyMap,
+            dwReplicaKey: u32,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const IReplicaKeyMap,
+            pbReplicaKeyMap: ?*u8,
+            pcbReplicaKeyMap: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReplicaKeyMap_LookupReplicaKey(self: *const T, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) HRESULT {
-                return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).LookupReplicaKey(@as(*const IReplicaKeyMap, @ptrCast(self)), pbReplicaId, pdwReplicaKey);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReplicaKeyMap_LookupReplicaId(self: *const T, dwReplicaKey: u32, pbReplicaId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).LookupReplicaId(@as(*const IReplicaKeyMap, @ptrCast(self)), dwReplicaKey, pbReplicaId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReplicaKeyMap_Serialize(self: *const T, pbReplicaKeyMap: ?*u8, pcbReplicaKeyMap: ?*u32) HRESULT {
-                return @as(*const IReplicaKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IReplicaKeyMap, @ptrCast(self)), pbReplicaKeyMap, pcbReplicaKeyMap);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn LookupReplicaKey(self: *const IReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.LookupReplicaKey(self, pbReplicaId, pdwReplicaKey);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LookupReplicaId(self: *const IReplicaKeyMap, dwReplicaKey: u32, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.LookupReplicaId(self, dwReplicaKey, pbReplicaId, pcbIdSize);
+    }
+    pub fn Serialize(self: *const IReplicaKeyMap, pbReplicaKeyMap: ?*u8, pcbReplicaKeyMap: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Serialize(self, pbReplicaKeyMap, pcbReplicaKeyMap);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IConstructReplicaKeyMap_Value = Guid.initString("ded10970-ec85-4115-b52c-4405845642a5");
 pub const IID_IConstructReplicaKeyMap = &IID_IConstructReplicaKeyMap_Value;
-pub const IConstructReplicaKeyMap = extern struct {
+pub const IConstructReplicaKeyMap = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FindOrAddReplica: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstructReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstructReplicaKeyMap,
-                pbReplicaId: ?*const u8,
-                pdwReplicaKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FindOrAddReplica: *const fn(
+            self: *const IConstructReplicaKeyMap,
+            pbReplicaId: ?*const u8,
+            pdwReplicaKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstructReplicaKeyMap_FindOrAddReplica(self: *const T, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) HRESULT {
-                return @as(*const IConstructReplicaKeyMap.VTable, @ptrCast(self.vtable)).FindOrAddReplica(@as(*const IConstructReplicaKeyMap, @ptrCast(self)), pbReplicaId, pdwReplicaKey);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn FindOrAddReplica(self: *const IConstructReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.FindOrAddReplica(self, pbReplicaId, pdwReplicaKey);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncKnowledge_Value = Guid.initString("615bbb53-c945-4203-bf4b-2cb65919a0aa");
 pub const IID_ISyncKnowledge = &IID_ISyncKnowledge_Value;
-pub const ISyncKnowledge = extern struct {
+pub const ISyncKnowledge = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwnerReplicaId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                fSerializeReplicaKeyMap: BOOL,
-                pbKnowledge: ?*u8,
-                pcbKnowledge: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                fSerializeReplicaKeyMap: BOOL,
-                pbKnowledge: ?*u8,
-                pcbKnowledge: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLocalTickCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                ullTickCount: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                ullTickCount: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pgidItemId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pgidItemId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbVersionOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pSyncVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetScopeVector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReplicaKeyMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                ppReplicaKeyMap: ?*?*IReplicaKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                ppReplicaKeyMap: ?*?*IReplicaKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                ppClonedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                ppClonedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pKnowledgeIn: ?*ISyncKnowledge,
-                pbCurrentOwnerId: ?*const u8,
-                pVersionIn: ?*const SYNC_VERSION,
-                pbNewOwnerId: ?*u8,
-                pcbIdSize: ?*u32,
-                pVersionOut: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pKnowledgeIn: ?*ISyncKnowledge,
-                pbCurrentOwnerId: ?*const u8,
-                pVersionIn: ?*const SYNC_VERSION,
-                pbNewOwnerId: ?*u8,
-                pcbIdSize: ?*u32,
-                pVersionOut: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MapRemoteToLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pRemoteKnowledge: ?*ISyncKnowledge,
-                ppMappedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pRemoteKnowledge: ?*ISyncKnowledge,
-                ppMappedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Union: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                psrngSyncRange: ?*const SYNC_RANGE,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                psrngSyncRange: ?*const SYNC_RANGE,
-                ppKnowledgeOut: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExcludeItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExcludeChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindMinTickCountForReplica: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*const u8,
-                pullReplicaTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbReplicaId: ?*const u8,
-                pullReplicaTickCount: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRangeExceptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSingleItemExceptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitExceptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindClockVectorForItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindClockVectorForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                riid: ?*const Guid,
-                ppUnk: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge,
-                pdwVersion: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge,
-                pdwVersion: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwnerReplicaId: *const fn(
+            self: *const ISyncKnowledge,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const ISyncKnowledge,
+            fSerializeReplicaKeyMap: BOOL,
+            pbKnowledge: ?*u8,
+            pcbKnowledge: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLocalTickCount: *const fn(
+            self: *const ISyncKnowledge,
+            ullTickCount: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsChange: *const fn(
+            self: *const ISyncKnowledge,
+            pbVersionOwnerReplicaId: ?*const u8,
+            pgidItemId: ?*const u8,
+            pSyncVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbVersionOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            pSyncVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetScopeVector: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReplicaKeyMap: *const fn(
+            self: *const ISyncKnowledge,
+            ppReplicaKeyMap: ?*?*IReplicaKeyMap,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const ISyncKnowledge,
+            ppClonedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertVersion: *const fn(
+            self: *const ISyncKnowledge,
+            pKnowledgeIn: ?*ISyncKnowledge,
+            pbCurrentOwnerId: ?*const u8,
+            pVersionIn: ?*const SYNC_VERSION,
+            pbNewOwnerId: ?*u8,
+            pcbIdSize: ?*u32,
+            pVersionOut: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MapRemoteToLocal: *const fn(
+            self: *const ISyncKnowledge,
+            pRemoteKnowledge: ?*ISyncKnowledge,
+            ppMappedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Union: *const fn(
+            self: *const ISyncKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoItem: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoRange: *const fn(
+            self: *const ISyncKnowledge,
+            psrngSyncRange: ?*const SYNC_RANGE,
+            ppKnowledgeOut: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExcludeItem: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExcludeChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsKnowledge: *const fn(
+            self: *const ISyncKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindMinTickCountForReplica: *const fn(
+            self: *const ISyncKnowledge,
+            pbReplicaId: ?*const u8,
+            pullReplicaTickCount: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRangeExceptions: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSingleItemExceptions: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitExceptions: *const fn(
+            self: *const ISyncKnowledge,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindClockVectorForItem: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindClockVectorForChangeUnit: *const fn(
+            self: *const ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            riid: ?*const Guid,
+            ppUnk: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVersion: *const fn(
+            self: *const ISyncKnowledge,
+            pdwVersion: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_GetOwnerReplicaId(self: *const T, pbReplicaId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetOwnerReplicaId(@as(*const ISyncKnowledge, @ptrCast(self)), pbReplicaId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_Serialize(self: *const T, fSerializeReplicaKeyMap: BOOL, pbKnowledge: ?*u8, pcbKnowledge: ?*u32) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncKnowledge, @ptrCast(self)), fSerializeReplicaKeyMap, pbKnowledge, pcbKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_SetLocalTickCount(self: *const T, ullTickCount: u64) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).SetLocalTickCount(@as(*const ISyncKnowledge, @ptrCast(self)), ullTickCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ContainsChange(self: *const T, pbVersionOwnerReplicaId: ?*const u8, pgidItemId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsChange(@as(*const ISyncKnowledge, @ptrCast(self)), pbVersionOwnerReplicaId, pgidItemId, pSyncVersion);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ContainsChangeUnit(self: *const T, pbVersionOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbVersionOwnerReplicaId, pbItemId, pbChangeUnitId, pSyncVersion);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_GetScopeVector(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetScopeVector(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_GetReplicaKeyMap(self: *const T, ppReplicaKeyMap: ?*?*IReplicaKeyMap) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetReplicaKeyMap(@as(*const ISyncKnowledge, @ptrCast(self)), ppReplicaKeyMap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_Clone(self: *const T, ppClonedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Clone(@as(*const ISyncKnowledge, @ptrCast(self)), ppClonedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ConvertVersion(self: *const T, pKnowledgeIn: ?*ISyncKnowledge, pbCurrentOwnerId: ?*const u8, pVersionIn: ?*const SYNC_VERSION, pbNewOwnerId: ?*u8, pcbIdSize: ?*u32, pVersionOut: ?*SYNC_VERSION) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ConvertVersion(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledgeIn, pbCurrentOwnerId, pVersionIn, pbNewOwnerId, pcbIdSize, pVersionOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_MapRemoteToLocal(self: *const T, pRemoteKnowledge: ?*ISyncKnowledge, ppMappedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).MapRemoteToLocal(@as(*const ISyncKnowledge, @ptrCast(self)), pRemoteKnowledge, ppMappedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_Union(self: *const T, pKnowledge: ?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).Union(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ProjectOntoItem(self: *const T, pbItemId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, ppKnowledgeOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ProjectOntoChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId, ppKnowledgeOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ProjectOntoRange(self: *const T, psrngSyncRange: ?*const SYNC_RANGE, ppKnowledgeOut: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ProjectOntoRange(@as(*const ISyncKnowledge, @ptrCast(self)), psrngSyncRange, ppKnowledgeOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ExcludeItem(self: *const T, pbItemId: ?*const u8) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ExcludeItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ExcludeChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ExcludeChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_ContainsKnowledge(self: *const T, pKnowledge: ?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).ContainsKnowledge(@as(*const ISyncKnowledge, @ptrCast(self)), pKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_FindMinTickCountForReplica(self: *const T, pbReplicaId: ?*const u8, pullReplicaTickCount: ?*u64) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindMinTickCountForReplica(@as(*const ISyncKnowledge, @ptrCast(self)), pbReplicaId, pullReplicaTickCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_GetRangeExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetRangeExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_GetSingleItemExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetSingleItemExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_GetChangeUnitExceptions(self: *const T, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetChangeUnitExceptions(@as(*const ISyncKnowledge, @ptrCast(self)), riid, ppUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_FindClockVectorForItem(self: *const T, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindClockVectorForItem(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, riid, ppUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_FindClockVectorForChangeUnit(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).FindClockVectorForChangeUnit(@as(*const ISyncKnowledge, @ptrCast(self)), pbItemId, pbChangeUnitId, riid, ppUnk);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge_GetVersion(self: *const T, pdwVersion: ?*u32) HRESULT {
-                return @as(*const ISyncKnowledge.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const ISyncKnowledge, @ptrCast(self)), pdwVersion);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOwnerReplicaId(self: *const ISyncKnowledge, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwnerReplicaId(self, pbReplicaId, pcbIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Serialize(self: *const ISyncKnowledge, fSerializeReplicaKeyMap: BOOL, pbKnowledge: ?*u8, pcbKnowledge: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Serialize(self, fSerializeReplicaKeyMap, pbKnowledge, pcbKnowledge);
+    }
+    pub fn SetLocalTickCount(self: *const ISyncKnowledge, ullTickCount: u64) callconv(.Inline) HRESULT {
+        return self.vtable.SetLocalTickCount(self, ullTickCount);
+    }
+    pub fn ContainsChange(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pgidItemId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.ContainsChange(self, pbVersionOwnerReplicaId, pgidItemId, pSyncVersion);
+    }
+    pub fn ContainsChangeUnit(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.ContainsChangeUnit(self, pbVersionOwnerReplicaId, pbItemId, pbChangeUnitId, pSyncVersion);
+    }
+    pub fn GetScopeVector(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetScopeVector(self, riid, ppUnk);
+    }
+    pub fn GetReplicaKeyMap(self: *const ISyncKnowledge, ppReplicaKeyMap: ?*?*IReplicaKeyMap) callconv(.Inline) HRESULT {
+        return self.vtable.GetReplicaKeyMap(self, ppReplicaKeyMap);
+    }
+    pub fn Clone(self: *const ISyncKnowledge, ppClonedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppClonedKnowledge);
+    }
+    pub fn ConvertVersion(self: *const ISyncKnowledge, pKnowledgeIn: ?*ISyncKnowledge, pbCurrentOwnerId: ?*const u8, pVersionIn: ?*const SYNC_VERSION, pbNewOwnerId: ?*u8, pcbIdSize: ?*u32, pVersionOut: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertVersion(self, pKnowledgeIn, pbCurrentOwnerId, pVersionIn, pbNewOwnerId, pcbIdSize, pVersionOut);
+    }
+    pub fn MapRemoteToLocal(self: *const ISyncKnowledge, pRemoteKnowledge: ?*ISyncKnowledge, ppMappedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.MapRemoteToLocal(self, pRemoteKnowledge, ppMappedKnowledge);
+    }
+    pub fn Union(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.Union(self, pKnowledge);
+    }
+    pub fn ProjectOntoItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.ProjectOntoItem(self, pbItemId, ppKnowledgeOut);
+    }
+    pub fn ProjectOntoChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.ProjectOntoChangeUnit(self, pbItemId, pbChangeUnitId, ppKnowledgeOut);
+    }
+    pub fn ProjectOntoRange(self: *const ISyncKnowledge, psrngSyncRange: ?*const SYNC_RANGE, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.ProjectOntoRange(self, psrngSyncRange, ppKnowledgeOut);
+    }
+    pub fn ExcludeItem(self: *const ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
+        return self.vtable.ExcludeItem(self, pbItemId);
+    }
+    pub fn ExcludeChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
+        return self.vtable.ExcludeChangeUnit(self, pbItemId, pbChangeUnitId);
+    }
+    pub fn ContainsKnowledge(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.ContainsKnowledge(self, pKnowledge);
+    }
+    pub fn FindMinTickCountForReplica(self: *const ISyncKnowledge, pbReplicaId: ?*const u8, pullReplicaTickCount: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.FindMinTickCountForReplica(self, pbReplicaId, pullReplicaTickCount);
+    }
+    pub fn GetRangeExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetRangeExceptions(self, riid, ppUnk);
+    }
+    pub fn GetSingleItemExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetSingleItemExceptions(self, riid, ppUnk);
+    }
+    pub fn GetChangeUnitExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnitExceptions(self, riid, ppUnk);
+    }
+    pub fn FindClockVectorForItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.FindClockVectorForItem(self, pbItemId, riid, ppUnk);
+    }
+    pub fn FindClockVectorForChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.FindClockVectorForChangeUnit(self, pbItemId, pbChangeUnitId, riid, ppUnk);
+    }
+    pub fn GetVersion(self: *const ISyncKnowledge, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetVersion(self, pdwVersion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IForgottenKnowledge_Value = Guid.initString("456e0f96-6036-452b-9f9d-bcc4b4a85db2");
 pub const IID_IForgottenKnowledge = &IID_IForgottenKnowledge_Value;
-pub const IForgottenKnowledge = extern struct {
+pub const IForgottenKnowledge = extern union {
     pub const VTable = extern struct {
         base: ISyncKnowledge.VTable,
-        ForgetToVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IForgottenKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-                pVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IForgottenKnowledge,
-                pKnowledge: ?*ISyncKnowledge,
-                pVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ForgetToVersion: *const fn(
+            self: *const IForgottenKnowledge,
+            pKnowledge: ?*ISyncKnowledge,
+            pVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncKnowledge.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IForgottenKnowledge_ForgetToVersion(self: *const T, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) HRESULT {
-                return @as(*const IForgottenKnowledge.VTable, @ptrCast(self.vtable)).ForgetToVersion(@as(*const IForgottenKnowledge, @ptrCast(self)), pKnowledge, pVersion);
-            }
-        };
+    ISyncKnowledge: ISyncKnowledge,
+    IUnknown: IUnknown,
+    pub fn ForgetToVersion(self: *const IForgottenKnowledge, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.ForgetToVersion(self, pKnowledge, pVersion);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncKnowledge2_Value = Guid.initString("ed0addc0-3b4b-46a1-9a45-45661d2114c8");
 pub const IID_ISyncKnowledge2 = &IID_ISyncKnowledge2_Value;
-pub const ISyncKnowledge2 = extern struct {
+pub const ISyncKnowledge2 = extern union {
     pub const VTable = extern struct {
         base: ISyncKnowledge.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoColumnSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                ppColumns: ?*const ?*u8,
-                count: u32,
-                ppiKnowledgeOut: ?*?*ISyncKnowledge2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                ppColumns: ?*const ?*u8,
-                count: u32,
-                ppiKnowledgeOut: ?*?*ISyncKnowledge2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SerializeWithOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLowestUncontainedId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                piSyncKnowledge: ?*ISyncKnowledge2,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                piSyncKnowledge: ?*ISyncKnowledge2,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInspector: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                riid: ?*const Guid,
-                ppiInspector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                riid: ?*const Guid,
-                ppiInspector: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMinimumSupportedVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pVersion: ?*SYNC_SERIALIZATION_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pVersion: ?*SYNC_SERIALIZATION_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStatistics: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                which: SYNC_STATISTICS,
-                pValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                which: SYNC_STATISTICS,
-                pValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsKnowledgeForItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ContainsKnowledgeForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pKnowledge: ?*ISyncKnowledge,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProjectOntoKnowledgeWithPrerequisite: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-                pTemplateKnowledge: ?*ISyncKnowledge,
-                ppProjectedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-                pTemplateKnowledge: ?*ISyncKnowledge,
-                ppProjectedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Complement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppComplementedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppComplementedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IntersectsWithKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pSyncKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKnowledgeCookie: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                ppKnowledgeCookie: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                ppKnowledgeCookie: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CompareToKnowledgeCookie: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncKnowledge2,
-                pKnowledgeCookie: ?*IUnknown,
-                pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncKnowledge2,
-                pKnowledgeCookie: ?*IUnknown,
-                pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const ISyncKnowledge2,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoColumnSet: *const fn(
+            self: *const ISyncKnowledge2,
+            ppColumns: ?*const ?*u8,
+            count: u32,
+            ppiKnowledgeOut: ?*?*ISyncKnowledge2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SerializeWithOptions: *const fn(
+            self: *const ISyncKnowledge2,
+            targetFormatVersion: SYNC_SERIALIZATION_VERSION,
+            dwFlags: u32,
+            pbBuffer: ?*u8,
+            pdwSerializedSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLowestUncontainedId: *const fn(
+            self: *const ISyncKnowledge2,
+            piSyncKnowledge: ?*ISyncKnowledge2,
+            pbItemId: ?*u8,
+            pcbItemIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInspector: *const fn(
+            self: *const ISyncKnowledge2,
+            riid: ?*const Guid,
+            ppiInspector: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMinimumSupportedVersion: *const fn(
+            self: *const ISyncKnowledge2,
+            pVersion: ?*SYNC_SERIALIZATION_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStatistics: *const fn(
+            self: *const ISyncKnowledge2,
+            which: SYNC_STATISTICS,
+            pValue: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsKnowledgeForItem: *const fn(
+            self: *const ISyncKnowledge2,
+            pKnowledge: ?*ISyncKnowledge,
+            pbItemId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ContainsKnowledgeForChangeUnit: *const fn(
+            self: *const ISyncKnowledge2,
+            pKnowledge: ?*ISyncKnowledge,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProjectOntoKnowledgeWithPrerequisite: *const fn(
+            self: *const ISyncKnowledge2,
+            pPrerequisiteKnowledge: ?*ISyncKnowledge,
+            pTemplateKnowledge: ?*ISyncKnowledge,
+            ppProjectedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Complement: *const fn(
+            self: *const ISyncKnowledge2,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppComplementedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IntersectsWithKnowledge: *const fn(
+            self: *const ISyncKnowledge2,
+            pSyncKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKnowledgeCookie: *const fn(
+            self: *const ISyncKnowledge2,
+            ppKnowledgeCookie: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CompareToKnowledgeCookie: *const fn(
+            self: *const ISyncKnowledge2,
+            pKnowledgeCookie: ?*IUnknown,
+            pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncKnowledge.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISyncKnowledge2, @ptrCast(self)), pIdParameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_ProjectOntoColumnSet(self: *const T, ppColumns: ?*const ?*u8, count: u32, ppiKnowledgeOut: ?*?*ISyncKnowledge2) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ProjectOntoColumnSet(@as(*const ISyncKnowledge2, @ptrCast(self)), ppColumns, count, ppiKnowledgeOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).SerializeWithOptions(@as(*const ISyncKnowledge2, @ptrCast(self)), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_GetLowestUncontainedId(self: *const T, piSyncKnowledge: ?*ISyncKnowledge2, pbItemId: ?*u8, pcbItemIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetLowestUncontainedId(@as(*const ISyncKnowledge2, @ptrCast(self)), piSyncKnowledge, pbItemId, pcbItemIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_GetInspector(self: *const T, riid: ?*const Guid, ppiInspector: ?*?*anyopaque) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetInspector(@as(*const ISyncKnowledge2, @ptrCast(self)), riid, ppiInspector);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_GetMinimumSupportedVersion(self: *const T, pVersion: ?*SYNC_SERIALIZATION_VERSION) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetMinimumSupportedVersion(@as(*const ISyncKnowledge2, @ptrCast(self)), pVersion);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_GetStatistics(self: *const T, which: SYNC_STATISTICS, pValue: ?*u32) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetStatistics(@as(*const ISyncKnowledge2, @ptrCast(self)), which, pValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_ContainsKnowledgeForItem(self: *const T, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ContainsKnowledgeForItem(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledge, pbItemId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_ContainsKnowledgeForChangeUnit(self: *const T, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ContainsKnowledgeForChangeUnit(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledge, pbItemId, pbChangeUnitId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_ProjectOntoKnowledgeWithPrerequisite(self: *const T, pPrerequisiteKnowledge: ?*ISyncKnowledge, pTemplateKnowledge: ?*ISyncKnowledge, ppProjectedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).ProjectOntoKnowledgeWithPrerequisite(@as(*const ISyncKnowledge2, @ptrCast(self)), pPrerequisiteKnowledge, pTemplateKnowledge, ppProjectedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_Complement(self: *const T, pSyncKnowledge: ?*ISyncKnowledge, ppComplementedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).Complement(@as(*const ISyncKnowledge2, @ptrCast(self)), pSyncKnowledge, ppComplementedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_IntersectsWithKnowledge(self: *const T, pSyncKnowledge: ?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).IntersectsWithKnowledge(@as(*const ISyncKnowledge2, @ptrCast(self)), pSyncKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_GetKnowledgeCookie(self: *const T, ppKnowledgeCookie: ?*?*IUnknown) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).GetKnowledgeCookie(@as(*const ISyncKnowledge2, @ptrCast(self)), ppKnowledgeCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncKnowledge2_CompareToKnowledgeCookie(self: *const T, pKnowledgeCookie: ?*IUnknown, pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT) HRESULT {
-                return @as(*const ISyncKnowledge2.VTable, @ptrCast(self.vtable)).CompareToKnowledgeCookie(@as(*const ISyncKnowledge2, @ptrCast(self)), pKnowledgeCookie, pResult);
-            }
-        };
+    ISyncKnowledge: ISyncKnowledge,
+    IUnknown: IUnknown,
+    pub fn GetIdParameters(self: *const ISyncKnowledge2, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return self.vtable.GetIdParameters(self, pIdParameters);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ProjectOntoColumnSet(self: *const ISyncKnowledge2, ppColumns: ?*const ?*u8, count: u32, ppiKnowledgeOut: ?*?*ISyncKnowledge2) callconv(.Inline) HRESULT {
+        return self.vtable.ProjectOntoColumnSet(self, ppColumns, count, ppiKnowledgeOut);
+    }
+    pub fn SerializeWithOptions(self: *const ISyncKnowledge2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.SerializeWithOptions(self, targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
+    }
+    pub fn GetLowestUncontainedId(self: *const ISyncKnowledge2, piSyncKnowledge: ?*ISyncKnowledge2, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetLowestUncontainedId(self, piSyncKnowledge, pbItemId, pcbItemIdSize);
+    }
+    pub fn GetInspector(self: *const ISyncKnowledge2, riid: ?*const Guid, ppiInspector: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetInspector(self, riid, ppiInspector);
+    }
+    pub fn GetMinimumSupportedVersion(self: *const ISyncKnowledge2, pVersion: ?*SYNC_SERIALIZATION_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.GetMinimumSupportedVersion(self, pVersion);
+    }
+    pub fn GetStatistics(self: *const ISyncKnowledge2, which: SYNC_STATISTICS, pValue: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStatistics(self, which, pValue);
+    }
+    pub fn ContainsKnowledgeForItem(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
+        return self.vtable.ContainsKnowledgeForItem(self, pKnowledge, pbItemId);
+    }
+    pub fn ContainsKnowledgeForChangeUnit(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
+        return self.vtable.ContainsKnowledgeForChangeUnit(self, pKnowledge, pbItemId, pbChangeUnitId);
+    }
+    pub fn ProjectOntoKnowledgeWithPrerequisite(self: *const ISyncKnowledge2, pPrerequisiteKnowledge: ?*ISyncKnowledge, pTemplateKnowledge: ?*ISyncKnowledge, ppProjectedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.ProjectOntoKnowledgeWithPrerequisite(self, pPrerequisiteKnowledge, pTemplateKnowledge, ppProjectedKnowledge);
+    }
+    pub fn Complement(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge, ppComplementedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.Complement(self, pSyncKnowledge, ppComplementedKnowledge);
+    }
+    pub fn IntersectsWithKnowledge(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.IntersectsWithKnowledge(self, pSyncKnowledge);
+    }
+    pub fn GetKnowledgeCookie(self: *const ISyncKnowledge2, ppKnowledgeCookie: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetKnowledgeCookie(self, ppKnowledgeCookie);
+    }
+    pub fn CompareToKnowledgeCookie(self: *const ISyncKnowledge2, pKnowledgeCookie: ?*IUnknown, pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT) callconv(.Inline) HRESULT {
+        return self.vtable.CompareToKnowledgeCookie(self, pKnowledgeCookie, pResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRecoverableErrorData_Value = Guid.initString("b37c4a0a-4b7d-4c2d-9711-3b00d119b1c8");
 pub const IID_IRecoverableErrorData = &IID_IRecoverableErrorData_Value;
-pub const IRecoverableErrorData = extern struct {
+pub const IRecoverableErrorData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableErrorData,
-                pcszItemDisplayName: ?[*:0]const u16,
-                pcszErrorDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableErrorData,
-                pcszItemDisplayName: ?[*:0]const u16,
-                pcszErrorDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetItemDisplayName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableErrorData,
-                pszItemDisplayName: ?PWSTR,
-                pcchItemDisplayName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableErrorData,
-                pszItemDisplayName: ?PWSTR,
-                pcchItemDisplayName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetErrorDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableErrorData,
-                pszErrorDescription: ?PWSTR,
-                pcchErrorDescription: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableErrorData,
-                pszErrorDescription: ?PWSTR,
-                pcchErrorDescription: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IRecoverableErrorData,
+            pcszItemDisplayName: ?[*:0]const u16,
+            pcszErrorDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItemDisplayName: *const fn(
+            self: *const IRecoverableErrorData,
+            pszItemDisplayName: ?PWSTR,
+            pcchItemDisplayName: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetErrorDescription: *const fn(
+            self: *const IRecoverableErrorData,
+            pszErrorDescription: ?PWSTR,
+            pcchErrorDescription: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableErrorData_Initialize(self: *const T, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) HRESULT {
-                return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRecoverableErrorData, @ptrCast(self)), pcszItemDisplayName, pcszErrorDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableErrorData_GetItemDisplayName(self: *const T, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) HRESULT {
-                return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).GetItemDisplayName(@as(*const IRecoverableErrorData, @ptrCast(self)), pszItemDisplayName, pcchItemDisplayName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableErrorData_GetErrorDescription(self: *const T, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) HRESULT {
-                return @as(*const IRecoverableErrorData.VTable, @ptrCast(self.vtable)).GetErrorDescription(@as(*const IRecoverableErrorData, @ptrCast(self)), pszErrorDescription, pcchErrorDescription);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IRecoverableErrorData, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.Initialize(self, pcszItemDisplayName, pcszErrorDescription);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetItemDisplayName(self: *const IRecoverableErrorData, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetItemDisplayName(self, pszItemDisplayName, pcchItemDisplayName);
+    }
+    pub fn GetErrorDescription(self: *const IRecoverableErrorData, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetErrorDescription(self, pszErrorDescription, pcchErrorDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRecoverableError_Value = Guid.initString("0f5625e8-0a7b-45ee-9637-1ce13645909e");
 pub const IID_IRecoverableError = &IID_IRecoverableError_Value;
-pub const IRecoverableError = extern struct {
+pub const IRecoverableError = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetStage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableError,
-                pStage: ?*SYNC_PROGRESS_STAGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableError,
-                pStage: ?*SYNC_PROGRESS_STAGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableError,
-                pProviderRole: ?*SYNC_PROVIDER_ROLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableError,
-                pProviderRole: ?*SYNC_PROVIDER_ROLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeWithRecoverableError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableError,
-                ppChangeWithRecoverableError: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableError,
-                ppChangeWithRecoverableError: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecoverableErrorDataForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableError,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableError,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRecoverableErrorDataForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRecoverableError,
-                pChangeUnit: ?*ISyncChangeUnit,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRecoverableError,
-                pChangeUnit: ?*ISyncChangeUnit,
-                phrError: ?*HRESULT,
-                ppErrorData: ?*?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStage: *const fn(
+            self: *const IRecoverableError,
+            pStage: ?*SYNC_PROGRESS_STAGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProvider: *const fn(
+            self: *const IRecoverableError,
+            pProviderRole: ?*SYNC_PROVIDER_ROLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeWithRecoverableError: *const fn(
+            self: *const IRecoverableError,
+            ppChangeWithRecoverableError: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecoverableErrorDataForChange: *const fn(
+            self: *const IRecoverableError,
+            phrError: ?*HRESULT,
+            ppErrorData: ?*?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRecoverableErrorDataForChangeUnit: *const fn(
+            self: *const IRecoverableError,
+            pChangeUnit: ?*ISyncChangeUnit,
+            phrError: ?*HRESULT,
+            ppErrorData: ?*?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableError_GetStage(self: *const T, pStage: ?*SYNC_PROGRESS_STAGE) HRESULT {
-                return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetStage(@as(*const IRecoverableError, @ptrCast(self)), pStage);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableError_GetProvider(self: *const T, pProviderRole: ?*SYNC_PROVIDER_ROLE) HRESULT {
-                return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetProvider(@as(*const IRecoverableError, @ptrCast(self)), pProviderRole);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableError_GetChangeWithRecoverableError(self: *const T, ppChangeWithRecoverableError: ?*?*ISyncChange) HRESULT {
-                return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetChangeWithRecoverableError(@as(*const IRecoverableError, @ptrCast(self)), ppChangeWithRecoverableError);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableError_GetRecoverableErrorDataForChange(self: *const T, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) HRESULT {
-                return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetRecoverableErrorDataForChange(@as(*const IRecoverableError, @ptrCast(self)), phrError, ppErrorData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRecoverableError_GetRecoverableErrorDataForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) HRESULT {
-                return @as(*const IRecoverableError.VTable, @ptrCast(self.vtable)).GetRecoverableErrorDataForChangeUnit(@as(*const IRecoverableError, @ptrCast(self)), pChangeUnit, phrError, ppErrorData);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetStage(self: *const IRecoverableError, pStage: ?*SYNC_PROGRESS_STAGE) callconv(.Inline) HRESULT {
+        return self.vtable.GetStage(self, pStage);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProvider(self: *const IRecoverableError, pProviderRole: ?*SYNC_PROVIDER_ROLE) callconv(.Inline) HRESULT {
+        return self.vtable.GetProvider(self, pProviderRole);
+    }
+    pub fn GetChangeWithRecoverableError(self: *const IRecoverableError, ppChangeWithRecoverableError: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeWithRecoverableError(self, ppChangeWithRecoverableError);
+    }
+    pub fn GetRecoverableErrorDataForChange(self: *const IRecoverableError, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return self.vtable.GetRecoverableErrorDataForChange(self, phrError, ppErrorData);
+    }
+    pub fn GetRecoverableErrorDataForChangeUnit(self: *const IRecoverableError, pChangeUnit: ?*ISyncChangeUnit, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return self.vtable.GetRecoverableErrorDataForChangeUnit(self, pChangeUnit, phrError, ppErrorData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IChangeConflict_Value = Guid.initString("014ebf97-9f20-4f7a-bdd4-25979c77c002");
 pub const IID_IChangeConflict = &IID_IChangeConflict_Value;
-pub const IChangeConflict = extern struct {
+pub const IChangeConflict = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDestinationProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pResolveAction: ?*SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                resolveAction: SYNC_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDestinationProviderConflictingChange: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingChange: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderConflictingData: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingData: *const fn(
+            self: *const IChangeConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResolveActionForChange: *const fn(
+            self: *const IChangeConflict,
+            pResolveAction: ?*SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetResolveActionForChange: *const fn(
+            self: *const IChangeConflict,
+            resolveAction: SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResolveActionForChangeUnit: *const fn(
+            self: *const IChangeConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pResolveAction: ?*SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetResolveActionForChangeUnit: *const fn(
+            self: *const IChangeConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            resolveAction: SYNC_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingChange(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingChange(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingData(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingData(@as(*const IChangeConflict, @ptrCast(self)), ppConflictingData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_GetResolveActionForChange(self: *const T, pResolveAction: ?*SYNC_RESOLVE_ACTION) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetResolveActionForChange(@as(*const IChangeConflict, @ptrCast(self)), pResolveAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_SetResolveActionForChange(self: *const T, resolveAction: SYNC_RESOLVE_ACTION) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).SetResolveActionForChange(@as(*const IChangeConflict, @ptrCast(self)), resolveAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_GetResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, pResolveAction: ?*SYNC_RESOLVE_ACTION) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).GetResolveActionForChangeUnit(@as(*const IChangeConflict, @ptrCast(self)), pChangeUnit, pResolveAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeConflict_SetResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) HRESULT {
-                return @as(*const IChangeConflict.VTable, @ptrCast(self.vtable)).SetResolveActionForChangeUnit(@as(*const IChangeConflict, @ptrCast(self)), pChangeUnit, resolveAction);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDestinationProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetDestinationProviderConflictingChange(self, ppConflictingChange);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSourceProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceProviderConflictingChange(self, ppConflictingChange);
+    }
+    pub fn GetDestinationProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetDestinationProviderConflictingData(self, ppConflictingData);
+    }
+    pub fn GetSourceProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceProviderConflictingData(self, ppConflictingData);
+    }
+    pub fn GetResolveActionForChange(self: *const IChangeConflict, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.GetResolveActionForChange(self, pResolveAction);
+    }
+    pub fn SetResolveActionForChange(self: *const IChangeConflict, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.SetResolveActionForChange(self, resolveAction);
+    }
+    pub fn GetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.GetResolveActionForChangeUnit(self, pChangeUnit, pResolveAction);
+    }
+    pub fn SetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.SetResolveActionForChangeUnit(self, pChangeUnit, resolveAction);
+    }
 };
 
 const IID_IConstraintConflict_Value = Guid.initString("00d2302e-1cf8-4835-b85f-b7ca4f799e0a");
 pub const IID_IConstraintConflict = &IID_IConstraintConflict_Value;
-pub const IConstraintConflict = extern struct {
+pub const IConstraintConflict = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDestinationProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                ppConflictingChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderOriginalChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                ppOriginalChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                ppOriginalChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceProviderConflictingData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                ppConflictingData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDestinationProviderOriginalData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                ppOriginalData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                ppOriginalData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstraintResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConstraintResolveActionForChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstraintResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetConstraintResolveActionForChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                pChangeUnit: ?*ISyncChangeUnit,
-                constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstraintConflictReason: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-                pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-                pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsTemporary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDestinationProviderConflictingChange: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingChange: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderOriginalChange: *const fn(
+            self: *const IConstraintConflict,
+            ppOriginalChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderConflictingData: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceProviderConflictingData: *const fn(
+            self: *const IConstraintConflict,
+            ppConflictingData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDestinationProviderOriginalData: *const fn(
+            self: *const IConstraintConflict,
+            ppOriginalData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstraintResolveActionForChange: *const fn(
+            self: *const IConstraintConflict,
+            pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConstraintResolveActionForChange: *const fn(
+            self: *const IConstraintConflict,
+            constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstraintResolveActionForChangeUnit: *const fn(
+            self: *const IConstraintConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetConstraintResolveActionForChangeUnit: *const fn(
+            self: *const IConstraintConflict,
+            pChangeUnit: ?*ISyncChangeUnit,
+            constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstraintConflictReason: *const fn(
+            self: *const IConstraintConflict,
+            pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsTemporary: *const fn(
+            self: *const IConstraintConflict,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetDestinationProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingChange(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetSourceProviderConflictingChange(self: *const T, ppConflictingChange: ?*?*ISyncChange) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingChange(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetDestinationProviderOriginalChange(self: *const T, ppOriginalChange: ?*?*ISyncChange) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderOriginalChange(@as(*const IConstraintConflict, @ptrCast(self)), ppOriginalChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetDestinationProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderConflictingData(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetSourceProviderConflictingData(self: *const T, ppConflictingData: ?*?*IUnknown) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetSourceProviderConflictingData(@as(*const IConstraintConflict, @ptrCast(self)), ppConflictingData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetDestinationProviderOriginalData(self: *const T, ppOriginalData: ?*?*IUnknown) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetDestinationProviderOriginalData(@as(*const IConstraintConflict, @ptrCast(self)), ppOriginalData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetConstraintResolveActionForChange(self: *const T, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintResolveActionForChange(@as(*const IConstraintConflict, @ptrCast(self)), pConstraintResolveAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_SetConstraintResolveActionForChange(self: *const T, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).SetConstraintResolveActionForChange(@as(*const IConstraintConflict, @ptrCast(self)), constraintResolveAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintResolveActionForChangeUnit(@as(*const IConstraintConflict, @ptrCast(self)), pChangeUnit, pConstraintResolveAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_SetConstraintResolveActionForChangeUnit(self: *const T, pChangeUnit: ?*ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).SetConstraintResolveActionForChangeUnit(@as(*const IConstraintConflict, @ptrCast(self)), pChangeUnit, constraintResolveAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_GetConstraintConflictReason(self: *const T, pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).GetConstraintConflictReason(@as(*const IConstraintConflict, @ptrCast(self)), pConstraintConflictReason);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IConstraintConflict_IsTemporary(self: *const T) HRESULT {
-                return @as(*const IConstraintConflict.VTable, @ptrCast(self.vtable)).IsTemporary(@as(*const IConstraintConflict, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDestinationProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetDestinationProviderConflictingChange(self, ppConflictingChange);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSourceProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceProviderConflictingChange(self, ppConflictingChange);
+    }
+    pub fn GetDestinationProviderOriginalChange(self: *const IConstraintConflict, ppOriginalChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetDestinationProviderOriginalChange(self, ppOriginalChange);
+    }
+    pub fn GetDestinationProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetDestinationProviderConflictingData(self, ppConflictingData);
+    }
+    pub fn GetSourceProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceProviderConflictingData(self, ppConflictingData);
+    }
+    pub fn GetDestinationProviderOriginalData(self: *const IConstraintConflict, ppOriginalData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetDestinationProviderOriginalData(self, ppOriginalData);
+    }
+    pub fn GetConstraintResolveActionForChange(self: *const IConstraintConflict, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.GetConstraintResolveActionForChange(self, pConstraintResolveAction);
+    }
+    pub fn SetConstraintResolveActionForChange(self: *const IConstraintConflict, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.SetConstraintResolveActionForChange(self, constraintResolveAction);
+    }
+    pub fn GetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.GetConstraintResolveActionForChangeUnit(self, pChangeUnit, pConstraintResolveAction);
+    }
+    pub fn SetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.SetConstraintResolveActionForChangeUnit(self, pChangeUnit, constraintResolveAction);
+    }
+    pub fn GetConstraintConflictReason(self: *const IConstraintConflict, pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON) callconv(.Inline) HRESULT {
+        return self.vtable.GetConstraintConflictReason(self, pConstraintConflictReason);
+    }
+    pub fn IsTemporary(self: *const IConstraintConflict) callconv(.Inline) HRESULT {
+        return self.vtable.IsTemporary(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncCallback_Value = Guid.initString("0599797f-5ed9-485c-ae36-0c5d1bf2e7a5");
 pub const IID_ISyncCallback = &IID_ISyncCallback_Value;
-pub const ISyncCallback = extern struct {
+pub const ISyncCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncCallback,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncCallback,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncCallback,
-                pSyncChange: ?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncCallback,
-                pSyncChange: ?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncCallback,
-                pConflict: ?*IChangeConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncCallback,
-                pConflict: ?*IChangeConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnFullEnumerationNeeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncCallback,
-                pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncCallback,
-                pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnRecoverableError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncCallback,
-                pRecoverableError: ?*IRecoverableError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncCallback,
-                pRecoverableError: ?*IRecoverableError,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnProgress: *const fn(
+            self: *const ISyncCallback,
+            provider: SYNC_PROVIDER_ROLE,
+            syncStage: SYNC_PROGRESS_STAGE,
+            dwCompletedWork: u32,
+            dwTotalWork: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnChange: *const fn(
+            self: *const ISyncCallback,
+            pSyncChange: ?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnConflict: *const fn(
+            self: *const ISyncCallback,
+            pConflict: ?*IChangeConflict,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnFullEnumerationNeeded: *const fn(
+            self: *const ISyncCallback,
+            pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnRecoverableError: *const fn(
+            self: *const ISyncCallback,
+            pRecoverableError: ?*IRecoverableError,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncCallback_OnProgress(self: *const T, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) HRESULT {
-                return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const ISyncCallback, @ptrCast(self)), provider, syncStage, dwCompletedWork, dwTotalWork);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncCallback_OnChange(self: *const T, pSyncChange: ?*ISyncChange) HRESULT {
-                return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnChange(@as(*const ISyncCallback, @ptrCast(self)), pSyncChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncCallback_OnConflict(self: *const T, pConflict: ?*IChangeConflict) HRESULT {
-                return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnConflict(@as(*const ISyncCallback, @ptrCast(self)), pConflict);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncCallback_OnFullEnumerationNeeded(self: *const T, pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION) HRESULT {
-                return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnFullEnumerationNeeded(@as(*const ISyncCallback, @ptrCast(self)), pFullEnumerationAction);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncCallback_OnRecoverableError(self: *const T, pRecoverableError: ?*IRecoverableError) HRESULT {
-                return @as(*const ISyncCallback.VTable, @ptrCast(self.vtable)).OnRecoverableError(@as(*const ISyncCallback, @ptrCast(self)), pRecoverableError);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnProgress(self: *const ISyncCallback, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnProgress(self, provider, syncStage, dwCompletedWork, dwTotalWork);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnChange(self: *const ISyncCallback, pSyncChange: ?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.OnChange(self, pSyncChange);
+    }
+    pub fn OnConflict(self: *const ISyncCallback, pConflict: ?*IChangeConflict) callconv(.Inline) HRESULT {
+        return self.vtable.OnConflict(self, pConflict);
+    }
+    pub fn OnFullEnumerationNeeded(self: *const ISyncCallback, pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION) callconv(.Inline) HRESULT {
+        return self.vtable.OnFullEnumerationNeeded(self, pFullEnumerationAction);
+    }
+    pub fn OnRecoverableError(self: *const ISyncCallback, pRecoverableError: ?*IRecoverableError) callconv(.Inline) HRESULT {
+        return self.vtable.OnRecoverableError(self, pRecoverableError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncCallback2_Value = Guid.initString("47ce84af-7442-4ead-8630-12015e030ad7");
 pub const IID_ISyncCallback2 = &IID_ISyncCallback2_Value;
-pub const ISyncCallback2 = extern struct {
+pub const ISyncCallback2 = extern union {
     pub const VTable = extern struct {
         base: ISyncCallback.VTable,
-        OnChangeApplied: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnChangeFailed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncCallback2,
-                dwChangesApplied: u32,
-                dwChangesFailed: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnChangeApplied: *const fn(
+            self: *const ISyncCallback2,
+            dwChangesApplied: u32,
+            dwChangesFailed: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnChangeFailed: *const fn(
+            self: *const ISyncCallback2,
+            dwChangesApplied: u32,
+            dwChangesFailed: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncCallback.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncCallback2_OnChangeApplied(self: *const T, dwChangesApplied: u32, dwChangesFailed: u32) HRESULT {
-                return @as(*const ISyncCallback2.VTable, @ptrCast(self.vtable)).OnChangeApplied(@as(*const ISyncCallback2, @ptrCast(self)), dwChangesApplied, dwChangesFailed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncCallback2_OnChangeFailed(self: *const T, dwChangesApplied: u32, dwChangesFailed: u32) HRESULT {
-                return @as(*const ISyncCallback2.VTable, @ptrCast(self.vtable)).OnChangeFailed(@as(*const ISyncCallback2, @ptrCast(self)), dwChangesApplied, dwChangesFailed);
-            }
-        };
+    ISyncCallback: ISyncCallback,
+    IUnknown: IUnknown,
+    pub fn OnChangeApplied(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnChangeApplied(self, dwChangesApplied, dwChangesFailed);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnChangeFailed(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnChangeFailed(self, dwChangesApplied, dwChangesFailed);
+    }
 };
 
 const IID_ISyncConstraintCallback_Value = Guid.initString("8af3843e-75b3-438c-bb51-6f020d70d3cb");
 pub const IID_ISyncConstraintCallback = &IID_ISyncConstraintCallback_Value;
-pub const ISyncConstraintCallback = extern struct {
+pub const ISyncConstraintCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnConstraintConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncConstraintCallback,
-                pConflict: ?*IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncConstraintCallback,
-                pConflict: ?*IConstraintConflict,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnConstraintConflict: *const fn(
+            self: *const ISyncConstraintCallback,
+            pConflict: ?*IConstraintConflict,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncConstraintCallback_OnConstraintConflict(self: *const T, pConflict: ?*IConstraintConflict) HRESULT {
-                return @as(*const ISyncConstraintCallback.VTable, @ptrCast(self.vtable)).OnConstraintConflict(@as(*const ISyncConstraintCallback, @ptrCast(self)), pConflict);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnConstraintConflict(self: *const ISyncConstraintCallback, pConflict: ?*IConstraintConflict) callconv(.Inline) HRESULT {
+        return self.vtable.OnConstraintConflict(self, pConflict);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProvider_Value = Guid.initString("8f657056-2bce-4a17-8c68-c7bb7898b56f");
 pub const IID_ISyncProvider = &IID_ISyncProvider_Value;
-pub const ISyncProvider = extern struct {
+pub const ISyncProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProvider,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProvider,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const ISyncProvider,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProvider_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) HRESULT {
-                return @as(*const ISyncProvider.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISyncProvider, @ptrCast(self)), pIdParameters);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetIdParameters(self: *const ISyncProvider, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return self.vtable.GetIdParameters(self, pIdParameters);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncSessionState_Value = Guid.initString("b8a940fe-9f01-483b-9434-c37d361225d9");
 pub const IID_ISyncSessionState = &IID_ISyncSessionState_Value;
-pub const ISyncSessionState = extern struct {
+pub const ISyncSessionState = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsCanceled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState,
-                pfIsCanceled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState,
-                pfIsCanceled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInfoForChangeApplication: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*u8,
-                pcbChangeApplierInfo: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*u8,
-                pcbChangeApplierInfo: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadInfoFromChangeApplication: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*const u8,
-                cbChangeApplierInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState,
-                pbChangeApplierInfo: ?*const u8,
-                cbChangeApplierInfo: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForgottenKnowledgeRecoveryRangeStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState,
-                pbRangeStart: ?*u8,
-                pcbRangeStart: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState,
-                pbRangeStart: ?*u8,
-                pcbRangeStart: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetForgottenKnowledgeRecoveryRangeEnd: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState,
-                pbRangeEnd: ?*u8,
-                pcbRangeEnd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState,
-                pbRangeEnd: ?*u8,
-                pcbRangeEnd: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetForgottenKnowledgeRecoveryRange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState,
-                pRange: ?*const SYNC_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState,
-                pRange: ?*const SYNC_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState,
-                provider: SYNC_PROVIDER_ROLE,
-                syncStage: SYNC_PROGRESS_STAGE,
-                dwCompletedWork: u32,
-                dwTotalWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsCanceled: *const fn(
+            self: *const ISyncSessionState,
+            pfIsCanceled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInfoForChangeApplication: *const fn(
+            self: *const ISyncSessionState,
+            pbChangeApplierInfo: ?*u8,
+            pcbChangeApplierInfo: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadInfoFromChangeApplication: *const fn(
+            self: *const ISyncSessionState,
+            pbChangeApplierInfo: ?*const u8,
+            cbChangeApplierInfo: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForgottenKnowledgeRecoveryRangeStart: *const fn(
+            self: *const ISyncSessionState,
+            pbRangeStart: ?*u8,
+            pcbRangeStart: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetForgottenKnowledgeRecoveryRangeEnd: *const fn(
+            self: *const ISyncSessionState,
+            pbRangeEnd: ?*u8,
+            pcbRangeEnd: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetForgottenKnowledgeRecoveryRange: *const fn(
+            self: *const ISyncSessionState,
+            pRange: ?*const SYNC_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnProgress: *const fn(
+            self: *const ISyncSessionState,
+            provider: SYNC_PROVIDER_ROLE,
+            syncStage: SYNC_PROGRESS_STAGE,
+            dwCompletedWork: u32,
+            dwTotalWork: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState_IsCanceled(self: *const T, pfIsCanceled: ?*BOOL) HRESULT {
-                return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).IsCanceled(@as(*const ISyncSessionState, @ptrCast(self)), pfIsCanceled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState_GetInfoForChangeApplication(self: *const T, pbChangeApplierInfo: ?*u8, pcbChangeApplierInfo: ?*u32) HRESULT {
-                return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetInfoForChangeApplication(@as(*const ISyncSessionState, @ptrCast(self)), pbChangeApplierInfo, pcbChangeApplierInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState_LoadInfoFromChangeApplication(self: *const T, pbChangeApplierInfo: ?*const u8, cbChangeApplierInfo: u32) HRESULT {
-                return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).LoadInfoFromChangeApplication(@as(*const ISyncSessionState, @ptrCast(self)), pbChangeApplierInfo, cbChangeApplierInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeStart(self: *const T, pbRangeStart: ?*u8, pcbRangeStart: ?*u32) HRESULT {
-                return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetForgottenKnowledgeRecoveryRangeStart(@as(*const ISyncSessionState, @ptrCast(self)), pbRangeStart, pcbRangeStart);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState_GetForgottenKnowledgeRecoveryRangeEnd(self: *const T, pbRangeEnd: ?*u8, pcbRangeEnd: ?*u32) HRESULT {
-                return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).GetForgottenKnowledgeRecoveryRangeEnd(@as(*const ISyncSessionState, @ptrCast(self)), pbRangeEnd, pcbRangeEnd);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState_SetForgottenKnowledgeRecoveryRange(self: *const T, pRange: ?*const SYNC_RANGE) HRESULT {
-                return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).SetForgottenKnowledgeRecoveryRange(@as(*const ISyncSessionState, @ptrCast(self)), pRange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState_OnProgress(self: *const T, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) HRESULT {
-                return @as(*const ISyncSessionState.VTable, @ptrCast(self.vtable)).OnProgress(@as(*const ISyncSessionState, @ptrCast(self)), provider, syncStage, dwCompletedWork, dwTotalWork);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn IsCanceled(self: *const ISyncSessionState, pfIsCanceled: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsCanceled(self, pfIsCanceled);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetInfoForChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*u8, pcbChangeApplierInfo: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetInfoForChangeApplication(self, pbChangeApplierInfo, pcbChangeApplierInfo);
+    }
+    pub fn LoadInfoFromChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*const u8, cbChangeApplierInfo: u32) callconv(.Inline) HRESULT {
+        return self.vtable.LoadInfoFromChangeApplication(self, pbChangeApplierInfo, cbChangeApplierInfo);
+    }
+    pub fn GetForgottenKnowledgeRecoveryRangeStart(self: *const ISyncSessionState, pbRangeStart: ?*u8, pcbRangeStart: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetForgottenKnowledgeRecoveryRangeStart(self, pbRangeStart, pcbRangeStart);
+    }
+    pub fn GetForgottenKnowledgeRecoveryRangeEnd(self: *const ISyncSessionState, pbRangeEnd: ?*u8, pcbRangeEnd: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetForgottenKnowledgeRecoveryRangeEnd(self, pbRangeEnd, pcbRangeEnd);
+    }
+    pub fn SetForgottenKnowledgeRecoveryRange(self: *const ISyncSessionState, pRange: ?*const SYNC_RANGE) callconv(.Inline) HRESULT {
+        return self.vtable.SetForgottenKnowledgeRecoveryRange(self, pRange);
+    }
+    pub fn OnProgress(self: *const ISyncSessionState, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
+        return self.vtable.OnProgress(self, provider, syncStage, dwCompletedWork, dwTotalWork);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncSessionExtendedErrorInfo_Value = Guid.initString("326c6810-790a-409b-b741-6999388761eb");
 pub const IID_ISyncSessionExtendedErrorInfo = &IID_ISyncSessionExtendedErrorInfo_Value;
-pub const ISyncSessionExtendedErrorInfo = extern struct {
+pub const ISyncSessionExtendedErrorInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSyncProviderWithError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionExtendedErrorInfo,
-                ppProviderWithError: ?*?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionExtendedErrorInfo,
-                ppProviderWithError: ?*?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncProviderWithError: *const fn(
+            self: *const ISyncSessionExtendedErrorInfo,
+            ppProviderWithError: ?*?*ISyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionExtendedErrorInfo_GetSyncProviderWithError(self: *const T, ppProviderWithError: ?*?*ISyncProvider) HRESULT {
-                return @as(*const ISyncSessionExtendedErrorInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderWithError(@as(*const ISyncSessionExtendedErrorInfo, @ptrCast(self)), ppProviderWithError);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetSyncProviderWithError(self: *const ISyncSessionExtendedErrorInfo, ppProviderWithError: ?*?*ISyncProvider) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderWithError(self, ppProviderWithError);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncSessionState2_Value = Guid.initString("9e37cfa3-9e38-4c61-9ca3-ffe810b45ca2");
 pub const IID_ISyncSessionState2 = &IID_ISyncSessionState2_Value;
-pub const ISyncSessionState2 = extern struct {
+pub const ISyncSessionState2 = extern union {
     pub const VTable = extern struct {
         base: ISyncSessionState.VTable,
-        SetProviderWithError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState2,
-                fSelf: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState2,
-                fSelf: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSessionErrorStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncSessionState2,
-                phrSessionError: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncSessionState2,
-                phrSessionError: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetProviderWithError: *const fn(
+            self: *const ISyncSessionState2,
+            fSelf: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSessionErrorStatus: *const fn(
+            self: *const ISyncSessionState2,
+            phrSessionError: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncSessionState.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState2_SetProviderWithError(self: *const T, fSelf: BOOL) HRESULT {
-                return @as(*const ISyncSessionState2.VTable, @ptrCast(self.vtable)).SetProviderWithError(@as(*const ISyncSessionState2, @ptrCast(self)), fSelf);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncSessionState2_GetSessionErrorStatus(self: *const T, phrSessionError: ?*HRESULT) HRESULT {
-                return @as(*const ISyncSessionState2.VTable, @ptrCast(self.vtable)).GetSessionErrorStatus(@as(*const ISyncSessionState2, @ptrCast(self)), phrSessionError);
-            }
-        };
+    ISyncSessionState: ISyncSessionState,
+    IUnknown: IUnknown,
+    pub fn SetProviderWithError(self: *const ISyncSessionState2, fSelf: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetProviderWithError(self, fSelf);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSessionErrorStatus(self: *const ISyncSessionState2, phrSessionError: ?*HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.GetSessionErrorStatus(self, phrSessionError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFilterInfo_Value = Guid.initString("794eaaf8-3f2e-47e6-9728-17e6fcf94cb7");
 pub const IID_ISyncFilterInfo = &IID_ISyncFilterInfo_Value;
-pub const ISyncFilterInfo = extern struct {
+pub const ISyncFilterInfo = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFilterInfo,
-                pbBuffer: ?*u8,
-                pcbBuffer: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFilterInfo,
-                pbBuffer: ?*u8,
-                pcbBuffer: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Serialize: *const fn(
+            self: *const ISyncFilterInfo,
+            pbBuffer: ?*u8,
+            pcbBuffer: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFilterInfo_Serialize(self: *const T, pbBuffer: ?*u8, pcbBuffer: ?*u32) HRESULT {
-                return @as(*const ISyncFilterInfo.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilterInfo, @ptrCast(self)), pbBuffer, pcbBuffer);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Serialize(self: *const ISyncFilterInfo, pbBuffer: ?*u8, pcbBuffer: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Serialize(self, pbBuffer, pcbBuffer);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFilterInfo2_Value = Guid.initString("19b394ba-e3d0-468c-934d-321968b2ab34");
 pub const IID_ISyncFilterInfo2 = &IID_ISyncFilterInfo2_Value;
-pub const ISyncFilterInfo2 = extern struct {
+pub const ISyncFilterInfo2 = extern union {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFilterInfo2,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFilterInfo2,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFlags: *const fn(
+            self: *const ISyncFilterInfo2,
+            pdwFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFilterInfo2_GetFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @as(*const ISyncFilterInfo2.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncFilterInfo2, @ptrCast(self)), pdwFlags);
-            }
-        };
+    ISyncFilterInfo: ISyncFilterInfo,
+    IUnknown: IUnknown,
+    pub fn GetFlags(self: *const ISyncFilterInfo2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFlags(self, pdwFlags);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IChangeUnitListFilterInfo_Value = Guid.initString("f2837671-0bdf-43fa-b502-232375fb50c2");
 pub const IID_IChangeUnitListFilterInfo = &IID_IChangeUnitListFilterInfo_Value;
-pub const IChangeUnitListFilterInfo = extern struct {
+pub const IChangeUnitListFilterInfo = extern union {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeUnitListFilterInfo,
-                ppbChangeUnitIds: ?*const ?*u8,
-                dwChangeUnitCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeUnitListFilterInfo,
-                ppbChangeUnitIds: ?*const ?*u8,
-                dwChangeUnitCount: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitIdCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeUnitListFilterInfo,
-                pdwChangeUnitIdCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeUnitListFilterInfo,
-                pdwChangeUnitIdCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IChangeUnitListFilterInfo,
-                dwChangeUnitIdIndex: u32,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IChangeUnitListFilterInfo,
-                dwChangeUnitIdIndex: u32,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IChangeUnitListFilterInfo,
+            ppbChangeUnitIds: ?*const ?*u8,
+            dwChangeUnitCount: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitIdCount: *const fn(
+            self: *const IChangeUnitListFilterInfo,
+            pdwChangeUnitIdCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitId: *const fn(
+            self: *const IChangeUnitListFilterInfo,
+            dwChangeUnitIdIndex: u32,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeUnitListFilterInfo_Initialize(self: *const T, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) HRESULT {
-                return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), ppbChangeUnitIds, dwChangeUnitCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeUnitListFilterInfo_GetChangeUnitIdCount(self: *const T, pdwChangeUnitIdCount: ?*u32) HRESULT {
-                return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).GetChangeUnitIdCount(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), pdwChangeUnitIdCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IChangeUnitListFilterInfo_GetChangeUnitId(self: *const T, dwChangeUnitIdIndex: u32, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const IChangeUnitListFilterInfo.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const IChangeUnitListFilterInfo, @ptrCast(self)), dwChangeUnitIdIndex, pbChangeUnitId, pcbIdSize);
-            }
-        };
+    ISyncFilterInfo: ISyncFilterInfo,
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IChangeUnitListFilterInfo, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Initialize(self, ppbChangeUnitIds, dwChangeUnitCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetChangeUnitIdCount(self: *const IChangeUnitListFilterInfo, pdwChangeUnitIdCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnitIdCount(self, pdwChangeUnitIdCount);
+    }
+    pub fn GetChangeUnitId(self: *const IChangeUnitListFilterInfo, dwChangeUnitIdIndex: u32, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnitId(self, dwChangeUnitIdIndex, pbChangeUnitId, pcbIdSize);
+    }
 };
 
 const IID_ISyncFilter_Value = Guid.initString("087a3f15-0fcb-44c1-9639-53c14e2b5506");
 pub const IID_ISyncFilter = &IID_ISyncFilter_Value;
-pub const ISyncFilter = extern struct {
+pub const ISyncFilter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        IsIdentical: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFilter,
-                pSyncFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFilter,
-                pSyncFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFilter,
-                pbSyncFilter: ?*u8,
-                pcbSyncFilter: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFilter,
-                pbSyncFilter: ?*u8,
-                pcbSyncFilter: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsIdentical: *const fn(
+            self: *const ISyncFilter,
+            pSyncFilter: ?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const ISyncFilter,
+            pbSyncFilter: ?*u8,
+            pcbSyncFilter: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFilter_IsIdentical(self: *const T, pSyncFilter: ?*ISyncFilter) HRESULT {
-                return @as(*const ISyncFilter.VTable, @ptrCast(self.vtable)).IsIdentical(@as(*const ISyncFilter, @ptrCast(self)), pSyncFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFilter_Serialize(self: *const T, pbSyncFilter: ?*u8, pcbSyncFilter: ?*u32) HRESULT {
-                return @as(*const ISyncFilter.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncFilter, @ptrCast(self)), pbSyncFilter, pcbSyncFilter);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn IsIdentical(self: *const ISyncFilter, pSyncFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+        return self.vtable.IsIdentical(self, pSyncFilter);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Serialize(self: *const ISyncFilter, pbSyncFilter: ?*u8, pcbSyncFilter: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Serialize(self, pbSyncFilter, pcbSyncFilter);
+    }
 };
 
 const IID_ISyncFilterDeserializer_Value = Guid.initString("b45b7a72-e5c7-46be-9c82-77b8b15dab8a");
 pub const IID_ISyncFilterDeserializer = &IID_ISyncFilterDeserializer_Value;
-pub const ISyncFilterDeserializer = extern struct {
+pub const ISyncFilterDeserializer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DeserializeSyncFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFilterDeserializer,
-                pbSyncFilter: ?*const u8,
-                dwCbSyncFilter: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFilterDeserializer,
-                pbSyncFilter: ?*const u8,
-                dwCbSyncFilter: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DeserializeSyncFilter: *const fn(
+            self: *const ISyncFilterDeserializer,
+            pbSyncFilter: ?*const u8,
+            dwCbSyncFilter: u32,
+            ppISyncFilter: ?*?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFilterDeserializer_DeserializeSyncFilter(self: *const T, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) HRESULT {
-                return @as(*const ISyncFilterDeserializer.VTable, @ptrCast(self.vtable)).DeserializeSyncFilter(@as(*const ISyncFilterDeserializer, @ptrCast(self)), pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn DeserializeSyncFilter(self: *const ISyncFilterDeserializer, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+        return self.vtable.DeserializeSyncFilter(self, pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_ICustomFilterInfo_Value = Guid.initString("1d335dff-6f88-4e4d-91a8-a3f351cfd473");
 pub const IID_ICustomFilterInfo = &IID_ICustomFilterInfo_Value;
-pub const ICustomFilterInfo = extern struct {
+pub const ICustomFilterInfo = extern union {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        GetSyncFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICustomFilterInfo,
-                pISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICustomFilterInfo,
-                pISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncFilter: *const fn(
+            self: *const ICustomFilterInfo,
+            pISyncFilter: ?*?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICustomFilterInfo_GetSyncFilter(self: *const T, pISyncFilter: ?*?*ISyncFilter) HRESULT {
-                return @as(*const ICustomFilterInfo.VTable, @ptrCast(self.vtable)).GetSyncFilter(@as(*const ICustomFilterInfo, @ptrCast(self)), pISyncFilter);
-            }
-        };
+    ISyncFilterInfo: ISyncFilterInfo,
+    IUnknown: IUnknown,
+    pub fn GetSyncFilter(self: *const ICustomFilterInfo, pISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncFilter(self, pISyncFilter);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const FILTER_COMBINATION_TYPE = enum(i32) {
@@ -2944,2408 +1683,1314 @@ pub const FCT_INTERSECTION = FILTER_COMBINATION_TYPE.N;
 
 const IID_ICombinedFilterInfo_Value = Guid.initString("11f9de71-2818-4779-b2ac-42d450565f45");
 pub const IID_ICombinedFilterInfo = &IID_ICombinedFilterInfo_Value;
-pub const ICombinedFilterInfo = extern struct {
+pub const ICombinedFilterInfo = extern union {
     pub const VTable = extern struct {
         base: ISyncFilterInfo.VTable,
-        GetFilterCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICombinedFilterInfo,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICombinedFilterInfo,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICombinedFilterInfo,
-                dwFilterIndex: u32,
-                ppIFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICombinedFilterInfo,
-                dwFilterIndex: u32,
-                ppIFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterCombinationType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICombinedFilterInfo,
-                pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICombinedFilterInfo,
-                pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterCount: *const fn(
+            self: *const ICombinedFilterInfo,
+            pdwFilterCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterInfo: *const fn(
+            self: *const ICombinedFilterInfo,
+            dwFilterIndex: u32,
+            ppIFilterInfo: ?*?*ISyncFilterInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterCombinationType: *const fn(
+            self: *const ICombinedFilterInfo,
+            pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncFilterInfo.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICombinedFilterInfo_GetFilterCount(self: *const T, pdwFilterCount: ?*u32) HRESULT {
-                return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterCount(@as(*const ICombinedFilterInfo, @ptrCast(self)), pdwFilterCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICombinedFilterInfo_GetFilterInfo(self: *const T, dwFilterIndex: u32, ppIFilterInfo: ?*?*ISyncFilterInfo) HRESULT {
-                return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterInfo(@as(*const ICombinedFilterInfo, @ptrCast(self)), dwFilterIndex, ppIFilterInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICombinedFilterInfo_GetFilterCombinationType(self: *const T, pFilterCombinationType: ?*FILTER_COMBINATION_TYPE) HRESULT {
-                return @as(*const ICombinedFilterInfo.VTable, @ptrCast(self.vtable)).GetFilterCombinationType(@as(*const ICombinedFilterInfo, @ptrCast(self)), pFilterCombinationType);
-            }
-        };
+    ISyncFilterInfo: ISyncFilterInfo,
+    IUnknown: IUnknown,
+    pub fn GetFilterCount(self: *const ICombinedFilterInfo, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterCount(self, pdwFilterCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFilterInfo(self: *const ICombinedFilterInfo, dwFilterIndex: u32, ppIFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterInfo(self, dwFilterIndex, ppIFilterInfo);
+    }
+    pub fn GetFilterCombinationType(self: *const ICombinedFilterInfo, pFilterCombinationType: ?*FILTER_COMBINATION_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterCombinationType(self, pFilterCombinationType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncChanges_Value = Guid.initString("5f86be4a-5e78-4e32-ac1c-c24fd223ef85");
 pub const IID_IEnumSyncChanges = &IID_IEnumSyncChanges_Value;
-pub const IEnumSyncChanges = extern struct {
+pub const IEnumSyncChanges = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-                ppChange: ?*?*ISyncChange,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-                ppChange: ?*?*ISyncChange,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChanges,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChanges,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChanges,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncChanges,
+            cChanges: u32,
+            ppChange: ?*?*ISyncChange,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncChanges,
+            cChanges: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncChanges,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncChanges,
+            ppEnum: ?*?*IEnumSyncChanges,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChanges_Next(self: *const T, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncChanges, @ptrCast(self)), cChanges, ppChange, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChanges_Skip(self: *const T, cChanges: u32) HRESULT {
-                return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncChanges, @ptrCast(self)), cChanges);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChanges_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncChanges, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChanges_Clone(self: *const T, ppEnum: ?*?*IEnumSyncChanges) HRESULT {
-                return @as(*const IEnumSyncChanges.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChanges, @ptrCast(self)), ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSyncChanges, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cChanges, ppChange, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumSyncChanges, cChanges: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cChanges);
+    }
+    pub fn Reset(self: *const IEnumSyncChanges) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumSyncChanges, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBuilder_Value = Guid.initString("56f14771-8677-484f-a170-e386e418a676");
 pub const IID_ISyncChangeBuilder = &IID_ISyncChangeBuilder_Value;
-pub const ISyncChangeBuilder = extern struct {
+pub const ISyncChangeBuilder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddChangeUnitMetadata: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBuilder,
-                pbChangeUnitId: ?*const u8,
-                pChangeUnitVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBuilder,
-                pbChangeUnitId: ?*const u8,
-                pChangeUnitVersion: ?*const SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddChangeUnitMetadata: *const fn(
+            self: *const ISyncChangeBuilder,
+            pbChangeUnitId: ?*const u8,
+            pChangeUnitVersion: ?*const SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBuilder_AddChangeUnitMetadata(self: *const T, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) HRESULT {
-                return @as(*const ISyncChangeBuilder.VTable, @ptrCast(self.vtable)).AddChangeUnitMetadata(@as(*const ISyncChangeBuilder, @ptrCast(self)), pbChangeUnitId, pChangeUnitVersion);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AddChangeUnitMetadata(self: *const ISyncChangeBuilder, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.AddChangeUnitMetadata(self, pbChangeUnitId, pChangeUnitVersion);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IFilterTrackingSyncChangeBuilder_Value = Guid.initString("295024a0-70da-4c58-883c-ce2afb308d0b");
 pub const IID_IFilterTrackingSyncChangeBuilder = &IID_IFilterTrackingSyncChangeBuilder_Value;
-pub const IFilterTrackingSyncChangeBuilder = extern struct {
+pub const IFilterTrackingSyncChangeBuilder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddFilterChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterTrackingSyncChangeBuilder,
-                dwFilterKey: u32,
-                pFilterChange: ?*const SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterTrackingSyncChangeBuilder,
-                dwFilterKey: u32,
-                pFilterChange: ?*const SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAllChangeUnitsPresentFlag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterTrackingSyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterTrackingSyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFilterChange: *const fn(
+            self: *const IFilterTrackingSyncChangeBuilder,
+            dwFilterKey: u32,
+            pFilterChange: ?*const SYNC_FILTER_CHANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAllChangeUnitsPresentFlag: *const fn(
+            self: *const IFilterTrackingSyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterTrackingSyncChangeBuilder_AddFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) HRESULT {
-                return @as(*const IFilterTrackingSyncChangeBuilder.VTable, @ptrCast(self.vtable)).AddFilterChange(@as(*const IFilterTrackingSyncChangeBuilder, @ptrCast(self)), dwFilterKey, pFilterChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterTrackingSyncChangeBuilder_SetAllChangeUnitsPresentFlag(self: *const T) HRESULT {
-                return @as(*const IFilterTrackingSyncChangeBuilder.VTable, @ptrCast(self.vtable)).SetAllChangeUnitsPresentFlag(@as(*const IFilterTrackingSyncChangeBuilder, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AddFilterChange(self: *const IFilterTrackingSyncChangeBuilder, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+        return self.vtable.AddFilterChange(self, dwFilterKey, pFilterChange);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetAllChangeUnitsPresentFlag(self: *const IFilterTrackingSyncChangeBuilder) callconv(.Inline) HRESULT {
+        return self.vtable.SetAllChangeUnitsPresentFlag(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchBase_Value = Guid.initString("52f6e694-6a71-4494-a184-a8311bf5d227");
 pub const IID_ISyncChangeBatchBase = &IID_ISyncChangeBatchBase_Value;
-pub const ISyncChangeBatchBase = extern struct {
+pub const ISyncChangeBatchBase = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetChangeEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                ppEnum: ?*?*IEnumSyncChanges,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsLastBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                pfLastBatch: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                pfLastBatch: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWorkEstimateForBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                pdwWorkForBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                pdwWorkForBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRemainingWorkEstimateForSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                pdwRemainingWorkForSession: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                pdwRemainingWorkForSession: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginOrderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                pbLowerBound: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                pbLowerBound: ?*const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndOrderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                pbUpperBound: ?*const u8,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                pbUpperBound: ?*const u8,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddItemMetadataToGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrerequisiteKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLastBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWorkEstimateForBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                dwWorkForBatch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                dwWorkForBatch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRemainingWorkEstimateForSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                dwRemainingWorkForSession: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                dwRemainingWorkForSession: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase,
-                pbChangeBatch: ?*u8,
-                pcbChangeBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase,
-                pbChangeBatch: ?*u8,
-                pcbChangeBatch: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetChangeEnumerator: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppEnum: ?*?*IEnumSyncChanges,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsLastBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pfLastBatch: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWorkEstimateForBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pdwWorkForBatch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRemainingWorkEstimateForSession: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pdwRemainingWorkForSession: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginOrderedGroup: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbLowerBound: ?*const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndOrderedGroup: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbUpperBound: ?*const u8,
+            pMadeWithKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddItemMetadataToGroup: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwFlags: u32,
+            dwWorkForChange: u32,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledge: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrerequisiteKnowledge: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchBase,
+            ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLastBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWorkEstimateForBatch: *const fn(
+            self: *const ISyncChangeBatchBase,
+            dwWorkForBatch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRemainingWorkEstimateForSession: *const fn(
+            self: *const ISyncChangeBatchBase,
+            dwRemainingWorkForSession: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const ISyncChangeBatchBase,
+            pbChangeBatch: ?*u8,
+            pcbChangeBatch: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_GetChangeEnumerator(self: *const T, ppEnum: ?*?*IEnumSyncChanges) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetChangeEnumerator(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_GetIsLastBatch(self: *const T, pfLastBatch: ?*BOOL) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetIsLastBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pfLastBatch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_GetWorkEstimateForBatch(self: *const T, pdwWorkForBatch: ?*u32) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetWorkEstimateForBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pdwWorkForBatch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_GetRemainingWorkEstimateForSession(self: *const T, pdwRemainingWorkForSession: ?*u32) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetRemainingWorkEstimateForSession(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pdwRemainingWorkForSession);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_BeginOrderedGroup(self: *const T, pbLowerBound: ?*const u8) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).BeginOrderedGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbLowerBound);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_EndOrderedGroup(self: *const T, pbUpperBound: ?*const u8, pMadeWithKnowledge: ?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).EndOrderedGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbUpperBound, pMadeWithKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_AddItemMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).AddItemMetadataToGroup(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, ppChangeBuilder);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetLearnedKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppLearnedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_GetPrerequisiteKnowledge(self: *const T, ppPrerequisteKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetPrerequisiteKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppPrerequisteKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_GetSourceForgottenKnowledge(self: *const T, ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).GetSourceForgottenKnowledge(@as(*const ISyncChangeBatchBase, @ptrCast(self)), ppSourceForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_SetLastBatch(self: *const T) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetLastBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_SetWorkEstimateForBatch(self: *const T, dwWorkForBatch: u32) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetWorkEstimateForBatch(@as(*const ISyncChangeBatchBase, @ptrCast(self)), dwWorkForBatch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_SetRemainingWorkEstimateForSession(self: *const T, dwRemainingWorkForSession: u32) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).SetRemainingWorkEstimateForSession(@as(*const ISyncChangeBatchBase, @ptrCast(self)), dwRemainingWorkForSession);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase_Serialize(self: *const T, pbChangeBatch: ?*u8, pcbChangeBatch: ?*u32) HRESULT {
-                return @as(*const ISyncChangeBatchBase.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ISyncChangeBatchBase, @ptrCast(self)), pbChangeBatch, pcbChangeBatch);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetChangeEnumerator(self: *const ISyncChangeBatchBase, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeEnumerator(self, ppEnum);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetIsLastBatch(self: *const ISyncChangeBatchBase, pfLastBatch: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetIsLastBatch(self, pfLastBatch);
+    }
+    pub fn GetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, pdwWorkForBatch: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetWorkEstimateForBatch(self, pdwWorkForBatch);
+    }
+    pub fn GetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, pdwRemainingWorkForSession: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetRemainingWorkEstimateForSession(self, pdwRemainingWorkForSession);
+    }
+    pub fn BeginOrderedGroup(self: *const ISyncChangeBatchBase, pbLowerBound: ?*const u8) callconv(.Inline) HRESULT {
+        return self.vtable.BeginOrderedGroup(self, pbLowerBound);
+    }
+    pub fn EndOrderedGroup(self: *const ISyncChangeBatchBase, pbUpperBound: ?*const u8, pMadeWithKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.EndOrderedGroup(self, pbUpperBound, pMadeWithKnowledge);
+    }
+    pub fn AddItemMetadataToGroup(self: *const ISyncChangeBatchBase, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return self.vtable.AddItemMetadataToGroup(self, pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, ppChangeBuilder);
+    }
+    pub fn GetLearnedKnowledge(self: *const ISyncChangeBatchBase, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedKnowledge(self, ppLearnedKnowledge);
+    }
+    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeBatchBase, ppPrerequisteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrerequisiteKnowledge(self, ppPrerequisteKnowledge);
+    }
+    pub fn GetSourceForgottenKnowledge(self: *const ISyncChangeBatchBase, ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceForgottenKnowledge(self, ppSourceForgottenKnowledge);
+    }
+    pub fn SetLastBatch(self: *const ISyncChangeBatchBase) callconv(.Inline) HRESULT {
+        return self.vtable.SetLastBatch(self);
+    }
+    pub fn SetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, dwWorkForBatch: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetWorkEstimateForBatch(self, dwWorkForBatch);
+    }
+    pub fn SetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, dwRemainingWorkForSession: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetRemainingWorkEstimateForSession(self, dwRemainingWorkForSession);
+    }
+    pub fn Serialize(self: *const ISyncChangeBatchBase, pbChangeBatch: ?*u8, pcbChangeBatch: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Serialize(self, pbChangeBatch, pcbChangeBatch);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatch_Value = Guid.initString("70c64dee-380f-4c2e-8f70-31c55bd5f9b3");
 pub const IID_ISyncChangeBatch = &IID_ISyncChangeBatch_Value;
-pub const ISyncChangeBatch = extern struct {
+pub const ISyncChangeBatch = extern union {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        BeginUnorderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndUnorderedGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatch,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-                fAllChangesForKnowledge: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatch,
-                pMadeWithKnowledge: ?*ISyncKnowledge,
-                fAllChangesForKnowledge: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddLoggedConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatch,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatch,
-                pbOwnerReplicaId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwFlags: u32,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BeginUnorderedGroup: *const fn(
+            self: *const ISyncChangeBatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndUnorderedGroup: *const fn(
+            self: *const ISyncChangeBatch,
+            pMadeWithKnowledge: ?*ISyncKnowledge,
+            fAllChangesForKnowledge: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddLoggedConflict: *const fn(
+            self: *const ISyncChangeBatch,
+            pbOwnerReplicaId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwFlags: u32,
+            dwWorkForChange: u32,
+            pConflictKnowledge: ?*ISyncKnowledge,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatch_BeginUnorderedGroup(self: *const T) HRESULT {
-                return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).BeginUnorderedGroup(@as(*const ISyncChangeBatch, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatch_EndUnorderedGroup(self: *const T, pMadeWithKnowledge: ?*ISyncKnowledge, fAllChangesForKnowledge: BOOL) HRESULT {
-                return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).EndUnorderedGroup(@as(*const ISyncChangeBatch, @ptrCast(self)), pMadeWithKnowledge, fAllChangesForKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatch_AddLoggedConflict(self: *const T, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
-                return @as(*const ISyncChangeBatch.VTable, @ptrCast(self.vtable)).AddLoggedConflict(@as(*const ISyncChangeBatch, @ptrCast(self)), pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
-            }
-        };
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
+    pub fn BeginUnorderedGroup(self: *const ISyncChangeBatch) callconv(.Inline) HRESULT {
+        return self.vtable.BeginUnorderedGroup(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn EndUnorderedGroup(self: *const ISyncChangeBatch, pMadeWithKnowledge: ?*ISyncKnowledge, fAllChangesForKnowledge: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.EndUnorderedGroup(self, pMadeWithKnowledge, fAllChangesForKnowledge);
+    }
+    pub fn AddLoggedConflict(self: *const ISyncChangeBatch, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return self.vtable.AddLoggedConflict(self, pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFullEnumerationChangeBatch_Value = Guid.initString("ef64197d-4f44-4ea2-b355-4524713e3bed");
 pub const IID_ISyncFullEnumerationChangeBatch = &IID_ISyncFullEnumerationChangeBatch_Value;
-pub const ISyncFullEnumerationChangeBatch = extern struct {
+pub const ISyncFullEnumerationChangeBatch = extern union {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        GetLearnedKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFullEnumerationChangeBatch,
-                ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFullEnumerationChangeBatch,
-                ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClosedLowerBoundItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedLowerBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedLowerBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClosedUpperBoundItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedUpperBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFullEnumerationChangeBatch,
-                pbClosedUpperBoundItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetLearnedKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch,
+            ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClosedLowerBoundItemId: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch,
+            pbClosedLowerBoundItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClosedUpperBoundItemId: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch,
+            pbClosedUpperBoundItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFullEnumerationChangeBatch_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeAfterRecoveryComplete(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), ppLearnedKnowledgeAfterRecoveryComplete);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFullEnumerationChangeBatch_GetClosedLowerBoundItemId(self: *const T, pbClosedLowerBoundItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetClosedLowerBoundItemId(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), pbClosedLowerBoundItemId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFullEnumerationChangeBatch_GetClosedUpperBoundItemId(self: *const T, pbClosedUpperBoundItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncFullEnumerationChangeBatch.VTable, @ptrCast(self.vtable)).GetClosedUpperBoundItemId(@as(*const ISyncFullEnumerationChangeBatch, @ptrCast(self)), pbClosedUpperBoundItemId, pcbIdSize);
-            }
-        };
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
+    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChangeBatch, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedKnowledgeAfterRecoveryComplete(self, ppLearnedKnowledgeAfterRecoveryComplete);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetClosedLowerBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedLowerBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetClosedLowerBoundItemId(self, pbClosedLowerBoundItemId, pcbIdSize);
+    }
+    pub fn GetClosedUpperBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedUpperBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetClosedUpperBoundItemId(self, pbClosedUpperBoundItemId, pcbIdSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchWithPrerequisite_Value = Guid.initString("097f13be-5b92-4048-b3f2-7b42a2515e07");
 pub const IID_ISyncChangeBatchWithPrerequisite = &IID_ISyncChangeBatchWithPrerequisite_Value;
-pub const ISyncChangeBatchWithPrerequisite = extern struct {
+pub const ISyncChangeBatchWithPrerequisite = extern union {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        SetPrerequisiteKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pPrerequisiteKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledgeWithPrerequisite: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithPrerequisite,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithPrerequisite,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetPrerequisiteKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithPrerequisite,
+            pPrerequisiteKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledgeWithPrerequisite: *const fn(
+            self: *const ISyncChangeBatchWithPrerequisite,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithPrerequisite,
+            ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithPrerequisite_SetPrerequisiteKnowledge(self: *const T, pPrerequisiteKnowledge: ?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).SetPrerequisiteKnowledge(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), pPrerequisiteKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeWithPrerequisite(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), pDestinationKnowledge, ppLearnedWithPrerequisiteKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithPrerequisite_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncChangeBatchWithPrerequisite, @ptrCast(self)), ppLearnedForgottenKnowledge);
-            }
-        };
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
+    pub fn SetPrerequisiteKnowledge(self: *const ISyncChangeBatchWithPrerequisite, pPrerequisiteKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrerequisiteKnowledge(self, pPrerequisiteKnowledge);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeBatchWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedKnowledgeWithPrerequisite(self, pDestinationKnowledge, ppLearnedWithPrerequisiteKnowledge);
+    }
+    pub fn GetLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithPrerequisite, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedForgottenKnowledge(self, ppLearnedForgottenKnowledge);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchBase2_Value = Guid.initString("6fdb596a-d755-4584-bd0c-c0c23a548fbf");
 pub const IID_ISyncChangeBatchBase2 = &IID_ISyncChangeBatchBase2_Value;
-pub const ISyncChangeBatchBase2 = extern struct {
+pub const ISyncChangeBatchBase2 = extern union {
     pub const VTable = extern struct {
         base: ISyncChangeBatchBase.VTable,
-        SerializeWithOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchBase2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchBase2,
-                targetFormatVersion: SYNC_SERIALIZATION_VERSION,
-                dwFlags: u32,
-                pbBuffer: ?*u8,
-                pdwSerializedSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SerializeWithOptions: *const fn(
+            self: *const ISyncChangeBatchBase2,
+            targetFormatVersion: SYNC_SERIALIZATION_VERSION,
+            dwFlags: u32,
+            pbBuffer: ?*u8,
+            pdwSerializedSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncChangeBatchBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchBase2_SerializeWithOptions(self: *const T, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) HRESULT {
-                return @as(*const ISyncChangeBatchBase2.VTable, @ptrCast(self.vtable)).SerializeWithOptions(@as(*const ISyncChangeBatchBase2, @ptrCast(self)), targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
-            }
-        };
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
+    pub fn SerializeWithOptions(self: *const ISyncChangeBatchBase2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.SerializeWithOptions(self, targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeBatchAdvanced_Value = Guid.initString("0f1a4995-cbc8-421d-b550-5d0bebf3e9a5");
 pub const IID_ISyncChangeBatchAdvanced = &IID_ISyncChangeBatchAdvanced_Value;
-pub const ISyncChangeBatchAdvanced = extern struct {
+pub const ISyncChangeBatchAdvanced = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchAdvanced,
-                ppFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchAdvanced,
-                ppFilterInfo: ?*?*ISyncFilterInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertFullEnumerationChangeBatchToRegularChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchAdvanced,
-                ppChangeBatch: ?*?*ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchAdvanced,
-                ppChangeBatch: ?*?*ISyncChangeBatch,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUpperBoundItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchAdvanced,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchAdvanced,
-                pbItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBatchLevelKnowledgeShouldBeApplied: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchAdvanced,
-                pfBatchKnowledgeShouldBeApplied: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchAdvanced,
-                pfBatchKnowledgeShouldBeApplied: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterInfo: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            ppFilterInfo: ?*?*ISyncFilterInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertFullEnumerationChangeBatchToRegularChangeBatch: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            ppChangeBatch: ?*?*ISyncChangeBatch,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUpperBoundItemId: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            pbItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBatchLevelKnowledgeShouldBeApplied: *const fn(
+            self: *const ISyncChangeBatchAdvanced,
+            pfBatchKnowledgeShouldBeApplied: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchAdvanced_GetFilterInfo(self: *const T, ppFilterInfo: ?*?*ISyncFilterInfo) HRESULT {
-                return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetFilterInfo(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), ppFilterInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchAdvanced_ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const T, ppChangeBatch: ?*?*ISyncChangeBatch) HRESULT {
-                return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).ConvertFullEnumerationChangeBatchToRegularChangeBatch(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), ppChangeBatch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchAdvanced_GetUpperBoundItemId(self: *const T, pbItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetUpperBoundItemId(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), pbItemId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchAdvanced_GetBatchLevelKnowledgeShouldBeApplied(self: *const T, pfBatchKnowledgeShouldBeApplied: ?*BOOL) HRESULT {
-                return @as(*const ISyncChangeBatchAdvanced.VTable, @ptrCast(self.vtable)).GetBatchLevelKnowledgeShouldBeApplied(@as(*const ISyncChangeBatchAdvanced, @ptrCast(self)), pfBatchKnowledgeShouldBeApplied);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetFilterInfo(self: *const ISyncChangeBatchAdvanced, ppFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterInfo(self, ppFilterInfo);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const ISyncChangeBatchAdvanced, ppChangeBatch: ?*?*ISyncChangeBatch) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertFullEnumerationChangeBatchToRegularChangeBatch(self, ppChangeBatch);
+    }
+    pub fn GetUpperBoundItemId(self: *const ISyncChangeBatchAdvanced, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetUpperBoundItemId(self, pbItemId, pcbIdSize);
+    }
+    pub fn GetBatchLevelKnowledgeShouldBeApplied(self: *const ISyncChangeBatchAdvanced, pfBatchKnowledgeShouldBeApplied: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetBatchLevelKnowledgeShouldBeApplied(self, pfBatchKnowledgeShouldBeApplied);
+    }
 };
 
 const IID_ISyncChangeBatch2_Value = Guid.initString("225f4a33-f5ee-4cc7-b039-67a262b4b2ac");
 pub const IID_ISyncChangeBatch2 = &IID_ISyncChangeBatch2_Value;
-pub const ISyncChangeBatch2 = extern struct {
+pub const ISyncChangeBatch2 = extern union {
     pub const VTable = extern struct {
         base: ISyncChangeBatch.VTable,
-        AddMergeTombstoneMetadataToGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddMergeTombstoneLoggedConflict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                pConflictKnowledge: ?*ISyncKnowledge,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddMergeTombstoneMetadataToGroup: *const fn(
+            self: *const ISyncChangeBatch2,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwWorkForChange: u32,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddMergeTombstoneLoggedConflict: *const fn(
+            self: *const ISyncChangeBatch2,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwWorkForChange: u32,
+            pConflictKnowledge: ?*ISyncKnowledge,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncChangeBatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
-                return @as(*const ISyncChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneMetadataToGroup(@as(*const ISyncChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatch2_AddMergeTombstoneLoggedConflict(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
-                return @as(*const ISyncChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneLoggedConflict(@as(*const ISyncChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
-            }
-        };
+    ISyncChangeBatch: ISyncChangeBatch,
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
+    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return self.vtable.AddMergeTombstoneMetadataToGroup(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddMergeTombstoneLoggedConflict(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return self.vtable.AddMergeTombstoneLoggedConflict(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
+    }
 };
 
 const IID_ISyncFullEnumerationChangeBatch2_Value = Guid.initString("e06449f4-a205-4b65-9724-01b22101eec1");
 pub const IID_ISyncFullEnumerationChangeBatch2 = &IID_ISyncFullEnumerationChangeBatch2_Value;
-pub const ISyncFullEnumerationChangeBatch2 = extern struct {
+pub const ISyncFullEnumerationChangeBatch2 = extern union {
     pub const VTable = extern struct {
         base: ISyncFullEnumerationChangeBatch.VTable,
-        AddMergeTombstoneMetadataToGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFullEnumerationChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFullEnumerationChangeBatch2,
-                pbOwnerReplicaId: ?*const u8,
-                pbWinnerItemId: ?*const u8,
-                pbItemId: ?*const u8,
-                pChangeVersion: ?*const SYNC_VERSION,
-                pCreationVersion: ?*const SYNC_VERSION,
-                dwWorkForChange: u32,
-                ppChangeBuilder: ?*?*ISyncChangeBuilder,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddMergeTombstoneMetadataToGroup: *const fn(
+            self: *const ISyncFullEnumerationChangeBatch2,
+            pbOwnerReplicaId: ?*const u8,
+            pbWinnerItemId: ?*const u8,
+            pbItemId: ?*const u8,
+            pChangeVersion: ?*const SYNC_VERSION,
+            pCreationVersion: ?*const SYNC_VERSION,
+            dwWorkForChange: u32,
+            ppChangeBuilder: ?*?*ISyncChangeBuilder,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncFullEnumerationChangeBatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFullEnumerationChangeBatch2_AddMergeTombstoneMetadataToGroup(self: *const T, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
-                return @as(*const ISyncFullEnumerationChangeBatch2.VTable, @ptrCast(self.vtable)).AddMergeTombstoneMetadataToGroup(@as(*const ISyncFullEnumerationChangeBatch2, @ptrCast(self)), pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
-            }
-        };
+    ISyncFullEnumerationChangeBatch: ISyncFullEnumerationChangeBatch,
+    ISyncChangeBatchBase: ISyncChangeBatchBase,
+    IUnknown: IUnknown,
+    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncFullEnumerationChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+        return self.vtable.AddMergeTombstoneMetadataToGroup(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IKnowledgeSyncProvider_Value = Guid.initString("43434a49-8da4-47f2-8172-ad7b8b024978");
 pub const IID_IKnowledgeSyncProvider = &IID_IKnowledgeSyncProvider_Value;
-pub const IKnowledgeSyncProvider = extern struct {
+pub const IKnowledgeSyncProvider = extern union {
     pub const VTable = extern struct {
         base: ISyncProvider.VTable,
-        BeginSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IKnowledgeSyncProvider,
-                role: SYNC_PROVIDER_ROLE,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IKnowledgeSyncProvider,
-                role: SYNC_PROVIDER_ROLE,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncBatchParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IKnowledgeSyncProvider,
-                ppSyncKnowledge: ?*?*ISyncKnowledge,
-                pdwRequestedBatchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IKnowledgeSyncProvider,
-                ppSyncKnowledge: ?*?*ISyncKnowledge,
-                pdwRequestedBatchSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFullEnumerationChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pbLowerEnumerationBound: ?*const u8,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IKnowledgeSyncProvider,
-                dwBatchSize: u32,
-                pbLowerEnumerationBound: ?*const u8,
-                pSyncKnowledge: ?*ISyncKnowledge,
-                ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
-                ppUnkDataRetriever: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProcessChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ProcessFullEnumerationChangeBatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IKnowledgeSyncProvider,
-                resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
-                pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch,
-                pUnkDataRetriever: ?*IUnknown,
-                pCallback: ?*ISyncCallback,
-                pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IKnowledgeSyncProvider,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IKnowledgeSyncProvider,
-                pSessionState: ?*ISyncSessionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BeginSession: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            role: SYNC_PROVIDER_ROLE,
+            pSessionState: ?*ISyncSessionState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncBatchParameters: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            ppSyncKnowledge: ?*?*ISyncKnowledge,
+            pdwRequestedBatchSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            dwBatchSize: u32,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppSyncChangeBatch: ?*?*ISyncChangeBatch,
+            ppUnkDataRetriever: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFullEnumerationChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            dwBatchSize: u32,
+            pbLowerEnumerationBound: ?*const u8,
+            pSyncKnowledge: ?*ISyncKnowledge,
+            ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
+            ppUnkDataRetriever: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
+            pSourceChangeBatch: ?*ISyncChangeBatch,
+            pUnkDataRetriever: ?*IUnknown,
+            pCallback: ?*ISyncCallback,
+            pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ProcessFullEnumerationChangeBatch: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
+            pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch,
+            pUnkDataRetriever: ?*IUnknown,
+            pCallback: ?*ISyncCallback,
+            pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndSession: *const fn(
+            self: *const IKnowledgeSyncProvider,
+            pSessionState: ?*ISyncSessionState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISyncProvider.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IKnowledgeSyncProvider_BeginSession(self: *const T, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) HRESULT {
-                return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).BeginSession(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), role, pSessionState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IKnowledgeSyncProvider_GetSyncBatchParameters(self: *const T, ppSyncKnowledge: ?*?*ISyncKnowledge, pdwRequestedBatchSize: ?*u32) HRESULT {
-                return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetSyncBatchParameters(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), ppSyncKnowledge, pdwRequestedBatchSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IKnowledgeSyncProvider_GetChangeBatch(self: *const T, dwBatchSize: u32, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) HRESULT {
-                return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), dwBatchSize, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IKnowledgeSyncProvider_GetFullEnumerationChangeBatch(self: *const T, dwBatchSize: u32, pbLowerEnumerationBound: ?*const u8, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) HRESULT {
-                return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).GetFullEnumerationChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), dwBatchSize, pbLowerEnumerationBound, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IKnowledgeSyncProvider_ProcessChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) HRESULT {
-                return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).ProcessChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IKnowledgeSyncProvider_ProcessFullEnumerationChangeBatch(self: *const T, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) HRESULT {
-                return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).ProcessFullEnumerationChangeBatch(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IKnowledgeSyncProvider_EndSession(self: *const T, pSessionState: ?*ISyncSessionState) HRESULT {
-                return @as(*const IKnowledgeSyncProvider.VTable, @ptrCast(self.vtable)).EndSession(@as(*const IKnowledgeSyncProvider, @ptrCast(self)), pSessionState);
-            }
-        };
+    ISyncProvider: ISyncProvider,
+    IUnknown: IUnknown,
+    pub fn BeginSession(self: *const IKnowledgeSyncProvider, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
+        return self.vtable.BeginSession(self, role, pSessionState);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSyncBatchParameters(self: *const IKnowledgeSyncProvider, ppSyncKnowledge: ?*?*ISyncKnowledge, pdwRequestedBatchSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncBatchParameters(self, ppSyncKnowledge, pdwRequestedBatchSize);
+    }
+    pub fn GetChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeBatch(self, dwBatchSize, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
+    }
+    pub fn GetFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pbLowerEnumerationBound: ?*const u8, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetFullEnumerationChangeBatch(self, dwBatchSize, pbLowerEnumerationBound, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
+    }
+    pub fn ProcessChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+        return self.vtable.ProcessChangeBatch(self, resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
+    }
+    pub fn ProcessFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+        return self.vtable.ProcessFullEnumerationChangeBatch(self, resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
+    }
+    pub fn EndSession(self: *const IKnowledgeSyncProvider, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
+        return self.vtable.EndSession(self, pSessionState);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeUnit_Value = Guid.initString("60edd8ca-7341-4bb7-95ce-fab6394b51cb");
 pub const IID_ISyncChangeUnit = &IID_ISyncChangeUnit_Value;
-pub const ISyncChangeUnit = extern struct {
+pub const ISyncChangeUnit = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeUnit,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeUnit,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeUnit,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeUnit,
-                pbChangeUnitId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeUnit,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeUnit,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemChange: *const fn(
+            self: *const ISyncChangeUnit,
+            ppSyncChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitId: *const fn(
+            self: *const ISyncChangeUnit,
+            pbChangeUnitId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitVersion: *const fn(
+            self: *const ISyncChangeUnit,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeUnit_GetItemChange(self: *const T, ppSyncChange: ?*?*ISyncChange) HRESULT {
-                return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetItemChange(@as(*const ISyncChangeUnit, @ptrCast(self)), ppSyncChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeUnit_GetChangeUnitId(self: *const T, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetChangeUnitId(@as(*const ISyncChangeUnit, @ptrCast(self)), pbChangeUnitId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeUnit_GetChangeUnitVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) HRESULT {
-                return @as(*const ISyncChangeUnit.VTable, @ptrCast(self.vtable)).GetChangeUnitVersion(@as(*const ISyncChangeUnit, @ptrCast(self)), pbCurrentReplicaId, pVersion);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetItemChange(self: *const ISyncChangeUnit, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetItemChange(self, ppSyncChange);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetChangeUnitId(self: *const ISyncChangeUnit, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnitId(self, pbChangeUnitId, pcbIdSize);
+    }
+    pub fn GetChangeUnitVersion(self: *const ISyncChangeUnit, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnitVersion(self, pbCurrentReplicaId, pVersion);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncChangeUnits_Value = Guid.initString("346b35f1-8703-4c6d-ab1a-4dbca2cff97f");
 pub const IID_IEnumSyncChangeUnits = &IID_IEnumSyncChangeUnits_Value;
-pub const IEnumSyncChangeUnits = extern struct {
+pub const IEnumSyncChangeUnits = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-                ppChangeUnit: ?*?*ISyncChangeUnit,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-                ppChangeUnit: ?*?*ISyncChangeUnit,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChangeUnits,
-                cChanges: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncChangeUnits,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncChangeUnits,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncChangeUnits,
+            cChanges: u32,
+            ppChangeUnit: ?*?*ISyncChangeUnit,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncChangeUnits,
+            cChanges: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncChangeUnits,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncChangeUnits,
+            ppEnum: ?*?*IEnumSyncChangeUnits,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChangeUnits_Next(self: *const T, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), cChanges, ppChangeUnit, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChangeUnits_Skip(self: *const T, cChanges: u32) HRESULT {
-                return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), cChanges);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChangeUnits_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncChangeUnits, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncChangeUnits_Clone(self: *const T, ppEnum: ?*?*IEnumSyncChangeUnits) HRESULT {
-                return @as(*const IEnumSyncChangeUnits.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncChangeUnits, @ptrCast(self)), ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSyncChangeUnits, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cChanges, ppChangeUnit, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumSyncChangeUnits, cChanges: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cChanges);
+    }
+    pub fn Reset(self: *const IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumSyncChangeUnits, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChange_Value = Guid.initString("a1952beb-0f6b-4711-b136-01da85b968a6");
 pub const IID_ISyncChange = &IID_ISyncChange_Value;
-pub const ISyncChange = extern struct {
+pub const ISyncChange = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwnerReplicaId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                pbReplicaId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRootItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                pbRootItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                pbRootItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCreationVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                pbCurrentReplicaId: ?*const u8,
-                pVersion: ?*SYNC_VERSION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetWorkEstimate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                pdwWork: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                pdwWork: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                ppEnum: ?*?*IEnumSyncChangeUnits,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMadeWithKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                ppMadeWithKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                ppMadeWithKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetWorkEstimate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChange,
-                dwWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChange,
-                dwWork: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwnerReplicaId: *const fn(
+            self: *const ISyncChange,
+            pbReplicaId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRootItemId: *const fn(
+            self: *const ISyncChange,
+            pbRootItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeVersion: *const fn(
+            self: *const ISyncChange,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCreationVersion: *const fn(
+            self: *const ISyncChange,
+            pbCurrentReplicaId: ?*const u8,
+            pVersion: ?*SYNC_VERSION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: *const fn(
+            self: *const ISyncChange,
+            pdwFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetWorkEstimate: *const fn(
+            self: *const ISyncChange,
+            pdwWork: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnits: *const fn(
+            self: *const ISyncChange,
+            ppEnum: ?*?*IEnumSyncChangeUnits,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMadeWithKnowledge: *const fn(
+            self: *const ISyncChange,
+            ppMadeWithKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledge: *const fn(
+            self: *const ISyncChange,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetWorkEstimate: *const fn(
+            self: *const ISyncChange,
+            dwWork: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetOwnerReplicaId(self: *const T, pbReplicaId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetOwnerReplicaId(@as(*const ISyncChange, @ptrCast(self)), pbReplicaId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetRootItemId(self: *const T, pbRootItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetRootItemId(@as(*const ISyncChange, @ptrCast(self)), pbRootItemId, pcbIdSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetChangeVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetChangeVersion(@as(*const ISyncChange, @ptrCast(self)), pbCurrentReplicaId, pVersion);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetCreationVersion(self: *const T, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetCreationVersion(@as(*const ISyncChange, @ptrCast(self)), pbCurrentReplicaId, pVersion);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetFlags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const ISyncChange, @ptrCast(self)), pdwFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetWorkEstimate(self: *const T, pdwWork: ?*u32) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetWorkEstimate(@as(*const ISyncChange, @ptrCast(self)), pdwWork);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetChangeUnits(self: *const T, ppEnum: ?*?*IEnumSyncChangeUnits) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetChangeUnits(@as(*const ISyncChange, @ptrCast(self)), ppEnum);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetMadeWithKnowledge(self: *const T, ppMadeWithKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetMadeWithKnowledge(@as(*const ISyncChange, @ptrCast(self)), ppMadeWithKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_GetLearnedKnowledge(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).GetLearnedKnowledge(@as(*const ISyncChange, @ptrCast(self)), ppLearnedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChange_SetWorkEstimate(self: *const T, dwWork: u32) HRESULT {
-                return @as(*const ISyncChange.VTable, @ptrCast(self.vtable)).SetWorkEstimate(@as(*const ISyncChange, @ptrCast(self)), dwWork);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOwnerReplicaId(self: *const ISyncChange, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwnerReplicaId(self, pbReplicaId, pcbIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetRootItemId(self: *const ISyncChange, pbRootItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetRootItemId(self, pbRootItemId, pcbIdSize);
+    }
+    pub fn GetChangeVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeVersion(self, pbCurrentReplicaId, pVersion);
+    }
+    pub fn GetCreationVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+        return self.vtable.GetCreationVersion(self, pbCurrentReplicaId, pVersion);
+    }
+    pub fn GetFlags(self: *const ISyncChange, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFlags(self, pdwFlags);
+    }
+    pub fn GetWorkEstimate(self: *const ISyncChange, pdwWork: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetWorkEstimate(self, pdwWork);
+    }
+    pub fn GetChangeUnits(self: *const ISyncChange, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnits(self, ppEnum);
+    }
+    pub fn GetMadeWithKnowledge(self: *const ISyncChange, ppMadeWithKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetMadeWithKnowledge(self, ppMadeWithKnowledge);
+    }
+    pub fn GetLearnedKnowledge(self: *const ISyncChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedKnowledge(self, ppLearnedKnowledge);
+    }
+    pub fn SetWorkEstimate(self: *const ISyncChange, dwWork: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetWorkEstimate(self, dwWork);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncChangeWithPrerequisite_Value = Guid.initString("9e38382f-1589-48c3-92e4-05ecdcb4f3f7");
 pub const IID_ISyncChangeWithPrerequisite = &IID_ISyncChangeWithPrerequisite_Value;
-pub const ISyncChangeWithPrerequisite = extern struct {
+pub const ISyncChangeWithPrerequisite = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPrerequisiteKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithPrerequisite,
-                ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithPrerequisite,
-                ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedKnowledgeWithPrerequisite: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithPrerequisite,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPrerequisiteKnowledge: *const fn(
+            self: *const ISyncChangeWithPrerequisite,
+            ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedKnowledgeWithPrerequisite: *const fn(
+            self: *const ISyncChangeWithPrerequisite,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithPrerequisite_GetPrerequisiteKnowledge(self: *const T, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithPrerequisite.VTable, @ptrCast(self.vtable)).GetPrerequisiteKnowledge(@as(*const ISyncChangeWithPrerequisite, @ptrCast(self)), ppPrerequisiteKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithPrerequisite_GetLearnedKnowledgeWithPrerequisite(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithPrerequisite.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeWithPrerequisite(@as(*const ISyncChangeWithPrerequisite, @ptrCast(self)), pDestinationKnowledge, ppLearnedKnowledgeWithPrerequisite);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeWithPrerequisite, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrerequisiteKnowledge(self, ppPrerequisiteKnowledge);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedKnowledgeWithPrerequisite(self, pDestinationKnowledge, ppLearnedKnowledgeWithPrerequisite);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncFullEnumerationChange_Value = Guid.initString("9785e0bd-bdff-40c4-98c5-b34b2f1991b3");
 pub const IID_ISyncFullEnumerationChange = &IID_ISyncFullEnumerationChange_Value;
-pub const ISyncFullEnumerationChange = extern struct {
+pub const ISyncFullEnumerationChange = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLearnedKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncFullEnumerationChange,
-                ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetLearnedKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncFullEnumerationChange,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncFullEnumerationChange,
+            ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFullEnumerationChange_GetLearnedKnowledgeAfterRecoveryComplete(self: *const T, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncFullEnumerationChange.VTable, @ptrCast(self.vtable)).GetLearnedKnowledgeAfterRecoveryComplete(@as(*const ISyncFullEnumerationChange, @ptrCast(self)), ppLearnedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncFullEnumerationChange_GetLearnedForgottenKnowledge(self: *const T, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) HRESULT {
-                return @as(*const ISyncFullEnumerationChange.VTable, @ptrCast(self.vtable)).GetLearnedForgottenKnowledge(@as(*const ISyncFullEnumerationChange, @ptrCast(self)), ppLearnedForgottenKnowledge);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedKnowledgeAfterRecoveryComplete(self, ppLearnedKnowledge);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetLearnedForgottenKnowledge(self: *const ISyncFullEnumerationChange, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedForgottenKnowledge(self, ppLearnedForgottenKnowledge);
+    }
 };
 
 const IID_ISyncMergeTombstoneChange_Value = Guid.initString("6ec62597-0903-484c-ad61-36d6e938f47b");
 pub const IID_ISyncMergeTombstoneChange = &IID_ISyncMergeTombstoneChange_Value;
-pub const ISyncMergeTombstoneChange = extern struct {
+pub const ISyncMergeTombstoneChange = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetWinnerItemId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncMergeTombstoneChange,
-                pbWinnerItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncMergeTombstoneChange,
-                pbWinnerItemId: ?*u8,
-                pcbIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetWinnerItemId: *const fn(
+            self: *const ISyncMergeTombstoneChange,
+            pbWinnerItemId: ?*u8,
+            pcbIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncMergeTombstoneChange_GetWinnerItemId(self: *const T, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
-                return @as(*const ISyncMergeTombstoneChange.VTable, @ptrCast(self.vtable)).GetWinnerItemId(@as(*const ISyncMergeTombstoneChange, @ptrCast(self)), pbWinnerItemId, pcbIdSize);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetWinnerItemId(self: *const ISyncMergeTombstoneChange, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetWinnerItemId(self, pbWinnerItemId, pcbIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IEnumItemIds_Value = Guid.initString("43aa3f61-4b2e-4b60-83df-b110d3e148f1");
 pub const IID_IEnumItemIds = &IID_IEnumItemIds_Value;
-pub const IEnumItemIds = extern struct {
+pub const IEnumItemIds = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumItemIds,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumItemIds,
-                pbItemId: ?*u8,
-                pcbItemIdSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumItemIds,
+            pbItemId: ?*u8,
+            pcbItemIdSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumItemIds_Next(self: *const T, pbItemId: ?*u8, pcbItemIdSize: ?*u32) HRESULT {
-                return @as(*const IEnumItemIds.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumItemIds, @ptrCast(self)), pbItemId, pcbItemIdSize);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumItemIds, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, pbItemId, pcbItemIdSize);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IFilterKeyMap_Value = Guid.initString("ca169652-07c6-4708-a3da-6e4eba8d2297");
 pub const IID_IFilterKeyMap = &IID_IFilterKeyMap_Value;
-pub const IFilterKeyMap = extern struct {
+pub const IFilterKeyMap = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterKeyMap,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterKeyMap,
-                pdwCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterKeyMap,
-                pISyncFilter: ?*ISyncFilter,
-                pdwFilterKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterKeyMap,
-                pISyncFilter: ?*ISyncFilter,
-                pdwFilterKey: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterKeyMap,
-                dwFilterKey: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterKeyMap,
-                dwFilterKey: u32,
-                ppISyncFilter: ?*?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterKeyMap,
-                pbFilterKeyMap: ?*u8,
-                pcbFilterKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterKeyMap,
-                pbFilterKeyMap: ?*u8,
-                pcbFilterKeyMap: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IFilterKeyMap,
+            pdwCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddFilter: *const fn(
+            self: *const IFilterKeyMap,
+            pISyncFilter: ?*ISyncFilter,
+            pdwFilterKey: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilter: *const fn(
+            self: *const IFilterKeyMap,
+            dwFilterKey: u32,
+            ppISyncFilter: ?*?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Serialize: *const fn(
+            self: *const IFilterKeyMap,
+            pbFilterKeyMap: ?*u8,
+            pcbFilterKeyMap: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterKeyMap_GetCount(self: *const T, pdwCount: ?*u32) HRESULT {
-                return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IFilterKeyMap, @ptrCast(self)), pdwCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterKeyMap_AddFilter(self: *const T, pISyncFilter: ?*ISyncFilter, pdwFilterKey: ?*u32) HRESULT {
-                return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).AddFilter(@as(*const IFilterKeyMap, @ptrCast(self)), pISyncFilter, pdwFilterKey);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterKeyMap_GetFilter(self: *const T, dwFilterKey: u32, ppISyncFilter: ?*?*ISyncFilter) HRESULT {
-                return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilter(@as(*const IFilterKeyMap, @ptrCast(self)), dwFilterKey, ppISyncFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterKeyMap_Serialize(self: *const T, pbFilterKeyMap: ?*u8, pcbFilterKeyMap: ?*u32) HRESULT {
-                return @as(*const IFilterKeyMap.VTable, @ptrCast(self.vtable)).Serialize(@as(*const IFilterKeyMap, @ptrCast(self)), pbFilterKeyMap, pcbFilterKeyMap);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IFilterKeyMap, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, pdwCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddFilter(self: *const IFilterKeyMap, pISyncFilter: ?*ISyncFilter, pdwFilterKey: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddFilter(self, pISyncFilter, pdwFilterKey);
+    }
+    pub fn GetFilter(self: *const IFilterKeyMap, dwFilterKey: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilter(self, dwFilterKey, ppISyncFilter);
+    }
+    pub fn Serialize(self: *const IFilterKeyMap, pbFilterKeyMap: ?*u8, pcbFilterKeyMap: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Serialize(self, pbFilterKeyMap, pcbFilterKeyMap);
+    }
 };
 
 const IID_ISyncChangeWithFilterKeyMap_Value = Guid.initString("bfe1ef00-e87d-42fd-a4e9-242d70414aef");
 pub const IID_ISyncChangeWithFilterKeyMap = &IID_ISyncChangeWithFilterKeyMap_Value;
-pub const ISyncChangeWithFilterKeyMap = extern struct {
+pub const ISyncChangeWithFilterKeyMap = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pdwFilterCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterChange: ?*SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterChange: ?*SYNC_FILTER_CHANGE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAllChangeUnitsPresentFlag: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pfAllChangeUnitsPresent: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pfAllChangeUnitsPresent: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                dwFilterKey: u32,
-                ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterCount: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pdwFilterCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterChange: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            dwFilterKey: u32,
+            pFilterChange: ?*SYNC_FILTER_CHANGE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAllChangeUnitsPresentFlag: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pfAllChangeUnitsPresent: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            dwFilterKey: u32,
+            ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetFilterCount(self: *const T, pdwFilterCount: ?*u32) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterCount(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pdwFilterCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetFilterChange(self: *const T, dwFilterKey: u32, pFilterChange: ?*SYNC_FILTER_CHANGE) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterChange(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), dwFilterKey, pFilterChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetAllChangeUnitsPresentFlag(self: *const T, pfAllChangeUnitsPresent: ?*BOOL) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetAllChangeUnitsPresentFlag(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pfAllChangeUnitsPresent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), dwFilterKey, ppIFilterForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledge(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetFilterCount(self: *const ISyncChangeWithFilterKeyMap, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterCount(self, pdwFilterCount);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFilterChange(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, pFilterChange: ?*SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterChange(self, dwFilterKey, pFilterChange);
+    }
+    pub fn GetAllChangeUnitsPresentFlag(self: *const ISyncChangeWithFilterKeyMap, pfAllChangeUnitsPresent: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetAllChangeUnitsPresentFlag(self, pfAllChangeUnitsPresent);
+    }
+    pub fn GetFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterForgottenKnowledge(self, dwFilterKey, ppIFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilteredReplicaLearnedKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedFilterForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilteredReplicaLearnedForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
 };
 
 const IID_ISyncChangeBatchWithFilterKeyMap_Value = Guid.initString("de247002-566d-459a-a6ed-a5aab3459fb7");
 pub const IID_ISyncChangeBatchWithFilterKeyMap = &IID_ISyncChangeBatchWithFilterKeyMap_Value;
-pub const ISyncChangeBatchWithFilterKeyMap = extern struct {
+pub const ISyncChangeBatchWithFilterKeyMap = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFilterKeyMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                ppIFilterKeyMap: ?*?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                ppIFilterKeyMap: ?*?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFilterKeyMap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pIFilterKeyMap: ?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pIFilterKeyMap: ?*IFilterKeyMap,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterForgottenKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                dwFilterKey: u32,
-                pFilterForgottenKnowledge: ?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledge: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncChangeBatchWithFilterKeyMap,
-                pDestinationKnowledge: ?*ISyncKnowledge,
-                pNewMoveins: ?*IEnumItemIds,
-                dwFilterKey: u32,
-                ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFilterKeyMap: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            ppIFilterKeyMap: ?*?*IFilterKeyMap,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFilterKeyMap: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pIFilterKeyMap: ?*IFilterKeyMap,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            dwFilterKey: u32,
+            pFilterForgottenKnowledge: ?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledge: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: *const fn(
+            self: *const ISyncChangeBatchWithFilterKeyMap,
+            pDestinationKnowledge: ?*ISyncKnowledge,
+            pNewMoveins: ?*IEnumItemIds,
+            dwFilterKey: u32,
+            ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_GetFilterKeyMap(self: *const T, ppIFilterKeyMap: ?*?*IFilterKeyMap) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilterKeyMap(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), ppIFilterKeyMap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_SetFilterKeyMap(self: *const T, pIFilterKeyMap: ?*IFilterKeyMap) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).SetFilterKeyMap(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pIFilterKeyMap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_SetFilterForgottenKnowledge(self: *const T, dwFilterKey: u32, pFilterForgottenKnowledge: ?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).SetFilterForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), dwFilterKey, pFilterForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledge(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledge(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncChangeBatchWithFilterKeyMap_GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const T, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
-                return @as(*const ISyncChangeBatchWithFilterKeyMap.VTable, @ptrCast(self.vtable)).GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(@as(*const ISyncChangeBatchWithFilterKeyMap, @ptrCast(self)), pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, ppIFilterKeyMap: ?*?*IFilterKeyMap) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilterKeyMap(self, ppIFilterKeyMap);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, pIFilterKeyMap: ?*IFilterKeyMap) callconv(.Inline) HRESULT {
+        return self.vtable.SetFilterKeyMap(self, pIFilterKeyMap);
+    }
+    pub fn SetFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, dwFilterKey: u32, pFilterForgottenKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.SetFilterForgottenKnowledge(self, dwFilterKey, pFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilteredReplicaLearnedKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedFilterForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilteredReplicaLearnedForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
+    }
+    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+        return self.vtable.GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IDataRetrieverCallback_Value = Guid.initString("71b4863b-f969-4676-bbc3-3d9fdc3fb2c7");
 pub const IID_IDataRetrieverCallback = &IID_IDataRetrieverCallback_Value;
-pub const IDataRetrieverCallback = extern struct {
+pub const IDataRetrieverCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LoadChangeDataComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDataRetrieverCallback,
-                pUnkData: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDataRetrieverCallback,
-                pUnkData: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadChangeDataError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDataRetrieverCallback,
-                hrError: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDataRetrieverCallback,
-                hrError: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LoadChangeDataComplete: *const fn(
+            self: *const IDataRetrieverCallback,
+            pUnkData: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadChangeDataError: *const fn(
+            self: *const IDataRetrieverCallback,
+            hrError: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDataRetrieverCallback_LoadChangeDataComplete(self: *const T, pUnkData: ?*IUnknown) HRESULT {
-                return @as(*const IDataRetrieverCallback.VTable, @ptrCast(self.vtable)).LoadChangeDataComplete(@as(*const IDataRetrieverCallback, @ptrCast(self)), pUnkData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDataRetrieverCallback_LoadChangeDataError(self: *const T, hrError: HRESULT) HRESULT {
-                return @as(*const IDataRetrieverCallback.VTable, @ptrCast(self.vtable)).LoadChangeDataError(@as(*const IDataRetrieverCallback, @ptrCast(self)), hrError);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn LoadChangeDataComplete(self: *const IDataRetrieverCallback, pUnkData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.LoadChangeDataComplete(self, pUnkData);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LoadChangeDataError(self: *const IDataRetrieverCallback, hrError: HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.LoadChangeDataError(self, hrError);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ILoadChangeContext_Value = Guid.initString("44a4aaca-ec39-46d5-b5c9-d633c0ee67e2");
 pub const IID_ILoadChangeContext = &IID_ILoadChangeContext_Value;
-pub const ILoadChangeContext = extern struct {
+pub const ILoadChangeContext = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSyncChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ILoadChangeContext,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ILoadChangeContext,
-                ppSyncChange: ?*?*ISyncChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRecoverableErrorOnChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRecoverableErrorOnChangeUnit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ILoadChangeContext,
-                hrError: HRESULT,
-                pChangeUnit: ?*ISyncChangeUnit,
-                pErrorData: ?*IRecoverableErrorData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncChange: *const fn(
+            self: *const ILoadChangeContext,
+            ppSyncChange: ?*?*ISyncChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRecoverableErrorOnChange: *const fn(
+            self: *const ILoadChangeContext,
+            hrError: HRESULT,
+            pErrorData: ?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRecoverableErrorOnChangeUnit: *const fn(
+            self: *const ILoadChangeContext,
+            hrError: HRESULT,
+            pChangeUnit: ?*ISyncChangeUnit,
+            pErrorData: ?*IRecoverableErrorData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ILoadChangeContext_GetSyncChange(self: *const T, ppSyncChange: ?*?*ISyncChange) HRESULT {
-                return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).GetSyncChange(@as(*const ILoadChangeContext, @ptrCast(self)), ppSyncChange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ILoadChangeContext_SetRecoverableErrorOnChange(self: *const T, hrError: HRESULT, pErrorData: ?*IRecoverableErrorData) HRESULT {
-                return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).SetRecoverableErrorOnChange(@as(*const ILoadChangeContext, @ptrCast(self)), hrError, pErrorData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ILoadChangeContext_SetRecoverableErrorOnChangeUnit(self: *const T, hrError: HRESULT, pChangeUnit: ?*ISyncChangeUnit, pErrorData: ?*IRecoverableErrorData) HRESULT {
-                return @as(*const ILoadChangeContext.VTable, @ptrCast(self.vtable)).SetRecoverableErrorOnChangeUnit(@as(*const ILoadChangeContext, @ptrCast(self)), hrError, pChangeUnit, pErrorData);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetSyncChange(self: *const ILoadChangeContext, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncChange(self, ppSyncChange);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetRecoverableErrorOnChange(self: *const ILoadChangeContext, hrError: HRESULT, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return self.vtable.SetRecoverableErrorOnChange(self, hrError, pErrorData);
+    }
+    pub fn SetRecoverableErrorOnChangeUnit(self: *const ILoadChangeContext, hrError: HRESULT, pChangeUnit: ?*ISyncChangeUnit, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+        return self.vtable.SetRecoverableErrorOnChangeUnit(self, hrError, pChangeUnit, pErrorData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISynchronousDataRetriever_Value = Guid.initString("9b22f2a9-a4cd-4648-9d8e-3a510d4da04b");
 pub const IID_ISynchronousDataRetriever = &IID_ISynchronousDataRetriever_Value;
-pub const ISynchronousDataRetriever = extern struct {
+pub const ISynchronousDataRetriever = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadChangeData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-                ppUnkData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-                ppUnkData: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const ISynchronousDataRetriever,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadChangeData: *const fn(
+            self: *const ISynchronousDataRetriever,
+            pLoadChangeContext: ?*ILoadChangeContext,
+            ppUnkData: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) HRESULT {
-                return @as(*const ISynchronousDataRetriever.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const ISynchronousDataRetriever, @ptrCast(self)), pIdParameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: ?*ILoadChangeContext, ppUnkData: ?*?*IUnknown) HRESULT {
-                return @as(*const ISynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const ISynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext, ppUnkData);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetIdParameters(self: *const ISynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return self.vtable.GetIdParameters(self, pIdParameters);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LoadChangeData(self: *const ISynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext, ppUnkData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.LoadChangeData(self, pLoadChangeContext, ppUnkData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IAsynchronousDataRetriever_Value = Guid.initString("9fc7e470-61ea-4a88-9be4-df56a27cfef2");
 pub const IID_IAsynchronousDataRetriever = &IID_IAsynchronousDataRetriever_Value;
-pub const IAsynchronousDataRetriever = extern struct {
+pub const IAsynchronousDataRetriever = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIdParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IAsynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IAsynchronousDataRetriever,
-                pIdParameters: ?*ID_PARAMETERS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RevokeCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IAsynchronousDataRetriever,
-                pDataRetrieverCallback: ?*IDataRetrieverCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadChangeData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IAsynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IAsynchronousDataRetriever,
-                pLoadChangeContext: ?*ILoadChangeContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIdParameters: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pIdParameters: ?*ID_PARAMETERS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterCallback: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pDataRetrieverCallback: ?*IDataRetrieverCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RevokeCallback: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pDataRetrieverCallback: ?*IDataRetrieverCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadChangeData: *const fn(
+            self: *const IAsynchronousDataRetriever,
+            pLoadChangeContext: ?*ILoadChangeContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IAsynchronousDataRetriever_GetIdParameters(self: *const T, pIdParameters: ?*ID_PARAMETERS) HRESULT {
-                return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).GetIdParameters(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pIdParameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IAsynchronousDataRetriever_RegisterCallback(self: *const T, pDataRetrieverCallback: ?*IDataRetrieverCallback) HRESULT {
-                return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).RegisterCallback(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pDataRetrieverCallback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IAsynchronousDataRetriever_RevokeCallback(self: *const T, pDataRetrieverCallback: ?*IDataRetrieverCallback) HRESULT {
-                return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).RevokeCallback(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pDataRetrieverCallback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IAsynchronousDataRetriever_LoadChangeData(self: *const T, pLoadChangeContext: ?*ILoadChangeContext) HRESULT {
-                return @as(*const IAsynchronousDataRetriever.VTable, @ptrCast(self.vtable)).LoadChangeData(@as(*const IAsynchronousDataRetriever, @ptrCast(self)), pLoadChangeContext);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetIdParameters(self: *const IAsynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+        return self.vtable.GetIdParameters(self, pIdParameters);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn RegisterCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterCallback(self, pDataRetrieverCallback);
+    }
+    pub fn RevokeCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
+        return self.vtable.RevokeCallback(self, pDataRetrieverCallback);
+    }
+    pub fn LoadChangeData(self: *const IAsynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext) callconv(.Inline) HRESULT {
+        return self.vtable.LoadChangeData(self, pLoadChangeContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IFilterRequestCallback_Value = Guid.initString("82df8873-6360-463a-a8a1-ede5e1a1594d");
 pub const IID_IFilterRequestCallback = &IID_IFilterRequestCallback_Value;
-pub const IFilterRequestCallback = extern struct {
+pub const IFilterRequestCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RequestFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterRequestCallback,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterRequestCallback,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RequestFilter: *const fn(
+            self: *const IFilterRequestCallback,
+            pFilter: ?*IUnknown,
+            filteringType: FILTERING_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterRequestCallback_RequestFilter(self: *const T, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) HRESULT {
-                return @as(*const IFilterRequestCallback.VTable, @ptrCast(self.vtable)).RequestFilter(@as(*const IFilterRequestCallback, @ptrCast(self)), pFilter, filteringType);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn RequestFilter(self: *const IFilterRequestCallback, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.RequestFilter(self, pFilter, filteringType);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRequestFilteredSync_Value = Guid.initString("2e020184-6d18-46a7-a32a-da4aeb06696c");
 pub const IID_IRequestFilteredSync = &IID_IRequestFilteredSync_Value;
-pub const IRequestFilteredSync = extern struct {
+pub const IRequestFilteredSync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SpecifyFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRequestFilteredSync,
-                pCallback: ?*IFilterRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRequestFilteredSync,
-                pCallback: ?*IFilterRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SpecifyFilter: *const fn(
+            self: *const IRequestFilteredSync,
+            pCallback: ?*IFilterRequestCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRequestFilteredSync_SpecifyFilter(self: *const T, pCallback: ?*IFilterRequestCallback) HRESULT {
-                return @as(*const IRequestFilteredSync.VTable, @ptrCast(self.vtable)).SpecifyFilter(@as(*const IRequestFilteredSync, @ptrCast(self)), pCallback);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SpecifyFilter(self: *const IRequestFilteredSync, pCallback: ?*IFilterRequestCallback) callconv(.Inline) HRESULT {
+        return self.vtable.SpecifyFilter(self, pCallback);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISupportFilteredSync_Value = Guid.initString("3d128ded-d555-4e0d-bf4b-fb213a8a9302");
 pub const IID_ISupportFilteredSync = &IID_ISupportFilteredSync_Value;
-pub const ISupportFilteredSync = extern struct {
+pub const ISupportFilteredSync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISupportFilteredSync,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISupportFilteredSync,
-                pFilter: ?*IUnknown,
-                filteringType: FILTERING_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddFilter: *const fn(
+            self: *const ISupportFilteredSync,
+            pFilter: ?*IUnknown,
+            filteringType: FILTERING_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISupportFilteredSync_AddFilter(self: *const T, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) HRESULT {
-                return @as(*const ISupportFilteredSync.VTable, @ptrCast(self.vtable)).AddFilter(@as(*const ISupportFilteredSync, @ptrCast(self)), pFilter, filteringType);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AddFilter(self: *const ISupportFilteredSync, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.AddFilter(self, pFilter, filteringType);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IFilterTrackingRequestCallback_Value = Guid.initString("713ca7bb-c858-4674-b4b6-1122436587a9");
 pub const IID_IFilterTrackingRequestCallback = &IID_IFilterTrackingRequestCallback_Value;
-pub const IFilterTrackingRequestCallback = extern struct {
+pub const IFilterTrackingRequestCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RequestTrackedFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterTrackingRequestCallback,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterTrackingRequestCallback,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RequestTrackedFilter: *const fn(
+            self: *const IFilterTrackingRequestCallback,
+            pFilter: ?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterTrackingRequestCallback_RequestTrackedFilter(self: *const T, pFilter: ?*ISyncFilter) HRESULT {
-                return @as(*const IFilterTrackingRequestCallback.VTable, @ptrCast(self.vtable)).RequestTrackedFilter(@as(*const IFilterTrackingRequestCallback, @ptrCast(self)), pFilter);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn RequestTrackedFilter(self: *const IFilterTrackingRequestCallback, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+        return self.vtable.RequestTrackedFilter(self, pFilter);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IFilterTrackingProvider_Value = Guid.initString("743383c0-fc4e-45ba-ad81-d9d84c7a24f8");
 pub const IID_IFilterTrackingProvider = &IID_IFilterTrackingProvider_Value;
-pub const IFilterTrackingProvider = extern struct {
+pub const IFilterTrackingProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SpecifyTrackedFilters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterTrackingProvider,
-                pCallback: ?*IFilterTrackingRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterTrackingProvider,
-                pCallback: ?*IFilterTrackingRequestCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddTrackedFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFilterTrackingProvider,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFilterTrackingProvider,
-                pFilter: ?*ISyncFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SpecifyTrackedFilters: *const fn(
+            self: *const IFilterTrackingProvider,
+            pCallback: ?*IFilterTrackingRequestCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddTrackedFilter: *const fn(
+            self: *const IFilterTrackingProvider,
+            pFilter: ?*ISyncFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterTrackingProvider_SpecifyTrackedFilters(self: *const T, pCallback: ?*IFilterTrackingRequestCallback) HRESULT {
-                return @as(*const IFilterTrackingProvider.VTable, @ptrCast(self.vtable)).SpecifyTrackedFilters(@as(*const IFilterTrackingProvider, @ptrCast(self)), pCallback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFilterTrackingProvider_AddTrackedFilter(self: *const T, pFilter: ?*ISyncFilter) HRESULT {
-                return @as(*const IFilterTrackingProvider.VTable, @ptrCast(self.vtable)).AddTrackedFilter(@as(*const IFilterTrackingProvider, @ptrCast(self)), pFilter);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SpecifyTrackedFilters(self: *const IFilterTrackingProvider, pCallback: ?*IFilterTrackingRequestCallback) callconv(.Inline) HRESULT {
+        return self.vtable.SpecifyTrackedFilters(self, pCallback);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddTrackedFilter(self: *const IFilterTrackingProvider, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+        return self.vtable.AddTrackedFilter(self, pFilter);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISupportLastWriteTime_Value = Guid.initString("eadf816f-d0bd-43ca-8f40-5acdc6c06f7a");
 pub const IID_ISupportLastWriteTime = &IID_ISupportLastWriteTime_Value;
-pub const ISupportLastWriteTime = extern struct {
+pub const ISupportLastWriteTime = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetItemChangeTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChangeUnitChangeTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISupportLastWriteTime,
-                pbItemId: ?*const u8,
-                pbChangeUnitId: ?*const u8,
-                pullTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetItemChangeTime: *const fn(
+            self: *const ISupportLastWriteTime,
+            pbItemId: ?*const u8,
+            pullTimestamp: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChangeUnitChangeTime: *const fn(
+            self: *const ISupportLastWriteTime,
+            pbItemId: ?*const u8,
+            pbChangeUnitId: ?*const u8,
+            pullTimestamp: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISupportLastWriteTime_GetItemChangeTime(self: *const T, pbItemId: ?*const u8, pullTimestamp: ?*u64) HRESULT {
-                return @as(*const ISupportLastWriteTime.VTable, @ptrCast(self.vtable)).GetItemChangeTime(@as(*const ISupportLastWriteTime, @ptrCast(self)), pbItemId, pullTimestamp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISupportLastWriteTime_GetChangeUnitChangeTime(self: *const T, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pullTimestamp: ?*u64) HRESULT {
-                return @as(*const ISupportLastWriteTime.VTable, @ptrCast(self.vtable)).GetChangeUnitChangeTime(@as(*const ISupportLastWriteTime, @ptrCast(self)), pbItemId, pbChangeUnitId, pullTimestamp);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetItemChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetItemChangeTime(self, pbItemId, pullTimestamp);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetChangeUnitChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetChangeUnitChangeTime(self, pbItemId, pbChangeUnitId, pullTimestamp);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IProviderConverter_Value = Guid.initString("809b7276-98cf-4957-93a5-0ebdd3dddffd");
 pub const IID_IProviderConverter = &IID_IProviderConverter_Value;
-pub const IProviderConverter = extern struct {
+pub const IProviderConverter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IProviderConverter,
-                pISyncProvider: ?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IProviderConverter,
-                pISyncProvider: ?*ISyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IProviderConverter,
+            pISyncProvider: ?*ISyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IProviderConverter_Initialize(self: *const T, pISyncProvider: ?*ISyncProvider) HRESULT {
-                return @as(*const IProviderConverter.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IProviderConverter, @ptrCast(self)), pISyncProvider);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IProviderConverter, pISyncProvider: ?*ISyncProvider) callconv(.Inline) HRESULT {
+        return self.vtable.Initialize(self, pISyncProvider);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_ISyncDataConverter_Value = Guid.initString("435d4861-68d5-44aa-a0f9-72a0b00ef9cf");
 pub const IID_ISyncDataConverter = &IID_ISyncDataConverter_Value;
-pub const ISyncDataConverter = extern struct {
+pub const ISyncDataConverter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConvertDataRetrieverFromProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertDataRetrieverToProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncDataConverter,
-                pUnkDataRetrieverIn: ?*IUnknown,
-                pEnumSyncChanges: ?*IEnumSyncChanges,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertDataFromProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataIn: ?*IUnknown,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataIn: ?*IUnknown,
-                ppUnkDataOut: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertDataToProviderFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataOut: ?*IUnknown,
-                ppUnkDataout: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncDataConverter,
-                pDataContext: ?*ILoadChangeContext,
-                pUnkDataOut: ?*IUnknown,
-                ppUnkDataout: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ConvertDataRetrieverFromProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pUnkDataRetrieverIn: ?*IUnknown,
+            pEnumSyncChanges: ?*IEnumSyncChanges,
+            ppUnkDataOut: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertDataRetrieverToProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pUnkDataRetrieverIn: ?*IUnknown,
+            pEnumSyncChanges: ?*IEnumSyncChanges,
+            ppUnkDataOut: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertDataFromProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pDataContext: ?*ILoadChangeContext,
+            pUnkDataIn: ?*IUnknown,
+            ppUnkDataOut: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertDataToProviderFormat: *const fn(
+            self: *const ISyncDataConverter,
+            pDataContext: ?*ILoadChangeContext,
+            pUnkDataOut: ?*IUnknown,
+            ppUnkDataout: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncDataConverter_ConvertDataRetrieverFromProviderFormat(self: *const T, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) HRESULT {
-                return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataRetrieverFromProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncDataConverter_ConvertDataRetrieverToProviderFormat(self: *const T, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) HRESULT {
-                return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataRetrieverToProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncDataConverter_ConvertDataFromProviderFormat(self: *const T, pDataContext: ?*ILoadChangeContext, pUnkDataIn: ?*IUnknown, ppUnkDataOut: ?*?*IUnknown) HRESULT {
-                return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataFromProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pDataContext, pUnkDataIn, ppUnkDataOut);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncDataConverter_ConvertDataToProviderFormat(self: *const T, pDataContext: ?*ILoadChangeContext, pUnkDataOut: ?*IUnknown, ppUnkDataout: ?*?*IUnknown) HRESULT {
-                return @as(*const ISyncDataConverter.VTable, @ptrCast(self.vtable)).ConvertDataToProviderFormat(@as(*const ISyncDataConverter, @ptrCast(self)), pDataContext, pUnkDataOut, ppUnkDataout);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ConvertDataRetrieverFromProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertDataRetrieverFromProviderFormat(self, pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ConvertDataRetrieverToProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertDataRetrieverToProviderFormat(self, pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
+    }
+    pub fn ConvertDataFromProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataIn: ?*IUnknown, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertDataFromProviderFormat(self, pDataContext, pUnkDataIn, ppUnkDataOut);
+    }
+    pub fn ConvertDataToProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataOut: ?*IUnknown, ppUnkDataout: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertDataToProviderFormat(self, pDataContext, pUnkDataOut, ppUnkDataout);
+    }
 };
 
 const CLSID_SyncProviderRegistration_Value = Guid.initString("f82b4ef1-93a9-4dde-8015-f7950a1a6e31");
@@ -5374,637 +3019,342 @@ pub const SyncProviderConfigUIConfiguration = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderRegistration_Value = Guid.initString("cb45953b-7624-47bc-a472-eb8cac6b222e");
 pub const IID_ISyncProviderRegistration = &IID_ISyncProviderRegistration_Value;
-pub const ISyncProviderRegistration = extern struct {
+pub const ISyncProviderRegistration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateSyncProviderConfigUIRegistrationInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterSyncProviderConfigUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateSyncProviderConfigUIs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSyncProviderRegistrationInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pProviderConfiguration: ?*const SyncProviderConfiguration,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pProviderConfiguration: ?*const SyncProviderConfiguration,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterSyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderConfigUIInfoforProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidProviderInstanceId: ?*const Guid,
-                ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidProviderInstanceId: ?*const Guid,
-                ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateSyncProviders: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwStateFlagsToFilterMask: u32,
-                dwStateFlagsToFilter: u32,
-                refProviderClsId: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidContentType: ?*const Guid,
-                dwStateFlagsToFilterMask: u32,
-                dwStateFlagsToFilter: u32,
-                refProviderClsId: ?*const Guid,
-                dwSupportedArchitecture: u32,
-                ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderFromInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderConfigUIInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderConfigUIFromInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwClsContext: u32,
-                ppConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSyncProviderState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                pdwStateFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                pdwStateFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSyncProviderState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwStateFlagsMask: u32,
-                dwStateFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                pguidInstanceId: ?*const Guid,
-                dwStateFlagsMask: u32,
-                dwStateFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterForEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                phEvent: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                phEvent: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RevokeEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-                ppChange: ?*?*ISyncRegistrationChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderRegistration,
-                hEvent: ?HANDLE,
-                ppChange: ?*?*ISyncRegistrationChange,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateSyncProviderConfigUIRegistrationInstance: *const fn(
+            self: *const ISyncProviderRegistration,
+            pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterSyncProviderConfigUI: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateSyncProviderConfigUIs: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidContentType: ?*const Guid,
+            dwSupportedArchitecture: u32,
+            ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSyncProviderRegistrationInstance: *const fn(
+            self: *const ISyncProviderRegistration,
+            pProviderConfiguration: ?*const SyncProviderConfiguration,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterSyncProvider: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderConfigUIInfoforProvider: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidProviderInstanceId: ?*const Guid,
+            ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateSyncProviders: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidContentType: ?*const Guid,
+            dwStateFlagsToFilterMask: u32,
+            dwStateFlagsToFilter: u32,
+            refProviderClsId: ?*const Guid,
+            dwSupportedArchitecture: u32,
+            ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderInfo: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderFromInstanceId: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            dwClsContext: u32,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderConfigUIInfo: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderConfigUIFromInstanceId: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            dwClsContext: u32,
+            ppConfigUI: ?*?*ISyncProviderConfigUI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSyncProviderState: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            pdwStateFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSyncProviderState: *const fn(
+            self: *const ISyncProviderRegistration,
+            pguidInstanceId: ?*const Guid,
+            dwStateFlagsMask: u32,
+            dwStateFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterForEvent: *const fn(
+            self: *const ISyncProviderRegistration,
+            phEvent: ?*?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RevokeEvent: *const fn(
+            self: *const ISyncProviderRegistration,
+            hEvent: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetChange: *const fn(
+            self: *const ISyncProviderRegistration,
+            hEvent: ?HANDLE,
+            ppChange: ?*?*ISyncRegistrationChange,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_CreateSyncProviderConfigUIRegistrationInstance(self: *const T, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).CreateSyncProviderConfigUIRegistrationInstance(@as(*const ISyncProviderRegistration, @ptrCast(self)), pConfigUIConfig, ppConfigUIInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_UnregisterSyncProviderConfigUI(self: *const T, pguidInstanceId: ?*const Guid) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).UnregisterSyncProviderConfigUI(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_EnumerateSyncProviderConfigUIs(self: *const T, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).EnumerateSyncProviderConfigUIs(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_CreateSyncProviderRegistrationInstance(self: *const T, pProviderConfiguration: ?*const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).CreateSyncProviderRegistrationInstance(@as(*const ISyncProviderRegistration, @ptrCast(self)), pProviderConfiguration, ppProviderInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_UnregisterSyncProvider(self: *const T, pguidInstanceId: ?*const Guid) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).UnregisterSyncProvider(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_GetSyncProviderConfigUIInfoforProvider(self: *const T, pguidProviderInstanceId: ?*const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIInfoforProvider(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidProviderInstanceId, ppProviderConfigUIInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_EnumerateSyncProviders(self: *const T, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).EnumerateSyncProviders(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_GetSyncProviderInfo(self: *const T, pguidInstanceId: ?*const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderInfo(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, ppProviderInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_GetSyncProviderFromInstanceId(self: *const T, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderFromInstanceId(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwClsContext, ppSyncProvider);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_GetSyncProviderConfigUIInfo(self: *const T, pguidInstanceId: ?*const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIInfo(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, ppConfigUIInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_GetSyncProviderConfigUIFromInstanceId(self: *const T, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUIFromInstanceId(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwClsContext, ppConfigUI);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_GetSyncProviderState(self: *const T, pguidInstanceId: ?*const Guid, pdwStateFlags: ?*u32) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetSyncProviderState(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, pdwStateFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_SetSyncProviderState(self: *const T, pguidInstanceId: ?*const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).SetSyncProviderState(@as(*const ISyncProviderRegistration, @ptrCast(self)), pguidInstanceId, dwStateFlagsMask, dwStateFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_RegisterForEvent(self: *const T, phEvent: ?*?HANDLE) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).RegisterForEvent(@as(*const ISyncProviderRegistration, @ptrCast(self)), phEvent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_RevokeEvent(self: *const T, hEvent: ?HANDLE) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).RevokeEvent(@as(*const ISyncProviderRegistration, @ptrCast(self)), hEvent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderRegistration_GetChange(self: *const T, hEvent: ?HANDLE, ppChange: ?*?*ISyncRegistrationChange) HRESULT {
-                return @as(*const ISyncProviderRegistration.VTable, @ptrCast(self.vtable)).GetChange(@as(*const ISyncProviderRegistration, @ptrCast(self)), hEvent, ppChange);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateSyncProviderConfigUIRegistrationInstance(self: *const ISyncProviderRegistration, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSyncProviderConfigUIRegistrationInstance(self, pConfigUIConfig, ppConfigUIInfo);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UnregisterSyncProviderConfigUI(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
+        return self.vtable.UnregisterSyncProviderConfigUI(self, pguidInstanceId);
+    }
+    pub fn EnumerateSyncProviderConfigUIs(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        return self.vtable.EnumerateSyncProviderConfigUIs(self, pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
+    }
+    pub fn CreateSyncProviderRegistrationInstance(self: *const ISyncProviderRegistration, pProviderConfiguration: ?*const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSyncProviderRegistrationInstance(self, pProviderConfiguration, ppProviderInfo);
+    }
+    pub fn UnregisterSyncProvider(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
+        return self.vtable.UnregisterSyncProvider(self, pguidInstanceId);
+    }
+    pub fn GetSyncProviderConfigUIInfoforProvider(self: *const ISyncProviderRegistration, pguidProviderInstanceId: ?*const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderConfigUIInfoforProvider(self, pguidProviderInstanceId, ppProviderConfigUIInfo);
+    }
+    pub fn EnumerateSyncProviders(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        return self.vtable.EnumerateSyncProviders(self, pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
+    }
+    pub fn GetSyncProviderInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderInfo(self, pguidInstanceId, ppProviderInfo);
+    }
+    pub fn GetSyncProviderFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderFromInstanceId(self, pguidInstanceId, dwClsContext, ppSyncProvider);
+    }
+    pub fn GetSyncProviderConfigUIInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderConfigUIInfo(self, pguidInstanceId, ppConfigUIInfo);
+    }
+    pub fn GetSyncProviderConfigUIFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderConfigUIFromInstanceId(self, pguidInstanceId, dwClsContext, ppConfigUI);
+    }
+    pub fn GetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, pdwStateFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderState(self, pguidInstanceId, pdwStateFlags);
+    }
+    pub fn SetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetSyncProviderState(self, pguidInstanceId, dwStateFlagsMask, dwStateFlags);
+    }
+    pub fn RegisterForEvent(self: *const ISyncProviderRegistration, phEvent: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterForEvent(self, phEvent);
+    }
+    pub fn RevokeEvent(self: *const ISyncProviderRegistration, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.RevokeEvent(self, hEvent);
+    }
+    pub fn GetChange(self: *const ISyncProviderRegistration, hEvent: ?HANDLE, ppChange: ?*?*ISyncRegistrationChange) callconv(.Inline) HRESULT {
+        return self.vtable.GetChange(self, hEvent, ppChange);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncProviderConfigUIInfos_Value = Guid.initString("f6be2602-17c6-4658-a2d7-68ed3330f641");
 pub const IID_IEnumSyncProviderConfigUIInfos = &IID_IEnumSyncProviderConfigUIInfos_Value;
-pub const IEnumSyncProviderConfigUIInfos = extern struct {
+pub const IEnumSyncProviderConfigUIInfos = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-                ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-                ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-                cFactories: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-                ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderConfigUIInfos,
-                ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+            cFactories: u32,
+            ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+            cFactories: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncProviderConfigUIInfos,
+            ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderConfigUIInfos_Next(self: *const T, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), cFactories, ppSyncProviderConfigUIInfo, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderConfigUIInfos_Skip(self: *const T, cFactories: u32) HRESULT {
-                return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), cFactories);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderConfigUIInfos_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderConfigUIInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) HRESULT {
-                return @as(*const IEnumSyncProviderConfigUIInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderConfigUIInfos, @ptrCast(self)), ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cFactories, ppSyncProviderConfigUIInfo, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cFactories);
+    }
+    pub fn Reset(self: *const IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumSyncProviderConfigUIInfos, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IEnumSyncProviderInfos_Value = Guid.initString("a04ba850-5eb1-460d-a973-393fcb608a11");
 pub const IID_IEnumSyncProviderInfos = &IID_IEnumSyncProviderInfos_Value;
-pub const IEnumSyncProviderInfos = extern struct {
+pub const IEnumSyncProviderInfos = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Next: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-                ppSyncProviderInfo: [*]?*ISyncProviderInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-                ppSyncProviderInfo: [*]?*ISyncProviderInfo,
-                pcFetched: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Skip: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderInfos,
-                cInstances: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IEnumSyncProviderInfos,
-                ppEnum: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IEnumSyncProviderInfos,
-                ppEnum: ?*?*IEnumSyncProviderInfos,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Next: *const fn(
+            self: *const IEnumSyncProviderInfos,
+            cInstances: u32,
+            ppSyncProviderInfo: [*]?*ISyncProviderInfo,
+            pcFetched: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Skip: *const fn(
+            self: *const IEnumSyncProviderInfos,
+            cInstances: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IEnumSyncProviderInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IEnumSyncProviderInfos,
+            ppEnum: ?*?*IEnumSyncProviderInfos,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderInfos_Next(self: *const T, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) HRESULT {
-                return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Next(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), cInstances, ppSyncProviderInfo, pcFetched);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderInfos_Skip(self: *const T, cInstances: u32) HRESULT {
-                return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Skip(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), cInstances);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderInfos_Reset(self: *const T) HRESULT {
-                return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Reset(@as(*const IEnumSyncProviderInfos, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IEnumSyncProviderInfos_Clone(self: *const T, ppEnum: ?*?*IEnumSyncProviderInfos) HRESULT {
-                return @as(*const IEnumSyncProviderInfos.VTable, @ptrCast(self.vtable)).Clone(@as(*const IEnumSyncProviderInfos, @ptrCast(self)), ppEnum);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Next(self: *const IEnumSyncProviderInfos, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Next(self, cInstances, ppSyncProviderInfo, pcFetched);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Skip(self: *const IEnumSyncProviderInfos, cInstances: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Skip(self, cInstances);
+    }
+    pub fn Reset(self: *const IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
+    pub fn Clone(self: *const IEnumSyncProviderInfos, ppEnum: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, ppEnum);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderInfo_Value = Guid.initString("1ee135de-88a4-4504-b0d0-f7920d7e5ba6");
 pub const IID_ISyncProviderInfo = &IID_ISyncProviderInfo_Value;
-pub const ISyncProviderInfo = extern struct {
+pub const ISyncProviderInfo = extern union {
     pub const VTable = extern struct {
         base: IPropertyStore.VTable,
-        GetSyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderInfo,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderInfo,
-                dwClsContext: u32,
-                ppSyncProvider: ?*?*IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncProvider: *const fn(
+            self: *const ISyncProviderInfo,
+            dwClsContext: u32,
+            ppSyncProvider: ?*?*IRegisteredSyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IPropertyStore.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderInfo_GetSyncProvider(self: *const T, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) HRESULT {
-                return @as(*const ISyncProviderInfo.VTable, @ptrCast(self.vtable)).GetSyncProvider(@as(*const ISyncProviderInfo, @ptrCast(self)), dwClsContext, ppSyncProvider);
-            }
-        };
+    IPropertyStore: IPropertyStore,
+    IUnknown: IUnknown,
+    pub fn GetSyncProvider(self: *const ISyncProviderInfo, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProvider(self, dwClsContext, ppSyncProvider);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderConfigUIInfo_Value = Guid.initString("214141ae-33d7-4d8d-8e37-f227e880ce50");
 pub const IID_ISyncProviderConfigUIInfo = &IID_ISyncProviderConfigUIInfo_Value;
-pub const ISyncProviderConfigUIInfo = extern struct {
+pub const ISyncProviderConfigUIInfo = extern union {
     pub const VTable = extern struct {
         base: IPropertyStore.VTable,
-        GetSyncProviderConfigUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderConfigUIInfo,
-                dwClsContext: u32,
-                ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderConfigUIInfo,
-                dwClsContext: u32,
-                ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSyncProviderConfigUI: *const fn(
+            self: *const ISyncProviderConfigUIInfo,
+            dwClsContext: u32,
+            ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IPropertyStore.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderConfigUIInfo_GetSyncProviderConfigUI(self: *const T, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) HRESULT {
-                return @as(*const ISyncProviderConfigUIInfo.VTable, @ptrCast(self.vtable)).GetSyncProviderConfigUI(@as(*const ISyncProviderConfigUIInfo, @ptrCast(self)), dwClsContext, ppSyncProviderConfigUI);
-            }
-        };
+    IPropertyStore: IPropertyStore,
+    IUnknown: IUnknown,
+    pub fn GetSyncProviderConfigUI(self: *const ISyncProviderConfigUIInfo, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+        return self.vtable.GetSyncProviderConfigUI(self, dwClsContext, ppSyncProviderConfigUI);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncProviderConfigUI_Value = Guid.initString("7b0705f6-cbcd-4071-ab05-3bdc364d4a0c");
 pub const IID_ISyncProviderConfigUI = &IID_ISyncProviderConfigUI_Value;
-pub const ISyncProviderConfigUI = extern struct {
+pub const ISyncProviderConfigUI = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderConfigUI,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pConfigurationProperties: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderConfigUI,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pConfigurationProperties: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRegisteredProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderConfigUI,
-                ppConfigUIProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderConfigUI,
-                ppConfigUIProperties: ?*?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAndRegisterNewSyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                ppProviderInfo: ?*?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ModifySyncProvider: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                pProviderInfo: ?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncProviderConfigUI,
-                hwndParent: ?HWND,
-                pUnkContext: ?*IUnknown,
-                pProviderInfo: ?*ISyncProviderInfo,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Init: *const fn(
+            self: *const ISyncProviderConfigUI,
+            pguidInstanceId: ?*const Guid,
+            pguidContentType: ?*const Guid,
+            pConfigurationProperties: ?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRegisteredProperties: *const fn(
+            self: *const ISyncProviderConfigUI,
+            ppConfigUIProperties: ?*?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAndRegisterNewSyncProvider: *const fn(
+            self: *const ISyncProviderConfigUI,
+            hwndParent: ?HWND,
+            pUnkContext: ?*IUnknown,
+            ppProviderInfo: ?*?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ModifySyncProvider: *const fn(
+            self: *const ISyncProviderConfigUI,
+            hwndParent: ?HWND,
+            pUnkContext: ?*IUnknown,
+            pProviderInfo: ?*ISyncProviderInfo,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderConfigUI_Init(self: *const T, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) HRESULT {
-                return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).Init(@as(*const ISyncProviderConfigUI, @ptrCast(self)), pguidInstanceId, pguidContentType, pConfigurationProperties);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderConfigUI_GetRegisteredProperties(self: *const T, ppConfigUIProperties: ?*?*IPropertyStore) HRESULT {
-                return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).GetRegisteredProperties(@as(*const ISyncProviderConfigUI, @ptrCast(self)), ppConfigUIProperties);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderConfigUI_CreateAndRegisterNewSyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) HRESULT {
-                return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).CreateAndRegisterNewSyncProvider(@as(*const ISyncProviderConfigUI, @ptrCast(self)), hwndParent, pUnkContext, ppProviderInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncProviderConfigUI_ModifySyncProvider(self: *const T, hwndParent: ?HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) HRESULT {
-                return @as(*const ISyncProviderConfigUI.VTable, @ptrCast(self.vtable)).ModifySyncProvider(@as(*const ISyncProviderConfigUI, @ptrCast(self)), hwndParent, pUnkContext, pProviderInfo);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Init(self: *const ISyncProviderConfigUI, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) callconv(.Inline) HRESULT {
+        return self.vtable.Init(self, pguidInstanceId, pguidContentType, pConfigurationProperties);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetRegisteredProperties(self: *const ISyncProviderConfigUI, ppConfigUIProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+        return self.vtable.GetRegisteredProperties(self, ppConfigUIProperties);
+    }
+    pub fn CreateAndRegisterNewSyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return self.vtable.CreateAndRegisterNewSyncProvider(self, hwndParent, pUnkContext, ppProviderInfo);
+    }
+    pub fn ModifySyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+        return self.vtable.ModifySyncProvider(self, hwndParent, pUnkContext, pProviderInfo);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRegisteredSyncProvider_Value = Guid.initString("913bcf76-47c1-40b5-a896-5e8a9c414c14");
 pub const IID_IRegisteredSyncProvider = &IID_IRegisteredSyncProvider_Value;
-pub const IRegisteredSyncProvider = extern struct {
+pub const IRegisteredSyncProvider = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Init: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pContextPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*const Guid,
-                pguidContentType: ?*const Guid,
-                pContextPropertyStore: ?*IPropertyStore,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRegisteredSyncProvider,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRegisteredSyncProvider,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Init: *const fn(
+            self: *const IRegisteredSyncProvider,
+            pguidInstanceId: ?*const Guid,
+            pguidContentType: ?*const Guid,
+            pContextPropertyStore: ?*IPropertyStore,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInstanceId: *const fn(
+            self: *const IRegisteredSyncProvider,
+            pguidInstanceId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const IRegisteredSyncProvider,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRegisteredSyncProvider_Init(self: *const T, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) HRESULT {
-                return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).Init(@as(*const IRegisteredSyncProvider, @ptrCast(self)), pguidInstanceId, pguidContentType, pContextPropertyStore);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRegisteredSyncProvider_GetInstanceId(self: *const T, pguidInstanceId: ?*Guid) HRESULT {
-                return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const IRegisteredSyncProvider, @ptrCast(self)), pguidInstanceId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRegisteredSyncProvider_Reset(self: *const T) HRESULT {
-                return @as(*const IRegisteredSyncProvider.VTable, @ptrCast(self.vtable)).Reset(@as(*const IRegisteredSyncProvider, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Init(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
+        return self.vtable.Init(self, pguidInstanceId, pguidContentType, pContextPropertyStore);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetInstanceId(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetInstanceId(self, pguidInstanceId);
+    }
+    pub fn Reset(self: *const IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
+    }
 };
 
 pub const SYNC_REGISTRATION_EVENT = enum(i32) {
@@ -6027,46 +3377,28 @@ pub const SRE_CONFIGUI_UPDATED = SYNC_REGISTRATION_EVENT.CONFIGUI_UPDATED;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_ISyncRegistrationChange_Value = Guid.initString("eea0d9ae-6b29-43b4-9e70-e3ae33bb2c3b");
 pub const IID_ISyncRegistrationChange = &IID_ISyncRegistrationChange_Value;
-pub const ISyncRegistrationChange = extern struct {
+pub const ISyncRegistrationChange = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncRegistrationChange,
-                psreEvent: ?*SYNC_REGISTRATION_EVENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncRegistrationChange,
-                psreEvent: ?*SYNC_REGISTRATION_EVENT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInstanceId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISyncRegistrationChange,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISyncRegistrationChange,
-                pguidInstanceId: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetEvent: *const fn(
+            self: *const ISyncRegistrationChange,
+            psreEvent: ?*SYNC_REGISTRATION_EVENT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInstanceId: *const fn(
+            self: *const ISyncRegistrationChange,
+            pguidInstanceId: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncRegistrationChange_GetEvent(self: *const T, psreEvent: ?*SYNC_REGISTRATION_EVENT) HRESULT {
-                return @as(*const ISyncRegistrationChange.VTable, @ptrCast(self.vtable)).GetEvent(@as(*const ISyncRegistrationChange, @ptrCast(self)), psreEvent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISyncRegistrationChange_GetInstanceId(self: *const T, pguidInstanceId: ?*Guid) HRESULT {
-                return @as(*const ISyncRegistrationChange.VTable, @ptrCast(self.vtable)).GetInstanceId(@as(*const ISyncRegistrationChange, @ptrCast(self)), pguidInstanceId);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetEvent(self: *const ISyncRegistrationChange, psreEvent: ?*SYNC_REGISTRATION_EVENT) callconv(.Inline) HRESULT {
+        return self.vtable.GetEvent(self, psreEvent);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetInstanceId(self: *const ISyncRegistrationChange, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetInstanceId(self, pguidInstanceId);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -6075,12 +3407,6 @@ pub const ISyncRegistrationChange = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
@@ -6095,13 +3421,13 @@ const PROPERTYKEY = @import("../ui/shell/properties_system.zig").PROPERTYKEY;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

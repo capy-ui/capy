@@ -11,6 +11,7 @@ pub const CF_MAX_PROVIDER_VERSION_LENGTH = @as(u32, 255);
 //--------------------------------------------------------------------------------
 // Section: Types (75)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const CF_CONNECTION_KEY = isize;
 
 pub const CF_FS_METADATA = extern struct {
@@ -18,28 +19,45 @@ pub const CF_FS_METADATA = extern struct {
     FileSize: LARGE_INTEGER,
 };
 
-pub const CF_PLACEHOLDER_CREATE_FLAGS = enum(u32) {
-    NONE = 0,
-    DISABLE_ON_DEMAND_POPULATION = 1,
-    MARK_IN_SYNC = 2,
-    SUPERSEDE = 4,
-    ALWAYS_FULL = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DISABLE_ON_DEMAND_POPULATION: u1 = 0,
-        MARK_IN_SYNC: u1 = 0,
-        SUPERSEDE: u1 = 0,
-        ALWAYS_FULL: u1 = 0,
-    }) CF_PLACEHOLDER_CREATE_FLAGS {
-        return @as(CF_PLACEHOLDER_CREATE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.NONE) else 0) | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0) | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.MARK_IN_SYNC) else 0) | (if (o.SUPERSEDE == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.SUPERSEDE) else 0) | (if (o.ALWAYS_FULL == 1) @intFromEnum(CF_PLACEHOLDER_CREATE_FLAGS.ALWAYS_FULL) else 0)));
-    }
+pub const CF_PLACEHOLDER_CREATE_FLAGS = packed struct(u32) {
+    DISABLE_ON_DEMAND_POPULATION: u1 = 0,
+    MARK_IN_SYNC: u1 = 0,
+    SUPERSEDE: u1 = 0,
+    ALWAYS_FULL: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_PLACEHOLDER_CREATE_FLAG_NONE = CF_PLACEHOLDER_CREATE_FLAGS.NONE;
-pub const CF_PLACEHOLDER_CREATE_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_PLACEHOLDER_CREATE_FLAGS.DISABLE_ON_DEMAND_POPULATION;
-pub const CF_PLACEHOLDER_CREATE_FLAG_MARK_IN_SYNC = CF_PLACEHOLDER_CREATE_FLAGS.MARK_IN_SYNC;
-pub const CF_PLACEHOLDER_CREATE_FLAG_SUPERSEDE = CF_PLACEHOLDER_CREATE_FLAGS.SUPERSEDE;
-pub const CF_PLACEHOLDER_CREATE_FLAG_ALWAYS_FULL = CF_PLACEHOLDER_CREATE_FLAGS.ALWAYS_FULL;
+pub const CF_PLACEHOLDER_CREATE_FLAG_NONE = CF_PLACEHOLDER_CREATE_FLAGS{ };
+pub const CF_PLACEHOLDER_CREATE_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_PLACEHOLDER_CREATE_FLAGS{ .DISABLE_ON_DEMAND_POPULATION = 1 };
+pub const CF_PLACEHOLDER_CREATE_FLAG_MARK_IN_SYNC = CF_PLACEHOLDER_CREATE_FLAGS{ .MARK_IN_SYNC = 1 };
+pub const CF_PLACEHOLDER_CREATE_FLAG_SUPERSEDE = CF_PLACEHOLDER_CREATE_FLAGS{ .SUPERSEDE = 1 };
+pub const CF_PLACEHOLDER_CREATE_FLAG_ALWAYS_FULL = CF_PLACEHOLDER_CREATE_FLAGS{ .ALWAYS_FULL = 1 };
 
 pub const CF_PLACEHOLDER_CREATE_INFO = extern struct {
     RelativeFileName: ?[*:0]const u16,
@@ -51,46 +69,59 @@ pub const CF_PLACEHOLDER_CREATE_INFO = extern struct {
     CreateUsn: i64,
 };
 
-pub const CF_SYNC_PROVIDER_STATUS = enum(u32) {
-    DISCONNECTED = 0,
-    IDLE = 1,
-    POPULATE_NAMESPACE = 2,
-    POPULATE_METADATA = 4,
-    POPULATE_CONTENT = 8,
-    SYNC_INCREMENTAL = 16,
-    SYNC_FULL = 32,
-    CONNECTIVITY_LOST = 64,
-    CLEAR_FLAGS = 2147483648,
-    TERMINATED = 3221225473,
-    ERROR = 3221225474,
-    _,
-    pub fn initFlags(o: struct {
-        DISCONNECTED: u1 = 0,
-        IDLE: u1 = 0,
-        POPULATE_NAMESPACE: u1 = 0,
-        POPULATE_METADATA: u1 = 0,
-        POPULATE_CONTENT: u1 = 0,
-        SYNC_INCREMENTAL: u1 = 0,
-        SYNC_FULL: u1 = 0,
-        CONNECTIVITY_LOST: u1 = 0,
-        CLEAR_FLAGS: u1 = 0,
-        TERMINATED: u1 = 0,
-        ERROR: u1 = 0,
-    }) CF_SYNC_PROVIDER_STATUS {
-        return @as(CF_SYNC_PROVIDER_STATUS, @enumFromInt((if (o.DISCONNECTED == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.DISCONNECTED) else 0) | (if (o.IDLE == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.IDLE) else 0) | (if (o.POPULATE_NAMESPACE == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.POPULATE_NAMESPACE) else 0) | (if (o.POPULATE_METADATA == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.POPULATE_METADATA) else 0) | (if (o.POPULATE_CONTENT == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.POPULATE_CONTENT) else 0) | (if (o.SYNC_INCREMENTAL == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.SYNC_INCREMENTAL) else 0) | (if (o.SYNC_FULL == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.SYNC_FULL) else 0) | (if (o.CONNECTIVITY_LOST == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.CONNECTIVITY_LOST) else 0) | (if (o.CLEAR_FLAGS == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.CLEAR_FLAGS) else 0) | (if (o.TERMINATED == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.TERMINATED) else 0) | (if (o.ERROR == 1) @intFromEnum(CF_SYNC_PROVIDER_STATUS.ERROR) else 0)));
-    }
+pub const CF_SYNC_PROVIDER_STATUS = packed struct(u32) {
+    IDLE: u1 = 0,
+    POPULATE_NAMESPACE: u1 = 0,
+    POPULATE_METADATA: u1 = 0,
+    POPULATE_CONTENT: u1 = 0,
+    SYNC_INCREMENTAL: u1 = 0,
+    SYNC_FULL: u1 = 0,
+    CONNECTIVITY_LOST: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    CLEAR_FLAGS: u1 = 0,
 };
-pub const CF_PROVIDER_STATUS_DISCONNECTED = CF_SYNC_PROVIDER_STATUS.DISCONNECTED;
-pub const CF_PROVIDER_STATUS_IDLE = CF_SYNC_PROVIDER_STATUS.IDLE;
-pub const CF_PROVIDER_STATUS_POPULATE_NAMESPACE = CF_SYNC_PROVIDER_STATUS.POPULATE_NAMESPACE;
-pub const CF_PROVIDER_STATUS_POPULATE_METADATA = CF_SYNC_PROVIDER_STATUS.POPULATE_METADATA;
-pub const CF_PROVIDER_STATUS_POPULATE_CONTENT = CF_SYNC_PROVIDER_STATUS.POPULATE_CONTENT;
-pub const CF_PROVIDER_STATUS_SYNC_INCREMENTAL = CF_SYNC_PROVIDER_STATUS.SYNC_INCREMENTAL;
-pub const CF_PROVIDER_STATUS_SYNC_FULL = CF_SYNC_PROVIDER_STATUS.SYNC_FULL;
-pub const CF_PROVIDER_STATUS_CONNECTIVITY_LOST = CF_SYNC_PROVIDER_STATUS.CONNECTIVITY_LOST;
-pub const CF_PROVIDER_STATUS_CLEAR_FLAGS = CF_SYNC_PROVIDER_STATUS.CLEAR_FLAGS;
-pub const CF_PROVIDER_STATUS_TERMINATED = CF_SYNC_PROVIDER_STATUS.TERMINATED;
-pub const CF_PROVIDER_STATUS_ERROR = CF_SYNC_PROVIDER_STATUS.ERROR;
+pub const CF_PROVIDER_STATUS_DISCONNECTED = CF_SYNC_PROVIDER_STATUS{ };
+pub const CF_PROVIDER_STATUS_IDLE = CF_SYNC_PROVIDER_STATUS{ .IDLE = 1 };
+pub const CF_PROVIDER_STATUS_POPULATE_NAMESPACE = CF_SYNC_PROVIDER_STATUS{ .POPULATE_NAMESPACE = 1 };
+pub const CF_PROVIDER_STATUS_POPULATE_METADATA = CF_SYNC_PROVIDER_STATUS{ .POPULATE_METADATA = 1 };
+pub const CF_PROVIDER_STATUS_POPULATE_CONTENT = CF_SYNC_PROVIDER_STATUS{ .POPULATE_CONTENT = 1 };
+pub const CF_PROVIDER_STATUS_SYNC_INCREMENTAL = CF_SYNC_PROVIDER_STATUS{ .SYNC_INCREMENTAL = 1 };
+pub const CF_PROVIDER_STATUS_SYNC_FULL = CF_SYNC_PROVIDER_STATUS{ .SYNC_FULL = 1 };
+pub const CF_PROVIDER_STATUS_CONNECTIVITY_LOST = CF_SYNC_PROVIDER_STATUS{ .CONNECTIVITY_LOST = 1 };
+pub const CF_PROVIDER_STATUS_CLEAR_FLAGS = CF_SYNC_PROVIDER_STATUS{ .CLEAR_FLAGS = 1 };
+pub const CF_PROVIDER_STATUS_TERMINATED = CF_SYNC_PROVIDER_STATUS{
+    .IDLE = 1,
+    ._30 = 1,
+    .CLEAR_FLAGS = 1,
+};
+pub const CF_PROVIDER_STATUS_ERROR = CF_SYNC_PROVIDER_STATUS{
+    .POPULATE_NAMESPACE = 1,
+    ._30 = 1,
+    .CLEAR_FLAGS = 1,
+};
 
 pub const CF_PROCESS_INFO = extern struct {
     StructSize: u32,
@@ -108,25 +139,44 @@ pub const CF_PLATFORM_INFO = extern struct {
     IntegrationNumber: u32,
 };
 
-pub const CF_REGISTER_FLAGS = enum(u32) {
-    NONE = 0,
-    UPDATE = 1,
-    DISABLE_ON_DEMAND_POPULATION_ON_ROOT = 2,
-    MARK_IN_SYNC_ON_ROOT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        UPDATE: u1 = 0,
-        DISABLE_ON_DEMAND_POPULATION_ON_ROOT: u1 = 0,
-        MARK_IN_SYNC_ON_ROOT: u1 = 0,
-    }) CF_REGISTER_FLAGS {
-        return @as(CF_REGISTER_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_REGISTER_FLAGS.NONE) else 0) | (if (o.UPDATE == 1) @intFromEnum(CF_REGISTER_FLAGS.UPDATE) else 0) | (if (o.DISABLE_ON_DEMAND_POPULATION_ON_ROOT == 1) @intFromEnum(CF_REGISTER_FLAGS.DISABLE_ON_DEMAND_POPULATION_ON_ROOT) else 0) | (if (o.MARK_IN_SYNC_ON_ROOT == 1) @intFromEnum(CF_REGISTER_FLAGS.MARK_IN_SYNC_ON_ROOT) else 0)));
-    }
+pub const CF_REGISTER_FLAGS = packed struct(u32) {
+    UPDATE: u1 = 0,
+    DISABLE_ON_DEMAND_POPULATION_ON_ROOT: u1 = 0,
+    MARK_IN_SYNC_ON_ROOT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_REGISTER_FLAG_NONE = CF_REGISTER_FLAGS.NONE;
-pub const CF_REGISTER_FLAG_UPDATE = CF_REGISTER_FLAGS.UPDATE;
-pub const CF_REGISTER_FLAG_DISABLE_ON_DEMAND_POPULATION_ON_ROOT = CF_REGISTER_FLAGS.DISABLE_ON_DEMAND_POPULATION_ON_ROOT;
-pub const CF_REGISTER_FLAG_MARK_IN_SYNC_ON_ROOT = CF_REGISTER_FLAGS.MARK_IN_SYNC_ON_ROOT;
+pub const CF_REGISTER_FLAG_NONE = CF_REGISTER_FLAGS{ };
+pub const CF_REGISTER_FLAG_UPDATE = CF_REGISTER_FLAGS{ .UPDATE = 1 };
+pub const CF_REGISTER_FLAG_DISABLE_ON_DEMAND_POPULATION_ON_ROOT = CF_REGISTER_FLAGS{ .DISABLE_ON_DEMAND_POPULATION_ON_ROOT = 1 };
+pub const CF_REGISTER_FLAG_MARK_IN_SYNC_ON_ROOT = CF_REGISTER_FLAGS{ .MARK_IN_SYNC_ON_ROOT = 1 };
 
 pub const CF_HYDRATION_POLICY_PRIMARY = enum(u16) {
     PARTIAL = 0,
@@ -143,28 +193,29 @@ pub const CF_HYDRATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-pub const CF_HYDRATION_POLICY_MODIFIER = enum(u16) {
-    NONE = 0,
-    VALIDATION_REQUIRED = 1,
-    STREAMING_ALLOWED = 2,
-    AUTO_DEHYDRATION_ALLOWED = 4,
-    ALLOW_FULL_RESTART_HYDRATION = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        VALIDATION_REQUIRED: u1 = 0,
-        STREAMING_ALLOWED: u1 = 0,
-        AUTO_DEHYDRATION_ALLOWED: u1 = 0,
-        ALLOW_FULL_RESTART_HYDRATION: u1 = 0,
-    }) CF_HYDRATION_POLICY_MODIFIER {
-        return @as(CF_HYDRATION_POLICY_MODIFIER, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.NONE) else 0) | (if (o.VALIDATION_REQUIRED == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED) else 0) | (if (o.STREAMING_ALLOWED == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.STREAMING_ALLOWED) else 0) | (if (o.AUTO_DEHYDRATION_ALLOWED == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.AUTO_DEHYDRATION_ALLOWED) else 0) | (if (o.ALLOW_FULL_RESTART_HYDRATION == 1) @intFromEnum(CF_HYDRATION_POLICY_MODIFIER.ALLOW_FULL_RESTART_HYDRATION) else 0)));
-    }
+pub const CF_HYDRATION_POLICY_MODIFIER = packed struct(u16) {
+    VALIDATION_REQUIRED: u1 = 0,
+    STREAMING_ALLOWED: u1 = 0,
+    AUTO_DEHYDRATION_ALLOWED: u1 = 0,
+    ALLOW_FULL_RESTART_HYDRATION: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
 };
-pub const CF_HYDRATION_POLICY_MODIFIER_NONE = CF_HYDRATION_POLICY_MODIFIER.NONE;
-pub const CF_HYDRATION_POLICY_MODIFIER_VALIDATION_REQUIRED = CF_HYDRATION_POLICY_MODIFIER.VALIDATION_REQUIRED;
-pub const CF_HYDRATION_POLICY_MODIFIER_STREAMING_ALLOWED = CF_HYDRATION_POLICY_MODIFIER.STREAMING_ALLOWED;
-pub const CF_HYDRATION_POLICY_MODIFIER_AUTO_DEHYDRATION_ALLOWED = CF_HYDRATION_POLICY_MODIFIER.AUTO_DEHYDRATION_ALLOWED;
-pub const CF_HYDRATION_POLICY_MODIFIER_ALLOW_FULL_RESTART_HYDRATION = CF_HYDRATION_POLICY_MODIFIER.ALLOW_FULL_RESTART_HYDRATION;
+pub const CF_HYDRATION_POLICY_MODIFIER_NONE = CF_HYDRATION_POLICY_MODIFIER{ };
+pub const CF_HYDRATION_POLICY_MODIFIER_VALIDATION_REQUIRED = CF_HYDRATION_POLICY_MODIFIER{ .VALIDATION_REQUIRED = 1 };
+pub const CF_HYDRATION_POLICY_MODIFIER_STREAMING_ALLOWED = CF_HYDRATION_POLICY_MODIFIER{ .STREAMING_ALLOWED = 1 };
+pub const CF_HYDRATION_POLICY_MODIFIER_AUTO_DEHYDRATION_ALLOWED = CF_HYDRATION_POLICY_MODIFIER{ .AUTO_DEHYDRATION_ALLOWED = 1 };
+pub const CF_HYDRATION_POLICY_MODIFIER_ALLOW_FULL_RESTART_HYDRATION = CF_HYDRATION_POLICY_MODIFIER{ .ALLOW_FULL_RESTART_HYDRATION = 1 };
 
 pub const CF_HYDRATION_POLICY_MODIFIER_USHORT = extern struct {
     us: u16,
@@ -188,16 +239,25 @@ pub const CF_POPULATION_POLICY_PRIMARY_USHORT = extern struct {
     us: u16,
 };
 
-pub const CF_POPULATION_POLICY_MODIFIER = enum(u16) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_POPULATION_POLICY_MODIFIER {
-        return @as(CF_POPULATION_POLICY_MODIFIER, @enumFromInt((if (o.E == 1) @intFromEnum(CF_POPULATION_POLICY_MODIFIER.E) else 0)));
-    }
+pub const CF_POPULATION_POLICY_MODIFIER = packed struct(u16) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
 };
-pub const CF_POPULATION_POLICY_MODIFIER_NONE = CF_POPULATION_POLICY_MODIFIER.E;
+pub const CF_POPULATION_POLICY_MODIFIER_NONE = CF_POPULATION_POLICY_MODIFIER{ };
 
 pub const CF_POPULATION_POLICY_MODIFIER_USHORT = extern struct {
     us: u16,
@@ -219,72 +279,143 @@ pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_CREATE_UNRESTRICTED = CF_PLACEHOLDER_
 pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_CONVERT_TO_UNRESTRICTED = CF_PLACEHOLDER_MANAGEMENT_POLICY.CONVERT_TO_UNRESTRICTED;
 pub const CF_PLACEHOLDER_MANAGEMENT_POLICY_UPDATE_UNRESTRICTED = CF_PLACEHOLDER_MANAGEMENT_POLICY.UPDATE_UNRESTRICTED;
 
-pub const CF_INSYNC_POLICY = enum(u32) {
-    NONE = 0,
-    TRACK_FILE_CREATION_TIME = 1,
-    TRACK_FILE_READONLY_ATTRIBUTE = 2,
-    TRACK_FILE_HIDDEN_ATTRIBUTE = 4,
-    TRACK_FILE_SYSTEM_ATTRIBUTE = 8,
-    TRACK_DIRECTORY_CREATION_TIME = 16,
-    TRACK_DIRECTORY_READONLY_ATTRIBUTE = 32,
-    TRACK_DIRECTORY_HIDDEN_ATTRIBUTE = 64,
-    TRACK_DIRECTORY_SYSTEM_ATTRIBUTE = 128,
-    TRACK_FILE_LAST_WRITE_TIME = 256,
-    TRACK_DIRECTORY_LAST_WRITE_TIME = 512,
-    TRACK_FILE_ALL = 5592335,
-    TRACK_DIRECTORY_ALL = 11184880,
-    TRACK_ALL = 16777215,
-    PRESERVE_INSYNC_FOR_SYNC_ENGINE = 2147483648,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TRACK_FILE_CREATION_TIME: u1 = 0,
-        TRACK_FILE_READONLY_ATTRIBUTE: u1 = 0,
-        TRACK_FILE_HIDDEN_ATTRIBUTE: u1 = 0,
-        TRACK_FILE_SYSTEM_ATTRIBUTE: u1 = 0,
-        TRACK_DIRECTORY_CREATION_TIME: u1 = 0,
-        TRACK_DIRECTORY_READONLY_ATTRIBUTE: u1 = 0,
-        TRACK_DIRECTORY_HIDDEN_ATTRIBUTE: u1 = 0,
-        TRACK_DIRECTORY_SYSTEM_ATTRIBUTE: u1 = 0,
-        TRACK_FILE_LAST_WRITE_TIME: u1 = 0,
-        TRACK_DIRECTORY_LAST_WRITE_TIME: u1 = 0,
-        TRACK_FILE_ALL: u1 = 0,
-        TRACK_DIRECTORY_ALL: u1 = 0,
-        TRACK_ALL: u1 = 0,
-        PRESERVE_INSYNC_FOR_SYNC_ENGINE: u1 = 0,
-    }) CF_INSYNC_POLICY {
-        return @as(CF_INSYNC_POLICY, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_INSYNC_POLICY.NONE) else 0) | (if (o.TRACK_FILE_CREATION_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_CREATION_TIME) else 0) | (if (o.TRACK_FILE_READONLY_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_READONLY_ATTRIBUTE) else 0) | (if (o.TRACK_FILE_HIDDEN_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_HIDDEN_ATTRIBUTE) else 0) | (if (o.TRACK_FILE_SYSTEM_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_SYSTEM_ATTRIBUTE) else 0) | (if (o.TRACK_DIRECTORY_CREATION_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_CREATION_TIME) else 0) | (if (o.TRACK_DIRECTORY_READONLY_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_READONLY_ATTRIBUTE) else 0) | (if (o.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE) else 0) | (if (o.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE) else 0) | (if (o.TRACK_FILE_LAST_WRITE_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_LAST_WRITE_TIME) else 0) | (if (o.TRACK_DIRECTORY_LAST_WRITE_TIME == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_LAST_WRITE_TIME) else 0) | (if (o.TRACK_FILE_ALL == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_FILE_ALL) else 0) | (if (o.TRACK_DIRECTORY_ALL == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_DIRECTORY_ALL) else 0) | (if (o.TRACK_ALL == 1) @intFromEnum(CF_INSYNC_POLICY.TRACK_ALL) else 0) | (if (o.PRESERVE_INSYNC_FOR_SYNC_ENGINE == 1) @intFromEnum(CF_INSYNC_POLICY.PRESERVE_INSYNC_FOR_SYNC_ENGINE) else 0)));
-    }
+pub const CF_INSYNC_POLICY = packed struct(u32) {
+    TRACK_FILE_CREATION_TIME: u1 = 0,
+    TRACK_FILE_READONLY_ATTRIBUTE: u1 = 0,
+    TRACK_FILE_HIDDEN_ATTRIBUTE: u1 = 0,
+    TRACK_FILE_SYSTEM_ATTRIBUTE: u1 = 0,
+    TRACK_DIRECTORY_CREATION_TIME: u1 = 0,
+    TRACK_DIRECTORY_READONLY_ATTRIBUTE: u1 = 0,
+    TRACK_DIRECTORY_HIDDEN_ATTRIBUTE: u1 = 0,
+    TRACK_DIRECTORY_SYSTEM_ATTRIBUTE: u1 = 0,
+    TRACK_FILE_LAST_WRITE_TIME: u1 = 0,
+    TRACK_DIRECTORY_LAST_WRITE_TIME: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    PRESERVE_INSYNC_FOR_SYNC_ENGINE: u1 = 0,
 };
-pub const CF_INSYNC_POLICY_NONE = CF_INSYNC_POLICY.NONE;
-pub const CF_INSYNC_POLICY_TRACK_FILE_CREATION_TIME = CF_INSYNC_POLICY.TRACK_FILE_CREATION_TIME;
-pub const CF_INSYNC_POLICY_TRACK_FILE_READONLY_ATTRIBUTE = CF_INSYNC_POLICY.TRACK_FILE_READONLY_ATTRIBUTE;
-pub const CF_INSYNC_POLICY_TRACK_FILE_HIDDEN_ATTRIBUTE = CF_INSYNC_POLICY.TRACK_FILE_HIDDEN_ATTRIBUTE;
-pub const CF_INSYNC_POLICY_TRACK_FILE_SYSTEM_ATTRIBUTE = CF_INSYNC_POLICY.TRACK_FILE_SYSTEM_ATTRIBUTE;
-pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_CREATION_TIME = CF_INSYNC_POLICY.TRACK_DIRECTORY_CREATION_TIME;
-pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_READONLY_ATTRIBUTE = CF_INSYNC_POLICY.TRACK_DIRECTORY_READONLY_ATTRIBUTE;
-pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_HIDDEN_ATTRIBUTE = CF_INSYNC_POLICY.TRACK_DIRECTORY_HIDDEN_ATTRIBUTE;
-pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_SYSTEM_ATTRIBUTE = CF_INSYNC_POLICY.TRACK_DIRECTORY_SYSTEM_ATTRIBUTE;
-pub const CF_INSYNC_POLICY_TRACK_FILE_LAST_WRITE_TIME = CF_INSYNC_POLICY.TRACK_FILE_LAST_WRITE_TIME;
-pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_LAST_WRITE_TIME = CF_INSYNC_POLICY.TRACK_DIRECTORY_LAST_WRITE_TIME;
-pub const CF_INSYNC_POLICY_TRACK_FILE_ALL = CF_INSYNC_POLICY.TRACK_FILE_ALL;
-pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_ALL = CF_INSYNC_POLICY.TRACK_DIRECTORY_ALL;
-pub const CF_INSYNC_POLICY_TRACK_ALL = CF_INSYNC_POLICY.TRACK_ALL;
-pub const CF_INSYNC_POLICY_PRESERVE_INSYNC_FOR_SYNC_ENGINE = CF_INSYNC_POLICY.PRESERVE_INSYNC_FOR_SYNC_ENGINE;
+pub const CF_INSYNC_POLICY_NONE = CF_INSYNC_POLICY{ };
+pub const CF_INSYNC_POLICY_TRACK_FILE_CREATION_TIME = CF_INSYNC_POLICY{ .TRACK_FILE_CREATION_TIME = 1 };
+pub const CF_INSYNC_POLICY_TRACK_FILE_READONLY_ATTRIBUTE = CF_INSYNC_POLICY{ .TRACK_FILE_READONLY_ATTRIBUTE = 1 };
+pub const CF_INSYNC_POLICY_TRACK_FILE_HIDDEN_ATTRIBUTE = CF_INSYNC_POLICY{ .TRACK_FILE_HIDDEN_ATTRIBUTE = 1 };
+pub const CF_INSYNC_POLICY_TRACK_FILE_SYSTEM_ATTRIBUTE = CF_INSYNC_POLICY{ .TRACK_FILE_SYSTEM_ATTRIBUTE = 1 };
+pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_CREATION_TIME = CF_INSYNC_POLICY{ .TRACK_DIRECTORY_CREATION_TIME = 1 };
+pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_READONLY_ATTRIBUTE = CF_INSYNC_POLICY{ .TRACK_DIRECTORY_READONLY_ATTRIBUTE = 1 };
+pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_HIDDEN_ATTRIBUTE = CF_INSYNC_POLICY{ .TRACK_DIRECTORY_HIDDEN_ATTRIBUTE = 1 };
+pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_SYSTEM_ATTRIBUTE = CF_INSYNC_POLICY{ .TRACK_DIRECTORY_SYSTEM_ATTRIBUTE = 1 };
+pub const CF_INSYNC_POLICY_TRACK_FILE_LAST_WRITE_TIME = CF_INSYNC_POLICY{ .TRACK_FILE_LAST_WRITE_TIME = 1 };
+pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_LAST_WRITE_TIME = CF_INSYNC_POLICY{ .TRACK_DIRECTORY_LAST_WRITE_TIME = 1 };
+pub const CF_INSYNC_POLICY_TRACK_FILE_ALL = CF_INSYNC_POLICY{
+    .TRACK_FILE_CREATION_TIME = 1,
+    .TRACK_FILE_READONLY_ATTRIBUTE = 1,
+    .TRACK_FILE_HIDDEN_ATTRIBUTE = 1,
+    .TRACK_FILE_SYSTEM_ATTRIBUTE = 1,
+    .TRACK_FILE_LAST_WRITE_TIME = 1,
+    ._10 = 1,
+    ._12 = 1,
+    ._14 = 1,
+    ._16 = 1,
+    ._18 = 1,
+    ._20 = 1,
+    ._22 = 1,
+};
+pub const CF_INSYNC_POLICY_TRACK_DIRECTORY_ALL = CF_INSYNC_POLICY{
+    .TRACK_DIRECTORY_CREATION_TIME = 1,
+    .TRACK_DIRECTORY_READONLY_ATTRIBUTE = 1,
+    .TRACK_DIRECTORY_HIDDEN_ATTRIBUTE = 1,
+    .TRACK_DIRECTORY_SYSTEM_ATTRIBUTE = 1,
+    .TRACK_DIRECTORY_LAST_WRITE_TIME = 1,
+    ._11 = 1,
+    ._13 = 1,
+    ._15 = 1,
+    ._17 = 1,
+    ._19 = 1,
+    ._21 = 1,
+    ._23 = 1,
+};
+pub const CF_INSYNC_POLICY_TRACK_ALL = CF_INSYNC_POLICY{
+    .TRACK_FILE_CREATION_TIME = 1,
+    .TRACK_FILE_READONLY_ATTRIBUTE = 1,
+    .TRACK_FILE_HIDDEN_ATTRIBUTE = 1,
+    .TRACK_FILE_SYSTEM_ATTRIBUTE = 1,
+    .TRACK_DIRECTORY_CREATION_TIME = 1,
+    .TRACK_DIRECTORY_READONLY_ATTRIBUTE = 1,
+    .TRACK_DIRECTORY_HIDDEN_ATTRIBUTE = 1,
+    .TRACK_DIRECTORY_SYSTEM_ATTRIBUTE = 1,
+    .TRACK_FILE_LAST_WRITE_TIME = 1,
+    .TRACK_DIRECTORY_LAST_WRITE_TIME = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+};
+pub const CF_INSYNC_POLICY_PRESERVE_INSYNC_FOR_SYNC_ENGINE = CF_INSYNC_POLICY{ .PRESERVE_INSYNC_FOR_SYNC_ENGINE = 1 };
 
-pub const CF_HARDLINK_POLICY = enum(u32) {
-    NONE = 0,
-    ALLOWED = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOWED: u1 = 0,
-    }) CF_HARDLINK_POLICY {
-        return @as(CF_HARDLINK_POLICY, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_HARDLINK_POLICY.NONE) else 0) | (if (o.ALLOWED == 1) @intFromEnum(CF_HARDLINK_POLICY.ALLOWED) else 0)));
-    }
+pub const CF_HARDLINK_POLICY = packed struct(u32) {
+    ALLOWED: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_HARDLINK_POLICY_NONE = CF_HARDLINK_POLICY.NONE;
-pub const CF_HARDLINK_POLICY_ALLOWED = CF_HARDLINK_POLICY.ALLOWED;
+pub const CF_HARDLINK_POLICY_NONE = CF_HARDLINK_POLICY{ };
+pub const CF_HARDLINK_POLICY_ALLOWED = CF_HARDLINK_POLICY{ .ALLOWED = 1 };
 
 pub const CF_SYNC_POLICIES = extern struct {
     StructSize: u32,
@@ -328,185 +459,453 @@ pub const CF_CALLBACK_INFO = extern struct {
     RequestKey: LARGE_INTEGER,
 };
 
-pub const CF_CALLBACK_CANCEL_FLAGS = enum(u32) {
-    NONE = 0,
-    IO_TIMEOUT = 1,
-    IO_ABORTED = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        IO_TIMEOUT: u1 = 0,
-        IO_ABORTED: u1 = 0,
-    }) CF_CALLBACK_CANCEL_FLAGS {
-        return @as(CF_CALLBACK_CANCEL_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_CANCEL_FLAGS.NONE) else 0) | (if (o.IO_TIMEOUT == 1) @intFromEnum(CF_CALLBACK_CANCEL_FLAGS.IO_TIMEOUT) else 0) | (if (o.IO_ABORTED == 1) @intFromEnum(CF_CALLBACK_CANCEL_FLAGS.IO_ABORTED) else 0)));
-    }
+pub const CF_CALLBACK_CANCEL_FLAGS = packed struct(u32) {
+    IO_TIMEOUT: u1 = 0,
+    IO_ABORTED: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_CANCEL_FLAG_NONE = CF_CALLBACK_CANCEL_FLAGS.NONE;
-pub const CF_CALLBACK_CANCEL_FLAG_IO_TIMEOUT = CF_CALLBACK_CANCEL_FLAGS.IO_TIMEOUT;
-pub const CF_CALLBACK_CANCEL_FLAG_IO_ABORTED = CF_CALLBACK_CANCEL_FLAGS.IO_ABORTED;
+pub const CF_CALLBACK_CANCEL_FLAG_NONE = CF_CALLBACK_CANCEL_FLAGS{ };
+pub const CF_CALLBACK_CANCEL_FLAG_IO_TIMEOUT = CF_CALLBACK_CANCEL_FLAGS{ .IO_TIMEOUT = 1 };
+pub const CF_CALLBACK_CANCEL_FLAG_IO_ABORTED = CF_CALLBACK_CANCEL_FLAGS{ .IO_ABORTED = 1 };
 
-pub const CF_CALLBACK_FETCH_DATA_FLAGS = enum(u32) {
-    NONE = 0,
-    RECOVERY = 1,
-    EXPLICIT_HYDRATION = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        RECOVERY: u1 = 0,
-        EXPLICIT_HYDRATION: u1 = 0,
-    }) CF_CALLBACK_FETCH_DATA_FLAGS {
-        return @as(CF_CALLBACK_FETCH_DATA_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_FETCH_DATA_FLAGS.NONE) else 0) | (if (o.RECOVERY == 1) @intFromEnum(CF_CALLBACK_FETCH_DATA_FLAGS.RECOVERY) else 0) | (if (o.EXPLICIT_HYDRATION == 1) @intFromEnum(CF_CALLBACK_FETCH_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)));
-    }
+pub const CF_CALLBACK_FETCH_DATA_FLAGS = packed struct(u32) {
+    RECOVERY: u1 = 0,
+    EXPLICIT_HYDRATION: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_FETCH_DATA_FLAG_NONE = CF_CALLBACK_FETCH_DATA_FLAGS.NONE;
-pub const CF_CALLBACK_FETCH_DATA_FLAG_RECOVERY = CF_CALLBACK_FETCH_DATA_FLAGS.RECOVERY;
-pub const CF_CALLBACK_FETCH_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_FETCH_DATA_FLAGS.EXPLICIT_HYDRATION;
+pub const CF_CALLBACK_FETCH_DATA_FLAG_NONE = CF_CALLBACK_FETCH_DATA_FLAGS{ };
+pub const CF_CALLBACK_FETCH_DATA_FLAG_RECOVERY = CF_CALLBACK_FETCH_DATA_FLAGS{ .RECOVERY = 1 };
+pub const CF_CALLBACK_FETCH_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_FETCH_DATA_FLAGS{ .EXPLICIT_HYDRATION = 1 };
 
-pub const CF_CALLBACK_VALIDATE_DATA_FLAGS = enum(u32) {
-    NONE = 0,
-    EXPLICIT_HYDRATION = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        EXPLICIT_HYDRATION: u1 = 0,
-    }) CF_CALLBACK_VALIDATE_DATA_FLAGS {
-        return @as(CF_CALLBACK_VALIDATE_DATA_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE) else 0) | (if (o.EXPLICIT_HYDRATION == 1) @intFromEnum(CF_CALLBACK_VALIDATE_DATA_FLAGS.EXPLICIT_HYDRATION) else 0)));
-    }
+pub const CF_CALLBACK_VALIDATE_DATA_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    EXPLICIT_HYDRATION: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_VALIDATE_DATA_FLAG_NONE = CF_CALLBACK_VALIDATE_DATA_FLAGS.NONE;
-pub const CF_CALLBACK_VALIDATE_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_VALIDATE_DATA_FLAGS.EXPLICIT_HYDRATION;
+pub const CF_CALLBACK_VALIDATE_DATA_FLAG_NONE = CF_CALLBACK_VALIDATE_DATA_FLAGS{ };
+pub const CF_CALLBACK_VALIDATE_DATA_FLAG_EXPLICIT_HYDRATION = CF_CALLBACK_VALIDATE_DATA_FLAGS{ .EXPLICIT_HYDRATION = 1 };
 
-pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS {
-        return @as(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E) else 0)));
-    }
+pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAG_NONE = CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS.E;
+pub const CF_CALLBACK_FETCH_PLACEHOLDERS_FLAG_NONE = CF_CALLBACK_FETCH_PLACEHOLDERS_FLAGS{ };
 
-pub const CF_CALLBACK_OPEN_COMPLETION_FLAGS = enum(u32) {
-    NONE = 0,
-    PLACEHOLDER_UNKNOWN = 1,
-    PLACEHOLDER_UNSUPPORTED = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        PLACEHOLDER_UNKNOWN: u1 = 0,
-        PLACEHOLDER_UNSUPPORTED: u1 = 0,
-    }) CF_CALLBACK_OPEN_COMPLETION_FLAGS {
-        return @as(CF_CALLBACK_OPEN_COMPLETION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE) else 0) | (if (o.PLACEHOLDER_UNKNOWN == 1) @intFromEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNKNOWN) else 0) | (if (o.PLACEHOLDER_UNSUPPORTED == 1) @intFromEnum(CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNSUPPORTED) else 0)));
-    }
+pub const CF_CALLBACK_OPEN_COMPLETION_FLAGS = packed struct(u32) {
+    PLACEHOLDER_UNKNOWN: u1 = 0,
+    PLACEHOLDER_UNSUPPORTED: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_NONE = CF_CALLBACK_OPEN_COMPLETION_FLAGS.NONE;
-pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNKNOWN = CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNKNOWN;
-pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNSUPPORTED = CF_CALLBACK_OPEN_COMPLETION_FLAGS.PLACEHOLDER_UNSUPPORTED;
+pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_NONE = CF_CALLBACK_OPEN_COMPLETION_FLAGS{ };
+pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNKNOWN = CF_CALLBACK_OPEN_COMPLETION_FLAGS{ .PLACEHOLDER_UNKNOWN = 1 };
+pub const CF_CALLBACK_OPEN_COMPLETION_FLAG_PLACEHOLDER_UNSUPPORTED = CF_CALLBACK_OPEN_COMPLETION_FLAGS{ .PLACEHOLDER_UNSUPPORTED = 1 };
 
-pub const CF_CALLBACK_CLOSE_COMPLETION_FLAGS = enum(u32) {
-    NONE = 0,
-    DELETED = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DELETED: u1 = 0,
-    }) CF_CALLBACK_CLOSE_COMPLETION_FLAGS {
-        return @as(CF_CALLBACK_CLOSE_COMPLETION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE) else 0) | (if (o.DELETED == 1) @intFromEnum(CF_CALLBACK_CLOSE_COMPLETION_FLAGS.DELETED) else 0)));
-    }
+pub const CF_CALLBACK_CLOSE_COMPLETION_FLAGS = packed struct(u32) {
+    DELETED: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_NONE = CF_CALLBACK_CLOSE_COMPLETION_FLAGS.NONE;
-pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_DELETED = CF_CALLBACK_CLOSE_COMPLETION_FLAGS.DELETED;
+pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_NONE = CF_CALLBACK_CLOSE_COMPLETION_FLAGS{ };
+pub const CF_CALLBACK_CLOSE_COMPLETION_FLAG_DELETED = CF_CALLBACK_CLOSE_COMPLETION_FLAGS{ .DELETED = 1 };
 
-pub const CF_CALLBACK_DEHYDRATE_FLAGS = enum(u32) {
-    NONE = 0,
-    BACKGROUND = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        BACKGROUND: u1 = 0,
-    }) CF_CALLBACK_DEHYDRATE_FLAGS {
-        return @as(CF_CALLBACK_DEHYDRATE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_FLAGS.NONE) else 0) | (if (o.BACKGROUND == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_FLAGS.BACKGROUND) else 0)));
-    }
+pub const CF_CALLBACK_DEHYDRATE_FLAGS = packed struct(u32) {
+    BACKGROUND: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_DEHYDRATE_FLAG_NONE = CF_CALLBACK_DEHYDRATE_FLAGS.NONE;
-pub const CF_CALLBACK_DEHYDRATE_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_FLAGS.BACKGROUND;
+pub const CF_CALLBACK_DEHYDRATE_FLAG_NONE = CF_CALLBACK_DEHYDRATE_FLAGS{ };
+pub const CF_CALLBACK_DEHYDRATE_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_FLAGS{ .BACKGROUND = 1 };
 
-pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS = enum(u32) {
-    NONE = 0,
-    BACKGROUND = 1,
-    DEHYDRATED = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        BACKGROUND: u1 = 0,
-        DEHYDRATED: u1 = 0,
-    }) CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS {
-        return @as(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE) else 0) | (if (o.BACKGROUND == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.BACKGROUND) else 0) | (if (o.DEHYDRATED == 1) @intFromEnum(CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.DEHYDRATED) else 0)));
-    }
+pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS = packed struct(u32) {
+    BACKGROUND: u1 = 0,
+    DEHYDRATED: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_NONE = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.NONE;
-pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.BACKGROUND;
-pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_DEHYDRATED = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS.DEHYDRATED;
+pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_NONE = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS{ };
+pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_BACKGROUND = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS{ .BACKGROUND = 1 };
+pub const CF_CALLBACK_DEHYDRATE_COMPLETION_FLAG_DEHYDRATED = CF_CALLBACK_DEHYDRATE_COMPLETION_FLAGS{ .DEHYDRATED = 1 };
 
-pub const CF_CALLBACK_DELETE_FLAGS = enum(u32) {
-    NONE = 0,
-    IS_DIRECTORY = 1,
-    IS_UNDELETE = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        IS_DIRECTORY: u1 = 0,
-        IS_UNDELETE: u1 = 0,
-    }) CF_CALLBACK_DELETE_FLAGS {
-        return @as(CF_CALLBACK_DELETE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_DELETE_FLAGS.NONE) else 0) | (if (o.IS_DIRECTORY == 1) @intFromEnum(CF_CALLBACK_DELETE_FLAGS.IS_DIRECTORY) else 0) | (if (o.IS_UNDELETE == 1) @intFromEnum(CF_CALLBACK_DELETE_FLAGS.IS_UNDELETE) else 0)));
-    }
+pub const CF_CALLBACK_DELETE_FLAGS = packed struct(u32) {
+    IS_DIRECTORY: u1 = 0,
+    IS_UNDELETE: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_DELETE_FLAG_NONE = CF_CALLBACK_DELETE_FLAGS.NONE;
-pub const CF_CALLBACK_DELETE_FLAG_IS_DIRECTORY = CF_CALLBACK_DELETE_FLAGS.IS_DIRECTORY;
-pub const CF_CALLBACK_DELETE_FLAG_IS_UNDELETE = CF_CALLBACK_DELETE_FLAGS.IS_UNDELETE;
+pub const CF_CALLBACK_DELETE_FLAG_NONE = CF_CALLBACK_DELETE_FLAGS{ };
+pub const CF_CALLBACK_DELETE_FLAG_IS_DIRECTORY = CF_CALLBACK_DELETE_FLAGS{ .IS_DIRECTORY = 1 };
+pub const CF_CALLBACK_DELETE_FLAG_IS_UNDELETE = CF_CALLBACK_DELETE_FLAGS{ .IS_UNDELETE = 1 };
 
-pub const CF_CALLBACK_DELETE_COMPLETION_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_CALLBACK_DELETE_COMPLETION_FLAGS {
-        return @as(CF_CALLBACK_DELETE_COMPLETION_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_CALLBACK_DELETE_COMPLETION_FLAGS.E) else 0)));
-    }
+pub const CF_CALLBACK_DELETE_COMPLETION_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_DELETE_COMPLETION_FLAG_NONE = CF_CALLBACK_DELETE_COMPLETION_FLAGS.E;
+pub const CF_CALLBACK_DELETE_COMPLETION_FLAG_NONE = CF_CALLBACK_DELETE_COMPLETION_FLAGS{ };
 
-pub const CF_CALLBACK_RENAME_FLAGS = enum(u32) {
-    NONE = 0,
-    IS_DIRECTORY = 1,
-    SOURCE_IN_SCOPE = 2,
-    TARGET_IN_SCOPE = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        IS_DIRECTORY: u1 = 0,
-        SOURCE_IN_SCOPE: u1 = 0,
-        TARGET_IN_SCOPE: u1 = 0,
-    }) CF_CALLBACK_RENAME_FLAGS {
-        return @as(CF_CALLBACK_RENAME_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.NONE) else 0) | (if (o.IS_DIRECTORY == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.IS_DIRECTORY) else 0) | (if (o.SOURCE_IN_SCOPE == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.SOURCE_IN_SCOPE) else 0) | (if (o.TARGET_IN_SCOPE == 1) @intFromEnum(CF_CALLBACK_RENAME_FLAGS.TARGET_IN_SCOPE) else 0)));
-    }
+pub const CF_CALLBACK_RENAME_FLAGS = packed struct(u32) {
+    IS_DIRECTORY: u1 = 0,
+    SOURCE_IN_SCOPE: u1 = 0,
+    TARGET_IN_SCOPE: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_RENAME_FLAG_NONE = CF_CALLBACK_RENAME_FLAGS.NONE;
-pub const CF_CALLBACK_RENAME_FLAG_IS_DIRECTORY = CF_CALLBACK_RENAME_FLAGS.IS_DIRECTORY;
-pub const CF_CALLBACK_RENAME_FLAG_SOURCE_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS.SOURCE_IN_SCOPE;
-pub const CF_CALLBACK_RENAME_FLAG_TARGET_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS.TARGET_IN_SCOPE;
+pub const CF_CALLBACK_RENAME_FLAG_NONE = CF_CALLBACK_RENAME_FLAGS{ };
+pub const CF_CALLBACK_RENAME_FLAG_IS_DIRECTORY = CF_CALLBACK_RENAME_FLAGS{ .IS_DIRECTORY = 1 };
+pub const CF_CALLBACK_RENAME_FLAG_SOURCE_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS{ .SOURCE_IN_SCOPE = 1 };
+pub const CF_CALLBACK_RENAME_FLAG_TARGET_IN_SCOPE = CF_CALLBACK_RENAME_FLAGS{ .TARGET_IN_SCOPE = 1 };
 
-pub const CF_CALLBACK_RENAME_COMPLETION_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_CALLBACK_RENAME_COMPLETION_FLAGS {
-        return @as(CF_CALLBACK_RENAME_COMPLETION_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_CALLBACK_RENAME_COMPLETION_FLAGS.E) else 0)));
-    }
+pub const CF_CALLBACK_RENAME_COMPLETION_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CALLBACK_RENAME_COMPLETION_FLAG_NONE = CF_CALLBACK_RENAME_COMPLETION_FLAGS.E;
+pub const CF_CALLBACK_RENAME_COMPLETION_FLAG_NONE = CF_CALLBACK_RENAME_COMPLETION_FLAGS{ };
 
 pub const CF_CALLBACK_DEHYDRATION_REASON = enum(i32) {
     NONE = 0,
@@ -582,16 +981,10 @@ pub const CF_CALLBACK_PARAMETERS = extern struct {
     },
 };
 
-pub const CF_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        CallbackInfo: ?*const CF_CALLBACK_INFO,
-        CallbackParameters: ?*const CF_CALLBACK_PARAMETERS,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        CallbackInfo: ?*const CF_CALLBACK_INFO,
-        CallbackParameters: ?*const CF_CALLBACK_PARAMETERS,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const CF_CALLBACK = *const fn(
+    CallbackInfo: ?*const CF_CALLBACK_INFO,
+    CallbackParameters: ?*const CF_CALLBACK_PARAMETERS,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const CF_CALLBACK_TYPE = enum(i32) {
     FETCH_DATA = 0,
@@ -629,25 +1022,44 @@ pub const CF_CALLBACK_REGISTRATION = extern struct {
     Callback: ?CF_CALLBACK,
 };
 
-pub const CF_CONNECT_FLAGS = enum(u32) {
-    NONE = 0,
-    REQUIRE_PROCESS_INFO = 2,
-    REQUIRE_FULL_FILE_PATH = 4,
-    BLOCK_SELF_IMPLICIT_HYDRATION = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        REQUIRE_PROCESS_INFO: u1 = 0,
-        REQUIRE_FULL_FILE_PATH: u1 = 0,
-        BLOCK_SELF_IMPLICIT_HYDRATION: u1 = 0,
-    }) CF_CONNECT_FLAGS {
-        return @as(CF_CONNECT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CONNECT_FLAGS.NONE) else 0) | (if (o.REQUIRE_PROCESS_INFO == 1) @intFromEnum(CF_CONNECT_FLAGS.REQUIRE_PROCESS_INFO) else 0) | (if (o.REQUIRE_FULL_FILE_PATH == 1) @intFromEnum(CF_CONNECT_FLAGS.REQUIRE_FULL_FILE_PATH) else 0) | (if (o.BLOCK_SELF_IMPLICIT_HYDRATION == 1) @intFromEnum(CF_CONNECT_FLAGS.BLOCK_SELF_IMPLICIT_HYDRATION) else 0)));
-    }
+pub const CF_CONNECT_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    REQUIRE_PROCESS_INFO: u1 = 0,
+    REQUIRE_FULL_FILE_PATH: u1 = 0,
+    BLOCK_SELF_IMPLICIT_HYDRATION: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CONNECT_FLAG_NONE = CF_CONNECT_FLAGS.NONE;
-pub const CF_CONNECT_FLAG_REQUIRE_PROCESS_INFO = CF_CONNECT_FLAGS.REQUIRE_PROCESS_INFO;
-pub const CF_CONNECT_FLAG_REQUIRE_FULL_FILE_PATH = CF_CONNECT_FLAGS.REQUIRE_FULL_FILE_PATH;
-pub const CF_CONNECT_FLAG_BLOCK_SELF_IMPLICIT_HYDRATION = CF_CONNECT_FLAGS.BLOCK_SELF_IMPLICIT_HYDRATION;
+pub const CF_CONNECT_FLAG_NONE = CF_CONNECT_FLAGS{ };
+pub const CF_CONNECT_FLAG_REQUIRE_PROCESS_INFO = CF_CONNECT_FLAGS{ .REQUIRE_PROCESS_INFO = 1 };
+pub const CF_CONNECT_FLAG_REQUIRE_FULL_FILE_PATH = CF_CONNECT_FLAGS{ .REQUIRE_FULL_FILE_PATH = 1 };
+pub const CF_CONNECT_FLAG_BLOCK_SELF_IMPLICIT_HYDRATION = CF_CONNECT_FLAGS{ .BLOCK_SELF_IMPLICIT_HYDRATION = 1 };
 
 pub const CF_OPERATION_TYPE = enum(i32) {
     TRANSFER_DATA = 0,
@@ -687,102 +1099,296 @@ pub const CF_OPERATION_INFO = extern struct {
     RequestKey: LARGE_INTEGER,
 };
 
-pub const CF_OPERATION_TRANSFER_DATA_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_OPERATION_TRANSFER_DATA_FLAGS {
-        return @as(CF_OPERATION_TRANSFER_DATA_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_OPERATION_TRANSFER_DATA_FLAGS.E) else 0)));
-    }
+pub const CF_OPERATION_TRANSFER_DATA_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_TRANSFER_DATA_FLAG_NONE = CF_OPERATION_TRANSFER_DATA_FLAGS.E;
+pub const CF_OPERATION_TRANSFER_DATA_FLAG_NONE = CF_OPERATION_TRANSFER_DATA_FLAGS{ };
 
-pub const CF_OPERATION_RETRIEVE_DATA_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_OPERATION_RETRIEVE_DATA_FLAGS {
-        return @as(CF_OPERATION_RETRIEVE_DATA_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_OPERATION_RETRIEVE_DATA_FLAGS.E) else 0)));
-    }
+pub const CF_OPERATION_RETRIEVE_DATA_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_RETRIEVE_DATA_FLAG_NONE = CF_OPERATION_RETRIEVE_DATA_FLAGS.E;
+pub const CF_OPERATION_RETRIEVE_DATA_FLAG_NONE = CF_OPERATION_RETRIEVE_DATA_FLAGS{ };
 
-pub const CF_OPERATION_ACK_DATA_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_OPERATION_ACK_DATA_FLAGS {
-        return @as(CF_OPERATION_ACK_DATA_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_DATA_FLAGS.E) else 0)));
-    }
+pub const CF_OPERATION_ACK_DATA_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_ACK_DATA_FLAG_NONE = CF_OPERATION_ACK_DATA_FLAGS.E;
+pub const CF_OPERATION_ACK_DATA_FLAG_NONE = CF_OPERATION_ACK_DATA_FLAGS{ };
 
-pub const CF_OPERATION_RESTART_HYDRATION_FLAGS = enum(u32) {
-    NONE = 0,
-    MARK_IN_SYNC = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        MARK_IN_SYNC: u1 = 0,
-    }) CF_OPERATION_RESTART_HYDRATION_FLAGS {
-        return @as(CF_OPERATION_RESTART_HYDRATION_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE) else 0) | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_OPERATION_RESTART_HYDRATION_FLAGS.MARK_IN_SYNC) else 0)));
-    }
+pub const CF_OPERATION_RESTART_HYDRATION_FLAGS = packed struct(u32) {
+    MARK_IN_SYNC: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_RESTART_HYDRATION_FLAG_NONE = CF_OPERATION_RESTART_HYDRATION_FLAGS.NONE;
-pub const CF_OPERATION_RESTART_HYDRATION_FLAG_MARK_IN_SYNC = CF_OPERATION_RESTART_HYDRATION_FLAGS.MARK_IN_SYNC;
+pub const CF_OPERATION_RESTART_HYDRATION_FLAG_NONE = CF_OPERATION_RESTART_HYDRATION_FLAGS{ };
+pub const CF_OPERATION_RESTART_HYDRATION_FLAG_MARK_IN_SYNC = CF_OPERATION_RESTART_HYDRATION_FLAGS{ .MARK_IN_SYNC = 1 };
 
-pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS = enum(u32) {
-    NONE = 0,
-    STOP_ON_ERROR = 1,
-    DISABLE_ON_DEMAND_POPULATION = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        STOP_ON_ERROR: u1 = 0,
-        DISABLE_ON_DEMAND_POPULATION: u1 = 0,
-    }) CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS {
-        return @as(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE) else 0) | (if (o.STOP_ON_ERROR == 1) @intFromEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.STOP_ON_ERROR) else 0) | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0)));
-    }
+pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS = packed struct(u32) {
+    STOP_ON_ERROR: u1 = 0,
+    DISABLE_ON_DEMAND_POPULATION: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_NONE = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.NONE;
-pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_STOP_ON_ERROR = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.STOP_ON_ERROR;
-pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS.DISABLE_ON_DEMAND_POPULATION;
+pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_NONE = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS{ };
+pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_STOP_ON_ERROR = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS{ .STOP_ON_ERROR = 1 };
+pub const CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_OPERATION_TRANSFER_PLACEHOLDERS_FLAGS{ .DISABLE_ON_DEMAND_POPULATION = 1 };
 
-pub const CF_OPERATION_ACK_DEHYDRATE_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_OPERATION_ACK_DEHYDRATE_FLAGS {
-        return @as(CF_OPERATION_ACK_DEHYDRATE_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_DEHYDRATE_FLAGS.E) else 0)));
-    }
+pub const CF_OPERATION_ACK_DEHYDRATE_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_ACK_DEHYDRATE_FLAG_NONE = CF_OPERATION_ACK_DEHYDRATE_FLAGS.E;
+pub const CF_OPERATION_ACK_DEHYDRATE_FLAG_NONE = CF_OPERATION_ACK_DEHYDRATE_FLAGS{ };
 
-pub const CF_OPERATION_ACK_RENAME_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_OPERATION_ACK_RENAME_FLAGS {
-        return @as(CF_OPERATION_ACK_RENAME_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_RENAME_FLAGS.E) else 0)));
-    }
+pub const CF_OPERATION_ACK_RENAME_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_ACK_RENAME_FLAG_NONE = CF_OPERATION_ACK_RENAME_FLAGS.E;
+pub const CF_OPERATION_ACK_RENAME_FLAG_NONE = CF_OPERATION_ACK_RENAME_FLAGS{ };
 
-pub const CF_OPERATION_ACK_DELETE_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_OPERATION_ACK_DELETE_FLAGS {
-        return @as(CF_OPERATION_ACK_DELETE_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_OPERATION_ACK_DELETE_FLAGS.E) else 0)));
-    }
+pub const CF_OPERATION_ACK_DELETE_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPERATION_ACK_DELETE_FLAG_NONE = CF_OPERATION_ACK_DELETE_FLAGS.E;
+pub const CF_OPERATION_ACK_DELETE_FLAG_NONE = CF_OPERATION_ACK_DELETE_FLAGS{ };
 
 pub const CF_OPERATION_PARAMETERS = extern struct {
     ParamSize: u32,
@@ -838,153 +1444,284 @@ pub const CF_OPERATION_PARAMETERS = extern struct {
     },
 };
 
-pub const CF_CREATE_FLAGS = enum(u32) {
-    NONE = 0,
-    STOP_ON_ERROR = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        STOP_ON_ERROR: u1 = 0,
-    }) CF_CREATE_FLAGS {
-        return @as(CF_CREATE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CREATE_FLAGS.NONE) else 0) | (if (o.STOP_ON_ERROR == 1) @intFromEnum(CF_CREATE_FLAGS.STOP_ON_ERROR) else 0)));
-    }
+pub const CF_CREATE_FLAGS = packed struct(u32) {
+    STOP_ON_ERROR: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CREATE_FLAG_NONE = CF_CREATE_FLAGS.NONE;
-pub const CF_CREATE_FLAG_STOP_ON_ERROR = CF_CREATE_FLAGS.STOP_ON_ERROR;
+pub const CF_CREATE_FLAG_NONE = CF_CREATE_FLAGS{ };
+pub const CF_CREATE_FLAG_STOP_ON_ERROR = CF_CREATE_FLAGS{ .STOP_ON_ERROR = 1 };
 
-pub const CF_OPEN_FILE_FLAGS = enum(u32) {
-    NONE = 0,
-    EXCLUSIVE = 1,
-    WRITE_ACCESS = 2,
-    DELETE_ACCESS = 4,
-    FOREGROUND = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        EXCLUSIVE: u1 = 0,
-        WRITE_ACCESS: u1 = 0,
-        DELETE_ACCESS: u1 = 0,
-        FOREGROUND: u1 = 0,
-    }) CF_OPEN_FILE_FLAGS {
-        return @as(CF_OPEN_FILE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.NONE) else 0) | (if (o.EXCLUSIVE == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.EXCLUSIVE) else 0) | (if (o.WRITE_ACCESS == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.WRITE_ACCESS) else 0) | (if (o.DELETE_ACCESS == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.DELETE_ACCESS) else 0) | (if (o.FOREGROUND == 1) @intFromEnum(CF_OPEN_FILE_FLAGS.FOREGROUND) else 0)));
-    }
+pub const CF_OPEN_FILE_FLAGS = packed struct(u32) {
+    EXCLUSIVE: u1 = 0,
+    WRITE_ACCESS: u1 = 0,
+    DELETE_ACCESS: u1 = 0,
+    FOREGROUND: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_OPEN_FILE_FLAG_NONE = CF_OPEN_FILE_FLAGS.NONE;
-pub const CF_OPEN_FILE_FLAG_EXCLUSIVE = CF_OPEN_FILE_FLAGS.EXCLUSIVE;
-pub const CF_OPEN_FILE_FLAG_WRITE_ACCESS = CF_OPEN_FILE_FLAGS.WRITE_ACCESS;
-pub const CF_OPEN_FILE_FLAG_DELETE_ACCESS = CF_OPEN_FILE_FLAGS.DELETE_ACCESS;
-pub const CF_OPEN_FILE_FLAG_FOREGROUND = CF_OPEN_FILE_FLAGS.FOREGROUND;
+pub const CF_OPEN_FILE_FLAG_NONE = CF_OPEN_FILE_FLAGS{ };
+pub const CF_OPEN_FILE_FLAG_EXCLUSIVE = CF_OPEN_FILE_FLAGS{ .EXCLUSIVE = 1 };
+pub const CF_OPEN_FILE_FLAG_WRITE_ACCESS = CF_OPEN_FILE_FLAGS{ .WRITE_ACCESS = 1 };
+pub const CF_OPEN_FILE_FLAG_DELETE_ACCESS = CF_OPEN_FILE_FLAGS{ .DELETE_ACCESS = 1 };
+pub const CF_OPEN_FILE_FLAG_FOREGROUND = CF_OPEN_FILE_FLAGS{ .FOREGROUND = 1 };
 
 pub const CF_FILE_RANGE = extern struct {
     StartingOffset: LARGE_INTEGER,
     Length: LARGE_INTEGER,
 };
 
-pub const CF_CONVERT_FLAGS = enum(u32) {
-    NONE = 0,
-    MARK_IN_SYNC = 1,
-    DEHYDRATE = 2,
-    ENABLE_ON_DEMAND_POPULATION = 4,
-    ALWAYS_FULL = 8,
-    FORCE_CONVERT_TO_CLOUD_FILE = 16,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        MARK_IN_SYNC: u1 = 0,
-        DEHYDRATE: u1 = 0,
-        ENABLE_ON_DEMAND_POPULATION: u1 = 0,
-        ALWAYS_FULL: u1 = 0,
-        FORCE_CONVERT_TO_CLOUD_FILE: u1 = 0,
-    }) CF_CONVERT_FLAGS {
-        return @as(CF_CONVERT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_CONVERT_FLAGS.NONE) else 0) | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_CONVERT_FLAGS.MARK_IN_SYNC) else 0) | (if (o.DEHYDRATE == 1) @intFromEnum(CF_CONVERT_FLAGS.DEHYDRATE) else 0) | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0) | (if (o.ALWAYS_FULL == 1) @intFromEnum(CF_CONVERT_FLAGS.ALWAYS_FULL) else 0) | (if (o.FORCE_CONVERT_TO_CLOUD_FILE == 1) @intFromEnum(CF_CONVERT_FLAGS.FORCE_CONVERT_TO_CLOUD_FILE) else 0)));
-    }
+pub const CF_CONVERT_FLAGS = packed struct(u32) {
+    MARK_IN_SYNC: u1 = 0,
+    DEHYDRATE: u1 = 0,
+    ENABLE_ON_DEMAND_POPULATION: u1 = 0,
+    ALWAYS_FULL: u1 = 0,
+    FORCE_CONVERT_TO_CLOUD_FILE: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_CONVERT_FLAG_NONE = CF_CONVERT_FLAGS.NONE;
-pub const CF_CONVERT_FLAG_MARK_IN_SYNC = CF_CONVERT_FLAGS.MARK_IN_SYNC;
-pub const CF_CONVERT_FLAG_DEHYDRATE = CF_CONVERT_FLAGS.DEHYDRATE;
-pub const CF_CONVERT_FLAG_ENABLE_ON_DEMAND_POPULATION = CF_CONVERT_FLAGS.ENABLE_ON_DEMAND_POPULATION;
-pub const CF_CONVERT_FLAG_ALWAYS_FULL = CF_CONVERT_FLAGS.ALWAYS_FULL;
-pub const CF_CONVERT_FLAG_FORCE_CONVERT_TO_CLOUD_FILE = CF_CONVERT_FLAGS.FORCE_CONVERT_TO_CLOUD_FILE;
+pub const CF_CONVERT_FLAG_NONE = CF_CONVERT_FLAGS{ };
+pub const CF_CONVERT_FLAG_MARK_IN_SYNC = CF_CONVERT_FLAGS{ .MARK_IN_SYNC = 1 };
+pub const CF_CONVERT_FLAG_DEHYDRATE = CF_CONVERT_FLAGS{ .DEHYDRATE = 1 };
+pub const CF_CONVERT_FLAG_ENABLE_ON_DEMAND_POPULATION = CF_CONVERT_FLAGS{ .ENABLE_ON_DEMAND_POPULATION = 1 };
+pub const CF_CONVERT_FLAG_ALWAYS_FULL = CF_CONVERT_FLAGS{ .ALWAYS_FULL = 1 };
+pub const CF_CONVERT_FLAG_FORCE_CONVERT_TO_CLOUD_FILE = CF_CONVERT_FLAGS{ .FORCE_CONVERT_TO_CLOUD_FILE = 1 };
 
-pub const CF_UPDATE_FLAGS = enum(u32) {
-    NONE = 0,
-    VERIFY_IN_SYNC = 1,
-    MARK_IN_SYNC = 2,
-    DEHYDRATE = 4,
-    ENABLE_ON_DEMAND_POPULATION = 8,
-    DISABLE_ON_DEMAND_POPULATION = 16,
-    REMOVE_FILE_IDENTITY = 32,
-    CLEAR_IN_SYNC = 64,
-    REMOVE_PROPERTY = 128,
-    PASSTHROUGH_FS_METADATA = 256,
-    ALWAYS_FULL = 512,
-    ALLOW_PARTIAL = 1024,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        VERIFY_IN_SYNC: u1 = 0,
-        MARK_IN_SYNC: u1 = 0,
-        DEHYDRATE: u1 = 0,
-        ENABLE_ON_DEMAND_POPULATION: u1 = 0,
-        DISABLE_ON_DEMAND_POPULATION: u1 = 0,
-        REMOVE_FILE_IDENTITY: u1 = 0,
-        CLEAR_IN_SYNC: u1 = 0,
-        REMOVE_PROPERTY: u1 = 0,
-        PASSTHROUGH_FS_METADATA: u1 = 0,
-        ALWAYS_FULL: u1 = 0,
-        ALLOW_PARTIAL: u1 = 0,
-    }) CF_UPDATE_FLAGS {
-        return @as(CF_UPDATE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_UPDATE_FLAGS.NONE) else 0) | (if (o.VERIFY_IN_SYNC == 1) @intFromEnum(CF_UPDATE_FLAGS.VERIFY_IN_SYNC) else 0) | (if (o.MARK_IN_SYNC == 1) @intFromEnum(CF_UPDATE_FLAGS.MARK_IN_SYNC) else 0) | (if (o.DEHYDRATE == 1) @intFromEnum(CF_UPDATE_FLAGS.DEHYDRATE) else 0) | (if (o.ENABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_UPDATE_FLAGS.ENABLE_ON_DEMAND_POPULATION) else 0) | (if (o.DISABLE_ON_DEMAND_POPULATION == 1) @intFromEnum(CF_UPDATE_FLAGS.DISABLE_ON_DEMAND_POPULATION) else 0) | (if (o.REMOVE_FILE_IDENTITY == 1) @intFromEnum(CF_UPDATE_FLAGS.REMOVE_FILE_IDENTITY) else 0) | (if (o.CLEAR_IN_SYNC == 1) @intFromEnum(CF_UPDATE_FLAGS.CLEAR_IN_SYNC) else 0) | (if (o.REMOVE_PROPERTY == 1) @intFromEnum(CF_UPDATE_FLAGS.REMOVE_PROPERTY) else 0) | (if (o.PASSTHROUGH_FS_METADATA == 1) @intFromEnum(CF_UPDATE_FLAGS.PASSTHROUGH_FS_METADATA) else 0) | (if (o.ALWAYS_FULL == 1) @intFromEnum(CF_UPDATE_FLAGS.ALWAYS_FULL) else 0) | (if (o.ALLOW_PARTIAL == 1) @intFromEnum(CF_UPDATE_FLAGS.ALLOW_PARTIAL) else 0)));
-    }
+pub const CF_UPDATE_FLAGS = packed struct(u32) {
+    VERIFY_IN_SYNC: u1 = 0,
+    MARK_IN_SYNC: u1 = 0,
+    DEHYDRATE: u1 = 0,
+    ENABLE_ON_DEMAND_POPULATION: u1 = 0,
+    DISABLE_ON_DEMAND_POPULATION: u1 = 0,
+    REMOVE_FILE_IDENTITY: u1 = 0,
+    CLEAR_IN_SYNC: u1 = 0,
+    REMOVE_PROPERTY: u1 = 0,
+    PASSTHROUGH_FS_METADATA: u1 = 0,
+    ALWAYS_FULL: u1 = 0,
+    ALLOW_PARTIAL: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_UPDATE_FLAG_NONE = CF_UPDATE_FLAGS.NONE;
-pub const CF_UPDATE_FLAG_VERIFY_IN_SYNC = CF_UPDATE_FLAGS.VERIFY_IN_SYNC;
-pub const CF_UPDATE_FLAG_MARK_IN_SYNC = CF_UPDATE_FLAGS.MARK_IN_SYNC;
-pub const CF_UPDATE_FLAG_DEHYDRATE = CF_UPDATE_FLAGS.DEHYDRATE;
-pub const CF_UPDATE_FLAG_ENABLE_ON_DEMAND_POPULATION = CF_UPDATE_FLAGS.ENABLE_ON_DEMAND_POPULATION;
-pub const CF_UPDATE_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_UPDATE_FLAGS.DISABLE_ON_DEMAND_POPULATION;
-pub const CF_UPDATE_FLAG_REMOVE_FILE_IDENTITY = CF_UPDATE_FLAGS.REMOVE_FILE_IDENTITY;
-pub const CF_UPDATE_FLAG_CLEAR_IN_SYNC = CF_UPDATE_FLAGS.CLEAR_IN_SYNC;
-pub const CF_UPDATE_FLAG_REMOVE_PROPERTY = CF_UPDATE_FLAGS.REMOVE_PROPERTY;
-pub const CF_UPDATE_FLAG_PASSTHROUGH_FS_METADATA = CF_UPDATE_FLAGS.PASSTHROUGH_FS_METADATA;
-pub const CF_UPDATE_FLAG_ALWAYS_FULL = CF_UPDATE_FLAGS.ALWAYS_FULL;
-pub const CF_UPDATE_FLAG_ALLOW_PARTIAL = CF_UPDATE_FLAGS.ALLOW_PARTIAL;
+pub const CF_UPDATE_FLAG_NONE = CF_UPDATE_FLAGS{ };
+pub const CF_UPDATE_FLAG_VERIFY_IN_SYNC = CF_UPDATE_FLAGS{ .VERIFY_IN_SYNC = 1 };
+pub const CF_UPDATE_FLAG_MARK_IN_SYNC = CF_UPDATE_FLAGS{ .MARK_IN_SYNC = 1 };
+pub const CF_UPDATE_FLAG_DEHYDRATE = CF_UPDATE_FLAGS{ .DEHYDRATE = 1 };
+pub const CF_UPDATE_FLAG_ENABLE_ON_DEMAND_POPULATION = CF_UPDATE_FLAGS{ .ENABLE_ON_DEMAND_POPULATION = 1 };
+pub const CF_UPDATE_FLAG_DISABLE_ON_DEMAND_POPULATION = CF_UPDATE_FLAGS{ .DISABLE_ON_DEMAND_POPULATION = 1 };
+pub const CF_UPDATE_FLAG_REMOVE_FILE_IDENTITY = CF_UPDATE_FLAGS{ .REMOVE_FILE_IDENTITY = 1 };
+pub const CF_UPDATE_FLAG_CLEAR_IN_SYNC = CF_UPDATE_FLAGS{ .CLEAR_IN_SYNC = 1 };
+pub const CF_UPDATE_FLAG_REMOVE_PROPERTY = CF_UPDATE_FLAGS{ .REMOVE_PROPERTY = 1 };
+pub const CF_UPDATE_FLAG_PASSTHROUGH_FS_METADATA = CF_UPDATE_FLAGS{ .PASSTHROUGH_FS_METADATA = 1 };
+pub const CF_UPDATE_FLAG_ALWAYS_FULL = CF_UPDATE_FLAGS{ .ALWAYS_FULL = 1 };
+pub const CF_UPDATE_FLAG_ALLOW_PARTIAL = CF_UPDATE_FLAGS{ .ALLOW_PARTIAL = 1 };
 
-pub const CF_REVERT_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_REVERT_FLAGS {
-        return @as(CF_REVERT_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_REVERT_FLAGS.E) else 0)));
-    }
+pub const CF_REVERT_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_REVERT_FLAG_NONE = CF_REVERT_FLAGS.E;
+pub const CF_REVERT_FLAG_NONE = CF_REVERT_FLAGS{ };
 
-pub const CF_HYDRATE_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_HYDRATE_FLAGS {
-        return @as(CF_HYDRATE_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_HYDRATE_FLAGS.E) else 0)));
-    }
+pub const CF_HYDRATE_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_HYDRATE_FLAG_NONE = CF_HYDRATE_FLAGS.E;
+pub const CF_HYDRATE_FLAG_NONE = CF_HYDRATE_FLAGS{ };
 
-pub const CF_DEHYDRATE_FLAGS = enum(u32) {
-    NONE = 0,
-    BACKGROUND = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        BACKGROUND: u1 = 0,
-    }) CF_DEHYDRATE_FLAGS {
-        return @as(CF_DEHYDRATE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_DEHYDRATE_FLAGS.NONE) else 0) | (if (o.BACKGROUND == 1) @intFromEnum(CF_DEHYDRATE_FLAGS.BACKGROUND) else 0)));
-    }
+pub const CF_DEHYDRATE_FLAGS = packed struct(u32) {
+    BACKGROUND: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_DEHYDRATE_FLAG_NONE = CF_DEHYDRATE_FLAGS.NONE;
-pub const CF_DEHYDRATE_FLAG_BACKGROUND = CF_DEHYDRATE_FLAGS.BACKGROUND;
+pub const CF_DEHYDRATE_FLAG_NONE = CF_DEHYDRATE_FLAGS{ };
+pub const CF_DEHYDRATE_FLAG_BACKGROUND = CF_DEHYDRATE_FLAGS{ .BACKGROUND = 1 };
 
 pub const CF_PIN_STATE = enum(i32) {
     UNSPECIFIED = 0,
@@ -999,25 +1736,44 @@ pub const CF_PIN_STATE_UNPINNED = CF_PIN_STATE.UNPINNED;
 pub const CF_PIN_STATE_EXCLUDED = CF_PIN_STATE.EXCLUDED;
 pub const CF_PIN_STATE_INHERIT = CF_PIN_STATE.INHERIT;
 
-pub const CF_SET_PIN_FLAGS = enum(u32) {
-    NONE = 0,
-    RECURSE = 1,
-    RECURSE_ONLY = 2,
-    RECURSE_STOP_ON_ERROR = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        RECURSE: u1 = 0,
-        RECURSE_ONLY: u1 = 0,
-        RECURSE_STOP_ON_ERROR: u1 = 0,
-    }) CF_SET_PIN_FLAGS {
-        return @as(CF_SET_PIN_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(CF_SET_PIN_FLAGS.NONE) else 0) | (if (o.RECURSE == 1) @intFromEnum(CF_SET_PIN_FLAGS.RECURSE) else 0) | (if (o.RECURSE_ONLY == 1) @intFromEnum(CF_SET_PIN_FLAGS.RECURSE_ONLY) else 0) | (if (o.RECURSE_STOP_ON_ERROR == 1) @intFromEnum(CF_SET_PIN_FLAGS.RECURSE_STOP_ON_ERROR) else 0)));
-    }
+pub const CF_SET_PIN_FLAGS = packed struct(u32) {
+    RECURSE: u1 = 0,
+    RECURSE_ONLY: u1 = 0,
+    RECURSE_STOP_ON_ERROR: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_SET_PIN_FLAG_NONE = CF_SET_PIN_FLAGS.NONE;
-pub const CF_SET_PIN_FLAG_RECURSE = CF_SET_PIN_FLAGS.RECURSE;
-pub const CF_SET_PIN_FLAG_RECURSE_ONLY = CF_SET_PIN_FLAGS.RECURSE_ONLY;
-pub const CF_SET_PIN_FLAG_RECURSE_STOP_ON_ERROR = CF_SET_PIN_FLAGS.RECURSE_STOP_ON_ERROR;
+pub const CF_SET_PIN_FLAG_NONE = CF_SET_PIN_FLAGS{ };
+pub const CF_SET_PIN_FLAG_RECURSE = CF_SET_PIN_FLAGS{ .RECURSE = 1 };
+pub const CF_SET_PIN_FLAG_RECURSE_ONLY = CF_SET_PIN_FLAGS{ .RECURSE_ONLY = 1 };
+pub const CF_SET_PIN_FLAG_RECURSE_STOP_ON_ERROR = CF_SET_PIN_FLAGS{ .RECURSE_STOP_ON_ERROR = 1 };
 
 pub const CF_IN_SYNC_STATE = enum(i32) {
     NOT_IN_SYNC = 0,
@@ -1026,48 +1782,117 @@ pub const CF_IN_SYNC_STATE = enum(i32) {
 pub const CF_IN_SYNC_STATE_NOT_IN_SYNC = CF_IN_SYNC_STATE.NOT_IN_SYNC;
 pub const CF_IN_SYNC_STATE_IN_SYNC = CF_IN_SYNC_STATE.IN_SYNC;
 
-pub const CF_SET_IN_SYNC_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) CF_SET_IN_SYNC_FLAGS {
-        return @as(CF_SET_IN_SYNC_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(CF_SET_IN_SYNC_FLAGS.E) else 0)));
-    }
+pub const CF_SET_IN_SYNC_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_SET_IN_SYNC_FLAG_NONE = CF_SET_IN_SYNC_FLAGS.E;
+pub const CF_SET_IN_SYNC_FLAG_NONE = CF_SET_IN_SYNC_FLAGS{ };
 
-pub const CF_PLACEHOLDER_STATE = enum(u32) {
-    NO_STATES = 0,
-    PLACEHOLDER = 1,
-    SYNC_ROOT = 2,
-    ESSENTIAL_PROP_PRESENT = 4,
-    IN_SYNC = 8,
-    PARTIAL = 16,
-    PARTIALLY_ON_DISK = 32,
-    INVALID = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        NO_STATES: u1 = 0,
-        PLACEHOLDER: u1 = 0,
-        SYNC_ROOT: u1 = 0,
-        ESSENTIAL_PROP_PRESENT: u1 = 0,
-        IN_SYNC: u1 = 0,
-        PARTIAL: u1 = 0,
-        PARTIALLY_ON_DISK: u1 = 0,
-        INVALID: u1 = 0,
-    }) CF_PLACEHOLDER_STATE {
-        return @as(CF_PLACEHOLDER_STATE, @enumFromInt((if (o.NO_STATES == 1) @intFromEnum(CF_PLACEHOLDER_STATE.NO_STATES) else 0) | (if (o.PLACEHOLDER == 1) @intFromEnum(CF_PLACEHOLDER_STATE.PLACEHOLDER) else 0) | (if (o.SYNC_ROOT == 1) @intFromEnum(CF_PLACEHOLDER_STATE.SYNC_ROOT) else 0) | (if (o.ESSENTIAL_PROP_PRESENT == 1) @intFromEnum(CF_PLACEHOLDER_STATE.ESSENTIAL_PROP_PRESENT) else 0) | (if (o.IN_SYNC == 1) @intFromEnum(CF_PLACEHOLDER_STATE.IN_SYNC) else 0) | (if (o.PARTIAL == 1) @intFromEnum(CF_PLACEHOLDER_STATE.PARTIAL) else 0) | (if (o.PARTIALLY_ON_DISK == 1) @intFromEnum(CF_PLACEHOLDER_STATE.PARTIALLY_ON_DISK) else 0) | (if (o.INVALID == 1) @intFromEnum(CF_PLACEHOLDER_STATE.INVALID) else 0)));
-    }
+pub const CF_PLACEHOLDER_STATE = packed struct(u32) {
+    PLACEHOLDER: u1 = 0,
+    SYNC_ROOT: u1 = 0,
+    ESSENTIAL_PROP_PRESENT: u1 = 0,
+    IN_SYNC: u1 = 0,
+    PARTIAL: u1 = 0,
+    PARTIALLY_ON_DISK: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CF_PLACEHOLDER_STATE_NO_STATES = CF_PLACEHOLDER_STATE.NO_STATES;
-pub const CF_PLACEHOLDER_STATE_PLACEHOLDER = CF_PLACEHOLDER_STATE.PLACEHOLDER;
-pub const CF_PLACEHOLDER_STATE_SYNC_ROOT = CF_PLACEHOLDER_STATE.SYNC_ROOT;
-pub const CF_PLACEHOLDER_STATE_ESSENTIAL_PROP_PRESENT = CF_PLACEHOLDER_STATE.ESSENTIAL_PROP_PRESENT;
-pub const CF_PLACEHOLDER_STATE_IN_SYNC = CF_PLACEHOLDER_STATE.IN_SYNC;
-pub const CF_PLACEHOLDER_STATE_PARTIAL = CF_PLACEHOLDER_STATE.PARTIAL;
-pub const CF_PLACEHOLDER_STATE_PARTIALLY_ON_DISK = CF_PLACEHOLDER_STATE.PARTIALLY_ON_DISK;
-pub const CF_PLACEHOLDER_STATE_INVALID = CF_PLACEHOLDER_STATE.INVALID;
+pub const CF_PLACEHOLDER_STATE_NO_STATES = CF_PLACEHOLDER_STATE{ };
+pub const CF_PLACEHOLDER_STATE_PLACEHOLDER = CF_PLACEHOLDER_STATE{ .PLACEHOLDER = 1 };
+pub const CF_PLACEHOLDER_STATE_SYNC_ROOT = CF_PLACEHOLDER_STATE{ .SYNC_ROOT = 1 };
+pub const CF_PLACEHOLDER_STATE_ESSENTIAL_PROP_PRESENT = CF_PLACEHOLDER_STATE{ .ESSENTIAL_PROP_PRESENT = 1 };
+pub const CF_PLACEHOLDER_STATE_IN_SYNC = CF_PLACEHOLDER_STATE{ .IN_SYNC = 1 };
+pub const CF_PLACEHOLDER_STATE_PARTIAL = CF_PLACEHOLDER_STATE{ .PARTIAL = 1 };
+pub const CF_PLACEHOLDER_STATE_PARTIALLY_ON_DISK = CF_PLACEHOLDER_STATE{ .PARTIALLY_ON_DISK = 1 };
+pub const CF_PLACEHOLDER_STATE_INVALID = CF_PLACEHOLDER_STATE{
+    .PLACEHOLDER = 1,
+    .SYNC_ROOT = 1,
+    .ESSENTIAL_PROP_PRESENT = 1,
+    .IN_SYNC = 1,
+    .PARTIAL = 1,
+    .PARTIALLY_ON_DISK = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
 pub const CF_PLACEHOLDER_INFO_CLASS = enum(i32) {
     BASIC = 0,
@@ -1138,6 +1963,7 @@ pub const CF_PLACEHOLDER_RANGE_INFO_CLASS = enum(i32) {
 pub const CF_PLACEHOLDER_RANGE_INFO_ONDISK = CF_PLACEHOLDER_RANGE_INFO_CLASS.ONDISK;
 pub const CF_PLACEHOLDER_RANGE_INFO_VALIDATED = CF_PLACEHOLDER_RANGE_INFO_CLASS.VALIDATED;
 pub const CF_PLACEHOLDER_RANGE_INFO_MODIFIED = CF_PLACEHOLDER_RANGE_INFO_CLASS.MODIFIED;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (35)
@@ -1397,15 +2223,10 @@ pub extern "cldapi" fn CfReportProviderProgress2(
     TargetSessionId: u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
@@ -1424,17 +2245,15 @@ const WIN32_FIND_DATAA = @import("../storage/file_system.zig").WIN32_FIND_DATAA;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "CF_CALLBACK")) {
-        _ = CF_CALLBACK;
-    }
+    if (@hasDecl(@This(), "CF_CALLBACK")) { _ = CF_CALLBACK; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

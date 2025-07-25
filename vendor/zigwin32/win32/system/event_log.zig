@@ -35,9 +35,11 @@ pub const EVENTLOG_SEEK_READ = READ_EVENT_LOG_READ_FLAGS.EK_READ;
 pub const EVENTLOG_SEQUENTIAL_READ = READ_EVENT_LOG_READ_FLAGS.QUENTIAL_READ;
 
 // TODO: this type has a FreeFunc 'CloseEventLog', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const EventLogHandle = isize;
 
 // TODO: this type has a FreeFunc 'DeregisterEventSource', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const EventSourceHandle = isize;
 
 pub const EVT_VARIANT_TYPE = enum(i32) {
@@ -194,9 +196,9 @@ pub const EVT_SUBSCRIBE_FLAGS = enum(i32) {
     ToFutureEvents = 1,
     StartAtOldestRecord = 2,
     StartAfterBookmark = 3,
-    // OriginMask = 3, this enum value conflicts with StartAfterBookmark
     TolerateQueryErrors = 4096,
     Strict = 65536,
+    pub const OriginMask = .StartAfterBookmark;
 };
 pub const EvtSubscribeToFutureEvents = EVT_SUBSCRIBE_FLAGS.ToFutureEvents;
 pub const EvtSubscribeStartAtOldestRecord = EVT_SUBSCRIBE_FLAGS.StartAtOldestRecord;
@@ -212,18 +214,11 @@ pub const EVT_SUBSCRIBE_NOTIFY_ACTION = enum(i32) {
 pub const EvtSubscribeActionError = EVT_SUBSCRIBE_NOTIFY_ACTION.Error;
 pub const EvtSubscribeActionDeliver = EVT_SUBSCRIBE_NOTIFY_ACTION.Deliver;
 
-pub const EVT_SUBSCRIBE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
-        UserContext: ?*anyopaque,
-        Event: isize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-    else => *const fn (
-        Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
-        UserContext: ?*anyopaque,
-        Event: isize,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
-};
+pub const EVT_SUBSCRIBE_CALLBACK = *const fn(
+    Action: EVT_SUBSCRIBE_NOTIFY_ACTION,
+    UserContext: ?*anyopaque,
+    Event: isize,
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub const EVT_SYSTEM_PROPERTY_ID = enum(i32) {
     ProviderName = 0,
@@ -562,6 +557,7 @@ pub const EVENTLOG_FULL_INFORMATION = extern struct {
     dwFull: u32,
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (55)
 //--------------------------------------------------------------------------------
@@ -857,25 +853,25 @@ pub extern "wevtapi" fn EvtGetEventInfo(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ClearEventLogA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ClearEventLogW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn BackupEventLogA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u8,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn BackupEventLogW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     lpBackupFileName: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -891,19 +887,19 @@ pub extern "advapi32" fn DeregisterEventSource(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn NotifyChangeEventLog(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     hEvent: ?HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn GetNumberOfEventLogRecords(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     NumberOfRecords: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn GetOldestEventLogRecord(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     OldestRecord: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -945,7 +941,7 @@ pub extern "advapi32" fn OpenBackupEventLogW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReadEventLogA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -957,7 +953,7 @@ pub extern "advapi32" fn ReadEventLogA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReadEventLogW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     dwReadFlags: READ_EVENT_LOG_READ_FLAGS,
     dwRecordOffset: u32,
     // TODO: what to do with BytesParamIndex 4?
@@ -969,7 +965,7 @@ pub extern "advapi32" fn ReadEventLogW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReportEventA(
-    hEventLog: ?HANDLE,
+    hEventLog: EventSourceHandle,
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
@@ -983,7 +979,7 @@ pub extern "advapi32" fn ReportEventA(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn ReportEventW(
-    hEventLog: ?HANDLE,
+    hEventLog: EventSourceHandle,
     wType: REPORT_EVENT_TYPE,
     wCategory: u16,
     dwEventID: u32,
@@ -997,7 +993,7 @@ pub extern "advapi32" fn ReportEventW(
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "advapi32" fn GetEventLogInformation(
-    hEventLog: ?HANDLE,
+    hEventLog: EventLogHandle,
     dwInfoLevel: u32,
     // TODO: what to do with BytesParamIndex 3?
     lpBuffer: ?*anyopaque,
@@ -1005,46 +1001,58 @@ pub extern "advapi32" fn GetEventLogInformation(
     pcbBytesNeeded: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (7)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const ClearEventLog = thismodule.ClearEventLogA;
-        pub const BackupEventLog = thismodule.BackupEventLogA;
-        pub const OpenEventLog = thismodule.OpenEventLogA;
-        pub const RegisterEventSource = thismodule.RegisterEventSourceA;
-        pub const OpenBackupEventLog = thismodule.OpenBackupEventLogA;
-        pub const ReadEventLog = thismodule.ReadEventLogA;
-        pub const ReportEvent = thismodule.ReportEventA;
-    },
-    .wide => struct {
-        pub const ClearEventLog = thismodule.ClearEventLogW;
-        pub const BackupEventLog = thismodule.BackupEventLogW;
-        pub const OpenEventLog = thismodule.OpenEventLogW;
-        pub const RegisterEventSource = thismodule.RegisterEventSourceW;
-        pub const OpenBackupEventLog = thismodule.OpenBackupEventLogW;
-        pub const ReadEventLog = thismodule.ReadEventLogW;
-        pub const ReportEvent = thismodule.ReportEventW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const ClearEventLog = *opaque {};
-        pub const BackupEventLog = *opaque {};
-        pub const OpenEventLog = *opaque {};
-        pub const RegisterEventSource = *opaque {};
-        pub const OpenBackupEventLog = *opaque {};
-        pub const ReadEventLog = *opaque {};
-        pub const ReportEvent = *opaque {};
-    } else struct {
-        pub const ClearEventLog = @compileError("'ClearEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const BackupEventLog = @compileError("'BackupEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const OpenEventLog = @compileError("'OpenEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const RegisterEventSource = @compileError("'RegisterEventSource' requires that UNICODE be set to true or false in the root module");
-        pub const OpenBackupEventLog = @compileError("'OpenBackupEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const ReadEventLog = @compileError("'ReadEventLog' requires that UNICODE be set to true or false in the root module");
-        pub const ReportEvent = @compileError("'ReportEvent' requires that UNICODE be set to true or false in the root module");
-    },
+pub const ClearEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ClearEventLogA,
+    .wide => @This().ClearEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ClearEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BackupEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BackupEventLogA,
+    .wide => @This().BackupEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BackupEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenEventLogA,
+    .wide => @This().OpenEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const RegisterEventSource = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().RegisterEventSourceA,
+    .wide => @This().RegisterEventSourceW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'RegisterEventSource' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenBackupEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenBackupEventLogA,
+    .wide => @This().OpenBackupEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenBackupEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReadEventLog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReadEventLogA,
+    .wide => @This().ReadEventLogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReadEventLog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const ReportEvent = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().ReportEventA,
+    .wide => @This().ReportEventW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'ReportEvent' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
@@ -1060,17 +1068,15 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "EVT_SUBSCRIBE_CALLBACK")) {
-        _ = EVT_SUBSCRIBE_CALLBACK;
-    }
+    if (@hasDecl(@This(), "EVT_SUBSCRIBE_CALLBACK")) { _ = EVT_SUBSCRIBE_CALLBACK; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

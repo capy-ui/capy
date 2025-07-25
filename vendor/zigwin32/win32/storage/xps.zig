@@ -159,108 +159,163 @@ pub const DC_STAPLE = DEVICE_CAPABILITIES.STAPLE;
 pub const DC_TRUETYPE = DEVICE_CAPABILITIES.TRUETYPE;
 pub const DC_VERSION = DEVICE_CAPABILITIES.VERSION;
 
-pub const PSINJECT_POINT = enum(u16) {
-    BEGINSTREAM = 1,
-    PSADOBE = 2,
-    PAGESATEND = 3,
-    PAGES = 4,
-    DOCNEEDEDRES = 5,
-    DOCSUPPLIEDRES = 6,
-    PAGEORDER = 7,
-    ORIENTATION = 8,
-    BOUNDINGBOX = 9,
-    DOCUMENTPROCESSCOLORS = 10,
-    COMMENTS = 11,
-    BEGINDEFAULTS = 12,
-    ENDDEFAULTS = 13,
-    BEGINPROLOG = 14,
-    ENDPROLOG = 15,
-    BEGINSETUP = 16,
-    ENDSETUP = 17,
-    TRAILER = 18,
-    EOF = 19,
-    ENDSTREAM = 20,
-    DOCUMENTPROCESSCOLORSATEND = 21,
-    PAGENUMBER = 100,
-    BEGINPAGESETUP = 101,
-    ENDPAGESETUP = 102,
-    PAGETRAILER = 103,
-    PLATECOLOR = 104,
-    SHOWPAGE = 105,
-    PAGEBBOX = 106,
-    ENDPAGECOMMENTS = 107,
-    VMSAVE = 200,
-    VMRESTORE = 201,
-    _,
-    pub fn initFlags(o: struct {
-        BEGINSTREAM: u1 = 0,
-        PSADOBE: u1 = 0,
-        PAGESATEND: u1 = 0,
-        PAGES: u1 = 0,
-        DOCNEEDEDRES: u1 = 0,
-        DOCSUPPLIEDRES: u1 = 0,
-        PAGEORDER: u1 = 0,
-        ORIENTATION: u1 = 0,
-        BOUNDINGBOX: u1 = 0,
-        DOCUMENTPROCESSCOLORS: u1 = 0,
-        COMMENTS: u1 = 0,
-        BEGINDEFAULTS: u1 = 0,
-        ENDDEFAULTS: u1 = 0,
-        BEGINPROLOG: u1 = 0,
-        ENDPROLOG: u1 = 0,
-        BEGINSETUP: u1 = 0,
-        ENDSETUP: u1 = 0,
-        TRAILER: u1 = 0,
-        EOF: u1 = 0,
-        ENDSTREAM: u1 = 0,
-        DOCUMENTPROCESSCOLORSATEND: u1 = 0,
-        PAGENUMBER: u1 = 0,
-        BEGINPAGESETUP: u1 = 0,
-        ENDPAGESETUP: u1 = 0,
-        PAGETRAILER: u1 = 0,
-        PLATECOLOR: u1 = 0,
-        SHOWPAGE: u1 = 0,
-        PAGEBBOX: u1 = 0,
-        ENDPAGECOMMENTS: u1 = 0,
-        VMSAVE: u1 = 0,
-        VMRESTORE: u1 = 0,
-    }) PSINJECT_POINT {
-        return @as(PSINJECT_POINT, @enumFromInt((if (o.BEGINSTREAM == 1) @intFromEnum(PSINJECT_POINT.BEGINSTREAM) else 0) | (if (o.PSADOBE == 1) @intFromEnum(PSINJECT_POINT.PSADOBE) else 0) | (if (o.PAGESATEND == 1) @intFromEnum(PSINJECT_POINT.PAGESATEND) else 0) | (if (o.PAGES == 1) @intFromEnum(PSINJECT_POINT.PAGES) else 0) | (if (o.DOCNEEDEDRES == 1) @intFromEnum(PSINJECT_POINT.DOCNEEDEDRES) else 0) | (if (o.DOCSUPPLIEDRES == 1) @intFromEnum(PSINJECT_POINT.DOCSUPPLIEDRES) else 0) | (if (o.PAGEORDER == 1) @intFromEnum(PSINJECT_POINT.PAGEORDER) else 0) | (if (o.ORIENTATION == 1) @intFromEnum(PSINJECT_POINT.ORIENTATION) else 0) | (if (o.BOUNDINGBOX == 1) @intFromEnum(PSINJECT_POINT.BOUNDINGBOX) else 0) | (if (o.DOCUMENTPROCESSCOLORS == 1) @intFromEnum(PSINJECT_POINT.DOCUMENTPROCESSCOLORS) else 0) | (if (o.COMMENTS == 1) @intFromEnum(PSINJECT_POINT.COMMENTS) else 0) | (if (o.BEGINDEFAULTS == 1) @intFromEnum(PSINJECT_POINT.BEGINDEFAULTS) else 0) | (if (o.ENDDEFAULTS == 1) @intFromEnum(PSINJECT_POINT.ENDDEFAULTS) else 0) | (if (o.BEGINPROLOG == 1) @intFromEnum(PSINJECT_POINT.BEGINPROLOG) else 0) | (if (o.ENDPROLOG == 1) @intFromEnum(PSINJECT_POINT.ENDPROLOG) else 0) | (if (o.BEGINSETUP == 1) @intFromEnum(PSINJECT_POINT.BEGINSETUP) else 0) | (if (o.ENDSETUP == 1) @intFromEnum(PSINJECT_POINT.ENDSETUP) else 0) | (if (o.TRAILER == 1) @intFromEnum(PSINJECT_POINT.TRAILER) else 0) | (if (o.EOF == 1) @intFromEnum(PSINJECT_POINT.EOF) else 0) | (if (o.ENDSTREAM == 1) @intFromEnum(PSINJECT_POINT.ENDSTREAM) else 0) | (if (o.DOCUMENTPROCESSCOLORSATEND == 1) @intFromEnum(PSINJECT_POINT.DOCUMENTPROCESSCOLORSATEND) else 0) | (if (o.PAGENUMBER == 1) @intFromEnum(PSINJECT_POINT.PAGENUMBER) else 0) | (if (o.BEGINPAGESETUP == 1) @intFromEnum(PSINJECT_POINT.BEGINPAGESETUP) else 0) | (if (o.ENDPAGESETUP == 1) @intFromEnum(PSINJECT_POINT.ENDPAGESETUP) else 0) | (if (o.PAGETRAILER == 1) @intFromEnum(PSINJECT_POINT.PAGETRAILER) else 0) | (if (o.PLATECOLOR == 1) @intFromEnum(PSINJECT_POINT.PLATECOLOR) else 0) | (if (o.SHOWPAGE == 1) @intFromEnum(PSINJECT_POINT.SHOWPAGE) else 0) | (if (o.PAGEBBOX == 1) @intFromEnum(PSINJECT_POINT.PAGEBBOX) else 0) | (if (o.ENDPAGECOMMENTS == 1) @intFromEnum(PSINJECT_POINT.ENDPAGECOMMENTS) else 0) | (if (o.VMSAVE == 1) @intFromEnum(PSINJECT_POINT.VMSAVE) else 0) | (if (o.VMRESTORE == 1) @intFromEnum(PSINJECT_POINT.VMRESTORE) else 0)));
-    }
+pub const PSINJECT_POINT = packed struct(u16) {
+    BEGINSTREAM: u1 = 0,
+    PSADOBE: u1 = 0,
+    PAGES: u1 = 0,
+    ORIENTATION: u1 = 0,
+    BEGINSETUP: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
 };
-pub const PSINJECT_BEGINSTREAM = PSINJECT_POINT.BEGINSTREAM;
-pub const PSINJECT_PSADOBE = PSINJECT_POINT.PSADOBE;
-pub const PSINJECT_PAGESATEND = PSINJECT_POINT.PAGESATEND;
-pub const PSINJECT_PAGES = PSINJECT_POINT.PAGES;
-pub const PSINJECT_DOCNEEDEDRES = PSINJECT_POINT.DOCNEEDEDRES;
-pub const PSINJECT_DOCSUPPLIEDRES = PSINJECT_POINT.DOCSUPPLIEDRES;
-pub const PSINJECT_PAGEORDER = PSINJECT_POINT.PAGEORDER;
-pub const PSINJECT_ORIENTATION = PSINJECT_POINT.ORIENTATION;
-pub const PSINJECT_BOUNDINGBOX = PSINJECT_POINT.BOUNDINGBOX;
-pub const PSINJECT_DOCUMENTPROCESSCOLORS = PSINJECT_POINT.DOCUMENTPROCESSCOLORS;
-pub const PSINJECT_COMMENTS = PSINJECT_POINT.COMMENTS;
-pub const PSINJECT_BEGINDEFAULTS = PSINJECT_POINT.BEGINDEFAULTS;
-pub const PSINJECT_ENDDEFAULTS = PSINJECT_POINT.ENDDEFAULTS;
-pub const PSINJECT_BEGINPROLOG = PSINJECT_POINT.BEGINPROLOG;
-pub const PSINJECT_ENDPROLOG = PSINJECT_POINT.ENDPROLOG;
-pub const PSINJECT_BEGINSETUP = PSINJECT_POINT.BEGINSETUP;
-pub const PSINJECT_ENDSETUP = PSINJECT_POINT.ENDSETUP;
-pub const PSINJECT_TRAILER = PSINJECT_POINT.TRAILER;
-pub const PSINJECT_EOF = PSINJECT_POINT.EOF;
-pub const PSINJECT_ENDSTREAM = PSINJECT_POINT.ENDSTREAM;
-pub const PSINJECT_DOCUMENTPROCESSCOLORSATEND = PSINJECT_POINT.DOCUMENTPROCESSCOLORSATEND;
-pub const PSINJECT_PAGENUMBER = PSINJECT_POINT.PAGENUMBER;
-pub const PSINJECT_BEGINPAGESETUP = PSINJECT_POINT.BEGINPAGESETUP;
-pub const PSINJECT_ENDPAGESETUP = PSINJECT_POINT.ENDPAGESETUP;
-pub const PSINJECT_PAGETRAILER = PSINJECT_POINT.PAGETRAILER;
-pub const PSINJECT_PLATECOLOR = PSINJECT_POINT.PLATECOLOR;
-pub const PSINJECT_SHOWPAGE = PSINJECT_POINT.SHOWPAGE;
-pub const PSINJECT_PAGEBBOX = PSINJECT_POINT.PAGEBBOX;
-pub const PSINJECT_ENDPAGECOMMENTS = PSINJECT_POINT.ENDPAGECOMMENTS;
-pub const PSINJECT_VMSAVE = PSINJECT_POINT.VMSAVE;
-pub const PSINJECT_VMRESTORE = PSINJECT_POINT.VMRESTORE;
+pub const PSINJECT_BEGINSTREAM = PSINJECT_POINT{ .BEGINSTREAM = 1 };
+pub const PSINJECT_PSADOBE = PSINJECT_POINT{ .PSADOBE = 1 };
+pub const PSINJECT_PAGESATEND = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PSADOBE = 1,
+};
+pub const PSINJECT_PAGES = PSINJECT_POINT{ .PAGES = 1 };
+pub const PSINJECT_DOCNEEDEDRES = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PAGES = 1,
+};
+pub const PSINJECT_DOCSUPPLIEDRES = PSINJECT_POINT{
+    .PSADOBE = 1,
+    .PAGES = 1,
+};
+pub const PSINJECT_PAGEORDER = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PSADOBE = 1,
+    .PAGES = 1,
+};
+pub const PSINJECT_ORIENTATION = PSINJECT_POINT{ .ORIENTATION = 1 };
+pub const PSINJECT_BOUNDINGBOX = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .ORIENTATION = 1,
+};
+pub const PSINJECT_DOCUMENTPROCESSCOLORS = PSINJECT_POINT{
+    .PSADOBE = 1,
+    .ORIENTATION = 1,
+};
+pub const PSINJECT_COMMENTS = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PSADOBE = 1,
+    .ORIENTATION = 1,
+};
+pub const PSINJECT_BEGINDEFAULTS = PSINJECT_POINT{
+    .PAGES = 1,
+    .ORIENTATION = 1,
+};
+pub const PSINJECT_ENDDEFAULTS = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PAGES = 1,
+    .ORIENTATION = 1,
+};
+pub const PSINJECT_BEGINPROLOG = PSINJECT_POINT{
+    .PSADOBE = 1,
+    .PAGES = 1,
+    .ORIENTATION = 1,
+};
+pub const PSINJECT_ENDPROLOG = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PSADOBE = 1,
+    .PAGES = 1,
+    .ORIENTATION = 1,
+};
+pub const PSINJECT_BEGINSETUP = PSINJECT_POINT{ .BEGINSETUP = 1 };
+pub const PSINJECT_ENDSETUP = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .BEGINSETUP = 1,
+};
+pub const PSINJECT_TRAILER = PSINJECT_POINT{
+    .PSADOBE = 1,
+    .BEGINSETUP = 1,
+};
+pub const PSINJECT_EOF = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PSADOBE = 1,
+    .BEGINSETUP = 1,
+};
+pub const PSINJECT_ENDSTREAM = PSINJECT_POINT{
+    .PAGES = 1,
+    .BEGINSETUP = 1,
+};
+pub const PSINJECT_DOCUMENTPROCESSCOLORSATEND = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PAGES = 1,
+    .BEGINSETUP = 1,
+};
+pub const PSINJECT_PAGENUMBER = PSINJECT_POINT{
+    .PAGES = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_BEGINPAGESETUP = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PAGES = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_ENDPAGESETUP = PSINJECT_POINT{
+    .PSADOBE = 1,
+    .PAGES = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_PAGETRAILER = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PSADOBE = 1,
+    .PAGES = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_PLATECOLOR = PSINJECT_POINT{
+    .ORIENTATION = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_SHOWPAGE = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .ORIENTATION = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_PAGEBBOX = PSINJECT_POINT{
+    .PSADOBE = 1,
+    .ORIENTATION = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_ENDPAGECOMMENTS = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .PSADOBE = 1,
+    .ORIENTATION = 1,
+    ._5 = 1,
+    ._6 = 1,
+};
+pub const PSINJECT_VMSAVE = PSINJECT_POINT{
+    .ORIENTATION = 1,
+    ._6 = 1,
+    ._7 = 1,
+};
+pub const PSINJECT_VMRESTORE = PSINJECT_POINT{
+    .BEGINSTREAM = 1,
+    .ORIENTATION = 1,
+    ._6 = 1,
+    ._7 = 1,
+};
 
-pub const HPTPROVIDER = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HPTPROVIDER = *opaque{};
 
 pub const DRAWPATRECT = extern struct {
     ptPosition: POINT,
@@ -288,16 +343,10 @@ pub const PSFEATURE_CUSTPAPER = extern struct {
     lHeightOffset: i32,
 };
 
-pub const ABORTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?HDC,
-        param1: i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        param0: ?HDC,
-        param1: i32,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const ABORTPROC = *const fn(
+    param0: ?HDC,
+    param1: i32,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 pub const DOCINFOA = extern struct {
     cbSize: i32,
@@ -570,7633 +619,4025 @@ pub const XPS_COLOR = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMShareable_Value = Guid.initString("7137398f-2fc1-454d-8c6a-2c3115a16ece");
 pub const IID_IXpsOMShareable = &IID_IXpsOMShareable_Value;
-pub const IXpsOMShareable = extern struct {
+pub const IXpsOMShareable = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMShareable,
-                owner: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMShareable,
-                owner: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMShareable,
-                type: ?*XPS_OBJECT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMShareable,
-                type: ?*XPS_OBJECT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMShareable,
+            owner: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: *const fn(
+            self: *const IXpsOMShareable,
+            type: ?*XPS_OBJECT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMShareable_GetOwner(self: *const T, owner: ?*?*IUnknown) HRESULT {
-                return @as(*const IXpsOMShareable.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMShareable, @ptrCast(self)), owner);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMShareable_GetType(self: *const T, type_: ?*XPS_OBJECT_TYPE) HRESULT {
-                return @as(*const IXpsOMShareable.VTable, @ptrCast(self.vtable)).GetType(@as(*const IXpsOMShareable, @ptrCast(self)), type_);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMShareable, owner: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, owner);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetType(self: *const IXpsOMShareable, @"type": ?*XPS_OBJECT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetType(self, @"type");
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMVisual_Value = Guid.initString("bc3e7333-fb0b-4af3-a819-0b4eaad0d2fd");
 pub const IID_IXpsOMVisual = &IID_IXpsOMVisual_Value;
-pub const IXpsOMVisual = extern struct {
+pub const IXpsOMVisual = extern union {
     pub const VTable = extern struct {
         base: IXpsOMShareable.VTable,
-        GetTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                matrixTransform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                matrixTransform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                matrixTransform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                matrixTransform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                matrixTransform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                matrixTransform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClipGeometry: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                clipGeometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                clipGeometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClipGeometryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                clipGeometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                clipGeometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClipGeometryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                clipGeometry: ?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                clipGeometry: ?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClipGeometryLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetClipGeometryLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpacity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                opacity: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                opacity: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpacity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpacityMaskBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                opacityMaskBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                opacityMaskBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpacityMaskBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                opacityMaskBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                opacityMaskBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpacityMaskBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                opacityMaskBrush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                opacityMaskBrush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOpacityMaskBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpacityMaskBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                name: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                name: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                name: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                name: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsHyperlinkTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                isHyperlink: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                isHyperlink: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIsHyperlinkTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                isHyperlink: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                isHyperlink: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHyperlinkNavigateUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                hyperlinkUri: ?*?*IUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                hyperlinkUri: ?*?*IUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetHyperlinkNavigateUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                hyperlinkUri: ?*IUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                hyperlinkUri: ?*IUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLanguage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                language: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                language: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLanguage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisual,
-                language: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisual,
-                language: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTransform: *const fn(
+            self: *const IXpsOMVisual,
+            matrixTransform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLocal: *const fn(
+            self: *const IXpsOMVisual,
+            matrixTransform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLocal: *const fn(
+            self: *const IXpsOMVisual,
+            matrixTransform: ?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLookup: *const fn(
+            self: *const IXpsOMVisual,
+            key: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLookup: *const fn(
+            self: *const IXpsOMVisual,
+            key: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClipGeometry: *const fn(
+            self: *const IXpsOMVisual,
+            clipGeometry: ?*?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClipGeometryLocal: *const fn(
+            self: *const IXpsOMVisual,
+            clipGeometry: ?*?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClipGeometryLocal: *const fn(
+            self: *const IXpsOMVisual,
+            clipGeometry: ?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClipGeometryLookup: *const fn(
+            self: *const IXpsOMVisual,
+            key: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetClipGeometryLookup: *const fn(
+            self: *const IXpsOMVisual,
+            key: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpacity: *const fn(
+            self: *const IXpsOMVisual,
+            opacity: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpacity: *const fn(
+            self: *const IXpsOMVisual,
+            opacity: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpacityMaskBrush: *const fn(
+            self: *const IXpsOMVisual,
+            opacityMaskBrush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpacityMaskBrushLocal: *const fn(
+            self: *const IXpsOMVisual,
+            opacityMaskBrush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpacityMaskBrushLocal: *const fn(
+            self: *const IXpsOMVisual,
+            opacityMaskBrush: ?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOpacityMaskBrushLookup: *const fn(
+            self: *const IXpsOMVisual,
+            key: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpacityMaskBrushLookup: *const fn(
+            self: *const IXpsOMVisual,
+            key: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: *const fn(
+            self: *const IXpsOMVisual,
+            name: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetName: *const fn(
+            self: *const IXpsOMVisual,
+            name: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsHyperlinkTarget: *const fn(
+            self: *const IXpsOMVisual,
+            isHyperlink: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIsHyperlinkTarget: *const fn(
+            self: *const IXpsOMVisual,
+            isHyperlink: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHyperlinkNavigateUri: *const fn(
+            self: *const IXpsOMVisual,
+            hyperlinkUri: ?*?*IUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetHyperlinkNavigateUri: *const fn(
+            self: *const IXpsOMVisual,
+            hyperlinkUri: ?*IUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguage: *const fn(
+            self: *const IXpsOMVisual,
+            language: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLanguage: *const fn(
+            self: *const IXpsOMVisual,
+            language: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMShareable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetTransform(self: *const T, matrixTransform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetTransformLocal(self: *const T, matrixTransform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetTransformLocal(self: *const T, matrixTransform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMVisual, @ptrCast(self)), matrixTransform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetTransformLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetTransformLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetClipGeometry(self: *const T, clipGeometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometry(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetClipGeometryLocal(self: *const T, clipGeometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometryLocal(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetClipGeometryLocal(self: *const T, clipGeometry: ?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetClipGeometryLocal(@as(*const IXpsOMVisual, @ptrCast(self)), clipGeometry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetClipGeometryLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetClipGeometryLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetClipGeometryLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetClipGeometryLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetOpacity(self: *const T, opacity: ?*f32) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const IXpsOMVisual, @ptrCast(self)), opacity);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetOpacity(self: *const T, opacity: f32) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IXpsOMVisual, @ptrCast(self)), opacity);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetOpacityMaskBrush(self: *const T, opacityMaskBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrush(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetOpacityMaskBrushLocal(self: *const T, opacityMaskBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrushLocal(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetOpacityMaskBrushLocal(self: *const T, opacityMaskBrush: ?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacityMaskBrushLocal(@as(*const IXpsOMVisual, @ptrCast(self)), opacityMaskBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetOpacityMaskBrushLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetOpacityMaskBrushLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetOpacityMaskBrushLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetOpacityMaskBrushLookup(@as(*const IXpsOMVisual, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetName(self: *const T, name: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetName(@as(*const IXpsOMVisual, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetName(self: *const T, name: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetName(@as(*const IXpsOMVisual, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetIsHyperlinkTarget(self: *const T, isHyperlink: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetIsHyperlinkTarget(@as(*const IXpsOMVisual, @ptrCast(self)), isHyperlink);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetIsHyperlinkTarget(self: *const T, isHyperlink: BOOL) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetIsHyperlinkTarget(@as(*const IXpsOMVisual, @ptrCast(self)), isHyperlink);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetHyperlinkNavigateUri(self: *const T, hyperlinkUri: ?*?*IUri) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetHyperlinkNavigateUri(@as(*const IXpsOMVisual, @ptrCast(self)), hyperlinkUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetHyperlinkNavigateUri(self: *const T, hyperlinkUri: ?*IUri) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetHyperlinkNavigateUri(@as(*const IXpsOMVisual, @ptrCast(self)), hyperlinkUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_GetLanguage(self: *const T, language: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMVisual, @ptrCast(self)), language);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisual_SetLanguage(self: *const T, language: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMVisual.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMVisual, @ptrCast(self)), language);
-            }
-        };
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetTransform(self: *const IXpsOMVisual, matrixTransform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransform(self, matrixTransform);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetTransformLocal(self: *const IXpsOMVisual, matrixTransform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLocal(self, matrixTransform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMVisual, matrixTransform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLocal(self, matrixTransform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLookup(self, key);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLookup(self, key);
+    }
+    pub fn GetClipGeometry(self: *const IXpsOMVisual, clipGeometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.GetClipGeometry(self, clipGeometry);
+    }
+    pub fn GetClipGeometryLocal(self: *const IXpsOMVisual, clipGeometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.GetClipGeometryLocal(self, clipGeometry);
+    }
+    pub fn SetClipGeometryLocal(self: *const IXpsOMVisual, clipGeometry: ?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.SetClipGeometryLocal(self, clipGeometry);
+    }
+    pub fn GetClipGeometryLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetClipGeometryLookup(self, key);
+    }
+    pub fn SetClipGeometryLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetClipGeometryLookup(self, key);
+    }
+    pub fn GetOpacity(self: *const IXpsOMVisual, opacity: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOpacity(self, opacity);
+    }
+    pub fn SetOpacity(self: *const IXpsOMVisual, opacity: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetOpacity(self, opacity);
+    }
+    pub fn GetOpacityMaskBrush(self: *const IXpsOMVisual, opacityMaskBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetOpacityMaskBrush(self, opacityMaskBrush);
+    }
+    pub fn GetOpacityMaskBrushLocal(self: *const IXpsOMVisual, opacityMaskBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetOpacityMaskBrushLocal(self, opacityMaskBrush);
+    }
+    pub fn SetOpacityMaskBrushLocal(self: *const IXpsOMVisual, opacityMaskBrush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.SetOpacityMaskBrushLocal(self, opacityMaskBrush);
+    }
+    pub fn GetOpacityMaskBrushLookup(self: *const IXpsOMVisual, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetOpacityMaskBrushLookup(self, key);
+    }
+    pub fn SetOpacityMaskBrushLookup(self: *const IXpsOMVisual, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetOpacityMaskBrushLookup(self, key);
+    }
+    pub fn GetName(self: *const IXpsOMVisual, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn SetName(self: *const IXpsOMVisual, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetName(self, name);
+    }
+    pub fn GetIsHyperlinkTarget(self: *const IXpsOMVisual, isHyperlink: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetIsHyperlinkTarget(self, isHyperlink);
+    }
+    pub fn SetIsHyperlinkTarget(self: *const IXpsOMVisual, isHyperlink: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetIsHyperlinkTarget(self, isHyperlink);
+    }
+    pub fn GetHyperlinkNavigateUri(self: *const IXpsOMVisual, hyperlinkUri: ?*?*IUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetHyperlinkNavigateUri(self, hyperlinkUri);
+    }
+    pub fn SetHyperlinkNavigateUri(self: *const IXpsOMVisual, hyperlinkUri: ?*IUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetHyperlinkNavigateUri(self, hyperlinkUri);
+    }
+    pub fn GetLanguage(self: *const IXpsOMVisual, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetLanguage(self, language);
+    }
+    pub fn SetLanguage(self: *const IXpsOMVisual, language: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetLanguage(self, language);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPart_Value = Guid.initString("74eb2f0b-a91e-4486-afac-0fabeca3dfc6");
 pub const IID_IXpsOMPart = &IID_IXpsOMPart_Value;
-pub const IXpsOMPart = extern struct {
+pub const IXpsOMPart = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPart,
-                partUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPart,
-                partUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPart,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPart,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPartName: *const fn(
+            self: *const IXpsOMPart,
+            partUri: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPartName: *const fn(
+            self: *const IXpsOMPart,
+            partUri: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPart_GetPartName(self: *const T, partUri: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPart.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IXpsOMPart, @ptrCast(self)), partUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPart_SetPartName(self: *const T, partUri: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPart.VTable, @ptrCast(self.vtable)).SetPartName(@as(*const IXpsOMPart, @ptrCast(self)), partUri);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetPartName(self: *const IXpsOMPart, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetPartName(self, partUri);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetPartName(self: *const IXpsOMPart, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetPartName(self, partUri);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGlyphsEditor_Value = Guid.initString("a5ab8616-5b16-4b9f-9629-89b323ed7909");
 pub const IID_IXpsOMGlyphsEditor = &IID_IXpsOMGlyphsEditor_Value;
-pub const IXpsOMGlyphsEditor = extern struct {
+pub const IXpsOMGlyphsEditor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ApplyEdits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUnicodeString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                unicodeString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                unicodeString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUnicodeString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                unicodeString: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                unicodeString: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphIndexCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                indexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                indexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphIndices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                indexCount: ?*u32,
-                glyphIndices: ?*XPS_GLYPH_INDEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                indexCount: ?*u32,
-                glyphIndices: ?*XPS_GLYPH_INDEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGlyphIndices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                indexCount: u32,
-                glyphIndices: ?*const XPS_GLYPH_INDEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                indexCount: u32,
-                glyphIndices: ?*const XPS_GLYPH_INDEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphMappingCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                glyphMappingCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                glyphMappingCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphMappings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                glyphMappingCount: ?*u32,
-                glyphMappings: ?*XPS_GLYPH_MAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                glyphMappingCount: ?*u32,
-                glyphMappings: ?*XPS_GLYPH_MAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGlyphMappings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                glyphMappingCount: u32,
-                glyphMappings: ?*const XPS_GLYPH_MAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                glyphMappingCount: u32,
-                glyphMappings: ?*const XPS_GLYPH_MAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProhibitedCaretStopCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                prohibitedCaretStopCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                prohibitedCaretStopCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProhibitedCaretStops: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                count: ?*u32,
-                prohibitedCaretStops: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                count: ?*u32,
-                prohibitedCaretStops: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProhibitedCaretStops: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                count: u32,
-                prohibitedCaretStops: ?*const u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                count: u32,
-                prohibitedCaretStops: ?*const u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBidiLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                bidiLevel: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                bidiLevel: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBidiLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                bidiLevel: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                bidiLevel: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsSideways: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                isSideways: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                isSideways: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIsSideways: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                isSideways: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceFontName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                deviceFontName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                deviceFontName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDeviceFontName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphsEditor,
-                deviceFontName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphsEditor,
-                deviceFontName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ApplyEdits: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUnicodeString: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            unicodeString: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUnicodeString: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            unicodeString: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphIndexCount: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            indexCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphIndices: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            indexCount: ?*u32,
+            glyphIndices: ?*XPS_GLYPH_INDEX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGlyphIndices: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            indexCount: u32,
+            glyphIndices: ?*const XPS_GLYPH_INDEX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphMappingCount: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            glyphMappingCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphMappings: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            glyphMappingCount: ?*u32,
+            glyphMappings: ?*XPS_GLYPH_MAPPING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGlyphMappings: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            glyphMappingCount: u32,
+            glyphMappings: ?*const XPS_GLYPH_MAPPING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProhibitedCaretStopCount: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            prohibitedCaretStopCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProhibitedCaretStops: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            count: ?*u32,
+            prohibitedCaretStops: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProhibitedCaretStops: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            count: u32,
+            prohibitedCaretStops: ?*const u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBidiLevel: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            bidiLevel: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBidiLevel: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            bidiLevel: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsSideways: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            isSideways: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIsSideways: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            isSideways: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceFontName: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            deviceFontName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDeviceFontName: *const fn(
+            self: *const IXpsOMGlyphsEditor,
+            deviceFontName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_ApplyEdits(self: *const T) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).ApplyEdits(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetUnicodeString(self: *const T, unicodeString: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetUnicodeString(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), unicodeString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_SetUnicodeString(self: *const T, unicodeString: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetUnicodeString(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), unicodeString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetGlyphIndexCount(self: *const T, indexCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphIndexCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetGlyphIndices(self: *const T, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount, glyphIndices);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_SetGlyphIndices(self: *const T, indexCount: u32, glyphIndices: ?*const XPS_GLYPH_INDEX) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetGlyphIndices(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), indexCount, glyphIndices);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetGlyphMappingCount(self: *const T, glyphMappingCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphMappingCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetGlyphMappings(self: *const T, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetGlyphMappings(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount, glyphMappings);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_SetGlyphMappings(self: *const T, glyphMappingCount: u32, glyphMappings: ?*const XPS_GLYPH_MAPPING) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetGlyphMappings(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), glyphMappingCount, glyphMappings);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetProhibitedCaretStopCount(self: *const T, prohibitedCaretStopCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStopCount(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), prohibitedCaretStopCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetProhibitedCaretStops(self: *const T, count: ?*u32, prohibitedCaretStops: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStops(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), count, prohibitedCaretStops);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_SetProhibitedCaretStops(self: *const T, count: u32, prohibitedCaretStops: ?*const u32) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetProhibitedCaretStops(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), count, prohibitedCaretStops);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetBidiLevel(self: *const T, bidiLevel: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetBidiLevel(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), bidiLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_SetBidiLevel(self: *const T, bidiLevel: u32) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetBidiLevel(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), bidiLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetIsSideways(self: *const T, isSideways: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetIsSideways(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), isSideways);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_SetIsSideways(self: *const T, isSideways: BOOL) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetIsSideways(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), isSideways);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_GetDeviceFontName(self: *const T, deviceFontName: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).GetDeviceFontName(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), deviceFontName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphsEditor_SetDeviceFontName(self: *const T, deviceFontName: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMGlyphsEditor.VTable, @ptrCast(self.vtable)).SetDeviceFontName(@as(*const IXpsOMGlyphsEditor, @ptrCast(self)), deviceFontName);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ApplyEdits(self: *const IXpsOMGlyphsEditor) callconv(.Inline) HRESULT {
+        return self.vtable.ApplyEdits(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetUnicodeString(self: *const IXpsOMGlyphsEditor, unicodeString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetUnicodeString(self, unicodeString);
+    }
+    pub fn SetUnicodeString(self: *const IXpsOMGlyphsEditor, unicodeString: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetUnicodeString(self, unicodeString);
+    }
+    pub fn GetGlyphIndexCount(self: *const IXpsOMGlyphsEditor, indexCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphIndexCount(self, indexCount);
+    }
+    pub fn GetGlyphIndices(self: *const IXpsOMGlyphsEditor, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphIndices(self, indexCount, glyphIndices);
+    }
+    pub fn SetGlyphIndices(self: *const IXpsOMGlyphsEditor, indexCount: u32, glyphIndices: ?*const XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+        return self.vtable.SetGlyphIndices(self, indexCount, glyphIndices);
+    }
+    pub fn GetGlyphMappingCount(self: *const IXpsOMGlyphsEditor, glyphMappingCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphMappingCount(self, glyphMappingCount);
+    }
+    pub fn GetGlyphMappings(self: *const IXpsOMGlyphsEditor, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphMappings(self, glyphMappingCount, glyphMappings);
+    }
+    pub fn SetGlyphMappings(self: *const IXpsOMGlyphsEditor, glyphMappingCount: u32, glyphMappings: ?*const XPS_GLYPH_MAPPING) callconv(.Inline) HRESULT {
+        return self.vtable.SetGlyphMappings(self, glyphMappingCount, glyphMappings);
+    }
+    pub fn GetProhibitedCaretStopCount(self: *const IXpsOMGlyphsEditor, prohibitedCaretStopCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetProhibitedCaretStopCount(self, prohibitedCaretStopCount);
+    }
+    pub fn GetProhibitedCaretStops(self: *const IXpsOMGlyphsEditor, count: ?*u32, prohibitedCaretStops: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetProhibitedCaretStops(self, count, prohibitedCaretStops);
+    }
+    pub fn SetProhibitedCaretStops(self: *const IXpsOMGlyphsEditor, count: u32, prohibitedCaretStops: ?*const u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetProhibitedCaretStops(self, count, prohibitedCaretStops);
+    }
+    pub fn GetBidiLevel(self: *const IXpsOMGlyphsEditor, bidiLevel: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetBidiLevel(self, bidiLevel);
+    }
+    pub fn SetBidiLevel(self: *const IXpsOMGlyphsEditor, bidiLevel: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetBidiLevel(self, bidiLevel);
+    }
+    pub fn GetIsSideways(self: *const IXpsOMGlyphsEditor, isSideways: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetIsSideways(self, isSideways);
+    }
+    pub fn SetIsSideways(self: *const IXpsOMGlyphsEditor, isSideways: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetIsSideways(self, isSideways);
+    }
+    pub fn GetDeviceFontName(self: *const IXpsOMGlyphsEditor, deviceFontName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetDeviceFontName(self, deviceFontName);
+    }
+    pub fn SetDeviceFontName(self: *const IXpsOMGlyphsEditor, deviceFontName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetDeviceFontName(self, deviceFontName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGlyphs_Value = Guid.initString("819b3199-0a5a-4b64-bec7-a9e17e780de2");
 pub const IID_IXpsOMGlyphs = &IID_IXpsOMGlyphs_Value;
-pub const IXpsOMGlyphs = extern struct {
+pub const IXpsOMGlyphs = extern union {
     pub const VTable = extern struct {
         base: IXpsOMVisual.VTable,
-        GetUnicodeString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                unicodeString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                unicodeString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphIndexCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                indexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                indexCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphIndices: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                indexCount: ?*u32,
-                glyphIndices: ?*XPS_GLYPH_INDEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                indexCount: ?*u32,
-                glyphIndices: ?*XPS_GLYPH_INDEX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphMappingCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                glyphMappingCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                glyphMappingCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphMappings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                glyphMappingCount: ?*u32,
-                glyphMappings: ?*XPS_GLYPH_MAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                glyphMappingCount: ?*u32,
-                glyphMappings: ?*XPS_GLYPH_MAPPING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProhibitedCaretStopCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                prohibitedCaretStopCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                prohibitedCaretStopCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProhibitedCaretStops: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                prohibitedCaretStopCount: ?*u32,
-                prohibitedCaretStops: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                prohibitedCaretStopCount: ?*u32,
-                prohibitedCaretStops: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBidiLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                bidiLevel: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                bidiLevel: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsSideways: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                isSideways: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                isSideways: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceFontName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                deviceFontName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                deviceFontName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStyleSimulations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                styleSimulations: ?*XPS_STYLE_SIMULATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                styleSimulations: ?*XPS_STYLE_SIMULATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStyleSimulations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                styleSimulations: XPS_STYLE_SIMULATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                styleSimulations: XPS_STYLE_SIMULATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOrigin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                origin: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                origin: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOrigin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                origin: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                origin: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontRenderingEmSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fontRenderingEmSize: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fontRenderingEmSize: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontRenderingEmSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fontRenderingEmSize: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fontRenderingEmSize: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fontResource: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fontResource: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fontResource: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fontResource: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFontFaceIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fontFaceIndex: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fontFaceIndex: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFontFaceIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fontFaceIndex: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fontFaceIndex: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFillBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fillBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fillBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFillBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fillBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fillBrush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFillBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                fillBrush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                fillBrush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFillBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFillBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGlyphsEditor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                editor: ?*?*IXpsOMGlyphsEditor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                editor: ?*?*IXpsOMGlyphsEditor,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGlyphs,
-                glyphs: ?*?*IXpsOMGlyphs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGlyphs,
-                glyphs: ?*?*IXpsOMGlyphs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetUnicodeString: *const fn(
+            self: *const IXpsOMGlyphs,
+            unicodeString: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphIndexCount: *const fn(
+            self: *const IXpsOMGlyphs,
+            indexCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphIndices: *const fn(
+            self: *const IXpsOMGlyphs,
+            indexCount: ?*u32,
+            glyphIndices: ?*XPS_GLYPH_INDEX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphMappingCount: *const fn(
+            self: *const IXpsOMGlyphs,
+            glyphMappingCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphMappings: *const fn(
+            self: *const IXpsOMGlyphs,
+            glyphMappingCount: ?*u32,
+            glyphMappings: ?*XPS_GLYPH_MAPPING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProhibitedCaretStopCount: *const fn(
+            self: *const IXpsOMGlyphs,
+            prohibitedCaretStopCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProhibitedCaretStops: *const fn(
+            self: *const IXpsOMGlyphs,
+            prohibitedCaretStopCount: ?*u32,
+            prohibitedCaretStops: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBidiLevel: *const fn(
+            self: *const IXpsOMGlyphs,
+            bidiLevel: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsSideways: *const fn(
+            self: *const IXpsOMGlyphs,
+            isSideways: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceFontName: *const fn(
+            self: *const IXpsOMGlyphs,
+            deviceFontName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStyleSimulations: *const fn(
+            self: *const IXpsOMGlyphs,
+            styleSimulations: ?*XPS_STYLE_SIMULATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStyleSimulations: *const fn(
+            self: *const IXpsOMGlyphs,
+            styleSimulations: XPS_STYLE_SIMULATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOrigin: *const fn(
+            self: *const IXpsOMGlyphs,
+            origin: ?*XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOrigin: *const fn(
+            self: *const IXpsOMGlyphs,
+            origin: ?*const XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontRenderingEmSize: *const fn(
+            self: *const IXpsOMGlyphs,
+            fontRenderingEmSize: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontRenderingEmSize: *const fn(
+            self: *const IXpsOMGlyphs,
+            fontRenderingEmSize: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontResource: *const fn(
+            self: *const IXpsOMGlyphs,
+            fontResource: ?*?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontResource: *const fn(
+            self: *const IXpsOMGlyphs,
+            fontResource: ?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFontFaceIndex: *const fn(
+            self: *const IXpsOMGlyphs,
+            fontFaceIndex: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFontFaceIndex: *const fn(
+            self: *const IXpsOMGlyphs,
+            fontFaceIndex: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFillBrush: *const fn(
+            self: *const IXpsOMGlyphs,
+            fillBrush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFillBrushLocal: *const fn(
+            self: *const IXpsOMGlyphs,
+            fillBrush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFillBrushLocal: *const fn(
+            self: *const IXpsOMGlyphs,
+            fillBrush: ?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFillBrushLookup: *const fn(
+            self: *const IXpsOMGlyphs,
+            key: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFillBrushLookup: *const fn(
+            self: *const IXpsOMGlyphs,
+            key: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGlyphsEditor: *const fn(
+            self: *const IXpsOMGlyphs,
+            editor: ?*?*IXpsOMGlyphsEditor,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMGlyphs,
+            glyphs: ?*?*IXpsOMGlyphs,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMVisual.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetUnicodeString(self: *const T, unicodeString: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetUnicodeString(@as(*const IXpsOMGlyphs, @ptrCast(self)), unicodeString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetGlyphIndexCount(self: *const T, indexCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphIndexCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), indexCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetGlyphIndices(self: *const T, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphIndices(@as(*const IXpsOMGlyphs, @ptrCast(self)), indexCount, glyphIndices);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetGlyphMappingCount(self: *const T, glyphMappingCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphMappingCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphMappingCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetGlyphMappings(self: *const T, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphMappings(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphMappingCount, glyphMappings);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetProhibitedCaretStopCount(self: *const T, prohibitedCaretStopCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStopCount(@as(*const IXpsOMGlyphs, @ptrCast(self)), prohibitedCaretStopCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetProhibitedCaretStops(self: *const T, prohibitedCaretStopCount: ?*u32, prohibitedCaretStops: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetProhibitedCaretStops(@as(*const IXpsOMGlyphs, @ptrCast(self)), prohibitedCaretStopCount, prohibitedCaretStops);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetBidiLevel(self: *const T, bidiLevel: ?*u32) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetBidiLevel(@as(*const IXpsOMGlyphs, @ptrCast(self)), bidiLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetIsSideways(self: *const T, isSideways: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetIsSideways(@as(*const IXpsOMGlyphs, @ptrCast(self)), isSideways);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetDeviceFontName(self: *const T, deviceFontName: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetDeviceFontName(@as(*const IXpsOMGlyphs, @ptrCast(self)), deviceFontName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetStyleSimulations(self: *const T, styleSimulations: ?*XPS_STYLE_SIMULATION) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetStyleSimulations(@as(*const IXpsOMGlyphs, @ptrCast(self)), styleSimulations);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_SetStyleSimulations(self: *const T, styleSimulations: XPS_STYLE_SIMULATION) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetStyleSimulations(@as(*const IXpsOMGlyphs, @ptrCast(self)), styleSimulations);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetOrigin(self: *const T, origin: ?*XPS_POINT) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetOrigin(@as(*const IXpsOMGlyphs, @ptrCast(self)), origin);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_SetOrigin(self: *const T, origin: ?*const XPS_POINT) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetOrigin(@as(*const IXpsOMGlyphs, @ptrCast(self)), origin);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetFontRenderingEmSize(self: *const T, fontRenderingEmSize: ?*f32) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontRenderingEmSize(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontRenderingEmSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_SetFontRenderingEmSize(self: *const T, fontRenderingEmSize: f32) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontRenderingEmSize(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontRenderingEmSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetFontResource(self: *const T, fontResource: ?*?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontResource(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_SetFontResource(self: *const T, fontResource: ?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontResource(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetFontFaceIndex(self: *const T, fontFaceIndex: ?*i16) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFontFaceIndex(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontFaceIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_SetFontFaceIndex(self: *const T, fontFaceIndex: i16) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFontFaceIndex(@as(*const IXpsOMGlyphs, @ptrCast(self)), fontFaceIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetFillBrush(self: *const T, fillBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrush(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetFillBrushLocal(self: *const T, fillBrush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrushLocal(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_SetFillBrushLocal(self: *const T, fillBrush: ?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFillBrushLocal(@as(*const IXpsOMGlyphs, @ptrCast(self)), fillBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetFillBrushLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetFillBrushLookup(@as(*const IXpsOMGlyphs, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_SetFillBrushLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).SetFillBrushLookup(@as(*const IXpsOMGlyphs, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_GetGlyphsEditor(self: *const T, editor: ?*?*IXpsOMGlyphsEditor) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).GetGlyphsEditor(@as(*const IXpsOMGlyphs, @ptrCast(self)), editor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGlyphs_Clone(self: *const T, glyphs: ?*?*IXpsOMGlyphs) HRESULT {
-                return @as(*const IXpsOMGlyphs.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGlyphs, @ptrCast(self)), glyphs);
-            }
-        };
+    IXpsOMVisual: IXpsOMVisual,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetUnicodeString(self: *const IXpsOMGlyphs, unicodeString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetUnicodeString(self, unicodeString);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetGlyphIndexCount(self: *const IXpsOMGlyphs, indexCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphIndexCount(self, indexCount);
+    }
+    pub fn GetGlyphIndices(self: *const IXpsOMGlyphs, indexCount: ?*u32, glyphIndices: ?*XPS_GLYPH_INDEX) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphIndices(self, indexCount, glyphIndices);
+    }
+    pub fn GetGlyphMappingCount(self: *const IXpsOMGlyphs, glyphMappingCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphMappingCount(self, glyphMappingCount);
+    }
+    pub fn GetGlyphMappings(self: *const IXpsOMGlyphs, glyphMappingCount: ?*u32, glyphMappings: ?*XPS_GLYPH_MAPPING) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphMappings(self, glyphMappingCount, glyphMappings);
+    }
+    pub fn GetProhibitedCaretStopCount(self: *const IXpsOMGlyphs, prohibitedCaretStopCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetProhibitedCaretStopCount(self, prohibitedCaretStopCount);
+    }
+    pub fn GetProhibitedCaretStops(self: *const IXpsOMGlyphs, prohibitedCaretStopCount: ?*u32, prohibitedCaretStops: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetProhibitedCaretStops(self, prohibitedCaretStopCount, prohibitedCaretStops);
+    }
+    pub fn GetBidiLevel(self: *const IXpsOMGlyphs, bidiLevel: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetBidiLevel(self, bidiLevel);
+    }
+    pub fn GetIsSideways(self: *const IXpsOMGlyphs, isSideways: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetIsSideways(self, isSideways);
+    }
+    pub fn GetDeviceFontName(self: *const IXpsOMGlyphs, deviceFontName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetDeviceFontName(self, deviceFontName);
+    }
+    pub fn GetStyleSimulations(self: *const IXpsOMGlyphs, styleSimulations: ?*XPS_STYLE_SIMULATION) callconv(.Inline) HRESULT {
+        return self.vtable.GetStyleSimulations(self, styleSimulations);
+    }
+    pub fn SetStyleSimulations(self: *const IXpsOMGlyphs, styleSimulations: XPS_STYLE_SIMULATION) callconv(.Inline) HRESULT {
+        return self.vtable.SetStyleSimulations(self, styleSimulations);
+    }
+    pub fn GetOrigin(self: *const IXpsOMGlyphs, origin: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.GetOrigin(self, origin);
+    }
+    pub fn SetOrigin(self: *const IXpsOMGlyphs, origin: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.SetOrigin(self, origin);
+    }
+    pub fn GetFontRenderingEmSize(self: *const IXpsOMGlyphs, fontRenderingEmSize: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetFontRenderingEmSize(self, fontRenderingEmSize);
+    }
+    pub fn SetFontRenderingEmSize(self: *const IXpsOMGlyphs, fontRenderingEmSize: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetFontRenderingEmSize(self, fontRenderingEmSize);
+    }
+    pub fn GetFontResource(self: *const IXpsOMGlyphs, fontResource: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetFontResource(self, fontResource);
+    }
+    pub fn SetFontResource(self: *const IXpsOMGlyphs, fontResource: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetFontResource(self, fontResource);
+    }
+    pub fn GetFontFaceIndex(self: *const IXpsOMGlyphs, fontFaceIndex: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.GetFontFaceIndex(self, fontFaceIndex);
+    }
+    pub fn SetFontFaceIndex(self: *const IXpsOMGlyphs, fontFaceIndex: i16) callconv(.Inline) HRESULT {
+        return self.vtable.SetFontFaceIndex(self, fontFaceIndex);
+    }
+    pub fn GetFillBrush(self: *const IXpsOMGlyphs, fillBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetFillBrush(self, fillBrush);
+    }
+    pub fn GetFillBrushLocal(self: *const IXpsOMGlyphs, fillBrush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetFillBrushLocal(self, fillBrush);
+    }
+    pub fn SetFillBrushLocal(self: *const IXpsOMGlyphs, fillBrush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.SetFillBrushLocal(self, fillBrush);
+    }
+    pub fn GetFillBrushLookup(self: *const IXpsOMGlyphs, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetFillBrushLookup(self, key);
+    }
+    pub fn SetFillBrushLookup(self: *const IXpsOMGlyphs, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetFillBrushLookup(self, key);
+    }
+    pub fn GetGlyphsEditor(self: *const IXpsOMGlyphs, editor: ?*?*IXpsOMGlyphsEditor) callconv(.Inline) HRESULT {
+        return self.vtable.GetGlyphsEditor(self, editor);
+    }
+    pub fn Clone(self: *const IXpsOMGlyphs, glyphs: ?*?*IXpsOMGlyphs) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, glyphs);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDashCollection_Value = Guid.initString("081613f4-74eb-48f2-83b3-37a9ce2d7dc6");
 pub const IID_IXpsOMDashCollection = &IID_IXpsOMDashCollection_Value;
-pub const IXpsOMDashCollection = extern struct {
+pub const IXpsOMDashCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDashCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDashCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-                dash: ?*XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-                dash: ?*XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-                dash: ?*const XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-                dash: ?*const XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-                dash: ?*const XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDashCollection,
-                index: u32,
-                dash: ?*const XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDashCollection,
-                dash: ?*const XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDashCollection,
-                dash: ?*const XPS_DASH,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMDashCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMDashCollection,
+            index: u32,
+            dash: ?*XPS_DASH,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMDashCollection,
+            index: u32,
+            dash: ?*const XPS_DASH,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMDashCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMDashCollection,
+            index: u32,
+            dash: ?*const XPS_DASH,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMDashCollection,
+            dash: ?*const XPS_DASH,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDashCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDashCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDashCollection_GetAt(self: *const T, index: u32, dash: ?*XPS_DASH) HRESULT {
-                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDashCollection_InsertAt(self: *const T, index: u32, dash: ?*const XPS_DASH) HRESULT {
-                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDashCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDashCollection_SetAt(self: *const T, index: u32, dash: ?*const XPS_DASH) HRESULT {
-                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDashCollection, @ptrCast(self)), index, dash);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDashCollection_Append(self: *const T, dash: ?*const XPS_DASH) HRESULT {
-                return @as(*const IXpsOMDashCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDashCollection, @ptrCast(self)), dash);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMDashCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMDashCollection, index: u32, dash: ?*XPS_DASH) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, dash);
+    }
+    pub fn InsertAt(self: *const IXpsOMDashCollection, index: u32, dash: ?*const XPS_DASH) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, dash);
+    }
+    pub fn RemoveAt(self: *const IXpsOMDashCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMDashCollection, index: u32, dash: ?*const XPS_DASH) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, dash);
+    }
+    pub fn Append(self: *const IXpsOMDashCollection, dash: ?*const XPS_DASH) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, dash);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMMatrixTransform_Value = Guid.initString("b77330ff-bb37-4501-a93e-f1b1e50bfc46");
 pub const IID_IXpsOMMatrixTransform = &IID_IXpsOMMatrixTransform_Value;
-pub const IXpsOMMatrixTransform = extern struct {
+pub const IXpsOMMatrixTransform = extern union {
     pub const VTable = extern struct {
         base: IXpsOMShareable.VTable,
-        GetMatrix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMMatrixTransform,
-                matrix: ?*XPS_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMMatrixTransform,
-                matrix: ?*XPS_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetMatrix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMMatrixTransform,
-                matrix: ?*const XPS_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMMatrixTransform,
-                matrix: ?*const XPS_MATRIX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMMatrixTransform,
-                matrixTransform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMMatrixTransform,
-                matrixTransform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMatrix: *const fn(
+            self: *const IXpsOMMatrixTransform,
+            matrix: ?*XPS_MATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetMatrix: *const fn(
+            self: *const IXpsOMMatrixTransform,
+            matrix: ?*const XPS_MATRIX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMMatrixTransform,
+            matrixTransform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMShareable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMMatrixTransform_GetMatrix(self: *const T, matrix: ?*XPS_MATRIX) HRESULT {
-                return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).GetMatrix(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrix);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMMatrixTransform_SetMatrix(self: *const T, matrix: ?*const XPS_MATRIX) HRESULT {
-                return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).SetMatrix(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrix);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMMatrixTransform_Clone(self: *const T, matrixTransform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMMatrixTransform.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMMatrixTransform, @ptrCast(self)), matrixTransform);
-            }
-        };
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetMatrix(self: *const IXpsOMMatrixTransform, matrix: ?*XPS_MATRIX) callconv(.Inline) HRESULT {
+        return self.vtable.GetMatrix(self, matrix);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetMatrix(self: *const IXpsOMMatrixTransform, matrix: ?*const XPS_MATRIX) callconv(.Inline) HRESULT {
+        return self.vtable.SetMatrix(self, matrix);
+    }
+    pub fn Clone(self: *const IXpsOMMatrixTransform, matrixTransform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, matrixTransform);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGeometry_Value = Guid.initString("64fcf3d7-4d58-44ba-ad73-a13af6492072");
 pub const IID_IXpsOMGeometry = &IID_IXpsOMGeometry_Value;
-pub const IXpsOMGeometry = extern struct {
+pub const IXpsOMGeometry = extern union {
     pub const VTable = extern struct {
         base: IXpsOMShareable.VTable,
-        GetFigures: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                figures: ?*?*IXpsOMGeometryFigureCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                figures: ?*?*IXpsOMGeometryFigureCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFillRule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                fillRule: ?*XPS_FILL_RULE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                fillRule: ?*XPS_FILL_RULE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFillRule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                fillRule: XPS_FILL_RULE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                fillRule: XPS_FILL_RULE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                transform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                transform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometry,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometry,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFigures: *const fn(
+            self: *const IXpsOMGeometry,
+            figures: ?*?*IXpsOMGeometryFigureCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFillRule: *const fn(
+            self: *const IXpsOMGeometry,
+            fillRule: ?*XPS_FILL_RULE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFillRule: *const fn(
+            self: *const IXpsOMGeometry,
+            fillRule: XPS_FILL_RULE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransform: *const fn(
+            self: *const IXpsOMGeometry,
+            transform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLocal: *const fn(
+            self: *const IXpsOMGeometry,
+            transform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLocal: *const fn(
+            self: *const IXpsOMGeometry,
+            transform: ?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLookup: *const fn(
+            self: *const IXpsOMGeometry,
+            lookup: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLookup: *const fn(
+            self: *const IXpsOMGeometry,
+            lookup: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMGeometry,
+            geometry: ?*?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMShareable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_GetFigures(self: *const T, figures: ?*?*IXpsOMGeometryFigureCollection) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetFigures(@as(*const IXpsOMGeometry, @ptrCast(self)), figures);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_GetFillRule(self: *const T, fillRule: ?*XPS_FILL_RULE) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetFillRule(@as(*const IXpsOMGeometry, @ptrCast(self)), fillRule);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_SetFillRule(self: *const T, fillRule: XPS_FILL_RULE) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetFillRule(@as(*const IXpsOMGeometry, @ptrCast(self)), fillRule);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_GetTransform(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_GetTransformLocal(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_SetTransformLocal(self: *const T, transform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMGeometry, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_GetTransformLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMGeometry, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_SetTransformLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMGeometry, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometry_Clone(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMGeometry.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometry, @ptrCast(self)), geometry);
-            }
-        };
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetFigures(self: *const IXpsOMGeometry, figures: ?*?*IXpsOMGeometryFigureCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetFigures(self, figures);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFillRule(self: *const IXpsOMGeometry, fillRule: ?*XPS_FILL_RULE) callconv(.Inline) HRESULT {
+        return self.vtable.GetFillRule(self, fillRule);
+    }
+    pub fn SetFillRule(self: *const IXpsOMGeometry, fillRule: XPS_FILL_RULE) callconv(.Inline) HRESULT {
+        return self.vtable.SetFillRule(self, fillRule);
+    }
+    pub fn GetTransform(self: *const IXpsOMGeometry, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransform(self, transform);
+    }
+    pub fn GetTransformLocal(self: *const IXpsOMGeometry, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLocal(self, transform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMGeometry, transform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLocal(self, transform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMGeometry, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLookup(self, lookup);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMGeometry, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLookup(self, lookup);
+    }
+    pub fn Clone(self: *const IXpsOMGeometry, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, geometry);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGeometryFigure_Value = Guid.initString("d410dc83-908c-443e-8947-b1795d3c165a");
 pub const IID_IXpsOMGeometryFigure = &IID_IXpsOMGeometryFigure_Value;
-pub const IXpsOMGeometryFigure = extern struct {
+pub const IXpsOMGeometryFigure = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                owner: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                owner: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSegmentData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                dataCount: ?*u32,
-                segmentData: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                dataCount: ?*u32,
-                segmentData: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSegmentTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: ?*u32,
-                segmentTypes: ?*XPS_SEGMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: ?*u32,
-                segmentTypes: ?*XPS_SEGMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSegmentStrokes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: ?*u32,
-                segmentStrokes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: ?*u32,
-                segmentStrokes: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSegments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: u32,
-                segmentDataCount: u32,
-                segmentTypes: ?*const XPS_SEGMENT_TYPE,
-                segmentData: ?*const f32,
-                segmentStrokes: ?*const BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: u32,
-                segmentDataCount: u32,
-                segmentTypes: ?*const XPS_SEGMENT_TYPE,
-                segmentData: ?*const f32,
-                segmentStrokes: ?*const BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStartPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                startPoint: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                startPoint: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStartPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                startPoint: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                startPoint: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsClosed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                isClosed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                isClosed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIsClosed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                isClosed: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                isClosed: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsFilled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                isFilled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                isFilled: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIsFilled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                isFilled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                isFilled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSegmentCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSegmentDataCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentDataCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentDataCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSegmentStrokePattern: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigure,
-                geometryFigure: ?*?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigure,
-                geometryFigure: ?*?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            owner: ?*?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSegmentData: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            dataCount: ?*u32,
+            segmentData: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSegmentTypes: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            segmentCount: ?*u32,
+            segmentTypes: ?*XPS_SEGMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSegmentStrokes: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            segmentCount: ?*u32,
+            segmentStrokes: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSegments: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            segmentCount: u32,
+            segmentDataCount: u32,
+            segmentTypes: ?*const XPS_SEGMENT_TYPE,
+            segmentData: ?*const f32,
+            segmentStrokes: ?*const BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStartPoint: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            startPoint: ?*XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStartPoint: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            startPoint: ?*const XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsClosed: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            isClosed: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIsClosed: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            isClosed: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsFilled: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            isFilled: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIsFilled: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            isFilled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSegmentCount: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            segmentCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSegmentDataCount: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            segmentDataCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSegmentStrokePattern: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMGeometryFigure,
+            geometryFigure: ?*?*IXpsOMGeometryFigure,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetOwner(self: *const T, owner: ?*?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), owner);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetSegmentData(self: *const T, dataCount: ?*u32, segmentData: ?*f32) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentData(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), dataCount, segmentData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetSegmentTypes(self: *const T, segmentCount: ?*u32, segmentTypes: ?*XPS_SEGMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentTypes(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentTypes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetSegmentStrokes(self: *const T, segmentCount: ?*u32, segmentStrokes: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentStrokes(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentStrokes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_SetSegments(self: *const T, segmentCount: u32, segmentDataCount: u32, segmentTypes: ?*const XPS_SEGMENT_TYPE, segmentData: ?*const f32, segmentStrokes: ?*const BOOL) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetSegments(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount, segmentDataCount, segmentTypes, segmentData, segmentStrokes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetStartPoint(self: *const T, startPoint: ?*XPS_POINT) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), startPoint);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_SetStartPoint(self: *const T, startPoint: ?*const XPS_POINT) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), startPoint);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetIsClosed(self: *const T, isClosed: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetIsClosed(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isClosed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_SetIsClosed(self: *const T, isClosed: BOOL) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetIsClosed(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isClosed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetIsFilled(self: *const T, isFilled: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetIsFilled(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isFilled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_SetIsFilled(self: *const T, isFilled: BOOL) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).SetIsFilled(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), isFilled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetSegmentCount(self: *const T, segmentCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentCount(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetSegmentDataCount(self: *const T, segmentDataCount: ?*u32) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentDataCount(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentDataCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_GetSegmentStrokePattern(self: *const T, segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).GetSegmentStrokePattern(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), segmentStrokePattern);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigure_Clone(self: *const T, geometryFigure: ?*?*IXpsOMGeometryFigure) HRESULT {
-                return @as(*const IXpsOMGeometryFigure.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGeometryFigure, @ptrCast(self)), geometryFigure);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMGeometryFigure, owner: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, owner);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSegmentData(self: *const IXpsOMGeometryFigure, dataCount: ?*u32, segmentData: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSegmentData(self, dataCount, segmentData);
+    }
+    pub fn GetSegmentTypes(self: *const IXpsOMGeometryFigure, segmentCount: ?*u32, segmentTypes: ?*XPS_SEGMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetSegmentTypes(self, segmentCount, segmentTypes);
+    }
+    pub fn GetSegmentStrokes(self: *const IXpsOMGeometryFigure, segmentCount: ?*u32, segmentStrokes: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetSegmentStrokes(self, segmentCount, segmentStrokes);
+    }
+    pub fn SetSegments(self: *const IXpsOMGeometryFigure, segmentCount: u32, segmentDataCount: u32, segmentTypes: ?*const XPS_SEGMENT_TYPE, segmentData: ?*const f32, segmentStrokes: ?*const BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetSegments(self, segmentCount, segmentDataCount, segmentTypes, segmentData, segmentStrokes);
+    }
+    pub fn GetStartPoint(self: *const IXpsOMGeometryFigure, startPoint: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.GetStartPoint(self, startPoint);
+    }
+    pub fn SetStartPoint(self: *const IXpsOMGeometryFigure, startPoint: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.SetStartPoint(self, startPoint);
+    }
+    pub fn GetIsClosed(self: *const IXpsOMGeometryFigure, isClosed: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetIsClosed(self, isClosed);
+    }
+    pub fn SetIsClosed(self: *const IXpsOMGeometryFigure, isClosed: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetIsClosed(self, isClosed);
+    }
+    pub fn GetIsFilled(self: *const IXpsOMGeometryFigure, isFilled: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetIsFilled(self, isFilled);
+    }
+    pub fn SetIsFilled(self: *const IXpsOMGeometryFigure, isFilled: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetIsFilled(self, isFilled);
+    }
+    pub fn GetSegmentCount(self: *const IXpsOMGeometryFigure, segmentCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSegmentCount(self, segmentCount);
+    }
+    pub fn GetSegmentDataCount(self: *const IXpsOMGeometryFigure, segmentDataCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSegmentDataCount(self, segmentDataCount);
+    }
+    pub fn GetSegmentStrokePattern(self: *const IXpsOMGeometryFigure, segmentStrokePattern: ?*XPS_SEGMENT_STROKE_PATTERN) callconv(.Inline) HRESULT {
+        return self.vtable.GetSegmentStrokePattern(self, segmentStrokePattern);
+    }
+    pub fn Clone(self: *const IXpsOMGeometryFigure, geometryFigure: ?*?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, geometryFigure);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGeometryFigureCollection_Value = Guid.initString("fd48c3f3-a58e-4b5a-8826-1de54abe72b2");
 pub const IID_IXpsOMGeometryFigureCollection = &IID_IXpsOMGeometryFigureCollection_Value;
-pub const IXpsOMGeometryFigureCollection = extern struct {
+pub const IXpsOMGeometryFigureCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-                geometryFigure: ?*?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-                geometryFigure: ?*?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-                geometryFigure: ?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-                geometryFigure: ?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-                geometryFigure: ?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                index: u32,
-                geometryFigure: ?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                geometryFigure: ?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGeometryFigureCollection,
-                geometryFigure: ?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMGeometryFigureCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMGeometryFigureCollection,
+            index: u32,
+            geometryFigure: ?*?*IXpsOMGeometryFigure,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMGeometryFigureCollection,
+            index: u32,
+            geometryFigure: ?*IXpsOMGeometryFigure,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMGeometryFigureCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMGeometryFigureCollection,
+            index: u32,
+            geometryFigure: ?*IXpsOMGeometryFigure,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMGeometryFigureCollection,
+            geometryFigure: ?*IXpsOMGeometryFigure,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigureCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigureCollection_GetAt(self: *const T, index: u32, geometryFigure: ?*?*IXpsOMGeometryFigure) HRESULT {
-                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigureCollection_InsertAt(self: *const T, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) HRESULT {
-                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigureCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigureCollection_SetAt(self: *const T, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) HRESULT {
-                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), index, geometryFigure);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGeometryFigureCollection_Append(self: *const T, geometryFigure: ?*IXpsOMGeometryFigure) HRESULT {
-                return @as(*const IXpsOMGeometryFigureCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGeometryFigureCollection, @ptrCast(self)), geometryFigure);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMGeometryFigureCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMGeometryFigureCollection, index: u32, geometryFigure: ?*?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, geometryFigure);
+    }
+    pub fn InsertAt(self: *const IXpsOMGeometryFigureCollection, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, geometryFigure);
+    }
+    pub fn RemoveAt(self: *const IXpsOMGeometryFigureCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMGeometryFigureCollection, index: u32, geometryFigure: ?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, geometryFigure);
+    }
+    pub fn Append(self: *const IXpsOMGeometryFigureCollection, geometryFigure: ?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, geometryFigure);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPath_Value = Guid.initString("37d38bb6-3ee9-4110-9312-14b194163337");
 pub const IID_IXpsOMPath = &IID_IXpsOMPath_Value;
-pub const IXpsOMPath = extern struct {
+pub const IXpsOMPath = extern union {
     pub const VTable = extern struct {
         base: IXpsOMVisual.VTable,
-        GetGeometry: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGeometryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGeometryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                geometry: ?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                geometry: ?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGeometryLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGeometryLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAccessibilityShortDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                shortDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                shortDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAccessibilityShortDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                shortDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                shortDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAccessibilityLongDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                longDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                longDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAccessibilityLongDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                longDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                longDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSnapsToPixels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                snapsToPixels: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                snapsToPixels: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSnapsToPixels: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                snapsToPixels: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                snapsToPixels: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                brush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                brush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeDashes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeDashes: ?*?*IXpsOMDashCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeDashes: ?*?*IXpsOMDashCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeDashCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeDashCap: ?*XPS_DASH_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeDashCap: ?*XPS_DASH_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeDashCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeDashCap: XPS_DASH_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeDashCap: XPS_DASH_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeDashOffset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeDashOffset: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeDashOffset: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeDashOffset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeDashOffset: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeDashOffset: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeStartLineCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeStartLineCap: ?*XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeStartLineCap: ?*XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeStartLineCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeStartLineCap: XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeStartLineCap: XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeEndLineCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeEndLineCap: ?*XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeEndLineCap: ?*XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeEndLineCap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeEndLineCap: XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeEndLineCap: XPS_LINE_CAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeLineJoin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeLineJoin: ?*XPS_LINE_JOIN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeLineJoin: ?*XPS_LINE_JOIN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeLineJoin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeLineJoin: XPS_LINE_JOIN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeLineJoin: XPS_LINE_JOIN,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeMiterLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeMiterLimit: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeMiterLimit: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeMiterLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeMiterLimit: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeMiterLimit: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStrokeThickness: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeThickness: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeThickness: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStrokeThickness: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                strokeThickness: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                strokeThickness: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFillBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFillBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                brush: ?*?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFillBrushLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                brush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                brush: ?*IXpsOMBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFillBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFillBrushLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPath,
-                path: ?*?*IXpsOMPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPath,
-                path: ?*?*IXpsOMPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetGeometry: *const fn(
+            self: *const IXpsOMPath,
+            geometry: ?*?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGeometryLocal: *const fn(
+            self: *const IXpsOMPath,
+            geometry: ?*?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGeometryLocal: *const fn(
+            self: *const IXpsOMPath,
+            geometry: ?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGeometryLookup: *const fn(
+            self: *const IXpsOMPath,
+            lookup: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGeometryLookup: *const fn(
+            self: *const IXpsOMPath,
+            lookup: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccessibilityShortDescription: *const fn(
+            self: *const IXpsOMPath,
+            shortDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAccessibilityShortDescription: *const fn(
+            self: *const IXpsOMPath,
+            shortDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccessibilityLongDescription: *const fn(
+            self: *const IXpsOMPath,
+            longDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAccessibilityLongDescription: *const fn(
+            self: *const IXpsOMPath,
+            longDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSnapsToPixels: *const fn(
+            self: *const IXpsOMPath,
+            snapsToPixels: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSnapsToPixels: *const fn(
+            self: *const IXpsOMPath,
+            snapsToPixels: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeBrush: *const fn(
+            self: *const IXpsOMPath,
+            brush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeBrushLocal: *const fn(
+            self: *const IXpsOMPath,
+            brush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeBrushLocal: *const fn(
+            self: *const IXpsOMPath,
+            brush: ?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeBrushLookup: *const fn(
+            self: *const IXpsOMPath,
+            lookup: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeBrushLookup: *const fn(
+            self: *const IXpsOMPath,
+            lookup: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeDashes: *const fn(
+            self: *const IXpsOMPath,
+            strokeDashes: ?*?*IXpsOMDashCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeDashCap: *const fn(
+            self: *const IXpsOMPath,
+            strokeDashCap: ?*XPS_DASH_CAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeDashCap: *const fn(
+            self: *const IXpsOMPath,
+            strokeDashCap: XPS_DASH_CAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeDashOffset: *const fn(
+            self: *const IXpsOMPath,
+            strokeDashOffset: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeDashOffset: *const fn(
+            self: *const IXpsOMPath,
+            strokeDashOffset: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeStartLineCap: *const fn(
+            self: *const IXpsOMPath,
+            strokeStartLineCap: ?*XPS_LINE_CAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeStartLineCap: *const fn(
+            self: *const IXpsOMPath,
+            strokeStartLineCap: XPS_LINE_CAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeEndLineCap: *const fn(
+            self: *const IXpsOMPath,
+            strokeEndLineCap: ?*XPS_LINE_CAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeEndLineCap: *const fn(
+            self: *const IXpsOMPath,
+            strokeEndLineCap: XPS_LINE_CAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeLineJoin: *const fn(
+            self: *const IXpsOMPath,
+            strokeLineJoin: ?*XPS_LINE_JOIN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeLineJoin: *const fn(
+            self: *const IXpsOMPath,
+            strokeLineJoin: XPS_LINE_JOIN,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeMiterLimit: *const fn(
+            self: *const IXpsOMPath,
+            strokeMiterLimit: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeMiterLimit: *const fn(
+            self: *const IXpsOMPath,
+            strokeMiterLimit: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStrokeThickness: *const fn(
+            self: *const IXpsOMPath,
+            strokeThickness: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStrokeThickness: *const fn(
+            self: *const IXpsOMPath,
+            strokeThickness: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFillBrush: *const fn(
+            self: *const IXpsOMPath,
+            brush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFillBrushLocal: *const fn(
+            self: *const IXpsOMPath,
+            brush: ?*?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFillBrushLocal: *const fn(
+            self: *const IXpsOMPath,
+            brush: ?*IXpsOMBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFillBrushLookup: *const fn(
+            self: *const IXpsOMPath,
+            lookup: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFillBrushLookup: *const fn(
+            self: *const IXpsOMPath,
+            lookup: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMPath,
+            path: ?*?*IXpsOMPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMVisual.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetGeometry(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometry(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetGeometryLocal(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometryLocal(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetGeometryLocal(self: *const T, geometry: ?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetGeometryLocal(@as(*const IXpsOMPath, @ptrCast(self)), geometry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetGeometryLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetGeometryLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetGeometryLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetGeometryLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetAccessibilityShortDescription(self: *const T, shortDescription: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetAccessibilityShortDescription(@as(*const IXpsOMPath, @ptrCast(self)), shortDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetAccessibilityShortDescription(self: *const T, shortDescription: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetAccessibilityShortDescription(@as(*const IXpsOMPath, @ptrCast(self)), shortDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetAccessibilityLongDescription(self: *const T, longDescription: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetAccessibilityLongDescription(@as(*const IXpsOMPath, @ptrCast(self)), longDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetAccessibilityLongDescription(self: *const T, longDescription: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetAccessibilityLongDescription(@as(*const IXpsOMPath, @ptrCast(self)), longDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetSnapsToPixels(self: *const T, snapsToPixels: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetSnapsToPixels(@as(*const IXpsOMPath, @ptrCast(self)), snapsToPixels);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetSnapsToPixels(self: *const T, snapsToPixels: BOOL) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetSnapsToPixels(@as(*const IXpsOMPath, @ptrCast(self)), snapsToPixels);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeBrush(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrush(@as(*const IXpsOMPath, @ptrCast(self)), brush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeBrushLocal(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeBrushLocal(self: *const T, brush: ?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeBrushLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeBrushLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeDashes(self: *const T, strokeDashes: ?*?*IXpsOMDashCollection) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashes(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeDashCap(self: *const T, strokeDashCap: ?*XPS_DASH_CAP) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashCap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeDashCap(self: *const T, strokeDashCap: XPS_DASH_CAP) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeDashCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashCap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeDashOffset(self: *const T, strokeDashOffset: ?*f32) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeDashOffset(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashOffset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeDashOffset(self: *const T, strokeDashOffset: f32) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeDashOffset(@as(*const IXpsOMPath, @ptrCast(self)), strokeDashOffset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeStartLineCap(self: *const T, strokeStartLineCap: ?*XPS_LINE_CAP) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeStartLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeStartLineCap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeStartLineCap(self: *const T, strokeStartLineCap: XPS_LINE_CAP) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeStartLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeStartLineCap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeEndLineCap(self: *const T, strokeEndLineCap: ?*XPS_LINE_CAP) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeEndLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeEndLineCap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeEndLineCap(self: *const T, strokeEndLineCap: XPS_LINE_CAP) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeEndLineCap(@as(*const IXpsOMPath, @ptrCast(self)), strokeEndLineCap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeLineJoin(self: *const T, strokeLineJoin: ?*XPS_LINE_JOIN) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeLineJoin(@as(*const IXpsOMPath, @ptrCast(self)), strokeLineJoin);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeLineJoin(self: *const T, strokeLineJoin: XPS_LINE_JOIN) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeLineJoin(@as(*const IXpsOMPath, @ptrCast(self)), strokeLineJoin);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeMiterLimit(self: *const T, strokeMiterLimit: ?*f32) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeMiterLimit(@as(*const IXpsOMPath, @ptrCast(self)), strokeMiterLimit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeMiterLimit(self: *const T, strokeMiterLimit: f32) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeMiterLimit(@as(*const IXpsOMPath, @ptrCast(self)), strokeMiterLimit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetStrokeThickness(self: *const T, strokeThickness: ?*f32) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetStrokeThickness(@as(*const IXpsOMPath, @ptrCast(self)), strokeThickness);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetStrokeThickness(self: *const T, strokeThickness: f32) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetStrokeThickness(@as(*const IXpsOMPath, @ptrCast(self)), strokeThickness);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetFillBrush(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrush(@as(*const IXpsOMPath, @ptrCast(self)), brush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetFillBrushLocal(self: *const T, brush: ?*?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetFillBrushLocal(self: *const T, brush: ?*IXpsOMBrush) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetFillBrushLocal(@as(*const IXpsOMPath, @ptrCast(self)), brush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_GetFillBrushLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).GetFillBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_SetFillBrushLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).SetFillBrushLookup(@as(*const IXpsOMPath, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPath_Clone(self: *const T, path: ?*?*IXpsOMPath) HRESULT {
-                return @as(*const IXpsOMPath.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPath, @ptrCast(self)), path);
-            }
-        };
+    IXpsOMVisual: IXpsOMVisual,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetGeometry(self: *const IXpsOMPath, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.GetGeometry(self, geometry);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetGeometryLocal(self: *const IXpsOMPath, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.GetGeometryLocal(self, geometry);
+    }
+    pub fn SetGeometryLocal(self: *const IXpsOMPath, geometry: ?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.SetGeometryLocal(self, geometry);
+    }
+    pub fn GetGeometryLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetGeometryLookup(self, lookup);
+    }
+    pub fn SetGeometryLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetGeometryLookup(self, lookup);
+    }
+    pub fn GetAccessibilityShortDescription(self: *const IXpsOMPath, shortDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetAccessibilityShortDescription(self, shortDescription);
+    }
+    pub fn SetAccessibilityShortDescription(self: *const IXpsOMPath, shortDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetAccessibilityShortDescription(self, shortDescription);
+    }
+    pub fn GetAccessibilityLongDescription(self: *const IXpsOMPath, longDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetAccessibilityLongDescription(self, longDescription);
+    }
+    pub fn SetAccessibilityLongDescription(self: *const IXpsOMPath, longDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetAccessibilityLongDescription(self, longDescription);
+    }
+    pub fn GetSnapsToPixels(self: *const IXpsOMPath, snapsToPixels: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetSnapsToPixels(self, snapsToPixels);
+    }
+    pub fn SetSnapsToPixels(self: *const IXpsOMPath, snapsToPixels: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetSnapsToPixels(self, snapsToPixels);
+    }
+    pub fn GetStrokeBrush(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeBrush(self, brush);
+    }
+    pub fn GetStrokeBrushLocal(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeBrushLocal(self, brush);
+    }
+    pub fn SetStrokeBrushLocal(self: *const IXpsOMPath, brush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeBrushLocal(self, brush);
+    }
+    pub fn GetStrokeBrushLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeBrushLookup(self, lookup);
+    }
+    pub fn SetStrokeBrushLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeBrushLookup(self, lookup);
+    }
+    pub fn GetStrokeDashes(self: *const IXpsOMPath, strokeDashes: ?*?*IXpsOMDashCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeDashes(self, strokeDashes);
+    }
+    pub fn GetStrokeDashCap(self: *const IXpsOMPath, strokeDashCap: ?*XPS_DASH_CAP) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeDashCap(self, strokeDashCap);
+    }
+    pub fn SetStrokeDashCap(self: *const IXpsOMPath, strokeDashCap: XPS_DASH_CAP) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeDashCap(self, strokeDashCap);
+    }
+    pub fn GetStrokeDashOffset(self: *const IXpsOMPath, strokeDashOffset: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeDashOffset(self, strokeDashOffset);
+    }
+    pub fn SetStrokeDashOffset(self: *const IXpsOMPath, strokeDashOffset: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeDashOffset(self, strokeDashOffset);
+    }
+    pub fn GetStrokeStartLineCap(self: *const IXpsOMPath, strokeStartLineCap: ?*XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeStartLineCap(self, strokeStartLineCap);
+    }
+    pub fn SetStrokeStartLineCap(self: *const IXpsOMPath, strokeStartLineCap: XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeStartLineCap(self, strokeStartLineCap);
+    }
+    pub fn GetStrokeEndLineCap(self: *const IXpsOMPath, strokeEndLineCap: ?*XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeEndLineCap(self, strokeEndLineCap);
+    }
+    pub fn SetStrokeEndLineCap(self: *const IXpsOMPath, strokeEndLineCap: XPS_LINE_CAP) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeEndLineCap(self, strokeEndLineCap);
+    }
+    pub fn GetStrokeLineJoin(self: *const IXpsOMPath, strokeLineJoin: ?*XPS_LINE_JOIN) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeLineJoin(self, strokeLineJoin);
+    }
+    pub fn SetStrokeLineJoin(self: *const IXpsOMPath, strokeLineJoin: XPS_LINE_JOIN) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeLineJoin(self, strokeLineJoin);
+    }
+    pub fn GetStrokeMiterLimit(self: *const IXpsOMPath, strokeMiterLimit: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeMiterLimit(self, strokeMiterLimit);
+    }
+    pub fn SetStrokeMiterLimit(self: *const IXpsOMPath, strokeMiterLimit: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeMiterLimit(self, strokeMiterLimit);
+    }
+    pub fn GetStrokeThickness(self: *const IXpsOMPath, strokeThickness: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStrokeThickness(self, strokeThickness);
+    }
+    pub fn SetStrokeThickness(self: *const IXpsOMPath, strokeThickness: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetStrokeThickness(self, strokeThickness);
+    }
+    pub fn GetFillBrush(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetFillBrush(self, brush);
+    }
+    pub fn GetFillBrushLocal(self: *const IXpsOMPath, brush: ?*?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetFillBrushLocal(self, brush);
+    }
+    pub fn SetFillBrushLocal(self: *const IXpsOMPath, brush: ?*IXpsOMBrush) callconv(.Inline) HRESULT {
+        return self.vtable.SetFillBrushLocal(self, brush);
+    }
+    pub fn GetFillBrushLookup(self: *const IXpsOMPath, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetFillBrushLookup(self, lookup);
+    }
+    pub fn SetFillBrushLookup(self: *const IXpsOMPath, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetFillBrushLookup(self, lookup);
+    }
+    pub fn Clone(self: *const IXpsOMPath, path: ?*?*IXpsOMPath) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, path);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMBrush_Value = Guid.initString("56a3f80c-ea4c-4187-a57b-a2a473b2b42b");
 pub const IID_IXpsOMBrush = &IID_IXpsOMBrush_Value;
-pub const IXpsOMBrush = extern struct {
+pub const IXpsOMBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMShareable.VTable,
-        GetOpacity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMBrush,
-                opacity: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMBrush,
-                opacity: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOpacity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMBrush,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMBrush,
-                opacity: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOpacity: *const fn(
+            self: *const IXpsOMBrush,
+            opacity: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOpacity: *const fn(
+            self: *const IXpsOMBrush,
+            opacity: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMShareable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMBrush_GetOpacity(self: *const T, opacity: ?*f32) HRESULT {
-                return @as(*const IXpsOMBrush.VTable, @ptrCast(self.vtable)).GetOpacity(@as(*const IXpsOMBrush, @ptrCast(self)), opacity);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMBrush_SetOpacity(self: *const T, opacity: f32) HRESULT {
-                return @as(*const IXpsOMBrush.VTable, @ptrCast(self.vtable)).SetOpacity(@as(*const IXpsOMBrush, @ptrCast(self)), opacity);
-            }
-        };
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetOpacity(self: *const IXpsOMBrush, opacity: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOpacity(self, opacity);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetOpacity(self: *const IXpsOMBrush, opacity: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetOpacity(self, opacity);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGradientStopCollection_Value = Guid.initString("c9174c3a-3cd3-4319-bda4-11a39392ceef");
 pub const IID_IXpsOMGradientStopCollection = &IID_IXpsOMGradientStopCollection_Value;
-pub const IXpsOMGradientStopCollection = extern struct {
+pub const IXpsOMGradientStopCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStopCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStopCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-                stop: ?*?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-                stop: ?*?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-                stop: ?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-                stop: ?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-                stop: ?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStopCollection,
-                index: u32,
-                stop: ?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStopCollection,
-                stop: ?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStopCollection,
-                stop: ?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMGradientStopCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMGradientStopCollection,
+            index: u32,
+            stop: ?*?*IXpsOMGradientStop,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMGradientStopCollection,
+            index: u32,
+            stop: ?*IXpsOMGradientStop,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMGradientStopCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMGradientStopCollection,
+            index: u32,
+            stop: ?*IXpsOMGradientStop,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMGradientStopCollection,
+            stop: ?*IXpsOMGradientStop,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStopCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStopCollection_GetAt(self: *const T, index: u32, stop: ?*?*IXpsOMGradientStop) HRESULT {
-                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStopCollection_InsertAt(self: *const T, index: u32, stop: ?*IXpsOMGradientStop) HRESULT {
-                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStopCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStopCollection_SetAt(self: *const T, index: u32, stop: ?*IXpsOMGradientStop) HRESULT {
-                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), index, stop);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStopCollection_Append(self: *const T, stop: ?*IXpsOMGradientStop) HRESULT {
-                return @as(*const IXpsOMGradientStopCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMGradientStopCollection, @ptrCast(self)), stop);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMGradientStopCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMGradientStopCollection, index: u32, stop: ?*?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, stop);
+    }
+    pub fn InsertAt(self: *const IXpsOMGradientStopCollection, index: u32, stop: ?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, stop);
+    }
+    pub fn RemoveAt(self: *const IXpsOMGradientStopCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMGradientStopCollection, index: u32, stop: ?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, stop);
+    }
+    pub fn Append(self: *const IXpsOMGradientStopCollection, stop: ?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, stop);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMSolidColorBrush_Value = Guid.initString("a06f9f05-3be9-4763-98a8-094fc672e488");
 pub const IID_IXpsOMSolidColorBrush = &IID_IXpsOMSolidColorBrush_Value;
-pub const IXpsOMSolidColorBrush = extern struct {
+pub const IXpsOMSolidColorBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMBrush.VTable,
-        GetColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSolidColorBrush,
-                color: ?*XPS_COLOR,
-                colorProfile: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSolidColorBrush,
-                color: ?*XPS_COLOR,
-                colorProfile: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSolidColorBrush,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSolidColorBrush,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSolidColorBrush,
-                solidColorBrush: ?*?*IXpsOMSolidColorBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSolidColorBrush,
-                solidColorBrush: ?*?*IXpsOMSolidColorBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetColor: *const fn(
+            self: *const IXpsOMSolidColorBrush,
+            color: ?*XPS_COLOR,
+            colorProfile: ?*?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetColor: *const fn(
+            self: *const IXpsOMSolidColorBrush,
+            color: ?*const XPS_COLOR,
+            colorProfile: ?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMSolidColorBrush,
+            solidColorBrush: ?*?*IXpsOMSolidColorBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMBrush.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSolidColorBrush_GetColor(self: *const T, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), color, colorProfile);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSolidColorBrush_SetColor(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), color, colorProfile);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSolidColorBrush_Clone(self: *const T, solidColorBrush: ?*?*IXpsOMSolidColorBrush) HRESULT {
-                return @as(*const IXpsOMSolidColorBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMSolidColorBrush, @ptrCast(self)), solidColorBrush);
-            }
-        };
+    IXpsOMBrush: IXpsOMBrush,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetColor(self: *const IXpsOMSolidColorBrush, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetColor(self, color, colorProfile);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetColor(self: *const IXpsOMSolidColorBrush, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetColor(self, color, colorProfile);
+    }
+    pub fn Clone(self: *const IXpsOMSolidColorBrush, solidColorBrush: ?*?*IXpsOMSolidColorBrush) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, solidColorBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMTileBrush_Value = Guid.initString("0fc2328d-d722-4a54-b2ec-be90218a789e");
 pub const IID_IXpsOMTileBrush = &IID_IXpsOMTileBrush_Value;
-pub const IXpsOMTileBrush = extern struct {
+pub const IXpsOMTileBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMBrush.VTable,
-        GetTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                transform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                transform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetViewbox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                viewbox: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                viewbox: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetViewbox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                viewbox: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                viewbox: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetViewport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                viewport: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                viewport: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetViewport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                viewport: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                viewport: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTileMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                tileMode: ?*XPS_TILE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                tileMode: ?*XPS_TILE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTileMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMTileBrush,
-                tileMode: XPS_TILE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMTileBrush,
-                tileMode: XPS_TILE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetTransform: *const fn(
+            self: *const IXpsOMTileBrush,
+            transform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLocal: *const fn(
+            self: *const IXpsOMTileBrush,
+            transform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLocal: *const fn(
+            self: *const IXpsOMTileBrush,
+            transform: ?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLookup: *const fn(
+            self: *const IXpsOMTileBrush,
+            key: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLookup: *const fn(
+            self: *const IXpsOMTileBrush,
+            key: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetViewbox: *const fn(
+            self: *const IXpsOMTileBrush,
+            viewbox: ?*XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetViewbox: *const fn(
+            self: *const IXpsOMTileBrush,
+            viewbox: ?*const XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetViewport: *const fn(
+            self: *const IXpsOMTileBrush,
+            viewport: ?*XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetViewport: *const fn(
+            self: *const IXpsOMTileBrush,
+            viewport: ?*const XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTileMode: *const fn(
+            self: *const IXpsOMTileBrush,
+            tileMode: ?*XPS_TILE_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTileMode: *const fn(
+            self: *const IXpsOMTileBrush,
+            tileMode: XPS_TILE_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMBrush.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_GetTransform(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_GetTransformLocal(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_SetTransformLocal(self: *const T, transform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMTileBrush, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_GetTransformLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMTileBrush, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_SetTransformLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMTileBrush, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_GetViewbox(self: *const T, viewbox: ?*XPS_RECT) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetViewbox(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewbox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_SetViewbox(self: *const T, viewbox: ?*const XPS_RECT) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetViewbox(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewbox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_GetViewport(self: *const T, viewport: ?*XPS_RECT) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetViewport(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewport);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_SetViewport(self: *const T, viewport: ?*const XPS_RECT) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetViewport(@as(*const IXpsOMTileBrush, @ptrCast(self)), viewport);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_GetTileMode(self: *const T, tileMode: ?*XPS_TILE_MODE) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).GetTileMode(@as(*const IXpsOMTileBrush, @ptrCast(self)), tileMode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMTileBrush_SetTileMode(self: *const T, tileMode: XPS_TILE_MODE) HRESULT {
-                return @as(*const IXpsOMTileBrush.VTable, @ptrCast(self.vtable)).SetTileMode(@as(*const IXpsOMTileBrush, @ptrCast(self)), tileMode);
-            }
-        };
+    IXpsOMBrush: IXpsOMBrush,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetTransform(self: *const IXpsOMTileBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransform(self, transform);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetTransformLocal(self: *const IXpsOMTileBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLocal(self, transform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMTileBrush, transform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLocal(self, transform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMTileBrush, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLookup(self, key);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMTileBrush, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLookup(self, key);
+    }
+    pub fn GetViewbox(self: *const IXpsOMTileBrush, viewbox: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.GetViewbox(self, viewbox);
+    }
+    pub fn SetViewbox(self: *const IXpsOMTileBrush, viewbox: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.SetViewbox(self, viewbox);
+    }
+    pub fn GetViewport(self: *const IXpsOMTileBrush, viewport: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.GetViewport(self, viewport);
+    }
+    pub fn SetViewport(self: *const IXpsOMTileBrush, viewport: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.SetViewport(self, viewport);
+    }
+    pub fn GetTileMode(self: *const IXpsOMTileBrush, tileMode: ?*XPS_TILE_MODE) callconv(.Inline) HRESULT {
+        return self.vtable.GetTileMode(self, tileMode);
+    }
+    pub fn SetTileMode(self: *const IXpsOMTileBrush, tileMode: XPS_TILE_MODE) callconv(.Inline) HRESULT {
+        return self.vtable.SetTileMode(self, tileMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMVisualBrush_Value = Guid.initString("97e294af-5b37-46b4-8057-874d2f64119b");
 pub const IID_IXpsOMVisualBrush = &IID_IXpsOMVisualBrush_Value;
-pub const IXpsOMVisualBrush = extern struct {
+pub const IXpsOMVisualBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMTileBrush.VTable,
-        GetVisual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualBrush,
-                visual: ?*?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualBrush,
-                visual: ?*?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVisualLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualBrush,
-                visual: ?*?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualBrush,
-                visual: ?*?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetVisualLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualBrush,
-                visual: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualBrush,
-                visual: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVisualLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualBrush,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualBrush,
-                lookup: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetVisualLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualBrush,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualBrush,
-                lookup: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualBrush,
-                visualBrush: ?*?*IXpsOMVisualBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualBrush,
-                visualBrush: ?*?*IXpsOMVisualBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetVisual: *const fn(
+            self: *const IXpsOMVisualBrush,
+            visual: ?*?*IXpsOMVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVisualLocal: *const fn(
+            self: *const IXpsOMVisualBrush,
+            visual: ?*?*IXpsOMVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetVisualLocal: *const fn(
+            self: *const IXpsOMVisualBrush,
+            visual: ?*IXpsOMVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVisualLookup: *const fn(
+            self: *const IXpsOMVisualBrush,
+            lookup: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetVisualLookup: *const fn(
+            self: *const IXpsOMVisualBrush,
+            lookup: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMVisualBrush,
+            visualBrush: ?*?*IXpsOMVisualBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMTileBrush.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualBrush_GetVisual(self: *const T, visual: ?*?*IXpsOMVisual) HRESULT {
-                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisual(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualBrush_GetVisualLocal(self: *const T, visual: ?*?*IXpsOMVisual) HRESULT {
-                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisualLocal(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualBrush_SetVisualLocal(self: *const T, visual: ?*IXpsOMVisual) HRESULT {
-                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).SetVisualLocal(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visual);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualBrush_GetVisualLookup(self: *const T, lookup: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).GetVisualLookup(@as(*const IXpsOMVisualBrush, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualBrush_SetVisualLookup(self: *const T, lookup: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).SetVisualLookup(@as(*const IXpsOMVisualBrush, @ptrCast(self)), lookup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualBrush_Clone(self: *const T, visualBrush: ?*?*IXpsOMVisualBrush) HRESULT {
-                return @as(*const IXpsOMVisualBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMVisualBrush, @ptrCast(self)), visualBrush);
-            }
-        };
+    IXpsOMTileBrush: IXpsOMTileBrush,
+    IXpsOMBrush: IXpsOMBrush,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetVisual(self: *const IXpsOMVisualBrush, visual: ?*?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return self.vtable.GetVisual(self, visual);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetVisualLocal(self: *const IXpsOMVisualBrush, visual: ?*?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return self.vtable.GetVisualLocal(self, visual);
+    }
+    pub fn SetVisualLocal(self: *const IXpsOMVisualBrush, visual: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return self.vtable.SetVisualLocal(self, visual);
+    }
+    pub fn GetVisualLookup(self: *const IXpsOMVisualBrush, lookup: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetVisualLookup(self, lookup);
+    }
+    pub fn SetVisualLookup(self: *const IXpsOMVisualBrush, lookup: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetVisualLookup(self, lookup);
+    }
+    pub fn Clone(self: *const IXpsOMVisualBrush, visualBrush: ?*?*IXpsOMVisualBrush) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, visualBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMImageBrush_Value = Guid.initString("3df0b466-d382-49ef-8550-dd94c80242e4");
 pub const IID_IXpsOMImageBrush = &IID_IXpsOMImageBrush_Value;
-pub const IXpsOMImageBrush = extern struct {
+pub const IXpsOMImageBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMTileBrush.VTable,
-        GetImageResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageBrush,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageBrush,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetImageResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageBrush,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageBrush,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColorProfileResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageBrush,
-                colorProfileResource: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageBrush,
-                colorProfileResource: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetColorProfileResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageBrush,
-                colorProfileResource: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageBrush,
-                colorProfileResource: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageBrush,
-                imageBrush: ?*?*IXpsOMImageBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageBrush,
-                imageBrush: ?*?*IXpsOMImageBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetImageResource: *const fn(
+            self: *const IXpsOMImageBrush,
+            imageResource: ?*?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetImageResource: *const fn(
+            self: *const IXpsOMImageBrush,
+            imageResource: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColorProfileResource: *const fn(
+            self: *const IXpsOMImageBrush,
+            colorProfileResource: ?*?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetColorProfileResource: *const fn(
+            self: *const IXpsOMImageBrush,
+            colorProfileResource: ?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMImageBrush,
+            imageBrush: ?*?*IXpsOMImageBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMTileBrush.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageBrush_GetImageResource(self: *const T, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).GetImageResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageBrush_SetImageResource(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).SetImageResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageBrush_GetColorProfileResource(self: *const T, colorProfileResource: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).GetColorProfileResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), colorProfileResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageBrush_SetColorProfileResource(self: *const T, colorProfileResource: ?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).SetColorProfileResource(@as(*const IXpsOMImageBrush, @ptrCast(self)), colorProfileResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageBrush_Clone(self: *const T, imageBrush: ?*?*IXpsOMImageBrush) HRESULT {
-                return @as(*const IXpsOMImageBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMImageBrush, @ptrCast(self)), imageBrush);
-            }
-        };
+    IXpsOMTileBrush: IXpsOMTileBrush,
+    IXpsOMBrush: IXpsOMBrush,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetImageResource(self: *const IXpsOMImageBrush, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetImageResource(self, imageResource);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetImageResource(self: *const IXpsOMImageBrush, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetImageResource(self, imageResource);
+    }
+    pub fn GetColorProfileResource(self: *const IXpsOMImageBrush, colorProfileResource: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetColorProfileResource(self, colorProfileResource);
+    }
+    pub fn SetColorProfileResource(self: *const IXpsOMImageBrush, colorProfileResource: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetColorProfileResource(self, colorProfileResource);
+    }
+    pub fn Clone(self: *const IXpsOMImageBrush, imageBrush: ?*?*IXpsOMImageBrush) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, imageBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGradientStop_Value = Guid.initString("5cf4f5cc-3969-49b5-a70a-5550b618fe49");
 pub const IID_IXpsOMGradientStop = &IID_IXpsOMGradientStop_Value;
-pub const IXpsOMGradientStop = extern struct {
+pub const IXpsOMGradientStop = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStop,
-                owner: ?*?*IXpsOMGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStop,
-                owner: ?*?*IXpsOMGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOffset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStop,
-                offset: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStop,
-                offset: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOffset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStop,
-                offset: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStop,
-                offset: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStop,
-                color: ?*XPS_COLOR,
-                colorProfile: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStop,
-                color: ?*XPS_COLOR,
-                colorProfile: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetColor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStop,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStop,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientStop,
-                gradientStop: ?*?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientStop,
-                gradientStop: ?*?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMGradientStop,
+            owner: ?*?*IXpsOMGradientBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOffset: *const fn(
+            self: *const IXpsOMGradientStop,
+            offset: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOffset: *const fn(
+            self: *const IXpsOMGradientStop,
+            offset: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColor: *const fn(
+            self: *const IXpsOMGradientStop,
+            color: ?*XPS_COLOR,
+            colorProfile: ?*?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetColor: *const fn(
+            self: *const IXpsOMGradientStop,
+            color: ?*const XPS_COLOR,
+            colorProfile: ?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMGradientStop,
+            gradientStop: ?*?*IXpsOMGradientStop,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStop_GetOwner(self: *const T, owner: ?*?*IXpsOMGradientBrush) HRESULT {
-                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMGradientStop, @ptrCast(self)), owner);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStop_GetOffset(self: *const T, offset: ?*f32) HRESULT {
-                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetOffset(@as(*const IXpsOMGradientStop, @ptrCast(self)), offset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStop_SetOffset(self: *const T, offset: f32) HRESULT {
-                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).SetOffset(@as(*const IXpsOMGradientStop, @ptrCast(self)), offset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStop_GetColor(self: *const T, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).GetColor(@as(*const IXpsOMGradientStop, @ptrCast(self)), color, colorProfile);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStop_SetColor(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).SetColor(@as(*const IXpsOMGradientStop, @ptrCast(self)), color, colorProfile);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientStop_Clone(self: *const T, gradientStop: ?*?*IXpsOMGradientStop) HRESULT {
-                return @as(*const IXpsOMGradientStop.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMGradientStop, @ptrCast(self)), gradientStop);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMGradientStop, owner: ?*?*IXpsOMGradientBrush) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, owner);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetOffset(self: *const IXpsOMGradientStop, offset: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetOffset(self, offset);
+    }
+    pub fn SetOffset(self: *const IXpsOMGradientStop, offset: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetOffset(self, offset);
+    }
+    pub fn GetColor(self: *const IXpsOMGradientStop, color: ?*XPS_COLOR, colorProfile: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetColor(self, color, colorProfile);
+    }
+    pub fn SetColor(self: *const IXpsOMGradientStop, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetColor(self, color, colorProfile);
+    }
+    pub fn Clone(self: *const IXpsOMGradientStop, gradientStop: ?*?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, gradientStop);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMGradientBrush_Value = Guid.initString("edb59622-61a2-42c3-bace-acf2286c06bf");
 pub const IID_IXpsOMGradientBrush = &IID_IXpsOMGradientBrush_Value;
-pub const IXpsOMGradientBrush = extern struct {
+pub const IXpsOMGradientBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMBrush.VTable,
-        GetGradientStops: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                gradientStops: ?*?*IXpsOMGradientStopCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                gradientStops: ?*?*IXpsOMGradientStopCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                transform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                transform: ?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTransformLookup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                key: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSpreadMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                spreadMethod: ?*XPS_SPREAD_METHOD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                spreadMethod: ?*XPS_SPREAD_METHOD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSpreadMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                spreadMethod: XPS_SPREAD_METHOD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                spreadMethod: XPS_SPREAD_METHOD,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColorInterpolationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetColorInterpolationMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMGradientBrush,
-                colorInterpolationMode: XPS_COLOR_INTERPOLATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMGradientBrush,
-                colorInterpolationMode: XPS_COLOR_INTERPOLATION,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetGradientStops: *const fn(
+            self: *const IXpsOMGradientBrush,
+            gradientStops: ?*?*IXpsOMGradientStopCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransform: *const fn(
+            self: *const IXpsOMGradientBrush,
+            transform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLocal: *const fn(
+            self: *const IXpsOMGradientBrush,
+            transform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLocal: *const fn(
+            self: *const IXpsOMGradientBrush,
+            transform: ?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTransformLookup: *const fn(
+            self: *const IXpsOMGradientBrush,
+            key: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTransformLookup: *const fn(
+            self: *const IXpsOMGradientBrush,
+            key: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSpreadMethod: *const fn(
+            self: *const IXpsOMGradientBrush,
+            spreadMethod: ?*XPS_SPREAD_METHOD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSpreadMethod: *const fn(
+            self: *const IXpsOMGradientBrush,
+            spreadMethod: XPS_SPREAD_METHOD,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColorInterpolationMode: *const fn(
+            self: *const IXpsOMGradientBrush,
+            colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetColorInterpolationMode: *const fn(
+            self: *const IXpsOMGradientBrush,
+            colorInterpolationMode: XPS_COLOR_INTERPOLATION,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMBrush.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_GetGradientStops(self: *const T, gradientStops: ?*?*IXpsOMGradientStopCollection) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientStops(@as(*const IXpsOMGradientBrush, @ptrCast(self)), gradientStops);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_GetTransform(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransform(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_GetTransformLocal(self: *const T, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransformLocal(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_SetTransformLocal(self: *const T, transform: ?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetTransformLocal(@as(*const IXpsOMGradientBrush, @ptrCast(self)), transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_GetTransformLookup(self: *const T, key: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetTransformLookup(@as(*const IXpsOMGradientBrush, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_SetTransformLookup(self: *const T, key: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetTransformLookup(@as(*const IXpsOMGradientBrush, @ptrCast(self)), key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_GetSpreadMethod(self: *const T, spreadMethod: ?*XPS_SPREAD_METHOD) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetSpreadMethod(@as(*const IXpsOMGradientBrush, @ptrCast(self)), spreadMethod);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_SetSpreadMethod(self: *const T, spreadMethod: XPS_SPREAD_METHOD) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetSpreadMethod(@as(*const IXpsOMGradientBrush, @ptrCast(self)), spreadMethod);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_GetColorInterpolationMode(self: *const T, colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).GetColorInterpolationMode(@as(*const IXpsOMGradientBrush, @ptrCast(self)), colorInterpolationMode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMGradientBrush_SetColorInterpolationMode(self: *const T, colorInterpolationMode: XPS_COLOR_INTERPOLATION) HRESULT {
-                return @as(*const IXpsOMGradientBrush.VTable, @ptrCast(self.vtable)).SetColorInterpolationMode(@as(*const IXpsOMGradientBrush, @ptrCast(self)), colorInterpolationMode);
-            }
-        };
+    IXpsOMBrush: IXpsOMBrush,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetGradientStops(self: *const IXpsOMGradientBrush, gradientStops: ?*?*IXpsOMGradientStopCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetGradientStops(self, gradientStops);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetTransform(self: *const IXpsOMGradientBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransform(self, transform);
+    }
+    pub fn GetTransformLocal(self: *const IXpsOMGradientBrush, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLocal(self, transform);
+    }
+    pub fn SetTransformLocal(self: *const IXpsOMGradientBrush, transform: ?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLocal(self, transform);
+    }
+    pub fn GetTransformLookup(self: *const IXpsOMGradientBrush, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetTransformLookup(self, key);
+    }
+    pub fn SetTransformLookup(self: *const IXpsOMGradientBrush, key: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetTransformLookup(self, key);
+    }
+    pub fn GetSpreadMethod(self: *const IXpsOMGradientBrush, spreadMethod: ?*XPS_SPREAD_METHOD) callconv(.Inline) HRESULT {
+        return self.vtable.GetSpreadMethod(self, spreadMethod);
+    }
+    pub fn SetSpreadMethod(self: *const IXpsOMGradientBrush, spreadMethod: XPS_SPREAD_METHOD) callconv(.Inline) HRESULT {
+        return self.vtable.SetSpreadMethod(self, spreadMethod);
+    }
+    pub fn GetColorInterpolationMode(self: *const IXpsOMGradientBrush, colorInterpolationMode: ?*XPS_COLOR_INTERPOLATION) callconv(.Inline) HRESULT {
+        return self.vtable.GetColorInterpolationMode(self, colorInterpolationMode);
+    }
+    pub fn SetColorInterpolationMode(self: *const IXpsOMGradientBrush, colorInterpolationMode: XPS_COLOR_INTERPOLATION) callconv(.Inline) HRESULT {
+        return self.vtable.SetColorInterpolationMode(self, colorInterpolationMode);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMLinearGradientBrush_Value = Guid.initString("005e279f-c30d-40ff-93ec-1950d3c528db");
 pub const IID_IXpsOMLinearGradientBrush = &IID_IXpsOMLinearGradientBrush_Value;
-pub const IXpsOMLinearGradientBrush = extern struct {
+pub const IXpsOMLinearGradientBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMGradientBrush.VTable,
-        GetStartPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMLinearGradientBrush,
-                startPoint: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMLinearGradientBrush,
-                startPoint: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStartPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMLinearGradientBrush,
-                startPoint: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMLinearGradientBrush,
-                startPoint: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEndPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMLinearGradientBrush,
-                endPoint: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMLinearGradientBrush,
-                endPoint: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEndPoint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMLinearGradientBrush,
-                endPoint: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMLinearGradientBrush,
-                endPoint: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMLinearGradientBrush,
-                linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMLinearGradientBrush,
-                linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStartPoint: *const fn(
+            self: *const IXpsOMLinearGradientBrush,
+            startPoint: ?*XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStartPoint: *const fn(
+            self: *const IXpsOMLinearGradientBrush,
+            startPoint: ?*const XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEndPoint: *const fn(
+            self: *const IXpsOMLinearGradientBrush,
+            endPoint: ?*XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEndPoint: *const fn(
+            self: *const IXpsOMLinearGradientBrush,
+            endPoint: ?*const XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMLinearGradientBrush,
+            linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMGradientBrush.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMLinearGradientBrush_GetStartPoint(self: *const T, startPoint: ?*XPS_POINT) HRESULT {
-                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).GetStartPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), startPoint);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMLinearGradientBrush_SetStartPoint(self: *const T, startPoint: ?*const XPS_POINT) HRESULT {
-                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).SetStartPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), startPoint);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMLinearGradientBrush_GetEndPoint(self: *const T, endPoint: ?*XPS_POINT) HRESULT {
-                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).GetEndPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), endPoint);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMLinearGradientBrush_SetEndPoint(self: *const T, endPoint: ?*const XPS_POINT) HRESULT {
-                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).SetEndPoint(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), endPoint);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMLinearGradientBrush_Clone(self: *const T, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) HRESULT {
-                return @as(*const IXpsOMLinearGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMLinearGradientBrush, @ptrCast(self)), linearGradientBrush);
-            }
-        };
+    IXpsOMGradientBrush: IXpsOMGradientBrush,
+    IXpsOMBrush: IXpsOMBrush,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetStartPoint(self: *const IXpsOMLinearGradientBrush, startPoint: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.GetStartPoint(self, startPoint);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetStartPoint(self: *const IXpsOMLinearGradientBrush, startPoint: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.SetStartPoint(self, startPoint);
+    }
+    pub fn GetEndPoint(self: *const IXpsOMLinearGradientBrush, endPoint: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.GetEndPoint(self, endPoint);
+    }
+    pub fn SetEndPoint(self: *const IXpsOMLinearGradientBrush, endPoint: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.SetEndPoint(self, endPoint);
+    }
+    pub fn Clone(self: *const IXpsOMLinearGradientBrush, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, linearGradientBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMRadialGradientBrush_Value = Guid.initString("75f207e5-08bf-413c-96b1-b82b4064176b");
 pub const IID_IXpsOMRadialGradientBrush = &IID_IXpsOMRadialGradientBrush_Value;
-pub const IXpsOMRadialGradientBrush = extern struct {
+pub const IXpsOMRadialGradientBrush = extern union {
     pub const VTable = extern struct {
         base: IXpsOMGradientBrush.VTable,
-        GetCenter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRadialGradientBrush,
-                center: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRadialGradientBrush,
-                center: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCenter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRadialGradientBrush,
-                center: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRadialGradientBrush,
-                center: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRadiiSizes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRadialGradientBrush,
-                radiiSizes: ?*XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRadialGradientBrush,
-                radiiSizes: ?*XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRadiiSizes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRadialGradientBrush,
-                radiiSizes: ?*const XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRadialGradientBrush,
-                radiiSizes: ?*const XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetGradientOrigin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRadialGradientBrush,
-                origin: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRadialGradientBrush,
-                origin: ?*XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetGradientOrigin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRadialGradientBrush,
-                origin: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRadialGradientBrush,
-                origin: ?*const XPS_POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRadialGradientBrush,
-                radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRadialGradientBrush,
-                radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCenter: *const fn(
+            self: *const IXpsOMRadialGradientBrush,
+            center: ?*XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCenter: *const fn(
+            self: *const IXpsOMRadialGradientBrush,
+            center: ?*const XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRadiiSizes: *const fn(
+            self: *const IXpsOMRadialGradientBrush,
+            radiiSizes: ?*XPS_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRadiiSizes: *const fn(
+            self: *const IXpsOMRadialGradientBrush,
+            radiiSizes: ?*const XPS_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetGradientOrigin: *const fn(
+            self: *const IXpsOMRadialGradientBrush,
+            origin: ?*XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetGradientOrigin: *const fn(
+            self: *const IXpsOMRadialGradientBrush,
+            origin: ?*const XPS_POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMRadialGradientBrush,
+            radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMGradientBrush.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRadialGradientBrush_GetCenter(self: *const T, center: ?*XPS_POINT) HRESULT {
-                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetCenter(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), center);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRadialGradientBrush_SetCenter(self: *const T, center: ?*const XPS_POINT) HRESULT {
-                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetCenter(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), center);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRadialGradientBrush_GetRadiiSizes(self: *const T, radiiSizes: ?*XPS_SIZE) HRESULT {
-                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetRadiiSizes(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radiiSizes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRadialGradientBrush_SetRadiiSizes(self: *const T, radiiSizes: ?*const XPS_SIZE) HRESULT {
-                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetRadiiSizes(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radiiSizes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRadialGradientBrush_GetGradientOrigin(self: *const T, origin: ?*XPS_POINT) HRESULT {
-                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).GetGradientOrigin(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), origin);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRadialGradientBrush_SetGradientOrigin(self: *const T, origin: ?*const XPS_POINT) HRESULT {
-                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).SetGradientOrigin(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), origin);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRadialGradientBrush_Clone(self: *const T, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) HRESULT {
-                return @as(*const IXpsOMRadialGradientBrush.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMRadialGradientBrush, @ptrCast(self)), radialGradientBrush);
-            }
-        };
+    IXpsOMGradientBrush: IXpsOMGradientBrush,
+    IXpsOMBrush: IXpsOMBrush,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetCenter(self: *const IXpsOMRadialGradientBrush, center: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.GetCenter(self, center);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetCenter(self: *const IXpsOMRadialGradientBrush, center: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.SetCenter(self, center);
+    }
+    pub fn GetRadiiSizes(self: *const IXpsOMRadialGradientBrush, radiiSizes: ?*XPS_SIZE) callconv(.Inline) HRESULT {
+        return self.vtable.GetRadiiSizes(self, radiiSizes);
+    }
+    pub fn SetRadiiSizes(self: *const IXpsOMRadialGradientBrush, radiiSizes: ?*const XPS_SIZE) callconv(.Inline) HRESULT {
+        return self.vtable.SetRadiiSizes(self, radiiSizes);
+    }
+    pub fn GetGradientOrigin(self: *const IXpsOMRadialGradientBrush, origin: ?*XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.GetGradientOrigin(self, origin);
+    }
+    pub fn SetGradientOrigin(self: *const IXpsOMRadialGradientBrush, origin: ?*const XPS_POINT) callconv(.Inline) HRESULT {
+        return self.vtable.SetGradientOrigin(self, origin);
+    }
+    pub fn Clone(self: *const IXpsOMRadialGradientBrush, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, radialGradientBrush);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMResource_Value = Guid.initString("da2ac0a2-73a2-4975-ad14-74097c3ff3a5");
 pub const IID_IXpsOMResource = &IID_IXpsOMResource_Value;
-pub const IXpsOMResource = extern struct {
+pub const IXpsOMResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPart.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPart.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPartResources_Value = Guid.initString("f4cf7729-4864-4275-99b3-a8717163ecaf");
 pub const IID_IXpsOMPartResources = &IID_IXpsOMPartResources_Value;
-pub const IXpsOMPartResources = extern struct {
+pub const IXpsOMPartResources = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetFontResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartResources,
-                fontResources: ?*?*IXpsOMFontResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartResources,
-                fontResources: ?*?*IXpsOMFontResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImageResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartResources,
-                imageResources: ?*?*IXpsOMImageResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartResources,
-                imageResources: ?*?*IXpsOMImageResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetColorProfileResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartResources,
-                colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartResources,
-                colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRemoteDictionaryResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartResources,
-                dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartResources,
-                dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFontResources: *const fn(
+            self: *const IXpsOMPartResources,
+            fontResources: ?*?*IXpsOMFontResourceCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageResources: *const fn(
+            self: *const IXpsOMPartResources,
+            imageResources: ?*?*IXpsOMImageResourceCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetColorProfileResources: *const fn(
+            self: *const IXpsOMPartResources,
+            colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRemoteDictionaryResources: *const fn(
+            self: *const IXpsOMPartResources,
+            dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartResources_GetFontResources(self: *const T, fontResources: ?*?*IXpsOMFontResourceCollection) HRESULT {
-                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetFontResources(@as(*const IXpsOMPartResources, @ptrCast(self)), fontResources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartResources_GetImageResources(self: *const T, imageResources: ?*?*IXpsOMImageResourceCollection) HRESULT {
-                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetImageResources(@as(*const IXpsOMPartResources, @ptrCast(self)), imageResources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartResources_GetColorProfileResources(self: *const T, colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection) HRESULT {
-                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetColorProfileResources(@as(*const IXpsOMPartResources, @ptrCast(self)), colorProfileResources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartResources_GetRemoteDictionaryResources(self: *const T, dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection) HRESULT {
-                return @as(*const IXpsOMPartResources.VTable, @ptrCast(self.vtable)).GetRemoteDictionaryResources(@as(*const IXpsOMPartResources, @ptrCast(self)), dictionaryResources);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetFontResources(self: *const IXpsOMPartResources, fontResources: ?*?*IXpsOMFontResourceCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetFontResources(self, fontResources);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetImageResources(self: *const IXpsOMPartResources, imageResources: ?*?*IXpsOMImageResourceCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetImageResources(self, imageResources);
+    }
+    pub fn GetColorProfileResources(self: *const IXpsOMPartResources, colorProfileResources: ?*?*IXpsOMColorProfileResourceCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetColorProfileResources(self, colorProfileResources);
+    }
+    pub fn GetRemoteDictionaryResources(self: *const IXpsOMPartResources, dictionaryResources: ?*?*IXpsOMRemoteDictionaryResourceCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetRemoteDictionaryResources(self, dictionaryResources);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDictionary_Value = Guid.initString("897c86b8-8eaf-4ae3-bdde-56419fcf4236");
 pub const IID_IXpsOMDictionary = &IID_IXpsOMDictionary_Value;
-pub const IXpsOMDictionary = extern struct {
+pub const IXpsOMDictionary = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                owner: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                owner: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-                key: ?*?PWSTR,
-                entry: ?*?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-                key: ?*?PWSTR,
-                entry: ?*?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetByKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                key: ?[*:0]const u16,
-                beforeEntry: ?*IXpsOMShareable,
-                entry: ?*?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                key: ?[*:0]const u16,
-                beforeEntry: ?*IXpsOMShareable,
-                entry: ?*?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                entry: ?*IXpsOMShareable,
-                index: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                entry: ?*IXpsOMShareable,
-                index: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                key: ?[*:0]const u16,
-                entry: ?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                key: ?[*:0]const u16,
-                entry: ?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-                key: ?[*:0]const u16,
-                entry: ?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-                key: ?[*:0]const u16,
-                entry: ?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-                key: ?[*:0]const u16,
-                entry: ?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                index: u32,
-                key: ?[*:0]const u16,
-                entry: ?*IXpsOMShareable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDictionary,
-                dictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDictionary,
-                dictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMDictionary,
+            owner: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCount: *const fn(
+            self: *const IXpsOMDictionary,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMDictionary,
+            index: u32,
+            key: ?*?PWSTR,
+            entry: ?*?*IXpsOMShareable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetByKey: *const fn(
+            self: *const IXpsOMDictionary,
+            key: ?[*:0]const u16,
+            beforeEntry: ?*IXpsOMShareable,
+            entry: ?*?*IXpsOMShareable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIndex: *const fn(
+            self: *const IXpsOMDictionary,
+            entry: ?*IXpsOMShareable,
+            index: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMDictionary,
+            key: ?[*:0]const u16,
+            entry: ?*IXpsOMShareable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMDictionary,
+            index: u32,
+            key: ?[*:0]const u16,
+            entry: ?*IXpsOMShareable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMDictionary,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMDictionary,
+            index: u32,
+            key: ?[*:0]const u16,
+            entry: ?*IXpsOMShareable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMDictionary,
+            dictionary: ?*?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_GetOwner(self: *const T, owner: ?*?*IUnknown) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDictionary, @ptrCast(self)), owner);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDictionary, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_GetAt(self: *const T, index: u32, key: ?*?PWSTR, entry: ?*?*IXpsOMShareable) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_GetByKey(self: *const T, key: ?[*:0]const u16, beforeEntry: ?*IXpsOMShareable, entry: ?*?*IXpsOMShareable) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetByKey(@as(*const IXpsOMDictionary, @ptrCast(self)), key, beforeEntry, entry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_GetIndex(self: *const T, entry: ?*IXpsOMShareable, index: ?*u32) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).GetIndex(@as(*const IXpsOMDictionary, @ptrCast(self)), entry, index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_Append(self: *const T, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDictionary, @ptrCast(self)), key, entry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_InsertAt(self: *const T, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_SetAt(self: *const T, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDictionary, @ptrCast(self)), index, key, entry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDictionary_Clone(self: *const T, dictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMDictionary.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDictionary, @ptrCast(self)), dictionary);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMDictionary, owner: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, owner);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetCount(self: *const IXpsOMDictionary, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
+    }
+    pub fn GetAt(self: *const IXpsOMDictionary, index: u32, key: ?*?PWSTR, entry: ?*?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, key, entry);
+    }
+    pub fn GetByKey(self: *const IXpsOMDictionary, key: ?[*:0]const u16, beforeEntry: ?*IXpsOMShareable, entry: ?*?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return self.vtable.GetByKey(self, key, beforeEntry, entry);
+    }
+    pub fn GetIndex(self: *const IXpsOMDictionary, entry: ?*IXpsOMShareable, index: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetIndex(self, entry, index);
+    }
+    pub fn Append(self: *const IXpsOMDictionary, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, key, entry);
+    }
+    pub fn InsertAt(self: *const IXpsOMDictionary, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, key, entry);
+    }
+    pub fn RemoveAt(self: *const IXpsOMDictionary, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMDictionary, index: u32, key: ?[*:0]const u16, entry: ?*IXpsOMShareable) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, key, entry);
+    }
+    pub fn Clone(self: *const IXpsOMDictionary, dictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, dictionary);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMFontResource_Value = Guid.initString("a8c45708-47d9-4af4-8d20-33b48c9b8485");
 pub const IID_IXpsOMFontResource = &IID_IXpsOMFontResource_Value;
-pub const IXpsOMFontResource = extern struct {
+pub const IXpsOMFontResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResource,
-                readerStream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResource,
-                readerStream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResource,
-                sourceStream: ?*IStream,
-                embeddingOption: XPS_FONT_EMBEDDING,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResource,
-                sourceStream: ?*IStream,
-                embeddingOption: XPS_FONT_EMBEDDING,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEmbeddingOption: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResource,
-                embeddingOption: ?*XPS_FONT_EMBEDDING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResource,
-                embeddingOption: ?*XPS_FONT_EMBEDDING,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStream: *const fn(
+            self: *const IXpsOMFontResource,
+            readerStream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IXpsOMFontResource,
+            sourceStream: ?*IStream,
+            embeddingOption: XPS_FONT_EMBEDDING,
+            partName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEmbeddingOption: *const fn(
+            self: *const IXpsOMFontResource,
+            embeddingOption: ?*XPS_FONT_EMBEDDING,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResource_GetStream(self: *const T, readerStream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMFontResource, @ptrCast(self)), readerStream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResource_SetContent(self: *const T, sourceStream: ?*IStream, embeddingOption: XPS_FONT_EMBEDDING, partName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMFontResource, @ptrCast(self)), sourceStream, embeddingOption, partName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResource_GetEmbeddingOption(self: *const T, embeddingOption: ?*XPS_FONT_EMBEDDING) HRESULT {
-                return @as(*const IXpsOMFontResource.VTable, @ptrCast(self.vtable)).GetEmbeddingOption(@as(*const IXpsOMFontResource, @ptrCast(self)), embeddingOption);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetStream(self: *const IXpsOMFontResource, readerStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.GetStream(self, readerStream);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetContent(self: *const IXpsOMFontResource, sourceStream: ?*IStream, embeddingOption: XPS_FONT_EMBEDDING, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetContent(self, sourceStream, embeddingOption, partName);
+    }
+    pub fn GetEmbeddingOption(self: *const IXpsOMFontResource, embeddingOption: ?*XPS_FONT_EMBEDDING) callconv(.Inline) HRESULT {
+        return self.vtable.GetEmbeddingOption(self, embeddingOption);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMFontResourceCollection_Value = Guid.initString("70b4a6bb-88d4-4fa8-aaf9-6d9c596fdbad");
 pub const IID_IXpsOMFontResourceCollection = &IID_IXpsOMFontResourceCollection_Value;
-pub const IXpsOMFontResourceCollection = extern struct {
+pub const IXpsOMFontResourceCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-                value: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-                value: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-                value: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-                value: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-                value: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-                value: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResourceCollection,
-                value: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResourceCollection,
-                value: ?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetByPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMFontResourceCollection,
-                partName: ?*IOpcPartUri,
-                part: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMFontResourceCollection,
-                partName: ?*IOpcPartUri,
-                part: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMFontResourceCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMFontResourceCollection,
+            index: u32,
+            value: ?*?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMFontResourceCollection,
+            index: u32,
+            value: ?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMFontResourceCollection,
+            index: u32,
+            value: ?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMFontResourceCollection,
+            value: ?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMFontResourceCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetByPartName: *const fn(
+            self: *const IXpsOMFontResourceCollection,
+            partName: ?*IOpcPartUri,
+            part: ?*?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResourceCollection_GetAt(self: *const T, index: u32, value: ?*?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResourceCollection_SetAt(self: *const T, index: u32, value: ?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResourceCollection_InsertAt(self: *const T, index: u32, value: ?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResourceCollection_Append(self: *const T, value: ?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMFontResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, part: ?*?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMFontResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMFontResourceCollection, @ptrCast(self)), partName, part);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMFontResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMFontResourceCollection, index: u32, value: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, value);
+    }
+    pub fn SetAt(self: *const IXpsOMFontResourceCollection, index: u32, value: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, value);
+    }
+    pub fn InsertAt(self: *const IXpsOMFontResourceCollection, index: u32, value: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, value);
+    }
+    pub fn Append(self: *const IXpsOMFontResourceCollection, value: ?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, value);
+    }
+    pub fn RemoveAt(self: *const IXpsOMFontResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn GetByPartName(self: *const IXpsOMFontResourceCollection, partName: ?*IOpcPartUri, part: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetByPartName(self, partName, part);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMImageResource_Value = Guid.initString("3db8417d-ae50-485e-9a44-d7758f78a23f");
 pub const IID_IXpsOMImageResource = &IID_IXpsOMImageResource_Value;
-pub const IXpsOMImageResource = extern struct {
+pub const IXpsOMImageResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResource,
-                readerStream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResource,
-                readerStream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResource,
-                sourceStream: ?*IStream,
-                imageType: XPS_IMAGE_TYPE,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResource,
-                sourceStream: ?*IStream,
-                imageType: XPS_IMAGE_TYPE,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetImageType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResource,
-                imageType: ?*XPS_IMAGE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResource,
-                imageType: ?*XPS_IMAGE_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStream: *const fn(
+            self: *const IXpsOMImageResource,
+            readerStream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IXpsOMImageResource,
+            sourceStream: ?*IStream,
+            imageType: XPS_IMAGE_TYPE,
+            partName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetImageType: *const fn(
+            self: *const IXpsOMImageResource,
+            imageType: ?*XPS_IMAGE_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResource_GetStream(self: *const T, readerStream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMImageResource, @ptrCast(self)), readerStream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResource_SetContent(self: *const T, sourceStream: ?*IStream, imageType: XPS_IMAGE_TYPE, partName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMImageResource, @ptrCast(self)), sourceStream, imageType, partName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResource_GetImageType(self: *const T, imageType: ?*XPS_IMAGE_TYPE) HRESULT {
-                return @as(*const IXpsOMImageResource.VTable, @ptrCast(self.vtable)).GetImageType(@as(*const IXpsOMImageResource, @ptrCast(self)), imageType);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetStream(self: *const IXpsOMImageResource, readerStream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.GetStream(self, readerStream);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetContent(self: *const IXpsOMImageResource, sourceStream: ?*IStream, imageType: XPS_IMAGE_TYPE, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetContent(self, sourceStream, imageType, partName);
+    }
+    pub fn GetImageType(self: *const IXpsOMImageResource, imageType: ?*XPS_IMAGE_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetImageType(self, imageType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMImageResourceCollection_Value = Guid.initString("7a4a1a71-9cde-4b71-b33f-62de843eabfe");
 pub const IID_IXpsOMImageResourceCollection = &IID_IXpsOMImageResourceCollection_Value;
-pub const IXpsOMImageResourceCollection = extern struct {
+pub const IXpsOMImageResourceCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-                object: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-                object: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-                object: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-                object: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-                object: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResourceCollection,
-                index: u32,
-                object: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResourceCollection,
-                object: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResourceCollection,
-                object: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetByPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMImageResourceCollection,
-                partName: ?*IOpcPartUri,
-                part: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMImageResourceCollection,
-                partName: ?*IOpcPartUri,
-                part: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMImageResourceCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMImageResourceCollection,
+            index: u32,
+            object: ?*?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMImageResourceCollection,
+            index: u32,
+            object: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMImageResourceCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMImageResourceCollection,
+            index: u32,
+            object: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMImageResourceCollection,
+            object: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetByPartName: *const fn(
+            self: *const IXpsOMImageResourceCollection,
+            partName: ?*IOpcPartUri,
+            part: ?*?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResourceCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResourceCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResourceCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResourceCollection_Append(self: *const T, object: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMImageResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, part: ?*?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMImageResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMImageResourceCollection, @ptrCast(self)), partName, part);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMImageResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMImageResourceCollection, index: u32, object: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMImageResourceCollection, index: u32, object: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMImageResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMImageResourceCollection, index: u32, object: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, object);
+    }
+    pub fn Append(self: *const IXpsOMImageResourceCollection, object: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, object);
+    }
+    pub fn GetByPartName(self: *const IXpsOMImageResourceCollection, partName: ?*IOpcPartUri, part: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetByPartName(self, partName, part);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMColorProfileResource_Value = Guid.initString("67bd7d69-1eef-4bb1-b5e7-6f4f87be8abe");
 pub const IID_IXpsOMColorProfileResource = &IID_IXpsOMColorProfileResource_Value;
-pub const IXpsOMColorProfileResource = extern struct {
+pub const IXpsOMColorProfileResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStream: *const fn(
+            self: *const IXpsOMColorProfileResource,
+            stream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IXpsOMColorProfileResource,
+            sourceStream: ?*IStream,
+            partName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMColorProfileResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMColorProfileResource, @ptrCast(self)), stream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMColorProfileResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMColorProfileResource, @ptrCast(self)), sourceStream, partName);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetStream(self: *const IXpsOMColorProfileResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.GetStream(self, stream);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetContent(self: *const IXpsOMColorProfileResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetContent(self, sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMColorProfileResourceCollection_Value = Guid.initString("12759630-5fba-4283-8f7d-cca849809edb");
 pub const IID_IXpsOMColorProfileResourceCollection = &IID_IXpsOMColorProfileResourceCollection_Value;
-pub const IXpsOMColorProfileResourceCollection = extern struct {
+pub const IXpsOMColorProfileResourceCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-                object: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-                object: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-                object: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-                object: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-                object: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                index: u32,
-                object: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                object: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                object: ?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetByPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                partName: ?*IOpcPartUri,
-                part: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMColorProfileResourceCollection,
-                partName: ?*IOpcPartUri,
-                part: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMColorProfileResourceCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMColorProfileResourceCollection,
+            index: u32,
+            object: ?*?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMColorProfileResourceCollection,
+            index: u32,
+            object: ?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMColorProfileResourceCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMColorProfileResourceCollection,
+            index: u32,
+            object: ?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMColorProfileResourceCollection,
+            object: ?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetByPartName: *const fn(
+            self: *const IXpsOMColorProfileResourceCollection,
+            partName: ?*IOpcPartUri,
+            part: ?*?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResourceCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResourceCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResourceCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResourceCollection_Append(self: *const T, object: ?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMColorProfileResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, part: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMColorProfileResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMColorProfileResourceCollection, @ptrCast(self)), partName, part);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMColorProfileResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMColorProfileResourceCollection, index: u32, object: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMColorProfileResourceCollection, index: u32, object: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMColorProfileResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMColorProfileResourceCollection, index: u32, object: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, object);
+    }
+    pub fn Append(self: *const IXpsOMColorProfileResourceCollection, object: ?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, object);
+    }
+    pub fn GetByPartName(self: *const IXpsOMColorProfileResourceCollection, partName: ?*IOpcPartUri, part: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetByPartName(self, partName, part);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPrintTicketResource_Value = Guid.initString("e7ff32d2-34aa-499b-bbe9-9cd4ee6c59f7");
 pub const IID_IXpsOMPrintTicketResource = &IID_IXpsOMPrintTicketResource_Value;
-pub const IXpsOMPrintTicketResource = extern struct {
+pub const IXpsOMPrintTicketResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPrintTicketResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPrintTicketResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPrintTicketResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPrintTicketResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetStream: *const fn(
+            self: *const IXpsOMPrintTicketResource,
+            stream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IXpsOMPrintTicketResource,
+            sourceStream: ?*IStream,
+            partName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPrintTicketResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMPrintTicketResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMPrintTicketResource, @ptrCast(self)), stream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPrintTicketResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPrintTicketResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMPrintTicketResource, @ptrCast(self)), sourceStream, partName);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetStream(self: *const IXpsOMPrintTicketResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.GetStream(self, stream);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetContent(self: *const IXpsOMPrintTicketResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetContent(self, sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMRemoteDictionaryResource_Value = Guid.initString("c9bd7cd4-e16a-4bf8-8c84-c950af7a3061");
 pub const IID_IXpsOMRemoteDictionaryResource = &IID_IXpsOMRemoteDictionaryResource_Value;
-pub const IXpsOMRemoteDictionaryResource = extern struct {
+pub const IXpsOMRemoteDictionaryResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResource,
-                dictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResource,
-                dictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResource,
-                dictionary: ?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResource,
-                dictionary: ?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDictionary: *const fn(
+            self: *const IXpsOMRemoteDictionaryResource,
+            dictionary: ?*?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDictionary: *const fn(
+            self: *const IXpsOMRemoteDictionaryResource,
+            dictionary: ?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResource_GetDictionary(self: *const T, dictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResource.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMRemoteDictionaryResource, @ptrCast(self)), dictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResource_SetDictionary(self: *const T, dictionary: ?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResource.VTable, @ptrCast(self.vtable)).SetDictionary(@as(*const IXpsOMRemoteDictionaryResource, @ptrCast(self)), dictionary);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetDictionary(self: *const IXpsOMRemoteDictionaryResource, dictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionary(self, dictionary);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetDictionary(self: *const IXpsOMRemoteDictionaryResource, dictionary: ?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.SetDictionary(self, dictionary);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMRemoteDictionaryResourceCollection_Value = Guid.initString("5c38db61-7fec-464a-87bd-41e3bef018be");
 pub const IID_IXpsOMRemoteDictionaryResourceCollection = &IID_IXpsOMRemoteDictionaryResourceCollection_Value;
-pub const IXpsOMRemoteDictionaryResourceCollection = extern struct {
+pub const IXpsOMRemoteDictionaryResourceCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-                object: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-                object: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-                object: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-                object: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-                object: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                index: u32,
-                object: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                object: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                object: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetByPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                partName: ?*IOpcPartUri,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResourceCollection,
-                partName: ?*IOpcPartUri,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMRemoteDictionaryResourceCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMRemoteDictionaryResourceCollection,
+            index: u32,
+            object: ?*?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMRemoteDictionaryResourceCollection,
+            index: u32,
+            object: ?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMRemoteDictionaryResourceCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMRemoteDictionaryResourceCollection,
+            index: u32,
+            object: ?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMRemoteDictionaryResourceCollection,
+            object: ?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetByPartName: *const fn(
+            self: *const IXpsOMRemoteDictionaryResourceCollection,
+            partName: ?*IOpcPartUri,
+            remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResourceCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResourceCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResourceCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResourceCollection_Append(self: *const T, object: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMRemoteDictionaryResourceCollection, @ptrCast(self)), partName, remoteDictionaryResource);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMRemoteDictionaryResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32, object: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32, object: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMRemoteDictionaryResourceCollection, index: u32, object: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, object);
+    }
+    pub fn Append(self: *const IXpsOMRemoteDictionaryResourceCollection, object: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, object);
+    }
+    pub fn GetByPartName(self: *const IXpsOMRemoteDictionaryResourceCollection, partName: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetByPartName(self, partName, remoteDictionaryResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMSignatureBlockResourceCollection_Value = Guid.initString("ab8f5d8e-351b-4d33-aaed-fa56f0022931");
 pub const IID_IXpsOMSignatureBlockResourceCollection = &IID_IXpsOMSignatureBlockResourceCollection_Value;
-pub const IXpsOMSignatureBlockResourceCollection = extern struct {
+pub const IXpsOMSignatureBlockResourceCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-                signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-                signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-                signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-                signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-                signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                index: u32,
-                signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                signatureBlockResource: ?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetByPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                partName: ?*IOpcPartUri,
-                signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResourceCollection,
-                partName: ?*IOpcPartUri,
-                signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMSignatureBlockResourceCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMSignatureBlockResourceCollection,
+            index: u32,
+            signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMSignatureBlockResourceCollection,
+            index: u32,
+            signatureBlockResource: ?*IXpsOMSignatureBlockResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMSignatureBlockResourceCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMSignatureBlockResourceCollection,
+            index: u32,
+            signatureBlockResource: ?*IXpsOMSignatureBlockResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMSignatureBlockResourceCollection,
+            signatureBlockResource: ?*IXpsOMSignatureBlockResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetByPartName: *const fn(
+            self: *const IXpsOMSignatureBlockResourceCollection,
+            partName: ?*IOpcPartUri,
+            signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResourceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResourceCollection_GetAt(self: *const T, index: u32, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResourceCollection_InsertAt(self: *const T, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResourceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResourceCollection_SetAt(self: *const T, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), index, signatureBlockResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResourceCollection_Append(self: *const T, signatureBlockResource: ?*IXpsOMSignatureBlockResource) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), signatureBlockResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResourceCollection_GetByPartName(self: *const T, partName: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResourceCollection.VTable, @ptrCast(self.vtable)).GetByPartName(@as(*const IXpsOMSignatureBlockResourceCollection, @ptrCast(self)), partName, signatureBlockResource);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMSignatureBlockResourceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, signatureBlockResource);
+    }
+    pub fn InsertAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, signatureBlockResource);
+    }
+    pub fn RemoveAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMSignatureBlockResourceCollection, index: u32, signatureBlockResource: ?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, signatureBlockResource);
+    }
+    pub fn Append(self: *const IXpsOMSignatureBlockResourceCollection, signatureBlockResource: ?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, signatureBlockResource);
+    }
+    pub fn GetByPartName(self: *const IXpsOMSignatureBlockResourceCollection, partName: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetByPartName(self, partName, signatureBlockResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocumentStructureResource_Value = Guid.initString("85febc8a-6b63-48a9-af07-7064e4ecff30");
 pub const IID_IXpsOMDocumentStructureResource = &IID_IXpsOMDocumentStructureResource_Value;
-pub const IXpsOMDocumentStructureResource = extern struct {
+pub const IXpsOMDocumentStructureResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentStructureResource,
-                owner: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentStructureResource,
-                owner: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentStructureResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentStructureResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentStructureResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentStructureResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMDocumentStructureResource,
+            owner: ?*?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStream: *const fn(
+            self: *const IXpsOMDocumentStructureResource,
+            stream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IXpsOMDocumentStructureResource,
+            sourceStream: ?*IStream,
+            partName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentStructureResource_GetOwner(self: *const T, owner: ?*?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), owner);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentStructureResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), stream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentStructureResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMDocumentStructureResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMDocumentStructureResource, @ptrCast(self)), sourceStream, partName);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMDocumentStructureResource, owner: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, owner);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetStream(self: *const IXpsOMDocumentStructureResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.GetStream(self, stream);
+    }
+    pub fn SetContent(self: *const IXpsOMDocumentStructureResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetContent(self, sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMStoryFragmentsResource_Value = Guid.initString("c2b3ca09-0473-4282-87ae-1780863223f0");
 pub const IID_IXpsOMStoryFragmentsResource = &IID_IXpsOMStoryFragmentsResource_Value;
-pub const IXpsOMStoryFragmentsResource = extern struct {
+pub const IXpsOMStoryFragmentsResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMStoryFragmentsResource,
-                owner: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMStoryFragmentsResource,
-                owner: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMStoryFragmentsResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMStoryFragmentsResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMStoryFragmentsResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMStoryFragmentsResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMStoryFragmentsResource,
+            owner: ?*?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStream: *const fn(
+            self: *const IXpsOMStoryFragmentsResource,
+            stream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IXpsOMStoryFragmentsResource,
+            sourceStream: ?*IStream,
+            partName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMStoryFragmentsResource_GetOwner(self: *const T, owner: ?*?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), owner);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMStoryFragmentsResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), stream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMStoryFragmentsResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMStoryFragmentsResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMStoryFragmentsResource, @ptrCast(self)), sourceStream, partName);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMStoryFragmentsResource, owner: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, owner);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetStream(self: *const IXpsOMStoryFragmentsResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.GetStream(self, stream);
+    }
+    pub fn SetContent(self: *const IXpsOMStoryFragmentsResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetContent(self, sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMSignatureBlockResource_Value = Guid.initString("4776ad35-2e04-4357-8743-ebf6c171a905");
 pub const IID_IXpsOMSignatureBlockResource = &IID_IXpsOMSignatureBlockResource_Value;
-pub const IXpsOMSignatureBlockResource = extern struct {
+pub const IXpsOMSignatureBlockResource = extern union {
     pub const VTable = extern struct {
         base: IXpsOMResource.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResource,
-                owner: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResource,
-                owner: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResource,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMSignatureBlockResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMSignatureBlockResource,
-                sourceStream: ?*IStream,
-                partName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMSignatureBlockResource,
+            owner: ?*?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStream: *const fn(
+            self: *const IXpsOMSignatureBlockResource,
+            stream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContent: *const fn(
+            self: *const IXpsOMSignatureBlockResource,
+            sourceStream: ?*IStream,
+            partName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResource_GetOwner(self: *const T, owner: ?*?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), owner);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResource_GetStream(self: *const T, stream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).GetStream(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), stream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMSignatureBlockResource_SetContent(self: *const T, sourceStream: ?*IStream, partName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMSignatureBlockResource.VTable, @ptrCast(self.vtable)).SetContent(@as(*const IXpsOMSignatureBlockResource, @ptrCast(self)), sourceStream, partName);
-            }
-        };
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMSignatureBlockResource, owner: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, owner);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetStream(self: *const IXpsOMSignatureBlockResource, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.GetStream(self, stream);
+    }
+    pub fn SetContent(self: *const IXpsOMSignatureBlockResource, sourceStream: ?*IStream, partName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetContent(self, sourceStream, partName);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMVisualCollection_Value = Guid.initString("94d8abde-ab91-46a8-82b7-f5b05ef01a96");
 pub const IID_IXpsOMVisualCollection = &IID_IXpsOMVisualCollection_Value;
-pub const IXpsOMVisualCollection = extern struct {
+pub const IXpsOMVisualCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-                object: ?*?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-                object: ?*?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-                object: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-                object: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-                object: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualCollection,
-                index: u32,
-                object: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMVisualCollection,
-                object: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMVisualCollection,
-                object: ?*IXpsOMVisual,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMVisualCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMVisualCollection,
+            index: u32,
+            object: ?*?*IXpsOMVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMVisualCollection,
+            index: u32,
+            object: ?*IXpsOMVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMVisualCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMVisualCollection,
+            index: u32,
+            object: ?*IXpsOMVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMVisualCollection,
+            object: ?*IXpsOMVisual,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMVisualCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualCollection_GetAt(self: *const T, index: u32, object: ?*?*IXpsOMVisual) HRESULT {
-                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualCollection_InsertAt(self: *const T, index: u32, object: ?*IXpsOMVisual) HRESULT {
-                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualCollection_SetAt(self: *const T, index: u32, object: ?*IXpsOMVisual) HRESULT {
-                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMVisualCollection, @ptrCast(self)), index, object);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMVisualCollection_Append(self: *const T, object: ?*IXpsOMVisual) HRESULT {
-                return @as(*const IXpsOMVisualCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMVisualCollection, @ptrCast(self)), object);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMVisualCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMVisualCollection, index: u32, object: ?*?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, object);
+    }
+    pub fn InsertAt(self: *const IXpsOMVisualCollection, index: u32, object: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, object);
+    }
+    pub fn RemoveAt(self: *const IXpsOMVisualCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMVisualCollection, index: u32, object: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, object);
+    }
+    pub fn Append(self: *const IXpsOMVisualCollection, object: ?*IXpsOMVisual) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, object);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMCanvas_Value = Guid.initString("221d1452-331e-47c6-87e9-6ccefb9b5ba3");
 pub const IID_IXpsOMCanvas = &IID_IXpsOMCanvas_Value;
-pub const IXpsOMCanvas = extern struct {
+pub const IXpsOMCanvas = extern union {
     pub const VTable = extern struct {
         base: IXpsOMVisual.VTable,
-        GetVisuals: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                visuals: ?*?*IXpsOMVisualCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                visuals: ?*?*IXpsOMVisualCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUseAliasedEdgeMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                useAliasedEdgeMode: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                useAliasedEdgeMode: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUseAliasedEdgeMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                useAliasedEdgeMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                useAliasedEdgeMode: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAccessibilityShortDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                shortDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                shortDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAccessibilityShortDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                shortDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                shortDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAccessibilityLongDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                longDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                longDescription: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAccessibilityLongDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                longDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                longDescription: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDictionaryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDictionaryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                resourceDictionary: ?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                resourceDictionary: ?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDictionaryResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDictionaryResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCanvas,
-                canvas: ?*?*IXpsOMCanvas,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCanvas,
-                canvas: ?*?*IXpsOMCanvas,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetVisuals: *const fn(
+            self: *const IXpsOMCanvas,
+            visuals: ?*?*IXpsOMVisualCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUseAliasedEdgeMode: *const fn(
+            self: *const IXpsOMCanvas,
+            useAliasedEdgeMode: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUseAliasedEdgeMode: *const fn(
+            self: *const IXpsOMCanvas,
+            useAliasedEdgeMode: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccessibilityShortDescription: *const fn(
+            self: *const IXpsOMCanvas,
+            shortDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAccessibilityShortDescription: *const fn(
+            self: *const IXpsOMCanvas,
+            shortDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAccessibilityLongDescription: *const fn(
+            self: *const IXpsOMCanvas,
+            longDescription: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAccessibilityLongDescription: *const fn(
+            self: *const IXpsOMCanvas,
+            longDescription: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDictionary: *const fn(
+            self: *const IXpsOMCanvas,
+            resourceDictionary: ?*?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDictionaryLocal: *const fn(
+            self: *const IXpsOMCanvas,
+            resourceDictionary: ?*?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDictionaryLocal: *const fn(
+            self: *const IXpsOMCanvas,
+            resourceDictionary: ?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDictionaryResource: *const fn(
+            self: *const IXpsOMCanvas,
+            remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDictionaryResource: *const fn(
+            self: *const IXpsOMCanvas,
+            remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMCanvas,
+            canvas: ?*?*IXpsOMCanvas,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMVisual.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_GetVisuals(self: *const T, visuals: ?*?*IXpsOMVisualCollection) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetVisuals(@as(*const IXpsOMCanvas, @ptrCast(self)), visuals);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_GetUseAliasedEdgeMode(self: *const T, useAliasedEdgeMode: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetUseAliasedEdgeMode(@as(*const IXpsOMCanvas, @ptrCast(self)), useAliasedEdgeMode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_SetUseAliasedEdgeMode(self: *const T, useAliasedEdgeMode: BOOL) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetUseAliasedEdgeMode(@as(*const IXpsOMCanvas, @ptrCast(self)), useAliasedEdgeMode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_GetAccessibilityShortDescription(self: *const T, shortDescription: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetAccessibilityShortDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), shortDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_SetAccessibilityShortDescription(self: *const T, shortDescription: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetAccessibilityShortDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), shortDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_GetAccessibilityLongDescription(self: *const T, longDescription: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetAccessibilityLongDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), longDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_SetAccessibilityLongDescription(self: *const T, longDescription: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetAccessibilityLongDescription(@as(*const IXpsOMCanvas, @ptrCast(self)), longDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_GetDictionary(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_GetDictionaryLocal(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionaryLocal(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_SetDictionaryLocal(self: *const T, resourceDictionary: ?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetDictionaryLocal(@as(*const IXpsOMCanvas, @ptrCast(self)), resourceDictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_GetDictionaryResource(self: *const T, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).GetDictionaryResource(@as(*const IXpsOMCanvas, @ptrCast(self)), remoteDictionaryResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_SetDictionaryResource(self: *const T, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).SetDictionaryResource(@as(*const IXpsOMCanvas, @ptrCast(self)), remoteDictionaryResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCanvas_Clone(self: *const T, canvas: ?*?*IXpsOMCanvas) HRESULT {
-                return @as(*const IXpsOMCanvas.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCanvas, @ptrCast(self)), canvas);
-            }
-        };
+    IXpsOMVisual: IXpsOMVisual,
+    IXpsOMShareable: IXpsOMShareable,
+    IUnknown: IUnknown,
+    pub fn GetVisuals(self: *const IXpsOMCanvas, visuals: ?*?*IXpsOMVisualCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetVisuals(self, visuals);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetUseAliasedEdgeMode(self: *const IXpsOMCanvas, useAliasedEdgeMode: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetUseAliasedEdgeMode(self, useAliasedEdgeMode);
+    }
+    pub fn SetUseAliasedEdgeMode(self: *const IXpsOMCanvas, useAliasedEdgeMode: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetUseAliasedEdgeMode(self, useAliasedEdgeMode);
+    }
+    pub fn GetAccessibilityShortDescription(self: *const IXpsOMCanvas, shortDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetAccessibilityShortDescription(self, shortDescription);
+    }
+    pub fn SetAccessibilityShortDescription(self: *const IXpsOMCanvas, shortDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetAccessibilityShortDescription(self, shortDescription);
+    }
+    pub fn GetAccessibilityLongDescription(self: *const IXpsOMCanvas, longDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetAccessibilityLongDescription(self, longDescription);
+    }
+    pub fn SetAccessibilityLongDescription(self: *const IXpsOMCanvas, longDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetAccessibilityLongDescription(self, longDescription);
+    }
+    pub fn GetDictionary(self: *const IXpsOMCanvas, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionary(self, resourceDictionary);
+    }
+    pub fn GetDictionaryLocal(self: *const IXpsOMCanvas, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionaryLocal(self, resourceDictionary);
+    }
+    pub fn SetDictionaryLocal(self: *const IXpsOMCanvas, resourceDictionary: ?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.SetDictionaryLocal(self, resourceDictionary);
+    }
+    pub fn GetDictionaryResource(self: *const IXpsOMCanvas, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionaryResource(self, remoteDictionaryResource);
+    }
+    pub fn SetDictionaryResource(self: *const IXpsOMCanvas, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetDictionaryResource(self, remoteDictionaryResource);
+    }
+    pub fn Clone(self: *const IXpsOMCanvas, canvas: ?*?*IXpsOMCanvas) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, canvas);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPage_Value = Guid.initString("d3e18888-f120-4fee-8c68-35296eae91d4");
 pub const IID_IXpsOMPage = &IID_IXpsOMPage_Value;
-pub const IXpsOMPage = extern struct {
+pub const IXpsOMPage = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPart.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVisuals: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                visuals: ?*?*IXpsOMVisualCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                visuals: ?*?*IXpsOMVisualCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPageDimensions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                pageDimensions: ?*XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                pageDimensions: ?*XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPageDimensions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                pageDimensions: ?*const XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                pageDimensions: ?*const XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContentBox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                contentBox: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                contentBox: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContentBox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                contentBox: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                contentBox: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBleedBox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                bleedBox: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                bleedBox: ?*XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBleedBox: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                bleedBox: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                bleedBox: ?*const XPS_RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLanguage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                language: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                language: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLanguage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                language: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                language: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                name: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                name: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                name: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                name: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIsHyperlinkTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                isHyperlinkTarget: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                isHyperlinkTarget: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIsHyperlinkTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                isHyperlinkTarget: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                isHyperlinkTarget: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDictionaryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                resourceDictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDictionaryLocal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                resourceDictionary: ?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                resourceDictionary: ?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDictionaryResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDictionaryResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Write: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                stream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                stream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GenerateUnusedLookupKey: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                type: XPS_OBJECT_TYPE,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                type: XPS_OBJECT_TYPE,
-                key: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMPage,
+            pageReference: ?*?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVisuals: *const fn(
+            self: *const IXpsOMPage,
+            visuals: ?*?*IXpsOMVisualCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPageDimensions: *const fn(
+            self: *const IXpsOMPage,
+            pageDimensions: ?*XPS_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPageDimensions: *const fn(
+            self: *const IXpsOMPage,
+            pageDimensions: ?*const XPS_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContentBox: *const fn(
+            self: *const IXpsOMPage,
+            contentBox: ?*XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContentBox: *const fn(
+            self: *const IXpsOMPage,
+            contentBox: ?*const XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBleedBox: *const fn(
+            self: *const IXpsOMPage,
+            bleedBox: ?*XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBleedBox: *const fn(
+            self: *const IXpsOMPage,
+            bleedBox: ?*const XPS_RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguage: *const fn(
+            self: *const IXpsOMPage,
+            language: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLanguage: *const fn(
+            self: *const IXpsOMPage,
+            language: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetName: *const fn(
+            self: *const IXpsOMPage,
+            name: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetName: *const fn(
+            self: *const IXpsOMPage,
+            name: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIsHyperlinkTarget: *const fn(
+            self: *const IXpsOMPage,
+            isHyperlinkTarget: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIsHyperlinkTarget: *const fn(
+            self: *const IXpsOMPage,
+            isHyperlinkTarget: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDictionary: *const fn(
+            self: *const IXpsOMPage,
+            resourceDictionary: ?*?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDictionaryLocal: *const fn(
+            self: *const IXpsOMPage,
+            resourceDictionary: ?*?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDictionaryLocal: *const fn(
+            self: *const IXpsOMPage,
+            resourceDictionary: ?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDictionaryResource: *const fn(
+            self: *const IXpsOMPage,
+            remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDictionaryResource: *const fn(
+            self: *const IXpsOMPage,
+            remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Write: *const fn(
+            self: *const IXpsOMPage,
+            stream: ?*ISequentialStream,
+            optimizeMarkupSize: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GenerateUnusedLookupKey: *const fn(
+            self: *const IXpsOMPage,
+            type: XPS_OBJECT_TYPE,
+            key: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMPage,
+            page: ?*?*IXpsOMPage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPart.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetOwner(self: *const T, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMPage, @ptrCast(self)), pageReference);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetVisuals(self: *const T, visuals: ?*?*IXpsOMVisualCollection) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetVisuals(@as(*const IXpsOMPage, @ptrCast(self)), visuals);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetPageDimensions(self: *const T, pageDimensions: ?*XPS_SIZE) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetPageDimensions(@as(*const IXpsOMPage, @ptrCast(self)), pageDimensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetPageDimensions(self: *const T, pageDimensions: ?*const XPS_SIZE) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetPageDimensions(@as(*const IXpsOMPage, @ptrCast(self)), pageDimensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetContentBox(self: *const T, contentBox: ?*XPS_RECT) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetContentBox(@as(*const IXpsOMPage, @ptrCast(self)), contentBox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetContentBox(self: *const T, contentBox: ?*const XPS_RECT) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetContentBox(@as(*const IXpsOMPage, @ptrCast(self)), contentBox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetBleedBox(self: *const T, bleedBox: ?*XPS_RECT) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetBleedBox(@as(*const IXpsOMPage, @ptrCast(self)), bleedBox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetBleedBox(self: *const T, bleedBox: ?*const XPS_RECT) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetBleedBox(@as(*const IXpsOMPage, @ptrCast(self)), bleedBox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetLanguage(self: *const T, language: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMPage, @ptrCast(self)), language);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetLanguage(self: *const T, language: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMPage, @ptrCast(self)), language);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetName(self: *const T, name: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetName(@as(*const IXpsOMPage, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetName(self: *const T, name: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetName(@as(*const IXpsOMPage, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetIsHyperlinkTarget(self: *const T, isHyperlinkTarget: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetIsHyperlinkTarget(@as(*const IXpsOMPage, @ptrCast(self)), isHyperlinkTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetIsHyperlinkTarget(self: *const T, isHyperlinkTarget: BOOL) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetIsHyperlinkTarget(@as(*const IXpsOMPage, @ptrCast(self)), isHyperlinkTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetDictionary(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionary(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetDictionaryLocal(self: *const T, resourceDictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionaryLocal(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetDictionaryLocal(self: *const T, resourceDictionary: ?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetDictionaryLocal(@as(*const IXpsOMPage, @ptrCast(self)), resourceDictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GetDictionaryResource(self: *const T, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GetDictionaryResource(@as(*const IXpsOMPage, @ptrCast(self)), remoteDictionaryResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_SetDictionaryResource(self: *const T, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).SetDictionaryResource(@as(*const IXpsOMPage, @ptrCast(self)), remoteDictionaryResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_Write(self: *const T, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).Write(@as(*const IXpsOMPage, @ptrCast(self)), stream, optimizeMarkupSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_GenerateUnusedLookupKey(self: *const T, type_: XPS_OBJECT_TYPE, key: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).GenerateUnusedLookupKey(@as(*const IXpsOMPage, @ptrCast(self)), type_, key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage_Clone(self: *const T, page: ?*?*IXpsOMPage) HRESULT {
-                return @as(*const IXpsOMPage.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPage, @ptrCast(self)), page);
-            }
-        };
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMPage, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, pageReference);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetVisuals(self: *const IXpsOMPage, visuals: ?*?*IXpsOMVisualCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetVisuals(self, visuals);
+    }
+    pub fn GetPageDimensions(self: *const IXpsOMPage, pageDimensions: ?*XPS_SIZE) callconv(.Inline) HRESULT {
+        return self.vtable.GetPageDimensions(self, pageDimensions);
+    }
+    pub fn SetPageDimensions(self: *const IXpsOMPage, pageDimensions: ?*const XPS_SIZE) callconv(.Inline) HRESULT {
+        return self.vtable.SetPageDimensions(self, pageDimensions);
+    }
+    pub fn GetContentBox(self: *const IXpsOMPage, contentBox: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.GetContentBox(self, contentBox);
+    }
+    pub fn SetContentBox(self: *const IXpsOMPage, contentBox: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.SetContentBox(self, contentBox);
+    }
+    pub fn GetBleedBox(self: *const IXpsOMPage, bleedBox: ?*XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.GetBleedBox(self, bleedBox);
+    }
+    pub fn SetBleedBox(self: *const IXpsOMPage, bleedBox: ?*const XPS_RECT) callconv(.Inline) HRESULT {
+        return self.vtable.SetBleedBox(self, bleedBox);
+    }
+    pub fn GetLanguage(self: *const IXpsOMPage, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetLanguage(self, language);
+    }
+    pub fn SetLanguage(self: *const IXpsOMPage, language: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetLanguage(self, language);
+    }
+    pub fn GetName(self: *const IXpsOMPage, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetName(self, name);
+    }
+    pub fn SetName(self: *const IXpsOMPage, name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetName(self, name);
+    }
+    pub fn GetIsHyperlinkTarget(self: *const IXpsOMPage, isHyperlinkTarget: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.GetIsHyperlinkTarget(self, isHyperlinkTarget);
+    }
+    pub fn SetIsHyperlinkTarget(self: *const IXpsOMPage, isHyperlinkTarget: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetIsHyperlinkTarget(self, isHyperlinkTarget);
+    }
+    pub fn GetDictionary(self: *const IXpsOMPage, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionary(self, resourceDictionary);
+    }
+    pub fn GetDictionaryLocal(self: *const IXpsOMPage, resourceDictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionaryLocal(self, resourceDictionary);
+    }
+    pub fn SetDictionaryLocal(self: *const IXpsOMPage, resourceDictionary: ?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.SetDictionaryLocal(self, resourceDictionary);
+    }
+    pub fn GetDictionaryResource(self: *const IXpsOMPage, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionaryResource(self, remoteDictionaryResource);
+    }
+    pub fn SetDictionaryResource(self: *const IXpsOMPage, remoteDictionaryResource: ?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetDictionaryResource(self, remoteDictionaryResource);
+    }
+    pub fn Write(self: *const IXpsOMPage, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.Write(self, stream, optimizeMarkupSize);
+    }
+    pub fn GenerateUnusedLookupKey(self: *const IXpsOMPage, @"type": XPS_OBJECT_TYPE, key: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GenerateUnusedLookupKey(self, @"type", key);
+    }
+    pub fn Clone(self: *const IXpsOMPage, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, page);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPageReference_Value = Guid.initString("ed360180-6f92-4998-890d-2f208531a0a0");
 pub const IID_IXpsOMPageReference = &IID_IXpsOMPageReference_Value;
-pub const IXpsOMPageReference = extern struct {
+pub const IXpsOMPageReference = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                page: ?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                page: ?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DiscardPage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsPageLoaded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                isPageLoaded: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                isPageLoaded: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAdvisoryPageDimensions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                pageDimensions: ?*XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                pageDimensions: ?*XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAdvisoryPageDimensions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                pageDimensions: ?*const XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                pageDimensions: ?*const XPS_SIZE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStoryFragmentsResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStoryFragmentsResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                storyFragmentsResource: ?*IXpsOMStoryFragmentsResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                storyFragmentsResource: ?*IXpsOMStoryFragmentsResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrintTicketResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPrintTicketResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                printTicketResource: ?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                printTicketResource: ?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetThumbnailResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetThumbnailResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CollectLinkTargets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                linkTargets: ?*?*IXpsOMNameCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                linkTargets: ?*?*IXpsOMNameCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CollectPartResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                partResources: ?*?*IXpsOMPartResources,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                partResources: ?*?*IXpsOMPartResources,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HasRestrictedFonts: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                restrictedFonts: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                restrictedFonts: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReference,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReference,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMPageReference,
+            document: ?*?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPage: *const fn(
+            self: *const IXpsOMPageReference,
+            page: ?*?*IXpsOMPage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPage: *const fn(
+            self: *const IXpsOMPageReference,
+            page: ?*IXpsOMPage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DiscardPage: *const fn(
+            self: *const IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsPageLoaded: *const fn(
+            self: *const IXpsOMPageReference,
+            isPageLoaded: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAdvisoryPageDimensions: *const fn(
+            self: *const IXpsOMPageReference,
+            pageDimensions: ?*XPS_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAdvisoryPageDimensions: *const fn(
+            self: *const IXpsOMPageReference,
+            pageDimensions: ?*const XPS_SIZE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStoryFragmentsResource: *const fn(
+            self: *const IXpsOMPageReference,
+            storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStoryFragmentsResource: *const fn(
+            self: *const IXpsOMPageReference,
+            storyFragmentsResource: ?*IXpsOMStoryFragmentsResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrintTicketResource: *const fn(
+            self: *const IXpsOMPageReference,
+            printTicketResource: ?*?*IXpsOMPrintTicketResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrintTicketResource: *const fn(
+            self: *const IXpsOMPageReference,
+            printTicketResource: ?*IXpsOMPrintTicketResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetThumbnailResource: *const fn(
+            self: *const IXpsOMPageReference,
+            imageResource: ?*?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetThumbnailResource: *const fn(
+            self: *const IXpsOMPageReference,
+            imageResource: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CollectLinkTargets: *const fn(
+            self: *const IXpsOMPageReference,
+            linkTargets: ?*?*IXpsOMNameCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CollectPartResources: *const fn(
+            self: *const IXpsOMPageReference,
+            partResources: ?*?*IXpsOMPartResources,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HasRestrictedFonts: *const fn(
+            self: *const IXpsOMPageReference,
+            restrictedFonts: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMPageReference,
+            pageReference: ?*?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_GetOwner(self: *const T, document: ?*?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMPageReference, @ptrCast(self)), document);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_GetPage(self: *const T, page: ?*?*IXpsOMPage) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetPage(@as(*const IXpsOMPageReference, @ptrCast(self)), page);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_SetPage(self: *const T, page: ?*IXpsOMPage) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetPage(@as(*const IXpsOMPageReference, @ptrCast(self)), page);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_DiscardPage(self: *const T) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).DiscardPage(@as(*const IXpsOMPageReference, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_IsPageLoaded(self: *const T, isPageLoaded: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).IsPageLoaded(@as(*const IXpsOMPageReference, @ptrCast(self)), isPageLoaded);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_GetAdvisoryPageDimensions(self: *const T, pageDimensions: ?*XPS_SIZE) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetAdvisoryPageDimensions(@as(*const IXpsOMPageReference, @ptrCast(self)), pageDimensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_SetAdvisoryPageDimensions(self: *const T, pageDimensions: ?*const XPS_SIZE) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetAdvisoryPageDimensions(@as(*const IXpsOMPageReference, @ptrCast(self)), pageDimensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_GetStoryFragmentsResource(self: *const T, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetStoryFragmentsResource(@as(*const IXpsOMPageReference, @ptrCast(self)), storyFragmentsResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_SetStoryFragmentsResource(self: *const T, storyFragmentsResource: ?*IXpsOMStoryFragmentsResource) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetStoryFragmentsResource(@as(*const IXpsOMPageReference, @ptrCast(self)), storyFragmentsResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_GetPrintTicketResource(self: *const T, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMPageReference, @ptrCast(self)), printTicketResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_SetPrintTicketResource(self: *const T, printTicketResource: ?*IXpsOMPrintTicketResource) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMPageReference, @ptrCast(self)), printTicketResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_GetThumbnailResource(self: *const T, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).GetThumbnailResource(@as(*const IXpsOMPageReference, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_SetThumbnailResource(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).SetThumbnailResource(@as(*const IXpsOMPageReference, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_CollectLinkTargets(self: *const T, linkTargets: ?*?*IXpsOMNameCollection) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).CollectLinkTargets(@as(*const IXpsOMPageReference, @ptrCast(self)), linkTargets);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_CollectPartResources(self: *const T, partResources: ?*?*IXpsOMPartResources) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).CollectPartResources(@as(*const IXpsOMPageReference, @ptrCast(self)), partResources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_HasRestrictedFonts(self: *const T, restrictedFonts: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).HasRestrictedFonts(@as(*const IXpsOMPageReference, @ptrCast(self)), restrictedFonts);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReference_Clone(self: *const T, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMPageReference.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMPageReference, @ptrCast(self)), pageReference);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMPageReference, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, document);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetPage(self: *const IXpsOMPageReference, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return self.vtable.GetPage(self, page);
+    }
+    pub fn SetPage(self: *const IXpsOMPageReference, page: ?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return self.vtable.SetPage(self, page);
+    }
+    pub fn DiscardPage(self: *const IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.DiscardPage(self);
+    }
+    pub fn IsPageLoaded(self: *const IXpsOMPageReference, isPageLoaded: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsPageLoaded(self, isPageLoaded);
+    }
+    pub fn GetAdvisoryPageDimensions(self: *const IXpsOMPageReference, pageDimensions: ?*XPS_SIZE) callconv(.Inline) HRESULT {
+        return self.vtable.GetAdvisoryPageDimensions(self, pageDimensions);
+    }
+    pub fn SetAdvisoryPageDimensions(self: *const IXpsOMPageReference, pageDimensions: ?*const XPS_SIZE) callconv(.Inline) HRESULT {
+        return self.vtable.SetAdvisoryPageDimensions(self, pageDimensions);
+    }
+    pub fn GetStoryFragmentsResource(self: *const IXpsOMPageReference, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetStoryFragmentsResource(self, storyFragmentsResource);
+    }
+    pub fn SetStoryFragmentsResource(self: *const IXpsOMPageReference, storyFragmentsResource: ?*IXpsOMStoryFragmentsResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetStoryFragmentsResource(self, storyFragmentsResource);
+    }
+    pub fn GetPrintTicketResource(self: *const IXpsOMPageReference, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrintTicketResource(self, printTicketResource);
+    }
+    pub fn SetPrintTicketResource(self: *const IXpsOMPageReference, printTicketResource: ?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrintTicketResource(self, printTicketResource);
+    }
+    pub fn GetThumbnailResource(self: *const IXpsOMPageReference, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetThumbnailResource(self, imageResource);
+    }
+    pub fn SetThumbnailResource(self: *const IXpsOMPageReference, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetThumbnailResource(self, imageResource);
+    }
+    pub fn CollectLinkTargets(self: *const IXpsOMPageReference, linkTargets: ?*?*IXpsOMNameCollection) callconv(.Inline) HRESULT {
+        return self.vtable.CollectLinkTargets(self, linkTargets);
+    }
+    pub fn CollectPartResources(self: *const IXpsOMPageReference, partResources: ?*?*IXpsOMPartResources) callconv(.Inline) HRESULT {
+        return self.vtable.CollectPartResources(self, partResources);
+    }
+    pub fn HasRestrictedFonts(self: *const IXpsOMPageReference, restrictedFonts: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.HasRestrictedFonts(self, restrictedFonts);
+    }
+    pub fn Clone(self: *const IXpsOMPageReference, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, pageReference);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPageReferenceCollection_Value = Guid.initString("ca16ba4d-e7b9-45c5-958b-f98022473745");
 pub const IID_IXpsOMPageReferenceCollection = &IID_IXpsOMPageReferenceCollection_Value;
-pub const IXpsOMPageReferenceCollection = extern struct {
+pub const IXpsOMPageReferenceCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReferenceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReferenceCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-                pageReference: ?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-                pageReference: ?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-                pageReference: ?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReferenceCollection,
-                index: u32,
-                pageReference: ?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPageReferenceCollection,
-                pageReference: ?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPageReferenceCollection,
-                pageReference: ?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMPageReferenceCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMPageReferenceCollection,
+            index: u32,
+            pageReference: ?*?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMPageReferenceCollection,
+            index: u32,
+            pageReference: ?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMPageReferenceCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMPageReferenceCollection,
+            index: u32,
+            pageReference: ?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMPageReferenceCollection,
+            pageReference: ?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReferenceCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReferenceCollection_GetAt(self: *const T, index: u32, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReferenceCollection_InsertAt(self: *const T, index: u32, pageReference: ?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReferenceCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReferenceCollection_SetAt(self: *const T, index: u32, pageReference: ?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), index, pageReference);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPageReferenceCollection_Append(self: *const T, pageReference: ?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMPageReferenceCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPageReferenceCollection, @ptrCast(self)), pageReference);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMPageReferenceCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMPageReferenceCollection, index: u32, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, pageReference);
+    }
+    pub fn InsertAt(self: *const IXpsOMPageReferenceCollection, index: u32, pageReference: ?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, pageReference);
+    }
+    pub fn RemoveAt(self: *const IXpsOMPageReferenceCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMPageReferenceCollection, index: u32, pageReference: ?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, pageReference);
+    }
+    pub fn Append(self: *const IXpsOMPageReferenceCollection, pageReference: ?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, pageReference);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocument_Value = Guid.initString("2c2c94cb-ac5f-4254-8ee9-23948309d9f0");
 pub const IID_IXpsOMDocument = &IID_IXpsOMDocument_Value;
-pub const IXpsOMDocument = extern struct {
+pub const IXpsOMDocument = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPart.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                documentSequence: ?*?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                documentSequence: ?*?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPageReferences: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                pageReferences: ?*?*IXpsOMPageReferenceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                pageReferences: ?*?*IXpsOMPageReferenceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrintTicketResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPrintTicketResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                printTicketResource: ?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                printTicketResource: ?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentStructureResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDocumentStructureResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                documentStructureResource: ?*IXpsOMDocumentStructureResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                documentStructureResource: ?*IXpsOMDocumentStructureResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignatureBlockResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocument,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocument,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMDocument,
+            documentSequence: ?*?*IXpsOMDocumentSequence,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPageReferences: *const fn(
+            self: *const IXpsOMDocument,
+            pageReferences: ?*?*IXpsOMPageReferenceCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrintTicketResource: *const fn(
+            self: *const IXpsOMDocument,
+            printTicketResource: ?*?*IXpsOMPrintTicketResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrintTicketResource: *const fn(
+            self: *const IXpsOMDocument,
+            printTicketResource: ?*IXpsOMPrintTicketResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentStructureResource: *const fn(
+            self: *const IXpsOMDocument,
+            documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentStructureResource: *const fn(
+            self: *const IXpsOMDocument,
+            documentStructureResource: ?*IXpsOMDocumentStructureResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignatureBlockResources: *const fn(
+            self: *const IXpsOMDocument,
+            signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMDocument,
+            document: ?*?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPart.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_GetOwner(self: *const T, documentSequence: ?*?*IXpsOMDocumentSequence) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocument, @ptrCast(self)), documentSequence);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_GetPageReferences(self: *const T, pageReferences: ?*?*IXpsOMPageReferenceCollection) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetPageReferences(@as(*const IXpsOMDocument, @ptrCast(self)), pageReferences);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_GetPrintTicketResource(self: *const T, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMDocument, @ptrCast(self)), printTicketResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_SetPrintTicketResource(self: *const T, printTicketResource: ?*IXpsOMPrintTicketResource) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMDocument, @ptrCast(self)), printTicketResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_GetDocumentStructureResource(self: *const T, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetDocumentStructureResource(@as(*const IXpsOMDocument, @ptrCast(self)), documentStructureResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_SetDocumentStructureResource(self: *const T, documentStructureResource: ?*IXpsOMDocumentStructureResource) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).SetDocumentStructureResource(@as(*const IXpsOMDocument, @ptrCast(self)), documentStructureResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_GetSignatureBlockResources(self: *const T, signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).GetSignatureBlockResources(@as(*const IXpsOMDocument, @ptrCast(self)), signatureBlockResources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocument_Clone(self: *const T, document: ?*?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMDocument.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMDocument, @ptrCast(self)), document);
-            }
-        };
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMDocument, documentSequence: ?*?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, documentSequence);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetPageReferences(self: *const IXpsOMDocument, pageReferences: ?*?*IXpsOMPageReferenceCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetPageReferences(self, pageReferences);
+    }
+    pub fn GetPrintTicketResource(self: *const IXpsOMDocument, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrintTicketResource(self, printTicketResource);
+    }
+    pub fn SetPrintTicketResource(self: *const IXpsOMDocument, printTicketResource: ?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrintTicketResource(self, printTicketResource);
+    }
+    pub fn GetDocumentStructureResource(self: *const IXpsOMDocument, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentStructureResource(self, documentStructureResource);
+    }
+    pub fn SetDocumentStructureResource(self: *const IXpsOMDocument, documentStructureResource: ?*IXpsOMDocumentStructureResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetDocumentStructureResource(self, documentStructureResource);
+    }
+    pub fn GetSignatureBlockResources(self: *const IXpsOMDocument, signatureBlockResources: ?*?*IXpsOMSignatureBlockResourceCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureBlockResources(self, signatureBlockResources);
+    }
+    pub fn Clone(self: *const IXpsOMDocument, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, document);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocumentCollection_Value = Guid.initString("d1c87f0d-e947-4754-8a25-971478f7e83e");
 pub const IID_IXpsOMDocumentCollection = &IID_IXpsOMDocumentCollection_Value;
-pub const IXpsOMDocumentCollection = extern struct {
+pub const IXpsOMDocumentCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-                document: ?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-                document: ?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-                document: ?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentCollection,
-                index: u32,
-                document: ?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentCollection,
-                document: ?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentCollection,
-                document: ?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMDocumentCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMDocumentCollection,
+            index: u32,
+            document: ?*?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMDocumentCollection,
+            index: u32,
+            document: ?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMDocumentCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMDocumentCollection,
+            index: u32,
+            document: ?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMDocumentCollection,
+            document: ?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentCollection_GetAt(self: *const T, index: u32, document: ?*?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentCollection_InsertAt(self: *const T, index: u32, document: ?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentCollection_SetAt(self: *const T, index: u32, document: ?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), index, document);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentCollection_Append(self: *const T, document: ?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMDocumentCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMDocumentCollection, @ptrCast(self)), document);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMDocumentCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMDocumentCollection, index: u32, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, document);
+    }
+    pub fn InsertAt(self: *const IXpsOMDocumentCollection, index: u32, document: ?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, document);
+    }
+    pub fn RemoveAt(self: *const IXpsOMDocumentCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMDocumentCollection, index: u32, document: ?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, document);
+    }
+    pub fn Append(self: *const IXpsOMDocumentCollection, document: ?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, document);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMDocumentSequence_Value = Guid.initString("56492eb4-d8d5-425e-8256-4c2b64ad0264");
 pub const IID_IXpsOMDocumentSequence = &IID_IXpsOMDocumentSequence_Value;
-pub const IXpsOMDocumentSequence = extern struct {
+pub const IXpsOMDocumentSequence = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPart.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentSequence,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentSequence,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocuments: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentSequence,
-                documents: ?*?*IXpsOMDocumentCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentSequence,
-                documents: ?*?*IXpsOMDocumentCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrintTicketResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentSequence,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentSequence,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPrintTicketResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMDocumentSequence,
-                printTicketResource: ?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMDocumentSequence,
-                printTicketResource: ?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMDocumentSequence,
+            package: ?*?*IXpsOMPackage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocuments: *const fn(
+            self: *const IXpsOMDocumentSequence,
+            documents: ?*?*IXpsOMDocumentCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrintTicketResource: *const fn(
+            self: *const IXpsOMDocumentSequence,
+            printTicketResource: ?*?*IXpsOMPrintTicketResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrintTicketResource: *const fn(
+            self: *const IXpsOMDocumentSequence,
+            printTicketResource: ?*IXpsOMPrintTicketResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPart.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentSequence_GetOwner(self: *const T, package: ?*?*IXpsOMPackage) HRESULT {
-                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentSequence_GetDocuments(self: *const T, documents: ?*?*IXpsOMDocumentCollection) HRESULT {
-                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetDocuments(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), documents);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentSequence_GetPrintTicketResource(self: *const T, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).GetPrintTicketResource(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), printTicketResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMDocumentSequence_SetPrintTicketResource(self: *const T, printTicketResource: ?*IXpsOMPrintTicketResource) HRESULT {
-                return @as(*const IXpsOMDocumentSequence.VTable, @ptrCast(self.vtable)).SetPrintTicketResource(@as(*const IXpsOMDocumentSequence, @ptrCast(self)), printTicketResource);
-            }
-        };
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMDocumentSequence, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, package);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDocuments(self: *const IXpsOMDocumentSequence, documents: ?*?*IXpsOMDocumentCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocuments(self, documents);
+    }
+    pub fn GetPrintTicketResource(self: *const IXpsOMDocumentSequence, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrintTicketResource(self, printTicketResource);
+    }
+    pub fn SetPrintTicketResource(self: *const IXpsOMDocumentSequence, printTicketResource: ?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrintTicketResource(self, printTicketResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMCoreProperties_Value = Guid.initString("3340fe8f-4027-4aa1-8f5f-d35ae45fe597");
 pub const IID_IXpsOMCoreProperties = &IID_IXpsOMCoreProperties_Value;
-pub const IXpsOMCoreProperties = extern struct {
+pub const IXpsOMCoreProperties = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPart.VTable,
-        GetOwner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                category: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                category: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                category: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                category: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContentStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                contentStatus: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                contentStatus: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContentStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                contentStatus: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                contentStatus: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetContentType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                contentType: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                contentType: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetContentType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                contentType: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                contentType: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCreated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                created: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                created: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCreated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                created: ?*const SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                created: ?*const SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCreator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                creator: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                creator: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCreator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                creator: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                creator: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                description: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                description: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                description: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                description: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIdentifier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                identifier: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                identifier: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIdentifier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                identifier: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                identifier: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetKeywords: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                keywords: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                keywords: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetKeywords: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                keywords: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                keywords: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLanguage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                language: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                language: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLanguage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                language: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                language: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastModifiedBy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                lastModifiedBy: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                lastModifiedBy: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLastModifiedBy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                lastModifiedBy: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                lastModifiedBy: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLastPrinted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                lastPrinted: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                lastPrinted: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetLastPrinted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                lastPrinted: ?*const SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                lastPrinted: ?*const SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetModified: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                modified: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                modified: ?*SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetModified: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                modified: ?*const SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                modified: ?*const SYSTEMTIME,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRevision: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                revision: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                revision: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRevision: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                revision: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                revision: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSubject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                subject: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                subject: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSubject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                subject: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                subject: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTitle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                title: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                title: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTitle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                title: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                title: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                version: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                version: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                version: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                version: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMCoreProperties,
-                coreProperties: ?*?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMCoreProperties,
-                coreProperties: ?*?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOwner: *const fn(
+            self: *const IXpsOMCoreProperties,
+            package: ?*?*IXpsOMPackage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCategory: *const fn(
+            self: *const IXpsOMCoreProperties,
+            category: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCategory: *const fn(
+            self: *const IXpsOMCoreProperties,
+            category: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContentStatus: *const fn(
+            self: *const IXpsOMCoreProperties,
+            contentStatus: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContentStatus: *const fn(
+            self: *const IXpsOMCoreProperties,
+            contentStatus: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetContentType: *const fn(
+            self: *const IXpsOMCoreProperties,
+            contentType: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetContentType: *const fn(
+            self: *const IXpsOMCoreProperties,
+            contentType: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCreated: *const fn(
+            self: *const IXpsOMCoreProperties,
+            created: ?*SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCreated: *const fn(
+            self: *const IXpsOMCoreProperties,
+            created: ?*const SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCreator: *const fn(
+            self: *const IXpsOMCoreProperties,
+            creator: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCreator: *const fn(
+            self: *const IXpsOMCoreProperties,
+            creator: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescription: *const fn(
+            self: *const IXpsOMCoreProperties,
+            description: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDescription: *const fn(
+            self: *const IXpsOMCoreProperties,
+            description: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIdentifier: *const fn(
+            self: *const IXpsOMCoreProperties,
+            identifier: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIdentifier: *const fn(
+            self: *const IXpsOMCoreProperties,
+            identifier: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetKeywords: *const fn(
+            self: *const IXpsOMCoreProperties,
+            keywords: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetKeywords: *const fn(
+            self: *const IXpsOMCoreProperties,
+            keywords: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLanguage: *const fn(
+            self: *const IXpsOMCoreProperties,
+            language: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLanguage: *const fn(
+            self: *const IXpsOMCoreProperties,
+            language: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastModifiedBy: *const fn(
+            self: *const IXpsOMCoreProperties,
+            lastModifiedBy: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLastModifiedBy: *const fn(
+            self: *const IXpsOMCoreProperties,
+            lastModifiedBy: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLastPrinted: *const fn(
+            self: *const IXpsOMCoreProperties,
+            lastPrinted: ?*SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetLastPrinted: *const fn(
+            self: *const IXpsOMCoreProperties,
+            lastPrinted: ?*const SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetModified: *const fn(
+            self: *const IXpsOMCoreProperties,
+            modified: ?*SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetModified: *const fn(
+            self: *const IXpsOMCoreProperties,
+            modified: ?*const SYSTEMTIME,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRevision: *const fn(
+            self: *const IXpsOMCoreProperties,
+            revision: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRevision: *const fn(
+            self: *const IXpsOMCoreProperties,
+            revision: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSubject: *const fn(
+            self: *const IXpsOMCoreProperties,
+            subject: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSubject: *const fn(
+            self: *const IXpsOMCoreProperties,
+            subject: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTitle: *const fn(
+            self: *const IXpsOMCoreProperties,
+            title: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTitle: *const fn(
+            self: *const IXpsOMCoreProperties,
+            title: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVersion: *const fn(
+            self: *const IXpsOMCoreProperties,
+            version: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetVersion: *const fn(
+            self: *const IXpsOMCoreProperties,
+            version: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IXpsOMCoreProperties,
+            coreProperties: ?*?*IXpsOMCoreProperties,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPart.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetOwner(self: *const T, package: ?*?*IXpsOMPackage) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetOwner(@as(*const IXpsOMCoreProperties, @ptrCast(self)), package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetCategory(self: *const T, category: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCategory(@as(*const IXpsOMCoreProperties, @ptrCast(self)), category);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetCategory(self: *const T, category: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCategory(@as(*const IXpsOMCoreProperties, @ptrCast(self)), category);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetContentStatus(self: *const T, contentStatus: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetContentStatus(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetContentStatus(self: *const T, contentStatus: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetContentStatus(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetContentType(self: *const T, contentType: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetContentType(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetContentType(self: *const T, contentType: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetContentType(@as(*const IXpsOMCoreProperties, @ptrCast(self)), contentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetCreated(self: *const T, created: ?*SYSTEMTIME) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCreated(@as(*const IXpsOMCoreProperties, @ptrCast(self)), created);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetCreated(self: *const T, created: ?*const SYSTEMTIME) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCreated(@as(*const IXpsOMCoreProperties, @ptrCast(self)), created);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetCreator(self: *const T, creator: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetCreator(@as(*const IXpsOMCoreProperties, @ptrCast(self)), creator);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetCreator(self: *const T, creator: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetCreator(@as(*const IXpsOMCoreProperties, @ptrCast(self)), creator);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetDescription(self: *const T, description: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetDescription(@as(*const IXpsOMCoreProperties, @ptrCast(self)), description);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetDescription(self: *const T, description: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetDescription(@as(*const IXpsOMCoreProperties, @ptrCast(self)), description);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetIdentifier(self: *const T, identifier: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetIdentifier(@as(*const IXpsOMCoreProperties, @ptrCast(self)), identifier);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetIdentifier(self: *const T, identifier: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetIdentifier(@as(*const IXpsOMCoreProperties, @ptrCast(self)), identifier);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetKeywords(self: *const T, keywords: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetKeywords(@as(*const IXpsOMCoreProperties, @ptrCast(self)), keywords);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetKeywords(self: *const T, keywords: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetKeywords(@as(*const IXpsOMCoreProperties, @ptrCast(self)), keywords);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetLanguage(self: *const T, language: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLanguage(@as(*const IXpsOMCoreProperties, @ptrCast(self)), language);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetLanguage(self: *const T, language: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLanguage(@as(*const IXpsOMCoreProperties, @ptrCast(self)), language);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetLastModifiedBy(self: *const T, lastModifiedBy: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLastModifiedBy(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastModifiedBy);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetLastModifiedBy(self: *const T, lastModifiedBy: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLastModifiedBy(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastModifiedBy);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetLastPrinted(self: *const T, lastPrinted: ?*SYSTEMTIME) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetLastPrinted(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastPrinted);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetLastPrinted(self: *const T, lastPrinted: ?*const SYSTEMTIME) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetLastPrinted(@as(*const IXpsOMCoreProperties, @ptrCast(self)), lastPrinted);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetModified(self: *const T, modified: ?*SYSTEMTIME) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetModified(@as(*const IXpsOMCoreProperties, @ptrCast(self)), modified);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetModified(self: *const T, modified: ?*const SYSTEMTIME) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetModified(@as(*const IXpsOMCoreProperties, @ptrCast(self)), modified);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetRevision(self: *const T, revision: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetRevision(@as(*const IXpsOMCoreProperties, @ptrCast(self)), revision);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetRevision(self: *const T, revision: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetRevision(@as(*const IXpsOMCoreProperties, @ptrCast(self)), revision);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetSubject(self: *const T, subject: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetSubject(@as(*const IXpsOMCoreProperties, @ptrCast(self)), subject);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetSubject(self: *const T, subject: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetSubject(@as(*const IXpsOMCoreProperties, @ptrCast(self)), subject);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetTitle(self: *const T, title: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetTitle(@as(*const IXpsOMCoreProperties, @ptrCast(self)), title);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetTitle(self: *const T, title: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetTitle(@as(*const IXpsOMCoreProperties, @ptrCast(self)), title);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_GetVersion(self: *const T, version: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).GetVersion(@as(*const IXpsOMCoreProperties, @ptrCast(self)), version);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_SetVersion(self: *const T, version: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).SetVersion(@as(*const IXpsOMCoreProperties, @ptrCast(self)), version);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMCoreProperties_Clone(self: *const T, coreProperties: ?*?*IXpsOMCoreProperties) HRESULT {
-                return @as(*const IXpsOMCoreProperties.VTable, @ptrCast(self.vtable)).Clone(@as(*const IXpsOMCoreProperties, @ptrCast(self)), coreProperties);
-            }
-        };
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetOwner(self: *const IXpsOMCoreProperties, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return self.vtable.GetOwner(self, package);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetCategory(self: *const IXpsOMCoreProperties, category: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetCategory(self, category);
+    }
+    pub fn SetCategory(self: *const IXpsOMCoreProperties, category: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetCategory(self, category);
+    }
+    pub fn GetContentStatus(self: *const IXpsOMCoreProperties, contentStatus: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetContentStatus(self, contentStatus);
+    }
+    pub fn SetContentStatus(self: *const IXpsOMCoreProperties, contentStatus: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetContentStatus(self, contentStatus);
+    }
+    pub fn GetContentType(self: *const IXpsOMCoreProperties, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetContentType(self, contentType);
+    }
+    pub fn SetContentType(self: *const IXpsOMCoreProperties, contentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetContentType(self, contentType);
+    }
+    pub fn GetCreated(self: *const IXpsOMCoreProperties, created: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        return self.vtable.GetCreated(self, created);
+    }
+    pub fn SetCreated(self: *const IXpsOMCoreProperties, created: ?*const SYSTEMTIME) callconv(.Inline) HRESULT {
+        return self.vtable.SetCreated(self, created);
+    }
+    pub fn GetCreator(self: *const IXpsOMCoreProperties, creator: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetCreator(self, creator);
+    }
+    pub fn SetCreator(self: *const IXpsOMCoreProperties, creator: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetCreator(self, creator);
+    }
+    pub fn GetDescription(self: *const IXpsOMCoreProperties, description: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetDescription(self, description);
+    }
+    pub fn SetDescription(self: *const IXpsOMCoreProperties, description: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetDescription(self, description);
+    }
+    pub fn GetIdentifier(self: *const IXpsOMCoreProperties, identifier: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetIdentifier(self, identifier);
+    }
+    pub fn SetIdentifier(self: *const IXpsOMCoreProperties, identifier: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetIdentifier(self, identifier);
+    }
+    pub fn GetKeywords(self: *const IXpsOMCoreProperties, keywords: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetKeywords(self, keywords);
+    }
+    pub fn SetKeywords(self: *const IXpsOMCoreProperties, keywords: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetKeywords(self, keywords);
+    }
+    pub fn GetLanguage(self: *const IXpsOMCoreProperties, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetLanguage(self, language);
+    }
+    pub fn SetLanguage(self: *const IXpsOMCoreProperties, language: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetLanguage(self, language);
+    }
+    pub fn GetLastModifiedBy(self: *const IXpsOMCoreProperties, lastModifiedBy: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetLastModifiedBy(self, lastModifiedBy);
+    }
+    pub fn SetLastModifiedBy(self: *const IXpsOMCoreProperties, lastModifiedBy: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetLastModifiedBy(self, lastModifiedBy);
+    }
+    pub fn GetLastPrinted(self: *const IXpsOMCoreProperties, lastPrinted: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        return self.vtable.GetLastPrinted(self, lastPrinted);
+    }
+    pub fn SetLastPrinted(self: *const IXpsOMCoreProperties, lastPrinted: ?*const SYSTEMTIME) callconv(.Inline) HRESULT {
+        return self.vtable.SetLastPrinted(self, lastPrinted);
+    }
+    pub fn GetModified(self: *const IXpsOMCoreProperties, modified: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+        return self.vtable.GetModified(self, modified);
+    }
+    pub fn SetModified(self: *const IXpsOMCoreProperties, modified: ?*const SYSTEMTIME) callconv(.Inline) HRESULT {
+        return self.vtable.SetModified(self, modified);
+    }
+    pub fn GetRevision(self: *const IXpsOMCoreProperties, revision: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRevision(self, revision);
+    }
+    pub fn SetRevision(self: *const IXpsOMCoreProperties, revision: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetRevision(self, revision);
+    }
+    pub fn GetSubject(self: *const IXpsOMCoreProperties, subject: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetSubject(self, subject);
+    }
+    pub fn SetSubject(self: *const IXpsOMCoreProperties, subject: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetSubject(self, subject);
+    }
+    pub fn GetTitle(self: *const IXpsOMCoreProperties, title: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetTitle(self, title);
+    }
+    pub fn SetTitle(self: *const IXpsOMCoreProperties, title: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetTitle(self, title);
+    }
+    pub fn GetVersion(self: *const IXpsOMCoreProperties, version: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetVersion(self, version);
+    }
+    pub fn SetVersion(self: *const IXpsOMCoreProperties, version: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetVersion(self, version);
+    }
+    pub fn Clone(self: *const IXpsOMCoreProperties, coreProperties: ?*?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, coreProperties);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPackage_Value = Guid.initString("18c3df65-81e1-4674-91dc-fc452f5a416f");
 pub const IID_IXpsOMPackage = &IID_IXpsOMPackage_Value;
-pub const IXpsOMPackage = extern struct {
+pub const IXpsOMPackage = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDocumentSequence: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                documentSequence: ?*?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                documentSequence: ?*?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDocumentSequence: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                documentSequence: ?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                documentSequence: ?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCoreProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                coreProperties: ?*?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                coreProperties: ?*?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetCoreProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                coreProperties: ?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                coreProperties: ?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDiscardControlPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                discardControlPartUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                discardControlPartUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDiscardControlPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                discardControlPartUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                discardControlPartUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetThumbnailResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetThumbnailResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteToFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteToStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage,
-                stream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage,
-                stream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDocumentSequence: *const fn(
+            self: *const IXpsOMPackage,
+            documentSequence: ?*?*IXpsOMDocumentSequence,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDocumentSequence: *const fn(
+            self: *const IXpsOMPackage,
+            documentSequence: ?*IXpsOMDocumentSequence,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCoreProperties: *const fn(
+            self: *const IXpsOMPackage,
+            coreProperties: ?*?*IXpsOMCoreProperties,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetCoreProperties: *const fn(
+            self: *const IXpsOMPackage,
+            coreProperties: ?*IXpsOMCoreProperties,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDiscardControlPartName: *const fn(
+            self: *const IXpsOMPackage,
+            discardControlPartUri: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDiscardControlPartName: *const fn(
+            self: *const IXpsOMPackage,
+            discardControlPartUri: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetThumbnailResource: *const fn(
+            self: *const IXpsOMPackage,
+            imageResource: ?*?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetThumbnailResource: *const fn(
+            self: *const IXpsOMPackage,
+            imageResource: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteToFile: *const fn(
+            self: *const IXpsOMPackage,
+            fileName: ?[*:0]const u16,
+            securityAttributes: ?*SECURITY_ATTRIBUTES,
+            flagsAndAttributes: u32,
+            optimizeMarkupSize: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteToStream: *const fn(
+            self: *const IXpsOMPackage,
+            stream: ?*ISequentialStream,
+            optimizeMarkupSize: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_GetDocumentSequence(self: *const T, documentSequence: ?*?*IXpsOMDocumentSequence) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetDocumentSequence(@as(*const IXpsOMPackage, @ptrCast(self)), documentSequence);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_SetDocumentSequence(self: *const T, documentSequence: ?*IXpsOMDocumentSequence) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetDocumentSequence(@as(*const IXpsOMPackage, @ptrCast(self)), documentSequence);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_GetCoreProperties(self: *const T, coreProperties: ?*?*IXpsOMCoreProperties) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetCoreProperties(@as(*const IXpsOMPackage, @ptrCast(self)), coreProperties);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_SetCoreProperties(self: *const T, coreProperties: ?*IXpsOMCoreProperties) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetCoreProperties(@as(*const IXpsOMPackage, @ptrCast(self)), coreProperties);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_GetDiscardControlPartName(self: *const T, discardControlPartUri: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetDiscardControlPartName(@as(*const IXpsOMPackage, @ptrCast(self)), discardControlPartUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_SetDiscardControlPartName(self: *const T, discardControlPartUri: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetDiscardControlPartName(@as(*const IXpsOMPackage, @ptrCast(self)), discardControlPartUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_GetThumbnailResource(self: *const T, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).GetThumbnailResource(@as(*const IXpsOMPackage, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_SetThumbnailResource(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).SetThumbnailResource(@as(*const IXpsOMPackage, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_WriteToFile(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).WriteToFile(@as(*const IXpsOMPackage, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage_WriteToStream(self: *const T, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) HRESULT {
-                return @as(*const IXpsOMPackage.VTable, @ptrCast(self.vtable)).WriteToStream(@as(*const IXpsOMPackage, @ptrCast(self)), stream, optimizeMarkupSize);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDocumentSequence(self: *const IXpsOMPackage, documentSequence: ?*?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentSequence(self, documentSequence);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetDocumentSequence(self: *const IXpsOMPackage, documentSequence: ?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return self.vtable.SetDocumentSequence(self, documentSequence);
+    }
+    pub fn GetCoreProperties(self: *const IXpsOMPackage, coreProperties: ?*?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return self.vtable.GetCoreProperties(self, coreProperties);
+    }
+    pub fn SetCoreProperties(self: *const IXpsOMPackage, coreProperties: ?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return self.vtable.SetCoreProperties(self, coreProperties);
+    }
+    pub fn GetDiscardControlPartName(self: *const IXpsOMPackage, discardControlPartUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetDiscardControlPartName(self, discardControlPartUri);
+    }
+    pub fn SetDiscardControlPartName(self: *const IXpsOMPackage, discardControlPartUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetDiscardControlPartName(self, discardControlPartUri);
+    }
+    pub fn GetThumbnailResource(self: *const IXpsOMPackage, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.GetThumbnailResource(self, imageResource);
+    }
+    pub fn SetThumbnailResource(self: *const IXpsOMPackage, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.SetThumbnailResource(self, imageResource);
+    }
+    pub fn WriteToFile(self: *const IXpsOMPackage, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteToFile(self, fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize);
+    }
+    pub fn WriteToStream(self: *const IXpsOMPackage, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteToStream(self, stream, optimizeMarkupSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMObjectFactory_Value = Guid.initString("f9b2a685-a50d-4fc2-b764-b56e093ea0ca");
 pub const IID_IXpsOMObjectFactory = &IID_IXpsOMObjectFactory_Value;
-pub const IXpsOMObjectFactory = extern struct {
+pub const IXpsOMObjectFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreatePackage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageFromFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                filename: ?[*:0]const u16,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                filename: ?[*:0]const u16,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageFromStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                stream: ?*IStream,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                stream: ?*IStream,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateStoryFragmentsResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateDocumentStructureResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSignatureBlockResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRemoteDictionaryResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                dictionary: ?*IXpsOMDictionary,
-                partUri: ?*IOpcPartUri,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                dictionary: ?*IXpsOMDictionary,
-                partUri: ?*IOpcPartUri,
-                remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRemoteDictionaryResourceFromStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                dictionaryMarkupStream: ?*IStream,
-                dictionaryPartUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                dictionaryMarkupStream: ?*IStream,
-                dictionaryPartUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePartResources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                partResources: ?*?*IXpsOMPartResources,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                partResources: ?*?*IXpsOMPartResources,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateDocumentSequence: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                partUri: ?*IOpcPartUri,
-                documentSequence: ?*?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                partUri: ?*IOpcPartUri,
-                documentSequence: ?*?*IXpsOMDocumentSequence,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                partUri: ?*IOpcPartUri,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                partUri: ?*IOpcPartUri,
-                document: ?*?*IXpsOMDocument,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePageReference: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                advisoryPageDimensions: ?*const XPS_SIZE,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                advisoryPageDimensions: ?*const XPS_SIZE,
-                pageReference: ?*?*IXpsOMPageReference,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                pageDimensions: ?*const XPS_SIZE,
-                language: ?[*:0]const u16,
-                partUri: ?*IOpcPartUri,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                pageDimensions: ?*const XPS_SIZE,
-                language: ?[*:0]const u16,
-                partUri: ?*IOpcPartUri,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePageFromStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                pageMarkupStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                reuseObjects: BOOL,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                pageMarkupStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                reuseObjects: BOOL,
-                page: ?*?*IXpsOMPage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCanvas: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                canvas: ?*?*IXpsOMCanvas,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                canvas: ?*?*IXpsOMCanvas,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGlyphs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                fontResource: ?*IXpsOMFontResource,
-                glyphs: ?*?*IXpsOMGlyphs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                fontResource: ?*IXpsOMFontResource,
-                glyphs: ?*?*IXpsOMGlyphs,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                path: ?*?*IXpsOMPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                path: ?*?*IXpsOMPath,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGeometry: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                geometry: ?*?*IXpsOMGeometry,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGeometryFigure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                startPoint: ?*const XPS_POINT,
-                figure: ?*?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                startPoint: ?*const XPS_POINT,
-                figure: ?*?*IXpsOMGeometryFigure,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateMatrixTransform: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                matrix: ?*const XPS_MATRIX,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                matrix: ?*const XPS_MATRIX,
-                transform: ?*?*IXpsOMMatrixTransform,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSolidColorBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-                solidColorBrush: ?*?*IXpsOMSolidColorBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-                solidColorBrush: ?*?*IXpsOMSolidColorBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateColorProfileResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                colorProfileResource: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                colorProfileResource: ?*?*IXpsOMColorProfileResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateImageBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                image: ?*IXpsOMImageResource,
-                viewBox: ?*const XPS_RECT,
-                viewPort: ?*const XPS_RECT,
-                imageBrush: ?*?*IXpsOMImageBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                image: ?*IXpsOMImageResource,
-                viewBox: ?*const XPS_RECT,
-                viewPort: ?*const XPS_RECT,
-                imageBrush: ?*?*IXpsOMImageBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateVisualBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                viewBox: ?*const XPS_RECT,
-                viewPort: ?*const XPS_RECT,
-                visualBrush: ?*?*IXpsOMVisualBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                viewBox: ?*const XPS_RECT,
-                viewPort: ?*const XPS_RECT,
-                visualBrush: ?*?*IXpsOMVisualBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateImageResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                contentType: XPS_IMAGE_TYPE,
-                partUri: ?*IOpcPartUri,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                contentType: XPS_IMAGE_TYPE,
-                partUri: ?*IOpcPartUri,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePrintTicketResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                printTicketResource: ?*?*IXpsOMPrintTicketResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFontResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                fontEmbedding: XPS_FONT_EMBEDDING,
-                partUri: ?*IOpcPartUri,
-                isObfSourceStream: BOOL,
-                fontResource: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                acquiredStream: ?*IStream,
-                fontEmbedding: XPS_FONT_EMBEDDING,
-                partUri: ?*IOpcPartUri,
-                isObfSourceStream: BOOL,
-                fontResource: ?*?*IXpsOMFontResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGradientStop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-                offset: f32,
-                gradientStop: ?*?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                color: ?*const XPS_COLOR,
-                colorProfile: ?*IXpsOMColorProfileResource,
-                offset: f32,
-                gradientStop: ?*?*IXpsOMGradientStop,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateLinearGradientBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                gradStop1: ?*IXpsOMGradientStop,
-                gradStop2: ?*IXpsOMGradientStop,
-                startPoint: ?*const XPS_POINT,
-                endPoint: ?*const XPS_POINT,
-                linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                gradStop1: ?*IXpsOMGradientStop,
-                gradStop2: ?*IXpsOMGradientStop,
-                startPoint: ?*const XPS_POINT,
-                endPoint: ?*const XPS_POINT,
-                linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRadialGradientBrush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                gradStop1: ?*IXpsOMGradientStop,
-                gradStop2: ?*IXpsOMGradientStop,
-                centerPoint: ?*const XPS_POINT,
-                gradientOrigin: ?*const XPS_POINT,
-                radiiSizes: ?*const XPS_SIZE,
-                radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                gradStop1: ?*IXpsOMGradientStop,
-                gradStop2: ?*IXpsOMGradientStop,
-                centerPoint: ?*const XPS_POINT,
-                gradientOrigin: ?*const XPS_POINT,
-                radiiSizes: ?*const XPS_SIZE,
-                radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCoreProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                partUri: ?*IOpcPartUri,
-                coreProperties: ?*?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                partUri: ?*IOpcPartUri,
-                coreProperties: ?*?*IXpsOMCoreProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateDictionary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                dictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                dictionary: ?*?*IXpsOMDictionary,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePartUriCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                partUriCollection: ?*?*IXpsOMPartUriCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                partUriCollection: ?*?*IXpsOMPartUriCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageWriterOnFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageWriterOnStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                outputStream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                outputStream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePartUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                uri: ?[*:0]const u16,
-                partUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                uri: ?[*:0]const u16,
-                partUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateReadOnlyStreamOnFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory,
-                filename: ?[*:0]const u16,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory,
-                filename: ?[*:0]const u16,
-                stream: ?*?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreatePackage: *const fn(
+            self: *const IXpsOMObjectFactory,
+            package: ?*?*IXpsOMPackage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageFromFile: *const fn(
+            self: *const IXpsOMObjectFactory,
+            filename: ?[*:0]const u16,
+            reuseObjects: BOOL,
+            package: ?*?*IXpsOMPackage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageFromStream: *const fn(
+            self: *const IXpsOMObjectFactory,
+            stream: ?*IStream,
+            reuseObjects: BOOL,
+            package: ?*?*IXpsOMPackage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateStoryFragmentsResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            acquiredStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDocumentStructureResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            acquiredStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            documentStructureResource: ?*?*IXpsOMDocumentStructureResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSignatureBlockResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            acquiredStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            signatureBlockResource: ?*?*IXpsOMSignatureBlockResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRemoteDictionaryResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            dictionary: ?*IXpsOMDictionary,
+            partUri: ?*IOpcPartUri,
+            remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRemoteDictionaryResourceFromStream: *const fn(
+            self: *const IXpsOMObjectFactory,
+            dictionaryMarkupStream: ?*IStream,
+            dictionaryPartUri: ?*IOpcPartUri,
+            resources: ?*IXpsOMPartResources,
+            dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePartResources: *const fn(
+            self: *const IXpsOMObjectFactory,
+            partResources: ?*?*IXpsOMPartResources,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDocumentSequence: *const fn(
+            self: *const IXpsOMObjectFactory,
+            partUri: ?*IOpcPartUri,
+            documentSequence: ?*?*IXpsOMDocumentSequence,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDocument: *const fn(
+            self: *const IXpsOMObjectFactory,
+            partUri: ?*IOpcPartUri,
+            document: ?*?*IXpsOMDocument,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePageReference: *const fn(
+            self: *const IXpsOMObjectFactory,
+            advisoryPageDimensions: ?*const XPS_SIZE,
+            pageReference: ?*?*IXpsOMPageReference,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePage: *const fn(
+            self: *const IXpsOMObjectFactory,
+            pageDimensions: ?*const XPS_SIZE,
+            language: ?[*:0]const u16,
+            partUri: ?*IOpcPartUri,
+            page: ?*?*IXpsOMPage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePageFromStream: *const fn(
+            self: *const IXpsOMObjectFactory,
+            pageMarkupStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            resources: ?*IXpsOMPartResources,
+            reuseObjects: BOOL,
+            page: ?*?*IXpsOMPage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCanvas: *const fn(
+            self: *const IXpsOMObjectFactory,
+            canvas: ?*?*IXpsOMCanvas,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGlyphs: *const fn(
+            self: *const IXpsOMObjectFactory,
+            fontResource: ?*IXpsOMFontResource,
+            glyphs: ?*?*IXpsOMGlyphs,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePath: *const fn(
+            self: *const IXpsOMObjectFactory,
+            path: ?*?*IXpsOMPath,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGeometry: *const fn(
+            self: *const IXpsOMObjectFactory,
+            geometry: ?*?*IXpsOMGeometry,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGeometryFigure: *const fn(
+            self: *const IXpsOMObjectFactory,
+            startPoint: ?*const XPS_POINT,
+            figure: ?*?*IXpsOMGeometryFigure,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateMatrixTransform: *const fn(
+            self: *const IXpsOMObjectFactory,
+            matrix: ?*const XPS_MATRIX,
+            transform: ?*?*IXpsOMMatrixTransform,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSolidColorBrush: *const fn(
+            self: *const IXpsOMObjectFactory,
+            color: ?*const XPS_COLOR,
+            colorProfile: ?*IXpsOMColorProfileResource,
+            solidColorBrush: ?*?*IXpsOMSolidColorBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateColorProfileResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            acquiredStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            colorProfileResource: ?*?*IXpsOMColorProfileResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateImageBrush: *const fn(
+            self: *const IXpsOMObjectFactory,
+            image: ?*IXpsOMImageResource,
+            viewBox: ?*const XPS_RECT,
+            viewPort: ?*const XPS_RECT,
+            imageBrush: ?*?*IXpsOMImageBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVisualBrush: *const fn(
+            self: *const IXpsOMObjectFactory,
+            viewBox: ?*const XPS_RECT,
+            viewPort: ?*const XPS_RECT,
+            visualBrush: ?*?*IXpsOMVisualBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateImageResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            acquiredStream: ?*IStream,
+            contentType: XPS_IMAGE_TYPE,
+            partUri: ?*IOpcPartUri,
+            imageResource: ?*?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePrintTicketResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            acquiredStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            printTicketResource: ?*?*IXpsOMPrintTicketResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFontResource: *const fn(
+            self: *const IXpsOMObjectFactory,
+            acquiredStream: ?*IStream,
+            fontEmbedding: XPS_FONT_EMBEDDING,
+            partUri: ?*IOpcPartUri,
+            isObfSourceStream: BOOL,
+            fontResource: ?*?*IXpsOMFontResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGradientStop: *const fn(
+            self: *const IXpsOMObjectFactory,
+            color: ?*const XPS_COLOR,
+            colorProfile: ?*IXpsOMColorProfileResource,
+            offset: f32,
+            gradientStop: ?*?*IXpsOMGradientStop,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateLinearGradientBrush: *const fn(
+            self: *const IXpsOMObjectFactory,
+            gradStop1: ?*IXpsOMGradientStop,
+            gradStop2: ?*IXpsOMGradientStop,
+            startPoint: ?*const XPS_POINT,
+            endPoint: ?*const XPS_POINT,
+            linearGradientBrush: ?*?*IXpsOMLinearGradientBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRadialGradientBrush: *const fn(
+            self: *const IXpsOMObjectFactory,
+            gradStop1: ?*IXpsOMGradientStop,
+            gradStop2: ?*IXpsOMGradientStop,
+            centerPoint: ?*const XPS_POINT,
+            gradientOrigin: ?*const XPS_POINT,
+            radiiSizes: ?*const XPS_SIZE,
+            radialGradientBrush: ?*?*IXpsOMRadialGradientBrush,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCoreProperties: *const fn(
+            self: *const IXpsOMObjectFactory,
+            partUri: ?*IOpcPartUri,
+            coreProperties: ?*?*IXpsOMCoreProperties,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDictionary: *const fn(
+            self: *const IXpsOMObjectFactory,
+            dictionary: ?*?*IXpsOMDictionary,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePartUriCollection: *const fn(
+            self: *const IXpsOMObjectFactory,
+            partUriCollection: ?*?*IXpsOMPartUriCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageWriterOnFile: *const fn(
+            self: *const IXpsOMObjectFactory,
+            fileName: ?[*:0]const u16,
+            securityAttributes: ?*SECURITY_ATTRIBUTES,
+            flagsAndAttributes: u32,
+            optimizeMarkupSize: BOOL,
+            interleaving: XPS_INTERLEAVING,
+            documentSequencePartName: ?*IOpcPartUri,
+            coreProperties: ?*IXpsOMCoreProperties,
+            packageThumbnail: ?*IXpsOMImageResource,
+            documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
+            discardControlPartName: ?*IOpcPartUri,
+            packageWriter: ?*?*IXpsOMPackageWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageWriterOnStream: *const fn(
+            self: *const IXpsOMObjectFactory,
+            outputStream: ?*ISequentialStream,
+            optimizeMarkupSize: BOOL,
+            interleaving: XPS_INTERLEAVING,
+            documentSequencePartName: ?*IOpcPartUri,
+            coreProperties: ?*IXpsOMCoreProperties,
+            packageThumbnail: ?*IXpsOMImageResource,
+            documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
+            discardControlPartName: ?*IOpcPartUri,
+            packageWriter: ?*?*IXpsOMPackageWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePartUri: *const fn(
+            self: *const IXpsOMObjectFactory,
+            uri: ?[*:0]const u16,
+            partUri: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateReadOnlyStreamOnFile: *const fn(
+            self: *const IXpsOMObjectFactory,
+            filename: ?[*:0]const u16,
+            stream: ?*?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePackage(self: *const T, package: ?*?*IXpsOMPackage) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackage(@as(*const IXpsOMObjectFactory, @ptrCast(self)), package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePackageFromFile(self: *const T, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageFromFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), filename, reuseObjects, package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePackageFromStream(self: *const T, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), stream, reuseObjects, package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateStoryFragmentsResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateStoryFragmentsResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, storyFragmentsResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateDocumentStructureResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocumentStructureResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, documentStructureResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateSignatureBlockResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateSignatureBlockResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, signatureBlockResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateRemoteDictionaryResource(self: *const T, dictionary: ?*IXpsOMDictionary, partUri: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionary, partUri, remoteDictionaryResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateRemoteDictionaryResourceFromStream(self: *const T, dictionaryMarkupStream: ?*IStream, dictionaryPartUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResourceFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionaryMarkupStream, dictionaryPartUri, resources, dictionaryResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePartResources(self: *const T, partResources: ?*?*IXpsOMPartResources) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartResources(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partResources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateDocumentSequence(self: *const T, partUri: ?*IOpcPartUri, documentSequence: ?*?*IXpsOMDocumentSequence) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocumentSequence(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, documentSequence);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateDocument(self: *const T, partUri: ?*IOpcPartUri, document: ?*?*IXpsOMDocument) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDocument(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, document);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePageReference(self: *const T, advisoryPageDimensions: ?*const XPS_SIZE, pageReference: ?*?*IXpsOMPageReference) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePageReference(@as(*const IXpsOMObjectFactory, @ptrCast(self)), advisoryPageDimensions, pageReference);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePage(self: *const T, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePage(@as(*const IXpsOMObjectFactory, @ptrCast(self)), pageDimensions, language, partUri, page);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePageFromStream(self: *const T, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePageFromStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), pageMarkupStream, partUri, resources, reuseObjects, page);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateCanvas(self: *const T, canvas: ?*?*IXpsOMCanvas) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateCanvas(@as(*const IXpsOMObjectFactory, @ptrCast(self)), canvas);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateGlyphs(self: *const T, fontResource: ?*IXpsOMFontResource, glyphs: ?*?*IXpsOMGlyphs) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGlyphs(@as(*const IXpsOMObjectFactory, @ptrCast(self)), fontResource, glyphs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePath(self: *const T, path: ?*?*IXpsOMPath) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePath(@as(*const IXpsOMObjectFactory, @ptrCast(self)), path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateGeometry(self: *const T, geometry: ?*?*IXpsOMGeometry) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGeometry(@as(*const IXpsOMObjectFactory, @ptrCast(self)), geometry);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateGeometryFigure(self: *const T, startPoint: ?*const XPS_POINT, figure: ?*?*IXpsOMGeometryFigure) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGeometryFigure(@as(*const IXpsOMObjectFactory, @ptrCast(self)), startPoint, figure);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateMatrixTransform(self: *const T, matrix: ?*const XPS_MATRIX, transform: ?*?*IXpsOMMatrixTransform) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateMatrixTransform(@as(*const IXpsOMObjectFactory, @ptrCast(self)), matrix, transform);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateSolidColorBrush(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, solidColorBrush: ?*?*IXpsOMSolidColorBrush) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateSolidColorBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), color, colorProfile, solidColorBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateColorProfileResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, colorProfileResource: ?*?*IXpsOMColorProfileResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateColorProfileResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, colorProfileResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateImageBrush(self: *const T, image: ?*IXpsOMImageResource, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, imageBrush: ?*?*IXpsOMImageBrush) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateImageBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), image, viewBox, viewPort, imageBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateVisualBrush(self: *const T, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, visualBrush: ?*?*IXpsOMVisualBrush) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateVisualBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), viewBox, viewPort, visualBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateImageResource(self: *const T, acquiredStream: ?*IStream, contentType: XPS_IMAGE_TYPE, partUri: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateImageResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, contentType, partUri, imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePrintTicketResource(self: *const T, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, printTicketResource: ?*?*IXpsOMPrintTicketResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePrintTicketResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, partUri, printTicketResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateFontResource(self: *const T, acquiredStream: ?*IStream, fontEmbedding: XPS_FONT_EMBEDDING, partUri: ?*IOpcPartUri, isObfSourceStream: BOOL, fontResource: ?*?*IXpsOMFontResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateFontResource(@as(*const IXpsOMObjectFactory, @ptrCast(self)), acquiredStream, fontEmbedding, partUri, isObfSourceStream, fontResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateGradientStop(self: *const T, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, offset: f32, gradientStop: ?*?*IXpsOMGradientStop) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateGradientStop(@as(*const IXpsOMObjectFactory, @ptrCast(self)), color, colorProfile, offset, gradientStop);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateLinearGradientBrush(self: *const T, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, startPoint: ?*const XPS_POINT, endPoint: ?*const XPS_POINT, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateLinearGradientBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), gradStop1, gradStop2, startPoint, endPoint, linearGradientBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateRadialGradientBrush(self: *const T, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, centerPoint: ?*const XPS_POINT, gradientOrigin: ?*const XPS_POINT, radiiSizes: ?*const XPS_SIZE, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateRadialGradientBrush(@as(*const IXpsOMObjectFactory, @ptrCast(self)), gradStop1, gradStop2, centerPoint, gradientOrigin, radiiSizes, radialGradientBrush);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateCoreProperties(self: *const T, partUri: ?*IOpcPartUri, coreProperties: ?*?*IXpsOMCoreProperties) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateCoreProperties(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUri, coreProperties);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateDictionary(self: *const T, dictionary: ?*?*IXpsOMDictionary) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateDictionary(@as(*const IXpsOMObjectFactory, @ptrCast(self)), dictionary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePartUriCollection(self: *const T, partUriCollection: ?*?*IXpsOMPartUriCollection) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartUriCollection(@as(*const IXpsOMObjectFactory, @ptrCast(self)), partUriCollection);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePackageWriterOnFile(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePackageWriterOnStream(self: *const T, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnStream(@as(*const IXpsOMObjectFactory, @ptrCast(self)), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreatePartUri(self: *const T, uri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreatePartUri(@as(*const IXpsOMObjectFactory, @ptrCast(self)), uri, partUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory_CreateReadOnlyStreamOnFile(self: *const T, filename: ?[*:0]const u16, stream: ?*?*IStream) HRESULT {
-                return @as(*const IXpsOMObjectFactory.VTable, @ptrCast(self.vtable)).CreateReadOnlyStreamOnFile(@as(*const IXpsOMObjectFactory, @ptrCast(self)), filename, stream);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreatePackage(self: *const IXpsOMObjectFactory, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackage(self, package);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreatePackageFromFile(self: *const IXpsOMObjectFactory, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageFromFile(self, filename, reuseObjects, package);
+    }
+    pub fn CreatePackageFromStream(self: *const IXpsOMObjectFactory, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageFromStream(self, stream, reuseObjects, package);
+    }
+    pub fn CreateStoryFragmentsResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, storyFragmentsResource: ?*?*IXpsOMStoryFragmentsResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateStoryFragmentsResource(self, acquiredStream, partUri, storyFragmentsResource);
+    }
+    pub fn CreateDocumentStructureResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, documentStructureResource: ?*?*IXpsOMDocumentStructureResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateDocumentStructureResource(self, acquiredStream, partUri, documentStructureResource);
+    }
+    pub fn CreateSignatureBlockResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, signatureBlockResource: ?*?*IXpsOMSignatureBlockResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSignatureBlockResource(self, acquiredStream, partUri, signatureBlockResource);
+    }
+    pub fn CreateRemoteDictionaryResource(self: *const IXpsOMObjectFactory, dictionary: ?*IXpsOMDictionary, partUri: ?*IOpcPartUri, remoteDictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRemoteDictionaryResource(self, dictionary, partUri, remoteDictionaryResource);
+    }
+    pub fn CreateRemoteDictionaryResourceFromStream(self: *const IXpsOMObjectFactory, dictionaryMarkupStream: ?*IStream, dictionaryPartUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRemoteDictionaryResourceFromStream(self, dictionaryMarkupStream, dictionaryPartUri, resources, dictionaryResource);
+    }
+    pub fn CreatePartResources(self: *const IXpsOMObjectFactory, partResources: ?*?*IXpsOMPartResources) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePartResources(self, partResources);
+    }
+    pub fn CreateDocumentSequence(self: *const IXpsOMObjectFactory, partUri: ?*IOpcPartUri, documentSequence: ?*?*IXpsOMDocumentSequence) callconv(.Inline) HRESULT {
+        return self.vtable.CreateDocumentSequence(self, partUri, documentSequence);
+    }
+    pub fn CreateDocument(self: *const IXpsOMObjectFactory, partUri: ?*IOpcPartUri, document: ?*?*IXpsOMDocument) callconv(.Inline) HRESULT {
+        return self.vtable.CreateDocument(self, partUri, document);
+    }
+    pub fn CreatePageReference(self: *const IXpsOMObjectFactory, advisoryPageDimensions: ?*const XPS_SIZE, pageReference: ?*?*IXpsOMPageReference) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePageReference(self, advisoryPageDimensions, pageReference);
+    }
+    pub fn CreatePage(self: *const IXpsOMObjectFactory, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePage(self, pageDimensions, language, partUri, page);
+    }
+    pub fn CreatePageFromStream(self: *const IXpsOMObjectFactory, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePageFromStream(self, pageMarkupStream, partUri, resources, reuseObjects, page);
+    }
+    pub fn CreateCanvas(self: *const IXpsOMObjectFactory, canvas: ?*?*IXpsOMCanvas) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCanvas(self, canvas);
+    }
+    pub fn CreateGlyphs(self: *const IXpsOMObjectFactory, fontResource: ?*IXpsOMFontResource, glyphs: ?*?*IXpsOMGlyphs) callconv(.Inline) HRESULT {
+        return self.vtable.CreateGlyphs(self, fontResource, glyphs);
+    }
+    pub fn CreatePath(self: *const IXpsOMObjectFactory, path: ?*?*IXpsOMPath) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePath(self, path);
+    }
+    pub fn CreateGeometry(self: *const IXpsOMObjectFactory, geometry: ?*?*IXpsOMGeometry) callconv(.Inline) HRESULT {
+        return self.vtable.CreateGeometry(self, geometry);
+    }
+    pub fn CreateGeometryFigure(self: *const IXpsOMObjectFactory, startPoint: ?*const XPS_POINT, figure: ?*?*IXpsOMGeometryFigure) callconv(.Inline) HRESULT {
+        return self.vtable.CreateGeometryFigure(self, startPoint, figure);
+    }
+    pub fn CreateMatrixTransform(self: *const IXpsOMObjectFactory, matrix: ?*const XPS_MATRIX, transform: ?*?*IXpsOMMatrixTransform) callconv(.Inline) HRESULT {
+        return self.vtable.CreateMatrixTransform(self, matrix, transform);
+    }
+    pub fn CreateSolidColorBrush(self: *const IXpsOMObjectFactory, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, solidColorBrush: ?*?*IXpsOMSolidColorBrush) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSolidColorBrush(self, color, colorProfile, solidColorBrush);
+    }
+    pub fn CreateColorProfileResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, colorProfileResource: ?*?*IXpsOMColorProfileResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateColorProfileResource(self, acquiredStream, partUri, colorProfileResource);
+    }
+    pub fn CreateImageBrush(self: *const IXpsOMObjectFactory, image: ?*IXpsOMImageResource, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, imageBrush: ?*?*IXpsOMImageBrush) callconv(.Inline) HRESULT {
+        return self.vtable.CreateImageBrush(self, image, viewBox, viewPort, imageBrush);
+    }
+    pub fn CreateVisualBrush(self: *const IXpsOMObjectFactory, viewBox: ?*const XPS_RECT, viewPort: ?*const XPS_RECT, visualBrush: ?*?*IXpsOMVisualBrush) callconv(.Inline) HRESULT {
+        return self.vtable.CreateVisualBrush(self, viewBox, viewPort, visualBrush);
+    }
+    pub fn CreateImageResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, contentType: XPS_IMAGE_TYPE, partUri: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateImageResource(self, acquiredStream, contentType, partUri, imageResource);
+    }
+    pub fn CreatePrintTicketResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, partUri: ?*IOpcPartUri, printTicketResource: ?*?*IXpsOMPrintTicketResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePrintTicketResource(self, acquiredStream, partUri, printTicketResource);
+    }
+    pub fn CreateFontResource(self: *const IXpsOMObjectFactory, acquiredStream: ?*IStream, fontEmbedding: XPS_FONT_EMBEDDING, partUri: ?*IOpcPartUri, isObfSourceStream: BOOL, fontResource: ?*?*IXpsOMFontResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFontResource(self, acquiredStream, fontEmbedding, partUri, isObfSourceStream, fontResource);
+    }
+    pub fn CreateGradientStop(self: *const IXpsOMObjectFactory, color: ?*const XPS_COLOR, colorProfile: ?*IXpsOMColorProfileResource, offset: f32, gradientStop: ?*?*IXpsOMGradientStop) callconv(.Inline) HRESULT {
+        return self.vtable.CreateGradientStop(self, color, colorProfile, offset, gradientStop);
+    }
+    pub fn CreateLinearGradientBrush(self: *const IXpsOMObjectFactory, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, startPoint: ?*const XPS_POINT, endPoint: ?*const XPS_POINT, linearGradientBrush: ?*?*IXpsOMLinearGradientBrush) callconv(.Inline) HRESULT {
+        return self.vtable.CreateLinearGradientBrush(self, gradStop1, gradStop2, startPoint, endPoint, linearGradientBrush);
+    }
+    pub fn CreateRadialGradientBrush(self: *const IXpsOMObjectFactory, gradStop1: ?*IXpsOMGradientStop, gradStop2: ?*IXpsOMGradientStop, centerPoint: ?*const XPS_POINT, gradientOrigin: ?*const XPS_POINT, radiiSizes: ?*const XPS_SIZE, radialGradientBrush: ?*?*IXpsOMRadialGradientBrush) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRadialGradientBrush(self, gradStop1, gradStop2, centerPoint, gradientOrigin, radiiSizes, radialGradientBrush);
+    }
+    pub fn CreateCoreProperties(self: *const IXpsOMObjectFactory, partUri: ?*IOpcPartUri, coreProperties: ?*?*IXpsOMCoreProperties) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCoreProperties(self, partUri, coreProperties);
+    }
+    pub fn CreateDictionary(self: *const IXpsOMObjectFactory, dictionary: ?*?*IXpsOMDictionary) callconv(.Inline) HRESULT {
+        return self.vtable.CreateDictionary(self, dictionary);
+    }
+    pub fn CreatePartUriCollection(self: *const IXpsOMObjectFactory, partUriCollection: ?*?*IXpsOMPartUriCollection) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePartUriCollection(self, partUriCollection);
+    }
+    pub fn CreatePackageWriterOnFile(self: *const IXpsOMObjectFactory, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageWriterOnFile(self, fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
+    }
+    pub fn CreatePackageWriterOnStream(self: *const IXpsOMObjectFactory, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageWriterOnStream(self, outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, packageWriter);
+    }
+    pub fn CreatePartUri(self: *const IXpsOMObjectFactory, uri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePartUri(self, uri, partUri);
+    }
+    pub fn CreateReadOnlyStreamOnFile(self: *const IXpsOMObjectFactory, filename: ?[*:0]const u16, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.CreateReadOnlyStreamOnFile(self, filename, stream);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMNameCollection_Value = Guid.initString("4bddf8ec-c915-421b-a166-d173d25653d2");
 pub const IID_IXpsOMNameCollection = &IID_IXpsOMNameCollection_Value;
-pub const IXpsOMNameCollection = extern struct {
+pub const IXpsOMNameCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMNameCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMNameCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMNameCollection,
-                index: u32,
-                name: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMNameCollection,
-                index: u32,
-                name: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMNameCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMNameCollection,
+            index: u32,
+            name: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMNameCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMNameCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMNameCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMNameCollection_GetAt(self: *const T, index: u32, name: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsOMNameCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMNameCollection, @ptrCast(self)), index, name);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMNameCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMNameCollection, index: u32, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, name);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPartUriCollection_Value = Guid.initString("57c650d4-067c-4893-8c33-f62a0633730f");
 pub const IID_IXpsOMPartUriCollection = &IID_IXpsOMPartUriCollection_Value;
-pub const IXpsOMPartUriCollection = extern struct {
+pub const IXpsOMPartUriCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartUriCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartUriCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-                partUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-                partUri: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartUriCollection,
-                index: u32,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Append: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPartUriCollection,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPartUriCollection,
-                partUri: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsOMPartUriCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsOMPartUriCollection,
+            index: u32,
+            partUri: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertAt: *const fn(
+            self: *const IXpsOMPartUriCollection,
+            index: u32,
+            partUri: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsOMPartUriCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAt: *const fn(
+            self: *const IXpsOMPartUriCollection,
+            index: u32,
+            partUri: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Append: *const fn(
+            self: *const IXpsOMPartUriCollection,
+            partUri: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartUriCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartUriCollection_GetAt(self: *const T, index: u32, partUri: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartUriCollection_InsertAt(self: *const T, index: u32, partUri: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).InsertAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartUriCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartUriCollection_SetAt(self: *const T, index: u32, partUri: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).SetAt(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), index, partUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPartUriCollection_Append(self: *const T, partUri: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsOMPartUriCollection.VTable, @ptrCast(self.vtable)).Append(@as(*const IXpsOMPartUriCollection, @ptrCast(self)), partUri);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsOMPartUriCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsOMPartUriCollection, index: u32, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, partUri);
+    }
+    pub fn InsertAt(self: *const IXpsOMPartUriCollection, index: u32, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.InsertAt(self, index, partUri);
+    }
+    pub fn RemoveAt(self: *const IXpsOMPartUriCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn SetAt(self: *const IXpsOMPartUriCollection, index: u32, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetAt(self, index, partUri);
+    }
+    pub fn Append(self: *const IXpsOMPartUriCollection, partUri: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.Append(self, partUri);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPackageWriter_Value = Guid.initString("4e2aa182-a443-42c6-b41b-4f8e9de73ff9");
 pub const IID_IXpsOMPackageWriter = &IID_IXpsOMPackageWriter_Value;
-pub const IXpsOMPackageWriter = extern struct {
+pub const IXpsOMPackageWriter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        StartNewDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageWriter,
-                documentPartName: ?*IOpcPartUri,
-                documentPrintTicket: ?*IXpsOMPrintTicketResource,
-                documentStructure: ?*IXpsOMDocumentStructureResource,
-                signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection,
-                restrictedFonts: ?*IXpsOMPartUriCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageWriter,
-                documentPartName: ?*IOpcPartUri,
-                documentPrintTicket: ?*IXpsOMPrintTicketResource,
-                documentStructure: ?*IXpsOMDocumentStructureResource,
-                signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection,
-                restrictedFonts: ?*IXpsOMPartUriCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddPage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageWriter,
-                page: ?*IXpsOMPage,
-                advisoryPageDimensions: ?*const XPS_SIZE,
-                discardableResourceParts: ?*IXpsOMPartUriCollection,
-                storyFragments: ?*IXpsOMStoryFragmentsResource,
-                pagePrintTicket: ?*IXpsOMPrintTicketResource,
-                pageThumbnail: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageWriter,
-                page: ?*IXpsOMPage,
-                advisoryPageDimensions: ?*const XPS_SIZE,
-                discardableResourceParts: ?*IXpsOMPartUriCollection,
-                storyFragments: ?*IXpsOMStoryFragmentsResource,
-                pagePrintTicket: ?*IXpsOMPrintTicketResource,
-                pageThumbnail: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageWriter,
-                resource: ?*IXpsOMResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageWriter,
-                resource: ?*IXpsOMResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsClosed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageWriter,
-                isClosed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageWriter,
-                isClosed: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        StartNewDocument: *const fn(
+            self: *const IXpsOMPackageWriter,
+            documentPartName: ?*IOpcPartUri,
+            documentPrintTicket: ?*IXpsOMPrintTicketResource,
+            documentStructure: ?*IXpsOMDocumentStructureResource,
+            signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection,
+            restrictedFonts: ?*IXpsOMPartUriCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddPage: *const fn(
+            self: *const IXpsOMPackageWriter,
+            page: ?*IXpsOMPage,
+            advisoryPageDimensions: ?*const XPS_SIZE,
+            discardableResourceParts: ?*IXpsOMPartUriCollection,
+            storyFragments: ?*IXpsOMStoryFragmentsResource,
+            pagePrintTicket: ?*IXpsOMPrintTicketResource,
+            pageThumbnail: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddResource: *const fn(
+            self: *const IXpsOMPackageWriter,
+            resource: ?*IXpsOMResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const IXpsOMPackageWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsClosed: *const fn(
+            self: *const IXpsOMPackageWriter,
+            isClosed: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageWriter_StartNewDocument(self: *const T, documentPartName: ?*IOpcPartUri, documentPrintTicket: ?*IXpsOMPrintTicketResource, documentStructure: ?*IXpsOMDocumentStructureResource, signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection, restrictedFonts: ?*IXpsOMPartUriCollection) HRESULT {
-                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).StartNewDocument(@as(*const IXpsOMPackageWriter, @ptrCast(self)), documentPartName, documentPrintTicket, documentStructure, signatureBlockResources, restrictedFonts);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageWriter_AddPage(self: *const T, page: ?*IXpsOMPage, advisoryPageDimensions: ?*const XPS_SIZE, discardableResourceParts: ?*IXpsOMPartUriCollection, storyFragments: ?*IXpsOMStoryFragmentsResource, pagePrintTicket: ?*IXpsOMPrintTicketResource, pageThumbnail: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).AddPage(@as(*const IXpsOMPackageWriter, @ptrCast(self)), page, advisoryPageDimensions, discardableResourceParts, storyFragments, pagePrintTicket, pageThumbnail);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageWriter_AddResource(self: *const T, resource: ?*IXpsOMResource) HRESULT {
-                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).AddResource(@as(*const IXpsOMPackageWriter, @ptrCast(self)), resource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageWriter_Close(self: *const T) HRESULT {
-                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsOMPackageWriter, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageWriter_IsClosed(self: *const T, isClosed: ?*BOOL) HRESULT {
-                return @as(*const IXpsOMPackageWriter.VTable, @ptrCast(self.vtable)).IsClosed(@as(*const IXpsOMPackageWriter, @ptrCast(self)), isClosed);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn StartNewDocument(self: *const IXpsOMPackageWriter, documentPartName: ?*IOpcPartUri, documentPrintTicket: ?*IXpsOMPrintTicketResource, documentStructure: ?*IXpsOMDocumentStructureResource, signatureBlockResources: ?*IXpsOMSignatureBlockResourceCollection, restrictedFonts: ?*IXpsOMPartUriCollection) callconv(.Inline) HRESULT {
+        return self.vtable.StartNewDocument(self, documentPartName, documentPrintTicket, documentStructure, signatureBlockResources, restrictedFonts);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AddPage(self: *const IXpsOMPackageWriter, page: ?*IXpsOMPage, advisoryPageDimensions: ?*const XPS_SIZE, discardableResourceParts: ?*IXpsOMPartUriCollection, storyFragments: ?*IXpsOMStoryFragmentsResource, pagePrintTicket: ?*IXpsOMPrintTicketResource, pageThumbnail: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.AddPage(self, page, advisoryPageDimensions, discardableResourceParts, storyFragments, pagePrintTicket, pageThumbnail);
+    }
+    pub fn AddResource(self: *const IXpsOMPackageWriter, resource: ?*IXpsOMResource) callconv(.Inline) HRESULT {
+        return self.vtable.AddResource(self, resource);
+    }
+    pub fn Close(self: *const IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn IsClosed(self: *const IXpsOMPackageWriter, isClosed: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.IsClosed(self, isClosed);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMPackageTarget_Value = Guid.initString("219a9db0-4959-47d0-8034-b1ce84f41a4d");
 pub const IID_IXpsOMPackageTarget = &IID_IXpsOMPackageTarget_Value;
-pub const IXpsOMPackageTarget = extern struct {
+pub const IXpsOMPackageTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateXpsOMPackageWriter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageTarget,
-                documentSequencePartName: ?*IOpcPartUri,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageTarget,
-                documentSequencePartName: ?*IOpcPartUri,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateXpsOMPackageWriter: *const fn(
+            self: *const IXpsOMPackageTarget,
+            documentSequencePartName: ?*IOpcPartUri,
+            documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
+            discardControlPartName: ?*IOpcPartUri,
+            packageWriter: ?*?*IXpsOMPackageWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageTarget_CreateXpsOMPackageWriter(self: *const T, documentSequencePartName: ?*IOpcPartUri, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @as(*const IXpsOMPackageTarget.VTable, @ptrCast(self.vtable)).CreateXpsOMPackageWriter(@as(*const IXpsOMPackageTarget, @ptrCast(self)), documentSequencePartName, documentSequencePrintTicket, discardControlPartName, packageWriter);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateXpsOMPackageWriter(self: *const IXpsOMPackageTarget, documentSequencePartName: ?*IOpcPartUri, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return self.vtable.CreateXpsOMPackageWriter(self, documentSequencePartName, documentSequencePrintTicket, discardControlPartName, packageWriter);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsOMThumbnailGenerator_Value = Guid.initString("15b873d5-1971-41e8-83a3-6578403064c7");
 pub const IID_IXpsOMThumbnailGenerator = &IID_IXpsOMThumbnailGenerator_Value;
-pub const IXpsOMThumbnailGenerator = extern struct {
+pub const IXpsOMThumbnailGenerator = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GenerateThumbnail: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMThumbnailGenerator,
-                page: ?*IXpsOMPage,
-                thumbnailType: XPS_IMAGE_TYPE,
-                thumbnailSize: XPS_THUMBNAIL_SIZE,
-                imageResourcePartName: ?*IOpcPartUri,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMThumbnailGenerator,
-                page: ?*IXpsOMPage,
-                thumbnailType: XPS_IMAGE_TYPE,
-                thumbnailSize: XPS_THUMBNAIL_SIZE,
-                imageResourcePartName: ?*IOpcPartUri,
-                imageResource: ?*?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GenerateThumbnail: *const fn(
+            self: *const IXpsOMThumbnailGenerator,
+            page: ?*IXpsOMPage,
+            thumbnailType: XPS_IMAGE_TYPE,
+            thumbnailSize: XPS_THUMBNAIL_SIZE,
+            imageResourcePartName: ?*IOpcPartUri,
+            imageResource: ?*?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMThumbnailGenerator_GenerateThumbnail(self: *const T, page: ?*IXpsOMPage, thumbnailType: XPS_IMAGE_TYPE, thumbnailSize: XPS_THUMBNAIL_SIZE, imageResourcePartName: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMThumbnailGenerator.VTable, @ptrCast(self.vtable)).GenerateThumbnail(@as(*const IXpsOMThumbnailGenerator, @ptrCast(self)), page, thumbnailType, thumbnailSize, imageResourcePartName, imageResource);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GenerateThumbnail(self: *const IXpsOMThumbnailGenerator, page: ?*IXpsOMPage, thumbnailType: XPS_IMAGE_TYPE, thumbnailSize: XPS_THUMBNAIL_SIZE, imageResourcePartName: ?*IOpcPartUri, imageResource: ?*?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.GenerateThumbnail(self, page, thumbnailType, thumbnailSize, imageResourcePartName, imageResource);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const XPS_DOCUMENT_TYPE = enum(i32) {
@@ -8211,583 +4652,321 @@ pub const XPS_DOCUMENT_TYPE_OPENXPS = XPS_DOCUMENT_TYPE.OPENXPS;
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMObjectFactory1_Value = Guid.initString("0a91b617-d612-4181-bf7c-be5824e9cc8f");
 pub const IID_IXpsOMObjectFactory1 = &IID_IXpsOMObjectFactory1_Value;
-pub const IXpsOMObjectFactory1 = extern struct {
+pub const IXpsOMObjectFactory1 = extern union {
     pub const VTable = extern struct {
         base: IXpsOMObjectFactory.VTable,
-        GetDocumentTypeFromFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                filename: ?[*:0]const u16,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                filename: ?[*:0]const u16,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentTypeFromStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                xpsDocumentStream: ?*IStream,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                xpsDocumentStream: ?*IStream,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertHDPhotoToJpegXR: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConvertJpegXRToHDPhoto: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                imageResource: ?*IXpsOMImageResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageWriterOnFile1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                documentType: XPS_DOCUMENT_TYPE,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                documentType: XPS_DOCUMENT_TYPE,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageWriterOnStream1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                outputStream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                documentType: XPS_DOCUMENT_TYPE,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                outputStream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                interleaving: XPS_INTERLEAVING,
-                documentSequencePartName: ?*IOpcPartUri,
-                coreProperties: ?*IXpsOMCoreProperties,
-                packageThumbnail: ?*IXpsOMImageResource,
-                documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
-                discardControlPartName: ?*IOpcPartUri,
-                documentType: XPS_DOCUMENT_TYPE,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackage1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                package: ?*?*IXpsOMPackage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                package: ?*?*IXpsOMPackage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageFromStream1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                stream: ?*IStream,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                stream: ?*IStream,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePackageFromFile1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                filename: ?[*:0]const u16,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                filename: ?[*:0]const u16,
-                reuseObjects: BOOL,
-                package: ?*?*IXpsOMPackage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePage1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                pageDimensions: ?*const XPS_SIZE,
-                language: ?[*:0]const u16,
-                partUri: ?*IOpcPartUri,
-                page: ?*?*IXpsOMPage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                pageDimensions: ?*const XPS_SIZE,
-                language: ?[*:0]const u16,
-                partUri: ?*IOpcPartUri,
-                page: ?*?*IXpsOMPage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePageFromStream1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                pageMarkupStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                reuseObjects: BOOL,
-                page: ?*?*IXpsOMPage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                pageMarkupStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                reuseObjects: BOOL,
-                page: ?*?*IXpsOMPage1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRemoteDictionaryResourceFromStream1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMObjectFactory1,
-                dictionaryMarkupStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMObjectFactory1,
-                dictionaryMarkupStream: ?*IStream,
-                partUri: ?*IOpcPartUri,
-                resources: ?*IXpsOMPartResources,
-                dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDocumentTypeFromFile: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            filename: ?[*:0]const u16,
+            documentType: ?*XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentTypeFromStream: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            xpsDocumentStream: ?*IStream,
+            documentType: ?*XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertHDPhotoToJpegXR: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            imageResource: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConvertJpegXRToHDPhoto: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            imageResource: ?*IXpsOMImageResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageWriterOnFile1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            fileName: ?[*:0]const u16,
+            securityAttributes: ?*SECURITY_ATTRIBUTES,
+            flagsAndAttributes: u32,
+            optimizeMarkupSize: BOOL,
+            interleaving: XPS_INTERLEAVING,
+            documentSequencePartName: ?*IOpcPartUri,
+            coreProperties: ?*IXpsOMCoreProperties,
+            packageThumbnail: ?*IXpsOMImageResource,
+            documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
+            discardControlPartName: ?*IOpcPartUri,
+            documentType: XPS_DOCUMENT_TYPE,
+            packageWriter: ?*?*IXpsOMPackageWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageWriterOnStream1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            outputStream: ?*ISequentialStream,
+            optimizeMarkupSize: BOOL,
+            interleaving: XPS_INTERLEAVING,
+            documentSequencePartName: ?*IOpcPartUri,
+            coreProperties: ?*IXpsOMCoreProperties,
+            packageThumbnail: ?*IXpsOMImageResource,
+            documentSequencePrintTicket: ?*IXpsOMPrintTicketResource,
+            discardControlPartName: ?*IOpcPartUri,
+            documentType: XPS_DOCUMENT_TYPE,
+            packageWriter: ?*?*IXpsOMPackageWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackage1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            package: ?*?*IXpsOMPackage1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageFromStream1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            stream: ?*IStream,
+            reuseObjects: BOOL,
+            package: ?*?*IXpsOMPackage1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePackageFromFile1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            filename: ?[*:0]const u16,
+            reuseObjects: BOOL,
+            package: ?*?*IXpsOMPackage1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePage1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            pageDimensions: ?*const XPS_SIZE,
+            language: ?[*:0]const u16,
+            partUri: ?*IOpcPartUri,
+            page: ?*?*IXpsOMPage1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePageFromStream1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            pageMarkupStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            resources: ?*IXpsOMPartResources,
+            reuseObjects: BOOL,
+            page: ?*?*IXpsOMPage1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRemoteDictionaryResourceFromStream1: *const fn(
+            self: *const IXpsOMObjectFactory1,
+            dictionaryMarkupStream: ?*IStream,
+            partUri: ?*IOpcPartUri,
+            resources: ?*IXpsOMPartResources,
+            dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMObjectFactory.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_GetDocumentTypeFromFile(self: *const T, filename: ?[*:0]const u16, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).GetDocumentTypeFromFile(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), filename, documentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_GetDocumentTypeFromStream(self: *const T, xpsDocumentStream: ?*IStream, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).GetDocumentTypeFromStream(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), xpsDocumentStream, documentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_ConvertHDPhotoToJpegXR(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).ConvertHDPhotoToJpegXR(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_ConvertJpegXRToHDPhoto(self: *const T, imageResource: ?*IXpsOMImageResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).ConvertJpegXRToHDPhoto(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), imageResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreatePackageWriterOnFile1(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnFile1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreatePackageWriterOnStream1(self: *const T, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageWriterOnStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreatePackage1(self: *const T, package: ?*?*IXpsOMPackage1) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackage1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreatePackageFromStream1(self: *const T, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), stream, reuseObjects, package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreatePackageFromFile1(self: *const T, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePackageFromFile1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), filename, reuseObjects, package);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreatePage1(self: *const T, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage1) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePage1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), pageDimensions, language, partUri, page);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreatePageFromStream1(self: *const T, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage1) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreatePageFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), pageMarkupStream, partUri, resources, reuseObjects, page);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMObjectFactory1_CreateRemoteDictionaryResourceFromStream1(self: *const T, dictionaryMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) HRESULT {
-                return @as(*const IXpsOMObjectFactory1.VTable, @ptrCast(self.vtable)).CreateRemoteDictionaryResourceFromStream1(@as(*const IXpsOMObjectFactory1, @ptrCast(self)), dictionaryMarkupStream, partUri, resources, dictionaryResource);
-            }
-        };
+    IXpsOMObjectFactory: IXpsOMObjectFactory,
+    IUnknown: IUnknown,
+    pub fn GetDocumentTypeFromFile(self: *const IXpsOMObjectFactory1, filename: ?[*:0]const u16, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentTypeFromFile(self, filename, documentType);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDocumentTypeFromStream(self: *const IXpsOMObjectFactory1, xpsDocumentStream: ?*IStream, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentTypeFromStream(self, xpsDocumentStream, documentType);
+    }
+    pub fn ConvertHDPhotoToJpegXR(self: *const IXpsOMObjectFactory1, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertHDPhotoToJpegXR(self, imageResource);
+    }
+    pub fn ConvertJpegXRToHDPhoto(self: *const IXpsOMObjectFactory1, imageResource: ?*IXpsOMImageResource) callconv(.Inline) HRESULT {
+        return self.vtable.ConvertJpegXRToHDPhoto(self, imageResource);
+    }
+    pub fn CreatePackageWriterOnFile1(self: *const IXpsOMObjectFactory1, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageWriterOnFile1(self, fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
+    }
+    pub fn CreatePackageWriterOnStream1(self: *const IXpsOMObjectFactory1, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, interleaving: XPS_INTERLEAVING, documentSequencePartName: ?*IOpcPartUri, coreProperties: ?*IXpsOMCoreProperties, packageThumbnail: ?*IXpsOMImageResource, documentSequencePrintTicket: ?*IXpsOMPrintTicketResource, discardControlPartName: ?*IOpcPartUri, documentType: XPS_DOCUMENT_TYPE, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageWriterOnStream1(self, outputStream, optimizeMarkupSize, interleaving, documentSequencePartName, coreProperties, packageThumbnail, documentSequencePrintTicket, discardControlPartName, documentType, packageWriter);
+    }
+    pub fn CreatePackage1(self: *const IXpsOMObjectFactory1, package: ?*?*IXpsOMPackage1) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackage1(self, package);
+    }
+    pub fn CreatePackageFromStream1(self: *const IXpsOMObjectFactory1, stream: ?*IStream, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageFromStream1(self, stream, reuseObjects, package);
+    }
+    pub fn CreatePackageFromFile1(self: *const IXpsOMObjectFactory1, filename: ?[*:0]const u16, reuseObjects: BOOL, package: ?*?*IXpsOMPackage1) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePackageFromFile1(self, filename, reuseObjects, package);
+    }
+    pub fn CreatePage1(self: *const IXpsOMObjectFactory1, pageDimensions: ?*const XPS_SIZE, language: ?[*:0]const u16, partUri: ?*IOpcPartUri, page: ?*?*IXpsOMPage1) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePage1(self, pageDimensions, language, partUri, page);
+    }
+    pub fn CreatePageFromStream1(self: *const IXpsOMObjectFactory1, pageMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, reuseObjects: BOOL, page: ?*?*IXpsOMPage1) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePageFromStream1(self, pageMarkupStream, partUri, resources, reuseObjects, page);
+    }
+    pub fn CreateRemoteDictionaryResourceFromStream1(self: *const IXpsOMObjectFactory1, dictionaryMarkupStream: ?*IStream, partUri: ?*IOpcPartUri, resources: ?*IXpsOMPartResources, dictionaryResource: ?*?*IXpsOMRemoteDictionaryResource) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRemoteDictionaryResourceFromStream1(self, dictionaryMarkupStream, partUri, resources, dictionaryResource);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMPackage1_Value = Guid.initString("95a9435e-12bb-461b-8e7f-c6adb04cd96a");
 pub const IID_IXpsOMPackage1 = &IID_IXpsOMPackage1_Value;
-pub const IXpsOMPackage1 = extern struct {
+pub const IXpsOMPackage1 = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPackage.VTable,
-        GetDocumentType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage1,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage1,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteToFile1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage1,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage1,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-                optimizeMarkupSize: BOOL,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteToStream1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackage1,
-                outputStream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackage1,
-                outputStream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDocumentType: *const fn(
+            self: *const IXpsOMPackage1,
+            documentType: ?*XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteToFile1: *const fn(
+            self: *const IXpsOMPackage1,
+            fileName: ?[*:0]const u16,
+            securityAttributes: ?*SECURITY_ATTRIBUTES,
+            flagsAndAttributes: u32,
+            optimizeMarkupSize: BOOL,
+            documentType: XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteToStream1: *const fn(
+            self: *const IXpsOMPackage1,
+            outputStream: ?*ISequentialStream,
+            optimizeMarkupSize: BOOL,
+            documentType: XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPackage.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage1_GetDocumentType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMPackage1, @ptrCast(self)), documentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage1_WriteToFile1(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).WriteToFile1(@as(*const IXpsOMPackage1, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, documentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackage1_WriteToStream1(self: *const T, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMPackage1.VTable, @ptrCast(self.vtable)).WriteToStream1(@as(*const IXpsOMPackage1, @ptrCast(self)), outputStream, optimizeMarkupSize, documentType);
-            }
-        };
+    IXpsOMPackage: IXpsOMPackage,
+    IUnknown: IUnknown,
+    pub fn GetDocumentType(self: *const IXpsOMPackage1, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentType(self, documentType);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn WriteToFile1(self: *const IXpsOMPackage1, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.WriteToFile1(self, fileName, securityAttributes, flagsAndAttributes, optimizeMarkupSize, documentType);
+    }
+    pub fn WriteToStream1(self: *const IXpsOMPackage1, outputStream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.WriteToStream1(self, outputStream, optimizeMarkupSize, documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMPage1_Value = Guid.initString("305b60ef-6892-4dda-9cbb-3aa65974508a");
 pub const IID_IXpsOMPage1 = &IID_IXpsOMPage1_Value;
-pub const IXpsOMPage1 = extern struct {
+pub const IXpsOMPage1 = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPage.VTable,
-        GetDocumentType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage1,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage1,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Write1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPage1,
-                stream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPage1,
-                stream: ?*ISequentialStream,
-                optimizeMarkupSize: BOOL,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDocumentType: *const fn(
+            self: *const IXpsOMPage1,
+            documentType: ?*XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Write1: *const fn(
+            self: *const IXpsOMPage1,
+            stream: ?*ISequentialStream,
+            optimizeMarkupSize: BOOL,
+            documentType: XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPage.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage1_GetDocumentType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMPage1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMPage1, @ptrCast(self)), documentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPage1_Write1(self: *const T, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMPage1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMPage1, @ptrCast(self)), stream, optimizeMarkupSize, documentType);
-            }
-        };
+    IXpsOMPage: IXpsOMPage,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetDocumentType(self: *const IXpsOMPage1, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentType(self, documentType);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Write1(self: *const IXpsOMPage1, stream: ?*ISequentialStream, optimizeMarkupSize: BOOL, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.Write1(self, stream, optimizeMarkupSize, documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsDocumentPackageTarget_Value = Guid.initString("3b0b6d38-53ad-41da-b212-d37637a6714e");
 pub const IID_IXpsDocumentPackageTarget = &IID_IXpsDocumentPackageTarget_Value;
-pub const IXpsDocumentPackageTarget = extern struct {
+pub const IXpsDocumentPackageTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetXpsOMPackageWriter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsDocumentPackageTarget,
-                documentSequencePartName: ?*IOpcPartUri,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsDocumentPackageTarget,
-                documentSequencePartName: ?*IOpcPartUri,
-                discardControlPartName: ?*IOpcPartUri,
-                packageWriter: ?*?*IXpsOMPackageWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetXpsOMFactory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsDocumentPackageTarget,
-                xpsFactory: ?*?*IXpsOMObjectFactory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsDocumentPackageTarget,
-                xpsFactory: ?*?*IXpsOMObjectFactory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetXpsType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsDocumentPackageTarget,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsDocumentPackageTarget,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetXpsOMPackageWriter: *const fn(
+            self: *const IXpsDocumentPackageTarget,
+            documentSequencePartName: ?*IOpcPartUri,
+            discardControlPartName: ?*IOpcPartUri,
+            packageWriter: ?*?*IXpsOMPackageWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetXpsOMFactory: *const fn(
+            self: *const IXpsDocumentPackageTarget,
+            xpsFactory: ?*?*IXpsOMObjectFactory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetXpsType: *const fn(
+            self: *const IXpsDocumentPackageTarget,
+            documentType: ?*XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsDocumentPackageTarget_GetXpsOMPackageWriter(self: *const T, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) HRESULT {
-                return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsOMPackageWriter(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), documentSequencePartName, discardControlPartName, packageWriter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsDocumentPackageTarget_GetXpsOMFactory(self: *const T, xpsFactory: ?*?*IXpsOMObjectFactory) HRESULT {
-                return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsOMFactory(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), xpsFactory);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsDocumentPackageTarget_GetXpsType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetXpsType(@as(*const IXpsDocumentPackageTarget, @ptrCast(self)), documentType);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetXpsOMPackageWriter(self: *const IXpsDocumentPackageTarget, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, packageWriter: ?*?*IXpsOMPackageWriter) callconv(.Inline) HRESULT {
+        return self.vtable.GetXpsOMPackageWriter(self, documentSequencePartName, discardControlPartName, packageWriter);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetXpsOMFactory(self: *const IXpsDocumentPackageTarget, xpsFactory: ?*?*IXpsOMObjectFactory) callconv(.Inline) HRESULT {
+        return self.vtable.GetXpsOMFactory(self, xpsFactory);
+    }
+    pub fn GetXpsType(self: *const IXpsDocumentPackageTarget, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetXpsType(self, documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IXpsOMRemoteDictionaryResource1_Value = Guid.initString("bf8fc1d4-9d46-4141-ba5f-94bb9250d041");
 pub const IID_IXpsOMRemoteDictionaryResource1 = &IID_IXpsOMRemoteDictionaryResource1_Value;
-pub const IXpsOMRemoteDictionaryResource1 = extern struct {
+pub const IXpsOMRemoteDictionaryResource1 = extern union {
     pub const VTable = extern struct {
         base: IXpsOMRemoteDictionaryResource.VTable,
-        GetDocumentType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResource1,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResource1,
-                documentType: ?*XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Write1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMRemoteDictionaryResource1,
-                stream: ?*ISequentialStream,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMRemoteDictionaryResource1,
-                stream: ?*ISequentialStream,
-                documentType: XPS_DOCUMENT_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDocumentType: *const fn(
+            self: *const IXpsOMRemoteDictionaryResource1,
+            documentType: ?*XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Write1: *const fn(
+            self: *const IXpsOMRemoteDictionaryResource1,
+            stream: ?*ISequentialStream,
+            documentType: XPS_DOCUMENT_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMRemoteDictionaryResource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResource1_GetDocumentType(self: *const T, documentType: ?*XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResource1.VTable, @ptrCast(self.vtable)).GetDocumentType(@as(*const IXpsOMRemoteDictionaryResource1, @ptrCast(self)), documentType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMRemoteDictionaryResource1_Write1(self: *const T, stream: ?*ISequentialStream, documentType: XPS_DOCUMENT_TYPE) HRESULT {
-                return @as(*const IXpsOMRemoteDictionaryResource1.VTable, @ptrCast(self.vtable)).Write1(@as(*const IXpsOMRemoteDictionaryResource1, @ptrCast(self)), stream, documentType);
-            }
-        };
+    IXpsOMRemoteDictionaryResource: IXpsOMRemoteDictionaryResource,
+    IXpsOMResource: IXpsOMResource,
+    IXpsOMPart: IXpsOMPart,
+    IUnknown: IUnknown,
+    pub fn GetDocumentType(self: *const IXpsOMRemoteDictionaryResource1, documentType: ?*XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentType(self, documentType);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Write1(self: *const IXpsOMRemoteDictionaryResource1, stream: ?*ISequentialStream, documentType: XPS_DOCUMENT_TYPE) callconv(.Inline) HRESULT {
+        return self.vtable.Write1(self, stream, documentType);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IXpsOMPackageWriter3D_Value = Guid.initString("e8a45033-640e-43fa-9bdf-fddeaa31c6a0");
 pub const IID_IXpsOMPackageWriter3D = &IID_IXpsOMPackageWriter3D_Value;
-pub const IXpsOMPackageWriter3D = extern struct {
+pub const IXpsOMPackageWriter3D = extern union {
     pub const VTable = extern struct {
         base: IXpsOMPackageWriter.VTable,
-        AddModelTexture: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageWriter3D,
-                texturePartName: ?*IOpcPartUri,
-                textureData: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageWriter3D,
-                texturePartName: ?*IOpcPartUri,
-                textureData: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetModelPrintTicket: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsOMPackageWriter3D,
-                printTicketPartName: ?*IOpcPartUri,
-                printTicketData: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsOMPackageWriter3D,
-                printTicketPartName: ?*IOpcPartUri,
-                printTicketData: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddModelTexture: *const fn(
+            self: *const IXpsOMPackageWriter3D,
+            texturePartName: ?*IOpcPartUri,
+            textureData: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetModelPrintTicket: *const fn(
+            self: *const IXpsOMPackageWriter3D,
+            printTicketPartName: ?*IOpcPartUri,
+            printTicketData: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IXpsOMPackageWriter.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageWriter3D_AddModelTexture(self: *const T, texturePartName: ?*IOpcPartUri, textureData: ?*IStream) HRESULT {
-                return @as(*const IXpsOMPackageWriter3D.VTable, @ptrCast(self.vtable)).AddModelTexture(@as(*const IXpsOMPackageWriter3D, @ptrCast(self)), texturePartName, textureData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsOMPackageWriter3D_SetModelPrintTicket(self: *const T, printTicketPartName: ?*IOpcPartUri, printTicketData: ?*IStream) HRESULT {
-                return @as(*const IXpsOMPackageWriter3D.VTable, @ptrCast(self.vtable)).SetModelPrintTicket(@as(*const IXpsOMPackageWriter3D, @ptrCast(self)), printTicketPartName, printTicketData);
-            }
-        };
+    IXpsOMPackageWriter: IXpsOMPackageWriter,
+    IUnknown: IUnknown,
+    pub fn AddModelTexture(self: *const IXpsOMPackageWriter3D, texturePartName: ?*IOpcPartUri, textureData: ?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.AddModelTexture(self, texturePartName, textureData);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetModelPrintTicket(self: *const IXpsOMPackageWriter3D, printTicketPartName: ?*IOpcPartUri, printTicketData: ?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.SetModelPrintTicket(self, printTicketPartName, printTicketData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IXpsDocumentPackageTarget3D_Value = Guid.initString("60ba71b8-3101-4984-9199-f4ea775ff01d");
 pub const IID_IXpsDocumentPackageTarget3D = &IID_IXpsDocumentPackageTarget3D_Value;
-pub const IXpsDocumentPackageTarget3D = extern struct {
+pub const IXpsDocumentPackageTarget3D = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetXpsOMPackageWriter3D: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsDocumentPackageTarget3D,
-                documentSequencePartName: ?*IOpcPartUri,
-                discardControlPartName: ?*IOpcPartUri,
-                modelPartName: ?*IOpcPartUri,
-                modelData: ?*IStream,
-                packageWriter: ?*?*IXpsOMPackageWriter3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsDocumentPackageTarget3D,
-                documentSequencePartName: ?*IOpcPartUri,
-                discardControlPartName: ?*IOpcPartUri,
-                modelPartName: ?*IOpcPartUri,
-                modelData: ?*IStream,
-                packageWriter: ?*?*IXpsOMPackageWriter3D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetXpsOMFactory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsDocumentPackageTarget3D,
-                xpsFactory: ?*?*IXpsOMObjectFactory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsDocumentPackageTarget3D,
-                xpsFactory: ?*?*IXpsOMObjectFactory,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetXpsOMPackageWriter3D: *const fn(
+            self: *const IXpsDocumentPackageTarget3D,
+            documentSequencePartName: ?*IOpcPartUri,
+            discardControlPartName: ?*IOpcPartUri,
+            modelPartName: ?*IOpcPartUri,
+            modelData: ?*IStream,
+            packageWriter: ?*?*IXpsOMPackageWriter3D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetXpsOMFactory: *const fn(
+            self: *const IXpsDocumentPackageTarget3D,
+            xpsFactory: ?*?*IXpsOMObjectFactory,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsDocumentPackageTarget3D_GetXpsOMPackageWriter3D(self: *const T, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, modelPartName: ?*IOpcPartUri, modelData: ?*IStream, packageWriter: ?*?*IXpsOMPackageWriter3D) HRESULT {
-                return @as(*const IXpsDocumentPackageTarget3D.VTable, @ptrCast(self.vtable)).GetXpsOMPackageWriter3D(@as(*const IXpsDocumentPackageTarget3D, @ptrCast(self)), documentSequencePartName, discardControlPartName, modelPartName, modelData, packageWriter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsDocumentPackageTarget3D_GetXpsOMFactory(self: *const T, xpsFactory: ?*?*IXpsOMObjectFactory) HRESULT {
-                return @as(*const IXpsDocumentPackageTarget3D.VTable, @ptrCast(self.vtable)).GetXpsOMFactory(@as(*const IXpsDocumentPackageTarget3D, @ptrCast(self)), xpsFactory);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetXpsOMPackageWriter3D(self: *const IXpsDocumentPackageTarget3D, documentSequencePartName: ?*IOpcPartUri, discardControlPartName: ?*IOpcPartUri, modelPartName: ?*IOpcPartUri, modelData: ?*IStream, packageWriter: ?*?*IXpsOMPackageWriter3D) callconv(.Inline) HRESULT {
+        return self.vtable.GetXpsOMPackageWriter3D(self, documentSequencePartName, discardControlPartName, modelPartName, modelData, packageWriter);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetXpsOMFactory(self: *const IXpsDocumentPackageTarget3D, xpsFactory: ?*?*IXpsOMObjectFactory) callconv(.Inline) HRESULT {
+        return self.vtable.GetXpsOMFactory(self, xpsFactory);
+    }
 };
 
 const CLSID_XpsSignatureManager_Value = Guid.initString("b0c43320-2315-44a2-b70a-0943a140a8ee");
@@ -8831,1098 +5010,578 @@ pub const XPS_SIGN_FLAGS_IGNORE_MARKUP_COMPATIBILITY = XPS_SIGN_FLAGS.IGNORE_MAR
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSigningOptions_Value = Guid.initString("7718eae4-3215-49be-af5b-594fef7fcfa6");
 pub const IID_IXpsSigningOptions = &IID_IXpsSigningOptions_Value;
-pub const IXpsSigningOptions = extern struct {
+pub const IXpsSigningOptions = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSignatureId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                signatureId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                signatureId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSignatureId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                signatureId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                signatureId: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignatureMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                signatureMethod: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                signatureMethod: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSignatureMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                signatureMethod: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                signatureMethod: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDigestMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                digestMethod: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                digestMethod: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDigestMethod: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                digestMethod: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                digestMethod: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignaturePartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                signaturePartName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                signaturePartName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSignaturePartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                signaturePartName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                signaturePartName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                policy: ?*XPS_SIGN_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                policy: ?*XPS_SIGN_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                policy: XPS_SIGN_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                policy: XPS_SIGN_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSigningTimeFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSigningTimeFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                timeFormat: OPC_SIGNATURE_TIME_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                timeFormat: OPC_SIGNATURE_TIME_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCustomObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                customObjectSet: ?*?*IOpcSignatureCustomObjectSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                customObjectSet: ?*?*IOpcSignatureCustomObjectSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCustomReferences: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                customReferenceSet: ?*?*IOpcSignatureReferenceSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                customReferenceSet: ?*?*IOpcSignatureReferenceSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCertificateSet: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                certificateSet: ?*?*IOpcCertificateSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                certificateSet: ?*?*IOpcCertificateSet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                flags: ?*XPS_SIGN_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                flags: ?*XPS_SIGN_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSigningOptions,
-                flags: XPS_SIGN_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSigningOptions,
-                flags: XPS_SIGN_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSignatureId: *const fn(
+            self: *const IXpsSigningOptions,
+            signatureId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSignatureId: *const fn(
+            self: *const IXpsSigningOptions,
+            signatureId: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignatureMethod: *const fn(
+            self: *const IXpsSigningOptions,
+            signatureMethod: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSignatureMethod: *const fn(
+            self: *const IXpsSigningOptions,
+            signatureMethod: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDigestMethod: *const fn(
+            self: *const IXpsSigningOptions,
+            digestMethod: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDigestMethod: *const fn(
+            self: *const IXpsSigningOptions,
+            digestMethod: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignaturePartName: *const fn(
+            self: *const IXpsSigningOptions,
+            signaturePartName: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSignaturePartName: *const fn(
+            self: *const IXpsSigningOptions,
+            signaturePartName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPolicy: *const fn(
+            self: *const IXpsSigningOptions,
+            policy: ?*XPS_SIGN_POLICY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPolicy: *const fn(
+            self: *const IXpsSigningOptions,
+            policy: XPS_SIGN_POLICY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSigningTimeFormat: *const fn(
+            self: *const IXpsSigningOptions,
+            timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSigningTimeFormat: *const fn(
+            self: *const IXpsSigningOptions,
+            timeFormat: OPC_SIGNATURE_TIME_FORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCustomObjects: *const fn(
+            self: *const IXpsSigningOptions,
+            customObjectSet: ?*?*IOpcSignatureCustomObjectSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCustomReferences: *const fn(
+            self: *const IXpsSigningOptions,
+            customReferenceSet: ?*?*IOpcSignatureReferenceSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificateSet: *const fn(
+            self: *const IXpsSigningOptions,
+            certificateSet: ?*?*IOpcCertificateSet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFlags: *const fn(
+            self: *const IXpsSigningOptions,
+            flags: ?*XPS_SIGN_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFlags: *const fn(
+            self: *const IXpsSigningOptions,
+            flags: XPS_SIGN_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetSignatureId(self: *const T, signatureId: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_SetSignatureId(self: *const T, signatureId: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureId(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetSignatureMethod(self: *const T, signatureMethod: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignatureMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureMethod);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_SetSignatureMethod(self: *const T, signatureMethod: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignatureMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), signatureMethod);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetDigestMethod(self: *const T, digestMethod: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetDigestMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), digestMethod);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_SetDigestMethod(self: *const T, digestMethod: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetDigestMethod(@as(*const IXpsSigningOptions, @ptrCast(self)), digestMethod);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetSignaturePartName(self: *const T, signaturePartName: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IXpsSigningOptions, @ptrCast(self)), signaturePartName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_SetSignaturePartName(self: *const T, signaturePartName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSignaturePartName(@as(*const IXpsSigningOptions, @ptrCast(self)), signaturePartName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetPolicy(self: *const T, policy: ?*XPS_SIGN_POLICY) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IXpsSigningOptions, @ptrCast(self)), policy);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_SetPolicy(self: *const T, policy: XPS_SIGN_POLICY) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetPolicy(@as(*const IXpsSigningOptions, @ptrCast(self)), policy);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetSigningTimeFormat(self: *const T, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetSigningTimeFormat(@as(*const IXpsSigningOptions, @ptrCast(self)), timeFormat);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_SetSigningTimeFormat(self: *const T, timeFormat: OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetSigningTimeFormat(@as(*const IXpsSigningOptions, @ptrCast(self)), timeFormat);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetCustomObjects(self: *const T, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomObjects(@as(*const IXpsSigningOptions, @ptrCast(self)), customObjectSet);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetCustomReferences(self: *const T, customReferenceSet: ?*?*IOpcSignatureReferenceSet) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCustomReferences(@as(*const IXpsSigningOptions, @ptrCast(self)), customReferenceSet);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetCertificateSet(self: *const T, certificateSet: ?*?*IOpcCertificateSet) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetCertificateSet(@as(*const IXpsSigningOptions, @ptrCast(self)), certificateSet);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_GetFlags(self: *const T, flags: ?*XPS_SIGN_FLAGS) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).GetFlags(@as(*const IXpsSigningOptions, @ptrCast(self)), flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSigningOptions_SetFlags(self: *const T, flags: XPS_SIGN_FLAGS) HRESULT {
-                return @as(*const IXpsSigningOptions.VTable, @ptrCast(self.vtable)).SetFlags(@as(*const IXpsSigningOptions, @ptrCast(self)), flags);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetSignatureId(self: *const IXpsSigningOptions, signatureId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureId(self, signatureId);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetSignatureId(self: *const IXpsSigningOptions, signatureId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetSignatureId(self, signatureId);
+    }
+    pub fn GetSignatureMethod(self: *const IXpsSigningOptions, signatureMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureMethod(self, signatureMethod);
+    }
+    pub fn SetSignatureMethod(self: *const IXpsSigningOptions, signatureMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetSignatureMethod(self, signatureMethod);
+    }
+    pub fn GetDigestMethod(self: *const IXpsSigningOptions, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetDigestMethod(self, digestMethod);
+    }
+    pub fn SetDigestMethod(self: *const IXpsSigningOptions, digestMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetDigestMethod(self, digestMethod);
+    }
+    pub fn GetSignaturePartName(self: *const IXpsSigningOptions, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignaturePartName(self, signaturePartName);
+    }
+    pub fn SetSignaturePartName(self: *const IXpsSigningOptions, signaturePartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetSignaturePartName(self, signaturePartName);
+    }
+    pub fn GetPolicy(self: *const IXpsSigningOptions, policy: ?*XPS_SIGN_POLICY) callconv(.Inline) HRESULT {
+        return self.vtable.GetPolicy(self, policy);
+    }
+    pub fn SetPolicy(self: *const IXpsSigningOptions, policy: XPS_SIGN_POLICY) callconv(.Inline) HRESULT {
+        return self.vtable.SetPolicy(self, policy);
+    }
+    pub fn GetSigningTimeFormat(self: *const IXpsSigningOptions, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return self.vtable.GetSigningTimeFormat(self, timeFormat);
+    }
+    pub fn SetSigningTimeFormat(self: *const IXpsSigningOptions, timeFormat: OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return self.vtable.SetSigningTimeFormat(self, timeFormat);
+    }
+    pub fn GetCustomObjects(self: *const IXpsSigningOptions, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) callconv(.Inline) HRESULT {
+        return self.vtable.GetCustomObjects(self, customObjectSet);
+    }
+    pub fn GetCustomReferences(self: *const IXpsSigningOptions, customReferenceSet: ?*?*IOpcSignatureReferenceSet) callconv(.Inline) HRESULT {
+        return self.vtable.GetCustomReferences(self, customReferenceSet);
+    }
+    pub fn GetCertificateSet(self: *const IXpsSigningOptions, certificateSet: ?*?*IOpcCertificateSet) callconv(.Inline) HRESULT {
+        return self.vtable.GetCertificateSet(self, certificateSet);
+    }
+    pub fn GetFlags(self: *const IXpsSigningOptions, flags: ?*XPS_SIGN_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.GetFlags(self, flags);
+    }
+    pub fn SetFlags(self: *const IXpsSigningOptions, flags: XPS_SIGN_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.SetFlags(self, flags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureCollection_Value = Guid.initString("a2d1d95d-add2-4dff-ab27-6b9c645ff322");
 pub const IID_IXpsSignatureCollection = &IID_IXpsSignatureCollection_Value;
-pub const IXpsSignatureCollection = extern struct {
+pub const IXpsSignatureCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureCollection,
-                index: u32,
-                signature: ?*?*IXpsSignature,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureCollection,
-                index: u32,
-                signature: ?*?*IXpsSignature,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsSignatureCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsSignatureCollection,
+            index: u32,
+            signature: ?*?*IXpsSignature,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsSignatureCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureCollection_GetAt(self: *const T, index: u32, signature: ?*?*IXpsSignature) HRESULT {
-                return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureCollection, @ptrCast(self)), index, signature);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsSignatureCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureCollection, @ptrCast(self)), index);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsSignatureCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsSignatureCollection, index: u32, signature: ?*?*IXpsSignature) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, signature);
+    }
+    pub fn RemoveAt(self: *const IXpsSignatureCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignature_Value = Guid.initString("6ae4c93e-1ade-42fb-898b-3a5658284857");
 pub const IID_IXpsSignature = &IID_IXpsSignature_Value;
-pub const IXpsSignature = extern struct {
+pub const IXpsSignature = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetSignatureId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                sigId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                sigId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignatureValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                signatureHashValue: [*]?*u8,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                signatureHashValue: [*]?*u8,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCertificateEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                certificateEnumerator: ?*?*IOpcCertificateEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                certificateEnumerator: ?*?*IOpcCertificateEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSigningTime: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                sigDateTimeString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                sigDateTimeString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSigningTimeFormat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignaturePartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                signaturePartName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                signaturePartName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Verify: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                x509Certificate: ?*const CERT_CONTEXT,
-                sigStatus: ?*XPS_SIGNATURE_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                x509Certificate: ?*const CERT_CONTEXT,
-                sigStatus: ?*XPS_SIGNATURE_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                policy: ?*XPS_SIGN_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                policy: ?*XPS_SIGN_POLICY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCustomObjectEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCustomReferenceEnumerator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignatureXml: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                signatureXml: [*]?*u8,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                signatureXml: [*]?*u8,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSignatureXml: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignature,
-                signatureXml: [*:0]const u8,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignature,
-                signatureXml: [*:0]const u8,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSignatureId: *const fn(
+            self: *const IXpsSignature,
+            sigId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignatureValue: *const fn(
+            self: *const IXpsSignature,
+            signatureHashValue: [*]?*u8,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCertificateEnumerator: *const fn(
+            self: *const IXpsSignature,
+            certificateEnumerator: ?*?*IOpcCertificateEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSigningTime: *const fn(
+            self: *const IXpsSignature,
+            sigDateTimeString: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSigningTimeFormat: *const fn(
+            self: *const IXpsSignature,
+            timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignaturePartName: *const fn(
+            self: *const IXpsSignature,
+            signaturePartName: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Verify: *const fn(
+            self: *const IXpsSignature,
+            x509Certificate: ?*const CERT_CONTEXT,
+            sigStatus: ?*XPS_SIGNATURE_STATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPolicy: *const fn(
+            self: *const IXpsSignature,
+            policy: ?*XPS_SIGN_POLICY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCustomObjectEnumerator: *const fn(
+            self: *const IXpsSignature,
+            customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCustomReferenceEnumerator: *const fn(
+            self: *const IXpsSignature,
+            customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignatureXml: *const fn(
+            self: *const IXpsSignature,
+            signatureXml: [*]?*u8,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSignatureXml: *const fn(
+            self: *const IXpsSignature,
+            signatureXml: [*:0]const u8,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetSignatureId(self: *const T, sigId: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureId(@as(*const IXpsSignature, @ptrCast(self)), sigId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetSignatureValue(self: *const T, signatureHashValue: [*]?*u8, count: ?*u32) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureValue(@as(*const IXpsSignature, @ptrCast(self)), signatureHashValue, count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetCertificateEnumerator(self: *const T, certificateEnumerator: ?*?*IOpcCertificateEnumerator) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCertificateEnumerator(@as(*const IXpsSignature, @ptrCast(self)), certificateEnumerator);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetSigningTime(self: *const T, sigDateTimeString: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSigningTime(@as(*const IXpsSignature, @ptrCast(self)), sigDateTimeString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetSigningTimeFormat(self: *const T, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSigningTimeFormat(@as(*const IXpsSignature, @ptrCast(self)), timeFormat);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetSignaturePartName(self: *const T, signaturePartName: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignaturePartName(@as(*const IXpsSignature, @ptrCast(self)), signaturePartName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_Verify(self: *const T, x509Certificate: ?*const CERT_CONTEXT, sigStatus: ?*XPS_SIGNATURE_STATUS) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).Verify(@as(*const IXpsSignature, @ptrCast(self)), x509Certificate, sigStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetPolicy(self: *const T, policy: ?*XPS_SIGN_POLICY) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetPolicy(@as(*const IXpsSignature, @ptrCast(self)), policy);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetCustomObjectEnumerator(self: *const T, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCustomObjectEnumerator(@as(*const IXpsSignature, @ptrCast(self)), customObjectEnumerator);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetCustomReferenceEnumerator(self: *const T, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetCustomReferenceEnumerator(@as(*const IXpsSignature, @ptrCast(self)), customReferenceEnumerator);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_GetSignatureXml(self: *const T, signatureXml: [*]?*u8, count: ?*u32) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).GetSignatureXml(@as(*const IXpsSignature, @ptrCast(self)), signatureXml, count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignature_SetSignatureXml(self: *const T, signatureXml: [*:0]const u8, count: u32) HRESULT {
-                return @as(*const IXpsSignature.VTable, @ptrCast(self.vtable)).SetSignatureXml(@as(*const IXpsSignature, @ptrCast(self)), signatureXml, count);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetSignatureId(self: *const IXpsSignature, sigId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureId(self, sigId);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSignatureValue(self: *const IXpsSignature, signatureHashValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureValue(self, signatureHashValue, count);
+    }
+    pub fn GetCertificateEnumerator(self: *const IXpsSignature, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+        return self.vtable.GetCertificateEnumerator(self, certificateEnumerator);
+    }
+    pub fn GetSigningTime(self: *const IXpsSignature, sigDateTimeString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetSigningTime(self, sigDateTimeString);
+    }
+    pub fn GetSigningTimeFormat(self: *const IXpsSignature, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+        return self.vtable.GetSigningTimeFormat(self, timeFormat);
+    }
+    pub fn GetSignaturePartName(self: *const IXpsSignature, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignaturePartName(self, signaturePartName);
+    }
+    pub fn Verify(self: *const IXpsSignature, x509Certificate: ?*const CERT_CONTEXT, sigStatus: ?*XPS_SIGNATURE_STATUS) callconv(.Inline) HRESULT {
+        return self.vtable.Verify(self, x509Certificate, sigStatus);
+    }
+    pub fn GetPolicy(self: *const IXpsSignature, policy: ?*XPS_SIGN_POLICY) callconv(.Inline) HRESULT {
+        return self.vtable.GetPolicy(self, policy);
+    }
+    pub fn GetCustomObjectEnumerator(self: *const IXpsSignature, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+        return self.vtable.GetCustomObjectEnumerator(self, customObjectEnumerator);
+    }
+    pub fn GetCustomReferenceEnumerator(self: *const IXpsSignature, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+        return self.vtable.GetCustomReferenceEnumerator(self, customReferenceEnumerator);
+    }
+    pub fn GetSignatureXml(self: *const IXpsSignature, signatureXml: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureXml(self, signatureXml, count);
+    }
+    pub fn SetSignatureXml(self: *const IXpsSignature, signatureXml: [*:0]const u8, count: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetSignatureXml(self, signatureXml, count);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureBlockCollection_Value = Guid.initString("23397050-fe99-467a-8dce-9237f074ffe4");
 pub const IID_IXpsSignatureBlockCollection = &IID_IXpsSignatureBlockCollection_Value;
-pub const IXpsSignatureBlockCollection = extern struct {
+pub const IXpsSignatureBlockCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlockCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlockCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlockCollection,
-                index: u32,
-                signatureBlock: ?*?*IXpsSignatureBlock,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlockCollection,
-                index: u32,
-                signatureBlock: ?*?*IXpsSignatureBlock,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlockCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlockCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsSignatureBlockCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsSignatureBlockCollection,
+            index: u32,
+            signatureBlock: ?*?*IXpsSignatureBlock,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsSignatureBlockCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlockCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlockCollection_GetAt(self: *const T, index: u32, signatureBlock: ?*?*IXpsSignatureBlock) HRESULT {
-                return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), index, signatureBlock);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlockCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsSignatureBlockCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureBlockCollection, @ptrCast(self)), index);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsSignatureBlockCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsSignatureBlockCollection, index: u32, signatureBlock: ?*?*IXpsSignatureBlock) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, signatureBlock);
+    }
+    pub fn RemoveAt(self: *const IXpsSignatureBlockCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureBlock_Value = Guid.initString("151fac09-0b97-4ac6-a323-5e4297d4322b");
 pub const IID_IXpsSignatureBlock = &IID_IXpsSignatureBlock_Value;
-pub const IXpsSignatureBlock = extern struct {
+pub const IXpsSignatureBlock = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRequests: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlock,
-                requests: ?*?*IXpsSignatureRequestCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlock,
-                requests: ?*?*IXpsSignatureRequestCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlock,
-                partName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlock,
-                partName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlock,
-                fixedDocumentIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlock,
-                fixedDocumentIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDocumentName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlock,
-                fixedDocumentName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlock,
-                fixedDocumentName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRequest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureBlock,
-                requestId: ?[*:0]const u16,
-                signatureRequest: ?*?*IXpsSignatureRequest,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureBlock,
-                requestId: ?[*:0]const u16,
-                signatureRequest: ?*?*IXpsSignatureRequest,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetRequests: *const fn(
+            self: *const IXpsSignatureBlock,
+            requests: ?*?*IXpsSignatureRequestCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPartName: *const fn(
+            self: *const IXpsSignatureBlock,
+            partName: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentIndex: *const fn(
+            self: *const IXpsSignatureBlock,
+            fixedDocumentIndex: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDocumentName: *const fn(
+            self: *const IXpsSignatureBlock,
+            fixedDocumentName: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRequest: *const fn(
+            self: *const IXpsSignatureBlock,
+            requestId: ?[*:0]const u16,
+            signatureRequest: ?*?*IXpsSignatureRequest,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlock_GetRequests(self: *const T, requests: ?*?*IXpsSignatureRequestCollection) HRESULT {
-                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetRequests(@as(*const IXpsSignatureBlock, @ptrCast(self)), requests);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlock_GetPartName(self: *const T, partName: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetPartName(@as(*const IXpsSignatureBlock, @ptrCast(self)), partName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlock_GetDocumentIndex(self: *const T, fixedDocumentIndex: ?*u32) HRESULT {
-                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetDocumentIndex(@as(*const IXpsSignatureBlock, @ptrCast(self)), fixedDocumentIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlock_GetDocumentName(self: *const T, fixedDocumentName: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).GetDocumentName(@as(*const IXpsSignatureBlock, @ptrCast(self)), fixedDocumentName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureBlock_CreateRequest(self: *const T, requestId: ?[*:0]const u16, signatureRequest: ?*?*IXpsSignatureRequest) HRESULT {
-                return @as(*const IXpsSignatureBlock.VTable, @ptrCast(self.vtable)).CreateRequest(@as(*const IXpsSignatureBlock, @ptrCast(self)), requestId, signatureRequest);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetRequests(self: *const IXpsSignatureBlock, requests: ?*?*IXpsSignatureRequestCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetRequests(self, requests);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetPartName(self: *const IXpsSignatureBlock, partName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetPartName(self, partName);
+    }
+    pub fn GetDocumentIndex(self: *const IXpsSignatureBlock, fixedDocumentIndex: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentIndex(self, fixedDocumentIndex);
+    }
+    pub fn GetDocumentName(self: *const IXpsSignatureBlock, fixedDocumentName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetDocumentName(self, fixedDocumentName);
+    }
+    pub fn CreateRequest(self: *const IXpsSignatureBlock, requestId: ?[*:0]const u16, signatureRequest: ?*?*IXpsSignatureRequest) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRequest(self, requestId, signatureRequest);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureRequestCollection_Value = Guid.initString("f0253e68-9f19-412e-9b4f-54d3b0ac6cd9");
 pub const IID_IXpsSignatureRequestCollection = &IID_IXpsSignatureRequestCollection_Value;
-pub const IXpsSignatureRequestCollection = extern struct {
+pub const IXpsSignatureRequestCollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequestCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequestCollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequestCollection,
-                index: u32,
-                signatureRequest: ?*?*IXpsSignatureRequest,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequestCollection,
-                index: u32,
-                signatureRequest: ?*?*IXpsSignatureRequest,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequestCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequestCollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IXpsSignatureRequestCollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAt: *const fn(
+            self: *const IXpsSignatureRequestCollection,
+            index: u32,
+            signatureRequest: ?*?*IXpsSignatureRequest,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IXpsSignatureRequestCollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequestCollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequestCollection_GetAt(self: *const T, index: u32, signatureRequest: ?*?*IXpsSignatureRequest) HRESULT {
-                return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).GetAt(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), index, signatureRequest);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequestCollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IXpsSignatureRequestCollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IXpsSignatureRequestCollection, @ptrCast(self)), index);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IXpsSignatureRequestCollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetAt(self: *const IXpsSignatureRequestCollection, index: u32, signatureRequest: ?*?*IXpsSignatureRequest) callconv(.Inline) HRESULT {
+        return self.vtable.GetAt(self, index, signatureRequest);
+    }
+    pub fn RemoveAt(self: *const IXpsSignatureRequestCollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureRequest_Value = Guid.initString("ac58950b-7208-4b2d-b2c4-951083d3b8eb");
 pub const IID_IXpsSignatureRequest = &IID_IXpsSignatureRequest_Value;
-pub const IXpsSignatureRequest = extern struct {
+pub const IXpsSignatureRequest = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetIntent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                intent: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                intent: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetIntent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                intent: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                intent: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRequestedSigner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                signerName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                signerName: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRequestedSigner: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                signerName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                signerName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRequestSignByDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                dateString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                dateString: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetRequestSignByDate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                dateString: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                dateString: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSigningLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                place: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                place: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSigningLocale: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                place: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                place: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSpotLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                pageIndex: ?*i32,
-                pagePartName: ?*?*IOpcPartUri,
-                x: ?*f32,
-                y: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                pageIndex: ?*i32,
-                pagePartName: ?*?*IOpcPartUri,
-                x: ?*f32,
-                y: ?*f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSpotLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                pageIndex: i32,
-                x: f32,
-                y: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                pageIndex: i32,
-                x: f32,
-                y: f32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRequestId: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                requestId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                requestId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureRequest,
-                signature: ?*?*IXpsSignature,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureRequest,
-                signature: ?*?*IXpsSignature,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetIntent: *const fn(
+            self: *const IXpsSignatureRequest,
+            intent: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetIntent: *const fn(
+            self: *const IXpsSignatureRequest,
+            intent: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRequestedSigner: *const fn(
+            self: *const IXpsSignatureRequest,
+            signerName: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRequestedSigner: *const fn(
+            self: *const IXpsSignatureRequest,
+            signerName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRequestSignByDate: *const fn(
+            self: *const IXpsSignatureRequest,
+            dateString: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetRequestSignByDate: *const fn(
+            self: *const IXpsSignatureRequest,
+            dateString: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSigningLocale: *const fn(
+            self: *const IXpsSignatureRequest,
+            place: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSigningLocale: *const fn(
+            self: *const IXpsSignatureRequest,
+            place: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSpotLocation: *const fn(
+            self: *const IXpsSignatureRequest,
+            pageIndex: ?*i32,
+            pagePartName: ?*?*IOpcPartUri,
+            x: ?*f32,
+            y: ?*f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSpotLocation: *const fn(
+            self: *const IXpsSignatureRequest,
+            pageIndex: i32,
+            x: f32,
+            y: f32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRequestId: *const fn(
+            self: *const IXpsSignatureRequest,
+            requestId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignature: *const fn(
+            self: *const IXpsSignatureRequest,
+            signature: ?*?*IXpsSignature,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_GetIntent(self: *const T, intent: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetIntent(@as(*const IXpsSignatureRequest, @ptrCast(self)), intent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_SetIntent(self: *const T, intent: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetIntent(@as(*const IXpsSignatureRequest, @ptrCast(self)), intent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_GetRequestedSigner(self: *const T, signerName: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestedSigner(@as(*const IXpsSignatureRequest, @ptrCast(self)), signerName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_SetRequestedSigner(self: *const T, signerName: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetRequestedSigner(@as(*const IXpsSignatureRequest, @ptrCast(self)), signerName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_GetRequestSignByDate(self: *const T, dateString: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestSignByDate(@as(*const IXpsSignatureRequest, @ptrCast(self)), dateString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_SetRequestSignByDate(self: *const T, dateString: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetRequestSignByDate(@as(*const IXpsSignatureRequest, @ptrCast(self)), dateString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_GetSigningLocale(self: *const T, place: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSigningLocale(@as(*const IXpsSignatureRequest, @ptrCast(self)), place);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_SetSigningLocale(self: *const T, place: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetSigningLocale(@as(*const IXpsSignatureRequest, @ptrCast(self)), place);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_GetSpotLocation(self: *const T, pageIndex: ?*i32, pagePartName: ?*?*IOpcPartUri, x: ?*f32, y: ?*f32) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSpotLocation(@as(*const IXpsSignatureRequest, @ptrCast(self)), pageIndex, pagePartName, x, y);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_SetSpotLocation(self: *const T, pageIndex: i32, x: f32, y: f32) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).SetSpotLocation(@as(*const IXpsSignatureRequest, @ptrCast(self)), pageIndex, x, y);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_GetRequestId(self: *const T, requestId: ?*?PWSTR) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetRequestId(@as(*const IXpsSignatureRequest, @ptrCast(self)), requestId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureRequest_GetSignature(self: *const T, signature: ?*?*IXpsSignature) HRESULT {
-                return @as(*const IXpsSignatureRequest.VTable, @ptrCast(self.vtable)).GetSignature(@as(*const IXpsSignatureRequest, @ptrCast(self)), signature);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetIntent(self: *const IXpsSignatureRequest, intent: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetIntent(self, intent);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetIntent(self: *const IXpsSignatureRequest, intent: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetIntent(self, intent);
+    }
+    pub fn GetRequestedSigner(self: *const IXpsSignatureRequest, signerName: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRequestedSigner(self, signerName);
+    }
+    pub fn SetRequestedSigner(self: *const IXpsSignatureRequest, signerName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetRequestedSigner(self, signerName);
+    }
+    pub fn GetRequestSignByDate(self: *const IXpsSignatureRequest, dateString: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRequestSignByDate(self, dateString);
+    }
+    pub fn SetRequestSignByDate(self: *const IXpsSignatureRequest, dateString: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetRequestSignByDate(self, dateString);
+    }
+    pub fn GetSigningLocale(self: *const IXpsSignatureRequest, place: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetSigningLocale(self, place);
+    }
+    pub fn SetSigningLocale(self: *const IXpsSignatureRequest, place: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetSigningLocale(self, place);
+    }
+    pub fn GetSpotLocation(self: *const IXpsSignatureRequest, pageIndex: ?*i32, pagePartName: ?*?*IOpcPartUri, x: ?*f32, y: ?*f32) callconv(.Inline) HRESULT {
+        return self.vtable.GetSpotLocation(self, pageIndex, pagePartName, x, y);
+    }
+    pub fn SetSpotLocation(self: *const IXpsSignatureRequest, pageIndex: i32, x: f32, y: f32) callconv(.Inline) HRESULT {
+        return self.vtable.SetSpotLocation(self, pageIndex, x, y);
+    }
+    pub fn GetRequestId(self: *const IXpsSignatureRequest, requestId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetRequestId(self, requestId);
+    }
+    pub fn GetSignature(self: *const IXpsSignatureRequest, signature: ?*?*IXpsSignature) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignature(self, signature);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsSignatureManager_Value = Guid.initString("d3e8d338-fdc4-4afc-80b5-d532a1782ee1");
 pub const IID_IXpsSignatureManager = &IID_IXpsSignatureManager_Value;
-pub const IXpsSignatureManager = extern struct {
+pub const IXpsSignatureManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LoadPackageFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                fileName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                fileName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadPackageStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                stream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                stream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Sign: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                signOptions: ?*IXpsSigningOptions,
-                x509Certificate: ?*const CERT_CONTEXT,
-                signature: ?*?*IXpsSignature,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                signOptions: ?*IXpsSigningOptions,
-                x509Certificate: ?*const CERT_CONTEXT,
-                signature: ?*?*IXpsSignature,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignatureOriginPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                signatureOriginPartName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                signatureOriginPartName: ?*?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetSignatureOriginPartName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                signatureOriginPartName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                signatureOriginPartName: ?*IOpcPartUri,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignatures: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                signatures: ?*?*IXpsSignatureCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                signatures: ?*?*IXpsSignatureCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddSignatureBlock: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                partName: ?*IOpcPartUri,
-                fixedDocumentIndex: u32,
-                signatureBlock: ?*?*IXpsSignatureBlock,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                partName: ?*IOpcPartUri,
-                fixedDocumentIndex: u32,
-                signatureBlock: ?*?*IXpsSignatureBlock,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSignatureBlocks: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                signatureBlocks: ?*?*IXpsSignatureBlockCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                signatureBlocks: ?*?*IXpsSignatureBlockCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSigningOptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                signingOptions: ?*?*IXpsSigningOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                signingOptions: ?*?*IXpsSigningOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SavePackageToFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                fileName: ?[*:0]const u16,
-                securityAttributes: ?*SECURITY_ATTRIBUTES,
-                flagsAndAttributes: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SavePackageToStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsSignatureManager,
-                stream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsSignatureManager,
-                stream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LoadPackageFile: *const fn(
+            self: *const IXpsSignatureManager,
+            fileName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadPackageStream: *const fn(
+            self: *const IXpsSignatureManager,
+            stream: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Sign: *const fn(
+            self: *const IXpsSignatureManager,
+            signOptions: ?*IXpsSigningOptions,
+            x509Certificate: ?*const CERT_CONTEXT,
+            signature: ?*?*IXpsSignature,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignatureOriginPartName: *const fn(
+            self: *const IXpsSignatureManager,
+            signatureOriginPartName: ?*?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetSignatureOriginPartName: *const fn(
+            self: *const IXpsSignatureManager,
+            signatureOriginPartName: ?*IOpcPartUri,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignatures: *const fn(
+            self: *const IXpsSignatureManager,
+            signatures: ?*?*IXpsSignatureCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddSignatureBlock: *const fn(
+            self: *const IXpsSignatureManager,
+            partName: ?*IOpcPartUri,
+            fixedDocumentIndex: u32,
+            signatureBlock: ?*?*IXpsSignatureBlock,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSignatureBlocks: *const fn(
+            self: *const IXpsSignatureManager,
+            signatureBlocks: ?*?*IXpsSignatureBlockCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSigningOptions: *const fn(
+            self: *const IXpsSignatureManager,
+            signingOptions: ?*?*IXpsSigningOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SavePackageToFile: *const fn(
+            self: *const IXpsSignatureManager,
+            fileName: ?[*:0]const u16,
+            securityAttributes: ?*SECURITY_ATTRIBUTES,
+            flagsAndAttributes: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SavePackageToStream: *const fn(
+            self: *const IXpsSignatureManager,
+            stream: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_LoadPackageFile(self: *const T, fileName: ?[*:0]const u16) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).LoadPackageFile(@as(*const IXpsSignatureManager, @ptrCast(self)), fileName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_LoadPackageStream(self: *const T, stream: ?*IStream) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).LoadPackageStream(@as(*const IXpsSignatureManager, @ptrCast(self)), stream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_Sign(self: *const T, signOptions: ?*IXpsSigningOptions, x509Certificate: ?*const CERT_CONTEXT, signature: ?*?*IXpsSignature) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).Sign(@as(*const IXpsSignatureManager, @ptrCast(self)), signOptions, x509Certificate, signature);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_GetSignatureOriginPartName(self: *const T, signatureOriginPartName: ?*?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureOriginPartName(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureOriginPartName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_SetSignatureOriginPartName(self: *const T, signatureOriginPartName: ?*IOpcPartUri) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SetSignatureOriginPartName(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureOriginPartName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_GetSignatures(self: *const T, signatures: ?*?*IXpsSignatureCollection) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatures(@as(*const IXpsSignatureManager, @ptrCast(self)), signatures);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_AddSignatureBlock(self: *const T, partName: ?*IOpcPartUri, fixedDocumentIndex: u32, signatureBlock: ?*?*IXpsSignatureBlock) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).AddSignatureBlock(@as(*const IXpsSignatureManager, @ptrCast(self)), partName, fixedDocumentIndex, signatureBlock);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_GetSignatureBlocks(self: *const T, signatureBlocks: ?*?*IXpsSignatureBlockCollection) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).GetSignatureBlocks(@as(*const IXpsSignatureManager, @ptrCast(self)), signatureBlocks);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_CreateSigningOptions(self: *const T, signingOptions: ?*?*IXpsSigningOptions) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).CreateSigningOptions(@as(*const IXpsSignatureManager, @ptrCast(self)), signingOptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_SavePackageToFile(self: *const T, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SavePackageToFile(@as(*const IXpsSignatureManager, @ptrCast(self)), fileName, securityAttributes, flagsAndAttributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsSignatureManager_SavePackageToStream(self: *const T, stream: ?*IStream) HRESULT {
-                return @as(*const IXpsSignatureManager.VTable, @ptrCast(self.vtable)).SavePackageToStream(@as(*const IXpsSignatureManager, @ptrCast(self)), stream);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn LoadPackageFile(self: *const IXpsSignatureManager, fileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.LoadPackageFile(self, fileName);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LoadPackageStream(self: *const IXpsSignatureManager, stream: ?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.LoadPackageStream(self, stream);
+    }
+    pub fn Sign(self: *const IXpsSignatureManager, signOptions: ?*IXpsSigningOptions, x509Certificate: ?*const CERT_CONTEXT, signature: ?*?*IXpsSignature) callconv(.Inline) HRESULT {
+        return self.vtable.Sign(self, signOptions, x509Certificate, signature);
+    }
+    pub fn GetSignatureOriginPartName(self: *const IXpsSignatureManager, signatureOriginPartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureOriginPartName(self, signatureOriginPartName);
+    }
+    pub fn SetSignatureOriginPartName(self: *const IXpsSignatureManager, signatureOriginPartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+        return self.vtable.SetSignatureOriginPartName(self, signatureOriginPartName);
+    }
+    pub fn GetSignatures(self: *const IXpsSignatureManager, signatures: ?*?*IXpsSignatureCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatures(self, signatures);
+    }
+    pub fn AddSignatureBlock(self: *const IXpsSignatureManager, partName: ?*IOpcPartUri, fixedDocumentIndex: u32, signatureBlock: ?*?*IXpsSignatureBlock) callconv(.Inline) HRESULT {
+        return self.vtable.AddSignatureBlock(self, partName, fixedDocumentIndex, signatureBlock);
+    }
+    pub fn GetSignatureBlocks(self: *const IXpsSignatureManager, signatureBlocks: ?*?*IXpsSignatureBlockCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetSignatureBlocks(self, signatureBlocks);
+    }
+    pub fn CreateSigningOptions(self: *const IXpsSignatureManager, signingOptions: ?*?*IXpsSigningOptions) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSigningOptions(self, signingOptions);
+    }
+    pub fn SavePackageToFile(self: *const IXpsSignatureManager, fileName: ?[*:0]const u16, securityAttributes: ?*SECURITY_ATTRIBUTES, flagsAndAttributes: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SavePackageToFile(self, fileName, securityAttributes, flagsAndAttributes);
+    }
+    pub fn SavePackageToStream(self: *const IXpsSignatureManager, stream: ?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.SavePackageToStream(self, stream);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (12)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winspool" fn DeviceCapabilitiesA(
+pub extern "winspool.drv" fn DeviceCapabilitiesA(
     pDevice: ?[*:0]const u8,
     pPort: ?[*:0]const u8,
     fwCapability: DEVICE_CAPABILITIES,
@@ -9931,7 +5590,7 @@ pub extern "winspool" fn DeviceCapabilitiesA(
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "winspool" fn DeviceCapabilitiesW(
+pub extern "winspool.drv" fn DeviceCapabilitiesW(
     pDevice: ?[*:0]const u16,
     pPort: ?[*:0]const u16,
     fwCapability: DEVICE_CAPABILITIES,
@@ -10006,30 +5665,30 @@ pub extern "user32" fn PrintWindow(
     nFlags: PRINT_WINDOW_FLAGS,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (3)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const DOCINFO = thismodule.DOCINFOA;
-        pub const DeviceCapabilities = thismodule.DeviceCapabilitiesA;
-        pub const StartDoc = thismodule.StartDocA;
-    },
-    .wide => struct {
-        pub const DOCINFO = thismodule.DOCINFOW;
-        pub const DeviceCapabilities = thismodule.DeviceCapabilitiesW;
-        pub const StartDoc = thismodule.StartDocW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const DOCINFO = *opaque {};
-        pub const DeviceCapabilities = *opaque {};
-        pub const StartDoc = *opaque {};
-    } else struct {
-        pub const DOCINFO = @compileError("'DOCINFO' requires that UNICODE be set to true or false in the root module");
-        pub const DeviceCapabilities = @compileError("'DeviceCapabilities' requires that UNICODE be set to true or false in the root module");
-        pub const StartDoc = @compileError("'StartDoc' requires that UNICODE be set to true or false in the root module");
-    },
+pub const DOCINFO = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DOCINFOA,
+    .wide => @This().DOCINFOW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DOCINFO' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DeviceCapabilities = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DeviceCapabilitiesA,
+    .wide => @This().DeviceCapabilitiesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DeviceCapabilities' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const StartDoc = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().StartDocA,
+    .wide => @This().StartDocW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'StartDoc' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (25)
@@ -10062,18 +5721,16 @@ const SYSTEMTIME = @import("../foundation.zig").SYSTEMTIME;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "ABORTPROC")) {
-        _ = ABORTPROC;
-    }
+    if (@hasDecl(@This(), "ABORTPROC")) { _ = ABORTPROC; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }
 //--------------------------------------------------------------------------------

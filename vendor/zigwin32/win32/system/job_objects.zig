@@ -6,163 +6,259 @@
 //--------------------------------------------------------------------------------
 // Section: Types (34)
 //--------------------------------------------------------------------------------
-pub const JOB_OBJECT_LIMIT = enum(u32) {
-    LIMIT_WORKINGSET = 1,
-    LIMIT_PROCESS_TIME = 2,
-    LIMIT_JOB_TIME = 4,
-    LIMIT_ACTIVE_PROCESS = 8,
-    LIMIT_AFFINITY = 16,
-    LIMIT_PRIORITY_CLASS = 32,
-    LIMIT_PRESERVE_JOB_TIME = 64,
-    LIMIT_SCHEDULING_CLASS = 128,
-    LIMIT_PROCESS_MEMORY = 256,
-    LIMIT_JOB_MEMORY = 512,
-    // LIMIT_JOB_MEMORY_HIGH = 512, this enum value conflicts with LIMIT_JOB_MEMORY
-    LIMIT_DIE_ON_UNHANDLED_EXCEPTION = 1024,
-    LIMIT_BREAKAWAY_OK = 2048,
-    LIMIT_SILENT_BREAKAWAY_OK = 4096,
-    LIMIT_KILL_ON_JOB_CLOSE = 8192,
-    LIMIT_SUBSET_AFFINITY = 16384,
-    LIMIT_JOB_MEMORY_LOW = 32768,
-    LIMIT_JOB_READ_BYTES = 65536,
-    LIMIT_JOB_WRITE_BYTES = 131072,
-    LIMIT_RATE_CONTROL = 262144,
-    // LIMIT_CPU_RATE_CONTROL = 262144, this enum value conflicts with LIMIT_RATE_CONTROL
-    LIMIT_IO_RATE_CONTROL = 524288,
-    LIMIT_NET_RATE_CONTROL = 1048576,
-    LIMIT_VALID_FLAGS = 524287,
-    BASIC_LIMIT_VALID_FLAGS = 255,
-    EXTENDED_LIMIT_VALID_FLAGS = 32767,
-    NOTIFICATION_LIMIT_VALID_FLAGS = 2064900,
-    _,
-    pub fn initFlags(o: struct {
-        LIMIT_WORKINGSET: u1 = 0,
-        LIMIT_PROCESS_TIME: u1 = 0,
-        LIMIT_JOB_TIME: u1 = 0,
-        LIMIT_ACTIVE_PROCESS: u1 = 0,
-        LIMIT_AFFINITY: u1 = 0,
-        LIMIT_PRIORITY_CLASS: u1 = 0,
-        LIMIT_PRESERVE_JOB_TIME: u1 = 0,
-        LIMIT_SCHEDULING_CLASS: u1 = 0,
-        LIMIT_PROCESS_MEMORY: u1 = 0,
-        LIMIT_JOB_MEMORY: u1 = 0,
-        LIMIT_DIE_ON_UNHANDLED_EXCEPTION: u1 = 0,
-        LIMIT_BREAKAWAY_OK: u1 = 0,
-        LIMIT_SILENT_BREAKAWAY_OK: u1 = 0,
-        LIMIT_KILL_ON_JOB_CLOSE: u1 = 0,
-        LIMIT_SUBSET_AFFINITY: u1 = 0,
-        LIMIT_JOB_MEMORY_LOW: u1 = 0,
-        LIMIT_JOB_READ_BYTES: u1 = 0,
-        LIMIT_JOB_WRITE_BYTES: u1 = 0,
-        LIMIT_RATE_CONTROL: u1 = 0,
-        LIMIT_IO_RATE_CONTROL: u1 = 0,
-        LIMIT_NET_RATE_CONTROL: u1 = 0,
-        LIMIT_VALID_FLAGS: u1 = 0,
-        BASIC_LIMIT_VALID_FLAGS: u1 = 0,
-        EXTENDED_LIMIT_VALID_FLAGS: u1 = 0,
-        NOTIFICATION_LIMIT_VALID_FLAGS: u1 = 0,
-    }) JOB_OBJECT_LIMIT {
-        return @as(JOB_OBJECT_LIMIT, @enumFromInt((if (o.LIMIT_WORKINGSET == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_WORKINGSET) else 0) | (if (o.LIMIT_PROCESS_TIME == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME) else 0) | (if (o.LIMIT_JOB_TIME == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_TIME) else 0) | (if (o.LIMIT_ACTIVE_PROCESS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_ACTIVE_PROCESS) else 0) | (if (o.LIMIT_AFFINITY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_AFFINITY) else 0) | (if (o.LIMIT_PRIORITY_CLASS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PRIORITY_CLASS) else 0) | (if (o.LIMIT_PRESERVE_JOB_TIME == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PRESERVE_JOB_TIME) else 0) | (if (o.LIMIT_SCHEDULING_CLASS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_SCHEDULING_CLASS) else 0) | (if (o.LIMIT_PROCESS_MEMORY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_PROCESS_MEMORY) else 0) | (if (o.LIMIT_JOB_MEMORY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY) else 0) | (if (o.LIMIT_DIE_ON_UNHANDLED_EXCEPTION == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_DIE_ON_UNHANDLED_EXCEPTION) else 0) | (if (o.LIMIT_BREAKAWAY_OK == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_BREAKAWAY_OK) else 0) | (if (o.LIMIT_SILENT_BREAKAWAY_OK == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_SILENT_BREAKAWAY_OK) else 0) | (if (o.LIMIT_KILL_ON_JOB_CLOSE == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_KILL_ON_JOB_CLOSE) else 0) | (if (o.LIMIT_SUBSET_AFFINITY == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_SUBSET_AFFINITY) else 0) | (if (o.LIMIT_JOB_MEMORY_LOW == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_LOW) else 0) | (if (o.LIMIT_JOB_READ_BYTES == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_READ_BYTES) else 0) | (if (o.LIMIT_JOB_WRITE_BYTES == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_JOB_WRITE_BYTES) else 0) | (if (o.LIMIT_RATE_CONTROL == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL) else 0) | (if (o.LIMIT_IO_RATE_CONTROL == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_IO_RATE_CONTROL) else 0) | (if (o.LIMIT_NET_RATE_CONTROL == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_NET_RATE_CONTROL) else 0) | (if (o.LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.LIMIT_VALID_FLAGS) else 0) | (if (o.BASIC_LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.BASIC_LIMIT_VALID_FLAGS) else 0) | (if (o.EXTENDED_LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS) else 0) | (if (o.NOTIFICATION_LIMIT_VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS) else 0)));
-    }
+pub const JOB_OBJECT_LIMIT = packed struct(u32) {
+    LIMIT_WORKINGSET: u1 = 0,
+    LIMIT_PROCESS_TIME: u1 = 0,
+    LIMIT_JOB_TIME: u1 = 0,
+    LIMIT_ACTIVE_PROCESS: u1 = 0,
+    LIMIT_AFFINITY: u1 = 0,
+    LIMIT_PRIORITY_CLASS: u1 = 0,
+    LIMIT_PRESERVE_JOB_TIME: u1 = 0,
+    LIMIT_SCHEDULING_CLASS: u1 = 0,
+    LIMIT_PROCESS_MEMORY: u1 = 0,
+    LIMIT_JOB_MEMORY: u1 = 0,
+    LIMIT_DIE_ON_UNHANDLED_EXCEPTION: u1 = 0,
+    LIMIT_BREAKAWAY_OK: u1 = 0,
+    LIMIT_SILENT_BREAKAWAY_OK: u1 = 0,
+    LIMIT_KILL_ON_JOB_CLOSE: u1 = 0,
+    LIMIT_SUBSET_AFFINITY: u1 = 0,
+    LIMIT_JOB_MEMORY_LOW: u1 = 0,
+    LIMIT_JOB_READ_BYTES: u1 = 0,
+    LIMIT_JOB_WRITE_BYTES: u1 = 0,
+    LIMIT_RATE_CONTROL: u1 = 0,
+    LIMIT_IO_RATE_CONTROL: u1 = 0,
+    LIMIT_NET_RATE_CONTROL: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // LIMIT_JOB_MEMORY_HIGH (bit index 9) conflicts with LIMIT_JOB_MEMORY
+    // LIMIT_CPU_RATE_CONTROL (bit index 18) conflicts with LIMIT_RATE_CONTROL
 };
-pub const JOB_OBJECT_LIMIT_WORKINGSET = JOB_OBJECT_LIMIT.LIMIT_WORKINGSET;
-pub const JOB_OBJECT_LIMIT_PROCESS_TIME = JOB_OBJECT_LIMIT.LIMIT_PROCESS_TIME;
-pub const JOB_OBJECT_LIMIT_JOB_TIME = JOB_OBJECT_LIMIT.LIMIT_JOB_TIME;
-pub const JOB_OBJECT_LIMIT_ACTIVE_PROCESS = JOB_OBJECT_LIMIT.LIMIT_ACTIVE_PROCESS;
-pub const JOB_OBJECT_LIMIT_AFFINITY = JOB_OBJECT_LIMIT.LIMIT_AFFINITY;
-pub const JOB_OBJECT_LIMIT_PRIORITY_CLASS = JOB_OBJECT_LIMIT.LIMIT_PRIORITY_CLASS;
-pub const JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME = JOB_OBJECT_LIMIT.LIMIT_PRESERVE_JOB_TIME;
-pub const JOB_OBJECT_LIMIT_SCHEDULING_CLASS = JOB_OBJECT_LIMIT.LIMIT_SCHEDULING_CLASS;
-pub const JOB_OBJECT_LIMIT_PROCESS_MEMORY = JOB_OBJECT_LIMIT.LIMIT_PROCESS_MEMORY;
-pub const JOB_OBJECT_LIMIT_JOB_MEMORY = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY;
-pub const JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY;
-pub const JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION = JOB_OBJECT_LIMIT.LIMIT_DIE_ON_UNHANDLED_EXCEPTION;
-pub const JOB_OBJECT_LIMIT_BREAKAWAY_OK = JOB_OBJECT_LIMIT.LIMIT_BREAKAWAY_OK;
-pub const JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK = JOB_OBJECT_LIMIT.LIMIT_SILENT_BREAKAWAY_OK;
-pub const JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = JOB_OBJECT_LIMIT.LIMIT_KILL_ON_JOB_CLOSE;
-pub const JOB_OBJECT_LIMIT_SUBSET_AFFINITY = JOB_OBJECT_LIMIT.LIMIT_SUBSET_AFFINITY;
-pub const JOB_OBJECT_LIMIT_JOB_MEMORY_LOW = JOB_OBJECT_LIMIT.LIMIT_JOB_MEMORY_LOW;
-pub const JOB_OBJECT_LIMIT_JOB_READ_BYTES = JOB_OBJECT_LIMIT.LIMIT_JOB_READ_BYTES;
-pub const JOB_OBJECT_LIMIT_JOB_WRITE_BYTES = JOB_OBJECT_LIMIT.LIMIT_JOB_WRITE_BYTES;
-pub const JOB_OBJECT_LIMIT_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_CPU_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_IO_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_IO_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_NET_RATE_CONTROL = JOB_OBJECT_LIMIT.LIMIT_NET_RATE_CONTROL;
-pub const JOB_OBJECT_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.LIMIT_VALID_FLAGS;
-pub const JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.BASIC_LIMIT_VALID_FLAGS;
-pub const JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.EXTENDED_LIMIT_VALID_FLAGS;
-pub const JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT.NOTIFICATION_LIMIT_VALID_FLAGS;
+pub const JOB_OBJECT_LIMIT_WORKINGSET = JOB_OBJECT_LIMIT{ .LIMIT_WORKINGSET = 1 };
+pub const JOB_OBJECT_LIMIT_PROCESS_TIME = JOB_OBJECT_LIMIT{ .LIMIT_PROCESS_TIME = 1 };
+pub const JOB_OBJECT_LIMIT_JOB_TIME = JOB_OBJECT_LIMIT{ .LIMIT_JOB_TIME = 1 };
+pub const JOB_OBJECT_LIMIT_ACTIVE_PROCESS = JOB_OBJECT_LIMIT{ .LIMIT_ACTIVE_PROCESS = 1 };
+pub const JOB_OBJECT_LIMIT_AFFINITY = JOB_OBJECT_LIMIT{ .LIMIT_AFFINITY = 1 };
+pub const JOB_OBJECT_LIMIT_PRIORITY_CLASS = JOB_OBJECT_LIMIT{ .LIMIT_PRIORITY_CLASS = 1 };
+pub const JOB_OBJECT_LIMIT_PRESERVE_JOB_TIME = JOB_OBJECT_LIMIT{ .LIMIT_PRESERVE_JOB_TIME = 1 };
+pub const JOB_OBJECT_LIMIT_SCHEDULING_CLASS = JOB_OBJECT_LIMIT{ .LIMIT_SCHEDULING_CLASS = 1 };
+pub const JOB_OBJECT_LIMIT_PROCESS_MEMORY = JOB_OBJECT_LIMIT{ .LIMIT_PROCESS_MEMORY = 1 };
+pub const JOB_OBJECT_LIMIT_JOB_MEMORY = JOB_OBJECT_LIMIT{ .LIMIT_JOB_MEMORY = 1 };
+pub const JOB_OBJECT_LIMIT_JOB_MEMORY_HIGH = JOB_OBJECT_LIMIT{ .LIMIT_JOB_MEMORY = 1 };
+pub const JOB_OBJECT_LIMIT_DIE_ON_UNHANDLED_EXCEPTION = JOB_OBJECT_LIMIT{ .LIMIT_DIE_ON_UNHANDLED_EXCEPTION = 1 };
+pub const JOB_OBJECT_LIMIT_BREAKAWAY_OK = JOB_OBJECT_LIMIT{ .LIMIT_BREAKAWAY_OK = 1 };
+pub const JOB_OBJECT_LIMIT_SILENT_BREAKAWAY_OK = JOB_OBJECT_LIMIT{ .LIMIT_SILENT_BREAKAWAY_OK = 1 };
+pub const JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = JOB_OBJECT_LIMIT{ .LIMIT_KILL_ON_JOB_CLOSE = 1 };
+pub const JOB_OBJECT_LIMIT_SUBSET_AFFINITY = JOB_OBJECT_LIMIT{ .LIMIT_SUBSET_AFFINITY = 1 };
+pub const JOB_OBJECT_LIMIT_JOB_MEMORY_LOW = JOB_OBJECT_LIMIT{ .LIMIT_JOB_MEMORY_LOW = 1 };
+pub const JOB_OBJECT_LIMIT_JOB_READ_BYTES = JOB_OBJECT_LIMIT{ .LIMIT_JOB_READ_BYTES = 1 };
+pub const JOB_OBJECT_LIMIT_JOB_WRITE_BYTES = JOB_OBJECT_LIMIT{ .LIMIT_JOB_WRITE_BYTES = 1 };
+pub const JOB_OBJECT_LIMIT_RATE_CONTROL = JOB_OBJECT_LIMIT{ .LIMIT_RATE_CONTROL = 1 };
+pub const JOB_OBJECT_LIMIT_CPU_RATE_CONTROL = JOB_OBJECT_LIMIT{ .LIMIT_RATE_CONTROL = 1 };
+pub const JOB_OBJECT_LIMIT_IO_RATE_CONTROL = JOB_OBJECT_LIMIT{ .LIMIT_IO_RATE_CONTROL = 1 };
+pub const JOB_OBJECT_LIMIT_NET_RATE_CONTROL = JOB_OBJECT_LIMIT{ .LIMIT_NET_RATE_CONTROL = 1 };
+pub const JOB_OBJECT_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT{
+    .LIMIT_WORKINGSET = 1,
+    .LIMIT_PROCESS_TIME = 1,
+    .LIMIT_JOB_TIME = 1,
+    .LIMIT_ACTIVE_PROCESS = 1,
+    .LIMIT_AFFINITY = 1,
+    .LIMIT_PRIORITY_CLASS = 1,
+    .LIMIT_PRESERVE_JOB_TIME = 1,
+    .LIMIT_SCHEDULING_CLASS = 1,
+    .LIMIT_PROCESS_MEMORY = 1,
+    .LIMIT_JOB_MEMORY = 1,
+    .LIMIT_DIE_ON_UNHANDLED_EXCEPTION = 1,
+    .LIMIT_BREAKAWAY_OK = 1,
+    .LIMIT_SILENT_BREAKAWAY_OK = 1,
+    .LIMIT_KILL_ON_JOB_CLOSE = 1,
+    .LIMIT_SUBSET_AFFINITY = 1,
+    .LIMIT_JOB_MEMORY_LOW = 1,
+    .LIMIT_JOB_READ_BYTES = 1,
+    .LIMIT_JOB_WRITE_BYTES = 1,
+    .LIMIT_RATE_CONTROL = 1,
+};
+pub const JOB_OBJECT_BASIC_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT{
+    .LIMIT_WORKINGSET = 1,
+    .LIMIT_PROCESS_TIME = 1,
+    .LIMIT_JOB_TIME = 1,
+    .LIMIT_ACTIVE_PROCESS = 1,
+    .LIMIT_AFFINITY = 1,
+    .LIMIT_PRIORITY_CLASS = 1,
+    .LIMIT_PRESERVE_JOB_TIME = 1,
+    .LIMIT_SCHEDULING_CLASS = 1,
+};
+pub const JOB_OBJECT_EXTENDED_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT{
+    .LIMIT_WORKINGSET = 1,
+    .LIMIT_PROCESS_TIME = 1,
+    .LIMIT_JOB_TIME = 1,
+    .LIMIT_ACTIVE_PROCESS = 1,
+    .LIMIT_AFFINITY = 1,
+    .LIMIT_PRIORITY_CLASS = 1,
+    .LIMIT_PRESERVE_JOB_TIME = 1,
+    .LIMIT_SCHEDULING_CLASS = 1,
+    .LIMIT_PROCESS_MEMORY = 1,
+    .LIMIT_JOB_MEMORY = 1,
+    .LIMIT_DIE_ON_UNHANDLED_EXCEPTION = 1,
+    .LIMIT_BREAKAWAY_OK = 1,
+    .LIMIT_SILENT_BREAKAWAY_OK = 1,
+    .LIMIT_KILL_ON_JOB_CLOSE = 1,
+    .LIMIT_SUBSET_AFFINITY = 1,
+};
+pub const JOB_OBJECT_NOTIFICATION_LIMIT_VALID_FLAGS = JOB_OBJECT_LIMIT{
+    .LIMIT_JOB_TIME = 1,
+    .LIMIT_JOB_MEMORY = 1,
+    .LIMIT_JOB_MEMORY_LOW = 1,
+    .LIMIT_JOB_READ_BYTES = 1,
+    .LIMIT_JOB_WRITE_BYTES = 1,
+    .LIMIT_RATE_CONTROL = 1,
+    .LIMIT_IO_RATE_CONTROL = 1,
+    .LIMIT_NET_RATE_CONTROL = 1,
+};
 
-pub const JOB_OBJECT_UILIMIT = enum(u32) {
-    NONE = 0,
-    HANDLES = 1,
-    READCLIPBOARD = 2,
-    WRITECLIPBOARD = 4,
-    SYSTEMPARAMETERS = 8,
-    DISPLAYSETTINGS = 16,
-    GLOBALATOMS = 32,
-    DESKTOP = 64,
-    EXITWINDOWS = 128,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        HANDLES: u1 = 0,
-        READCLIPBOARD: u1 = 0,
-        WRITECLIPBOARD: u1 = 0,
-        SYSTEMPARAMETERS: u1 = 0,
-        DISPLAYSETTINGS: u1 = 0,
-        GLOBALATOMS: u1 = 0,
-        DESKTOP: u1 = 0,
-        EXITWINDOWS: u1 = 0,
-    }) JOB_OBJECT_UILIMIT {
-        return @as(JOB_OBJECT_UILIMIT, @enumFromInt((if (o.NONE == 1) @intFromEnum(JOB_OBJECT_UILIMIT.NONE) else 0) | (if (o.HANDLES == 1) @intFromEnum(JOB_OBJECT_UILIMIT.HANDLES) else 0) | (if (o.READCLIPBOARD == 1) @intFromEnum(JOB_OBJECT_UILIMIT.READCLIPBOARD) else 0) | (if (o.WRITECLIPBOARD == 1) @intFromEnum(JOB_OBJECT_UILIMIT.WRITECLIPBOARD) else 0) | (if (o.SYSTEMPARAMETERS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.SYSTEMPARAMETERS) else 0) | (if (o.DISPLAYSETTINGS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.DISPLAYSETTINGS) else 0) | (if (o.GLOBALATOMS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.GLOBALATOMS) else 0) | (if (o.DESKTOP == 1) @intFromEnum(JOB_OBJECT_UILIMIT.DESKTOP) else 0) | (if (o.EXITWINDOWS == 1) @intFromEnum(JOB_OBJECT_UILIMIT.EXITWINDOWS) else 0)));
-    }
+pub const JOB_OBJECT_UILIMIT = packed struct(u32) {
+    HANDLES: u1 = 0,
+    READCLIPBOARD: u1 = 0,
+    WRITECLIPBOARD: u1 = 0,
+    SYSTEMPARAMETERS: u1 = 0,
+    DISPLAYSETTINGS: u1 = 0,
+    GLOBALATOMS: u1 = 0,
+    DESKTOP: u1 = 0,
+    EXITWINDOWS: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT.NONE;
-pub const JOB_OBJECT_UILIMIT_HANDLES = JOB_OBJECT_UILIMIT.HANDLES;
-pub const JOB_OBJECT_UILIMIT_READCLIPBOARD = JOB_OBJECT_UILIMIT.READCLIPBOARD;
-pub const JOB_OBJECT_UILIMIT_WRITECLIPBOARD = JOB_OBJECT_UILIMIT.WRITECLIPBOARD;
-pub const JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = JOB_OBJECT_UILIMIT.SYSTEMPARAMETERS;
-pub const JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = JOB_OBJECT_UILIMIT.DISPLAYSETTINGS;
-pub const JOB_OBJECT_UILIMIT_GLOBALATOMS = JOB_OBJECT_UILIMIT.GLOBALATOMS;
-pub const JOB_OBJECT_UILIMIT_DESKTOP = JOB_OBJECT_UILIMIT.DESKTOP;
-pub const JOB_OBJECT_UILIMIT_EXITWINDOWS = JOB_OBJECT_UILIMIT.EXITWINDOWS;
+pub const JOB_OBJECT_UILIMIT_NONE = JOB_OBJECT_UILIMIT{ };
+pub const JOB_OBJECT_UILIMIT_HANDLES = JOB_OBJECT_UILIMIT{ .HANDLES = 1 };
+pub const JOB_OBJECT_UILIMIT_READCLIPBOARD = JOB_OBJECT_UILIMIT{ .READCLIPBOARD = 1 };
+pub const JOB_OBJECT_UILIMIT_WRITECLIPBOARD = JOB_OBJECT_UILIMIT{ .WRITECLIPBOARD = 1 };
+pub const JOB_OBJECT_UILIMIT_SYSTEMPARAMETERS = JOB_OBJECT_UILIMIT{ .SYSTEMPARAMETERS = 1 };
+pub const JOB_OBJECT_UILIMIT_DISPLAYSETTINGS = JOB_OBJECT_UILIMIT{ .DISPLAYSETTINGS = 1 };
+pub const JOB_OBJECT_UILIMIT_GLOBALATOMS = JOB_OBJECT_UILIMIT{ .GLOBALATOMS = 1 };
+pub const JOB_OBJECT_UILIMIT_DESKTOP = JOB_OBJECT_UILIMIT{ .DESKTOP = 1 };
+pub const JOB_OBJECT_UILIMIT_EXITWINDOWS = JOB_OBJECT_UILIMIT{ .EXITWINDOWS = 1 };
 
-pub const JOB_OBJECT_SECURITY = enum(u32) {
-    NO_ADMIN = 1,
-    RESTRICTED_TOKEN = 2,
-    ONLY_TOKEN = 4,
-    FILTER_TOKENS = 8,
-    VALID_FLAGS = 15,
-    _,
-    pub fn initFlags(o: struct {
-        NO_ADMIN: u1 = 0,
-        RESTRICTED_TOKEN: u1 = 0,
-        ONLY_TOKEN: u1 = 0,
-        FILTER_TOKENS: u1 = 0,
-        VALID_FLAGS: u1 = 0,
-    }) JOB_OBJECT_SECURITY {
-        return @as(JOB_OBJECT_SECURITY, @enumFromInt((if (o.NO_ADMIN == 1) @intFromEnum(JOB_OBJECT_SECURITY.NO_ADMIN) else 0) | (if (o.RESTRICTED_TOKEN == 1) @intFromEnum(JOB_OBJECT_SECURITY.RESTRICTED_TOKEN) else 0) | (if (o.ONLY_TOKEN == 1) @intFromEnum(JOB_OBJECT_SECURITY.ONLY_TOKEN) else 0) | (if (o.FILTER_TOKENS == 1) @intFromEnum(JOB_OBJECT_SECURITY.FILTER_TOKENS) else 0) | (if (o.VALID_FLAGS == 1) @intFromEnum(JOB_OBJECT_SECURITY.VALID_FLAGS) else 0)));
-    }
+pub const JOB_OBJECT_SECURITY = packed struct(u32) {
+    NO_ADMIN: u1 = 0,
+    RESTRICTED_TOKEN: u1 = 0,
+    ONLY_TOKEN: u1 = 0,
+    FILTER_TOKENS: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const JOB_OBJECT_SECURITY_NO_ADMIN = JOB_OBJECT_SECURITY.NO_ADMIN;
-pub const JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = JOB_OBJECT_SECURITY.RESTRICTED_TOKEN;
-pub const JOB_OBJECT_SECURITY_ONLY_TOKEN = JOB_OBJECT_SECURITY.ONLY_TOKEN;
-pub const JOB_OBJECT_SECURITY_FILTER_TOKENS = JOB_OBJECT_SECURITY.FILTER_TOKENS;
-pub const JOB_OBJECT_SECURITY_VALID_FLAGS = JOB_OBJECT_SECURITY.VALID_FLAGS;
+pub const JOB_OBJECT_SECURITY_NO_ADMIN = JOB_OBJECT_SECURITY{ .NO_ADMIN = 1 };
+pub const JOB_OBJECT_SECURITY_RESTRICTED_TOKEN = JOB_OBJECT_SECURITY{ .RESTRICTED_TOKEN = 1 };
+pub const JOB_OBJECT_SECURITY_ONLY_TOKEN = JOB_OBJECT_SECURITY{ .ONLY_TOKEN = 1 };
+pub const JOB_OBJECT_SECURITY_FILTER_TOKENS = JOB_OBJECT_SECURITY{ .FILTER_TOKENS = 1 };
+pub const JOB_OBJECT_SECURITY_VALID_FLAGS = JOB_OBJECT_SECURITY{
+    .NO_ADMIN = 1,
+    .RESTRICTED_TOKEN = 1,
+    .ONLY_TOKEN = 1,
+    .FILTER_TOKENS = 1,
+};
 
-pub const JOB_OBJECT_CPU_RATE_CONTROL = enum(u32) {
-    CPU_RATE_CONTROL_ENABLE = 1,
-    CPU_RATE_CONTROL_WEIGHT_BASED = 2,
-    CPU_RATE_CONTROL_HARD_CAP = 4,
-    CPU_RATE_CONTROL_NOTIFY = 8,
-    _CPU_RATE_CONTROL_MIN_MAX_RATE = 16,
+pub const JOB_OBJECT_CPU_RATE_CONTROL = packed struct(u32) {
+    ENABLE: u1 = 0,
+    WEIGHT_BASED: u1 = 0,
+    HARD_CAP: u1 = 0,
+    NOTIFY: u1 = 0,
+    MIN_MAX_RATE: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const JOB_OBJECT_CPU_RATE_CONTROL_ENABLE = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_ENABLE;
-pub const JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_WEIGHT_BASED;
-pub const JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_HARD_CAP;
-pub const JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY = JOB_OBJECT_CPU_RATE_CONTROL.CPU_RATE_CONTROL_NOTIFY;
-pub const JOB_OBJECT__CPU_RATE_CONTROL_MIN_MAX_RATE = JOB_OBJECT_CPU_RATE_CONTROL._CPU_RATE_CONTROL_MIN_MAX_RATE;
+pub const JOB_OBJECT_CPU_RATE_CONTROL_ENABLE = JOB_OBJECT_CPU_RATE_CONTROL{ .ENABLE = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_WEIGHT_BASED = JOB_OBJECT_CPU_RATE_CONTROL{ .WEIGHT_BASED = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_HARD_CAP = JOB_OBJECT_CPU_RATE_CONTROL{ .HARD_CAP = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_NOTIFY = JOB_OBJECT_CPU_RATE_CONTROL{ .NOTIFY = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_MIN_MAX_RATE = JOB_OBJECT_CPU_RATE_CONTROL{ .MIN_MAX_RATE = 1 };
+pub const JOB_OBJECT_CPU_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_CPU_RATE_CONTROL{
+    .ENABLE = 1,
+    .WEIGHT_BASED = 1,
+    .HARD_CAP = 1,
+    .NOTIFY = 1,
+    .MIN_MAX_RATE = 1,
+};
 
 pub const JOB_OBJECT_TERMINATE_AT_END_ACTION = enum(u32) {
     TERMINATE_AT_END_OF_JOB = 0,
@@ -360,16 +456,48 @@ pub const JOBOBJECT_CPU_RATE_CONTROL_INFORMATION = extern struct {
     },
 };
 
-pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = enum(i32) {
-    ENABLE = 1,
-    MAX_BANDWIDTH = 2,
-    DSCP_TAG = 4,
-    VALID_FLAGS = 7,
+pub const JOB_OBJECT_NET_RATE_CONTROL_FLAGS = packed struct(u32) {
+    ENABLE: u1 = 0,
+    MAX_BANDWIDTH: u1 = 0,
+    DSCP_TAG: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const JOB_OBJECT_NET_RATE_CONTROL_ENABLE = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.ENABLE;
-pub const JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.MAX_BANDWIDTH;
-pub const JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.DSCP_TAG;
-pub const JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_NET_RATE_CONTROL_FLAGS.VALID_FLAGS;
+pub const JOB_OBJECT_NET_RATE_CONTROL_ENABLE = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .ENABLE = 1 };
+pub const JOB_OBJECT_NET_RATE_CONTROL_MAX_BANDWIDTH = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .MAX_BANDWIDTH = 1 };
+pub const JOB_OBJECT_NET_RATE_CONTROL_DSCP_TAG = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{ .DSCP_TAG = 1 };
+pub const JOB_OBJECT_NET_RATE_CONTROL_VALID_FLAGS = JOB_OBJECT_NET_RATE_CONTROL_FLAGS{
+    .ENABLE = 1,
+    .MAX_BANDWIDTH = 1,
+    .DSCP_TAG = 1,
+};
 
 pub const JOBOBJECT_NET_RATE_CONTROL_INFORMATION = extern struct {
     MaxBandwidth: u64,
@@ -559,6 +687,7 @@ pub const JobObjectReserved24Information = JOBOBJECTINFOCLASS.JobObjectReserved2
 pub const JobObjectReserved25Information = JOBOBJECTINFOCLASS.JobObjectReserved25Information;
 pub const MaxJobObjectInfoClass = JOBOBJECTINFOCLASS.MaxJobObjectInfoClass;
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (14)
 //--------------------------------------------------------------------------------
@@ -658,26 +787,23 @@ pub extern "kernel32" fn CreateJobSet(
     Flags: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CreateJobObject = thismodule.CreateJobObjectA;
-        pub const OpenJobObject = thismodule.OpenJobObjectA;
-    },
-    .wide => struct {
-        pub const CreateJobObject = thismodule.CreateJobObjectW;
-        pub const OpenJobObject = thismodule.OpenJobObjectW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateJobObject = *opaque {};
-        pub const OpenJobObject = *opaque {};
-    } else struct {
-        pub const CreateJobObject = @compileError("'CreateJobObject' requires that UNICODE be set to true or false in the root module");
-        pub const OpenJobObject = @compileError("'OpenJobObject' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CreateJobObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateJobObjectA,
+    .wide => @This().CreateJobObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateJobObject' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenJobObject = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenJobObjectA,
+    .wide => @This().OpenJobObjectW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenJobObject' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
@@ -693,13 +819,13 @@ const TOKEN_GROUPS = @import("../security.zig").TOKEN_GROUPS;
 const TOKEN_PRIVILEGES = @import("../security.zig").TOKEN_PRIVILEGES;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

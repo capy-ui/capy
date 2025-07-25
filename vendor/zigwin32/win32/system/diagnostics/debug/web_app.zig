@@ -9,411 +9,227 @@
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationScriptEvents_Value = Guid.initString("7c3f6998-1567-4bba-b52b-48d32141d613");
 pub const IID_IWebApplicationScriptEvents = &IID_IWebApplicationScriptEvents_Value;
-pub const IWebApplicationScriptEvents = extern struct {
+pub const IWebApplicationScriptEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeforeScriptExecute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationScriptEvents,
-                htmlWindow: ?*IHTMLWindow2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationScriptEvents,
-                htmlWindow: ?*IHTMLWindow2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ScriptError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationScriptEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                scriptError: ?*IActiveScriptError,
-                url: ?[*:0]const u16,
-                errorHandled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationScriptEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                scriptError: ?*IActiveScriptError,
-                url: ?[*:0]const u16,
-                errorHandled: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BeforeScriptExecute: *const fn(
+            self: *const IWebApplicationScriptEvents,
+            htmlWindow: ?*IHTMLWindow2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ScriptError: *const fn(
+            self: *const IWebApplicationScriptEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            scriptError: ?*IActiveScriptError,
+            url: ?[*:0]const u16,
+            errorHandled: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationScriptEvents_BeforeScriptExecute(self: *const T, htmlWindow: ?*IHTMLWindow2) HRESULT {
-                return @as(*const IWebApplicationScriptEvents.VTable, @ptrCast(self.vtable)).BeforeScriptExecute(@as(*const IWebApplicationScriptEvents, @ptrCast(self)), htmlWindow);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationScriptEvents_ScriptError(self: *const T, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) HRESULT {
-                return @as(*const IWebApplicationScriptEvents.VTable, @ptrCast(self.vtable)).ScriptError(@as(*const IWebApplicationScriptEvents, @ptrCast(self)), htmlWindow, scriptError, url, errorHandled);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn BeforeScriptExecute(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2) callconv(.Inline) HRESULT {
+        return self.vtable.BeforeScriptExecute(self, htmlWindow);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ScriptError(self: *const IWebApplicationScriptEvents, htmlWindow: ?*IHTMLWindow2, scriptError: ?*IActiveScriptError, url: ?[*:0]const u16, errorHandled: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.ScriptError(self, htmlWindow, scriptError, url, errorHandled);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationNavigationEvents_Value = Guid.initString("c22615d2-d318-4da2-8422-1fcaf77b10e4");
 pub const IID_IWebApplicationNavigationEvents = &IID_IWebApplicationNavigationEvents_Value;
-pub const IWebApplicationNavigationEvents = extern struct {
+pub const IWebApplicationNavigationEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BeforeNavigate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-                navigationFlags: u32,
-                targetFrameName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-                navigationFlags: u32,
-                targetFrameName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NavigateComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NavigateError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-                targetFrameName: ?[*:0]const u16,
-                statusCode: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-                targetFrameName: ?[*:0]const u16,
-                statusCode: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DocumentComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationNavigationEvents,
-                htmlWindow: ?*IHTMLWindow2,
-                url: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DownloadBegin: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationNavigationEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationNavigationEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DownloadComplete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationNavigationEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationNavigationEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BeforeNavigate: *const fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+            navigationFlags: u32,
+            targetFrameName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NavigateComplete: *const fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NavigateError: *const fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+            targetFrameName: ?[*:0]const u16,
+            statusCode: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DocumentComplete: *const fn(
+            self: *const IWebApplicationNavigationEvents,
+            htmlWindow: ?*IHTMLWindow2,
+            url: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DownloadBegin: *const fn(
+            self: *const IWebApplicationNavigationEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DownloadComplete: *const fn(
+            self: *const IWebApplicationNavigationEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationNavigationEvents_BeforeNavigate(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, navigationFlags: u32, targetFrameName: ?[*:0]const u16) HRESULT {
-                return @as(*const IWebApplicationNavigationEvents.VTable, @ptrCast(self.vtable)).BeforeNavigate(@as(*const IWebApplicationNavigationEvents, @ptrCast(self)), htmlWindow, url, navigationFlags, targetFrameName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationNavigationEvents_NavigateComplete(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) HRESULT {
-                return @as(*const IWebApplicationNavigationEvents.VTable, @ptrCast(self.vtable)).NavigateComplete(@as(*const IWebApplicationNavigationEvents, @ptrCast(self)), htmlWindow, url);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationNavigationEvents_NavigateError(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, targetFrameName: ?[*:0]const u16, statusCode: u32) HRESULT {
-                return @as(*const IWebApplicationNavigationEvents.VTable, @ptrCast(self.vtable)).NavigateError(@as(*const IWebApplicationNavigationEvents, @ptrCast(self)), htmlWindow, url, targetFrameName, statusCode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationNavigationEvents_DocumentComplete(self: *const T, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) HRESULT {
-                return @as(*const IWebApplicationNavigationEvents.VTable, @ptrCast(self.vtable)).DocumentComplete(@as(*const IWebApplicationNavigationEvents, @ptrCast(self)), htmlWindow, url);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationNavigationEvents_DownloadBegin(self: *const T) HRESULT {
-                return @as(*const IWebApplicationNavigationEvents.VTable, @ptrCast(self.vtable)).DownloadBegin(@as(*const IWebApplicationNavigationEvents, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationNavigationEvents_DownloadComplete(self: *const T) HRESULT {
-                return @as(*const IWebApplicationNavigationEvents.VTable, @ptrCast(self.vtable)).DownloadComplete(@as(*const IWebApplicationNavigationEvents, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn BeforeNavigate(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, navigationFlags: u32, targetFrameName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.BeforeNavigate(self, htmlWindow, url, navigationFlags, targetFrameName);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn NavigateComplete(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.NavigateComplete(self, htmlWindow, url);
+    }
+    pub fn NavigateError(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16, targetFrameName: ?[*:0]const u16, statusCode: u32) callconv(.Inline) HRESULT {
+        return self.vtable.NavigateError(self, htmlWindow, url, targetFrameName, statusCode);
+    }
+    pub fn DocumentComplete(self: *const IWebApplicationNavigationEvents, htmlWindow: ?*IHTMLWindow2, url: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.DocumentComplete(self, htmlWindow, url);
+    }
+    pub fn DownloadBegin(self: *const IWebApplicationNavigationEvents) callconv(.Inline) HRESULT {
+        return self.vtable.DownloadBegin(self);
+    }
+    pub fn DownloadComplete(self: *const IWebApplicationNavigationEvents) callconv(.Inline) HRESULT {
+        return self.vtable.DownloadComplete(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationUIEvents_Value = Guid.initString("5b2b3f99-328c-41d5-a6f7-7483ed8e71dd");
 pub const IID_IWebApplicationUIEvents = &IID_IWebApplicationUIEvents_Value;
-pub const IWebApplicationUIEvents = extern struct {
+pub const IWebApplicationUIEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SecurityProblem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationUIEvents,
-                securityProblem: u32,
-                result: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationUIEvents,
-                securityProblem: u32,
-                result: ?*HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SecurityProblem: *const fn(
+            self: *const IWebApplicationUIEvents,
+            securityProblem: u32,
+            result: ?*HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationUIEvents_SecurityProblem(self: *const T, securityProblem: u32, result: ?*HRESULT) HRESULT {
-                return @as(*const IWebApplicationUIEvents.VTable, @ptrCast(self.vtable)).SecurityProblem(@as(*const IWebApplicationUIEvents, @ptrCast(self)), securityProblem, result);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SecurityProblem(self: *const IWebApplicationUIEvents, securityProblem: u32, result: ?*HRESULT) callconv(.Inline) HRESULT {
+        return self.vtable.SecurityProblem(self, securityProblem, result);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationUpdateEvents_Value = Guid.initString("3e59e6b7-c652-4daf-ad5e-16feb350cde3");
 pub const IID_IWebApplicationUpdateEvents = &IID_IWebApplicationUpdateEvents_Value;
-pub const IWebApplicationUpdateEvents = extern struct {
+pub const IWebApplicationUpdateEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnPaint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationUpdateEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationUpdateEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnCssChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationUpdateEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationUpdateEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnPaint: *const fn(
+            self: *const IWebApplicationUpdateEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCssChanged: *const fn(
+            self: *const IWebApplicationUpdateEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationUpdateEvents_OnPaint(self: *const T) HRESULT {
-                return @as(*const IWebApplicationUpdateEvents.VTable, @ptrCast(self.vtable)).OnPaint(@as(*const IWebApplicationUpdateEvents, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationUpdateEvents_OnCssChanged(self: *const T) HRESULT {
-                return @as(*const IWebApplicationUpdateEvents.VTable, @ptrCast(self.vtable)).OnCssChanged(@as(*const IWebApplicationUpdateEvents, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnPaint(self: *const IWebApplicationUpdateEvents) callconv(.Inline) HRESULT {
+        return self.vtable.OnPaint(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnCssChanged(self: *const IWebApplicationUpdateEvents) callconv(.Inline) HRESULT {
+        return self.vtable.OnCssChanged(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationHost_Value = Guid.initString("cecbd2c3-a3a5-4749-9681-20e9161c6794");
 pub const IID_IWebApplicationHost = &IID_IWebApplicationHost_Value;
-pub const IWebApplicationHost = extern struct {
+pub const IWebApplicationHost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HWND: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IWebApplicationHost,
-                hwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IWebApplicationHost,
-                hwnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_HWND: *const fn(
+            self: *const IWebApplicationHost,
+            hwnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Document: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IWebApplicationHost,
-                htmlDocument: ?*?*IHTMLDocument2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IWebApplicationHost,
-                htmlDocument: ?*?*IHTMLDocument2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Refresh: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Advise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationHost,
-                interfaceId: ?*const Guid,
-                callback: ?*IUnknown,
-                cookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationHost,
-                interfaceId: ?*const Guid,
-                callback: ?*IUnknown,
-                cookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unadvise: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationHost,
-                cookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationHost,
-                cookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Document: *const fn(
+            self: *const IWebApplicationHost,
+            htmlDocument: ?*?*IHTMLDocument2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Refresh: *const fn(
+            self: *const IWebApplicationHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Advise: *const fn(
+            self: *const IWebApplicationHost,
+            interfaceId: ?*const Guid,
+            callback: ?*IUnknown,
+            cookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unadvise: *const fn(
+            self: *const IWebApplicationHost,
+            cookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationHost_get_HWND(self: *const T, hwnd: ?*?HWND) HRESULT {
-                return @as(*const IWebApplicationHost.VTable, @ptrCast(self.vtable)).get_HWND(@as(*const IWebApplicationHost, @ptrCast(self)), hwnd);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationHost_get_Document(self: *const T, htmlDocument: ?*?*IHTMLDocument2) HRESULT {
-                return @as(*const IWebApplicationHost.VTable, @ptrCast(self.vtable)).get_Document(@as(*const IWebApplicationHost, @ptrCast(self)), htmlDocument);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationHost_Refresh(self: *const T) HRESULT {
-                return @as(*const IWebApplicationHost.VTable, @ptrCast(self.vtable)).Refresh(@as(*const IWebApplicationHost, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationHost_Advise(self: *const T, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) HRESULT {
-                return @as(*const IWebApplicationHost.VTable, @ptrCast(self.vtable)).Advise(@as(*const IWebApplicationHost, @ptrCast(self)), interfaceId, callback, cookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationHost_Unadvise(self: *const T, cookie: u32) HRESULT {
-                return @as(*const IWebApplicationHost.VTable, @ptrCast(self.vtable)).Unadvise(@as(*const IWebApplicationHost, @ptrCast(self)), cookie);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn get_HWND(self: *const IWebApplicationHost, hwnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return self.vtable.get_HWND(self, hwnd);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Document(self: *const IWebApplicationHost, htmlDocument: ?*?*IHTMLDocument2) callconv(.Inline) HRESULT {
+        return self.vtable.get_Document(self, htmlDocument);
+    }
+    pub fn Refresh(self: *const IWebApplicationHost) callconv(.Inline) HRESULT {
+        return self.vtable.Refresh(self);
+    }
+    pub fn Advise(self: *const IWebApplicationHost, interfaceId: ?*const Guid, callback: ?*IUnknown, cookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Advise(self, interfaceId, callback, cookie);
+    }
+    pub fn Unadvise(self: *const IWebApplicationHost, cookie: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Unadvise(self, cookie);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationActivation_Value = Guid.initString("bcdcd0de-330e-481b-b843-4898a6a8ebac");
 pub const IID_IWebApplicationActivation = &IID_IWebApplicationActivation_Value;
-pub const IWebApplicationActivation = extern struct {
+pub const IWebApplicationActivation = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CancelPendingActivation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWebApplicationActivation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWebApplicationActivation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CancelPendingActivation: *const fn(
+            self: *const IWebApplicationActivation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationActivation_CancelPendingActivation(self: *const T) HRESULT {
-                return @as(*const IWebApplicationActivation.VTable, @ptrCast(self.vtable)).CancelPendingActivation(@as(*const IWebApplicationActivation, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CancelPendingActivation(self: *const IWebApplicationActivation) callconv(.Inline) HRESULT {
+        return self.vtable.CancelPendingActivation(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IWebApplicationAuthoringMode_Value = Guid.initString("720aea93-1964-4db0-b005-29eb9e2b18a9");
 pub const IID_IWebApplicationAuthoringMode = &IID_IWebApplicationAuthoringMode_Value;
-pub const IWebApplicationAuthoringMode = extern struct {
+pub const IWebApplicationAuthoringMode = extern union {
     pub const VTable = extern struct {
         base: IServiceProvider.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AuthoringClientBinary: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IWebApplicationAuthoringMode,
-                designModeDllPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IWebApplicationAuthoringMode,
-                designModeDllPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AuthoringClientBinary: *const fn(
+            self: *const IWebApplicationAuthoringMode,
+            designModeDllPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IServiceProvider.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWebApplicationAuthoringMode_get_AuthoringClientBinary(self: *const T, designModeDllPath: ?*?BSTR) HRESULT {
-                return @as(*const IWebApplicationAuthoringMode.VTable, @ptrCast(self.vtable)).get_AuthoringClientBinary(@as(*const IWebApplicationAuthoringMode, @ptrCast(self)), designModeDllPath);
-            }
-        };
+    IServiceProvider: IServiceProvider,
+    IUnknown: IUnknown,
+    pub fn get_AuthoringClientBinary(self: *const IWebApplicationAuthoringMode, designModeDllPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_AuthoringClientBinary(self, designModeDllPath);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
-pub const RegisterAuthoringClientFunctionType = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        authoringModeObject: ?*IWebApplicationAuthoringMode,
-        host: ?*IWebApplicationHost,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        authoringModeObject: ?*IWebApplicationAuthoringMode,
-        host: ?*IWebApplicationHost,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const RegisterAuthoringClientFunctionType = *const fn(
+    authoringModeObject: ?*IWebApplicationAuthoringMode,
+    host: ?*IWebApplicationHost,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const UnregisterAuthoringClientFunctionType = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        host: ?*IWebApplicationHost,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        host: ?*IWebApplicationHost,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const UnregisterAuthoringClientFunctionType = *const fn(
+    host: ?*IWebApplicationHost,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -422,12 +238,6 @@ pub const UnregisterAuthoringClientFunctionType = switch (@import("builtin").zig
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
@@ -445,20 +255,16 @@ const PWSTR = @import("../../../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "RegisterAuthoringClientFunctionType")) {
-        _ = RegisterAuthoringClientFunctionType;
-    }
-    if (@hasDecl(@This(), "UnregisterAuthoringClientFunctionType")) {
-        _ = UnregisterAuthoringClientFunctionType;
-    }
+    if (@hasDecl(@This(), "RegisterAuthoringClientFunctionType")) { _ = RegisterAuthoringClientFunctionType; }
+    if (@hasDecl(@This(), "UnregisterAuthoringClientFunctionType")) { _ = UnregisterAuthoringClientFunctionType; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

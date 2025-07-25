@@ -11,6 +11,7 @@ pub const DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED = @import("../zig.zig").typedC
 //--------------------------------------------------------------------------------
 // Section: Types (7)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const DPI_AWARENESS_CONTEXT = isize;
 
 pub const DPI_AWARENESS = enum(i32) {
@@ -33,42 +34,82 @@ pub const DPI_HOSTING_BEHAVIOR_INVALID = DPI_HOSTING_BEHAVIOR.INVALID;
 pub const DPI_HOSTING_BEHAVIOR_DEFAULT = DPI_HOSTING_BEHAVIOR.DEFAULT;
 pub const DPI_HOSTING_BEHAVIOR_MIXED = DPI_HOSTING_BEHAVIOR.MIXED;
 
-pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = enum(u32) {
-    EFAULT = 0,
-    ISABLE_FONT_UPDATE = 1,
-    ISABLE_RELAYOUT = 2,
-    _,
-    pub fn initFlags(o: struct {
-        EFAULT: u1 = 0,
-        ISABLE_FONT_UPDATE: u1 = 0,
-        ISABLE_RELAYOUT: u1 = 0,
-    }) DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS {
-        return @as(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS, @enumFromInt((if (o.EFAULT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT) else 0) | (if (o.ISABLE_FONT_UPDATE == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE) else 0) | (if (o.ISABLE_RELAYOUT == 1) @intFromEnum(DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT) else 0)));
-    }
+pub const DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS = packed struct(u32) {
+    ISABLE_FONT_UPDATE: u1 = 0,
+    ISABLE_RELAYOUT: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.EFAULT;
-pub const DCDC_DISABLE_FONT_UPDATE = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_FONT_UPDATE;
-pub const DCDC_DISABLE_RELAYOUT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS.ISABLE_RELAYOUT;
+pub const DCDC_DEFAULT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS{ };
+pub const DCDC_DISABLE_FONT_UPDATE = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS{ .ISABLE_FONT_UPDATE = 1 };
+pub const DCDC_DISABLE_RELAYOUT = DIALOG_CONTROL_DPI_CHANGE_BEHAVIORS{ .ISABLE_RELAYOUT = 1 };
 
-pub const DIALOG_DPI_CHANGE_BEHAVIORS = enum(u32) {
-    EFAULT = 0,
-    ISABLE_ALL = 1,
-    ISABLE_RESIZE = 2,
-    ISABLE_CONTROL_RELAYOUT = 4,
-    _,
-    pub fn initFlags(o: struct {
-        EFAULT: u1 = 0,
-        ISABLE_ALL: u1 = 0,
-        ISABLE_RESIZE: u1 = 0,
-        ISABLE_CONTROL_RELAYOUT: u1 = 0,
-    }) DIALOG_DPI_CHANGE_BEHAVIORS {
-        return @as(DIALOG_DPI_CHANGE_BEHAVIORS, @enumFromInt((if (o.EFAULT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT) else 0) | (if (o.ISABLE_ALL == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL) else 0) | (if (o.ISABLE_RESIZE == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE) else 0) | (if (o.ISABLE_CONTROL_RELAYOUT == 1) @intFromEnum(DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT) else 0)));
-    }
+pub const DIALOG_DPI_CHANGE_BEHAVIORS = packed struct(u32) {
+    ISABLE_ALL: u1 = 0,
+    ISABLE_RESIZE: u1 = 0,
+    ISABLE_CONTROL_RELAYOUT: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS.EFAULT;
-pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_ALL;
-pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_RESIZE;
-pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS.ISABLE_CONTROL_RELAYOUT;
+pub const DDC_DEFAULT = DIALOG_DPI_CHANGE_BEHAVIORS{ };
+pub const DDC_DISABLE_ALL = DIALOG_DPI_CHANGE_BEHAVIORS{ .ISABLE_ALL = 1 };
+pub const DDC_DISABLE_RESIZE = DIALOG_DPI_CHANGE_BEHAVIORS{ .ISABLE_RESIZE = 1 };
+pub const DDC_DISABLE_CONTROL_RELAYOUT = DIALOG_DPI_CHANGE_BEHAVIORS{ .ISABLE_CONTROL_RELAYOUT = 1 };
 
 pub const PROCESS_DPI_AWARENESS = enum(i32) {
     DPI_UNAWARE = 0,
@@ -83,12 +124,13 @@ pub const MONITOR_DPI_TYPE = enum(i32) {
     EFFECTIVE_DPI = 0,
     ANGULAR_DPI = 1,
     RAW_DPI = 2,
-    // DEFAULT = 0, this enum value conflicts with EFFECTIVE_DPI
+    pub const DEFAULT = .EFFECTIVE_DPI;
 };
 pub const MDT_EFFECTIVE_DPI = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
 pub const MDT_ANGULAR_DPI = MONITOR_DPI_TYPE.ANGULAR_DPI;
 pub const MDT_RAW_DPI = MONITOR_DPI_TYPE.RAW_DPI;
 pub const MDT_DEFAULT = MONITOR_DPI_TYPE.EFFECTIVE_DPI;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (29)
@@ -133,9 +175,9 @@ pub extern "user32" fn GetSystemMetricsForDpi(
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "user32" fn AdjustWindowRectExForDpi(
     lpRect: ?*RECT,
-    dwStyle: u32,
+    dwStyle: WINDOW_STYLE,
     bMenu: BOOL,
-    dwExStyle: u32,
+    dwExStyle: WINDOW_EX_STYLE,
     dpi: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
@@ -166,7 +208,8 @@ pub extern "user32" fn SetThreadDpiAwarenessContext(
 ) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "user32" fn GetThreadDpiAwarenessContext() callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
+pub extern "user32" fn GetThreadDpiAwarenessContext(
+) callconv(@import("std").os.windows.WINAPI) DPI_AWARENESS_CONTEXT;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 pub extern "user32" fn GetWindowDpiAwarenessContext(
@@ -200,7 +243,8 @@ pub extern "user32" fn GetDpiForWindow(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.14393'
-pub extern "user32" fn GetDpiForSystem() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "user32" fn GetDpiForSystem(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "user32" fn GetSystemDpiForProcess(
@@ -227,7 +271,8 @@ pub extern "user32" fn SetThreadDpiHostingBehavior(
 ) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
-pub extern "user32" fn GetThreadDpiHostingBehavior() callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
+pub extern "user32" fn GetThreadDpiHostingBehavior(
+) callconv(@import("std").os.windows.WINAPI) DPI_HOSTING_BEHAVIOR;
 
 // TODO: this type is limited to platform 'windows10.0.17134'
 pub extern "user32" fn GetWindowDpiHostingBehavior(
@@ -253,17 +298,12 @@ pub extern "api-ms-win-shcore-scaling-l1-1-1" fn GetDpiForMonitor(
     dpiY: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
-// Section: Imports (8)
+// Section: Imports (10)
 //--------------------------------------------------------------------------------
 const BOOL = @import("../foundation.zig").BOOL;
 const HANDLE = @import("../foundation.zig").HANDLE;
@@ -273,15 +313,17 @@ const HWND = @import("../foundation.zig").HWND;
 const POINT = @import("../foundation.zig").POINT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 const RECT = @import("../foundation.zig").RECT;
+const WINDOW_EX_STYLE = @import("../ui/windows_and_messaging.zig").WINDOW_EX_STYLE;
+const WINDOW_STYLE = @import("../ui/windows_and_messaging.zig").WINDOW_STYLE;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

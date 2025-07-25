@@ -332,12 +332,14 @@ pub const DNS_CONNECTION_POLICY_ENTRY_ONDEMAND = @as(u32, 1);
 // Section: Types (97)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'DnsReleaseContextHandle', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const DnsContextHandle = isize;
 
 pub const IP4_ARRAY = extern struct {
     AddrCount: u32,
     AddrArray: [1]u32,
 };
+
 
 pub const DNS_ADDR = extern struct {
     MaxSa: [32]CHAR,
@@ -1006,16 +1008,10 @@ pub const DNS_RRSET = extern struct {
     pLastRR: ?*DNS_RECORDA,
 };
 
-pub const DNS_PROXY_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        completionContext: ?*anyopaque,
-        status: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        completionContext: ?*anyopaque,
-        status: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const DNS_PROXY_COMPLETION_ROUTINE = *const fn(
+    completionContext: ?*anyopaque,
+    status: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_PROXY_INFORMATION_TYPE = enum(i32) {
     DIRECT = 0,
@@ -1062,16 +1058,10 @@ pub const DNS_QUERY_RESULT = extern struct {
     Reserved: ?*anyopaque,
 };
 
-pub const PDNS_QUERY_COMPLETION_ROUTINE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pQueryContext: ?*anyopaque,
-        pQueryResults: ?*DNS_QUERY_RESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        pQueryContext: ?*anyopaque,
-        pQueryResults: ?*DNS_QUERY_RESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PDNS_QUERY_COMPLETION_ROUTINE = *const fn(
+    pQueryContext: ?*anyopaque,
+    pQueryResults: ?*DNS_QUERY_RESULT,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_QUERY_REQUEST = extern struct {
     Version: u32,
@@ -1266,18 +1256,11 @@ pub const DNS_SERVICE_CANCEL = extern struct {
     reserved: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_BROWSE_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Status: u32,
-        pQueryContext: ?*anyopaque,
-        pDnsRecord: ?*DNS_RECORDA,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        Status: u32,
-        pQueryContext: ?*anyopaque,
-        pDnsRecord: ?*DNS_RECORDA,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PDNS_SERVICE_BROWSE_CALLBACK = *const fn(
+    Status: u32,
+    pQueryContext: ?*anyopaque,
+    pDnsRecord: ?*DNS_RECORDW,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     Version: u32,
@@ -1290,18 +1273,11 @@ pub const DNS_SERVICE_BROWSE_REQUEST = extern struct {
     pQueryContext: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_RESOLVE_COMPLETE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Status: u32,
-        pQueryContext: ?*anyopaque,
-        pInstance: ?*DNS_SERVICE_INSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        Status: u32,
-        pQueryContext: ?*anyopaque,
-        pInstance: ?*DNS_SERVICE_INSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PDNS_SERVICE_RESOLVE_COMPLETE = *const fn(
+    Status: u32,
+    pQueryContext: ?*anyopaque,
+    pInstance: ?*DNS_SERVICE_INSTANCE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     Version: u32,
@@ -1311,18 +1287,11 @@ pub const DNS_SERVICE_RESOLVE_REQUEST = extern struct {
     pQueryContext: ?*anyopaque,
 };
 
-pub const PDNS_SERVICE_REGISTER_COMPLETE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Status: u32,
-        pQueryContext: ?*anyopaque,
-        pInstance: ?*DNS_SERVICE_INSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        Status: u32,
-        pQueryContext: ?*anyopaque,
-        pInstance: ?*DNS_SERVICE_INSTANCE,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PDNS_SERVICE_REGISTER_COMPLETE = *const fn(
+    Status: u32,
+    pQueryContext: ?*anyopaque,
+    pInstance: ?*DNS_SERVICE_INSTANCE,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const DNS_SERVICE_REGISTER_REQUEST = extern struct {
     Version: u32,
@@ -1342,18 +1311,11 @@ pub const MDNS_QUERY_HANDLE = extern struct {
     stateNameData: [2]u32,
 };
 
-pub const PMDNS_QUERY_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pQueryContext: ?*anyopaque,
-        pQueryHandle: ?*MDNS_QUERY_HANDLE,
-        pQueryResults: ?*DNS_QUERY_RESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        pQueryContext: ?*anyopaque,
-        pQueryHandle: ?*MDNS_QUERY_HANDLE,
-        pQueryResults: ?*DNS_QUERY_RESULT,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PMDNS_QUERY_CALLBACK = *const fn(
+    pQueryContext: ?*anyopaque,
+    pQueryHandle: ?*MDNS_QUERY_HANDLE,
+    pQueryResults: ?*DNS_QUERY_RESULT,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const MDNS_QUERY_REQUEST = extern struct {
     Version: u32,
@@ -1368,7 +1330,8 @@ pub const MDNS_QUERY_REQUEST = extern struct {
     ulResendCount: u32,
 };
 
-pub const IP6_ADDRESS = switch (@import("../zig.zig").arch) {
+
+pub const IP6_ADDRESS = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => extern union {
         IP6Qword: [2]u64,
         IP6Dword: [4]u32,
@@ -1785,102 +1748,156 @@ pub extern "dnsapi" fn DnsStopMulticastQuery(
     pHandle: ?*MDNS_QUERY_HANDLE,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (21)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const DNS_PTR_DATA = thismodule.DNS_PTR_DATAA;
-        pub const DNS_SOA_DATA = thismodule.DNS_SOA_DATAA;
-        pub const DNS_MINFO_DATA = thismodule.DNS_MINFO_DATAA;
-        pub const DNS_MX_DATA = thismodule.DNS_MX_DATAA;
-        pub const DNS_TXT_DATA = thismodule.DNS_TXT_DATAA;
-        pub const DNS_SIG_DATA = thismodule.DNS_SIG_DATAA;
-        pub const DNS_NSEC_DATA = thismodule.DNS_NSEC_DATAA;
-        pub const DNS_NXT_DATA = thismodule.DNS_NXT_DATAA;
-        pub const DNS_SRV_DATA = thismodule.DNS_SRV_DATAA;
-        pub const DNS_NAPTR_DATA = thismodule.DNS_NAPTR_DATAA;
-        pub const DNS_TKEY_DATA = thismodule.DNS_TKEY_DATAA;
-        pub const DNS_TSIG_DATA = thismodule.DNS_TSIG_DATAA;
-        pub const DNS_WINSR_DATA = thismodule.DNS_WINSR_DATAA;
-        pub const DNS_RECORD = thismodule.DNS_RECORDA;
-        pub const _DnsRecordOpt = thismodule._DnsRecordOptA;
-        pub const DnsQuery_ = thismodule.DnsQuery_A;
-        pub const DnsAcquireContextHandle_ = thismodule.DnsAcquireContextHandle_A;
-        pub const DnsModifyRecordsInSet_ = thismodule.DnsModifyRecordsInSet_A;
-        pub const DnsReplaceRecordSet = thismodule.DnsReplaceRecordSetA;
-        pub const DnsValidateName_ = thismodule.DnsValidateName_A;
-        pub const DnsNameCompare_ = thismodule.DnsNameCompare_A;
-    },
-    .wide => struct {
-        pub const DNS_PTR_DATA = thismodule.DNS_PTR_DATAW;
-        pub const DNS_SOA_DATA = thismodule.DNS_SOA_DATAW;
-        pub const DNS_MINFO_DATA = thismodule.DNS_MINFO_DATAW;
-        pub const DNS_MX_DATA = thismodule.DNS_MX_DATAW;
-        pub const DNS_TXT_DATA = thismodule.DNS_TXT_DATAW;
-        pub const DNS_SIG_DATA = thismodule.DNS_SIG_DATAW;
-        pub const DNS_NSEC_DATA = thismodule.DNS_NSEC_DATAW;
-        pub const DNS_NXT_DATA = thismodule.DNS_NXT_DATAW;
-        pub const DNS_SRV_DATA = thismodule.DNS_SRV_DATAW;
-        pub const DNS_NAPTR_DATA = thismodule.DNS_NAPTR_DATAW;
-        pub const DNS_TKEY_DATA = thismodule.DNS_TKEY_DATAW;
-        pub const DNS_TSIG_DATA = thismodule.DNS_TSIG_DATAW;
-        pub const DNS_WINSR_DATA = thismodule.DNS_WINSR_DATAW;
-        pub const DNS_RECORD = thismodule.DNS_RECORDW;
-        pub const _DnsRecordOpt = thismodule._DnsRecordOptW;
-        pub const DnsQuery_ = thismodule.DnsQuery_W;
-        pub const DnsAcquireContextHandle_ = thismodule.DnsAcquireContextHandle_W;
-        pub const DnsModifyRecordsInSet_ = thismodule.DnsModifyRecordsInSet_W;
-        pub const DnsReplaceRecordSet = thismodule.DnsReplaceRecordSetW;
-        pub const DnsValidateName_ = thismodule.DnsValidateName_W;
-        pub const DnsNameCompare_ = thismodule.DnsNameCompare_W;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const DNS_PTR_DATA = *opaque {};
-        pub const DNS_SOA_DATA = *opaque {};
-        pub const DNS_MINFO_DATA = *opaque {};
-        pub const DNS_MX_DATA = *opaque {};
-        pub const DNS_TXT_DATA = *opaque {};
-        pub const DNS_SIG_DATA = *opaque {};
-        pub const DNS_NSEC_DATA = *opaque {};
-        pub const DNS_NXT_DATA = *opaque {};
-        pub const DNS_SRV_DATA = *opaque {};
-        pub const DNS_NAPTR_DATA = *opaque {};
-        pub const DNS_TKEY_DATA = *opaque {};
-        pub const DNS_TSIG_DATA = *opaque {};
-        pub const DNS_WINSR_DATA = *opaque {};
-        pub const DNS_RECORD = *opaque {};
-        pub const _DnsRecordOpt = *opaque {};
-        pub const DnsQuery_ = *opaque {};
-        pub const DnsAcquireContextHandle_ = *opaque {};
-        pub const DnsModifyRecordsInSet_ = *opaque {};
-        pub const DnsReplaceRecordSet = *opaque {};
-        pub const DnsValidateName_ = *opaque {};
-        pub const DnsNameCompare_ = *opaque {};
-    } else struct {
-        pub const DNS_PTR_DATA = @compileError("'DNS_PTR_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_SOA_DATA = @compileError("'DNS_SOA_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_MINFO_DATA = @compileError("'DNS_MINFO_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_MX_DATA = @compileError("'DNS_MX_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_TXT_DATA = @compileError("'DNS_TXT_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_SIG_DATA = @compileError("'DNS_SIG_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_NSEC_DATA = @compileError("'DNS_NSEC_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_NXT_DATA = @compileError("'DNS_NXT_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_SRV_DATA = @compileError("'DNS_SRV_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_NAPTR_DATA = @compileError("'DNS_NAPTR_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_TKEY_DATA = @compileError("'DNS_TKEY_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_TSIG_DATA = @compileError("'DNS_TSIG_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_WINSR_DATA = @compileError("'DNS_WINSR_DATA' requires that UNICODE be set to true or false in the root module");
-        pub const DNS_RECORD = @compileError("'DNS_RECORD' requires that UNICODE be set to true or false in the root module");
-        pub const _DnsRecordOpt = @compileError("'_DnsRecordOpt' requires that UNICODE be set to true or false in the root module");
-        pub const DnsQuery_ = @compileError("'DnsQuery_' requires that UNICODE be set to true or false in the root module");
-        pub const DnsAcquireContextHandle_ = @compileError("'DnsAcquireContextHandle_' requires that UNICODE be set to true or false in the root module");
-        pub const DnsModifyRecordsInSet_ = @compileError("'DnsModifyRecordsInSet_' requires that UNICODE be set to true or false in the root module");
-        pub const DnsReplaceRecordSet = @compileError("'DnsReplaceRecordSet' requires that UNICODE be set to true or false in the root module");
-        pub const DnsValidateName_ = @compileError("'DnsValidateName_' requires that UNICODE be set to true or false in the root module");
-        pub const DnsNameCompare_ = @compileError("'DnsNameCompare_' requires that UNICODE be set to true or false in the root module");
-    },
+pub const DNS_PTR_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_PTR_DATAA,
+    .wide => @This().DNS_PTR_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_PTR_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_SOA_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_SOA_DATAA,
+    .wide => @This().DNS_SOA_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_SOA_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_MINFO_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_MINFO_DATAA,
+    .wide => @This().DNS_MINFO_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_MINFO_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_MX_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_MX_DATAA,
+    .wide => @This().DNS_MX_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_MX_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_TXT_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_TXT_DATAA,
+    .wide => @This().DNS_TXT_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_TXT_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_SIG_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_SIG_DATAA,
+    .wide => @This().DNS_SIG_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_SIG_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_NSEC_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_NSEC_DATAA,
+    .wide => @This().DNS_NSEC_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_NSEC_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_NXT_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_NXT_DATAA,
+    .wide => @This().DNS_NXT_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_NXT_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_SRV_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_SRV_DATAA,
+    .wide => @This().DNS_SRV_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_SRV_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_NAPTR_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_NAPTR_DATAA,
+    .wide => @This().DNS_NAPTR_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_NAPTR_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_TKEY_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_TKEY_DATAA,
+    .wide => @This().DNS_TKEY_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_TKEY_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_TSIG_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_TSIG_DATAA,
+    .wide => @This().DNS_TSIG_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_TSIG_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_WINSR_DATA = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_WINSR_DATAA,
+    .wide => @This().DNS_WINSR_DATAW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_WINSR_DATA' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DNS_RECORD = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DNS_RECORDA,
+    .wide => @This().DNS_RECORDW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DNS_RECORD' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const _DnsRecordOpt = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This()._DnsRecordOptA,
+    .wide => @This()._DnsRecordOptW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'_DnsRecordOpt' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsQuery_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsQuery_A,
+    .wide => @This().DnsQuery_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsQuery_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsAcquireContextHandle_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsAcquireContextHandle_A,
+    .wide => @This().DnsAcquireContextHandle_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsAcquireContextHandle_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsModifyRecordsInSet_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsModifyRecordsInSet_A,
+    .wide => @This().DnsModifyRecordsInSet_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsModifyRecordsInSet_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsReplaceRecordSet = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsReplaceRecordSetA,
+    .wide => @This().DnsReplaceRecordSetW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsReplaceRecordSet' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsValidateName_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsValidateName_A,
+    .wide => @This().DnsValidateName_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsValidateName_' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DnsNameCompare_ = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DnsNameCompare_A,
+    .wide => @This().DnsNameCompare_W,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DnsNameCompare_' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -1893,32 +1910,20 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "DNS_PROXY_COMPLETION_ROUTINE")) {
-        _ = DNS_PROXY_COMPLETION_ROUTINE;
-    }
-    if (@hasDecl(@This(), "PDNS_QUERY_COMPLETION_ROUTINE")) {
-        _ = PDNS_QUERY_COMPLETION_ROUTINE;
-    }
-    if (@hasDecl(@This(), "PDNS_SERVICE_BROWSE_CALLBACK")) {
-        _ = PDNS_SERVICE_BROWSE_CALLBACK;
-    }
-    if (@hasDecl(@This(), "PDNS_SERVICE_RESOLVE_COMPLETE")) {
-        _ = PDNS_SERVICE_RESOLVE_COMPLETE;
-    }
-    if (@hasDecl(@This(), "PDNS_SERVICE_REGISTER_COMPLETE")) {
-        _ = PDNS_SERVICE_REGISTER_COMPLETE;
-    }
-    if (@hasDecl(@This(), "PMDNS_QUERY_CALLBACK")) {
-        _ = PMDNS_QUERY_CALLBACK;
-    }
+    if (@hasDecl(@This(), "DNS_PROXY_COMPLETION_ROUTINE")) { _ = DNS_PROXY_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "PDNS_QUERY_COMPLETION_ROUTINE")) { _ = PDNS_QUERY_COMPLETION_ROUTINE; }
+    if (@hasDecl(@This(), "PDNS_SERVICE_BROWSE_CALLBACK")) { _ = PDNS_SERVICE_BROWSE_CALLBACK; }
+    if (@hasDecl(@This(), "PDNS_SERVICE_RESOLVE_COMPLETE")) { _ = PDNS_SERVICE_RESOLVE_COMPLETE; }
+    if (@hasDecl(@This(), "PDNS_SERVICE_REGISTER_COMPLETE")) { _ = PDNS_SERVICE_REGISTER_COMPLETE; }
+    if (@hasDecl(@This(), "PMDNS_QUERY_CALLBACK")) { _ = PMDNS_QUERY_CALLBACK; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

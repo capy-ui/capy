@@ -183,13 +183,13 @@ pub const CLSID_RDPTransportStreamEvents = &CLSID_RDPTransportStreamEvents_Value
 
 pub const CTRL_LEVEL = enum(i32) {
     MIN = 0,
-    // INVALID = 0, this enum value conflicts with MIN
     NONE = 1,
     VIEW = 2,
     INTERACTIVE = 3,
     REQCTRL_VIEW = 4,
     REQCTRL_INTERACTIVE = 5,
-    // MAX = 5, this enum value conflicts with REQCTRL_INTERACTIVE
+    pub const INVALID = .MIN;
+    pub const MAX = .REQCTRL_INTERACTIVE;
 };
 pub const CTRL_LEVEL_MIN = CTRL_LEVEL.MIN;
 pub const CTRL_LEVEL_INVALID = CTRL_LEVEL.MIN;
@@ -202,10 +202,10 @@ pub const CTRL_LEVEL_MAX = CTRL_LEVEL.REQCTRL_INTERACTIVE;
 
 pub const ATTENDEE_DISCONNECT_REASON = enum(i32) {
     MIN = 0,
-    // APP = 0, this enum value conflicts with MIN
     ERR = 1,
     CLI = 2,
-    // MAX = 2, this enum value conflicts with CLI
+    pub const APP = .MIN;
+    pub const MAX = .CLI;
 };
 pub const ATTENDEE_DISCONNECT_REASON_MIN = ATTENDEE_DISCONNECT_REASON.MIN;
 pub const ATTENDEE_DISCONNECT_REASON_APP = ATTENDEE_DISCONNECT_REASON.MIN;
@@ -288,2637 +288,1378 @@ pub const RDPSRAPI_KBD_SYNC_FLAG_KANA_LOCK = RDPSRAPI_KBD_SYNC_FLAG.KANA_LOCK;
 
 const IID_IRDPSRAPIDebug_Value = Guid.initString("aa1e42b5-496d-4ca4-a690-348dcb2ec4ad");
 pub const IID_IRDPSRAPIDebug = &IID_IRDPSRAPIDebug_Value;
-pub const IRDPSRAPIDebug = extern struct {
+pub const IRDPSRAPIDebug = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_CLXCmdLine: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIDebug,
-                CLXCmdLine: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIDebug,
-                CLXCmdLine: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_CLXCmdLine: *const fn(
+            self: *const IRDPSRAPIDebug,
+            CLXCmdLine: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CLXCmdLine: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIDebug,
-                pCLXCmdLine: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIDebug,
-                pCLXCmdLine: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_CLXCmdLine: *const fn(
+            self: *const IRDPSRAPIDebug,
+            pCLXCmdLine: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIDebug_put_CLXCmdLine(self: *const T, CLXCmdLine: ?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIDebug.VTable, @ptrCast(self.vtable)).put_CLXCmdLine(@as(*const IRDPSRAPIDebug, @ptrCast(self)), CLXCmdLine);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIDebug_get_CLXCmdLine(self: *const T, pCLXCmdLine: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIDebug.VTable, @ptrCast(self.vtable)).get_CLXCmdLine(@as(*const IRDPSRAPIDebug, @ptrCast(self)), pCLXCmdLine);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn put_CLXCmdLine(self: *const IRDPSRAPIDebug, CLXCmdLine: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_CLXCmdLine(self, CLXCmdLine);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_CLXCmdLine(self: *const IRDPSRAPIDebug, pCLXCmdLine: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_CLXCmdLine(self, pCLXCmdLine);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IRDPSRAPIPerfCounterLogger_Value = Guid.initString("071c2533-0fa4-4e8f-ae83-9c10b4305ab5");
 pub const IID_IRDPSRAPIPerfCounterLogger = &IID_IRDPSRAPIPerfCounterLogger_Value;
-pub const IRDPSRAPIPerfCounterLogger = extern struct {
+pub const IRDPSRAPIPerfCounterLogger = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LogValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIPerfCounterLogger,
-                lValue: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIPerfCounterLogger,
-                lValue: i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LogValue: *const fn(
+            self: *const IRDPSRAPIPerfCounterLogger,
+            lValue: i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIPerfCounterLogger_LogValue(self: *const T, lValue: i64) HRESULT {
-                return @as(*const IRDPSRAPIPerfCounterLogger.VTable, @ptrCast(self.vtable)).LogValue(@as(*const IRDPSRAPIPerfCounterLogger, @ptrCast(self)), lValue);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn LogValue(self: *const IRDPSRAPIPerfCounterLogger, lValue: i64) callconv(.Inline) HRESULT {
+        return self.vtable.LogValue(self, lValue);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IRDPSRAPIPerfCounterLoggingManager_Value = Guid.initString("9a512c86-ac6e-4a8e-b1a4-fcef363f6e64");
 pub const IID_IRDPSRAPIPerfCounterLoggingManager = &IID_IRDPSRAPIPerfCounterLoggingManager_Value;
-pub const IRDPSRAPIPerfCounterLoggingManager = extern struct {
+pub const IRDPSRAPIPerfCounterLoggingManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateLogger: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIPerfCounterLoggingManager,
-                bstrCounterName: ?BSTR,
-                ppLogger: ?*?*IRDPSRAPIPerfCounterLogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIPerfCounterLoggingManager,
-                bstrCounterName: ?BSTR,
-                ppLogger: ?*?*IRDPSRAPIPerfCounterLogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateLogger: *const fn(
+            self: *const IRDPSRAPIPerfCounterLoggingManager,
+            bstrCounterName: ?BSTR,
+            ppLogger: ?*?*IRDPSRAPIPerfCounterLogger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIPerfCounterLoggingManager_CreateLogger(self: *const T, bstrCounterName: ?BSTR, ppLogger: ?*?*IRDPSRAPIPerfCounterLogger) HRESULT {
-                return @as(*const IRDPSRAPIPerfCounterLoggingManager.VTable, @ptrCast(self.vtable)).CreateLogger(@as(*const IRDPSRAPIPerfCounterLoggingManager, @ptrCast(self)), bstrCounterName, ppLogger);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateLogger(self: *const IRDPSRAPIPerfCounterLoggingManager, bstrCounterName: ?BSTR, ppLogger: ?*?*IRDPSRAPIPerfCounterLogger) callconv(.Inline) HRESULT {
+        return self.vtable.CreateLogger(self, bstrCounterName, ppLogger);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IRDPSRAPIAudioStream_Value = Guid.initString("e3e30ef9-89c6-4541-ba3b-19336ac6d31c");
 pub const IID_IRDPSRAPIAudioStream = &IID_IRDPSRAPIAudioStream_Value;
-pub const IRDPSRAPIAudioStream = extern struct {
+pub const IRDPSRAPIAudioStream = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIAudioStream,
-                pnPeriodInHundredNsIntervals: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIAudioStream,
-                pnPeriodInHundredNsIntervals: ?*i64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Start: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIAudioStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIAudioStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Stop: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIAudioStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIAudioStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIAudioStream,
-                ppbData: [*]?*u8,
-                pcbData: ?*u32,
-                pTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIAudioStream,
-                ppbData: [*]?*u8,
-                pcbData: ?*u32,
-                pTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FreeBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIAudioStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIAudioStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IRDPSRAPIAudioStream,
+            pnPeriodInHundredNsIntervals: ?*i64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Start: *const fn(
+            self: *const IRDPSRAPIAudioStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Stop: *const fn(
+            self: *const IRDPSRAPIAudioStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBuffer: *const fn(
+            self: *const IRDPSRAPIAudioStream,
+            ppbData: [*]?*u8,
+            pcbData: ?*u32,
+            pTimestamp: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FreeBuffer: *const fn(
+            self: *const IRDPSRAPIAudioStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAudioStream_Initialize(self: *const T, pnPeriodInHundredNsIntervals: ?*i64) HRESULT {
-                return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)), pnPeriodInHundredNsIntervals);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAudioStream_Start(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).Start(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAudioStream_Stop(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).Stop(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAudioStream_GetBuffer(self: *const T, ppbData: [*]?*u8, pcbData: ?*u32, pTimestamp: ?*u64) HRESULT {
-                return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)), ppbData, pcbData, pTimestamp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAudioStream_FreeBuffer(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPIAudioStream.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const IRDPSRAPIAudioStream, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IRDPSRAPIAudioStream, pnPeriodInHundredNsIntervals: ?*i64) callconv(.Inline) HRESULT {
+        return self.vtable.Initialize(self, pnPeriodInHundredNsIntervals);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Start(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
+        return self.vtable.Start(self);
+    }
+    pub fn Stop(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
+        return self.vtable.Stop(self);
+    }
+    pub fn GetBuffer(self: *const IRDPSRAPIAudioStream, ppbData: [*]?*u8, pcbData: ?*u32, pTimestamp: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetBuffer(self, ppbData, pcbData, pTimestamp);
+    }
+    pub fn FreeBuffer(self: *const IRDPSRAPIAudioStream) callconv(.Inline) HRESULT {
+        return self.vtable.FreeBuffer(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IRDPSRAPIClipboardUseEvents_Value = Guid.initString("d559f59a-7a27-4138-8763-247ce5f659a8");
 pub const IID_IRDPSRAPIClipboardUseEvents = &IID_IRDPSRAPIClipboardUseEvents_Value;
-pub const IRDPSRAPIClipboardUseEvents = extern struct {
+pub const IRDPSRAPIClipboardUseEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnPasteFromClipboard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIClipboardUseEvents,
-                clipboardFormat: u32,
-                pAttendee: ?*IDispatch,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIClipboardUseEvents,
-                clipboardFormat: u32,
-                pAttendee: ?*IDispatch,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnPasteFromClipboard: *const fn(
+            self: *const IRDPSRAPIClipboardUseEvents,
+            clipboardFormat: u32,
+            pAttendee: ?*IDispatch,
+            pRetVal: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIClipboardUseEvents_OnPasteFromClipboard(self: *const T, clipboardFormat: u32, pAttendee: ?*IDispatch, pRetVal: ?*i16) HRESULT {
-                return @as(*const IRDPSRAPIClipboardUseEvents.VTable, @ptrCast(self.vtable)).OnPasteFromClipboard(@as(*const IRDPSRAPIClipboardUseEvents, @ptrCast(self)), clipboardFormat, pAttendee, pRetVal);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnPasteFromClipboard(self: *const IRDPSRAPIClipboardUseEvents, clipboardFormat: u32, pAttendee: ?*IDispatch, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.OnPasteFromClipboard(self, clipboardFormat, pAttendee, pRetVal);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIWindow_Value = Guid.initString("beafe0f9-c77b-4933-ba9f-a24cddcc27cf");
 pub const IID_IRDPSRAPIWindow = &IID_IRDPSRAPIWindow_Value;
-pub const IRDPSRAPIWindow = extern struct {
+pub const IRDPSRAPIWindow = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindow,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindow,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pRetVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Application: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindow,
-                pApplication: ?*?*IRDPSRAPIApplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindow,
-                pApplication: ?*?*IRDPSRAPIApplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Application: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pApplication: ?*?*IRDPSRAPIApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Shared: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindow,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindow,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Shared: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pRetVal: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Shared: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindow,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindow,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Shared: *const fn(
+            self: *const IRDPSRAPIWindow,
+            NewVal: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindow,
-                pRetVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindow,
-                pRetVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Show: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindow,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIWindow,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pRetVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Show: *const fn(
+            self: *const IRDPSRAPIWindow,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindow,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindow,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIWindow,
+            pdwFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindow_get_Id(self: *const T, pRetVal: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindow_get_Application(self: *const T, pApplication: ?*?*IRDPSRAPIApplication) HRESULT {
-                return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Application(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pApplication);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindow_get_Shared(self: *const T, pRetVal: ?*i16) HRESULT {
-                return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Shared(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindow_put_Shared(self: *const T, NewVal: i16) HRESULT {
-                return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).put_Shared(@as(*const IRDPSRAPIWindow, @ptrCast(self)), NewVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindow_get_Name(self: *const T, pRetVal: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindow_Show(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).Show(@as(*const IRDPSRAPIWindow, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindow_get_Flags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @as(*const IRDPSRAPIWindow.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIWindow, @ptrCast(self)), pdwFlags);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IRDPSRAPIWindow, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Id(self, pRetVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Application(self: *const IRDPSRAPIWindow, pApplication: ?*?*IRDPSRAPIApplication) callconv(.Inline) HRESULT {
+        return self.vtable.get_Application(self, pApplication);
+    }
+    pub fn get_Shared(self: *const IRDPSRAPIWindow, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_Shared(self, pRetVal);
+    }
+    pub fn put_Shared(self: *const IRDPSRAPIWindow, NewVal: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_Shared(self, NewVal);
+    }
+    pub fn get_Name(self: *const IRDPSRAPIWindow, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, pRetVal);
+    }
+    pub fn Show(self: *const IRDPSRAPIWindow) callconv(.Inline) HRESULT {
+        return self.vtable.Show(self);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIWindow, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Flags(self, pdwFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIWindowList_Value = Guid.initString("8a05ce44-715a-4116-a189-a118f30a07bd");
 pub const IID_IRDPSRAPIWindowList = &IID_IRDPSRAPIWindowList_Value;
-pub const IRDPSRAPIWindowList = extern struct {
+pub const IRDPSRAPIWindowList = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindowList,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindowList,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIWindowList,
-                item: i32,
-                pWindow: ?*?*IRDPSRAPIWindow,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIWindowList,
-                item: i32,
-                pWindow: ?*?*IRDPSRAPIWindow,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIWindowList,
+            retval: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIWindowList,
+            item: i32,
+            pWindow: ?*?*IRDPSRAPIWindow,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindowList_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPIWindowList.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIWindowList, @ptrCast(self)), retval);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIWindowList_get_Item(self: *const T, item: i32, pWindow: ?*?*IRDPSRAPIWindow) HRESULT {
-                return @as(*const IRDPSRAPIWindowList.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIWindowList, @ptrCast(self)), item, pWindow);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIWindowList, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Item(self: *const IRDPSRAPIWindowList, item: i32, pWindow: ?*?*IRDPSRAPIWindow) callconv(.Inline) HRESULT {
+        return self.vtable.get_Item(self, item, pWindow);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIApplication_Value = Guid.initString("41e7a09d-eb7a-436e-935d-780ca2628324");
 pub const IID_IRDPSRAPIApplication = &IID_IRDPSRAPIApplication_Value;
-pub const IRDPSRAPIApplication = extern struct {
+pub const IRDPSRAPIApplication = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Windows: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplication,
-                pWindowList: ?*?*IRDPSRAPIWindowList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplication,
-                pWindowList: ?*?*IRDPSRAPIWindowList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Windows: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pWindowList: ?*?*IRDPSRAPIWindowList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplication,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplication,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pRetVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Shared: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplication,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplication,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Shared: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pRetVal: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Shared: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplication,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplication,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Shared: *const fn(
+            self: *const IRDPSRAPIApplication,
+            NewVal: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplication,
-                pRetVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplication,
-                pRetVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pRetVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplication,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplication,
-                pdwFlags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIApplication,
+            pdwFlags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplication_get_Windows(self: *const T, pWindowList: ?*?*IRDPSRAPIWindowList) HRESULT {
-                return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Windows(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pWindowList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplication_get_Id(self: *const T, pRetVal: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplication_get_Shared(self: *const T, pRetVal: ?*i16) HRESULT {
-                return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Shared(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplication_put_Shared(self: *const T, NewVal: i16) HRESULT {
-                return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).put_Shared(@as(*const IRDPSRAPIApplication, @ptrCast(self)), NewVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplication_get_Name(self: *const T, pRetVal: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplication_get_Flags(self: *const T, pdwFlags: ?*u32) HRESULT {
-                return @as(*const IRDPSRAPIApplication.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIApplication, @ptrCast(self)), pdwFlags);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Windows(self: *const IRDPSRAPIApplication, pWindowList: ?*?*IRDPSRAPIWindowList) callconv(.Inline) HRESULT {
+        return self.vtable.get_Windows(self, pWindowList);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Id(self: *const IRDPSRAPIApplication, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Id(self, pRetVal);
+    }
+    pub fn get_Shared(self: *const IRDPSRAPIApplication, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_Shared(self, pRetVal);
+    }
+    pub fn put_Shared(self: *const IRDPSRAPIApplication, NewVal: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_Shared(self, NewVal);
+    }
+    pub fn get_Name(self: *const IRDPSRAPIApplication, pRetVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, pRetVal);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIApplication, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Flags(self, pdwFlags);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIApplicationList_Value = Guid.initString("d4b4aeb3-22dc-4837-b3b6-42ea2517849a");
 pub const IID_IRDPSRAPIApplicationList = &IID_IRDPSRAPIApplicationList_Value;
-pub const IRDPSRAPIApplicationList = extern struct {
+pub const IRDPSRAPIApplicationList = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplicationList,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplicationList,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplicationList,
-                item: i32,
-                pApplication: ?*?*IRDPSRAPIApplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplicationList,
-                item: i32,
-                pApplication: ?*?*IRDPSRAPIApplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIApplicationList,
+            retval: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIApplicationList,
+            item: i32,
+            pApplication: ?*?*IRDPSRAPIApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplicationList_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPIApplicationList.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIApplicationList, @ptrCast(self)), retval);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplicationList_get_Item(self: *const T, item: i32, pApplication: ?*?*IRDPSRAPIApplication) HRESULT {
-                return @as(*const IRDPSRAPIApplicationList.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIApplicationList, @ptrCast(self)), item, pApplication);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIApplicationList, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Item(self: *const IRDPSRAPIApplicationList, item: i32, pApplication: ?*?*IRDPSRAPIApplication) callconv(.Inline) HRESULT {
+        return self.vtable.get_Item(self, item, pApplication);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIApplicationFilter_Value = Guid.initString("d20f10ca-6637-4f06-b1d5-277ea7e5160d");
 pub const IID_IRDPSRAPIApplicationFilter = &IID_IRDPSRAPIApplicationFilter_Value;
-pub const IRDPSRAPIApplicationFilter = extern struct {
+pub const IRDPSRAPIApplicationFilter = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Applications: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                pApplications: ?*?*IRDPSRAPIApplicationList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                pApplications: ?*?*IRDPSRAPIApplicationList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Applications: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            pApplications: ?*?*IRDPSRAPIApplicationList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Windows: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                pWindows: ?*?*IRDPSRAPIWindowList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                pWindows: ?*?*IRDPSRAPIWindowList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Windows: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            pWindows: ?*?*IRDPSRAPIWindowList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Enabled: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            pRetVal: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIApplicationFilter,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Enabled: *const fn(
+            self: *const IRDPSRAPIApplicationFilter,
+            NewVal: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplicationFilter_get_Applications(self: *const T, pApplications: ?*?*IRDPSRAPIApplicationList) HRESULT {
-                return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).get_Applications(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), pApplications);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplicationFilter_get_Windows(self: *const T, pWindows: ?*?*IRDPSRAPIWindowList) HRESULT {
-                return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).get_Windows(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), pWindows);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplicationFilter_get_Enabled(self: *const T, pRetVal: ?*i16) HRESULT {
-                return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIApplicationFilter_put_Enabled(self: *const T, NewVal: i16) HRESULT {
-                return @as(*const IRDPSRAPIApplicationFilter.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IRDPSRAPIApplicationFilter, @ptrCast(self)), NewVal);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Applications(self: *const IRDPSRAPIApplicationFilter, pApplications: ?*?*IRDPSRAPIApplicationList) callconv(.Inline) HRESULT {
+        return self.vtable.get_Applications(self, pApplications);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Windows(self: *const IRDPSRAPIApplicationFilter, pWindows: ?*?*IRDPSRAPIWindowList) callconv(.Inline) HRESULT {
+        return self.vtable.get_Windows(self, pWindows);
+    }
+    pub fn get_Enabled(self: *const IRDPSRAPIApplicationFilter, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_Enabled(self, pRetVal);
+    }
+    pub fn put_Enabled(self: *const IRDPSRAPIApplicationFilter, NewVal: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_Enabled(self, NewVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPISessionProperties_Value = Guid.initString("339b24f2-9bc0-4f16-9aac-f165433d13d4");
 pub const IID_IRDPSRAPISessionProperties = &IID_IRDPSRAPISessionProperties_Value;
-pub const IRDPSRAPISessionProperties = extern struct {
+pub const IRDPSRAPISessionProperties = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Property: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISessionProperties,
-                PropertyName: ?BSTR,
-                pVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISessionProperties,
-                PropertyName: ?BSTR,
-                pVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Property: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISessionProperties,
-                PropertyName: ?BSTR,
-                newVal: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISessionProperties,
-                PropertyName: ?BSTR,
-                newVal: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Property: *const fn(
+            self: *const IRDPSRAPISessionProperties,
+            PropertyName: ?BSTR,
+            pVal: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        put_Property: *const fn(
+            self: *const IRDPSRAPISessionProperties,
+            PropertyName: ?BSTR,
+            newVal: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISessionProperties_get_Property(self: *const T, PropertyName: ?BSTR, pVal: ?*VARIANT) HRESULT {
-                return @as(*const IRDPSRAPISessionProperties.VTable, @ptrCast(self.vtable)).get_Property(@as(*const IRDPSRAPISessionProperties, @ptrCast(self)), PropertyName, pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISessionProperties_put_Property(self: *const T, PropertyName: ?BSTR, newVal: VARIANT) HRESULT {
-                return @as(*const IRDPSRAPISessionProperties.VTable, @ptrCast(self.vtable)).put_Property(@as(*const IRDPSRAPISessionProperties, @ptrCast(self)), PropertyName, newVal);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_Property(self, PropertyName, pVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Property(self: *const IRDPSRAPISessionProperties, PropertyName: ?BSTR, newVal: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.put_Property(self, PropertyName, newVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIInvitation_Value = Guid.initString("4fac1d43-fc51-45bb-b1b4-2b53aa562fa3");
 pub const IID_IRDPSRAPIInvitation = &IID_IRDPSRAPIInvitation_Value;
-pub const IRDPSRAPIInvitation = extern struct {
+pub const IRDPSRAPIInvitation = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConnectionString: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitation,
-                pbstrVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitation,
-                pbstrVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ConnectionString: *const fn(
+            self: *const IRDPSRAPIInvitation,
+            pbstrVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_GroupName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitation,
-                pbstrVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitation,
-                pbstrVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_GroupName: *const fn(
+            self: *const IRDPSRAPIInvitation,
+            pbstrVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Password: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitation,
-                pbstrVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitation,
-                pbstrVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Password: *const fn(
+            self: *const IRDPSRAPIInvitation,
+            pbstrVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttendeeLimit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitation,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitation,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AttendeeLimit: *const fn(
+            self: *const IRDPSRAPIInvitation,
+            pRetVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttendeeLimit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitation,
-                NewVal: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitation,
-                NewVal: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AttendeeLimit: *const fn(
+            self: *const IRDPSRAPIInvitation,
+            NewVal: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Revoked: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitation,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitation,
-                pRetVal: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Revoked: *const fn(
+            self: *const IRDPSRAPIInvitation,
+            pRetVal: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Revoked: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitation,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitation,
-                NewVal: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Revoked: *const fn(
+            self: *const IRDPSRAPIInvitation,
+            NewVal: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitation_get_ConnectionString(self: *const T, pbstrVal: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_ConnectionString(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pbstrVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitation_get_GroupName(self: *const T, pbstrVal: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_GroupName(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pbstrVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitation_get_Password(self: *const T, pbstrVal: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_Password(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pbstrVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitation_get_AttendeeLimit(self: *const T, pRetVal: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_AttendeeLimit(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitation_put_AttendeeLimit(self: *const T, NewVal: i32) HRESULT {
-                return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).put_AttendeeLimit(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), NewVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitation_get_Revoked(self: *const T, pRetVal: ?*i16) HRESULT {
-                return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).get_Revoked(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitation_put_Revoked(self: *const T, NewVal: i16) HRESULT {
-                return @as(*const IRDPSRAPIInvitation.VTable, @ptrCast(self.vtable)).put_Revoked(@as(*const IRDPSRAPIInvitation, @ptrCast(self)), NewVal);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ConnectionString(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ConnectionString(self, pbstrVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_GroupName(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_GroupName(self, pbstrVal);
+    }
+    pub fn get_Password(self: *const IRDPSRAPIInvitation, pbstrVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Password(self, pbstrVal);
+    }
+    pub fn get_AttendeeLimit(self: *const IRDPSRAPIInvitation, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_AttendeeLimit(self, pRetVal);
+    }
+    pub fn put_AttendeeLimit(self: *const IRDPSRAPIInvitation, NewVal: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_AttendeeLimit(self, NewVal);
+    }
+    pub fn get_Revoked(self: *const IRDPSRAPIInvitation, pRetVal: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_Revoked(self, pRetVal);
+    }
+    pub fn put_Revoked(self: *const IRDPSRAPIInvitation, NewVal: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_Revoked(self, NewVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIInvitationManager_Value = Guid.initString("4722b049-92c3-4c2d-8a65-f7348f644dcf");
 pub const IID_IRDPSRAPIInvitationManager = &IID_IRDPSRAPIInvitationManager_Value;
-pub const IRDPSRAPIInvitationManager = extern struct {
+pub const IRDPSRAPIInvitationManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitationManager,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitationManager,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIInvitationManager,
+            retval: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIInvitationManager,
+            item: VARIANT,
+            ppInvitation: ?*?*IRDPSRAPIInvitation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitationManager,
-                item: VARIANT,
-                ppInvitation: ?*?*IRDPSRAPIInvitation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitationManager,
-                item: VARIANT,
-                ppInvitation: ?*?*IRDPSRAPIInvitation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitationManager,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIInvitationManager,
-                pRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateInvitation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIInvitationManager,
-                bstrAuthString: ?BSTR,
-                bstrGroupName: ?BSTR,
-                bstrPassword: ?BSTR,
-                AttendeeLimit: i32,
-                ppInvitation: ?*?*IRDPSRAPIInvitation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIInvitationManager,
-                bstrAuthString: ?BSTR,
-                bstrGroupName: ?BSTR,
-                bstrPassword: ?BSTR,
-                AttendeeLimit: i32,
-                ppInvitation: ?*?*IRDPSRAPIInvitation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IRDPSRAPIInvitationManager,
+            pRetVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateInvitation: *const fn(
+            self: *const IRDPSRAPIInvitationManager,
+            bstrAuthString: ?BSTR,
+            bstrGroupName: ?BSTR,
+            bstrPassword: ?BSTR,
+            AttendeeLimit: i32,
+            ppInvitation: ?*?*IRDPSRAPIInvitation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitationManager_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), retval);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitationManager_get_Item(self: *const T, item: VARIANT, ppInvitation: ?*?*IRDPSRAPIInvitation) HRESULT {
-                return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), item, ppInvitation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitationManager_get_Count(self: *const T, pRetVal: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), pRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIInvitationManager_CreateInvitation(self: *const T, bstrAuthString: ?BSTR, bstrGroupName: ?BSTR, bstrPassword: ?BSTR, AttendeeLimit: i32, ppInvitation: ?*?*IRDPSRAPIInvitation) HRESULT {
-                return @as(*const IRDPSRAPIInvitationManager.VTable, @ptrCast(self.vtable)).CreateInvitation(@as(*const IRDPSRAPIInvitationManager, @ptrCast(self)), bstrAuthString, bstrGroupName, bstrPassword, AttendeeLimit, ppInvitation);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIInvitationManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Item(self: *const IRDPSRAPIInvitationManager, item: VARIANT, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
+        return self.vtable.get_Item(self, item, ppInvitation);
+    }
+    pub fn get_Count(self: *const IRDPSRAPIInvitationManager, pRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Count(self, pRetVal);
+    }
+    pub fn CreateInvitation(self: *const IRDPSRAPIInvitationManager, bstrAuthString: ?BSTR, bstrGroupName: ?BSTR, bstrPassword: ?BSTR, AttendeeLimit: i32, ppInvitation: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
+        return self.vtable.CreateInvitation(self, bstrAuthString, bstrGroupName, bstrPassword, AttendeeLimit, ppInvitation);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPITcpConnectionInfo_Value = Guid.initString("f74049a4-3d06-4028-8193-0a8c29bc2452");
 pub const IID_IRDPSRAPITcpConnectionInfo = &IID_IRDPSRAPITcpConnectionInfo_Value;
-pub const IRDPSRAPITcpConnectionInfo = extern struct {
+pub const IRDPSRAPITcpConnectionInfo = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Protocol: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                plProtocol: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                plProtocol: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Protocol: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            plProtocol: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalPort: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                plPort: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                plPort: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LocalPort: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            plPort: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LocalIP: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                pbsrLocalIP: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                pbsrLocalIP: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LocalIP: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            pbsrLocalIP: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PeerPort: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                plPort: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                plPort: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PeerPort: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            plPort: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PeerIP: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                pbstrIP: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITcpConnectionInfo,
-                pbstrIP: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PeerIP: *const fn(
+            self: *const IRDPSRAPITcpConnectionInfo,
+            pbstrIP: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITcpConnectionInfo_get_Protocol(self: *const T, plProtocol: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_Protocol(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), plProtocol);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITcpConnectionInfo_get_LocalPort(self: *const T, plPort: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_LocalPort(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), plPort);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITcpConnectionInfo_get_LocalIP(self: *const T, pbsrLocalIP: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_LocalIP(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), pbsrLocalIP);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITcpConnectionInfo_get_PeerPort(self: *const T, plPort: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_PeerPort(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), plPort);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITcpConnectionInfo_get_PeerIP(self: *const T, pbstrIP: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPITcpConnectionInfo.VTable, @ptrCast(self.vtable)).get_PeerIP(@as(*const IRDPSRAPITcpConnectionInfo, @ptrCast(self)), pbstrIP);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Protocol(self: *const IRDPSRAPITcpConnectionInfo, plProtocol: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Protocol(self, plProtocol);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_LocalPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_LocalPort(self, plPort);
+    }
+    pub fn get_LocalIP(self: *const IRDPSRAPITcpConnectionInfo, pbsrLocalIP: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_LocalIP(self, pbsrLocalIP);
+    }
+    pub fn get_PeerPort(self: *const IRDPSRAPITcpConnectionInfo, plPort: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_PeerPort(self, plPort);
+    }
+    pub fn get_PeerIP(self: *const IRDPSRAPITcpConnectionInfo, pbstrIP: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_PeerIP(self, pbstrIP);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIAttendee_Value = Guid.initString("ec0671b3-1b78-4b80-a464-9132247543e3");
 pub const IID_IRDPSRAPIAttendee = &IID_IRDPSRAPIAttendee_Value;
-pub const IRDPSRAPIAttendee = extern struct {
+pub const IRDPSRAPIAttendee = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-                pId: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-                pId: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pId: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RemoteName: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ControlLevel: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-                pVal: ?*CTRL_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-                pVal: ?*CTRL_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ControlLevel: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pVal: ?*CTRL_LEVEL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ControlLevel: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-                pNewVal: CTRL_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-                pNewVal: CTRL_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ControlLevel: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            pNewVal: CTRL_LEVEL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Invitation: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-                ppVal: ?*?*IRDPSRAPIInvitation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-                ppVal: ?*?*IRDPSRAPIInvitation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TerminateConnection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Invitation: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            ppVal: ?*?*IRDPSRAPIInvitation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TerminateConnection: *const fn(
+            self: *const IRDPSRAPIAttendee,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-                plFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-                plFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            plFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ConnectivityInfo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendee,
-                ppVal: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendee,
-                ppVal: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ConnectivityInfo: *const fn(
+            self: *const IRDPSRAPIAttendee,
+            ppVal: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_get_Id(self: *const T, pId: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_get_RemoteName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_RemoteName(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_get_ControlLevel(self: *const T, pVal: ?*CTRL_LEVEL) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_ControlLevel(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_put_ControlLevel(self: *const T, pNewVal: CTRL_LEVEL) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).put_ControlLevel(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), pNewVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_get_Invitation(self: *const T, ppVal: ?*?*IRDPSRAPIInvitation) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_Invitation(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_TerminateConnection(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).TerminateConnection(@as(*const IRDPSRAPIAttendee, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_get_Flags(self: *const T, plFlags: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), plFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendee_get_ConnectivityInfo(self: *const T, ppVal: ?*?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPIAttendee.VTable, @ptrCast(self.vtable)).get_ConnectivityInfo(@as(*const IRDPSRAPIAttendee, @ptrCast(self)), ppVal);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IRDPSRAPIAttendee, pId: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Id(self, pId);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_RemoteName(self: *const IRDPSRAPIAttendee, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_RemoteName(self, pVal);
+    }
+    pub fn get_ControlLevel(self: *const IRDPSRAPIAttendee, pVal: ?*CTRL_LEVEL) callconv(.Inline) HRESULT {
+        return self.vtable.get_ControlLevel(self, pVal);
+    }
+    pub fn put_ControlLevel(self: *const IRDPSRAPIAttendee, pNewVal: CTRL_LEVEL) callconv(.Inline) HRESULT {
+        return self.vtable.put_ControlLevel(self, pNewVal);
+    }
+    pub fn get_Invitation(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IRDPSRAPIInvitation) callconv(.Inline) HRESULT {
+        return self.vtable.get_Invitation(self, ppVal);
+    }
+    pub fn TerminateConnection(self: *const IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
+        return self.vtable.TerminateConnection(self);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIAttendee, plFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Flags(self, plFlags);
+    }
+    pub fn get_ConnectivityInfo(self: *const IRDPSRAPIAttendee, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get_ConnectivityInfo(self, ppVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIAttendeeManager_Value = Guid.initString("ba3a37e8-33da-4749-8da0-07fa34da7944");
 pub const IID_IRDPSRAPIAttendeeManager = &IID_IRDPSRAPIAttendeeManager_Value;
-pub const IRDPSRAPIAttendeeManager = extern struct {
+pub const IRDPSRAPIAttendeeManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendeeManager,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendeeManager,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendeeManager,
-                id: i32,
-                ppItem: ?*?*IRDPSRAPIAttendee,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendeeManager,
-                id: i32,
-                ppItem: ?*?*IRDPSRAPIAttendee,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIAttendeeManager,
+            retval: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIAttendeeManager,
+            id: i32,
+            ppItem: ?*?*IRDPSRAPIAttendee,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendeeManager_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPIAttendeeManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIAttendeeManager, @ptrCast(self)), retval);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendeeManager_get_Item(self: *const T, id: i32, ppItem: ?*?*IRDPSRAPIAttendee) HRESULT {
-                return @as(*const IRDPSRAPIAttendeeManager.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIAttendeeManager, @ptrCast(self)), id, ppItem);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIAttendeeManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Item(self: *const IRDPSRAPIAttendeeManager, id: i32, ppItem: ?*?*IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
+        return self.vtable.get_Item(self, id, ppItem);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIAttendeeDisconnectInfo_Value = Guid.initString("c187689f-447c-44a1-9c14-fffbb3b7ec17");
 pub const IID_IRDPSRAPIAttendeeDisconnectInfo = &IID_IRDPSRAPIAttendeeDisconnectInfo_Value;
-pub const IRDPSRAPIAttendeeDisconnectInfo = extern struct {
+pub const IRDPSRAPIAttendeeDisconnectInfo = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Attendee: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendeeDisconnectInfo,
-                retval: ?*?*IRDPSRAPIAttendee,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendeeDisconnectInfo,
-                retval: ?*?*IRDPSRAPIAttendee,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Attendee: *const fn(
+            self: *const IRDPSRAPIAttendeeDisconnectInfo,
+            retval: ?*?*IRDPSRAPIAttendee,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Reason: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendeeDisconnectInfo,
-                pReason: ?*ATTENDEE_DISCONNECT_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendeeDisconnectInfo,
-                pReason: ?*ATTENDEE_DISCONNECT_REASON,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Reason: *const fn(
+            self: *const IRDPSRAPIAttendeeDisconnectInfo,
+            pReason: ?*ATTENDEE_DISCONNECT_REASON,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Code: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIAttendeeDisconnectInfo,
-                pVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIAttendeeDisconnectInfo,
-                pVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Code: *const fn(
+            self: *const IRDPSRAPIAttendeeDisconnectInfo,
+            pVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendeeDisconnectInfo_get_Attendee(self: *const T, retval: ?*?*IRDPSRAPIAttendee) HRESULT {
-                return @as(*const IRDPSRAPIAttendeeDisconnectInfo.VTable, @ptrCast(self.vtable)).get_Attendee(@as(*const IRDPSRAPIAttendeeDisconnectInfo, @ptrCast(self)), retval);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendeeDisconnectInfo_get_Reason(self: *const T, pReason: ?*ATTENDEE_DISCONNECT_REASON) HRESULT {
-                return @as(*const IRDPSRAPIAttendeeDisconnectInfo.VTable, @ptrCast(self.vtable)).get_Reason(@as(*const IRDPSRAPIAttendeeDisconnectInfo, @ptrCast(self)), pReason);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIAttendeeDisconnectInfo_get_Code(self: *const T, pVal: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIAttendeeDisconnectInfo.VTable, @ptrCast(self.vtable)).get_Code(@as(*const IRDPSRAPIAttendeeDisconnectInfo, @ptrCast(self)), pVal);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Attendee(self: *const IRDPSRAPIAttendeeDisconnectInfo, retval: ?*?*IRDPSRAPIAttendee) callconv(.Inline) HRESULT {
+        return self.vtable.get_Attendee(self, retval);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Reason(self: *const IRDPSRAPIAttendeeDisconnectInfo, pReason: ?*ATTENDEE_DISCONNECT_REASON) callconv(.Inline) HRESULT {
+        return self.vtable.get_Reason(self, pReason);
+    }
+    pub fn get_Code(self: *const IRDPSRAPIAttendeeDisconnectInfo, pVal: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Code(self, pVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIVirtualChannel_Value = Guid.initString("05e12f95-28b3-4c9a-8780-d0248574a1e0");
 pub const IID_IRDPSRAPIVirtualChannel = &IID_IRDPSRAPIVirtualChannel_Value;
-pub const IRDPSRAPIVirtualChannel = extern struct {
+pub const IRDPSRAPIVirtualChannel = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        SendData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                bstrData: ?BSTR,
-                lAttendeeId: i32,
-                ChannelSendFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                bstrData: ?BSTR,
-                lAttendeeId: i32,
-                ChannelSendFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetAccess: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                lAttendeeId: i32,
-                AccessType: CHANNEL_ACCESS_ENUM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                lAttendeeId: i32,
-                AccessType: CHANNEL_ACCESS_ENUM,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SendData: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            bstrData: ?BSTR,
+            lAttendeeId: i32,
+            ChannelSendFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetAccess: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            lAttendeeId: i32,
+            AccessType: CHANNEL_ACCESS_ENUM,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                pbstrName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                pbstrName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            pbstrName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                plFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                plFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Flags: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            plFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Priority: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                pPriority: ?*CHANNEL_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannel,
-                pPriority: ?*CHANNEL_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Priority: *const fn(
+            self: *const IRDPSRAPIVirtualChannel,
+            pPriority: ?*CHANNEL_PRIORITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannel_SendData(self: *const T, bstrData: ?BSTR, lAttendeeId: i32, ChannelSendFlags: u32) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).SendData(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), bstrData, lAttendeeId, ChannelSendFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannel_SetAccess(self: *const T, lAttendeeId: i32, AccessType: CHANNEL_ACCESS_ENUM) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).SetAccess(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), lAttendeeId, AccessType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannel_get_Name(self: *const T, pbstrName: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), pbstrName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannel_get_Flags(self: *const T, plFlags: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), plFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannel_get_Priority(self: *const T, pPriority: ?*CHANNEL_PRIORITY) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannel.VTable, @ptrCast(self.vtable)).get_Priority(@as(*const IRDPSRAPIVirtualChannel, @ptrCast(self)), pPriority);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn SendData(self: *const IRDPSRAPIVirtualChannel, bstrData: ?BSTR, lAttendeeId: i32, ChannelSendFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SendData(self, bstrData, lAttendeeId, ChannelSendFlags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetAccess(self: *const IRDPSRAPIVirtualChannel, lAttendeeId: i32, AccessType: CHANNEL_ACCESS_ENUM) callconv(.Inline) HRESULT {
+        return self.vtable.SetAccess(self, lAttendeeId, AccessType);
+    }
+    pub fn get_Name(self: *const IRDPSRAPIVirtualChannel, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, pbstrName);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPIVirtualChannel, plFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Flags(self, plFlags);
+    }
+    pub fn get_Priority(self: *const IRDPSRAPIVirtualChannel, pPriority: ?*CHANNEL_PRIORITY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Priority(self, pPriority);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIVirtualChannelManager_Value = Guid.initString("0d11c661-5d0d-4ee4-89df-2166ae1fdfed");
 pub const IID_IRDPSRAPIVirtualChannelManager = &IID_IRDPSRAPIVirtualChannelManager_Value;
-pub const IRDPSRAPIVirtualChannelManager = extern struct {
+pub const IRDPSRAPIVirtualChannelManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannelManager,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannelManager,
-                retval: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannelManager,
-                item: VARIANT,
-                pChannel: ?*?*IRDPSRAPIVirtualChannel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannelManager,
-                item: VARIANT,
-                pChannel: ?*?*IRDPSRAPIVirtualChannel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateVirtualChannel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIVirtualChannelManager,
-                bstrChannelName: ?BSTR,
-                Priority: CHANNEL_PRIORITY,
-                ChannelFlags: u32,
-                ppChannel: ?*?*IRDPSRAPIVirtualChannel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIVirtualChannelManager,
-                bstrChannelName: ?BSTR,
-                Priority: CHANNEL_PRIORITY,
-                ChannelFlags: u32,
-                ppChannel: ?*?*IRDPSRAPIVirtualChannel,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IRDPSRAPIVirtualChannelManager,
+            retval: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: *const fn(
+            self: *const IRDPSRAPIVirtualChannelManager,
+            item: VARIANT,
+            pChannel: ?*?*IRDPSRAPIVirtualChannel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateVirtualChannel: *const fn(
+            self: *const IRDPSRAPIVirtualChannelManager,
+            bstrChannelName: ?BSTR,
+            Priority: CHANNEL_PRIORITY,
+            ChannelFlags: u32,
+            ppChannel: ?*?*IRDPSRAPIVirtualChannel,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannelManager_get__NewEnum(self: *const T, retval: ?*?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannelManager.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IRDPSRAPIVirtualChannelManager, @ptrCast(self)), retval);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannelManager_get_Item(self: *const T, item: VARIANT, pChannel: ?*?*IRDPSRAPIVirtualChannel) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannelManager.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IRDPSRAPIVirtualChannelManager, @ptrCast(self)), item, pChannel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIVirtualChannelManager_CreateVirtualChannel(self: *const T, bstrChannelName: ?BSTR, Priority: CHANNEL_PRIORITY, ChannelFlags: u32, ppChannel: ?*?*IRDPSRAPIVirtualChannel) HRESULT {
-                return @as(*const IRDPSRAPIVirtualChannelManager.VTable, @ptrCast(self.vtable)).CreateVirtualChannel(@as(*const IRDPSRAPIVirtualChannelManager, @ptrCast(self)), bstrChannelName, Priority, ChannelFlags, ppChannel);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IRDPSRAPIVirtualChannelManager, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get__NewEnum(self, retval);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Item(self: *const IRDPSRAPIVirtualChannelManager, item: VARIANT, pChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.Inline) HRESULT {
+        return self.vtable.get_Item(self, item, pChannel);
+    }
+    pub fn CreateVirtualChannel(self: *const IRDPSRAPIVirtualChannelManager, bstrChannelName: ?BSTR, Priority: CHANNEL_PRIORITY, ChannelFlags: u32, ppChannel: ?*?*IRDPSRAPIVirtualChannel) callconv(.Inline) HRESULT {
+        return self.vtable.CreateVirtualChannel(self, bstrChannelName, Priority, ChannelFlags, ppChannel);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPIViewer_Value = Guid.initString("c6bfcd38-8ce9-404d-8ae8-f31d00c65cb5");
 pub const IID_IRDPSRAPIViewer = &IID_IRDPSRAPIViewer_Value;
-pub const IRDPSRAPIViewer = extern struct {
+pub const IRDPSRAPIViewer = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Connect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                bstrConnectionString: ?BSTR,
-                bstrName: ?BSTR,
-                bstrPassword: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                bstrConnectionString: ?BSTR,
-                bstrName: ?BSTR,
-                bstrPassword: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Disconnect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Connect: *const fn(
+            self: *const IRDPSRAPIViewer,
+            bstrConnectionString: ?BSTR,
+            bstrName: ?BSTR,
+            bstrPassword: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Disconnect: *const fn(
+            self: *const IRDPSRAPIViewer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Attendees: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIAttendeeManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIAttendeeManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Attendees: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIAttendeeManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Invitations: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIInvitationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIInvitationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Invitations: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIInvitationManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationFilter: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIApplicationFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIApplicationFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ApplicationFilter: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIApplicationFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VirtualChannelManager: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_VirtualChannelManager: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SmartSizing: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                vbSmartSizing: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                vbSmartSizing: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_SmartSizing: *const fn(
+            self: *const IRDPSRAPIViewer,
+            vbSmartSizing: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SmartSizing: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                pvbSmartSizing: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                pvbSmartSizing: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                CtrlLevel: CTRL_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                CtrlLevel: CTRL_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SmartSizing: *const fn(
+            self: *const IRDPSRAPIViewer,
+            pvbSmartSizing: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestControl: *const fn(
+            self: *const IRDPSRAPIViewer,
+            CtrlLevel: CTRL_LEVEL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisconnectedText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                bstrDisconnectedText: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                bstrDisconnectedText: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_DisconnectedText: *const fn(
+            self: *const IRDPSRAPIViewer,
+            bstrDisconnectedText: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisconnectedText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                pbstrDisconnectedText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                pbstrDisconnectedText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RequestColorDepthChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                Bpp: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                Bpp: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DisconnectedText: *const fn(
+            self: *const IRDPSRAPIViewer,
+            pbstrDisconnectedText: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RequestColorDepthChange: *const fn(
+            self: *const IRDPSRAPIViewer,
+            Bpp: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPISessionProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                ppVal: ?*?*IRDPSRAPISessionProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        StartReverseConnectListener: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIViewer,
-                bstrConnectionString: ?BSTR,
-                bstrUserName: ?BSTR,
-                bstrPassword: ?BSTR,
-                pbstrReverseConnectString: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIViewer,
-                bstrConnectionString: ?BSTR,
-                bstrUserName: ?BSTR,
-                bstrPassword: ?BSTR,
-                pbstrReverseConnectString: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Properties: *const fn(
+            self: *const IRDPSRAPIViewer,
+            ppVal: ?*?*IRDPSRAPISessionProperties,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StartReverseConnectListener: *const fn(
+            self: *const IRDPSRAPIViewer,
+            bstrConnectionString: ?BSTR,
+            bstrUserName: ?BSTR,
+            bstrPassword: ?BSTR,
+            pbstrReverseConnectString: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_Connect(self: *const T, bstrConnectionString: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).Connect(@as(*const IRDPSRAPIViewer, @ptrCast(self)), bstrConnectionString, bstrName, bstrPassword);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_Disconnect(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).Disconnect(@as(*const IRDPSRAPIViewer, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_get_Attendees(self: *const T, ppVal: ?*?*IRDPSRAPIAttendeeManager) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_Attendees(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_get_Invitations(self: *const T, ppVal: ?*?*IRDPSRAPIInvitationManager) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_Invitations(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_get_ApplicationFilter(self: *const T, ppVal: ?*?*IRDPSRAPIApplicationFilter) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_ApplicationFilter(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_get_VirtualChannelManager(self: *const T, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_VirtualChannelManager(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_put_SmartSizing(self: *const T, vbSmartSizing: i16) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).put_SmartSizing(@as(*const IRDPSRAPIViewer, @ptrCast(self)), vbSmartSizing);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_get_SmartSizing(self: *const T, pvbSmartSizing: ?*i16) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_SmartSizing(@as(*const IRDPSRAPIViewer, @ptrCast(self)), pvbSmartSizing);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_RequestControl(self: *const T, CtrlLevel: CTRL_LEVEL) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).RequestControl(@as(*const IRDPSRAPIViewer, @ptrCast(self)), CtrlLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_put_DisconnectedText(self: *const T, bstrDisconnectedText: ?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).put_DisconnectedText(@as(*const IRDPSRAPIViewer, @ptrCast(self)), bstrDisconnectedText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_get_DisconnectedText(self: *const T, pbstrDisconnectedText: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_DisconnectedText(@as(*const IRDPSRAPIViewer, @ptrCast(self)), pbstrDisconnectedText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_RequestColorDepthChange(self: *const T, Bpp: i32) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).RequestColorDepthChange(@as(*const IRDPSRAPIViewer, @ptrCast(self)), Bpp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_get_Properties(self: *const T, ppVal: ?*?*IRDPSRAPISessionProperties) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IRDPSRAPIViewer, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIViewer_StartReverseConnectListener(self: *const T, bstrConnectionString: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, pbstrReverseConnectString: ?*?BSTR) HRESULT {
-                return @as(*const IRDPSRAPIViewer.VTable, @ptrCast(self.vtable)).StartReverseConnectListener(@as(*const IRDPSRAPIViewer, @ptrCast(self)), bstrConnectionString, bstrUserName, bstrPassword, pbstrReverseConnectString);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Connect(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrName: ?BSTR, bstrPassword: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.Connect(self, bstrConnectionString, bstrName, bstrPassword);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Disconnect(self: *const IRDPSRAPIViewer) callconv(.Inline) HRESULT {
+        return self.vtable.Disconnect(self);
+    }
+    pub fn get_Attendees(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.Inline) HRESULT {
+        return self.vtable.get_Attendees(self, ppVal);
+    }
+    pub fn get_Invitations(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.Inline) HRESULT {
+        return self.vtable.get_Invitations(self, ppVal);
+    }
+    pub fn get_ApplicationFilter(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.Inline) HRESULT {
+        return self.vtable.get_ApplicationFilter(self, ppVal);
+    }
+    pub fn get_VirtualChannelManager(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.Inline) HRESULT {
+        return self.vtable.get_VirtualChannelManager(self, ppVal);
+    }
+    pub fn put_SmartSizing(self: *const IRDPSRAPIViewer, vbSmartSizing: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_SmartSizing(self, vbSmartSizing);
+    }
+    pub fn get_SmartSizing(self: *const IRDPSRAPIViewer, pvbSmartSizing: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_SmartSizing(self, pvbSmartSizing);
+    }
+    pub fn RequestControl(self: *const IRDPSRAPIViewer, CtrlLevel: CTRL_LEVEL) callconv(.Inline) HRESULT {
+        return self.vtable.RequestControl(self, CtrlLevel);
+    }
+    pub fn put_DisconnectedText(self: *const IRDPSRAPIViewer, bstrDisconnectedText: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_DisconnectedText(self, bstrDisconnectedText);
+    }
+    pub fn get_DisconnectedText(self: *const IRDPSRAPIViewer, pbstrDisconnectedText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_DisconnectedText(self, pbstrDisconnectedText);
+    }
+    pub fn RequestColorDepthChange(self: *const IRDPSRAPIViewer, Bpp: i32) callconv(.Inline) HRESULT {
+        return self.vtable.RequestColorDepthChange(self, Bpp);
+    }
+    pub fn get_Properties(self: *const IRDPSRAPIViewer, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.Inline) HRESULT {
+        return self.vtable.get_Properties(self, ppVal);
+    }
+    pub fn StartReverseConnectListener(self: *const IRDPSRAPIViewer, bstrConnectionString: ?BSTR, bstrUserName: ?BSTR, bstrPassword: ?BSTR, pbstrReverseConnectString: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.StartReverseConnectListener(self, bstrConnectionString, bstrUserName, bstrPassword, pbstrReverseConnectString);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.1'
 const IID_IRDPViewerInputSink_Value = Guid.initString("bb590853-a6c5-4a7b-8dd4-76b69eea12d5");
 pub const IID_IRDPViewerInputSink = &IID_IRDPViewerInputSink_Value;
-pub const IRDPViewerInputSink = extern struct {
+pub const IRDPViewerInputSink = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SendMouseButtonEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-                buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE,
-                vbButtonDown: i16,
-                xPos: u32,
-                yPos: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-                buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE,
-                vbButtonDown: i16,
-                xPos: u32,
-                yPos: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendMouseMoveEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-                xPos: u32,
-                yPos: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-                xPos: u32,
-                yPos: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendMouseWheelEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-                wheelRotation: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-                wheelRotation: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendKeyboardEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-                codeType: RDPSRAPI_KBD_CODE_TYPE,
-                keycode: u16,
-                vbKeyUp: i16,
-                vbRepeat: i16,
-                vbExtended: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-                codeType: RDPSRAPI_KBD_CODE_TYPE,
-                keycode: u16,
-                vbKeyUp: i16,
-                vbRepeat: i16,
-                vbExtended: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendSyncEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-                syncFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-                syncFlags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginTouchFrame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddTouchInput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-                contactId: u32,
-                event: u32,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-                contactId: u32,
-                event: u32,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndTouchFrame: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPViewerInputSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPViewerInputSink,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SendMouseButtonEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE,
+            vbButtonDown: i16,
+            xPos: u32,
+            yPos: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendMouseMoveEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            xPos: u32,
+            yPos: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendMouseWheelEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            wheelRotation: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendKeyboardEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            codeType: RDPSRAPI_KBD_CODE_TYPE,
+            keycode: u16,
+            vbKeyUp: i16,
+            vbRepeat: i16,
+            vbExtended: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendSyncEvent: *const fn(
+            self: *const IRDPViewerInputSink,
+            syncFlags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginTouchFrame: *const fn(
+            self: *const IRDPViewerInputSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddTouchInput: *const fn(
+            self: *const IRDPViewerInputSink,
+            contactId: u32,
+            event: u32,
+            x: i32,
+            y: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndTouchFrame: *const fn(
+            self: *const IRDPViewerInputSink,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_SendMouseButtonEvent(self: *const T, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendMouseButtonEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), buttonType, vbButtonDown, xPos, yPos);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_SendMouseMoveEvent(self: *const T, xPos: u32, yPos: u32) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendMouseMoveEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), xPos, yPos);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_SendMouseWheelEvent(self: *const T, wheelRotation: u16) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendMouseWheelEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), wheelRotation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_SendKeyboardEvent(self: *const T, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendKeyboardEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_SendSyncEvent(self: *const T, syncFlags: u32) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).SendSyncEvent(@as(*const IRDPViewerInputSink, @ptrCast(self)), syncFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_BeginTouchFrame(self: *const T) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).BeginTouchFrame(@as(*const IRDPViewerInputSink, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_AddTouchInput(self: *const T, contactId: u32, event: u32, x: i32, y: i32) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).AddTouchInput(@as(*const IRDPViewerInputSink, @ptrCast(self)), contactId, event, x, y);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPViewerInputSink_EndTouchFrame(self: *const T) HRESULT {
-                return @as(*const IRDPViewerInputSink.VTable, @ptrCast(self.vtable)).EndTouchFrame(@as(*const IRDPViewerInputSink, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SendMouseButtonEvent(self: *const IRDPViewerInputSink, buttonType: RDPSRAPI_MOUSE_BUTTON_TYPE, vbButtonDown: i16, xPos: u32, yPos: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SendMouseButtonEvent(self, buttonType, vbButtonDown, xPos, yPos);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SendMouseMoveEvent(self: *const IRDPViewerInputSink, xPos: u32, yPos: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SendMouseMoveEvent(self, xPos, yPos);
+    }
+    pub fn SendMouseWheelEvent(self: *const IRDPViewerInputSink, wheelRotation: u16) callconv(.Inline) HRESULT {
+        return self.vtable.SendMouseWheelEvent(self, wheelRotation);
+    }
+    pub fn SendKeyboardEvent(self: *const IRDPViewerInputSink, codeType: RDPSRAPI_KBD_CODE_TYPE, keycode: u16, vbKeyUp: i16, vbRepeat: i16, vbExtended: i16) callconv(.Inline) HRESULT {
+        return self.vtable.SendKeyboardEvent(self, codeType, keycode, vbKeyUp, vbRepeat, vbExtended);
+    }
+    pub fn SendSyncEvent(self: *const IRDPViewerInputSink, syncFlags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SendSyncEvent(self, syncFlags);
+    }
+    pub fn BeginTouchFrame(self: *const IRDPViewerInputSink) callconv(.Inline) HRESULT {
+        return self.vtable.BeginTouchFrame(self);
+    }
+    pub fn AddTouchInput(self: *const IRDPViewerInputSink, contactId: u32, event: u32, x: i32, y: i32) callconv(.Inline) HRESULT {
+        return self.vtable.AddTouchInput(self, contactId, event, x, y);
+    }
+    pub fn EndTouchFrame(self: *const IRDPViewerInputSink) callconv(.Inline) HRESULT {
+        return self.vtable.EndTouchFrame(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IRDPSRAPIFrameBuffer_Value = Guid.initString("3d67e7d2-b27b-448e-81b3-c6110ed8b4be");
 pub const IID_IRDPSRAPIFrameBuffer = &IID_IRDPSRAPIFrameBuffer_Value;
-pub const IRDPSRAPIFrameBuffer = extern struct {
+pub const IRDPSRAPIFrameBuffer = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Width: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                plWidth: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                plWidth: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Width: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            plWidth: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Height: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                plHeight: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                plHeight: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Height: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            plHeight: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Bpp: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                plBpp: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                plBpp: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFrameBufferBits: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                x: i32,
-                y: i32,
-                Width: i32,
-                Heigth: i32,
-                ppBits: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPIFrameBuffer,
-                x: i32,
-                y: i32,
-                Width: i32,
-                Heigth: i32,
-                ppBits: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Bpp: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            plBpp: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFrameBufferBits: *const fn(
+            self: *const IRDPSRAPIFrameBuffer,
+            x: i32,
+            y: i32,
+            Width: i32,
+            Heigth: i32,
+            ppBits: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIFrameBuffer_get_Width(self: *const T, plWidth: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).get_Width(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), plWidth);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIFrameBuffer_get_Height(self: *const T, plHeight: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).get_Height(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), plHeight);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIFrameBuffer_get_Bpp(self: *const T, plBpp: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).get_Bpp(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), plBpp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPIFrameBuffer_GetFrameBufferBits(self: *const T, x: i32, y: i32, Width: i32, Heigth: i32, ppBits: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IRDPSRAPIFrameBuffer.VTable, @ptrCast(self.vtable)).GetFrameBufferBits(@as(*const IRDPSRAPIFrameBuffer, @ptrCast(self)), x, y, Width, Heigth, ppBits);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Width(self: *const IRDPSRAPIFrameBuffer, plWidth: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Width(self, plWidth);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Height(self: *const IRDPSRAPIFrameBuffer, plHeight: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Height(self, plHeight);
+    }
+    pub fn get_Bpp(self: *const IRDPSRAPIFrameBuffer, plBpp: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Bpp(self, plBpp);
+    }
+    pub fn GetFrameBufferBits(self: *const IRDPSRAPIFrameBuffer, x: i32, y: i32, Width: i32, Heigth: i32, ppBits: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.GetFrameBufferBits(self, x, y, Width, Heigth, ppBits);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRDPSRAPITransportStreamBuffer_Value = Guid.initString("81c80290-5085-44b0-b460-f865c39cb4a9");
 pub const IID_IRDPSRAPITransportStreamBuffer = &IID_IRDPSRAPITransportStreamBuffer_Value;
-pub const IRDPSRAPITransportStreamBuffer = extern struct {
+pub const IRDPSRAPITransportStreamBuffer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Storage: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                ppbStorage: ?*?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                ppbStorage: ?*?*u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Storage: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            ppbStorage: ?*?*u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StorageSize: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plMaxStore: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plMaxStore: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_StorageSize: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plMaxStore: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PayloadSize: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PayloadSize: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plRetVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PayloadSize: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                lVal: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                lVal: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PayloadSize: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            lVal: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PayloadOffset: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plRetVal: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PayloadOffset: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plRetVal: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PayloadOffset: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                lRetVal: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                lRetVal: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PayloadOffset: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            lRetVal: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                plFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Flags: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            plFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Flags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                lFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                lFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Flags: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            lFlags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Context: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                ppContext: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                ppContext: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Context: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            ppContext: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Context: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                pContext: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamBuffer,
-                pContext: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Context: *const fn(
+            self: *const IRDPSRAPITransportStreamBuffer,
+            pContext: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_get_Storage(self: *const T, ppbStorage: ?*?*u8) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_Storage(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), ppbStorage);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_get_StorageSize(self: *const T, plMaxStore: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_StorageSize(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plMaxStore);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_get_PayloadSize(self: *const T, plRetVal: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_PayloadSize(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_put_PayloadSize(self: *const T, lVal: i32) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_PayloadSize(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), lVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_get_PayloadOffset(self: *const T, plRetVal: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_PayloadOffset(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_put_PayloadOffset(self: *const T, lRetVal: i32) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_PayloadOffset(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), lRetVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_get_Flags(self: *const T, plFlags: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), plFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_put_Flags(self: *const T, lFlags: i32) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_Flags(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), lFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_get_Context(self: *const T, ppContext: ?*?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).get_Context(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), ppContext);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamBuffer_put_Context(self: *const T, pContext: ?*IUnknown) HRESULT {
-                return @as(*const IRDPSRAPITransportStreamBuffer.VTable, @ptrCast(self.vtable)).put_Context(@as(*const IRDPSRAPITransportStreamBuffer, @ptrCast(self)), pContext);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn get_Storage(self: *const IRDPSRAPITransportStreamBuffer, ppbStorage: ?*?*u8) callconv(.Inline) HRESULT {
+        return self.vtable.get_Storage(self, ppbStorage);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_StorageSize(self: *const IRDPSRAPITransportStreamBuffer, plMaxStore: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_StorageSize(self, plMaxStore);
+    }
+    pub fn get_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_PayloadSize(self, plRetVal);
+    }
+    pub fn put_PayloadSize(self: *const IRDPSRAPITransportStreamBuffer, lVal: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_PayloadSize(self, lVal);
+    }
+    pub fn get_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, plRetVal: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_PayloadOffset(self, plRetVal);
+    }
+    pub fn put_PayloadOffset(self: *const IRDPSRAPITransportStreamBuffer, lRetVal: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_PayloadOffset(self, lRetVal);
+    }
+    pub fn get_Flags(self: *const IRDPSRAPITransportStreamBuffer, plFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Flags(self, plFlags);
+    }
+    pub fn put_Flags(self: *const IRDPSRAPITransportStreamBuffer, lFlags: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_Flags(self, lFlags);
+    }
+    pub fn get_Context(self: *const IRDPSRAPITransportStreamBuffer, ppContext: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get_Context(self, ppContext);
+    }
+    pub fn put_Context(self: *const IRDPSRAPITransportStreamBuffer, pContext: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.put_Context(self, pContext);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRDPSRAPITransportStreamEvents_Value = Guid.initString("ea81c254-f5af-4e40-982e-3e63bb595276");
 pub const IID_IRDPSRAPITransportStreamEvents = &IID_IRDPSRAPITransportStreamEvents_Value;
-pub const IRDPSRAPITransportStreamEvents = extern struct {
+pub const IRDPSRAPITransportStreamEvents = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnWriteCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamEvents,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamEvents,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        OnReadCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamEvents,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamEvents,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        OnStreamClosed: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStreamEvents,
-                hrReason: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStreamEvents,
-                hrReason: HRESULT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        OnWriteCompleted: *const fn(
+            self: *const IRDPSRAPITransportStreamEvents,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        OnReadCompleted: *const fn(
+            self: *const IRDPSRAPITransportStreamEvents,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        OnStreamClosed: *const fn(
+            self: *const IRDPSRAPITransportStreamEvents,
+            hrReason: HRESULT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamEvents_OnWriteCompleted(self: *const T, pBuffer: ?*IRDPSRAPITransportStreamBuffer) void {
-                return @as(*const IRDPSRAPITransportStreamEvents.VTable, @ptrCast(self.vtable)).OnWriteCompleted(@as(*const IRDPSRAPITransportStreamEvents, @ptrCast(self)), pBuffer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamEvents_OnReadCompleted(self: *const T, pBuffer: ?*IRDPSRAPITransportStreamBuffer) void {
-                return @as(*const IRDPSRAPITransportStreamEvents.VTable, @ptrCast(self.vtable)).OnReadCompleted(@as(*const IRDPSRAPITransportStreamEvents, @ptrCast(self)), pBuffer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStreamEvents_OnStreamClosed(self: *const T, hrReason: HRESULT) void {
-                return @as(*const IRDPSRAPITransportStreamEvents.VTable, @ptrCast(self.vtable)).OnStreamClosed(@as(*const IRDPSRAPITransportStreamEvents, @ptrCast(self)), hrReason);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnWriteCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) void {
+        return self.vtable.OnWriteCompleted(self, pBuffer);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnReadCompleted(self: *const IRDPSRAPITransportStreamEvents, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) void {
+        return self.vtable.OnReadCompleted(self, pBuffer);
+    }
+    pub fn OnStreamClosed(self: *const IRDPSRAPITransportStreamEvents, hrReason: HRESULT) callconv(.Inline) void {
+        return self.vtable.OnStreamClosed(self, hrReason);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IRDPSRAPITransportStream_Value = Guid.initString("36cfa065-43bb-4ef7-aed7-9b88a5053036");
 pub const IID_IRDPSRAPITransportStream = &IID_IRDPSRAPITransportStream_Value;
-pub const IRDPSRAPITransportStream = extern struct {
+pub const IRDPSRAPITransportStream = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AllocBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStream,
-                maxPayload: i32,
-                ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStream,
-                maxPayload: i32,
-                ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FreeBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStream,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStream,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStream,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStream,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReadBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStream,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStream,
-                pBuffer: ?*IRDPSRAPITransportStreamBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStream,
-                pCallbacks: ?*IRDPSRAPITransportStreamEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStream,
-                pCallbacks: ?*IRDPSRAPITransportStreamEvents,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPITransportStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPITransportStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AllocBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            maxPayload: i32,
+            ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FreeBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadBuffer: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pBuffer: ?*IRDPSRAPITransportStreamBuffer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Open: *const fn(
+            self: *const IRDPSRAPITransportStream,
+            pCallbacks: ?*IRDPSRAPITransportStreamEvents,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const IRDPSRAPITransportStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStream_AllocBuffer(self: *const T, maxPayload: i32, ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer) HRESULT {
-                return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).AllocBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), maxPayload, ppBuffer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStream_FreeBuffer(self: *const T, pBuffer: ?*IRDPSRAPITransportStreamBuffer) HRESULT {
-                return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).FreeBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pBuffer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStream_WriteBuffer(self: *const T, pBuffer: ?*IRDPSRAPITransportStreamBuffer) HRESULT {
-                return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).WriteBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pBuffer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStream_ReadBuffer(self: *const T, pBuffer: ?*IRDPSRAPITransportStreamBuffer) HRESULT {
-                return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).ReadBuffer(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pBuffer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStream_Open(self: *const T, pCallbacks: ?*IRDPSRAPITransportStreamEvents) HRESULT {
-                return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).Open(@as(*const IRDPSRAPITransportStream, @ptrCast(self)), pCallbacks);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPITransportStream_Close(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPITransportStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IRDPSRAPITransportStream, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AllocBuffer(self: *const IRDPSRAPITransportStream, maxPayload: i32, ppBuffer: ?*?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+        return self.vtable.AllocBuffer(self, maxPayload, ppBuffer);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn FreeBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+        return self.vtable.FreeBuffer(self, pBuffer);
+    }
+    pub fn WriteBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+        return self.vtable.WriteBuffer(self, pBuffer);
+    }
+    pub fn ReadBuffer(self: *const IRDPSRAPITransportStream, pBuffer: ?*IRDPSRAPITransportStreamBuffer) callconv(.Inline) HRESULT {
+        return self.vtable.ReadBuffer(self, pBuffer);
+    }
+    pub fn Open(self: *const IRDPSRAPITransportStream, pCallbacks: ?*IRDPSRAPITransportStreamEvents) callconv(.Inline) HRESULT {
+        return self.vtable.Open(self, pCallbacks);
+    }
+    pub fn Close(self: *const IRDPSRAPITransportStream) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRDPSRAPISharingSession_Value = Guid.initString("eeb20886-e470-4cf6-842b-2739c0ec5cfb");
 pub const IID_IRDPSRAPISharingSession = &IID_IRDPSRAPISharingSession_Value;
-pub const IRDPSRAPISharingSession = extern struct {
+pub const IRDPSRAPISharingSession = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Open: *const fn(
+            self: *const IRDPSRAPISharingSession,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const IRDPSRAPISharingSession,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ColorDepth: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                colorDepth: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                colorDepth: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ColorDepth: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            colorDepth: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ColorDepth: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                pColorDepth: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                pColorDepth: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ColorDepth: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            pColorDepth: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Properties: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPISessionProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPISessionProperties,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Properties: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            ppVal: ?*?*IRDPSRAPISessionProperties,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Attendees: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIAttendeeManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIAttendeeManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Attendees: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            ppVal: ?*?*IRDPSRAPIAttendeeManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Invitations: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIInvitationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIInvitationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Invitations: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            ppVal: ?*?*IRDPSRAPIInvitationManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ApplicationFilter: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIApplicationFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIApplicationFilter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ApplicationFilter: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            ppVal: ?*?*IRDPSRAPIApplicationFilter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VirtualChannelManager: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Pause: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Resume: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ConnectToClient: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                bstrConnectionString: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                bstrConnectionString: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDesktopSharedRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                left: i32,
-                top: i32,
-                right: i32,
-                bottom: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                left: i32,
-                top: i32,
-                right: i32,
-                bottom: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDesktopSharedRect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession,
-                pleft: ?*i32,
-                ptop: ?*i32,
-                pright: ?*i32,
-                pbottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession,
-                pleft: ?*i32,
-                ptop: ?*i32,
-                pright: ?*i32,
-                pbottom: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_VirtualChannelManager: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            ppVal: ?*?*IRDPSRAPIVirtualChannelManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Pause: *const fn(
+            self: *const IRDPSRAPISharingSession,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Resume: *const fn(
+            self: *const IRDPSRAPISharingSession,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ConnectToClient: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            bstrConnectionString: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDesktopSharedRect: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            left: i32,
+            top: i32,
+            right: i32,
+            bottom: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDesktopSharedRect: *const fn(
+            self: *const IRDPSRAPISharingSession,
+            pleft: ?*i32,
+            ptop: ?*i32,
+            pright: ?*i32,
+            pbottom: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_Open(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Open(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_Close(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Close(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_put_ColorDepth(self: *const T, colorDepth: i32) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).put_ColorDepth(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), colorDepth);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_get_ColorDepth(self: *const T, pColorDepth: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_ColorDepth(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), pColorDepth);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_get_Properties(self: *const T, ppVal: ?*?*IRDPSRAPISessionProperties) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_Properties(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_get_Attendees(self: *const T, ppVal: ?*?*IRDPSRAPIAttendeeManager) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_Attendees(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_get_Invitations(self: *const T, ppVal: ?*?*IRDPSRAPIInvitationManager) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_Invitations(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_get_ApplicationFilter(self: *const T, ppVal: ?*?*IRDPSRAPIApplicationFilter) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_ApplicationFilter(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_get_VirtualChannelManager(self: *const T, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).get_VirtualChannelManager(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_Pause(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Pause(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_Resume(self: *const T) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).Resume(@as(*const IRDPSRAPISharingSession, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_ConnectToClient(self: *const T, bstrConnectionString: ?BSTR) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).ConnectToClient(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), bstrConnectionString);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_SetDesktopSharedRect(self: *const T, left: i32, top: i32, right: i32, bottom: i32) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).SetDesktopSharedRect(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), left, top, right, bottom);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession_GetDesktopSharedRect(self: *const T, pleft: ?*i32, ptop: ?*i32, pright: ?*i32, pbottom: ?*i32) HRESULT {
-                return @as(*const IRDPSRAPISharingSession.VTable, @ptrCast(self.vtable)).GetDesktopSharedRect(@as(*const IRDPSRAPISharingSession, @ptrCast(self)), pleft, ptop, pright, pbottom);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Open(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+        return self.vtable.Open(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Close(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn put_ColorDepth(self: *const IRDPSRAPISharingSession, colorDepth: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_ColorDepth(self, colorDepth);
+    }
+    pub fn get_ColorDepth(self: *const IRDPSRAPISharingSession, pColorDepth: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_ColorDepth(self, pColorDepth);
+    }
+    pub fn get_Properties(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPISessionProperties) callconv(.Inline) HRESULT {
+        return self.vtable.get_Properties(self, ppVal);
+    }
+    pub fn get_Attendees(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIAttendeeManager) callconv(.Inline) HRESULT {
+        return self.vtable.get_Attendees(self, ppVal);
+    }
+    pub fn get_Invitations(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIInvitationManager) callconv(.Inline) HRESULT {
+        return self.vtable.get_Invitations(self, ppVal);
+    }
+    pub fn get_ApplicationFilter(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIApplicationFilter) callconv(.Inline) HRESULT {
+        return self.vtable.get_ApplicationFilter(self, ppVal);
+    }
+    pub fn get_VirtualChannelManager(self: *const IRDPSRAPISharingSession, ppVal: ?*?*IRDPSRAPIVirtualChannelManager) callconv(.Inline) HRESULT {
+        return self.vtable.get_VirtualChannelManager(self, ppVal);
+    }
+    pub fn Pause(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+        return self.vtable.Pause(self);
+    }
+    pub fn Resume(self: *const IRDPSRAPISharingSession) callconv(.Inline) HRESULT {
+        return self.vtable.Resume(self);
+    }
+    pub fn ConnectToClient(self: *const IRDPSRAPISharingSession, bstrConnectionString: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ConnectToClient(self, bstrConnectionString);
+    }
+    pub fn SetDesktopSharedRect(self: *const IRDPSRAPISharingSession, left: i32, top: i32, right: i32, bottom: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SetDesktopSharedRect(self, left, top, right, bottom);
+    }
+    pub fn GetDesktopSharedRect(self: *const IRDPSRAPISharingSession, pleft: ?*i32, ptop: ?*i32, pright: ?*i32, pbottom: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesktopSharedRect(self, pleft, ptop, pright, pbottom);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IRDPSRAPISharingSession2_Value = Guid.initString("fee4ee57-e3e8-4205-8fb0-8fd1d0675c21");
 pub const IID_IRDPSRAPISharingSession2 = &IID_IRDPSRAPISharingSession2_Value;
-pub const IRDPSRAPISharingSession2 = extern struct {
+pub const IRDPSRAPISharingSession2 = extern union {
     pub const VTable = extern struct {
         base: IRDPSRAPISharingSession.VTable,
-        ConnectUsingTransportStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession2,
-                pStream: ?*IRDPSRAPITransportStream,
-                bstrGroup: ?BSTR,
-                bstrAuthenticatedAttendeeName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession2,
-                pStream: ?*IRDPSRAPITransportStream,
-                bstrGroup: ?BSTR,
-                bstrAuthenticatedAttendeeName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ConnectUsingTransportStream: *const fn(
+            self: *const IRDPSRAPISharingSession2,
+            pStream: ?*IRDPSRAPITransportStream,
+            bstrGroup: ?BSTR,
+            bstrAuthenticatedAttendeeName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FrameBuffer: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession2,
-                ppVal: ?*?*IRDPSRAPIFrameBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession2,
-                ppVal: ?*?*IRDPSRAPIFrameBuffer,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendControlLevelChangeResponse: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRDPSRAPISharingSession2,
-                pAttendee: ?*IRDPSRAPIAttendee,
-                RequestedLevel: CTRL_LEVEL,
-                ReasonCode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRDPSRAPISharingSession2,
-                pAttendee: ?*IRDPSRAPIAttendee,
-                RequestedLevel: CTRL_LEVEL,
-                ReasonCode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FrameBuffer: *const fn(
+            self: *const IRDPSRAPISharingSession2,
+            ppVal: ?*?*IRDPSRAPIFrameBuffer,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendControlLevelChangeResponse: *const fn(
+            self: *const IRDPSRAPISharingSession2,
+            pAttendee: ?*IRDPSRAPIAttendee,
+            RequestedLevel: CTRL_LEVEL,
+            ReasonCode: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IRDPSRAPISharingSession.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession2_ConnectUsingTransportStream(self: *const T, pStream: ?*IRDPSRAPITransportStream, bstrGroup: ?BSTR, bstrAuthenticatedAttendeeName: ?BSTR) HRESULT {
-                return @as(*const IRDPSRAPISharingSession2.VTable, @ptrCast(self.vtable)).ConnectUsingTransportStream(@as(*const IRDPSRAPISharingSession2, @ptrCast(self)), pStream, bstrGroup, bstrAuthenticatedAttendeeName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession2_get_FrameBuffer(self: *const T, ppVal: ?*?*IRDPSRAPIFrameBuffer) HRESULT {
-                return @as(*const IRDPSRAPISharingSession2.VTable, @ptrCast(self.vtable)).get_FrameBuffer(@as(*const IRDPSRAPISharingSession2, @ptrCast(self)), ppVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRDPSRAPISharingSession2_SendControlLevelChangeResponse(self: *const T, pAttendee: ?*IRDPSRAPIAttendee, RequestedLevel: CTRL_LEVEL, ReasonCode: i32) HRESULT {
-                return @as(*const IRDPSRAPISharingSession2.VTable, @ptrCast(self.vtable)).SendControlLevelChangeResponse(@as(*const IRDPSRAPISharingSession2, @ptrCast(self)), pAttendee, RequestedLevel, ReasonCode);
-            }
-        };
+    IRDPSRAPISharingSession: IRDPSRAPISharingSession,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn ConnectUsingTransportStream(self: *const IRDPSRAPISharingSession2, pStream: ?*IRDPSRAPITransportStream, bstrGroup: ?BSTR, bstrAuthenticatedAttendeeName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ConnectUsingTransportStream(self, pStream, bstrGroup, bstrAuthenticatedAttendeeName);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_FrameBuffer(self: *const IRDPSRAPISharingSession2, ppVal: ?*?*IRDPSRAPIFrameBuffer) callconv(.Inline) HRESULT {
+        return self.vtable.get_FrameBuffer(self, ppVal);
+    }
+    pub fn SendControlLevelChangeResponse(self: *const IRDPSRAPISharingSession2, pAttendee: ?*IRDPSRAPIAttendee, RequestedLevel: CTRL_LEVEL, ReasonCode: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SendControlLevelChangeResponse(self, pAttendee, RequestedLevel, ReasonCode);
+    }
 };
 
-pub const __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001 = enum(i32) {
+pub const RDPENCOMAPI_CONSTANTS = enum(i32) {
     MAX_CHANNEL_MESSAGE_SIZE = 1024,
     MAX_CHANNEL_NAME_LEN = 8,
     MAX_LEGACY_CHANNEL_MESSAGE_SIZE = 409600,
     ATTENDEE_ID_EVERYONE = -1,
     ATTENDEE_ID_HOST = 0,
     CONN_INTERVAL = 50,
-    // ATTENDEE_ID_DEFAULT = -1, this enum value conflicts with ATTENDEE_ID_EVERYONE
+    pub const ATTENDEE_ID_DEFAULT = .ATTENDEE_ID_EVERYONE;
 };
-pub const CONST_MAX_CHANNEL_MESSAGE_SIZE = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.MAX_CHANNEL_MESSAGE_SIZE;
-pub const CONST_MAX_CHANNEL_NAME_LEN = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.MAX_CHANNEL_NAME_LEN;
-pub const CONST_MAX_LEGACY_CHANNEL_MESSAGE_SIZE = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.MAX_LEGACY_CHANNEL_MESSAGE_SIZE;
-pub const CONST_ATTENDEE_ID_EVERYONE = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.ATTENDEE_ID_EVERYONE;
-pub const CONST_ATTENDEE_ID_HOST = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.ATTENDEE_ID_HOST;
-pub const CONST_CONN_INTERVAL = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.CONN_INTERVAL;
-pub const CONST_ATTENDEE_ID_DEFAULT = __MIDL___MIDL_itf_rdpencomapi_0000_0027_0001.ATTENDEE_ID_EVERYONE;
+pub const CONST_MAX_CHANNEL_MESSAGE_SIZE = RDPENCOMAPI_CONSTANTS.MAX_CHANNEL_MESSAGE_SIZE;
+pub const CONST_MAX_CHANNEL_NAME_LEN = RDPENCOMAPI_CONSTANTS.MAX_CHANNEL_NAME_LEN;
+pub const CONST_MAX_LEGACY_CHANNEL_MESSAGE_SIZE = RDPENCOMAPI_CONSTANTS.MAX_LEGACY_CHANNEL_MESSAGE_SIZE;
+pub const CONST_ATTENDEE_ID_EVERYONE = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_EVERYONE;
+pub const CONST_ATTENDEE_ID_HOST = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_HOST;
+pub const CONST_CONN_INTERVAL = RDPENCOMAPI_CONSTANTS.CONN_INTERVAL;
+pub const CONST_ATTENDEE_ID_DEFAULT = RDPENCOMAPI_CONSTANTS.ATTENDEE_ID_EVERYONE;
 
 pub const __ReferenceRemainingTypes__ = extern struct {
     __ctrlLevel__: CTRL_LEVEL,
@@ -2934,18 +1675,15 @@ pub const __ReferenceRemainingTypes__ = extern struct {
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID__IRDPSessionEvents_Value = Guid.initString("98a97042-6698-40e9-8efd-b3200990004b");
 pub const IID__IRDPSessionEvents = &IID__IRDPSessionEvents_Value;
-pub const _IRDPSessionEvents = extern struct {
+pub const _IRDPSessionEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -2954,12 +1692,6 @@ pub const _IRDPSessionEvents = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
@@ -2972,13 +1704,13 @@ const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -69,32 +69,21 @@ pub const OSUpdateAssessment = extern struct {
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IWaaSAssessor_Value = Guid.initString("2347bbef-1a3b-45a4-902d-3e09c269b45e");
 pub const IID_IWaaSAssessor = &IID_IWaaSAssessor_Value;
-pub const IWaaSAssessor = extern struct {
+pub const IWaaSAssessor = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetOSUpdateAssessment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IWaaSAssessor,
-                result: ?*OSUpdateAssessment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IWaaSAssessor,
-                result: ?*OSUpdateAssessment,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetOSUpdateAssessment: *const fn(
+            self: *const IWaaSAssessor,
+            result: ?*OSUpdateAssessment,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IWaaSAssessor_GetOSUpdateAssessment(self: *const T, result: ?*OSUpdateAssessment) HRESULT {
-                return @as(*const IWaaSAssessor.VTable, @ptrCast(self.vtable)).GetOSUpdateAssessment(@as(*const IWaaSAssessor, @ptrCast(self)), result);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
+        return self.vtable.GetOSUpdateAssessment(self, result);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -103,12 +92,6 @@ pub const IWaaSAssessor = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
@@ -120,13 +103,13 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

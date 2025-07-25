@@ -91,6 +91,7 @@ pub const REGISTRATION_INFORMATION_CLASS = enum(i32) {
 pub const DeviceRegistrationBasicInfo = REGISTRATION_INFORMATION_CLASS.DeviceRegistrationBasicInfo;
 pub const MaxDeviceInfoClass = REGISTRATION_INFORMATION_CLASS.MaxDeviceInfoClass;
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (18)
 //--------------------------------------------------------------------------------
@@ -133,7 +134,8 @@ pub extern "mdmregistration" fn RegisterDeviceWithManagementUsingAADCredentials(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
-pub extern "mdmregistration" fn RegisterDeviceWithManagementUsingAADDeviceCredentials() callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "mdmregistration" fn RegisterDeviceWithManagementUsingAADDeviceCredentials(
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "mdmregistration" fn RegisterDeviceWithManagementUsingAADDeviceCredentials2(
     MDMApplicationID: ?[*:0]const u16,
@@ -184,17 +186,13 @@ pub extern "mdmlocalmanagement" fn ApplyLocalManagementSyncML(
     syncMLResult: ?*?PWSTR,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub extern "mdmlocalmanagement" fn UnregisterDeviceWithLocalManagement() callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "mdmlocalmanagement" fn UnregisterDeviceWithLocalManagement(
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
@@ -204,13 +202,13 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

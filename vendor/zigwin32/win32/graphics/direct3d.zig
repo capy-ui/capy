@@ -143,58 +143,58 @@ pub const D3D_PRIMITIVE_TOPOLOGY = enum(i32) {
     _PRIMITIVE_TOPOLOGY_30_CONTROL_POINT_PATCHLIST = 62,
     _PRIMITIVE_TOPOLOGY_31_CONTROL_POINT_PATCHLIST = 63,
     _PRIMITIVE_TOPOLOGY_32_CONTROL_POINT_PATCHLIST = 64,
-    // @"10_PRIMITIVE_TOPOLOGY_UNDEFINED" = 0, this enum value conflicts with _PRIMITIVE_TOPOLOGY_UNDEFINED
-    // @"10_PRIMITIVE_TOPOLOGY_POINTLIST" = 1, this enum value conflicts with _PRIMITIVE_TOPOLOGY_POINTLIST
-    // @"10_PRIMITIVE_TOPOLOGY_LINELIST" = 2, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINELIST
-    // @"10_PRIMITIVE_TOPOLOGY_LINESTRIP" = 3, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINESTRIP
-    // @"10_PRIMITIVE_TOPOLOGY_TRIANGLELIST" = 4, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLELIST
-    // @"10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP" = 5, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLESTRIP
-    // @"10_PRIMITIVE_TOPOLOGY_LINELIST_ADJ" = 10, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINELIST_ADJ
-    // @"10_PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ" = 11, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ
-    // @"10_PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ" = 12, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ
-    // @"10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ" = 13, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ
-    // @"11_PRIMITIVE_TOPOLOGY_UNDEFINED" = 0, this enum value conflicts with _PRIMITIVE_TOPOLOGY_UNDEFINED
-    // @"11_PRIMITIVE_TOPOLOGY_POINTLIST" = 1, this enum value conflicts with _PRIMITIVE_TOPOLOGY_POINTLIST
-    // @"11_PRIMITIVE_TOPOLOGY_LINELIST" = 2, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINELIST
-    // @"11_PRIMITIVE_TOPOLOGY_LINESTRIP" = 3, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINESTRIP
-    // @"11_PRIMITIVE_TOPOLOGY_TRIANGLELIST" = 4, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLELIST
-    // @"11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP" = 5, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLESTRIP
-    // @"11_PRIMITIVE_TOPOLOGY_LINELIST_ADJ" = 10, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINELIST_ADJ
-    // @"11_PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ" = 11, this enum value conflicts with _PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ
-    // @"11_PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ" = 12, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ
-    // @"11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ" = 13, this enum value conflicts with _PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ
-    // @"11_PRIMITIVE_TOPOLOGY_1_CONTROL_POINT_PATCHLIST" = 33, this enum value conflicts with _PRIMITIVE_TOPOLOGY_1_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_2_CONTROL_POINT_PATCHLIST" = 34, this enum value conflicts with _PRIMITIVE_TOPOLOGY_2_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_3_CONTROL_POINT_PATCHLIST" = 35, this enum value conflicts with _PRIMITIVE_TOPOLOGY_3_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST" = 36, this enum value conflicts with _PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_5_CONTROL_POINT_PATCHLIST" = 37, this enum value conflicts with _PRIMITIVE_TOPOLOGY_5_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_6_CONTROL_POINT_PATCHLIST" = 38, this enum value conflicts with _PRIMITIVE_TOPOLOGY_6_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_7_CONTROL_POINT_PATCHLIST" = 39, this enum value conflicts with _PRIMITIVE_TOPOLOGY_7_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_8_CONTROL_POINT_PATCHLIST" = 40, this enum value conflicts with _PRIMITIVE_TOPOLOGY_8_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_9_CONTROL_POINT_PATCHLIST" = 41, this enum value conflicts with _PRIMITIVE_TOPOLOGY_9_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_10_CONTROL_POINT_PATCHLIST" = 42, this enum value conflicts with _PRIMITIVE_TOPOLOGY_10_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_11_CONTROL_POINT_PATCHLIST" = 43, this enum value conflicts with _PRIMITIVE_TOPOLOGY_11_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_12_CONTROL_POINT_PATCHLIST" = 44, this enum value conflicts with _PRIMITIVE_TOPOLOGY_12_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_13_CONTROL_POINT_PATCHLIST" = 45, this enum value conflicts with _PRIMITIVE_TOPOLOGY_13_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_14_CONTROL_POINT_PATCHLIST" = 46, this enum value conflicts with _PRIMITIVE_TOPOLOGY_14_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_15_CONTROL_POINT_PATCHLIST" = 47, this enum value conflicts with _PRIMITIVE_TOPOLOGY_15_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_16_CONTROL_POINT_PATCHLIST" = 48, this enum value conflicts with _PRIMITIVE_TOPOLOGY_16_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_17_CONTROL_POINT_PATCHLIST" = 49, this enum value conflicts with _PRIMITIVE_TOPOLOGY_17_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_18_CONTROL_POINT_PATCHLIST" = 50, this enum value conflicts with _PRIMITIVE_TOPOLOGY_18_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_19_CONTROL_POINT_PATCHLIST" = 51, this enum value conflicts with _PRIMITIVE_TOPOLOGY_19_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_20_CONTROL_POINT_PATCHLIST" = 52, this enum value conflicts with _PRIMITIVE_TOPOLOGY_20_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_21_CONTROL_POINT_PATCHLIST" = 53, this enum value conflicts with _PRIMITIVE_TOPOLOGY_21_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_22_CONTROL_POINT_PATCHLIST" = 54, this enum value conflicts with _PRIMITIVE_TOPOLOGY_22_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_23_CONTROL_POINT_PATCHLIST" = 55, this enum value conflicts with _PRIMITIVE_TOPOLOGY_23_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_24_CONTROL_POINT_PATCHLIST" = 56, this enum value conflicts with _PRIMITIVE_TOPOLOGY_24_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_25_CONTROL_POINT_PATCHLIST" = 57, this enum value conflicts with _PRIMITIVE_TOPOLOGY_25_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_26_CONTROL_POINT_PATCHLIST" = 58, this enum value conflicts with _PRIMITIVE_TOPOLOGY_26_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_27_CONTROL_POINT_PATCHLIST" = 59, this enum value conflicts with _PRIMITIVE_TOPOLOGY_27_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_28_CONTROL_POINT_PATCHLIST" = 60, this enum value conflicts with _PRIMITIVE_TOPOLOGY_28_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_29_CONTROL_POINT_PATCHLIST" = 61, this enum value conflicts with _PRIMITIVE_TOPOLOGY_29_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_30_CONTROL_POINT_PATCHLIST" = 62, this enum value conflicts with _PRIMITIVE_TOPOLOGY_30_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_31_CONTROL_POINT_PATCHLIST" = 63, this enum value conflicts with _PRIMITIVE_TOPOLOGY_31_CONTROL_POINT_PATCHLIST
-    // @"11_PRIMITIVE_TOPOLOGY_32_CONTROL_POINT_PATCHLIST" = 64, this enum value conflicts with _PRIMITIVE_TOPOLOGY_32_CONTROL_POINT_PATCHLIST
+    pub const @"10_PRIMITIVE_TOPOLOGY_UNDEFINED" = ._PRIMITIVE_TOPOLOGY_UNDEFINED;
+    pub const @"10_PRIMITIVE_TOPOLOGY_POINTLIST" = ._PRIMITIVE_TOPOLOGY_POINTLIST;
+    pub const @"10_PRIMITIVE_TOPOLOGY_LINELIST" = ._PRIMITIVE_TOPOLOGY_LINELIST;
+    pub const @"10_PRIMITIVE_TOPOLOGY_LINESTRIP" = ._PRIMITIVE_TOPOLOGY_LINESTRIP;
+    pub const @"10_PRIMITIVE_TOPOLOGY_TRIANGLELIST" = ._PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+    pub const @"10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP" = ._PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+    pub const @"10_PRIMITIVE_TOPOLOGY_LINELIST_ADJ" = ._PRIMITIVE_TOPOLOGY_LINELIST_ADJ;
+    pub const @"10_PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ" = ._PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ;
+    pub const @"10_PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ" = ._PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ;
+    pub const @"10_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ" = ._PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ;
+    pub const @"11_PRIMITIVE_TOPOLOGY_UNDEFINED" = ._PRIMITIVE_TOPOLOGY_UNDEFINED;
+    pub const @"11_PRIMITIVE_TOPOLOGY_POINTLIST" = ._PRIMITIVE_TOPOLOGY_POINTLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_LINELIST" = ._PRIMITIVE_TOPOLOGY_LINELIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_LINESTRIP" = ._PRIMITIVE_TOPOLOGY_LINESTRIP;
+    pub const @"11_PRIMITIVE_TOPOLOGY_TRIANGLELIST" = ._PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP" = ._PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+    pub const @"11_PRIMITIVE_TOPOLOGY_LINELIST_ADJ" = ._PRIMITIVE_TOPOLOGY_LINELIST_ADJ;
+    pub const @"11_PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ" = ._PRIMITIVE_TOPOLOGY_LINESTRIP_ADJ;
+    pub const @"11_PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ" = ._PRIMITIVE_TOPOLOGY_TRIANGLELIST_ADJ;
+    pub const @"11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ" = ._PRIMITIVE_TOPOLOGY_TRIANGLESTRIP_ADJ;
+    pub const @"11_PRIMITIVE_TOPOLOGY_1_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_1_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_2_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_2_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_3_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_3_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_4_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_5_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_5_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_6_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_6_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_7_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_7_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_8_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_8_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_9_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_9_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_10_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_10_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_11_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_11_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_12_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_12_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_13_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_13_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_14_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_14_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_15_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_15_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_16_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_16_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_17_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_17_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_18_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_18_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_19_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_19_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_20_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_20_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_21_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_21_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_22_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_22_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_23_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_23_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_24_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_24_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_25_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_25_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_26_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_26_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_27_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_27_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_28_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_28_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_29_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_29_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_30_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_30_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_31_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_31_CONTROL_POINT_PATCHLIST;
+    pub const @"11_PRIMITIVE_TOPOLOGY_32_CONTROL_POINT_PATCHLIST" = ._PRIMITIVE_TOPOLOGY_32_CONTROL_POINT_PATCHLIST;
 };
 pub const D3D_PRIMITIVE_TOPOLOGY_UNDEFINED = D3D_PRIMITIVE_TOPOLOGY._PRIMITIVE_TOPOLOGY_UNDEFINED;
 pub const D3D_PRIMITIVE_TOPOLOGY_POINTLIST = D3D_PRIMITIVE_TOPOLOGY._PRIMITIVE_TOPOLOGY_POINTLIST;
@@ -330,50 +330,50 @@ pub const D3D_PRIMITIVE = enum(i32) {
     _PRIMITIVE_30_CONTROL_POINT_PATCH = 37,
     _PRIMITIVE_31_CONTROL_POINT_PATCH = 38,
     _PRIMITIVE_32_CONTROL_POINT_PATCH = 39,
-    // @"10_PRIMITIVE_UNDEFINED" = 0, this enum value conflicts with _PRIMITIVE_UNDEFINED
-    // @"10_PRIMITIVE_POINT" = 1, this enum value conflicts with _PRIMITIVE_POINT
-    // @"10_PRIMITIVE_LINE" = 2, this enum value conflicts with _PRIMITIVE_LINE
-    // @"10_PRIMITIVE_TRIANGLE" = 3, this enum value conflicts with _PRIMITIVE_TRIANGLE
-    // @"10_PRIMITIVE_LINE_ADJ" = 6, this enum value conflicts with _PRIMITIVE_LINE_ADJ
-    // @"10_PRIMITIVE_TRIANGLE_ADJ" = 7, this enum value conflicts with _PRIMITIVE_TRIANGLE_ADJ
-    // @"11_PRIMITIVE_UNDEFINED" = 0, this enum value conflicts with _PRIMITIVE_UNDEFINED
-    // @"11_PRIMITIVE_POINT" = 1, this enum value conflicts with _PRIMITIVE_POINT
-    // @"11_PRIMITIVE_LINE" = 2, this enum value conflicts with _PRIMITIVE_LINE
-    // @"11_PRIMITIVE_TRIANGLE" = 3, this enum value conflicts with _PRIMITIVE_TRIANGLE
-    // @"11_PRIMITIVE_LINE_ADJ" = 6, this enum value conflicts with _PRIMITIVE_LINE_ADJ
-    // @"11_PRIMITIVE_TRIANGLE_ADJ" = 7, this enum value conflicts with _PRIMITIVE_TRIANGLE_ADJ
-    // @"11_PRIMITIVE_1_CONTROL_POINT_PATCH" = 8, this enum value conflicts with _PRIMITIVE_1_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_2_CONTROL_POINT_PATCH" = 9, this enum value conflicts with _PRIMITIVE_2_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_3_CONTROL_POINT_PATCH" = 10, this enum value conflicts with _PRIMITIVE_3_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_4_CONTROL_POINT_PATCH" = 11, this enum value conflicts with _PRIMITIVE_4_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_5_CONTROL_POINT_PATCH" = 12, this enum value conflicts with _PRIMITIVE_5_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_6_CONTROL_POINT_PATCH" = 13, this enum value conflicts with _PRIMITIVE_6_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_7_CONTROL_POINT_PATCH" = 14, this enum value conflicts with _PRIMITIVE_7_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_8_CONTROL_POINT_PATCH" = 15, this enum value conflicts with _PRIMITIVE_8_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_9_CONTROL_POINT_PATCH" = 16, this enum value conflicts with _PRIMITIVE_9_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_10_CONTROL_POINT_PATCH" = 17, this enum value conflicts with _PRIMITIVE_10_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_11_CONTROL_POINT_PATCH" = 18, this enum value conflicts with _PRIMITIVE_11_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_12_CONTROL_POINT_PATCH" = 19, this enum value conflicts with _PRIMITIVE_12_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_13_CONTROL_POINT_PATCH" = 20, this enum value conflicts with _PRIMITIVE_13_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_14_CONTROL_POINT_PATCH" = 21, this enum value conflicts with _PRIMITIVE_14_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_15_CONTROL_POINT_PATCH" = 22, this enum value conflicts with _PRIMITIVE_15_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_16_CONTROL_POINT_PATCH" = 23, this enum value conflicts with _PRIMITIVE_16_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_17_CONTROL_POINT_PATCH" = 24, this enum value conflicts with _PRIMITIVE_17_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_18_CONTROL_POINT_PATCH" = 25, this enum value conflicts with _PRIMITIVE_18_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_19_CONTROL_POINT_PATCH" = 26, this enum value conflicts with _PRIMITIVE_19_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_20_CONTROL_POINT_PATCH" = 27, this enum value conflicts with _PRIMITIVE_20_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_21_CONTROL_POINT_PATCH" = 28, this enum value conflicts with _PRIMITIVE_21_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_22_CONTROL_POINT_PATCH" = 29, this enum value conflicts with _PRIMITIVE_22_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_23_CONTROL_POINT_PATCH" = 30, this enum value conflicts with _PRIMITIVE_23_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_24_CONTROL_POINT_PATCH" = 31, this enum value conflicts with _PRIMITIVE_24_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_25_CONTROL_POINT_PATCH" = 32, this enum value conflicts with _PRIMITIVE_25_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_26_CONTROL_POINT_PATCH" = 33, this enum value conflicts with _PRIMITIVE_26_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_27_CONTROL_POINT_PATCH" = 34, this enum value conflicts with _PRIMITIVE_27_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_28_CONTROL_POINT_PATCH" = 35, this enum value conflicts with _PRIMITIVE_28_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_29_CONTROL_POINT_PATCH" = 36, this enum value conflicts with _PRIMITIVE_29_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_30_CONTROL_POINT_PATCH" = 37, this enum value conflicts with _PRIMITIVE_30_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_31_CONTROL_POINT_PATCH" = 38, this enum value conflicts with _PRIMITIVE_31_CONTROL_POINT_PATCH
-    // @"11_PRIMITIVE_32_CONTROL_POINT_PATCH" = 39, this enum value conflicts with _PRIMITIVE_32_CONTROL_POINT_PATCH
+    pub const @"10_PRIMITIVE_UNDEFINED" = ._PRIMITIVE_UNDEFINED;
+    pub const @"10_PRIMITIVE_POINT" = ._PRIMITIVE_POINT;
+    pub const @"10_PRIMITIVE_LINE" = ._PRIMITIVE_LINE;
+    pub const @"10_PRIMITIVE_TRIANGLE" = ._PRIMITIVE_TRIANGLE;
+    pub const @"10_PRIMITIVE_LINE_ADJ" = ._PRIMITIVE_LINE_ADJ;
+    pub const @"10_PRIMITIVE_TRIANGLE_ADJ" = ._PRIMITIVE_TRIANGLE_ADJ;
+    pub const @"11_PRIMITIVE_UNDEFINED" = ._PRIMITIVE_UNDEFINED;
+    pub const @"11_PRIMITIVE_POINT" = ._PRIMITIVE_POINT;
+    pub const @"11_PRIMITIVE_LINE" = ._PRIMITIVE_LINE;
+    pub const @"11_PRIMITIVE_TRIANGLE" = ._PRIMITIVE_TRIANGLE;
+    pub const @"11_PRIMITIVE_LINE_ADJ" = ._PRIMITIVE_LINE_ADJ;
+    pub const @"11_PRIMITIVE_TRIANGLE_ADJ" = ._PRIMITIVE_TRIANGLE_ADJ;
+    pub const @"11_PRIMITIVE_1_CONTROL_POINT_PATCH" = ._PRIMITIVE_1_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_2_CONTROL_POINT_PATCH" = ._PRIMITIVE_2_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_3_CONTROL_POINT_PATCH" = ._PRIMITIVE_3_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_4_CONTROL_POINT_PATCH" = ._PRIMITIVE_4_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_5_CONTROL_POINT_PATCH" = ._PRIMITIVE_5_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_6_CONTROL_POINT_PATCH" = ._PRIMITIVE_6_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_7_CONTROL_POINT_PATCH" = ._PRIMITIVE_7_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_8_CONTROL_POINT_PATCH" = ._PRIMITIVE_8_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_9_CONTROL_POINT_PATCH" = ._PRIMITIVE_9_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_10_CONTROL_POINT_PATCH" = ._PRIMITIVE_10_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_11_CONTROL_POINT_PATCH" = ._PRIMITIVE_11_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_12_CONTROL_POINT_PATCH" = ._PRIMITIVE_12_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_13_CONTROL_POINT_PATCH" = ._PRIMITIVE_13_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_14_CONTROL_POINT_PATCH" = ._PRIMITIVE_14_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_15_CONTROL_POINT_PATCH" = ._PRIMITIVE_15_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_16_CONTROL_POINT_PATCH" = ._PRIMITIVE_16_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_17_CONTROL_POINT_PATCH" = ._PRIMITIVE_17_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_18_CONTROL_POINT_PATCH" = ._PRIMITIVE_18_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_19_CONTROL_POINT_PATCH" = ._PRIMITIVE_19_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_20_CONTROL_POINT_PATCH" = ._PRIMITIVE_20_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_21_CONTROL_POINT_PATCH" = ._PRIMITIVE_21_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_22_CONTROL_POINT_PATCH" = ._PRIMITIVE_22_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_23_CONTROL_POINT_PATCH" = ._PRIMITIVE_23_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_24_CONTROL_POINT_PATCH" = ._PRIMITIVE_24_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_25_CONTROL_POINT_PATCH" = ._PRIMITIVE_25_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_26_CONTROL_POINT_PATCH" = ._PRIMITIVE_26_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_27_CONTROL_POINT_PATCH" = ._PRIMITIVE_27_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_28_CONTROL_POINT_PATCH" = ._PRIMITIVE_28_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_29_CONTROL_POINT_PATCH" = ._PRIMITIVE_29_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_30_CONTROL_POINT_PATCH" = ._PRIMITIVE_30_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_31_CONTROL_POINT_PATCH" = ._PRIMITIVE_31_CONTROL_POINT_PATCH;
+    pub const @"11_PRIMITIVE_32_CONTROL_POINT_PATCH" = ._PRIMITIVE_32_CONTROL_POINT_PATCH;
 };
 pub const D3D_PRIMITIVE_UNDEFINED = D3D_PRIMITIVE._PRIMITIVE_UNDEFINED;
 pub const D3D_PRIMITIVE_POINT = D3D_PRIMITIVE._PRIMITIVE_POINT;
@@ -471,39 +471,39 @@ pub const D3D_SRV_DIMENSION = enum(i32) {
     _SRV_DIMENSION_TEXTURECUBE = 9,
     _SRV_DIMENSION_TEXTURECUBEARRAY = 10,
     _SRV_DIMENSION_BUFFEREX = 11,
-    // @"10_SRV_DIMENSION_UNKNOWN" = 0, this enum value conflicts with _SRV_DIMENSION_UNKNOWN
-    // @"10_SRV_DIMENSION_BUFFER" = 1, this enum value conflicts with _SRV_DIMENSION_BUFFER
-    // @"10_SRV_DIMENSION_TEXTURE1D" = 2, this enum value conflicts with _SRV_DIMENSION_TEXTURE1D
-    // @"10_SRV_DIMENSION_TEXTURE1DARRAY" = 3, this enum value conflicts with _SRV_DIMENSION_TEXTURE1DARRAY
-    // @"10_SRV_DIMENSION_TEXTURE2D" = 4, this enum value conflicts with _SRV_DIMENSION_TEXTURE2D
-    // @"10_SRV_DIMENSION_TEXTURE2DARRAY" = 5, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DARRAY
-    // @"10_SRV_DIMENSION_TEXTURE2DMS" = 6, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DMS
-    // @"10_SRV_DIMENSION_TEXTURE2DMSARRAY" = 7, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DMSARRAY
-    // @"10_SRV_DIMENSION_TEXTURE3D" = 8, this enum value conflicts with _SRV_DIMENSION_TEXTURE3D
-    // @"10_SRV_DIMENSION_TEXTURECUBE" = 9, this enum value conflicts with _SRV_DIMENSION_TEXTURECUBE
-    // @"10_1_SRV_DIMENSION_UNKNOWN" = 0, this enum value conflicts with _SRV_DIMENSION_UNKNOWN
-    // @"10_1_SRV_DIMENSION_BUFFER" = 1, this enum value conflicts with _SRV_DIMENSION_BUFFER
-    // @"10_1_SRV_DIMENSION_TEXTURE1D" = 2, this enum value conflicts with _SRV_DIMENSION_TEXTURE1D
-    // @"10_1_SRV_DIMENSION_TEXTURE1DARRAY" = 3, this enum value conflicts with _SRV_DIMENSION_TEXTURE1DARRAY
-    // @"10_1_SRV_DIMENSION_TEXTURE2D" = 4, this enum value conflicts with _SRV_DIMENSION_TEXTURE2D
-    // @"10_1_SRV_DIMENSION_TEXTURE2DARRAY" = 5, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DARRAY
-    // @"10_1_SRV_DIMENSION_TEXTURE2DMS" = 6, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DMS
-    // @"10_1_SRV_DIMENSION_TEXTURE2DMSARRAY" = 7, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DMSARRAY
-    // @"10_1_SRV_DIMENSION_TEXTURE3D" = 8, this enum value conflicts with _SRV_DIMENSION_TEXTURE3D
-    // @"10_1_SRV_DIMENSION_TEXTURECUBE" = 9, this enum value conflicts with _SRV_DIMENSION_TEXTURECUBE
-    // @"10_1_SRV_DIMENSION_TEXTURECUBEARRAY" = 10, this enum value conflicts with _SRV_DIMENSION_TEXTURECUBEARRAY
-    // @"11_SRV_DIMENSION_UNKNOWN" = 0, this enum value conflicts with _SRV_DIMENSION_UNKNOWN
-    // @"11_SRV_DIMENSION_BUFFER" = 1, this enum value conflicts with _SRV_DIMENSION_BUFFER
-    // @"11_SRV_DIMENSION_TEXTURE1D" = 2, this enum value conflicts with _SRV_DIMENSION_TEXTURE1D
-    // @"11_SRV_DIMENSION_TEXTURE1DARRAY" = 3, this enum value conflicts with _SRV_DIMENSION_TEXTURE1DARRAY
-    // @"11_SRV_DIMENSION_TEXTURE2D" = 4, this enum value conflicts with _SRV_DIMENSION_TEXTURE2D
-    // @"11_SRV_DIMENSION_TEXTURE2DARRAY" = 5, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DARRAY
-    // @"11_SRV_DIMENSION_TEXTURE2DMS" = 6, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DMS
-    // @"11_SRV_DIMENSION_TEXTURE2DMSARRAY" = 7, this enum value conflicts with _SRV_DIMENSION_TEXTURE2DMSARRAY
-    // @"11_SRV_DIMENSION_TEXTURE3D" = 8, this enum value conflicts with _SRV_DIMENSION_TEXTURE3D
-    // @"11_SRV_DIMENSION_TEXTURECUBE" = 9, this enum value conflicts with _SRV_DIMENSION_TEXTURECUBE
-    // @"11_SRV_DIMENSION_TEXTURECUBEARRAY" = 10, this enum value conflicts with _SRV_DIMENSION_TEXTURECUBEARRAY
-    // @"11_SRV_DIMENSION_BUFFEREX" = 11, this enum value conflicts with _SRV_DIMENSION_BUFFEREX
+    pub const @"10_SRV_DIMENSION_UNKNOWN" = ._SRV_DIMENSION_UNKNOWN;
+    pub const @"10_SRV_DIMENSION_BUFFER" = ._SRV_DIMENSION_BUFFER;
+    pub const @"10_SRV_DIMENSION_TEXTURE1D" = ._SRV_DIMENSION_TEXTURE1D;
+    pub const @"10_SRV_DIMENSION_TEXTURE1DARRAY" = ._SRV_DIMENSION_TEXTURE1DARRAY;
+    pub const @"10_SRV_DIMENSION_TEXTURE2D" = ._SRV_DIMENSION_TEXTURE2D;
+    pub const @"10_SRV_DIMENSION_TEXTURE2DARRAY" = ._SRV_DIMENSION_TEXTURE2DARRAY;
+    pub const @"10_SRV_DIMENSION_TEXTURE2DMS" = ._SRV_DIMENSION_TEXTURE2DMS;
+    pub const @"10_SRV_DIMENSION_TEXTURE2DMSARRAY" = ._SRV_DIMENSION_TEXTURE2DMSARRAY;
+    pub const @"10_SRV_DIMENSION_TEXTURE3D" = ._SRV_DIMENSION_TEXTURE3D;
+    pub const @"10_SRV_DIMENSION_TEXTURECUBE" = ._SRV_DIMENSION_TEXTURECUBE;
+    pub const @"10_1_SRV_DIMENSION_UNKNOWN" = ._SRV_DIMENSION_UNKNOWN;
+    pub const @"10_1_SRV_DIMENSION_BUFFER" = ._SRV_DIMENSION_BUFFER;
+    pub const @"10_1_SRV_DIMENSION_TEXTURE1D" = ._SRV_DIMENSION_TEXTURE1D;
+    pub const @"10_1_SRV_DIMENSION_TEXTURE1DARRAY" = ._SRV_DIMENSION_TEXTURE1DARRAY;
+    pub const @"10_1_SRV_DIMENSION_TEXTURE2D" = ._SRV_DIMENSION_TEXTURE2D;
+    pub const @"10_1_SRV_DIMENSION_TEXTURE2DARRAY" = ._SRV_DIMENSION_TEXTURE2DARRAY;
+    pub const @"10_1_SRV_DIMENSION_TEXTURE2DMS" = ._SRV_DIMENSION_TEXTURE2DMS;
+    pub const @"10_1_SRV_DIMENSION_TEXTURE2DMSARRAY" = ._SRV_DIMENSION_TEXTURE2DMSARRAY;
+    pub const @"10_1_SRV_DIMENSION_TEXTURE3D" = ._SRV_DIMENSION_TEXTURE3D;
+    pub const @"10_1_SRV_DIMENSION_TEXTURECUBE" = ._SRV_DIMENSION_TEXTURECUBE;
+    pub const @"10_1_SRV_DIMENSION_TEXTURECUBEARRAY" = ._SRV_DIMENSION_TEXTURECUBEARRAY;
+    pub const @"11_SRV_DIMENSION_UNKNOWN" = ._SRV_DIMENSION_UNKNOWN;
+    pub const @"11_SRV_DIMENSION_BUFFER" = ._SRV_DIMENSION_BUFFER;
+    pub const @"11_SRV_DIMENSION_TEXTURE1D" = ._SRV_DIMENSION_TEXTURE1D;
+    pub const @"11_SRV_DIMENSION_TEXTURE1DARRAY" = ._SRV_DIMENSION_TEXTURE1DARRAY;
+    pub const @"11_SRV_DIMENSION_TEXTURE2D" = ._SRV_DIMENSION_TEXTURE2D;
+    pub const @"11_SRV_DIMENSION_TEXTURE2DARRAY" = ._SRV_DIMENSION_TEXTURE2DARRAY;
+    pub const @"11_SRV_DIMENSION_TEXTURE2DMS" = ._SRV_DIMENSION_TEXTURE2DMS;
+    pub const @"11_SRV_DIMENSION_TEXTURE2DMSARRAY" = ._SRV_DIMENSION_TEXTURE2DMSARRAY;
+    pub const @"11_SRV_DIMENSION_TEXTURE3D" = ._SRV_DIMENSION_TEXTURE3D;
+    pub const @"11_SRV_DIMENSION_TEXTURECUBE" = ._SRV_DIMENSION_TEXTURECUBE;
+    pub const @"11_SRV_DIMENSION_TEXTURECUBEARRAY" = ._SRV_DIMENSION_TEXTURECUBEARRAY;
+    pub const @"11_SRV_DIMENSION_BUFFEREX" = ._SRV_DIMENSION_BUFFEREX;
 };
 pub const D3D_SRV_DIMENSION_UNKNOWN = D3D_SRV_DIMENSION._SRV_DIMENSION_UNKNOWN;
 pub const D3D_SRV_DIMENSION_BUFFER = D3D_SRV_DIMENSION._SRV_DIMENSION_BUFFER;
@@ -556,108 +556,67 @@ pub const D3D_SHADER_MACRO = extern struct {
     Definition: ?[*:0]const u8,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3DBlob_Value = Guid.initString("8ba5fb08-5195-40e2-ac58-0d989c3a0102");
 pub const IID_ID3DBlob = &IID_ID3DBlob_Value;
-pub const ID3DBlob = extern struct {
+pub const ID3DBlob = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBufferPointer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3DBlob,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-            else => *const fn (
-                self: *const ID3DBlob,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-        },
-        GetBufferSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3DBlob,
-            ) callconv(@import("std").os.windows.WINAPI) usize,
-            else => *const fn (
-                self: *const ID3DBlob,
-            ) callconv(@import("std").os.windows.WINAPI) usize,
-        },
+        GetBufferPointer: *const fn(
+            self: *const ID3DBlob,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        GetBufferSize: *const fn(
+            self: *const ID3DBlob,
+        ) callconv(@import("std").os.windows.WINAPI) usize,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3DBlob_GetBufferPointer(self: *const T) ?*anyopaque {
-                return @as(*const ID3DBlob.VTable, @ptrCast(self.vtable)).GetBufferPointer(@as(*const ID3DBlob, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3DBlob_GetBufferSize(self: *const T) usize {
-                return @as(*const ID3DBlob.VTable, @ptrCast(self.vtable)).GetBufferSize(@as(*const ID3DBlob, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetBufferPointer(self: *const ID3DBlob) callconv(.Inline) ?*anyopaque {
+        return self.vtable.GetBufferPointer(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetBufferSize(self: *const ID3DBlob) callconv(.Inline) usize {
+        return self.vtable.GetBufferSize(self);
+    }
 };
 
-pub const PFN_DESTRUCTION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        pData: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFN_DESTRUCTION_CALLBACK = *const fn(
+    pData: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 // TODO: this type is limited to platform 'windows6.1'
+// This COM type is Agile, not sure what that means
 const IID_ID3DDestructionNotifier_Value = Guid.initString("a06eb39a-50da-425b-8c31-4eecd6c270f3");
 pub const IID_ID3DDestructionNotifier = &IID_ID3DDestructionNotifier_Value;
-pub const ID3DDestructionNotifier = extern struct {
+pub const ID3DDestructionNotifier = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        RegisterDestructionCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3DDestructionNotifier,
-                callbackFn: ?PFN_DESTRUCTION_CALLBACK,
-                pData: ?*anyopaque,
-                pCallbackID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3DDestructionNotifier,
-                callbackFn: ?PFN_DESTRUCTION_CALLBACK,
-                pData: ?*anyopaque,
-                pCallbackID: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterDestructionCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3DDestructionNotifier,
-                callbackID: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3DDestructionNotifier,
-                callbackID: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterDestructionCallback: *const fn(
+            self: *const ID3DDestructionNotifier,
+            callbackFn: ?PFN_DESTRUCTION_CALLBACK,
+            pData: ?*anyopaque,
+            pCallbackID: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterDestructionCallback: *const fn(
+            self: *const ID3DDestructionNotifier,
+            callbackID: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3DDestructionNotifier_RegisterDestructionCallback(self: *const T, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) HRESULT {
-                return @as(*const ID3DDestructionNotifier.VTable, @ptrCast(self.vtable)).RegisterDestructionCallback(@as(*const ID3DDestructionNotifier, @ptrCast(self)), callbackFn, pData, pCallbackID);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3DDestructionNotifier_UnregisterDestructionCallback(self: *const T, callbackID: u32) HRESULT {
-                return @as(*const ID3DDestructionNotifier.VTable, @ptrCast(self.vtable)).UnregisterDestructionCallback(@as(*const ID3DDestructionNotifier, @ptrCast(self)), callbackID);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn RegisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterDestructionCallback(self, callbackFn, pData, pCallbackID);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UnregisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackID: u32) callconv(.Inline) HRESULT {
+        return self.vtable.UnregisterDestructionCallback(self, callbackID);
+    }
 };
 
 pub const D3D_INCLUDE_TYPE = enum(i32) {
     _INCLUDE_LOCAL = 0,
     _INCLUDE_SYSTEM = 1,
-    // @"10_INCLUDE_LOCAL" = 0, this enum value conflicts with _INCLUDE_LOCAL
-    // @"10_INCLUDE_SYSTEM" = 1, this enum value conflicts with _INCLUDE_SYSTEM
     _INCLUDE_FORCE_DWORD = 2147483647,
+    pub const @"10_INCLUDE_LOCAL" = ._INCLUDE_LOCAL;
+    pub const @"10_INCLUDE_SYSTEM" = ._INCLUDE_SYSTEM;
 };
 pub const D3D_INCLUDE_LOCAL = D3D_INCLUDE_TYPE._INCLUDE_LOCAL;
 pub const D3D_INCLUDE_SYSTEM = D3D_INCLUDE_TYPE._INCLUDE_SYSTEM;
@@ -665,51 +624,29 @@ pub const D3D10_INCLUDE_LOCAL = D3D_INCLUDE_TYPE._INCLUDE_LOCAL;
 pub const D3D10_INCLUDE_SYSTEM = D3D_INCLUDE_TYPE._INCLUDE_SYSTEM;
 pub const D3D_INCLUDE_FORCE_DWORD = D3D_INCLUDE_TYPE._INCLUDE_FORCE_DWORD;
 
-pub const ID3DInclude = extern struct {
+// This COM type is Agile, not sure what that means
+pub const ID3DInclude = extern union {
     pub const VTable = extern struct {
-        Open: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3DInclude,
-                IncludeType: D3D_INCLUDE_TYPE,
-                pFileName: ?[*:0]const u8,
-                pParentData: ?*const anyopaque,
-                ppData: ?*?*anyopaque,
-                pBytes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3DInclude,
-                IncludeType: D3D_INCLUDE_TYPE,
-                pFileName: ?[*:0]const u8,
-                pParentData: ?*const anyopaque,
-                ppData: ?*?*anyopaque,
-                pBytes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3DInclude,
-                pData: ?*const anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3DInclude,
-                pData: ?*const anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Open: *const fn(
+            self: *const ID3DInclude,
+            IncludeType: D3D_INCLUDE_TYPE,
+            pFileName: ?[*:0]const u8,
+            pParentData: ?*const anyopaque,
+            ppData: ?*?*anyopaque,
+            pBytes: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const ID3DInclude,
+            pData: ?*const anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3DInclude_Open(self: *const T, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) HRESULT {
-                return @as(*const ID3DInclude.VTable, @ptrCast(self.vtable)).Open(@as(*const ID3DInclude, @ptrCast(self)), IncludeType, pFileName, pParentData, ppData, pBytes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3DInclude_Close(self: *const T, pData: ?*const anyopaque) HRESULT {
-                return @as(*const ID3DInclude.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3DInclude, @ptrCast(self)), pData);
-            }
-        };
+    pub fn Open(self: *const ID3DInclude, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.Open(self, IncludeType, pFileName, pParentData, ppData, pBytes);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Close(self: *const ID3DInclude, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self, pData);
+    }
 };
 
 pub const D3D_SHADER_VARIABLE_CLASS = enum(i32) {
@@ -721,15 +658,15 @@ pub const D3D_SHADER_VARIABLE_CLASS = enum(i32) {
     _SVC_STRUCT = 5,
     _SVC_INTERFACE_CLASS = 6,
     _SVC_INTERFACE_POINTER = 7,
-    // @"10_SVC_SCALAR" = 0, this enum value conflicts with _SVC_SCALAR
-    // @"10_SVC_VECTOR" = 1, this enum value conflicts with _SVC_VECTOR
-    // @"10_SVC_MATRIX_ROWS" = 2, this enum value conflicts with _SVC_MATRIX_ROWS
-    // @"10_SVC_MATRIX_COLUMNS" = 3, this enum value conflicts with _SVC_MATRIX_COLUMNS
-    // @"10_SVC_OBJECT" = 4, this enum value conflicts with _SVC_OBJECT
-    // @"10_SVC_STRUCT" = 5, this enum value conflicts with _SVC_STRUCT
-    // @"11_SVC_INTERFACE_CLASS" = 6, this enum value conflicts with _SVC_INTERFACE_CLASS
-    // @"11_SVC_INTERFACE_POINTER" = 7, this enum value conflicts with _SVC_INTERFACE_POINTER
     _SVC_FORCE_DWORD = 2147483647,
+    pub const @"10_SVC_SCALAR" = ._SVC_SCALAR;
+    pub const @"10_SVC_VECTOR" = ._SVC_VECTOR;
+    pub const @"10_SVC_MATRIX_ROWS" = ._SVC_MATRIX_ROWS;
+    pub const @"10_SVC_MATRIX_COLUMNS" = ._SVC_MATRIX_COLUMNS;
+    pub const @"10_SVC_OBJECT" = ._SVC_OBJECT;
+    pub const @"10_SVC_STRUCT" = ._SVC_STRUCT;
+    pub const @"11_SVC_INTERFACE_CLASS" = ._SVC_INTERFACE_CLASS;
+    pub const @"11_SVC_INTERFACE_POINTER" = ._SVC_INTERFACE_POINTER;
 };
 pub const D3D_SVC_SCALAR = D3D_SHADER_VARIABLE_CLASS._SVC_SCALAR;
 pub const D3D_SVC_VECTOR = D3D_SHADER_VARIABLE_CLASS._SVC_VECTOR;
@@ -754,11 +691,11 @@ pub const D3D_SHADER_VARIABLE_FLAGS = enum(i32) {
     _SVF_USED = 2,
     _SVF_INTERFACE_POINTER = 4,
     _SVF_INTERFACE_PARAMETER = 8,
-    // @"10_SVF_USERPACKED" = 1, this enum value conflicts with _SVF_USERPACKED
-    // @"10_SVF_USED" = 2, this enum value conflicts with _SVF_USED
-    // @"11_SVF_INTERFACE_POINTER" = 4, this enum value conflicts with _SVF_INTERFACE_POINTER
-    // @"11_SVF_INTERFACE_PARAMETER" = 8, this enum value conflicts with _SVF_INTERFACE_PARAMETER
     _SVF_FORCE_DWORD = 2147483647,
+    pub const @"10_SVF_USERPACKED" = ._SVF_USERPACKED;
+    pub const @"10_SVF_USED" = ._SVF_USED;
+    pub const @"11_SVF_INTERFACE_POINTER" = ._SVF_INTERFACE_POINTER;
+    pub const @"11_SVF_INTERFACE_PARAMETER" = ._SVF_INTERFACE_PARAMETER;
 };
 pub const D3D_SVF_USERPACKED = D3D_SHADER_VARIABLE_FLAGS._SVF_USERPACKED;
 pub const D3D_SVF_USED = D3D_SHADER_VARIABLE_FLAGS._SVF_USED;
@@ -834,59 +771,59 @@ pub const D3D_SHADER_VARIABLE_TYPE = enum(i32) {
     _SVT_FLOAT16 = 60,
     _SVT_INT64 = 61,
     _SVT_UINT64 = 62,
-    // @"10_SVT_VOID" = 0, this enum value conflicts with _SVT_VOID
-    // @"10_SVT_BOOL" = 1, this enum value conflicts with _SVT_BOOL
-    // @"10_SVT_INT" = 2, this enum value conflicts with _SVT_INT
-    // @"10_SVT_FLOAT" = 3, this enum value conflicts with _SVT_FLOAT
-    // @"10_SVT_STRING" = 4, this enum value conflicts with _SVT_STRING
-    // @"10_SVT_TEXTURE" = 5, this enum value conflicts with _SVT_TEXTURE
-    // @"10_SVT_TEXTURE1D" = 6, this enum value conflicts with _SVT_TEXTURE1D
-    // @"10_SVT_TEXTURE2D" = 7, this enum value conflicts with _SVT_TEXTURE2D
-    // @"10_SVT_TEXTURE3D" = 8, this enum value conflicts with _SVT_TEXTURE3D
-    // @"10_SVT_TEXTURECUBE" = 9, this enum value conflicts with _SVT_TEXTURECUBE
-    // @"10_SVT_SAMPLER" = 10, this enum value conflicts with _SVT_SAMPLER
-    // @"10_SVT_SAMPLER1D" = 11, this enum value conflicts with _SVT_SAMPLER1D
-    // @"10_SVT_SAMPLER2D" = 12, this enum value conflicts with _SVT_SAMPLER2D
-    // @"10_SVT_SAMPLER3D" = 13, this enum value conflicts with _SVT_SAMPLER3D
-    // @"10_SVT_SAMPLERCUBE" = 14, this enum value conflicts with _SVT_SAMPLERCUBE
-    // @"10_SVT_PIXELSHADER" = 15, this enum value conflicts with _SVT_PIXELSHADER
-    // @"10_SVT_VERTEXSHADER" = 16, this enum value conflicts with _SVT_VERTEXSHADER
-    // @"10_SVT_PIXELFRAGMENT" = 17, this enum value conflicts with _SVT_PIXELFRAGMENT
-    // @"10_SVT_VERTEXFRAGMENT" = 18, this enum value conflicts with _SVT_VERTEXFRAGMENT
-    // @"10_SVT_UINT" = 19, this enum value conflicts with _SVT_UINT
-    // @"10_SVT_UINT8" = 20, this enum value conflicts with _SVT_UINT8
-    // @"10_SVT_GEOMETRYSHADER" = 21, this enum value conflicts with _SVT_GEOMETRYSHADER
-    // @"10_SVT_RASTERIZER" = 22, this enum value conflicts with _SVT_RASTERIZER
-    // @"10_SVT_DEPTHSTENCIL" = 23, this enum value conflicts with _SVT_DEPTHSTENCIL
-    // @"10_SVT_BLEND" = 24, this enum value conflicts with _SVT_BLEND
-    // @"10_SVT_BUFFER" = 25, this enum value conflicts with _SVT_BUFFER
-    // @"10_SVT_CBUFFER" = 26, this enum value conflicts with _SVT_CBUFFER
-    // @"10_SVT_TBUFFER" = 27, this enum value conflicts with _SVT_TBUFFER
-    // @"10_SVT_TEXTURE1DARRAY" = 28, this enum value conflicts with _SVT_TEXTURE1DARRAY
-    // @"10_SVT_TEXTURE2DARRAY" = 29, this enum value conflicts with _SVT_TEXTURE2DARRAY
-    // @"10_SVT_RENDERTARGETVIEW" = 30, this enum value conflicts with _SVT_RENDERTARGETVIEW
-    // @"10_SVT_DEPTHSTENCILVIEW" = 31, this enum value conflicts with _SVT_DEPTHSTENCILVIEW
-    // @"10_SVT_TEXTURE2DMS" = 32, this enum value conflicts with _SVT_TEXTURE2DMS
-    // @"10_SVT_TEXTURE2DMSARRAY" = 33, this enum value conflicts with _SVT_TEXTURE2DMSARRAY
-    // @"10_SVT_TEXTURECUBEARRAY" = 34, this enum value conflicts with _SVT_TEXTURECUBEARRAY
-    // @"11_SVT_HULLSHADER" = 35, this enum value conflicts with _SVT_HULLSHADER
-    // @"11_SVT_DOMAINSHADER" = 36, this enum value conflicts with _SVT_DOMAINSHADER
-    // @"11_SVT_INTERFACE_POINTER" = 37, this enum value conflicts with _SVT_INTERFACE_POINTER
-    // @"11_SVT_COMPUTESHADER" = 38, this enum value conflicts with _SVT_COMPUTESHADER
-    // @"11_SVT_DOUBLE" = 39, this enum value conflicts with _SVT_DOUBLE
-    // @"11_SVT_RWTEXTURE1D" = 40, this enum value conflicts with _SVT_RWTEXTURE1D
-    // @"11_SVT_RWTEXTURE1DARRAY" = 41, this enum value conflicts with _SVT_RWTEXTURE1DARRAY
-    // @"11_SVT_RWTEXTURE2D" = 42, this enum value conflicts with _SVT_RWTEXTURE2D
-    // @"11_SVT_RWTEXTURE2DARRAY" = 43, this enum value conflicts with _SVT_RWTEXTURE2DARRAY
-    // @"11_SVT_RWTEXTURE3D" = 44, this enum value conflicts with _SVT_RWTEXTURE3D
-    // @"11_SVT_RWBUFFER" = 45, this enum value conflicts with _SVT_RWBUFFER
-    // @"11_SVT_BYTEADDRESS_BUFFER" = 46, this enum value conflicts with _SVT_BYTEADDRESS_BUFFER
-    // @"11_SVT_RWBYTEADDRESS_BUFFER" = 47, this enum value conflicts with _SVT_RWBYTEADDRESS_BUFFER
-    // @"11_SVT_STRUCTURED_BUFFER" = 48, this enum value conflicts with _SVT_STRUCTURED_BUFFER
-    // @"11_SVT_RWSTRUCTURED_BUFFER" = 49, this enum value conflicts with _SVT_RWSTRUCTURED_BUFFER
-    // @"11_SVT_APPEND_STRUCTURED_BUFFER" = 50, this enum value conflicts with _SVT_APPEND_STRUCTURED_BUFFER
-    // @"11_SVT_CONSUME_STRUCTURED_BUFFER" = 51, this enum value conflicts with _SVT_CONSUME_STRUCTURED_BUFFER
     _SVT_FORCE_DWORD = 2147483647,
+    pub const @"10_SVT_VOID" = ._SVT_VOID;
+    pub const @"10_SVT_BOOL" = ._SVT_BOOL;
+    pub const @"10_SVT_INT" = ._SVT_INT;
+    pub const @"10_SVT_FLOAT" = ._SVT_FLOAT;
+    pub const @"10_SVT_STRING" = ._SVT_STRING;
+    pub const @"10_SVT_TEXTURE" = ._SVT_TEXTURE;
+    pub const @"10_SVT_TEXTURE1D" = ._SVT_TEXTURE1D;
+    pub const @"10_SVT_TEXTURE2D" = ._SVT_TEXTURE2D;
+    pub const @"10_SVT_TEXTURE3D" = ._SVT_TEXTURE3D;
+    pub const @"10_SVT_TEXTURECUBE" = ._SVT_TEXTURECUBE;
+    pub const @"10_SVT_SAMPLER" = ._SVT_SAMPLER;
+    pub const @"10_SVT_SAMPLER1D" = ._SVT_SAMPLER1D;
+    pub const @"10_SVT_SAMPLER2D" = ._SVT_SAMPLER2D;
+    pub const @"10_SVT_SAMPLER3D" = ._SVT_SAMPLER3D;
+    pub const @"10_SVT_SAMPLERCUBE" = ._SVT_SAMPLERCUBE;
+    pub const @"10_SVT_PIXELSHADER" = ._SVT_PIXELSHADER;
+    pub const @"10_SVT_VERTEXSHADER" = ._SVT_VERTEXSHADER;
+    pub const @"10_SVT_PIXELFRAGMENT" = ._SVT_PIXELFRAGMENT;
+    pub const @"10_SVT_VERTEXFRAGMENT" = ._SVT_VERTEXFRAGMENT;
+    pub const @"10_SVT_UINT" = ._SVT_UINT;
+    pub const @"10_SVT_UINT8" = ._SVT_UINT8;
+    pub const @"10_SVT_GEOMETRYSHADER" = ._SVT_GEOMETRYSHADER;
+    pub const @"10_SVT_RASTERIZER" = ._SVT_RASTERIZER;
+    pub const @"10_SVT_DEPTHSTENCIL" = ._SVT_DEPTHSTENCIL;
+    pub const @"10_SVT_BLEND" = ._SVT_BLEND;
+    pub const @"10_SVT_BUFFER" = ._SVT_BUFFER;
+    pub const @"10_SVT_CBUFFER" = ._SVT_CBUFFER;
+    pub const @"10_SVT_TBUFFER" = ._SVT_TBUFFER;
+    pub const @"10_SVT_TEXTURE1DARRAY" = ._SVT_TEXTURE1DARRAY;
+    pub const @"10_SVT_TEXTURE2DARRAY" = ._SVT_TEXTURE2DARRAY;
+    pub const @"10_SVT_RENDERTARGETVIEW" = ._SVT_RENDERTARGETVIEW;
+    pub const @"10_SVT_DEPTHSTENCILVIEW" = ._SVT_DEPTHSTENCILVIEW;
+    pub const @"10_SVT_TEXTURE2DMS" = ._SVT_TEXTURE2DMS;
+    pub const @"10_SVT_TEXTURE2DMSARRAY" = ._SVT_TEXTURE2DMSARRAY;
+    pub const @"10_SVT_TEXTURECUBEARRAY" = ._SVT_TEXTURECUBEARRAY;
+    pub const @"11_SVT_HULLSHADER" = ._SVT_HULLSHADER;
+    pub const @"11_SVT_DOMAINSHADER" = ._SVT_DOMAINSHADER;
+    pub const @"11_SVT_INTERFACE_POINTER" = ._SVT_INTERFACE_POINTER;
+    pub const @"11_SVT_COMPUTESHADER" = ._SVT_COMPUTESHADER;
+    pub const @"11_SVT_DOUBLE" = ._SVT_DOUBLE;
+    pub const @"11_SVT_RWTEXTURE1D" = ._SVT_RWTEXTURE1D;
+    pub const @"11_SVT_RWTEXTURE1DARRAY" = ._SVT_RWTEXTURE1DARRAY;
+    pub const @"11_SVT_RWTEXTURE2D" = ._SVT_RWTEXTURE2D;
+    pub const @"11_SVT_RWTEXTURE2DARRAY" = ._SVT_RWTEXTURE2DARRAY;
+    pub const @"11_SVT_RWTEXTURE3D" = ._SVT_RWTEXTURE3D;
+    pub const @"11_SVT_RWBUFFER" = ._SVT_RWBUFFER;
+    pub const @"11_SVT_BYTEADDRESS_BUFFER" = ._SVT_BYTEADDRESS_BUFFER;
+    pub const @"11_SVT_RWBYTEADDRESS_BUFFER" = ._SVT_RWBYTEADDRESS_BUFFER;
+    pub const @"11_SVT_STRUCTURED_BUFFER" = ._SVT_STRUCTURED_BUFFER;
+    pub const @"11_SVT_RWSTRUCTURED_BUFFER" = ._SVT_RWSTRUCTURED_BUFFER;
+    pub const @"11_SVT_APPEND_STRUCTURED_BUFFER" = ._SVT_APPEND_STRUCTURED_BUFFER;
+    pub const @"11_SVT_CONSUME_STRUCTURED_BUFFER" = ._SVT_CONSUME_STRUCTURED_BUFFER;
 };
 pub const D3D_SVT_VOID = D3D_SHADER_VARIABLE_TYPE._SVT_VOID;
 pub const D3D_SVT_BOOL = D3D_SHADER_VARIABLE_TYPE._SVT_BOOL;
@@ -1012,12 +949,12 @@ pub const D3D_SHADER_INPUT_FLAGS = enum(i32) {
     _SIF_TEXTURE_COMPONENT_1 = 8,
     _SIF_TEXTURE_COMPONENTS = 12,
     _SIF_UNUSED = 16,
-    // @"10_SIF_USERPACKED" = 1, this enum value conflicts with _SIF_USERPACKED
-    // @"10_SIF_COMPARISON_SAMPLER" = 2, this enum value conflicts with _SIF_COMPARISON_SAMPLER
-    // @"10_SIF_TEXTURE_COMPONENT_0" = 4, this enum value conflicts with _SIF_TEXTURE_COMPONENT_0
-    // @"10_SIF_TEXTURE_COMPONENT_1" = 8, this enum value conflicts with _SIF_TEXTURE_COMPONENT_1
-    // @"10_SIF_TEXTURE_COMPONENTS" = 12, this enum value conflicts with _SIF_TEXTURE_COMPONENTS
     _SIF_FORCE_DWORD = 2147483647,
+    pub const @"10_SIF_USERPACKED" = ._SIF_USERPACKED;
+    pub const @"10_SIF_COMPARISON_SAMPLER" = ._SIF_COMPARISON_SAMPLER;
+    pub const @"10_SIF_TEXTURE_COMPONENT_0" = ._SIF_TEXTURE_COMPONENT_0;
+    pub const @"10_SIF_TEXTURE_COMPONENT_1" = ._SIF_TEXTURE_COMPONENT_1;
+    pub const @"10_SIF_TEXTURE_COMPONENTS" = ._SIF_TEXTURE_COMPONENTS;
 };
 pub const D3D_SIF_USERPACKED = D3D_SHADER_INPUT_FLAGS._SIF_USERPACKED;
 pub const D3D_SIF_COMPARISON_SAMPLER = D3D_SHADER_INPUT_FLAGS._SIF_COMPARISON_SAMPLER;
@@ -1047,18 +984,18 @@ pub const D3D_SHADER_INPUT_TYPE = enum(i32) {
     _SIT_UAV_RWSTRUCTURED_WITH_COUNTER = 11,
     _SIT_RTACCELERATIONSTRUCTURE = 12,
     _SIT_UAV_FEEDBACKTEXTURE = 13,
-    // @"10_SIT_CBUFFER" = 0, this enum value conflicts with _SIT_CBUFFER
-    // @"10_SIT_TBUFFER" = 1, this enum value conflicts with _SIT_TBUFFER
-    // @"10_SIT_TEXTURE" = 2, this enum value conflicts with _SIT_TEXTURE
-    // @"10_SIT_SAMPLER" = 3, this enum value conflicts with _SIT_SAMPLER
-    // @"11_SIT_UAV_RWTYPED" = 4, this enum value conflicts with _SIT_UAV_RWTYPED
-    // @"11_SIT_STRUCTURED" = 5, this enum value conflicts with _SIT_STRUCTURED
-    // @"11_SIT_UAV_RWSTRUCTURED" = 6, this enum value conflicts with _SIT_UAV_RWSTRUCTURED
-    // @"11_SIT_BYTEADDRESS" = 7, this enum value conflicts with _SIT_BYTEADDRESS
-    // @"11_SIT_UAV_RWBYTEADDRESS" = 8, this enum value conflicts with _SIT_UAV_RWBYTEADDRESS
-    // @"11_SIT_UAV_APPEND_STRUCTURED" = 9, this enum value conflicts with _SIT_UAV_APPEND_STRUCTURED
-    // @"11_SIT_UAV_CONSUME_STRUCTURED" = 10, this enum value conflicts with _SIT_UAV_CONSUME_STRUCTURED
-    // @"11_SIT_UAV_RWSTRUCTURED_WITH_COUNTER" = 11, this enum value conflicts with _SIT_UAV_RWSTRUCTURED_WITH_COUNTER
+    pub const @"10_SIT_CBUFFER" = ._SIT_CBUFFER;
+    pub const @"10_SIT_TBUFFER" = ._SIT_TBUFFER;
+    pub const @"10_SIT_TEXTURE" = ._SIT_TEXTURE;
+    pub const @"10_SIT_SAMPLER" = ._SIT_SAMPLER;
+    pub const @"11_SIT_UAV_RWTYPED" = ._SIT_UAV_RWTYPED;
+    pub const @"11_SIT_STRUCTURED" = ._SIT_STRUCTURED;
+    pub const @"11_SIT_UAV_RWSTRUCTURED" = ._SIT_UAV_RWSTRUCTURED;
+    pub const @"11_SIT_BYTEADDRESS" = ._SIT_BYTEADDRESS;
+    pub const @"11_SIT_UAV_RWBYTEADDRESS" = ._SIT_UAV_RWBYTEADDRESS;
+    pub const @"11_SIT_UAV_APPEND_STRUCTURED" = ._SIT_UAV_APPEND_STRUCTURED;
+    pub const @"11_SIT_UAV_CONSUME_STRUCTURED" = ._SIT_UAV_CONSUME_STRUCTURED;
+    pub const @"11_SIT_UAV_RWSTRUCTURED_WITH_COUNTER" = ._SIT_UAV_RWSTRUCTURED_WITH_COUNTER;
 };
 pub const D3D_SIT_CBUFFER = D3D_SHADER_INPUT_TYPE._SIT_CBUFFER;
 pub const D3D_SIT_TBUFFER = D3D_SHADER_INPUT_TYPE._SIT_TBUFFER;
@@ -1089,8 +1026,8 @@ pub const D3D11_SIT_UAV_RWSTRUCTURED_WITH_COUNTER = D3D_SHADER_INPUT_TYPE._SIT_U
 
 pub const D3D_SHADER_CBUFFER_FLAGS = enum(i32) {
     _CBF_USERPACKED = 1,
-    // @"10_CBF_USERPACKED" = 1, this enum value conflicts with _CBF_USERPACKED
     _CBF_FORCE_DWORD = 2147483647,
+    pub const @"10_CBF_USERPACKED" = ._CBF_USERPACKED;
 };
 pub const D3D_CBF_USERPACKED = D3D_SHADER_CBUFFER_FLAGS._CBF_USERPACKED;
 pub const D3D10_CBF_USERPACKED = D3D_SHADER_CBUFFER_FLAGS._CBF_USERPACKED;
@@ -1101,12 +1038,12 @@ pub const D3D_CBUFFER_TYPE = enum(i32) {
     _CT_TBUFFER = 1,
     _CT_INTERFACE_POINTERS = 2,
     _CT_RESOURCE_BIND_INFO = 3,
-    // @"10_CT_CBUFFER" = 0, this enum value conflicts with _CT_CBUFFER
-    // @"10_CT_TBUFFER" = 1, this enum value conflicts with _CT_TBUFFER
-    // @"11_CT_CBUFFER" = 0, this enum value conflicts with _CT_CBUFFER
-    // @"11_CT_TBUFFER" = 1, this enum value conflicts with _CT_TBUFFER
-    // @"11_CT_INTERFACE_POINTERS" = 2, this enum value conflicts with _CT_INTERFACE_POINTERS
-    // @"11_CT_RESOURCE_BIND_INFO" = 3, this enum value conflicts with _CT_RESOURCE_BIND_INFO
+    pub const @"10_CT_CBUFFER" = ._CT_CBUFFER;
+    pub const @"10_CT_TBUFFER" = ._CT_TBUFFER;
+    pub const @"11_CT_CBUFFER" = ._CT_CBUFFER;
+    pub const @"11_CT_TBUFFER" = ._CT_TBUFFER;
+    pub const @"11_CT_INTERFACE_POINTERS" = ._CT_INTERFACE_POINTERS;
+    pub const @"11_CT_RESOURCE_BIND_INFO" = ._CT_RESOURCE_BIND_INFO;
 };
 pub const D3D_CT_CBUFFER = D3D_CBUFFER_TYPE._CT_CBUFFER;
 pub const D3D_CT_TBUFFER = D3D_CBUFFER_TYPE._CT_TBUFFER;
@@ -1147,33 +1084,33 @@ pub const D3D_NAME = enum(i32) {
     _NAME_DEPTH_LESS_EQUAL = 68,
     _NAME_STENCIL_REF = 69,
     _NAME_INNER_COVERAGE = 70,
-    // @"10_NAME_UNDEFINED" = 0, this enum value conflicts with _NAME_UNDEFINED
-    // @"10_NAME_POSITION" = 1, this enum value conflicts with _NAME_POSITION
-    // @"10_NAME_CLIP_DISTANCE" = 2, this enum value conflicts with _NAME_CLIP_DISTANCE
-    // @"10_NAME_CULL_DISTANCE" = 3, this enum value conflicts with _NAME_CULL_DISTANCE
-    // @"10_NAME_RENDER_TARGET_ARRAY_INDEX" = 4, this enum value conflicts with _NAME_RENDER_TARGET_ARRAY_INDEX
-    // @"10_NAME_VIEWPORT_ARRAY_INDEX" = 5, this enum value conflicts with _NAME_VIEWPORT_ARRAY_INDEX
-    // @"10_NAME_VERTEX_ID" = 6, this enum value conflicts with _NAME_VERTEX_ID
-    // @"10_NAME_PRIMITIVE_ID" = 7, this enum value conflicts with _NAME_PRIMITIVE_ID
-    // @"10_NAME_INSTANCE_ID" = 8, this enum value conflicts with _NAME_INSTANCE_ID
-    // @"10_NAME_IS_FRONT_FACE" = 9, this enum value conflicts with _NAME_IS_FRONT_FACE
-    // @"10_NAME_SAMPLE_INDEX" = 10, this enum value conflicts with _NAME_SAMPLE_INDEX
-    // @"10_NAME_TARGET" = 64, this enum value conflicts with _NAME_TARGET
-    // @"10_NAME_DEPTH" = 65, this enum value conflicts with _NAME_DEPTH
-    // @"10_NAME_COVERAGE" = 66, this enum value conflicts with _NAME_COVERAGE
-    // @"11_NAME_FINAL_QUAD_EDGE_TESSFACTOR" = 11, this enum value conflicts with _NAME_FINAL_QUAD_EDGE_TESSFACTOR
-    // @"11_NAME_FINAL_QUAD_INSIDE_TESSFACTOR" = 12, this enum value conflicts with _NAME_FINAL_QUAD_INSIDE_TESSFACTOR
-    // @"11_NAME_FINAL_TRI_EDGE_TESSFACTOR" = 13, this enum value conflicts with _NAME_FINAL_TRI_EDGE_TESSFACTOR
-    // @"11_NAME_FINAL_TRI_INSIDE_TESSFACTOR" = 14, this enum value conflicts with _NAME_FINAL_TRI_INSIDE_TESSFACTOR
-    // @"11_NAME_FINAL_LINE_DETAIL_TESSFACTOR" = 15, this enum value conflicts with _NAME_FINAL_LINE_DETAIL_TESSFACTOR
-    // @"11_NAME_FINAL_LINE_DENSITY_TESSFACTOR" = 16, this enum value conflicts with _NAME_FINAL_LINE_DENSITY_TESSFACTOR
-    // @"11_NAME_DEPTH_GREATER_EQUAL" = 67, this enum value conflicts with _NAME_DEPTH_GREATER_EQUAL
-    // @"11_NAME_DEPTH_LESS_EQUAL" = 68, this enum value conflicts with _NAME_DEPTH_LESS_EQUAL
-    // @"11_NAME_STENCIL_REF" = 69, this enum value conflicts with _NAME_STENCIL_REF
-    // @"11_NAME_INNER_COVERAGE" = 70, this enum value conflicts with _NAME_INNER_COVERAGE
-    // @"12_NAME_BARYCENTRICS" = 23, this enum value conflicts with _NAME_BARYCENTRICS
-    // @"12_NAME_SHADINGRATE" = 24, this enum value conflicts with _NAME_SHADINGRATE
-    // @"12_NAME_CULLPRIMITIVE" = 25, this enum value conflicts with _NAME_CULLPRIMITIVE
+    pub const @"10_NAME_UNDEFINED" = ._NAME_UNDEFINED;
+    pub const @"10_NAME_POSITION" = ._NAME_POSITION;
+    pub const @"10_NAME_CLIP_DISTANCE" = ._NAME_CLIP_DISTANCE;
+    pub const @"10_NAME_CULL_DISTANCE" = ._NAME_CULL_DISTANCE;
+    pub const @"10_NAME_RENDER_TARGET_ARRAY_INDEX" = ._NAME_RENDER_TARGET_ARRAY_INDEX;
+    pub const @"10_NAME_VIEWPORT_ARRAY_INDEX" = ._NAME_VIEWPORT_ARRAY_INDEX;
+    pub const @"10_NAME_VERTEX_ID" = ._NAME_VERTEX_ID;
+    pub const @"10_NAME_PRIMITIVE_ID" = ._NAME_PRIMITIVE_ID;
+    pub const @"10_NAME_INSTANCE_ID" = ._NAME_INSTANCE_ID;
+    pub const @"10_NAME_IS_FRONT_FACE" = ._NAME_IS_FRONT_FACE;
+    pub const @"10_NAME_SAMPLE_INDEX" = ._NAME_SAMPLE_INDEX;
+    pub const @"10_NAME_TARGET" = ._NAME_TARGET;
+    pub const @"10_NAME_DEPTH" = ._NAME_DEPTH;
+    pub const @"10_NAME_COVERAGE" = ._NAME_COVERAGE;
+    pub const @"11_NAME_FINAL_QUAD_EDGE_TESSFACTOR" = ._NAME_FINAL_QUAD_EDGE_TESSFACTOR;
+    pub const @"11_NAME_FINAL_QUAD_INSIDE_TESSFACTOR" = ._NAME_FINAL_QUAD_INSIDE_TESSFACTOR;
+    pub const @"11_NAME_FINAL_TRI_EDGE_TESSFACTOR" = ._NAME_FINAL_TRI_EDGE_TESSFACTOR;
+    pub const @"11_NAME_FINAL_TRI_INSIDE_TESSFACTOR" = ._NAME_FINAL_TRI_INSIDE_TESSFACTOR;
+    pub const @"11_NAME_FINAL_LINE_DETAIL_TESSFACTOR" = ._NAME_FINAL_LINE_DETAIL_TESSFACTOR;
+    pub const @"11_NAME_FINAL_LINE_DENSITY_TESSFACTOR" = ._NAME_FINAL_LINE_DENSITY_TESSFACTOR;
+    pub const @"11_NAME_DEPTH_GREATER_EQUAL" = ._NAME_DEPTH_GREATER_EQUAL;
+    pub const @"11_NAME_DEPTH_LESS_EQUAL" = ._NAME_DEPTH_LESS_EQUAL;
+    pub const @"11_NAME_STENCIL_REF" = ._NAME_STENCIL_REF;
+    pub const @"11_NAME_INNER_COVERAGE" = ._NAME_INNER_COVERAGE;
+    pub const @"12_NAME_BARYCENTRICS" = ._NAME_BARYCENTRICS;
+    pub const @"12_NAME_SHADINGRATE" = ._NAME_SHADINGRATE;
+    pub const @"12_NAME_CULLPRIMITIVE" = ._NAME_CULLPRIMITIVE;
 };
 pub const D3D_NAME_UNDEFINED = D3D_NAME._NAME_UNDEFINED;
 pub const D3D_NAME_POSITION = D3D_NAME._NAME_POSITION;
@@ -1239,20 +1176,20 @@ pub const D3D_RESOURCE_RETURN_TYPE = enum(i32) {
     _RETURN_TYPE_MIXED = 6,
     _RETURN_TYPE_DOUBLE = 7,
     _RETURN_TYPE_CONTINUED = 8,
-    // @"10_RETURN_TYPE_UNORM" = 1, this enum value conflicts with _RETURN_TYPE_UNORM
-    // @"10_RETURN_TYPE_SNORM" = 2, this enum value conflicts with _RETURN_TYPE_SNORM
-    // @"10_RETURN_TYPE_SINT" = 3, this enum value conflicts with _RETURN_TYPE_SINT
-    // @"10_RETURN_TYPE_UINT" = 4, this enum value conflicts with _RETURN_TYPE_UINT
-    // @"10_RETURN_TYPE_FLOAT" = 5, this enum value conflicts with _RETURN_TYPE_FLOAT
-    // @"10_RETURN_TYPE_MIXED" = 6, this enum value conflicts with _RETURN_TYPE_MIXED
-    // @"11_RETURN_TYPE_UNORM" = 1, this enum value conflicts with _RETURN_TYPE_UNORM
-    // @"11_RETURN_TYPE_SNORM" = 2, this enum value conflicts with _RETURN_TYPE_SNORM
-    // @"11_RETURN_TYPE_SINT" = 3, this enum value conflicts with _RETURN_TYPE_SINT
-    // @"11_RETURN_TYPE_UINT" = 4, this enum value conflicts with _RETURN_TYPE_UINT
-    // @"11_RETURN_TYPE_FLOAT" = 5, this enum value conflicts with _RETURN_TYPE_FLOAT
-    // @"11_RETURN_TYPE_MIXED" = 6, this enum value conflicts with _RETURN_TYPE_MIXED
-    // @"11_RETURN_TYPE_DOUBLE" = 7, this enum value conflicts with _RETURN_TYPE_DOUBLE
-    // @"11_RETURN_TYPE_CONTINUED" = 8, this enum value conflicts with _RETURN_TYPE_CONTINUED
+    pub const @"10_RETURN_TYPE_UNORM" = ._RETURN_TYPE_UNORM;
+    pub const @"10_RETURN_TYPE_SNORM" = ._RETURN_TYPE_SNORM;
+    pub const @"10_RETURN_TYPE_SINT" = ._RETURN_TYPE_SINT;
+    pub const @"10_RETURN_TYPE_UINT" = ._RETURN_TYPE_UINT;
+    pub const @"10_RETURN_TYPE_FLOAT" = ._RETURN_TYPE_FLOAT;
+    pub const @"10_RETURN_TYPE_MIXED" = ._RETURN_TYPE_MIXED;
+    pub const @"11_RETURN_TYPE_UNORM" = ._RETURN_TYPE_UNORM;
+    pub const @"11_RETURN_TYPE_SNORM" = ._RETURN_TYPE_SNORM;
+    pub const @"11_RETURN_TYPE_SINT" = ._RETURN_TYPE_SINT;
+    pub const @"11_RETURN_TYPE_UINT" = ._RETURN_TYPE_UINT;
+    pub const @"11_RETURN_TYPE_FLOAT" = ._RETURN_TYPE_FLOAT;
+    pub const @"11_RETURN_TYPE_MIXED" = ._RETURN_TYPE_MIXED;
+    pub const @"11_RETURN_TYPE_DOUBLE" = ._RETURN_TYPE_DOUBLE;
+    pub const @"11_RETURN_TYPE_CONTINUED" = ._RETURN_TYPE_CONTINUED;
 };
 pub const D3D_RETURN_TYPE_UNORM = D3D_RESOURCE_RETURN_TYPE._RETURN_TYPE_UNORM;
 pub const D3D_RETURN_TYPE_SNORM = D3D_RESOURCE_RETURN_TYPE._RETURN_TYPE_SNORM;
@@ -1282,10 +1219,10 @@ pub const D3D_REGISTER_COMPONENT_TYPE = enum(i32) {
     _REGISTER_COMPONENT_UINT32 = 1,
     _REGISTER_COMPONENT_SINT32 = 2,
     _REGISTER_COMPONENT_FLOAT32 = 3,
-    // @"10_REGISTER_COMPONENT_UNKNOWN" = 0, this enum value conflicts with _REGISTER_COMPONENT_UNKNOWN
-    // @"10_REGISTER_COMPONENT_UINT32" = 1, this enum value conflicts with _REGISTER_COMPONENT_UINT32
-    // @"10_REGISTER_COMPONENT_SINT32" = 2, this enum value conflicts with _REGISTER_COMPONENT_SINT32
-    // @"10_REGISTER_COMPONENT_FLOAT32" = 3, this enum value conflicts with _REGISTER_COMPONENT_FLOAT32
+    pub const @"10_REGISTER_COMPONENT_UNKNOWN" = ._REGISTER_COMPONENT_UNKNOWN;
+    pub const @"10_REGISTER_COMPONENT_UINT32" = ._REGISTER_COMPONENT_UINT32;
+    pub const @"10_REGISTER_COMPONENT_SINT32" = ._REGISTER_COMPONENT_SINT32;
+    pub const @"10_REGISTER_COMPONENT_FLOAT32" = ._REGISTER_COMPONENT_FLOAT32;
 };
 pub const D3D_REGISTER_COMPONENT_UNKNOWN = D3D_REGISTER_COMPONENT_TYPE._REGISTER_COMPONENT_UNKNOWN;
 pub const D3D_REGISTER_COMPONENT_UINT32 = D3D_REGISTER_COMPONENT_TYPE._REGISTER_COMPONENT_UINT32;
@@ -1301,10 +1238,10 @@ pub const D3D_TESSELLATOR_DOMAIN = enum(i32) {
     _TESSELLATOR_DOMAIN_ISOLINE = 1,
     _TESSELLATOR_DOMAIN_TRI = 2,
     _TESSELLATOR_DOMAIN_QUAD = 3,
-    // @"11_TESSELLATOR_DOMAIN_UNDEFINED" = 0, this enum value conflicts with _TESSELLATOR_DOMAIN_UNDEFINED
-    // @"11_TESSELLATOR_DOMAIN_ISOLINE" = 1, this enum value conflicts with _TESSELLATOR_DOMAIN_ISOLINE
-    // @"11_TESSELLATOR_DOMAIN_TRI" = 2, this enum value conflicts with _TESSELLATOR_DOMAIN_TRI
-    // @"11_TESSELLATOR_DOMAIN_QUAD" = 3, this enum value conflicts with _TESSELLATOR_DOMAIN_QUAD
+    pub const @"11_TESSELLATOR_DOMAIN_UNDEFINED" = ._TESSELLATOR_DOMAIN_UNDEFINED;
+    pub const @"11_TESSELLATOR_DOMAIN_ISOLINE" = ._TESSELLATOR_DOMAIN_ISOLINE;
+    pub const @"11_TESSELLATOR_DOMAIN_TRI" = ._TESSELLATOR_DOMAIN_TRI;
+    pub const @"11_TESSELLATOR_DOMAIN_QUAD" = ._TESSELLATOR_DOMAIN_QUAD;
 };
 pub const D3D_TESSELLATOR_DOMAIN_UNDEFINED = D3D_TESSELLATOR_DOMAIN._TESSELLATOR_DOMAIN_UNDEFINED;
 pub const D3D_TESSELLATOR_DOMAIN_ISOLINE = D3D_TESSELLATOR_DOMAIN._TESSELLATOR_DOMAIN_ISOLINE;
@@ -1321,11 +1258,11 @@ pub const D3D_TESSELLATOR_PARTITIONING = enum(i32) {
     _TESSELLATOR_PARTITIONING_POW2 = 2,
     _TESSELLATOR_PARTITIONING_FRACTIONAL_ODD = 3,
     _TESSELLATOR_PARTITIONING_FRACTIONAL_EVEN = 4,
-    // @"11_TESSELLATOR_PARTITIONING_UNDEFINED" = 0, this enum value conflicts with _TESSELLATOR_PARTITIONING_UNDEFINED
-    // @"11_TESSELLATOR_PARTITIONING_INTEGER" = 1, this enum value conflicts with _TESSELLATOR_PARTITIONING_INTEGER
-    // @"11_TESSELLATOR_PARTITIONING_POW2" = 2, this enum value conflicts with _TESSELLATOR_PARTITIONING_POW2
-    // @"11_TESSELLATOR_PARTITIONING_FRACTIONAL_ODD" = 3, this enum value conflicts with _TESSELLATOR_PARTITIONING_FRACTIONAL_ODD
-    // @"11_TESSELLATOR_PARTITIONING_FRACTIONAL_EVEN" = 4, this enum value conflicts with _TESSELLATOR_PARTITIONING_FRACTIONAL_EVEN
+    pub const @"11_TESSELLATOR_PARTITIONING_UNDEFINED" = ._TESSELLATOR_PARTITIONING_UNDEFINED;
+    pub const @"11_TESSELLATOR_PARTITIONING_INTEGER" = ._TESSELLATOR_PARTITIONING_INTEGER;
+    pub const @"11_TESSELLATOR_PARTITIONING_POW2" = ._TESSELLATOR_PARTITIONING_POW2;
+    pub const @"11_TESSELLATOR_PARTITIONING_FRACTIONAL_ODD" = ._TESSELLATOR_PARTITIONING_FRACTIONAL_ODD;
+    pub const @"11_TESSELLATOR_PARTITIONING_FRACTIONAL_EVEN" = ._TESSELLATOR_PARTITIONING_FRACTIONAL_EVEN;
 };
 pub const D3D_TESSELLATOR_PARTITIONING_UNDEFINED = D3D_TESSELLATOR_PARTITIONING._TESSELLATOR_PARTITIONING_UNDEFINED;
 pub const D3D_TESSELLATOR_PARTITIONING_INTEGER = D3D_TESSELLATOR_PARTITIONING._TESSELLATOR_PARTITIONING_INTEGER;
@@ -1344,11 +1281,11 @@ pub const D3D_TESSELLATOR_OUTPUT_PRIMITIVE = enum(i32) {
     _TESSELLATOR_OUTPUT_LINE = 2,
     _TESSELLATOR_OUTPUT_TRIANGLE_CW = 3,
     _TESSELLATOR_OUTPUT_TRIANGLE_CCW = 4,
-    // @"11_TESSELLATOR_OUTPUT_UNDEFINED" = 0, this enum value conflicts with _TESSELLATOR_OUTPUT_UNDEFINED
-    // @"11_TESSELLATOR_OUTPUT_POINT" = 1, this enum value conflicts with _TESSELLATOR_OUTPUT_POINT
-    // @"11_TESSELLATOR_OUTPUT_LINE" = 2, this enum value conflicts with _TESSELLATOR_OUTPUT_LINE
-    // @"11_TESSELLATOR_OUTPUT_TRIANGLE_CW" = 3, this enum value conflicts with _TESSELLATOR_OUTPUT_TRIANGLE_CW
-    // @"11_TESSELLATOR_OUTPUT_TRIANGLE_CCW" = 4, this enum value conflicts with _TESSELLATOR_OUTPUT_TRIANGLE_CCW
+    pub const @"11_TESSELLATOR_OUTPUT_UNDEFINED" = ._TESSELLATOR_OUTPUT_UNDEFINED;
+    pub const @"11_TESSELLATOR_OUTPUT_POINT" = ._TESSELLATOR_OUTPUT_POINT;
+    pub const @"11_TESSELLATOR_OUTPUT_LINE" = ._TESSELLATOR_OUTPUT_LINE;
+    pub const @"11_TESSELLATOR_OUTPUT_TRIANGLE_CW" = ._TESSELLATOR_OUTPUT_TRIANGLE_CW;
+    pub const @"11_TESSELLATOR_OUTPUT_TRIANGLE_CCW" = ._TESSELLATOR_OUTPUT_TRIANGLE_CCW;
 };
 pub const D3D_TESSELLATOR_OUTPUT_UNDEFINED = D3D_TESSELLATOR_OUTPUT_PRIMITIVE._TESSELLATOR_OUTPUT_UNDEFINED;
 pub const D3D_TESSELLATOR_OUTPUT_POINT = D3D_TESSELLATOR_OUTPUT_PRIMITIVE._TESSELLATOR_OUTPUT_POINT;
@@ -1440,6 +1377,7 @@ pub const D3DMATRIX = extern struct {
     },
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
 //--------------------------------------------------------------------------------
@@ -1447,12 +1385,6 @@ pub const D3DMATRIX = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
@@ -1463,18 +1395,16 @@ const PSTR = @import("../foundation.zig").PSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_DESTRUCTION_CALLBACK")) {
-        _ = PFN_DESTRUCTION_CALLBACK;
-    }
+    if (@hasDecl(@This(), "PFN_DESTRUCTION_CALLBACK")) { _ = PFN_DESTRUCTION_CALLBACK; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }
 //--------------------------------------------------------------------------------

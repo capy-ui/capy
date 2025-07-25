@@ -85,6 +85,7 @@ pub const TPM_DEVICE_INFO = extern struct {
     tpmImpRevision: u32,
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
@@ -153,7 +154,8 @@ pub extern "tbs" fn Tbsi_Get_OwnerAuth(
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "tbs" fn Tbsi_Revoke_Attestation() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "tbs" fn Tbsi_Revoke_Attestation(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "tbs" fn GetDeviceID(
     // TODO: what to do with BytesParamIndex 1?
@@ -182,15 +184,10 @@ pub extern "tbs" fn Tbsi_Get_TCG_Log_Ex(
     pcbOutput: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
@@ -198,13 +195,13 @@ const BOOL = @import("../foundation.zig").BOOL;
 const HRESULT = @import("../foundation.zig").HRESULT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

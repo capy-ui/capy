@@ -7,6 +7,7 @@ pub const WEB_SOCKET_MAX_CLOSE_REASON_LENGTH = @as(u32, 123);
 //--------------------------------------------------------------------------------
 // Section: Types (9)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const WEB_SOCKET_HANDLE = isize;
 
 pub const WEB_SOCKET_CLOSE_STATUS = enum(i32) {
@@ -117,6 +118,7 @@ pub const WEB_SOCKET_BUFFER = extern union {
     },
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (13)
 //--------------------------------------------------------------------------------
@@ -225,15 +227,10 @@ pub extern "websocket" fn WebSocketGetGlobalProperty(
     ulSize: ?*u32,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (2)
 //--------------------------------------------------------------------------------
@@ -241,13 +238,13 @@ const HRESULT = @import("../foundation.zig").HRESULT;
 const PSTR = @import("../foundation.zig").PSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

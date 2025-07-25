@@ -97,238 +97,135 @@ pub const TPMVSCMGR_ERROR_CARD_DESTROY = TPMVSCMGR_ERROR.CARD_DESTROY;
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITpmVirtualSmartCardManagerStatusCallback_Value = Guid.initString("1a1bb35f-abb8-451c-a1ae-33d98f1bef4a");
 pub const IID_ITpmVirtualSmartCardManagerStatusCallback = &IID_ITpmVirtualSmartCardManagerStatusCallback_Value;
-pub const ITpmVirtualSmartCardManagerStatusCallback = extern struct {
+pub const ITpmVirtualSmartCardManagerStatusCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReportProgress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITpmVirtualSmartCardManagerStatusCallback,
-                Status: TPMVSCMGR_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITpmVirtualSmartCardManagerStatusCallback,
-                Status: TPMVSCMGR_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReportError: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITpmVirtualSmartCardManagerStatusCallback,
-                Error: TPMVSCMGR_ERROR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITpmVirtualSmartCardManagerStatusCallback,
-                Error: TPMVSCMGR_ERROR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ReportProgress: *const fn(
+            self: *const ITpmVirtualSmartCardManagerStatusCallback,
+            Status: TPMVSCMGR_STATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReportError: *const fn(
+            self: *const ITpmVirtualSmartCardManagerStatusCallback,
+            Error: TPMVSCMGR_ERROR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITpmVirtualSmartCardManagerStatusCallback_ReportProgress(self: *const T, Status: TPMVSCMGR_STATUS) HRESULT {
-                return @as(*const ITpmVirtualSmartCardManagerStatusCallback.VTable, @ptrCast(self.vtable)).ReportProgress(@as(*const ITpmVirtualSmartCardManagerStatusCallback, @ptrCast(self)), Status);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITpmVirtualSmartCardManagerStatusCallback_ReportError(self: *const T, Error: TPMVSCMGR_ERROR) HRESULT {
-                return @as(*const ITpmVirtualSmartCardManagerStatusCallback.VTable, @ptrCast(self.vtable)).ReportError(@as(*const ITpmVirtualSmartCardManagerStatusCallback, @ptrCast(self)), Error);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ReportProgress(self: *const ITpmVirtualSmartCardManagerStatusCallback, Status: TPMVSCMGR_STATUS) callconv(.Inline) HRESULT {
+        return self.vtable.ReportProgress(self, Status);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ReportError(self: *const ITpmVirtualSmartCardManagerStatusCallback, Error: TPMVSCMGR_ERROR) callconv(.Inline) HRESULT {
+        return self.vtable.ReportError(self, Error);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_ITpmVirtualSmartCardManager_Value = Guid.initString("112b1dff-d9dc-41f7-869f-d67fee7cb591");
 pub const IID_ITpmVirtualSmartCardManager = &IID_ITpmVirtualSmartCardManager_Value;
-pub const ITpmVirtualSmartCardManager = extern struct {
+pub const ITpmVirtualSmartCardManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateVirtualSmartCard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITpmVirtualSmartCardManager,
-                pszFriendlyName: ?[*:0]const u16,
-                bAdminAlgId: u8,
-                pbAdminKey: [*:0]const u8,
-                cbAdminKey: u32,
-                pbAdminKcv: [*:0]const u8,
-                cbAdminKcv: u32,
-                pbPuk: [*:0]const u8,
-                cbPuk: u32,
-                pbPin: [*:0]const u8,
-                cbPin: u32,
-                fGenerate: BOOL,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                ppszInstanceId: ?*?PWSTR,
-                pfNeedReboot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITpmVirtualSmartCardManager,
-                pszFriendlyName: ?[*:0]const u16,
-                bAdminAlgId: u8,
-                pbAdminKey: [*:0]const u8,
-                cbAdminKey: u32,
-                pbAdminKcv: [*:0]const u8,
-                cbAdminKcv: u32,
-                pbPuk: [*:0]const u8,
-                cbPuk: u32,
-                pbPin: [*:0]const u8,
-                cbPin: u32,
-                fGenerate: BOOL,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                ppszInstanceId: ?*?PWSTR,
-                pfNeedReboot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DestroyVirtualSmartCard: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITpmVirtualSmartCardManager,
-                pszInstanceId: ?[*:0]const u16,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                pfNeedReboot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITpmVirtualSmartCardManager,
-                pszInstanceId: ?[*:0]const u16,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                pfNeedReboot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateVirtualSmartCard: *const fn(
+            self: *const ITpmVirtualSmartCardManager,
+            pszFriendlyName: ?[*:0]const u16,
+            bAdminAlgId: u8,
+            pbAdminKey: [*:0]const u8,
+            cbAdminKey: u32,
+            pbAdminKcv: [*:0]const u8,
+            cbAdminKcv: u32,
+            pbPuk: [*:0]const u8,
+            cbPuk: u32,
+            pbPin: [*:0]const u8,
+            cbPin: u32,
+            fGenerate: BOOL,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            ppszInstanceId: ?*?PWSTR,
+            pfNeedReboot: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DestroyVirtualSmartCard: *const fn(
+            self: *const ITpmVirtualSmartCardManager,
+            pszInstanceId: ?[*:0]const u16,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            pfNeedReboot: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITpmVirtualSmartCardManager_CreateVirtualSmartCard(self: *const T, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) HRESULT {
-                return @as(*const ITpmVirtualSmartCardManager.VTable, @ptrCast(self.vtable)).CreateVirtualSmartCard(@as(*const ITpmVirtualSmartCardManager, @ptrCast(self)), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITpmVirtualSmartCardManager_DestroyVirtualSmartCard(self: *const T, pszInstanceId: ?[*:0]const u16, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, pfNeedReboot: ?*BOOL) HRESULT {
-                return @as(*const ITpmVirtualSmartCardManager.VTable, @ptrCast(self.vtable)).DestroyVirtualSmartCard(@as(*const ITpmVirtualSmartCardManager, @ptrCast(self)), pszInstanceId, pStatusCallback, pfNeedReboot);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateVirtualSmartCard(self: *const ITpmVirtualSmartCardManager, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.CreateVirtualSmartCard(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn DestroyVirtualSmartCard(self: *const ITpmVirtualSmartCardManager, pszInstanceId: ?[*:0]const u16, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.DestroyVirtualSmartCard(self, pszInstanceId, pStatusCallback, pfNeedReboot);
+    }
 };
 
 const IID_ITpmVirtualSmartCardManager2_Value = Guid.initString("fdf8a2b9-02de-47f4-bc26-aa85ab5e5267");
 pub const IID_ITpmVirtualSmartCardManager2 = &IID_ITpmVirtualSmartCardManager2_Value;
-pub const ITpmVirtualSmartCardManager2 = extern struct {
+pub const ITpmVirtualSmartCardManager2 = extern union {
     pub const VTable = extern struct {
         base: ITpmVirtualSmartCardManager.VTable,
-        CreateVirtualSmartCardWithPinPolicy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITpmVirtualSmartCardManager2,
-                pszFriendlyName: ?[*:0]const u16,
-                bAdminAlgId: u8,
-                pbAdminKey: [*:0]const u8,
-                cbAdminKey: u32,
-                pbAdminKcv: [*:0]const u8,
-                cbAdminKcv: u32,
-                pbPuk: [*:0]const u8,
-                cbPuk: u32,
-                pbPin: [*:0]const u8,
-                cbPin: u32,
-                pbPinPolicy: [*:0]const u8,
-                cbPinPolicy: u32,
-                fGenerate: BOOL,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                ppszInstanceId: ?*?PWSTR,
-                pfNeedReboot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITpmVirtualSmartCardManager2,
-                pszFriendlyName: ?[*:0]const u16,
-                bAdminAlgId: u8,
-                pbAdminKey: [*:0]const u8,
-                cbAdminKey: u32,
-                pbAdminKcv: [*:0]const u8,
-                cbAdminKcv: u32,
-                pbPuk: [*:0]const u8,
-                cbPuk: u32,
-                pbPin: [*:0]const u8,
-                cbPin: u32,
-                pbPinPolicy: [*:0]const u8,
-                cbPinPolicy: u32,
-                fGenerate: BOOL,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                ppszInstanceId: ?*?PWSTR,
-                pfNeedReboot: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateVirtualSmartCardWithPinPolicy: *const fn(
+            self: *const ITpmVirtualSmartCardManager2,
+            pszFriendlyName: ?[*:0]const u16,
+            bAdminAlgId: u8,
+            pbAdminKey: [*:0]const u8,
+            cbAdminKey: u32,
+            pbAdminKcv: [*:0]const u8,
+            cbAdminKcv: u32,
+            pbPuk: [*:0]const u8,
+            cbPuk: u32,
+            pbPin: [*:0]const u8,
+            cbPin: u32,
+            pbPinPolicy: [*:0]const u8,
+            cbPinPolicy: u32,
+            fGenerate: BOOL,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            ppszInstanceId: ?*?PWSTR,
+            pfNeedReboot: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ITpmVirtualSmartCardManager.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITpmVirtualSmartCardManager2_CreateVirtualSmartCardWithPinPolicy(self: *const T, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) HRESULT {
-                return @as(*const ITpmVirtualSmartCardManager2.VTable, @ptrCast(self.vtable)).CreateVirtualSmartCardWithPinPolicy(@as(*const ITpmVirtualSmartCardManager2, @ptrCast(self)), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
-            }
-        };
+    ITpmVirtualSmartCardManager: ITpmVirtualSmartCardManager,
+    IUnknown: IUnknown,
+    pub fn CreateVirtualSmartCardWithPinPolicy(self: *const ITpmVirtualSmartCardManager2, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR, pfNeedReboot: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.CreateVirtualSmartCardWithPinPolicy(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, fGenerate, pStatusCallback, ppszInstanceId, pfNeedReboot);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_ITpmVirtualSmartCardManager3_Value = Guid.initString("3c745a97-f375-4150-be17-5950f694c699");
 pub const IID_ITpmVirtualSmartCardManager3 = &IID_ITpmVirtualSmartCardManager3_Value;
-pub const ITpmVirtualSmartCardManager3 = extern struct {
+pub const ITpmVirtualSmartCardManager3 = extern union {
     pub const VTable = extern struct {
         base: ITpmVirtualSmartCardManager2.VTable,
-        CreateVirtualSmartCardWithAttestation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITpmVirtualSmartCardManager3,
-                pszFriendlyName: ?[*:0]const u16,
-                bAdminAlgId: u8,
-                pbAdminKey: [*:0]const u8,
-                cbAdminKey: u32,
-                pbAdminKcv: [*:0]const u8,
-                cbAdminKcv: u32,
-                pbPuk: [*:0]const u8,
-                cbPuk: u32,
-                pbPin: [*:0]const u8,
-                cbPin: u32,
-                pbPinPolicy: [*:0]const u8,
-                cbPinPolicy: u32,
-                attestationType: TPMVSC_ATTESTATION_TYPE,
-                fGenerate: BOOL,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                ppszInstanceId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITpmVirtualSmartCardManager3,
-                pszFriendlyName: ?[*:0]const u16,
-                bAdminAlgId: u8,
-                pbAdminKey: [*:0]const u8,
-                cbAdminKey: u32,
-                pbAdminKcv: [*:0]const u8,
-                cbAdminKcv: u32,
-                pbPuk: [*:0]const u8,
-                cbPuk: u32,
-                pbPin: [*:0]const u8,
-                cbPin: u32,
-                pbPinPolicy: [*:0]const u8,
-                cbPinPolicy: u32,
-                attestationType: TPMVSC_ATTESTATION_TYPE,
-                fGenerate: BOOL,
-                pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
-                ppszInstanceId: ?*?PWSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateVirtualSmartCardWithAttestation: *const fn(
+            self: *const ITpmVirtualSmartCardManager3,
+            pszFriendlyName: ?[*:0]const u16,
+            bAdminAlgId: u8,
+            pbAdminKey: [*:0]const u8,
+            cbAdminKey: u32,
+            pbAdminKcv: [*:0]const u8,
+            cbAdminKcv: u32,
+            pbPuk: [*:0]const u8,
+            cbPuk: u32,
+            pbPin: [*:0]const u8,
+            cbPin: u32,
+            pbPinPolicy: [*:0]const u8,
+            cbPinPolicy: u32,
+            attestationType: TPMVSC_ATTESTATION_TYPE,
+            fGenerate: BOOL,
+            pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback,
+            ppszInstanceId: ?*?PWSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ITpmVirtualSmartCardManager2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITpmVirtualSmartCardManager3_CreateVirtualSmartCardWithAttestation(self: *const T, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, attestationType: TPMVSC_ATTESTATION_TYPE, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR) HRESULT {
-                return @as(*const ITpmVirtualSmartCardManager3.VTable, @ptrCast(self.vtable)).CreateVirtualSmartCardWithAttestation(@as(*const ITpmVirtualSmartCardManager3, @ptrCast(self)), pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, attestationType, fGenerate, pStatusCallback, ppszInstanceId);
-            }
-        };
+    ITpmVirtualSmartCardManager2: ITpmVirtualSmartCardManager2,
+    ITpmVirtualSmartCardManager: ITpmVirtualSmartCardManager,
+    IUnknown: IUnknown,
+    pub fn CreateVirtualSmartCardWithAttestation(self: *const ITpmVirtualSmartCardManager3, pszFriendlyName: ?[*:0]const u16, bAdminAlgId: u8, pbAdminKey: [*:0]const u8, cbAdminKey: u32, pbAdminKcv: [*:0]const u8, cbAdminKcv: u32, pbPuk: [*:0]const u8, cbPuk: u32, pbPin: [*:0]const u8, cbPin: u32, pbPinPolicy: [*:0]const u8, cbPinPolicy: u32, attestationType: TPMVSC_ATTESTATION_TYPE, fGenerate: BOOL, pStatusCallback: ?*ITpmVirtualSmartCardManagerStatusCallback, ppszInstanceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+        return self.vtable.CreateVirtualSmartCardWithAttestation(self, pszFriendlyName, bAdminAlgId, pbAdminKey, cbAdminKey, pbAdminKcv, cbAdminKcv, pbPuk, cbPuk, pbPin, cbPin, pbPinPolicy, cbPinPolicy, attestationType, fGenerate, pStatusCallback, ppszInstanceId);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -337,12 +234,6 @@ pub const ITpmVirtualSmartCardManager3 = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
@@ -353,13 +244,13 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

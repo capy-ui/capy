@@ -44,7 +44,6 @@ pub const TCIF_RTLLEADING = 0x0004;
 pub const TCIF_PARAM = 0x0008;
 pub const TCIF_STATE = 0x0010;
 
-const _T = zigwin32.zig._T;
 const L = zigwin32.zig.L;
 
 pub const Win32Error = error{ UnknownError, InitializationError };
@@ -87,7 +86,16 @@ pub fn init() !void {
 
         const initEx = win32.INITCOMMONCONTROLSEX{
             .dwSize = @sizeOf(win32.INITCOMMONCONTROLSEX),
-            .dwICC = win32.INITCOMMONCONTROLSEX_ICC.initFlags(.{ .STANDARD_CLASSES = 1, .WIN95_CLASSES = 1, .USEREX_CLASSES = 1 }),
+            .dwICC = win32.INITCOMMONCONTROLSEX_ICC{
+                .STANDARD_CLASSES = 1,
+                .BAR_CLASSES = 1,
+                .HOTKEY_CLASS = 1,
+                .LISTVIEW_CLASSES = 1,
+                .PROGRESS_CLASS = 1,
+                .TAB_CLASSES = 1,
+                .TREEVIEW_CLASSES = 1,
+                .UPDOWN_CLASS = 1,
+            },
         };
         const code = win32.InitCommonControlsEx(&initEx);
         if (code == 0) {
@@ -103,7 +111,7 @@ pub fn init() !void {
             win32.SPI_GETNONCLIENTMETRICS,
             @sizeOf(win32.NONCLIENTMETRICSW),
             &ncMetrics,
-            win32.SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS.initFlags(.{}),
+            win32.SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS{},
         );
         captionFont = win32.CreateFontIndirectW(&ncMetrics.lfCaptionFont).?;
         monospaceFont = @ptrCast(win32.GetStockObject(win32.ANSI_FIXED_FONT));
@@ -121,12 +129,12 @@ pub fn init() !void {
             win32.CLIP_DEFAULT_PRECIS,
             win32.DEFAULT_QUALITY,
             .MODERN,
-            _T("Courier"),
+            L("Courier"),
         ).?;
 
         // Load the default arrow cursor so that components can use it
         // This avoids components keeping the last cursor (resize cursor or loading cursor)
-        defaultCursor = zigwin32.ui.windows_and_messaging.LoadCursor(null, win32.IDC_ARROW).?;
+        defaultCursor = zigwin32.ui.windows_and_messaging.LoadCursorW(null, win32.IDC_ARROW).?;
 
         std.debug.assert(win32.D2D1CreateFactory(
             win32.D2D1_FACTORY_TYPE_SINGLE_THREADED,
@@ -140,17 +148,17 @@ pub fn init() !void {
 pub const MessageType = enum { Information, Warning, Error };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrint(lib.internal.scratch_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrint(lib.internal.allocator, fmt, args) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer lib.internal.scratch_allocator.free(msg);
+    defer lib.internal.allocator.free(msg);
 
-    const msg_utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.scratch_allocator, msg) catch {
+    const msg_utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.allocator, msg) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer lib.internal.scratch_allocator.free(msg_utf16);
+    defer lib.internal.allocator.free(msg_utf16);
 
     const icon = switch (msgType) {
         .Information => win32.MB_ICONINFORMATION,
@@ -158,7 +166,7 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
         .Error => win32.MB_ICONERROR,
     };
 
-    _ = win32.MessageBoxW(null, msg_utf16, _T("Dialog"), icon);
+    _ = win32.MessageBoxW(null, msg_utf16, L("Dialog"), icon);
 }
 
 pub var defaultWHWND: HWND = undefined;
@@ -172,7 +180,7 @@ pub const Window = struct {
     in_fullscreen: bool = false,
     restore_placement: win32.WINDOWPLACEMENT = undefined,
 
-    const className = _T("capyWClass");
+    const className = L("capyWClass");
     pub usingnamespace Events(Window);
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
@@ -201,7 +209,7 @@ pub const Window = struct {
     pub fn create() !Window {
         var wc: win32.WNDCLASSEXW = .{
             .cbSize = @sizeOf(win32.WNDCLASSEXW),
-            .style = win32.WNDCLASS_STYLES.initFlags(.{ .HREDRAW = 1, .VREDRAW = 1 }),
+            .style = win32.WNDCLASS_STYLES{ .HREDRAW = 1, .VREDRAW = 1 },
             .lpfnWndProc = Window.process,
             .cbClsExtra = 0,
             .cbWndExtra = 0,
@@ -225,12 +233,12 @@ pub const Window = struct {
 
         const hwnd = win32.CreateWindowExW(
             // layered don't work in wine for some reason, but only in wine
-            win32.WINDOW_EX_STYLE.initFlags(.{
+            win32.WINDOW_EX_STYLE{
                 .COMPOSITED = 1,
                 .LAYERED = @intFromBool(layered),
                 .APPWINDOW = 1,
-            }), className, // lpClassName
-            _T(""), // lpWindowName
+            }, className, // lpClassName
+            L(""), // lpWindowName
             win32.WS_OVERLAPPEDWINDOW, // dwStyle
             win32.CW_USEDEFAULT, // X
             win32.CW_USEDEFAULT, // Y
@@ -271,8 +279,9 @@ pub const Window = struct {
     pub fn setChild(self: *Window, hwnd: ?HWND) void {
         // TODO: if null, remove child
         _ = win32.SetParent(hwnd.?, self.hwnd);
-        const style = win32Backend.getWindowLongPtr(hwnd.?, win32.GWL_STYLE);
-        _ = win32Backend.setWindowLongPtr(hwnd.?, win32.GWL_STYLE, style | @intFromEnum(win32.WS_CHILD));
+        var style = win32Backend.getWindowLongPtr(hwnd.?, win32.GWL_STYLE);
+        style |= @as(usize, @as(u32, @bitCast(win32.WINDOW_STYLE{ .CHILD = 1 })));
+        _ = win32Backend.setWindowLongPtr(hwnd.?, win32.GWL_STYLE, style);
         _ = win32.ShowWindow(hwnd.?, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(hwnd.?);
     }
@@ -284,8 +293,8 @@ pub const Window = struct {
     }
 
     pub fn setTitle(self: *Window, title: [*:0]const u8) void {
-        const utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.scratch_allocator, std.mem.span(title)) catch return;
-        defer lib.internal.scratch_allocator.free(utf16);
+        const utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.allocator, std.mem.span(title)) catch return;
+        defer lib.internal.allocator.free(utf16);
 
         _ = win32.SetWindowTextW(self.hwnd, utf16);
     }
@@ -296,7 +305,7 @@ pub const Window = struct {
                 const submenu = win32.CreateMenu().?;
                 _ = win32.AppendMenuA(
                     menu,
-                    win32.MENU_ITEM_FLAGS.initFlags(.{ .POPUP = 1 }),
+                    win32.MENU_ITEM_FLAGS{ .POPUP = 1 },
                     @intFromPtr(submenu),
                     item.config.label,
                 );
@@ -304,7 +313,7 @@ pub const Window = struct {
             } else {
                 _ = win32.AppendMenuA(
                     menu,
-                    win32.MENU_ITEM_FLAGS.initFlags(.{}),
+                    win32.MENU_ITEM_FLAGS{},
                     self.menu_item_callbacks.items.len,
                     item.config.label,
                 );
@@ -383,7 +392,7 @@ pub const Window = struct {
                 rect.top,
                 rect.right - rect.left,
                 rect.bottom - rect.top,
-                win32.SET_WINDOW_POS_FLAGS.initFlags(.{ .NOZORDER = 1, .NOACTIVATE = 1, .DRAWFRAME = 1 }),
+                win32.SET_WINDOW_POS_FLAGS{ .NOZORDER = 1, .NOACTIVATE = 1, .DRAWFRAME = 1 },
             );
             self.in_fullscreen = true;
         }
@@ -397,14 +406,14 @@ pub const Window = struct {
             const ex_style = win32Backend.getWindowLongPtr(self.hwnd, win32.GWL_EXSTYLE);
             _ = win32Backend.setWindowLongPtr(self.hwnd, win32.GWL_EXSTYLE, ex_style | (@intFromEnum(win32.WS_EX_DLGMODALFRAME) | @intFromEnum(win32.WS_EX_WINDOWEDGE) | @intFromEnum(win32.WS_EX_CLIENTEDGE) | @intFromEnum(win32.WS_EX_STATICEDGE)));
             _ = win32.SetWindowPlacement(self.hwnd, &self.restore_placement);
-            _ = win32.SetWindowPos(self.hwnd, null, 0, 0, 0, 0, win32.SET_WINDOW_POS_FLAGS.initFlags(.{
+            _ = win32.SetWindowPos(self.hwnd, null, 0, 0, 0, 0, win32.SET_WINDOW_POS_FLAGS{
                 .NOMOVE = 1,
                 .NOSIZE = 1,
                 .NOZORDER = 1,
                 .NOOWNERZORDER = 1,
                 .DRAWFRAME = 1,
                 .NOACTIVATE = 1,
-            }));
+            });
             self.in_fullscreen = false;
         }
     }
@@ -601,8 +610,8 @@ pub fn Events(comptime T: type) type {
                     var rc: win32.RECT = undefined;
                     _ = win32.GetClientRect(hwnd, &rc);
 
-                    var render_target: ?*win32.ID2D1HwndRenderTarget = null;
-                    const hresult = d2dFactory.ID2D1Factory_CreateHwndRenderTarget(
+                    var render_target: *win32.ID2D1HwndRenderTarget = undefined;
+                    const hresult = d2dFactory.CreateHwndRenderTarget(
                         &win32.D2D1_RENDER_TARGET_PROPERTIES{
                             .type = win32.D2D1_RENDER_TARGET_TYPE_DEFAULT,
                             .pixelFormat = .{
@@ -627,25 +636,25 @@ pub fn Events(comptime T: type) type {
                     std.debug.assert(hresult == 0);
                     // defer win32.SafeRelease(render_target);
 
-                    var default_brush: ?*win32.ID2D1SolidColorBrush = null;
-                    std.debug.assert(render_target.?.ID2D1RenderTarget_CreateSolidColorBrush(
-                        &win32.D2D1_COLOR_F{ .r = 0, .g = 0, .b = 0, .a = 1 },
+                    var default_brush: *win32.ID2D1SolidColorBrush = undefined;
+                    std.debug.assert(render_target.ID2D1RenderTarget.CreateSolidColorBrush(
+                        &win32.D2D_COLOR_F{ .r = 0, .g = 0, .b = 0, .a = 1 },
                         null,
                         &default_brush,
                     ) == 0);
 
                     const dci = Canvas.DrawContextImpl{
-                        .render_target = render_target.?,
-                        .brush = default_brush.?,
+                        .render_target = render_target,
+                        .brush = default_brush,
                         .path = std.ArrayList(Canvas.DrawContextImpl.PathElement)
-                            .init(lib.internal.scratch_allocator),
+                            .init(lib.internal.allocator),
                     };
                     var dc = @import("../../backend.zig").DrawContext{ .impl = dci };
                     defer dc.impl.path.deinit();
 
-                    render_target.?.ID2D1RenderTarget_BeginDraw();
-                    render_target.?.ID2D1RenderTarget_Clear(&win32.D2D1_COLOR_F{ .r = 1, .g = 1, .b = 1, .a = 0 });
-                    defer _ = render_target.?.ID2D1RenderTarget_EndDraw(null, null);
+                    render_target.ID2D1RenderTarget.BeginDraw();
+                    render_target.ID2D1RenderTarget.Clear(&win32.D2D_COLOR_F{ .r = 1, .g = 1, .b = 1, .a = 0 });
+                    defer _ = render_target.ID2D1RenderTarget.EndDraw(null, null);
                     if (data.class.drawHandler) |handler|
                         handler(&dc, data.userdata);
                     if (data.user.drawHandler) |handler|
@@ -789,7 +798,7 @@ pub const Canvas = struct {
 
             pub fn setFont(self: *TextLayout, font: Font) void {
                 // _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font)); // delete old font
-                const allocator = lib.internal.scratch_allocator;
+                const allocator = lib.internal.allocator;
                 const wideFace = std.unicode.utf8ToUtf16LeAllocZ(allocator, font.face) catch return; // invalid utf8 or not enough memory
                 defer allocator.free(wideFace);
                 if (win32.CreateFontW(0, // cWidth
@@ -802,7 +811,7 @@ pub const Canvas = struct {
                     0, // bStrikeOut
                     0, // iCharSet
                     win32.FONT_OUTPUT_PRECISION.DEFAULT_PRECIS, // iOutPrecision
-                    win32.FONT_CLIP_PRECISION.DEFAULT_PRECIS, // iClipPrecision
+                    win32.CLIP_DEFAULT_PRECIS, // iClipPrecision
                     win32.FONT_QUALITY.DEFAULT_QUALITY, // iQuality
                     win32.FONT_PITCH_AND_FAMILY.DONTCARE, // iPitchAndFamily
                     wideFace // pszFaceName
@@ -815,7 +824,7 @@ pub const Canvas = struct {
 
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
                 var size: win32.SIZE = undefined;
-                const allocator = lib.internal.scratch_allocator;
+                const allocator = lib.internal.allocator;
                 const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, str) catch return; // invalid utf8 or not enough memory
                 defer allocator.free(wide);
                 _ = win32.GetTextExtentPoint32W(self.hdc, wide.ptr, @as(c_int, @intCast(str.len)), &size);
@@ -906,7 +915,7 @@ pub const Canvas = struct {
         if (!classRegistered) {
             var wc: win32.WNDCLASSEXW = .{
                 .cbSize = @sizeOf(win32.WNDCLASSEXW),
-                .style = win32.WNDCLASS_STYLES.initFlags(.{ .VREDRAW = 1, .HREDRAW = 1 }),
+                .style = win32.WNDCLASS_STYLES{ .VREDRAW = 1, .HREDRAW = 1 },
                 .lpfnWndProc = Canvas.process,
                 .cbClsExtra = 0,
                 .cbWndExtra = 0,
@@ -929,7 +938,7 @@ pub const Canvas = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             L("capyCanvasClass"), // lpClassName
             L(""), // lpWindowName
-            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 1, .CHILD = 1 }), // dwStyle
+            win32.WINDOW_STYLE{ .TABSTOP = 1, .CHILD = 1 }, // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -954,9 +963,13 @@ pub const TextField = struct {
 
     pub fn create() !TextField {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("EDIT"), // lpClassName
-            _T(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_BORDER))), // dwStyle
+            L("EDIT"), // lpClassName
+            L(""), // lpWindowName
+            win32.WINDOW_STYLE{
+                .TABSTOP = 1,
+                .CHILD = 1,
+                .BORDER = 1,
+            }, // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -973,7 +986,7 @@ pub const TextField = struct {
     }
 
     pub fn setText(self: *TextField, text: []const u8) void {
-        const allocator = lib.internal.scratch_allocator;
+        const allocator = lib.internal.allocator;
         const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
@@ -986,8 +999,8 @@ pub const TextField = struct {
 
     pub fn getText(self: *TextField) [:0]const u8 {
         const len = win32.GetWindowTextLengthW(self.peer);
-        var buf = lib.internal.scratch_allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
-        defer lib.internal.scratch_allocator.free(buf);
+        var buf = lib.internal.allocator.allocSentinel(u16, @as(usize, @intCast(len)), 0) catch unreachable; // TODO return error
+        defer lib.internal.allocator.free(buf);
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
 
@@ -1010,9 +1023,13 @@ pub const TextArea = struct {
 
     pub fn create() !TextArea {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("EDIT"), // lpClassName
-            _T(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_BORDER) | win32.ES_MULTILINE | win32.ES_AUTOVSCROLL | win32.ES_WANTRETURN)), // dwStyle
+            L("EDIT"), // lpClassName
+            L(""), // lpWindowName
+            @bitCast(@as(i32, @bitCast(win32.WINDOW_STYLE{
+                .TABSTOP = 1,
+                .CHILD = 1,
+                .BORDER = 1,
+            })) | win32.ES_MULTILINE | win32.ES_AUTOVSCROLL | win32.ES_WANTRETURN), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1029,7 +1046,7 @@ pub const TextArea = struct {
     }
 
     pub fn setText(self: *TextArea, text: []const u8) void {
-        const allocator = lib.internal.scratch_allocator;
+        const allocator = lib.internal.allocator;
         const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
@@ -1072,9 +1089,12 @@ pub const Button = struct {
 
     pub fn create() !Button {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("BUTTON"), // lpClassName
-            _T(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | win32.BS_PUSHBUTTON | win32.BS_FLAT)), // dwStyle
+            L("BUTTON"), // lpClassName
+            L(""), // lpWindowName
+            @bitCast(@as(i32, @bitCast(win32.WINDOW_STYLE{
+                .TABSTOP = 1,
+                .CHILD = 1,
+            })) | win32.BS_PUSHBUTTON | win32.BS_FLAT), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1091,7 +1111,7 @@ pub const Button = struct {
     }
 
     pub fn setLabel(self: *Button, label: [:0]const u8) void {
-        const allocator = lib.internal.scratch_allocator;
+        const allocator = lib.internal.allocator;
         const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, label) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
@@ -1125,8 +1145,8 @@ pub const CheckBox = struct {
 
     pub fn create() !CheckBox {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("BUTTON"), // lpClassName
-            _T(""), // lpWindowName
+            L("BUTTON"), // lpClassName
+            L(""), // lpWindowName
             @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | win32.BS_AUTOCHECKBOX)), // dwStyle
             0, // X
             0, // Y
@@ -1144,7 +1164,7 @@ pub const CheckBox = struct {
     }
 
     pub fn setLabel(self: *CheckBox, label: [:0]const u8) void {
-        const allocator = lib.internal.scratch_allocator;
+        const allocator = lib.internal.allocator;
         const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, label) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
@@ -1182,9 +1202,9 @@ pub const Slider = struct {
 
     pub fn create() !Slider {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("msctls_trackbar32"), // lpClassName
-            _T(""), // lpWindowName
-            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 0, .CHILD = 1 }), // dwStyle
+            L("msctls_trackbar32"), // lpClassName
+            L(""), // lpWindowName
+            win32.WINDOW_STYLE{ .TABSTOP = 0, .CHILD = 1 }, // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1250,7 +1270,10 @@ pub const Label = struct {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             L("STATIC"), // lpClassName
             L(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 0, .CHILD = 1 })) | win32.SS_CENTERIMAGE)), // dwStyle
+            @bitCast(@as(i32, @bitCast(win32.WINDOW_STYLE{
+                .TABSTOP = 0,
+                .CHILD = 1,
+            })) | win32.SS_CENTERIMAGE), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1277,7 +1300,7 @@ pub const Label = struct {
     }
 
     pub fn setText(self: *Label, text: []const u8) void {
-        const allocator = lib.internal.scratch_allocator;
+        const allocator = lib.internal.allocator;
         const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, text) catch return; // invalid utf8 or not enough memory
         defer allocator.free(wide);
         if (win32.SetWindowTextW(self.peer, wide) == 0) {
@@ -1307,7 +1330,7 @@ pub const TabContainer = struct {
         if (!classRegistered) {
             var wc: win32.WNDCLASSEXW = .{
                 .cbSize = @sizeOf(win32.WNDCLASSEXW),
-                .style = win32.WNDCLASS_STYLES.initFlags(.{}),
+                .style = win32.WNDCLASS_STYLES{},
                 .lpfnWndProc = TabContainer.process,
                 .cbClsExtra = 0,
                 .cbWndExtra = 0,
@@ -1316,7 +1339,7 @@ pub const TabContainer = struct {
                 .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = _T("capyTabClass"),
+                .lpszClassName = L("capyTabClass"),
                 .hIconSm = null,
             };
 
@@ -1328,9 +1351,13 @@ pub const TabContainer = struct {
         }
 
         const wrapperHwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("capyTabClass"), // lpClassName
-            _T(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPCHILDREN))), // dwStyle
+            L("capyTabClass"), // lpClassName
+            L(""), // lpWindowName
+            win32.WINDOW_STYLE{
+                .TABSTOP = 1,
+                .CHILD = 1,
+                .CLIPCHILDREN = 1,
+            }, // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1342,9 +1369,13 @@ pub const TabContainer = struct {
         ) orelse return Win32Error.InitializationError;
 
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("SysTabControl32"), // lpClassName
-            _T(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPSIBLINGS))), // dwStyle
+            L("SysTabControl32"), // lpClassName
+            L(""), // lpWindowName
+            win32.WINDOW_STYLE{
+                .TABSTOP = 1,
+                .CHILD = 1,
+                .CLIPSIBLINGS = 1,
+            }, // dwStyle
             0, // X
             0, // Y
             1000, // nWidth
@@ -1398,7 +1429,7 @@ pub const TabContainer = struct {
 
     pub fn setLabel(self: *const TabContainer, position: usize, text: [:0]const u8) void {
         const item = win32Backend.TCITEMA{
-            .mask = @intFromEnum(win32.TCIF_TEXT), // only change the text attribute
+            .mask = @bitCast(win32.TCIF_TEXT), // only change the text attribute
             .pszText = text,
             // cchTextMax doesn't need to be set when using SetItem
         };
@@ -1435,7 +1466,7 @@ pub const ScrollView = struct {
         if (!classRegistered) {
             var wc: win32.WNDCLASSEXW = .{
                 .cbSize = @sizeOf(win32.WNDCLASSEXW),
-                .style = win32.WNDCLASS_STYLES.initFlags(.{}),
+                .style = win32.WNDCLASS_STYLES{},
                 .lpfnWndProc = ScrollView.process,
                 .cbClsExtra = 0,
                 .cbWndExtra = 0,
@@ -1444,7 +1475,7 @@ pub const ScrollView = struct {
                 .hCursor = defaultCursor,
                 .hbrBackground = null,
                 .lpszMenuName = null,
-                .lpszClassName = _T("capyScrollViewClass"),
+                .lpszClassName = L("capyScrollViewClass"),
                 .hIconSm = null,
             };
 
@@ -1456,9 +1487,15 @@ pub const ScrollView = struct {
         }
 
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
-            _T("capyScrollViewClass"), // lpClassName
-            _T(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | @intFromEnum(win32.WS_CLIPCHILDREN) | @intFromEnum(win32.WS_HSCROLL) | @intFromEnum(win32.WS_VSCROLL))), // dwStyle
+            L("capyScrollViewClass"), // lpClassName
+            L(""), // lpWindowName
+            win32.WINDOW_STYLE{
+                .TABSTOP = 1,
+                .CHILD = 1,
+                .CLIPCHILDREN = 1,
+                .HSCROLL = 1,
+                .VSCROLL = 1,
+            }, // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1478,8 +1515,9 @@ pub const ScrollView = struct {
         self.widget = widget;
 
         _ = win32.SetParent(peer, self.peer);
-        const style = win32Backend.getWindowLongPtr(peer, win32.GWL_STYLE);
-        _ = win32Backend.setWindowLongPtr(peer, win32.GWL_STYLE, style | @intFromEnum(win32.WS_CHILD));
+        var style = win32Backend.getWindowLongPtr(peer, win32.GWL_STYLE);
+        style |= @as(usize, @as(u32, @bitCast(win32.WINDOW_STYLE{ .CHILD = 1 })));
+        _ = win32Backend.setWindowLongPtr(peer, win32.GWL_STYLE, style);
         _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(peer);
     }
@@ -1536,7 +1574,7 @@ pub const ScrollView = struct {
         // Finally, update the scroll bars
         var horizontalScrollInfo = win32.SCROLLINFO{
             .cbSize = @sizeOf(win32.SCROLLINFO),
-            .fMask = @as(win32.SCROLLINFO_MASK, @enumFromInt(@intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE))),
+            .fMask = .{ .RANGE = 1, .PAGE = 1 },
             .nMin = 0,
             .nMax = @as(c_int, @intFromFloat(preferred.width)),
             .nPage = @as(c_uint, @intCast(width)),
@@ -1547,7 +1585,7 @@ pub const ScrollView = struct {
 
         var verticalScrollInfo = win32.SCROLLINFO{
             .cbSize = @sizeOf(win32.SCROLLINFO),
-            .fMask = @as(win32.SCROLLINFO_MASK, @enumFromInt(@intFromEnum(win32.SIF_RANGE) | @intFromEnum(win32.SIF_PAGE))),
+            .fMask = .{ .RANGE = 1, .PAGE = 1 },
             .nMin = 0,
             .nMax = @as(c_int, @intFromFloat(preferred.height)),
             .nPage = @as(c_uint, @intCast(height)),
@@ -1571,7 +1609,7 @@ pub const Container = struct {
         if (!classRegistered) {
             var wc: win32.WNDCLASSEXW = .{
                 .cbSize = @sizeOf(win32.WNDCLASSEXW),
-                .style = win32.WNDCLASS_STYLES.initFlags(.{}),
+                .style = win32.WNDCLASS_STYLES{},
                 .lpfnWndProc = Container.process,
                 .cbClsExtra = 0,
                 .cbWndExtra = 0,
@@ -1591,10 +1629,10 @@ pub const Container = struct {
             classRegistered = true;
         }
 
-        const hwnd = win32.CreateWindowExW(win32.WINDOW_EX_STYLE.initFlags(.{ .CONTROLPARENT = 1 }), // dwExtStyle
+        const hwnd = win32.CreateWindowExW(win32.WINDOW_EX_STYLE{ .CONTROLPARENT = 1 }, // dwExtStyle
             L("capyContainerClass"), // lpClassName
             L(""), // lpWindowName
-            win32.WINDOW_STYLE.initFlags(.{ .TABSTOP = 0, .CHILD = 1, .CLIPCHILDREN = 1 }), // dwStyle
+            win32.WINDOW_STYLE{ .TABSTOP = 0, .CHILD = 1, .CLIPCHILDREN = 1 }, // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1619,8 +1657,9 @@ pub const Container = struct {
 
     pub fn add(self: *Container, peer: PeerType) void {
         _ = win32.SetParent(peer, self.peer);
-        const style = win32Backend.getWindowLongPtr(peer, win32.GWL_STYLE);
-        _ = win32Backend.setWindowLongPtr(peer, win32.GWL_STYLE, style | @intFromEnum(win32.WS_CHILD));
+        var style = win32Backend.getWindowLongPtr(peer, win32.GWL_STYLE);
+        style |= @as(usize, @as(u32, @bitCast(win32.WINDOW_STYLE{ .CHILD = 1 })));
+        _ = win32Backend.setWindowLongPtr(peer, win32.GWL_STYLE, style);
         _ = win32.ShowWindow(peer, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(peer);
     }
@@ -1671,7 +1710,7 @@ pub const Container = struct {
                 0,
                 0,
                 0,
-                win32.SET_WINDOW_POS_FLAGS.initFlags(.{ .NOMOVE = 1, .NOSIZE = 1 }),
+                win32.SET_WINDOW_POS_FLAGS{ .NOMOVE = 1, .NOSIZE = 1 },
             );
         }
     }
@@ -1712,7 +1751,7 @@ pub fn runStep(step: shared.EventLoopStep) bool {
             }
         },
         .Asynchronous => {
-            if (win32.PeekMessageW(&msg, null, 0, 0, .REMOVE) == 0) {
+            if (win32.PeekMessageW(&msg, null, 0, 0, .{ .REMOVE = 1 }) == 0) {
                 return true; // no message available
             }
         },

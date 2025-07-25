@@ -62,7 +62,6 @@ pub const settings_management_infrastructure = @import("system/settings_manageme
 pub const setup_and_migration = @import("system/setup_and_migration.zig");
 pub const shutdown = @import("system/shutdown.zig");
 pub const side_show = @import("system/side_show.zig");
-pub const sql_lite = @import("system/sql_lite.zig");
 pub const stations_and_desktops = @import("system/stations_and_desktops.zig");
 pub const subsystem_for_linux = @import("system/subsystem_for_linux.zig");
 pub const system_information = @import("system/system_information.zig");

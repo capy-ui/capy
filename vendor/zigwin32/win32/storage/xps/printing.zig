@@ -32,71 +32,43 @@ pub const XPS_JOB_STATUS = extern struct {
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsPrintJobStream_Value = Guid.initString("7a77dc5f-45d6-4dff-9307-d8cb846347ca");
 pub const IID_IXpsPrintJobStream = &IID_IXpsPrintJobStream_Value;
-pub const IXpsPrintJobStream = extern struct {
+pub const IXpsPrintJobStream = extern union {
     pub const VTable = extern struct {
         base: ISequentialStream.VTable,
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsPrintJobStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsPrintJobStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Close: *const fn(
+            self: *const IXpsPrintJobStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISequentialStream.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsPrintJobStream_Close(self: *const T) HRESULT {
-                return @as(*const IXpsPrintJobStream.VTable, @ptrCast(self.vtable)).Close(@as(*const IXpsPrintJobStream, @ptrCast(self)));
-            }
-        };
+    ISequentialStream: ISequentialStream,
+    IUnknown: IUnknown,
+    pub fn Close(self: *const IXpsPrintJobStream) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IXpsPrintJob_Value = Guid.initString("5ab89b06-8194-425f-ab3b-d7a96e350161");
 pub const IID_IXpsPrintJob = &IID_IXpsPrintJob_Value;
-pub const IXpsPrintJob = extern struct {
+pub const IXpsPrintJob = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsPrintJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsPrintJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetJobStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXpsPrintJob,
-                jobStatus: ?*XPS_JOB_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXpsPrintJob,
-                jobStatus: ?*XPS_JOB_STATUS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Cancel: *const fn(
+            self: *const IXpsPrintJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetJobStatus: *const fn(
+            self: *const IXpsPrintJob,
+            jobStatus: ?*XPS_JOB_STATUS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsPrintJob_Cancel(self: *const T) HRESULT {
-                return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IXpsPrintJob, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXpsPrintJob_GetJobStatus(self: *const T, jobStatus: ?*XPS_JOB_STATUS) HRESULT {
-                return @as(*const IXpsPrintJob.VTable, @ptrCast(self.vtable)).GetJobStatus(@as(*const IXpsPrintJob, @ptrCast(self)), jobStatus);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Cancel(self: *const IXpsPrintJob) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetJobStatus(self: *const IXpsPrintJob, jobStatus: ?*XPS_JOB_STATUS) callconv(.Inline) HRESULT {
+        return self.vtable.GetJobStatus(self, jobStatus);
+    }
 };
 
 const CLSID_PrintDocumentPackageTarget_Value = Guid.initString("4842669e-9947-46ea-8ba2-d8cce432c2ca");
@@ -108,63 +80,35 @@ pub const CLSID_PrintDocumentPackageTargetFactory = &CLSID_PrintDocumentPackageT
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageTarget_Value = Guid.initString("1b8efec4-3019-4c27-964e-367202156906");
 pub const IID_IPrintDocumentPackageTarget = &IID_IPrintDocumentPackageTarget_Value;
-pub const IPrintDocumentPackageTarget = extern struct {
+pub const IPrintDocumentPackageTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPackageTargetTypes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IPrintDocumentPackageTarget,
-                targetCount: ?*u32,
-                targetTypes: [*]?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IPrintDocumentPackageTarget,
-                targetCount: ?*u32,
-                targetTypes: [*]?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPackageTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IPrintDocumentPackageTarget,
-                guidTargetType: ?*const Guid,
-                riid: ?*const Guid,
-                ppvTarget: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IPrintDocumentPackageTarget,
-                guidTargetType: ?*const Guid,
-                riid: ?*const Guid,
-                ppvTarget: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IPrintDocumentPackageTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IPrintDocumentPackageTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPackageTargetTypes: *const fn(
+            self: *const IPrintDocumentPackageTarget,
+            targetCount: ?*u32,
+            targetTypes: [*]?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPackageTarget: *const fn(
+            self: *const IPrintDocumentPackageTarget,
+            guidTargetType: ?*const Guid,
+            riid: ?*const Guid,
+            ppvTarget: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: *const fn(
+            self: *const IPrintDocumentPackageTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IPrintDocumentPackageTarget_GetPackageTargetTypes(self: *const T, targetCount: ?*u32, targetTypes: [*]?*Guid) HRESULT {
-                return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTargetTypes(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), targetCount, targetTypes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IPrintDocumentPackageTarget_GetPackageTarget(self: *const T, guidTargetType: ?*const Guid, riid: ?*const Guid, ppvTarget: ?*?*anyopaque) HRESULT {
-                return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).GetPackageTarget(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)), guidTargetType, riid, ppvTarget);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IPrintDocumentPackageTarget_Cancel(self: *const T) HRESULT {
-                return @as(*const IPrintDocumentPackageTarget.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IPrintDocumentPackageTarget, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetPackageTargetTypes(self: *const IPrintDocumentPackageTarget, targetCount: ?*u32, targetTypes: [*]?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetPackageTargetTypes(self, targetCount, targetTypes);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetPackageTarget(self: *const IPrintDocumentPackageTarget, guidTargetType: ?*const Guid, riid: ?*const Guid, ppvTarget: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetPackageTarget(self, guidTargetType, riid, ppvTarget);
+    }
+    pub fn Cancel(self: *const IPrintDocumentPackageTarget) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
+    }
 };
 
 pub const PrintDocumentPackageCompletion = enum(i32) {
@@ -190,70 +134,44 @@ pub const PrintDocumentPackageStatus = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageStatusEvent_Value = Guid.initString("ed90c8ad-5c34-4d05-a1ec-0e8a9b3ad7af");
 pub const IID_IPrintDocumentPackageStatusEvent = &IID_IPrintDocumentPackageStatusEvent_Value;
-pub const IPrintDocumentPackageStatusEvent = extern struct {
+pub const IPrintDocumentPackageStatusEvent = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        PackageStatusUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IPrintDocumentPackageStatusEvent,
-                packageStatus: ?*PrintDocumentPackageStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IPrintDocumentPackageStatusEvent,
-                packageStatus: ?*PrintDocumentPackageStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        PackageStatusUpdated: *const fn(
+            self: *const IPrintDocumentPackageStatusEvent,
+            packageStatus: ?*PrintDocumentPackageStatus,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IPrintDocumentPackageStatusEvent_PackageStatusUpdated(self: *const T, packageStatus: ?*PrintDocumentPackageStatus) HRESULT {
-                return @as(*const IPrintDocumentPackageStatusEvent.VTable, @ptrCast(self.vtable)).PackageStatusUpdated(@as(*const IPrintDocumentPackageStatusEvent, @ptrCast(self)), packageStatus);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn PackageStatusUpdated(self: *const IPrintDocumentPackageStatusEvent, packageStatus: ?*PrintDocumentPackageStatus) callconv(.Inline) HRESULT {
+        return self.vtable.PackageStatusUpdated(self, packageStatus);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IPrintDocumentPackageTargetFactory_Value = Guid.initString("d2959bf7-b31b-4a3d-9600-712eb1335ba4");
 pub const IID_IPrintDocumentPackageTargetFactory = &IID_IPrintDocumentPackageTargetFactory_Value;
-pub const IPrintDocumentPackageTargetFactory = extern struct {
+pub const IPrintDocumentPackageTargetFactory = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateDocumentPackageTargetForPrintJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IPrintDocumentPackageTargetFactory,
-                printerName: ?[*:0]const u16,
-                jobName: ?[*:0]const u16,
-                jobOutputStream: ?*IStream,
-                jobPrintTicketStream: ?*IStream,
-                docPackageTarget: ?*?*IPrintDocumentPackageTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IPrintDocumentPackageTargetFactory,
-                printerName: ?[*:0]const u16,
-                jobName: ?[*:0]const u16,
-                jobOutputStream: ?*IStream,
-                jobPrintTicketStream: ?*IStream,
-                docPackageTarget: ?*?*IPrintDocumentPackageTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateDocumentPackageTargetForPrintJob: *const fn(
+            self: *const IPrintDocumentPackageTargetFactory,
+            printerName: ?[*:0]const u16,
+            jobName: ?[*:0]const u16,
+            jobOutputStream: ?*IStream,
+            jobPrintTicketStream: ?*IStream,
+            docPackageTarget: ?*?*IPrintDocumentPackageTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IPrintDocumentPackageTargetFactory_CreateDocumentPackageTargetForPrintJob(self: *const T, printerName: ?[*:0]const u16, jobName: ?[*:0]const u16, jobOutputStream: ?*IStream, jobPrintTicketStream: ?*IStream, docPackageTarget: ?*?*IPrintDocumentPackageTarget) HRESULT {
-                return @as(*const IPrintDocumentPackageTargetFactory.VTable, @ptrCast(self.vtable)).CreateDocumentPackageTargetForPrintJob(@as(*const IPrintDocumentPackageTargetFactory, @ptrCast(self)), printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateDocumentPackageTargetForPrintJob(self: *const IPrintDocumentPackageTargetFactory, printerName: ?[*:0]const u16, jobName: ?[*:0]const u16, jobOutputStream: ?*IStream, jobPrintTicketStream: ?*IStream, docPackageTarget: ?*?*IPrintDocumentPackageTarget) callconv(.Inline) HRESULT {
+        return self.vtable.CreateDocumentPackageTargetForPrintJob(self, printerName, jobName, jobOutputStream, jobPrintTicketStream, docPackageTarget);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
@@ -283,15 +201,10 @@ pub extern "xpsprint" fn StartXpsPrintJob1(
     printContentReceiver: ?*?*IXpsOMPackageTarget,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (9)
 //--------------------------------------------------------------------------------
@@ -306,13 +219,13 @@ const IXpsOMPackageTarget = @import("../../storage/xps.zig").IXpsOMPackageTarget
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

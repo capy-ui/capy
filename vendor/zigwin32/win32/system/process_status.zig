@@ -116,31 +116,18 @@ pub const ENUM_PAGE_FILE_INFORMATION = extern struct {
     PeakUsage: usize,
 };
 
-pub const PENUM_PAGE_FILE_CALLBACKW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pContext: ?*anyopaque,
-        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-        lpFilename: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        pContext: ?*anyopaque,
-        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-        lpFilename: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const PENUM_PAGE_FILE_CALLBACKW = *const fn(
+    pContext: ?*anyopaque,
+    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+    lpFilename: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const PENUM_PAGE_FILE_CALLBACKA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pContext: ?*anyopaque,
-        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-        lpFilename: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        pContext: ?*anyopaque,
-        pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
-        lpFilename: ?[*:0]const u8,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const PENUM_PAGE_FILE_CALLBACKA = *const fn(
+    pContext: ?*anyopaque,
+    pPageFileInfo: ?*ENUM_PAGE_FILE_INFORMATION,
+    lpFilename: ?[*:0]const u8,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (27)
@@ -318,50 +305,65 @@ pub extern "kernel32" fn K32GetProcessImageFileNameW(
     nSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) u32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (8)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = thismodule.PENUM_PAGE_FILE_CALLBACKA;
-        pub const K32GetModuleBaseName = thismodule.K32GetModuleBaseNameA;
-        pub const K32GetModuleFileNameEx = thismodule.K32GetModuleFileNameExA;
-        pub const K32GetMappedFileName = thismodule.K32GetMappedFileNameA;
-        pub const K32GetDeviceDriverBaseName = thismodule.K32GetDeviceDriverBaseNameA;
-        pub const K32GetDeviceDriverFileName = thismodule.K32GetDeviceDriverFileNameA;
-        pub const K32EnumPageFiles = thismodule.K32EnumPageFilesA;
-        pub const K32GetProcessImageFileName = thismodule.K32GetProcessImageFileNameA;
-    },
-    .wide => struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = thismodule.PENUM_PAGE_FILE_CALLBACKW;
-        pub const K32GetModuleBaseName = thismodule.K32GetModuleBaseNameW;
-        pub const K32GetModuleFileNameEx = thismodule.K32GetModuleFileNameExW;
-        pub const K32GetMappedFileName = thismodule.K32GetMappedFileNameW;
-        pub const K32GetDeviceDriverBaseName = thismodule.K32GetDeviceDriverBaseNameW;
-        pub const K32GetDeviceDriverFileName = thismodule.K32GetDeviceDriverFileNameW;
-        pub const K32EnumPageFiles = thismodule.K32EnumPageFilesW;
-        pub const K32GetProcessImageFileName = thismodule.K32GetProcessImageFileNameW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = *opaque {};
-        pub const K32GetModuleBaseName = *opaque {};
-        pub const K32GetModuleFileNameEx = *opaque {};
-        pub const K32GetMappedFileName = *opaque {};
-        pub const K32GetDeviceDriverBaseName = *opaque {};
-        pub const K32GetDeviceDriverFileName = *opaque {};
-        pub const K32EnumPageFiles = *opaque {};
-        pub const K32GetProcessImageFileName = *opaque {};
-    } else struct {
-        pub const PENUM_PAGE_FILE_CALLBACK = @compileError("'PENUM_PAGE_FILE_CALLBACK' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetModuleBaseName = @compileError("'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetModuleFileNameEx = @compileError("'K32GetModuleFileNameEx' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetMappedFileName = @compileError("'K32GetMappedFileName' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetDeviceDriverBaseName = @compileError("'K32GetDeviceDriverBaseName' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetDeviceDriverFileName = @compileError("'K32GetDeviceDriverFileName' requires that UNICODE be set to true or false in the root module");
-        pub const K32EnumPageFiles = @compileError("'K32EnumPageFiles' requires that UNICODE be set to true or false in the root module");
-        pub const K32GetProcessImageFileName = @compileError("'K32GetProcessImageFileName' requires that UNICODE be set to true or false in the root module");
-    },
+pub const PENUM_PAGE_FILE_CALLBACK = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().PENUM_PAGE_FILE_CALLBACKA,
+    .wide => @This().PENUM_PAGE_FILE_CALLBACKW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'PENUM_PAGE_FILE_CALLBACK' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetModuleBaseName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetModuleBaseNameA,
+    .wide => @This().K32GetModuleBaseNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetModuleBaseName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetModuleFileNameEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetModuleFileNameExA,
+    .wide => @This().K32GetModuleFileNameExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetModuleFileNameEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetMappedFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetMappedFileNameA,
+    .wide => @This().K32GetMappedFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetMappedFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetDeviceDriverBaseName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetDeviceDriverBaseNameA,
+    .wide => @This().K32GetDeviceDriverBaseNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetDeviceDriverBaseName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetDeviceDriverFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetDeviceDriverFileNameA,
+    .wide => @This().K32GetDeviceDriverFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetDeviceDriverFileName' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32EnumPageFiles = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32EnumPageFilesA,
+    .wide => @This().K32EnumPageFilesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32EnumPageFiles' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const K32GetProcessImageFileName = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().K32GetProcessImageFileNameA,
+    .wide => @This().K32GetProcessImageFileNameW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'K32GetProcessImageFileName' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -374,20 +376,16 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKW")) {
-        _ = PENUM_PAGE_FILE_CALLBACKW;
-    }
-    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKA")) {
-        _ = PENUM_PAGE_FILE_CALLBACKA;
-    }
+    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKW")) { _ = PENUM_PAGE_FILE_CALLBACKW; }
+    if (@hasDecl(@This(), "PENUM_PAGE_FILE_CALLBACKA")) { _ = PENUM_PAGE_FILE_CALLBACKA; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

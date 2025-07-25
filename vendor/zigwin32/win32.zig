@@ -9,7 +9,6 @@ pub const globalization = @import("win32/globalization.zig");
 pub const graphics = @import("win32/graphics.zig");
 pub const management = @import("win32/management.zig");
 pub const media = @import("win32/media.zig");
-pub const missing = @import("win32/missing.zig");
 pub const network_management = @import("win32/network_management.zig");
 pub const networking = @import("win32/networking.zig");
 pub const security = @import("win32/security.zig");

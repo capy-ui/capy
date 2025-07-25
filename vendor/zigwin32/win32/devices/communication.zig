@@ -96,117 +96,173 @@ pub const MAXLENGTH_NAI = @as(u32, 72);
 pub const MAXLENGTH_UICCDATASTORE = @as(u32, 10);
 
 //--------------------------------------------------------------------------------
-// Section: Types (18)
+// Section: Types (20)
 //--------------------------------------------------------------------------------
-pub const MODEM_STATUS_FLAGS = enum(u32) {
-    CTS_ON = 16,
-    DSR_ON = 32,
-    RING_ON = 64,
-    RLSD_ON = 128,
-    _,
-    pub fn initFlags(o: struct {
-        CTS_ON: u1 = 0,
-        DSR_ON: u1 = 0,
-        RING_ON: u1 = 0,
-        RLSD_ON: u1 = 0,
-    }) MODEM_STATUS_FLAGS {
-        return @as(MODEM_STATUS_FLAGS, @enumFromInt((if (o.CTS_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.CTS_ON) else 0) | (if (o.DSR_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.DSR_ON) else 0) | (if (o.RING_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.RING_ON) else 0) | (if (o.RLSD_ON == 1) @intFromEnum(MODEM_STATUS_FLAGS.RLSD_ON) else 0)));
-    }
+pub const MODEM_STATUS_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    CTS_ON: u1 = 0,
+    DSR_ON: u1 = 0,
+    RING_ON: u1 = 0,
+    RLSD_ON: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MS_CTS_ON = MODEM_STATUS_FLAGS.CTS_ON;
-pub const MS_DSR_ON = MODEM_STATUS_FLAGS.DSR_ON;
-pub const MS_RING_ON = MODEM_STATUS_FLAGS.RING_ON;
-pub const MS_RLSD_ON = MODEM_STATUS_FLAGS.RLSD_ON;
+pub const MS_CTS_ON = MODEM_STATUS_FLAGS{ .CTS_ON = 1 };
+pub const MS_DSR_ON = MODEM_STATUS_FLAGS{ .DSR_ON = 1 };
+pub const MS_RING_ON = MODEM_STATUS_FLAGS{ .RING_ON = 1 };
+pub const MS_RLSD_ON = MODEM_STATUS_FLAGS{ .RLSD_ON = 1 };
 
-pub const CLEAR_COMM_ERROR_FLAGS = enum(u32) {
-    BREAK = 16,
-    FRAME = 8,
-    OVERRUN = 2,
-    RXOVER = 1,
-    RXPARITY = 4,
-    _,
-    pub fn initFlags(o: struct {
-        BREAK: u1 = 0,
-        FRAME: u1 = 0,
-        OVERRUN: u1 = 0,
-        RXOVER: u1 = 0,
-        RXPARITY: u1 = 0,
-    }) CLEAR_COMM_ERROR_FLAGS {
-        return @as(CLEAR_COMM_ERROR_FLAGS, @enumFromInt((if (o.BREAK == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.BREAK) else 0) | (if (o.FRAME == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.FRAME) else 0) | (if (o.OVERRUN == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.OVERRUN) else 0) | (if (o.RXOVER == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.RXOVER) else 0) | (if (o.RXPARITY == 1) @intFromEnum(CLEAR_COMM_ERROR_FLAGS.RXPARITY) else 0)));
-    }
+pub const CLEAR_COMM_ERROR_FLAGS = packed struct(u32) {
+    RXOVER: u1 = 0,
+    OVERRUN: u1 = 0,
+    RXPARITY: u1 = 0,
+    FRAME: u1 = 0,
+    BREAK: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const CE_BREAK = CLEAR_COMM_ERROR_FLAGS.BREAK;
-pub const CE_FRAME = CLEAR_COMM_ERROR_FLAGS.FRAME;
-pub const CE_OVERRUN = CLEAR_COMM_ERROR_FLAGS.OVERRUN;
-pub const CE_RXOVER = CLEAR_COMM_ERROR_FLAGS.RXOVER;
-pub const CE_RXPARITY = CLEAR_COMM_ERROR_FLAGS.RXPARITY;
+pub const CE_BREAK = CLEAR_COMM_ERROR_FLAGS{ .BREAK = 1 };
+pub const CE_FRAME = CLEAR_COMM_ERROR_FLAGS{ .FRAME = 1 };
+pub const CE_OVERRUN = CLEAR_COMM_ERROR_FLAGS{ .OVERRUN = 1 };
+pub const CE_RXOVER = CLEAR_COMM_ERROR_FLAGS{ .RXOVER = 1 };
+pub const CE_RXPARITY = CLEAR_COMM_ERROR_FLAGS{ .RXPARITY = 1 };
 
-pub const PURGE_COMM_FLAGS = enum(u32) {
-    RXABORT = 2,
-    RXCLEAR = 8,
-    TXABORT = 1,
-    TXCLEAR = 4,
-    _,
-    pub fn initFlags(o: struct {
-        RXABORT: u1 = 0,
-        RXCLEAR: u1 = 0,
-        TXABORT: u1 = 0,
-        TXCLEAR: u1 = 0,
-    }) PURGE_COMM_FLAGS {
-        return @as(PURGE_COMM_FLAGS, @enumFromInt((if (o.RXABORT == 1) @intFromEnum(PURGE_COMM_FLAGS.RXABORT) else 0) | (if (o.RXCLEAR == 1) @intFromEnum(PURGE_COMM_FLAGS.RXCLEAR) else 0) | (if (o.TXABORT == 1) @intFromEnum(PURGE_COMM_FLAGS.TXABORT) else 0) | (if (o.TXCLEAR == 1) @intFromEnum(PURGE_COMM_FLAGS.TXCLEAR) else 0)));
-    }
+pub const PURGE_COMM_FLAGS = packed struct(u32) {
+    TXABORT: u1 = 0,
+    RXABORT: u1 = 0,
+    TXCLEAR: u1 = 0,
+    RXCLEAR: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const PURGE_RXABORT = PURGE_COMM_FLAGS.RXABORT;
-pub const PURGE_RXCLEAR = PURGE_COMM_FLAGS.RXCLEAR;
-pub const PURGE_TXABORT = PURGE_COMM_FLAGS.TXABORT;
-pub const PURGE_TXCLEAR = PURGE_COMM_FLAGS.TXCLEAR;
+pub const PURGE_RXABORT = PURGE_COMM_FLAGS{ .RXABORT = 1 };
+pub const PURGE_RXCLEAR = PURGE_COMM_FLAGS{ .RXCLEAR = 1 };
+pub const PURGE_TXABORT = PURGE_COMM_FLAGS{ .TXABORT = 1 };
+pub const PURGE_TXCLEAR = PURGE_COMM_FLAGS{ .TXCLEAR = 1 };
 
-pub const COMM_EVENT_MASK = enum(u32) {
-    BREAK = 64,
-    CTS = 8,
-    DSR = 16,
-    ERR = 128,
-    EVENT1 = 2048,
-    EVENT2 = 4096,
-    PERR = 512,
-    RING = 256,
-    RLSD = 32,
-    RX80FULL = 1024,
-    RXCHAR = 1,
-    RXFLAG = 2,
-    TXEMPTY = 4,
-    _,
-    pub fn initFlags(o: struct {
-        BREAK: u1 = 0,
-        CTS: u1 = 0,
-        DSR: u1 = 0,
-        ERR: u1 = 0,
-        EVENT1: u1 = 0,
-        EVENT2: u1 = 0,
-        PERR: u1 = 0,
-        RING: u1 = 0,
-        RLSD: u1 = 0,
-        RX80FULL: u1 = 0,
-        RXCHAR: u1 = 0,
-        RXFLAG: u1 = 0,
-        TXEMPTY: u1 = 0,
-    }) COMM_EVENT_MASK {
-        return @as(COMM_EVENT_MASK, @enumFromInt((if (o.BREAK == 1) @intFromEnum(COMM_EVENT_MASK.BREAK) else 0) | (if (o.CTS == 1) @intFromEnum(COMM_EVENT_MASK.CTS) else 0) | (if (o.DSR == 1) @intFromEnum(COMM_EVENT_MASK.DSR) else 0) | (if (o.ERR == 1) @intFromEnum(COMM_EVENT_MASK.ERR) else 0) | (if (o.EVENT1 == 1) @intFromEnum(COMM_EVENT_MASK.EVENT1) else 0) | (if (o.EVENT2 == 1) @intFromEnum(COMM_EVENT_MASK.EVENT2) else 0) | (if (o.PERR == 1) @intFromEnum(COMM_EVENT_MASK.PERR) else 0) | (if (o.RING == 1) @intFromEnum(COMM_EVENT_MASK.RING) else 0) | (if (o.RLSD == 1) @intFromEnum(COMM_EVENT_MASK.RLSD) else 0) | (if (o.RX80FULL == 1) @intFromEnum(COMM_EVENT_MASK.RX80FULL) else 0) | (if (o.RXCHAR == 1) @intFromEnum(COMM_EVENT_MASK.RXCHAR) else 0) | (if (o.RXFLAG == 1) @intFromEnum(COMM_EVENT_MASK.RXFLAG) else 0) | (if (o.TXEMPTY == 1) @intFromEnum(COMM_EVENT_MASK.TXEMPTY) else 0)));
-    }
+pub const COMM_EVENT_MASK = packed struct(u32) {
+    RXCHAR: u1 = 0,
+    RXFLAG: u1 = 0,
+    TXEMPTY: u1 = 0,
+    CTS: u1 = 0,
+    DSR: u1 = 0,
+    RLSD: u1 = 0,
+    BREAK: u1 = 0,
+    ERR: u1 = 0,
+    RING: u1 = 0,
+    PERR: u1 = 0,
+    RX80FULL: u1 = 0,
+    EVENT1: u1 = 0,
+    EVENT2: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const EV_BREAK = COMM_EVENT_MASK.BREAK;
-pub const EV_CTS = COMM_EVENT_MASK.CTS;
-pub const EV_DSR = COMM_EVENT_MASK.DSR;
-pub const EV_ERR = COMM_EVENT_MASK.ERR;
-pub const EV_EVENT1 = COMM_EVENT_MASK.EVENT1;
-pub const EV_EVENT2 = COMM_EVENT_MASK.EVENT2;
-pub const EV_PERR = COMM_EVENT_MASK.PERR;
-pub const EV_RING = COMM_EVENT_MASK.RING;
-pub const EV_RLSD = COMM_EVENT_MASK.RLSD;
-pub const EV_RX80FULL = COMM_EVENT_MASK.RX80FULL;
-pub const EV_RXCHAR = COMM_EVENT_MASK.RXCHAR;
-pub const EV_RXFLAG = COMM_EVENT_MASK.RXFLAG;
-pub const EV_TXEMPTY = COMM_EVENT_MASK.TXEMPTY;
+pub const EV_BREAK = COMM_EVENT_MASK{ .BREAK = 1 };
+pub const EV_CTS = COMM_EVENT_MASK{ .CTS = 1 };
+pub const EV_DSR = COMM_EVENT_MASK{ .DSR = 1 };
+pub const EV_ERR = COMM_EVENT_MASK{ .ERR = 1 };
+pub const EV_EVENT1 = COMM_EVENT_MASK{ .EVENT1 = 1 };
+pub const EV_EVENT2 = COMM_EVENT_MASK{ .EVENT2 = 1 };
+pub const EV_PERR = COMM_EVENT_MASK{ .PERR = 1 };
+pub const EV_RING = COMM_EVENT_MASK{ .RING = 1 };
+pub const EV_RLSD = COMM_EVENT_MASK{ .RLSD = 1 };
+pub const EV_RX80FULL = COMM_EVENT_MASK{ .RX80FULL = 1 };
+pub const EV_RXCHAR = COMM_EVENT_MASK{ .RXCHAR = 1 };
+pub const EV_RXFLAG = COMM_EVENT_MASK{ .RXFLAG = 1 };
+pub const EV_TXEMPTY = COMM_EVENT_MASK{ .TXEMPTY = 1 };
 
 pub const ESCAPE_COMM_FUNCTION = enum(u32) {
     CLRBREAK = 9,
@@ -227,22 +283,43 @@ pub const SETRTS = ESCAPE_COMM_FUNCTION.SETRTS;
 pub const SETXOFF = ESCAPE_COMM_FUNCTION.SETXOFF;
 pub const SETXON = ESCAPE_COMM_FUNCTION.SETXON;
 
-pub const MODEMDEVCAPS_DIAL_OPTIONS = enum(u32) {
-    BILLING = 64,
-    DIALTONE = 256,
-    QUIET = 128,
-    _,
-    pub fn initFlags(o: struct {
-        BILLING: u1 = 0,
-        DIALTONE: u1 = 0,
-        QUIET: u1 = 0,
-    }) MODEMDEVCAPS_DIAL_OPTIONS {
-        return @as(MODEMDEVCAPS_DIAL_OPTIONS, @enumFromInt((if (o.BILLING == 1) @intFromEnum(MODEMDEVCAPS_DIAL_OPTIONS.BILLING) else 0) | (if (o.DIALTONE == 1) @intFromEnum(MODEMDEVCAPS_DIAL_OPTIONS.DIALTONE) else 0) | (if (o.QUIET == 1) @intFromEnum(MODEMDEVCAPS_DIAL_OPTIONS.QUIET) else 0)));
-    }
+pub const MODEMDEVCAPS_DIAL_OPTIONS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    BILLING: u1 = 0,
+    QUIET: u1 = 0,
+    DIALTONE: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DIALOPTION_BILLING = MODEMDEVCAPS_DIAL_OPTIONS.BILLING;
-pub const DIALOPTION_DIALTONE = MODEMDEVCAPS_DIAL_OPTIONS.DIALTONE;
-pub const DIALOPTION_QUIET = MODEMDEVCAPS_DIAL_OPTIONS.QUIET;
+pub const DIALOPTION_BILLING = MODEMDEVCAPS_DIAL_OPTIONS{ .BILLING = 1 };
+pub const DIALOPTION_DIALTONE = MODEMDEVCAPS_DIAL_OPTIONS{ .DIALTONE = 1 };
+pub const DIALOPTION_QUIET = MODEMDEVCAPS_DIAL_OPTIONS{ .QUIET = 1 };
 
 pub const MODEMSETTINGS_SPEAKER_MODE = enum(u32) {
     CALLSETUP = 8,
@@ -255,37 +332,32 @@ pub const MDMSPKR_DIAL = MODEMSETTINGS_SPEAKER_MODE.DIAL;
 pub const MDMSPKR_OFF = MODEMSETTINGS_SPEAKER_MODE.OFF;
 pub const MDMSPKR_ON = MODEMSETTINGS_SPEAKER_MODE.ON;
 
-pub const COMMPROP_STOP_PARITY = enum(u16) {
-    STOPBITS_10 = 1,
-    STOPBITS_15 = 2,
-    STOPBITS_20 = 4,
-    PARITY_NONE = 256,
-    PARITY_ODD = 512,
-    PARITY_EVEN = 1024,
-    PARITY_MARK = 2048,
-    PARITY_SPACE = 4096,
-    _,
-    pub fn initFlags(o: struct {
-        STOPBITS_10: u1 = 0,
-        STOPBITS_15: u1 = 0,
-        STOPBITS_20: u1 = 0,
-        PARITY_NONE: u1 = 0,
-        PARITY_ODD: u1 = 0,
-        PARITY_EVEN: u1 = 0,
-        PARITY_MARK: u1 = 0,
-        PARITY_SPACE: u1 = 0,
-    }) COMMPROP_STOP_PARITY {
-        return @as(COMMPROP_STOP_PARITY, @enumFromInt((if (o.STOPBITS_10 == 1) @intFromEnum(COMMPROP_STOP_PARITY.STOPBITS_10) else 0) | (if (o.STOPBITS_15 == 1) @intFromEnum(COMMPROP_STOP_PARITY.STOPBITS_15) else 0) | (if (o.STOPBITS_20 == 1) @intFromEnum(COMMPROP_STOP_PARITY.STOPBITS_20) else 0) | (if (o.PARITY_NONE == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_NONE) else 0) | (if (o.PARITY_ODD == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_ODD) else 0) | (if (o.PARITY_EVEN == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_EVEN) else 0) | (if (o.PARITY_MARK == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_MARK) else 0) | (if (o.PARITY_SPACE == 1) @intFromEnum(COMMPROP_STOP_PARITY.PARITY_SPACE) else 0)));
-    }
+pub const COMMPROP_STOP_PARITY = packed struct(u16) {
+    STOPBITS_10: u1 = 0,
+    STOPBITS_15: u1 = 0,
+    STOPBITS_20: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    PARITY_NONE: u1 = 0,
+    PARITY_ODD: u1 = 0,
+    PARITY_EVEN: u1 = 0,
+    PARITY_MARK: u1 = 0,
+    PARITY_SPACE: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
 };
-pub const STOPBITS_10 = COMMPROP_STOP_PARITY.STOPBITS_10;
-pub const STOPBITS_15 = COMMPROP_STOP_PARITY.STOPBITS_15;
-pub const STOPBITS_20 = COMMPROP_STOP_PARITY.STOPBITS_20;
-pub const PARITY_NONE = COMMPROP_STOP_PARITY.PARITY_NONE;
-pub const PARITY_ODD = COMMPROP_STOP_PARITY.PARITY_ODD;
-pub const PARITY_EVEN = COMMPROP_STOP_PARITY.PARITY_EVEN;
-pub const PARITY_MARK = COMMPROP_STOP_PARITY.PARITY_MARK;
-pub const PARITY_SPACE = COMMPROP_STOP_PARITY.PARITY_SPACE;
+pub const STOPBITS_10 = COMMPROP_STOP_PARITY{ .STOPBITS_10 = 1 };
+pub const STOPBITS_15 = COMMPROP_STOP_PARITY{ .STOPBITS_15 = 1 };
+pub const STOPBITS_20 = COMMPROP_STOP_PARITY{ .STOPBITS_20 = 1 };
+pub const PARITY_NONE = COMMPROP_STOP_PARITY{ .PARITY_NONE = 1 };
+pub const PARITY_ODD = COMMPROP_STOP_PARITY{ .PARITY_ODD = 1 };
+pub const PARITY_EVEN = COMMPROP_STOP_PARITY{ .PARITY_EVEN = 1 };
+pub const PARITY_MARK = COMMPROP_STOP_PARITY{ .PARITY_MARK = 1 };
+pub const PARITY_SPACE = COMMPROP_STOP_PARITY{ .PARITY_SPACE = 1 };
 
 pub const MODEM_SPEAKER_VOLUME = enum(u32) {
     HIGH = 2,
@@ -296,42 +368,104 @@ pub const MDMVOL_HIGH = MODEM_SPEAKER_VOLUME.HIGH;
 pub const MDMVOL_LOW = MODEM_SPEAKER_VOLUME.LOW;
 pub const MDMVOL_MEDIUM = MODEM_SPEAKER_VOLUME.MEDIUM;
 
-pub const MODEMDEVCAPS_SPEAKER_VOLUME = enum(u32) {
-    HIGH = 4,
-    LOW = 1,
-    MEDIUM = 2,
-    _,
-    pub fn initFlags(o: struct {
-        HIGH: u1 = 0,
-        LOW: u1 = 0,
-        MEDIUM: u1 = 0,
-    }) MODEMDEVCAPS_SPEAKER_VOLUME {
-        return @as(MODEMDEVCAPS_SPEAKER_VOLUME, @enumFromInt((if (o.HIGH == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_VOLUME.HIGH) else 0) | (if (o.LOW == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_VOLUME.LOW) else 0) | (if (o.MEDIUM == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_VOLUME.MEDIUM) else 0)));
-    }
+pub const MODEMDEVCAPS_SPEAKER_VOLUME = packed struct(u32) {
+    LOW: u1 = 0,
+    MEDIUM: u1 = 0,
+    HIGH: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MDMVOLFLAG_HIGH = MODEMDEVCAPS_SPEAKER_VOLUME.HIGH;
-pub const MDMVOLFLAG_LOW = MODEMDEVCAPS_SPEAKER_VOLUME.LOW;
-pub const MDMVOLFLAG_MEDIUM = MODEMDEVCAPS_SPEAKER_VOLUME.MEDIUM;
+pub const MDMVOLFLAG_HIGH = MODEMDEVCAPS_SPEAKER_VOLUME{ .HIGH = 1 };
+pub const MDMVOLFLAG_LOW = MODEMDEVCAPS_SPEAKER_VOLUME{ .LOW = 1 };
+pub const MDMVOLFLAG_MEDIUM = MODEMDEVCAPS_SPEAKER_VOLUME{ .MEDIUM = 1 };
 
-pub const MODEMDEVCAPS_SPEAKER_MODE = enum(u32) {
-    CALLSETUP = 8,
-    DIAL = 2,
-    OFF = 1,
-    ON = 4,
-    _,
-    pub fn initFlags(o: struct {
-        CALLSETUP: u1 = 0,
-        DIAL: u1 = 0,
-        OFF: u1 = 0,
-        ON: u1 = 0,
-    }) MODEMDEVCAPS_SPEAKER_MODE {
-        return @as(MODEMDEVCAPS_SPEAKER_MODE, @enumFromInt((if (o.CALLSETUP == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP) else 0) | (if (o.DIAL == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.DIAL) else 0) | (if (o.OFF == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.OFF) else 0) | (if (o.ON == 1) @intFromEnum(MODEMDEVCAPS_SPEAKER_MODE.ON) else 0)));
-    }
+pub const MODEMDEVCAPS_SPEAKER_MODE = packed struct(u32) {
+    OFF: u1 = 0,
+    DIAL: u1 = 0,
+    ON: u1 = 0,
+    CALLSETUP: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const MDMSPKRFLAG_CALLSETUP = MODEMDEVCAPS_SPEAKER_MODE.CALLSETUP;
-pub const MDMSPKRFLAG_DIAL = MODEMDEVCAPS_SPEAKER_MODE.DIAL;
-pub const MDMSPKRFLAG_OFF = MODEMDEVCAPS_SPEAKER_MODE.OFF;
-pub const MDMSPKRFLAG_ON = MODEMDEVCAPS_SPEAKER_MODE.ON;
+pub const MDMSPKRFLAG_CALLSETUP = MODEMDEVCAPS_SPEAKER_MODE{ .CALLSETUP = 1 };
+pub const MDMSPKRFLAG_DIAL = MODEMDEVCAPS_SPEAKER_MODE{ .DIAL = 1 };
+pub const MDMSPKRFLAG_OFF = MODEMDEVCAPS_SPEAKER_MODE{ .OFF = 1 };
+pub const MDMSPKRFLAG_ON = MODEMDEVCAPS_SPEAKER_MODE{ .ON = 1 };
+
+pub const DCB_STOP_BITS = enum(u8) {
+    ONESTOPBIT = 0,
+    ONE5STOPBITS = 1,
+    TWOSTOPBITS = 2,
+};
+pub const ONESTOPBIT = DCB_STOP_BITS.ONESTOPBIT;
+pub const ONE5STOPBITS = DCB_STOP_BITS.ONE5STOPBITS;
+pub const TWOSTOPBITS = DCB_STOP_BITS.TWOSTOPBITS;
+
+pub const DCB_PARITY = enum(u8) {
+    EVENPARITY = 2,
+    MARKPARITY = 3,
+    NOPARITY = 0,
+    ODDPARITY = 1,
+    SPACEPARITY = 4,
+};
+pub const EVENPARITY = DCB_PARITY.EVENPARITY;
+pub const MARKPARITY = DCB_PARITY.MARKPARITY;
+pub const NOPARITY = DCB_PARITY.NOPARITY;
+pub const ODDPARITY = DCB_PARITY.ODDPARITY;
+pub const SPACEPARITY = DCB_PARITY.SPACEPARITY;
 
 pub const MODEMDEVCAPS = extern struct {
     dwActualSize: u32,
@@ -406,8 +540,8 @@ pub const DCB = extern struct {
     XonLim: u16,
     XoffLim: u16,
     ByteSize: u8,
-    Parity: u8,
-    StopBits: u8,
+    Parity: DCB_PARITY,
+    StopBits: DCB_STOP_BITS,
     XonChar: CHAR,
     XoffChar: CHAR,
     ErrorChar: CHAR,
@@ -434,6 +568,7 @@ pub const COMMCONFIG = extern struct {
     dwProviderSize: u32,
     wcProviderData: [1]u16,
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (30)
@@ -637,38 +772,44 @@ pub extern "kernel32" fn SetDefaultCommConfigW(
     dwSize: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (5)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const BuildCommDCB = thismodule.BuildCommDCBA;
-        pub const BuildCommDCBAndTimeouts = thismodule.BuildCommDCBAndTimeoutsA;
-        pub const CommConfigDialog = thismodule.CommConfigDialogA;
-        pub const GetDefaultCommConfig = thismodule.GetDefaultCommConfigA;
-        pub const SetDefaultCommConfig = thismodule.SetDefaultCommConfigA;
-    },
-    .wide => struct {
-        pub const BuildCommDCB = thismodule.BuildCommDCBW;
-        pub const BuildCommDCBAndTimeouts = thismodule.BuildCommDCBAndTimeoutsW;
-        pub const CommConfigDialog = thismodule.CommConfigDialogW;
-        pub const GetDefaultCommConfig = thismodule.GetDefaultCommConfigW;
-        pub const SetDefaultCommConfig = thismodule.SetDefaultCommConfigW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const BuildCommDCB = *opaque {};
-        pub const BuildCommDCBAndTimeouts = *opaque {};
-        pub const CommConfigDialog = *opaque {};
-        pub const GetDefaultCommConfig = *opaque {};
-        pub const SetDefaultCommConfig = *opaque {};
-    } else struct {
-        pub const BuildCommDCB = @compileError("'BuildCommDCB' requires that UNICODE be set to true or false in the root module");
-        pub const BuildCommDCBAndTimeouts = @compileError("'BuildCommDCBAndTimeouts' requires that UNICODE be set to true or false in the root module");
-        pub const CommConfigDialog = @compileError("'CommConfigDialog' requires that UNICODE be set to true or false in the root module");
-        pub const GetDefaultCommConfig = @compileError("'GetDefaultCommConfig' requires that UNICODE be set to true or false in the root module");
-        pub const SetDefaultCommConfig = @compileError("'SetDefaultCommConfig' requires that UNICODE be set to true or false in the root module");
-    },
+pub const BuildCommDCB = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildCommDCBA,
+    .wide => @This().BuildCommDCBW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BuildCommDCB' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BuildCommDCBAndTimeouts = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BuildCommDCBAndTimeoutsA,
+    .wide => @This().BuildCommDCBAndTimeoutsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BuildCommDCBAndTimeouts' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CommConfigDialog = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CommConfigDialogA,
+    .wide => @This().CommConfigDialogW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CommConfigDialog' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetDefaultCommConfigA,
+    .wide => @This().GetDefaultCommConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetDefaultCommConfig' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetDefaultCommConfig = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetDefaultCommConfigA,
+    .wide => @This().SetDefaultCommConfigW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetDefaultCommConfig' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (8)
@@ -683,13 +824,13 @@ const PSTR = @import("../foundation.zig").PSTR;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

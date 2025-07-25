@@ -235,75 +235,127 @@ pub const GT_TOUCH_PRESSANDHOLD = GESTURE_TYPE.TOUCH_PRESSANDHOLD;
 pub const GT_TOUCH_PRESSANDHOLDABORT = GESTURE_TYPE.TOUCH_PRESSANDHOLDABORT;
 pub const GT_TOUCH_PRESSANDTAP = GESTURE_TYPE.TOUCH_PRESSANDTAP;
 
-pub const DWM_SHOWCONTACT = enum(u32) {
-    DOWN = 1,
-    UP = 2,
-    DRAG = 4,
-    HOLD = 8,
-    PENBARREL = 16,
-    NONE = 0,
-    ALL = 4294967295,
-    _,
-    pub fn initFlags(o: struct {
-        DOWN: u1 = 0,
-        UP: u1 = 0,
-        DRAG: u1 = 0,
-        HOLD: u1 = 0,
-        PENBARREL: u1 = 0,
-        NONE: u1 = 0,
-        ALL: u1 = 0,
-    }) DWM_SHOWCONTACT {
-        return @as(DWM_SHOWCONTACT, @enumFromInt((if (o.DOWN == 1) @intFromEnum(DWM_SHOWCONTACT.DOWN) else 0) | (if (o.UP == 1) @intFromEnum(DWM_SHOWCONTACT.UP) else 0) | (if (o.DRAG == 1) @intFromEnum(DWM_SHOWCONTACT.DRAG) else 0) | (if (o.HOLD == 1) @intFromEnum(DWM_SHOWCONTACT.HOLD) else 0) | (if (o.PENBARREL == 1) @intFromEnum(DWM_SHOWCONTACT.PENBARREL) else 0) | (if (o.NONE == 1) @intFromEnum(DWM_SHOWCONTACT.NONE) else 0) | (if (o.ALL == 1) @intFromEnum(DWM_SHOWCONTACT.ALL) else 0)));
-    }
+pub const DWM_SHOWCONTACT = packed struct(u32) {
+    DOWN: u1 = 0,
+    UP: u1 = 0,
+    DRAG: u1 = 0,
+    HOLD: u1 = 0,
+    PENBARREL: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DWMSC_DOWN = DWM_SHOWCONTACT.DOWN;
-pub const DWMSC_UP = DWM_SHOWCONTACT.UP;
-pub const DWMSC_DRAG = DWM_SHOWCONTACT.DRAG;
-pub const DWMSC_HOLD = DWM_SHOWCONTACT.HOLD;
-pub const DWMSC_PENBARREL = DWM_SHOWCONTACT.PENBARREL;
-pub const DWMSC_NONE = DWM_SHOWCONTACT.NONE;
-pub const DWMSC_ALL = DWM_SHOWCONTACT.ALL;
+pub const DWMSC_DOWN = DWM_SHOWCONTACT{ .DOWN = 1 };
+pub const DWMSC_UP = DWM_SHOWCONTACT{ .UP = 1 };
+pub const DWMSC_DRAG = DWM_SHOWCONTACT{ .DRAG = 1 };
+pub const DWMSC_HOLD = DWM_SHOWCONTACT{ .HOLD = 1 };
+pub const DWMSC_PENBARREL = DWM_SHOWCONTACT{ .PENBARREL = 1 };
+pub const DWMSC_NONE = DWM_SHOWCONTACT{ };
+pub const DWMSC_ALL = DWM_SHOWCONTACT{
+    .DOWN = 1,
+    .UP = 1,
+    .DRAG = 1,
+    .HOLD = 1,
+    .PENBARREL = 1,
+    ._5 = 1,
+    ._6 = 1,
+    ._7 = 1,
+    ._8 = 1,
+    ._9 = 1,
+    ._10 = 1,
+    ._11 = 1,
+    ._12 = 1,
+    ._13 = 1,
+    ._14 = 1,
+    ._15 = 1,
+    ._16 = 1,
+    ._17 = 1,
+    ._18 = 1,
+    ._19 = 1,
+    ._20 = 1,
+    ._21 = 1,
+    ._22 = 1,
+    ._23 = 1,
+    ._24 = 1,
+    ._25 = 1,
+    ._26 = 1,
+    ._27 = 1,
+    ._28 = 1,
+    ._29 = 1,
+    ._30 = 1,
+    ._31 = 1,
+};
 
-pub const DWM_TAB_WINDOW_REQUIREMENTS = enum(u32) {
-    NONE = 0,
-    IMPLEMENTED_BY_SYSTEM = 1,
-    WINDOW_RELATIONSHIP = 2,
-    WINDOW_STYLES = 4,
-    WINDOW_REGION = 8,
-    WINDOW_DWM_ATTRIBUTES = 16,
-    WINDOW_MARGINS = 32,
-    TABBING_ENABLED = 64,
-    USER_POLICY = 128,
-    GROUP_POLICY = 256,
-    APP_COMPAT = 512,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        IMPLEMENTED_BY_SYSTEM: u1 = 0,
-        WINDOW_RELATIONSHIP: u1 = 0,
-        WINDOW_STYLES: u1 = 0,
-        WINDOW_REGION: u1 = 0,
-        WINDOW_DWM_ATTRIBUTES: u1 = 0,
-        WINDOW_MARGINS: u1 = 0,
-        TABBING_ENABLED: u1 = 0,
-        USER_POLICY: u1 = 0,
-        GROUP_POLICY: u1 = 0,
-        APP_COMPAT: u1 = 0,
-    }) DWM_TAB_WINDOW_REQUIREMENTS {
-        return @as(DWM_TAB_WINDOW_REQUIREMENTS, @enumFromInt((if (o.NONE == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.NONE) else 0) | (if (o.IMPLEMENTED_BY_SYSTEM == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.IMPLEMENTED_BY_SYSTEM) else 0) | (if (o.WINDOW_RELATIONSHIP == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_RELATIONSHIP) else 0) | (if (o.WINDOW_STYLES == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_STYLES) else 0) | (if (o.WINDOW_REGION == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_REGION) else 0) | (if (o.WINDOW_DWM_ATTRIBUTES == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_DWM_ATTRIBUTES) else 0) | (if (o.WINDOW_MARGINS == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_MARGINS) else 0) | (if (o.TABBING_ENABLED == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.TABBING_ENABLED) else 0) | (if (o.USER_POLICY == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.USER_POLICY) else 0) | (if (o.GROUP_POLICY == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.GROUP_POLICY) else 0) | (if (o.APP_COMPAT == 1) @intFromEnum(DWM_TAB_WINDOW_REQUIREMENTS.APP_COMPAT) else 0)));
-    }
+pub const DWM_TAB_WINDOW_REQUIREMENTS = packed struct(u32) {
+    IMPLEMENTED_BY_SYSTEM: u1 = 0,
+    WINDOW_RELATIONSHIP: u1 = 0,
+    WINDOW_STYLES: u1 = 0,
+    WINDOW_REGION: u1 = 0,
+    WINDOW_DWM_ATTRIBUTES: u1 = 0,
+    WINDOW_MARGINS: u1 = 0,
+    TABBING_ENABLED: u1 = 0,
+    USER_POLICY: u1 = 0,
+    GROUP_POLICY: u1 = 0,
+    APP_COMPAT: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const DWMTWR_NONE = DWM_TAB_WINDOW_REQUIREMENTS.NONE;
-pub const DWMTWR_IMPLEMENTED_BY_SYSTEM = DWM_TAB_WINDOW_REQUIREMENTS.IMPLEMENTED_BY_SYSTEM;
-pub const DWMTWR_WINDOW_RELATIONSHIP = DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_RELATIONSHIP;
-pub const DWMTWR_WINDOW_STYLES = DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_STYLES;
-pub const DWMTWR_WINDOW_REGION = DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_REGION;
-pub const DWMTWR_WINDOW_DWM_ATTRIBUTES = DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_DWM_ATTRIBUTES;
-pub const DWMTWR_WINDOW_MARGINS = DWM_TAB_WINDOW_REQUIREMENTS.WINDOW_MARGINS;
-pub const DWMTWR_TABBING_ENABLED = DWM_TAB_WINDOW_REQUIREMENTS.TABBING_ENABLED;
-pub const DWMTWR_USER_POLICY = DWM_TAB_WINDOW_REQUIREMENTS.USER_POLICY;
-pub const DWMTWR_GROUP_POLICY = DWM_TAB_WINDOW_REQUIREMENTS.GROUP_POLICY;
-pub const DWMTWR_APP_COMPAT = DWM_TAB_WINDOW_REQUIREMENTS.APP_COMPAT;
+pub const DWMTWR_NONE = DWM_TAB_WINDOW_REQUIREMENTS{ };
+pub const DWMTWR_IMPLEMENTED_BY_SYSTEM = DWM_TAB_WINDOW_REQUIREMENTS{ .IMPLEMENTED_BY_SYSTEM = 1 };
+pub const DWMTWR_WINDOW_RELATIONSHIP = DWM_TAB_WINDOW_REQUIREMENTS{ .WINDOW_RELATIONSHIP = 1 };
+pub const DWMTWR_WINDOW_STYLES = DWM_TAB_WINDOW_REQUIREMENTS{ .WINDOW_STYLES = 1 };
+pub const DWMTWR_WINDOW_REGION = DWM_TAB_WINDOW_REQUIREMENTS{ .WINDOW_REGION = 1 };
+pub const DWMTWR_WINDOW_DWM_ATTRIBUTES = DWM_TAB_WINDOW_REQUIREMENTS{ .WINDOW_DWM_ATTRIBUTES = 1 };
+pub const DWMTWR_WINDOW_MARGINS = DWM_TAB_WINDOW_REQUIREMENTS{ .WINDOW_MARGINS = 1 };
+pub const DWMTWR_TABBING_ENABLED = DWM_TAB_WINDOW_REQUIREMENTS{ .TABBING_ENABLED = 1 };
+pub const DWMTWR_USER_POLICY = DWM_TAB_WINDOW_REQUIREMENTS{ .USER_POLICY = 1 };
+pub const DWMTWR_GROUP_POLICY = DWM_TAB_WINDOW_REQUIREMENTS{ .GROUP_POLICY = 1 };
+pub const DWMTWR_APP_COMPAT = DWM_TAB_WINDOW_REQUIREMENTS{ .APP_COMPAT = 1 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -448,7 +500,8 @@ pub extern "dwmapi" fn DwmDetachMilContent(
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
-pub extern "dwmapi" fn DwmFlush() callconv(@import("std").os.windows.WINAPI) HRESULT;
+pub extern "dwmapi" fn DwmFlush(
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "dwmapi" fn DwmGetGraphicsStreamTransformHint(
@@ -502,15 +555,10 @@ pub extern "dwmapi" fn DwmGetUnmetTabRequirements(
     value: ?*DWM_TAB_WINDOW_REQUIREMENTS,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (13)
 //--------------------------------------------------------------------------------
@@ -529,13 +577,13 @@ const SIZE = @import("../foundation.zig").SIZE;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

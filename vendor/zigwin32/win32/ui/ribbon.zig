@@ -116,91 +116,52 @@ pub const UI_EVENTLOCATION_ContextPopup = UI_EVENTLOCATION.ContextPopup;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUISimplePropertySet_Value = Guid.initString("c205bb48-5b1c-4219-a106-15bd0a5f24e2");
 pub const IID_IUISimplePropertySet = &IID_IUISimplePropertySet_Value;
-pub const IUISimplePropertySet = extern struct {
+pub const IUISimplePropertySet = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUISimplePropertySet,
-                key: ?*const PROPERTYKEY,
-                value: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUISimplePropertySet,
-                key: ?*const PROPERTYKEY,
-                value: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetValue: *const fn(
+            self: *const IUISimplePropertySet,
+            key: ?*const PROPERTYKEY,
+            value: ?*PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUISimplePropertySet_GetValue(self: *const T, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) HRESULT {
-                return @as(*const IUISimplePropertySet.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IUISimplePropertySet, @ptrCast(self)), key, value);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetValue(self: *const IUISimplePropertySet, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetValue(self, key, value);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIRibbon_Value = Guid.initString("803982ab-370a-4f7e-a9e7-8784036a6e26");
 pub const IID_IUIRibbon = &IID_IUIRibbon_Value;
-pub const IUIRibbon = extern struct {
+pub const IUIRibbon = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetHeight: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIRibbon,
-                cy: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIRibbon,
-                cy: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadSettingsFromStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIRibbon,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIRibbon,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SaveSettingsToStream: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIRibbon,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIRibbon,
-                pStream: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetHeight: *const fn(
+            self: *const IUIRibbon,
+            cy: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadSettingsFromStream: *const fn(
+            self: *const IUIRibbon,
+            pStream: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SaveSettingsToStream: *const fn(
+            self: *const IUIRibbon,
+            pStream: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIRibbon_GetHeight(self: *const T, cy: ?*u32) HRESULT {
-                return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).GetHeight(@as(*const IUIRibbon, @ptrCast(self)), cy);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIRibbon_LoadSettingsFromStream(self: *const T, pStream: ?*IStream) HRESULT {
-                return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).LoadSettingsFromStream(@as(*const IUIRibbon, @ptrCast(self)), pStream);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIRibbon_SaveSettingsToStream(self: *const T, pStream: ?*IStream) HRESULT {
-                return @as(*const IUIRibbon.VTable, @ptrCast(self.vtable)).SaveSettingsToStream(@as(*const IUIRibbon, @ptrCast(self)), pStream);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetHeight(self: *const IUIRibbon, cy: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetHeight(self, cy);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LoadSettingsFromStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.LoadSettingsFromStream(self, pStream);
+    }
+    pub fn SaveSettingsToStream(self: *const IUIRibbon, pStream: ?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.SaveSettingsToStream(self, pStream);
+    }
 };
 
 pub const UI_INVALIDATIONS = enum(i32) {
@@ -217,159 +178,83 @@ pub const UI_INVALIDATIONS_ALLPROPERTIES = UI_INVALIDATIONS.ALLPROPERTIES;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIFramework_Value = Guid.initString("f4f0385d-6872-43a8-ad09-4c339cb3f5c5");
 pub const IID_IUIFramework = &IID_IUIFramework_Value;
-pub const IUIFramework = extern struct {
+pub const IUIFramework = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Initialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-                frameWnd: ?HWND,
-                application: ?*IUIApplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-                frameWnd: ?HWND,
-                application: ?*IUIApplication,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Destroy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadUI: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-                instance: ?HINSTANCE,
-                resourceName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-                instance: ?HINSTANCE,
-                resourceName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-                viewId: u32,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-                viewId: u32,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUICommandProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-                commandId: u32,
-                key: ?*const PROPERTYKEY,
-                value: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-                commandId: u32,
-                key: ?*const PROPERTYKEY,
-                value: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetUICommandProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-                commandId: u32,
-                key: ?*const PROPERTYKEY,
-                value: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-                commandId: u32,
-                key: ?*const PROPERTYKEY,
-                value: ?*const PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InvalidateUICommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-                commandId: u32,
-                flags: UI_INVALIDATIONS,
-                key: ?*const PROPERTYKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-                commandId: u32,
-                flags: UI_INVALIDATIONS,
-                key: ?*const PROPERTYKEY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FlushPendingInvalidations: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetModes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIFramework,
-                iModes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIFramework,
-                iModes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Initialize: *const fn(
+            self: *const IUIFramework,
+            frameWnd: ?HWND,
+            application: ?*IUIApplication,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Destroy: *const fn(
+            self: *const IUIFramework,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadUI: *const fn(
+            self: *const IUIFramework,
+            instance: ?HINSTANCE,
+            resourceName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetView: *const fn(
+            self: *const IUIFramework,
+            viewId: u32,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUICommandProperty: *const fn(
+            self: *const IUIFramework,
+            commandId: u32,
+            key: ?*const PROPERTYKEY,
+            value: ?*PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetUICommandProperty: *const fn(
+            self: *const IUIFramework,
+            commandId: u32,
+            key: ?*const PROPERTYKEY,
+            value: ?*const PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InvalidateUICommand: *const fn(
+            self: *const IUIFramework,
+            commandId: u32,
+            flags: UI_INVALIDATIONS,
+            key: ?*const PROPERTYKEY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FlushPendingInvalidations: *const fn(
+            self: *const IUIFramework,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetModes: *const fn(
+            self: *const IUIFramework,
+            iModes: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_Initialize(self: *const T, frameWnd: ?HWND, application: ?*IUIApplication) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).Initialize(@as(*const IUIFramework, @ptrCast(self)), frameWnd, application);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_Destroy(self: *const T) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).Destroy(@as(*const IUIFramework, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_LoadUI(self: *const T, instance: ?HINSTANCE, resourceName: ?[*:0]const u16) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).LoadUI(@as(*const IUIFramework, @ptrCast(self)), instance, resourceName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_GetView(self: *const T, viewId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).GetView(@as(*const IUIFramework, @ptrCast(self)), viewId, riid, ppv);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_GetUICommandProperty(self: *const T, commandId: u32, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).GetUICommandProperty(@as(*const IUIFramework, @ptrCast(self)), commandId, key, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_SetUICommandProperty(self: *const T, commandId: u32, key: ?*const PROPERTYKEY, value: ?*const PROPVARIANT) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).SetUICommandProperty(@as(*const IUIFramework, @ptrCast(self)), commandId, key, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_InvalidateUICommand(self: *const T, commandId: u32, flags: UI_INVALIDATIONS, key: ?*const PROPERTYKEY) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).InvalidateUICommand(@as(*const IUIFramework, @ptrCast(self)), commandId, flags, key);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_FlushPendingInvalidations(self: *const T) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).FlushPendingInvalidations(@as(*const IUIFramework, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIFramework_SetModes(self: *const T, iModes: i32) HRESULT {
-                return @as(*const IUIFramework.VTable, @ptrCast(self.vtable)).SetModes(@as(*const IUIFramework, @ptrCast(self)), iModes);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Initialize(self: *const IUIFramework, frameWnd: ?HWND, application: ?*IUIApplication) callconv(.Inline) HRESULT {
+        return self.vtable.Initialize(self, frameWnd, application);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Destroy(self: *const IUIFramework) callconv(.Inline) HRESULT {
+        return self.vtable.Destroy(self);
+    }
+    pub fn LoadUI(self: *const IUIFramework, instance: ?HINSTANCE, resourceName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.LoadUI(self, instance, resourceName);
+    }
+    pub fn GetView(self: *const IUIFramework, viewId: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetView(self, viewId, riid, ppv);
+    }
+    pub fn GetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetUICommandProperty(self, commandId, key, value);
+    }
+    pub fn SetUICommandProperty(self: *const IUIFramework, commandId: u32, key: ?*const PROPERTYKEY, value: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetUICommandProperty(self, commandId, key, value);
+    }
+    pub fn InvalidateUICommand(self: *const IUIFramework, commandId: u32, flags: UI_INVALIDATIONS, key: ?*const PROPERTYKEY) callconv(.Inline) HRESULT {
+        return self.vtable.InvalidateUICommand(self, commandId, flags, key);
+    }
+    pub fn FlushPendingInvalidations(self: *const IUIFramework) callconv(.Inline) HRESULT {
+        return self.vtable.FlushPendingInvalidations(self);
+    }
+    pub fn SetModes(self: *const IUIFramework, iModes: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SetModes(self, iModes);
+    }
 };
 
 pub const UI_EVENTPARAMS_COMMAND = extern struct {
@@ -392,211 +277,118 @@ pub const UI_EVENTPARAMS = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIEventLogger_Value = Guid.initString("ec3e1034-dbf4-41a1-95d5-03e0f1026e05");
 pub const IID_IUIEventLogger = &IID_IUIEventLogger_Value;
-pub const IUIEventLogger = extern struct {
+pub const IUIEventLogger = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnUIEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIEventLogger,
-                pEventParams: ?*UI_EVENTPARAMS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const IUIEventLogger,
-                pEventParams: ?*UI_EVENTPARAMS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        OnUIEvent: *const fn(
+            self: *const IUIEventLogger,
+            pEventParams: ?*UI_EVENTPARAMS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIEventLogger_OnUIEvent(self: *const T, pEventParams: ?*UI_EVENTPARAMS) void {
-                return @as(*const IUIEventLogger.VTable, @ptrCast(self.vtable)).OnUIEvent(@as(*const IUIEventLogger, @ptrCast(self)), pEventParams);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnUIEvent(self: *const IUIEventLogger, pEventParams: ?*UI_EVENTPARAMS) callconv(.Inline) void {
+        return self.vtable.OnUIEvent(self, pEventParams);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IUIEventingManager_Value = Guid.initString("3be6ea7f-9a9b-4198-9368-9b0f923bd534");
 pub const IID_IUIEventingManager = &IID_IUIEventingManager_Value;
-pub const IUIEventingManager = extern struct {
+pub const IUIEventingManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetEventLogger: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIEventingManager,
-                eventLogger: ?*IUIEventLogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIEventingManager,
-                eventLogger: ?*IUIEventLogger,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetEventLogger: *const fn(
+            self: *const IUIEventingManager,
+            eventLogger: ?*IUIEventLogger,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIEventingManager_SetEventLogger(self: *const T, eventLogger: ?*IUIEventLogger) HRESULT {
-                return @as(*const IUIEventingManager.VTable, @ptrCast(self.vtable)).SetEventLogger(@as(*const IUIEventingManager, @ptrCast(self)), eventLogger);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetEventLogger(self: *const IUIEventingManager, eventLogger: ?*IUIEventLogger) callconv(.Inline) HRESULT {
+        return self.vtable.SetEventLogger(self, eventLogger);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIContextualUI_Value = Guid.initString("eea11f37-7c46-437c-8e55-b52122b29293");
 pub const IID_IUIContextualUI = &IID_IUIContextualUI_Value;
-pub const IUIContextualUI = extern struct {
+pub const IUIContextualUI = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ShowAtLocation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIContextualUI,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIContextualUI,
-                x: i32,
-                y: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ShowAtLocation: *const fn(
+            self: *const IUIContextualUI,
+            x: i32,
+            y: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIContextualUI_ShowAtLocation(self: *const T, x: i32, y: i32) HRESULT {
-                return @as(*const IUIContextualUI.VTable, @ptrCast(self.vtable)).ShowAtLocation(@as(*const IUIContextualUI, @ptrCast(self)), x, y);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ShowAtLocation(self: *const IUIContextualUI, x: i32, y: i32) callconv(.Inline) HRESULT {
+        return self.vtable.ShowAtLocation(self, x, y);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUICollection_Value = Guid.initString("df4f45bf-6f9d-4dd7-9d68-d8f9cd18c4db");
 pub const IID_IUICollection = &IID_IUICollection_Value;
-pub const IUICollection = extern struct {
+pub const IUICollection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollection,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollection,
-                index: u32,
-                item: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollection,
-                index: u32,
-                item: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollection,
-                item: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollection,
-                item: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Insert: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollection,
-                index: u32,
-                item: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollection,
-                index: u32,
-                item: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveAt: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollection,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Replace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollection,
-                indexReplaced: u32,
-                itemReplaceWith: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollection,
-                indexReplaced: u32,
-                itemReplaceWith: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clear: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCount: *const fn(
+            self: *const IUICollection,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetItem: *const fn(
+            self: *const IUICollection,
+            index: u32,
+            item: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Add: *const fn(
+            self: *const IUICollection,
+            item: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Insert: *const fn(
+            self: *const IUICollection,
+            index: u32,
+            item: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveAt: *const fn(
+            self: *const IUICollection,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Replace: *const fn(
+            self: *const IUICollection,
+            indexReplaced: u32,
+            itemReplaceWith: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clear: *const fn(
+            self: *const IUICollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollection_GetCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).GetCount(@as(*const IUICollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollection_GetItem(self: *const T, index: u32, item: ?*?*IUnknown) HRESULT {
-                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).GetItem(@as(*const IUICollection, @ptrCast(self)), index, item);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollection_Add(self: *const T, item: ?*IUnknown) HRESULT {
-                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IUICollection, @ptrCast(self)), item);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollection_Insert(self: *const T, index: u32, item: ?*IUnknown) HRESULT {
-                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Insert(@as(*const IUICollection, @ptrCast(self)), index, item);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollection_RemoveAt(self: *const T, index: u32) HRESULT {
-                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).RemoveAt(@as(*const IUICollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollection_Replace(self: *const T, indexReplaced: u32, itemReplaceWith: ?*IUnknown) HRESULT {
-                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Replace(@as(*const IUICollection, @ptrCast(self)), indexReplaced, itemReplaceWith);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollection_Clear(self: *const T) HRESULT {
-                return @as(*const IUICollection.VTable, @ptrCast(self.vtable)).Clear(@as(*const IUICollection, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetCount(self: *const IUICollection, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCount(self, count);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetItem(self: *const IUICollection, index: u32, item: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.GetItem(self, index, item);
+    }
+    pub fn Add(self: *const IUICollection, item: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.Add(self, item);
+    }
+    pub fn Insert(self: *const IUICollection, index: u32, item: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.Insert(self, index, item);
+    }
+    pub fn RemoveAt(self: *const IUICollection, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveAt(self, index);
+    }
+    pub fn Replace(self: *const IUICollection, indexReplaced: u32, itemReplaceWith: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.Replace(self, indexReplaced, itemReplaceWith);
+    }
+    pub fn Clear(self: *const IUICollection) callconv(.Inline) HRESULT {
+        return self.vtable.Clear(self);
+    }
 };
 
 pub const UI_COLLECTIONCHANGE = enum(i32) {
@@ -613,39 +405,23 @@ pub const UI_COLLECTIONCHANGE_RESET = UI_COLLECTIONCHANGE.RESET;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUICollectionChangedEvent_Value = Guid.initString("6502ae91-a14d-44b5-bbd0-62aacc581d52");
 pub const IID_IUICollectionChangedEvent = &IID_IUICollectionChangedEvent_Value;
-pub const IUICollectionChangedEvent = extern struct {
+pub const IUICollectionChangedEvent = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICollectionChangedEvent,
-                action: UI_COLLECTIONCHANGE,
-                oldIndex: u32,
-                oldItem: ?*IUnknown,
-                newIndex: u32,
-                newItem: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICollectionChangedEvent,
-                action: UI_COLLECTIONCHANGE,
-                oldIndex: u32,
-                oldItem: ?*IUnknown,
-                newIndex: u32,
-                newItem: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnChanged: *const fn(
+            self: *const IUICollectionChangedEvent,
+            action: UI_COLLECTIONCHANGE,
+            oldIndex: u32,
+            oldItem: ?*IUnknown,
+            newIndex: u32,
+            newItem: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICollectionChangedEvent_OnChanged(self: *const T, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) HRESULT {
-                return @as(*const IUICollectionChangedEvent.VTable, @ptrCast(self.vtable)).OnChanged(@as(*const IUICollectionChangedEvent, @ptrCast(self)), action, oldIndex, oldItem, newIndex, newItem);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnChanged(self: *const IUICollectionChangedEvent, action: UI_COLLECTIONCHANGE, oldIndex: u32, oldItem: ?*IUnknown, newIndex: u32, newItem: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.OnChanged(self, action, oldIndex, oldItem, newIndex, newItem);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const UI_EXECUTIONVERB = enum(i32) {
@@ -660,59 +436,33 @@ pub const UI_EXECUTIONVERB_CANCELPREVIEW = UI_EXECUTIONVERB.CANCELPREVIEW;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUICommandHandler_Value = Guid.initString("75ae0a2d-dc03-4c9f-8883-069660d0beb6");
 pub const IID_IUICommandHandler = &IID_IUICommandHandler_Value;
-pub const IUICommandHandler = extern struct {
+pub const IUICommandHandler = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Execute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICommandHandler,
-                commandId: u32,
-                verb: UI_EXECUTIONVERB,
-                key: ?*const PROPERTYKEY,
-                currentValue: ?*const PROPVARIANT,
-                commandExecutionProperties: ?*IUISimplePropertySet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICommandHandler,
-                commandId: u32,
-                verb: UI_EXECUTIONVERB,
-                key: ?*const PROPERTYKEY,
-                currentValue: ?*const PROPVARIANT,
-                commandExecutionProperties: ?*IUISimplePropertySet,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UpdateProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUICommandHandler,
-                commandId: u32,
-                key: ?*const PROPERTYKEY,
-                currentValue: ?*const PROPVARIANT,
-                newValue: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUICommandHandler,
-                commandId: u32,
-                key: ?*const PROPERTYKEY,
-                currentValue: ?*const PROPVARIANT,
-                newValue: ?*PROPVARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Execute: *const fn(
+            self: *const IUICommandHandler,
+            commandId: u32,
+            verb: UI_EXECUTIONVERB,
+            key: ?*const PROPERTYKEY,
+            currentValue: ?*const PROPVARIANT,
+            commandExecutionProperties: ?*IUISimplePropertySet,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UpdateProperty: *const fn(
+            self: *const IUICommandHandler,
+            commandId: u32,
+            key: ?*const PROPERTYKEY,
+            currentValue: ?*const PROPVARIANT,
+            newValue: ?*PROPVARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICommandHandler_Execute(self: *const T, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) HRESULT {
-                return @as(*const IUICommandHandler.VTable, @ptrCast(self.vtable)).Execute(@as(*const IUICommandHandler, @ptrCast(self)), commandId, verb, key, currentValue, commandExecutionProperties);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUICommandHandler_UpdateProperty(self: *const T, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) HRESULT {
-                return @as(*const IUICommandHandler.VTable, @ptrCast(self.vtable)).UpdateProperty(@as(*const IUICommandHandler, @ptrCast(self)), commandId, key, currentValue, newValue);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Execute(self: *const IUICommandHandler, commandId: u32, verb: UI_EXECUTIONVERB, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, commandExecutionProperties: ?*IUISimplePropertySet) callconv(.Inline) HRESULT {
+        return self.vtable.Execute(self, commandId, verb, key, currentValue, commandExecutionProperties);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UpdateProperty(self: *const IUICommandHandler, commandId: u32, key: ?*const PROPERTYKEY, currentValue: ?*const PROPVARIANT, newValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.UpdateProperty(self, commandId, key, currentValue, newValue);
+    }
 };
 
 pub const UI_COMMANDTYPE = enum(i32) {
@@ -763,105 +513,59 @@ pub const UI_VIEWVERB_ERROR = UI_VIEWVERB.ERROR;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIApplication_Value = Guid.initString("d428903c-729a-491d-910d-682a08ff2522");
 pub const IID_IUIApplication = &IID_IUIApplication_Value;
-pub const IUIApplication = extern struct {
+pub const IUIApplication = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnViewChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIApplication,
-                viewId: u32,
-                typeID: UI_VIEWTYPE,
-                view: ?*IUnknown,
-                verb: UI_VIEWVERB,
-                uReasonCode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIApplication,
-                viewId: u32,
-                typeID: UI_VIEWTYPE,
-                view: ?*IUnknown,
-                verb: UI_VIEWVERB,
-                uReasonCode: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnCreateUICommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIApplication,
-                commandId: u32,
-                typeID: UI_COMMANDTYPE,
-                commandHandler: ?*?*IUICommandHandler,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIApplication,
-                commandId: u32,
-                typeID: UI_COMMANDTYPE,
-                commandHandler: ?*?*IUICommandHandler,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnDestroyUICommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIApplication,
-                commandId: u32,
-                typeID: UI_COMMANDTYPE,
-                commandHandler: ?*IUICommandHandler,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIApplication,
-                commandId: u32,
-                typeID: UI_COMMANDTYPE,
-                commandHandler: ?*IUICommandHandler,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnViewChanged: *const fn(
+            self: *const IUIApplication,
+            viewId: u32,
+            typeID: UI_VIEWTYPE,
+            view: ?*IUnknown,
+            verb: UI_VIEWVERB,
+            uReasonCode: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnCreateUICommand: *const fn(
+            self: *const IUIApplication,
+            commandId: u32,
+            typeID: UI_COMMANDTYPE,
+            commandHandler: ?*?*IUICommandHandler,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnDestroyUICommand: *const fn(
+            self: *const IUIApplication,
+            commandId: u32,
+            typeID: UI_COMMANDTYPE,
+            commandHandler: ?*IUICommandHandler,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIApplication_OnViewChanged(self: *const T, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) HRESULT {
-                return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnViewChanged(@as(*const IUIApplication, @ptrCast(self)), viewId, typeID, view, verb, uReasonCode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIApplication_OnCreateUICommand(self: *const T, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) HRESULT {
-                return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnCreateUICommand(@as(*const IUIApplication, @ptrCast(self)), commandId, typeID, commandHandler);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIApplication_OnDestroyUICommand(self: *const T, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) HRESULT {
-                return @as(*const IUIApplication.VTable, @ptrCast(self.vtable)).OnDestroyUICommand(@as(*const IUIApplication, @ptrCast(self)), commandId, typeID, commandHandler);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnViewChanged(self: *const IUIApplication, viewId: u32, typeID: UI_VIEWTYPE, view: ?*IUnknown, verb: UI_VIEWVERB, uReasonCode: i32) callconv(.Inline) HRESULT {
+        return self.vtable.OnViewChanged(self, viewId, typeID, view, verb, uReasonCode);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnCreateUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*?*IUICommandHandler) callconv(.Inline) HRESULT {
+        return self.vtable.OnCreateUICommand(self, commandId, typeID, commandHandler);
+    }
+    pub fn OnDestroyUICommand(self: *const IUIApplication, commandId: u32, typeID: UI_COMMANDTYPE, commandHandler: ?*IUICommandHandler) callconv(.Inline) HRESULT {
+        return self.vtable.OnDestroyUICommand(self, commandId, typeID, commandHandler);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIImage_Value = Guid.initString("23c8c838-4de6-436b-ab01-5554bb7c30dd");
 pub const IID_IUIImage = &IID_IUIImage_Value;
-pub const IUIImage = extern struct {
+pub const IUIImage = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetBitmap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIImage,
-                bitmap: ?*?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIImage,
-                bitmap: ?*?HBITMAP,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetBitmap: *const fn(
+            self: *const IUIImage,
+            bitmap: ?*?HBITMAP,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIImage_GetBitmap(self: *const T, bitmap: ?*?HBITMAP) HRESULT {
-                return @as(*const IUIImage.VTable, @ptrCast(self.vtable)).GetBitmap(@as(*const IUIImage, @ptrCast(self)), bitmap);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetBitmap(self: *const IUIImage, bitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+        return self.vtable.GetBitmap(self, bitmap);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const UI_OWNERSHIP = enum(i32) {
@@ -874,36 +578,23 @@ pub const UI_OWNERSHIP_COPY = UI_OWNERSHIP.COPY;
 // TODO: this type is limited to platform 'windows6.1'
 const IID_IUIImageFromBitmap_Value = Guid.initString("18aba7f3-4c1c-4ba2-bf6c-f5c3326fa816");
 pub const IID_IUIImageFromBitmap = &IID_IUIImageFromBitmap_Value;
-pub const IUIImageFromBitmap = extern struct {
+pub const IUIImageFromBitmap = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IUIImageFromBitmap,
-                bitmap: ?HBITMAP,
-                options: UI_OWNERSHIP,
-                image: ?*?*IUIImage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IUIImageFromBitmap,
-                bitmap: ?HBITMAP,
-                options: UI_OWNERSHIP,
-                image: ?*?*IUIImage,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateImage: *const fn(
+            self: *const IUIImageFromBitmap,
+            bitmap: ?HBITMAP,
+            options: UI_OWNERSHIP,
+            image: ?*?*IUIImage,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IUIImageFromBitmap_CreateImage(self: *const T, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) HRESULT {
-                return @as(*const IUIImageFromBitmap.VTable, @ptrCast(self.vtable)).CreateImage(@as(*const IUIImageFromBitmap, @ptrCast(self)), bitmap, options, image);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateImage(self: *const IUIImageFromBitmap, bitmap: ?HBITMAP, options: UI_OWNERSHIP, image: ?*?*IUIImage) callconv(.Inline) HRESULT {
+        return self.vtable.CreateImage(self, bitmap, options, image);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -912,12 +603,6 @@ pub const IUIImageFromBitmap = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (10)
 //--------------------------------------------------------------------------------
@@ -933,13 +618,13 @@ const PROPVARIANT = @import("../system/com/structured_storage.zig").PROPVARIANT;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

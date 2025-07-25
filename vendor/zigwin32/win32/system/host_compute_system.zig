@@ -7,12 +7,15 @@
 // Section: Types (15)
 //--------------------------------------------------------------------------------
 // TODO: this type has a FreeFunc 'HcsCloseOperation', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCS_OPERATION = isize;
 
 // TODO: this type has a FreeFunc 'HcsCloseComputeSystem', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCS_SYSTEM = isize;
 
 // TODO: this type has a FreeFunc 'HcsCloseProcess', what can Zig do with this information?
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const HCS_PROCESS = isize;
 
 pub const HCS_OPERATION_TYPE = enum(i32) {
@@ -52,16 +55,10 @@ pub const HcsOperationTypeGetProcessProperties = HCS_OPERATION_TYPE.GetProcessPr
 pub const HcsOperationTypeModifyProcess = HCS_OPERATION_TYPE.ModifyProcess;
 pub const HcsOperationTypeCrash = HCS_OPERATION_TYPE.Crash;
 
-pub const HCS_OPERATION_COMPLETION = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        operation: HCS_OPERATION,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        operation: HCS_OPERATION,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const HCS_OPERATION_COMPLETION = *const fn(
+    operation: HCS_OPERATION,
+    context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const HCS_EVENT_TYPE = enum(i32) {
     Invalid = 0,
@@ -92,30 +89,47 @@ pub const HCS_EVENT = extern struct {
     Operation: HCS_OPERATION,
 };
 
-pub const HCS_EVENT_OPTIONS = enum(u32) {
-    None = 0,
-    EnableOperationCallbacks = 1,
-    _,
-    pub fn initFlags(o: struct {
-        None: u1 = 0,
-        EnableOperationCallbacks: u1 = 0,
-    }) HCS_EVENT_OPTIONS {
-        return @as(HCS_EVENT_OPTIONS, @enumFromInt((if (o.None == 1) @intFromEnum(HCS_EVENT_OPTIONS.None) else 0) | (if (o.EnableOperationCallbacks == 1) @intFromEnum(HCS_EVENT_OPTIONS.EnableOperationCallbacks) else 0)));
-    }
+pub const HCS_EVENT_OPTIONS = packed struct(u32) {
+    EnableOperationCallbacks: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const HcsEventOptionNone = HCS_EVENT_OPTIONS.None;
-pub const HcsEventOptionEnableOperationCallbacks = HCS_EVENT_OPTIONS.EnableOperationCallbacks;
+pub const HcsEventOptionNone = HCS_EVENT_OPTIONS{ };
+pub const HcsEventOptionEnableOperationCallbacks = HCS_EVENT_OPTIONS{ .EnableOperationCallbacks = 1 };
 
-pub const HCS_EVENT_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        event: ?*HCS_EVENT,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        event: ?*HCS_EVENT,
-        context: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const HCS_EVENT_CALLBACK = *const fn(
+    event: ?*HCS_EVENT,
+    context: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const HCS_NOTIFICATION_FLAGS = enum(i32) {
     Success = 0,
@@ -136,7 +150,6 @@ pub const HCS_NOTIFICATIONS = enum(i32) {
     SystemSaveCompleted = 8,
     SystemRdpEnhancedModeStateChanged = 9,
     SystemShutdownFailed = 10,
-    // SystemShutdownCompleted = 10, this enum value conflicts with SystemShutdownFailed
     SystemGetPropertiesCompleted = 11,
     SystemModifyCompleted = 12,
     SystemCrashInitiated = 13,
@@ -146,6 +159,7 @@ pub const HCS_NOTIFICATIONS = enum(i32) {
     ProcessExited = 65536,
     ServiceDisconnect = 16777216,
     FlagsReserved = -268435456,
+    pub const SystemShutdownCompleted = .SystemShutdownFailed;
 };
 pub const HcsNotificationInvalid = HCS_NOTIFICATIONS.Invalid;
 pub const HcsNotificationSystemExited = HCS_NOTIFICATIONS.SystemExited;
@@ -169,20 +183,12 @@ pub const HcsNotificationProcessExited = HCS_NOTIFICATIONS.ProcessExited;
 pub const HcsNotificationServiceDisconnect = HCS_NOTIFICATIONS.ServiceDisconnect;
 pub const HcsNotificationFlagsReserved = HCS_NOTIFICATIONS.FlagsReserved;
 
-pub const HCS_NOTIFICATION_CALLBACK = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        notificationType: u32,
-        context: ?*anyopaque,
-        notificationStatus: HRESULT,
-        notificationData: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        notificationType: u32,
-        context: ?*anyopaque,
-        notificationStatus: HRESULT,
-        notificationData: ?[*:0]const u16,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const HCS_NOTIFICATION_CALLBACK = *const fn(
+    notificationType: u32,
+    context: ?*anyopaque,
+    notificationStatus: HRESULT,
+    notificationData: ?[*:0]const u16,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const HCS_PROCESS_INFORMATION = extern struct {
     ProcessId: u32,
@@ -205,6 +211,7 @@ pub const HCS_CREATE_OPTIONS_1 = extern struct {
     CallbackContext: ?*anyopaque,
     Callback: ?HCS_EVENT_CALLBACK,
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (64)
@@ -563,15 +570,10 @@ pub extern "computestorage" fn HcsSetupBaseOSVolume(
     options: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
@@ -582,23 +584,17 @@ const SECURITY_DESCRIPTOR = @import("../security.zig").SECURITY_DESCRIPTOR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "HCS_OPERATION_COMPLETION")) {
-        _ = HCS_OPERATION_COMPLETION;
-    }
-    if (@hasDecl(@This(), "HCS_EVENT_CALLBACK")) {
-        _ = HCS_EVENT_CALLBACK;
-    }
-    if (@hasDecl(@This(), "HCS_NOTIFICATION_CALLBACK")) {
-        _ = HCS_NOTIFICATION_CALLBACK;
-    }
+    if (@hasDecl(@This(), "HCS_OPERATION_COMPLETION")) { _ = HCS_OPERATION_COMPLETION; }
+    if (@hasDecl(@This(), "HCS_EVENT_CALLBACK")) { _ = HCS_EVENT_CALLBACK; }
+    if (@hasDecl(@This(), "HCS_NOTIFICATION_CALLBACK")) { _ = HCS_NOTIFICATION_CALLBACK; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

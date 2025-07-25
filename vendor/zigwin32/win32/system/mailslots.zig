@@ -16,7 +16,7 @@ pub extern "kernel32" fn CreateMailslotA(
     nMaxMessageSize: u32,
     lReadTimeout: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn CreateMailslotW(
@@ -24,7 +24,7 @@ pub extern "kernel32" fn CreateMailslotW(
     nMaxMessageSize: u32,
     lReadTimeout: u32,
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(@import("std").os.windows.WINAPI) HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "kernel32" fn GetMailslotInfo(
@@ -41,22 +41,16 @@ pub extern "kernel32" fn SetMailslotInfo(
     lReadTimeout: u32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const CreateMailslot = thismodule.CreateMailslotA;
-    },
-    .wide => struct {
-        pub const CreateMailslot = thismodule.CreateMailslotW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const CreateMailslot = *opaque {};
-    } else struct {
-        pub const CreateMailslot = @compileError("'CreateMailslot' requires that UNICODE be set to true or false in the root module");
-    },
+pub const CreateMailslot = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateMailslotA,
+    .wide => @This().CreateMailslotW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateMailslot' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -68,13 +62,13 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

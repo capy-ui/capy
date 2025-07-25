@@ -6,70 +6,59 @@
 //--------------------------------------------------------------------------------
 // Section: Types (8)
 //--------------------------------------------------------------------------------
-pub const POINTER_FLAGS = enum(u32) {
-    NONE = 0,
-    NEW = 1,
-    INRANGE = 2,
-    INCONTACT = 4,
-    FIRSTBUTTON = 16,
-    SECONDBUTTON = 32,
-    THIRDBUTTON = 64,
-    FOURTHBUTTON = 128,
-    FIFTHBUTTON = 256,
-    PRIMARY = 8192,
-    CONFIDENCE = 16384,
-    CANCELED = 32768,
-    DOWN = 65536,
-    UPDATE = 131072,
-    UP = 262144,
-    WHEEL = 524288,
-    HWHEEL = 1048576,
-    CAPTURECHANGED = 2097152,
-    HASTRANSFORM = 4194304,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        NEW: u1 = 0,
-        INRANGE: u1 = 0,
-        INCONTACT: u1 = 0,
-        FIRSTBUTTON: u1 = 0,
-        SECONDBUTTON: u1 = 0,
-        THIRDBUTTON: u1 = 0,
-        FOURTHBUTTON: u1 = 0,
-        FIFTHBUTTON: u1 = 0,
-        PRIMARY: u1 = 0,
-        CONFIDENCE: u1 = 0,
-        CANCELED: u1 = 0,
-        DOWN: u1 = 0,
-        UPDATE: u1 = 0,
-        UP: u1 = 0,
-        WHEEL: u1 = 0,
-        HWHEEL: u1 = 0,
-        CAPTURECHANGED: u1 = 0,
-        HASTRANSFORM: u1 = 0,
-    }) POINTER_FLAGS {
-        return @as(POINTER_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(POINTER_FLAGS.NONE) else 0) | (if (o.NEW == 1) @intFromEnum(POINTER_FLAGS.NEW) else 0) | (if (o.INRANGE == 1) @intFromEnum(POINTER_FLAGS.INRANGE) else 0) | (if (o.INCONTACT == 1) @intFromEnum(POINTER_FLAGS.INCONTACT) else 0) | (if (o.FIRSTBUTTON == 1) @intFromEnum(POINTER_FLAGS.FIRSTBUTTON) else 0) | (if (o.SECONDBUTTON == 1) @intFromEnum(POINTER_FLAGS.SECONDBUTTON) else 0) | (if (o.THIRDBUTTON == 1) @intFromEnum(POINTER_FLAGS.THIRDBUTTON) else 0) | (if (o.FOURTHBUTTON == 1) @intFromEnum(POINTER_FLAGS.FOURTHBUTTON) else 0) | (if (o.FIFTHBUTTON == 1) @intFromEnum(POINTER_FLAGS.FIFTHBUTTON) else 0) | (if (o.PRIMARY == 1) @intFromEnum(POINTER_FLAGS.PRIMARY) else 0) | (if (o.CONFIDENCE == 1) @intFromEnum(POINTER_FLAGS.CONFIDENCE) else 0) | (if (o.CANCELED == 1) @intFromEnum(POINTER_FLAGS.CANCELED) else 0) | (if (o.DOWN == 1) @intFromEnum(POINTER_FLAGS.DOWN) else 0) | (if (o.UPDATE == 1) @intFromEnum(POINTER_FLAGS.UPDATE) else 0) | (if (o.UP == 1) @intFromEnum(POINTER_FLAGS.UP) else 0) | (if (o.WHEEL == 1) @intFromEnum(POINTER_FLAGS.WHEEL) else 0) | (if (o.HWHEEL == 1) @intFromEnum(POINTER_FLAGS.HWHEEL) else 0) | (if (o.CAPTURECHANGED == 1) @intFromEnum(POINTER_FLAGS.CAPTURECHANGED) else 0) | (if (o.HASTRANSFORM == 1) @intFromEnum(POINTER_FLAGS.HASTRANSFORM) else 0)));
-    }
+pub const POINTER_FLAGS = packed struct(u32) {
+    NEW: u1 = 0,
+    INRANGE: u1 = 0,
+    INCONTACT: u1 = 0,
+    _3: u1 = 0,
+    FIRSTBUTTON: u1 = 0,
+    SECONDBUTTON: u1 = 0,
+    THIRDBUTTON: u1 = 0,
+    FOURTHBUTTON: u1 = 0,
+    FIFTHBUTTON: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    PRIMARY: u1 = 0,
+    CONFIDENCE: u1 = 0,
+    CANCELED: u1 = 0,
+    DOWN: u1 = 0,
+    UPDATE: u1 = 0,
+    UP: u1 = 0,
+    WHEEL: u1 = 0,
+    HWHEEL: u1 = 0,
+    CAPTURECHANGED: u1 = 0,
+    HASTRANSFORM: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const POINTER_FLAG_NONE = POINTER_FLAGS.NONE;
-pub const POINTER_FLAG_NEW = POINTER_FLAGS.NEW;
-pub const POINTER_FLAG_INRANGE = POINTER_FLAGS.INRANGE;
-pub const POINTER_FLAG_INCONTACT = POINTER_FLAGS.INCONTACT;
-pub const POINTER_FLAG_FIRSTBUTTON = POINTER_FLAGS.FIRSTBUTTON;
-pub const POINTER_FLAG_SECONDBUTTON = POINTER_FLAGS.SECONDBUTTON;
-pub const POINTER_FLAG_THIRDBUTTON = POINTER_FLAGS.THIRDBUTTON;
-pub const POINTER_FLAG_FOURTHBUTTON = POINTER_FLAGS.FOURTHBUTTON;
-pub const POINTER_FLAG_FIFTHBUTTON = POINTER_FLAGS.FIFTHBUTTON;
-pub const POINTER_FLAG_PRIMARY = POINTER_FLAGS.PRIMARY;
-pub const POINTER_FLAG_CONFIDENCE = POINTER_FLAGS.CONFIDENCE;
-pub const POINTER_FLAG_CANCELED = POINTER_FLAGS.CANCELED;
-pub const POINTER_FLAG_DOWN = POINTER_FLAGS.DOWN;
-pub const POINTER_FLAG_UPDATE = POINTER_FLAGS.UPDATE;
-pub const POINTER_FLAG_UP = POINTER_FLAGS.UP;
-pub const POINTER_FLAG_WHEEL = POINTER_FLAGS.WHEEL;
-pub const POINTER_FLAG_HWHEEL = POINTER_FLAGS.HWHEEL;
-pub const POINTER_FLAG_CAPTURECHANGED = POINTER_FLAGS.CAPTURECHANGED;
-pub const POINTER_FLAG_HASTRANSFORM = POINTER_FLAGS.HASTRANSFORM;
+pub const POINTER_FLAG_NONE = POINTER_FLAGS{ };
+pub const POINTER_FLAG_NEW = POINTER_FLAGS{ .NEW = 1 };
+pub const POINTER_FLAG_INRANGE = POINTER_FLAGS{ .INRANGE = 1 };
+pub const POINTER_FLAG_INCONTACT = POINTER_FLAGS{ .INCONTACT = 1 };
+pub const POINTER_FLAG_FIRSTBUTTON = POINTER_FLAGS{ .FIRSTBUTTON = 1 };
+pub const POINTER_FLAG_SECONDBUTTON = POINTER_FLAGS{ .SECONDBUTTON = 1 };
+pub const POINTER_FLAG_THIRDBUTTON = POINTER_FLAGS{ .THIRDBUTTON = 1 };
+pub const POINTER_FLAG_FOURTHBUTTON = POINTER_FLAGS{ .FOURTHBUTTON = 1 };
+pub const POINTER_FLAG_FIFTHBUTTON = POINTER_FLAGS{ .FIFTHBUTTON = 1 };
+pub const POINTER_FLAG_PRIMARY = POINTER_FLAGS{ .PRIMARY = 1 };
+pub const POINTER_FLAG_CONFIDENCE = POINTER_FLAGS{ .CONFIDENCE = 1 };
+pub const POINTER_FLAG_CANCELED = POINTER_FLAGS{ .CANCELED = 1 };
+pub const POINTER_FLAG_DOWN = POINTER_FLAGS{ .DOWN = 1 };
+pub const POINTER_FLAG_UPDATE = POINTER_FLAGS{ .UPDATE = 1 };
+pub const POINTER_FLAG_UP = POINTER_FLAGS{ .UP = 1 };
+pub const POINTER_FLAG_WHEEL = POINTER_FLAGS{ .WHEEL = 1 };
+pub const POINTER_FLAG_HWHEEL = POINTER_FLAGS{ .HWHEEL = 1 };
+pub const POINTER_FLAG_CAPTURECHANGED = POINTER_FLAGS{ .CAPTURECHANGED = 1 };
+pub const POINTER_FLAG_HASTRANSFORM = POINTER_FLAGS{ .HASTRANSFORM = 1 };
 
 pub const TOUCH_FEEDBACK_MODE = enum(u32) {
     DEFAULT = 1,
@@ -175,11 +164,13 @@ pub const INPUT_TRANSFORM = extern struct {
     },
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (28)
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn GetUnpredictedMessagePos() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "user32" fn GetUnpredictedMessagePos(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "user32" fn InitializeTouchInjection(
@@ -307,7 +298,8 @@ pub extern "user32" fn EnableMouseInPointer(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
-pub extern "user32" fn IsMouseInPointerEnabled() callconv(@import("std").os.windows.WINAPI) BOOL;
+pub extern "user32" fn IsMouseInPointerEnabled(
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "user32" fn GetPointerInputTransform(
@@ -358,15 +350,10 @@ pub extern "user32" fn GetRawPointerDeviceData(
     pValues: ?*i32,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
@@ -383,13 +370,13 @@ const POINTER_TYPE_INFO = @import("../../ui/controls.zig").POINTER_TYPE_INFO;
 const RECT = @import("../../foundation.zig").RECT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

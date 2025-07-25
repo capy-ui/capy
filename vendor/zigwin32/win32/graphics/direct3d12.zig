@@ -161,18 +161,18 @@ pub const D3D12_DS_INPUT_PRIMITIVE_ID_REGISTER_READ_PORTS = @as(u32, 1);
 pub const D3D12_DS_OUTPUT_REGISTER_COMPONENTS = @as(u32, 4);
 pub const D3D12_DS_OUTPUT_REGISTER_COMPONENT_BIT_COUNT = @as(u32, 32);
 pub const D3D12_DS_OUTPUT_REGISTER_COUNT = @as(u32, 32);
-pub const D3D12_FLOAT16_FUSED_TOLERANCE_IN_ULP = @as(f64, 6.0e-01);
-pub const D3D12_FLOAT32_MAX = @as(f32, 3.4028235e+38);
-pub const D3D12_FLOAT32_TO_INTEGER_TOLERANCE_IN_ULP = @as(f32, 6.0e-01);
-pub const D3D12_FLOAT_TO_SRGB_EXPONENT_DENOMINATOR = @as(f32, 2.4e+00);
+pub const D3D12_FLOAT16_FUSED_TOLERANCE_IN_ULP = @as(f64, 6e-1);
+pub const D3D12_FLOAT32_MAX = @as(f32, 3.4028235e38);
+pub const D3D12_FLOAT32_TO_INTEGER_TOLERANCE_IN_ULP = @as(f32, 6e-1);
+pub const D3D12_FLOAT_TO_SRGB_EXPONENT_DENOMINATOR = @as(f32, 2.4e0);
 pub const D3D12_FLOAT_TO_SRGB_EXPONENT_NUMERATOR = @as(f32, 1);
-pub const D3D12_FLOAT_TO_SRGB_OFFSET = @as(f32, 5.5e-02);
-pub const D3D12_FLOAT_TO_SRGB_SCALE_1 = @as(f32, 1.292e+01);
-pub const D3D12_FLOAT_TO_SRGB_SCALE_2 = @as(f32, 1.055e+00);
-pub const D3D12_FLOAT_TO_SRGB_THRESHOLD = @as(f32, 3.1308e-03);
-pub const D3D12_FTOI_INSTRUCTION_MAX_INPUT = @as(f32, 2.1474836e+09);
-pub const D3D12_FTOI_INSTRUCTION_MIN_INPUT = @as(f32, -2.1474836e+09);
-pub const D3D12_FTOU_INSTRUCTION_MAX_INPUT = @as(f32, 4.2949673e+09);
+pub const D3D12_FLOAT_TO_SRGB_OFFSET = @as(f32, 5.5e-2);
+pub const D3D12_FLOAT_TO_SRGB_SCALE_1 = @as(f32, 1.292e1);
+pub const D3D12_FLOAT_TO_SRGB_SCALE_2 = @as(f32, 1.055e0);
+pub const D3D12_FLOAT_TO_SRGB_THRESHOLD = @as(f32, 3.1308e-3);
+pub const D3D12_FTOI_INSTRUCTION_MAX_INPUT = @as(f32, 2.1474836e9);
+pub const D3D12_FTOI_INSTRUCTION_MIN_INPUT = @as(f32, -2.1474836e9);
+pub const D3D12_FTOU_INSTRUCTION_MAX_INPUT = @as(f32, 4.2949673e9);
 pub const D3D12_FTOU_INSTRUCTION_MIN_INPUT = @as(f32, 0);
 pub const D3D12_GS_INPUT_INSTANCE_ID_READS_PER_INST = @as(u32, 2);
 pub const D3D12_GS_INPUT_INSTANCE_ID_READ_PORTS = @as(u32, 1);
@@ -256,7 +256,7 @@ pub const D3D12_MAX_DEPTH = @as(f32, 1);
 pub const D3D12_MAX_LIVE_STATIC_SAMPLERS = @as(u32, 2032);
 pub const D3D12_MAX_MAXANISOTROPY = @as(u32, 16);
 pub const D3D12_MAX_MULTISAMPLE_SAMPLE_COUNT = @as(u32, 32);
-pub const D3D12_MAX_POSITION_VALUE = @as(f32, 3.4028236e+34);
+pub const D3D12_MAX_POSITION_VALUE = @as(f32, 3.4028236e34);
 pub const D3D12_MAX_ROOT_COST = @as(u32, 64);
 pub const D3D12_MAX_SHADER_VISIBLE_DESCRIPTOR_HEAP_SIZE_TIER_1 = @as(u32, 1000000);
 pub const D3D12_MAX_SHADER_VISIBLE_DESCRIPTOR_HEAP_SIZE_TIER_2 = @as(u32, 1000000);
@@ -267,11 +267,11 @@ pub const D3D12_MINOR_VERSION = @as(u32, 0);
 pub const D3D12_MIN_BORDER_COLOR_COMPONENT = @as(f32, 0);
 pub const D3D12_MIN_DEPTH = @as(f32, 0);
 pub const D3D12_MIN_MAXANISOTROPY = @as(u32, 0);
-pub const D3D12_MIP_LOD_BIAS_MAX = @as(f32, 1.599e+01);
+pub const D3D12_MIP_LOD_BIAS_MAX = @as(f32, 1.599e1);
 pub const D3D12_MIP_LOD_BIAS_MIN = @as(f32, -16);
 pub const D3D12_MIP_LOD_FRACTIONAL_BIT_COUNT = @as(u32, 8);
 pub const D3D12_MIP_LOD_RANGE_BIT_COUNT = @as(u32, 8);
-pub const D3D12_MULTISAMPLE_ANTIALIAS_LINE_WIDTH = @as(f32, 1.4e+00);
+pub const D3D12_MULTISAMPLE_ANTIALIAS_LINE_WIDTH = @as(f32, 1.4e0);
 pub const D3D12_NONSAMPLE_FETCH_OUT_OF_RANGE_ACCESS_RESULT = @as(u32, 0);
 pub const D3D12_OS_RESERVED_REGISTER_SPACE_VALUES_END = @as(u32, 4294967295);
 pub const D3D12_OS_RESERVED_REGISTER_SPACE_VALUES_START = @as(u32, 4294967288);
@@ -300,7 +300,7 @@ pub const D3D12_PS_OUTPUT_MASK_REGISTER_COUNT = @as(u32, 1);
 pub const D3D12_PS_OUTPUT_REGISTER_COMPONENTS = @as(u32, 4);
 pub const D3D12_PS_OUTPUT_REGISTER_COMPONENT_BIT_COUNT = @as(u32, 32);
 pub const D3D12_PS_OUTPUT_REGISTER_COUNT = @as(u32, 8);
-pub const D3D12_PS_PIXEL_CENTER_FRACTIONAL_COMPONENT = @as(f32, 5.0e-01);
+pub const D3D12_PS_PIXEL_CENTER_FRACTIONAL_COMPONENT = @as(f32, 5e-1);
 pub const D3D12_RAW_UAV_SRV_BYTE_ALIGNMENT = @as(u32, 16);
 pub const D3D12_RAYTRACING_AABB_BYTE_ALIGNMENT = @as(u32, 8);
 pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BYTE_ALIGNMENT = @as(u32, 256);
@@ -330,7 +330,7 @@ pub const D3D12_REQ_MULTI_ELEMENT_STRUCTURE_SIZE_IN_BYTES = @as(u32, 2048);
 pub const D3D12_REQ_RASTERIZER_OBJECT_COUNT_PER_DEVICE = @as(u32, 4096);
 pub const D3D12_REQ_RENDER_TO_BUFFER_WINDOW_WIDTH = @as(u32, 16384);
 pub const D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_A_TERM = @as(u32, 128);
-pub const D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_B_TERM = @as(f32, 2.5e-01);
+pub const D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_B_TERM = @as(f32, 2.5e-1);
 pub const D3D12_REQ_RESOURCE_SIZE_IN_MEGABYTES_EXPRESSION_C_TERM = @as(u32, 2048);
 pub const D3D12_REQ_RESOURCE_VIEW_COUNT_PER_DEVICE_2_TO_EXP = @as(u32, 20);
 pub const D3D12_REQ_SAMPLER_OBJECT_COUNT_PER_DEVICE = @as(u32, 4096);
@@ -367,14 +367,14 @@ pub const D3D12_SO_STREAM_COUNT = @as(u32, 4);
 pub const D3D12_SPEC_DATE_DAY = @as(u32, 14);
 pub const D3D12_SPEC_DATE_MONTH = @as(u32, 11);
 pub const D3D12_SPEC_DATE_YEAR = @as(u32, 2014);
-pub const D3D12_SPEC_VERSION = @as(f64, 1.16e+00);
-pub const D3D12_SRGB_GAMMA = @as(f32, 2.2e+00);
-pub const D3D12_SRGB_TO_FLOAT_DENOMINATOR_1 = @as(f32, 1.292e+01);
-pub const D3D12_SRGB_TO_FLOAT_DENOMINATOR_2 = @as(f32, 1.055e+00);
-pub const D3D12_SRGB_TO_FLOAT_EXPONENT = @as(f32, 2.4e+00);
-pub const D3D12_SRGB_TO_FLOAT_OFFSET = @as(f32, 5.5e-02);
-pub const D3D12_SRGB_TO_FLOAT_THRESHOLD = @as(f32, 4.045e-02);
-pub const D3D12_SRGB_TO_FLOAT_TOLERANCE_IN_ULP = @as(f32, 5.0e-01);
+pub const D3D12_SPEC_VERSION = @as(f64, 1.16e0);
+pub const D3D12_SRGB_GAMMA = @as(f32, 2.2e0);
+pub const D3D12_SRGB_TO_FLOAT_DENOMINATOR_1 = @as(f32, 1.292e1);
+pub const D3D12_SRGB_TO_FLOAT_DENOMINATOR_2 = @as(f32, 1.055e0);
+pub const D3D12_SRGB_TO_FLOAT_EXPONENT = @as(f32, 2.4e0);
+pub const D3D12_SRGB_TO_FLOAT_OFFSET = @as(f32, 5.5e-2);
+pub const D3D12_SRGB_TO_FLOAT_THRESHOLD = @as(f32, 4.045e-2);
+pub const D3D12_SRGB_TO_FLOAT_TOLERANCE_IN_ULP = @as(f32, 5e-1);
 pub const D3D12_STANDARD_COMPONENT_BIT_COUNT = @as(u32, 32);
 pub const D3D12_STANDARD_COMPONENT_BIT_COUNT_DOUBLED = @as(u32, 64);
 pub const D3D12_STANDARD_MAXIMUM_ELEMENT_ALIGNMENT_BYTE_MULTIPLE = @as(u32, 4);
@@ -488,19 +488,42 @@ pub const D3D12_COMMAND_LIST_TYPE_VIDEO_DECODE = D3D12_COMMAND_LIST_TYPE.VIDEO_D
 pub const D3D12_COMMAND_LIST_TYPE_VIDEO_PROCESS = D3D12_COMMAND_LIST_TYPE.VIDEO_PROCESS;
 pub const D3D12_COMMAND_LIST_TYPE_VIDEO_ENCODE = D3D12_COMMAND_LIST_TYPE.VIDEO_ENCODE;
 
-pub const D3D12_COMMAND_QUEUE_FLAGS = enum(u32) {
-    NONE = 0,
-    DISABLE_GPU_TIMEOUT = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DISABLE_GPU_TIMEOUT: u1 = 0,
-    }) D3D12_COMMAND_QUEUE_FLAGS {
-        return @as(D3D12_COMMAND_QUEUE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_COMMAND_QUEUE_FLAGS.NONE) else 0) | (if (o.DISABLE_GPU_TIMEOUT == 1) @intFromEnum(D3D12_COMMAND_QUEUE_FLAGS.DISABLE_GPU_TIMEOUT) else 0)));
-    }
+pub const D3D12_COMMAND_QUEUE_FLAGS = packed struct(u32) {
+    DISABLE_GPU_TIMEOUT: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_COMMAND_QUEUE_FLAG_NONE = D3D12_COMMAND_QUEUE_FLAGS.NONE;
-pub const D3D12_COMMAND_QUEUE_FLAG_DISABLE_GPU_TIMEOUT = D3D12_COMMAND_QUEUE_FLAGS.DISABLE_GPU_TIMEOUT;
+pub const D3D12_COMMAND_QUEUE_FLAG_NONE = D3D12_COMMAND_QUEUE_FLAGS{ };
+pub const D3D12_COMMAND_QUEUE_FLAG_DISABLE_GPU_TIMEOUT = D3D12_COMMAND_QUEUE_FLAGS{ .DISABLE_GPU_TIMEOUT = 1 };
 
 pub const D3D12_COMMAND_QUEUE_PRIORITY = enum(i32) {
     NORMAL = 0,
@@ -804,135 +827,83 @@ pub const D3D12_RASTERIZER_DESC = extern struct {
     ConservativeRaster: D3D12_CONSERVATIVE_RASTERIZATION_MODE,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Object_Value = Guid.initString("c4fec28f-7966-4e95-9f94-f431cb56c3b8");
 pub const IID_ID3D12Object = &IID_ID3D12Object_Value;
-pub const ID3D12Object = extern struct {
+pub const ID3D12Object = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetPrivateData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Object,
-                guid: ?*const Guid,
-                pDataSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Object,
-                guid: ?*const Guid,
-                pDataSize: ?*u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPrivateData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Object,
-                guid: ?*const Guid,
-                DataSize: u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*const anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Object,
-                guid: ?*const Guid,
-                DataSize: u32,
-                // TODO: what to do with BytesParamIndex 1?
-                pData: ?*const anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetPrivateDataInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Object,
-                guid: ?*const Guid,
-                pData: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Object,
-                guid: ?*const Guid,
-                pData: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Object,
-                Name: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Object,
-                Name: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPrivateData: *const fn(
+            self: *const ID3D12Object,
+            guid: ?*const Guid,
+            pDataSize: ?*u32,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrivateData: *const fn(
+            self: *const ID3D12Object,
+            guid: ?*const Guid,
+            DataSize: u32,
+            // TODO: what to do with BytesParamIndex 1?
+            pData: ?*const anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetPrivateDataInterface: *const fn(
+            self: *const ID3D12Object,
+            guid: ?*const Guid,
+            pData: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetName: *const fn(
+            self: *const ID3D12Object,
+            Name: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Object_GetPrivateData(self: *const T, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) HRESULT {
-                return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).GetPrivateData(@as(*const ID3D12Object, @ptrCast(self)), guid, pDataSize, pData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Object_SetPrivateData(self: *const T, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) HRESULT {
-                return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).SetPrivateData(@as(*const ID3D12Object, @ptrCast(self)), guid, DataSize, pData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Object_SetPrivateDataInterface(self: *const T, guid: ?*const Guid, pData: ?*IUnknown) HRESULT {
-                return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).SetPrivateDataInterface(@as(*const ID3D12Object, @ptrCast(self)), guid, pData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Object_SetName(self: *const T, Name: ?[*:0]const u16) HRESULT {
-                return @as(*const ID3D12Object.VTable, @ptrCast(self.vtable)).SetName(@as(*const ID3D12Object, @ptrCast(self)), Name);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetPrivateData(self: *const ID3D12Object, guid: ?*const Guid, pDataSize: ?*u32, pData: ?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrivateData(self, guid, pDataSize, pData);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetPrivateData(self: *const ID3D12Object, guid: ?*const Guid, DataSize: u32, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrivateData(self, guid, DataSize, pData);
+    }
+    pub fn SetPrivateDataInterface(self: *const ID3D12Object, guid: ?*const Guid, pData: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetPrivateDataInterface(self, guid, pData);
+    }
+    pub fn SetName(self: *const ID3D12Object, Name: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.SetName(self, Name);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DeviceChild_Value = Guid.initString("905db94b-a00c-4140-9df5-2b64ca9ea357");
 pub const IID_ID3D12DeviceChild = &IID_ID3D12DeviceChild_Value;
-pub const ID3D12DeviceChild = extern struct {
+pub const ID3D12DeviceChild = extern union {
     pub const VTable = extern struct {
         base: ID3D12Object.VTable,
-        GetDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceChild,
-                riid: ?*const Guid,
-                ppvDevice: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DeviceChild,
-                riid: ?*const Guid,
-                ppvDevice: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDevice: *const fn(
+            self: *const ID3D12DeviceChild,
+            riid: ?*const Guid,
+            ppvDevice: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Object.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceChild_GetDevice(self: *const T, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12DeviceChild.VTable, @ptrCast(self.vtable)).GetDevice(@as(*const ID3D12DeviceChild, @ptrCast(self)), riid, ppvDevice);
-            }
-        };
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetDevice(self: *const ID3D12DeviceChild, riid: ?*const Guid, ppvDevice: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetDevice(self, riid, ppvDevice);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12RootSignature_Value = Guid.initString("c54a6b66-72df-4ee8-8be5-a946a1429214");
 pub const IID_ID3D12RootSignature = &IID_ID3D12RootSignature_Value;
-pub const ID3D12RootSignature = extern struct {
+pub const ID3D12RootSignature = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceChild.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
 pub const D3D12_SHADER_BYTECODE = extern struct {
@@ -967,19 +938,42 @@ pub const D3D12_CACHED_PIPELINE_STATE = extern struct {
     CachedBlobSizeInBytes: usize,
 };
 
-pub const D3D12_PIPELINE_STATE_FLAGS = enum(u32) {
-    NONE = 0,
-    TOOL_DEBUG = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TOOL_DEBUG: u1 = 0,
-    }) D3D12_PIPELINE_STATE_FLAGS {
-        return @as(D3D12_PIPELINE_STATE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_PIPELINE_STATE_FLAGS.NONE) else 0) | (if (o.TOOL_DEBUG == 1) @intFromEnum(D3D12_PIPELINE_STATE_FLAGS.TOOL_DEBUG) else 0)));
-    }
+pub const D3D12_PIPELINE_STATE_FLAGS = packed struct(u32) {
+    TOOL_DEBUG: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_PIPELINE_STATE_FLAG_NONE = D3D12_PIPELINE_STATE_FLAGS.NONE;
-pub const D3D12_PIPELINE_STATE_FLAG_TOOL_DEBUG = D3D12_PIPELINE_STATE_FLAGS.TOOL_DEBUG;
+pub const D3D12_PIPELINE_STATE_FLAG_NONE = D3D12_PIPELINE_STATE_FLAGS{ };
+pub const D3D12_PIPELINE_STATE_FLAG_TOOL_DEBUG = D3D12_PIPELINE_STATE_FLAGS{ .TOOL_DEBUG = 1 };
 
 pub const D3D12_GRAPHICS_PIPELINE_STATE_DESC = extern struct {
     pRootSignature: ?*ID3D12RootSignature,
@@ -1143,22 +1137,43 @@ pub const D3D12_FEATURE_D3D12_OPTIONS9 = D3D12_FEATURE.D3D12_OPTIONS9;
 pub const D3D12_FEATURE_D3D12_OPTIONS10 = D3D12_FEATURE.D3D12_OPTIONS10;
 pub const D3D12_FEATURE_D3D12_OPTIONS11 = D3D12_FEATURE.D3D12_OPTIONS11;
 
-pub const D3D12_SHADER_MIN_PRECISION_SUPPORT = enum(u32) {
-    NONE = 0,
-    @"10_BIT" = 1,
-    @"16_BIT" = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        @"10_BIT": u1 = 0,
-        @"16_BIT": u1 = 0,
-    }) D3D12_SHADER_MIN_PRECISION_SUPPORT {
-        return @as(D3D12_SHADER_MIN_PRECISION_SUPPORT, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_SHADER_MIN_PRECISION_SUPPORT.NONE) else 0) | (if (o.@"10_BIT" == 1) @intFromEnum(D3D12_SHADER_MIN_PRECISION_SUPPORT.@"10_BIT") else 0) | (if (o.@"16_BIT" == 1) @intFromEnum(D3D12_SHADER_MIN_PRECISION_SUPPORT.@"16_BIT") else 0)));
-    }
+pub const D3D12_SHADER_MIN_PRECISION_SUPPORT = packed struct(u32) {
+    @"10_BIT": u1 = 0,
+    @"16_BIT": u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_NONE = D3D12_SHADER_MIN_PRECISION_SUPPORT.NONE;
-pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_10_BIT = D3D12_SHADER_MIN_PRECISION_SUPPORT.@"10_BIT";
-pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_16_BIT = D3D12_SHADER_MIN_PRECISION_SUPPORT.@"16_BIT";
+pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_NONE = D3D12_SHADER_MIN_PRECISION_SUPPORT{ };
+pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_10_BIT = D3D12_SHADER_MIN_PRECISION_SUPPORT{ .@"10_BIT" = 1 };
+pub const D3D12_SHADER_MIN_PRECISION_SUPPORT_16_BIT = D3D12_SHADER_MIN_PRECISION_SUPPORT{ .@"16_BIT" = 1 };
 
 pub const D3D12_TILED_RESOURCES_TIER = enum(i32) {
     NOT_SUPPORTED = 0,
@@ -1193,164 +1208,155 @@ pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_1 = D3D12_CONSERVATIVE_RASTERIZA
 pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_2 = D3D12_CONSERVATIVE_RASTERIZATION_TIER.@"2";
 pub const D3D12_CONSERVATIVE_RASTERIZATION_TIER_3 = D3D12_CONSERVATIVE_RASTERIZATION_TIER.@"3";
 
-pub const D3D12_FORMAT_SUPPORT1 = enum(u32) {
-    NONE = 0,
-    BUFFER = 1,
-    IA_VERTEX_BUFFER = 2,
-    IA_INDEX_BUFFER = 4,
-    SO_BUFFER = 8,
-    TEXTURE1D = 16,
-    TEXTURE2D = 32,
-    TEXTURE3D = 64,
-    TEXTURECUBE = 128,
-    SHADER_LOAD = 256,
-    SHADER_SAMPLE = 512,
-    SHADER_SAMPLE_COMPARISON = 1024,
-    SHADER_SAMPLE_MONO_TEXT = 2048,
-    MIP = 4096,
-    RENDER_TARGET = 16384,
-    BLENDABLE = 32768,
-    DEPTH_STENCIL = 65536,
-    MULTISAMPLE_RESOLVE = 262144,
-    DISPLAY = 524288,
-    CAST_WITHIN_BIT_LAYOUT = 1048576,
-    MULTISAMPLE_RENDERTARGET = 2097152,
-    MULTISAMPLE_LOAD = 4194304,
-    SHADER_GATHER = 8388608,
-    BACK_BUFFER_CAST = 16777216,
-    TYPED_UNORDERED_ACCESS_VIEW = 33554432,
-    SHADER_GATHER_COMPARISON = 67108864,
-    DECODER_OUTPUT = 134217728,
-    VIDEO_PROCESSOR_OUTPUT = 268435456,
-    VIDEO_PROCESSOR_INPUT = 536870912,
-    VIDEO_ENCODER = 1073741824,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        BUFFER: u1 = 0,
-        IA_VERTEX_BUFFER: u1 = 0,
-        IA_INDEX_BUFFER: u1 = 0,
-        SO_BUFFER: u1 = 0,
-        TEXTURE1D: u1 = 0,
-        TEXTURE2D: u1 = 0,
-        TEXTURE3D: u1 = 0,
-        TEXTURECUBE: u1 = 0,
-        SHADER_LOAD: u1 = 0,
-        SHADER_SAMPLE: u1 = 0,
-        SHADER_SAMPLE_COMPARISON: u1 = 0,
-        SHADER_SAMPLE_MONO_TEXT: u1 = 0,
-        MIP: u1 = 0,
-        RENDER_TARGET: u1 = 0,
-        BLENDABLE: u1 = 0,
-        DEPTH_STENCIL: u1 = 0,
-        MULTISAMPLE_RESOLVE: u1 = 0,
-        DISPLAY: u1 = 0,
-        CAST_WITHIN_BIT_LAYOUT: u1 = 0,
-        MULTISAMPLE_RENDERTARGET: u1 = 0,
-        MULTISAMPLE_LOAD: u1 = 0,
-        SHADER_GATHER: u1 = 0,
-        BACK_BUFFER_CAST: u1 = 0,
-        TYPED_UNORDERED_ACCESS_VIEW: u1 = 0,
-        SHADER_GATHER_COMPARISON: u1 = 0,
-        DECODER_OUTPUT: u1 = 0,
-        VIDEO_PROCESSOR_OUTPUT: u1 = 0,
-        VIDEO_PROCESSOR_INPUT: u1 = 0,
-        VIDEO_ENCODER: u1 = 0,
-    }) D3D12_FORMAT_SUPPORT1 {
-        return @as(D3D12_FORMAT_SUPPORT1, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.NONE) else 0) | (if (o.BUFFER == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.BUFFER) else 0) | (if (o.IA_VERTEX_BUFFER == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.IA_VERTEX_BUFFER) else 0) | (if (o.IA_INDEX_BUFFER == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.IA_INDEX_BUFFER) else 0) | (if (o.SO_BUFFER == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.SO_BUFFER) else 0) | (if (o.TEXTURE1D == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.TEXTURE1D) else 0) | (if (o.TEXTURE2D == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.TEXTURE2D) else 0) | (if (o.TEXTURE3D == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.TEXTURE3D) else 0) | (if (o.TEXTURECUBE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.TEXTURECUBE) else 0) | (if (o.SHADER_LOAD == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.SHADER_LOAD) else 0) | (if (o.SHADER_SAMPLE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE) else 0) | (if (o.SHADER_SAMPLE_COMPARISON == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE_COMPARISON) else 0) | (if (o.SHADER_SAMPLE_MONO_TEXT == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE_MONO_TEXT) else 0) | (if (o.MIP == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.MIP) else 0) | (if (o.RENDER_TARGET == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.RENDER_TARGET) else 0) | (if (o.BLENDABLE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.BLENDABLE) else 0) | (if (o.DEPTH_STENCIL == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.DEPTH_STENCIL) else 0) | (if (o.MULTISAMPLE_RESOLVE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.MULTISAMPLE_RESOLVE) else 0) | (if (o.DISPLAY == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.DISPLAY) else 0) | (if (o.CAST_WITHIN_BIT_LAYOUT == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.CAST_WITHIN_BIT_LAYOUT) else 0) | (if (o.MULTISAMPLE_RENDERTARGET == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.MULTISAMPLE_RENDERTARGET) else 0) | (if (o.MULTISAMPLE_LOAD == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.MULTISAMPLE_LOAD) else 0) | (if (o.SHADER_GATHER == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.SHADER_GATHER) else 0) | (if (o.BACK_BUFFER_CAST == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.BACK_BUFFER_CAST) else 0) | (if (o.TYPED_UNORDERED_ACCESS_VIEW == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.TYPED_UNORDERED_ACCESS_VIEW) else 0) | (if (o.SHADER_GATHER_COMPARISON == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.SHADER_GATHER_COMPARISON) else 0) | (if (o.DECODER_OUTPUT == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.DECODER_OUTPUT) else 0) | (if (o.VIDEO_PROCESSOR_OUTPUT == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_OUTPUT) else 0) | (if (o.VIDEO_PROCESSOR_INPUT == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_INPUT) else 0) | (if (o.VIDEO_ENCODER == 1) @intFromEnum(D3D12_FORMAT_SUPPORT1.VIDEO_ENCODER) else 0)));
-    }
+pub const D3D12_FORMAT_SUPPORT1 = packed struct(u32) {
+    BUFFER: u1 = 0,
+    IA_VERTEX_BUFFER: u1 = 0,
+    IA_INDEX_BUFFER: u1 = 0,
+    SO_BUFFER: u1 = 0,
+    TEXTURE1D: u1 = 0,
+    TEXTURE2D: u1 = 0,
+    TEXTURE3D: u1 = 0,
+    TEXTURECUBE: u1 = 0,
+    SHADER_LOAD: u1 = 0,
+    SHADER_SAMPLE: u1 = 0,
+    SHADER_SAMPLE_COMPARISON: u1 = 0,
+    SHADER_SAMPLE_MONO_TEXT: u1 = 0,
+    MIP: u1 = 0,
+    _13: u1 = 0,
+    RENDER_TARGET: u1 = 0,
+    BLENDABLE: u1 = 0,
+    DEPTH_STENCIL: u1 = 0,
+    _17: u1 = 0,
+    MULTISAMPLE_RESOLVE: u1 = 0,
+    DISPLAY: u1 = 0,
+    CAST_WITHIN_BIT_LAYOUT: u1 = 0,
+    MULTISAMPLE_RENDERTARGET: u1 = 0,
+    MULTISAMPLE_LOAD: u1 = 0,
+    SHADER_GATHER: u1 = 0,
+    BACK_BUFFER_CAST: u1 = 0,
+    TYPED_UNORDERED_ACCESS_VIEW: u1 = 0,
+    SHADER_GATHER_COMPARISON: u1 = 0,
+    DECODER_OUTPUT: u1 = 0,
+    VIDEO_PROCESSOR_OUTPUT: u1 = 0,
+    VIDEO_PROCESSOR_INPUT: u1 = 0,
+    VIDEO_ENCODER: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_FORMAT_SUPPORT1_NONE = D3D12_FORMAT_SUPPORT1.NONE;
-pub const D3D12_FORMAT_SUPPORT1_BUFFER = D3D12_FORMAT_SUPPORT1.BUFFER;
-pub const D3D12_FORMAT_SUPPORT1_IA_VERTEX_BUFFER = D3D12_FORMAT_SUPPORT1.IA_VERTEX_BUFFER;
-pub const D3D12_FORMAT_SUPPORT1_IA_INDEX_BUFFER = D3D12_FORMAT_SUPPORT1.IA_INDEX_BUFFER;
-pub const D3D12_FORMAT_SUPPORT1_SO_BUFFER = D3D12_FORMAT_SUPPORT1.SO_BUFFER;
-pub const D3D12_FORMAT_SUPPORT1_TEXTURE1D = D3D12_FORMAT_SUPPORT1.TEXTURE1D;
-pub const D3D12_FORMAT_SUPPORT1_TEXTURE2D = D3D12_FORMAT_SUPPORT1.TEXTURE2D;
-pub const D3D12_FORMAT_SUPPORT1_TEXTURE3D = D3D12_FORMAT_SUPPORT1.TEXTURE3D;
-pub const D3D12_FORMAT_SUPPORT1_TEXTURECUBE = D3D12_FORMAT_SUPPORT1.TEXTURECUBE;
-pub const D3D12_FORMAT_SUPPORT1_SHADER_LOAD = D3D12_FORMAT_SUPPORT1.SHADER_LOAD;
-pub const D3D12_FORMAT_SUPPORT1_SHADER_SAMPLE = D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE;
-pub const D3D12_FORMAT_SUPPORT1_SHADER_SAMPLE_COMPARISON = D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE_COMPARISON;
-pub const D3D12_FORMAT_SUPPORT1_SHADER_SAMPLE_MONO_TEXT = D3D12_FORMAT_SUPPORT1.SHADER_SAMPLE_MONO_TEXT;
-pub const D3D12_FORMAT_SUPPORT1_MIP = D3D12_FORMAT_SUPPORT1.MIP;
-pub const D3D12_FORMAT_SUPPORT1_RENDER_TARGET = D3D12_FORMAT_SUPPORT1.RENDER_TARGET;
-pub const D3D12_FORMAT_SUPPORT1_BLENDABLE = D3D12_FORMAT_SUPPORT1.BLENDABLE;
-pub const D3D12_FORMAT_SUPPORT1_DEPTH_STENCIL = D3D12_FORMAT_SUPPORT1.DEPTH_STENCIL;
-pub const D3D12_FORMAT_SUPPORT1_MULTISAMPLE_RESOLVE = D3D12_FORMAT_SUPPORT1.MULTISAMPLE_RESOLVE;
-pub const D3D12_FORMAT_SUPPORT1_DISPLAY = D3D12_FORMAT_SUPPORT1.DISPLAY;
-pub const D3D12_FORMAT_SUPPORT1_CAST_WITHIN_BIT_LAYOUT = D3D12_FORMAT_SUPPORT1.CAST_WITHIN_BIT_LAYOUT;
-pub const D3D12_FORMAT_SUPPORT1_MULTISAMPLE_RENDERTARGET = D3D12_FORMAT_SUPPORT1.MULTISAMPLE_RENDERTARGET;
-pub const D3D12_FORMAT_SUPPORT1_MULTISAMPLE_LOAD = D3D12_FORMAT_SUPPORT1.MULTISAMPLE_LOAD;
-pub const D3D12_FORMAT_SUPPORT1_SHADER_GATHER = D3D12_FORMAT_SUPPORT1.SHADER_GATHER;
-pub const D3D12_FORMAT_SUPPORT1_BACK_BUFFER_CAST = D3D12_FORMAT_SUPPORT1.BACK_BUFFER_CAST;
-pub const D3D12_FORMAT_SUPPORT1_TYPED_UNORDERED_ACCESS_VIEW = D3D12_FORMAT_SUPPORT1.TYPED_UNORDERED_ACCESS_VIEW;
-pub const D3D12_FORMAT_SUPPORT1_SHADER_GATHER_COMPARISON = D3D12_FORMAT_SUPPORT1.SHADER_GATHER_COMPARISON;
-pub const D3D12_FORMAT_SUPPORT1_DECODER_OUTPUT = D3D12_FORMAT_SUPPORT1.DECODER_OUTPUT;
-pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_OUTPUT = D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_OUTPUT;
-pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_INPUT = D3D12_FORMAT_SUPPORT1.VIDEO_PROCESSOR_INPUT;
-pub const D3D12_FORMAT_SUPPORT1_VIDEO_ENCODER = D3D12_FORMAT_SUPPORT1.VIDEO_ENCODER;
+pub const D3D12_FORMAT_SUPPORT1_NONE = D3D12_FORMAT_SUPPORT1{ };
+pub const D3D12_FORMAT_SUPPORT1_BUFFER = D3D12_FORMAT_SUPPORT1{ .BUFFER = 1 };
+pub const D3D12_FORMAT_SUPPORT1_IA_VERTEX_BUFFER = D3D12_FORMAT_SUPPORT1{ .IA_VERTEX_BUFFER = 1 };
+pub const D3D12_FORMAT_SUPPORT1_IA_INDEX_BUFFER = D3D12_FORMAT_SUPPORT1{ .IA_INDEX_BUFFER = 1 };
+pub const D3D12_FORMAT_SUPPORT1_SO_BUFFER = D3D12_FORMAT_SUPPORT1{ .SO_BUFFER = 1 };
+pub const D3D12_FORMAT_SUPPORT1_TEXTURE1D = D3D12_FORMAT_SUPPORT1{ .TEXTURE1D = 1 };
+pub const D3D12_FORMAT_SUPPORT1_TEXTURE2D = D3D12_FORMAT_SUPPORT1{ .TEXTURE2D = 1 };
+pub const D3D12_FORMAT_SUPPORT1_TEXTURE3D = D3D12_FORMAT_SUPPORT1{ .TEXTURE3D = 1 };
+pub const D3D12_FORMAT_SUPPORT1_TEXTURECUBE = D3D12_FORMAT_SUPPORT1{ .TEXTURECUBE = 1 };
+pub const D3D12_FORMAT_SUPPORT1_SHADER_LOAD = D3D12_FORMAT_SUPPORT1{ .SHADER_LOAD = 1 };
+pub const D3D12_FORMAT_SUPPORT1_SHADER_SAMPLE = D3D12_FORMAT_SUPPORT1{ .SHADER_SAMPLE = 1 };
+pub const D3D12_FORMAT_SUPPORT1_SHADER_SAMPLE_COMPARISON = D3D12_FORMAT_SUPPORT1{ .SHADER_SAMPLE_COMPARISON = 1 };
+pub const D3D12_FORMAT_SUPPORT1_SHADER_SAMPLE_MONO_TEXT = D3D12_FORMAT_SUPPORT1{ .SHADER_SAMPLE_MONO_TEXT = 1 };
+pub const D3D12_FORMAT_SUPPORT1_MIP = D3D12_FORMAT_SUPPORT1{ .MIP = 1 };
+pub const D3D12_FORMAT_SUPPORT1_RENDER_TARGET = D3D12_FORMAT_SUPPORT1{ .RENDER_TARGET = 1 };
+pub const D3D12_FORMAT_SUPPORT1_BLENDABLE = D3D12_FORMAT_SUPPORT1{ .BLENDABLE = 1 };
+pub const D3D12_FORMAT_SUPPORT1_DEPTH_STENCIL = D3D12_FORMAT_SUPPORT1{ .DEPTH_STENCIL = 1 };
+pub const D3D12_FORMAT_SUPPORT1_MULTISAMPLE_RESOLVE = D3D12_FORMAT_SUPPORT1{ .MULTISAMPLE_RESOLVE = 1 };
+pub const D3D12_FORMAT_SUPPORT1_DISPLAY = D3D12_FORMAT_SUPPORT1{ .DISPLAY = 1 };
+pub const D3D12_FORMAT_SUPPORT1_CAST_WITHIN_BIT_LAYOUT = D3D12_FORMAT_SUPPORT1{ .CAST_WITHIN_BIT_LAYOUT = 1 };
+pub const D3D12_FORMAT_SUPPORT1_MULTISAMPLE_RENDERTARGET = D3D12_FORMAT_SUPPORT1{ .MULTISAMPLE_RENDERTARGET = 1 };
+pub const D3D12_FORMAT_SUPPORT1_MULTISAMPLE_LOAD = D3D12_FORMAT_SUPPORT1{ .MULTISAMPLE_LOAD = 1 };
+pub const D3D12_FORMAT_SUPPORT1_SHADER_GATHER = D3D12_FORMAT_SUPPORT1{ .SHADER_GATHER = 1 };
+pub const D3D12_FORMAT_SUPPORT1_BACK_BUFFER_CAST = D3D12_FORMAT_SUPPORT1{ .BACK_BUFFER_CAST = 1 };
+pub const D3D12_FORMAT_SUPPORT1_TYPED_UNORDERED_ACCESS_VIEW = D3D12_FORMAT_SUPPORT1{ .TYPED_UNORDERED_ACCESS_VIEW = 1 };
+pub const D3D12_FORMAT_SUPPORT1_SHADER_GATHER_COMPARISON = D3D12_FORMAT_SUPPORT1{ .SHADER_GATHER_COMPARISON = 1 };
+pub const D3D12_FORMAT_SUPPORT1_DECODER_OUTPUT = D3D12_FORMAT_SUPPORT1{ .DECODER_OUTPUT = 1 };
+pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_OUTPUT = D3D12_FORMAT_SUPPORT1{ .VIDEO_PROCESSOR_OUTPUT = 1 };
+pub const D3D12_FORMAT_SUPPORT1_VIDEO_PROCESSOR_INPUT = D3D12_FORMAT_SUPPORT1{ .VIDEO_PROCESSOR_INPUT = 1 };
+pub const D3D12_FORMAT_SUPPORT1_VIDEO_ENCODER = D3D12_FORMAT_SUPPORT1{ .VIDEO_ENCODER = 1 };
 
-pub const D3D12_FORMAT_SUPPORT2 = enum(u32) {
-    NONE = 0,
-    UAV_ATOMIC_ADD = 1,
-    UAV_ATOMIC_BITWISE_OPS = 2,
-    UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE = 4,
-    UAV_ATOMIC_EXCHANGE = 8,
-    UAV_ATOMIC_SIGNED_MIN_OR_MAX = 16,
-    UAV_ATOMIC_UNSIGNED_MIN_OR_MAX = 32,
-    UAV_TYPED_LOAD = 64,
-    UAV_TYPED_STORE = 128,
-    OUTPUT_MERGER_LOGIC_OP = 256,
-    TILED = 512,
-    MULTIPLANE_OVERLAY = 16384,
-    SAMPLER_FEEDBACK = 32768,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        UAV_ATOMIC_ADD: u1 = 0,
-        UAV_ATOMIC_BITWISE_OPS: u1 = 0,
-        UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE: u1 = 0,
-        UAV_ATOMIC_EXCHANGE: u1 = 0,
-        UAV_ATOMIC_SIGNED_MIN_OR_MAX: u1 = 0,
-        UAV_ATOMIC_UNSIGNED_MIN_OR_MAX: u1 = 0,
-        UAV_TYPED_LOAD: u1 = 0,
-        UAV_TYPED_STORE: u1 = 0,
-        OUTPUT_MERGER_LOGIC_OP: u1 = 0,
-        TILED: u1 = 0,
-        MULTIPLANE_OVERLAY: u1 = 0,
-        SAMPLER_FEEDBACK: u1 = 0,
-    }) D3D12_FORMAT_SUPPORT2 {
-        return @as(D3D12_FORMAT_SUPPORT2, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.NONE) else 0) | (if (o.UAV_ATOMIC_ADD == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_ADD) else 0) | (if (o.UAV_ATOMIC_BITWISE_OPS == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_BITWISE_OPS) else 0) | (if (o.UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE) else 0) | (if (o.UAV_ATOMIC_EXCHANGE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_EXCHANGE) else 0) | (if (o.UAV_ATOMIC_SIGNED_MIN_OR_MAX == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_SIGNED_MIN_OR_MAX) else 0) | (if (o.UAV_ATOMIC_UNSIGNED_MIN_OR_MAX == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_UNSIGNED_MIN_OR_MAX) else 0) | (if (o.UAV_TYPED_LOAD == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_TYPED_LOAD) else 0) | (if (o.UAV_TYPED_STORE == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.UAV_TYPED_STORE) else 0) | (if (o.OUTPUT_MERGER_LOGIC_OP == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.OUTPUT_MERGER_LOGIC_OP) else 0) | (if (o.TILED == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.TILED) else 0) | (if (o.MULTIPLANE_OVERLAY == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.MULTIPLANE_OVERLAY) else 0) | (if (o.SAMPLER_FEEDBACK == 1) @intFromEnum(D3D12_FORMAT_SUPPORT2.SAMPLER_FEEDBACK) else 0)));
-    }
+pub const D3D12_FORMAT_SUPPORT2 = packed struct(u32) {
+    UAV_ATOMIC_ADD: u1 = 0,
+    UAV_ATOMIC_BITWISE_OPS: u1 = 0,
+    UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE: u1 = 0,
+    UAV_ATOMIC_EXCHANGE: u1 = 0,
+    UAV_ATOMIC_SIGNED_MIN_OR_MAX: u1 = 0,
+    UAV_ATOMIC_UNSIGNED_MIN_OR_MAX: u1 = 0,
+    UAV_TYPED_LOAD: u1 = 0,
+    UAV_TYPED_STORE: u1 = 0,
+    OUTPUT_MERGER_LOGIC_OP: u1 = 0,
+    TILED: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    MULTIPLANE_OVERLAY: u1 = 0,
+    SAMPLER_FEEDBACK: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_FORMAT_SUPPORT2_NONE = D3D12_FORMAT_SUPPORT2.NONE;
-pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_ADD = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_ADD;
-pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_BITWISE_OPS = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_BITWISE_OPS;
-pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE;
-pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_EXCHANGE = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_EXCHANGE;
-pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_SIGNED_MIN_OR_MAX = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_SIGNED_MIN_OR_MAX;
-pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_UNSIGNED_MIN_OR_MAX = D3D12_FORMAT_SUPPORT2.UAV_ATOMIC_UNSIGNED_MIN_OR_MAX;
-pub const D3D12_FORMAT_SUPPORT2_UAV_TYPED_LOAD = D3D12_FORMAT_SUPPORT2.UAV_TYPED_LOAD;
-pub const D3D12_FORMAT_SUPPORT2_UAV_TYPED_STORE = D3D12_FORMAT_SUPPORT2.UAV_TYPED_STORE;
-pub const D3D12_FORMAT_SUPPORT2_OUTPUT_MERGER_LOGIC_OP = D3D12_FORMAT_SUPPORT2.OUTPUT_MERGER_LOGIC_OP;
-pub const D3D12_FORMAT_SUPPORT2_TILED = D3D12_FORMAT_SUPPORT2.TILED;
-pub const D3D12_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY = D3D12_FORMAT_SUPPORT2.MULTIPLANE_OVERLAY;
-pub const D3D12_FORMAT_SUPPORT2_SAMPLER_FEEDBACK = D3D12_FORMAT_SUPPORT2.SAMPLER_FEEDBACK;
+pub const D3D12_FORMAT_SUPPORT2_NONE = D3D12_FORMAT_SUPPORT2{ };
+pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_ADD = D3D12_FORMAT_SUPPORT2{ .UAV_ATOMIC_ADD = 1 };
+pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_BITWISE_OPS = D3D12_FORMAT_SUPPORT2{ .UAV_ATOMIC_BITWISE_OPS = 1 };
+pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE = D3D12_FORMAT_SUPPORT2{ .UAV_ATOMIC_COMPARE_STORE_OR_COMPARE_EXCHANGE = 1 };
+pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_EXCHANGE = D3D12_FORMAT_SUPPORT2{ .UAV_ATOMIC_EXCHANGE = 1 };
+pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_SIGNED_MIN_OR_MAX = D3D12_FORMAT_SUPPORT2{ .UAV_ATOMIC_SIGNED_MIN_OR_MAX = 1 };
+pub const D3D12_FORMAT_SUPPORT2_UAV_ATOMIC_UNSIGNED_MIN_OR_MAX = D3D12_FORMAT_SUPPORT2{ .UAV_ATOMIC_UNSIGNED_MIN_OR_MAX = 1 };
+pub const D3D12_FORMAT_SUPPORT2_UAV_TYPED_LOAD = D3D12_FORMAT_SUPPORT2{ .UAV_TYPED_LOAD = 1 };
+pub const D3D12_FORMAT_SUPPORT2_UAV_TYPED_STORE = D3D12_FORMAT_SUPPORT2{ .UAV_TYPED_STORE = 1 };
+pub const D3D12_FORMAT_SUPPORT2_OUTPUT_MERGER_LOGIC_OP = D3D12_FORMAT_SUPPORT2{ .OUTPUT_MERGER_LOGIC_OP = 1 };
+pub const D3D12_FORMAT_SUPPORT2_TILED = D3D12_FORMAT_SUPPORT2{ .TILED = 1 };
+pub const D3D12_FORMAT_SUPPORT2_MULTIPLANE_OVERLAY = D3D12_FORMAT_SUPPORT2{ .MULTIPLANE_OVERLAY = 1 };
+pub const D3D12_FORMAT_SUPPORT2_SAMPLER_FEEDBACK = D3D12_FORMAT_SUPPORT2{ .SAMPLER_FEEDBACK = 1 };
 
-pub const D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS = enum(u32) {
-    NONE = 0,
-    TILED_RESOURCE = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TILED_RESOURCE: u1 = 0,
-    }) D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS {
-        return @as(D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.NONE) else 0) | (if (o.TILED_RESOURCE == 1) @intFromEnum(D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.TILED_RESOURCE) else 0)));
-    }
+pub const D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS = packed struct(u32) {
+    TILED_RESOURCE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_NONE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.NONE;
-pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_TILED_RESOURCE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS.TILED_RESOURCE;
+pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_NONE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS{ };
+pub const D3D12_MULTISAMPLE_QUALITY_LEVELS_FLAG_TILED_RESOURCE = D3D12_MULTISAMPLE_QUALITY_LEVEL_FLAGS{ .TILED_RESOURCE = 1 };
 
 pub const D3D12_CROSS_NODE_SHARING_TIER = enum(i32) {
     NOT_SUPPORTED = 0,
@@ -1426,8 +1432,8 @@ pub const D3D12_FEATURE_DATA_D3D12_OPTIONS2 = extern struct {
 
 pub const D3D_ROOT_SIGNATURE_VERSION = enum(i32) {
     @"1" = 1,
-    // _0 = 1, this enum value conflicts with @"1"
     _1 = 2,
+    pub const _0 = .@"1";
 };
 pub const D3D_ROOT_SIGNATURE_VERSION_1 = D3D_ROOT_SIGNATURE_VERSION.@"1";
 pub const D3D_ROOT_SIGNATURE_VERSION_1_0 = D3D_ROOT_SIGNATURE_VERSION.@"1";
@@ -1506,37 +1512,48 @@ pub const D3D12_FEATURE_DATA_GPU_VIRTUAL_ADDRESS_SUPPORT = extern struct {
     MaxGPUVirtualAddressBitsPerProcess: u32,
 };
 
-pub const D3D12_SHADER_CACHE_SUPPORT_FLAGS = enum(u32) {
-    NONE = 0,
-    SINGLE_PSO = 1,
-    LIBRARY = 2,
-    AUTOMATIC_INPROC_CACHE = 4,
-    AUTOMATIC_DISK_CACHE = 8,
-    DRIVER_MANAGED_CACHE = 16,
-    SHADER_CONTROL_CLEAR = 32,
-    SHADER_SESSION_DELETE = 64,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SINGLE_PSO: u1 = 0,
-        LIBRARY: u1 = 0,
-        AUTOMATIC_INPROC_CACHE: u1 = 0,
-        AUTOMATIC_DISK_CACHE: u1 = 0,
-        DRIVER_MANAGED_CACHE: u1 = 0,
-        SHADER_CONTROL_CLEAR: u1 = 0,
-        SHADER_SESSION_DELETE: u1 = 0,
-    }) D3D12_SHADER_CACHE_SUPPORT_FLAGS {
-        return @as(D3D12_SHADER_CACHE_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.NONE) else 0) | (if (o.SINGLE_PSO == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.SINGLE_PSO) else 0) | (if (o.LIBRARY == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.LIBRARY) else 0) | (if (o.AUTOMATIC_INPROC_CACHE == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.AUTOMATIC_INPROC_CACHE) else 0) | (if (o.AUTOMATIC_DISK_CACHE == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.AUTOMATIC_DISK_CACHE) else 0) | (if (o.DRIVER_MANAGED_CACHE == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.DRIVER_MANAGED_CACHE) else 0) | (if (o.SHADER_CONTROL_CLEAR == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.SHADER_CONTROL_CLEAR) else 0) | (if (o.SHADER_SESSION_DELETE == 1) @intFromEnum(D3D12_SHADER_CACHE_SUPPORT_FLAGS.SHADER_SESSION_DELETE) else 0)));
-    }
+pub const D3D12_SHADER_CACHE_SUPPORT_FLAGS = packed struct(u32) {
+    SINGLE_PSO: u1 = 0,
+    LIBRARY: u1 = 0,
+    AUTOMATIC_INPROC_CACHE: u1 = 0,
+    AUTOMATIC_DISK_CACHE: u1 = 0,
+    DRIVER_MANAGED_CACHE: u1 = 0,
+    SHADER_CONTROL_CLEAR: u1 = 0,
+    SHADER_SESSION_DELETE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_SHADER_CACHE_SUPPORT_NONE = D3D12_SHADER_CACHE_SUPPORT_FLAGS.NONE;
-pub const D3D12_SHADER_CACHE_SUPPORT_SINGLE_PSO = D3D12_SHADER_CACHE_SUPPORT_FLAGS.SINGLE_PSO;
-pub const D3D12_SHADER_CACHE_SUPPORT_LIBRARY = D3D12_SHADER_CACHE_SUPPORT_FLAGS.LIBRARY;
-pub const D3D12_SHADER_CACHE_SUPPORT_AUTOMATIC_INPROC_CACHE = D3D12_SHADER_CACHE_SUPPORT_FLAGS.AUTOMATIC_INPROC_CACHE;
-pub const D3D12_SHADER_CACHE_SUPPORT_AUTOMATIC_DISK_CACHE = D3D12_SHADER_CACHE_SUPPORT_FLAGS.AUTOMATIC_DISK_CACHE;
-pub const D3D12_SHADER_CACHE_SUPPORT_DRIVER_MANAGED_CACHE = D3D12_SHADER_CACHE_SUPPORT_FLAGS.DRIVER_MANAGED_CACHE;
-pub const D3D12_SHADER_CACHE_SUPPORT_SHADER_CONTROL_CLEAR = D3D12_SHADER_CACHE_SUPPORT_FLAGS.SHADER_CONTROL_CLEAR;
-pub const D3D12_SHADER_CACHE_SUPPORT_SHADER_SESSION_DELETE = D3D12_SHADER_CACHE_SUPPORT_FLAGS.SHADER_SESSION_DELETE;
+pub const D3D12_SHADER_CACHE_SUPPORT_NONE = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ };
+pub const D3D12_SHADER_CACHE_SUPPORT_SINGLE_PSO = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ .SINGLE_PSO = 1 };
+pub const D3D12_SHADER_CACHE_SUPPORT_LIBRARY = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ .LIBRARY = 1 };
+pub const D3D12_SHADER_CACHE_SUPPORT_AUTOMATIC_INPROC_CACHE = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ .AUTOMATIC_INPROC_CACHE = 1 };
+pub const D3D12_SHADER_CACHE_SUPPORT_AUTOMATIC_DISK_CACHE = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ .AUTOMATIC_DISK_CACHE = 1 };
+pub const D3D12_SHADER_CACHE_SUPPORT_DRIVER_MANAGED_CACHE = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ .DRIVER_MANAGED_CACHE = 1 };
+pub const D3D12_SHADER_CACHE_SUPPORT_SHADER_CONTROL_CLEAR = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ .SHADER_CONTROL_CLEAR = 1 };
+pub const D3D12_SHADER_CACHE_SUPPORT_SHADER_SESSION_DELETE = D3D12_SHADER_CACHE_SUPPORT_FLAGS{ .SHADER_SESSION_DELETE = 1 };
 
 pub const D3D12_FEATURE_DATA_SHADER_CACHE = extern struct {
     SupportFlags: D3D12_SHADER_CACHE_SUPPORT_FLAGS,
@@ -1548,37 +1565,48 @@ pub const D3D12_FEATURE_DATA_COMMAND_QUEUE_PRIORITY = extern struct {
     PriorityForTypeIsSupported: BOOL,
 };
 
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAGS = enum(u32) {
-    NONE = 0,
-    DIRECT = 1,
-    BUNDLE = 2,
-    COMPUTE = 4,
-    COPY = 8,
-    VIDEO_DECODE = 16,
-    VIDEO_PROCESS = 32,
-    VIDEO_ENCODE = 64,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DIRECT: u1 = 0,
-        BUNDLE: u1 = 0,
-        COMPUTE: u1 = 0,
-        COPY: u1 = 0,
-        VIDEO_DECODE: u1 = 0,
-        VIDEO_PROCESS: u1 = 0,
-        VIDEO_ENCODE: u1 = 0,
-    }) D3D12_COMMAND_LIST_SUPPORT_FLAGS {
-        return @as(D3D12_COMMAND_LIST_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.NONE) else 0) | (if (o.DIRECT == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.DIRECT) else 0) | (if (o.BUNDLE == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.BUNDLE) else 0) | (if (o.COMPUTE == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.COMPUTE) else 0) | (if (o.COPY == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.COPY) else 0) | (if (o.VIDEO_DECODE == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_DECODE) else 0) | (if (o.VIDEO_PROCESS == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_PROCESS) else 0) | (if (o.VIDEO_ENCODE == 1) @intFromEnum(D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_ENCODE) else 0)));
-    }
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAGS = packed struct(u32) {
+    DIRECT: u1 = 0,
+    BUNDLE: u1 = 0,
+    COMPUTE: u1 = 0,
+    COPY: u1 = 0,
+    VIDEO_DECODE: u1 = 0,
+    VIDEO_PROCESS: u1 = 0,
+    VIDEO_ENCODE: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_NONE = D3D12_COMMAND_LIST_SUPPORT_FLAGS.NONE;
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_DIRECT = D3D12_COMMAND_LIST_SUPPORT_FLAGS.DIRECT;
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_BUNDLE = D3D12_COMMAND_LIST_SUPPORT_FLAGS.BUNDLE;
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_COMPUTE = D3D12_COMMAND_LIST_SUPPORT_FLAGS.COMPUTE;
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_COPY = D3D12_COMMAND_LIST_SUPPORT_FLAGS.COPY;
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_VIDEO_DECODE = D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_DECODE;
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_VIDEO_PROCESS = D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_PROCESS;
-pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_VIDEO_ENCODE = D3D12_COMMAND_LIST_SUPPORT_FLAGS.VIDEO_ENCODE;
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_NONE = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ };
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_DIRECT = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ .DIRECT = 1 };
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_BUNDLE = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ .BUNDLE = 1 };
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_COMPUTE = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ .COMPUTE = 1 };
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_COPY = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ .COPY = 1 };
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_VIDEO_DECODE = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ .VIDEO_DECODE = 1 };
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_VIDEO_PROCESS = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ .VIDEO_PROCESS = 1 };
+pub const D3D12_COMMAND_LIST_SUPPORT_FLAG_VIDEO_ENCODE = D3D12_COMMAND_LIST_SUPPORT_FLAGS{ .VIDEO_ENCODE = 1 };
 
 pub const D3D12_FEATURE_DATA_D3D12_OPTIONS3 = extern struct {
     CopyQueueTimestampQueriesSupported: BOOL,
@@ -1779,60 +1807,65 @@ pub const D3D12_HEAP_PROPERTIES = extern struct {
     VisibleNodeMask: u32,
 };
 
-pub const D3D12_HEAP_FLAGS = enum(u32) {
-    NONE = 0,
-    SHARED = 1,
-    DENY_BUFFERS = 4,
-    ALLOW_DISPLAY = 8,
-    SHARED_CROSS_ADAPTER = 32,
-    DENY_RT_DS_TEXTURES = 64,
-    DENY_NON_RT_DS_TEXTURES = 128,
-    HARDWARE_PROTECTED = 256,
-    ALLOW_WRITE_WATCH = 512,
-    ALLOW_SHADER_ATOMICS = 1024,
-    CREATE_NOT_RESIDENT = 2048,
-    CREATE_NOT_ZEROED = 4096,
-    // ALLOW_ALL_BUFFERS_AND_TEXTURES = 0, this enum value conflicts with NONE
-    ALLOW_ONLY_BUFFERS = 192,
-    ALLOW_ONLY_NON_RT_DS_TEXTURES = 68,
-    ALLOW_ONLY_RT_DS_TEXTURES = 132,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SHARED: u1 = 0,
-        DENY_BUFFERS: u1 = 0,
-        ALLOW_DISPLAY: u1 = 0,
-        SHARED_CROSS_ADAPTER: u1 = 0,
-        DENY_RT_DS_TEXTURES: u1 = 0,
-        DENY_NON_RT_DS_TEXTURES: u1 = 0,
-        HARDWARE_PROTECTED: u1 = 0,
-        ALLOW_WRITE_WATCH: u1 = 0,
-        ALLOW_SHADER_ATOMICS: u1 = 0,
-        CREATE_NOT_RESIDENT: u1 = 0,
-        CREATE_NOT_ZEROED: u1 = 0,
-        ALLOW_ONLY_BUFFERS: u1 = 0,
-        ALLOW_ONLY_NON_RT_DS_TEXTURES: u1 = 0,
-        ALLOW_ONLY_RT_DS_TEXTURES: u1 = 0,
-    }) D3D12_HEAP_FLAGS {
-        return @as(D3D12_HEAP_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_HEAP_FLAGS.NONE) else 0) | (if (o.SHARED == 1) @intFromEnum(D3D12_HEAP_FLAGS.SHARED) else 0) | (if (o.DENY_BUFFERS == 1) @intFromEnum(D3D12_HEAP_FLAGS.DENY_BUFFERS) else 0) | (if (o.ALLOW_DISPLAY == 1) @intFromEnum(D3D12_HEAP_FLAGS.ALLOW_DISPLAY) else 0) | (if (o.SHARED_CROSS_ADAPTER == 1) @intFromEnum(D3D12_HEAP_FLAGS.SHARED_CROSS_ADAPTER) else 0) | (if (o.DENY_RT_DS_TEXTURES == 1) @intFromEnum(D3D12_HEAP_FLAGS.DENY_RT_DS_TEXTURES) else 0) | (if (o.DENY_NON_RT_DS_TEXTURES == 1) @intFromEnum(D3D12_HEAP_FLAGS.DENY_NON_RT_DS_TEXTURES) else 0) | (if (o.HARDWARE_PROTECTED == 1) @intFromEnum(D3D12_HEAP_FLAGS.HARDWARE_PROTECTED) else 0) | (if (o.ALLOW_WRITE_WATCH == 1) @intFromEnum(D3D12_HEAP_FLAGS.ALLOW_WRITE_WATCH) else 0) | (if (o.ALLOW_SHADER_ATOMICS == 1) @intFromEnum(D3D12_HEAP_FLAGS.ALLOW_SHADER_ATOMICS) else 0) | (if (o.CREATE_NOT_RESIDENT == 1) @intFromEnum(D3D12_HEAP_FLAGS.CREATE_NOT_RESIDENT) else 0) | (if (o.CREATE_NOT_ZEROED == 1) @intFromEnum(D3D12_HEAP_FLAGS.CREATE_NOT_ZEROED) else 0) | (if (o.ALLOW_ONLY_BUFFERS == 1) @intFromEnum(D3D12_HEAP_FLAGS.ALLOW_ONLY_BUFFERS) else 0) | (if (o.ALLOW_ONLY_NON_RT_DS_TEXTURES == 1) @intFromEnum(D3D12_HEAP_FLAGS.ALLOW_ONLY_NON_RT_DS_TEXTURES) else 0) | (if (o.ALLOW_ONLY_RT_DS_TEXTURES == 1) @intFromEnum(D3D12_HEAP_FLAGS.ALLOW_ONLY_RT_DS_TEXTURES) else 0)));
-    }
+pub const D3D12_HEAP_FLAGS = packed struct(u32) {
+    SHARED: u1 = 0,
+    _1: u1 = 0,
+    DENY_BUFFERS: u1 = 0,
+    ALLOW_DISPLAY: u1 = 0,
+    _4: u1 = 0,
+    SHARED_CROSS_ADAPTER: u1 = 0,
+    DENY_RT_DS_TEXTURES: u1 = 0,
+    DENY_NON_RT_DS_TEXTURES: u1 = 0,
+    HARDWARE_PROTECTED: u1 = 0,
+    ALLOW_WRITE_WATCH: u1 = 0,
+    ALLOW_SHADER_ATOMICS: u1 = 0,
+    CREATE_NOT_RESIDENT: u1 = 0,
+    CREATE_NOT_ZEROED: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_HEAP_FLAG_NONE = D3D12_HEAP_FLAGS.NONE;
-pub const D3D12_HEAP_FLAG_SHARED = D3D12_HEAP_FLAGS.SHARED;
-pub const D3D12_HEAP_FLAG_DENY_BUFFERS = D3D12_HEAP_FLAGS.DENY_BUFFERS;
-pub const D3D12_HEAP_FLAG_ALLOW_DISPLAY = D3D12_HEAP_FLAGS.ALLOW_DISPLAY;
-pub const D3D12_HEAP_FLAG_SHARED_CROSS_ADAPTER = D3D12_HEAP_FLAGS.SHARED_CROSS_ADAPTER;
-pub const D3D12_HEAP_FLAG_DENY_RT_DS_TEXTURES = D3D12_HEAP_FLAGS.DENY_RT_DS_TEXTURES;
-pub const D3D12_HEAP_FLAG_DENY_NON_RT_DS_TEXTURES = D3D12_HEAP_FLAGS.DENY_NON_RT_DS_TEXTURES;
-pub const D3D12_HEAP_FLAG_HARDWARE_PROTECTED = D3D12_HEAP_FLAGS.HARDWARE_PROTECTED;
-pub const D3D12_HEAP_FLAG_ALLOW_WRITE_WATCH = D3D12_HEAP_FLAGS.ALLOW_WRITE_WATCH;
-pub const D3D12_HEAP_FLAG_ALLOW_SHADER_ATOMICS = D3D12_HEAP_FLAGS.ALLOW_SHADER_ATOMICS;
-pub const D3D12_HEAP_FLAG_CREATE_NOT_RESIDENT = D3D12_HEAP_FLAGS.CREATE_NOT_RESIDENT;
-pub const D3D12_HEAP_FLAG_CREATE_NOT_ZEROED = D3D12_HEAP_FLAGS.CREATE_NOT_ZEROED;
-pub const D3D12_HEAP_FLAG_ALLOW_ALL_BUFFERS_AND_TEXTURES = D3D12_HEAP_FLAGS.NONE;
-pub const D3D12_HEAP_FLAG_ALLOW_ONLY_BUFFERS = D3D12_HEAP_FLAGS.ALLOW_ONLY_BUFFERS;
-pub const D3D12_HEAP_FLAG_ALLOW_ONLY_NON_RT_DS_TEXTURES = D3D12_HEAP_FLAGS.ALLOW_ONLY_NON_RT_DS_TEXTURES;
-pub const D3D12_HEAP_FLAG_ALLOW_ONLY_RT_DS_TEXTURES = D3D12_HEAP_FLAGS.ALLOW_ONLY_RT_DS_TEXTURES;
+pub const D3D12_HEAP_FLAG_NONE = D3D12_HEAP_FLAGS{ };
+pub const D3D12_HEAP_FLAG_SHARED = D3D12_HEAP_FLAGS{ .SHARED = 1 };
+pub const D3D12_HEAP_FLAG_DENY_BUFFERS = D3D12_HEAP_FLAGS{ .DENY_BUFFERS = 1 };
+pub const D3D12_HEAP_FLAG_ALLOW_DISPLAY = D3D12_HEAP_FLAGS{ .ALLOW_DISPLAY = 1 };
+pub const D3D12_HEAP_FLAG_SHARED_CROSS_ADAPTER = D3D12_HEAP_FLAGS{ .SHARED_CROSS_ADAPTER = 1 };
+pub const D3D12_HEAP_FLAG_DENY_RT_DS_TEXTURES = D3D12_HEAP_FLAGS{ .DENY_RT_DS_TEXTURES = 1 };
+pub const D3D12_HEAP_FLAG_DENY_NON_RT_DS_TEXTURES = D3D12_HEAP_FLAGS{ .DENY_NON_RT_DS_TEXTURES = 1 };
+pub const D3D12_HEAP_FLAG_HARDWARE_PROTECTED = D3D12_HEAP_FLAGS{ .HARDWARE_PROTECTED = 1 };
+pub const D3D12_HEAP_FLAG_ALLOW_WRITE_WATCH = D3D12_HEAP_FLAGS{ .ALLOW_WRITE_WATCH = 1 };
+pub const D3D12_HEAP_FLAG_ALLOW_SHADER_ATOMICS = D3D12_HEAP_FLAGS{ .ALLOW_SHADER_ATOMICS = 1 };
+pub const D3D12_HEAP_FLAG_CREATE_NOT_RESIDENT = D3D12_HEAP_FLAGS{ .CREATE_NOT_RESIDENT = 1 };
+pub const D3D12_HEAP_FLAG_CREATE_NOT_ZEROED = D3D12_HEAP_FLAGS{ .CREATE_NOT_ZEROED = 1 };
+pub const D3D12_HEAP_FLAG_ALLOW_ALL_BUFFERS_AND_TEXTURES = D3D12_HEAP_FLAGS{ };
+pub const D3D12_HEAP_FLAG_ALLOW_ONLY_BUFFERS = D3D12_HEAP_FLAGS{
+    .DENY_RT_DS_TEXTURES = 1,
+    .DENY_NON_RT_DS_TEXTURES = 1,
+};
+pub const D3D12_HEAP_FLAG_ALLOW_ONLY_NON_RT_DS_TEXTURES = D3D12_HEAP_FLAGS{
+    .DENY_BUFFERS = 1,
+    .DENY_RT_DS_TEXTURES = 1,
+};
+pub const D3D12_HEAP_FLAG_ALLOW_ONLY_RT_DS_TEXTURES = D3D12_HEAP_FLAGS{
+    .DENY_BUFFERS = 1,
+    .DENY_NON_RT_DS_TEXTURES = 1,
+};
 
 pub const D3D12_HEAP_DESC = extern struct {
     SizeInBytes: u64,
@@ -1865,40 +1898,49 @@ pub const D3D12_TEXTURE_LAYOUT_ROW_MAJOR = D3D12_TEXTURE_LAYOUT.ROW_MAJOR;
 pub const D3D12_TEXTURE_LAYOUT_64KB_UNDEFINED_SWIZZLE = D3D12_TEXTURE_LAYOUT.@"64KB_UNDEFINED_SWIZZLE";
 pub const D3D12_TEXTURE_LAYOUT_64KB_STANDARD_SWIZZLE = D3D12_TEXTURE_LAYOUT.@"64KB_STANDARD_SWIZZLE";
 
-pub const D3D12_RESOURCE_FLAGS = enum(u32) {
-    NONE = 0,
-    ALLOW_RENDER_TARGET = 1,
-    ALLOW_DEPTH_STENCIL = 2,
-    ALLOW_UNORDERED_ACCESS = 4,
-    DENY_SHADER_RESOURCE = 8,
-    ALLOW_CROSS_ADAPTER = 16,
-    ALLOW_SIMULTANEOUS_ACCESS = 32,
-    VIDEO_DECODE_REFERENCE_ONLY = 64,
-    VIDEO_ENCODE_REFERENCE_ONLY = 128,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOW_RENDER_TARGET: u1 = 0,
-        ALLOW_DEPTH_STENCIL: u1 = 0,
-        ALLOW_UNORDERED_ACCESS: u1 = 0,
-        DENY_SHADER_RESOURCE: u1 = 0,
-        ALLOW_CROSS_ADAPTER: u1 = 0,
-        ALLOW_SIMULTANEOUS_ACCESS: u1 = 0,
-        VIDEO_DECODE_REFERENCE_ONLY: u1 = 0,
-        VIDEO_ENCODE_REFERENCE_ONLY: u1 = 0,
-    }) D3D12_RESOURCE_FLAGS {
-        return @as(D3D12_RESOURCE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.NONE) else 0) | (if (o.ALLOW_RENDER_TARGET == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.ALLOW_RENDER_TARGET) else 0) | (if (o.ALLOW_DEPTH_STENCIL == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.ALLOW_DEPTH_STENCIL) else 0) | (if (o.ALLOW_UNORDERED_ACCESS == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.ALLOW_UNORDERED_ACCESS) else 0) | (if (o.DENY_SHADER_RESOURCE == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.DENY_SHADER_RESOURCE) else 0) | (if (o.ALLOW_CROSS_ADAPTER == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.ALLOW_CROSS_ADAPTER) else 0) | (if (o.ALLOW_SIMULTANEOUS_ACCESS == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.ALLOW_SIMULTANEOUS_ACCESS) else 0) | (if (o.VIDEO_DECODE_REFERENCE_ONLY == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.VIDEO_DECODE_REFERENCE_ONLY) else 0) | (if (o.VIDEO_ENCODE_REFERENCE_ONLY == 1) @intFromEnum(D3D12_RESOURCE_FLAGS.VIDEO_ENCODE_REFERENCE_ONLY) else 0)));
-    }
+pub const D3D12_RESOURCE_FLAGS = packed struct(u32) {
+    ALLOW_RENDER_TARGET: u1 = 0,
+    ALLOW_DEPTH_STENCIL: u1 = 0,
+    ALLOW_UNORDERED_ACCESS: u1 = 0,
+    DENY_SHADER_RESOURCE: u1 = 0,
+    ALLOW_CROSS_ADAPTER: u1 = 0,
+    ALLOW_SIMULTANEOUS_ACCESS: u1 = 0,
+    VIDEO_DECODE_REFERENCE_ONLY: u1 = 0,
+    VIDEO_ENCODE_REFERENCE_ONLY: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RESOURCE_FLAG_NONE = D3D12_RESOURCE_FLAGS.NONE;
-pub const D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET = D3D12_RESOURCE_FLAGS.ALLOW_RENDER_TARGET;
-pub const D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL = D3D12_RESOURCE_FLAGS.ALLOW_DEPTH_STENCIL;
-pub const D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS = D3D12_RESOURCE_FLAGS.ALLOW_UNORDERED_ACCESS;
-pub const D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE = D3D12_RESOURCE_FLAGS.DENY_SHADER_RESOURCE;
-pub const D3D12_RESOURCE_FLAG_ALLOW_CROSS_ADAPTER = D3D12_RESOURCE_FLAGS.ALLOW_CROSS_ADAPTER;
-pub const D3D12_RESOURCE_FLAG_ALLOW_SIMULTANEOUS_ACCESS = D3D12_RESOURCE_FLAGS.ALLOW_SIMULTANEOUS_ACCESS;
-pub const D3D12_RESOURCE_FLAG_VIDEO_DECODE_REFERENCE_ONLY = D3D12_RESOURCE_FLAGS.VIDEO_DECODE_REFERENCE_ONLY;
-pub const D3D12_RESOURCE_FLAG_VIDEO_ENCODE_REFERENCE_ONLY = D3D12_RESOURCE_FLAGS.VIDEO_ENCODE_REFERENCE_ONLY;
+pub const D3D12_RESOURCE_FLAG_NONE = D3D12_RESOURCE_FLAGS{ };
+pub const D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET = D3D12_RESOURCE_FLAGS{ .ALLOW_RENDER_TARGET = 1 };
+pub const D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL = D3D12_RESOURCE_FLAGS{ .ALLOW_DEPTH_STENCIL = 1 };
+pub const D3D12_RESOURCE_FLAG_ALLOW_UNORDERED_ACCESS = D3D12_RESOURCE_FLAGS{ .ALLOW_UNORDERED_ACCESS = 1 };
+pub const D3D12_RESOURCE_FLAG_DENY_SHADER_RESOURCE = D3D12_RESOURCE_FLAGS{ .DENY_SHADER_RESOURCE = 1 };
+pub const D3D12_RESOURCE_FLAG_ALLOW_CROSS_ADAPTER = D3D12_RESOURCE_FLAGS{ .ALLOW_CROSS_ADAPTER = 1 };
+pub const D3D12_RESOURCE_FLAG_ALLOW_SIMULTANEOUS_ACCESS = D3D12_RESOURCE_FLAGS{ .ALLOW_SIMULTANEOUS_ACCESS = 1 };
+pub const D3D12_RESOURCE_FLAG_VIDEO_DECODE_REFERENCE_ONLY = D3D12_RESOURCE_FLAGS{ .VIDEO_DECODE_REFERENCE_ONLY = 1 };
+pub const D3D12_RESOURCE_FLAG_VIDEO_ENCODE_REFERENCE_ONLY = D3D12_RESOURCE_FLAGS{ .VIDEO_ENCODE_REFERENCE_ONLY = 1 };
 
 pub const D3D12_MIP_REGION = extern struct {
     Width: u32,
@@ -2013,126 +2055,154 @@ pub const D3D12_PACKED_MIP_INFO = extern struct {
     StartTileIndexInOverallResource: u32,
 };
 
-pub const D3D12_TILE_MAPPING_FLAGS = enum(u32) {
-    NE = 0,
-    _HAZARD = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NE: u1 = 0,
-        _HAZARD: u1 = 0,
-    }) D3D12_TILE_MAPPING_FLAGS {
-        return @as(D3D12_TILE_MAPPING_FLAGS, @enumFromInt((if (o.NE == 1) @intFromEnum(D3D12_TILE_MAPPING_FLAGS.NE) else 0) | (if (o._HAZARD == 1) @intFromEnum(D3D12_TILE_MAPPING_FLAGS._HAZARD) else 0)));
-    }
+pub const D3D12_TILE_MAPPING_FLAGS = packed struct(u32) {
+    _HAZARD: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_TILE_MAPPING_FLAG_NONE = D3D12_TILE_MAPPING_FLAGS.NE;
-pub const D3D12_TILE_MAPPING_FLAG_NO_HAZARD = D3D12_TILE_MAPPING_FLAGS._HAZARD;
+pub const D3D12_TILE_MAPPING_FLAG_NONE = D3D12_TILE_MAPPING_FLAGS{ };
+pub const D3D12_TILE_MAPPING_FLAG_NO_HAZARD = D3D12_TILE_MAPPING_FLAGS{ ._HAZARD = 1 };
 
-pub const D3D12_TILE_COPY_FLAGS = enum(u32) {
-    NONE = 0,
-    NO_HAZARD = 1,
-    LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = 2,
-    SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        NO_HAZARD: u1 = 0,
-        LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE: u1 = 0,
-        SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER: u1 = 0,
-    }) D3D12_TILE_COPY_FLAGS {
-        return @as(D3D12_TILE_COPY_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_TILE_COPY_FLAGS.NONE) else 0) | (if (o.NO_HAZARD == 1) @intFromEnum(D3D12_TILE_COPY_FLAGS.NO_HAZARD) else 0) | (if (o.LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE == 1) @intFromEnum(D3D12_TILE_COPY_FLAGS.LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE) else 0) | (if (o.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER == 1) @intFromEnum(D3D12_TILE_COPY_FLAGS.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER) else 0)));
-    }
+pub const D3D12_TILE_COPY_FLAGS = packed struct(u32) {
+    NO_HAZARD: u1 = 0,
+    LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE: u1 = 0,
+    SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_TILE_COPY_FLAG_NONE = D3D12_TILE_COPY_FLAGS.NONE;
-pub const D3D12_TILE_COPY_FLAG_NO_HAZARD = D3D12_TILE_COPY_FLAGS.NO_HAZARD;
-pub const D3D12_TILE_COPY_FLAG_LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = D3D12_TILE_COPY_FLAGS.LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE;
-pub const D3D12_TILE_COPY_FLAG_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = D3D12_TILE_COPY_FLAGS.SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER;
+pub const D3D12_TILE_COPY_FLAG_NONE = D3D12_TILE_COPY_FLAGS{ };
+pub const D3D12_TILE_COPY_FLAG_NO_HAZARD = D3D12_TILE_COPY_FLAGS{ .NO_HAZARD = 1 };
+pub const D3D12_TILE_COPY_FLAG_LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = D3D12_TILE_COPY_FLAGS{ .LINEAR_BUFFER_TO_SWIZZLED_TILED_RESOURCE = 1 };
+pub const D3D12_TILE_COPY_FLAG_SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = D3D12_TILE_COPY_FLAGS{ .SWIZZLED_TILED_RESOURCE_TO_LINEAR_BUFFER = 1 };
 
-pub const D3D12_RESOURCE_STATES = enum(u32) {
-    COMMON = 0,
-    VERTEX_AND_CONSTANT_BUFFER = 1,
-    INDEX_BUFFER = 2,
-    RENDER_TARGET = 4,
-    UNORDERED_ACCESS = 8,
-    DEPTH_WRITE = 16,
-    DEPTH_READ = 32,
-    NON_PIXEL_SHADER_RESOURCE = 64,
-    PIXEL_SHADER_RESOURCE = 128,
-    STREAM_OUT = 256,
-    INDIRECT_ARGUMENT = 512,
-    COPY_DEST = 1024,
-    COPY_SOURCE = 2048,
-    RESOLVE_DEST = 4096,
-    RESOLVE_SOURCE = 8192,
-    RAYTRACING_ACCELERATION_STRUCTURE = 4194304,
-    SHADING_RATE_SOURCE = 16777216,
-    GENERIC_READ = 2755,
-    ALL_SHADER_RESOURCE = 192,
-    // PRESENT = 0, this enum value conflicts with COMMON
-    // PREDICATION = 512, this enum value conflicts with INDIRECT_ARGUMENT
-    VIDEO_DECODE_READ = 65536,
-    VIDEO_DECODE_WRITE = 131072,
-    VIDEO_PROCESS_READ = 262144,
-    VIDEO_PROCESS_WRITE = 524288,
-    VIDEO_ENCODE_READ = 2097152,
-    VIDEO_ENCODE_WRITE = 8388608,
-    _,
-    pub fn initFlags(o: struct {
-        COMMON: u1 = 0,
-        VERTEX_AND_CONSTANT_BUFFER: u1 = 0,
-        INDEX_BUFFER: u1 = 0,
-        RENDER_TARGET: u1 = 0,
-        UNORDERED_ACCESS: u1 = 0,
-        DEPTH_WRITE: u1 = 0,
-        DEPTH_READ: u1 = 0,
-        NON_PIXEL_SHADER_RESOURCE: u1 = 0,
-        PIXEL_SHADER_RESOURCE: u1 = 0,
-        STREAM_OUT: u1 = 0,
-        INDIRECT_ARGUMENT: u1 = 0,
-        COPY_DEST: u1 = 0,
-        COPY_SOURCE: u1 = 0,
-        RESOLVE_DEST: u1 = 0,
-        RESOLVE_SOURCE: u1 = 0,
-        RAYTRACING_ACCELERATION_STRUCTURE: u1 = 0,
-        SHADING_RATE_SOURCE: u1 = 0,
-        GENERIC_READ: u1 = 0,
-        ALL_SHADER_RESOURCE: u1 = 0,
-        VIDEO_DECODE_READ: u1 = 0,
-        VIDEO_DECODE_WRITE: u1 = 0,
-        VIDEO_PROCESS_READ: u1 = 0,
-        VIDEO_PROCESS_WRITE: u1 = 0,
-        VIDEO_ENCODE_READ: u1 = 0,
-        VIDEO_ENCODE_WRITE: u1 = 0,
-    }) D3D12_RESOURCE_STATES {
-        return @as(D3D12_RESOURCE_STATES, @enumFromInt((if (o.COMMON == 1) @intFromEnum(D3D12_RESOURCE_STATES.COMMON) else 0) | (if (o.VERTEX_AND_CONSTANT_BUFFER == 1) @intFromEnum(D3D12_RESOURCE_STATES.VERTEX_AND_CONSTANT_BUFFER) else 0) | (if (o.INDEX_BUFFER == 1) @intFromEnum(D3D12_RESOURCE_STATES.INDEX_BUFFER) else 0) | (if (o.RENDER_TARGET == 1) @intFromEnum(D3D12_RESOURCE_STATES.RENDER_TARGET) else 0) | (if (o.UNORDERED_ACCESS == 1) @intFromEnum(D3D12_RESOURCE_STATES.UNORDERED_ACCESS) else 0) | (if (o.DEPTH_WRITE == 1) @intFromEnum(D3D12_RESOURCE_STATES.DEPTH_WRITE) else 0) | (if (o.DEPTH_READ == 1) @intFromEnum(D3D12_RESOURCE_STATES.DEPTH_READ) else 0) | (if (o.NON_PIXEL_SHADER_RESOURCE == 1) @intFromEnum(D3D12_RESOURCE_STATES.NON_PIXEL_SHADER_RESOURCE) else 0) | (if (o.PIXEL_SHADER_RESOURCE == 1) @intFromEnum(D3D12_RESOURCE_STATES.PIXEL_SHADER_RESOURCE) else 0) | (if (o.STREAM_OUT == 1) @intFromEnum(D3D12_RESOURCE_STATES.STREAM_OUT) else 0) | (if (o.INDIRECT_ARGUMENT == 1) @intFromEnum(D3D12_RESOURCE_STATES.INDIRECT_ARGUMENT) else 0) | (if (o.COPY_DEST == 1) @intFromEnum(D3D12_RESOURCE_STATES.COPY_DEST) else 0) | (if (o.COPY_SOURCE == 1) @intFromEnum(D3D12_RESOURCE_STATES.COPY_SOURCE) else 0) | (if (o.RESOLVE_DEST == 1) @intFromEnum(D3D12_RESOURCE_STATES.RESOLVE_DEST) else 0) | (if (o.RESOLVE_SOURCE == 1) @intFromEnum(D3D12_RESOURCE_STATES.RESOLVE_SOURCE) else 0) | (if (o.RAYTRACING_ACCELERATION_STRUCTURE == 1) @intFromEnum(D3D12_RESOURCE_STATES.RAYTRACING_ACCELERATION_STRUCTURE) else 0) | (if (o.SHADING_RATE_SOURCE == 1) @intFromEnum(D3D12_RESOURCE_STATES.SHADING_RATE_SOURCE) else 0) | (if (o.GENERIC_READ == 1) @intFromEnum(D3D12_RESOURCE_STATES.GENERIC_READ) else 0) | (if (o.ALL_SHADER_RESOURCE == 1) @intFromEnum(D3D12_RESOURCE_STATES.ALL_SHADER_RESOURCE) else 0) | (if (o.VIDEO_DECODE_READ == 1) @intFromEnum(D3D12_RESOURCE_STATES.VIDEO_DECODE_READ) else 0) | (if (o.VIDEO_DECODE_WRITE == 1) @intFromEnum(D3D12_RESOURCE_STATES.VIDEO_DECODE_WRITE) else 0) | (if (o.VIDEO_PROCESS_READ == 1) @intFromEnum(D3D12_RESOURCE_STATES.VIDEO_PROCESS_READ) else 0) | (if (o.VIDEO_PROCESS_WRITE == 1) @intFromEnum(D3D12_RESOURCE_STATES.VIDEO_PROCESS_WRITE) else 0) | (if (o.VIDEO_ENCODE_READ == 1) @intFromEnum(D3D12_RESOURCE_STATES.VIDEO_ENCODE_READ) else 0) | (if (o.VIDEO_ENCODE_WRITE == 1) @intFromEnum(D3D12_RESOURCE_STATES.VIDEO_ENCODE_WRITE) else 0)));
-    }
+pub const D3D12_RESOURCE_STATES = packed struct(u32) {
+    VERTEX_AND_CONSTANT_BUFFER: u1 = 0,
+    INDEX_BUFFER: u1 = 0,
+    RENDER_TARGET: u1 = 0,
+    UNORDERED_ACCESS: u1 = 0,
+    DEPTH_WRITE: u1 = 0,
+    DEPTH_READ: u1 = 0,
+    NON_PIXEL_SHADER_RESOURCE: u1 = 0,
+    PIXEL_SHADER_RESOURCE: u1 = 0,
+    STREAM_OUT: u1 = 0,
+    INDIRECT_ARGUMENT: u1 = 0,
+    COPY_DEST: u1 = 0,
+    COPY_SOURCE: u1 = 0,
+    RESOLVE_DEST: u1 = 0,
+    RESOLVE_SOURCE: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    VIDEO_DECODE_READ: u1 = 0,
+    VIDEO_DECODE_WRITE: u1 = 0,
+    VIDEO_PROCESS_READ: u1 = 0,
+    VIDEO_PROCESS_WRITE: u1 = 0,
+    _20: u1 = 0,
+    VIDEO_ENCODE_READ: u1 = 0,
+    RAYTRACING_ACCELERATION_STRUCTURE: u1 = 0,
+    VIDEO_ENCODE_WRITE: u1 = 0,
+    SHADING_RATE_SOURCE: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // PREDICATION (bit index 9) conflicts with INDIRECT_ARGUMENT
 };
-pub const D3D12_RESOURCE_STATE_COMMON = D3D12_RESOURCE_STATES.COMMON;
-pub const D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER = D3D12_RESOURCE_STATES.VERTEX_AND_CONSTANT_BUFFER;
-pub const D3D12_RESOURCE_STATE_INDEX_BUFFER = D3D12_RESOURCE_STATES.INDEX_BUFFER;
-pub const D3D12_RESOURCE_STATE_RENDER_TARGET = D3D12_RESOURCE_STATES.RENDER_TARGET;
-pub const D3D12_RESOURCE_STATE_UNORDERED_ACCESS = D3D12_RESOURCE_STATES.UNORDERED_ACCESS;
-pub const D3D12_RESOURCE_STATE_DEPTH_WRITE = D3D12_RESOURCE_STATES.DEPTH_WRITE;
-pub const D3D12_RESOURCE_STATE_DEPTH_READ = D3D12_RESOURCE_STATES.DEPTH_READ;
-pub const D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE = D3D12_RESOURCE_STATES.NON_PIXEL_SHADER_RESOURCE;
-pub const D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE = D3D12_RESOURCE_STATES.PIXEL_SHADER_RESOURCE;
-pub const D3D12_RESOURCE_STATE_STREAM_OUT = D3D12_RESOURCE_STATES.STREAM_OUT;
-pub const D3D12_RESOURCE_STATE_INDIRECT_ARGUMENT = D3D12_RESOURCE_STATES.INDIRECT_ARGUMENT;
-pub const D3D12_RESOURCE_STATE_COPY_DEST = D3D12_RESOURCE_STATES.COPY_DEST;
-pub const D3D12_RESOURCE_STATE_COPY_SOURCE = D3D12_RESOURCE_STATES.COPY_SOURCE;
-pub const D3D12_RESOURCE_STATE_RESOLVE_DEST = D3D12_RESOURCE_STATES.RESOLVE_DEST;
-pub const D3D12_RESOURCE_STATE_RESOLVE_SOURCE = D3D12_RESOURCE_STATES.RESOLVE_SOURCE;
-pub const D3D12_RESOURCE_STATE_RAYTRACING_ACCELERATION_STRUCTURE = D3D12_RESOURCE_STATES.RAYTRACING_ACCELERATION_STRUCTURE;
-pub const D3D12_RESOURCE_STATE_SHADING_RATE_SOURCE = D3D12_RESOURCE_STATES.SHADING_RATE_SOURCE;
-pub const D3D12_RESOURCE_STATE_GENERIC_READ = D3D12_RESOURCE_STATES.GENERIC_READ;
-pub const D3D12_RESOURCE_STATE_ALL_SHADER_RESOURCE = D3D12_RESOURCE_STATES.ALL_SHADER_RESOURCE;
-pub const D3D12_RESOURCE_STATE_PRESENT = D3D12_RESOURCE_STATES.COMMON;
-pub const D3D12_RESOURCE_STATE_PREDICATION = D3D12_RESOURCE_STATES.INDIRECT_ARGUMENT;
-pub const D3D12_RESOURCE_STATE_VIDEO_DECODE_READ = D3D12_RESOURCE_STATES.VIDEO_DECODE_READ;
-pub const D3D12_RESOURCE_STATE_VIDEO_DECODE_WRITE = D3D12_RESOURCE_STATES.VIDEO_DECODE_WRITE;
-pub const D3D12_RESOURCE_STATE_VIDEO_PROCESS_READ = D3D12_RESOURCE_STATES.VIDEO_PROCESS_READ;
-pub const D3D12_RESOURCE_STATE_VIDEO_PROCESS_WRITE = D3D12_RESOURCE_STATES.VIDEO_PROCESS_WRITE;
-pub const D3D12_RESOURCE_STATE_VIDEO_ENCODE_READ = D3D12_RESOURCE_STATES.VIDEO_ENCODE_READ;
-pub const D3D12_RESOURCE_STATE_VIDEO_ENCODE_WRITE = D3D12_RESOURCE_STATES.VIDEO_ENCODE_WRITE;
+pub const D3D12_RESOURCE_STATE_COMMON = D3D12_RESOURCE_STATES{ };
+pub const D3D12_RESOURCE_STATE_VERTEX_AND_CONSTANT_BUFFER = D3D12_RESOURCE_STATES{ .VERTEX_AND_CONSTANT_BUFFER = 1 };
+pub const D3D12_RESOURCE_STATE_INDEX_BUFFER = D3D12_RESOURCE_STATES{ .INDEX_BUFFER = 1 };
+pub const D3D12_RESOURCE_STATE_RENDER_TARGET = D3D12_RESOURCE_STATES{ .RENDER_TARGET = 1 };
+pub const D3D12_RESOURCE_STATE_UNORDERED_ACCESS = D3D12_RESOURCE_STATES{ .UNORDERED_ACCESS = 1 };
+pub const D3D12_RESOURCE_STATE_DEPTH_WRITE = D3D12_RESOURCE_STATES{ .DEPTH_WRITE = 1 };
+pub const D3D12_RESOURCE_STATE_DEPTH_READ = D3D12_RESOURCE_STATES{ .DEPTH_READ = 1 };
+pub const D3D12_RESOURCE_STATE_NON_PIXEL_SHADER_RESOURCE = D3D12_RESOURCE_STATES{ .NON_PIXEL_SHADER_RESOURCE = 1 };
+pub const D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE = D3D12_RESOURCE_STATES{ .PIXEL_SHADER_RESOURCE = 1 };
+pub const D3D12_RESOURCE_STATE_STREAM_OUT = D3D12_RESOURCE_STATES{ .STREAM_OUT = 1 };
+pub const D3D12_RESOURCE_STATE_INDIRECT_ARGUMENT = D3D12_RESOURCE_STATES{ .INDIRECT_ARGUMENT = 1 };
+pub const D3D12_RESOURCE_STATE_COPY_DEST = D3D12_RESOURCE_STATES{ .COPY_DEST = 1 };
+pub const D3D12_RESOURCE_STATE_COPY_SOURCE = D3D12_RESOURCE_STATES{ .COPY_SOURCE = 1 };
+pub const D3D12_RESOURCE_STATE_RESOLVE_DEST = D3D12_RESOURCE_STATES{ .RESOLVE_DEST = 1 };
+pub const D3D12_RESOURCE_STATE_RESOLVE_SOURCE = D3D12_RESOURCE_STATES{ .RESOLVE_SOURCE = 1 };
+pub const D3D12_RESOURCE_STATE_RAYTRACING_ACCELERATION_STRUCTURE = D3D12_RESOURCE_STATES{ .RAYTRACING_ACCELERATION_STRUCTURE = 1 };
+pub const D3D12_RESOURCE_STATE_SHADING_RATE_SOURCE = D3D12_RESOURCE_STATES{ .SHADING_RATE_SOURCE = 1 };
+pub const D3D12_RESOURCE_STATE_GENERIC_READ = D3D12_RESOURCE_STATES{
+    .VERTEX_AND_CONSTANT_BUFFER = 1,
+    .INDEX_BUFFER = 1,
+    .NON_PIXEL_SHADER_RESOURCE = 1,
+    .PIXEL_SHADER_RESOURCE = 1,
+    .INDIRECT_ARGUMENT = 1,
+    .COPY_SOURCE = 1,
+};
+pub const D3D12_RESOURCE_STATE_ALL_SHADER_RESOURCE = D3D12_RESOURCE_STATES{
+    .NON_PIXEL_SHADER_RESOURCE = 1,
+    .PIXEL_SHADER_RESOURCE = 1,
+};
+pub const D3D12_RESOURCE_STATE_PRESENT = D3D12_RESOURCE_STATES{ };
+pub const D3D12_RESOURCE_STATE_PREDICATION = D3D12_RESOURCE_STATES{ .INDIRECT_ARGUMENT = 1 };
+pub const D3D12_RESOURCE_STATE_VIDEO_DECODE_READ = D3D12_RESOURCE_STATES{ .VIDEO_DECODE_READ = 1 };
+pub const D3D12_RESOURCE_STATE_VIDEO_DECODE_WRITE = D3D12_RESOURCE_STATES{ .VIDEO_DECODE_WRITE = 1 };
+pub const D3D12_RESOURCE_STATE_VIDEO_PROCESS_READ = D3D12_RESOURCE_STATES{ .VIDEO_PROCESS_READ = 1 };
+pub const D3D12_RESOURCE_STATE_VIDEO_PROCESS_WRITE = D3D12_RESOURCE_STATES{ .VIDEO_PROCESS_WRITE = 1 };
+pub const D3D12_RESOURCE_STATE_VIDEO_ENCODE_READ = D3D12_RESOURCE_STATES{ .VIDEO_ENCODE_READ = 1 };
+pub const D3D12_RESOURCE_STATE_VIDEO_ENCODE_WRITE = D3D12_RESOURCE_STATES{ .VIDEO_ENCODE_WRITE = 1 };
 
 pub const D3D12_RESOURCE_BARRIER_TYPE = enum(i32) {
     TRANSITION = 0,
@@ -2159,22 +2229,43 @@ pub const D3D12_RESOURCE_UAV_BARRIER = extern struct {
     pResource: ?*ID3D12Resource,
 };
 
-pub const D3D12_RESOURCE_BARRIER_FLAGS = enum(u32) {
-    NONE = 0,
-    BEGIN_ONLY = 1,
-    END_ONLY = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        BEGIN_ONLY: u1 = 0,
-        END_ONLY: u1 = 0,
-    }) D3D12_RESOURCE_BARRIER_FLAGS {
-        return @as(D3D12_RESOURCE_BARRIER_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RESOURCE_BARRIER_FLAGS.NONE) else 0) | (if (o.BEGIN_ONLY == 1) @intFromEnum(D3D12_RESOURCE_BARRIER_FLAGS.BEGIN_ONLY) else 0) | (if (o.END_ONLY == 1) @intFromEnum(D3D12_RESOURCE_BARRIER_FLAGS.END_ONLY) else 0)));
-    }
+pub const D3D12_RESOURCE_BARRIER_FLAGS = packed struct(u32) {
+    BEGIN_ONLY: u1 = 0,
+    END_ONLY: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RESOURCE_BARRIER_FLAG_NONE = D3D12_RESOURCE_BARRIER_FLAGS.NONE;
-pub const D3D12_RESOURCE_BARRIER_FLAG_BEGIN_ONLY = D3D12_RESOURCE_BARRIER_FLAGS.BEGIN_ONLY;
-pub const D3D12_RESOURCE_BARRIER_FLAG_END_ONLY = D3D12_RESOURCE_BARRIER_FLAGS.END_ONLY;
+pub const D3D12_RESOURCE_BARRIER_FLAG_NONE = D3D12_RESOURCE_BARRIER_FLAGS{ };
+pub const D3D12_RESOURCE_BARRIER_FLAG_BEGIN_ONLY = D3D12_RESOURCE_BARRIER_FLAGS{ .BEGIN_ONLY = 1 };
+pub const D3D12_RESOURCE_BARRIER_FLAG_END_ONLY = D3D12_RESOURCE_BARRIER_FLAGS{ .END_ONLY = 1 };
 
 pub const D3D12_RESOURCE_BARRIER = extern struct {
     Type: D3D12_RESOURCE_BARRIER_TYPE,
@@ -2240,19 +2331,42 @@ pub const D3D12_VIEW_INSTANCE_LOCATION = extern struct {
     RenderTargetArrayIndex: u32,
 };
 
-pub const D3D12_VIEW_INSTANCING_FLAGS = enum(u32) {
-    NONE = 0,
-    ENABLE_VIEW_INSTANCE_MASKING = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ENABLE_VIEW_INSTANCE_MASKING: u1 = 0,
-    }) D3D12_VIEW_INSTANCING_FLAGS {
-        return @as(D3D12_VIEW_INSTANCING_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_VIEW_INSTANCING_FLAGS.NONE) else 0) | (if (o.ENABLE_VIEW_INSTANCE_MASKING == 1) @intFromEnum(D3D12_VIEW_INSTANCING_FLAGS.ENABLE_VIEW_INSTANCE_MASKING) else 0)));
-    }
+pub const D3D12_VIEW_INSTANCING_FLAGS = packed struct(u32) {
+    ENABLE_VIEW_INSTANCE_MASKING: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_VIEW_INSTANCING_FLAG_NONE = D3D12_VIEW_INSTANCING_FLAGS.NONE;
-pub const D3D12_VIEW_INSTANCING_FLAG_ENABLE_VIEW_INSTANCE_MASKING = D3D12_VIEW_INSTANCING_FLAGS.ENABLE_VIEW_INSTANCE_MASKING;
+pub const D3D12_VIEW_INSTANCING_FLAG_NONE = D3D12_VIEW_INSTANCING_FLAGS{ };
+pub const D3D12_VIEW_INSTANCING_FLAG_ENABLE_VIEW_INSTANCE_MASKING = D3D12_VIEW_INSTANCING_FLAGS{ .ENABLE_VIEW_INSTANCE_MASKING = 1 };
 
 pub const D3D12_VIEW_INSTANCING_DESC = extern struct {
     ViewInstanceCount: u32,
@@ -2275,19 +2389,42 @@ pub const D3D12_SHADER_COMPONENT_MAPPING_FROM_MEMORY_COMPONENT_3 = D3D12_SHADER_
 pub const D3D12_SHADER_COMPONENT_MAPPING_FORCE_VALUE_0 = D3D12_SHADER_COMPONENT_MAPPING.ORCE_VALUE_0;
 pub const D3D12_SHADER_COMPONENT_MAPPING_FORCE_VALUE_1 = D3D12_SHADER_COMPONENT_MAPPING.ORCE_VALUE_1;
 
-pub const D3D12_BUFFER_SRV_FLAGS = enum(u32) {
-    NONE = 0,
-    RAW = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        RAW: u1 = 0,
-    }) D3D12_BUFFER_SRV_FLAGS {
-        return @as(D3D12_BUFFER_SRV_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_BUFFER_SRV_FLAGS.NONE) else 0) | (if (o.RAW == 1) @intFromEnum(D3D12_BUFFER_SRV_FLAGS.RAW) else 0)));
-    }
+pub const D3D12_BUFFER_SRV_FLAGS = packed struct(u32) {
+    RAW: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_BUFFER_SRV_FLAG_NONE = D3D12_BUFFER_SRV_FLAGS.NONE;
-pub const D3D12_BUFFER_SRV_FLAG_RAW = D3D12_BUFFER_SRV_FLAGS.RAW;
+pub const D3D12_BUFFER_SRV_FLAG_NONE = D3D12_BUFFER_SRV_FLAGS{ };
+pub const D3D12_BUFFER_SRV_FLAG_RAW = D3D12_BUFFER_SRV_FLAGS{ .RAW = 1 };
 
 pub const D3D12_BUFFER_SRV = extern struct {
     FirstElement: u64,
@@ -2529,19 +2666,42 @@ pub const D3D12_SAMPLER_DESC = extern struct {
     MaxLOD: f32,
 };
 
-pub const D3D12_BUFFER_UAV_FLAGS = enum(u32) {
-    NONE = 0,
-    RAW = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        RAW: u1 = 0,
-    }) D3D12_BUFFER_UAV_FLAGS {
-        return @as(D3D12_BUFFER_UAV_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_BUFFER_UAV_FLAGS.NONE) else 0) | (if (o.RAW == 1) @intFromEnum(D3D12_BUFFER_UAV_FLAGS.RAW) else 0)));
-    }
+pub const D3D12_BUFFER_UAV_FLAGS = packed struct(u32) {
+    RAW: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_BUFFER_UAV_FLAG_NONE = D3D12_BUFFER_UAV_FLAGS.NONE;
-pub const D3D12_BUFFER_UAV_FLAG_RAW = D3D12_BUFFER_UAV_FLAGS.RAW;
+pub const D3D12_BUFFER_UAV_FLAG_NONE = D3D12_BUFFER_UAV_FLAGS{ };
+pub const D3D12_BUFFER_UAV_FLAG_RAW = D3D12_BUFFER_UAV_FLAGS{ .RAW = 1 };
 
 pub const D3D12_BUFFER_UAV = extern struct {
     FirstElement: u64,
@@ -2716,22 +2876,43 @@ pub const D3D12_TEX2DMS_ARRAY_DSV = extern struct {
     ArraySize: u32,
 };
 
-pub const D3D12_DSV_FLAGS = enum(u32) {
-    NONE = 0,
-    READ_ONLY_DEPTH = 1,
-    READ_ONLY_STENCIL = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        READ_ONLY_DEPTH: u1 = 0,
-        READ_ONLY_STENCIL: u1 = 0,
-    }) D3D12_DSV_FLAGS {
-        return @as(D3D12_DSV_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_DSV_FLAGS.NONE) else 0) | (if (o.READ_ONLY_DEPTH == 1) @intFromEnum(D3D12_DSV_FLAGS.READ_ONLY_DEPTH) else 0) | (if (o.READ_ONLY_STENCIL == 1) @intFromEnum(D3D12_DSV_FLAGS.READ_ONLY_STENCIL) else 0)));
-    }
+pub const D3D12_DSV_FLAGS = packed struct(u32) {
+    READ_ONLY_DEPTH: u1 = 0,
+    READ_ONLY_STENCIL: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_DSV_FLAG_NONE = D3D12_DSV_FLAGS.NONE;
-pub const D3D12_DSV_FLAG_READ_ONLY_DEPTH = D3D12_DSV_FLAGS.READ_ONLY_DEPTH;
-pub const D3D12_DSV_FLAG_READ_ONLY_STENCIL = D3D12_DSV_FLAGS.READ_ONLY_STENCIL;
+pub const D3D12_DSV_FLAG_NONE = D3D12_DSV_FLAGS{ };
+pub const D3D12_DSV_FLAG_READ_ONLY_DEPTH = D3D12_DSV_FLAGS{ .READ_ONLY_DEPTH = 1 };
+pub const D3D12_DSV_FLAG_READ_ONLY_STENCIL = D3D12_DSV_FLAGS{ .READ_ONLY_STENCIL = 1 };
 
 pub const D3D12_DSV_DIMENSION = enum(i32) {
     UNKNOWN = 0,
@@ -2764,39 +2945,81 @@ pub const D3D12_DEPTH_STENCIL_VIEW_DESC = extern struct {
     },
 };
 
-pub const D3D12_CLEAR_FLAGS = enum(u32) {
-    DEPTH = 1,
-    STENCIL = 2,
-    _,
-    pub fn initFlags(o: struct {
-        DEPTH: u1 = 0,
-        STENCIL: u1 = 0,
-    }) D3D12_CLEAR_FLAGS {
-        return @as(D3D12_CLEAR_FLAGS, @enumFromInt((if (o.DEPTH == 1) @intFromEnum(D3D12_CLEAR_FLAGS.DEPTH) else 0) | (if (o.STENCIL == 1) @intFromEnum(D3D12_CLEAR_FLAGS.STENCIL) else 0)));
-    }
+pub const D3D12_CLEAR_FLAGS = packed struct(u32) {
+    DEPTH: u1 = 0,
+    STENCIL: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_CLEAR_FLAG_DEPTH = D3D12_CLEAR_FLAGS.DEPTH;
-pub const D3D12_CLEAR_FLAG_STENCIL = D3D12_CLEAR_FLAGS.STENCIL;
+pub const D3D12_CLEAR_FLAG_DEPTH = D3D12_CLEAR_FLAGS{ .DEPTH = 1 };
+pub const D3D12_CLEAR_FLAG_STENCIL = D3D12_CLEAR_FLAGS{ .STENCIL = 1 };
 
-pub const D3D12_FENCE_FLAGS = enum(u32) {
-    NONE = 0,
-    SHARED = 1,
-    SHARED_CROSS_ADAPTER = 2,
-    NON_MONITORED = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SHARED: u1 = 0,
-        SHARED_CROSS_ADAPTER: u1 = 0,
-        NON_MONITORED: u1 = 0,
-    }) D3D12_FENCE_FLAGS {
-        return @as(D3D12_FENCE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_FENCE_FLAGS.NONE) else 0) | (if (o.SHARED == 1) @intFromEnum(D3D12_FENCE_FLAGS.SHARED) else 0) | (if (o.SHARED_CROSS_ADAPTER == 1) @intFromEnum(D3D12_FENCE_FLAGS.SHARED_CROSS_ADAPTER) else 0) | (if (o.NON_MONITORED == 1) @intFromEnum(D3D12_FENCE_FLAGS.NON_MONITORED) else 0)));
-    }
+pub const D3D12_FENCE_FLAGS = packed struct(u32) {
+    SHARED: u1 = 0,
+    SHARED_CROSS_ADAPTER: u1 = 0,
+    NON_MONITORED: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_FENCE_FLAG_NONE = D3D12_FENCE_FLAGS.NONE;
-pub const D3D12_FENCE_FLAG_SHARED = D3D12_FENCE_FLAGS.SHARED;
-pub const D3D12_FENCE_FLAG_SHARED_CROSS_ADAPTER = D3D12_FENCE_FLAGS.SHARED_CROSS_ADAPTER;
-pub const D3D12_FENCE_FLAG_NON_MONITORED = D3D12_FENCE_FLAGS.NON_MONITORED;
+pub const D3D12_FENCE_FLAG_NONE = D3D12_FENCE_FLAGS{ };
+pub const D3D12_FENCE_FLAG_SHARED = D3D12_FENCE_FLAGS{ .SHARED = 1 };
+pub const D3D12_FENCE_FLAG_SHARED_CROSS_ADAPTER = D3D12_FENCE_FLAGS{ .SHARED_CROSS_ADAPTER = 1 };
+pub const D3D12_FENCE_FLAG_NON_MONITORED = D3D12_FENCE_FLAGS{ .NON_MONITORED = 1 };
 
 pub const D3D12_DESCRIPTOR_HEAP_TYPE = enum(i32) {
     CBV_SRV_UAV = 0,
@@ -2811,19 +3034,42 @@ pub const D3D12_DESCRIPTOR_HEAP_TYPE_RTV = D3D12_DESCRIPTOR_HEAP_TYPE.RTV;
 pub const D3D12_DESCRIPTOR_HEAP_TYPE_DSV = D3D12_DESCRIPTOR_HEAP_TYPE.DSV;
 pub const D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES = D3D12_DESCRIPTOR_HEAP_TYPE.NUM_TYPES;
 
-pub const D3D12_DESCRIPTOR_HEAP_FLAGS = enum(u32) {
-    NONE = 0,
-    SHADER_VISIBLE = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SHADER_VISIBLE: u1 = 0,
-    }) D3D12_DESCRIPTOR_HEAP_FLAGS {
-        return @as(D3D12_DESCRIPTOR_HEAP_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_DESCRIPTOR_HEAP_FLAGS.NONE) else 0) | (if (o.SHADER_VISIBLE == 1) @intFromEnum(D3D12_DESCRIPTOR_HEAP_FLAGS.SHADER_VISIBLE) else 0)));
-    }
+pub const D3D12_DESCRIPTOR_HEAP_FLAGS = packed struct(u32) {
+    SHADER_VISIBLE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_DESCRIPTOR_HEAP_FLAG_NONE = D3D12_DESCRIPTOR_HEAP_FLAGS.NONE;
-pub const D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE = D3D12_DESCRIPTOR_HEAP_FLAGS.SHADER_VISIBLE;
+pub const D3D12_DESCRIPTOR_HEAP_FLAG_NONE = D3D12_DESCRIPTOR_HEAP_FLAGS{ };
+pub const D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE = D3D12_DESCRIPTOR_HEAP_FLAGS{ .SHADER_VISIBLE = 1 };
 
 pub const D3D12_DESCRIPTOR_HEAP_DESC = extern struct {
     Type: D3D12_DESCRIPTOR_HEAP_TYPE,
@@ -2909,52 +3155,53 @@ pub const D3D12_ROOT_PARAMETER = extern struct {
     ShaderVisibility: D3D12_SHADER_VISIBILITY,
 };
 
-pub const D3D12_ROOT_SIGNATURE_FLAGS = enum(u32) {
-    NONE = 0,
-    ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = 1,
-    DENY_VERTEX_SHADER_ROOT_ACCESS = 2,
-    DENY_HULL_SHADER_ROOT_ACCESS = 4,
-    DENY_DOMAIN_SHADER_ROOT_ACCESS = 8,
-    DENY_GEOMETRY_SHADER_ROOT_ACCESS = 16,
-    DENY_PIXEL_SHADER_ROOT_ACCESS = 32,
-    ALLOW_STREAM_OUTPUT = 64,
-    LOCAL_ROOT_SIGNATURE = 128,
-    DENY_AMPLIFICATION_SHADER_ROOT_ACCESS = 256,
-    DENY_MESH_SHADER_ROOT_ACCESS = 512,
-    CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED = 1024,
-    SAMPLER_HEAP_DIRECTLY_INDEXED = 2048,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT: u1 = 0,
-        DENY_VERTEX_SHADER_ROOT_ACCESS: u1 = 0,
-        DENY_HULL_SHADER_ROOT_ACCESS: u1 = 0,
-        DENY_DOMAIN_SHADER_ROOT_ACCESS: u1 = 0,
-        DENY_GEOMETRY_SHADER_ROOT_ACCESS: u1 = 0,
-        DENY_PIXEL_SHADER_ROOT_ACCESS: u1 = 0,
-        ALLOW_STREAM_OUTPUT: u1 = 0,
-        LOCAL_ROOT_SIGNATURE: u1 = 0,
-        DENY_AMPLIFICATION_SHADER_ROOT_ACCESS: u1 = 0,
-        DENY_MESH_SHADER_ROOT_ACCESS: u1 = 0,
-        CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED: u1 = 0,
-        SAMPLER_HEAP_DIRECTLY_INDEXED: u1 = 0,
-    }) D3D12_ROOT_SIGNATURE_FLAGS {
-        return @as(D3D12_ROOT_SIGNATURE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.NONE) else 0) | (if (o.ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT) else 0) | (if (o.DENY_VERTEX_SHADER_ROOT_ACCESS == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.DENY_VERTEX_SHADER_ROOT_ACCESS) else 0) | (if (o.DENY_HULL_SHADER_ROOT_ACCESS == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.DENY_HULL_SHADER_ROOT_ACCESS) else 0) | (if (o.DENY_DOMAIN_SHADER_ROOT_ACCESS == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.DENY_DOMAIN_SHADER_ROOT_ACCESS) else 0) | (if (o.DENY_GEOMETRY_SHADER_ROOT_ACCESS == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.DENY_GEOMETRY_SHADER_ROOT_ACCESS) else 0) | (if (o.DENY_PIXEL_SHADER_ROOT_ACCESS == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.DENY_PIXEL_SHADER_ROOT_ACCESS) else 0) | (if (o.ALLOW_STREAM_OUTPUT == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_STREAM_OUTPUT) else 0) | (if (o.LOCAL_ROOT_SIGNATURE == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.LOCAL_ROOT_SIGNATURE) else 0) | (if (o.DENY_AMPLIFICATION_SHADER_ROOT_ACCESS == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.DENY_AMPLIFICATION_SHADER_ROOT_ACCESS) else 0) | (if (o.DENY_MESH_SHADER_ROOT_ACCESS == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.DENY_MESH_SHADER_ROOT_ACCESS) else 0) | (if (o.CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED) else 0) | (if (o.SAMPLER_HEAP_DIRECTLY_INDEXED == 1) @intFromEnum(D3D12_ROOT_SIGNATURE_FLAGS.SAMPLER_HEAP_DIRECTLY_INDEXED) else 0)));
-    }
+pub const D3D12_ROOT_SIGNATURE_FLAGS = packed struct(u32) {
+    ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT: u1 = 0,
+    DENY_VERTEX_SHADER_ROOT_ACCESS: u1 = 0,
+    DENY_HULL_SHADER_ROOT_ACCESS: u1 = 0,
+    DENY_DOMAIN_SHADER_ROOT_ACCESS: u1 = 0,
+    DENY_GEOMETRY_SHADER_ROOT_ACCESS: u1 = 0,
+    DENY_PIXEL_SHADER_ROOT_ACCESS: u1 = 0,
+    ALLOW_STREAM_OUTPUT: u1 = 0,
+    LOCAL_ROOT_SIGNATURE: u1 = 0,
+    DENY_AMPLIFICATION_SHADER_ROOT_ACCESS: u1 = 0,
+    DENY_MESH_SHADER_ROOT_ACCESS: u1 = 0,
+    CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED: u1 = 0,
+    SAMPLER_HEAP_DIRECTLY_INDEXED: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_ROOT_SIGNATURE_FLAG_NONE = D3D12_ROOT_SIGNATURE_FLAGS.NONE;
-pub const D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT;
-pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_VERTEX_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS.DENY_VERTEX_SHADER_ROOT_ACCESS;
-pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS.DENY_HULL_SHADER_ROOT_ACCESS;
-pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS.DENY_DOMAIN_SHADER_ROOT_ACCESS;
-pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS.DENY_GEOMETRY_SHADER_ROOT_ACCESS;
-pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_PIXEL_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS.DENY_PIXEL_SHADER_ROOT_ACCESS;
-pub const D3D12_ROOT_SIGNATURE_FLAG_ALLOW_STREAM_OUTPUT = D3D12_ROOT_SIGNATURE_FLAGS.ALLOW_STREAM_OUTPUT;
-pub const D3D12_ROOT_SIGNATURE_FLAG_LOCAL_ROOT_SIGNATURE = D3D12_ROOT_SIGNATURE_FLAGS.LOCAL_ROOT_SIGNATURE;
-pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_AMPLIFICATION_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS.DENY_AMPLIFICATION_SHADER_ROOT_ACCESS;
-pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_MESH_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS.DENY_MESH_SHADER_ROOT_ACCESS;
-pub const D3D12_ROOT_SIGNATURE_FLAG_CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED = D3D12_ROOT_SIGNATURE_FLAGS.CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED;
-pub const D3D12_ROOT_SIGNATURE_FLAG_SAMPLER_HEAP_DIRECTLY_INDEXED = D3D12_ROOT_SIGNATURE_FLAGS.SAMPLER_HEAP_DIRECTLY_INDEXED;
+pub const D3D12_ROOT_SIGNATURE_FLAG_NONE = D3D12_ROOT_SIGNATURE_FLAGS{ };
+pub const D3D12_ROOT_SIGNATURE_FLAG_ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = D3D12_ROOT_SIGNATURE_FLAGS{ .ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_VERTEX_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS{ .DENY_VERTEX_SHADER_ROOT_ACCESS = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_HULL_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS{ .DENY_HULL_SHADER_ROOT_ACCESS = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_DOMAIN_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS{ .DENY_DOMAIN_SHADER_ROOT_ACCESS = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_GEOMETRY_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS{ .DENY_GEOMETRY_SHADER_ROOT_ACCESS = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_PIXEL_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS{ .DENY_PIXEL_SHADER_ROOT_ACCESS = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_ALLOW_STREAM_OUTPUT = D3D12_ROOT_SIGNATURE_FLAGS{ .ALLOW_STREAM_OUTPUT = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_LOCAL_ROOT_SIGNATURE = D3D12_ROOT_SIGNATURE_FLAGS{ .LOCAL_ROOT_SIGNATURE = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_AMPLIFICATION_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS{ .DENY_AMPLIFICATION_SHADER_ROOT_ACCESS = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_DENY_MESH_SHADER_ROOT_ACCESS = D3D12_ROOT_SIGNATURE_FLAGS{ .DENY_MESH_SHADER_ROOT_ACCESS = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED = D3D12_ROOT_SIGNATURE_FLAGS{ .CBV_SRV_UAV_HEAP_DIRECTLY_INDEXED = 1 };
+pub const D3D12_ROOT_SIGNATURE_FLAG_SAMPLER_HEAP_DIRECTLY_INDEXED = D3D12_ROOT_SIGNATURE_FLAGS{ .SAMPLER_HEAP_DIRECTLY_INDEXED = 1 };
 
 pub const D3D12_STATIC_BORDER_COLOR = enum(i32) {
     TRANSPARENT_BLACK = 0,
@@ -2989,31 +3236,46 @@ pub const D3D12_ROOT_SIGNATURE_DESC = extern struct {
     Flags: D3D12_ROOT_SIGNATURE_FLAGS,
 };
 
-pub const D3D12_DESCRIPTOR_RANGE_FLAGS = enum(u32) {
-    NONE = 0,
-    DESCRIPTORS_VOLATILE = 1,
-    DATA_VOLATILE = 2,
-    DATA_STATIC_WHILE_SET_AT_EXECUTE = 4,
-    DATA_STATIC = 8,
-    DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS = 65536,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DESCRIPTORS_VOLATILE: u1 = 0,
-        DATA_VOLATILE: u1 = 0,
-        DATA_STATIC_WHILE_SET_AT_EXECUTE: u1 = 0,
-        DATA_STATIC: u1 = 0,
-        DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS: u1 = 0,
-    }) D3D12_DESCRIPTOR_RANGE_FLAGS {
-        return @as(D3D12_DESCRIPTOR_RANGE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_DESCRIPTOR_RANGE_FLAGS.NONE) else 0) | (if (o.DESCRIPTORS_VOLATILE == 1) @intFromEnum(D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_VOLATILE) else 0) | (if (o.DATA_VOLATILE == 1) @intFromEnum(D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_VOLATILE) else 0) | (if (o.DATA_STATIC_WHILE_SET_AT_EXECUTE == 1) @intFromEnum(D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_STATIC_WHILE_SET_AT_EXECUTE) else 0) | (if (o.DATA_STATIC == 1) @intFromEnum(D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_STATIC) else 0) | (if (o.DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS == 1) @intFromEnum(D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS) else 0)));
-    }
+pub const D3D12_DESCRIPTOR_RANGE_FLAGS = packed struct(u32) {
+    DESCRIPTORS_VOLATILE: u1 = 0,
+    DATA_VOLATILE: u1 = 0,
+    DATA_STATIC_WHILE_SET_AT_EXECUTE: u1 = 0,
+    DATA_STATIC: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_DESCRIPTOR_RANGE_FLAG_NONE = D3D12_DESCRIPTOR_RANGE_FLAGS.NONE;
-pub const D3D12_DESCRIPTOR_RANGE_FLAG_DESCRIPTORS_VOLATILE = D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_VOLATILE;
-pub const D3D12_DESCRIPTOR_RANGE_FLAG_DATA_VOLATILE = D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_VOLATILE;
-pub const D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC_WHILE_SET_AT_EXECUTE = D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_STATIC_WHILE_SET_AT_EXECUTE;
-pub const D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC = D3D12_DESCRIPTOR_RANGE_FLAGS.DATA_STATIC;
-pub const D3D12_DESCRIPTOR_RANGE_FLAG_DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS = D3D12_DESCRIPTOR_RANGE_FLAGS.DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS;
+pub const D3D12_DESCRIPTOR_RANGE_FLAG_NONE = D3D12_DESCRIPTOR_RANGE_FLAGS{ };
+pub const D3D12_DESCRIPTOR_RANGE_FLAG_DESCRIPTORS_VOLATILE = D3D12_DESCRIPTOR_RANGE_FLAGS{ .DESCRIPTORS_VOLATILE = 1 };
+pub const D3D12_DESCRIPTOR_RANGE_FLAG_DATA_VOLATILE = D3D12_DESCRIPTOR_RANGE_FLAGS{ .DATA_VOLATILE = 1 };
+pub const D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC_WHILE_SET_AT_EXECUTE = D3D12_DESCRIPTOR_RANGE_FLAGS{ .DATA_STATIC_WHILE_SET_AT_EXECUTE = 1 };
+pub const D3D12_DESCRIPTOR_RANGE_FLAG_DATA_STATIC = D3D12_DESCRIPTOR_RANGE_FLAGS{ .DATA_STATIC = 1 };
+pub const D3D12_DESCRIPTOR_RANGE_FLAG_DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS = D3D12_DESCRIPTOR_RANGE_FLAGS{ .DESCRIPTORS_STATIC_KEEPING_BUFFER_BOUNDS_CHECKS = 1 };
 
 pub const D3D12_DESCRIPTOR_RANGE1 = extern struct {
     RangeType: D3D12_DESCRIPTOR_RANGE_TYPE,
@@ -3029,25 +3291,44 @@ pub const D3D12_ROOT_DESCRIPTOR_TABLE1 = extern struct {
     pDescriptorRanges: ?*const D3D12_DESCRIPTOR_RANGE1,
 };
 
-pub const D3D12_ROOT_DESCRIPTOR_FLAGS = enum(u32) {
-    NONE = 0,
-    DATA_VOLATILE = 2,
-    DATA_STATIC_WHILE_SET_AT_EXECUTE = 4,
-    DATA_STATIC = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DATA_VOLATILE: u1 = 0,
-        DATA_STATIC_WHILE_SET_AT_EXECUTE: u1 = 0,
-        DATA_STATIC: u1 = 0,
-    }) D3D12_ROOT_DESCRIPTOR_FLAGS {
-        return @as(D3D12_ROOT_DESCRIPTOR_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_ROOT_DESCRIPTOR_FLAGS.NONE) else 0) | (if (o.DATA_VOLATILE == 1) @intFromEnum(D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_VOLATILE) else 0) | (if (o.DATA_STATIC_WHILE_SET_AT_EXECUTE == 1) @intFromEnum(D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_STATIC_WHILE_SET_AT_EXECUTE) else 0) | (if (o.DATA_STATIC == 1) @intFromEnum(D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_STATIC) else 0)));
-    }
+pub const D3D12_ROOT_DESCRIPTOR_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    DATA_VOLATILE: u1 = 0,
+    DATA_STATIC_WHILE_SET_AT_EXECUTE: u1 = 0,
+    DATA_STATIC: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_ROOT_DESCRIPTOR_FLAG_NONE = D3D12_ROOT_DESCRIPTOR_FLAGS.NONE;
-pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_VOLATILE = D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_VOLATILE;
-pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_STATIC_WHILE_SET_AT_EXECUTE = D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_STATIC_WHILE_SET_AT_EXECUTE;
-pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_STATIC = D3D12_ROOT_DESCRIPTOR_FLAGS.DATA_STATIC;
+pub const D3D12_ROOT_DESCRIPTOR_FLAG_NONE = D3D12_ROOT_DESCRIPTOR_FLAGS{ };
+pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_VOLATILE = D3D12_ROOT_DESCRIPTOR_FLAGS{ .DATA_VOLATILE = 1 };
+pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_STATIC_WHILE_SET_AT_EXECUTE = D3D12_ROOT_DESCRIPTOR_FLAGS{ .DATA_STATIC_WHILE_SET_AT_EXECUTE = 1 };
+pub const D3D12_ROOT_DESCRIPTOR_FLAG_DATA_STATIC = D3D12_ROOT_DESCRIPTOR_FLAGS{ .DATA_STATIC = 1 };
 
 pub const D3D12_ROOT_DESCRIPTOR1 = extern struct {
     ShaderRegister: u32,
@@ -3081,137 +3362,76 @@ pub const D3D12_VERSIONED_ROOT_SIGNATURE_DESC = extern struct {
     },
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12RootSignatureDeserializer_Value = Guid.initString("34ab647b-3cc8-46ac-841b-c0965645c046");
 pub const IID_ID3D12RootSignatureDeserializer = &IID_ID3D12RootSignatureDeserializer_Value;
-pub const ID3D12RootSignatureDeserializer = extern struct {
+pub const ID3D12RootSignatureDeserializer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRootSignatureDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12RootSignatureDeserializer,
-            ) callconv(@import("std").os.windows.WINAPI) ?*D3D12_ROOT_SIGNATURE_DESC,
-            else => *const fn (
-                self: *const ID3D12RootSignatureDeserializer,
-            ) callconv(@import("std").os.windows.WINAPI) ?*D3D12_ROOT_SIGNATURE_DESC,
-        },
+        GetRootSignatureDesc: *const fn(
+            self: *const ID3D12RootSignatureDeserializer,
+        ) callconv(@import("std").os.windows.WINAPI) ?*D3D12_ROOT_SIGNATURE_DESC,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12RootSignatureDeserializer_GetRootSignatureDesc(self: *const T) ?*D3D12_ROOT_SIGNATURE_DESC {
-                return @as(*const ID3D12RootSignatureDeserializer.VTable, @ptrCast(self.vtable)).GetRootSignatureDesc(@as(*const ID3D12RootSignatureDeserializer, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetRootSignatureDesc(self: *const ID3D12RootSignatureDeserializer) callconv(.Inline) ?*D3D12_ROOT_SIGNATURE_DESC {
+        return self.vtable.GetRootSignatureDesc(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12VersionedRootSignatureDeserializer_Value = Guid.initString("7f91ce67-090c-4bb7-b78e-ed8ff2e31da0");
 pub const IID_ID3D12VersionedRootSignatureDeserializer = &IID_ID3D12VersionedRootSignatureDeserializer_Value;
-pub const ID3D12VersionedRootSignatureDeserializer = extern struct {
+pub const ID3D12VersionedRootSignatureDeserializer = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetRootSignatureDescAtVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12VersionedRootSignatureDeserializer,
-                convertToVersion: D3D_ROOT_SIGNATURE_VERSION,
-                ppDesc: ?*const ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12VersionedRootSignatureDeserializer,
-                convertToVersion: D3D_ROOT_SIGNATURE_VERSION,
-                ppDesc: ?*const ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUnconvertedRootSignatureDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12VersionedRootSignatureDeserializer,
-            ) callconv(@import("std").os.windows.WINAPI) ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
-            else => *const fn (
-                self: *const ID3D12VersionedRootSignatureDeserializer,
-            ) callconv(@import("std").os.windows.WINAPI) ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
-        },
+        GetRootSignatureDescAtVersion: *const fn(
+            self: *const ID3D12VersionedRootSignatureDeserializer,
+            convertToVersion: D3D_ROOT_SIGNATURE_VERSION,
+            ppDesc: ?*const ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUnconvertedRootSignatureDesc: *const fn(
+            self: *const ID3D12VersionedRootSignatureDeserializer,
+        ) callconv(@import("std").os.windows.WINAPI) ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12VersionedRootSignatureDeserializer_GetRootSignatureDescAtVersion(self: *const T, convertToVersion: D3D_ROOT_SIGNATURE_VERSION, ppDesc: ?*const ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC) HRESULT {
-                return @as(*const ID3D12VersionedRootSignatureDeserializer.VTable, @ptrCast(self.vtable)).GetRootSignatureDescAtVersion(@as(*const ID3D12VersionedRootSignatureDeserializer, @ptrCast(self)), convertToVersion, ppDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12VersionedRootSignatureDeserializer_GetUnconvertedRootSignatureDesc(self: *const T) ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC {
-                return @as(*const ID3D12VersionedRootSignatureDeserializer.VTable, @ptrCast(self.vtable)).GetUnconvertedRootSignatureDesc(@as(*const ID3D12VersionedRootSignatureDeserializer, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetRootSignatureDescAtVersion(self: *const ID3D12VersionedRootSignatureDeserializer, convertToVersion: D3D_ROOT_SIGNATURE_VERSION, ppDesc: ?*const ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetRootSignatureDescAtVersion(self, convertToVersion, ppDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetUnconvertedRootSignatureDesc(self: *const ID3D12VersionedRootSignatureDeserializer) callconv(.Inline) ?*D3D12_VERSIONED_ROOT_SIGNATURE_DESC {
+        return self.vtable.GetUnconvertedRootSignatureDesc(self);
+    }
 };
 
-pub const PFN_D3D12_SERIALIZE_ROOT_SIGNATURE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pRootSignature: ?*const D3D12_ROOT_SIGNATURE_DESC,
-        Version: D3D_ROOT_SIGNATURE_VERSION,
-        ppBlob: ?*?*ID3DBlob,
-        ppErrorBlob: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        pRootSignature: ?*const D3D12_ROOT_SIGNATURE_DESC,
-        Version: D3D_ROOT_SIGNATURE_VERSION,
-        ppBlob: ?*?*ID3DBlob,
-        ppErrorBlob: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const PFN_D3D12_SERIALIZE_ROOT_SIGNATURE = *const fn(
+    pRootSignature: ?*const D3D12_ROOT_SIGNATURE_DESC,
+    Version: D3D_ROOT_SIGNATURE_VERSION,
+    ppBlob: ?*?*ID3DBlob,
+    ppErrorBlob: ?*?*ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        // TODO: what to do with BytesParamIndex 1?
-        pSrcData: ?*const anyopaque,
-        SrcDataSizeInBytes: usize,
-        pRootSignatureDeserializerInterface: ?*const Guid,
-        ppRootSignatureDeserializer: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        // TODO: what to do with BytesParamIndex 1?
-        pSrcData: ?*const anyopaque,
-        SrcDataSizeInBytes: usize,
-        pRootSignatureDeserializerInterface: ?*const Guid,
-        ppRootSignatureDeserializer: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: ?*const anyopaque,
+    SrcDataSizeInBytes: usize,
+    pRootSignatureDeserializerInterface: ?*const Guid,
+    ppRootSignatureDeserializer: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pRootSignature: ?*const D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
-        ppBlob: ?*?*ID3DBlob,
-        ppErrorBlob: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        pRootSignature: ?*const D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
-        ppBlob: ?*?*ID3DBlob,
-        ppErrorBlob: ?*?*ID3DBlob,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE = *const fn(
+    pRootSignature: ?*const D3D12_VERSIONED_ROOT_SIGNATURE_DESC,
+    ppBlob: ?*?*ID3DBlob,
+    ppErrorBlob: ?*?*ID3DBlob,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        // TODO: what to do with BytesParamIndex 1?
-        pSrcData: ?*const anyopaque,
-        SrcDataSizeInBytes: usize,
-        pRootSignatureDeserializerInterface: ?*const Guid,
-        ppRootSignatureDeserializer: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        // TODO: what to do with BytesParamIndex 1?
-        pSrcData: ?*const anyopaque,
-        SrcDataSizeInBytes: usize,
-        pRootSignatureDeserializerInterface: ?*const Guid,
-        ppRootSignatureDeserializer: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER = *const fn(
+    // TODO: what to do with BytesParamIndex 1?
+    pSrcData: ?*const anyopaque,
+    SrcDataSizeInBytes: usize,
+    pRootSignatureDeserializerInterface: ?*const Guid,
+    ppRootSignatureDeserializer: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub const D3D12_CPU_DESCRIPTOR_HANDLE = extern struct {
     ptr: usize,
@@ -3411,1495 +3631,834 @@ pub const D3D12_COMMAND_SIGNATURE_DESC = extern struct {
     NodeMask: u32,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Pageable_Value = Guid.initString("63ee58fb-1268-4835-86da-f008ce62f0d6");
 pub const IID_ID3D12Pageable = &IID_ID3D12Pageable_Value;
-pub const ID3D12Pageable = extern struct {
+pub const ID3D12Pageable = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceChild.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Heap_Value = Guid.initString("6b3b2502-6e51-45b3-90ee-9884265e8df3");
 pub const IID_ID3D12Heap = &IID_ID3D12Heap_Value;
-pub const ID3D12Heap = extern struct {
+pub const ID3D12Heap = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Heap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_HEAP_DESC,
-            else => *const fn (
-                self: *const ID3D12Heap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_HEAP_DESC,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12Heap,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_HEAP_DESC,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Heap_GetDesc(self: *const T) D3D12_HEAP_DESC {
-                return @as(*const ID3D12Heap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12Heap, @ptrCast(self)));
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const ID3D12Heap) callconv(.Inline) D3D12_HEAP_DESC {
+        return self.vtable.GetDesc(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Resource_Value = Guid.initString("696442be-a72e-4059-bc79-5b5c98040fad");
 pub const IID_ID3D12Resource = &IID_ID3D12Resource_Value;
-pub const ID3D12Resource = extern struct {
+pub const ID3D12Resource = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        Map: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource,
-                Subresource: u32,
-                pReadRange: ?*const D3D12_RANGE,
-                ppData: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Resource,
-                Subresource: u32,
-                pReadRange: ?*const D3D12_RANGE,
-                ppData: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unmap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource,
-                Subresource: u32,
-                pWrittenRange: ?*const D3D12_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Resource,
-                Subresource: u32,
-                pWrittenRange: ?*const D3D12_RANGE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_DESC,
-            else => *const fn (
-                self: *const ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_DESC,
-        },
-        GetGPUVirtualAddress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        WriteToSubresource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource,
-                DstSubresource: u32,
-                pDstBox: ?*const D3D12_BOX,
-                pSrcData: ?*const anyopaque,
-                SrcRowPitch: u32,
-                SrcDepthPitch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Resource,
-                DstSubresource: u32,
-                pDstBox: ?*const D3D12_BOX,
-                pSrcData: ?*const anyopaque,
-                SrcRowPitch: u32,
-                SrcDepthPitch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReadFromSubresource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource,
-                pDstData: ?*anyopaque,
-                DstRowPitch: u32,
-                DstDepthPitch: u32,
-                SrcSubresource: u32,
-                pSrcBox: ?*const D3D12_BOX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Resource,
-                pDstData: ?*anyopaque,
-                DstRowPitch: u32,
-                DstDepthPitch: u32,
-                SrcSubresource: u32,
-                pSrcBox: ?*const D3D12_BOX,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHeapProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource,
-                pHeapProperties: ?*D3D12_HEAP_PROPERTIES,
-                pHeapFlags: ?*D3D12_HEAP_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Resource,
-                pHeapProperties: ?*D3D12_HEAP_PROPERTIES,
-                pHeapFlags: ?*D3D12_HEAP_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Map: *const fn(
+            self: *const ID3D12Resource,
+            Subresource: u32,
+            pReadRange: ?*const D3D12_RANGE,
+            ppData: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unmap: *const fn(
+            self: *const ID3D12Resource,
+            Subresource: u32,
+            pWrittenRange: ?*const D3D12_RANGE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetDesc: *const fn(
+            self: *const ID3D12Resource,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_DESC,
+        GetGPUVirtualAddress: *const fn(
+            self: *const ID3D12Resource,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        WriteToSubresource: *const fn(
+            self: *const ID3D12Resource,
+            DstSubresource: u32,
+            pDstBox: ?*const D3D12_BOX,
+            pSrcData: ?*const anyopaque,
+            SrcRowPitch: u32,
+            SrcDepthPitch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadFromSubresource: *const fn(
+            self: *const ID3D12Resource,
+            pDstData: ?*anyopaque,
+            DstRowPitch: u32,
+            DstDepthPitch: u32,
+            SrcSubresource: u32,
+            pSrcBox: ?*const D3D12_BOX,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHeapProperties: *const fn(
+            self: *const ID3D12Resource,
+            pHeapProperties: ?*D3D12_HEAP_PROPERTIES,
+            pHeapFlags: ?*D3D12_HEAP_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource_Map(self: *const T, Subresource: u32, pReadRange: ?*const D3D12_RANGE, ppData: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).Map(@as(*const ID3D12Resource, @ptrCast(self)), Subresource, pReadRange, ppData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource_Unmap(self: *const T, Subresource: u32, pWrittenRange: ?*const D3D12_RANGE) void {
-                return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).Unmap(@as(*const ID3D12Resource, @ptrCast(self)), Subresource, pWrittenRange);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource_GetDesc(self: *const T) D3D12_RESOURCE_DESC {
-                return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12Resource, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource_GetGPUVirtualAddress(self: *const T) u64 {
-                return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).GetGPUVirtualAddress(@as(*const ID3D12Resource, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource_WriteToSubresource(self: *const T, DstSubresource: u32, pDstBox: ?*const D3D12_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) HRESULT {
-                return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).WriteToSubresource(@as(*const ID3D12Resource, @ptrCast(self)), DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource_ReadFromSubresource(self: *const T, pDstData: ?*anyopaque, DstRowPitch: u32, DstDepthPitch: u32, SrcSubresource: u32, pSrcBox: ?*const D3D12_BOX) HRESULT {
-                return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).ReadFromSubresource(@as(*const ID3D12Resource, @ptrCast(self)), pDstData, DstRowPitch, DstDepthPitch, SrcSubresource, pSrcBox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource_GetHeapProperties(self: *const T, pHeapProperties: ?*D3D12_HEAP_PROPERTIES, pHeapFlags: ?*D3D12_HEAP_FLAGS) HRESULT {
-                return @as(*const ID3D12Resource.VTable, @ptrCast(self.vtable)).GetHeapProperties(@as(*const ID3D12Resource, @ptrCast(self)), pHeapProperties, pHeapFlags);
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn Map(self: *const ID3D12Resource, Subresource: u32, pReadRange: ?*const D3D12_RANGE, ppData: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.Map(self, Subresource, pReadRange, ppData);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Unmap(self: *const ID3D12Resource, Subresource: u32, pWrittenRange: ?*const D3D12_RANGE) callconv(.Inline) void {
+        return self.vtable.Unmap(self, Subresource, pWrittenRange);
+    }
+    pub fn GetDesc(self: *const ID3D12Resource) callconv(.Inline) D3D12_RESOURCE_DESC {
+        return self.vtable.GetDesc(self);
+    }
+    pub fn GetGPUVirtualAddress(self: *const ID3D12Resource) callconv(.Inline) u64 {
+        return self.vtable.GetGPUVirtualAddress(self);
+    }
+    pub fn WriteToSubresource(self: *const ID3D12Resource, DstSubresource: u32, pDstBox: ?*const D3D12_BOX, pSrcData: ?*const anyopaque, SrcRowPitch: u32, SrcDepthPitch: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteToSubresource(self, DstSubresource, pDstBox, pSrcData, SrcRowPitch, SrcDepthPitch);
+    }
+    pub fn ReadFromSubresource(self: *const ID3D12Resource, pDstData: ?*anyopaque, DstRowPitch: u32, DstDepthPitch: u32, SrcSubresource: u32, pSrcBox: ?*const D3D12_BOX) callconv(.Inline) HRESULT {
+        return self.vtable.ReadFromSubresource(self, pDstData, DstRowPitch, DstDepthPitch, SrcSubresource, pSrcBox);
+    }
+    pub fn GetHeapProperties(self: *const ID3D12Resource, pHeapProperties: ?*D3D12_HEAP_PROPERTIES, pHeapFlags: ?*D3D12_HEAP_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.GetHeapProperties(self, pHeapProperties, pHeapFlags);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12CommandAllocator_Value = Guid.initString("6102dee4-af59-4b09-b999-b44d73f09b24");
 pub const IID_ID3D12CommandAllocator = &IID_ID3D12CommandAllocator_Value;
-pub const ID3D12CommandAllocator = extern struct {
+pub const ID3D12CommandAllocator = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandAllocator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12CommandAllocator,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Reset: *const fn(
+            self: *const ID3D12CommandAllocator,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandAllocator_Reset(self: *const T) HRESULT {
-                return @as(*const ID3D12CommandAllocator.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12CommandAllocator, @ptrCast(self)));
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn Reset(self: *const ID3D12CommandAllocator) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Fence_Value = Guid.initString("0a753dcf-c4d8-4b91-adf6-be5a60d95a76");
 pub const IID_ID3D12Fence = &IID_ID3D12Fence_Value;
-pub const ID3D12Fence = extern struct {
+pub const ID3D12Fence = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        GetCompletedValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Fence,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12Fence,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        SetEventOnCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Fence,
-                Value: u64,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Fence,
-                Value: u64,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Signal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Fence,
-                Value: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Fence,
-                Value: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCompletedValue: *const fn(
+            self: *const ID3D12Fence,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        SetEventOnCompletion: *const fn(
+            self: *const ID3D12Fence,
+            Value: u64,
+            hEvent: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Signal: *const fn(
+            self: *const ID3D12Fence,
+            Value: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Fence_GetCompletedValue(self: *const T) u64 {
-                return @as(*const ID3D12Fence.VTable, @ptrCast(self.vtable)).GetCompletedValue(@as(*const ID3D12Fence, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Fence_SetEventOnCompletion(self: *const T, Value: u64, hEvent: ?HANDLE) HRESULT {
-                return @as(*const ID3D12Fence.VTable, @ptrCast(self.vtable)).SetEventOnCompletion(@as(*const ID3D12Fence, @ptrCast(self)), Value, hEvent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Fence_Signal(self: *const T, Value: u64) HRESULT {
-                return @as(*const ID3D12Fence.VTable, @ptrCast(self.vtable)).Signal(@as(*const ID3D12Fence, @ptrCast(self)), Value);
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetCompletedValue(self: *const ID3D12Fence) callconv(.Inline) u64 {
+        return self.vtable.GetCompletedValue(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetEventOnCompletion(self: *const ID3D12Fence, Value: u64, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.SetEventOnCompletion(self, Value, hEvent);
+    }
+    pub fn Signal(self: *const ID3D12Fence, Value: u64) callconv(.Inline) HRESULT {
+        return self.vtable.Signal(self, Value);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Fence1_Value = Guid.initString("433685fe-e22b-4ca0-a8db-b5b4f4dd0e4a");
 pub const IID_ID3D12Fence1 = &IID_ID3D12Fence1_Value;
-pub const ID3D12Fence1 = extern struct {
+pub const ID3D12Fence1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Fence.VTable,
-        GetCreationFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Fence1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_FENCE_FLAGS,
-            else => *const fn (
-                self: *const ID3D12Fence1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_FENCE_FLAGS,
-        },
+        GetCreationFlags: *const fn(
+            self: *const ID3D12Fence1,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_FENCE_FLAGS,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Fence.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Fence1_GetCreationFlags(self: *const T) D3D12_FENCE_FLAGS {
-                return @as(*const ID3D12Fence1.VTable, @ptrCast(self.vtable)).GetCreationFlags(@as(*const ID3D12Fence1, @ptrCast(self)));
-            }
-        };
+    ID3D12Fence: ID3D12Fence,
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetCreationFlags(self: *const ID3D12Fence1) callconv(.Inline) D3D12_FENCE_FLAGS {
+        return self.vtable.GetCreationFlags(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12PipelineState_Value = Guid.initString("765a30f3-f624-4c6f-a828-ace948622445");
 pub const IID_ID3D12PipelineState = &IID_ID3D12PipelineState_Value;
-pub const ID3D12PipelineState = extern struct {
+pub const ID3D12PipelineState = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        GetCachedBlob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12PipelineState,
-                ppBlob: ?*?*ID3DBlob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12PipelineState,
-                ppBlob: ?*?*ID3DBlob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetCachedBlob: *const fn(
+            self: *const ID3D12PipelineState,
+            ppBlob: **ID3DBlob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12PipelineState_GetCachedBlob(self: *const T, ppBlob: ?*?*ID3DBlob) HRESULT {
-                return @as(*const ID3D12PipelineState.VTable, @ptrCast(self.vtable)).GetCachedBlob(@as(*const ID3D12PipelineState, @ptrCast(self)), ppBlob);
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetCachedBlob(self: *const ID3D12PipelineState, ppBlob: **ID3DBlob) callconv(.Inline) HRESULT {
+        return self.vtable.GetCachedBlob(self, ppBlob);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DescriptorHeap_Value = Guid.initString("8efb471d-616c-4f49-90f7-127bb763fa51");
 pub const IID_ID3D12DescriptorHeap = &IID_ID3D12DescriptorHeap_Value;
-pub const ID3D12DescriptorHeap = extern struct {
+pub const ID3D12DescriptorHeap = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DESCRIPTOR_HEAP_DESC,
-            else => *const fn (
-                self: *const ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DESCRIPTOR_HEAP_DESC,
-        },
-        GetCPUDescriptorHandleForHeapStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_CPU_DESCRIPTOR_HANDLE,
-            else => *const fn (
-                self: *const ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_CPU_DESCRIPTOR_HANDLE,
-        },
-        GetGPUDescriptorHandleForHeapStart: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_GPU_DESCRIPTOR_HANDLE,
-            else => *const fn (
-                self: *const ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_GPU_DESCRIPTOR_HANDLE,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12DescriptorHeap,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_DESCRIPTOR_HEAP_DESC,
+        GetCPUDescriptorHandleForHeapStart: *const fn(
+            self: *const ID3D12DescriptorHeap,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_CPU_DESCRIPTOR_HANDLE,
+        GetGPUDescriptorHandleForHeapStart: *const fn(
+            self: *const ID3D12DescriptorHeap,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_GPU_DESCRIPTOR_HANDLE,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DescriptorHeap_GetDesc(self: *const T) D3D12_DESCRIPTOR_HEAP_DESC {
-                return @as(*const ID3D12DescriptorHeap.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12DescriptorHeap, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DescriptorHeap_GetCPUDescriptorHandleForHeapStart(self: *const T) D3D12_CPU_DESCRIPTOR_HANDLE {
-                return @as(*const ID3D12DescriptorHeap.VTable, @ptrCast(self.vtable)).GetCPUDescriptorHandleForHeapStart(@as(*const ID3D12DescriptorHeap, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DescriptorHeap_GetGPUDescriptorHandleForHeapStart(self: *const T) D3D12_GPU_DESCRIPTOR_HANDLE {
-                return @as(*const ID3D12DescriptorHeap.VTable, @ptrCast(self.vtable)).GetGPUDescriptorHandleForHeapStart(@as(*const ID3D12DescriptorHeap, @ptrCast(self)));
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const ID3D12DescriptorHeap) callconv(.Inline) D3D12_DESCRIPTOR_HEAP_DESC {
+        return self.vtable.GetDesc(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetCPUDescriptorHandleForHeapStart(self: *const ID3D12DescriptorHeap) callconv(.Inline) D3D12_CPU_DESCRIPTOR_HANDLE {
+        return self.vtable.GetCPUDescriptorHandleForHeapStart(self);
+    }
+    pub fn GetGPUDescriptorHandleForHeapStart(self: *const ID3D12DescriptorHeap) callconv(.Inline) D3D12_GPU_DESCRIPTOR_HANDLE {
+        return self.vtable.GetGPUDescriptorHandleForHeapStart(self);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12QueryHeap_Value = Guid.initString("0d9658ae-ed45-469e-a61d-970ec583cab4");
 pub const IID_ID3D12QueryHeap = &IID_ID3D12QueryHeap_Value;
-pub const ID3D12QueryHeap = extern struct {
+pub const ID3D12QueryHeap = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12CommandSignature_Value = Guid.initString("c36a797c-ec80-4f0a-8985-a7b2475082d1");
 pub const IID_ID3D12CommandSignature = &IID_ID3D12CommandSignature_Value;
-pub const ID3D12CommandSignature = extern struct {
+pub const ID3D12CommandSignature = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12CommandList_Value = Guid.initString("7116d91c-e7e4-47ce-b8c6-ec8168f437e5");
 pub const IID_ID3D12CommandList = &IID_ID3D12CommandList_Value;
-pub const ID3D12CommandList = extern struct {
+pub const ID3D12CommandList = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceChild.VTable,
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandList,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_COMMAND_LIST_TYPE,
-            else => *const fn (
-                self: *const ID3D12CommandList,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_COMMAND_LIST_TYPE,
-        },
+        GetType: *const fn(
+            self: *const ID3D12CommandList,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_COMMAND_LIST_TYPE,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandList_GetType(self: *const T) D3D12_COMMAND_LIST_TYPE {
-                return @as(*const ID3D12CommandList.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D12CommandList, @ptrCast(self)));
-            }
-        };
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetType(self: *const ID3D12CommandList) callconv(.Inline) D3D12_COMMAND_LIST_TYPE {
+        return self.vtable.GetType(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12GraphicsCommandList_Value = Guid.initString("5b160d0f-ac1b-4185-8ba8-b3ae42a5a455");
 pub const IID_ID3D12GraphicsCommandList = &IID_ID3D12GraphicsCommandList_Value;
-pub const ID3D12GraphicsCommandList = extern struct {
+pub const ID3D12GraphicsCommandList = extern union {
     pub const VTable = extern struct {
         base: ID3D12CommandList.VTable,
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Reset: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pAllocator: ?*ID3D12CommandAllocator,
-                pInitialState: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pAllocator: ?*ID3D12CommandAllocator,
-                pInitialState: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pPipelineState: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pPipelineState: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        DrawInstanced: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                VertexCountPerInstance: u32,
-                InstanceCount: u32,
-                StartVertexLocation: u32,
-                StartInstanceLocation: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                VertexCountPerInstance: u32,
-                InstanceCount: u32,
-                StartVertexLocation: u32,
-                StartInstanceLocation: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        DrawIndexedInstanced: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                IndexCountPerInstance: u32,
-                InstanceCount: u32,
-                StartIndexLocation: u32,
-                BaseVertexLocation: i32,
-                StartInstanceLocation: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                IndexCountPerInstance: u32,
-                InstanceCount: u32,
-                StartIndexLocation: u32,
-                BaseVertexLocation: i32,
-                StartInstanceLocation: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        Dispatch: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                ThreadGroupCountX: u32,
-                ThreadGroupCountY: u32,
-                ThreadGroupCountZ: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                ThreadGroupCountX: u32,
-                ThreadGroupCountY: u32,
-                ThreadGroupCountZ: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyBufferRegion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDstBuffer: ?*ID3D12Resource,
-                DstOffset: u64,
-                pSrcBuffer: ?*ID3D12Resource,
-                SrcOffset: u64,
-                NumBytes: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDstBuffer: ?*ID3D12Resource,
-                DstOffset: u64,
-                pSrcBuffer: ?*ID3D12Resource,
-                SrcOffset: u64,
-                NumBytes: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyTextureRegion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDst: ?*const D3D12_TEXTURE_COPY_LOCATION,
-                DstX: u32,
-                DstY: u32,
-                DstZ: u32,
-                pSrc: ?*const D3D12_TEXTURE_COPY_LOCATION,
-                pSrcBox: ?*const D3D12_BOX,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDst: ?*const D3D12_TEXTURE_COPY_LOCATION,
-                DstX: u32,
-                DstY: u32,
-                DstZ: u32,
-                pSrc: ?*const D3D12_TEXTURE_COPY_LOCATION,
-                pSrcBox: ?*const D3D12_BOX,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDstResource: ?*ID3D12Resource,
-                pSrcResource: ?*ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDstResource: ?*ID3D12Resource,
-                pSrcResource: ?*ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyTiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pTiledResource: ?*ID3D12Resource,
-                pTileRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
-                pTileRegionSize: ?*const D3D12_TILE_REGION_SIZE,
-                pBuffer: ?*ID3D12Resource,
-                BufferStartOffsetInBytes: u64,
-                Flags: D3D12_TILE_COPY_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pTiledResource: ?*ID3D12Resource,
-                pTileRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
-                pTileRegionSize: ?*const D3D12_TILE_REGION_SIZE,
-                pBuffer: ?*ID3D12Resource,
-                BufferStartOffsetInBytes: u64,
-                Flags: D3D12_TILE_COPY_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ResolveSubresource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDstResource: ?*ID3D12Resource,
-                DstSubresource: u32,
-                pSrcResource: ?*ID3D12Resource,
-                SrcSubresource: u32,
-                Format: DXGI_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pDstResource: ?*ID3D12Resource,
-                DstSubresource: u32,
-                pSrcResource: ?*ID3D12Resource,
-                SrcSubresource: u32,
-                Format: DXGI_FORMAT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        IASetPrimitiveTopology: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                PrimitiveTopology: D3D_PRIMITIVE_TOPOLOGY,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                PrimitiveTopology: D3D_PRIMITIVE_TOPOLOGY,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        RSSetViewports: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumViewports: u32,
-                pViewports: [*]const D3D12_VIEWPORT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumViewports: u32,
-                pViewports: [*]const D3D12_VIEWPORT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        RSSetScissorRects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        OMSetBlendFactor: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                BlendFactor: ?*[4]f32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                BlendFactor: ?*[4]f32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        OMSetStencilRef: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                StencilRef: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                StencilRef: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetPipelineState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pPipelineState: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pPipelineState: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ResourceBarrier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumBarriers: u32,
-                pBarriers: [*]const D3D12_RESOURCE_BARRIER,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumBarriers: u32,
-                pBarriers: [*]const D3D12_RESOURCE_BARRIER,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ExecuteBundle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pCommandList: ?*ID3D12GraphicsCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pCommandList: ?*ID3D12GraphicsCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetDescriptorHeaps: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumDescriptorHeaps: u32,
-                ppDescriptorHeaps: [*]?*ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumDescriptorHeaps: u32,
-                ppDescriptorHeaps: [*]?*ID3D12DescriptorHeap,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetComputeRootSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pRootSignature: ?*ID3D12RootSignature,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pRootSignature: ?*ID3D12RootSignature,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGraphicsRootSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pRootSignature: ?*ID3D12RootSignature,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pRootSignature: ?*ID3D12RootSignature,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetComputeRootDescriptorTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGraphicsRootDescriptorTable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetComputeRoot32BitConstant: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                SrcData: u32,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                SrcData: u32,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGraphicsRoot32BitConstant: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                SrcData: u32,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                SrcData: u32,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetComputeRoot32BitConstants: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                Num32BitValuesToSet: u32,
-                pSrcData: ?*const anyopaque,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                Num32BitValuesToSet: u32,
-                pSrcData: ?*const anyopaque,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGraphicsRoot32BitConstants: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                Num32BitValuesToSet: u32,
-                pSrcData: ?*const anyopaque,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                Num32BitValuesToSet: u32,
-                pSrcData: ?*const anyopaque,
-                DestOffsetIn32BitValues: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetComputeRootConstantBufferView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGraphicsRootConstantBufferView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetComputeRootShaderResourceView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGraphicsRootShaderResourceView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetComputeRootUnorderedAccessView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGraphicsRootUnorderedAccessView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RootParameterIndex: u32,
-                BufferLocation: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        IASetIndexBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pView: ?*const D3D12_INDEX_BUFFER_VIEW,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pView: ?*const D3D12_INDEX_BUFFER_VIEW,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        IASetVertexBuffers: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                StartSlot: u32,
-                NumViews: u32,
-                pViews: ?[*]const D3D12_VERTEX_BUFFER_VIEW,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                StartSlot: u32,
-                NumViews: u32,
-                pViews: ?[*]const D3D12_VERTEX_BUFFER_VIEW,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SOSetTargets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                StartSlot: u32,
-                NumViews: u32,
-                pViews: ?[*]const D3D12_STREAM_OUTPUT_BUFFER_VIEW,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                StartSlot: u32,
-                NumViews: u32,
-                pViews: ?[*]const D3D12_STREAM_OUTPUT_BUFFER_VIEW,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        OMSetRenderTargets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumRenderTargetDescriptors: u32,
-                pRenderTargetDescriptors: ?*const D3D12_CPU_DESCRIPTOR_HANDLE,
-                RTsSingleHandleToDescriptorRange: BOOL,
-                pDepthStencilDescriptor: ?*const D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                NumRenderTargetDescriptors: u32,
-                pRenderTargetDescriptors: ?*const D3D12_CPU_DESCRIPTOR_HANDLE,
-                RTsSingleHandleToDescriptorRange: BOOL,
-                pDepthStencilDescriptor: ?*const D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ClearDepthStencilView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                DepthStencilView: D3D12_CPU_DESCRIPTOR_HANDLE,
-                ClearFlags: D3D12_CLEAR_FLAGS,
-                Depth: f32,
-                Stencil: u8,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                DepthStencilView: D3D12_CPU_DESCRIPTOR_HANDLE,
-                ClearFlags: D3D12_CLEAR_FLAGS,
-                Depth: f32,
-                Stencil: u8,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ClearRenderTargetView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE,
-                ColorRGBA: ?*const f32,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE,
-                ColorRGBA: ?*const f32,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ClearUnorderedAccessViewUint: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE,
-                ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
-                pResource: ?*ID3D12Resource,
-                Values: ?*const u32,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE,
-                ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
-                pResource: ?*ID3D12Resource,
-                Values: ?*const u32,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ClearUnorderedAccessViewFloat: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE,
-                ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
-                pResource: ?*ID3D12Resource,
-                Values: ?*const f32,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE,
-                ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
-                pResource: ?*ID3D12Resource,
-                Values: ?*const f32,
-                NumRects: u32,
-                pRects: [*]const RECT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        DiscardResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pResource: ?*ID3D12Resource,
-                pRegion: ?*const D3D12_DISCARD_REGION,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pResource: ?*ID3D12Resource,
-                pRegion: ?*const D3D12_DISCARD_REGION,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        BeginQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pQueryHeap: ?*ID3D12QueryHeap,
-                Type: D3D12_QUERY_TYPE,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pQueryHeap: ?*ID3D12QueryHeap,
-                Type: D3D12_QUERY_TYPE,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndQuery: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pQueryHeap: ?*ID3D12QueryHeap,
-                Type: D3D12_QUERY_TYPE,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pQueryHeap: ?*ID3D12QueryHeap,
-                Type: D3D12_QUERY_TYPE,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ResolveQueryData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pQueryHeap: ?*ID3D12QueryHeap,
-                Type: D3D12_QUERY_TYPE,
-                StartIndex: u32,
-                NumQueries: u32,
-                pDestinationBuffer: ?*ID3D12Resource,
-                AlignedDestinationBufferOffset: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pQueryHeap: ?*ID3D12QueryHeap,
-                Type: D3D12_QUERY_TYPE,
-                StartIndex: u32,
-                NumQueries: u32,
-                pDestinationBuffer: ?*ID3D12Resource,
-                AlignedDestinationBufferOffset: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetPredication: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pBuffer: ?*ID3D12Resource,
-                AlignedBufferOffset: u64,
-                Operation: D3D12_PREDICATION_OP,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pBuffer: ?*ID3D12Resource,
-                AlignedBufferOffset: u64,
-                Operation: D3D12_PREDICATION_OP,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetMarker: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        BeginEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ExecuteIndirect: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList,
-                pCommandSignature: ?*ID3D12CommandSignature,
-                MaxCommandCount: u32,
-                pArgumentBuffer: ?*ID3D12Resource,
-                ArgumentBufferOffset: u64,
-                pCountBuffer: ?*ID3D12Resource,
-                CountBufferOffset: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList,
-                pCommandSignature: ?*ID3D12CommandSignature,
-                MaxCommandCount: u32,
-                pArgumentBuffer: ?*ID3D12Resource,
-                ArgumentBufferOffset: u64,
-                pCountBuffer: ?*ID3D12Resource,
-                CountBufferOffset: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        Close: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Reset: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pAllocator: ?*ID3D12CommandAllocator,
+            pInitialState: ?*ID3D12PipelineState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearState: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pPipelineState: ?*ID3D12PipelineState,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        DrawInstanced: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            VertexCountPerInstance: u32,
+            InstanceCount: u32,
+            StartVertexLocation: u32,
+            StartInstanceLocation: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        DrawIndexedInstanced: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            IndexCountPerInstance: u32,
+            InstanceCount: u32,
+            StartIndexLocation: u32,
+            BaseVertexLocation: i32,
+            StartInstanceLocation: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        Dispatch: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            ThreadGroupCountX: u32,
+            ThreadGroupCountY: u32,
+            ThreadGroupCountZ: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyBufferRegion: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pDstBuffer: ?*ID3D12Resource,
+            DstOffset: u64,
+            pSrcBuffer: ?*ID3D12Resource,
+            SrcOffset: u64,
+            NumBytes: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyTextureRegion: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pDst: ?*const D3D12_TEXTURE_COPY_LOCATION,
+            DstX: u32,
+            DstY: u32,
+            DstZ: u32,
+            pSrc: ?*const D3D12_TEXTURE_COPY_LOCATION,
+            pSrcBox: ?*const D3D12_BOX,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyResource: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pDstResource: ?*ID3D12Resource,
+            pSrcResource: ?*ID3D12Resource,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyTiles: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pTiledResource: ?*ID3D12Resource,
+            pTileRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
+            pTileRegionSize: ?*const D3D12_TILE_REGION_SIZE,
+            pBuffer: ?*ID3D12Resource,
+            BufferStartOffsetInBytes: u64,
+            Flags: D3D12_TILE_COPY_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ResolveSubresource: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pDstResource: ?*ID3D12Resource,
+            DstSubresource: u32,
+            pSrcResource: ?*ID3D12Resource,
+            SrcSubresource: u32,
+            Format: DXGI_FORMAT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        IASetPrimitiveTopology: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            PrimitiveTopology: D3D_PRIMITIVE_TOPOLOGY,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        RSSetViewports: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            NumViewports: u32,
+            pViewports: [*]const D3D12_VIEWPORT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        RSSetScissorRects: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            NumRects: u32,
+            pRects: [*]const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        OMSetBlendFactor: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            BlendFactor: ?*[4]f32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        OMSetStencilRef: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            StencilRef: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetPipelineState: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pPipelineState: ?*ID3D12PipelineState,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ResourceBarrier: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            NumBarriers: u32,
+            pBarriers: [*]const D3D12_RESOURCE_BARRIER,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ExecuteBundle: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pCommandList: ?*ID3D12GraphicsCommandList,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetDescriptorHeaps: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            NumDescriptorHeaps: u32,
+            ppDescriptorHeaps: [*]?*ID3D12DescriptorHeap,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetComputeRootSignature: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pRootSignature: ?*ID3D12RootSignature,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGraphicsRootSignature: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pRootSignature: ?*ID3D12RootSignature,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetComputeRootDescriptorTable: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGraphicsRootDescriptorTable: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetComputeRoot32BitConstant: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            SrcData: u32,
+            DestOffsetIn32BitValues: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGraphicsRoot32BitConstant: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            SrcData: u32,
+            DestOffsetIn32BitValues: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetComputeRoot32BitConstants: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            Num32BitValuesToSet: u32,
+            pSrcData: ?*const anyopaque,
+            DestOffsetIn32BitValues: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGraphicsRoot32BitConstants: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            Num32BitValuesToSet: u32,
+            pSrcData: ?*const anyopaque,
+            DestOffsetIn32BitValues: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetComputeRootConstantBufferView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BufferLocation: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGraphicsRootConstantBufferView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BufferLocation: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetComputeRootShaderResourceView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BufferLocation: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGraphicsRootShaderResourceView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BufferLocation: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetComputeRootUnorderedAccessView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BufferLocation: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGraphicsRootUnorderedAccessView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RootParameterIndex: u32,
+            BufferLocation: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        IASetIndexBuffer: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pView: ?*const D3D12_INDEX_BUFFER_VIEW,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        IASetVertexBuffers: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            StartSlot: u32,
+            NumViews: u32,
+            pViews: ?[*]const D3D12_VERTEX_BUFFER_VIEW,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SOSetTargets: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            StartSlot: u32,
+            NumViews: u32,
+            pViews: ?[*]const D3D12_STREAM_OUTPUT_BUFFER_VIEW,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        OMSetRenderTargets: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            NumRenderTargetDescriptors: u32,
+            pRenderTargetDescriptors: ?*const D3D12_CPU_DESCRIPTOR_HANDLE,
+            RTsSingleHandleToDescriptorRange: BOOL,
+            pDepthStencilDescriptor: ?*const D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ClearDepthStencilView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            DepthStencilView: D3D12_CPU_DESCRIPTOR_HANDLE,
+            ClearFlags: D3D12_CLEAR_FLAGS,
+            Depth: f32,
+            Stencil: u8,
+            NumRects: u32,
+            pRects: [*]const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ClearRenderTargetView: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE,
+            ColorRGBA: ?*const f32,
+            NumRects: u32,
+            pRects: [*]const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ClearUnorderedAccessViewUint: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE,
+            ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
+            pResource: ?*ID3D12Resource,
+            Values: ?*const u32,
+            NumRects: u32,
+            pRects: [*]const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ClearUnorderedAccessViewFloat: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE,
+            ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE,
+            pResource: ?*ID3D12Resource,
+            Values: ?*const f32,
+            NumRects: u32,
+            pRects: [*]const RECT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        DiscardResource: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pResource: ?*ID3D12Resource,
+            pRegion: ?*const D3D12_DISCARD_REGION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        BeginQuery: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pQueryHeap: ?*ID3D12QueryHeap,
+            Type: D3D12_QUERY_TYPE,
+            Index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndQuery: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pQueryHeap: ?*ID3D12QueryHeap,
+            Type: D3D12_QUERY_TYPE,
+            Index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ResolveQueryData: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pQueryHeap: ?*ID3D12QueryHeap,
+            Type: D3D12_QUERY_TYPE,
+            StartIndex: u32,
+            NumQueries: u32,
+            pDestinationBuffer: ?*ID3D12Resource,
+            AlignedDestinationBufferOffset: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetPredication: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pBuffer: ?*ID3D12Resource,
+            AlignedBufferOffset: u64,
+            Operation: D3D12_PREDICATION_OP,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetMarker: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            Metadata: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            Size: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        BeginEvent: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            Metadata: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            Size: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndEvent: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ExecuteIndirect: *const fn(
+            self: *const ID3D12GraphicsCommandList,
+            pCommandSignature: ?*ID3D12CommandSignature,
+            MaxCommandCount: u32,
+            pArgumentBuffer: ?*ID3D12Resource,
+            ArgumentBufferOffset: u64,
+            pCountBuffer: ?*ID3D12Resource,
+            CountBufferOffset: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12CommandList.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_Close(self: *const T) HRESULT {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).Close(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_Reset(self: *const T, pAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState) HRESULT {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).Reset(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pAllocator, pInitialState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ClearState(self: *const T, pPipelineState: ?*ID3D12PipelineState) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearState(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pPipelineState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_DrawInstanced(self: *const T, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).DrawInstanced(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_DrawIndexedInstanced(self: *const T, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).DrawIndexedInstanced(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_Dispatch(self: *const T, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).Dispatch(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_CopyBufferRegion(self: *const T, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, NumBytes: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyBufferRegion(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, NumBytes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_CopyTextureRegion(self: *const T, pDst: ?*const D3D12_TEXTURE_COPY_LOCATION, DstX: u32, DstY: u32, DstZ: u32, pSrc: ?*const D3D12_TEXTURE_COPY_LOCATION, pSrcBox: ?*const D3D12_BOX) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyTextureRegion(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDst, DstX, DstY, DstZ, pSrc, pSrcBox);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_CopyResource(self: *const T, pDstResource: ?*ID3D12Resource, pSrcResource: ?*ID3D12Resource) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyResource(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDstResource, pSrcResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_CopyTiles(self: *const T, pTiledResource: ?*ID3D12Resource, pTileRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pTileRegionSize: ?*const D3D12_TILE_REGION_SIZE, pBuffer: ?*ID3D12Resource, BufferStartOffsetInBytes: u64, Flags: D3D12_TILE_COPY_FLAGS) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).CopyTiles(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pTiledResource, pTileRegionStartCoordinate, pTileRegionSize, pBuffer, BufferStartOffsetInBytes, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ResolveSubresource(self: *const T, pDstResource: ?*ID3D12Resource, DstSubresource: u32, pSrcResource: ?*ID3D12Resource, SrcSubresource: u32, Format: DXGI_FORMAT) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ResolveSubresource(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_IASetPrimitiveTopology(self: *const T, PrimitiveTopology: D3D_PRIMITIVE_TOPOLOGY) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).IASetPrimitiveTopology(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), PrimitiveTopology);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_RSSetViewports(self: *const T, NumViewports: u32, pViewports: [*]const D3D12_VIEWPORT) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).RSSetViewports(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumViewports, pViewports);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_RSSetScissorRects(self: *const T, NumRects: u32, pRects: [*]const RECT) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).RSSetScissorRects(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumRects, pRects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_OMSetBlendFactor(self: *const T, BlendFactor: ?*[4]f32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).OMSetBlendFactor(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), BlendFactor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_OMSetStencilRef(self: *const T, StencilRef: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).OMSetStencilRef(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), StencilRef);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetPipelineState(self: *const T, pPipelineState: ?*ID3D12PipelineState) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetPipelineState(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pPipelineState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ResourceBarrier(self: *const T, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ResourceBarrier(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumBarriers, pBarriers);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ExecuteBundle(self: *const T, pCommandList: ?*ID3D12GraphicsCommandList) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ExecuteBundle(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pCommandList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetDescriptorHeaps(self: *const T, NumDescriptorHeaps: u32, ppDescriptorHeaps: [*]?*ID3D12DescriptorHeap) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetDescriptorHeaps(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumDescriptorHeaps, ppDescriptorHeaps);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetComputeRootSignature(self: *const T, pRootSignature: ?*ID3D12RootSignature) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootSignature(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pRootSignature);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetGraphicsRootSignature(self: *const T, pRootSignature: ?*ID3D12RootSignature) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootSignature(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pRootSignature);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetComputeRootDescriptorTable(self: *const T, RootParameterIndex: u32, BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootDescriptorTable(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BaseDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetGraphicsRootDescriptorTable(self: *const T, RootParameterIndex: u32, BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootDescriptorTable(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BaseDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetComputeRoot32BitConstant(self: *const T, RootParameterIndex: u32, SrcData: u32, DestOffsetIn32BitValues: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRoot32BitConstant(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, SrcData, DestOffsetIn32BitValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetGraphicsRoot32BitConstant(self: *const T, RootParameterIndex: u32, SrcData: u32, DestOffsetIn32BitValues: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRoot32BitConstant(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, SrcData, DestOffsetIn32BitValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetComputeRoot32BitConstants(self: *const T, RootParameterIndex: u32, Num32BitValuesToSet: u32, pSrcData: ?*const anyopaque, DestOffsetIn32BitValues: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRoot32BitConstants(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, Num32BitValuesToSet, pSrcData, DestOffsetIn32BitValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetGraphicsRoot32BitConstants(self: *const T, RootParameterIndex: u32, Num32BitValuesToSet: u32, pSrcData: ?*const anyopaque, DestOffsetIn32BitValues: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRoot32BitConstants(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, Num32BitValuesToSet, pSrcData, DestOffsetIn32BitValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetComputeRootConstantBufferView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootConstantBufferView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetGraphicsRootConstantBufferView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootConstantBufferView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetComputeRootShaderResourceView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootShaderResourceView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetGraphicsRootShaderResourceView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootShaderResourceView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetComputeRootUnorderedAccessView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetComputeRootUnorderedAccessView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetGraphicsRootUnorderedAccessView(self: *const T, RootParameterIndex: u32, BufferLocation: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetGraphicsRootUnorderedAccessView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RootParameterIndex, BufferLocation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_IASetIndexBuffer(self: *const T, pView: ?*const D3D12_INDEX_BUFFER_VIEW) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).IASetIndexBuffer(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pView);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_IASetVertexBuffers(self: *const T, StartSlot: u32, NumViews: u32, pViews: ?[*]const D3D12_VERTEX_BUFFER_VIEW) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).IASetVertexBuffers(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), StartSlot, NumViews, pViews);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SOSetTargets(self: *const T, StartSlot: u32, NumViews: u32, pViews: ?[*]const D3D12_STREAM_OUTPUT_BUFFER_VIEW) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SOSetTargets(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), StartSlot, NumViews, pViews);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_OMSetRenderTargets(self: *const T, NumRenderTargetDescriptors: u32, pRenderTargetDescriptors: ?*const D3D12_CPU_DESCRIPTOR_HANDLE, RTsSingleHandleToDescriptorRange: BOOL, pDepthStencilDescriptor: ?*const D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).OMSetRenderTargets(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), NumRenderTargetDescriptors, pRenderTargetDescriptors, RTsSingleHandleToDescriptorRange, pDepthStencilDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ClearDepthStencilView(self: *const T, DepthStencilView: D3D12_CPU_DESCRIPTOR_HANDLE, ClearFlags: D3D12_CLEAR_FLAGS, Depth: f32, Stencil: u8, NumRects: u32, pRects: [*]const RECT) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearDepthStencilView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), DepthStencilView, ClearFlags, Depth, Stencil, NumRects, pRects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ClearRenderTargetView(self: *const T, RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE, ColorRGBA: ?*const f32, NumRects: u32, pRects: [*]const RECT) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearRenderTargetView(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), RenderTargetView, ColorRGBA, NumRects, pRects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ClearUnorderedAccessViewUint(self: *const T, ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE, ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE, pResource: ?*ID3D12Resource, Values: ?*const u32, NumRects: u32, pRects: [*]const RECT) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearUnorderedAccessViewUint(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), ViewGPUHandleInCurrentHeap, ViewCPUHandle, pResource, Values, NumRects, pRects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ClearUnorderedAccessViewFloat(self: *const T, ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE, ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE, pResource: ?*ID3D12Resource, Values: ?*const f32, NumRects: u32, pRects: [*]const RECT) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ClearUnorderedAccessViewFloat(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), ViewGPUHandleInCurrentHeap, ViewCPUHandle, pResource, Values, NumRects, pRects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_DiscardResource(self: *const T, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).DiscardResource(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pResource, pRegion);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_BeginQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).BeginQuery(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_EndQuery(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).EndQuery(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pQueryHeap, Type, Index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ResolveQueryData(self: *const T, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ResolveQueryData(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetPredication(self: *const T, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetPredication(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pBuffer, AlignedBufferOffset, Operation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_SetMarker(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), Metadata, pData, Size);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_BeginEvent(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), Metadata, pData, Size);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_EndEvent(self: *const T) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList_ExecuteIndirect(self: *const T, pCommandSignature: ?*ID3D12CommandSignature, MaxCommandCount: u32, pArgumentBuffer: ?*ID3D12Resource, ArgumentBufferOffset: u64, pCountBuffer: ?*ID3D12Resource, CountBufferOffset: u64) void {
-                return @as(*const ID3D12GraphicsCommandList.VTable, @ptrCast(self.vtable)).ExecuteIndirect(@as(*const ID3D12GraphicsCommandList, @ptrCast(self)), pCommandSignature, MaxCommandCount, pArgumentBuffer, ArgumentBufferOffset, pCountBuffer, CountBufferOffset);
-            }
-        };
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn Close(self: *const ID3D12GraphicsCommandList) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Reset(self: *const ID3D12GraphicsCommandList, pAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState) callconv(.Inline) HRESULT {
+        return self.vtable.Reset(self, pAllocator, pInitialState);
+    }
+    pub fn ClearState(self: *const ID3D12GraphicsCommandList, pPipelineState: ?*ID3D12PipelineState) callconv(.Inline) void {
+        return self.vtable.ClearState(self, pPipelineState);
+    }
+    pub fn DrawInstanced(self: *const ID3D12GraphicsCommandList, VertexCountPerInstance: u32, InstanceCount: u32, StartVertexLocation: u32, StartInstanceLocation: u32) callconv(.Inline) void {
+        return self.vtable.DrawInstanced(self, VertexCountPerInstance, InstanceCount, StartVertexLocation, StartInstanceLocation);
+    }
+    pub fn DrawIndexedInstanced(self: *const ID3D12GraphicsCommandList, IndexCountPerInstance: u32, InstanceCount: u32, StartIndexLocation: u32, BaseVertexLocation: i32, StartInstanceLocation: u32) callconv(.Inline) void {
+        return self.vtable.DrawIndexedInstanced(self, IndexCountPerInstance, InstanceCount, StartIndexLocation, BaseVertexLocation, StartInstanceLocation);
+    }
+    pub fn Dispatch(self: *const ID3D12GraphicsCommandList, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) callconv(.Inline) void {
+        return self.vtable.Dispatch(self, ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
+    }
+    pub fn CopyBufferRegion(self: *const ID3D12GraphicsCommandList, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, NumBytes: u64) callconv(.Inline) void {
+        return self.vtable.CopyBufferRegion(self, pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, NumBytes);
+    }
+    pub fn CopyTextureRegion(self: *const ID3D12GraphicsCommandList, pDst: ?*const D3D12_TEXTURE_COPY_LOCATION, DstX: u32, DstY: u32, DstZ: u32, pSrc: ?*const D3D12_TEXTURE_COPY_LOCATION, pSrcBox: ?*const D3D12_BOX) callconv(.Inline) void {
+        return self.vtable.CopyTextureRegion(self, pDst, DstX, DstY, DstZ, pSrc, pSrcBox);
+    }
+    pub fn CopyResource(self: *const ID3D12GraphicsCommandList, pDstResource: ?*ID3D12Resource, pSrcResource: ?*ID3D12Resource) callconv(.Inline) void {
+        return self.vtable.CopyResource(self, pDstResource, pSrcResource);
+    }
+    pub fn CopyTiles(self: *const ID3D12GraphicsCommandList, pTiledResource: ?*ID3D12Resource, pTileRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pTileRegionSize: ?*const D3D12_TILE_REGION_SIZE, pBuffer: ?*ID3D12Resource, BufferStartOffsetInBytes: u64, Flags: D3D12_TILE_COPY_FLAGS) callconv(.Inline) void {
+        return self.vtable.CopyTiles(self, pTiledResource, pTileRegionStartCoordinate, pTileRegionSize, pBuffer, BufferStartOffsetInBytes, Flags);
+    }
+    pub fn ResolveSubresource(self: *const ID3D12GraphicsCommandList, pDstResource: ?*ID3D12Resource, DstSubresource: u32, pSrcResource: ?*ID3D12Resource, SrcSubresource: u32, Format: DXGI_FORMAT) callconv(.Inline) void {
+        return self.vtable.ResolveSubresource(self, pDstResource, DstSubresource, pSrcResource, SrcSubresource, Format);
+    }
+    pub fn IASetPrimitiveTopology(self: *const ID3D12GraphicsCommandList, PrimitiveTopology: D3D_PRIMITIVE_TOPOLOGY) callconv(.Inline) void {
+        return self.vtable.IASetPrimitiveTopology(self, PrimitiveTopology);
+    }
+    pub fn RSSetViewports(self: *const ID3D12GraphicsCommandList, NumViewports: u32, pViewports: [*]const D3D12_VIEWPORT) callconv(.Inline) void {
+        return self.vtable.RSSetViewports(self, NumViewports, pViewports);
+    }
+    pub fn RSSetScissorRects(self: *const ID3D12GraphicsCommandList, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
+        return self.vtable.RSSetScissorRects(self, NumRects, pRects);
+    }
+    pub fn OMSetBlendFactor(self: *const ID3D12GraphicsCommandList, BlendFactor: ?*[4]f32) callconv(.Inline) void {
+        return self.vtable.OMSetBlendFactor(self, BlendFactor);
+    }
+    pub fn OMSetStencilRef(self: *const ID3D12GraphicsCommandList, StencilRef: u32) callconv(.Inline) void {
+        return self.vtable.OMSetStencilRef(self, StencilRef);
+    }
+    pub fn SetPipelineState(self: *const ID3D12GraphicsCommandList, pPipelineState: ?*ID3D12PipelineState) callconv(.Inline) void {
+        return self.vtable.SetPipelineState(self, pPipelineState);
+    }
+    pub fn ResourceBarrier(self: *const ID3D12GraphicsCommandList, NumBarriers: u32, pBarriers: [*]const D3D12_RESOURCE_BARRIER) callconv(.Inline) void {
+        return self.vtable.ResourceBarrier(self, NumBarriers, pBarriers);
+    }
+    pub fn ExecuteBundle(self: *const ID3D12GraphicsCommandList, pCommandList: ?*ID3D12GraphicsCommandList) callconv(.Inline) void {
+        return self.vtable.ExecuteBundle(self, pCommandList);
+    }
+    pub fn SetDescriptorHeaps(self: *const ID3D12GraphicsCommandList, NumDescriptorHeaps: u32, ppDescriptorHeaps: [*]?*ID3D12DescriptorHeap) callconv(.Inline) void {
+        return self.vtable.SetDescriptorHeaps(self, NumDescriptorHeaps, ppDescriptorHeaps);
+    }
+    pub fn SetComputeRootSignature(self: *const ID3D12GraphicsCommandList, pRootSignature: ?*ID3D12RootSignature) callconv(.Inline) void {
+        return self.vtable.SetComputeRootSignature(self, pRootSignature);
+    }
+    pub fn SetGraphicsRootSignature(self: *const ID3D12GraphicsCommandList, pRootSignature: ?*ID3D12RootSignature) callconv(.Inline) void {
+        return self.vtable.SetGraphicsRootSignature(self, pRootSignature);
+    }
+    pub fn SetComputeRootDescriptorTable(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.SetComputeRootDescriptorTable(self, RootParameterIndex, BaseDescriptor);
+    }
+    pub fn SetGraphicsRootDescriptorTable(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BaseDescriptor: D3D12_GPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.SetGraphicsRootDescriptorTable(self, RootParameterIndex, BaseDescriptor);
+    }
+    pub fn SetComputeRoot32BitConstant(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, SrcData: u32, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
+        return self.vtable.SetComputeRoot32BitConstant(self, RootParameterIndex, SrcData, DestOffsetIn32BitValues);
+    }
+    pub fn SetGraphicsRoot32BitConstant(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, SrcData: u32, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
+        return self.vtable.SetGraphicsRoot32BitConstant(self, RootParameterIndex, SrcData, DestOffsetIn32BitValues);
+    }
+    pub fn SetComputeRoot32BitConstants(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, Num32BitValuesToSet: u32, pSrcData: ?*const anyopaque, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
+        return self.vtable.SetComputeRoot32BitConstants(self, RootParameterIndex, Num32BitValuesToSet, pSrcData, DestOffsetIn32BitValues);
+    }
+    pub fn SetGraphicsRoot32BitConstants(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, Num32BitValuesToSet: u32, pSrcData: ?*const anyopaque, DestOffsetIn32BitValues: u32) callconv(.Inline) void {
+        return self.vtable.SetGraphicsRoot32BitConstants(self, RootParameterIndex, Num32BitValuesToSet, pSrcData, DestOffsetIn32BitValues);
+    }
+    pub fn SetComputeRootConstantBufferView(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
+        return self.vtable.SetComputeRootConstantBufferView(self, RootParameterIndex, BufferLocation);
+    }
+    pub fn SetGraphicsRootConstantBufferView(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
+        return self.vtable.SetGraphicsRootConstantBufferView(self, RootParameterIndex, BufferLocation);
+    }
+    pub fn SetComputeRootShaderResourceView(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
+        return self.vtable.SetComputeRootShaderResourceView(self, RootParameterIndex, BufferLocation);
+    }
+    pub fn SetGraphicsRootShaderResourceView(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
+        return self.vtable.SetGraphicsRootShaderResourceView(self, RootParameterIndex, BufferLocation);
+    }
+    pub fn SetComputeRootUnorderedAccessView(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
+        return self.vtable.SetComputeRootUnorderedAccessView(self, RootParameterIndex, BufferLocation);
+    }
+    pub fn SetGraphicsRootUnorderedAccessView(self: *const ID3D12GraphicsCommandList, RootParameterIndex: u32, BufferLocation: u64) callconv(.Inline) void {
+        return self.vtable.SetGraphicsRootUnorderedAccessView(self, RootParameterIndex, BufferLocation);
+    }
+    pub fn IASetIndexBuffer(self: *const ID3D12GraphicsCommandList, pView: ?*const D3D12_INDEX_BUFFER_VIEW) callconv(.Inline) void {
+        return self.vtable.IASetIndexBuffer(self, pView);
+    }
+    pub fn IASetVertexBuffers(self: *const ID3D12GraphicsCommandList, StartSlot: u32, NumViews: u32, pViews: ?[*]const D3D12_VERTEX_BUFFER_VIEW) callconv(.Inline) void {
+        return self.vtable.IASetVertexBuffers(self, StartSlot, NumViews, pViews);
+    }
+    pub fn SOSetTargets(self: *const ID3D12GraphicsCommandList, StartSlot: u32, NumViews: u32, pViews: ?[*]const D3D12_STREAM_OUTPUT_BUFFER_VIEW) callconv(.Inline) void {
+        return self.vtable.SOSetTargets(self, StartSlot, NumViews, pViews);
+    }
+    pub fn OMSetRenderTargets(self: *const ID3D12GraphicsCommandList, NumRenderTargetDescriptors: u32, pRenderTargetDescriptors: ?*const D3D12_CPU_DESCRIPTOR_HANDLE, RTsSingleHandleToDescriptorRange: BOOL, pDepthStencilDescriptor: ?*const D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.OMSetRenderTargets(self, NumRenderTargetDescriptors, pRenderTargetDescriptors, RTsSingleHandleToDescriptorRange, pDepthStencilDescriptor);
+    }
+    pub fn ClearDepthStencilView(self: *const ID3D12GraphicsCommandList, DepthStencilView: D3D12_CPU_DESCRIPTOR_HANDLE, ClearFlags: D3D12_CLEAR_FLAGS, Depth: f32, Stencil: u8, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
+        return self.vtable.ClearDepthStencilView(self, DepthStencilView, ClearFlags, Depth, Stencil, NumRects, pRects);
+    }
+    pub fn ClearRenderTargetView(self: *const ID3D12GraphicsCommandList, RenderTargetView: D3D12_CPU_DESCRIPTOR_HANDLE, ColorRGBA: ?*const f32, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
+        return self.vtable.ClearRenderTargetView(self, RenderTargetView, ColorRGBA, NumRects, pRects);
+    }
+    pub fn ClearUnorderedAccessViewUint(self: *const ID3D12GraphicsCommandList, ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE, ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE, pResource: ?*ID3D12Resource, Values: ?*const u32, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
+        return self.vtable.ClearUnorderedAccessViewUint(self, ViewGPUHandleInCurrentHeap, ViewCPUHandle, pResource, Values, NumRects, pRects);
+    }
+    pub fn ClearUnorderedAccessViewFloat(self: *const ID3D12GraphicsCommandList, ViewGPUHandleInCurrentHeap: D3D12_GPU_DESCRIPTOR_HANDLE, ViewCPUHandle: D3D12_CPU_DESCRIPTOR_HANDLE, pResource: ?*ID3D12Resource, Values: ?*const f32, NumRects: u32, pRects: [*]const RECT) callconv(.Inline) void {
+        return self.vtable.ClearUnorderedAccessViewFloat(self, ViewGPUHandleInCurrentHeap, ViewCPUHandle, pResource, Values, NumRects, pRects);
+    }
+    pub fn DiscardResource(self: *const ID3D12GraphicsCommandList, pResource: ?*ID3D12Resource, pRegion: ?*const D3D12_DISCARD_REGION) callconv(.Inline) void {
+        return self.vtable.DiscardResource(self, pResource, pRegion);
+    }
+    pub fn BeginQuery(self: *const ID3D12GraphicsCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
+        return self.vtable.BeginQuery(self, pQueryHeap, Type, Index);
+    }
+    pub fn EndQuery(self: *const ID3D12GraphicsCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, Index: u32) callconv(.Inline) void {
+        return self.vtable.EndQuery(self, pQueryHeap, Type, Index);
+    }
+    pub fn ResolveQueryData(self: *const ID3D12GraphicsCommandList, pQueryHeap: ?*ID3D12QueryHeap, Type: D3D12_QUERY_TYPE, StartIndex: u32, NumQueries: u32, pDestinationBuffer: ?*ID3D12Resource, AlignedDestinationBufferOffset: u64) callconv(.Inline) void {
+        return self.vtable.ResolveQueryData(self, pQueryHeap, Type, StartIndex, NumQueries, pDestinationBuffer, AlignedDestinationBufferOffset);
+    }
+    pub fn SetPredication(self: *const ID3D12GraphicsCommandList, pBuffer: ?*ID3D12Resource, AlignedBufferOffset: u64, Operation: D3D12_PREDICATION_OP) callconv(.Inline) void {
+        return self.vtable.SetPredication(self, pBuffer, AlignedBufferOffset, Operation);
+    }
+    pub fn SetMarker(self: *const ID3D12GraphicsCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
+        return self.vtable.SetMarker(self, Metadata, pData, Size);
+    }
+    pub fn BeginEvent(self: *const ID3D12GraphicsCommandList, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
+        return self.vtable.BeginEvent(self, Metadata, pData, Size);
+    }
+    pub fn EndEvent(self: *const ID3D12GraphicsCommandList) callconv(.Inline) void {
+        return self.vtable.EndEvent(self);
+    }
+    pub fn ExecuteIndirect(self: *const ID3D12GraphicsCommandList, pCommandSignature: ?*ID3D12CommandSignature, MaxCommandCount: u32, pArgumentBuffer: ?*ID3D12Resource, ArgumentBufferOffset: u64, pCountBuffer: ?*ID3D12Resource, CountBufferOffset: u64) callconv(.Inline) void {
+        return self.vtable.ExecuteIndirect(self, pCommandSignature, MaxCommandCount, pArgumentBuffer, ArgumentBufferOffset, pCountBuffer, CountBufferOffset);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12GraphicsCommandList1_Value = Guid.initString("553103fb-1fe7-4557-bb38-946d7d0e7ca7");
 pub const IID_ID3D12GraphicsCommandList1 = &IID_ID3D12GraphicsCommandList1_Value;
-pub const ID3D12GraphicsCommandList1 = extern struct {
+pub const ID3D12GraphicsCommandList1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12GraphicsCommandList.VTable,
-        AtomicCopyBufferUINT: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList1,
-                pDstBuffer: ?*ID3D12Resource,
-                DstOffset: u64,
-                pSrcBuffer: ?*ID3D12Resource,
-                SrcOffset: u64,
-                Dependencies: u32,
-                ppDependentResources: [*]?*ID3D12Resource,
-                pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList1,
-                pDstBuffer: ?*ID3D12Resource,
-                DstOffset: u64,
-                pSrcBuffer: ?*ID3D12Resource,
-                SrcOffset: u64,
-                Dependencies: u32,
-                ppDependentResources: [*]?*ID3D12Resource,
-                pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        AtomicCopyBufferUINT64: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList1,
-                pDstBuffer: ?*ID3D12Resource,
-                DstOffset: u64,
-                pSrcBuffer: ?*ID3D12Resource,
-                SrcOffset: u64,
-                Dependencies: u32,
-                ppDependentResources: [*]?*ID3D12Resource,
-                pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList1,
-                pDstBuffer: ?*ID3D12Resource,
-                DstOffset: u64,
-                pSrcBuffer: ?*ID3D12Resource,
-                SrcOffset: u64,
-                Dependencies: u32,
-                ppDependentResources: [*]?*ID3D12Resource,
-                pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        OMSetDepthBounds: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList1,
-                Min: f32,
-                Max: f32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList1,
-                Min: f32,
-                Max: f32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetSamplePositions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList1,
-                NumSamplesPerPixel: u32,
-                NumPixels: u32,
-                pSamplePositions: ?*D3D12_SAMPLE_POSITION,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList1,
-                NumSamplesPerPixel: u32,
-                NumPixels: u32,
-                pSamplePositions: ?*D3D12_SAMPLE_POSITION,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ResolveSubresourceRegion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList1,
-                pDstResource: ?*ID3D12Resource,
-                DstSubresource: u32,
-                DstX: u32,
-                DstY: u32,
-                pSrcResource: ?*ID3D12Resource,
-                SrcSubresource: u32,
-                pSrcRect: ?*RECT,
-                Format: DXGI_FORMAT,
-                ResolveMode: D3D12_RESOLVE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList1,
-                pDstResource: ?*ID3D12Resource,
-                DstSubresource: u32,
-                DstX: u32,
-                DstY: u32,
-                pSrcResource: ?*ID3D12Resource,
-                SrcSubresource: u32,
-                pSrcRect: ?*RECT,
-                Format: DXGI_FORMAT,
-                ResolveMode: D3D12_RESOLVE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetViewInstanceMask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList1,
-                Mask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList1,
-                Mask: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        AtomicCopyBufferUINT: *const fn(
+            self: *const ID3D12GraphicsCommandList1,
+            pDstBuffer: ?*ID3D12Resource,
+            DstOffset: u64,
+            pSrcBuffer: ?*ID3D12Resource,
+            SrcOffset: u64,
+            Dependencies: u32,
+            ppDependentResources: [*]?*ID3D12Resource,
+            pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        AtomicCopyBufferUINT64: *const fn(
+            self: *const ID3D12GraphicsCommandList1,
+            pDstBuffer: ?*ID3D12Resource,
+            DstOffset: u64,
+            pSrcBuffer: ?*ID3D12Resource,
+            SrcOffset: u64,
+            Dependencies: u32,
+            ppDependentResources: [*]?*ID3D12Resource,
+            pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        OMSetDepthBounds: *const fn(
+            self: *const ID3D12GraphicsCommandList1,
+            Min: f32,
+            Max: f32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetSamplePositions: *const fn(
+            self: *const ID3D12GraphicsCommandList1,
+            NumSamplesPerPixel: u32,
+            NumPixels: u32,
+            pSamplePositions: ?*D3D12_SAMPLE_POSITION,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ResolveSubresourceRegion: *const fn(
+            self: *const ID3D12GraphicsCommandList1,
+            pDstResource: ?*ID3D12Resource,
+            DstSubresource: u32,
+            DstX: u32,
+            DstY: u32,
+            pSrcResource: ?*ID3D12Resource,
+            SrcSubresource: u32,
+            pSrcRect: ?*RECT,
+            Format: DXGI_FORMAT,
+            ResolveMode: D3D12_RESOLVE_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetViewInstanceMask: *const fn(
+            self: *const ID3D12GraphicsCommandList1,
+            Mask: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12GraphicsCommandList.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList1_AtomicCopyBufferUINT(self: *const T, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, Dependencies: u32, ppDependentResources: [*]?*ID3D12Resource, pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64) void {
-                return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).AtomicCopyBufferUINT(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, Dependencies, ppDependentResources, pDependentSubresourceRanges);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList1_AtomicCopyBufferUINT64(self: *const T, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, Dependencies: u32, ppDependentResources: [*]?*ID3D12Resource, pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64) void {
-                return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).AtomicCopyBufferUINT64(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, Dependencies, ppDependentResources, pDependentSubresourceRanges);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList1_OMSetDepthBounds(self: *const T, Min: f32, Max: f32) void {
-                return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).OMSetDepthBounds(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), Min, Max);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList1_SetSamplePositions(self: *const T, NumSamplesPerPixel: u32, NumPixels: u32, pSamplePositions: ?*D3D12_SAMPLE_POSITION) void {
-                return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).SetSamplePositions(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), NumSamplesPerPixel, NumPixels, pSamplePositions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList1_ResolveSubresourceRegion(self: *const T, pDstResource: ?*ID3D12Resource, DstSubresource: u32, DstX: u32, DstY: u32, pSrcResource: ?*ID3D12Resource, SrcSubresource: u32, pSrcRect: ?*RECT, Format: DXGI_FORMAT, ResolveMode: D3D12_RESOLVE_MODE) void {
-                return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).ResolveSubresourceRegion(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), pDstResource, DstSubresource, DstX, DstY, pSrcResource, SrcSubresource, pSrcRect, Format, ResolveMode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList1_SetViewInstanceMask(self: *const T, Mask: u32) void {
-                return @as(*const ID3D12GraphicsCommandList1.VTable, @ptrCast(self.vtable)).SetViewInstanceMask(@as(*const ID3D12GraphicsCommandList1, @ptrCast(self)), Mask);
-            }
-        };
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn AtomicCopyBufferUINT(self: *const ID3D12GraphicsCommandList1, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, Dependencies: u32, ppDependentResources: [*]?*ID3D12Resource, pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64) callconv(.Inline) void {
+        return self.vtable.AtomicCopyBufferUINT(self, pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, Dependencies, ppDependentResources, pDependentSubresourceRanges);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn AtomicCopyBufferUINT64(self: *const ID3D12GraphicsCommandList1, pDstBuffer: ?*ID3D12Resource, DstOffset: u64, pSrcBuffer: ?*ID3D12Resource, SrcOffset: u64, Dependencies: u32, ppDependentResources: [*]?*ID3D12Resource, pDependentSubresourceRanges: [*]const D3D12_SUBRESOURCE_RANGE_UINT64) callconv(.Inline) void {
+        return self.vtable.AtomicCopyBufferUINT64(self, pDstBuffer, DstOffset, pSrcBuffer, SrcOffset, Dependencies, ppDependentResources, pDependentSubresourceRanges);
+    }
+    pub fn OMSetDepthBounds(self: *const ID3D12GraphicsCommandList1, Min: f32, Max: f32) callconv(.Inline) void {
+        return self.vtable.OMSetDepthBounds(self, Min, Max);
+    }
+    pub fn SetSamplePositions(self: *const ID3D12GraphicsCommandList1, NumSamplesPerPixel: u32, NumPixels: u32, pSamplePositions: ?*D3D12_SAMPLE_POSITION) callconv(.Inline) void {
+        return self.vtable.SetSamplePositions(self, NumSamplesPerPixel, NumPixels, pSamplePositions);
+    }
+    pub fn ResolveSubresourceRegion(self: *const ID3D12GraphicsCommandList1, pDstResource: ?*ID3D12Resource, DstSubresource: u32, DstX: u32, DstY: u32, pSrcResource: ?*ID3D12Resource, SrcSubresource: u32, pSrcRect: ?*RECT, Format: DXGI_FORMAT, ResolveMode: D3D12_RESOLVE_MODE) callconv(.Inline) void {
+        return self.vtable.ResolveSubresourceRegion(self, pDstResource, DstSubresource, DstX, DstY, pSrcResource, SrcSubresource, pSrcRect, Format, ResolveMode);
+    }
+    pub fn SetViewInstanceMask(self: *const ID3D12GraphicsCommandList1, Mask: u32) callconv(.Inline) void {
+        return self.vtable.SetViewInstanceMask(self, Mask);
+    }
 };
 
 pub const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER = extern struct {
@@ -4916,1116 +4475,622 @@ pub const D3D12_WRITEBUFFERIMMEDIATE_MODE_DEFAULT = D3D12_WRITEBUFFERIMMEDIATE_M
 pub const D3D12_WRITEBUFFERIMMEDIATE_MODE_MARKER_IN = D3D12_WRITEBUFFERIMMEDIATE_MODE.MARKER_IN;
 pub const D3D12_WRITEBUFFERIMMEDIATE_MODE_MARKER_OUT = D3D12_WRITEBUFFERIMMEDIATE_MODE.MARKER_OUT;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12GraphicsCommandList2_Value = Guid.initString("38c3e585-ff17-412c-9150-4fc6f9d72a28");
 pub const IID_ID3D12GraphicsCommandList2 = &IID_ID3D12GraphicsCommandList2_Value;
-pub const ID3D12GraphicsCommandList2 = extern struct {
+pub const ID3D12GraphicsCommandList2 = extern union {
     pub const VTable = extern struct {
         base: ID3D12GraphicsCommandList1.VTable,
-        WriteBufferImmediate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList2,
-                Count: u32,
-                pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER,
-                pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList2,
-                Count: u32,
-                pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER,
-                pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        WriteBufferImmediate: *const fn(
+            self: *const ID3D12GraphicsCommandList2,
+            Count: u32,
+            pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER,
+            pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12GraphicsCommandList1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList2_WriteBufferImmediate(self: *const T, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) void {
-                return @as(*const ID3D12GraphicsCommandList2.VTable, @ptrCast(self.vtable)).WriteBufferImmediate(@as(*const ID3D12GraphicsCommandList2, @ptrCast(self)), Count, pParams, pModes);
-            }
-        };
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn WriteBufferImmediate(self: *const ID3D12GraphicsCommandList2, Count: u32, pParams: [*]const D3D12_WRITEBUFFERIMMEDIATE_PARAMETER, pModes: ?[*]const D3D12_WRITEBUFFERIMMEDIATE_MODE) callconv(.Inline) void {
+        return self.vtable.WriteBufferImmediate(self, Count, pParams, pModes);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12CommandQueue_Value = Guid.initString("0ec870a6-5d7e-4c22-8cfc-5baae07616ed");
 pub const IID_ID3D12CommandQueue = &IID_ID3D12CommandQueue_Value;
-pub const ID3D12CommandQueue = extern struct {
+pub const ID3D12CommandQueue = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        UpdateTileMappings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                pResource: ?*ID3D12Resource,
-                NumResourceRegions: u32,
-                pResourceRegionStartCoordinates: ?[*]const D3D12_TILED_RESOURCE_COORDINATE,
-                pResourceRegionSizes: ?[*]const D3D12_TILE_REGION_SIZE,
-                pHeap: ?*ID3D12Heap,
-                NumRanges: u32,
-                pRangeFlags: ?[*]const D3D12_TILE_RANGE_FLAGS,
-                pHeapRangeStartOffsets: ?[*]const u32,
-                pRangeTileCounts: ?[*]const u32,
-                Flags: D3D12_TILE_MAPPING_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                pResource: ?*ID3D12Resource,
-                NumResourceRegions: u32,
-                pResourceRegionStartCoordinates: ?[*]const D3D12_TILED_RESOURCE_COORDINATE,
-                pResourceRegionSizes: ?[*]const D3D12_TILE_REGION_SIZE,
-                pHeap: ?*ID3D12Heap,
-                NumRanges: u32,
-                pRangeFlags: ?[*]const D3D12_TILE_RANGE_FLAGS,
-                pHeapRangeStartOffsets: ?[*]const u32,
-                pRangeTileCounts: ?[*]const u32,
-                Flags: D3D12_TILE_MAPPING_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyTileMappings: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                pDstResource: ?*ID3D12Resource,
-                pDstRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
-                pSrcResource: ?*ID3D12Resource,
-                pSrcRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
-                pRegionSize: ?*const D3D12_TILE_REGION_SIZE,
-                Flags: D3D12_TILE_MAPPING_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                pDstResource: ?*ID3D12Resource,
-                pDstRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
-                pSrcResource: ?*ID3D12Resource,
-                pSrcRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
-                pRegionSize: ?*const D3D12_TILE_REGION_SIZE,
-                Flags: D3D12_TILE_MAPPING_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ExecuteCommandLists: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                NumCommandLists: u32,
-                ppCommandLists: [*]?*ID3D12CommandList,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                NumCommandLists: u32,
-                ppCommandLists: [*]?*ID3D12CommandList,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetMarker: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        BeginEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                Metadata: u32,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                Size: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndEvent: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        Signal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                pFence: ?*ID3D12Fence,
-                Value: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                pFence: ?*ID3D12Fence,
-                Value: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Wait: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                pFence: ?*ID3D12Fence,
-                Value: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                pFence: ?*ID3D12Fence,
-                Value: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTimestampFrequency: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                pFrequency: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                pFrequency: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetClockCalibration: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-                pGpuTimestamp: ?*u64,
-                pCpuTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-                pGpuTimestamp: ?*u64,
-                pCpuTimestamp: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12CommandQueue,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_COMMAND_QUEUE_DESC,
-            else => *const fn (
-                self: *const ID3D12CommandQueue,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_COMMAND_QUEUE_DESC,
-        },
+        UpdateTileMappings: *const fn(
+            self: *const ID3D12CommandQueue,
+            pResource: ?*ID3D12Resource,
+            NumResourceRegions: u32,
+            pResourceRegionStartCoordinates: ?[*]const D3D12_TILED_RESOURCE_COORDINATE,
+            pResourceRegionSizes: ?[*]const D3D12_TILE_REGION_SIZE,
+            pHeap: ?*ID3D12Heap,
+            NumRanges: u32,
+            pRangeFlags: ?[*]const D3D12_TILE_RANGE_FLAGS,
+            pHeapRangeStartOffsets: ?[*]const u32,
+            pRangeTileCounts: ?[*]const u32,
+            Flags: D3D12_TILE_MAPPING_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyTileMappings: *const fn(
+            self: *const ID3D12CommandQueue,
+            pDstResource: ?*ID3D12Resource,
+            pDstRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
+            pSrcResource: ?*ID3D12Resource,
+            pSrcRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE,
+            pRegionSize: ?*const D3D12_TILE_REGION_SIZE,
+            Flags: D3D12_TILE_MAPPING_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ExecuteCommandLists: *const fn(
+            self: *const ID3D12CommandQueue,
+            NumCommandLists: u32,
+            ppCommandLists: [*]?*ID3D12CommandList,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetMarker: *const fn(
+            self: *const ID3D12CommandQueue,
+            Metadata: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            Size: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        BeginEvent: *const fn(
+            self: *const ID3D12CommandQueue,
+            Metadata: u32,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            Size: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndEvent: *const fn(
+            self: *const ID3D12CommandQueue,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        Signal: *const fn(
+            self: *const ID3D12CommandQueue,
+            pFence: ?*ID3D12Fence,
+            Value: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Wait: *const fn(
+            self: *const ID3D12CommandQueue,
+            pFence: ?*ID3D12Fence,
+            Value: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTimestampFrequency: *const fn(
+            self: *const ID3D12CommandQueue,
+            pFrequency: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetClockCalibration: *const fn(
+            self: *const ID3D12CommandQueue,
+            pGpuTimestamp: ?*u64,
+            pCpuTimestamp: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDesc: *const fn(
+            self: *const ID3D12CommandQueue,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_COMMAND_QUEUE_DESC,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_UpdateTileMappings(self: *const T, pResource: ?*ID3D12Resource, NumResourceRegions: u32, pResourceRegionStartCoordinates: ?[*]const D3D12_TILED_RESOURCE_COORDINATE, pResourceRegionSizes: ?[*]const D3D12_TILE_REGION_SIZE, pHeap: ?*ID3D12Heap, NumRanges: u32, pRangeFlags: ?[*]const D3D12_TILE_RANGE_FLAGS, pHeapRangeStartOffsets: ?[*]const u32, pRangeTileCounts: ?[*]const u32, Flags: D3D12_TILE_MAPPING_FLAGS) void {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).UpdateTileMappings(@as(*const ID3D12CommandQueue, @ptrCast(self)), pResource, NumResourceRegions, pResourceRegionStartCoordinates, pResourceRegionSizes, pHeap, NumRanges, pRangeFlags, pHeapRangeStartOffsets, pRangeTileCounts, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_CopyTileMappings(self: *const T, pDstResource: ?*ID3D12Resource, pDstRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pSrcResource: ?*ID3D12Resource, pSrcRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pRegionSize: ?*const D3D12_TILE_REGION_SIZE, Flags: D3D12_TILE_MAPPING_FLAGS) void {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).CopyTileMappings(@as(*const ID3D12CommandQueue, @ptrCast(self)), pDstResource, pDstRegionStartCoordinate, pSrcResource, pSrcRegionStartCoordinate, pRegionSize, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_ExecuteCommandLists(self: *const T, NumCommandLists: u32, ppCommandLists: [*]?*ID3D12CommandList) void {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).ExecuteCommandLists(@as(*const ID3D12CommandQueue, @ptrCast(self)), NumCommandLists, ppCommandLists);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_SetMarker(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).SetMarker(@as(*const ID3D12CommandQueue, @ptrCast(self)), Metadata, pData, Size);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_BeginEvent(self: *const T, Metadata: u32, pData: ?*const anyopaque, Size: u32) void {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).BeginEvent(@as(*const ID3D12CommandQueue, @ptrCast(self)), Metadata, pData, Size);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_EndEvent(self: *const T) void {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).EndEvent(@as(*const ID3D12CommandQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_Signal(self: *const T, pFence: ?*ID3D12Fence, Value: u64) HRESULT {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).Signal(@as(*const ID3D12CommandQueue, @ptrCast(self)), pFence, Value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_Wait(self: *const T, pFence: ?*ID3D12Fence, Value: u64) HRESULT {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).Wait(@as(*const ID3D12CommandQueue, @ptrCast(self)), pFence, Value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_GetTimestampFrequency(self: *const T, pFrequency: ?*u64) HRESULT {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).GetTimestampFrequency(@as(*const ID3D12CommandQueue, @ptrCast(self)), pFrequency);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_GetClockCalibration(self: *const T, pGpuTimestamp: ?*u64, pCpuTimestamp: ?*u64) HRESULT {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).GetClockCalibration(@as(*const ID3D12CommandQueue, @ptrCast(self)), pGpuTimestamp, pCpuTimestamp);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12CommandQueue_GetDesc(self: *const T) D3D12_COMMAND_QUEUE_DESC {
-                return @as(*const ID3D12CommandQueue.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12CommandQueue, @ptrCast(self)));
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn UpdateTileMappings(self: *const ID3D12CommandQueue, pResource: ?*ID3D12Resource, NumResourceRegions: u32, pResourceRegionStartCoordinates: ?[*]const D3D12_TILED_RESOURCE_COORDINATE, pResourceRegionSizes: ?[*]const D3D12_TILE_REGION_SIZE, pHeap: ?*ID3D12Heap, NumRanges: u32, pRangeFlags: ?[*]const D3D12_TILE_RANGE_FLAGS, pHeapRangeStartOffsets: ?[*]const u32, pRangeTileCounts: ?[*]const u32, Flags: D3D12_TILE_MAPPING_FLAGS) callconv(.Inline) void {
+        return self.vtable.UpdateTileMappings(self, pResource, NumResourceRegions, pResourceRegionStartCoordinates, pResourceRegionSizes, pHeap, NumRanges, pRangeFlags, pHeapRangeStartOffsets, pRangeTileCounts, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CopyTileMappings(self: *const ID3D12CommandQueue, pDstResource: ?*ID3D12Resource, pDstRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pSrcResource: ?*ID3D12Resource, pSrcRegionStartCoordinate: ?*const D3D12_TILED_RESOURCE_COORDINATE, pRegionSize: ?*const D3D12_TILE_REGION_SIZE, Flags: D3D12_TILE_MAPPING_FLAGS) callconv(.Inline) void {
+        return self.vtable.CopyTileMappings(self, pDstResource, pDstRegionStartCoordinate, pSrcResource, pSrcRegionStartCoordinate, pRegionSize, Flags);
+    }
+    pub fn ExecuteCommandLists(self: *const ID3D12CommandQueue, NumCommandLists: u32, ppCommandLists: [*]?*ID3D12CommandList) callconv(.Inline) void {
+        return self.vtable.ExecuteCommandLists(self, NumCommandLists, ppCommandLists);
+    }
+    pub fn SetMarker(self: *const ID3D12CommandQueue, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
+        return self.vtable.SetMarker(self, Metadata, pData, Size);
+    }
+    pub fn BeginEvent(self: *const ID3D12CommandQueue, Metadata: u32, pData: ?*const anyopaque, Size: u32) callconv(.Inline) void {
+        return self.vtable.BeginEvent(self, Metadata, pData, Size);
+    }
+    pub fn EndEvent(self: *const ID3D12CommandQueue) callconv(.Inline) void {
+        return self.vtable.EndEvent(self);
+    }
+    pub fn Signal(self: *const ID3D12CommandQueue, pFence: ?*ID3D12Fence, Value: u64) callconv(.Inline) HRESULT {
+        return self.vtable.Signal(self, pFence, Value);
+    }
+    pub fn Wait(self: *const ID3D12CommandQueue, pFence: ?*ID3D12Fence, Value: u64) callconv(.Inline) HRESULT {
+        return self.vtable.Wait(self, pFence, Value);
+    }
+    pub fn GetTimestampFrequency(self: *const ID3D12CommandQueue, pFrequency: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetTimestampFrequency(self, pFrequency);
+    }
+    pub fn GetClockCalibration(self: *const ID3D12CommandQueue, pGpuTimestamp: ?*u64, pCpuTimestamp: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetClockCalibration(self, pGpuTimestamp, pCpuTimestamp);
+    }
+    pub fn GetDesc(self: *const ID3D12CommandQueue) callconv(.Inline) D3D12_COMMAND_QUEUE_DESC {
+        return self.vtable.GetDesc(self);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device_Value = Guid.initString("189819f1-1db6-4b57-be54-1821339b85f7");
 pub const IID_ID3D12Device = &IID_ID3D12Device_Value;
-pub const ID3D12Device = extern struct {
+pub const ID3D12Device = extern union {
     pub const VTable = extern struct {
         base: ID3D12Object.VTable,
-        GetNodeCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12Device,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        CreateCommandQueue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
-                riid: ?*const Guid,
-                ppCommandQueue: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
-                riid: ?*const Guid,
-                ppCommandQueue: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCommandAllocator: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                type: D3D12_COMMAND_LIST_TYPE,
-                riid: ?*const Guid,
-                ppCommandAllocator: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                type: D3D12_COMMAND_LIST_TYPE,
-                riid: ?*const Guid,
-                ppCommandAllocator: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateGraphicsPipelineState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateComputePipelineState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCommandList: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                nodeMask: u32,
-                type: D3D12_COMMAND_LIST_TYPE,
-                pCommandAllocator: ?*ID3D12CommandAllocator,
-                pInitialState: ?*ID3D12PipelineState,
-                riid: ?*const Guid,
-                ppCommandList: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                nodeMask: u32,
-                type: D3D12_COMMAND_LIST_TYPE,
-                pCommandAllocator: ?*ID3D12CommandAllocator,
-                pInitialState: ?*ID3D12PipelineState,
-                riid: ?*const Guid,
-                ppCommandList: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CheckFeatureSupport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                Feature: D3D12_FEATURE,
-                // TODO: what to do with BytesParamIndex 2?
-                pFeatureSupportData: ?*anyopaque,
-                FeatureSupportDataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                Feature: D3D12_FEATURE,
-                // TODO: what to do with BytesParamIndex 2?
-                pFeatureSupportData: ?*anyopaque,
-                FeatureSupportDataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateDescriptorHeap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDescriptorHandleIncrementSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                DescriptorHeapType: D3D12_DESCRIPTOR_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12Device,
-                DescriptorHeapType: D3D12_DESCRIPTOR_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        CreateRootSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                nodeMask: u32,
-                pBlobWithRootSignature: [*]const u8,
-                blobLengthInBytes: usize,
-                riid: ?*const Guid,
-                ppvRootSignature: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                nodeMask: u32,
-                pBlobWithRootSignature: [*]const u8,
-                blobLengthInBytes: usize,
-                riid: ?*const Guid,
-                ppvRootSignature: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateConstantBufferView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_CONSTANT_BUFFER_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_CONSTANT_BUFFER_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CreateShaderResourceView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_SHADER_RESOURCE_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_SHADER_RESOURCE_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CreateUnorderedAccessView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pCounterResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_UNORDERED_ACCESS_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pCounterResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_UNORDERED_ACCESS_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CreateRenderTargetView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_RENDER_TARGET_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_RENDER_TARGET_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CreateDepthStencilView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_DEPTH_STENCIL_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pResource: ?*ID3D12Resource,
-                pDesc: ?*const D3D12_DEPTH_STENCIL_VIEW_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CreateSampler: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_SAMPLER_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_SAMPLER_DESC,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyDescriptors: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                NumDestDescriptorRanges: u32,
-                pDestDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE,
-                pDestDescriptorRangeSizes: ?[*]const u32,
-                NumSrcDescriptorRanges: u32,
-                pSrcDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE,
-                pSrcDescriptorRangeSizes: ?[*]const u32,
-                DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                NumDestDescriptorRanges: u32,
-                pDestDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE,
-                pDestDescriptorRangeSizes: ?[*]const u32,
-                NumSrcDescriptorRanges: u32,
-                pSrcDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE,
-                pSrcDescriptorRangeSizes: ?[*]const u32,
-                DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyDescriptorsSimple: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                NumDescriptors: u32,
-                DestDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE,
-                SrcDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE,
-                DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                NumDescriptors: u32,
-                DestDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE,
-                SrcDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE,
-                DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetResourceAllocationInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                visibleMask: u32,
-                numResourceDescs: u32,
-                pResourceDescs: [*]const D3D12_RESOURCE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
-            else => *const fn (
-                self: *const ID3D12Device,
-                visibleMask: u32,
-                numResourceDescs: u32,
-                pResourceDescs: [*]const D3D12_RESOURCE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
-        },
-        GetCustomHeapProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                nodeMask: u32,
-                heapType: D3D12_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_HEAP_PROPERTIES,
-            else => *const fn (
-                self: *const ID3D12Device,
-                nodeMask: u32,
-                heapType: D3D12_HEAP_TYPE,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_HEAP_PROPERTIES,
-        },
-        CreateCommittedResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
-                HeapFlags: D3D12_HEAP_FLAGS,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialResourceState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
-                HeapFlags: D3D12_HEAP_FLAGS,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialResourceState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateHeap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_HEAP_DESC,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_HEAP_DESC,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePlacedResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pHeap: ?*ID3D12Heap,
-                HeapOffset: u64,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pHeap: ?*ID3D12Heap,
-                HeapOffset: u64,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateReservedResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSharedHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pObject: ?*ID3D12DeviceChild,
-                pAttributes: ?*const SECURITY_ATTRIBUTES,
-                Access: u32,
-                Name: ?[*:0]const u16,
-                pHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pObject: ?*ID3D12DeviceChild,
-                pAttributes: ?*const SECURITY_ATTRIBUTES,
-                Access: u32,
-                Name: ?[*:0]const u16,
-                pHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenSharedHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                NTHandle: ?HANDLE,
-                riid: ?*const Guid,
-                ppvObj: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                NTHandle: ?HANDLE,
-                riid: ?*const Guid,
-                ppvObj: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenSharedHandleByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                Name: ?[*:0]const u16,
-                Access: u32,
-                pNTHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                Name: ?[*:0]const u16,
-                Access: u32,
-                pNTHandle: ?*?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MakeResident: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Evict: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFence: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                InitialValue: u64,
-                Flags: D3D12_FENCE_FLAGS,
-                riid: ?*const Guid,
-                ppFence: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                InitialValue: u64,
-                Flags: D3D12_FENCE_FLAGS,
-                riid: ?*const Guid,
-                ppFence: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceRemovedReason: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCopyableFootprints: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pResourceDesc: ?*const D3D12_RESOURCE_DESC,
-                FirstSubresource: u32,
-                NumSubresources: u32,
-                BaseOffset: u64,
-                pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT,
-                pNumRows: ?[*]u32,
-                pRowSizeInBytes: ?[*]u64,
-                pTotalBytes: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pResourceDesc: ?*const D3D12_RESOURCE_DESC,
-                FirstSubresource: u32,
-                NumSubresources: u32,
-                BaseOffset: u64,
-                pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT,
-                pNumRows: ?[*]u32,
-                pRowSizeInBytes: ?[*]u64,
-                pTotalBytes: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CreateQueryHeap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_QUERY_HEAP_DESC,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_QUERY_HEAP_DESC,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetStablePowerState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCommandSignature: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC,
-                pRootSignature: ?*ID3D12RootSignature,
-                riid: ?*const Guid,
-                ppvCommandSignature: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC,
-                pRootSignature: ?*ID3D12RootSignature,
-                riid: ?*const Guid,
-                ppvCommandSignature: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetResourceTiling: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-                pTiledResource: ?*ID3D12Resource,
-                pNumTilesForEntireResource: ?*u32,
-                pPackedMipDesc: ?*D3D12_PACKED_MIP_INFO,
-                pStandardTileShapeForNonPackedMips: ?*D3D12_TILE_SHAPE,
-                pNumSubresourceTilings: ?*u32,
-                FirstSubresourceTilingToGet: u32,
-                pSubresourceTilingsForNonPackedMips: [*]D3D12_SUBRESOURCE_TILING,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device,
-                pTiledResource: ?*ID3D12Resource,
-                pNumTilesForEntireResource: ?*u32,
-                pPackedMipDesc: ?*D3D12_PACKED_MIP_INFO,
-                pStandardTileShapeForNonPackedMips: ?*D3D12_TILE_SHAPE,
-                pNumSubresourceTilings: ?*u32,
-                FirstSubresourceTilingToGet: u32,
-                pSubresourceTilingsForNonPackedMips: [*]D3D12_SUBRESOURCE_TILING,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetAdapterLuid: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device,
-            ) callconv(@import("std").os.windows.WINAPI) LUID,
-            else => *const fn (
-                self: *const ID3D12Device,
-            ) callconv(@import("std").os.windows.WINAPI) LUID,
-        },
+        GetNodeCount: *const fn(
+            self: *const ID3D12Device,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        CreateCommandQueue: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
+            riid: ?*const Guid,
+            ppCommandQueue: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCommandAllocator: *const fn(
+            self: *const ID3D12Device,
+            type: D3D12_COMMAND_LIST_TYPE,
+            riid: ?*const Guid,
+            ppCommandAllocator: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateGraphicsPipelineState: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
+            riid: ?*const Guid,
+            ppPipelineState: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateComputePipelineState: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
+            riid: ?*const Guid,
+            ppPipelineState: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCommandList: *const fn(
+            self: *const ID3D12Device,
+            nodeMask: u32,
+            type: D3D12_COMMAND_LIST_TYPE,
+            pCommandAllocator: ?*ID3D12CommandAllocator,
+            pInitialState: ?*ID3D12PipelineState,
+            riid: ?*const Guid,
+            ppCommandList: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CheckFeatureSupport: *const fn(
+            self: *const ID3D12Device,
+            Feature: D3D12_FEATURE,
+            // TODO: what to do with BytesParamIndex 2?
+            pFeatureSupportData: ?*anyopaque,
+            FeatureSupportDataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateDescriptorHeap: *const fn(
+            self: *const ID3D12Device,
+            pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC,
+            riid: ?*const Guid,
+            ppvHeap: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDescriptorHandleIncrementSize: *const fn(
+            self: *const ID3D12Device,
+            DescriptorHeapType: D3D12_DESCRIPTOR_HEAP_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        CreateRootSignature: *const fn(
+            self: *const ID3D12Device,
+            nodeMask: u32,
+            pBlobWithRootSignature: [*]const u8,
+            blobLengthInBytes: usize,
+            riid: ?*const Guid,
+            ppvRootSignature: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateConstantBufferView: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_CONSTANT_BUFFER_VIEW_DESC,
+            DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CreateShaderResourceView: *const fn(
+            self: *const ID3D12Device,
+            pResource: ?*ID3D12Resource,
+            pDesc: ?*const D3D12_SHADER_RESOURCE_VIEW_DESC,
+            DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CreateUnorderedAccessView: *const fn(
+            self: *const ID3D12Device,
+            pResource: ?*ID3D12Resource,
+            pCounterResource: ?*ID3D12Resource,
+            pDesc: ?*const D3D12_UNORDERED_ACCESS_VIEW_DESC,
+            DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CreateRenderTargetView: *const fn(
+            self: *const ID3D12Device,
+            pResource: ?*ID3D12Resource,
+            pDesc: ?*const D3D12_RENDER_TARGET_VIEW_DESC,
+            DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CreateDepthStencilView: *const fn(
+            self: *const ID3D12Device,
+            pResource: ?*ID3D12Resource,
+            pDesc: ?*const D3D12_DEPTH_STENCIL_VIEW_DESC,
+            DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CreateSampler: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_SAMPLER_DESC,
+            DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyDescriptors: *const fn(
+            self: *const ID3D12Device,
+            NumDestDescriptorRanges: u32,
+            pDestDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE,
+            pDestDescriptorRangeSizes: ?[*]const u32,
+            NumSrcDescriptorRanges: u32,
+            pSrcDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE,
+            pSrcDescriptorRangeSizes: ?[*]const u32,
+            DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyDescriptorsSimple: *const fn(
+            self: *const ID3D12Device,
+            NumDescriptors: u32,
+            DestDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE,
+            SrcDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE,
+            DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetResourceAllocationInfo: *const fn(
+            self: *const ID3D12Device,
+            visibleMask: u32,
+            numResourceDescs: u32,
+            pResourceDescs: [*]const D3D12_RESOURCE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
+        GetCustomHeapProperties: *const fn(
+            self: *const ID3D12Device,
+            nodeMask: u32,
+            heapType: D3D12_HEAP_TYPE,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_HEAP_PROPERTIES,
+        CreateCommittedResource: *const fn(
+            self: *const ID3D12Device,
+            pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
+            HeapFlags: D3D12_HEAP_FLAGS,
+            pDesc: ?*const D3D12_RESOURCE_DESC,
+            InitialResourceState: D3D12_RESOURCE_STATES,
+            pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
+            riidResource: ?*const Guid,
+            ppvResource: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateHeap: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_HEAP_DESC,
+            riid: ?*const Guid,
+            ppvHeap: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePlacedResource: *const fn(
+            self: *const ID3D12Device,
+            pHeap: ?*ID3D12Heap,
+            HeapOffset: u64,
+            pDesc: ?*const D3D12_RESOURCE_DESC,
+            InitialState: D3D12_RESOURCE_STATES,
+            pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
+            riid: ?*const Guid,
+            ppvResource: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateReservedResource: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_RESOURCE_DESC,
+            InitialState: D3D12_RESOURCE_STATES,
+            pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
+            riid: ?*const Guid,
+            ppvResource: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSharedHandle: *const fn(
+            self: *const ID3D12Device,
+            pObject: ?*ID3D12DeviceChild,
+            pAttributes: ?*const SECURITY_ATTRIBUTES,
+            Access: u32,
+            Name: ?[*:0]const u16,
+            pHandle: ?*?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenSharedHandle: *const fn(
+            self: *const ID3D12Device,
+            NTHandle: ?HANDLE,
+            riid: ?*const Guid,
+            ppvObj: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenSharedHandleByName: *const fn(
+            self: *const ID3D12Device,
+            Name: ?[*:0]const u16,
+            Access: u32,
+            pNTHandle: ?*?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MakeResident: *const fn(
+            self: *const ID3D12Device,
+            NumObjects: u32,
+            ppObjects: [*]?*ID3D12Pageable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Evict: *const fn(
+            self: *const ID3D12Device,
+            NumObjects: u32,
+            ppObjects: [*]?*ID3D12Pageable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFence: *const fn(
+            self: *const ID3D12Device,
+            InitialValue: u64,
+            Flags: D3D12_FENCE_FLAGS,
+            riid: ?*const Guid,
+            ppFence: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceRemovedReason: *const fn(
+            self: *const ID3D12Device,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCopyableFootprints: *const fn(
+            self: *const ID3D12Device,
+            pResourceDesc: ?*const D3D12_RESOURCE_DESC,
+            FirstSubresource: u32,
+            NumSubresources: u32,
+            BaseOffset: u64,
+            pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT,
+            pNumRows: ?[*]u32,
+            pRowSizeInBytes: ?[*]u64,
+            pTotalBytes: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CreateQueryHeap: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_QUERY_HEAP_DESC,
+            riid: ?*const Guid,
+            ppvHeap: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetStablePowerState: *const fn(
+            self: *const ID3D12Device,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCommandSignature: *const fn(
+            self: *const ID3D12Device,
+            pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC,
+            pRootSignature: ?*ID3D12RootSignature,
+            riid: ?*const Guid,
+            ppvCommandSignature: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResourceTiling: *const fn(
+            self: *const ID3D12Device,
+            pTiledResource: ?*ID3D12Resource,
+            pNumTilesForEntireResource: ?*u32,
+            pPackedMipDesc: ?*D3D12_PACKED_MIP_INFO,
+            pStandardTileShapeForNonPackedMips: ?*D3D12_TILE_SHAPE,
+            pNumSubresourceTilings: ?*u32,
+            FirstSubresourceTilingToGet: u32,
+            pSubresourceTilingsForNonPackedMips: [*]D3D12_SUBRESOURCE_TILING,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetAdapterLuid: *const fn(
+            self: *const ID3D12Device,
+        ) callconv(@import("std").os.windows.WINAPI) LUID,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Object.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetNodeCount(self: *const T) u32 {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetNodeCount(@as(*const ID3D12Device, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateCommandQueue(self: *const T, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, riid: ?*const Guid, ppCommandQueue: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandQueue(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppCommandQueue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateCommandAllocator(self: *const T, type_: D3D12_COMMAND_LIST_TYPE, riid: ?*const Guid, ppCommandAllocator: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandAllocator(@as(*const ID3D12Device, @ptrCast(self)), type_, riid, ppCommandAllocator);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateGraphicsPipelineState(self: *const T, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateGraphicsPipelineState(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppPipelineState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateComputePipelineState(self: *const T, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateComputePipelineState(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppPipelineState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateCommandList(self: *const T, nodeMask: u32, type_: D3D12_COMMAND_LIST_TYPE, pCommandAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandList(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, type_, pCommandAllocator, pInitialState, riid, ppCommandList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CheckFeatureSupport(self: *const T, Feature: D3D12_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CheckFeatureSupport(@as(*const ID3D12Device, @ptrCast(self)), Feature, pFeatureSupportData, FeatureSupportDataSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateDescriptorHeap(self: *const T, pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateDescriptorHeap(@as(*const ID3D12Device, @ptrCast(self)), pDescriptorHeapDesc, riid, ppvHeap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetDescriptorHandleIncrementSize(self: *const T, DescriptorHeapType: D3D12_DESCRIPTOR_HEAP_TYPE) u32 {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetDescriptorHandleIncrementSize(@as(*const ID3D12Device, @ptrCast(self)), DescriptorHeapType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateRootSignature(self: *const T, nodeMask: u32, pBlobWithRootSignature: [*]const u8, blobLengthInBytes: usize, riid: ?*const Guid, ppvRootSignature: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateRootSignature(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, pBlobWithRootSignature, blobLengthInBytes, riid, ppvRootSignature);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateConstantBufferView(self: *const T, pDesc: ?*const D3D12_CONSTANT_BUFFER_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateConstantBufferView(@as(*const ID3D12Device, @ptrCast(self)), pDesc, DestDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateShaderResourceView(self: *const T, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_SHADER_RESOURCE_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateShaderResourceView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pDesc, DestDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateUnorderedAccessView(self: *const T, pResource: ?*ID3D12Resource, pCounterResource: ?*ID3D12Resource, pDesc: ?*const D3D12_UNORDERED_ACCESS_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateUnorderedAccessView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pCounterResource, pDesc, DestDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateRenderTargetView(self: *const T, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_RENDER_TARGET_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateRenderTargetView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pDesc, DestDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateDepthStencilView(self: *const T, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_DEPTH_STENCIL_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateDepthStencilView(@as(*const ID3D12Device, @ptrCast(self)), pResource, pDesc, DestDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateSampler(self: *const T, pDesc: ?*const D3D12_SAMPLER_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateSampler(@as(*const ID3D12Device, @ptrCast(self)), pDesc, DestDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CopyDescriptors(self: *const T, NumDestDescriptorRanges: u32, pDestDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE, pDestDescriptorRangeSizes: ?[*]const u32, NumSrcDescriptorRanges: u32, pSrcDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE, pSrcDescriptorRangeSizes: ?[*]const u32, DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CopyDescriptors(@as(*const ID3D12Device, @ptrCast(self)), NumDestDescriptorRanges, pDestDescriptorRangeStarts, pDestDescriptorRangeSizes, NumSrcDescriptorRanges, pSrcDescriptorRangeStarts, pSrcDescriptorRangeSizes, DescriptorHeapsType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CopyDescriptorsSimple(self: *const T, NumDescriptors: u32, DestDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE, SrcDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE, DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CopyDescriptorsSimple(@as(*const ID3D12Device, @ptrCast(self)), NumDescriptors, DestDescriptorRangeStart, SrcDescriptorRangeStart, DescriptorHeapsType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetResourceAllocationInfo(self: *const T, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC) D3D12_RESOURCE_ALLOCATION_INFO {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetResourceAllocationInfo(@as(*const ID3D12Device, @ptrCast(self)), visibleMask, numResourceDescs, pResourceDescs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetCustomHeapProperties(self: *const T, nodeMask: u32, heapType: D3D12_HEAP_TYPE) D3D12_HEAP_PROPERTIES {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetCustomHeapProperties(@as(*const ID3D12Device, @ptrCast(self)), nodeMask, heapType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateCommittedResource(self: *const T, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommittedResource(@as(*const ID3D12Device, @ptrCast(self)), pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, riidResource, ppvResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateHeap(self: *const T, pDesc: ?*const D3D12_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateHeap(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppvHeap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreatePlacedResource(self: *const T, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreatePlacedResource(@as(*const ID3D12Device, @ptrCast(self)), pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateReservedResource(self: *const T, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateReservedResource(@as(*const ID3D12Device, @ptrCast(self)), pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateSharedHandle(self: *const T, pObject: ?*ID3D12DeviceChild, pAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?[*:0]const u16, pHandle: ?*?HANDLE) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateSharedHandle(@as(*const ID3D12Device, @ptrCast(self)), pObject, pAttributes, Access, Name, pHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_OpenSharedHandle(self: *const T, NTHandle: ?HANDLE, riid: ?*const Guid, ppvObj: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).OpenSharedHandle(@as(*const ID3D12Device, @ptrCast(self)), NTHandle, riid, ppvObj);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_OpenSharedHandleByName(self: *const T, Name: ?[*:0]const u16, Access: u32, pNTHandle: ?*?HANDLE) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).OpenSharedHandleByName(@as(*const ID3D12Device, @ptrCast(self)), Name, Access, pNTHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_MakeResident(self: *const T, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).MakeResident(@as(*const ID3D12Device, @ptrCast(self)), NumObjects, ppObjects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_Evict(self: *const T, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).Evict(@as(*const ID3D12Device, @ptrCast(self)), NumObjects, ppObjects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateFence(self: *const T, InitialValue: u64, Flags: D3D12_FENCE_FLAGS, riid: ?*const Guid, ppFence: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateFence(@as(*const ID3D12Device, @ptrCast(self)), InitialValue, Flags, riid, ppFence);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetDeviceRemovedReason(self: *const T) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetDeviceRemovedReason(@as(*const ID3D12Device, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetCopyableFootprints(self: *const T, pResourceDesc: ?*const D3D12_RESOURCE_DESC, FirstSubresource: u32, NumSubresources: u32, BaseOffset: u64, pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT, pNumRows: ?[*]u32, pRowSizeInBytes: ?[*]u64, pTotalBytes: ?*u64) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetCopyableFootprints(@as(*const ID3D12Device, @ptrCast(self)), pResourceDesc, FirstSubresource, NumSubresources, BaseOffset, pLayouts, pNumRows, pRowSizeInBytes, pTotalBytes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateQueryHeap(self: *const T, pDesc: ?*const D3D12_QUERY_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateQueryHeap(@as(*const ID3D12Device, @ptrCast(self)), pDesc, riid, ppvHeap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_SetStablePowerState(self: *const T, Enable: BOOL) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).SetStablePowerState(@as(*const ID3D12Device, @ptrCast(self)), Enable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_CreateCommandSignature(self: *const T, pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC, pRootSignature: ?*ID3D12RootSignature, riid: ?*const Guid, ppvCommandSignature: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).CreateCommandSignature(@as(*const ID3D12Device, @ptrCast(self)), pDesc, pRootSignature, riid, ppvCommandSignature);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetResourceTiling(self: *const T, pTiledResource: ?*ID3D12Resource, pNumTilesForEntireResource: ?*u32, pPackedMipDesc: ?*D3D12_PACKED_MIP_INFO, pStandardTileShapeForNonPackedMips: ?*D3D12_TILE_SHAPE, pNumSubresourceTilings: ?*u32, FirstSubresourceTilingToGet: u32, pSubresourceTilingsForNonPackedMips: [*]D3D12_SUBRESOURCE_TILING) void {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetResourceTiling(@as(*const ID3D12Device, @ptrCast(self)), pTiledResource, pNumTilesForEntireResource, pPackedMipDesc, pStandardTileShapeForNonPackedMips, pNumSubresourceTilings, FirstSubresourceTilingToGet, pSubresourceTilingsForNonPackedMips);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device_GetAdapterLuid(self: *const T) LUID {
-                return @as(*const ID3D12Device.VTable, @ptrCast(self.vtable)).GetAdapterLuid(@as(*const ID3D12Device, @ptrCast(self)));
-            }
-        };
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetNodeCount(self: *const ID3D12Device) callconv(.Inline) u32 {
+        return self.vtable.GetNodeCount(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateCommandQueue(self: *const ID3D12Device, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, riid: ?*const Guid, ppCommandQueue: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommandQueue(self, pDesc, riid, ppCommandQueue);
+    }
+    pub fn CreateCommandAllocator(self: *const ID3D12Device, @"type": D3D12_COMMAND_LIST_TYPE, riid: ?*const Guid, ppCommandAllocator: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommandAllocator(self, @"type", riid, ppCommandAllocator);
+    }
+    pub fn CreateGraphicsPipelineState(self: *const ID3D12Device, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateGraphicsPipelineState(self, pDesc, riid, ppPipelineState);
+    }
+    pub fn CreateComputePipelineState(self: *const ID3D12Device, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateComputePipelineState(self, pDesc, riid, ppPipelineState);
+    }
+    pub fn CreateCommandList(self: *const ID3D12Device, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, pCommandAllocator: ?*ID3D12CommandAllocator, pInitialState: ?*ID3D12PipelineState, riid: ?*const Guid, ppCommandList: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommandList(self, nodeMask, @"type", pCommandAllocator, pInitialState, riid, ppCommandList);
+    }
+    pub fn CheckFeatureSupport(self: *const ID3D12Device, Feature: D3D12_FEATURE, pFeatureSupportData: ?*anyopaque, FeatureSupportDataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.CheckFeatureSupport(self, Feature, pFeatureSupportData, FeatureSupportDataSize);
+    }
+    pub fn CreateDescriptorHeap(self: *const ID3D12Device, pDescriptorHeapDesc: ?*const D3D12_DESCRIPTOR_HEAP_DESC, riid: ?*const Guid, ppvHeap: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateDescriptorHeap(self, pDescriptorHeapDesc, riid, ppvHeap);
+    }
+    pub fn GetDescriptorHandleIncrementSize(self: *const ID3D12Device, DescriptorHeapType: D3D12_DESCRIPTOR_HEAP_TYPE) callconv(.Inline) u32 {
+        return self.vtable.GetDescriptorHandleIncrementSize(self, DescriptorHeapType);
+    }
+    pub fn CreateRootSignature(self: *const ID3D12Device, nodeMask: u32, pBlobWithRootSignature: [*]const u8, blobLengthInBytes: usize, riid: ?*const Guid, ppvRootSignature: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRootSignature(self, nodeMask, pBlobWithRootSignature, blobLengthInBytes, riid, ppvRootSignature);
+    }
+    pub fn CreateConstantBufferView(self: *const ID3D12Device, pDesc: ?*const D3D12_CONSTANT_BUFFER_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.CreateConstantBufferView(self, pDesc, DestDescriptor);
+    }
+    pub fn CreateShaderResourceView(self: *const ID3D12Device, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_SHADER_RESOURCE_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.CreateShaderResourceView(self, pResource, pDesc, DestDescriptor);
+    }
+    pub fn CreateUnorderedAccessView(self: *const ID3D12Device, pResource: ?*ID3D12Resource, pCounterResource: ?*ID3D12Resource, pDesc: ?*const D3D12_UNORDERED_ACCESS_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.CreateUnorderedAccessView(self, pResource, pCounterResource, pDesc, DestDescriptor);
+    }
+    pub fn CreateRenderTargetView(self: *const ID3D12Device, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_RENDER_TARGET_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.CreateRenderTargetView(self, pResource, pDesc, DestDescriptor);
+    }
+    pub fn CreateDepthStencilView(self: *const ID3D12Device, pResource: ?*ID3D12Resource, pDesc: ?*const D3D12_DEPTH_STENCIL_VIEW_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.CreateDepthStencilView(self, pResource, pDesc, DestDescriptor);
+    }
+    pub fn CreateSampler(self: *const ID3D12Device, pDesc: ?*const D3D12_SAMPLER_DESC, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.CreateSampler(self, pDesc, DestDescriptor);
+    }
+    pub fn CopyDescriptors(self: *const ID3D12Device, NumDestDescriptorRanges: u32, pDestDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE, pDestDescriptorRangeSizes: ?[*]const u32, NumSrcDescriptorRanges: u32, pSrcDescriptorRangeStarts: [*]const D3D12_CPU_DESCRIPTOR_HANDLE, pSrcDescriptorRangeSizes: ?[*]const u32, DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE) callconv(.Inline) void {
+        return self.vtable.CopyDescriptors(self, NumDestDescriptorRanges, pDestDescriptorRangeStarts, pDestDescriptorRangeSizes, NumSrcDescriptorRanges, pSrcDescriptorRangeStarts, pSrcDescriptorRangeSizes, DescriptorHeapsType);
+    }
+    pub fn CopyDescriptorsSimple(self: *const ID3D12Device, NumDescriptors: u32, DestDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE, SrcDescriptorRangeStart: D3D12_CPU_DESCRIPTOR_HANDLE, DescriptorHeapsType: D3D12_DESCRIPTOR_HEAP_TYPE) callconv(.Inline) void {
+        return self.vtable.CopyDescriptorsSimple(self, NumDescriptors, DestDescriptorRangeStart, SrcDescriptorRangeStart, DescriptorHeapsType);
+    }
+    pub fn GetResourceAllocationInfo(self: *const ID3D12Device, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
+        return self.vtable.GetResourceAllocationInfo(self, visibleMask, numResourceDescs, pResourceDescs);
+    }
+    pub fn GetCustomHeapProperties(self: *const ID3D12Device, nodeMask: u32, heapType: D3D12_HEAP_TYPE) callconv(.Inline) D3D12_HEAP_PROPERTIES {
+        return self.vtable.GetCustomHeapProperties(self, nodeMask, heapType);
+    }
+    pub fn CreateCommittedResource(self: *const ID3D12Device, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riidResource: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommittedResource(self, pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, riidResource, ppvResource);
+    }
+    pub fn CreateHeap(self: *const ID3D12Device, pDesc: ?*const D3D12_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateHeap(self, pDesc, riid, ppvHeap);
+    }
+    pub fn CreatePlacedResource(self: *const ID3D12Device, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePlacedResource(self, pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
+    }
+    pub fn CreateReservedResource(self: *const ID3D12Device, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateReservedResource(self, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
+    }
+    pub fn CreateSharedHandle(self: *const ID3D12Device, pObject: ?*ID3D12DeviceChild, pAttributes: ?*const SECURITY_ATTRIBUTES, Access: u32, Name: ?[*:0]const u16, pHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.CreateSharedHandle(self, pObject, pAttributes, Access, Name, pHandle);
+    }
+    pub fn OpenSharedHandle(self: *const ID3D12Device, NTHandle: ?HANDLE, riid: ?*const Guid, ppvObj: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.OpenSharedHandle(self, NTHandle, riid, ppvObj);
+    }
+    pub fn OpenSharedHandleByName(self: *const ID3D12Device, Name: ?[*:0]const u16, Access: u32, pNTHandle: ?*?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.OpenSharedHandleByName(self, Name, Access, pNTHandle);
+    }
+    pub fn MakeResident(self: *const ID3D12Device, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable) callconv(.Inline) HRESULT {
+        return self.vtable.MakeResident(self, NumObjects, ppObjects);
+    }
+    pub fn Evict(self: *const ID3D12Device, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable) callconv(.Inline) HRESULT {
+        return self.vtable.Evict(self, NumObjects, ppObjects);
+    }
+    pub fn CreateFence(self: *const ID3D12Device, InitialValue: u64, Flags: D3D12_FENCE_FLAGS, riid: ?*const Guid, ppFence: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFence(self, InitialValue, Flags, riid, ppFence);
+    }
+    pub fn GetDeviceRemovedReason(self: *const ID3D12Device) callconv(.Inline) HRESULT {
+        return self.vtable.GetDeviceRemovedReason(self);
+    }
+    pub fn GetCopyableFootprints(self: *const ID3D12Device, pResourceDesc: ?*const D3D12_RESOURCE_DESC, FirstSubresource: u32, NumSubresources: u32, BaseOffset: u64, pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT, pNumRows: ?[*]u32, pRowSizeInBytes: ?[*]u64, pTotalBytes: ?*u64) callconv(.Inline) void {
+        return self.vtable.GetCopyableFootprints(self, pResourceDesc, FirstSubresource, NumSubresources, BaseOffset, pLayouts, pNumRows, pRowSizeInBytes, pTotalBytes);
+    }
+    pub fn CreateQueryHeap(self: *const ID3D12Device, pDesc: ?*const D3D12_QUERY_HEAP_DESC, riid: ?*const Guid, ppvHeap: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateQueryHeap(self, pDesc, riid, ppvHeap);
+    }
+    pub fn SetStablePowerState(self: *const ID3D12Device, Enable: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetStablePowerState(self, Enable);
+    }
+    pub fn CreateCommandSignature(self: *const ID3D12Device, pDesc: ?*const D3D12_COMMAND_SIGNATURE_DESC, pRootSignature: ?*ID3D12RootSignature, riid: ?*const Guid, ppvCommandSignature: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommandSignature(self, pDesc, pRootSignature, riid, ppvCommandSignature);
+    }
+    pub fn GetResourceTiling(self: *const ID3D12Device, pTiledResource: ?*ID3D12Resource, pNumTilesForEntireResource: ?*u32, pPackedMipDesc: ?*D3D12_PACKED_MIP_INFO, pStandardTileShapeForNonPackedMips: ?*D3D12_TILE_SHAPE, pNumSubresourceTilings: ?*u32, FirstSubresourceTilingToGet: u32, pSubresourceTilingsForNonPackedMips: [*]D3D12_SUBRESOURCE_TILING) callconv(.Inline) void {
+        return self.vtable.GetResourceTiling(self, pTiledResource, pNumTilesForEntireResource, pPackedMipDesc, pStandardTileShapeForNonPackedMips, pNumSubresourceTilings, FirstSubresourceTilingToGet, pSubresourceTilingsForNonPackedMips);
+    }
+    pub fn GetAdapterLuid(self: *const ID3D12Device) callconv(.Inline) LUID {
+        return self.vtable.GetAdapterLuid(self);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12PipelineLibrary_Value = Guid.initString("c64226a8-9201-46af-b4cc-53fb9ff7414f");
 pub const IID_ID3D12PipelineLibrary = &IID_ID3D12PipelineLibrary_Value;
-pub const ID3D12PipelineLibrary = extern struct {
+pub const ID3D12PipelineLibrary = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceChild.VTable,
-        StorePipeline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12PipelineLibrary,
-                pName: ?[*:0]const u16,
-                pPipeline: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12PipelineLibrary,
-                pName: ?[*:0]const u16,
-                pPipeline: ?*ID3D12PipelineState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadGraphicsPipeline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12PipelineLibrary,
-                pName: ?[*:0]const u16,
-                pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12PipelineLibrary,
-                pName: ?[*:0]const u16,
-                pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadComputePipeline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12PipelineLibrary,
-                pName: ?[*:0]const u16,
-                pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12PipelineLibrary,
-                pName: ?[*:0]const u16,
-                pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSerializedSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12PipelineLibrary,
-            ) callconv(@import("std").os.windows.WINAPI) usize,
-            else => *const fn (
-                self: *const ID3D12PipelineLibrary,
-            ) callconv(@import("std").os.windows.WINAPI) usize,
-        },
-        Serialize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12PipelineLibrary,
-                pData: [*]u8,
-                DataSizeInBytes: usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12PipelineLibrary,
-                pData: [*]u8,
-                DataSizeInBytes: usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        StorePipeline: *const fn(
+            self: *const ID3D12PipelineLibrary,
+            pName: ?[*:0]const u16,
+            pPipeline: ?*ID3D12PipelineState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadGraphicsPipeline: *const fn(
+            self: *const ID3D12PipelineLibrary,
+            pName: ?[*:0]const u16,
+            pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC,
+            riid: ?*const Guid,
+            ppPipelineState: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadComputePipeline: *const fn(
+            self: *const ID3D12PipelineLibrary,
+            pName: ?[*:0]const u16,
+            pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC,
+            riid: ?*const Guid,
+            ppPipelineState: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSerializedSize: *const fn(
+            self: *const ID3D12PipelineLibrary,
+        ) callconv(@import("std").os.windows.WINAPI) usize,
+        Serialize: *const fn(
+            self: *const ID3D12PipelineLibrary,
+            pData: [*]u8,
+            DataSizeInBytes: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12PipelineLibrary_StorePipeline(self: *const T, pName: ?[*:0]const u16, pPipeline: ?*ID3D12PipelineState) HRESULT {
-                return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).StorePipeline(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pName, pPipeline);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12PipelineLibrary_LoadGraphicsPipeline(self: *const T, pName: ?[*:0]const u16, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).LoadGraphicsPipeline(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pName, pDesc, riid, ppPipelineState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12PipelineLibrary_LoadComputePipeline(self: *const T, pName: ?[*:0]const u16, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).LoadComputePipeline(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pName, pDesc, riid, ppPipelineState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12PipelineLibrary_GetSerializedSize(self: *const T) usize {
-                return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).GetSerializedSize(@as(*const ID3D12PipelineLibrary, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12PipelineLibrary_Serialize(self: *const T, pData: [*]u8, DataSizeInBytes: usize) HRESULT {
-                return @as(*const ID3D12PipelineLibrary.VTable, @ptrCast(self.vtable)).Serialize(@as(*const ID3D12PipelineLibrary, @ptrCast(self)), pData, DataSizeInBytes);
-            }
-        };
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn StorePipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pPipeline: ?*ID3D12PipelineState) callconv(.Inline) HRESULT {
+        return self.vtable.StorePipeline(self, pName, pPipeline);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LoadGraphicsPipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pDesc: ?*const D3D12_GRAPHICS_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.LoadGraphicsPipeline(self, pName, pDesc, riid, ppPipelineState);
+    }
+    pub fn LoadComputePipeline(self: *const ID3D12PipelineLibrary, pName: ?[*:0]const u16, pDesc: ?*const D3D12_COMPUTE_PIPELINE_STATE_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.LoadComputePipeline(self, pName, pDesc, riid, ppPipelineState);
+    }
+    pub fn GetSerializedSize(self: *const ID3D12PipelineLibrary) callconv(.Inline) usize {
+        return self.vtable.GetSerializedSize(self);
+    }
+    pub fn Serialize(self: *const ID3D12PipelineLibrary, pData: [*]u8, DataSizeInBytes: usize) callconv(.Inline) HRESULT {
+        return self.vtable.Serialize(self, pData, DataSizeInBytes);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12PipelineLibrary1_Value = Guid.initString("80eabf42-2568-4e5e-bd82-c37f86961dc3");
 pub const IID_ID3D12PipelineLibrary1 = &IID_ID3D12PipelineLibrary1_Value;
-pub const ID3D12PipelineLibrary1 = extern struct {
+pub const ID3D12PipelineLibrary1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12PipelineLibrary.VTable,
-        LoadPipeline: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12PipelineLibrary1,
-                pName: ?[*:0]const u16,
-                pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12PipelineLibrary1,
-                pName: ?[*:0]const u16,
-                pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        LoadPipeline: *const fn(
+            self: *const ID3D12PipelineLibrary1,
+            pName: ?[*:0]const u16,
+            pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
+            riid: ?*const Guid,
+            ppPipelineState: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12PipelineLibrary.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12PipelineLibrary1_LoadPipeline(self: *const T, pName: ?[*:0]const u16, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12PipelineLibrary1.VTable, @ptrCast(self.vtable)).LoadPipeline(@as(*const ID3D12PipelineLibrary1, @ptrCast(self)), pName, pDesc, riid, ppPipelineState);
-            }
-        };
+    ID3D12PipelineLibrary: ID3D12PipelineLibrary,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn LoadPipeline(self: *const ID3D12PipelineLibrary1, pName: ?[*:0]const u16, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.LoadPipeline(self, pName, pDesc, riid, ppPipelineState);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
-pub const D3D12_MULTIPLE_FENCE_WAIT_FLAGS = enum(u32) {
-    NONE = 0,
-    ANY = 1,
-    // ALL = 0, this enum value conflicts with NONE
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ANY: u1 = 0,
-    }) D3D12_MULTIPLE_FENCE_WAIT_FLAGS {
-        return @as(D3D12_MULTIPLE_FENCE_WAIT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_MULTIPLE_FENCE_WAIT_FLAGS.NONE) else 0) | (if (o.ANY == 1) @intFromEnum(D3D12_MULTIPLE_FENCE_WAIT_FLAGS.ANY) else 0)));
-    }
+pub const D3D12_MULTIPLE_FENCE_WAIT_FLAGS = packed struct(u32) {
+    ANY: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_NONE = D3D12_MULTIPLE_FENCE_WAIT_FLAGS.NONE;
-pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_ANY = D3D12_MULTIPLE_FENCE_WAIT_FLAGS.ANY;
-pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_ALL = D3D12_MULTIPLE_FENCE_WAIT_FLAGS.NONE;
+pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_NONE = D3D12_MULTIPLE_FENCE_WAIT_FLAGS{ };
+pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_ANY = D3D12_MULTIPLE_FENCE_WAIT_FLAGS{ .ANY = 1 };
+pub const D3D12_MULTIPLE_FENCE_WAIT_FLAG_ALL = D3D12_MULTIPLE_FENCE_WAIT_FLAGS{ };
 
 pub const D3D12_RESIDENCY_PRIORITY = enum(i32) {
     MINIMUM = 671088640,
@@ -6040,233 +5105,260 @@ pub const D3D12_RESIDENCY_PRIORITY_NORMAL = D3D12_RESIDENCY_PRIORITY.NORMAL;
 pub const D3D12_RESIDENCY_PRIORITY_HIGH = D3D12_RESIDENCY_PRIORITY.HIGH;
 pub const D3D12_RESIDENCY_PRIORITY_MAXIMUM = D3D12_RESIDENCY_PRIORITY.MAXIMUM;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device1_Value = Guid.initString("77acce80-638e-4e65-8895-c1f23386863e");
 pub const IID_ID3D12Device1 = &IID_ID3D12Device1_Value;
-pub const ID3D12Device1 = extern struct {
+pub const ID3D12Device1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device.VTable,
-        CreatePipelineLibrary: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device1,
-                pLibraryBlob: [*]const u8,
-                BlobLength: usize,
-                riid: ?*const Guid,
-                ppPipelineLibrary: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device1,
-                pLibraryBlob: [*]const u8,
-                BlobLength: usize,
-                riid: ?*const Guid,
-                ppPipelineLibrary: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetEventOnMultipleFenceCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device1,
-                ppFences: [*]?*ID3D12Fence,
-                pFenceValues: [*]const u64,
-                NumFences: u32,
-                Flags: D3D12_MULTIPLE_FENCE_WAIT_FLAGS,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device1,
-                ppFences: [*]?*ID3D12Fence,
-                pFenceValues: [*]const u64,
-                NumFences: u32,
-                Flags: D3D12_MULTIPLE_FENCE_WAIT_FLAGS,
-                hEvent: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetResidencyPriority: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device1,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-                pPriorities: [*]const D3D12_RESIDENCY_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device1,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-                pPriorities: [*]const D3D12_RESIDENCY_PRIORITY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreatePipelineLibrary: *const fn(
+            self: *const ID3D12Device1,
+            pLibraryBlob: [*]const u8,
+            BlobLength: usize,
+            riid: ?*const Guid,
+            ppPipelineLibrary: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetEventOnMultipleFenceCompletion: *const fn(
+            self: *const ID3D12Device1,
+            ppFences: [*]?*ID3D12Fence,
+            pFenceValues: [*]const u64,
+            NumFences: u32,
+            Flags: D3D12_MULTIPLE_FENCE_WAIT_FLAGS,
+            hEvent: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetResidencyPriority: *const fn(
+            self: *const ID3D12Device1,
+            NumObjects: u32,
+            ppObjects: [*]?*ID3D12Pageable,
+            pPriorities: [*]const D3D12_RESIDENCY_PRIORITY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device1_CreatePipelineLibrary(self: *const T, pLibraryBlob: [*]const u8, BlobLength: usize, riid: ?*const Guid, ppPipelineLibrary: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device1.VTable, @ptrCast(self.vtable)).CreatePipelineLibrary(@as(*const ID3D12Device1, @ptrCast(self)), pLibraryBlob, BlobLength, riid, ppPipelineLibrary);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device1_SetEventOnMultipleFenceCompletion(self: *const T, ppFences: [*]?*ID3D12Fence, pFenceValues: [*]const u64, NumFences: u32, Flags: D3D12_MULTIPLE_FENCE_WAIT_FLAGS, hEvent: ?HANDLE) HRESULT {
-                return @as(*const ID3D12Device1.VTable, @ptrCast(self.vtable)).SetEventOnMultipleFenceCompletion(@as(*const ID3D12Device1, @ptrCast(self)), ppFences, pFenceValues, NumFences, Flags, hEvent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device1_SetResidencyPriority(self: *const T, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable, pPriorities: [*]const D3D12_RESIDENCY_PRIORITY) HRESULT {
-                return @as(*const ID3D12Device1.VTable, @ptrCast(self.vtable)).SetResidencyPriority(@as(*const ID3D12Device1, @ptrCast(self)), NumObjects, ppObjects, pPriorities);
-            }
-        };
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn CreatePipelineLibrary(self: *const ID3D12Device1, pLibraryBlob: [*]const u8, BlobLength: usize, riid: ?*const Guid, ppPipelineLibrary: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePipelineLibrary(self, pLibraryBlob, BlobLength, riid, ppPipelineLibrary);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetEventOnMultipleFenceCompletion(self: *const ID3D12Device1, ppFences: [*]?*ID3D12Fence, pFenceValues: [*]const u64, NumFences: u32, Flags: D3D12_MULTIPLE_FENCE_WAIT_FLAGS, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.SetEventOnMultipleFenceCompletion(self, ppFences, pFenceValues, NumFences, Flags, hEvent);
+    }
+    pub fn SetResidencyPriority(self: *const ID3D12Device1, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable, pPriorities: [*]const D3D12_RESIDENCY_PRIORITY) callconv(.Inline) HRESULT {
+        return self.vtable.SetResidencyPriority(self, NumObjects, ppObjects, pPriorities);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device2_Value = Guid.initString("30baa41e-b15b-475c-a0bb-1af5c5b64328");
 pub const IID_ID3D12Device2 = &IID_ID3D12Device2_Value;
-pub const ID3D12Device2 = extern struct {
+pub const ID3D12Device2 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device1.VTable,
-        CreatePipelineState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device2,
-                pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device2,
-                pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
-                riid: ?*const Guid,
-                ppPipelineState: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreatePipelineState: *const fn(
+            self: *const ID3D12Device2,
+            pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC,
+            riid: ?*const Guid,
+            ppPipelineState: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device2_CreatePipelineState(self: *const T, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device2.VTable, @ptrCast(self.vtable)).CreatePipelineState(@as(*const ID3D12Device2, @ptrCast(self)), pDesc, riid, ppPipelineState);
-            }
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D12_RESIDENCY_FLAGS = enum(u32) {
-    NONE = 0,
-    DENY_OVERBUDGET = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DENY_OVERBUDGET: u1 = 0,
-    }) D3D12_RESIDENCY_FLAGS {
-        return @as(D3D12_RESIDENCY_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RESIDENCY_FLAGS.NONE) else 0) | (if (o.DENY_OVERBUDGET == 1) @intFromEnum(D3D12_RESIDENCY_FLAGS.DENY_OVERBUDGET) else 0)));
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn CreatePipelineState(self: *const ID3D12Device2, pDesc: ?*const D3D12_PIPELINE_STATE_STREAM_DESC, riid: ?*const Guid, ppPipelineState: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePipelineState(self, pDesc, riid, ppPipelineState);
     }
 };
-pub const D3D12_RESIDENCY_FLAG_NONE = D3D12_RESIDENCY_FLAGS.NONE;
-pub const D3D12_RESIDENCY_FLAG_DENY_OVERBUDGET = D3D12_RESIDENCY_FLAGS.DENY_OVERBUDGET;
 
+pub const D3D12_RESIDENCY_FLAGS = packed struct(u32) {
+    DENY_OVERBUDGET: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const D3D12_RESIDENCY_FLAG_NONE = D3D12_RESIDENCY_FLAGS{ };
+pub const D3D12_RESIDENCY_FLAG_DENY_OVERBUDGET = D3D12_RESIDENCY_FLAGS{ .DENY_OVERBUDGET = 1 };
+
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device3_Value = Guid.initString("81dadc15-2bad-4392-93c5-101345c4aa98");
 pub const IID_ID3D12Device3 = &IID_ID3D12Device3_Value;
-pub const ID3D12Device3 = extern struct {
+pub const ID3D12Device3 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device2.VTable,
-        OpenExistingHeapFromAddress: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device3,
-                pAddress: ?*const anyopaque,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device3,
-                pAddress: ?*const anyopaque,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OpenExistingHeapFromFileMapping: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device3,
-                hFileMapping: ?HANDLE,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device3,
-                hFileMapping: ?HANDLE,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnqueueMakeResident: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device3,
-                Flags: D3D12_RESIDENCY_FLAGS,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-                pFenceToSignal: ?*ID3D12Fence,
-                FenceValueToSignal: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device3,
-                Flags: D3D12_RESIDENCY_FLAGS,
-                NumObjects: u32,
-                ppObjects: [*]?*ID3D12Pageable,
-                pFenceToSignal: ?*ID3D12Fence,
-                FenceValueToSignal: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OpenExistingHeapFromAddress: *const fn(
+            self: *const ID3D12Device3,
+            pAddress: ?*const anyopaque,
+            riid: ?*const Guid,
+            ppvHeap: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OpenExistingHeapFromFileMapping: *const fn(
+            self: *const ID3D12Device3,
+            hFileMapping: ?HANDLE,
+            riid: ?*const Guid,
+            ppvHeap: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnqueueMakeResident: *const fn(
+            self: *const ID3D12Device3,
+            Flags: D3D12_RESIDENCY_FLAGS,
+            NumObjects: u32,
+            ppObjects: [*]?*ID3D12Pageable,
+            pFenceToSignal: ?*ID3D12Fence,
+            FenceValueToSignal: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device3_OpenExistingHeapFromAddress(self: *const T, pAddress: ?*const anyopaque, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device3.VTable, @ptrCast(self.vtable)).OpenExistingHeapFromAddress(@as(*const ID3D12Device3, @ptrCast(self)), pAddress, riid, ppvHeap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device3_OpenExistingHeapFromFileMapping(self: *const T, hFileMapping: ?HANDLE, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device3.VTable, @ptrCast(self.vtable)).OpenExistingHeapFromFileMapping(@as(*const ID3D12Device3, @ptrCast(self)), hFileMapping, riid, ppvHeap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device3_EnqueueMakeResident(self: *const T, Flags: D3D12_RESIDENCY_FLAGS, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable, pFenceToSignal: ?*ID3D12Fence, FenceValueToSignal: u64) HRESULT {
-                return @as(*const ID3D12Device3.VTable, @ptrCast(self.vtable)).EnqueueMakeResident(@as(*const ID3D12Device3, @ptrCast(self)), Flags, NumObjects, ppObjects, pFenceToSignal, FenceValueToSignal);
-            }
-        };
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn OpenExistingHeapFromAddress(self: *const ID3D12Device3, pAddress: ?*const anyopaque, riid: ?*const Guid, ppvHeap: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.OpenExistingHeapFromAddress(self, pAddress, riid, ppvHeap);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OpenExistingHeapFromFileMapping(self: *const ID3D12Device3, hFileMapping: ?HANDLE, riid: ?*const Guid, ppvHeap: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.OpenExistingHeapFromFileMapping(self, hFileMapping, riid, ppvHeap);
+    }
+    pub fn EnqueueMakeResident(self: *const ID3D12Device3, Flags: D3D12_RESIDENCY_FLAGS, NumObjects: u32, ppObjects: [*]?*ID3D12Pageable, pFenceToSignal: ?*ID3D12Fence, FenceValueToSignal: u64) callconv(.Inline) HRESULT {
+        return self.vtable.EnqueueMakeResident(self, Flags, NumObjects, ppObjects, pFenceToSignal, FenceValueToSignal);
+    }
 };
 
-pub const D3D12_COMMAND_LIST_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) D3D12_COMMAND_LIST_FLAGS {
-        return @as(D3D12_COMMAND_LIST_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_COMMAND_LIST_FLAGS.E) else 0)));
-    }
+pub const D3D12_COMMAND_LIST_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_COMMAND_LIST_FLAG_NONE = D3D12_COMMAND_LIST_FLAGS.E;
+pub const D3D12_COMMAND_LIST_FLAG_NONE = D3D12_COMMAND_LIST_FLAGS{ };
 
-pub const D3D12_COMMAND_POOL_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) D3D12_COMMAND_POOL_FLAGS {
-        return @as(D3D12_COMMAND_POOL_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_COMMAND_POOL_FLAGS.E) else 0)));
-    }
+pub const D3D12_COMMAND_POOL_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_COMMAND_POOL_FLAG_NONE = D3D12_COMMAND_POOL_FLAGS.E;
+pub const D3D12_COMMAND_POOL_FLAG_NONE = D3D12_COMMAND_POOL_FLAGS{ };
 
-pub const D3D12_COMMAND_RECORDER_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) D3D12_COMMAND_RECORDER_FLAGS {
-        return @as(D3D12_COMMAND_RECORDER_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_COMMAND_RECORDER_FLAGS.E) else 0)));
-    }
+pub const D3D12_COMMAND_RECORDER_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_COMMAND_RECORDER_FLAG_NONE = D3D12_COMMAND_RECORDER_FLAGS.E;
+pub const D3D12_COMMAND_RECORDER_FLAG_NONE = D3D12_COMMAND_RECORDER_FLAGS{ };
 
 pub const D3D12_PROTECTED_SESSION_STATUS = enum(i32) {
     OK = 0,
@@ -6275,256 +5367,216 @@ pub const D3D12_PROTECTED_SESSION_STATUS = enum(i32) {
 pub const D3D12_PROTECTED_SESSION_STATUS_OK = D3D12_PROTECTED_SESSION_STATUS.OK;
 pub const D3D12_PROTECTED_SESSION_STATUS_INVALID = D3D12_PROTECTED_SESSION_STATUS.INVALID;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ProtectedSession_Value = Guid.initString("a1533d18-0ac1-4084-85b9-89a96116806b");
 pub const IID_ID3D12ProtectedSession = &IID_ID3D12ProtectedSession_Value;
-pub const ID3D12ProtectedSession = extern struct {
+pub const ID3D12ProtectedSession = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceChild.VTable,
-        GetStatusFence: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ProtectedSession,
-                riid: ?*const Guid,
-                ppFence: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ProtectedSession,
-                riid: ?*const Guid,
-                ppFence: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSessionStatus: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ProtectedSession,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_SESSION_STATUS,
-            else => *const fn (
-                self: *const ID3D12ProtectedSession,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_SESSION_STATUS,
-        },
+        GetStatusFence: *const fn(
+            self: *const ID3D12ProtectedSession,
+            riid: ?*const Guid,
+            ppFence: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSessionStatus: *const fn(
+            self: *const ID3D12ProtectedSession,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_SESSION_STATUS,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ProtectedSession_GetStatusFence(self: *const T, riid: ?*const Guid, ppFence: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12ProtectedSession.VTable, @ptrCast(self.vtable)).GetStatusFence(@as(*const ID3D12ProtectedSession, @ptrCast(self)), riid, ppFence);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ProtectedSession_GetSessionStatus(self: *const T) D3D12_PROTECTED_SESSION_STATUS {
-                return @as(*const ID3D12ProtectedSession.VTable, @ptrCast(self.vtable)).GetSessionStatus(@as(*const ID3D12ProtectedSession, @ptrCast(self)));
-            }
-        };
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetStatusFence(self: *const ID3D12ProtectedSession, riid: ?*const Guid, ppFence: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetStatusFence(self, riid, ppFence);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSessionStatus(self: *const ID3D12ProtectedSession) callconv(.Inline) D3D12_PROTECTED_SESSION_STATUS {
+        return self.vtable.GetSessionStatus(self);
+    }
 };
 
-pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS = enum(u32) {
-    NONE = 0,
-    SUPPORTED = 1,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SUPPORTED: u1 = 0,
-    }) D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS {
-        return @as(D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.NONE) else 0) | (if (o.SUPPORTED == 1) @intFromEnum(D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.SUPPORTED) else 0)));
-    }
+pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS = packed struct(u32) {
+    SUPPORTED: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.NONE;
-pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_SUPPORTED = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS.SUPPORTED;
+pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS{ };
+pub const D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAG_SUPPORTED = D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS{ .SUPPORTED = 1 };
 
 pub const D3D12_FEATURE_DATA_PROTECTED_RESOURCE_SESSION_SUPPORT = extern struct {
     NodeIndex: u32,
     Support: D3D12_PROTECTED_RESOURCE_SESSION_SUPPORT_FLAGS,
 };
 
-pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) D3D12_PROTECTED_RESOURCE_SESSION_FLAGS {
-        return @as(D3D12_PROTECTED_RESOURCE_SESSION_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_PROTECTED_RESOURCE_SESSION_FLAGS.E) else 0)));
-    }
+pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_FLAGS.E;
+pub const D3D12_PROTECTED_RESOURCE_SESSION_FLAG_NONE = D3D12_PROTECTED_RESOURCE_SESSION_FLAGS{ };
 
 pub const D3D12_PROTECTED_RESOURCE_SESSION_DESC = extern struct {
     NodeMask: u32,
     Flags: D3D12_PROTECTED_RESOURCE_SESSION_FLAGS,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ProtectedResourceSession_Value = Guid.initString("6cd696f4-f289-40cc-8091-5a6c0a099c3d");
 pub const IID_ID3D12ProtectedResourceSession = &IID_ID3D12ProtectedResourceSession_Value;
-pub const ID3D12ProtectedResourceSession = extern struct {
+pub const ID3D12ProtectedResourceSession = extern union {
     pub const VTable = extern struct {
         base: ID3D12ProtectedSession.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ProtectedResourceSession,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_RESOURCE_SESSION_DESC,
-            else => *const fn (
-                self: *const ID3D12ProtectedResourceSession,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_RESOURCE_SESSION_DESC,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12ProtectedResourceSession,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_RESOURCE_SESSION_DESC,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12ProtectedSession.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ProtectedResourceSession_GetDesc(self: *const T) D3D12_PROTECTED_RESOURCE_SESSION_DESC {
-                return @as(*const ID3D12ProtectedResourceSession.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ProtectedResourceSession, @ptrCast(self)));
-            }
-        };
+    ID3D12ProtectedSession: ID3D12ProtectedSession,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const ID3D12ProtectedResourceSession) callconv(.Inline) D3D12_PROTECTED_RESOURCE_SESSION_DESC {
+        return self.vtable.GetDesc(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device4_Value = Guid.initString("e865df17-a9ee-46f9-a463-3098315aa2e5");
 pub const IID_ID3D12Device4 = &IID_ID3D12Device4_Value;
-pub const ID3D12Device4 = extern struct {
+pub const ID3D12Device4 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device3.VTable,
-        CreateCommandList1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device4,
-                nodeMask: u32,
-                type: D3D12_COMMAND_LIST_TYPE,
-                flags: D3D12_COMMAND_LIST_FLAGS,
-                riid: ?*const Guid,
-                ppCommandList: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device4,
-                nodeMask: u32,
-                type: D3D12_COMMAND_LIST_TYPE,
-                flags: D3D12_COMMAND_LIST_FLAGS,
-                riid: ?*const Guid,
-                ppCommandList: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateProtectedResourceSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device4,
-                pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC,
-                riid: ?*const Guid,
-                ppSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device4,
-                pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC,
-                riid: ?*const Guid,
-                ppSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCommittedResource1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device4,
-                pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
-                HeapFlags: D3D12_HEAP_FLAGS,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialResourceState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device4,
-                pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
-                HeapFlags: D3D12_HEAP_FLAGS,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialResourceState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateHeap1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device4,
-                pDesc: ?*const D3D12_HEAP_DESC,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device4,
-                pDesc: ?*const D3D12_HEAP_DESC,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riid: ?*const Guid,
-                ppvHeap: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateReservedResource1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device4,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device4,
-                pDesc: ?*const D3D12_RESOURCE_DESC,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetResourceAllocationInfo1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device4,
-                visibleMask: u32,
-                numResourceDescs: u32,
-                pResourceDescs: [*]const D3D12_RESOURCE_DESC,
-                pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
-            else => *const fn (
-                self: *const ID3D12Device4,
-                visibleMask: u32,
-                numResourceDescs: u32,
-                pResourceDescs: [*]const D3D12_RESOURCE_DESC,
-                pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
-        },
+        CreateCommandList1: *const fn(
+            self: *const ID3D12Device4,
+            nodeMask: u32,
+            type: D3D12_COMMAND_LIST_TYPE,
+            flags: D3D12_COMMAND_LIST_FLAGS,
+            riid: ?*const Guid,
+            ppCommandList: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateProtectedResourceSession: *const fn(
+            self: *const ID3D12Device4,
+            pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC,
+            riid: ?*const Guid,
+            ppSession: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCommittedResource1: *const fn(
+            self: *const ID3D12Device4,
+            pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
+            HeapFlags: D3D12_HEAP_FLAGS,
+            pDesc: ?*const D3D12_RESOURCE_DESC,
+            InitialResourceState: D3D12_RESOURCE_STATES,
+            pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
+            pProtectedSession: ?*ID3D12ProtectedResourceSession,
+            riidResource: ?*const Guid,
+            ppvResource: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateHeap1: *const fn(
+            self: *const ID3D12Device4,
+            pDesc: ?*const D3D12_HEAP_DESC,
+            pProtectedSession: ?*ID3D12ProtectedResourceSession,
+            riid: ?*const Guid,
+            ppvHeap: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateReservedResource1: *const fn(
+            self: *const ID3D12Device4,
+            pDesc: ?*const D3D12_RESOURCE_DESC,
+            InitialState: D3D12_RESOURCE_STATES,
+            pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
+            pProtectedSession: ?*ID3D12ProtectedResourceSession,
+            riid: ?*const Guid,
+            ppvResource: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResourceAllocationInfo1: *const fn(
+            self: *const ID3D12Device4,
+            visibleMask: u32,
+            numResourceDescs: u32,
+            pResourceDescs: [*]const D3D12_RESOURCE_DESC,
+            pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device4_CreateCommandList1(self: *const T, nodeMask: u32, type_: D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateCommandList1(@as(*const ID3D12Device4, @ptrCast(self)), nodeMask, type_, flags, riid, ppCommandList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device4_CreateProtectedResourceSession(self: *const T, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC, riid: ?*const Guid, ppSession: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateProtectedResourceSession(@as(*const ID3D12Device4, @ptrCast(self)), pDesc, riid, ppSession);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device4_CreateCommittedResource1(self: *const T, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateCommittedResource1(@as(*const ID3D12Device4, @ptrCast(self)), pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device4_CreateHeap1(self: *const T, pDesc: ?*const D3D12_HEAP_DESC, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvHeap: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateHeap1(@as(*const ID3D12Device4, @ptrCast(self)), pDesc, pProtectedSession, riid, ppvHeap);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device4_CreateReservedResource1(self: *const T, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvResource: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).CreateReservedResource1(@as(*const ID3D12Device4, @ptrCast(self)), pDesc, InitialState, pOptimizedClearValue, pProtectedSession, riid, ppvResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device4_GetResourceAllocationInfo1(self: *const T, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) D3D12_RESOURCE_ALLOCATION_INFO {
-                return @as(*const ID3D12Device4.VTable, @ptrCast(self.vtable)).GetResourceAllocationInfo1(@as(*const ID3D12Device4, @ptrCast(self)), visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
-            }
-        };
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn CreateCommandList1(self: *const ID3D12Device4, nodeMask: u32, @"type": D3D12_COMMAND_LIST_TYPE, flags: D3D12_COMMAND_LIST_FLAGS, riid: ?*const Guid, ppCommandList: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommandList1(self, nodeMask, @"type", flags, riid, ppCommandList);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateProtectedResourceSession(self: *const ID3D12Device4, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC, riid: ?*const Guid, ppSession: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateProtectedResourceSession(self, pDesc, riid, ppSession);
+    }
+    pub fn CreateCommittedResource1(self: *const ID3D12Device4, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommittedResource1(self, pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
+    }
+    pub fn CreateHeap1(self: *const ID3D12Device4, pDesc: ?*const D3D12_HEAP_DESC, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvHeap: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateHeap1(self, pDesc, pProtectedSession, riid, ppvHeap);
+    }
+    pub fn CreateReservedResource1(self: *const ID3D12Device4, pDesc: ?*const D3D12_RESOURCE_DESC, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateReservedResource1(self, pDesc, InitialState, pOptimizedClearValue, pProtectedSession, riid, ppvResource);
+    }
+    pub fn GetResourceAllocationInfo1(self: *const ID3D12Device4, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
+        return self.vtable.GetResourceAllocationInfo1(self, visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
+    }
 };
 
 pub const D3D12_LIFETIME_STATE = enum(i32) {
@@ -6534,137 +5586,83 @@ pub const D3D12_LIFETIME_STATE = enum(i32) {
 pub const D3D12_LIFETIME_STATE_IN_USE = D3D12_LIFETIME_STATE.IN_USE;
 pub const D3D12_LIFETIME_STATE_NOT_IN_USE = D3D12_LIFETIME_STATE.NOT_IN_USE;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12LifetimeOwner_Value = Guid.initString("e667af9f-cd56-4f46-83ce-032e595d70a8");
 pub const IID_ID3D12LifetimeOwner = &IID_ID3D12LifetimeOwner_Value;
-pub const ID3D12LifetimeOwner = extern struct {
+pub const ID3D12LifetimeOwner = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        LifetimeStateUpdated: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12LifetimeOwner,
-                NewState: D3D12_LIFETIME_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12LifetimeOwner,
-                NewState: D3D12_LIFETIME_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        LifetimeStateUpdated: *const fn(
+            self: *const ID3D12LifetimeOwner,
+            NewState: D3D12_LIFETIME_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12LifetimeOwner_LifetimeStateUpdated(self: *const T, NewState: D3D12_LIFETIME_STATE) void {
-                return @as(*const ID3D12LifetimeOwner.VTable, @ptrCast(self.vtable)).LifetimeStateUpdated(@as(*const ID3D12LifetimeOwner, @ptrCast(self)), NewState);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn LifetimeStateUpdated(self: *const ID3D12LifetimeOwner, NewState: D3D12_LIFETIME_STATE) callconv(.Inline) void {
+        return self.vtable.LifetimeStateUpdated(self, NewState);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12SwapChainAssistant_Value = Guid.initString("f1df64b6-57fd-49cd-8807-c0eb88b45c8f");
 pub const IID_ID3D12SwapChainAssistant = &IID_ID3D12SwapChainAssistant_Value;
-pub const ID3D12SwapChainAssistant = extern struct {
+pub const ID3D12SwapChainAssistant = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetLUID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SwapChainAssistant,
-            ) callconv(@import("std").os.windows.WINAPI) LUID,
-            else => *const fn (
-                self: *const ID3D12SwapChainAssistant,
-            ) callconv(@import("std").os.windows.WINAPI) LUID,
-        },
-        GetSwapChainObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SwapChainAssistant,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12SwapChainAssistant,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCurrentResourceAndCommandQueue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SwapChainAssistant,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-                riidQueue: ?*const Guid,
-                ppvQueue: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12SwapChainAssistant,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-                riidQueue: ?*const Guid,
-                ppvQueue: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        InsertImplicitSync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SwapChainAssistant,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12SwapChainAssistant,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetLUID: *const fn(
+            self: *const ID3D12SwapChainAssistant,
+        ) callconv(@import("std").os.windows.WINAPI) LUID,
+        GetSwapChainObject: *const fn(
+            self: *const ID3D12SwapChainAssistant,
+            riid: ?*const Guid,
+            ppv: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCurrentResourceAndCommandQueue: *const fn(
+            self: *const ID3D12SwapChainAssistant,
+            riidResource: ?*const Guid,
+            ppvResource: **anyopaque,
+            riidQueue: ?*const Guid,
+            ppvQueue: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        InsertImplicitSync: *const fn(
+            self: *const ID3D12SwapChainAssistant,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SwapChainAssistant_GetLUID(self: *const T) LUID {
-                return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).GetLUID(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SwapChainAssistant_GetSwapChainObject(self: *const T, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).GetSwapChainObject(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)), riid, ppv);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SwapChainAssistant_GetCurrentResourceAndCommandQueue(self: *const T, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque, riidQueue: ?*const Guid, ppvQueue: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).GetCurrentResourceAndCommandQueue(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)), riidResource, ppvResource, riidQueue, ppvQueue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SwapChainAssistant_InsertImplicitSync(self: *const T) HRESULT {
-                return @as(*const ID3D12SwapChainAssistant.VTable, @ptrCast(self.vtable)).InsertImplicitSync(@as(*const ID3D12SwapChainAssistant, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetLUID(self: *const ID3D12SwapChainAssistant) callconv(.Inline) LUID {
+        return self.vtable.GetLUID(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetSwapChainObject(self: *const ID3D12SwapChainAssistant, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetSwapChainObject(self, riid, ppv);
+    }
+    pub fn GetCurrentResourceAndCommandQueue(self: *const ID3D12SwapChainAssistant, riidResource: ?*const Guid, ppvResource: **anyopaque, riidQueue: ?*const Guid, ppvQueue: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetCurrentResourceAndCommandQueue(self, riidResource, ppvResource, riidQueue, ppvQueue);
+    }
+    pub fn InsertImplicitSync(self: *const ID3D12SwapChainAssistant) callconv(.Inline) HRESULT {
+        return self.vtable.InsertImplicitSync(self);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12LifetimeTracker_Value = Guid.initString("3fd03d36-4eb1-424a-a582-494ecb8ba813");
 pub const IID_ID3D12LifetimeTracker = &IID_ID3D12LifetimeTracker_Value;
-pub const ID3D12LifetimeTracker = extern struct {
+pub const ID3D12LifetimeTracker = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceChild.VTable,
-        DestroyOwnedObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12LifetimeTracker,
-                pObject: ?*ID3D12DeviceChild,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12LifetimeTracker,
-                pObject: ?*ID3D12DeviceChild,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DestroyOwnedObject: *const fn(
+            self: *const ID3D12LifetimeTracker,
+            pObject: ?*ID3D12DeviceChild,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12LifetimeTracker_DestroyOwnedObject(self: *const T, pObject: ?*ID3D12DeviceChild) HRESULT {
-                return @as(*const ID3D12LifetimeTracker.VTable, @ptrCast(self.vtable)).DestroyOwnedObject(@as(*const ID3D12LifetimeTracker, @ptrCast(self)), pObject);
-            }
-        };
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn DestroyOwnedObject(self: *const ID3D12LifetimeTracker, pObject: ?*ID3D12DeviceChild) callconv(.Inline) HRESULT {
+        return self.vtable.DestroyOwnedObject(self, pObject);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_META_COMMAND_PARAMETER_TYPE = enum(i32) {
@@ -6680,19 +5678,42 @@ pub const D3D12_META_COMMAND_PARAMETER_TYPE_GPU_VIRTUAL_ADDRESS = D3D12_META_COM
 pub const D3D12_META_COMMAND_PARAMETER_TYPE_CPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV = D3D12_META_COMMAND_PARAMETER_TYPE.CPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV;
 pub const D3D12_META_COMMAND_PARAMETER_TYPE_GPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV = D3D12_META_COMMAND_PARAMETER_TYPE.GPU_DESCRIPTOR_HANDLE_HEAP_TYPE_CBV_SRV_UAV;
 
-pub const D3D12_META_COMMAND_PARAMETER_FLAGS = enum(u32) {
-    INPUT = 1,
-    OUTPUT = 2,
-    _,
-    pub fn initFlags(o: struct {
-        INPUT: u1 = 0,
-        OUTPUT: u1 = 0,
-    }) D3D12_META_COMMAND_PARAMETER_FLAGS {
-        return @as(D3D12_META_COMMAND_PARAMETER_FLAGS, @enumFromInt((if (o.INPUT == 1) @intFromEnum(D3D12_META_COMMAND_PARAMETER_FLAGS.INPUT) else 0) | (if (o.OUTPUT == 1) @intFromEnum(D3D12_META_COMMAND_PARAMETER_FLAGS.OUTPUT) else 0)));
-    }
+pub const D3D12_META_COMMAND_PARAMETER_FLAGS = packed struct(u32) {
+    INPUT: u1 = 0,
+    OUTPUT: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_META_COMMAND_PARAMETER_FLAG_INPUT = D3D12_META_COMMAND_PARAMETER_FLAGS.INPUT;
-pub const D3D12_META_COMMAND_PARAMETER_FLAG_OUTPUT = D3D12_META_COMMAND_PARAMETER_FLAGS.OUTPUT;
+pub const D3D12_META_COMMAND_PARAMETER_FLAG_INPUT = D3D12_META_COMMAND_PARAMETER_FLAGS{ .INPUT = 1 };
+pub const D3D12_META_COMMAND_PARAMETER_FLAG_OUTPUT = D3D12_META_COMMAND_PARAMETER_FLAGS{ .OUTPUT = 1 };
 
 pub const D3D12_META_COMMAND_PARAMETER_STAGE = enum(i32) {
     CREATION = 0,
@@ -6711,67 +5732,58 @@ pub const D3D12_META_COMMAND_PARAMETER_DESC = extern struct {
     StructureOffset: u32,
 };
 
-pub const D3D12_GRAPHICS_STATES = enum(u32) {
-    NONE = 0,
-    IA_VERTEX_BUFFERS = 1,
-    IA_INDEX_BUFFER = 2,
-    IA_PRIMITIVE_TOPOLOGY = 4,
-    DESCRIPTOR_HEAP = 8,
-    GRAPHICS_ROOT_SIGNATURE = 16,
-    COMPUTE_ROOT_SIGNATURE = 32,
-    RS_VIEWPORTS = 64,
-    RS_SCISSOR_RECTS = 128,
-    PREDICATION = 256,
-    OM_RENDER_TARGETS = 512,
-    OM_STENCIL_REF = 1024,
-    OM_BLEND_FACTOR = 2048,
-    PIPELINE_STATE = 4096,
-    SO_TARGETS = 8192,
-    OM_DEPTH_BOUNDS = 16384,
-    SAMPLE_POSITIONS = 32768,
-    VIEW_INSTANCE_MASK = 65536,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        IA_VERTEX_BUFFERS: u1 = 0,
-        IA_INDEX_BUFFER: u1 = 0,
-        IA_PRIMITIVE_TOPOLOGY: u1 = 0,
-        DESCRIPTOR_HEAP: u1 = 0,
-        GRAPHICS_ROOT_SIGNATURE: u1 = 0,
-        COMPUTE_ROOT_SIGNATURE: u1 = 0,
-        RS_VIEWPORTS: u1 = 0,
-        RS_SCISSOR_RECTS: u1 = 0,
-        PREDICATION: u1 = 0,
-        OM_RENDER_TARGETS: u1 = 0,
-        OM_STENCIL_REF: u1 = 0,
-        OM_BLEND_FACTOR: u1 = 0,
-        PIPELINE_STATE: u1 = 0,
-        SO_TARGETS: u1 = 0,
-        OM_DEPTH_BOUNDS: u1 = 0,
-        SAMPLE_POSITIONS: u1 = 0,
-        VIEW_INSTANCE_MASK: u1 = 0,
-    }) D3D12_GRAPHICS_STATES {
-        return @as(D3D12_GRAPHICS_STATES, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_GRAPHICS_STATES.NONE) else 0) | (if (o.IA_VERTEX_BUFFERS == 1) @intFromEnum(D3D12_GRAPHICS_STATES.IA_VERTEX_BUFFERS) else 0) | (if (o.IA_INDEX_BUFFER == 1) @intFromEnum(D3D12_GRAPHICS_STATES.IA_INDEX_BUFFER) else 0) | (if (o.IA_PRIMITIVE_TOPOLOGY == 1) @intFromEnum(D3D12_GRAPHICS_STATES.IA_PRIMITIVE_TOPOLOGY) else 0) | (if (o.DESCRIPTOR_HEAP == 1) @intFromEnum(D3D12_GRAPHICS_STATES.DESCRIPTOR_HEAP) else 0) | (if (o.GRAPHICS_ROOT_SIGNATURE == 1) @intFromEnum(D3D12_GRAPHICS_STATES.GRAPHICS_ROOT_SIGNATURE) else 0) | (if (o.COMPUTE_ROOT_SIGNATURE == 1) @intFromEnum(D3D12_GRAPHICS_STATES.COMPUTE_ROOT_SIGNATURE) else 0) | (if (o.RS_VIEWPORTS == 1) @intFromEnum(D3D12_GRAPHICS_STATES.RS_VIEWPORTS) else 0) | (if (o.RS_SCISSOR_RECTS == 1) @intFromEnum(D3D12_GRAPHICS_STATES.RS_SCISSOR_RECTS) else 0) | (if (o.PREDICATION == 1) @intFromEnum(D3D12_GRAPHICS_STATES.PREDICATION) else 0) | (if (o.OM_RENDER_TARGETS == 1) @intFromEnum(D3D12_GRAPHICS_STATES.OM_RENDER_TARGETS) else 0) | (if (o.OM_STENCIL_REF == 1) @intFromEnum(D3D12_GRAPHICS_STATES.OM_STENCIL_REF) else 0) | (if (o.OM_BLEND_FACTOR == 1) @intFromEnum(D3D12_GRAPHICS_STATES.OM_BLEND_FACTOR) else 0) | (if (o.PIPELINE_STATE == 1) @intFromEnum(D3D12_GRAPHICS_STATES.PIPELINE_STATE) else 0) | (if (o.SO_TARGETS == 1) @intFromEnum(D3D12_GRAPHICS_STATES.SO_TARGETS) else 0) | (if (o.OM_DEPTH_BOUNDS == 1) @intFromEnum(D3D12_GRAPHICS_STATES.OM_DEPTH_BOUNDS) else 0) | (if (o.SAMPLE_POSITIONS == 1) @intFromEnum(D3D12_GRAPHICS_STATES.SAMPLE_POSITIONS) else 0) | (if (o.VIEW_INSTANCE_MASK == 1) @intFromEnum(D3D12_GRAPHICS_STATES.VIEW_INSTANCE_MASK) else 0)));
-    }
+pub const D3D12_GRAPHICS_STATES = packed struct(u32) {
+    IA_VERTEX_BUFFERS: u1 = 0,
+    IA_INDEX_BUFFER: u1 = 0,
+    IA_PRIMITIVE_TOPOLOGY: u1 = 0,
+    DESCRIPTOR_HEAP: u1 = 0,
+    GRAPHICS_ROOT_SIGNATURE: u1 = 0,
+    COMPUTE_ROOT_SIGNATURE: u1 = 0,
+    RS_VIEWPORTS: u1 = 0,
+    RS_SCISSOR_RECTS: u1 = 0,
+    PREDICATION: u1 = 0,
+    OM_RENDER_TARGETS: u1 = 0,
+    OM_STENCIL_REF: u1 = 0,
+    OM_BLEND_FACTOR: u1 = 0,
+    PIPELINE_STATE: u1 = 0,
+    SO_TARGETS: u1 = 0,
+    OM_DEPTH_BOUNDS: u1 = 0,
+    SAMPLE_POSITIONS: u1 = 0,
+    VIEW_INSTANCE_MASK: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_GRAPHICS_STATE_NONE = D3D12_GRAPHICS_STATES.NONE;
-pub const D3D12_GRAPHICS_STATE_IA_VERTEX_BUFFERS = D3D12_GRAPHICS_STATES.IA_VERTEX_BUFFERS;
-pub const D3D12_GRAPHICS_STATE_IA_INDEX_BUFFER = D3D12_GRAPHICS_STATES.IA_INDEX_BUFFER;
-pub const D3D12_GRAPHICS_STATE_IA_PRIMITIVE_TOPOLOGY = D3D12_GRAPHICS_STATES.IA_PRIMITIVE_TOPOLOGY;
-pub const D3D12_GRAPHICS_STATE_DESCRIPTOR_HEAP = D3D12_GRAPHICS_STATES.DESCRIPTOR_HEAP;
-pub const D3D12_GRAPHICS_STATE_GRAPHICS_ROOT_SIGNATURE = D3D12_GRAPHICS_STATES.GRAPHICS_ROOT_SIGNATURE;
-pub const D3D12_GRAPHICS_STATE_COMPUTE_ROOT_SIGNATURE = D3D12_GRAPHICS_STATES.COMPUTE_ROOT_SIGNATURE;
-pub const D3D12_GRAPHICS_STATE_RS_VIEWPORTS = D3D12_GRAPHICS_STATES.RS_VIEWPORTS;
-pub const D3D12_GRAPHICS_STATE_RS_SCISSOR_RECTS = D3D12_GRAPHICS_STATES.RS_SCISSOR_RECTS;
-pub const D3D12_GRAPHICS_STATE_PREDICATION = D3D12_GRAPHICS_STATES.PREDICATION;
-pub const D3D12_GRAPHICS_STATE_OM_RENDER_TARGETS = D3D12_GRAPHICS_STATES.OM_RENDER_TARGETS;
-pub const D3D12_GRAPHICS_STATE_OM_STENCIL_REF = D3D12_GRAPHICS_STATES.OM_STENCIL_REF;
-pub const D3D12_GRAPHICS_STATE_OM_BLEND_FACTOR = D3D12_GRAPHICS_STATES.OM_BLEND_FACTOR;
-pub const D3D12_GRAPHICS_STATE_PIPELINE_STATE = D3D12_GRAPHICS_STATES.PIPELINE_STATE;
-pub const D3D12_GRAPHICS_STATE_SO_TARGETS = D3D12_GRAPHICS_STATES.SO_TARGETS;
-pub const D3D12_GRAPHICS_STATE_OM_DEPTH_BOUNDS = D3D12_GRAPHICS_STATES.OM_DEPTH_BOUNDS;
-pub const D3D12_GRAPHICS_STATE_SAMPLE_POSITIONS = D3D12_GRAPHICS_STATES.SAMPLE_POSITIONS;
-pub const D3D12_GRAPHICS_STATE_VIEW_INSTANCE_MASK = D3D12_GRAPHICS_STATES.VIEW_INSTANCE_MASK;
+pub const D3D12_GRAPHICS_STATE_NONE = D3D12_GRAPHICS_STATES{ };
+pub const D3D12_GRAPHICS_STATE_IA_VERTEX_BUFFERS = D3D12_GRAPHICS_STATES{ .IA_VERTEX_BUFFERS = 1 };
+pub const D3D12_GRAPHICS_STATE_IA_INDEX_BUFFER = D3D12_GRAPHICS_STATES{ .IA_INDEX_BUFFER = 1 };
+pub const D3D12_GRAPHICS_STATE_IA_PRIMITIVE_TOPOLOGY = D3D12_GRAPHICS_STATES{ .IA_PRIMITIVE_TOPOLOGY = 1 };
+pub const D3D12_GRAPHICS_STATE_DESCRIPTOR_HEAP = D3D12_GRAPHICS_STATES{ .DESCRIPTOR_HEAP = 1 };
+pub const D3D12_GRAPHICS_STATE_GRAPHICS_ROOT_SIGNATURE = D3D12_GRAPHICS_STATES{ .GRAPHICS_ROOT_SIGNATURE = 1 };
+pub const D3D12_GRAPHICS_STATE_COMPUTE_ROOT_SIGNATURE = D3D12_GRAPHICS_STATES{ .COMPUTE_ROOT_SIGNATURE = 1 };
+pub const D3D12_GRAPHICS_STATE_RS_VIEWPORTS = D3D12_GRAPHICS_STATES{ .RS_VIEWPORTS = 1 };
+pub const D3D12_GRAPHICS_STATE_RS_SCISSOR_RECTS = D3D12_GRAPHICS_STATES{ .RS_SCISSOR_RECTS = 1 };
+pub const D3D12_GRAPHICS_STATE_PREDICATION = D3D12_GRAPHICS_STATES{ .PREDICATION = 1 };
+pub const D3D12_GRAPHICS_STATE_OM_RENDER_TARGETS = D3D12_GRAPHICS_STATES{ .OM_RENDER_TARGETS = 1 };
+pub const D3D12_GRAPHICS_STATE_OM_STENCIL_REF = D3D12_GRAPHICS_STATES{ .OM_STENCIL_REF = 1 };
+pub const D3D12_GRAPHICS_STATE_OM_BLEND_FACTOR = D3D12_GRAPHICS_STATES{ .OM_BLEND_FACTOR = 1 };
+pub const D3D12_GRAPHICS_STATE_PIPELINE_STATE = D3D12_GRAPHICS_STATES{ .PIPELINE_STATE = 1 };
+pub const D3D12_GRAPHICS_STATE_SO_TARGETS = D3D12_GRAPHICS_STATES{ .SO_TARGETS = 1 };
+pub const D3D12_GRAPHICS_STATE_OM_DEPTH_BOUNDS = D3D12_GRAPHICS_STATES{ .OM_DEPTH_BOUNDS = 1 };
+pub const D3D12_GRAPHICS_STATE_SAMPLE_POSITIONS = D3D12_GRAPHICS_STATES{ .SAMPLE_POSITIONS = 1 };
+pub const D3D12_GRAPHICS_STATE_VIEW_INSTANCE_MASK = D3D12_GRAPHICS_STATES{ .VIEW_INSTANCE_MASK = 1 };
 
 pub const D3D12_META_COMMAND_DESC = extern struct {
     Id: Guid,
@@ -6780,88 +5792,56 @@ pub const D3D12_META_COMMAND_DESC = extern struct {
     ExecutionDirtyState: D3D12_GRAPHICS_STATES,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12StateObject_Value = Guid.initString("47016943-fca8-4594-93ea-af258b55346d");
 pub const IID_ID3D12StateObject = &IID_ID3D12StateObject_Value;
-pub const ID3D12StateObject = extern struct {
+pub const ID3D12StateObject = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12StateObjectProperties_Value = Guid.initString("de5fa827-9bf9-4f26-89ff-d7f56fde3860");
 pub const IID_ID3D12StateObjectProperties = &IID_ID3D12StateObjectProperties_Value;
-pub const ID3D12StateObjectProperties = extern struct {
+pub const ID3D12StateObjectProperties = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetShaderIdentifier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12StateObjectProperties,
-                pExportName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-            else => *const fn (
-                self: *const ID3D12StateObjectProperties,
-                pExportName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
-        },
-        GetShaderStackSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12StateObjectProperties,
-                pExportName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12StateObjectProperties,
-                pExportName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetPipelineStackSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12StateObjectProperties,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12StateObjectProperties,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        SetPipelineStackSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12StateObjectProperties,
-                PipelineStackSizeInBytes: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12StateObjectProperties,
-                PipelineStackSizeInBytes: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        GetShaderIdentifier: *const fn(
+            self: *const ID3D12StateObjectProperties,
+            pExportName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        GetShaderStackSize: *const fn(
+            self: *const ID3D12StateObjectProperties,
+            pExportName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetPipelineStackSize: *const fn(
+            self: *const ID3D12StateObjectProperties,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        SetPipelineStackSize: *const fn(
+            self: *const ID3D12StateObjectProperties,
+            PipelineStackSizeInBytes: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12StateObjectProperties_GetShaderIdentifier(self: *const T, pExportName: ?[*:0]const u16) ?*anyopaque {
-                return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).GetShaderIdentifier(@as(*const ID3D12StateObjectProperties, @ptrCast(self)), pExportName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12StateObjectProperties_GetShaderStackSize(self: *const T, pExportName: ?[*:0]const u16) u64 {
-                return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).GetShaderStackSize(@as(*const ID3D12StateObjectProperties, @ptrCast(self)), pExportName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12StateObjectProperties_GetPipelineStackSize(self: *const T) u64 {
-                return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).GetPipelineStackSize(@as(*const ID3D12StateObjectProperties, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12StateObjectProperties_SetPipelineStackSize(self: *const T, PipelineStackSizeInBytes: u64) void {
-                return @as(*const ID3D12StateObjectProperties.VTable, @ptrCast(self.vtable)).SetPipelineStackSize(@as(*const ID3D12StateObjectProperties, @ptrCast(self)), PipelineStackSizeInBytes);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetShaderIdentifier(self: *const ID3D12StateObjectProperties, pExportName: ?[*:0]const u16) callconv(.Inline) ?*anyopaque {
+        return self.vtable.GetShaderIdentifier(self, pExportName);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetShaderStackSize(self: *const ID3D12StateObjectProperties, pExportName: ?[*:0]const u16) callconv(.Inline) u64 {
+        return self.vtable.GetShaderStackSize(self, pExportName);
+    }
+    pub fn GetPipelineStackSize(self: *const ID3D12StateObjectProperties) callconv(.Inline) u64 {
+        return self.vtable.GetPipelineStackSize(self);
+    }
+    pub fn SetPipelineStackSize(self: *const ID3D12StateObjectProperties, PipelineStackSizeInBytes: u64) callconv(.Inline) void {
+        return self.vtable.SetPipelineStackSize(self, PipelineStackSizeInBytes);
+    }
 };
 
 pub const D3D12_STATE_SUBOBJECT_TYPE = enum(i32) {
@@ -6898,25 +5878,44 @@ pub const D3D12_STATE_SUBOBJECT = extern struct {
     pDesc: ?*const anyopaque,
 };
 
-pub const D3D12_STATE_OBJECT_FLAGS = enum(u32) {
-    NONE = 0,
-    ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = 1,
-    ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS = 2,
-    ALLOW_STATE_OBJECT_ADDITIONS = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS: u1 = 0,
-        ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS: u1 = 0,
-        ALLOW_STATE_OBJECT_ADDITIONS: u1 = 0,
-    }) D3D12_STATE_OBJECT_FLAGS {
-        return @as(D3D12_STATE_OBJECT_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_STATE_OBJECT_FLAGS.NONE) else 0) | (if (o.ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS == 1) @intFromEnum(D3D12_STATE_OBJECT_FLAGS.ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS) else 0) | (if (o.ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS == 1) @intFromEnum(D3D12_STATE_OBJECT_FLAGS.ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS) else 0) | (if (o.ALLOW_STATE_OBJECT_ADDITIONS == 1) @intFromEnum(D3D12_STATE_OBJECT_FLAGS.ALLOW_STATE_OBJECT_ADDITIONS) else 0)));
-    }
+pub const D3D12_STATE_OBJECT_FLAGS = packed struct(u32) {
+    ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS: u1 = 0,
+    ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS: u1 = 0,
+    ALLOW_STATE_OBJECT_ADDITIONS: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_STATE_OBJECT_FLAG_NONE = D3D12_STATE_OBJECT_FLAGS.NONE;
-pub const D3D12_STATE_OBJECT_FLAG_ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = D3D12_STATE_OBJECT_FLAGS.ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS;
-pub const D3D12_STATE_OBJECT_FLAG_ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS = D3D12_STATE_OBJECT_FLAGS.ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS;
-pub const D3D12_STATE_OBJECT_FLAG_ALLOW_STATE_OBJECT_ADDITIONS = D3D12_STATE_OBJECT_FLAGS.ALLOW_STATE_OBJECT_ADDITIONS;
+pub const D3D12_STATE_OBJECT_FLAG_NONE = D3D12_STATE_OBJECT_FLAGS{ };
+pub const D3D12_STATE_OBJECT_FLAG_ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = D3D12_STATE_OBJECT_FLAGS{ .ALLOW_LOCAL_DEPENDENCIES_ON_EXTERNAL_DEFINITIONS = 1 };
+pub const D3D12_STATE_OBJECT_FLAG_ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS = D3D12_STATE_OBJECT_FLAGS{ .ALLOW_EXTERNAL_DEPENDENCIES_ON_LOCAL_DEFINITIONS = 1 };
+pub const D3D12_STATE_OBJECT_FLAG_ALLOW_STATE_OBJECT_ADDITIONS = D3D12_STATE_OBJECT_FLAGS{ .ALLOW_STATE_OBJECT_ADDITIONS = 1 };
 
 pub const D3D12_STATE_OBJECT_CONFIG = extern struct {
     Flags: D3D12_STATE_OBJECT_FLAGS,
@@ -6934,16 +5933,41 @@ pub const D3D12_NODE_MASK = extern struct {
     NodeMask: u32,
 };
 
-pub const D3D12_EXPORT_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) D3D12_EXPORT_FLAGS {
-        return @as(D3D12_EXPORT_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_EXPORT_FLAGS.E) else 0)));
-    }
+pub const D3D12_EXPORT_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_EXPORT_FLAG_NONE = D3D12_EXPORT_FLAGS.E;
+pub const D3D12_EXPORT_FLAG_NONE = D3D12_EXPORT_FLAGS{ };
 
 pub const D3D12_EXPORT_DESC = extern struct {
     Name: ?[*:0]const u16,
@@ -6999,22 +6023,43 @@ pub const D3D12_RAYTRACING_PIPELINE_CONFIG = extern struct {
     MaxTraceRecursionDepth: u32,
 };
 
-pub const D3D12_RAYTRACING_PIPELINE_FLAGS = enum(u32) {
-    NONE = 0,
-    SKIP_TRIANGLES = 256,
-    SKIP_PROCEDURAL_PRIMITIVES = 512,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        SKIP_TRIANGLES: u1 = 0,
-        SKIP_PROCEDURAL_PRIMITIVES: u1 = 0,
-    }) D3D12_RAYTRACING_PIPELINE_FLAGS {
-        return @as(D3D12_RAYTRACING_PIPELINE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RAYTRACING_PIPELINE_FLAGS.NONE) else 0) | (if (o.SKIP_TRIANGLES == 1) @intFromEnum(D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_TRIANGLES) else 0) | (if (o.SKIP_PROCEDURAL_PRIMITIVES == 1) @intFromEnum(D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_PROCEDURAL_PRIMITIVES) else 0)));
-    }
+pub const D3D12_RAYTRACING_PIPELINE_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    SKIP_TRIANGLES: u1 = 0,
+    SKIP_PROCEDURAL_PRIMITIVES: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RAYTRACING_PIPELINE_FLAG_NONE = D3D12_RAYTRACING_PIPELINE_FLAGS.NONE;
-pub const D3D12_RAYTRACING_PIPELINE_FLAG_SKIP_TRIANGLES = D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_TRIANGLES;
-pub const D3D12_RAYTRACING_PIPELINE_FLAG_SKIP_PROCEDURAL_PRIMITIVES = D3D12_RAYTRACING_PIPELINE_FLAGS.SKIP_PROCEDURAL_PRIMITIVES;
+pub const D3D12_RAYTRACING_PIPELINE_FLAG_NONE = D3D12_RAYTRACING_PIPELINE_FLAGS{ };
+pub const D3D12_RAYTRACING_PIPELINE_FLAG_SKIP_TRIANGLES = D3D12_RAYTRACING_PIPELINE_FLAGS{ .SKIP_TRIANGLES = 1 };
+pub const D3D12_RAYTRACING_PIPELINE_FLAG_SKIP_PROCEDURAL_PRIMITIVES = D3D12_RAYTRACING_PIPELINE_FLAGS{ .SKIP_PROCEDURAL_PRIMITIVES = 1 };
 
 pub const D3D12_RAYTRACING_PIPELINE_CONFIG1 = extern struct {
     MaxTraceRecursionDepth: u32,
@@ -7034,22 +6079,43 @@ pub const D3D12_STATE_OBJECT_DESC = extern struct {
     pSubobjects: ?*const D3D12_STATE_SUBOBJECT,
 };
 
-pub const D3D12_RAYTRACING_GEOMETRY_FLAGS = enum(u32) {
-    NONE = 0,
-    OPAQUE = 1,
-    NO_DUPLICATE_ANYHIT_INVOCATION = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        OPAQUE: u1 = 0,
-        NO_DUPLICATE_ANYHIT_INVOCATION: u1 = 0,
-    }) D3D12_RAYTRACING_GEOMETRY_FLAGS {
-        return @as(D3D12_RAYTRACING_GEOMETRY_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RAYTRACING_GEOMETRY_FLAGS.NONE) else 0) | (if (o.OPAQUE == 1) @intFromEnum(D3D12_RAYTRACING_GEOMETRY_FLAGS.OPAQUE) else 0) | (if (o.NO_DUPLICATE_ANYHIT_INVOCATION == 1) @intFromEnum(D3D12_RAYTRACING_GEOMETRY_FLAGS.NO_DUPLICATE_ANYHIT_INVOCATION) else 0)));
-    }
+pub const D3D12_RAYTRACING_GEOMETRY_FLAGS = packed struct(u32) {
+    OPAQUE: u1 = 0,
+    NO_DUPLICATE_ANYHIT_INVOCATION: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RAYTRACING_GEOMETRY_FLAG_NONE = D3D12_RAYTRACING_GEOMETRY_FLAGS.NONE;
-pub const D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE = D3D12_RAYTRACING_GEOMETRY_FLAGS.OPAQUE;
-pub const D3D12_RAYTRACING_GEOMETRY_FLAG_NO_DUPLICATE_ANYHIT_INVOCATION = D3D12_RAYTRACING_GEOMETRY_FLAGS.NO_DUPLICATE_ANYHIT_INVOCATION;
+pub const D3D12_RAYTRACING_GEOMETRY_FLAG_NONE = D3D12_RAYTRACING_GEOMETRY_FLAGS{ };
+pub const D3D12_RAYTRACING_GEOMETRY_FLAG_OPAQUE = D3D12_RAYTRACING_GEOMETRY_FLAGS{ .OPAQUE = 1 };
+pub const D3D12_RAYTRACING_GEOMETRY_FLAG_NO_DUPLICATE_ANYHIT_INVOCATION = D3D12_RAYTRACING_GEOMETRY_FLAGS{ .NO_DUPLICATE_ANYHIT_INVOCATION = 1 };
 
 pub const D3D12_RAYTRACING_GEOMETRY_TYPE = enum(i32) {
     TRIANGLES = 0,
@@ -7058,28 +6124,45 @@ pub const D3D12_RAYTRACING_GEOMETRY_TYPE = enum(i32) {
 pub const D3D12_RAYTRACING_GEOMETRY_TYPE_TRIANGLES = D3D12_RAYTRACING_GEOMETRY_TYPE.TRIANGLES;
 pub const D3D12_RAYTRACING_GEOMETRY_TYPE_PROCEDURAL_PRIMITIVE_AABBS = D3D12_RAYTRACING_GEOMETRY_TYPE.PROCEDURAL_PRIMITIVE_AABBS;
 
-pub const D3D12_RAYTRACING_INSTANCE_FLAGS = enum(u32) {
-    NONE = 0,
-    TRIANGLE_CULL_DISABLE = 1,
-    TRIANGLE_FRONT_COUNTERCLOCKWISE = 2,
-    FORCE_OPAQUE = 4,
-    FORCE_NON_OPAQUE = 8,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        TRIANGLE_CULL_DISABLE: u1 = 0,
-        TRIANGLE_FRONT_COUNTERCLOCKWISE: u1 = 0,
-        FORCE_OPAQUE: u1 = 0,
-        FORCE_NON_OPAQUE: u1 = 0,
-    }) D3D12_RAYTRACING_INSTANCE_FLAGS {
-        return @as(D3D12_RAYTRACING_INSTANCE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RAYTRACING_INSTANCE_FLAGS.NONE) else 0) | (if (o.TRIANGLE_CULL_DISABLE == 1) @intFromEnum(D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_CULL_DISABLE) else 0) | (if (o.TRIANGLE_FRONT_COUNTERCLOCKWISE == 1) @intFromEnum(D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_FRONT_COUNTERCLOCKWISE) else 0) | (if (o.FORCE_OPAQUE == 1) @intFromEnum(D3D12_RAYTRACING_INSTANCE_FLAGS.FORCE_OPAQUE) else 0) | (if (o.FORCE_NON_OPAQUE == 1) @intFromEnum(D3D12_RAYTRACING_INSTANCE_FLAGS.FORCE_NON_OPAQUE) else 0)));
-    }
+pub const D3D12_RAYTRACING_INSTANCE_FLAGS = packed struct(u32) {
+    TRIANGLE_CULL_DISABLE: u1 = 0,
+    TRIANGLE_FRONT_COUNTERCLOCKWISE: u1 = 0,
+    FORCE_OPAQUE: u1 = 0,
+    FORCE_NON_OPAQUE: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RAYTRACING_INSTANCE_FLAG_NONE = D3D12_RAYTRACING_INSTANCE_FLAGS.NONE;
-pub const D3D12_RAYTRACING_INSTANCE_FLAG_TRIANGLE_CULL_DISABLE = D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_CULL_DISABLE;
-pub const D3D12_RAYTRACING_INSTANCE_FLAG_TRIANGLE_FRONT_COUNTERCLOCKWISE = D3D12_RAYTRACING_INSTANCE_FLAGS.TRIANGLE_FRONT_COUNTERCLOCKWISE;
-pub const D3D12_RAYTRACING_INSTANCE_FLAG_FORCE_OPAQUE = D3D12_RAYTRACING_INSTANCE_FLAGS.FORCE_OPAQUE;
-pub const D3D12_RAYTRACING_INSTANCE_FLAG_FORCE_NON_OPAQUE = D3D12_RAYTRACING_INSTANCE_FLAGS.FORCE_NON_OPAQUE;
+pub const D3D12_RAYTRACING_INSTANCE_FLAG_NONE = D3D12_RAYTRACING_INSTANCE_FLAGS{ };
+pub const D3D12_RAYTRACING_INSTANCE_FLAG_TRIANGLE_CULL_DISABLE = D3D12_RAYTRACING_INSTANCE_FLAGS{ .TRIANGLE_CULL_DISABLE = 1 };
+pub const D3D12_RAYTRACING_INSTANCE_FLAG_TRIANGLE_FRONT_COUNTERCLOCKWISE = D3D12_RAYTRACING_INSTANCE_FLAGS{ .TRIANGLE_FRONT_COUNTERCLOCKWISE = 1 };
+pub const D3D12_RAYTRACING_INSTANCE_FLAG_FORCE_OPAQUE = D3D12_RAYTRACING_INSTANCE_FLAGS{ .FORCE_OPAQUE = 1 };
+pub const D3D12_RAYTRACING_INSTANCE_FLAG_FORCE_NON_OPAQUE = D3D12_RAYTRACING_INSTANCE_FLAGS{ .FORCE_NON_OPAQUE = 1 };
 
 pub const D3D12_GPU_VIRTUAL_ADDRESS_AND_STRIDE = extern struct {
     StartAddress: u64,
@@ -7121,34 +6204,47 @@ pub const D3D12_RAYTRACING_GEOMETRY_AABBS_DESC = extern struct {
     AABBs: D3D12_GPU_VIRTUAL_ADDRESS_AND_STRIDE,
 };
 
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS = enum(u32) {
-    NONE = 0,
-    ALLOW_UPDATE = 1,
-    ALLOW_COMPACTION = 2,
-    PREFER_FAST_TRACE = 4,
-    PREFER_FAST_BUILD = 8,
-    MINIMIZE_MEMORY = 16,
-    PERFORM_UPDATE = 32,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOW_UPDATE: u1 = 0,
-        ALLOW_COMPACTION: u1 = 0,
-        PREFER_FAST_TRACE: u1 = 0,
-        PREFER_FAST_BUILD: u1 = 0,
-        MINIMIZE_MEMORY: u1 = 0,
-        PERFORM_UPDATE: u1 = 0,
-    }) D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS {
-        return @as(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.NONE) else 0) | (if (o.ALLOW_UPDATE == 1) @intFromEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_UPDATE) else 0) | (if (o.ALLOW_COMPACTION == 1) @intFromEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_COMPACTION) else 0) | (if (o.PREFER_FAST_TRACE == 1) @intFromEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PREFER_FAST_TRACE) else 0) | (if (o.PREFER_FAST_BUILD == 1) @intFromEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PREFER_FAST_BUILD) else 0) | (if (o.MINIMIZE_MEMORY == 1) @intFromEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.MINIMIZE_MEMORY) else 0) | (if (o.PERFORM_UPDATE == 1) @intFromEnum(D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PERFORM_UPDATE) else 0)));
-    }
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS = packed struct(u32) {
+    ALLOW_UPDATE: u1 = 0,
+    ALLOW_COMPACTION: u1 = 0,
+    PREFER_FAST_TRACE: u1 = 0,
+    PREFER_FAST_BUILD: u1 = 0,
+    MINIMIZE_MEMORY: u1 = 0,
+    PERFORM_UPDATE: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_NONE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.NONE;
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_ALLOW_UPDATE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_UPDATE;
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_ALLOW_COMPACTION = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.ALLOW_COMPACTION;
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_PREFER_FAST_TRACE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PREFER_FAST_TRACE;
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_PREFER_FAST_BUILD = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PREFER_FAST_BUILD;
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_MINIMIZE_MEMORY = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.MINIMIZE_MEMORY;
-pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_PERFORM_UPDATE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS.PERFORM_UPDATE;
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_NONE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS{ };
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_ALLOW_UPDATE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS{ .ALLOW_UPDATE = 1 };
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_ALLOW_COMPACTION = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS{ .ALLOW_COMPACTION = 1 };
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_PREFER_FAST_TRACE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS{ .PREFER_FAST_TRACE = 1 };
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_PREFER_FAST_BUILD = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS{ .PREFER_FAST_BUILD = 1 };
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_MINIMIZE_MEMORY = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS{ .MINIMIZE_MEMORY = 1 };
+pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAG_PERFORM_UPDATE = D3D12_RAYTRACING_ACCELERATION_STRUCTURE_BUILD_FLAGS{ .PERFORM_UPDATE = 1 };
 
 pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_COPY_MODE = enum(i32) {
     CLONE = 0,
@@ -7286,46 +6382,51 @@ pub const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO = extern struct 
     UpdateScratchDataSizeInBytes: u64,
 };
 
-pub const D3D12_RAY_FLAGS = enum(u32) {
-    NONE = 0,
-    FORCE_OPAQUE = 1,
-    FORCE_NON_OPAQUE = 2,
-    ACCEPT_FIRST_HIT_AND_END_SEARCH = 4,
-    SKIP_CLOSEST_HIT_SHADER = 8,
-    CULL_BACK_FACING_TRIANGLES = 16,
-    CULL_FRONT_FACING_TRIANGLES = 32,
-    CULL_OPAQUE = 64,
-    CULL_NON_OPAQUE = 128,
-    SKIP_TRIANGLES = 256,
-    SKIP_PROCEDURAL_PRIMITIVES = 512,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        FORCE_OPAQUE: u1 = 0,
-        FORCE_NON_OPAQUE: u1 = 0,
-        ACCEPT_FIRST_HIT_AND_END_SEARCH: u1 = 0,
-        SKIP_CLOSEST_HIT_SHADER: u1 = 0,
-        CULL_BACK_FACING_TRIANGLES: u1 = 0,
-        CULL_FRONT_FACING_TRIANGLES: u1 = 0,
-        CULL_OPAQUE: u1 = 0,
-        CULL_NON_OPAQUE: u1 = 0,
-        SKIP_TRIANGLES: u1 = 0,
-        SKIP_PROCEDURAL_PRIMITIVES: u1 = 0,
-    }) D3D12_RAY_FLAGS {
-        return @as(D3D12_RAY_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RAY_FLAGS.NONE) else 0) | (if (o.FORCE_OPAQUE == 1) @intFromEnum(D3D12_RAY_FLAGS.FORCE_OPAQUE) else 0) | (if (o.FORCE_NON_OPAQUE == 1) @intFromEnum(D3D12_RAY_FLAGS.FORCE_NON_OPAQUE) else 0) | (if (o.ACCEPT_FIRST_HIT_AND_END_SEARCH == 1) @intFromEnum(D3D12_RAY_FLAGS.ACCEPT_FIRST_HIT_AND_END_SEARCH) else 0) | (if (o.SKIP_CLOSEST_HIT_SHADER == 1) @intFromEnum(D3D12_RAY_FLAGS.SKIP_CLOSEST_HIT_SHADER) else 0) | (if (o.CULL_BACK_FACING_TRIANGLES == 1) @intFromEnum(D3D12_RAY_FLAGS.CULL_BACK_FACING_TRIANGLES) else 0) | (if (o.CULL_FRONT_FACING_TRIANGLES == 1) @intFromEnum(D3D12_RAY_FLAGS.CULL_FRONT_FACING_TRIANGLES) else 0) | (if (o.CULL_OPAQUE == 1) @intFromEnum(D3D12_RAY_FLAGS.CULL_OPAQUE) else 0) | (if (o.CULL_NON_OPAQUE == 1) @intFromEnum(D3D12_RAY_FLAGS.CULL_NON_OPAQUE) else 0) | (if (o.SKIP_TRIANGLES == 1) @intFromEnum(D3D12_RAY_FLAGS.SKIP_TRIANGLES) else 0) | (if (o.SKIP_PROCEDURAL_PRIMITIVES == 1) @intFromEnum(D3D12_RAY_FLAGS.SKIP_PROCEDURAL_PRIMITIVES) else 0)));
-    }
+pub const D3D12_RAY_FLAGS = packed struct(u32) {
+    FORCE_OPAQUE: u1 = 0,
+    FORCE_NON_OPAQUE: u1 = 0,
+    ACCEPT_FIRST_HIT_AND_END_SEARCH: u1 = 0,
+    SKIP_CLOSEST_HIT_SHADER: u1 = 0,
+    CULL_BACK_FACING_TRIANGLES: u1 = 0,
+    CULL_FRONT_FACING_TRIANGLES: u1 = 0,
+    CULL_OPAQUE: u1 = 0,
+    CULL_NON_OPAQUE: u1 = 0,
+    SKIP_TRIANGLES: u1 = 0,
+    SKIP_PROCEDURAL_PRIMITIVES: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RAY_FLAG_NONE = D3D12_RAY_FLAGS.NONE;
-pub const D3D12_RAY_FLAG_FORCE_OPAQUE = D3D12_RAY_FLAGS.FORCE_OPAQUE;
-pub const D3D12_RAY_FLAG_FORCE_NON_OPAQUE = D3D12_RAY_FLAGS.FORCE_NON_OPAQUE;
-pub const D3D12_RAY_FLAG_ACCEPT_FIRST_HIT_AND_END_SEARCH = D3D12_RAY_FLAGS.ACCEPT_FIRST_HIT_AND_END_SEARCH;
-pub const D3D12_RAY_FLAG_SKIP_CLOSEST_HIT_SHADER = D3D12_RAY_FLAGS.SKIP_CLOSEST_HIT_SHADER;
-pub const D3D12_RAY_FLAG_CULL_BACK_FACING_TRIANGLES = D3D12_RAY_FLAGS.CULL_BACK_FACING_TRIANGLES;
-pub const D3D12_RAY_FLAG_CULL_FRONT_FACING_TRIANGLES = D3D12_RAY_FLAGS.CULL_FRONT_FACING_TRIANGLES;
-pub const D3D12_RAY_FLAG_CULL_OPAQUE = D3D12_RAY_FLAGS.CULL_OPAQUE;
-pub const D3D12_RAY_FLAG_CULL_NON_OPAQUE = D3D12_RAY_FLAGS.CULL_NON_OPAQUE;
-pub const D3D12_RAY_FLAG_SKIP_TRIANGLES = D3D12_RAY_FLAGS.SKIP_TRIANGLES;
-pub const D3D12_RAY_FLAG_SKIP_PROCEDURAL_PRIMITIVES = D3D12_RAY_FLAGS.SKIP_PROCEDURAL_PRIMITIVES;
+pub const D3D12_RAY_FLAG_NONE = D3D12_RAY_FLAGS{ };
+pub const D3D12_RAY_FLAG_FORCE_OPAQUE = D3D12_RAY_FLAGS{ .FORCE_OPAQUE = 1 };
+pub const D3D12_RAY_FLAG_FORCE_NON_OPAQUE = D3D12_RAY_FLAGS{ .FORCE_NON_OPAQUE = 1 };
+pub const D3D12_RAY_FLAG_ACCEPT_FIRST_HIT_AND_END_SEARCH = D3D12_RAY_FLAGS{ .ACCEPT_FIRST_HIT_AND_END_SEARCH = 1 };
+pub const D3D12_RAY_FLAG_SKIP_CLOSEST_HIT_SHADER = D3D12_RAY_FLAGS{ .SKIP_CLOSEST_HIT_SHADER = 1 };
+pub const D3D12_RAY_FLAG_CULL_BACK_FACING_TRIANGLES = D3D12_RAY_FLAGS{ .CULL_BACK_FACING_TRIANGLES = 1 };
+pub const D3D12_RAY_FLAG_CULL_FRONT_FACING_TRIANGLES = D3D12_RAY_FLAGS{ .CULL_FRONT_FACING_TRIANGLES = 1 };
+pub const D3D12_RAY_FLAG_CULL_OPAQUE = D3D12_RAY_FLAGS{ .CULL_OPAQUE = 1 };
+pub const D3D12_RAY_FLAG_CULL_NON_OPAQUE = D3D12_RAY_FLAGS{ .CULL_NON_OPAQUE = 1 };
+pub const D3D12_RAY_FLAG_SKIP_TRIANGLES = D3D12_RAY_FLAGS{ .SKIP_TRIANGLES = 1 };
+pub const D3D12_RAY_FLAG_SKIP_PROCEDURAL_PRIMITIVES = D3D12_RAY_FLAGS{ .SKIP_PROCEDURAL_PRIMITIVES = 1 };
 
 pub const D3D12_HIT_KIND = enum(i32) {
     FRONT_FACE = 254,
@@ -7335,163 +6436,93 @@ pub const D3D12_HIT_KIND_TRIANGLE_FRONT_FACE = D3D12_HIT_KIND.FRONT_FACE;
 pub const D3D12_HIT_KIND_TRIANGLE_BACK_FACE = D3D12_HIT_KIND.BACK_FACE;
 
 // TODO: this type is limited to platform 'windows10.0.17763'
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device5_Value = Guid.initString("8b4f173b-2fea-4b80-8f58-4307191ab95d");
 pub const IID_ID3D12Device5 = &IID_ID3D12Device5_Value;
-pub const ID3D12Device5 = extern struct {
+pub const ID3D12Device5 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device4.VTable,
-        CreateLifetimeTracker: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-                pOwner: ?*ID3D12LifetimeOwner,
-                riid: ?*const Guid,
-                ppvTracker: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device5,
-                pOwner: ?*ID3D12LifetimeOwner,
-                riid: ?*const Guid,
-                ppvTracker: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device5,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EnumerateMetaCommands: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-                pNumMetaCommands: ?*u32,
-                pDescs: ?[*]D3D12_META_COMMAND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device5,
-                pNumMetaCommands: ?*u32,
-                pDescs: ?[*]D3D12_META_COMMAND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumerateMetaCommandParameters: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-                CommandId: ?*const Guid,
-                Stage: D3D12_META_COMMAND_PARAMETER_STAGE,
-                pTotalStructureSizeInBytes: ?*u32,
-                pParameterCount: ?*u32,
-                pParameterDescs: ?[*]D3D12_META_COMMAND_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device5,
-                CommandId: ?*const Guid,
-                Stage: D3D12_META_COMMAND_PARAMETER_STAGE,
-                pTotalStructureSizeInBytes: ?*u32,
-                pParameterCount: ?*u32,
-                pParameterDescs: ?[*]D3D12_META_COMMAND_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateMetaCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-                CommandId: ?*const Guid,
-                NodeMask: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pCreationParametersData: ?*const anyopaque,
-                CreationParametersDataSizeInBytes: usize,
-                riid: ?*const Guid,
-                ppMetaCommand: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device5,
-                CommandId: ?*const Guid,
-                NodeMask: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pCreationParametersData: ?*const anyopaque,
-                CreationParametersDataSizeInBytes: usize,
-                riid: ?*const Guid,
-                ppMetaCommand: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateStateObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-                pDesc: ?*const D3D12_STATE_OBJECT_DESC,
-                riid: ?*const Guid,
-                ppStateObject: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device5,
-                pDesc: ?*const D3D12_STATE_OBJECT_DESC,
-                riid: ?*const Guid,
-                ppStateObject: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRaytracingAccelerationStructurePrebuildInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-                pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS,
-                pInfo: ?*D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device5,
-                pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS,
-                pInfo: ?*D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CheckDriverMatchingIdentifier: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device5,
-                SerializedDataType: D3D12_SERIALIZED_DATA_TYPE,
-                pIdentifierToCheck: ?*const D3D12_SERIALIZED_DATA_DRIVER_MATCHING_IDENTIFIER,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DRIVER_MATCHING_IDENTIFIER_STATUS,
-            else => *const fn (
-                self: *const ID3D12Device5,
-                SerializedDataType: D3D12_SERIALIZED_DATA_TYPE,
-                pIdentifierToCheck: ?*const D3D12_SERIALIZED_DATA_DRIVER_MATCHING_IDENTIFIER,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DRIVER_MATCHING_IDENTIFIER_STATUS,
-        },
+        CreateLifetimeTracker: *const fn(
+            self: *const ID3D12Device5,
+            pOwner: ?*ID3D12LifetimeOwner,
+            riid: ?*const Guid,
+            ppvTracker: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveDevice: *const fn(
+            self: *const ID3D12Device5,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EnumerateMetaCommands: *const fn(
+            self: *const ID3D12Device5,
+            pNumMetaCommands: ?*u32,
+            pDescs: ?[*]D3D12_META_COMMAND_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumerateMetaCommandParameters: *const fn(
+            self: *const ID3D12Device5,
+            CommandId: ?*const Guid,
+            Stage: D3D12_META_COMMAND_PARAMETER_STAGE,
+            pTotalStructureSizeInBytes: ?*u32,
+            pParameterCount: ?*u32,
+            pParameterDescs: ?[*]D3D12_META_COMMAND_PARAMETER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateMetaCommand: *const fn(
+            self: *const ID3D12Device5,
+            CommandId: ?*const Guid,
+            NodeMask: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pCreationParametersData: ?*const anyopaque,
+            CreationParametersDataSizeInBytes: usize,
+            riid: ?*const Guid,
+            ppMetaCommand: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateStateObject: *const fn(
+            self: *const ID3D12Device5,
+            pDesc: ?*const D3D12_STATE_OBJECT_DESC,
+            riid: ?*const Guid,
+            ppStateObject: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRaytracingAccelerationStructurePrebuildInfo: *const fn(
+            self: *const ID3D12Device5,
+            pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS,
+            pInfo: ?*D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CheckDriverMatchingIdentifier: *const fn(
+            self: *const ID3D12Device5,
+            SerializedDataType: D3D12_SERIALIZED_DATA_TYPE,
+            pIdentifierToCheck: ?*const D3D12_SERIALIZED_DATA_DRIVER_MATCHING_IDENTIFIER,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_DRIVER_MATCHING_IDENTIFIER_STATUS,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device4.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_CreateLifetimeTracker(self: *const T, pOwner: ?*ID3D12LifetimeOwner, riid: ?*const Guid, ppvTracker: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CreateLifetimeTracker(@as(*const ID3D12Device5, @ptrCast(self)), pOwner, riid, ppvTracker);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_RemoveDevice(self: *const T) void {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).RemoveDevice(@as(*const ID3D12Device5, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_EnumerateMetaCommands(self: *const T, pNumMetaCommands: ?*u32, pDescs: ?[*]D3D12_META_COMMAND_DESC) HRESULT {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).EnumerateMetaCommands(@as(*const ID3D12Device5, @ptrCast(self)), pNumMetaCommands, pDescs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_EnumerateMetaCommandParameters(self: *const T, CommandId: ?*const Guid, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, pTotalStructureSizeInBytes: ?*u32, pParameterCount: ?*u32, pParameterDescs: ?[*]D3D12_META_COMMAND_PARAMETER_DESC) HRESULT {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).EnumerateMetaCommandParameters(@as(*const ID3D12Device5, @ptrCast(self)), CommandId, Stage, pTotalStructureSizeInBytes, pParameterCount, pParameterDescs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_CreateMetaCommand(self: *const T, CommandId: ?*const Guid, NodeMask: u32, pCreationParametersData: ?*const anyopaque, CreationParametersDataSizeInBytes: usize, riid: ?*const Guid, ppMetaCommand: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CreateMetaCommand(@as(*const ID3D12Device5, @ptrCast(self)), CommandId, NodeMask, pCreationParametersData, CreationParametersDataSizeInBytes, riid, ppMetaCommand);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_CreateStateObject(self: *const T, pDesc: ?*const D3D12_STATE_OBJECT_DESC, riid: ?*const Guid, ppStateObject: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CreateStateObject(@as(*const ID3D12Device5, @ptrCast(self)), pDesc, riid, ppStateObject);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_GetRaytracingAccelerationStructurePrebuildInfo(self: *const T, pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS, pInfo: ?*D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO) void {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).GetRaytracingAccelerationStructurePrebuildInfo(@as(*const ID3D12Device5, @ptrCast(self)), pDesc, pInfo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device5_CheckDriverMatchingIdentifier(self: *const T, SerializedDataType: D3D12_SERIALIZED_DATA_TYPE, pIdentifierToCheck: ?*const D3D12_SERIALIZED_DATA_DRIVER_MATCHING_IDENTIFIER) D3D12_DRIVER_MATCHING_IDENTIFIER_STATUS {
-                return @as(*const ID3D12Device5.VTable, @ptrCast(self.vtable)).CheckDriverMatchingIdentifier(@as(*const ID3D12Device5, @ptrCast(self)), SerializedDataType, pIdentifierToCheck);
-            }
-        };
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn CreateLifetimeTracker(self: *const ID3D12Device5, pOwner: ?*ID3D12LifetimeOwner, riid: ?*const Guid, ppvTracker: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateLifetimeTracker(self, pOwner, riid, ppvTracker);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn RemoveDevice(self: *const ID3D12Device5) callconv(.Inline) void {
+        return self.vtable.RemoveDevice(self);
+    }
+    pub fn EnumerateMetaCommands(self: *const ID3D12Device5, pNumMetaCommands: ?*u32, pDescs: ?[*]D3D12_META_COMMAND_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.EnumerateMetaCommands(self, pNumMetaCommands, pDescs);
+    }
+    pub fn EnumerateMetaCommandParameters(self: *const ID3D12Device5, CommandId: ?*const Guid, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, pTotalStructureSizeInBytes: ?*u32, pParameterCount: ?*u32, pParameterDescs: ?[*]D3D12_META_COMMAND_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.EnumerateMetaCommandParameters(self, CommandId, Stage, pTotalStructureSizeInBytes, pParameterCount, pParameterDescs);
+    }
+    pub fn CreateMetaCommand(self: *const ID3D12Device5, CommandId: ?*const Guid, NodeMask: u32, pCreationParametersData: ?*const anyopaque, CreationParametersDataSizeInBytes: usize, riid: ?*const Guid, ppMetaCommand: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateMetaCommand(self, CommandId, NodeMask, pCreationParametersData, CreationParametersDataSizeInBytes, riid, ppMetaCommand);
+    }
+    pub fn CreateStateObject(self: *const ID3D12Device5, pDesc: ?*const D3D12_STATE_OBJECT_DESC, riid: ?*const Guid, ppStateObject: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateStateObject(self, pDesc, riid, ppStateObject);
+    }
+    pub fn GetRaytracingAccelerationStructurePrebuildInfo(self: *const ID3D12Device5, pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_INPUTS, pInfo: ?*D3D12_RAYTRACING_ACCELERATION_STRUCTURE_PREBUILD_INFO) callconv(.Inline) void {
+        return self.vtable.GetRaytracingAccelerationStructurePrebuildInfo(self, pDesc, pInfo);
+    }
+    pub fn CheckDriverMatchingIdentifier(self: *const ID3D12Device5, SerializedDataType: D3D12_SERIALIZED_DATA_TYPE, pIdentifierToCheck: ?*const D3D12_SERIALIZED_DATA_DRIVER_MATCHING_IDENTIFIER) callconv(.Inline) D3D12_DRIVER_MATCHING_IDENTIFIER_STATUS {
+        return self.vtable.CheckDriverMatchingIdentifier(self, SerializedDataType, pIdentifierToCheck);
+    }
 };
 
 pub const D3D12_AUTO_BREADCRUMB_OP = enum(i32) {
@@ -7631,22 +6662,43 @@ pub const D3D12_DRED_VERSION_1_1 = D3D12_DRED_VERSION.@"1";
 pub const D3D12_DRED_VERSION_1_2 = D3D12_DRED_VERSION.@"2";
 pub const D3D12_DRED_VERSION_1_3 = D3D12_DRED_VERSION.@"3";
 
-pub const D3D12_DRED_FLAGS = enum(u32) {
-    NONE = 0,
-    FORCE_ENABLE = 1,
-    DISABLE_AUTOBREADCRUMBS = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        FORCE_ENABLE: u1 = 0,
-        DISABLE_AUTOBREADCRUMBS: u1 = 0,
-    }) D3D12_DRED_FLAGS {
-        return @as(D3D12_DRED_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_DRED_FLAGS.NONE) else 0) | (if (o.FORCE_ENABLE == 1) @intFromEnum(D3D12_DRED_FLAGS.FORCE_ENABLE) else 0) | (if (o.DISABLE_AUTOBREADCRUMBS == 1) @intFromEnum(D3D12_DRED_FLAGS.DISABLE_AUTOBREADCRUMBS) else 0)));
-    }
+pub const D3D12_DRED_FLAGS = packed struct(u32) {
+    FORCE_ENABLE: u1 = 0,
+    DISABLE_AUTOBREADCRUMBS: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_DRED_FLAG_NONE = D3D12_DRED_FLAGS.NONE;
-pub const D3D12_DRED_FLAG_FORCE_ENABLE = D3D12_DRED_FLAGS.FORCE_ENABLE;
-pub const D3D12_DRED_FLAG_DISABLE_AUTOBREADCRUMBS = D3D12_DRED_FLAGS.DISABLE_AUTOBREADCRUMBS;
+pub const D3D12_DRED_FLAG_NONE = D3D12_DRED_FLAGS{ };
+pub const D3D12_DRED_FLAG_FORCE_ENABLE = D3D12_DRED_FLAGS{ .FORCE_ENABLE = 1 };
+pub const D3D12_DRED_FLAG_DISABLE_AUTOBREADCRUMBS = D3D12_DRED_FLAGS{ .DISABLE_AUTOBREADCRUMBS = 1 };
 
 pub const D3D12_DRED_ENABLEMENT = enum(i32) {
     SYSTEM_CONTROLLED = 0,
@@ -7758,16 +6810,41 @@ pub const D3D12_DRED_PAGE_FAULT_OUTPUT1 = extern struct {
     pHeadRecentFreedAllocationNode: ?*const D3D12_DRED_ALLOCATION_NODE1,
 };
 
-pub const D3D12_DRED_PAGE_FAULT_FLAGS = enum(u32) {
-    E = 0,
-    _,
-    pub fn initFlags(o: struct {
-        E: u1 = 0,
-    }) D3D12_DRED_PAGE_FAULT_FLAGS {
-        return @as(D3D12_DRED_PAGE_FAULT_FLAGS, @enumFromInt((if (o.E == 1) @intFromEnum(D3D12_DRED_PAGE_FAULT_FLAGS.E) else 0)));
-    }
+pub const D3D12_DRED_PAGE_FAULT_FLAGS = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_DRED_PAGE_FAULT_FLAGS_NONE = D3D12_DRED_PAGE_FAULT_FLAGS.E;
+pub const D3D12_DRED_PAGE_FAULT_FLAGS_NONE = D3D12_DRED_PAGE_FAULT_FLAGS{ };
 
 pub const D3D12_DRED_DEVICE_STATE = enum(i32) {
     UNKNOWN = 0,
@@ -7816,217 +6893,132 @@ pub const D3D12_VERSIONED_DEVICE_REMOVED_EXTENDED_DATA = extern struct {
     },
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DeviceRemovedExtendedDataSettings_Value = Guid.initString("82bc481c-6b9b-4030-aedb-7ee3d1df1e63");
 pub const IID_ID3D12DeviceRemovedExtendedDataSettings = &IID_ID3D12DeviceRemovedExtendedDataSettings_Value;
-pub const ID3D12DeviceRemovedExtendedDataSettings = extern struct {
+pub const ID3D12DeviceRemovedExtendedDataSettings = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetAutoBreadcrumbsEnablement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetPageFaultEnablement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetWatsonDumpEnablement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        SetAutoBreadcrumbsEnablement: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedDataSettings,
+            Enablement: D3D12_DRED_ENABLEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetPageFaultEnablement: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedDataSettings,
+            Enablement: D3D12_DRED_ENABLEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetWatsonDumpEnablement: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedDataSettings,
+            Enablement: D3D12_DRED_ENABLEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedDataSettings_SetAutoBreadcrumbsEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) void {
-                return @as(*const ID3D12DeviceRemovedExtendedDataSettings.VTable, @ptrCast(self.vtable)).SetAutoBreadcrumbsEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings, @ptrCast(self)), Enablement);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedDataSettings_SetPageFaultEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) void {
-                return @as(*const ID3D12DeviceRemovedExtendedDataSettings.VTable, @ptrCast(self.vtable)).SetPageFaultEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings, @ptrCast(self)), Enablement);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedDataSettings_SetWatsonDumpEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) void {
-                return @as(*const ID3D12DeviceRemovedExtendedDataSettings.VTable, @ptrCast(self.vtable)).SetWatsonDumpEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings, @ptrCast(self)), Enablement);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetAutoBreadcrumbsEnablement(self: *const ID3D12DeviceRemovedExtendedDataSettings, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
+        return self.vtable.SetAutoBreadcrumbsEnablement(self, Enablement);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetPageFaultEnablement(self: *const ID3D12DeviceRemovedExtendedDataSettings, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
+        return self.vtable.SetPageFaultEnablement(self, Enablement);
+    }
+    pub fn SetWatsonDumpEnablement(self: *const ID3D12DeviceRemovedExtendedDataSettings, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
+        return self.vtable.SetWatsonDumpEnablement(self, Enablement);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DeviceRemovedExtendedDataSettings1_Value = Guid.initString("dbd5ae51-3317-4f0a-adf9-1d7cedcaae0b");
 pub const IID_ID3D12DeviceRemovedExtendedDataSettings1 = &IID_ID3D12DeviceRemovedExtendedDataSettings1_Value;
-pub const ID3D12DeviceRemovedExtendedDataSettings1 = extern struct {
+pub const ID3D12DeviceRemovedExtendedDataSettings1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceRemovedExtendedDataSettings.VTable,
-        SetBreadcrumbContextEnablement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings1,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedDataSettings1,
-                Enablement: D3D12_DRED_ENABLEMENT,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        SetBreadcrumbContextEnablement: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedDataSettings1,
+            Enablement: D3D12_DRED_ENABLEMENT,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceRemovedExtendedDataSettings.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedDataSettings1_SetBreadcrumbContextEnablement(self: *const T, Enablement: D3D12_DRED_ENABLEMENT) void {
-                return @as(*const ID3D12DeviceRemovedExtendedDataSettings1.VTable, @ptrCast(self.vtable)).SetBreadcrumbContextEnablement(@as(*const ID3D12DeviceRemovedExtendedDataSettings1, @ptrCast(self)), Enablement);
-            }
-        };
+    ID3D12DeviceRemovedExtendedDataSettings: ID3D12DeviceRemovedExtendedDataSettings,
+    IUnknown: IUnknown,
+    pub fn SetBreadcrumbContextEnablement(self: *const ID3D12DeviceRemovedExtendedDataSettings1, Enablement: D3D12_DRED_ENABLEMENT) callconv(.Inline) void {
+        return self.vtable.SetBreadcrumbContextEnablement(self, Enablement);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DeviceRemovedExtendedData_Value = Guid.initString("98931d33-5ae8-4791-aa3c-1a73a2934e71");
 pub const IID_ID3D12DeviceRemovedExtendedData = &IID_ID3D12DeviceRemovedExtendedData_Value;
-pub const ID3D12DeviceRemovedExtendedData = extern struct {
+pub const ID3D12DeviceRemovedExtendedData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetAutoBreadcrumbsOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedData,
-                pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedData,
-                pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPageFaultAllocationOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedData,
-                pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedData,
-                pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAutoBreadcrumbsOutput: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedData,
+            pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPageFaultAllocationOutput: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedData,
+            pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedData_GetAutoBreadcrumbsOutput(self: *const T, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT) HRESULT {
-                return @as(*const ID3D12DeviceRemovedExtendedData.VTable, @ptrCast(self.vtable)).GetAutoBreadcrumbsOutput(@as(*const ID3D12DeviceRemovedExtendedData, @ptrCast(self)), pOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedData_GetPageFaultAllocationOutput(self: *const T, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT) HRESULT {
-                return @as(*const ID3D12DeviceRemovedExtendedData.VTable, @ptrCast(self.vtable)).GetPageFaultAllocationOutput(@as(*const ID3D12DeviceRemovedExtendedData, @ptrCast(self)), pOutput);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetAutoBreadcrumbsOutput(self: *const ID3D12DeviceRemovedExtendedData, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT) callconv(.Inline) HRESULT {
+        return self.vtable.GetAutoBreadcrumbsOutput(self, pOutput);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetPageFaultAllocationOutput(self: *const ID3D12DeviceRemovedExtendedData, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT) callconv(.Inline) HRESULT {
+        return self.vtable.GetPageFaultAllocationOutput(self, pOutput);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DeviceRemovedExtendedData1_Value = Guid.initString("9727a022-cf1d-4dda-9eba-effa653fc506");
 pub const IID_ID3D12DeviceRemovedExtendedData1 = &IID_ID3D12DeviceRemovedExtendedData1_Value;
-pub const ID3D12DeviceRemovedExtendedData1 = extern struct {
+pub const ID3D12DeviceRemovedExtendedData1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceRemovedExtendedData.VTable,
-        GetAutoBreadcrumbsOutput1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedData1,
-                pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedData1,
-                pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPageFaultAllocationOutput1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedData1,
-                pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedData1,
-                pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT1,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetAutoBreadcrumbsOutput1: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedData1,
+            pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPageFaultAllocationOutput1: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedData1,
+            pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT1,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceRemovedExtendedData.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedData1_GetAutoBreadcrumbsOutput1(self: *const T, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT1) HRESULT {
-                return @as(*const ID3D12DeviceRemovedExtendedData1.VTable, @ptrCast(self.vtable)).GetAutoBreadcrumbsOutput1(@as(*const ID3D12DeviceRemovedExtendedData1, @ptrCast(self)), pOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedData1_GetPageFaultAllocationOutput1(self: *const T, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT1) HRESULT {
-                return @as(*const ID3D12DeviceRemovedExtendedData1.VTable, @ptrCast(self.vtable)).GetPageFaultAllocationOutput1(@as(*const ID3D12DeviceRemovedExtendedData1, @ptrCast(self)), pOutput);
-            }
-        };
+    ID3D12DeviceRemovedExtendedData: ID3D12DeviceRemovedExtendedData,
+    IUnknown: IUnknown,
+    pub fn GetAutoBreadcrumbsOutput1(self: *const ID3D12DeviceRemovedExtendedData1, pOutput: ?*D3D12_DRED_AUTO_BREADCRUMBS_OUTPUT1) callconv(.Inline) HRESULT {
+        return self.vtable.GetAutoBreadcrumbsOutput1(self, pOutput);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetPageFaultAllocationOutput1(self: *const ID3D12DeviceRemovedExtendedData1, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT1) callconv(.Inline) HRESULT {
+        return self.vtable.GetPageFaultAllocationOutput1(self, pOutput);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DeviceRemovedExtendedData2_Value = Guid.initString("67fc5816-e4ca-4915-bf18-42541272da54");
 pub const IID_ID3D12DeviceRemovedExtendedData2 = &IID_ID3D12DeviceRemovedExtendedData2_Value;
-pub const ID3D12DeviceRemovedExtendedData2 = extern struct {
+pub const ID3D12DeviceRemovedExtendedData2 = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceRemovedExtendedData1.VTable,
-        GetPageFaultAllocationOutput2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedData2,
-                pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedData2,
-                pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT2,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDeviceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DeviceRemovedExtendedData2,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DRED_DEVICE_STATE,
-            else => *const fn (
-                self: *const ID3D12DeviceRemovedExtendedData2,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DRED_DEVICE_STATE,
-        },
+        GetPageFaultAllocationOutput2: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedData2,
+            pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT2,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDeviceState: *const fn(
+            self: *const ID3D12DeviceRemovedExtendedData2,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_DRED_DEVICE_STATE,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceRemovedExtendedData1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedData2_GetPageFaultAllocationOutput2(self: *const T, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT2) HRESULT {
-                return @as(*const ID3D12DeviceRemovedExtendedData2.VTable, @ptrCast(self.vtable)).GetPageFaultAllocationOutput2(@as(*const ID3D12DeviceRemovedExtendedData2, @ptrCast(self)), pOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DeviceRemovedExtendedData2_GetDeviceState(self: *const T) D3D12_DRED_DEVICE_STATE {
-                return @as(*const ID3D12DeviceRemovedExtendedData2.VTable, @ptrCast(self.vtable)).GetDeviceState(@as(*const ID3D12DeviceRemovedExtendedData2, @ptrCast(self)));
-            }
-        };
+    ID3D12DeviceRemovedExtendedData1: ID3D12DeviceRemovedExtendedData1,
+    ID3D12DeviceRemovedExtendedData: ID3D12DeviceRemovedExtendedData,
+    IUnknown: IUnknown,
+    pub fn GetPageFaultAllocationOutput2(self: *const ID3D12DeviceRemovedExtendedData2, pOutput: ?*D3D12_DRED_PAGE_FAULT_OUTPUT2) callconv(.Inline) HRESULT {
+        return self.vtable.GetPageFaultAllocationOutput2(self, pOutput);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDeviceState(self: *const ID3D12DeviceRemovedExtendedData2) callconv(.Inline) D3D12_DRED_DEVICE_STATE {
+        return self.vtable.GetDeviceState(self);
+    }
 };
 
 pub const D3D12_BACKGROUND_PROCESSING_MODE = enum(i32) {
@@ -8051,39 +7043,32 @@ pub const D3D12_MEASUREMENTS_ACTION_COMMIT_RESULTS = D3D12_MEASUREMENTS_ACTION.C
 pub const D3D12_MEASUREMENTS_ACTION_COMMIT_RESULTS_HIGH_PRIORITY = D3D12_MEASUREMENTS_ACTION.COMMIT_RESULTS_HIGH_PRIORITY;
 pub const D3D12_MEASUREMENTS_ACTION_DISCARD_PREVIOUS = D3D12_MEASUREMENTS_ACTION.DISCARD_PREVIOUS;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device6_Value = Guid.initString("c70b221b-40e4-4a17-89af-025a0727a6dc");
 pub const IID_ID3D12Device6 = &IID_ID3D12Device6_Value;
-pub const ID3D12Device6 = extern struct {
+pub const ID3D12Device6 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device5.VTable,
-        SetBackgroundProcessingMode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device6,
-                Mode: D3D12_BACKGROUND_PROCESSING_MODE,
-                MeasurementsAction: D3D12_MEASUREMENTS_ACTION,
-                hEventToSignalUponCompletion: ?HANDLE,
-                pbFurtherMeasurementsDesired: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device6,
-                Mode: D3D12_BACKGROUND_PROCESSING_MODE,
-                MeasurementsAction: D3D12_MEASUREMENTS_ACTION,
-                hEventToSignalUponCompletion: ?HANDLE,
-                pbFurtherMeasurementsDesired: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetBackgroundProcessingMode: *const fn(
+            self: *const ID3D12Device6,
+            Mode: D3D12_BACKGROUND_PROCESSING_MODE,
+            MeasurementsAction: D3D12_MEASUREMENTS_ACTION,
+            hEventToSignalUponCompletion: ?HANDLE,
+            pbFurtherMeasurementsDesired: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device5.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device6_SetBackgroundProcessingMode(self: *const T, Mode: D3D12_BACKGROUND_PROCESSING_MODE, MeasurementsAction: D3D12_MEASUREMENTS_ACTION, hEventToSignalUponCompletion: ?HANDLE, pbFurtherMeasurementsDesired: ?*BOOL) HRESULT {
-                return @as(*const ID3D12Device6.VTable, @ptrCast(self.vtable)).SetBackgroundProcessingMode(@as(*const ID3D12Device6, @ptrCast(self)), Mode, MeasurementsAction, hEventToSignalUponCompletion, pbFurtherMeasurementsDesired);
-            }
-        };
+    ID3D12Device5: ID3D12Device5,
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn SetBackgroundProcessingMode(self: *const ID3D12Device6, Mode: D3D12_BACKGROUND_PROCESSING_MODE, MeasurementsAction: D3D12_MEASUREMENTS_ACTION, hEventToSignalUponCompletion: ?HANDLE, pbFurtherMeasurementsDesired: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetBackgroundProcessingMode(self, Mode, MeasurementsAction, hEventToSignalUponCompletion, pbFurtherMeasurementsDesired);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_FEATURE_DATA_PROTECTED_RESOURCE_SESSION_TYPE_COUNT = extern struct {
@@ -8103,337 +7088,235 @@ pub const D3D12_PROTECTED_RESOURCE_SESSION_DESC1 = extern struct {
     ProtectionType: Guid,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ProtectedResourceSession1_Value = Guid.initString("d6f12dd6-76fb-406e-8961-4296eefc0409");
 pub const IID_ID3D12ProtectedResourceSession1 = &IID_ID3D12ProtectedResourceSession1_Value;
-pub const ID3D12ProtectedResourceSession1 = extern struct {
+pub const ID3D12ProtectedResourceSession1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12ProtectedResourceSession.VTable,
-        GetDesc1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ProtectedResourceSession1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_RESOURCE_SESSION_DESC1,
-            else => *const fn (
-                self: *const ID3D12ProtectedResourceSession1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_RESOURCE_SESSION_DESC1,
-        },
+        GetDesc1: *const fn(
+            self: *const ID3D12ProtectedResourceSession1,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_PROTECTED_RESOURCE_SESSION_DESC1,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12ProtectedResourceSession.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ProtectedResourceSession1_GetDesc1(self: *const T) D3D12_PROTECTED_RESOURCE_SESSION_DESC1 {
-                return @as(*const ID3D12ProtectedResourceSession1.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D12ProtectedResourceSession1, @ptrCast(self)));
-            }
-        };
+    ID3D12ProtectedResourceSession: ID3D12ProtectedResourceSession,
+    ID3D12ProtectedSession: ID3D12ProtectedSession,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetDesc1(self: *const ID3D12ProtectedResourceSession1) callconv(.Inline) D3D12_PROTECTED_RESOURCE_SESSION_DESC1 {
+        return self.vtable.GetDesc1(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device7_Value = Guid.initString("5c014b53-68a1-4b9b-8bd1-dd6046b9358b");
 pub const IID_ID3D12Device7 = &IID_ID3D12Device7_Value;
-pub const ID3D12Device7 = extern struct {
+pub const ID3D12Device7 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device6.VTable,
-        AddToStateObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device7,
-                pAddition: ?*const D3D12_STATE_OBJECT_DESC,
-                pStateObjectToGrowFrom: ?*ID3D12StateObject,
-                riid: ?*const Guid,
-                ppNewStateObject: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device7,
-                pAddition: ?*const D3D12_STATE_OBJECT_DESC,
-                pStateObjectToGrowFrom: ?*ID3D12StateObject,
-                riid: ?*const Guid,
-                ppNewStateObject: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateProtectedResourceSession1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device7,
-                pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1,
-                riid: ?*const Guid,
-                ppSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device7,
-                pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1,
-                riid: ?*const Guid,
-                ppSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddToStateObject: *const fn(
+            self: *const ID3D12Device7,
+            pAddition: ?*const D3D12_STATE_OBJECT_DESC,
+            pStateObjectToGrowFrom: ?*ID3D12StateObject,
+            riid: ?*const Guid,
+            ppNewStateObject: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateProtectedResourceSession1: *const fn(
+            self: *const ID3D12Device7,
+            pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1,
+            riid: ?*const Guid,
+            ppSession: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device6.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device7_AddToStateObject(self: *const T, pAddition: ?*const D3D12_STATE_OBJECT_DESC, pStateObjectToGrowFrom: ?*ID3D12StateObject, riid: ?*const Guid, ppNewStateObject: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device7.VTable, @ptrCast(self.vtable)).AddToStateObject(@as(*const ID3D12Device7, @ptrCast(self)), pAddition, pStateObjectToGrowFrom, riid, ppNewStateObject);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device7_CreateProtectedResourceSession1(self: *const T, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1, riid: ?*const Guid, ppSession: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device7.VTable, @ptrCast(self.vtable)).CreateProtectedResourceSession1(@as(*const ID3D12Device7, @ptrCast(self)), pDesc, riid, ppSession);
-            }
-        };
+    ID3D12Device6: ID3D12Device6,
+    ID3D12Device5: ID3D12Device5,
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn AddToStateObject(self: *const ID3D12Device7, pAddition: ?*const D3D12_STATE_OBJECT_DESC, pStateObjectToGrowFrom: ?*ID3D12StateObject, riid: ?*const Guid, ppNewStateObject: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.AddToStateObject(self, pAddition, pStateObjectToGrowFrom, riid, ppNewStateObject);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateProtectedResourceSession1(self: *const ID3D12Device7, pDesc: ?*const D3D12_PROTECTED_RESOURCE_SESSION_DESC1, riid: ?*const Guid, ppSession: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateProtectedResourceSession1(self, pDesc, riid, ppSession);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device8_Value = Guid.initString("9218e6bb-f944-4f7e-a75c-b1b2c7b701f3");
 pub const IID_ID3D12Device8 = &IID_ID3D12Device8_Value;
-pub const ID3D12Device8 = extern struct {
+pub const ID3D12Device8 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device7.VTable,
-        GetResourceAllocationInfo2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device8,
-                visibleMask: u32,
-                numResourceDescs: u32,
-                pResourceDescs: [*]const D3D12_RESOURCE_DESC1,
-                pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
-            else => *const fn (
-                self: *const ID3D12Device8,
-                visibleMask: u32,
-                numResourceDescs: u32,
-                pResourceDescs: [*]const D3D12_RESOURCE_DESC1,
-                pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
-        },
-        CreateCommittedResource2: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device8,
-                pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
-                HeapFlags: D3D12_HEAP_FLAGS,
-                pDesc: ?*const D3D12_RESOURCE_DESC1,
-                InitialResourceState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device8,
-                pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
-                HeapFlags: D3D12_HEAP_FLAGS,
-                pDesc: ?*const D3D12_RESOURCE_DESC1,
-                InitialResourceState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                pProtectedSession: ?*ID3D12ProtectedResourceSession,
-                riidResource: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePlacedResource1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device8,
-                pHeap: ?*ID3D12Heap,
-                HeapOffset: u64,
-                pDesc: ?*const D3D12_RESOURCE_DESC1,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device8,
-                pHeap: ?*ID3D12Heap,
-                HeapOffset: u64,
-                pDesc: ?*const D3D12_RESOURCE_DESC1,
-                InitialState: D3D12_RESOURCE_STATES,
-                pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
-                riid: ?*const Guid,
-                ppvResource: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateSamplerFeedbackUnorderedAccessView: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device8,
-                pTargetedResource: ?*ID3D12Resource,
-                pFeedbackResource: ?*ID3D12Resource,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device8,
-                pTargetedResource: ?*ID3D12Resource,
-                pFeedbackResource: ?*ID3D12Resource,
-                DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetCopyableFootprints1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device8,
-                pResourceDesc: ?*const D3D12_RESOURCE_DESC1,
-                FirstSubresource: u32,
-                NumSubresources: u32,
-                BaseOffset: u64,
-                pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT,
-                pNumRows: ?[*]u32,
-                pRowSizeInBytes: ?[*]u64,
-                pTotalBytes: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Device8,
-                pResourceDesc: ?*const D3D12_RESOURCE_DESC1,
-                FirstSubresource: u32,
-                NumSubresources: u32,
-                BaseOffset: u64,
-                pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT,
-                pNumRows: ?[*]u32,
-                pRowSizeInBytes: ?[*]u64,
-                pTotalBytes: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        GetResourceAllocationInfo2: *const fn(
+            self: *const ID3D12Device8,
+            visibleMask: u32,
+            numResourceDescs: u32,
+            pResourceDescs: [*]const D3D12_RESOURCE_DESC1,
+            pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_ALLOCATION_INFO,
+        CreateCommittedResource2: *const fn(
+            self: *const ID3D12Device8,
+            pHeapProperties: ?*const D3D12_HEAP_PROPERTIES,
+            HeapFlags: D3D12_HEAP_FLAGS,
+            pDesc: ?*const D3D12_RESOURCE_DESC1,
+            InitialResourceState: D3D12_RESOURCE_STATES,
+            pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
+            pProtectedSession: ?*ID3D12ProtectedResourceSession,
+            riidResource: ?*const Guid,
+            ppvResource: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePlacedResource1: *const fn(
+            self: *const ID3D12Device8,
+            pHeap: ?*ID3D12Heap,
+            HeapOffset: u64,
+            pDesc: ?*const D3D12_RESOURCE_DESC1,
+            InitialState: D3D12_RESOURCE_STATES,
+            pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE,
+            riid: ?*const Guid,
+            ppvResource: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateSamplerFeedbackUnorderedAccessView: *const fn(
+            self: *const ID3D12Device8,
+            pTargetedResource: ?*ID3D12Resource,
+            pFeedbackResource: ?*ID3D12Resource,
+            DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetCopyableFootprints1: *const fn(
+            self: *const ID3D12Device8,
+            pResourceDesc: ?*const D3D12_RESOURCE_DESC1,
+            FirstSubresource: u32,
+            NumSubresources: u32,
+            BaseOffset: u64,
+            pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT,
+            pNumRows: ?[*]u32,
+            pRowSizeInBytes: ?[*]u64,
+            pTotalBytes: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device7.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device8_GetResourceAllocationInfo2(self: *const T, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC1, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) D3D12_RESOURCE_ALLOCATION_INFO {
-                return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).GetResourceAllocationInfo2(@as(*const ID3D12Device8, @ptrCast(self)), visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device8_CreateCommittedResource2(self: *const T, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).CreateCommittedResource2(@as(*const ID3D12Device8, @ptrCast(self)), pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device8_CreatePlacedResource1(self: *const T, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).CreatePlacedResource1(@as(*const ID3D12Device8, @ptrCast(self)), pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device8_CreateSamplerFeedbackUnorderedAccessView(self: *const T, pTargetedResource: ?*ID3D12Resource, pFeedbackResource: ?*ID3D12Resource, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) void {
-                return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).CreateSamplerFeedbackUnorderedAccessView(@as(*const ID3D12Device8, @ptrCast(self)), pTargetedResource, pFeedbackResource, DestDescriptor);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device8_GetCopyableFootprints1(self: *const T, pResourceDesc: ?*const D3D12_RESOURCE_DESC1, FirstSubresource: u32, NumSubresources: u32, BaseOffset: u64, pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT, pNumRows: ?[*]u32, pRowSizeInBytes: ?[*]u64, pTotalBytes: ?*u64) void {
-                return @as(*const ID3D12Device8.VTable, @ptrCast(self.vtable)).GetCopyableFootprints1(@as(*const ID3D12Device8, @ptrCast(self)), pResourceDesc, FirstSubresource, NumSubresources, BaseOffset, pLayouts, pNumRows, pRowSizeInBytes, pTotalBytes);
-            }
-        };
+    ID3D12Device7: ID3D12Device7,
+    ID3D12Device6: ID3D12Device6,
+    ID3D12Device5: ID3D12Device5,
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetResourceAllocationInfo2(self: *const ID3D12Device8, visibleMask: u32, numResourceDescs: u32, pResourceDescs: [*]const D3D12_RESOURCE_DESC1, pResourceAllocationInfo1: ?[*]D3D12_RESOURCE_ALLOCATION_INFO1) callconv(.Inline) D3D12_RESOURCE_ALLOCATION_INFO {
+        return self.vtable.GetResourceAllocationInfo2(self, visibleMask, numResourceDescs, pResourceDescs, pResourceAllocationInfo1);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateCommittedResource2(self: *const ID3D12Device8, pHeapProperties: ?*const D3D12_HEAP_PROPERTIES, HeapFlags: D3D12_HEAP_FLAGS, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialResourceState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, pProtectedSession: ?*ID3D12ProtectedResourceSession, riidResource: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommittedResource2(self, pHeapProperties, HeapFlags, pDesc, InitialResourceState, pOptimizedClearValue, pProtectedSession, riidResource, ppvResource);
+    }
+    pub fn CreatePlacedResource1(self: *const ID3D12Device8, pHeap: ?*ID3D12Heap, HeapOffset: u64, pDesc: ?*const D3D12_RESOURCE_DESC1, InitialState: D3D12_RESOURCE_STATES, pOptimizedClearValue: ?*const D3D12_CLEAR_VALUE, riid: ?*const Guid, ppvResource: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePlacedResource1(self, pHeap, HeapOffset, pDesc, InitialState, pOptimizedClearValue, riid, ppvResource);
+    }
+    pub fn CreateSamplerFeedbackUnorderedAccessView(self: *const ID3D12Device8, pTargetedResource: ?*ID3D12Resource, pFeedbackResource: ?*ID3D12Resource, DestDescriptor: D3D12_CPU_DESCRIPTOR_HANDLE) callconv(.Inline) void {
+        return self.vtable.CreateSamplerFeedbackUnorderedAccessView(self, pTargetedResource, pFeedbackResource, DestDescriptor);
+    }
+    pub fn GetCopyableFootprints1(self: *const ID3D12Device8, pResourceDesc: ?*const D3D12_RESOURCE_DESC1, FirstSubresource: u32, NumSubresources: u32, BaseOffset: u64, pLayouts: ?[*]D3D12_PLACED_SUBRESOURCE_FOOTPRINT, pNumRows: ?[*]u32, pRowSizeInBytes: ?[*]u64, pTotalBytes: ?*u64) callconv(.Inline) void {
+        return self.vtable.GetCopyableFootprints1(self, pResourceDesc, FirstSubresource, NumSubresources, BaseOffset, pLayouts, pNumRows, pRowSizeInBytes, pTotalBytes);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Resource1_Value = Guid.initString("9d5e227a-4430-4161-88b3-3eca6bb16e19");
 pub const IID_ID3D12Resource1 = &IID_ID3D12Resource1_Value;
-pub const ID3D12Resource1 = extern struct {
+pub const ID3D12Resource1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Resource.VTable,
-        GetProtectedResourceSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource1,
-                riid: ?*const Guid,
-                ppProtectedSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Resource1,
-                riid: ?*const Guid,
-                ppProtectedSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetProtectedResourceSession: *const fn(
+            self: *const ID3D12Resource1,
+            riid: ?*const Guid,
+            ppProtectedSession: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Resource.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource1_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Resource1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12Resource1, @ptrCast(self)), riid, ppProtectedSession);
-            }
-        };
+    ID3D12Resource: ID3D12Resource,
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetProtectedResourceSession(self: *const ID3D12Resource1, riid: ?*const Guid, ppProtectedSession: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Resource2_Value = Guid.initString("be36ec3b-ea85-4aeb-a45a-e9d76404a495");
 pub const IID_ID3D12Resource2 = &IID_ID3D12Resource2_Value;
-pub const ID3D12Resource2 = extern struct {
+pub const ID3D12Resource2 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Resource1.VTable,
-        GetDesc1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Resource2,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_DESC1,
-            else => *const fn (
-                self: *const ID3D12Resource2,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_DESC1,
-        },
+        GetDesc1: *const fn(
+            self: *const ID3D12Resource2,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_RESOURCE_DESC1,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Resource1.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Resource2_GetDesc1(self: *const T) D3D12_RESOURCE_DESC1 {
-                return @as(*const ID3D12Resource2.VTable, @ptrCast(self.vtable)).GetDesc1(@as(*const ID3D12Resource2, @ptrCast(self)));
-            }
-        };
+    ID3D12Resource1: ID3D12Resource1,
+    ID3D12Resource: ID3D12Resource,
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetDesc1(self: *const ID3D12Resource2) callconv(.Inline) D3D12_RESOURCE_DESC1 {
+        return self.vtable.GetDesc1(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Heap1_Value = Guid.initString("572f7389-2168-49e3-9693-d6df5871bf6d");
 pub const IID_ID3D12Heap1 = &IID_ID3D12Heap1_Value;
-pub const ID3D12Heap1 = extern struct {
+pub const ID3D12Heap1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Heap.VTable,
-        GetProtectedResourceSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Heap1,
-                riid: ?*const Guid,
-                ppProtectedSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Heap1,
-                riid: ?*const Guid,
-                ppProtectedSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetProtectedResourceSession: *const fn(
+            self: *const ID3D12Heap1,
+            riid: ?*const Guid,
+            ppProtectedSession: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Heap.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Heap1_GetProtectedResourceSession(self: *const T, riid: ?*const Guid, ppProtectedSession: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Heap1.VTable, @ptrCast(self.vtable)).GetProtectedResourceSession(@as(*const ID3D12Heap1, @ptrCast(self)), riid, ppProtectedSession);
-            }
-        };
+    ID3D12Heap: ID3D12Heap,
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetProtectedResourceSession(self: *const ID3D12Heap1, riid: ?*const Guid, ppProtectedSession: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetProtectedResourceSession(self, riid, ppProtectedSession);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12GraphicsCommandList3_Value = Guid.initString("6fda83a7-b84c-4e38-9ac8-c7bd22016b3d");
 pub const IID_ID3D12GraphicsCommandList3 = &IID_ID3D12GraphicsCommandList3_Value;
-pub const ID3D12GraphicsCommandList3 = extern struct {
+pub const ID3D12GraphicsCommandList3 = extern union {
     pub const VTable = extern struct {
         base: ID3D12GraphicsCommandList2.VTable,
-        SetProtectedResourceSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList3,
-                pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList3,
-                pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        SetProtectedResourceSession: *const fn(
+            self: *const ID3D12GraphicsCommandList3,
+            pProtectedResourceSession: ?*ID3D12ProtectedResourceSession,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12GraphicsCommandList2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList3_SetProtectedResourceSession(self: *const T, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) void {
-                return @as(*const ID3D12GraphicsCommandList3.VTable, @ptrCast(self.vtable)).SetProtectedResourceSession(@as(*const ID3D12GraphicsCommandList3, @ptrCast(self)), pProtectedResourceSession);
-            }
-        };
+    ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn SetProtectedResourceSession(self: *const ID3D12GraphicsCommandList3, pProtectedResourceSession: ?*ID3D12ProtectedResourceSession) callconv(.Inline) void {
+        return self.vtable.SetProtectedResourceSession(self, pProtectedResourceSession);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_RENDER_PASS_BEGINNING_ACCESS_TYPE = enum(i32) {
@@ -8508,55 +7391,65 @@ pub const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC = extern struct {
     StencilEndingAccess: D3D12_RENDER_PASS_ENDING_ACCESS,
 };
 
-pub const D3D12_RENDER_PASS_FLAGS = enum(u32) {
-    NONE = 0,
-    ALLOW_UAV_WRITES = 1,
-    SUSPENDING_PASS = 2,
-    RESUMING_PASS = 4,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        ALLOW_UAV_WRITES: u1 = 0,
-        SUSPENDING_PASS: u1 = 0,
-        RESUMING_PASS: u1 = 0,
-    }) D3D12_RENDER_PASS_FLAGS {
-        return @as(D3D12_RENDER_PASS_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_RENDER_PASS_FLAGS.NONE) else 0) | (if (o.ALLOW_UAV_WRITES == 1) @intFromEnum(D3D12_RENDER_PASS_FLAGS.ALLOW_UAV_WRITES) else 0) | (if (o.SUSPENDING_PASS == 1) @intFromEnum(D3D12_RENDER_PASS_FLAGS.SUSPENDING_PASS) else 0) | (if (o.RESUMING_PASS == 1) @intFromEnum(D3D12_RENDER_PASS_FLAGS.RESUMING_PASS) else 0)));
-    }
+pub const D3D12_RENDER_PASS_FLAGS = packed struct(u32) {
+    ALLOW_UAV_WRITES: u1 = 0,
+    SUSPENDING_PASS: u1 = 0,
+    RESUMING_PASS: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_RENDER_PASS_FLAG_NONE = D3D12_RENDER_PASS_FLAGS.NONE;
-pub const D3D12_RENDER_PASS_FLAG_ALLOW_UAV_WRITES = D3D12_RENDER_PASS_FLAGS.ALLOW_UAV_WRITES;
-pub const D3D12_RENDER_PASS_FLAG_SUSPENDING_PASS = D3D12_RENDER_PASS_FLAGS.SUSPENDING_PASS;
-pub const D3D12_RENDER_PASS_FLAG_RESUMING_PASS = D3D12_RENDER_PASS_FLAGS.RESUMING_PASS;
+pub const D3D12_RENDER_PASS_FLAG_NONE = D3D12_RENDER_PASS_FLAGS{ };
+pub const D3D12_RENDER_PASS_FLAG_ALLOW_UAV_WRITES = D3D12_RENDER_PASS_FLAGS{ .ALLOW_UAV_WRITES = 1 };
+pub const D3D12_RENDER_PASS_FLAG_SUSPENDING_PASS = D3D12_RENDER_PASS_FLAGS{ .SUSPENDING_PASS = 1 };
+pub const D3D12_RENDER_PASS_FLAG_RESUMING_PASS = D3D12_RENDER_PASS_FLAGS{ .RESUMING_PASS = 1 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12MetaCommand_Value = Guid.initString("dbb84c27-36ce-4fc9-b801-f048c46ac570");
 pub const IID_ID3D12MetaCommand = &IID_ID3D12MetaCommand_Value;
-pub const ID3D12MetaCommand = extern struct {
+pub const ID3D12MetaCommand = extern union {
     pub const VTable = extern struct {
         base: ID3D12Pageable.VTable,
-        GetRequiredParameterResourceSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12MetaCommand,
-                Stage: D3D12_META_COMMAND_PARAMETER_STAGE,
-                ParameterIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12MetaCommand,
-                Stage: D3D12_META_COMMAND_PARAMETER_STAGE,
-                ParameterIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
+        GetRequiredParameterResourceSize: *const fn(
+            self: *const ID3D12MetaCommand,
+            Stage: D3D12_META_COMMAND_PARAMETER_STAGE,
+            ParameterIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Pageable.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12MetaCommand_GetRequiredParameterResourceSize(self: *const T, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, ParameterIndex: u32) u64 {
-                return @as(*const ID3D12MetaCommand.VTable, @ptrCast(self.vtable)).GetRequiredParameterResourceSize(@as(*const ID3D12MetaCommand, @ptrCast(self)), Stage, ParameterIndex);
-            }
-        };
+    ID3D12Pageable: ID3D12Pageable,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn GetRequiredParameterResourceSize(self: *const ID3D12MetaCommand, Stage: D3D12_META_COMMAND_PARAMETER_STAGE, ParameterIndex: u32) callconv(.Inline) u64 {
+        return self.vtable.GetRequiredParameterResourceSize(self, Stage, ParameterIndex);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_DISPATCH_RAYS_DESC = extern struct {
@@ -8569,173 +7462,99 @@ pub const D3D12_DISPATCH_RAYS_DESC = extern struct {
     Depth: u32,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12GraphicsCommandList4_Value = Guid.initString("8754318e-d3a9-4541-98cf-645b50dc4874");
 pub const IID_ID3D12GraphicsCommandList4 = &IID_ID3D12GraphicsCommandList4_Value;
-pub const ID3D12GraphicsCommandList4 = extern struct {
+pub const ID3D12GraphicsCommandList4 = extern union {
     pub const VTable = extern struct {
         base: ID3D12GraphicsCommandList3.VTable,
-        BeginRenderPass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                NumRenderTargets: u32,
-                pRenderTargets: ?[*]const D3D12_RENDER_PASS_RENDER_TARGET_DESC,
-                pDepthStencil: ?*const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC,
-                Flags: D3D12_RENDER_PASS_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                NumRenderTargets: u32,
-                pRenderTargets: ?[*]const D3D12_RENDER_PASS_RENDER_TARGET_DESC,
-                pDepthStencil: ?*const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC,
-                Flags: D3D12_RENDER_PASS_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndRenderPass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        InitializeMetaCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pMetaCommand: ?*ID3D12MetaCommand,
-                // TODO: what to do with BytesParamIndex 2?
-                pInitializationParametersData: ?*const anyopaque,
-                InitializationParametersDataSizeInBytes: usize,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pMetaCommand: ?*ID3D12MetaCommand,
-                // TODO: what to do with BytesParamIndex 2?
-                pInitializationParametersData: ?*const anyopaque,
-                InitializationParametersDataSizeInBytes: usize,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ExecuteMetaCommand: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pMetaCommand: ?*ID3D12MetaCommand,
-                // TODO: what to do with BytesParamIndex 2?
-                pExecutionParametersData: ?*const anyopaque,
-                ExecutionParametersDataSizeInBytes: usize,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pMetaCommand: ?*ID3D12MetaCommand,
-                // TODO: what to do with BytesParamIndex 2?
-                pExecutionParametersData: ?*const anyopaque,
-                ExecutionParametersDataSizeInBytes: usize,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        BuildRaytracingAccelerationStructure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC,
-                NumPostbuildInfoDescs: u32,
-                pPostbuildInfoDescs: ?[*]const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC,
-                NumPostbuildInfoDescs: u32,
-                pPostbuildInfoDescs: ?[*]const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EmitRaytracingAccelerationStructurePostbuildInfo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pDesc: ?*const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC,
-                NumSourceAccelerationStructures: u32,
-                pSourceAccelerationStructureData: [*]const u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pDesc: ?*const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC,
-                NumSourceAccelerationStructures: u32,
-                pSourceAccelerationStructureData: [*]const u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        CopyRaytracingAccelerationStructure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                DestAccelerationStructureData: u64,
-                SourceAccelerationStructureData: u64,
-                Mode: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_COPY_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                DestAccelerationStructureData: u64,
-                SourceAccelerationStructureData: u64,
-                Mode: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_COPY_MODE,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetPipelineState1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pStateObject: ?*ID3D12StateObject,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pStateObject: ?*ID3D12StateObject,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        DispatchRays: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pDesc: ?*const D3D12_DISPATCH_RAYS_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList4,
-                pDesc: ?*const D3D12_DISPATCH_RAYS_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        BeginRenderPass: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            NumRenderTargets: u32,
+            pRenderTargets: ?[*]const D3D12_RENDER_PASS_RENDER_TARGET_DESC,
+            pDepthStencil: ?*const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC,
+            Flags: D3D12_RENDER_PASS_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndRenderPass: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        InitializeMetaCommand: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            pMetaCommand: ?*ID3D12MetaCommand,
+            // TODO: what to do with BytesParamIndex 2?
+            pInitializationParametersData: ?*const anyopaque,
+            InitializationParametersDataSizeInBytes: usize,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ExecuteMetaCommand: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            pMetaCommand: ?*ID3D12MetaCommand,
+            // TODO: what to do with BytesParamIndex 2?
+            pExecutionParametersData: ?*const anyopaque,
+            ExecutionParametersDataSizeInBytes: usize,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        BuildRaytracingAccelerationStructure: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC,
+            NumPostbuildInfoDescs: u32,
+            pPostbuildInfoDescs: ?[*]const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EmitRaytracingAccelerationStructurePostbuildInfo: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            pDesc: ?*const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC,
+            NumSourceAccelerationStructures: u32,
+            pSourceAccelerationStructureData: [*]const u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        CopyRaytracingAccelerationStructure: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            DestAccelerationStructureData: u64,
+            SourceAccelerationStructureData: u64,
+            Mode: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_COPY_MODE,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetPipelineState1: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            pStateObject: ?*ID3D12StateObject,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        DispatchRays: *const fn(
+            self: *const ID3D12GraphicsCommandList4,
+            pDesc: ?*const D3D12_DISPATCH_RAYS_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12GraphicsCommandList3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_BeginRenderPass(self: *const T, NumRenderTargets: u32, pRenderTargets: ?[*]const D3D12_RENDER_PASS_RENDER_TARGET_DESC, pDepthStencil: ?*const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC, Flags: D3D12_RENDER_PASS_FLAGS) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).BeginRenderPass(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), NumRenderTargets, pRenderTargets, pDepthStencil, Flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_EndRenderPass(self: *const T) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).EndRenderPass(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_InitializeMetaCommand(self: *const T, pMetaCommand: ?*ID3D12MetaCommand, pInitializationParametersData: ?*const anyopaque, InitializationParametersDataSizeInBytes: usize) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).InitializeMetaCommand(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pMetaCommand, pInitializationParametersData, InitializationParametersDataSizeInBytes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_ExecuteMetaCommand(self: *const T, pMetaCommand: ?*ID3D12MetaCommand, pExecutionParametersData: ?*const anyopaque, ExecutionParametersDataSizeInBytes: usize) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).ExecuteMetaCommand(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pMetaCommand, pExecutionParametersData, ExecutionParametersDataSizeInBytes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_BuildRaytracingAccelerationStructure(self: *const T, pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC, NumPostbuildInfoDescs: u32, pPostbuildInfoDescs: ?[*]const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).BuildRaytracingAccelerationStructure(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pDesc, NumPostbuildInfoDescs, pPostbuildInfoDescs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_EmitRaytracingAccelerationStructurePostbuildInfo(self: *const T, pDesc: ?*const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC, NumSourceAccelerationStructures: u32, pSourceAccelerationStructureData: [*]const u64) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).EmitRaytracingAccelerationStructurePostbuildInfo(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pDesc, NumSourceAccelerationStructures, pSourceAccelerationStructureData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_CopyRaytracingAccelerationStructure(self: *const T, DestAccelerationStructureData: u64, SourceAccelerationStructureData: u64, Mode: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_COPY_MODE) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).CopyRaytracingAccelerationStructure(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), DestAccelerationStructureData, SourceAccelerationStructureData, Mode);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_SetPipelineState1(self: *const T, pStateObject: ?*ID3D12StateObject) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).SetPipelineState1(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pStateObject);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList4_DispatchRays(self: *const T, pDesc: ?*const D3D12_DISPATCH_RAYS_DESC) void {
-                return @as(*const ID3D12GraphicsCommandList4.VTable, @ptrCast(self.vtable)).DispatchRays(@as(*const ID3D12GraphicsCommandList4, @ptrCast(self)), pDesc);
-            }
-        };
+    ID3D12GraphicsCommandList3: ID3D12GraphicsCommandList3,
+    ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn BeginRenderPass(self: *const ID3D12GraphicsCommandList4, NumRenderTargets: u32, pRenderTargets: ?[*]const D3D12_RENDER_PASS_RENDER_TARGET_DESC, pDepthStencil: ?*const D3D12_RENDER_PASS_DEPTH_STENCIL_DESC, Flags: D3D12_RENDER_PASS_FLAGS) callconv(.Inline) void {
+        return self.vtable.BeginRenderPass(self, NumRenderTargets, pRenderTargets, pDepthStencil, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn EndRenderPass(self: *const ID3D12GraphicsCommandList4) callconv(.Inline) void {
+        return self.vtable.EndRenderPass(self);
+    }
+    pub fn InitializeMetaCommand(self: *const ID3D12GraphicsCommandList4, pMetaCommand: ?*ID3D12MetaCommand, pInitializationParametersData: ?*const anyopaque, InitializationParametersDataSizeInBytes: usize) callconv(.Inline) void {
+        return self.vtable.InitializeMetaCommand(self, pMetaCommand, pInitializationParametersData, InitializationParametersDataSizeInBytes);
+    }
+    pub fn ExecuteMetaCommand(self: *const ID3D12GraphicsCommandList4, pMetaCommand: ?*ID3D12MetaCommand, pExecutionParametersData: ?*const anyopaque, ExecutionParametersDataSizeInBytes: usize) callconv(.Inline) void {
+        return self.vtable.ExecuteMetaCommand(self, pMetaCommand, pExecutionParametersData, ExecutionParametersDataSizeInBytes);
+    }
+    pub fn BuildRaytracingAccelerationStructure(self: *const ID3D12GraphicsCommandList4, pDesc: ?*const D3D12_BUILD_RAYTRACING_ACCELERATION_STRUCTURE_DESC, NumPostbuildInfoDescs: u32, pPostbuildInfoDescs: ?[*]const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC) callconv(.Inline) void {
+        return self.vtable.BuildRaytracingAccelerationStructure(self, pDesc, NumPostbuildInfoDescs, pPostbuildInfoDescs);
+    }
+    pub fn EmitRaytracingAccelerationStructurePostbuildInfo(self: *const ID3D12GraphicsCommandList4, pDesc: ?*const D3D12_RAYTRACING_ACCELERATION_STRUCTURE_POSTBUILD_INFO_DESC, NumSourceAccelerationStructures: u32, pSourceAccelerationStructureData: [*]const u64) callconv(.Inline) void {
+        return self.vtable.EmitRaytracingAccelerationStructurePostbuildInfo(self, pDesc, NumSourceAccelerationStructures, pSourceAccelerationStructureData);
+    }
+    pub fn CopyRaytracingAccelerationStructure(self: *const ID3D12GraphicsCommandList4, DestAccelerationStructureData: u64, SourceAccelerationStructureData: u64, Mode: D3D12_RAYTRACING_ACCELERATION_STRUCTURE_COPY_MODE) callconv(.Inline) void {
+        return self.vtable.CopyRaytracingAccelerationStructure(self, DestAccelerationStructureData, SourceAccelerationStructureData, Mode);
+    }
+    pub fn SetPipelineState1(self: *const ID3D12GraphicsCommandList4, pStateObject: ?*ID3D12StateObject) callconv(.Inline) void {
+        return self.vtable.SetPipelineState1(self, pStateObject);
+    }
+    pub fn DispatchRays(self: *const ID3D12GraphicsCommandList4, pDesc: ?*const D3D12_DISPATCH_RAYS_DESC) callconv(.Inline) void {
+        return self.vtable.DispatchRays(self, pDesc);
+    }
 };
 
 pub const D3D12_SHADER_CACHE_MODE = enum(i32) {
@@ -8745,22 +7564,43 @@ pub const D3D12_SHADER_CACHE_MODE = enum(i32) {
 pub const D3D12_SHADER_CACHE_MODE_MEMORY = D3D12_SHADER_CACHE_MODE.MEMORY;
 pub const D3D12_SHADER_CACHE_MODE_DISK = D3D12_SHADER_CACHE_MODE.DISK;
 
-pub const D3D12_SHADER_CACHE_FLAGS = enum(u32) {
-    NONE = 0,
-    DRIVER_VERSIONED = 1,
-    USE_WORKING_DIR = 2,
-    _,
-    pub fn initFlags(o: struct {
-        NONE: u1 = 0,
-        DRIVER_VERSIONED: u1 = 0,
-        USE_WORKING_DIR: u1 = 0,
-    }) D3D12_SHADER_CACHE_FLAGS {
-        return @as(D3D12_SHADER_CACHE_FLAGS, @enumFromInt((if (o.NONE == 1) @intFromEnum(D3D12_SHADER_CACHE_FLAGS.NONE) else 0) | (if (o.DRIVER_VERSIONED == 1) @intFromEnum(D3D12_SHADER_CACHE_FLAGS.DRIVER_VERSIONED) else 0) | (if (o.USE_WORKING_DIR == 1) @intFromEnum(D3D12_SHADER_CACHE_FLAGS.USE_WORKING_DIR) else 0)));
-    }
+pub const D3D12_SHADER_CACHE_FLAGS = packed struct(u32) {
+    DRIVER_VERSIONED: u1 = 0,
+    USE_WORKING_DIR: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_SHADER_CACHE_FLAG_NONE = D3D12_SHADER_CACHE_FLAGS.NONE;
-pub const D3D12_SHADER_CACHE_FLAG_DRIVER_VERSIONED = D3D12_SHADER_CACHE_FLAGS.DRIVER_VERSIONED;
-pub const D3D12_SHADER_CACHE_FLAG_USE_WORKING_DIR = D3D12_SHADER_CACHE_FLAGS.USE_WORKING_DIR;
+pub const D3D12_SHADER_CACHE_FLAG_NONE = D3D12_SHADER_CACHE_FLAGS{ };
+pub const D3D12_SHADER_CACHE_FLAG_DRIVER_VERSIONED = D3D12_SHADER_CACHE_FLAGS{ .DRIVER_VERSIONED = 1 };
+pub const D3D12_SHADER_CACHE_FLAG_USE_WORKING_DIR = D3D12_SHADER_CACHE_FLAGS{ .USE_WORKING_DIR = 1 };
 
 pub const D3D12_SHADER_CACHE_SESSION_DESC = extern struct {
     Identifier: Guid,
@@ -8772,238 +7612,202 @@ pub const D3D12_SHADER_CACHE_SESSION_DESC = extern struct {
     Version: u64,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ShaderCacheSession_Value = Guid.initString("28e2495d-0f64-4ae4-a6ec-129255dc49a8");
 pub const IID_ID3D12ShaderCacheSession = &IID_ID3D12ShaderCacheSession_Value;
-pub const ID3D12ShaderCacheSession = extern struct {
+pub const ID3D12ShaderCacheSession = extern union {
     pub const VTable = extern struct {
         base: ID3D12DeviceChild.VTable,
-        FindValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderCacheSession,
-                // TODO: what to do with BytesParamIndex 1?
-                pKey: ?*const anyopaque,
-                KeySize: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pValue: ?*anyopaque,
-                pValueSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderCacheSession,
-                // TODO: what to do with BytesParamIndex 1?
-                pKey: ?*const anyopaque,
-                KeySize: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pValue: ?*anyopaque,
-                pValueSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        StoreValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderCacheSession,
-                // TODO: what to do with BytesParamIndex 1?
-                pKey: ?*const anyopaque,
-                KeySize: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pValue: ?*const anyopaque,
-                ValueSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderCacheSession,
-                // TODO: what to do with BytesParamIndex 1?
-                pKey: ?*const anyopaque,
-                KeySize: u32,
-                // TODO: what to do with BytesParamIndex 3?
-                pValue: ?*const anyopaque,
-                ValueSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDeleteOnDestroy: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderCacheSession,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12ShaderCacheSession,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderCacheSession,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_SHADER_CACHE_SESSION_DESC,
-            else => *const fn (
-                self: *const ID3D12ShaderCacheSession,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_SHADER_CACHE_SESSION_DESC,
-        },
+        FindValue: *const fn(
+            self: *const ID3D12ShaderCacheSession,
+            // TODO: what to do with BytesParamIndex 1?
+            pKey: ?*const anyopaque,
+            KeySize: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pValue: ?*anyopaque,
+            pValueSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        StoreValue: *const fn(
+            self: *const ID3D12ShaderCacheSession,
+            // TODO: what to do with BytesParamIndex 1?
+            pKey: ?*const anyopaque,
+            KeySize: u32,
+            // TODO: what to do with BytesParamIndex 3?
+            pValue: ?*const anyopaque,
+            ValueSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDeleteOnDestroy: *const fn(
+            self: *const ID3D12ShaderCacheSession,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetDesc: *const fn(
+            self: *const ID3D12ShaderCacheSession,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_SHADER_CACHE_SESSION_DESC,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DeviceChild.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderCacheSession_FindValue(self: *const T, pKey: ?*const anyopaque, KeySize: u32, pValue: ?*anyopaque, pValueSize: ?*u32) HRESULT {
-                return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).FindValue(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)), pKey, KeySize, pValue, pValueSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderCacheSession_StoreValue(self: *const T, pKey: ?*const anyopaque, KeySize: u32, pValue: ?*const anyopaque, ValueSize: u32) HRESULT {
-                return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).StoreValue(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)), pKey, KeySize, pValue, ValueSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderCacheSession_SetDeleteOnDestroy(self: *const T) void {
-                return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).SetDeleteOnDestroy(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderCacheSession_GetDesc(self: *const T) D3D12_SHADER_CACHE_SESSION_DESC {
-                return @as(*const ID3D12ShaderCacheSession.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderCacheSession, @ptrCast(self)));
-            }
-        };
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn FindValue(self: *const ID3D12ShaderCacheSession, pKey: ?*const anyopaque, KeySize: u32, pValue: ?*anyopaque, pValueSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.FindValue(self, pKey, KeySize, pValue, pValueSize);
     }
-    pub usingnamespace MethodMixin(@This());
-};
-
-pub const D3D12_SHADER_CACHE_KIND_FLAGS = enum(u32) {
-    IMPLICIT_D3D_CACHE_FOR_DRIVER = 1,
-    IMPLICIT_D3D_CONVERSIONS = 2,
-    IMPLICIT_DRIVER_MANAGED = 4,
-    APPLICATION_MANAGED = 8,
-    _,
-    pub fn initFlags(o: struct {
-        IMPLICIT_D3D_CACHE_FOR_DRIVER: u1 = 0,
-        IMPLICIT_D3D_CONVERSIONS: u1 = 0,
-        IMPLICIT_DRIVER_MANAGED: u1 = 0,
-        APPLICATION_MANAGED: u1 = 0,
-    }) D3D12_SHADER_CACHE_KIND_FLAGS {
-        return @as(D3D12_SHADER_CACHE_KIND_FLAGS, @enumFromInt((if (o.IMPLICIT_D3D_CACHE_FOR_DRIVER == 1) @intFromEnum(D3D12_SHADER_CACHE_KIND_FLAGS.IMPLICIT_D3D_CACHE_FOR_DRIVER) else 0) | (if (o.IMPLICIT_D3D_CONVERSIONS == 1) @intFromEnum(D3D12_SHADER_CACHE_KIND_FLAGS.IMPLICIT_D3D_CONVERSIONS) else 0) | (if (o.IMPLICIT_DRIVER_MANAGED == 1) @intFromEnum(D3D12_SHADER_CACHE_KIND_FLAGS.IMPLICIT_DRIVER_MANAGED) else 0) | (if (o.APPLICATION_MANAGED == 1) @intFromEnum(D3D12_SHADER_CACHE_KIND_FLAGS.APPLICATION_MANAGED) else 0)));
+    pub fn StoreValue(self: *const ID3D12ShaderCacheSession, pKey: ?*const anyopaque, KeySize: u32, pValue: ?*const anyopaque, ValueSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.StoreValue(self, pKey, KeySize, pValue, ValueSize);
+    }
+    pub fn SetDeleteOnDestroy(self: *const ID3D12ShaderCacheSession) callconv(.Inline) void {
+        return self.vtable.SetDeleteOnDestroy(self);
+    }
+    pub fn GetDesc(self: *const ID3D12ShaderCacheSession) callconv(.Inline) D3D12_SHADER_CACHE_SESSION_DESC {
+        return self.vtable.GetDesc(self);
     }
 };
-pub const D3D12_SHADER_CACHE_KIND_FLAG_IMPLICIT_D3D_CACHE_FOR_DRIVER = D3D12_SHADER_CACHE_KIND_FLAGS.IMPLICIT_D3D_CACHE_FOR_DRIVER;
-pub const D3D12_SHADER_CACHE_KIND_FLAG_IMPLICIT_D3D_CONVERSIONS = D3D12_SHADER_CACHE_KIND_FLAGS.IMPLICIT_D3D_CONVERSIONS;
-pub const D3D12_SHADER_CACHE_KIND_FLAG_IMPLICIT_DRIVER_MANAGED = D3D12_SHADER_CACHE_KIND_FLAGS.IMPLICIT_DRIVER_MANAGED;
-pub const D3D12_SHADER_CACHE_KIND_FLAG_APPLICATION_MANAGED = D3D12_SHADER_CACHE_KIND_FLAGS.APPLICATION_MANAGED;
 
-pub const D3D12_SHADER_CACHE_CONTROL_FLAGS = enum(u32) {
-    DISABLE = 1,
-    ENABLE = 2,
-    CLEAR = 4,
-    _,
-    pub fn initFlags(o: struct {
-        DISABLE: u1 = 0,
-        ENABLE: u1 = 0,
-        CLEAR: u1 = 0,
-    }) D3D12_SHADER_CACHE_CONTROL_FLAGS {
-        return @as(D3D12_SHADER_CACHE_CONTROL_FLAGS, @enumFromInt((if (o.DISABLE == 1) @intFromEnum(D3D12_SHADER_CACHE_CONTROL_FLAGS.DISABLE) else 0) | (if (o.ENABLE == 1) @intFromEnum(D3D12_SHADER_CACHE_CONTROL_FLAGS.ENABLE) else 0) | (if (o.CLEAR == 1) @intFromEnum(D3D12_SHADER_CACHE_CONTROL_FLAGS.CLEAR) else 0)));
-    }
+pub const D3D12_SHADER_CACHE_KIND_FLAGS = packed struct(u32) {
+    IMPLICIT_D3D_CACHE_FOR_DRIVER: u1 = 0,
+    IMPLICIT_D3D_CONVERSIONS: u1 = 0,
+    IMPLICIT_DRIVER_MANAGED: u1 = 0,
+    APPLICATION_MANAGED: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const D3D12_SHADER_CACHE_CONTROL_FLAG_DISABLE = D3D12_SHADER_CACHE_CONTROL_FLAGS.DISABLE;
-pub const D3D12_SHADER_CACHE_CONTROL_FLAG_ENABLE = D3D12_SHADER_CACHE_CONTROL_FLAGS.ENABLE;
-pub const D3D12_SHADER_CACHE_CONTROL_FLAG_CLEAR = D3D12_SHADER_CACHE_CONTROL_FLAGS.CLEAR;
+pub const D3D12_SHADER_CACHE_KIND_FLAG_IMPLICIT_D3D_CACHE_FOR_DRIVER = D3D12_SHADER_CACHE_KIND_FLAGS{ .IMPLICIT_D3D_CACHE_FOR_DRIVER = 1 };
+pub const D3D12_SHADER_CACHE_KIND_FLAG_IMPLICIT_D3D_CONVERSIONS = D3D12_SHADER_CACHE_KIND_FLAGS{ .IMPLICIT_D3D_CONVERSIONS = 1 };
+pub const D3D12_SHADER_CACHE_KIND_FLAG_IMPLICIT_DRIVER_MANAGED = D3D12_SHADER_CACHE_KIND_FLAGS{ .IMPLICIT_DRIVER_MANAGED = 1 };
+pub const D3D12_SHADER_CACHE_KIND_FLAG_APPLICATION_MANAGED = D3D12_SHADER_CACHE_KIND_FLAGS{ .APPLICATION_MANAGED = 1 };
 
+pub const D3D12_SHADER_CACHE_CONTROL_FLAGS = packed struct(u32) {
+    DISABLE: u1 = 0,
+    ENABLE: u1 = 0,
+    CLEAR: u1 = 0,
+    _3: u1 = 0,
+    _4: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+};
+pub const D3D12_SHADER_CACHE_CONTROL_FLAG_DISABLE = D3D12_SHADER_CACHE_CONTROL_FLAGS{ .DISABLE = 1 };
+pub const D3D12_SHADER_CACHE_CONTROL_FLAG_ENABLE = D3D12_SHADER_CACHE_CONTROL_FLAGS{ .ENABLE = 1 };
+pub const D3D12_SHADER_CACHE_CONTROL_FLAG_CLEAR = D3D12_SHADER_CACHE_CONTROL_FLAGS{ .CLEAR = 1 };
+
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Device9_Value = Guid.initString("4c80e962-f032-4f60-bc9e-ebc2cfa1d83c");
 pub const IID_ID3D12Device9 = &IID_ID3D12Device9_Value;
-pub const ID3D12Device9 = extern struct {
+pub const ID3D12Device9 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Device8.VTable,
-        CreateShaderCacheSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device9,
-                pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC,
-                riid: ?*const Guid,
-                ppvSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device9,
-                pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC,
-                riid: ?*const Guid,
-                ppvSession: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ShaderCacheControl: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device9,
-                Kinds: D3D12_SHADER_CACHE_KIND_FLAGS,
-                Control: D3D12_SHADER_CACHE_CONTROL_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device9,
-                Kinds: D3D12_SHADER_CACHE_KIND_FLAGS,
-                Control: D3D12_SHADER_CACHE_CONTROL_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCommandQueue1: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Device9,
-                pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
-                CreatorID: ?*const Guid,
-                riid: ?*const Guid,
-                ppCommandQueue: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12Device9,
-                pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
-                CreatorID: ?*const Guid,
-                riid: ?*const Guid,
-                ppCommandQueue: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateShaderCacheSession: *const fn(
+            self: *const ID3D12Device9,
+            pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC,
+            riid: ?*const Guid,
+            ppvSession: ?**anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ShaderCacheControl: *const fn(
+            self: *const ID3D12Device9,
+            Kinds: D3D12_SHADER_CACHE_KIND_FLAGS,
+            Control: D3D12_SHADER_CACHE_CONTROL_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCommandQueue1: *const fn(
+            self: *const ID3D12Device9,
+            pDesc: ?*const D3D12_COMMAND_QUEUE_DESC,
+            CreatorID: ?*const Guid,
+            riid: ?*const Guid,
+            ppCommandQueue: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Device8.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device9_CreateShaderCacheSession(self: *const T, pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC, riid: ?*const Guid, ppvSession: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device9.VTable, @ptrCast(self.vtable)).CreateShaderCacheSession(@as(*const ID3D12Device9, @ptrCast(self)), pDesc, riid, ppvSession);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device9_ShaderCacheControl(self: *const T, Kinds: D3D12_SHADER_CACHE_KIND_FLAGS, Control: D3D12_SHADER_CACHE_CONTROL_FLAGS) HRESULT {
-                return @as(*const ID3D12Device9.VTable, @ptrCast(self.vtable)).ShaderCacheControl(@as(*const ID3D12Device9, @ptrCast(self)), Kinds, Control);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Device9_CreateCommandQueue1(self: *const T, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, CreatorID: ?*const Guid, riid: ?*const Guid, ppCommandQueue: ?*?*anyopaque) HRESULT {
-                return @as(*const ID3D12Device9.VTable, @ptrCast(self.vtable)).CreateCommandQueue1(@as(*const ID3D12Device9, @ptrCast(self)), pDesc, CreatorID, riid, ppCommandQueue);
-            }
-        };
+    ID3D12Device8: ID3D12Device8,
+    ID3D12Device7: ID3D12Device7,
+    ID3D12Device6: ID3D12Device6,
+    ID3D12Device5: ID3D12Device5,
+    ID3D12Device4: ID3D12Device4,
+    ID3D12Device3: ID3D12Device3,
+    ID3D12Device2: ID3D12Device2,
+    ID3D12Device1: ID3D12Device1,
+    ID3D12Device: ID3D12Device,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn CreateShaderCacheSession(self: *const ID3D12Device9, pDesc: ?*const D3D12_SHADER_CACHE_SESSION_DESC, riid: ?*const Guid, ppvSession: ?**anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateShaderCacheSession(self, pDesc, riid, ppvSession);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ShaderCacheControl(self: *const ID3D12Device9, Kinds: D3D12_SHADER_CACHE_KIND_FLAGS, Control: D3D12_SHADER_CACHE_CONTROL_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.ShaderCacheControl(self, Kinds, Control);
+    }
+    pub fn CreateCommandQueue1(self: *const ID3D12Device9, pDesc: ?*const D3D12_COMMAND_QUEUE_DESC, CreatorID: ?*const Guid, riid: ?*const Guid, ppCommandQueue: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCommandQueue1(self, pDesc, CreatorID, riid, ppCommandQueue);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Tools_Value = Guid.initString("7071e1f0-e84b-4b33-974f-12fa49de65c5");
 pub const IID_ID3D12Tools = &IID_ID3D12Tools_Value;
-pub const ID3D12Tools = extern struct {
+pub const ID3D12Tools = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnableShaderInstrumentation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Tools,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Tools,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        ShaderInstrumentationEnabled: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Tools,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12Tools,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        EnableShaderInstrumentation: *const fn(
+            self: *const ID3D12Tools,
+            bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        ShaderInstrumentationEnabled: *const fn(
+            self: *const ID3D12Tools,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Tools_EnableShaderInstrumentation(self: *const T, bEnable: BOOL) void {
-                return @as(*const ID3D12Tools.VTable, @ptrCast(self.vtable)).EnableShaderInstrumentation(@as(*const ID3D12Tools, @ptrCast(self)), bEnable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Tools_ShaderInstrumentationEnabled(self: *const T) BOOL {
-                return @as(*const ID3D12Tools.VTable, @ptrCast(self.vtable)).ShaderInstrumentationEnabled(@as(*const ID3D12Tools, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn EnableShaderInstrumentation(self: *const ID3D12Tools, bEnable: BOOL) callconv(.Inline) void {
+        return self.vtable.EnableShaderInstrumentation(self, bEnable);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ShaderInstrumentationEnabled(self: *const ID3D12Tools) callconv(.Inline) BOOL {
+        return self.vtable.ShaderInstrumentationEnabled(self);
+    }
 };
 
 pub const D3D12_SUBRESOURCE_DATA = extern struct {
@@ -9018,31 +7822,21 @@ pub const D3D12_MEMCPY_DEST = extern struct {
     SlicePitch: usize,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Debug_Value = Guid.initString("344488b7-6846-474b-b989-f027448245e0");
 pub const IID_ID3D12Debug = &IID_ID3D12Debug_Value;
-pub const ID3D12Debug = extern struct {
+pub const ID3D12Debug = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnableDebugLayer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        EnableDebugLayer: *const fn(
+            self: *const ID3D12Debug,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug_EnableDebugLayer(self: *const T) void {
-                return @as(*const ID3D12Debug.VTable, @ptrCast(self.vtable)).EnableDebugLayer(@as(*const ID3D12Debug, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn EnableDebugLayer(self: *const ID3D12Debug) callconv(.Inline) void {
+        return self.vtable.EnableDebugLayer(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_GPU_BASED_VALIDATION_FLAGS = enum(i32) {
@@ -9052,201 +7846,126 @@ pub const D3D12_GPU_BASED_VALIDATION_FLAGS = enum(i32) {
 pub const D3D12_GPU_BASED_VALIDATION_FLAGS_NONE = D3D12_GPU_BASED_VALIDATION_FLAGS.NONE;
 pub const D3D12_GPU_BASED_VALIDATION_FLAGS_DISABLE_STATE_TRACKING = D3D12_GPU_BASED_VALIDATION_FLAGS.DISABLE_STATE_TRACKING;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Debug1_Value = Guid.initString("affaa4ca-63fe-4d8e-b8ad-159000af4304");
 pub const IID_ID3D12Debug1 = &IID_ID3D12Debug1_Value;
-pub const ID3D12Debug1 = extern struct {
+pub const ID3D12Debug1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        EnableDebugLayer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug1,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetEnableGPUBasedValidation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug1,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug1,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetEnableSynchronizedCommandQueueValidation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug1,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug1,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        EnableDebugLayer: *const fn(
+            self: *const ID3D12Debug1,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetEnableGPUBasedValidation: *const fn(
+            self: *const ID3D12Debug1,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetEnableSynchronizedCommandQueueValidation: *const fn(
+            self: *const ID3D12Debug1,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug1_EnableDebugLayer(self: *const T) void {
-                return @as(*const ID3D12Debug1.VTable, @ptrCast(self.vtable)).EnableDebugLayer(@as(*const ID3D12Debug1, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug1_SetEnableGPUBasedValidation(self: *const T, Enable: BOOL) void {
-                return @as(*const ID3D12Debug1.VTable, @ptrCast(self.vtable)).SetEnableGPUBasedValidation(@as(*const ID3D12Debug1, @ptrCast(self)), Enable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug1_SetEnableSynchronizedCommandQueueValidation(self: *const T, Enable: BOOL) void {
-                return @as(*const ID3D12Debug1.VTable, @ptrCast(self.vtable)).SetEnableSynchronizedCommandQueueValidation(@as(*const ID3D12Debug1, @ptrCast(self)), Enable);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn EnableDebugLayer(self: *const ID3D12Debug1) callconv(.Inline) void {
+        return self.vtable.EnableDebugLayer(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetEnableGPUBasedValidation(self: *const ID3D12Debug1, Enable: BOOL) callconv(.Inline) void {
+        return self.vtable.SetEnableGPUBasedValidation(self, Enable);
+    }
+    pub fn SetEnableSynchronizedCommandQueueValidation(self: *const ID3D12Debug1, Enable: BOOL) callconv(.Inline) void {
+        return self.vtable.SetEnableSynchronizedCommandQueueValidation(self, Enable);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Debug2_Value = Guid.initString("93a665c4-a3b2-4e5d-b692-a26ae14e3374");
 pub const IID_ID3D12Debug2 = &IID_ID3D12Debug2_Value;
-pub const ID3D12Debug2 = extern struct {
+pub const ID3D12Debug2 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetGPUBasedValidationFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug2,
-                Flags: D3D12_GPU_BASED_VALIDATION_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug2,
-                Flags: D3D12_GPU_BASED_VALIDATION_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        SetGPUBasedValidationFlags: *const fn(
+            self: *const ID3D12Debug2,
+            Flags: D3D12_GPU_BASED_VALIDATION_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug2_SetGPUBasedValidationFlags(self: *const T, Flags: D3D12_GPU_BASED_VALIDATION_FLAGS) void {
-                return @as(*const ID3D12Debug2.VTable, @ptrCast(self.vtable)).SetGPUBasedValidationFlags(@as(*const ID3D12Debug2, @ptrCast(self)), Flags);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetGPUBasedValidationFlags(self: *const ID3D12Debug2, Flags: D3D12_GPU_BASED_VALIDATION_FLAGS) callconv(.Inline) void {
+        return self.vtable.SetGPUBasedValidationFlags(self, Flags);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Debug3_Value = Guid.initString("5cf4e58f-f671-4ff1-a542-3686e3d153d1");
 pub const IID_ID3D12Debug3 = &IID_ID3D12Debug3_Value;
-pub const ID3D12Debug3 = extern struct {
+pub const ID3D12Debug3 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Debug.VTable,
-        SetEnableGPUBasedValidation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug3,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug3,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetEnableSynchronizedCommandQueueValidation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug3,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug3,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SetGPUBasedValidationFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug3,
-                Flags: D3D12_GPU_BASED_VALIDATION_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug3,
-                Flags: D3D12_GPU_BASED_VALIDATION_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        SetEnableGPUBasedValidation: *const fn(
+            self: *const ID3D12Debug3,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetEnableSynchronizedCommandQueueValidation: *const fn(
+            self: *const ID3D12Debug3,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SetGPUBasedValidationFlags: *const fn(
+            self: *const ID3D12Debug3,
+            Flags: D3D12_GPU_BASED_VALIDATION_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Debug.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug3_SetEnableGPUBasedValidation(self: *const T, Enable: BOOL) void {
-                return @as(*const ID3D12Debug3.VTable, @ptrCast(self.vtable)).SetEnableGPUBasedValidation(@as(*const ID3D12Debug3, @ptrCast(self)), Enable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug3_SetEnableSynchronizedCommandQueueValidation(self: *const T, Enable: BOOL) void {
-                return @as(*const ID3D12Debug3.VTable, @ptrCast(self.vtable)).SetEnableSynchronizedCommandQueueValidation(@as(*const ID3D12Debug3, @ptrCast(self)), Enable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug3_SetGPUBasedValidationFlags(self: *const T, Flags: D3D12_GPU_BASED_VALIDATION_FLAGS) void {
-                return @as(*const ID3D12Debug3.VTable, @ptrCast(self.vtable)).SetGPUBasedValidationFlags(@as(*const ID3D12Debug3, @ptrCast(self)), Flags);
-            }
-        };
+    ID3D12Debug: ID3D12Debug,
+    IUnknown: IUnknown,
+    pub fn SetEnableGPUBasedValidation(self: *const ID3D12Debug3, Enable: BOOL) callconv(.Inline) void {
+        return self.vtable.SetEnableGPUBasedValidation(self, Enable);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetEnableSynchronizedCommandQueueValidation(self: *const ID3D12Debug3, Enable: BOOL) callconv(.Inline) void {
+        return self.vtable.SetEnableSynchronizedCommandQueueValidation(self, Enable);
+    }
+    pub fn SetGPUBasedValidationFlags(self: *const ID3D12Debug3, Flags: D3D12_GPU_BASED_VALIDATION_FLAGS) callconv(.Inline) void {
+        return self.vtable.SetGPUBasedValidationFlags(self, Flags);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Debug4_Value = Guid.initString("014b816e-9ec5-4a2f-a845-ffbe441ce13a");
 pub const IID_ID3D12Debug4 = &IID_ID3D12Debug4_Value;
-pub const ID3D12Debug4 = extern struct {
+pub const ID3D12Debug4 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Debug3.VTable,
-        DisableDebugLayer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug4,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug4,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        DisableDebugLayer: *const fn(
+            self: *const ID3D12Debug4,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Debug3.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug4_DisableDebugLayer(self: *const T) void {
-                return @as(*const ID3D12Debug4.VTable, @ptrCast(self.vtable)).DisableDebugLayer(@as(*const ID3D12Debug4, @ptrCast(self)));
-            }
-        };
+    ID3D12Debug3: ID3D12Debug3,
+    ID3D12Debug: ID3D12Debug,
+    IUnknown: IUnknown,
+    pub fn DisableDebugLayer(self: *const ID3D12Debug4) callconv(.Inline) void {
+        return self.vtable.DisableDebugLayer(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12Debug5_Value = Guid.initString("548d6b12-09fa-40e0-9069-5dcd589a52c9");
 pub const IID_ID3D12Debug5 = &IID_ID3D12Debug5_Value;
-pub const ID3D12Debug5 = extern struct {
+pub const ID3D12Debug5 = extern union {
     pub const VTable = extern struct {
         base: ID3D12Debug4.VTable,
-        SetEnableAutoName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12Debug5,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12Debug5,
-                Enable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        SetEnableAutoName: *const fn(
+            self: *const ID3D12Debug5,
+            Enable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12Debug4.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12Debug5_SetEnableAutoName(self: *const T, Enable: BOOL) void {
-                return @as(*const ID3D12Debug5.VTable, @ptrCast(self.vtable)).SetEnableAutoName(@as(*const ID3D12Debug5, @ptrCast(self)), Enable);
-            }
-        };
+    ID3D12Debug4: ID3D12Debug4,
+    ID3D12Debug3: ID3D12Debug3,
+    ID3D12Debug: ID3D12Debug,
+    IUnknown: IUnknown,
+    pub fn SetEnableAutoName(self: *const ID3D12Debug5, Enable: BOOL) callconv(.Inline) void {
+        return self.vtable.SetEnableAutoName(self, Enable);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_RLDO_FLAGS = enum(i32) {
@@ -9318,216 +8037,125 @@ pub const D3D12_DEBUG_DEVICE_GPU_SLOWDOWN_PERFORMANCE_FACTOR = extern struct {
     SlowdownFactor: f32,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DebugDevice1_Value = Guid.initString("a9b71770-d099-4a65-a698-3dee10020f88");
 pub const IID_ID3D12DebugDevice1 = &IID_ID3D12DebugDevice1_Value;
-pub const ID3D12DebugDevice1 = extern struct {
+pub const ID3D12DebugDevice1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice1,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugDevice1,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice1,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugDevice1,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReportLiveDeviceObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice1,
-                Flags: D3D12_RLDO_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugDevice1,
-                Flags: D3D12_RLDO_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDebugParameter: *const fn(
+            self: *const ID3D12DebugDevice1,
+            Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugParameter: *const fn(
+            self: *const ID3D12DebugDevice1,
+            Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReportLiveDeviceObjects: *const fn(
+            self: *const ID3D12DebugDevice1,
+            Flags: D3D12_RLDO_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugDevice1.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugDevice1, @ptrCast(self)), Type, pData, DataSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugDevice1.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugDevice1, @ptrCast(self)), Type, pData, DataSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice1_ReportLiveDeviceObjects(self: *const T, Flags: D3D12_RLDO_FLAGS) HRESULT {
-                return @as(*const ID3D12DebugDevice1.VTable, @ptrCast(self.vtable)).ReportLiveDeviceObjects(@as(*const ID3D12DebugDevice1, @ptrCast(self)), Flags);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetDebugParameter(self: *const ID3D12DebugDevice1, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetDebugParameter(self, Type, pData, DataSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDebugParameter(self: *const ID3D12DebugDevice1, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDebugParameter(self, Type, pData, DataSize);
+    }
+    pub fn ReportLiveDeviceObjects(self: *const ID3D12DebugDevice1, Flags: D3D12_RLDO_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.ReportLiveDeviceObjects(self, Flags);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DebugDevice_Value = Guid.initString("3febd6dd-4973-4787-8194-e45f9e28923e");
 pub const IID_ID3D12DebugDevice = &IID_ID3D12DebugDevice_Value;
-pub const ID3D12DebugDevice = extern struct {
+pub const ID3D12DebugDevice = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetFeatureMask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice,
-                Mask: D3D12_DEBUG_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugDevice,
-                Mask: D3D12_DEBUG_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFeatureMask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DEBUG_FEATURE,
-            else => *const fn (
-                self: *const ID3D12DebugDevice,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DEBUG_FEATURE,
-        },
-        ReportLiveDeviceObjects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice,
-                Flags: D3D12_RLDO_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugDevice,
-                Flags: D3D12_RLDO_FLAGS,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetFeatureMask: *const fn(
+            self: *const ID3D12DebugDevice,
+            Mask: D3D12_DEBUG_FEATURE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFeatureMask: *const fn(
+            self: *const ID3D12DebugDevice,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_DEBUG_FEATURE,
+        ReportLiveDeviceObjects: *const fn(
+            self: *const ID3D12DebugDevice,
+            Flags: D3D12_RLDO_FLAGS,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice_SetFeatureMask(self: *const T, Mask: D3D12_DEBUG_FEATURE) HRESULT {
-                return @as(*const ID3D12DebugDevice.VTable, @ptrCast(self.vtable)).SetFeatureMask(@as(*const ID3D12DebugDevice, @ptrCast(self)), Mask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice_GetFeatureMask(self: *const T) D3D12_DEBUG_FEATURE {
-                return @as(*const ID3D12DebugDevice.VTable, @ptrCast(self.vtable)).GetFeatureMask(@as(*const ID3D12DebugDevice, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice_ReportLiveDeviceObjects(self: *const T, Flags: D3D12_RLDO_FLAGS) HRESULT {
-                return @as(*const ID3D12DebugDevice.VTable, @ptrCast(self.vtable)).ReportLiveDeviceObjects(@as(*const ID3D12DebugDevice, @ptrCast(self)), Flags);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetFeatureMask(self: *const ID3D12DebugDevice, Mask: D3D12_DEBUG_FEATURE) callconv(.Inline) HRESULT {
+        return self.vtable.SetFeatureMask(self, Mask);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFeatureMask(self: *const ID3D12DebugDevice) callconv(.Inline) D3D12_DEBUG_FEATURE {
+        return self.vtable.GetFeatureMask(self);
+    }
+    pub fn ReportLiveDeviceObjects(self: *const ID3D12DebugDevice, Flags: D3D12_RLDO_FLAGS) callconv(.Inline) HRESULT {
+        return self.vtable.ReportLiveDeviceObjects(self, Flags);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DebugDevice2_Value = Guid.initString("60eccbc1-378d-4df1-894c-f8ac5ce4d7dd");
 pub const IID_ID3D12DebugDevice2 = &IID_ID3D12DebugDevice2_Value;
-pub const ID3D12DebugDevice2 = extern struct {
+pub const ID3D12DebugDevice2 = extern union {
     pub const VTable = extern struct {
         base: ID3D12DebugDevice.VTable,
-        SetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice2,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugDevice2,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugDevice2,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugDevice2,
-                Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDebugParameter: *const fn(
+            self: *const ID3D12DebugDevice2,
+            Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugParameter: *const fn(
+            self: *const ID3D12DebugDevice2,
+            Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DebugDevice.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugDevice2.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugDevice2, @ptrCast(self)), Type, pData, DataSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugDevice2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugDevice2.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugDevice2, @ptrCast(self)), Type, pData, DataSize);
-            }
-        };
+    ID3D12DebugDevice: ID3D12DebugDevice,
+    IUnknown: IUnknown,
+    pub fn SetDebugParameter(self: *const ID3D12DebugDevice2, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetDebugParameter(self, Type, pData, DataSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDebugParameter(self: *const ID3D12DebugDevice2, Type: D3D12_DEBUG_DEVICE_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDebugParameter(self, Type, pData, DataSize);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DebugCommandQueue_Value = Guid.initString("09e0bf36-54ac-484f-8847-4baeeab6053a");
 pub const IID_ID3D12DebugCommandQueue = &IID_ID3D12DebugCommandQueue_Value;
-pub const ID3D12DebugCommandQueue = extern struct {
+pub const ID3D12DebugCommandQueue = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AssertResourceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandQueue,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                State: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12DebugCommandQueue,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                State: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        AssertResourceState: *const fn(
+            self: *const ID3D12DebugCommandQueue,
+            pResource: ?*ID3D12Resource,
+            Subresource: u32,
+            State: u32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandQueue_AssertResourceState(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) BOOL {
-                return @as(*const ID3D12DebugCommandQueue.VTable, @ptrCast(self.vtable)).AssertResourceState(@as(*const ID3D12DebugCommandQueue, @ptrCast(self)), pResource, Subresource, State);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AssertResourceState(self: *const ID3D12DebugCommandQueue, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
+        return self.vtable.AssertResourceState(self, pResource, Subresource, State);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE = enum(i32) {
@@ -9539,268 +8167,151 @@ pub const D3D12_DEBUG_COMMAND_LIST_GPU_BASED_VALIDATION_SETTINGS = extern struct
     ShaderPatchMode: D3D12_GPU_BASED_VALIDATION_SHADER_PATCH_MODE,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DebugCommandList1_Value = Guid.initString("102ca951-311b-4b01-b11f-ecb83e061b37");
 pub const IID_ID3D12DebugCommandList1 = &IID_ID3D12DebugCommandList1_Value;
-pub const ID3D12DebugCommandList1 = extern struct {
+pub const ID3D12DebugCommandList1 = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AssertResourceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList1,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                State: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList1,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                State: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        SetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList1,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList1,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList1,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList1,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AssertResourceState: *const fn(
+            self: *const ID3D12DebugCommandList1,
+            pResource: ?*ID3D12Resource,
+            Subresource: u32,
+            State: u32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetDebugParameter: *const fn(
+            self: *const ID3D12DebugCommandList1,
+            Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugParameter: *const fn(
+            self: *const ID3D12DebugCommandList1,
+            Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList1_AssertResourceState(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) BOOL {
-                return @as(*const ID3D12DebugCommandList1.VTable, @ptrCast(self.vtable)).AssertResourceState(@as(*const ID3D12DebugCommandList1, @ptrCast(self)), pResource, Subresource, State);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList1_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugCommandList1.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugCommandList1, @ptrCast(self)), Type, pData, DataSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList1_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugCommandList1.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugCommandList1, @ptrCast(self)), Type, pData, DataSize);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AssertResourceState(self: *const ID3D12DebugCommandList1, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
+        return self.vtable.AssertResourceState(self, pResource, Subresource, State);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetDebugParameter(self: *const ID3D12DebugCommandList1, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetDebugParameter(self, Type, pData, DataSize);
+    }
+    pub fn GetDebugParameter(self: *const ID3D12DebugCommandList1, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDebugParameter(self, Type, pData, DataSize);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DebugCommandList_Value = Guid.initString("09e0bf36-54ac-484f-8847-4baeeab6053f");
 pub const IID_ID3D12DebugCommandList = &IID_ID3D12DebugCommandList_Value;
-pub const ID3D12DebugCommandList = extern struct {
+pub const ID3D12DebugCommandList = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AssertResourceState: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                State: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                State: u32,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        SetFeatureMask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList,
-                Mask: D3D12_DEBUG_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList,
-                Mask: D3D12_DEBUG_FEATURE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFeatureMask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DEBUG_FEATURE,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList,
-            ) callconv(@import("std").os.windows.WINAPI) D3D12_DEBUG_FEATURE,
-        },
+        AssertResourceState: *const fn(
+            self: *const ID3D12DebugCommandList,
+            pResource: ?*ID3D12Resource,
+            Subresource: u32,
+            State: u32,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetFeatureMask: *const fn(
+            self: *const ID3D12DebugCommandList,
+            Mask: D3D12_DEBUG_FEATURE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFeatureMask: *const fn(
+            self: *const ID3D12DebugCommandList,
+        ) callconv(@import("std").os.windows.WINAPI) D3D12_DEBUG_FEATURE,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList_AssertResourceState(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) BOOL {
-                return @as(*const ID3D12DebugCommandList.VTable, @ptrCast(self.vtable)).AssertResourceState(@as(*const ID3D12DebugCommandList, @ptrCast(self)), pResource, Subresource, State);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList_SetFeatureMask(self: *const T, Mask: D3D12_DEBUG_FEATURE) HRESULT {
-                return @as(*const ID3D12DebugCommandList.VTable, @ptrCast(self.vtable)).SetFeatureMask(@as(*const ID3D12DebugCommandList, @ptrCast(self)), Mask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList_GetFeatureMask(self: *const T) D3D12_DEBUG_FEATURE {
-                return @as(*const ID3D12DebugCommandList.VTable, @ptrCast(self.vtable)).GetFeatureMask(@as(*const ID3D12DebugCommandList, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AssertResourceState(self: *const ID3D12DebugCommandList, pResource: ?*ID3D12Resource, Subresource: u32, State: u32) callconv(.Inline) BOOL {
+        return self.vtable.AssertResourceState(self, pResource, Subresource, State);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SetFeatureMask(self: *const ID3D12DebugCommandList, Mask: D3D12_DEBUG_FEATURE) callconv(.Inline) HRESULT {
+        return self.vtable.SetFeatureMask(self, Mask);
+    }
+    pub fn GetFeatureMask(self: *const ID3D12DebugCommandList) callconv(.Inline) D3D12_DEBUG_FEATURE {
+        return self.vtable.GetFeatureMask(self);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12DebugCommandList2_Value = Guid.initString("aeb575cf-4e06-48be-ba3b-c450fc96652e");
 pub const IID_ID3D12DebugCommandList2 = &IID_ID3D12DebugCommandList2_Value;
-pub const ID3D12DebugCommandList2 = extern struct {
+pub const ID3D12DebugCommandList2 = extern union {
     pub const VTable = extern struct {
         base: ID3D12DebugCommandList.VTable,
-        SetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList2,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList2,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*const anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDebugParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12DebugCommandList2,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12DebugCommandList2,
-                Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
-                // TODO: what to do with BytesParamIndex 2?
-                pData: ?*anyopaque,
-                DataSize: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDebugParameter: *const fn(
+            self: *const ID3D12DebugCommandList2,
+            Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*const anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDebugParameter: *const fn(
+            self: *const ID3D12DebugCommandList2,
+            Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE,
+            // TODO: what to do with BytesParamIndex 2?
+            pData: ?*anyopaque,
+            DataSize: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12DebugCommandList.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList2_SetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugCommandList2.VTable, @ptrCast(self.vtable)).SetDebugParameter(@as(*const ID3D12DebugCommandList2, @ptrCast(self)), Type, pData, DataSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12DebugCommandList2_GetDebugParameter(self: *const T, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) HRESULT {
-                return @as(*const ID3D12DebugCommandList2.VTable, @ptrCast(self.vtable)).GetDebugParameter(@as(*const ID3D12DebugCommandList2, @ptrCast(self)), Type, pData, DataSize);
-            }
-        };
+    ID3D12DebugCommandList: ID3D12DebugCommandList,
+    IUnknown: IUnknown,
+    pub fn SetDebugParameter(self: *const ID3D12DebugCommandList2, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*const anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetDebugParameter(self, Type, pData, DataSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDebugParameter(self: *const ID3D12DebugCommandList2, Type: D3D12_DEBUG_COMMAND_LIST_PARAMETER_TYPE, pData: ?*anyopaque, DataSize: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDebugParameter(self, Type, pData, DataSize);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12SharingContract_Value = Guid.initString("0adf7d52-929c-4e61-addb-ffed30de66ef");
 pub const IID_ID3D12SharingContract = &IID_ID3D12SharingContract_Value;
-pub const ID3D12SharingContract = extern struct {
+pub const ID3D12SharingContract = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Present: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SharingContract,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                window: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12SharingContract,
-                pResource: ?*ID3D12Resource,
-                Subresource: u32,
-                window: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        SharedFenceSignal: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SharingContract,
-                pFence: ?*ID3D12Fence,
-                FenceValue: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12SharingContract,
-                pFence: ?*ID3D12Fence,
-                FenceValue: u64,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        BeginCapturableWork: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SharingContract,
-                guid: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12SharingContract,
-                guid: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        EndCapturableWork: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SharingContract,
-                guid: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12SharingContract,
-                guid: ?*const Guid,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        Present: *const fn(
+            self: *const ID3D12SharingContract,
+            pResource: ?*ID3D12Resource,
+            Subresource: u32,
+            window: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        SharedFenceSignal: *const fn(
+            self: *const ID3D12SharingContract,
+            pFence: ?*ID3D12Fence,
+            FenceValue: u64,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        BeginCapturableWork: *const fn(
+            self: *const ID3D12SharingContract,
+            guid: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        EndCapturableWork: *const fn(
+            self: *const ID3D12SharingContract,
+            guid: ?*const Guid,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SharingContract_Present(self: *const T, pResource: ?*ID3D12Resource, Subresource: u32, window: ?HWND) void {
-                return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).Present(@as(*const ID3D12SharingContract, @ptrCast(self)), pResource, Subresource, window);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SharingContract_SharedFenceSignal(self: *const T, pFence: ?*ID3D12Fence, FenceValue: u64) void {
-                return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).SharedFenceSignal(@as(*const ID3D12SharingContract, @ptrCast(self)), pFence, FenceValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SharingContract_BeginCapturableWork(self: *const T, guid: ?*const Guid) void {
-                return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).BeginCapturableWork(@as(*const ID3D12SharingContract, @ptrCast(self)), guid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SharingContract_EndCapturableWork(self: *const T, guid: ?*const Guid) void {
-                return @as(*const ID3D12SharingContract.VTable, @ptrCast(self.vtable)).EndCapturableWork(@as(*const ID3D12SharingContract, @ptrCast(self)), guid);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Present(self: *const ID3D12SharingContract, pResource: ?*ID3D12Resource, Subresource: u32, window: ?HWND) callconv(.Inline) void {
+        return self.vtable.Present(self, pResource, Subresource, window);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SharedFenceSignal(self: *const ID3D12SharingContract, pFence: ?*ID3D12Fence, FenceValue: u64) callconv(.Inline) void {
+        return self.vtable.SharedFenceSignal(self, pFence, FenceValue);
+    }
+    pub fn BeginCapturableWork(self: *const ID3D12SharingContract, guid: ?*const Guid) callconv(.Inline) void {
+        return self.vtable.BeginCapturableWork(self, guid);
+    }
+    pub fn EndCapturableWork(self: *const ID3D12SharingContract, guid: ?*const Guid) callconv(.Inline) void {
+        return self.vtable.EndCapturableWork(self, guid);
+    }
 };
 
 pub const D3D12_MESSAGE_CATEGORY = enum(i32) {
@@ -10220,8 +8731,6 @@ pub const D3D12_MESSAGE_ID = enum(i32) {
     CREATERESOURCE_INVALIDFORMAT = 738,
     GETCOPYABLEFOOTPRINTS_INVALIDSUBRESOURCERANGE = 739,
     GETCOPYABLEFOOTPRINTS_INVALIDBASEOFFSET = 740,
-    // GETCOPYABLELAYOUT_INVALIDSUBRESOURCERANGE = 739, this enum value conflicts with GETCOPYABLEFOOTPRINTS_INVALIDSUBRESOURCERANGE
-    // GETCOPYABLELAYOUT_INVALIDBASEOFFSET = 740, this enum value conflicts with GETCOPYABLEFOOTPRINTS_INVALIDBASEOFFSET
     RESOURCE_BARRIER_INVALID_HEAP = 741,
     CREATE_SAMPLER_INVALID = 742,
     CREATECOMMANDSIGNATURE_INVALID = 743,
@@ -10734,6 +9243,8 @@ pub const D3D12_MESSAGE_ID = enum(i32) {
     SHADERCACHESESSION_SHADERCACHEDELETE_NOTSUPPORTED = 1326,
     SHADERCACHECONTROL_SHADERCACHECLEAR_NOTSUPPORTED = 1327,
     D3D12_MESSAGES_END = 1328,
+    pub const GETCOPYABLELAYOUT_INVALIDSUBRESOURCERANGE = .GETCOPYABLEFOOTPRINTS_INVALIDSUBRESOURCERANGE;
+    pub const GETCOPYABLELAYOUT_INVALIDBASEOFFSET = .GETCOPYABLEFOOTPRINTS_INVALIDBASEOFFSET;
 };
 pub const D3D12_MESSAGE_ID_UNKNOWN = D3D12_MESSAGE_ID.UNKNOWN;
 pub const D3D12_MESSAGE_ID_STRING_FROM_APPLICATION = D3D12_MESSAGE_ID.STRING_FROM_APPLICATION;
@@ -11650,501 +10161,256 @@ pub const D3D12_INFO_QUEUE_FILTER = extern struct {
     DenyList: D3D12_INFO_QUEUE_FILTER_DESC,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12InfoQueue_Value = Guid.initString("0742a90b-c387-483f-b946-30a7e4e61458");
 pub const IID_ID3D12InfoQueue = &IID_ID3D12InfoQueue_Value;
-pub const ID3D12InfoQueue = extern struct {
+pub const ID3D12InfoQueue = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetMessageCountLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                MessageCountLimit: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                MessageCountLimit: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearStoredMessages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                MessageIndex: u64,
-                // TODO: what to do with BytesParamIndex 2?
-                pMessage: ?*D3D12_MESSAGE,
-                pMessageByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                MessageIndex: u64,
-                // TODO: what to do with BytesParamIndex 2?
-                pMessage: ?*D3D12_MESSAGE,
-                pMessageByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNumMessagesAllowedByStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumMessagesDeniedByStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumStoredMessages: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumStoredMessagesAllowedByRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetNumMessagesDiscardedByMessageCountLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        GetMessageCountLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
-        AddStorageFilterEntries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                // TODO: what to do with BytesParamIndex 1?
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                // TODO: what to do with BytesParamIndex 1?
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        PushEmptyStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushCopyOfStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PopStorageFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetStorageFilterStackSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        AddRetrievalFilterEntries: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                // TODO: what to do with BytesParamIndex 1?
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                // TODO: what to do with BytesParamIndex 1?
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-                pFilterByteLength: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        PushEmptyRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushCopyOfRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PushRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                pFilter: ?*D3D12_INFO_QUEUE_FILTER,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PopRetrievalFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetRetrievalFilterStackSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        AddMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                Category: D3D12_MESSAGE_CATEGORY,
-                Severity: D3D12_MESSAGE_SEVERITY,
-                ID: D3D12_MESSAGE_ID,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                Category: D3D12_MESSAGE_CATEGORY,
-                Severity: D3D12_MESSAGE_SEVERITY,
-                ID: D3D12_MESSAGE_ID,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddApplicationMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                Severity: D3D12_MESSAGE_SEVERITY,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                Severity: D3D12_MESSAGE_SEVERITY,
-                pDescription: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBreakOnCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                Category: D3D12_MESSAGE_CATEGORY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                Category: D3D12_MESSAGE_CATEGORY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBreakOnSeverity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                Severity: D3D12_MESSAGE_SEVERITY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                Severity: D3D12_MESSAGE_SEVERITY,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetBreakOnID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                ID: D3D12_MESSAGE_ID,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                ID: D3D12_MESSAGE_ID,
-                bEnable: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBreakOnCategory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                Category: D3D12_MESSAGE_CATEGORY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                Category: D3D12_MESSAGE_CATEGORY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetBreakOnSeverity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                Severity: D3D12_MESSAGE_SEVERITY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                Severity: D3D12_MESSAGE_SEVERITY,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetBreakOnID: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                ID: D3D12_MESSAGE_ID,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                ID: D3D12_MESSAGE_ID,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        SetMuteDebugOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-                bMute: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-                bMute: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        GetMuteDebugOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12InfoQueue,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        SetMessageCountLimit: *const fn(
+            self: *const ID3D12InfoQueue,
+            MessageCountLimit: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearStoredMessages: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetMessage: *const fn(
+            self: *const ID3D12InfoQueue,
+            MessageIndex: u64,
+            // TODO: what to do with BytesParamIndex 2?
+            pMessage: ?*D3D12_MESSAGE,
+            pMessageByteLength: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNumMessagesAllowedByStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumMessagesDeniedByStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumStoredMessages: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumStoredMessagesAllowedByRetrievalFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetNumMessagesDiscardedByMessageCountLimit: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        GetMessageCountLimit: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
+        AddStorageFilterEntries: *const fn(
+            self: *const ID3D12InfoQueue,
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
+            pFilterByteLength: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PushEmptyStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushCopyOfStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PopStorageFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetStorageFilterStackSize: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        AddRetrievalFilterEntries: *const fn(
+            self: *const ID3D12InfoQueue,
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRetrievalFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+            // TODO: what to do with BytesParamIndex 1?
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
+            pFilterByteLength: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearRetrievalFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        PushEmptyRetrievalFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushCopyOfRetrievalFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PushRetrievalFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+            pFilter: ?*D3D12_INFO_QUEUE_FILTER,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PopRetrievalFilter: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetRetrievalFilterStackSize: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        AddMessage: *const fn(
+            self: *const ID3D12InfoQueue,
+            Category: D3D12_MESSAGE_CATEGORY,
+            Severity: D3D12_MESSAGE_SEVERITY,
+            ID: D3D12_MESSAGE_ID,
+            pDescription: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddApplicationMessage: *const fn(
+            self: *const ID3D12InfoQueue,
+            Severity: D3D12_MESSAGE_SEVERITY,
+            pDescription: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBreakOnCategory: *const fn(
+            self: *const ID3D12InfoQueue,
+            Category: D3D12_MESSAGE_CATEGORY,
+            bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBreakOnSeverity: *const fn(
+            self: *const ID3D12InfoQueue,
+            Severity: D3D12_MESSAGE_SEVERITY,
+            bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetBreakOnID: *const fn(
+            self: *const ID3D12InfoQueue,
+            ID: D3D12_MESSAGE_ID,
+            bEnable: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBreakOnCategory: *const fn(
+            self: *const ID3D12InfoQueue,
+            Category: D3D12_MESSAGE_CATEGORY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetBreakOnSeverity: *const fn(
+            self: *const ID3D12InfoQueue,
+            Severity: D3D12_MESSAGE_SEVERITY,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetBreakOnID: *const fn(
+            self: *const ID3D12InfoQueue,
+            ID: D3D12_MESSAGE_ID,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        SetMuteDebugOutput: *const fn(
+            self: *const ID3D12InfoQueue,
+            bMute: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        GetMuteDebugOutput: *const fn(
+            self: *const ID3D12InfoQueue,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_SetMessageCountLimit(self: *const T, MessageCountLimit: u64) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetMessageCountLimit(@as(*const ID3D12InfoQueue, @ptrCast(self)), MessageCountLimit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_ClearStoredMessages(self: *const T) void {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).ClearStoredMessages(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetMessage(self: *const T, MessageIndex: u64, pMessage: ?*D3D12_MESSAGE, pMessageByteLength: ?*usize) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetMessage(@as(*const ID3D12InfoQueue, @ptrCast(self)), MessageIndex, pMessage, pMessageByteLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetNumMessagesAllowedByStorageFilter(self: *const T) u64 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesAllowedByStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetNumMessagesDeniedByStorageFilter(self: *const T) u64 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDeniedByStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetNumStoredMessages(self: *const T) u64 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessages(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetNumStoredMessagesAllowedByRetrievalFilter(self: *const T) u64 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumStoredMessagesAllowedByRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetNumMessagesDiscardedByMessageCountLimit(self: *const T) u64 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetNumMessagesDiscardedByMessageCountLimit(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetMessageCountLimit(self: *const T) u64 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetMessageCountLimit(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_AddStorageFilterEntries(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddStorageFilterEntries(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetStorageFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_ClearStorageFilter(self: *const T) void {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).ClearStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PushEmptyStorageFilter(self: *const T) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PushCopyOfStorageFilter(self: *const T) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PushStorageFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PopStorageFilter(self: *const T) void {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PopStorageFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetStorageFilterStackSize(self: *const T) u32 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetStorageFilterStackSize(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_AddRetrievalFilterEntries(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddRetrievalFilterEntries(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetRetrievalFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter, pFilterByteLength);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_ClearRetrievalFilter(self: *const T) void {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).ClearRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PushEmptyRetrievalFilter(self: *const T) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushEmptyRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PushCopyOfRetrievalFilter(self: *const T) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushCopyOfRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PushRetrievalFilter(self: *const T, pFilter: ?*D3D12_INFO_QUEUE_FILTER) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PushRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)), pFilter);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_PopRetrievalFilter(self: *const T) void {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).PopRetrievalFilter(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetRetrievalFilterStackSize(self: *const T) u32 {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetRetrievalFilterStackSize(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_AddMessage(self: *const T, Category: D3D12_MESSAGE_CATEGORY, Severity: D3D12_MESSAGE_SEVERITY, ID: D3D12_MESSAGE_ID, pDescription: ?[*:0]const u8) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const ID3D12InfoQueue, @ptrCast(self)), Category, Severity, ID, pDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_AddApplicationMessage(self: *const T, Severity: D3D12_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).AddApplicationMessage(@as(*const ID3D12InfoQueue, @ptrCast(self)), Severity, pDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_SetBreakOnCategory(self: *const T, Category: D3D12_MESSAGE_CATEGORY, bEnable: BOOL) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnCategory(@as(*const ID3D12InfoQueue, @ptrCast(self)), Category, bEnable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_SetBreakOnSeverity(self: *const T, Severity: D3D12_MESSAGE_SEVERITY, bEnable: BOOL) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnSeverity(@as(*const ID3D12InfoQueue, @ptrCast(self)), Severity, bEnable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_SetBreakOnID(self: *const T, ID: D3D12_MESSAGE_ID, bEnable: BOOL) HRESULT {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetBreakOnID(@as(*const ID3D12InfoQueue, @ptrCast(self)), ID, bEnable);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetBreakOnCategory(self: *const T, Category: D3D12_MESSAGE_CATEGORY) BOOL {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnCategory(@as(*const ID3D12InfoQueue, @ptrCast(self)), Category);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetBreakOnSeverity(self: *const T, Severity: D3D12_MESSAGE_SEVERITY) BOOL {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnSeverity(@as(*const ID3D12InfoQueue, @ptrCast(self)), Severity);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetBreakOnID(self: *const T, ID: D3D12_MESSAGE_ID) BOOL {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetBreakOnID(@as(*const ID3D12InfoQueue, @ptrCast(self)), ID);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_SetMuteDebugOutput(self: *const T, bMute: BOOL) void {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).SetMuteDebugOutput(@as(*const ID3D12InfoQueue, @ptrCast(self)), bMute);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue_GetMuteDebugOutput(self: *const T) BOOL {
-                return @as(*const ID3D12InfoQueue.VTable, @ptrCast(self.vtable)).GetMuteDebugOutput(@as(*const ID3D12InfoQueue, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetMessageCountLimit(self: *const ID3D12InfoQueue, MessageCountLimit: u64) callconv(.Inline) HRESULT {
+        return self.vtable.SetMessageCountLimit(self, MessageCountLimit);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ClearStoredMessages(self: *const ID3D12InfoQueue) callconv(.Inline) void {
+        return self.vtable.ClearStoredMessages(self);
+    }
+    pub fn GetMessage(self: *const ID3D12InfoQueue, MessageIndex: u64, pMessage: ?*D3D12_MESSAGE, pMessageByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.GetMessage(self, MessageIndex, pMessage, pMessageByteLength);
+    }
+    pub fn GetNumMessagesAllowedByStorageFilter(self: *const ID3D12InfoQueue) callconv(.Inline) u64 {
+        return self.vtable.GetNumMessagesAllowedByStorageFilter(self);
+    }
+    pub fn GetNumMessagesDeniedByStorageFilter(self: *const ID3D12InfoQueue) callconv(.Inline) u64 {
+        return self.vtable.GetNumMessagesDeniedByStorageFilter(self);
+    }
+    pub fn GetNumStoredMessages(self: *const ID3D12InfoQueue) callconv(.Inline) u64 {
+        return self.vtable.GetNumStoredMessages(self);
+    }
+    pub fn GetNumStoredMessagesAllowedByRetrievalFilter(self: *const ID3D12InfoQueue) callconv(.Inline) u64 {
+        return self.vtable.GetNumStoredMessagesAllowedByRetrievalFilter(self);
+    }
+    pub fn GetNumMessagesDiscardedByMessageCountLimit(self: *const ID3D12InfoQueue) callconv(.Inline) u64 {
+        return self.vtable.GetNumMessagesDiscardedByMessageCountLimit(self);
+    }
+    pub fn GetMessageCountLimit(self: *const ID3D12InfoQueue) callconv(.Inline) u64 {
+        return self.vtable.GetMessageCountLimit(self);
+    }
+    pub fn AddStorageFilterEntries(self: *const ID3D12InfoQueue, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.AddStorageFilterEntries(self, pFilter);
+    }
+    pub fn GetStorageFilter(self: *const ID3D12InfoQueue, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.GetStorageFilter(self, pFilter, pFilterByteLength);
+    }
+    pub fn ClearStorageFilter(self: *const ID3D12InfoQueue) callconv(.Inline) void {
+        return self.vtable.ClearStorageFilter(self);
+    }
+    pub fn PushEmptyStorageFilter(self: *const ID3D12InfoQueue) callconv(.Inline) HRESULT {
+        return self.vtable.PushEmptyStorageFilter(self);
+    }
+    pub fn PushCopyOfStorageFilter(self: *const ID3D12InfoQueue) callconv(.Inline) HRESULT {
+        return self.vtable.PushCopyOfStorageFilter(self);
+    }
+    pub fn PushStorageFilter(self: *const ID3D12InfoQueue, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.PushStorageFilter(self, pFilter);
+    }
+    pub fn PopStorageFilter(self: *const ID3D12InfoQueue) callconv(.Inline) void {
+        return self.vtable.PopStorageFilter(self);
+    }
+    pub fn GetStorageFilterStackSize(self: *const ID3D12InfoQueue) callconv(.Inline) u32 {
+        return self.vtable.GetStorageFilterStackSize(self);
+    }
+    pub fn AddRetrievalFilterEntries(self: *const ID3D12InfoQueue, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.AddRetrievalFilterEntries(self, pFilter);
+    }
+    pub fn GetRetrievalFilter(self: *const ID3D12InfoQueue, pFilter: ?*D3D12_INFO_QUEUE_FILTER, pFilterByteLength: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.GetRetrievalFilter(self, pFilter, pFilterByteLength);
+    }
+    pub fn ClearRetrievalFilter(self: *const ID3D12InfoQueue) callconv(.Inline) void {
+        return self.vtable.ClearRetrievalFilter(self);
+    }
+    pub fn PushEmptyRetrievalFilter(self: *const ID3D12InfoQueue) callconv(.Inline) HRESULT {
+        return self.vtable.PushEmptyRetrievalFilter(self);
+    }
+    pub fn PushCopyOfRetrievalFilter(self: *const ID3D12InfoQueue) callconv(.Inline) HRESULT {
+        return self.vtable.PushCopyOfRetrievalFilter(self);
+    }
+    pub fn PushRetrievalFilter(self: *const ID3D12InfoQueue, pFilter: ?*D3D12_INFO_QUEUE_FILTER) callconv(.Inline) HRESULT {
+        return self.vtable.PushRetrievalFilter(self, pFilter);
+    }
+    pub fn PopRetrievalFilter(self: *const ID3D12InfoQueue) callconv(.Inline) void {
+        return self.vtable.PopRetrievalFilter(self);
+    }
+    pub fn GetRetrievalFilterStackSize(self: *const ID3D12InfoQueue) callconv(.Inline) u32 {
+        return self.vtable.GetRetrievalFilterStackSize(self);
+    }
+    pub fn AddMessage(self: *const ID3D12InfoQueue, Category: D3D12_MESSAGE_CATEGORY, Severity: D3D12_MESSAGE_SEVERITY, ID: D3D12_MESSAGE_ID, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return self.vtable.AddMessage(self, Category, Severity, ID, pDescription);
+    }
+    pub fn AddApplicationMessage(self: *const ID3D12InfoQueue, Severity: D3D12_MESSAGE_SEVERITY, pDescription: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return self.vtable.AddApplicationMessage(self, Severity, pDescription);
+    }
+    pub fn SetBreakOnCategory(self: *const ID3D12InfoQueue, Category: D3D12_MESSAGE_CATEGORY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetBreakOnCategory(self, Category, bEnable);
+    }
+    pub fn SetBreakOnSeverity(self: *const ID3D12InfoQueue, Severity: D3D12_MESSAGE_SEVERITY, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetBreakOnSeverity(self, Severity, bEnable);
+    }
+    pub fn SetBreakOnID(self: *const ID3D12InfoQueue, ID: D3D12_MESSAGE_ID, bEnable: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.SetBreakOnID(self, ID, bEnable);
+    }
+    pub fn GetBreakOnCategory(self: *const ID3D12InfoQueue, Category: D3D12_MESSAGE_CATEGORY) callconv(.Inline) BOOL {
+        return self.vtable.GetBreakOnCategory(self, Category);
+    }
+    pub fn GetBreakOnSeverity(self: *const ID3D12InfoQueue, Severity: D3D12_MESSAGE_SEVERITY) callconv(.Inline) BOOL {
+        return self.vtable.GetBreakOnSeverity(self, Severity);
+    }
+    pub fn GetBreakOnID(self: *const ID3D12InfoQueue, ID: D3D12_MESSAGE_ID) callconv(.Inline) BOOL {
+        return self.vtable.GetBreakOnID(self, ID);
+    }
+    pub fn SetMuteDebugOutput(self: *const ID3D12InfoQueue, bMute: BOOL) callconv(.Inline) void {
+        return self.vtable.SetMuteDebugOutput(self, bMute);
+    }
+    pub fn GetMuteDebugOutput(self: *const ID3D12InfoQueue) callconv(.Inline) BOOL {
+        return self.vtable.GetMuteDebugOutput(self);
+    }
 };
 
 pub const D3D12_MESSAGE_CALLBACK_FLAGS = enum(i32) {
@@ -12154,140 +10420,78 @@ pub const D3D12_MESSAGE_CALLBACK_FLAGS = enum(i32) {
 pub const D3D12_MESSAGE_CALLBACK_FLAG_NONE = D3D12_MESSAGE_CALLBACK_FLAGS.FLAG_NONE;
 pub const D3D12_MESSAGE_CALLBACK_IGNORE_FILTERS = D3D12_MESSAGE_CALLBACK_FLAGS.IGNORE_FILTERS;
 
-pub const D3D12MessageFunc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        Category: D3D12_MESSAGE_CATEGORY,
-        Severity: D3D12_MESSAGE_SEVERITY,
-        ID: D3D12_MESSAGE_ID,
-        pDescription: ?[*:0]const u8,
-        pContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        Category: D3D12_MESSAGE_CATEGORY,
-        Severity: D3D12_MESSAGE_SEVERITY,
-        ID: D3D12_MESSAGE_ID,
-        pDescription: ?[*:0]const u8,
-        pContext: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const D3D12MessageFunc = *const fn(
+    Category: D3D12_MESSAGE_CATEGORY,
+    Severity: D3D12_MESSAGE_SEVERITY,
+    ID: D3D12_MESSAGE_ID,
+    pDescription: ?[*:0]const u8,
+    pContext: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12InfoQueue1_Value = Guid.initString("2852dd88-b484-4c0c-b6b1-67168500e600");
 pub const IID_ID3D12InfoQueue1 = &IID_ID3D12InfoQueue1_Value;
-pub const ID3D12InfoQueue1 = extern struct {
+pub const ID3D12InfoQueue1 = extern union {
     pub const VTable = extern struct {
         base: ID3D12InfoQueue.VTable,
-        RegisterMessageCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue1,
-                CallbackFunc: ?D3D12MessageFunc,
-                CallbackFilterFlags: D3D12_MESSAGE_CALLBACK_FLAGS,
-                pContext: ?*anyopaque,
-                pCallbackCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue1,
-                CallbackFunc: ?D3D12MessageFunc,
-                CallbackFilterFlags: D3D12_MESSAGE_CALLBACK_FLAGS,
-                pContext: ?*anyopaque,
-                pCallbackCookie: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnregisterMessageCallback: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12InfoQueue1,
-                CallbackCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12InfoQueue1,
-                CallbackCookie: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        RegisterMessageCallback: *const fn(
+            self: *const ID3D12InfoQueue1,
+            CallbackFunc: ?D3D12MessageFunc,
+            CallbackFilterFlags: D3D12_MESSAGE_CALLBACK_FLAGS,
+            pContext: ?*anyopaque,
+            pCallbackCookie: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnregisterMessageCallback: *const fn(
+            self: *const ID3D12InfoQueue1,
+            CallbackCookie: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12InfoQueue.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue1_RegisterMessageCallback(self: *const T, CallbackFunc: ?D3D12MessageFunc, CallbackFilterFlags: D3D12_MESSAGE_CALLBACK_FLAGS, pContext: ?*anyopaque, pCallbackCookie: ?*u32) HRESULT {
-                return @as(*const ID3D12InfoQueue1.VTable, @ptrCast(self.vtable)).RegisterMessageCallback(@as(*const ID3D12InfoQueue1, @ptrCast(self)), CallbackFunc, CallbackFilterFlags, pContext, pCallbackCookie);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12InfoQueue1_UnregisterMessageCallback(self: *const T, CallbackCookie: u32) HRESULT {
-                return @as(*const ID3D12InfoQueue1.VTable, @ptrCast(self.vtable)).UnregisterMessageCallback(@as(*const ID3D12InfoQueue1, @ptrCast(self)), CallbackCookie);
-            }
-        };
+    ID3D12InfoQueue: ID3D12InfoQueue,
+    IUnknown: IUnknown,
+    pub fn RegisterMessageCallback(self: *const ID3D12InfoQueue1, CallbackFunc: ?D3D12MessageFunc, CallbackFilterFlags: D3D12_MESSAGE_CALLBACK_FLAGS, pContext: ?*anyopaque, pCallbackCookie: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterMessageCallback(self, CallbackFunc, CallbackFilterFlags, pContext, pCallbackCookie);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UnregisterMessageCallback(self: *const ID3D12InfoQueue1, CallbackCookie: u32) callconv(.Inline) HRESULT {
+        return self.vtable.UnregisterMessageCallback(self, CallbackCookie);
+    }
 };
 
-pub const PFN_D3D12_CREATE_DEVICE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*IUnknown,
-        param1: D3D_FEATURE_LEVEL,
-        param2: ?*const Guid,
-        param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        param0: ?*IUnknown,
-        param1: D3D_FEATURE_LEVEL,
-        param2: ?*const Guid,
-        param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const PFN_D3D12_CREATE_DEVICE = *const fn(
+    param0: ?*IUnknown,
+    param1: D3D_FEATURE_LEVEL,
+    param2: ?*const Guid,
+    param3: ?**anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_D3D12_GET_DEBUG_INTERFACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*const Guid,
-        param1: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        param0: ?*const Guid,
-        param1: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const PFN_D3D12_GET_DEBUG_INTERFACE = *const fn(
+    param0: ?*const Guid,
+    param1: ?**anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
-pub const PFN_D3D12_GET_INTERFACE = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*const Guid,
-        param1: ?*const Guid,
-        param2: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-    else => *const fn (
-        param0: ?*const Guid,
-        param1: ?*const Guid,
-        param2: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-};
+pub const PFN_D3D12_GET_INTERFACE = *const fn(
+    param0: ?*const Guid,
+    param1: ?*const Guid,
+    param2: ?**anyopaque,
+) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12SDKConfiguration_Value = Guid.initString("e9eb5314-33aa-42b2-a718-d77f58b1f1c7");
 pub const IID_ID3D12SDKConfiguration = &IID_ID3D12SDKConfiguration_Value;
-pub const ID3D12SDKConfiguration = extern struct {
+pub const ID3D12SDKConfiguration = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetSDKVersion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12SDKConfiguration,
-                SDKVersion: u32,
-                SDKPath: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12SDKConfiguration,
-                SDKVersion: u32,
-                SDKPath: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetSDKVersion: *const fn(
+            self: *const ID3D12SDKConfiguration,
+            SDKVersion: u32,
+            SDKPath: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12SDKConfiguration_SetSDKVersion(self: *const T, SDKVersion: u32, SDKPath: ?[*:0]const u8) HRESULT {
-                return @as(*const ID3D12SDKConfiguration.VTable, @ptrCast(self.vtable)).SetSDKVersion(@as(*const ID3D12SDKConfiguration, @ptrCast(self)), SDKVersion, SDKPath);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetSDKVersion(self: *const ID3D12SDKConfiguration, SDKVersion: u32, SDKPath: ?[*:0]const u8) callconv(.Inline) HRESULT {
+        return self.vtable.SetSDKVersion(self, SDKVersion, SDKPath);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_AXIS_SHADING_RATE = enum(i32) {
@@ -12329,49 +10533,38 @@ pub const D3D12_SHADING_RATE_COMBINER_MIN = D3D12_SHADING_RATE_COMBINER.MIN;
 pub const D3D12_SHADING_RATE_COMBINER_MAX = D3D12_SHADING_RATE_COMBINER.MAX;
 pub const D3D12_SHADING_RATE_COMBINER_SUM = D3D12_SHADING_RATE_COMBINER.SUM;
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12GraphicsCommandList5_Value = Guid.initString("55050859-4024-474c-87f5-6472eaee44ea");
 pub const IID_ID3D12GraphicsCommandList5 = &IID_ID3D12GraphicsCommandList5_Value;
-pub const ID3D12GraphicsCommandList5 = extern struct {
+pub const ID3D12GraphicsCommandList5 = extern union {
     pub const VTable = extern struct {
         base: ID3D12GraphicsCommandList4.VTable,
-        RSSetShadingRate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList5,
-                baseShadingRate: D3D12_SHADING_RATE,
-                combiners: ?*const D3D12_SHADING_RATE_COMBINER,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList5,
-                baseShadingRate: D3D12_SHADING_RATE,
-                combiners: ?*const D3D12_SHADING_RATE_COMBINER,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
-        RSSetShadingRateImage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList5,
-                shadingRateImage: ?*ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList5,
-                shadingRateImage: ?*ID3D12Resource,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        RSSetShadingRate: *const fn(
+            self: *const ID3D12GraphicsCommandList5,
+            baseShadingRate: D3D12_SHADING_RATE,
+            combiners: ?*const D3D12_SHADING_RATE_COMBINER,
+        ) callconv(@import("std").os.windows.WINAPI) void,
+        RSSetShadingRateImage: *const fn(
+            self: *const ID3D12GraphicsCommandList5,
+            shadingRateImage: ?*ID3D12Resource,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12GraphicsCommandList4.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList5_RSSetShadingRate(self: *const T, baseShadingRate: D3D12_SHADING_RATE, combiners: ?*const D3D12_SHADING_RATE_COMBINER) void {
-                return @as(*const ID3D12GraphicsCommandList5.VTable, @ptrCast(self.vtable)).RSSetShadingRate(@as(*const ID3D12GraphicsCommandList5, @ptrCast(self)), baseShadingRate, combiners);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList5_RSSetShadingRateImage(self: *const T, shadingRateImage: ?*ID3D12Resource) void {
-                return @as(*const ID3D12GraphicsCommandList5.VTable, @ptrCast(self.vtable)).RSSetShadingRateImage(@as(*const ID3D12GraphicsCommandList5, @ptrCast(self)), shadingRateImage);
-            }
-        };
+    ID3D12GraphicsCommandList4: ID3D12GraphicsCommandList4,
+    ID3D12GraphicsCommandList3: ID3D12GraphicsCommandList3,
+    ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn RSSetShadingRate(self: *const ID3D12GraphicsCommandList5, baseShadingRate: D3D12_SHADING_RATE, combiners: ?*const D3D12_SHADING_RATE_COMBINER) callconv(.Inline) void {
+        return self.vtable.RSSetShadingRate(self, baseShadingRate, combiners);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn RSSetShadingRateImage(self: *const ID3D12GraphicsCommandList5, shadingRateImage: ?*ID3D12Resource) callconv(.Inline) void {
+        return self.vtable.RSSetShadingRateImage(self, shadingRateImage);
+    }
 };
 
 pub const D3D12_DISPATCH_MESH_ARGUMENTS = extern struct {
@@ -12380,37 +10573,33 @@ pub const D3D12_DISPATCH_MESH_ARGUMENTS = extern struct {
     ThreadGroupCountZ: u32,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12GraphicsCommandList6_Value = Guid.initString("c3827890-e548-4cfa-96cf-5689a9370f80");
 pub const IID_ID3D12GraphicsCommandList6 = &IID_ID3D12GraphicsCommandList6_Value;
-pub const ID3D12GraphicsCommandList6 = extern struct {
+pub const ID3D12GraphicsCommandList6 = extern union {
     pub const VTable = extern struct {
         base: ID3D12GraphicsCommandList5.VTable,
-        DispatchMesh: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12GraphicsCommandList6,
-                ThreadGroupCountX: u32,
-                ThreadGroupCountY: u32,
-                ThreadGroupCountZ: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-            else => *const fn (
-                self: *const ID3D12GraphicsCommandList6,
-                ThreadGroupCountX: u32,
-                ThreadGroupCountY: u32,
-                ThreadGroupCountZ: u32,
-            ) callconv(@import("std").os.windows.WINAPI) void,
-        },
+        DispatchMesh: *const fn(
+            self: *const ID3D12GraphicsCommandList6,
+            ThreadGroupCountX: u32,
+            ThreadGroupCountY: u32,
+            ThreadGroupCountZ: u32,
+        ) callconv(@import("std").os.windows.WINAPI) void,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ID3D12GraphicsCommandList5.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12GraphicsCommandList6_DispatchMesh(self: *const T, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) void {
-                return @as(*const ID3D12GraphicsCommandList6.VTable, @ptrCast(self.vtable)).DispatchMesh(@as(*const ID3D12GraphicsCommandList6, @ptrCast(self)), ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
-            }
-        };
+    ID3D12GraphicsCommandList5: ID3D12GraphicsCommandList5,
+    ID3D12GraphicsCommandList4: ID3D12GraphicsCommandList4,
+    ID3D12GraphicsCommandList3: ID3D12GraphicsCommandList3,
+    ID3D12GraphicsCommandList2: ID3D12GraphicsCommandList2,
+    ID3D12GraphicsCommandList1: ID3D12GraphicsCommandList1,
+    ID3D12GraphicsCommandList: ID3D12GraphicsCommandList,
+    ID3D12CommandList: ID3D12CommandList,
+    ID3D12DeviceChild: ID3D12DeviceChild,
+    ID3D12Object: ID3D12Object,
+    IUnknown: IUnknown,
+    pub fn DispatchMesh(self: *const ID3D12GraphicsCommandList6, ThreadGroupCountX: u32, ThreadGroupCountY: u32, ThreadGroupCountZ: u32) callconv(.Inline) void {
+        return self.vtable.DispatchMesh(self, ThreadGroupCountX, ThreadGroupCountY, ThreadGroupCountZ);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const D3D12_SHADER_VERSION_TYPE = enum(i32) {
@@ -12584,750 +10773,398 @@ pub const D3D12_PARAMETER_DESC = extern struct {
     FirstOutComponent: u32,
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ShaderReflectionType_Value = Guid.initString("e913c351-783d-48ca-a1d1-4f306284ad56");
 pub const IID_ID3D12ShaderReflectionType = &IID_ID3D12ShaderReflectionType_Value;
-pub const ID3D12ShaderReflectionType = extern struct {
+pub const ID3D12ShaderReflectionType = extern union {
     pub const VTable = extern struct {
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                pDesc: ?*D3D12_SHADER_TYPE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                pDesc: ?*D3D12_SHADER_TYPE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMemberTypeByIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-        },
-        GetMemberTypeByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-        },
-        GetMemberTypeName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
-        },
-        IsEqual: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                pType: ?*ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                pType: ?*ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSubType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-        },
-        GetBaseClass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-        },
-        GetNumInterfaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetInterfaceByIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                uIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                uIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-        },
-        IsOfType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                pType: ?*ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                pType: ?*ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImplementsInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionType,
-                pBase: ?*ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionType,
-                pBase: ?*ID3D12ShaderReflectionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            pDesc: ?*D3D12_SHADER_TYPE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMemberTypeByIndex: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            Index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
+        GetMemberTypeByName: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            Name: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
+        GetMemberTypeName: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            Index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) ?PSTR,
+        IsEqual: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            pType: ?*ID3D12ShaderReflectionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSubType: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
+        GetBaseClass: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
+        GetNumInterfaces: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetInterfaceByIndex: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            uIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
+        IsOfType: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            pType: ?*ID3D12ShaderReflectionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImplementsInterface: *const fn(
+            self: *const ID3D12ShaderReflectionType,
+            pBase: ?*ID3D12ShaderReflectionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_TYPE_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetMemberTypeByIndex(self: *const T, Index: u32) ?*ID3D12ShaderReflectionType {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByIndex(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), Index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetMemberTypeByName(self: *const T, Name: ?[*:0]const u8) ?*ID3D12ShaderReflectionType {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeByName(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), Name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetMemberTypeName(self: *const T, Index: u32) ?PSTR {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetMemberTypeName(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), Index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_IsEqual(self: *const T, pType: ?*ID3D12ShaderReflectionType) HRESULT {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).IsEqual(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetSubType(self: *const T) ?*ID3D12ShaderReflectionType {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetSubType(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetBaseClass(self: *const T) ?*ID3D12ShaderReflectionType {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetBaseClass(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetNumInterfaces(self: *const T) u32 {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetNumInterfaces(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_GetInterfaceByIndex(self: *const T, uIndex: u32) ?*ID3D12ShaderReflectionType {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).GetInterfaceByIndex(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), uIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_IsOfType(self: *const T, pType: ?*ID3D12ShaderReflectionType) HRESULT {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).IsOfType(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionType_ImplementsInterface(self: *const T, pBase: ?*ID3D12ShaderReflectionType) HRESULT {
-                return @as(*const ID3D12ShaderReflectionType.VTable, @ptrCast(self.vtable)).ImplementsInterface(@as(*const ID3D12ShaderReflectionType, @ptrCast(self)), pBase);
-            }
-        };
+    pub fn GetDesc(self: *const ID3D12ShaderReflectionType, pDesc: ?*D3D12_SHADER_TYPE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetMemberTypeByIndex(self: *const ID3D12ShaderReflectionType, Index: u32) callconv(.Inline) ?*ID3D12ShaderReflectionType {
+        return self.vtable.GetMemberTypeByIndex(self, Index);
+    }
+    pub fn GetMemberTypeByName(self: *const ID3D12ShaderReflectionType, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionType {
+        return self.vtable.GetMemberTypeByName(self, Name);
+    }
+    pub fn GetMemberTypeName(self: *const ID3D12ShaderReflectionType, Index: u32) callconv(.Inline) ?PSTR {
+        return self.vtable.GetMemberTypeName(self, Index);
+    }
+    pub fn IsEqual(self: *const ID3D12ShaderReflectionType, pType: ?*ID3D12ShaderReflectionType) callconv(.Inline) HRESULT {
+        return self.vtable.IsEqual(self, pType);
+    }
+    pub fn GetSubType(self: *const ID3D12ShaderReflectionType) callconv(.Inline) ?*ID3D12ShaderReflectionType {
+        return self.vtable.GetSubType(self);
+    }
+    pub fn GetBaseClass(self: *const ID3D12ShaderReflectionType) callconv(.Inline) ?*ID3D12ShaderReflectionType {
+        return self.vtable.GetBaseClass(self);
+    }
+    pub fn GetNumInterfaces(self: *const ID3D12ShaderReflectionType) callconv(.Inline) u32 {
+        return self.vtable.GetNumInterfaces(self);
+    }
+    pub fn GetInterfaceByIndex(self: *const ID3D12ShaderReflectionType, uIndex: u32) callconv(.Inline) ?*ID3D12ShaderReflectionType {
+        return self.vtable.GetInterfaceByIndex(self, uIndex);
+    }
+    pub fn IsOfType(self: *const ID3D12ShaderReflectionType, pType: ?*ID3D12ShaderReflectionType) callconv(.Inline) HRESULT {
+        return self.vtable.IsOfType(self, pType);
+    }
+    pub fn ImplementsInterface(self: *const ID3D12ShaderReflectionType, pBase: ?*ID3D12ShaderReflectionType) callconv(.Inline) HRESULT {
+        return self.vtable.ImplementsInterface(self, pBase);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ShaderReflectionVariable_Value = Guid.initString("8337a8a6-a216-444a-b2f4-314733a73aea");
 pub const IID_ID3D12ShaderReflectionVariable = &IID_ID3D12ShaderReflectionVariable_Value;
-pub const ID3D12ShaderReflectionVariable = extern struct {
+pub const ID3D12ShaderReflectionVariable = extern union {
     pub const VTable = extern struct {
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionVariable,
-                pDesc: ?*D3D12_SHADER_VARIABLE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionVariable,
-                pDesc: ?*D3D12_SHADER_VARIABLE_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionVariable,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionVariable,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
-        },
-        GetBuffer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionVariable,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionVariable,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-        },
-        GetInterfaceSlot: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionVariable,
-                uArrayIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionVariable,
-                uArrayIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12ShaderReflectionVariable,
+            pDesc: ?*D3D12_SHADER_VARIABLE_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetType: *const fn(
+            self: *const ID3D12ShaderReflectionVariable,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionType,
+        GetBuffer: *const fn(
+            self: *const ID3D12ShaderReflectionVariable,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
+        GetInterfaceSlot: *const fn(
+            self: *const ID3D12ShaderReflectionVariable,
+            uArrayIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionVariable_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_VARIABLE_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionVariable_GetType(self: *const T) ?*ID3D12ShaderReflectionType {
-                return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetType(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionVariable_GetBuffer(self: *const T) ?*ID3D12ShaderReflectionConstantBuffer {
-                return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetBuffer(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionVariable_GetInterfaceSlot(self: *const T, uArrayIndex: u32) u32 {
-                return @as(*const ID3D12ShaderReflectionVariable.VTable, @ptrCast(self.vtable)).GetInterfaceSlot(@as(*const ID3D12ShaderReflectionVariable, @ptrCast(self)), uArrayIndex);
-            }
-        };
+    pub fn GetDesc(self: *const ID3D12ShaderReflectionVariable, pDesc: ?*D3D12_SHADER_VARIABLE_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetType(self: *const ID3D12ShaderReflectionVariable) callconv(.Inline) ?*ID3D12ShaderReflectionType {
+        return self.vtable.GetType(self);
+    }
+    pub fn GetBuffer(self: *const ID3D12ShaderReflectionVariable) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
+        return self.vtable.GetBuffer(self);
+    }
+    pub fn GetInterfaceSlot(self: *const ID3D12ShaderReflectionVariable, uArrayIndex: u32) callconv(.Inline) u32 {
+        return self.vtable.GetInterfaceSlot(self, uArrayIndex);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ShaderReflectionConstantBuffer_Value = Guid.initString("c59598b4-48b3-4869-b9b1-b1618b14a8b7");
 pub const IID_ID3D12ShaderReflectionConstantBuffer = &IID_ID3D12ShaderReflectionConstantBuffer_Value;
-pub const ID3D12ShaderReflectionConstantBuffer = extern struct {
+pub const ID3D12ShaderReflectionConstantBuffer = extern union {
     pub const VTable = extern struct {
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionConstantBuffer,
-                pDesc: ?*D3D12_SHADER_BUFFER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionConstantBuffer,
-                pDesc: ?*D3D12_SHADER_BUFFER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVariableByIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionConstantBuffer,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionConstantBuffer,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-        },
-        GetVariableByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflectionConstantBuffer,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-            else => *const fn (
-                self: *const ID3D12ShaderReflectionConstantBuffer,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12ShaderReflectionConstantBuffer,
+            pDesc: ?*D3D12_SHADER_BUFFER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVariableByIndex: *const fn(
+            self: *const ID3D12ShaderReflectionConstantBuffer,
+            Index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
+        GetVariableByName: *const fn(
+            self: *const ID3D12ShaderReflectionConstantBuffer,
+            Name: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionConstantBuffer_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_BUFFER_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflectionConstantBuffer, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionConstantBuffer_GetVariableByIndex(self: *const T, Index: u32) ?*ID3D12ShaderReflectionVariable {
-                return @as(*const ID3D12ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByIndex(@as(*const ID3D12ShaderReflectionConstantBuffer, @ptrCast(self)), Index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflectionConstantBuffer_GetVariableByName(self: *const T, Name: ?[*:0]const u8) ?*ID3D12ShaderReflectionVariable {
-                return @as(*const ID3D12ShaderReflectionConstantBuffer.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D12ShaderReflectionConstantBuffer, @ptrCast(self)), Name);
-            }
-        };
+    pub fn GetDesc(self: *const ID3D12ShaderReflectionConstantBuffer, pDesc: ?*D3D12_SHADER_BUFFER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetVariableByIndex(self: *const ID3D12ShaderReflectionConstantBuffer, Index: u32) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
+        return self.vtable.GetVariableByIndex(self, Index);
+    }
+    pub fn GetVariableByName(self: *const ID3D12ShaderReflectionConstantBuffer, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
+        return self.vtable.GetVariableByName(self, Name);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12ShaderReflection_Value = Guid.initString("5a58797d-a72c-478d-8ba2-efc6b0efe88e");
 pub const IID_ID3D12ShaderReflection = &IID_ID3D12ShaderReflection_Value;
-pub const ID3D12ShaderReflection = extern struct {
+pub const ID3D12ShaderReflection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                pDesc: ?*D3D12_SHADER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                pDesc: ?*D3D12_SHADER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstantBufferByIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                Index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-        },
-        GetConstantBufferByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-        },
-        GetResourceBindingDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                ResourceIndex: u32,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                ResourceIndex: u32,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInputParameterDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                ParameterIndex: u32,
-                pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                ParameterIndex: u32,
-                pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputParameterDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                ParameterIndex: u32,
-                pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                ParameterIndex: u32,
-                pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPatchConstantParameterDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                ParameterIndex: u32,
-                pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                ParameterIndex: u32,
-                pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVariableByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-        },
-        GetResourceBindingDescByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                Name: ?[*:0]const u8,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                Name: ?[*:0]const u8,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMovInstructionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetMovcInstructionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetConversionInstructionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetBitwiseInstructionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetGSInputPrimitive: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) D3D_PRIMITIVE,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) D3D_PRIMITIVE,
-        },
-        IsSampleFrequencyShader: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetNumInterfaceSlots: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetMinFeatureLevel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                pLevel: ?*D3D_FEATURE_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                pLevel: ?*D3D_FEATURE_LEVEL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetThreadGroupSize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-                pSizeX: ?*u32,
-                pSizeY: ?*u32,
-                pSizeZ: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-                pSizeX: ?*u32,
-                pSizeY: ?*u32,
-                pSizeZ: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        GetRequiresFlags: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-            else => *const fn (
-                self: *const ID3D12ShaderReflection,
-            ) callconv(@import("std").os.windows.WINAPI) u64,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12ShaderReflection,
+            pDesc: ?*D3D12_SHADER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstantBufferByIndex: *const fn(
+            self: *const ID3D12ShaderReflection,
+            Index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
+        GetConstantBufferByName: *const fn(
+            self: *const ID3D12ShaderReflection,
+            Name: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
+        GetResourceBindingDesc: *const fn(
+            self: *const ID3D12ShaderReflection,
+            ResourceIndex: u32,
+            pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInputParameterDesc: *const fn(
+            self: *const ID3D12ShaderReflection,
+            ParameterIndex: u32,
+            pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputParameterDesc: *const fn(
+            self: *const ID3D12ShaderReflection,
+            ParameterIndex: u32,
+            pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPatchConstantParameterDesc: *const fn(
+            self: *const ID3D12ShaderReflection,
+            ParameterIndex: u32,
+            pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVariableByName: *const fn(
+            self: *const ID3D12ShaderReflection,
+            Name: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
+        GetResourceBindingDescByName: *const fn(
+            self: *const ID3D12ShaderReflection,
+            Name: ?[*:0]const u8,
+            pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMovInstructionCount: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetMovcInstructionCount: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetConversionInstructionCount: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetBitwiseInstructionCount: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetGSInputPrimitive: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) D3D_PRIMITIVE,
+        IsSampleFrequencyShader: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetNumInterfaceSlots: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetMinFeatureLevel: *const fn(
+            self: *const ID3D12ShaderReflection,
+            pLevel: ?*D3D_FEATURE_LEVEL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetThreadGroupSize: *const fn(
+            self: *const ID3D12ShaderReflection,
+            pSizeX: ?*u32,
+            pSizeY: ?*u32,
+            pSizeZ: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        GetRequiresFlags: *const fn(
+            self: *const ID3D12ShaderReflection,
+        ) callconv(@import("std").os.windows.WINAPI) u64,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetDesc(self: *const T, pDesc: ?*D3D12_SHADER_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetConstantBufferByIndex(self: *const T, Index: u32) ?*ID3D12ShaderReflectionConstantBuffer {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetConstantBufferByName(self: *const T, Name: ?[*:0]const u8) ?*ID3D12ShaderReflectionConstantBuffer {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetResourceBindingDesc(self: *const T, ResourceIndex: u32, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ResourceIndex, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetInputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetInputParameterDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetOutputParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetOutputParameterDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetPatchConstantParameterDesc(self: *const T, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetPatchConstantParameterDesc(@as(*const ID3D12ShaderReflection, @ptrCast(self)), ParameterIndex, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetVariableByName(self: *const T, Name: ?[*:0]const u8) ?*ID3D12ShaderReflectionVariable {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetResourceBindingDescByName(self: *const T, Name: ?[*:0]const u8, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) HRESULT {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D12ShaderReflection, @ptrCast(self)), Name, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetMovInstructionCount(self: *const T) u32 {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetMovInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetMovcInstructionCount(self: *const T) u32 {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetMovcInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetConversionInstructionCount(self: *const T) u32 {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetConversionInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetBitwiseInstructionCount(self: *const T) u32 {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetBitwiseInstructionCount(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetGSInputPrimitive(self: *const T) D3D_PRIMITIVE {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetGSInputPrimitive(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_IsSampleFrequencyShader(self: *const T) BOOL {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).IsSampleFrequencyShader(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetNumInterfaceSlots(self: *const T) u32 {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetNumInterfaceSlots(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetMinFeatureLevel(self: *const T, pLevel: ?*D3D_FEATURE_LEVEL) HRESULT {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetMinFeatureLevel(@as(*const ID3D12ShaderReflection, @ptrCast(self)), pLevel);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetThreadGroupSize(self: *const T, pSizeX: ?*u32, pSizeY: ?*u32, pSizeZ: ?*u32) u32 {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetThreadGroupSize(@as(*const ID3D12ShaderReflection, @ptrCast(self)), pSizeX, pSizeY, pSizeZ);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12ShaderReflection_GetRequiresFlags(self: *const T) u64 {
-                return @as(*const ID3D12ShaderReflection.VTable, @ptrCast(self.vtable)).GetRequiresFlags(@as(*const ID3D12ShaderReflection, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const ID3D12ShaderReflection, pDesc: ?*D3D12_SHADER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetConstantBufferByIndex(self: *const ID3D12ShaderReflection, Index: u32) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
+        return self.vtable.GetConstantBufferByIndex(self, Index);
+    }
+    pub fn GetConstantBufferByName(self: *const ID3D12ShaderReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
+        return self.vtable.GetConstantBufferByName(self, Name);
+    }
+    pub fn GetResourceBindingDesc(self: *const ID3D12ShaderReflection, ResourceIndex: u32, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetResourceBindingDesc(self, ResourceIndex, pDesc);
+    }
+    pub fn GetInputParameterDesc(self: *const ID3D12ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetInputParameterDesc(self, ParameterIndex, pDesc);
+    }
+    pub fn GetOutputParameterDesc(self: *const ID3D12ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetOutputParameterDesc(self, ParameterIndex, pDesc);
+    }
+    pub fn GetPatchConstantParameterDesc(self: *const ID3D12ShaderReflection, ParameterIndex: u32, pDesc: ?*D3D12_SIGNATURE_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetPatchConstantParameterDesc(self, ParameterIndex, pDesc);
+    }
+    pub fn GetVariableByName(self: *const ID3D12ShaderReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
+        return self.vtable.GetVariableByName(self, Name);
+    }
+    pub fn GetResourceBindingDescByName(self: *const ID3D12ShaderReflection, Name: ?[*:0]const u8, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetResourceBindingDescByName(self, Name, pDesc);
+    }
+    pub fn GetMovInstructionCount(self: *const ID3D12ShaderReflection) callconv(.Inline) u32 {
+        return self.vtable.GetMovInstructionCount(self);
+    }
+    pub fn GetMovcInstructionCount(self: *const ID3D12ShaderReflection) callconv(.Inline) u32 {
+        return self.vtable.GetMovcInstructionCount(self);
+    }
+    pub fn GetConversionInstructionCount(self: *const ID3D12ShaderReflection) callconv(.Inline) u32 {
+        return self.vtable.GetConversionInstructionCount(self);
+    }
+    pub fn GetBitwiseInstructionCount(self: *const ID3D12ShaderReflection) callconv(.Inline) u32 {
+        return self.vtable.GetBitwiseInstructionCount(self);
+    }
+    pub fn GetGSInputPrimitive(self: *const ID3D12ShaderReflection) callconv(.Inline) D3D_PRIMITIVE {
+        return self.vtable.GetGSInputPrimitive(self);
+    }
+    pub fn IsSampleFrequencyShader(self: *const ID3D12ShaderReflection) callconv(.Inline) BOOL {
+        return self.vtable.IsSampleFrequencyShader(self);
+    }
+    pub fn GetNumInterfaceSlots(self: *const ID3D12ShaderReflection) callconv(.Inline) u32 {
+        return self.vtable.GetNumInterfaceSlots(self);
+    }
+    pub fn GetMinFeatureLevel(self: *const ID3D12ShaderReflection, pLevel: ?*D3D_FEATURE_LEVEL) callconv(.Inline) HRESULT {
+        return self.vtable.GetMinFeatureLevel(self, pLevel);
+    }
+    pub fn GetThreadGroupSize(self: *const ID3D12ShaderReflection, pSizeX: ?*u32, pSizeY: ?*u32, pSizeZ: ?*u32) callconv(.Inline) u32 {
+        return self.vtable.GetThreadGroupSize(self, pSizeX, pSizeY, pSizeZ);
+    }
+    pub fn GetRequiresFlags(self: *const ID3D12ShaderReflection) callconv(.Inline) u64 {
+        return self.vtable.GetRequiresFlags(self);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12LibraryReflection_Value = Guid.initString("8e349d19-54db-4a56-9dc9-119d87bdb804");
 pub const IID_ID3D12LibraryReflection = &IID_ID3D12LibraryReflection_Value;
-pub const ID3D12LibraryReflection = extern struct {
+pub const ID3D12LibraryReflection = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12LibraryReflection,
-                pDesc: ?*D3D12_LIBRARY_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12LibraryReflection,
-                pDesc: ?*D3D12_LIBRARY_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFunctionByIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12LibraryReflection,
-                FunctionIndex: i32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12FunctionReflection,
-            else => *const fn (
-                self: *const ID3D12LibraryReflection,
-                FunctionIndex: i32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12FunctionReflection,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12LibraryReflection,
+            pDesc: ?*D3D12_LIBRARY_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFunctionByIndex: *const fn(
+            self: *const ID3D12LibraryReflection,
+            FunctionIndex: i32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12FunctionReflection,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12LibraryReflection_GetDesc(self: *const T, pDesc: ?*D3D12_LIBRARY_DESC) HRESULT {
-                return @as(*const ID3D12LibraryReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12LibraryReflection, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12LibraryReflection_GetFunctionByIndex(self: *const T, FunctionIndex: i32) ?*ID3D12FunctionReflection {
-                return @as(*const ID3D12LibraryReflection.VTable, @ptrCast(self.vtable)).GetFunctionByIndex(@as(*const ID3D12LibraryReflection, @ptrCast(self)), FunctionIndex);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDesc(self: *const ID3D12LibraryReflection, pDesc: ?*D3D12_LIBRARY_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFunctionByIndex(self: *const ID3D12LibraryReflection, FunctionIndex: i32) callconv(.Inline) ?*ID3D12FunctionReflection {
+        return self.vtable.GetFunctionByIndex(self, FunctionIndex);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12FunctionReflection_Value = Guid.initString("1108795c-2772-4ba9-b2a8-d464dc7e2799");
 pub const IID_ID3D12FunctionReflection = &IID_ID3D12FunctionReflection_Value;
-pub const ID3D12FunctionReflection = extern struct {
+pub const ID3D12FunctionReflection = extern union {
     pub const VTable = extern struct {
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionReflection,
-                pDesc: ?*D3D12_FUNCTION_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12FunctionReflection,
-                pDesc: ?*D3D12_FUNCTION_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetConstantBufferByIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionReflection,
-                BufferIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-            else => *const fn (
-                self: *const ID3D12FunctionReflection,
-                BufferIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-        },
-        GetConstantBufferByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-            else => *const fn (
-                self: *const ID3D12FunctionReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
-        },
-        GetResourceBindingDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionReflection,
-                ResourceIndex: u32,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12FunctionReflection,
-                ResourceIndex: u32,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVariableByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-            else => *const fn (
-                self: *const ID3D12FunctionReflection,
-                Name: ?[*:0]const u8,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
-        },
-        GetResourceBindingDescByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionReflection,
-                Name: ?[*:0]const u8,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12FunctionReflection,
-                Name: ?[*:0]const u8,
-                pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFunctionParameter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionReflection,
-                ParameterIndex: i32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12FunctionParameterReflection,
-            else => *const fn (
-                self: *const ID3D12FunctionReflection,
-                ParameterIndex: i32,
-            ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12FunctionParameterReflection,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12FunctionReflection,
+            pDesc: ?*D3D12_FUNCTION_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetConstantBufferByIndex: *const fn(
+            self: *const ID3D12FunctionReflection,
+            BufferIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
+        GetConstantBufferByName: *const fn(
+            self: *const ID3D12FunctionReflection,
+            Name: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionConstantBuffer,
+        GetResourceBindingDesc: *const fn(
+            self: *const ID3D12FunctionReflection,
+            ResourceIndex: u32,
+            pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVariableByName: *const fn(
+            self: *const ID3D12FunctionReflection,
+            Name: ?[*:0]const u8,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12ShaderReflectionVariable,
+        GetResourceBindingDescByName: *const fn(
+            self: *const ID3D12FunctionReflection,
+            Name: ?[*:0]const u8,
+            pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFunctionParameter: *const fn(
+            self: *const ID3D12FunctionReflection,
+            ParameterIndex: i32,
+        ) callconv(@import("std").os.windows.WINAPI) ?*ID3D12FunctionParameterReflection,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionReflection_GetDesc(self: *const T, pDesc: ?*D3D12_FUNCTION_DESC) HRESULT {
-                return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12FunctionReflection, @ptrCast(self)), pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionReflection_GetConstantBufferByIndex(self: *const T, BufferIndex: u32) ?*ID3D12ShaderReflectionConstantBuffer {
-                return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByIndex(@as(*const ID3D12FunctionReflection, @ptrCast(self)), BufferIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionReflection_GetConstantBufferByName(self: *const T, Name: ?[*:0]const u8) ?*ID3D12ShaderReflectionConstantBuffer {
-                return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetConstantBufferByName(@as(*const ID3D12FunctionReflection, @ptrCast(self)), Name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionReflection_GetResourceBindingDesc(self: *const T, ResourceIndex: u32, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) HRESULT {
-                return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDesc(@as(*const ID3D12FunctionReflection, @ptrCast(self)), ResourceIndex, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionReflection_GetVariableByName(self: *const T, Name: ?[*:0]const u8) ?*ID3D12ShaderReflectionVariable {
-                return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetVariableByName(@as(*const ID3D12FunctionReflection, @ptrCast(self)), Name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionReflection_GetResourceBindingDescByName(self: *const T, Name: ?[*:0]const u8, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) HRESULT {
-                return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetResourceBindingDescByName(@as(*const ID3D12FunctionReflection, @ptrCast(self)), Name, pDesc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionReflection_GetFunctionParameter(self: *const T, ParameterIndex: i32) ?*ID3D12FunctionParameterReflection {
-                return @as(*const ID3D12FunctionReflection.VTable, @ptrCast(self.vtable)).GetFunctionParameter(@as(*const ID3D12FunctionReflection, @ptrCast(self)), ParameterIndex);
-            }
-        };
+    pub fn GetDesc(self: *const ID3D12FunctionReflection, pDesc: ?*D3D12_FUNCTION_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetConstantBufferByIndex(self: *const ID3D12FunctionReflection, BufferIndex: u32) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
+        return self.vtable.GetConstantBufferByIndex(self, BufferIndex);
+    }
+    pub fn GetConstantBufferByName(self: *const ID3D12FunctionReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionConstantBuffer {
+        return self.vtable.GetConstantBufferByName(self, Name);
+    }
+    pub fn GetResourceBindingDesc(self: *const ID3D12FunctionReflection, ResourceIndex: u32, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetResourceBindingDesc(self, ResourceIndex, pDesc);
+    }
+    pub fn GetVariableByName(self: *const ID3D12FunctionReflection, Name: ?[*:0]const u8) callconv(.Inline) ?*ID3D12ShaderReflectionVariable {
+        return self.vtable.GetVariableByName(self, Name);
+    }
+    pub fn GetResourceBindingDescByName(self: *const ID3D12FunctionReflection, Name: ?[*:0]const u8, pDesc: ?*D3D12_SHADER_INPUT_BIND_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetResourceBindingDescByName(self, Name, pDesc);
+    }
+    pub fn GetFunctionParameter(self: *const ID3D12FunctionReflection, ParameterIndex: i32) callconv(.Inline) ?*ID3D12FunctionParameterReflection {
+        return self.vtable.GetFunctionParameter(self, ParameterIndex);
+    }
 };
 
+// This COM type is Agile, not sure what that means
 const IID_ID3D12FunctionParameterReflection_Value = Guid.initString("ec25f42d-7006-4f2b-b33e-02cc3375733f");
 pub const IID_ID3D12FunctionParameterReflection = &IID_ID3D12FunctionParameterReflection_Value;
-pub const ID3D12FunctionParameterReflection = extern struct {
+pub const ID3D12FunctionParameterReflection = extern union {
     pub const VTable = extern struct {
-        GetDesc: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ID3D12FunctionParameterReflection,
-                pDesc: ?*D3D12_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ID3D12FunctionParameterReflection,
-                pDesc: ?*D3D12_PARAMETER_DESC,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDesc: *const fn(
+            self: *const ID3D12FunctionParameterReflection,
+            pDesc: ?*D3D12_PARAMETER_DESC,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ID3D12FunctionParameterReflection_GetDesc(self: *const T, pDesc: ?*D3D12_PARAMETER_DESC) HRESULT {
-                return @as(*const ID3D12FunctionParameterReflection.VTable, @ptrCast(self.vtable)).GetDesc(@as(*const ID3D12FunctionParameterReflection, @ptrCast(self)), pDesc);
-            }
-        };
+    pub fn GetDesc(self: *const ID3D12FunctionParameterReflection, pDesc: ?*D3D12_PARAMETER_DESC) callconv(.Inline) HRESULT {
+        return self.vtable.GetDesc(self, pDesc);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (8)
@@ -13365,12 +11202,12 @@ pub extern "d3d12" fn D3D12CreateDevice(
     pAdapter: ?*IUnknown,
     MinimumFeatureLevel: D3D_FEATURE_LEVEL,
     riid: ?*const Guid,
-    ppDevice: ?*?*anyopaque,
+    ppDevice: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d12" fn D3D12GetDebugInterface(
     riid: ?*const Guid,
-    ppvDebug: ?*?*anyopaque,
+    ppvDebug: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 pub extern "d3d12" fn D3D12EnableExperimentalFeatures(
@@ -13383,18 +11220,13 @@ pub extern "d3d12" fn D3D12EnableExperimentalFeatures(
 pub extern "d3d12" fn D3D12GetInterface(
     rclsid: ?*const Guid,
     riid: ?*const Guid,
-    ppvDebug: ?*?*anyopaque,
+    ppvDebug: ?**anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (31)
 //--------------------------------------------------------------------------------
@@ -13432,38 +11264,22 @@ const SECURITY_ATTRIBUTES = @import("../security.zig").SECURITY_ATTRIBUTES;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFN_D3D12_SERIALIZE_ROOT_SIGNATURE")) {
-        _ = PFN_D3D12_SERIALIZE_ROOT_SIGNATURE;
-    }
-    if (@hasDecl(@This(), "PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER")) {
-        _ = PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER;
-    }
-    if (@hasDecl(@This(), "PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE")) {
-        _ = PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE;
-    }
-    if (@hasDecl(@This(), "PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER")) {
-        _ = PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER;
-    }
-    if (@hasDecl(@This(), "D3D12MessageFunc")) {
-        _ = D3D12MessageFunc;
-    }
-    if (@hasDecl(@This(), "PFN_D3D12_CREATE_DEVICE")) {
-        _ = PFN_D3D12_CREATE_DEVICE;
-    }
-    if (@hasDecl(@This(), "PFN_D3D12_GET_DEBUG_INTERFACE")) {
-        _ = PFN_D3D12_GET_DEBUG_INTERFACE;
-    }
-    if (@hasDecl(@This(), "PFN_D3D12_GET_INTERFACE")) {
-        _ = PFN_D3D12_GET_INTERFACE;
-    }
+    if (@hasDecl(@This(), "PFN_D3D12_SERIALIZE_ROOT_SIGNATURE")) { _ = PFN_D3D12_SERIALIZE_ROOT_SIGNATURE; }
+    if (@hasDecl(@This(), "PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER")) { _ = PFN_D3D12_CREATE_ROOT_SIGNATURE_DESERIALIZER; }
+    if (@hasDecl(@This(), "PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE")) { _ = PFN_D3D12_SERIALIZE_VERSIONED_ROOT_SIGNATURE; }
+    if (@hasDecl(@This(), "PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER")) { _ = PFN_D3D12_CREATE_VERSIONED_ROOT_SIGNATURE_DESERIALIZER; }
+    if (@hasDecl(@This(), "D3D12MessageFunc")) { _ = D3D12MessageFunc; }
+    if (@hasDecl(@This(), "PFN_D3D12_CREATE_DEVICE")) { _ = PFN_D3D12_CREATE_DEVICE; }
+    if (@hasDecl(@This(), "PFN_D3D12_GET_DEBUG_INTERFACE")) { _ = PFN_D3D12_GET_DEBUG_INTERFACE; }
+    if (@hasDecl(@This(), "PFN_D3D12_GET_INTERFACE")) { _ = PFN_D3D12_GET_INTERFACE; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -6,63 +6,89 @@
 //--------------------------------------------------------------------------------
 // Section: Types (11)
 //--------------------------------------------------------------------------------
-pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = enum(u32) {
-    ALLOWSFW = 128,
-    FLUSHDISK = 4,
-    FORCEIFHUNG = 32,
-    IGNORECURRENTTASK = 2,
-    NOHANG = 8,
-    NOTIMEOUTIFNOTHUNG = 64,
-    POSTMESSAGE = 16,
-    QUERY = 1,
-    SENDNOTIFYMESSAGE = 256,
-    LUID = 1024,
-    RETURNHDESK = 512,
-    _,
-    pub fn initFlags(o: struct {
-        ALLOWSFW: u1 = 0,
-        FLUSHDISK: u1 = 0,
-        FORCEIFHUNG: u1 = 0,
-        IGNORECURRENTTASK: u1 = 0,
-        NOHANG: u1 = 0,
-        NOTIMEOUTIFNOTHUNG: u1 = 0,
-        POSTMESSAGE: u1 = 0,
-        QUERY: u1 = 0,
-        SENDNOTIFYMESSAGE: u1 = 0,
-        LUID: u1 = 0,
-        RETURNHDESK: u1 = 0,
-    }) BROADCAST_SYSTEM_MESSAGE_FLAGS {
-        return @as(BROADCAST_SYSTEM_MESSAGE_FLAGS, @enumFromInt((if (o.ALLOWSFW == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW) else 0) | (if (o.FLUSHDISK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK) else 0) | (if (o.FORCEIFHUNG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG) else 0) | (if (o.IGNORECURRENTTASK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK) else 0) | (if (o.NOHANG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG) else 0) | (if (o.NOTIMEOUTIFNOTHUNG == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG) else 0) | (if (o.POSTMESSAGE == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE) else 0) | (if (o.QUERY == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY) else 0) | (if (o.SENDNOTIFYMESSAGE == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE) else 0) | (if (o.LUID == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID) else 0) | (if (o.RETURNHDESK == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK) else 0)));
-    }
+pub const BROADCAST_SYSTEM_MESSAGE_FLAGS = packed struct(u32) {
+    QUERY: u1 = 0,
+    IGNORECURRENTTASK: u1 = 0,
+    FLUSHDISK: u1 = 0,
+    NOHANG: u1 = 0,
+    POSTMESSAGE: u1 = 0,
+    FORCEIFHUNG: u1 = 0,
+    NOTIMEOUTIFNOTHUNG: u1 = 0,
+    ALLOWSFW: u1 = 0,
+    SENDNOTIFYMESSAGE: u1 = 0,
+    RETURNHDESK: u1 = 0,
+    LUID: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const BSF_ALLOWSFW = BROADCAST_SYSTEM_MESSAGE_FLAGS.ALLOWSFW;
-pub const BSF_FLUSHDISK = BROADCAST_SYSTEM_MESSAGE_FLAGS.FLUSHDISK;
-pub const BSF_FORCEIFHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS.FORCEIFHUNG;
-pub const BSF_IGNORECURRENTTASK = BROADCAST_SYSTEM_MESSAGE_FLAGS.IGNORECURRENTTASK;
-pub const BSF_NOHANG = BROADCAST_SYSTEM_MESSAGE_FLAGS.NOHANG;
-pub const BSF_NOTIMEOUTIFNOTHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS.NOTIMEOUTIFNOTHUNG;
-pub const BSF_POSTMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS.POSTMESSAGE;
-pub const BSF_QUERY = BROADCAST_SYSTEM_MESSAGE_FLAGS.QUERY;
-pub const BSF_SENDNOTIFYMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS.SENDNOTIFYMESSAGE;
-pub const BSF_LUID = BROADCAST_SYSTEM_MESSAGE_FLAGS.LUID;
-pub const BSF_RETURNHDESK = BROADCAST_SYSTEM_MESSAGE_FLAGS.RETURNHDESK;
+pub const BSF_ALLOWSFW = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .ALLOWSFW = 1 };
+pub const BSF_FLUSHDISK = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .FLUSHDISK = 1 };
+pub const BSF_FORCEIFHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .FORCEIFHUNG = 1 };
+pub const BSF_IGNORECURRENTTASK = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .IGNORECURRENTTASK = 1 };
+pub const BSF_NOHANG = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .NOHANG = 1 };
+pub const BSF_NOTIMEOUTIFNOTHUNG = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .NOTIMEOUTIFNOTHUNG = 1 };
+pub const BSF_POSTMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .POSTMESSAGE = 1 };
+pub const BSF_QUERY = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .QUERY = 1 };
+pub const BSF_SENDNOTIFYMESSAGE = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .SENDNOTIFYMESSAGE = 1 };
+pub const BSF_LUID = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .LUID = 1 };
+pub const BSF_RETURNHDESK = BROADCAST_SYSTEM_MESSAGE_FLAGS{ .RETURNHDESK = 1 };
 
-pub const BROADCAST_SYSTEM_MESSAGE_INFO = enum(u32) {
-    LLCOMPONENTS = 0,
-    LLDESKTOPS = 16,
-    PPLICATIONS = 8,
-    _,
-    pub fn initFlags(o: struct {
-        LLCOMPONENTS: u1 = 0,
-        LLDESKTOPS: u1 = 0,
-        PPLICATIONS: u1 = 0,
-    }) BROADCAST_SYSTEM_MESSAGE_INFO {
-        return @as(BROADCAST_SYSTEM_MESSAGE_INFO, @enumFromInt((if (o.LLCOMPONENTS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS) else 0) | (if (o.LLDESKTOPS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS) else 0) | (if (o.PPLICATIONS == 1) @intFromEnum(BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS) else 0)));
-    }
+pub const BROADCAST_SYSTEM_MESSAGE_INFO = packed struct(u32) {
+    _0: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    PPLICATIONS: u1 = 0,
+    LLDESKTOPS: u1 = 0,
+    _5: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    _8: u1 = 0,
+    _9: u1 = 0,
+    _10: u1 = 0,
+    _11: u1 = 0,
+    _12: u1 = 0,
+    _13: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
 };
-pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO.LLCOMPONENTS;
-pub const BSM_ALLDESKTOPS = BROADCAST_SYSTEM_MESSAGE_INFO.LLDESKTOPS;
-pub const BSM_APPLICATIONS = BROADCAST_SYSTEM_MESSAGE_INFO.PPLICATIONS;
+pub const BSM_ALLCOMPONENTS = BROADCAST_SYSTEM_MESSAGE_INFO{ };
+pub const BSM_ALLDESKTOPS = BROADCAST_SYSTEM_MESSAGE_INFO{ .LLDESKTOPS = 1 };
+pub const BSM_APPLICATIONS = BROADCAST_SYSTEM_MESSAGE_INFO{ .PPLICATIONS = 1 };
 
 pub const USER_OBJECT_INFORMATION_INDEX = enum(u32) {
     FLAGS = 1,
@@ -79,55 +105,33 @@ pub const UOI_NAME = USER_OBJECT_INFORMATION_INDEX.NAME;
 pub const UOI_TYPE = USER_OBJECT_INFORMATION_INDEX.TYPE;
 pub const UOI_USER_SID = USER_OBJECT_INFORMATION_INDEX.USER_SID;
 
-pub const WINSTAENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const WINSTAENUMPROCA = *const fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const WINSTAENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const WINSTAENUMPROCW = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DESKTOPENUMPROCA = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        param0: ?PSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const DESKTOPENUMPROCA = *const fn(
+    param0: ?PSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
-pub const DESKTOPENUMPROCW = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-    else => *const fn (
-        param0: ?PWSTR,
-        param1: LPARAM,
-    ) callconv(@import("std").os.windows.WINAPI) BOOL,
-};
+pub const DESKTOPENUMPROCW = *const fn(
+    param0: ?PWSTR,
+    param1: LPARAM,
+) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type has a FreeFunc 'CloseWindowStation', what can Zig do with this information?
-pub const HWINSTA = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HWINSTA = *opaque{};
 
 // TODO: this type has a FreeFunc 'CloseDesktop', what can Zig do with this information?
-pub const HDESK = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HDESK = *opaque{};
 
 pub const USEROBJECTFLAGS = extern struct {
     fInherit: BOOL,
@@ -141,6 +145,7 @@ pub const BSMINFO = extern struct {
     hwnd: ?HWND,
     luid: LUID,
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (31)
@@ -306,7 +311,8 @@ pub extern "user32" fn SetProcessWindowStation(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "user32" fn GetProcessWindowStation() callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
+pub extern "user32" fn GetProcessWindowStation(
+) callconv(@import("std").os.windows.WINAPI) ?HWINSTA;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetUserObjectInformationA(
@@ -383,70 +389,100 @@ pub extern "user32" fn BroadcastSystemMessageW(
     lParam: LPARAM,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (13)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const WINSTAENUMPROC = thismodule.WINSTAENUMPROCA;
-        pub const DESKTOPENUMPROC = thismodule.DESKTOPENUMPROCA;
-        pub const CreateDesktop = thismodule.CreateDesktopA;
-        pub const CreateDesktopEx = thismodule.CreateDesktopExA;
-        pub const OpenDesktop = thismodule.OpenDesktopA;
-        pub const EnumDesktops = thismodule.EnumDesktopsA;
-        pub const CreateWindowStation = thismodule.CreateWindowStationA;
-        pub const OpenWindowStation = thismodule.OpenWindowStationA;
-        pub const EnumWindowStations = thismodule.EnumWindowStationsA;
-        pub const GetUserObjectInformation = thismodule.GetUserObjectInformationA;
-        pub const SetUserObjectInformation = thismodule.SetUserObjectInformationA;
-        pub const BroadcastSystemMessageEx = thismodule.BroadcastSystemMessageExA;
-        pub const BroadcastSystemMessage = thismodule.BroadcastSystemMessageA;
-    },
-    .wide => struct {
-        pub const WINSTAENUMPROC = thismodule.WINSTAENUMPROCW;
-        pub const DESKTOPENUMPROC = thismodule.DESKTOPENUMPROCW;
-        pub const CreateDesktop = thismodule.CreateDesktopW;
-        pub const CreateDesktopEx = thismodule.CreateDesktopExW;
-        pub const OpenDesktop = thismodule.OpenDesktopW;
-        pub const EnumDesktops = thismodule.EnumDesktopsW;
-        pub const CreateWindowStation = thismodule.CreateWindowStationW;
-        pub const OpenWindowStation = thismodule.OpenWindowStationW;
-        pub const EnumWindowStations = thismodule.EnumWindowStationsW;
-        pub const GetUserObjectInformation = thismodule.GetUserObjectInformationW;
-        pub const SetUserObjectInformation = thismodule.SetUserObjectInformationW;
-        pub const BroadcastSystemMessageEx = thismodule.BroadcastSystemMessageExW;
-        pub const BroadcastSystemMessage = thismodule.BroadcastSystemMessageW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const WINSTAENUMPROC = *opaque {};
-        pub const DESKTOPENUMPROC = *opaque {};
-        pub const CreateDesktop = *opaque {};
-        pub const CreateDesktopEx = *opaque {};
-        pub const OpenDesktop = *opaque {};
-        pub const EnumDesktops = *opaque {};
-        pub const CreateWindowStation = *opaque {};
-        pub const OpenWindowStation = *opaque {};
-        pub const EnumWindowStations = *opaque {};
-        pub const GetUserObjectInformation = *opaque {};
-        pub const SetUserObjectInformation = *opaque {};
-        pub const BroadcastSystemMessageEx = *opaque {};
-        pub const BroadcastSystemMessage = *opaque {};
-    } else struct {
-        pub const WINSTAENUMPROC = @compileError("'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const DESKTOPENUMPROC = @compileError("'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDesktop = @compileError("'CreateDesktop' requires that UNICODE be set to true or false in the root module");
-        pub const CreateDesktopEx = @compileError("'CreateDesktopEx' requires that UNICODE be set to true or false in the root module");
-        pub const OpenDesktop = @compileError("'OpenDesktop' requires that UNICODE be set to true or false in the root module");
-        pub const EnumDesktops = @compileError("'EnumDesktops' requires that UNICODE be set to true or false in the root module");
-        pub const CreateWindowStation = @compileError("'CreateWindowStation' requires that UNICODE be set to true or false in the root module");
-        pub const OpenWindowStation = @compileError("'OpenWindowStation' requires that UNICODE be set to true or false in the root module");
-        pub const EnumWindowStations = @compileError("'EnumWindowStations' requires that UNICODE be set to true or false in the root module");
-        pub const GetUserObjectInformation = @compileError("'GetUserObjectInformation' requires that UNICODE be set to true or false in the root module");
-        pub const SetUserObjectInformation = @compileError("'SetUserObjectInformation' requires that UNICODE be set to true or false in the root module");
-        pub const BroadcastSystemMessageEx = @compileError("'BroadcastSystemMessageEx' requires that UNICODE be set to true or false in the root module");
-        pub const BroadcastSystemMessage = @compileError("'BroadcastSystemMessage' requires that UNICODE be set to true or false in the root module");
-    },
+pub const WINSTAENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().WINSTAENUMPROCA,
+    .wide => @This().WINSTAENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'WINSTAENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const DESKTOPENUMPROC = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().DESKTOPENUMPROCA,
+    .wide => @This().DESKTOPENUMPROCW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'DESKTOPENUMPROC' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDesktop = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDesktopA,
+    .wide => @This().CreateDesktopW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDesktop' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateDesktopEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateDesktopExA,
+    .wide => @This().CreateDesktopExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateDesktopEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenDesktop = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenDesktopA,
+    .wide => @This().OpenDesktopW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenDesktop' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumDesktops = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumDesktopsA,
+    .wide => @This().EnumDesktopsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumDesktops' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const CreateWindowStation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().CreateWindowStationA,
+    .wide => @This().CreateWindowStationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'CreateWindowStation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const OpenWindowStation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().OpenWindowStationA,
+    .wide => @This().OpenWindowStationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'OpenWindowStation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const EnumWindowStations = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().EnumWindowStationsA,
+    .wide => @This().EnumWindowStationsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'EnumWindowStations' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const GetUserObjectInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetUserObjectInformationA,
+    .wide => @This().GetUserObjectInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetUserObjectInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const SetUserObjectInformation = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().SetUserObjectInformationA,
+    .wide => @This().SetUserObjectInformationW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'SetUserObjectInformation' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BroadcastSystemMessageEx = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BroadcastSystemMessageExA,
+    .wide => @This().BroadcastSystemMessageExW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BroadcastSystemMessageEx' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const BroadcastSystemMessage = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().BroadcastSystemMessageA,
+    .wide => @This().BroadcastSystemMessageW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'BroadcastSystemMessage' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
@@ -466,26 +502,18 @@ const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "WINSTAENUMPROCA")) {
-        _ = WINSTAENUMPROCA;
-    }
-    if (@hasDecl(@This(), "WINSTAENUMPROCW")) {
-        _ = WINSTAENUMPROCW;
-    }
-    if (@hasDecl(@This(), "DESKTOPENUMPROCA")) {
-        _ = DESKTOPENUMPROCA;
-    }
-    if (@hasDecl(@This(), "DESKTOPENUMPROCW")) {
-        _ = DESKTOPENUMPROCW;
-    }
+    if (@hasDecl(@This(), "WINSTAENUMPROCA")) { _ = WINSTAENUMPROCA; }
+    if (@hasDecl(@This(), "WINSTAENUMPROCW")) { _ = WINSTAENUMPROCW; }
+    if (@hasDecl(@This(), "DESKTOPENUMPROCA")) { _ = DESKTOPENUMPROCA; }
+    if (@hasDecl(@This(), "DESKTOPENUMPROCW")) { _ = DESKTOPENUMPROCW; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

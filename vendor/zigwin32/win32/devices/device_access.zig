@@ -53,182 +53,101 @@ pub const CLSID_DeviceIoControl = Guid.initString("12d3e372-874b-457d-9fdf-73977
 //--------------------------------------------------------------------------------
 const IID_IDeviceRequestCompletionCallback_Value = Guid.initString("999bad24-9acd-45bb-8669-2a2fc0288b04");
 pub const IID_IDeviceRequestCompletionCallback = &IID_IDeviceRequestCompletionCallback_Value;
-pub const IDeviceRequestCompletionCallback = extern struct {
+pub const IDeviceRequestCompletionCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Invoke: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDeviceRequestCompletionCallback,
-                requestResult: HRESULT,
-                bytesReturned: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDeviceRequestCompletionCallback,
-                requestResult: HRESULT,
-                bytesReturned: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Invoke: *const fn(
+            self: *const IDeviceRequestCompletionCallback,
+            requestResult: HRESULT,
+            bytesReturned: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDeviceRequestCompletionCallback_Invoke(self: *const T, requestResult: HRESULT, bytesReturned: u32) HRESULT {
-                return @as(*const IDeviceRequestCompletionCallback.VTable, @ptrCast(self.vtable)).Invoke(@as(*const IDeviceRequestCompletionCallback, @ptrCast(self)), requestResult, bytesReturned);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Invoke(self: *const IDeviceRequestCompletionCallback, requestResult: HRESULT, bytesReturned: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Invoke(self, requestResult, bytesReturned);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IDeviceIoControl_Value = Guid.initString("9eefe161-23ab-4f18-9b49-991b586ae970");
 pub const IID_IDeviceIoControl = &IID_IDeviceIoControl_Value;
-pub const IDeviceIoControl = extern struct {
+pub const IDeviceIoControl = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DeviceIoControlSync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDeviceIoControl,
-                ioControlCode: u32,
-                inputBuffer: ?[*:0]u8,
-                inputBufferSize: u32,
-                outputBuffer: ?[*:0]u8,
-                outputBufferSize: u32,
-                bytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDeviceIoControl,
-                ioControlCode: u32,
-                inputBuffer: ?[*:0]u8,
-                inputBufferSize: u32,
-                outputBuffer: ?[*:0]u8,
-                outputBufferSize: u32,
-                bytesReturned: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeviceIoControlAsync: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDeviceIoControl,
-                ioControlCode: u32,
-                inputBuffer: ?[*:0]u8,
-                inputBufferSize: u32,
-                outputBuffer: ?[*:0]u8,
-                outputBufferSize: u32,
-                requestCompletionCallback: ?*IDeviceRequestCompletionCallback,
-                cancelContext: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDeviceIoControl,
-                ioControlCode: u32,
-                inputBuffer: ?[*:0]u8,
-                inputBufferSize: u32,
-                outputBuffer: ?[*:0]u8,
-                outputBufferSize: u32,
-                requestCompletionCallback: ?*IDeviceRequestCompletionCallback,
-                cancelContext: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CancelOperation: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDeviceIoControl,
-                cancelContext: usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDeviceIoControl,
-                cancelContext: usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DeviceIoControlSync: *const fn(
+            self: *const IDeviceIoControl,
+            ioControlCode: u32,
+            inputBuffer: ?[*:0]u8,
+            inputBufferSize: u32,
+            outputBuffer: ?[*:0]u8,
+            outputBufferSize: u32,
+            bytesReturned: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeviceIoControlAsync: *const fn(
+            self: *const IDeviceIoControl,
+            ioControlCode: u32,
+            inputBuffer: ?[*:0]u8,
+            inputBufferSize: u32,
+            outputBuffer: ?[*:0]u8,
+            outputBufferSize: u32,
+            requestCompletionCallback: ?*IDeviceRequestCompletionCallback,
+            cancelContext: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CancelOperation: *const fn(
+            self: *const IDeviceIoControl,
+            cancelContext: usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDeviceIoControl_DeviceIoControlSync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, bytesReturned: ?*u32) HRESULT {
-                return @as(*const IDeviceIoControl.VTable, @ptrCast(self.vtable)).DeviceIoControlSync(@as(*const IDeviceIoControl, @ptrCast(self)), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, bytesReturned);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDeviceIoControl_DeviceIoControlAsync(self: *const T, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, requestCompletionCallback: ?*IDeviceRequestCompletionCallback, cancelContext: ?*usize) HRESULT {
-                return @as(*const IDeviceIoControl.VTable, @ptrCast(self.vtable)).DeviceIoControlAsync(@as(*const IDeviceIoControl, @ptrCast(self)), ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, requestCompletionCallback, cancelContext);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDeviceIoControl_CancelOperation(self: *const T, cancelContext: usize) HRESULT {
-                return @as(*const IDeviceIoControl.VTable, @ptrCast(self.vtable)).CancelOperation(@as(*const IDeviceIoControl, @ptrCast(self)), cancelContext);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn DeviceIoControlSync(self: *const IDeviceIoControl, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, bytesReturned: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.DeviceIoControlSync(self, ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, bytesReturned);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn DeviceIoControlAsync(self: *const IDeviceIoControl, ioControlCode: u32, inputBuffer: ?[*:0]u8, inputBufferSize: u32, outputBuffer: ?[*:0]u8, outputBufferSize: u32, requestCompletionCallback: ?*IDeviceRequestCompletionCallback, cancelContext: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.DeviceIoControlAsync(self, ioControlCode, inputBuffer, inputBufferSize, outputBuffer, outputBufferSize, requestCompletionCallback, cancelContext);
+    }
+    pub fn CancelOperation(self: *const IDeviceIoControl, cancelContext: usize) callconv(.Inline) HRESULT {
+        return self.vtable.CancelOperation(self, cancelContext);
+    }
 };
 
 const IID_ICreateDeviceAccessAsync_Value = Guid.initString("3474628f-683d-42d2-abcb-db018c6503bc");
 pub const IID_ICreateDeviceAccessAsync = &IID_ICreateDeviceAccessAsync_Value;
-pub const ICreateDeviceAccessAsync = extern struct {
+pub const ICreateDeviceAccessAsync = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICreateDeviceAccessAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICreateDeviceAccessAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Wait: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICreateDeviceAccessAsync,
-                timeout: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICreateDeviceAccessAsync,
-                timeout: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Close: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICreateDeviceAccessAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICreateDeviceAccessAsync,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetResult: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ICreateDeviceAccessAsync,
-                riid: ?*const Guid,
-                deviceAccess: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ICreateDeviceAccessAsync,
-                riid: ?*const Guid,
-                deviceAccess: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Cancel: *const fn(
+            self: *const ICreateDeviceAccessAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Wait: *const fn(
+            self: *const ICreateDeviceAccessAsync,
+            timeout: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Close: *const fn(
+            self: *const ICreateDeviceAccessAsync,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetResult: *const fn(
+            self: *const ICreateDeviceAccessAsync,
+            riid: ?*const Guid,
+            deviceAccess: **anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICreateDeviceAccessAsync_Cancel(self: *const T) HRESULT {
-                return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).Cancel(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICreateDeviceAccessAsync_Wait(self: *const T, timeout: u32) HRESULT {
-                return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).Wait(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)), timeout);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICreateDeviceAccessAsync_Close(self: *const T) HRESULT {
-                return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).Close(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ICreateDeviceAccessAsync_GetResult(self: *const T, riid: ?*const Guid, deviceAccess: ?*?*anyopaque) HRESULT {
-                return @as(*const ICreateDeviceAccessAsync.VTable, @ptrCast(self.vtable)).GetResult(@as(*const ICreateDeviceAccessAsync, @ptrCast(self)), riid, deviceAccess);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn Cancel(self: *const ICreateDeviceAccessAsync) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Wait(self: *const ICreateDeviceAccessAsync, timeout: u32) callconv(.Inline) HRESULT {
+        return self.vtable.Wait(self, timeout);
+    }
+    pub fn Close(self: *const ICreateDeviceAccessAsync) callconv(.Inline) HRESULT {
+        return self.vtable.Close(self);
+    }
+    pub fn GetResult(self: *const ICreateDeviceAccessAsync, riid: ?*const Guid, deviceAccess: **anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.GetResult(self, riid, deviceAccess);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (1)
@@ -236,18 +155,13 @@ pub const ICreateDeviceAccessAsync = extern struct {
 pub extern "deviceaccess" fn CreateDeviceAccessInstance(
     deviceInterfacePath: ?[*:0]const u16,
     desiredAccess: u32,
-    createAsync: ?*?*ICreateDeviceAccessAsync,
+    createAsync: **ICreateDeviceAccessAsync,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
+
 
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (4)
 //--------------------------------------------------------------------------------
@@ -257,13 +171,13 @@ const IUnknown = @import("../system/com.zig").IUnknown;
 const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -701,1634 +701,855 @@ pub const AdrClientFlags_FailIfNotDomainJoined = AdrClientFlags.FailIfNotDomainJ
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmObject_Value = Guid.initString("22bcef93-4a3f-4183-89f9-2f8b8a628aee");
 pub const IID_IFsrmObject = &IID_IFsrmObject_Value;
-pub const IFsrmObject = extern struct {
+pub const IFsrmObject = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmObject,
-                id: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmObject,
-                id: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IFsrmObject,
+            id: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmObject,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmObject,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Description: *const fn(
+            self: *const IFsrmObject,
+            description: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmObject,
-                description: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmObject,
-                description: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmObject,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Description: *const fn(
+            self: *const IFsrmObject,
+            description: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Commit: *const fn(
+            self: *const IFsrmObject,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmObject_get_Id(self: *const T, id: ?*Guid) HRESULT {
-                return @as(*const IFsrmObject.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFsrmObject, @ptrCast(self)), id);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmObject_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmObject.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IFsrmObject, @ptrCast(self)), description);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmObject_put_Description(self: *const T, description: ?BSTR) HRESULT {
-                return @as(*const IFsrmObject.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IFsrmObject, @ptrCast(self)), description);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmObject_Delete(self: *const T) HRESULT {
-                return @as(*const IFsrmObject.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFsrmObject, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmObject_Commit(self: *const T) HRESULT {
-                return @as(*const IFsrmObject.VTable, @ptrCast(self.vtable)).Commit(@as(*const IFsrmObject, @ptrCast(self)));
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IFsrmObject, id: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.get_Id(self, id);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Description(self: *const IFsrmObject, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn put_Description(self: *const IFsrmObject, description: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Description(self, description);
+    }
+    pub fn Delete(self: *const IFsrmObject) callconv(.Inline) HRESULT {
+        return self.vtable.Delete(self);
+    }
+    pub fn Commit(self: *const IFsrmObject) callconv(.Inline) HRESULT {
+        return self.vtable.Commit(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmCollection_Value = Guid.initString("f76fbf3b-8ddd-4b42-b05a-cb1c3ff1fee8");
 pub const IID_IFsrmCollection = &IID_IFsrmCollection_Value;
-pub const IFsrmCollection = extern struct {
+pub const IFsrmCollection = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get__NewEnum: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmCollection,
-                unknown: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmCollection,
-                unknown: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get__NewEnum: *const fn(
+            self: *const IFsrmCollection,
+            unknown: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        get_Item: *const fn(
+            self: *const IFsrmCollection,
+            index: i32,
+            item: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Item: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmCollection,
-                index: i32,
-                item: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmCollection,
-                index: i32,
-                item: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Count: *const fn(
+            self: *const IFsrmCollection,
+            count: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Count: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmCollection,
-                count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmCollection,
-                count: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmCollection,
-                state: ?*FsrmCollectionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmCollection,
-                state: ?*FsrmCollectionState,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WaitForCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmCollection,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmCollection,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetById: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmCollection,
-                id: Guid,
-                entry: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmCollection,
-                id: Guid,
-                entry: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_State: *const fn(
+            self: *const IFsrmCollection,
+            state: ?*FsrmCollectionState,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: *const fn(
+            self: *const IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WaitForCompletion: *const fn(
+            self: *const IFsrmCollection,
+            waitSeconds: i32,
+            completed: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetById: *const fn(
+            self: *const IFsrmCollection,
+            id: Guid,
+            entry: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCollection_get__NewEnum(self: *const T, unknown: ?*?*IUnknown) HRESULT {
-                return @as(*const IFsrmCollection.VTable, @ptrCast(self.vtable)).get__NewEnum(@as(*const IFsrmCollection, @ptrCast(self)), unknown);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCollection_get_Item(self: *const T, index: i32, item: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmCollection.VTable, @ptrCast(self.vtable)).get_Item(@as(*const IFsrmCollection, @ptrCast(self)), index, item);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCollection_get_Count(self: *const T, count: ?*i32) HRESULT {
-                return @as(*const IFsrmCollection.VTable, @ptrCast(self.vtable)).get_Count(@as(*const IFsrmCollection, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCollection_get_State(self: *const T, state: ?*FsrmCollectionState) HRESULT {
-                return @as(*const IFsrmCollection.VTable, @ptrCast(self.vtable)).get_State(@as(*const IFsrmCollection, @ptrCast(self)), state);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCollection_Cancel(self: *const T) HRESULT {
-                return @as(*const IFsrmCollection.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFsrmCollection, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCollection_WaitForCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) HRESULT {
-                return @as(*const IFsrmCollection.VTable, @ptrCast(self.vtable)).WaitForCompletion(@as(*const IFsrmCollection, @ptrCast(self)), waitSeconds, completed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCollection_GetById(self: *const T, id: Guid, entry: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmCollection.VTable, @ptrCast(self.vtable)).GetById(@as(*const IFsrmCollection, @ptrCast(self)), id, entry);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get__NewEnum(self: *const IFsrmCollection, unknown: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.get__NewEnum(self, unknown);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Item(self: *const IFsrmCollection, index: i32, item: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_Item(self, index, item);
+    }
+    pub fn get_Count(self: *const IFsrmCollection, count: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Count(self, count);
+    }
+    pub fn get_State(self: *const IFsrmCollection, state: ?*FsrmCollectionState) callconv(.Inline) HRESULT {
+        return self.vtable.get_State(self, state);
+    }
+    pub fn Cancel(self: *const IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn WaitForCompletion(self: *const IFsrmCollection, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.WaitForCompletion(self, waitSeconds, completed);
+    }
+    pub fn GetById(self: *const IFsrmCollection, id: Guid, entry: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetById(self, id, entry);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmMutableCollection_Value = Guid.initString("1bb617b8-3886-49dc-af82-a6c90fa35dda");
 pub const IID_IFsrmMutableCollection = &IID_IFsrmMutableCollection_Value;
-pub const IFsrmMutableCollection = extern struct {
+pub const IFsrmMutableCollection = extern union {
     pub const VTable = extern struct {
         base: IFsrmCollection.VTable,
-        Add: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmMutableCollection,
-                item: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmMutableCollection,
-                item: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Remove: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmMutableCollection,
-                index: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmMutableCollection,
-                index: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveById: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmMutableCollection,
-                id: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmMutableCollection,
-                id: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Clone: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmMutableCollection,
-                collection: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmMutableCollection,
-                collection: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Add: *const fn(
+            self: *const IFsrmMutableCollection,
+            item: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Remove: *const fn(
+            self: *const IFsrmMutableCollection,
+            index: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveById: *const fn(
+            self: *const IFsrmMutableCollection,
+            id: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Clone: *const fn(
+            self: *const IFsrmMutableCollection,
+            collection: ?*?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmCollection.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmMutableCollection_Add(self: *const T, item: VARIANT) HRESULT {
-                return @as(*const IFsrmMutableCollection.VTable, @ptrCast(self.vtable)).Add(@as(*const IFsrmMutableCollection, @ptrCast(self)), item);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmMutableCollection_Remove(self: *const T, index: i32) HRESULT {
-                return @as(*const IFsrmMutableCollection.VTable, @ptrCast(self.vtable)).Remove(@as(*const IFsrmMutableCollection, @ptrCast(self)), index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmMutableCollection_RemoveById(self: *const T, id: Guid) HRESULT {
-                return @as(*const IFsrmMutableCollection.VTable, @ptrCast(self.vtable)).RemoveById(@as(*const IFsrmMutableCollection, @ptrCast(self)), id);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmMutableCollection_Clone(self: *const T, collection: ?*?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmMutableCollection.VTable, @ptrCast(self.vtable)).Clone(@as(*const IFsrmMutableCollection, @ptrCast(self)), collection);
-            }
-        };
+    IFsrmCollection: IFsrmCollection,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Add(self: *const IFsrmMutableCollection, item: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.Add(self, item);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Remove(self: *const IFsrmMutableCollection, index: i32) callconv(.Inline) HRESULT {
+        return self.vtable.Remove(self, index);
+    }
+    pub fn RemoveById(self: *const IFsrmMutableCollection, id: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveById(self, id);
+    }
+    pub fn Clone(self: *const IFsrmMutableCollection, collection: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.Clone(self, collection);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmCommittableCollection_Value = Guid.initString("96deb3b5-8b91-4a2a-9d93-80a35d8aa847");
 pub const IID_IFsrmCommittableCollection = &IID_IFsrmCommittableCollection_Value;
-pub const IFsrmCommittableCollection = extern struct {
+pub const IFsrmCommittableCollection = extern union {
     pub const VTable = extern struct {
         base: IFsrmMutableCollection.VTable,
-        Commit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmCommittableCollection,
-                options: FsrmCommitOptions,
-                results: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmCommittableCollection,
-                options: FsrmCommitOptions,
-                results: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Commit: *const fn(
+            self: *const IFsrmCommittableCollection,
+            options: FsrmCommitOptions,
+            results: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmMutableCollection.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmCommittableCollection_Commit(self: *const T, options: FsrmCommitOptions, results: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmCommittableCollection.VTable, @ptrCast(self.vtable)).Commit(@as(*const IFsrmCommittableCollection, @ptrCast(self)), options, results);
-            }
-        };
+    IFsrmMutableCollection: IFsrmMutableCollection,
+    IFsrmCollection: IFsrmCollection,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Commit(self: *const IFsrmCommittableCollection, options: FsrmCommitOptions, results: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.Commit(self, options, results);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmAction_Value = Guid.initString("6cd6408a-ae60-463b-9ef1-e117534d69dc");
 pub const IID_IFsrmAction = &IID_IFsrmAction_Value;
-pub const IFsrmAction = extern struct {
+pub const IFsrmAction = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Id: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmAction,
-                id: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmAction,
-                id: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Id: *const fn(
+            self: *const IFsrmAction,
+            id: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmAction,
-                actionType: ?*FsrmActionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmAction,
-                actionType: ?*FsrmActionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActionType: *const fn(
+            self: *const IFsrmAction,
+            actionType: ?*FsrmActionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RunLimitInterval: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmAction,
-                minutes: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmAction,
-                minutes: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RunLimitInterval: *const fn(
+            self: *const IFsrmAction,
+            minutes: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RunLimitInterval: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmAction,
-                minutes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmAction,
-                minutes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_RunLimitInterval: *const fn(
+            self: *const IFsrmAction,
+            minutes: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmAction,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAction_get_Id(self: *const T, id: ?*Guid) HRESULT {
-                return @as(*const IFsrmAction.VTable, @ptrCast(self.vtable)).get_Id(@as(*const IFsrmAction, @ptrCast(self)), id);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAction_get_ActionType(self: *const T, actionType: ?*FsrmActionType) HRESULT {
-                return @as(*const IFsrmAction.VTable, @ptrCast(self.vtable)).get_ActionType(@as(*const IFsrmAction, @ptrCast(self)), actionType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAction_get_RunLimitInterval(self: *const T, minutes: ?*i32) HRESULT {
-                return @as(*const IFsrmAction.VTable, @ptrCast(self.vtable)).get_RunLimitInterval(@as(*const IFsrmAction, @ptrCast(self)), minutes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAction_put_RunLimitInterval(self: *const T, minutes: i32) HRESULT {
-                return @as(*const IFsrmAction.VTable, @ptrCast(self.vtable)).put_RunLimitInterval(@as(*const IFsrmAction, @ptrCast(self)), minutes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAction_Delete(self: *const T) HRESULT {
-                return @as(*const IFsrmAction.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFsrmAction, @ptrCast(self)));
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Id(self: *const IFsrmAction, id: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.get_Id(self, id);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_ActionType(self: *const IFsrmAction, actionType: ?*FsrmActionType) callconv(.Inline) HRESULT {
+        return self.vtable.get_ActionType(self, actionType);
+    }
+    pub fn get_RunLimitInterval(self: *const IFsrmAction, minutes: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_RunLimitInterval(self, minutes);
+    }
+    pub fn put_RunLimitInterval(self: *const IFsrmAction, minutes: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_RunLimitInterval(self, minutes);
+    }
+    pub fn Delete(self: *const IFsrmAction) callconv(.Inline) HRESULT {
+        return self.vtable.Delete(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionEmail_Value = Guid.initString("d646567d-26ae-4caa-9f84-4e0aad207fca");
 pub const IID_IFsrmActionEmail = &IID_IFsrmActionEmail_Value;
-pub const IFsrmActionEmail = extern struct {
+pub const IFsrmActionEmail = extern union {
     pub const VTable = extern struct {
         base: IFsrmAction.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailFrom: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailFrom: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailFrom: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailFrom: *const fn(
+            self: *const IFsrmActionEmail,
+            mailFrom: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailFrom: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailFrom: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailFrom: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailFrom: *const fn(
+            self: *const IFsrmActionEmail,
+            mailFrom: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailReplyTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailReplyTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailReplyTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailReplyTo: *const fn(
+            self: *const IFsrmActionEmail,
+            mailReplyTo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailReplyTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailReplyTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailReplyTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailReplyTo: *const fn(
+            self: *const IFsrmActionEmail,
+            mailReplyTo: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailTo: *const fn(
+            self: *const IFsrmActionEmail,
+            mailTo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailTo: *const fn(
+            self: *const IFsrmActionEmail,
+            mailTo: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailCc: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailCc: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailCc: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailCc: *const fn(
+            self: *const IFsrmActionEmail,
+            mailCc: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailCc: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailCc: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailCc: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailCc: *const fn(
+            self: *const IFsrmActionEmail,
+            mailCc: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailBcc: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailBcc: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailBcc: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailBcc: *const fn(
+            self: *const IFsrmActionEmail,
+            mailBcc: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailBcc: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailBcc: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailBcc: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailBcc: *const fn(
+            self: *const IFsrmActionEmail,
+            mailBcc: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailSubject: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailSubject: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailSubject: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailSubject: *const fn(
+            self: *const IFsrmActionEmail,
+            mailSubject: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailSubject: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                mailSubject: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                mailSubject: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailSubject: *const fn(
+            self: *const IFsrmActionEmail,
+            mailSubject: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MessageText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                messageText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                messageText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MessageText: *const fn(
+            self: *const IFsrmActionEmail,
+            messageText: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MessageText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail,
-                messageText: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail,
-                messageText: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MessageText: *const fn(
+            self: *const IFsrmActionEmail,
+            messageText: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmAction.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_get_MailFrom(self: *const T, mailFrom: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).get_MailFrom(@as(*const IFsrmActionEmail, @ptrCast(self)), mailFrom);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_put_MailFrom(self: *const T, mailFrom: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).put_MailFrom(@as(*const IFsrmActionEmail, @ptrCast(self)), mailFrom);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_get_MailReplyTo(self: *const T, mailReplyTo: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).get_MailReplyTo(@as(*const IFsrmActionEmail, @ptrCast(self)), mailReplyTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_put_MailReplyTo(self: *const T, mailReplyTo: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).put_MailReplyTo(@as(*const IFsrmActionEmail, @ptrCast(self)), mailReplyTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_get_MailTo(self: *const T, mailTo: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).get_MailTo(@as(*const IFsrmActionEmail, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_put_MailTo(self: *const T, mailTo: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).put_MailTo(@as(*const IFsrmActionEmail, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_get_MailCc(self: *const T, mailCc: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).get_MailCc(@as(*const IFsrmActionEmail, @ptrCast(self)), mailCc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_put_MailCc(self: *const T, mailCc: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).put_MailCc(@as(*const IFsrmActionEmail, @ptrCast(self)), mailCc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_get_MailBcc(self: *const T, mailBcc: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).get_MailBcc(@as(*const IFsrmActionEmail, @ptrCast(self)), mailBcc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_put_MailBcc(self: *const T, mailBcc: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).put_MailBcc(@as(*const IFsrmActionEmail, @ptrCast(self)), mailBcc);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_get_MailSubject(self: *const T, mailSubject: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).get_MailSubject(@as(*const IFsrmActionEmail, @ptrCast(self)), mailSubject);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_put_MailSubject(self: *const T, mailSubject: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).put_MailSubject(@as(*const IFsrmActionEmail, @ptrCast(self)), mailSubject);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_get_MessageText(self: *const T, messageText: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).get_MessageText(@as(*const IFsrmActionEmail, @ptrCast(self)), messageText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail_put_MessageText(self: *const T, messageText: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEmail.VTable, @ptrCast(self.vtable)).put_MessageText(@as(*const IFsrmActionEmail, @ptrCast(self)), messageText);
-            }
-        };
+    IFsrmAction: IFsrmAction,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_MailFrom(self: *const IFsrmActionEmail, mailFrom: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailFrom(self, mailFrom);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_MailFrom(self: *const IFsrmActionEmail, mailFrom: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailFrom(self, mailFrom);
+    }
+    pub fn get_MailReplyTo(self: *const IFsrmActionEmail, mailReplyTo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailReplyTo(self, mailReplyTo);
+    }
+    pub fn put_MailReplyTo(self: *const IFsrmActionEmail, mailReplyTo: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailReplyTo(self, mailReplyTo);
+    }
+    pub fn get_MailTo(self: *const IFsrmActionEmail, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailTo(self, mailTo);
+    }
+    pub fn put_MailTo(self: *const IFsrmActionEmail, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailTo(self, mailTo);
+    }
+    pub fn get_MailCc(self: *const IFsrmActionEmail, mailCc: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailCc(self, mailCc);
+    }
+    pub fn put_MailCc(self: *const IFsrmActionEmail, mailCc: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailCc(self, mailCc);
+    }
+    pub fn get_MailBcc(self: *const IFsrmActionEmail, mailBcc: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailBcc(self, mailBcc);
+    }
+    pub fn put_MailBcc(self: *const IFsrmActionEmail, mailBcc: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailBcc(self, mailBcc);
+    }
+    pub fn get_MailSubject(self: *const IFsrmActionEmail, mailSubject: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailSubject(self, mailSubject);
+    }
+    pub fn put_MailSubject(self: *const IFsrmActionEmail, mailSubject: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailSubject(self, mailSubject);
+    }
+    pub fn get_MessageText(self: *const IFsrmActionEmail, messageText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MessageText(self, messageText);
+    }
+    pub fn put_MessageText(self: *const IFsrmActionEmail, messageText: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MessageText(self, messageText);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionEmail2_Value = Guid.initString("8276702f-2532-4839-89bf-4872609a2ea4");
 pub const IID_IFsrmActionEmail2 = &IID_IFsrmActionEmail2_Value;
-pub const IFsrmActionEmail2 = extern struct {
+pub const IFsrmActionEmail2 = extern union {
     pub const VTable = extern struct {
         base: IFsrmActionEmail.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AttachmentFileListSize: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail2,
-                attachmentFileListSize: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail2,
-                attachmentFileListSize: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AttachmentFileListSize: *const fn(
+            self: *const IFsrmActionEmail2,
+            attachmentFileListSize: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AttachmentFileListSize: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEmail2,
-                attachmentFileListSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEmail2,
-                attachmentFileListSize: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AttachmentFileListSize: *const fn(
+            self: *const IFsrmActionEmail2,
+            attachmentFileListSize: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmActionEmail.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail2_get_AttachmentFileListSize(self: *const T, attachmentFileListSize: ?*i32) HRESULT {
-                return @as(*const IFsrmActionEmail2.VTable, @ptrCast(self.vtable)).get_AttachmentFileListSize(@as(*const IFsrmActionEmail2, @ptrCast(self)), attachmentFileListSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEmail2_put_AttachmentFileListSize(self: *const T, attachmentFileListSize: i32) HRESULT {
-                return @as(*const IFsrmActionEmail2.VTable, @ptrCast(self.vtable)).put_AttachmentFileListSize(@as(*const IFsrmActionEmail2, @ptrCast(self)), attachmentFileListSize);
-            }
-        };
+    IFsrmActionEmail: IFsrmActionEmail,
+    IFsrmAction: IFsrmAction,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_AttachmentFileListSize(self: *const IFsrmActionEmail2, attachmentFileListSize: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_AttachmentFileListSize(self, attachmentFileListSize);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_AttachmentFileListSize(self: *const IFsrmActionEmail2, attachmentFileListSize: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_AttachmentFileListSize(self, attachmentFileListSize);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionReport_Value = Guid.initString("2dbe63c4-b340-48a0-a5b0-158e07fc567e");
 pub const IID_IFsrmActionReport = &IID_IFsrmActionReport_Value;
-pub const IFsrmActionReport = extern struct {
+pub const IFsrmActionReport = extern union {
     pub const VTable = extern struct {
         base: IFsrmAction.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReportTypes: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionReport,
-                reportTypes: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionReport,
-                reportTypes: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ReportTypes: *const fn(
+            self: *const IFsrmActionReport,
+            reportTypes: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ReportTypes: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionReport,
-                reportTypes: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionReport,
-                reportTypes: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ReportTypes: *const fn(
+            self: *const IFsrmActionReport,
+            reportTypes: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionReport,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionReport,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailTo: *const fn(
+            self: *const IFsrmActionReport,
+            mailTo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionReport,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionReport,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailTo: *const fn(
+            self: *const IFsrmActionReport,
+            mailTo: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmAction.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionReport_get_ReportTypes(self: *const T, reportTypes: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmActionReport.VTable, @ptrCast(self.vtable)).get_ReportTypes(@as(*const IFsrmActionReport, @ptrCast(self)), reportTypes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionReport_put_ReportTypes(self: *const T, reportTypes: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmActionReport.VTable, @ptrCast(self.vtable)).put_ReportTypes(@as(*const IFsrmActionReport, @ptrCast(self)), reportTypes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionReport_get_MailTo(self: *const T, mailTo: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionReport.VTable, @ptrCast(self.vtable)).get_MailTo(@as(*const IFsrmActionReport, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionReport_put_MailTo(self: *const T, mailTo: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionReport.VTable, @ptrCast(self.vtable)).put_MailTo(@as(*const IFsrmActionReport, @ptrCast(self)), mailTo);
-            }
-        };
+    IFsrmAction: IFsrmAction,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ReportTypes(self, reportTypes);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_ReportTypes(self: *const IFsrmActionReport, reportTypes: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_ReportTypes(self, reportTypes);
+    }
+    pub fn get_MailTo(self: *const IFsrmActionReport, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailTo(self, mailTo);
+    }
+    pub fn put_MailTo(self: *const IFsrmActionReport, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailTo(self, mailTo);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionEventLog_Value = Guid.initString("4c8f96c3-5d94-4f37-a4f4-f56ab463546f");
 pub const IID_IFsrmActionEventLog = &IID_IFsrmActionEventLog_Value;
-pub const IFsrmActionEventLog = extern struct {
+pub const IFsrmActionEventLog = extern union {
     pub const VTable = extern struct {
         base: IFsrmAction.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EventType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEventLog,
-                eventType: ?*FsrmEventType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEventLog,
-                eventType: ?*FsrmEventType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_EventType: *const fn(
+            self: *const IFsrmActionEventLog,
+            eventType: ?*FsrmEventType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EventType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEventLog,
-                eventType: FsrmEventType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEventLog,
-                eventType: FsrmEventType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_EventType: *const fn(
+            self: *const IFsrmActionEventLog,
+            eventType: FsrmEventType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MessageText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEventLog,
-                messageText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEventLog,
-                messageText: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MessageText: *const fn(
+            self: *const IFsrmActionEventLog,
+            messageText: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MessageText: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionEventLog,
-                messageText: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionEventLog,
-                messageText: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MessageText: *const fn(
+            self: *const IFsrmActionEventLog,
+            messageText: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmAction.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEventLog_get_EventType(self: *const T, eventType: ?*FsrmEventType) HRESULT {
-                return @as(*const IFsrmActionEventLog.VTable, @ptrCast(self.vtable)).get_EventType(@as(*const IFsrmActionEventLog, @ptrCast(self)), eventType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEventLog_put_EventType(self: *const T, eventType: FsrmEventType) HRESULT {
-                return @as(*const IFsrmActionEventLog.VTable, @ptrCast(self.vtable)).put_EventType(@as(*const IFsrmActionEventLog, @ptrCast(self)), eventType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEventLog_get_MessageText(self: *const T, messageText: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionEventLog.VTable, @ptrCast(self.vtable)).get_MessageText(@as(*const IFsrmActionEventLog, @ptrCast(self)), messageText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionEventLog_put_MessageText(self: *const T, messageText: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionEventLog.VTable, @ptrCast(self.vtable)).put_MessageText(@as(*const IFsrmActionEventLog, @ptrCast(self)), messageText);
-            }
-        };
+    IFsrmAction: IFsrmAction,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_EventType(self: *const IFsrmActionEventLog, eventType: ?*FsrmEventType) callconv(.Inline) HRESULT {
+        return self.vtable.get_EventType(self, eventType);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_EventType(self: *const IFsrmActionEventLog, eventType: FsrmEventType) callconv(.Inline) HRESULT {
+        return self.vtable.put_EventType(self, eventType);
+    }
+    pub fn get_MessageText(self: *const IFsrmActionEventLog, messageText: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MessageText(self, messageText);
+    }
+    pub fn put_MessageText(self: *const IFsrmActionEventLog, messageText: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MessageText(self, messageText);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmActionCommand_Value = Guid.initString("12937789-e247-4917-9c20-f3ee9c7ee783");
 pub const IID_IFsrmActionCommand = &IID_IFsrmActionCommand_Value;
-pub const IFsrmActionCommand = extern struct {
+pub const IFsrmActionCommand = extern union {
     pub const VTable = extern struct {
         base: IFsrmAction.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExecutablePath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                executablePath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                executablePath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ExecutablePath: *const fn(
+            self: *const IFsrmActionCommand,
+            executablePath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExecutablePath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                executablePath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                executablePath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ExecutablePath: *const fn(
+            self: *const IFsrmActionCommand,
+            executablePath: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Arguments: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                arguments: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                arguments: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Arguments: *const fn(
+            self: *const IFsrmActionCommand,
+            arguments: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Arguments: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                arguments: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                arguments: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Arguments: *const fn(
+            self: *const IFsrmActionCommand,
+            arguments: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Account: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                account: ?*FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                account: ?*FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Account: *const fn(
+            self: *const IFsrmActionCommand,
+            account: ?*FsrmAccountType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Account: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                account: FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                account: FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Account: *const fn(
+            self: *const IFsrmActionCommand,
+            account: FsrmAccountType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WorkingDirectory: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                workingDirectory: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                workingDirectory: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_WorkingDirectory: *const fn(
+            self: *const IFsrmActionCommand,
+            workingDirectory: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_WorkingDirectory: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                workingDirectory: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                workingDirectory: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_WorkingDirectory: *const fn(
+            self: *const IFsrmActionCommand,
+            workingDirectory: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MonitorCommand: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                monitorCommand: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                monitorCommand: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MonitorCommand: *const fn(
+            self: *const IFsrmActionCommand,
+            monitorCommand: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MonitorCommand: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                monitorCommand: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                monitorCommand: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MonitorCommand: *const fn(
+            self: *const IFsrmActionCommand,
+            monitorCommand: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_KillTimeOut: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                minutes: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                minutes: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_KillTimeOut: *const fn(
+            self: *const IFsrmActionCommand,
+            minutes: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_KillTimeOut: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                minutes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                minutes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_KillTimeOut: *const fn(
+            self: *const IFsrmActionCommand,
+            minutes: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LogResult: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                logResults: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                logResults: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LogResult: *const fn(
+            self: *const IFsrmActionCommand,
+            logResults: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_LogResult: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmActionCommand,
-                logResults: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmActionCommand,
-                logResults: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_LogResult: *const fn(
+            self: *const IFsrmActionCommand,
+            logResults: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmAction.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_get_ExecutablePath(self: *const T, executablePath: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).get_ExecutablePath(@as(*const IFsrmActionCommand, @ptrCast(self)), executablePath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_put_ExecutablePath(self: *const T, executablePath: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).put_ExecutablePath(@as(*const IFsrmActionCommand, @ptrCast(self)), executablePath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_get_Arguments(self: *const T, arguments: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).get_Arguments(@as(*const IFsrmActionCommand, @ptrCast(self)), arguments);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_put_Arguments(self: *const T, arguments: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).put_Arguments(@as(*const IFsrmActionCommand, @ptrCast(self)), arguments);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_get_Account(self: *const T, account: ?*FsrmAccountType) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).get_Account(@as(*const IFsrmActionCommand, @ptrCast(self)), account);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_put_Account(self: *const T, account: FsrmAccountType) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).put_Account(@as(*const IFsrmActionCommand, @ptrCast(self)), account);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_get_WorkingDirectory(self: *const T, workingDirectory: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).get_WorkingDirectory(@as(*const IFsrmActionCommand, @ptrCast(self)), workingDirectory);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_put_WorkingDirectory(self: *const T, workingDirectory: ?BSTR) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).put_WorkingDirectory(@as(*const IFsrmActionCommand, @ptrCast(self)), workingDirectory);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_get_MonitorCommand(self: *const T, monitorCommand: ?*i16) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).get_MonitorCommand(@as(*const IFsrmActionCommand, @ptrCast(self)), monitorCommand);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_put_MonitorCommand(self: *const T, monitorCommand: i16) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).put_MonitorCommand(@as(*const IFsrmActionCommand, @ptrCast(self)), monitorCommand);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_get_KillTimeOut(self: *const T, minutes: ?*i32) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).get_KillTimeOut(@as(*const IFsrmActionCommand, @ptrCast(self)), minutes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_put_KillTimeOut(self: *const T, minutes: i32) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).put_KillTimeOut(@as(*const IFsrmActionCommand, @ptrCast(self)), minutes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_get_LogResult(self: *const T, logResults: ?*i16) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).get_LogResult(@as(*const IFsrmActionCommand, @ptrCast(self)), logResults);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmActionCommand_put_LogResult(self: *const T, logResults: i16) HRESULT {
-                return @as(*const IFsrmActionCommand.VTable, @ptrCast(self.vtable)).put_LogResult(@as(*const IFsrmActionCommand, @ptrCast(self)), logResults);
-            }
-        };
+    IFsrmAction: IFsrmAction,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ExecutablePath(self, executablePath);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_ExecutablePath(self: *const IFsrmActionCommand, executablePath: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_ExecutablePath(self, executablePath);
+    }
+    pub fn get_Arguments(self: *const IFsrmActionCommand, arguments: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Arguments(self, arguments);
+    }
+    pub fn put_Arguments(self: *const IFsrmActionCommand, arguments: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Arguments(self, arguments);
+    }
+    pub fn get_Account(self: *const IFsrmActionCommand, account: ?*FsrmAccountType) callconv(.Inline) HRESULT {
+        return self.vtable.get_Account(self, account);
+    }
+    pub fn put_Account(self: *const IFsrmActionCommand, account: FsrmAccountType) callconv(.Inline) HRESULT {
+        return self.vtable.put_Account(self, account);
+    }
+    pub fn get_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_WorkingDirectory(self, workingDirectory);
+    }
+    pub fn put_WorkingDirectory(self: *const IFsrmActionCommand, workingDirectory: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_WorkingDirectory(self, workingDirectory);
+    }
+    pub fn get_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_MonitorCommand(self, monitorCommand);
+    }
+    pub fn put_MonitorCommand(self: *const IFsrmActionCommand, monitorCommand: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_MonitorCommand(self, monitorCommand);
+    }
+    pub fn get_KillTimeOut(self: *const IFsrmActionCommand, minutes: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_KillTimeOut(self, minutes);
+    }
+    pub fn put_KillTimeOut(self: *const IFsrmActionCommand, minutes: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_KillTimeOut(self, minutes);
+    }
+    pub fn get_LogResult(self: *const IFsrmActionCommand, logResults: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_LogResult(self, logResults);
+    }
+    pub fn put_LogResult(self: *const IFsrmActionCommand, logResults: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_LogResult(self, logResults);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmSetting_Value = Guid.initString("f411d4fd-14be-4260-8c40-03b7c95e608a");
 pub const IID_IFsrmSetting = &IID_IFsrmSetting_Value;
-pub const IFsrmSetting = extern struct {
+pub const IFsrmSetting = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SmtpServer: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                smtpServer: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                smtpServer: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SmtpServer: *const fn(
+            self: *const IFsrmSetting,
+            smtpServer: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SmtpServer: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                smtpServer: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                smtpServer: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_SmtpServer: *const fn(
+            self: *const IFsrmSetting,
+            smtpServer: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailFrom: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                mailFrom: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                mailFrom: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailFrom: *const fn(
+            self: *const IFsrmSetting,
+            mailFrom: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailFrom: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                mailFrom: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                mailFrom: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailFrom: *const fn(
+            self: *const IFsrmSetting,
+            mailFrom: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AdminEmail: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                adminEmail: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                adminEmail: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AdminEmail: *const fn(
+            self: *const IFsrmSetting,
+            adminEmail: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AdminEmail: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                adminEmail: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                adminEmail: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AdminEmail: *const fn(
+            self: *const IFsrmSetting,
+            adminEmail: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisableCommandLine: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                disableCommandLine: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                disableCommandLine: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DisableCommandLine: *const fn(
+            self: *const IFsrmSetting,
+            disableCommandLine: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisableCommandLine: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                disableCommandLine: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                disableCommandLine: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_DisableCommandLine: *const fn(
+            self: *const IFsrmSetting,
+            disableCommandLine: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_EnableScreeningAudit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                enableScreeningAudit: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                enableScreeningAudit: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_EnableScreeningAudit: *const fn(
+            self: *const IFsrmSetting,
+            enableScreeningAudit: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_EnableScreeningAudit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                enableScreeningAudit: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmSetting,
-                enableScreeningAudit: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EmailTest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmSetting,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetActionRunLimitInterval: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                actionType: FsrmActionType,
-                delayTimeMinutes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmSetting,
-                actionType: FsrmActionType,
-                delayTimeMinutes: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetActionRunLimitInterval: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmSetting,
-                actionType: FsrmActionType,
-                delayTimeMinutes: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmSetting,
-                actionType: FsrmActionType,
-                delayTimeMinutes: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_EnableScreeningAudit: *const fn(
+            self: *const IFsrmSetting,
+            enableScreeningAudit: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EmailTest: *const fn(
+            self: *const IFsrmSetting,
+            mailTo: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetActionRunLimitInterval: *const fn(
+            self: *const IFsrmSetting,
+            actionType: FsrmActionType,
+            delayTimeMinutes: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetActionRunLimitInterval: *const fn(
+            self: *const IFsrmSetting,
+            actionType: FsrmActionType,
+            delayTimeMinutes: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_get_SmtpServer(self: *const T, smtpServer: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).get_SmtpServer(@as(*const IFsrmSetting, @ptrCast(self)), smtpServer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_put_SmtpServer(self: *const T, smtpServer: ?BSTR) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).put_SmtpServer(@as(*const IFsrmSetting, @ptrCast(self)), smtpServer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_get_MailFrom(self: *const T, mailFrom: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).get_MailFrom(@as(*const IFsrmSetting, @ptrCast(self)), mailFrom);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_put_MailFrom(self: *const T, mailFrom: ?BSTR) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).put_MailFrom(@as(*const IFsrmSetting, @ptrCast(self)), mailFrom);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_get_AdminEmail(self: *const T, adminEmail: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).get_AdminEmail(@as(*const IFsrmSetting, @ptrCast(self)), adminEmail);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_put_AdminEmail(self: *const T, adminEmail: ?BSTR) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).put_AdminEmail(@as(*const IFsrmSetting, @ptrCast(self)), adminEmail);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_get_DisableCommandLine(self: *const T, disableCommandLine: ?*i16) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).get_DisableCommandLine(@as(*const IFsrmSetting, @ptrCast(self)), disableCommandLine);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_put_DisableCommandLine(self: *const T, disableCommandLine: i16) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).put_DisableCommandLine(@as(*const IFsrmSetting, @ptrCast(self)), disableCommandLine);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_get_EnableScreeningAudit(self: *const T, enableScreeningAudit: ?*i16) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).get_EnableScreeningAudit(@as(*const IFsrmSetting, @ptrCast(self)), enableScreeningAudit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_put_EnableScreeningAudit(self: *const T, enableScreeningAudit: i16) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).put_EnableScreeningAudit(@as(*const IFsrmSetting, @ptrCast(self)), enableScreeningAudit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_EmailTest(self: *const T, mailTo: ?BSTR) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).EmailTest(@as(*const IFsrmSetting, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_SetActionRunLimitInterval(self: *const T, actionType: FsrmActionType, delayTimeMinutes: i32) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).SetActionRunLimitInterval(@as(*const IFsrmSetting, @ptrCast(self)), actionType, delayTimeMinutes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmSetting_GetActionRunLimitInterval(self: *const T, actionType: FsrmActionType, delayTimeMinutes: ?*i32) HRESULT {
-                return @as(*const IFsrmSetting.VTable, @ptrCast(self.vtable)).GetActionRunLimitInterval(@as(*const IFsrmSetting, @ptrCast(self)), actionType, delayTimeMinutes);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_SmtpServer(self: *const IFsrmSetting, smtpServer: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_SmtpServer(self, smtpServer);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_SmtpServer(self: *const IFsrmSetting, smtpServer: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_SmtpServer(self, smtpServer);
+    }
+    pub fn get_MailFrom(self: *const IFsrmSetting, mailFrom: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailFrom(self, mailFrom);
+    }
+    pub fn put_MailFrom(self: *const IFsrmSetting, mailFrom: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailFrom(self, mailFrom);
+    }
+    pub fn get_AdminEmail(self: *const IFsrmSetting, adminEmail: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_AdminEmail(self, adminEmail);
+    }
+    pub fn put_AdminEmail(self: *const IFsrmSetting, adminEmail: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_AdminEmail(self, adminEmail);
+    }
+    pub fn get_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_DisableCommandLine(self, disableCommandLine);
+    }
+    pub fn put_DisableCommandLine(self: *const IFsrmSetting, disableCommandLine: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_DisableCommandLine(self, disableCommandLine);
+    }
+    pub fn get_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_EnableScreeningAudit(self, enableScreeningAudit);
+    }
+    pub fn put_EnableScreeningAudit(self: *const IFsrmSetting, enableScreeningAudit: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_EnableScreeningAudit(self, enableScreeningAudit);
+    }
+    pub fn EmailTest(self: *const IFsrmSetting, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.EmailTest(self, mailTo);
+    }
+    pub fn SetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: i32) callconv(.Inline) HRESULT {
+        return self.vtable.SetActionRunLimitInterval(self, actionType, delayTimeMinutes);
+    }
+    pub fn GetActionRunLimitInterval(self: *const IFsrmSetting, actionType: FsrmActionType, delayTimeMinutes: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.GetActionRunLimitInterval(self, actionType, delayTimeMinutes);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPathMapper_Value = Guid.initString("6f4dbfff-6920-4821-a6c3-b7e94c1fd60c");
 pub const IID_IFsrmPathMapper = &IID_IFsrmPathMapper_Value;
-pub const IFsrmPathMapper = extern struct {
+pub const IFsrmPathMapper = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        GetSharePathsForLocalPath: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPathMapper,
-                localPath: ?BSTR,
-                sharePaths: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPathMapper,
-                localPath: ?BSTR,
-                sharePaths: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetSharePathsForLocalPath: *const fn(
+            self: *const IFsrmPathMapper,
+            localPath: ?BSTR,
+            sharePaths: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPathMapper_GetSharePathsForLocalPath(self: *const T, localPath: ?BSTR, sharePaths: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPathMapper.VTable, @ptrCast(self.vtable)).GetSharePathsForLocalPath(@as(*const IFsrmPathMapper, @ptrCast(self)), localPath, sharePaths);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetSharePathsForLocalPath(self: *const IFsrmPathMapper, localPath: ?BSTR, sharePaths: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.GetSharePathsForLocalPath(self, localPath, sharePaths);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmExportImport_Value = Guid.initString("efcb0ab1-16c4-4a79-812c-725614c3306b");
 pub const IID_IFsrmExportImport = &IID_IFsrmExportImport_Value;
-pub const IFsrmExportImport = extern struct {
+pub const IFsrmExportImport = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        ExportFileGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                fileGroupNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                fileGroupNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportFileGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                fileGroupNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-                fileGroups: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                fileGroupNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-                fileGroups: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExportFileScreenTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportFileScreenTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-                templates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-                templates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExportQuotaTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportQuotaTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-                templates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmExportImport,
-                filePath: ?BSTR,
-                templateNamesSafeArray: ?*VARIANT,
-                remoteHost: ?BSTR,
-                templates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ExportFileGroups: *const fn(
+            self: *const IFsrmExportImport,
+            filePath: ?BSTR,
+            fileGroupNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportFileGroups: *const fn(
+            self: *const IFsrmExportImport,
+            filePath: ?BSTR,
+            fileGroupNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+            fileGroups: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExportFileScreenTemplates: *const fn(
+            self: *const IFsrmExportImport,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportFileScreenTemplates: *const fn(
+            self: *const IFsrmExportImport,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+            templates: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExportQuotaTemplates: *const fn(
+            self: *const IFsrmExportImport,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportQuotaTemplates: *const fn(
+            self: *const IFsrmExportImport,
+            filePath: ?BSTR,
+            templateNamesSafeArray: ?*VARIANT,
+            remoteHost: ?BSTR,
+            templates: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmExportImport_ExportFileGroups(self: *const T, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) HRESULT {
-                return @as(*const IFsrmExportImport.VTable, @ptrCast(self.vtable)).ExportFileGroups(@as(*const IFsrmExportImport, @ptrCast(self)), filePath, fileGroupNamesSafeArray, remoteHost);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmExportImport_ImportFileGroups(self: *const T, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, fileGroups: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmExportImport.VTable, @ptrCast(self.vtable)).ImportFileGroups(@as(*const IFsrmExportImport, @ptrCast(self)), filePath, fileGroupNamesSafeArray, remoteHost, fileGroups);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmExportImport_ExportFileScreenTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) HRESULT {
-                return @as(*const IFsrmExportImport.VTable, @ptrCast(self.vtable)).ExportFileScreenTemplates(@as(*const IFsrmExportImport, @ptrCast(self)), filePath, templateNamesSafeArray, remoteHost);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmExportImport_ImportFileScreenTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmExportImport.VTable, @ptrCast(self.vtable)).ImportFileScreenTemplates(@as(*const IFsrmExportImport, @ptrCast(self)), filePath, templateNamesSafeArray, remoteHost, templates);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmExportImport_ExportQuotaTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) HRESULT {
-                return @as(*const IFsrmExportImport.VTable, @ptrCast(self.vtable)).ExportQuotaTemplates(@as(*const IFsrmExportImport, @ptrCast(self)), filePath, templateNamesSafeArray, remoteHost);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmExportImport_ImportQuotaTemplates(self: *const T, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmExportImport.VTable, @ptrCast(self.vtable)).ImportQuotaTemplates(@as(*const IFsrmExportImport, @ptrCast(self)), filePath, templateNamesSafeArray, remoteHost, templates);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn ExportFileGroups(self: *const IFsrmExportImport, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ExportFileGroups(self, filePath, fileGroupNamesSafeArray, remoteHost);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ImportFileGroups(self: *const IFsrmExportImport, filePath: ?BSTR, fileGroupNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.ImportFileGroups(self, filePath, fileGroupNamesSafeArray, remoteHost, fileGroups);
+    }
+    pub fn ExportFileScreenTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ExportFileScreenTemplates(self, filePath, templateNamesSafeArray, remoteHost);
+    }
+    pub fn ImportFileScreenTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.ImportFileScreenTemplates(self, filePath, templateNamesSafeArray, remoteHost, templates);
+    }
+    pub fn ExportQuotaTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ExportQuotaTemplates(self, filePath, templateNamesSafeArray, remoteHost);
+    }
+    pub fn ImportQuotaTemplates(self: *const IFsrmExportImport, filePath: ?BSTR, templateNamesSafeArray: ?*VARIANT, remoteHost: ?BSTR, templates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.ImportQuotaTemplates(self, filePath, templateNamesSafeArray, remoteHost, templates);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmDerivedObjectsResult_Value = Guid.initString("39322a2d-38ee-4d0d-8095-421a80849a82");
 pub const IID_IFsrmDerivedObjectsResult = &IID_IFsrmDerivedObjectsResult_Value;
-pub const IFsrmDerivedObjectsResult = extern struct {
+pub const IFsrmDerivedObjectsResult = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DerivedObjects: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmDerivedObjectsResult,
-                derivedObjects: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmDerivedObjectsResult,
-                derivedObjects: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DerivedObjects: *const fn(
+            self: *const IFsrmDerivedObjectsResult,
+            derivedObjects: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Results: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmDerivedObjectsResult,
-                results: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmDerivedObjectsResult,
-                results: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Results: *const fn(
+            self: *const IFsrmDerivedObjectsResult,
+            results: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmDerivedObjectsResult_get_DerivedObjects(self: *const T, derivedObjects: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmDerivedObjectsResult.VTable, @ptrCast(self.vtable)).get_DerivedObjects(@as(*const IFsrmDerivedObjectsResult, @ptrCast(self)), derivedObjects);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmDerivedObjectsResult_get_Results(self: *const T, results: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmDerivedObjectsResult.VTable, @ptrCast(self.vtable)).get_Results(@as(*const IFsrmDerivedObjectsResult, @ptrCast(self)), results);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_DerivedObjects(self: *const IFsrmDerivedObjectsResult, derivedObjects: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_DerivedObjects(self, derivedObjects);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Results(self: *const IFsrmDerivedObjectsResult, results: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_Results(self, results);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmAccessDeniedRemediationClient_Value = Guid.initString("40002314-590b-45a5-8e1b-8c05da527e52");
 pub const IID_IFsrmAccessDeniedRemediationClient = &IID_IFsrmAccessDeniedRemediationClient_Value;
-pub const IFsrmAccessDeniedRemediationClient = extern struct {
+pub const IFsrmAccessDeniedRemediationClient = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        Show: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmAccessDeniedRemediationClient,
-                parentWnd: usize,
-                accessPath: ?BSTR,
-                errorType: AdrClientErrorType,
-                flags: i32,
-                windowTitle: ?BSTR,
-                windowMessage: ?BSTR,
-                result: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmAccessDeniedRemediationClient,
-                parentWnd: usize,
-                accessPath: ?BSTR,
-                errorType: AdrClientErrorType,
-                flags: i32,
-                windowTitle: ?BSTR,
-                windowMessage: ?BSTR,
-                result: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Show: *const fn(
+            self: *const IFsrmAccessDeniedRemediationClient,
+            parentWnd: usize,
+            accessPath: ?BSTR,
+            errorType: AdrClientErrorType,
+            flags: i32,
+            windowTitle: ?BSTR,
+            windowMessage: ?BSTR,
+            result: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAccessDeniedRemediationClient_Show(self: *const T, parentWnd: usize, accessPath: ?BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: ?BSTR, windowMessage: ?BSTR, result: ?*i32) HRESULT {
-                return @as(*const IFsrmAccessDeniedRemediationClient.VTable, @ptrCast(self.vtable)).Show(@as(*const IFsrmAccessDeniedRemediationClient, @ptrCast(self)), parentWnd, accessPath, errorType, flags, windowTitle, windowMessage, result);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn Show(self: *const IFsrmAccessDeniedRemediationClient, parentWnd: usize, accessPath: ?BSTR, errorType: AdrClientErrorType, flags: i32, windowTitle: ?BSTR, windowMessage: ?BSTR, result: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.Show(self, parentWnd, accessPath, errorType, flags, windowTitle, windowMessage, result);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const CLSID_FsrmSetting_Value = Guid.initString("f556d708-6d4d-4594-9c61-7dbb0dae2a46");
@@ -2379,6507 +1600,3370 @@ pub const CLSID_FsrmAccessDeniedRemediationClient = &CLSID_FsrmAccessDeniedRemed
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaBase_Value = Guid.initString("1568a795-3924-4118-b74b-68d8f0fa5daf");
 pub const IID_IFsrmQuotaBase = &IID_IFsrmQuotaBase_Value;
-pub const IFsrmQuotaBase = extern struct {
+pub const IFsrmQuotaBase = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaLimit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                quotaLimit: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                quotaLimit: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_QuotaLimit: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaLimit: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuotaLimit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                quotaLimit: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                quotaLimit: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_QuotaLimit: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaLimit: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                quotaFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                quotaFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_QuotaFlags: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_QuotaFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                quotaFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                quotaFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_QuotaFlags: *const fn(
+            self: *const IFsrmQuotaBase,
+            quotaFlags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Thresholds: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                thresholds: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                thresholds: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ModifyThreshold: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-                newThreshold: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-                newThreshold: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateThresholdAction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-                actionType: FsrmActionType,
-                action: ?*?*IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-                actionType: FsrmActionType,
-                action: ?*?*IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumThresholdActions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-                actions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaBase,
-                threshold: i32,
-                actions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Thresholds: *const fn(
+            self: *const IFsrmQuotaBase,
+            thresholds: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddThreshold: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteThreshold: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ModifyThreshold: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+            newThreshold: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateThresholdAction: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+            actionType: FsrmActionType,
+            action: ?*?*IFsrmAction,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumThresholdActions: *const fn(
+            self: *const IFsrmQuotaBase,
+            threshold: i32,
+            actions: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_get_QuotaLimit(self: *const T, quotaLimit: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).get_QuotaLimit(@as(*const IFsrmQuotaBase, @ptrCast(self)), quotaLimit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_put_QuotaLimit(self: *const T, quotaLimit: VARIANT) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).put_QuotaLimit(@as(*const IFsrmQuotaBase, @ptrCast(self)), quotaLimit);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_get_QuotaFlags(self: *const T, quotaFlags: ?*i32) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).get_QuotaFlags(@as(*const IFsrmQuotaBase, @ptrCast(self)), quotaFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_put_QuotaFlags(self: *const T, quotaFlags: i32) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).put_QuotaFlags(@as(*const IFsrmQuotaBase, @ptrCast(self)), quotaFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_get_Thresholds(self: *const T, thresholds: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).get_Thresholds(@as(*const IFsrmQuotaBase, @ptrCast(self)), thresholds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_AddThreshold(self: *const T, threshold: i32) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).AddThreshold(@as(*const IFsrmQuotaBase, @ptrCast(self)), threshold);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_DeleteThreshold(self: *const T, threshold: i32) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).DeleteThreshold(@as(*const IFsrmQuotaBase, @ptrCast(self)), threshold);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_ModifyThreshold(self: *const T, threshold: i32, newThreshold: i32) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).ModifyThreshold(@as(*const IFsrmQuotaBase, @ptrCast(self)), threshold, newThreshold);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_CreateThresholdAction(self: *const T, threshold: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).CreateThresholdAction(@as(*const IFsrmQuotaBase, @ptrCast(self)), threshold, actionType, action);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaBase_EnumThresholdActions(self: *const T, threshold: i32, actions: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmQuotaBase.VTable, @ptrCast(self.vtable)).EnumThresholdActions(@as(*const IFsrmQuotaBase, @ptrCast(self)), threshold, actions);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_QuotaLimit(self, quotaLimit);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_QuotaLimit(self: *const IFsrmQuotaBase, quotaLimit: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.put_QuotaLimit(self, quotaLimit);
+    }
+    pub fn get_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_QuotaFlags(self, quotaFlags);
+    }
+    pub fn put_QuotaFlags(self: *const IFsrmQuotaBase, quotaFlags: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_QuotaFlags(self, quotaFlags);
+    }
+    pub fn get_Thresholds(self: *const IFsrmQuotaBase, thresholds: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Thresholds(self, thresholds);
+    }
+    pub fn AddThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.Inline) HRESULT {
+        return self.vtable.AddThreshold(self, threshold);
+    }
+    pub fn DeleteThreshold(self: *const IFsrmQuotaBase, threshold: i32) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteThreshold(self, threshold);
+    }
+    pub fn ModifyThreshold(self: *const IFsrmQuotaBase, threshold: i32, newThreshold: i32) callconv(.Inline) HRESULT {
+        return self.vtable.ModifyThreshold(self, threshold, newThreshold);
+    }
+    pub fn CreateThresholdAction(self: *const IFsrmQuotaBase, threshold: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
+        return self.vtable.CreateThresholdAction(self, threshold, actionType, action);
+    }
+    pub fn EnumThresholdActions(self: *const IFsrmQuotaBase, threshold: i32, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumThresholdActions(self, threshold, actions);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaObject_Value = Guid.initString("42dc3511-61d5-48ae-b6dc-59fc00c0a8d6");
 pub const IID_IFsrmQuotaObject = &IID_IFsrmQuotaObject_Value;
-pub const IFsrmQuotaObject = extern struct {
+pub const IFsrmQuotaObject = extern union {
     pub const VTable = extern struct {
         base: IFsrmQuotaBase.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaObject,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaObject,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Path: *const fn(
+            self: *const IFsrmQuotaObject,
+            path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserSid: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaObject,
-                userSid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaObject,
-                userSid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UserSid: *const fn(
+            self: *const IFsrmQuotaObject,
+            userSid: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserAccount: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaObject,
-                userAccount: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaObject,
-                userAccount: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UserAccount: *const fn(
+            self: *const IFsrmQuotaObject,
+            userAccount: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceTemplateName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaObject,
-                quotaTemplateName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaObject,
-                quotaTemplateName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SourceTemplateName: *const fn(
+            self: *const IFsrmQuotaObject,
+            quotaTemplateName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MatchesSourceTemplate: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaObject,
-                matches: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaObject,
-                matches: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ApplyTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaObject,
-                quotaTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaObject,
-                quotaTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MatchesSourceTemplate: *const fn(
+            self: *const IFsrmQuotaObject,
+            matches: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplyTemplate: *const fn(
+            self: *const IFsrmQuotaObject,
+            quotaTemplateName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmQuotaBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaObject_get_Path(self: *const T, path: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaObject.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IFsrmQuotaObject, @ptrCast(self)), path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaObject_get_UserSid(self: *const T, userSid: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaObject.VTable, @ptrCast(self.vtable)).get_UserSid(@as(*const IFsrmQuotaObject, @ptrCast(self)), userSid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaObject_get_UserAccount(self: *const T, userAccount: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaObject.VTable, @ptrCast(self.vtable)).get_UserAccount(@as(*const IFsrmQuotaObject, @ptrCast(self)), userAccount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaObject_get_SourceTemplateName(self: *const T, quotaTemplateName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaObject.VTable, @ptrCast(self.vtable)).get_SourceTemplateName(@as(*const IFsrmQuotaObject, @ptrCast(self)), quotaTemplateName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaObject_get_MatchesSourceTemplate(self: *const T, matches: ?*i16) HRESULT {
-                return @as(*const IFsrmQuotaObject.VTable, @ptrCast(self.vtable)).get_MatchesSourceTemplate(@as(*const IFsrmQuotaObject, @ptrCast(self)), matches);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaObject_ApplyTemplate(self: *const T, quotaTemplateName: ?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaObject.VTable, @ptrCast(self.vtable)).ApplyTemplate(@as(*const IFsrmQuotaObject, @ptrCast(self)), quotaTemplateName);
-            }
-        };
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Path(self: *const IFsrmQuotaObject, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Path(self, path);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_UserSid(self: *const IFsrmQuotaObject, userSid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_UserSid(self, userSid);
+    }
+    pub fn get_UserAccount(self: *const IFsrmQuotaObject, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_UserAccount(self, userAccount);
+    }
+    pub fn get_SourceTemplateName(self: *const IFsrmQuotaObject, quotaTemplateName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_SourceTemplateName(self, quotaTemplateName);
+    }
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmQuotaObject, matches: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_MatchesSourceTemplate(self, matches);
+    }
+    pub fn ApplyTemplate(self: *const IFsrmQuotaObject, quotaTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ApplyTemplate(self, quotaTemplateName);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuota_Value = Guid.initString("377f739d-9647-4b8e-97d2-5ffce6d759cd");
 pub const IID_IFsrmQuota = &IID_IFsrmQuota_Value;
-pub const IFsrmQuota = extern struct {
+pub const IFsrmQuota = extern union {
     pub const VTable = extern struct {
         base: IFsrmQuotaObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaUsed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuota,
-                used: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuota,
-                used: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_QuotaUsed: *const fn(
+            self: *const IFsrmQuota,
+            used: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaPeakUsage: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuota,
-                peakUsage: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuota,
-                peakUsage: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_QuotaPeakUsage: *const fn(
+            self: *const IFsrmQuota,
+            peakUsage: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_QuotaPeakUsageTime: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuota,
-                peakUsageDateTime: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuota,
-                peakUsageDateTime: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResetPeakUsage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RefreshUsageProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_QuotaPeakUsageTime: *const fn(
+            self: *const IFsrmQuota,
+            peakUsageDateTime: ?*f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResetPeakUsage: *const fn(
+            self: *const IFsrmQuota,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RefreshUsageProperties: *const fn(
+            self: *const IFsrmQuota,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmQuotaObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuota_get_QuotaUsed(self: *const T, used: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmQuota.VTable, @ptrCast(self.vtable)).get_QuotaUsed(@as(*const IFsrmQuota, @ptrCast(self)), used);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuota_get_QuotaPeakUsage(self: *const T, peakUsage: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmQuota.VTable, @ptrCast(self.vtable)).get_QuotaPeakUsage(@as(*const IFsrmQuota, @ptrCast(self)), peakUsage);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuota_get_QuotaPeakUsageTime(self: *const T, peakUsageDateTime: ?*f64) HRESULT {
-                return @as(*const IFsrmQuota.VTable, @ptrCast(self.vtable)).get_QuotaPeakUsageTime(@as(*const IFsrmQuota, @ptrCast(self)), peakUsageDateTime);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuota_ResetPeakUsage(self: *const T) HRESULT {
-                return @as(*const IFsrmQuota.VTable, @ptrCast(self.vtable)).ResetPeakUsage(@as(*const IFsrmQuota, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuota_RefreshUsageProperties(self: *const T) HRESULT {
-                return @as(*const IFsrmQuota.VTable, @ptrCast(self.vtable)).RefreshUsageProperties(@as(*const IFsrmQuota, @ptrCast(self)));
-            }
-        };
+    IFsrmQuotaObject: IFsrmQuotaObject,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_QuotaUsed(self: *const IFsrmQuota, used: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_QuotaUsed(self, used);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_QuotaPeakUsage(self: *const IFsrmQuota, peakUsage: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_QuotaPeakUsage(self, peakUsage);
+    }
+    pub fn get_QuotaPeakUsageTime(self: *const IFsrmQuota, peakUsageDateTime: ?*f64) callconv(.Inline) HRESULT {
+        return self.vtable.get_QuotaPeakUsageTime(self, peakUsageDateTime);
+    }
+    pub fn ResetPeakUsage(self: *const IFsrmQuota) callconv(.Inline) HRESULT {
+        return self.vtable.ResetPeakUsage(self);
+    }
+    pub fn RefreshUsageProperties(self: *const IFsrmQuota) callconv(.Inline) HRESULT {
+        return self.vtable.RefreshUsageProperties(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmAutoApplyQuota_Value = Guid.initString("f82e5729-6aba-4740-bfc7-c7f58f75fb7b");
 pub const IID_IFsrmAutoApplyQuota = &IID_IFsrmAutoApplyQuota_Value;
-pub const IFsrmAutoApplyQuota = extern struct {
+pub const IFsrmAutoApplyQuota = extern union {
     pub const VTable = extern struct {
         base: IFsrmQuotaObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExcludeFolders: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmAutoApplyQuota,
-                folders: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmAutoApplyQuota,
-                folders: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ExcludeFolders: *const fn(
+            self: *const IFsrmAutoApplyQuota,
+            folders: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExcludeFolders: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmAutoApplyQuota,
-                folders: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmAutoApplyQuota,
-                folders: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CommitAndUpdateDerived: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmAutoApplyQuota,
-                commitOptions: FsrmCommitOptions,
-                applyOptions: FsrmTemplateApplyOptions,
-                derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmAutoApplyQuota,
-                commitOptions: FsrmCommitOptions,
-                applyOptions: FsrmTemplateApplyOptions,
-                derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ExcludeFolders: *const fn(
+            self: *const IFsrmAutoApplyQuota,
+            folders: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CommitAndUpdateDerived: *const fn(
+            self: *const IFsrmAutoApplyQuota,
+            commitOptions: FsrmCommitOptions,
+            applyOptions: FsrmTemplateApplyOptions,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmQuotaObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAutoApplyQuota_get_ExcludeFolders(self: *const T, folders: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmAutoApplyQuota.VTable, @ptrCast(self.vtable)).get_ExcludeFolders(@as(*const IFsrmAutoApplyQuota, @ptrCast(self)), folders);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAutoApplyQuota_put_ExcludeFolders(self: *const T, folders: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmAutoApplyQuota.VTable, @ptrCast(self.vtable)).put_ExcludeFolders(@as(*const IFsrmAutoApplyQuota, @ptrCast(self)), folders);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmAutoApplyQuota_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) HRESULT {
-                return @as(*const IFsrmAutoApplyQuota.VTable, @ptrCast(self.vtable)).CommitAndUpdateDerived(@as(*const IFsrmAutoApplyQuota, @ptrCast(self)), commitOptions, applyOptions, derivedObjectsResult);
-            }
-        };
+    IFsrmQuotaObject: IFsrmQuotaObject,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ExcludeFolders(self, folders);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_ExcludeFolders(self: *const IFsrmAutoApplyQuota, folders: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_ExcludeFolders(self, folders);
+    }
+    pub fn CommitAndUpdateDerived(self: *const IFsrmAutoApplyQuota, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaManager_Value = Guid.initString("8bb68c7d-19d8-4ffb-809e-be4fc1734014");
 pub const IID_IFsrmQuotaManager = &IID_IFsrmQuotaManager_Value;
-pub const IFsrmQuotaManager = extern struct {
+pub const IFsrmQuotaManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariables: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                variables: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                variables: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActionVariables: *const fn(
+            self: *const IFsrmQuotaManager,
+            variables: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariableDescriptions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                descriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                descriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateQuota: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAutoApplyQuota: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                quotaTemplateName: ?BSTR,
-                path: ?BSTR,
-                quota: ?*?*IFsrmAutoApplyQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                quotaTemplateName: ?BSTR,
-                path: ?BSTR,
-                quota: ?*?*IFsrmAutoApplyQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQuota: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAutoApplyQuota: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmAutoApplyQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmAutoApplyQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRestrictiveQuota: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                quota: ?*?*IFsrmQuota,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumQuotas: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                quotas: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                quotas: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumAutoApplyQuotas: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                quotas: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                quotas: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumEffectiveQuotas: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                quotas: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                quotas: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Scan: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                strPath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                strPath: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateQuotaCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManager,
-                collection: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManager,
-                collection: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActionVariableDescriptions: *const fn(
+            self: *const IFsrmQuotaManager,
+            descriptions: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAutoApplyQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            quotaTemplateName: ?BSTR,
+            path: ?BSTR,
+            quota: ?*?*IFsrmAutoApplyQuota,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAutoApplyQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmAutoApplyQuota,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRestrictiveQuota: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            quota: ?*?*IFsrmQuota,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumQuotas: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            quotas: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumAutoApplyQuotas: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            quotas: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumEffectiveQuotas: *const fn(
+            self: *const IFsrmQuotaManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            quotas: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Scan: *const fn(
+            self: *const IFsrmQuotaManager,
+            strPath: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateQuotaCollection: *const fn(
+            self: *const IFsrmQuotaManager,
+            collection: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_get_ActionVariables(self: *const T, variables: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).get_ActionVariables(@as(*const IFsrmQuotaManager, @ptrCast(self)), variables);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_get_ActionVariableDescriptions(self: *const T, descriptions: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).get_ActionVariableDescriptions(@as(*const IFsrmQuotaManager, @ptrCast(self)), descriptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_CreateQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmQuota) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).CreateQuota(@as(*const IFsrmQuotaManager, @ptrCast(self)), path, quota);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_CreateAutoApplyQuota(self: *const T, quotaTemplateName: ?BSTR, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).CreateAutoApplyQuota(@as(*const IFsrmQuotaManager, @ptrCast(self)), quotaTemplateName, path, quota);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_GetQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmQuota) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).GetQuota(@as(*const IFsrmQuotaManager, @ptrCast(self)), path, quota);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_GetAutoApplyQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).GetAutoApplyQuota(@as(*const IFsrmQuotaManager, @ptrCast(self)), path, quota);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_GetRestrictiveQuota(self: *const T, path: ?BSTR, quota: ?*?*IFsrmQuota) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).GetRestrictiveQuota(@as(*const IFsrmQuotaManager, @ptrCast(self)), path, quota);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_EnumQuotas(self: *const T, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).EnumQuotas(@as(*const IFsrmQuotaManager, @ptrCast(self)), path, options, quotas);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_EnumAutoApplyQuotas(self: *const T, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).EnumAutoApplyQuotas(@as(*const IFsrmQuotaManager, @ptrCast(self)), path, options, quotas);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_EnumEffectiveQuotas(self: *const T, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).EnumEffectiveQuotas(@as(*const IFsrmQuotaManager, @ptrCast(self)), path, options, quotas);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_Scan(self: *const T, strPath: ?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).Scan(@as(*const IFsrmQuotaManager, @ptrCast(self)), strPath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManager_CreateQuotaCollection(self: *const T, collection: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmQuotaManager.VTable, @ptrCast(self.vtable)).CreateQuotaCollection(@as(*const IFsrmQuotaManager, @ptrCast(self)), collection);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ActionVariables(self: *const IFsrmQuotaManager, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ActionVariables(self, variables);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmQuotaManager, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
+    }
+    pub fn CreateQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
+        return self.vtable.CreateQuota(self, path, quota);
+    }
+    pub fn CreateAutoApplyQuota(self: *const IFsrmQuotaManager, quotaTemplateName: ?BSTR, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
+        return self.vtable.CreateAutoApplyQuota(self, quotaTemplateName, path, quota);
+    }
+    pub fn GetQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
+        return self.vtable.GetQuota(self, path, quota);
+    }
+    pub fn GetAutoApplyQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmAutoApplyQuota) callconv(.Inline) HRESULT {
+        return self.vtable.GetAutoApplyQuota(self, path, quota);
+    }
+    pub fn GetRestrictiveQuota(self: *const IFsrmQuotaManager, path: ?BSTR, quota: ?*?*IFsrmQuota) callconv(.Inline) HRESULT {
+        return self.vtable.GetRestrictiveQuota(self, path, quota);
+    }
+    pub fn EnumQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumQuotas(self, path, options, quotas);
+    }
+    pub fn EnumAutoApplyQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumAutoApplyQuotas(self, path, options, quotas);
+    }
+    pub fn EnumEffectiveQuotas(self: *const IFsrmQuotaManager, path: ?BSTR, options: FsrmEnumOptions, quotas: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumEffectiveQuotas(self, path, options, quotas);
+    }
+    pub fn Scan(self: *const IFsrmQuotaManager, strPath: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.Scan(self, strPath);
+    }
+    pub fn CreateQuotaCollection(self: *const IFsrmQuotaManager, collection: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.CreateQuotaCollection(self, collection);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaManagerEx_Value = Guid.initString("4846cb01-d430-494f-abb4-b1054999fb09");
 pub const IID_IFsrmQuotaManagerEx = &IID_IFsrmQuotaManagerEx_Value;
-pub const IFsrmQuotaManagerEx = extern struct {
+pub const IFsrmQuotaManagerEx = extern union {
     pub const VTable = extern struct {
         base: IFsrmQuotaManager.VTable,
-        IsAffectedByQuota: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaManagerEx,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                affected: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaManagerEx,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                affected: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        IsAffectedByQuota: *const fn(
+            self: *const IFsrmQuotaManagerEx,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            affected: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmQuotaManager.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaManagerEx_IsAffectedByQuota(self: *const T, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) HRESULT {
-                return @as(*const IFsrmQuotaManagerEx.VTable, @ptrCast(self.vtable)).IsAffectedByQuota(@as(*const IFsrmQuotaManagerEx, @ptrCast(self)), path, options, affected);
-            }
-        };
+    IFsrmQuotaManager: IFsrmQuotaManager,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn IsAffectedByQuota(self: *const IFsrmQuotaManagerEx, path: ?BSTR, options: FsrmEnumOptions, affected: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.IsAffectedByQuota(self, path, options, affected);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaTemplate_Value = Guid.initString("a2efab31-295e-46bb-b976-e86d58b52e8b");
 pub const IID_IFsrmQuotaTemplate = &IID_IFsrmQuotaTemplate_Value;
-pub const IFsrmQuotaTemplate = extern struct {
+pub const IFsrmQuotaTemplate = extern union {
     pub const VTable = extern struct {
         base: IFsrmQuotaBase.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplate,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaTemplate,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplate,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaTemplate,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CopyTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplate,
-                quotaTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaTemplate,
-                quotaTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CommitAndUpdateDerived: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplate,
-                commitOptions: FsrmCommitOptions,
-                applyOptions: FsrmTemplateApplyOptions,
-                derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaTemplate,
-                commitOptions: FsrmCommitOptions,
-                applyOptions: FsrmTemplateApplyOptions,
-                derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CopyTemplate: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            quotaTemplateName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CommitAndUpdateDerived: *const fn(
+            self: *const IFsrmQuotaTemplate,
+            commitOptions: FsrmCommitOptions,
+            applyOptions: FsrmTemplateApplyOptions,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmQuotaBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplate_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaTemplate.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmQuotaTemplate, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplate_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaTemplate.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmQuotaTemplate, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplate_CopyTemplate(self: *const T, quotaTemplateName: ?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaTemplate.VTable, @ptrCast(self.vtable)).CopyTemplate(@as(*const IFsrmQuotaTemplate, @ptrCast(self)), quotaTemplateName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplate_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) HRESULT {
-                return @as(*const IFsrmQuotaTemplate.VTable, @ptrCast(self.vtable)).CommitAndUpdateDerived(@as(*const IFsrmQuotaTemplate, @ptrCast(self)), commitOptions, applyOptions, derivedObjectsResult);
-            }
-        };
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmQuotaTemplate, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Name(self: *const IFsrmQuotaTemplate, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn CopyTemplate(self: *const IFsrmQuotaTemplate, quotaTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.CopyTemplate(self, quotaTemplateName);
+    }
+    pub fn CommitAndUpdateDerived(self: *const IFsrmQuotaTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaTemplateImported_Value = Guid.initString("9a2bf113-a329-44cc-809a-5c00fce8da40");
 pub const IID_IFsrmQuotaTemplateImported = &IID_IFsrmQuotaTemplateImported_Value;
-pub const IFsrmQuotaTemplateImported = extern struct {
+pub const IFsrmQuotaTemplateImported = extern union {
     pub const VTable = extern struct {
         base: IFsrmQuotaTemplate.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OverwriteOnCommit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplateImported,
-                overwrite: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaTemplateImported,
-                overwrite: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OverwriteOnCommit: *const fn(
+            self: *const IFsrmQuotaTemplateImported,
+            overwrite: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OverwriteOnCommit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplateImported,
-                overwrite: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmQuotaTemplateImported,
-                overwrite: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_OverwriteOnCommit: *const fn(
+            self: *const IFsrmQuotaTemplateImported,
+            overwrite: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmQuotaTemplate.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplateImported_get_OverwriteOnCommit(self: *const T, overwrite: ?*i16) HRESULT {
-                return @as(*const IFsrmQuotaTemplateImported.VTable, @ptrCast(self.vtable)).get_OverwriteOnCommit(@as(*const IFsrmQuotaTemplateImported, @ptrCast(self)), overwrite);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplateImported_put_OverwriteOnCommit(self: *const T, overwrite: i16) HRESULT {
-                return @as(*const IFsrmQuotaTemplateImported.VTable, @ptrCast(self.vtable)).put_OverwriteOnCommit(@as(*const IFsrmQuotaTemplateImported, @ptrCast(self)), overwrite);
-            }
-        };
+    IFsrmQuotaTemplate: IFsrmQuotaTemplate,
+    IFsrmQuotaBase: IFsrmQuotaBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_OverwriteOnCommit(self: *const IFsrmQuotaTemplateImported, overwrite: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_OverwriteOnCommit(self, overwrite);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmQuotaTemplateManager_Value = Guid.initString("4173ac41-172d-4d52-963c-fdc7e415f717");
 pub const IID_IFsrmQuotaTemplateManager = &IID_IFsrmQuotaTemplateManager_Value;
-pub const IFsrmQuotaTemplateManager = extern struct {
+pub const IFsrmQuotaTemplateManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        CreateTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplateManager,
-                quotaTemplate: ?*?*IFsrmQuotaTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaTemplateManager,
-                quotaTemplate: ?*?*IFsrmQuotaTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplateManager,
-                name: ?BSTR,
-                quotaTemplate: ?*?*IFsrmQuotaTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaTemplateManager,
-                name: ?BSTR,
-                quotaTemplate: ?*?*IFsrmQuotaTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplateManager,
-                options: FsrmEnumOptions,
-                quotaTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaTemplateManager,
-                options: FsrmEnumOptions,
-                quotaTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExportTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplateManager,
-                quotaTemplateNamesArray: ?*VARIANT,
-                serializedQuotaTemplates: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaTemplateManager,
-                quotaTemplateNamesArray: ?*VARIANT,
-                serializedQuotaTemplates: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmQuotaTemplateManager,
-                serializedQuotaTemplates: ?BSTR,
-                quotaTemplateNamesArray: ?*VARIANT,
-                quotaTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmQuotaTemplateManager,
-                serializedQuotaTemplates: ?BSTR,
-                quotaTemplateNamesArray: ?*VARIANT,
-                quotaTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateTemplate: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            quotaTemplate: ?*?*IFsrmQuotaTemplate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTemplate: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            name: ?BSTR,
+            quotaTemplate: ?*?*IFsrmQuotaTemplate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumTemplates: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            options: FsrmEnumOptions,
+            quotaTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExportTemplates: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            quotaTemplateNamesArray: ?*VARIANT,
+            serializedQuotaTemplates: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportTemplates: *const fn(
+            self: *const IFsrmQuotaTemplateManager,
+            serializedQuotaTemplates: ?BSTR,
+            quotaTemplateNamesArray: ?*VARIANT,
+            quotaTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplateManager_CreateTemplate(self: *const T, quotaTemplate: ?*?*IFsrmQuotaTemplate) HRESULT {
-                return @as(*const IFsrmQuotaTemplateManager.VTable, @ptrCast(self.vtable)).CreateTemplate(@as(*const IFsrmQuotaTemplateManager, @ptrCast(self)), quotaTemplate);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplateManager_GetTemplate(self: *const T, name: ?BSTR, quotaTemplate: ?*?*IFsrmQuotaTemplate) HRESULT {
-                return @as(*const IFsrmQuotaTemplateManager.VTable, @ptrCast(self.vtable)).GetTemplate(@as(*const IFsrmQuotaTemplateManager, @ptrCast(self)), name, quotaTemplate);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplateManager_EnumTemplates(self: *const T, options: FsrmEnumOptions, quotaTemplates: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmQuotaTemplateManager.VTable, @ptrCast(self.vtable)).EnumTemplates(@as(*const IFsrmQuotaTemplateManager, @ptrCast(self)), options, quotaTemplates);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplateManager_ExportTemplates(self: *const T, quotaTemplateNamesArray: ?*VARIANT, serializedQuotaTemplates: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmQuotaTemplateManager.VTable, @ptrCast(self.vtable)).ExportTemplates(@as(*const IFsrmQuotaTemplateManager, @ptrCast(self)), quotaTemplateNamesArray, serializedQuotaTemplates);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmQuotaTemplateManager_ImportTemplates(self: *const T, serializedQuotaTemplates: ?BSTR, quotaTemplateNamesArray: ?*VARIANT, quotaTemplates: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmQuotaTemplateManager.VTable, @ptrCast(self.vtable)).ImportTemplates(@as(*const IFsrmQuotaTemplateManager, @ptrCast(self)), serializedQuotaTemplates, quotaTemplateNamesArray, quotaTemplates);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateTemplate(self: *const IFsrmQuotaTemplateManager, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
+        return self.vtable.CreateTemplate(self, quotaTemplate);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetTemplate(self: *const IFsrmQuotaTemplateManager, name: ?BSTR, quotaTemplate: ?*?*IFsrmQuotaTemplate) callconv(.Inline) HRESULT {
+        return self.vtable.GetTemplate(self, name, quotaTemplate);
+    }
+    pub fn EnumTemplates(self: *const IFsrmQuotaTemplateManager, options: FsrmEnumOptions, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumTemplates(self, options, quotaTemplates);
+    }
+    pub fn ExportTemplates(self: *const IFsrmQuotaTemplateManager, quotaTemplateNamesArray: ?*VARIANT, serializedQuotaTemplates: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ExportTemplates(self, quotaTemplateNamesArray, serializedQuotaTemplates);
+    }
+    pub fn ImportTemplates(self: *const IFsrmQuotaTemplateManager, serializedQuotaTemplates: ?BSTR, quotaTemplateNamesArray: ?*VARIANT, quotaTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.ImportTemplates(self, serializedQuotaTemplates, quotaTemplateNamesArray, quotaTemplates);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileGroup_Value = Guid.initString("8dd04909-0e34-4d55-afaa-89e1f1a1bbb9");
 pub const IID_IFsrmFileGroup = &IID_IFsrmFileGroup_Value;
-pub const IFsrmFileGroup = extern struct {
+pub const IFsrmFileGroup = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroup,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroup,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmFileGroup,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroup,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroup,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmFileGroup,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Members: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroup,
-                members: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroup,
-                members: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Members: *const fn(
+            self: *const IFsrmFileGroup,
+            members: ?*?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Members: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroup,
-                members: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroup,
-                members: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Members: *const fn(
+            self: *const IFsrmFileGroup,
+            members: ?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NonMembers: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroup,
-                nonMembers: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroup,
-                nonMembers: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NonMembers: *const fn(
+            self: *const IFsrmFileGroup,
+            nonMembers: ?*?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NonMembers: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroup,
-                nonMembers: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroup,
-                nonMembers: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NonMembers: *const fn(
+            self: *const IFsrmFileGroup,
+            nonMembers: ?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroup_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileGroup.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmFileGroup, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroup_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileGroup.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmFileGroup, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroup_get_Members(self: *const T, members: ?*?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileGroup.VTable, @ptrCast(self.vtable)).get_Members(@as(*const IFsrmFileGroup, @ptrCast(self)), members);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroup_put_Members(self: *const T, members: ?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileGroup.VTable, @ptrCast(self.vtable)).put_Members(@as(*const IFsrmFileGroup, @ptrCast(self)), members);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroup_get_NonMembers(self: *const T, nonMembers: ?*?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileGroup.VTable, @ptrCast(self.vtable)).get_NonMembers(@as(*const IFsrmFileGroup, @ptrCast(self)), nonMembers);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroup_put_NonMembers(self: *const T, nonMembers: ?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileGroup.VTable, @ptrCast(self.vtable)).put_NonMembers(@as(*const IFsrmFileGroup, @ptrCast(self)), nonMembers);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmFileGroup, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Name(self: *const IFsrmFileGroup, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Members(self: *const IFsrmFileGroup, members: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_Members(self, members);
+    }
+    pub fn put_Members(self: *const IFsrmFileGroup, members: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.put_Members(self, members);
+    }
+    pub fn get_NonMembers(self: *const IFsrmFileGroup, nonMembers: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_NonMembers(self, nonMembers);
+    }
+    pub fn put_NonMembers(self: *const IFsrmFileGroup, nonMembers: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.put_NonMembers(self, nonMembers);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileGroupImported_Value = Guid.initString("ad55f10b-5f11-4be7-94ef-d9ee2e470ded");
 pub const IID_IFsrmFileGroupImported = &IID_IFsrmFileGroupImported_Value;
-pub const IFsrmFileGroupImported = extern struct {
+pub const IFsrmFileGroupImported = extern union {
     pub const VTable = extern struct {
         base: IFsrmFileGroup.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OverwriteOnCommit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroupImported,
-                overwrite: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroupImported,
-                overwrite: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OverwriteOnCommit: *const fn(
+            self: *const IFsrmFileGroupImported,
+            overwrite: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OverwriteOnCommit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileGroupImported,
-                overwrite: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileGroupImported,
-                overwrite: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_OverwriteOnCommit: *const fn(
+            self: *const IFsrmFileGroupImported,
+            overwrite: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmFileGroup.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroupImported_get_OverwriteOnCommit(self: *const T, overwrite: ?*i16) HRESULT {
-                return @as(*const IFsrmFileGroupImported.VTable, @ptrCast(self.vtable)).get_OverwriteOnCommit(@as(*const IFsrmFileGroupImported, @ptrCast(self)), overwrite);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroupImported_put_OverwriteOnCommit(self: *const T, overwrite: i16) HRESULT {
-                return @as(*const IFsrmFileGroupImported.VTable, @ptrCast(self.vtable)).put_OverwriteOnCommit(@as(*const IFsrmFileGroupImported, @ptrCast(self)), overwrite);
-            }
-        };
+    IFsrmFileGroup: IFsrmFileGroup,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_OverwriteOnCommit(self: *const IFsrmFileGroupImported, overwrite: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_OverwriteOnCommit(self, overwrite);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileGroupManager_Value = Guid.initString("426677d5-018c-485c-8a51-20b86d00bdc4");
 pub const IID_IFsrmFileGroupManager = &IID_IFsrmFileGroupManager_Value;
-pub const IFsrmFileGroupManager = extern struct {
+pub const IFsrmFileGroupManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        CreateFileGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileGroupManager,
-                fileGroup: ?*?*IFsrmFileGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileGroupManager,
-                fileGroup: ?*?*IFsrmFileGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileGroup: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileGroupManager,
-                name: ?BSTR,
-                fileGroup: ?*?*IFsrmFileGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileGroupManager,
-                name: ?BSTR,
-                fileGroup: ?*?*IFsrmFileGroup,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumFileGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileGroupManager,
-                options: FsrmEnumOptions,
-                fileGroups: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileGroupManager,
-                options: FsrmEnumOptions,
-                fileGroups: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExportFileGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileGroupManager,
-                fileGroupNamesArray: ?*VARIANT,
-                serializedFileGroups: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileGroupManager,
-                fileGroupNamesArray: ?*VARIANT,
-                serializedFileGroups: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportFileGroups: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileGroupManager,
-                serializedFileGroups: ?BSTR,
-                fileGroupNamesArray: ?*VARIANT,
-                fileGroups: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileGroupManager,
-                serializedFileGroups: ?BSTR,
-                fileGroupNamesArray: ?*VARIANT,
-                fileGroups: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateFileGroup: *const fn(
+            self: *const IFsrmFileGroupManager,
+            fileGroup: ?*?*IFsrmFileGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileGroup: *const fn(
+            self: *const IFsrmFileGroupManager,
+            name: ?BSTR,
+            fileGroup: ?*?*IFsrmFileGroup,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumFileGroups: *const fn(
+            self: *const IFsrmFileGroupManager,
+            options: FsrmEnumOptions,
+            fileGroups: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExportFileGroups: *const fn(
+            self: *const IFsrmFileGroupManager,
+            fileGroupNamesArray: ?*VARIANT,
+            serializedFileGroups: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportFileGroups: *const fn(
+            self: *const IFsrmFileGroupManager,
+            serializedFileGroups: ?BSTR,
+            fileGroupNamesArray: ?*VARIANT,
+            fileGroups: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroupManager_CreateFileGroup(self: *const T, fileGroup: ?*?*IFsrmFileGroup) HRESULT {
-                return @as(*const IFsrmFileGroupManager.VTable, @ptrCast(self.vtable)).CreateFileGroup(@as(*const IFsrmFileGroupManager, @ptrCast(self)), fileGroup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroupManager_GetFileGroup(self: *const T, name: ?BSTR, fileGroup: ?*?*IFsrmFileGroup) HRESULT {
-                return @as(*const IFsrmFileGroupManager.VTable, @ptrCast(self.vtable)).GetFileGroup(@as(*const IFsrmFileGroupManager, @ptrCast(self)), name, fileGroup);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroupManager_EnumFileGroups(self: *const T, options: FsrmEnumOptions, fileGroups: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmFileGroupManager.VTable, @ptrCast(self.vtable)).EnumFileGroups(@as(*const IFsrmFileGroupManager, @ptrCast(self)), options, fileGroups);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroupManager_ExportFileGroups(self: *const T, fileGroupNamesArray: ?*VARIANT, serializedFileGroups: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileGroupManager.VTable, @ptrCast(self.vtable)).ExportFileGroups(@as(*const IFsrmFileGroupManager, @ptrCast(self)), fileGroupNamesArray, serializedFileGroups);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileGroupManager_ImportFileGroups(self: *const T, serializedFileGroups: ?BSTR, fileGroupNamesArray: ?*VARIANT, fileGroups: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmFileGroupManager.VTable, @ptrCast(self.vtable)).ImportFileGroups(@as(*const IFsrmFileGroupManager, @ptrCast(self)), serializedFileGroups, fileGroupNamesArray, fileGroups);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateFileGroup(self: *const IFsrmFileGroupManager, fileGroup: ?*?*IFsrmFileGroup) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFileGroup(self, fileGroup);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetFileGroup(self: *const IFsrmFileGroupManager, name: ?BSTR, fileGroup: ?*?*IFsrmFileGroup) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileGroup(self, name, fileGroup);
+    }
+    pub fn EnumFileGroups(self: *const IFsrmFileGroupManager, options: FsrmEnumOptions, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumFileGroups(self, options, fileGroups);
+    }
+    pub fn ExportFileGroups(self: *const IFsrmFileGroupManager, fileGroupNamesArray: ?*VARIANT, serializedFileGroups: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ExportFileGroups(self, fileGroupNamesArray, serializedFileGroups);
+    }
+    pub fn ImportFileGroups(self: *const IFsrmFileGroupManager, serializedFileGroups: ?BSTR, fileGroupNamesArray: ?*VARIANT, fileGroups: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.ImportFileGroups(self, serializedFileGroups, fileGroupNamesArray, fileGroups);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenBase_Value = Guid.initString("f3637e80-5b22-4a2b-a637-bbb642b41cfc");
 pub const IID_IFsrmFileScreenBase = &IID_IFsrmFileScreenBase_Value;
-pub const IFsrmFileScreenBase = extern struct {
+pub const IFsrmFileScreenBase = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_BlockedFileGroups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenBase,
-                blockList: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenBase,
-                blockList: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_BlockedFileGroups: *const fn(
+            self: *const IFsrmFileScreenBase,
+            blockList: ?*?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_BlockedFileGroups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenBase,
-                blockList: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenBase,
-                blockList: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_BlockedFileGroups: *const fn(
+            self: *const IFsrmFileScreenBase,
+            blockList: ?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileScreenFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenBase,
-                fileScreenFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenBase,
-                fileScreenFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FileScreenFlags: *const fn(
+            self: *const IFsrmFileScreenBase,
+            fileScreenFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileScreenFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenBase,
-                fileScreenFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenBase,
-                fileScreenFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateAction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenBase,
-                actionType: FsrmActionType,
-                action: ?*?*IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenBase,
-                actionType: FsrmActionType,
-                action: ?*?*IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumActions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenBase,
-                actions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenBase,
-                actions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_FileScreenFlags: *const fn(
+            self: *const IFsrmFileScreenBase,
+            fileScreenFlags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateAction: *const fn(
+            self: *const IFsrmFileScreenBase,
+            actionType: FsrmActionType,
+            action: ?*?*IFsrmAction,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumActions: *const fn(
+            self: *const IFsrmFileScreenBase,
+            actions: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenBase_get_BlockedFileGroups(self: *const T, blockList: ?*?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenBase.VTable, @ptrCast(self.vtable)).get_BlockedFileGroups(@as(*const IFsrmFileScreenBase, @ptrCast(self)), blockList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenBase_put_BlockedFileGroups(self: *const T, blockList: ?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenBase.VTable, @ptrCast(self.vtable)).put_BlockedFileGroups(@as(*const IFsrmFileScreenBase, @ptrCast(self)), blockList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenBase_get_FileScreenFlags(self: *const T, fileScreenFlags: ?*i32) HRESULT {
-                return @as(*const IFsrmFileScreenBase.VTable, @ptrCast(self.vtable)).get_FileScreenFlags(@as(*const IFsrmFileScreenBase, @ptrCast(self)), fileScreenFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenBase_put_FileScreenFlags(self: *const T, fileScreenFlags: i32) HRESULT {
-                return @as(*const IFsrmFileScreenBase.VTable, @ptrCast(self.vtable)).put_FileScreenFlags(@as(*const IFsrmFileScreenBase, @ptrCast(self)), fileScreenFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenBase_CreateAction(self: *const T, actionType: FsrmActionType, action: ?*?*IFsrmAction) HRESULT {
-                return @as(*const IFsrmFileScreenBase.VTable, @ptrCast(self.vtable)).CreateAction(@as(*const IFsrmFileScreenBase, @ptrCast(self)), actionType, action);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenBase_EnumActions(self: *const T, actions: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmFileScreenBase.VTable, @ptrCast(self.vtable)).EnumActions(@as(*const IFsrmFileScreenBase, @ptrCast(self)), actions);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_BlockedFileGroups(self, blockList);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_BlockedFileGroups(self: *const IFsrmFileScreenBase, blockList: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.put_BlockedFileGroups(self, blockList);
+    }
+    pub fn get_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_FileScreenFlags(self, fileScreenFlags);
+    }
+    pub fn put_FileScreenFlags(self: *const IFsrmFileScreenBase, fileScreenFlags: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_FileScreenFlags(self, fileScreenFlags);
+    }
+    pub fn CreateAction(self: *const IFsrmFileScreenBase, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
+        return self.vtable.CreateAction(self, actionType, action);
+    }
+    pub fn EnumActions(self: *const IFsrmFileScreenBase, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumActions(self, actions);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreen_Value = Guid.initString("5f6325d3-ce88-4733-84c1-2d6aefc5ea07");
 pub const IID_IFsrmFileScreen = &IID_IFsrmFileScreen_Value;
-pub const IFsrmFileScreen = extern struct {
+pub const IFsrmFileScreen = extern union {
     pub const VTable = extern struct {
         base: IFsrmFileScreenBase.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreen,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreen,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Path: *const fn(
+            self: *const IFsrmFileScreen,
+            path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SourceTemplateName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreen,
-                fileScreenTemplateName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreen,
-                fileScreenTemplateName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SourceTemplateName: *const fn(
+            self: *const IFsrmFileScreen,
+            fileScreenTemplateName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MatchesSourceTemplate: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreen,
-                matches: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreen,
-                matches: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MatchesSourceTemplate: *const fn(
+            self: *const IFsrmFileScreen,
+            matches: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserSid: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreen,
-                userSid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreen,
-                userSid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UserSid: *const fn(
+            self: *const IFsrmFileScreen,
+            userSid: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UserAccount: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreen,
-                userAccount: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreen,
-                userAccount: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ApplyTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreen,
-                fileScreenTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreen,
-                fileScreenTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UserAccount: *const fn(
+            self: *const IFsrmFileScreen,
+            userAccount: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ApplyTemplate: *const fn(
+            self: *const IFsrmFileScreen,
+            fileScreenTemplateName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmFileScreenBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreen_get_Path(self: *const T, path: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreen.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IFsrmFileScreen, @ptrCast(self)), path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreen_get_SourceTemplateName(self: *const T, fileScreenTemplateName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreen.VTable, @ptrCast(self.vtable)).get_SourceTemplateName(@as(*const IFsrmFileScreen, @ptrCast(self)), fileScreenTemplateName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreen_get_MatchesSourceTemplate(self: *const T, matches: ?*i16) HRESULT {
-                return @as(*const IFsrmFileScreen.VTable, @ptrCast(self.vtable)).get_MatchesSourceTemplate(@as(*const IFsrmFileScreen, @ptrCast(self)), matches);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreen_get_UserSid(self: *const T, userSid: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreen.VTable, @ptrCast(self.vtable)).get_UserSid(@as(*const IFsrmFileScreen, @ptrCast(self)), userSid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreen_get_UserAccount(self: *const T, userAccount: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreen.VTable, @ptrCast(self.vtable)).get_UserAccount(@as(*const IFsrmFileScreen, @ptrCast(self)), userAccount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreen_ApplyTemplate(self: *const T, fileScreenTemplateName: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreen.VTable, @ptrCast(self.vtable)).ApplyTemplate(@as(*const IFsrmFileScreen, @ptrCast(self)), fileScreenTemplateName);
-            }
-        };
+    IFsrmFileScreenBase: IFsrmFileScreenBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Path(self: *const IFsrmFileScreen, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Path(self, path);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_SourceTemplateName(self: *const IFsrmFileScreen, fileScreenTemplateName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_SourceTemplateName(self, fileScreenTemplateName);
+    }
+    pub fn get_MatchesSourceTemplate(self: *const IFsrmFileScreen, matches: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_MatchesSourceTemplate(self, matches);
+    }
+    pub fn get_UserSid(self: *const IFsrmFileScreen, userSid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_UserSid(self, userSid);
+    }
+    pub fn get_UserAccount(self: *const IFsrmFileScreen, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_UserAccount(self, userAccount);
+    }
+    pub fn ApplyTemplate(self: *const IFsrmFileScreen, fileScreenTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ApplyTemplate(self, fileScreenTemplateName);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenException_Value = Guid.initString("bee7ce02-df77-4515-9389-78f01c5afc1a");
 pub const IID_IFsrmFileScreenException = &IID_IFsrmFileScreenException_Value;
-pub const IFsrmFileScreenException = extern struct {
+pub const IFsrmFileScreenException = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Path: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenException,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenException,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Path: *const fn(
+            self: *const IFsrmFileScreenException,
+            path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AllowedFileGroups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenException,
-                allowList: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenException,
-                allowList: ?*?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AllowedFileGroups: *const fn(
+            self: *const IFsrmFileScreenException,
+            allowList: ?*?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_AllowedFileGroups: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenException,
-                allowList: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenException,
-                allowList: ?*IFsrmMutableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_AllowedFileGroups: *const fn(
+            self: *const IFsrmFileScreenException,
+            allowList: ?*IFsrmMutableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenException_get_Path(self: *const T, path: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreenException.VTable, @ptrCast(self.vtable)).get_Path(@as(*const IFsrmFileScreenException, @ptrCast(self)), path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenException_get_AllowedFileGroups(self: *const T, allowList: ?*?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenException.VTable, @ptrCast(self.vtable)).get_AllowedFileGroups(@as(*const IFsrmFileScreenException, @ptrCast(self)), allowList);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenException_put_AllowedFileGroups(self: *const T, allowList: ?*IFsrmMutableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenException.VTable, @ptrCast(self.vtable)).put_AllowedFileGroups(@as(*const IFsrmFileScreenException, @ptrCast(self)), allowList);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Path(self: *const IFsrmFileScreenException, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Path(self, path);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_AllowedFileGroups(self, allowList);
+    }
+    pub fn put_AllowedFileGroups(self: *const IFsrmFileScreenException, allowList: ?*IFsrmMutableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.put_AllowedFileGroups(self, allowList);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenManager_Value = Guid.initString("ff4fa04e-5a94-4bda-a3a0-d5b4d3c52eba");
 pub const IID_IFsrmFileScreenManager = &IID_IFsrmFileScreenManager_Value;
-pub const IFsrmFileScreenManager = extern struct {
+pub const IFsrmFileScreenManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariables: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                variables: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                variables: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActionVariables: *const fn(
+            self: *const IFsrmFileScreenManager,
+            variables: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariableDescriptions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                descriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                descriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFileScreen: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreen: ?*?*IFsrmFileScreen,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreen: ?*?*IFsrmFileScreen,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileScreen: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreen: ?*?*IFsrmFileScreen,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreen: ?*?*IFsrmFileScreen,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumFileScreens: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                fileScreens: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                fileScreens: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFileScreenException: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreenException: ?*?*IFsrmFileScreenException,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreenException: ?*?*IFsrmFileScreenException,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileScreenException: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreenException: ?*?*IFsrmFileScreenException,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                fileScreenException: ?*?*IFsrmFileScreenException,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumFileScreenExceptions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                fileScreenExceptions: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                path: ?BSTR,
-                options: FsrmEnumOptions,
-                fileScreenExceptions: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFileScreenCollection: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenManager,
-                collection: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenManager,
-                collection: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActionVariableDescriptions: *const fn(
+            self: *const IFsrmFileScreenManager,
+            descriptions: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFileScreen: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreen: ?*?*IFsrmFileScreen,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileScreen: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreen: ?*?*IFsrmFileScreen,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumFileScreens: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            fileScreens: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFileScreenException: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreenException: ?*?*IFsrmFileScreenException,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileScreenException: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            fileScreenException: ?*?*IFsrmFileScreenException,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumFileScreenExceptions: *const fn(
+            self: *const IFsrmFileScreenManager,
+            path: ?BSTR,
+            options: FsrmEnumOptions,
+            fileScreenExceptions: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFileScreenCollection: *const fn(
+            self: *const IFsrmFileScreenManager,
+            collection: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_get_ActionVariables(self: *const T, variables: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).get_ActionVariables(@as(*const IFsrmFileScreenManager, @ptrCast(self)), variables);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_get_ActionVariableDescriptions(self: *const T, descriptions: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).get_ActionVariableDescriptions(@as(*const IFsrmFileScreenManager, @ptrCast(self)), descriptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_CreateFileScreen(self: *const T, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).CreateFileScreen(@as(*const IFsrmFileScreenManager, @ptrCast(self)), path, fileScreen);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_GetFileScreen(self: *const T, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).GetFileScreen(@as(*const IFsrmFileScreenManager, @ptrCast(self)), path, fileScreen);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_EnumFileScreens(self: *const T, path: ?BSTR, options: FsrmEnumOptions, fileScreens: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).EnumFileScreens(@as(*const IFsrmFileScreenManager, @ptrCast(self)), path, options, fileScreens);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_CreateFileScreenException(self: *const T, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).CreateFileScreenException(@as(*const IFsrmFileScreenManager, @ptrCast(self)), path, fileScreenException);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_GetFileScreenException(self: *const T, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).GetFileScreenException(@as(*const IFsrmFileScreenManager, @ptrCast(self)), path, fileScreenException);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_EnumFileScreenExceptions(self: *const T, path: ?BSTR, options: FsrmEnumOptions, fileScreenExceptions: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).EnumFileScreenExceptions(@as(*const IFsrmFileScreenManager, @ptrCast(self)), path, options, fileScreenExceptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenManager_CreateFileScreenCollection(self: *const T, collection: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenManager.VTable, @ptrCast(self.vtable)).CreateFileScreenCollection(@as(*const IFsrmFileScreenManager, @ptrCast(self)), collection);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ActionVariables(self: *const IFsrmFileScreenManager, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ActionVariables(self, variables);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileScreenManager, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
+    }
+    pub fn CreateFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFileScreen(self, path, fileScreen);
+    }
+    pub fn GetFileScreen(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreen: ?*?*IFsrmFileScreen) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileScreen(self, path, fileScreen);
+    }
+    pub fn EnumFileScreens(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreens: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumFileScreens(self, path, options, fileScreens);
+    }
+    pub fn CreateFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFileScreenException(self, path, fileScreenException);
+    }
+    pub fn GetFileScreenException(self: *const IFsrmFileScreenManager, path: ?BSTR, fileScreenException: ?*?*IFsrmFileScreenException) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileScreenException(self, path, fileScreenException);
+    }
+    pub fn EnumFileScreenExceptions(self: *const IFsrmFileScreenManager, path: ?BSTR, options: FsrmEnumOptions, fileScreenExceptions: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumFileScreenExceptions(self, path, options, fileScreenExceptions);
+    }
+    pub fn CreateFileScreenCollection(self: *const IFsrmFileScreenManager, collection: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFileScreenCollection(self, collection);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenTemplate_Value = Guid.initString("205bebf8-dd93-452a-95a6-32b566b35828");
 pub const IID_IFsrmFileScreenTemplate = &IID_IFsrmFileScreenTemplate_Value;
-pub const IFsrmFileScreenTemplate = extern struct {
+pub const IFsrmFileScreenTemplate = extern union {
     pub const VTable = extern struct {
         base: IFsrmFileScreenBase.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplate,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplate,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmFileScreenTemplate,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplate,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplate,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CopyTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplate,
-                fileScreenTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplate,
-                fileScreenTemplateName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CommitAndUpdateDerived: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplate,
-                commitOptions: FsrmCommitOptions,
-                applyOptions: FsrmTemplateApplyOptions,
-                derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplate,
-                commitOptions: FsrmCommitOptions,
-                applyOptions: FsrmTemplateApplyOptions,
-                derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmFileScreenTemplate,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CopyTemplate: *const fn(
+            self: *const IFsrmFileScreenTemplate,
+            fileScreenTemplateName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CommitAndUpdateDerived: *const fn(
+            self: *const IFsrmFileScreenTemplate,
+            commitOptions: FsrmCommitOptions,
+            applyOptions: FsrmTemplateApplyOptions,
+            derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmFileScreenBase.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplate_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreenTemplate.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmFileScreenTemplate, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplate_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreenTemplate.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmFileScreenTemplate, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplate_CopyTemplate(self: *const T, fileScreenTemplateName: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreenTemplate.VTable, @ptrCast(self.vtable)).CopyTemplate(@as(*const IFsrmFileScreenTemplate, @ptrCast(self)), fileScreenTemplateName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplate_CommitAndUpdateDerived(self: *const T, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) HRESULT {
-                return @as(*const IFsrmFileScreenTemplate.VTable, @ptrCast(self.vtable)).CommitAndUpdateDerived(@as(*const IFsrmFileScreenTemplate, @ptrCast(self)), commitOptions, applyOptions, derivedObjectsResult);
-            }
-        };
+    IFsrmFileScreenBase: IFsrmFileScreenBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmFileScreenTemplate, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Name(self: *const IFsrmFileScreenTemplate, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn CopyTemplate(self: *const IFsrmFileScreenTemplate, fileScreenTemplateName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.CopyTemplate(self, fileScreenTemplateName);
+    }
+    pub fn CommitAndUpdateDerived(self: *const IFsrmFileScreenTemplate, commitOptions: FsrmCommitOptions, applyOptions: FsrmTemplateApplyOptions, derivedObjectsResult: ?*?*IFsrmDerivedObjectsResult) callconv(.Inline) HRESULT {
+        return self.vtable.CommitAndUpdateDerived(self, commitOptions, applyOptions, derivedObjectsResult);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenTemplateImported_Value = Guid.initString("e1010359-3e5d-4ecd-9fe4-ef48622fdf30");
 pub const IID_IFsrmFileScreenTemplateImported = &IID_IFsrmFileScreenTemplateImported_Value;
-pub const IFsrmFileScreenTemplateImported = extern struct {
+pub const IFsrmFileScreenTemplateImported = extern union {
     pub const VTable = extern struct {
         base: IFsrmFileScreenTemplate.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OverwriteOnCommit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplateImported,
-                overwrite: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplateImported,
-                overwrite: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OverwriteOnCommit: *const fn(
+            self: *const IFsrmFileScreenTemplateImported,
+            overwrite: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OverwriteOnCommit: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplateImported,
-                overwrite: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplateImported,
-                overwrite: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_OverwriteOnCommit: *const fn(
+            self: *const IFsrmFileScreenTemplateImported,
+            overwrite: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmFileScreenTemplate.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplateImported_get_OverwriteOnCommit(self: *const T, overwrite: ?*i16) HRESULT {
-                return @as(*const IFsrmFileScreenTemplateImported.VTable, @ptrCast(self.vtable)).get_OverwriteOnCommit(@as(*const IFsrmFileScreenTemplateImported, @ptrCast(self)), overwrite);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplateImported_put_OverwriteOnCommit(self: *const T, overwrite: i16) HRESULT {
-                return @as(*const IFsrmFileScreenTemplateImported.VTable, @ptrCast(self.vtable)).put_OverwriteOnCommit(@as(*const IFsrmFileScreenTemplateImported, @ptrCast(self)), overwrite);
-            }
-        };
+    IFsrmFileScreenTemplate: IFsrmFileScreenTemplate,
+    IFsrmFileScreenBase: IFsrmFileScreenBase,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_OverwriteOnCommit(self, overwrite);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_OverwriteOnCommit(self: *const IFsrmFileScreenTemplateImported, overwrite: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_OverwriteOnCommit(self, overwrite);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileScreenTemplateManager_Value = Guid.initString("cfe36cba-1949-4e74-a14f-f1d580ceaf13");
 pub const IID_IFsrmFileScreenTemplateManager = &IID_IFsrmFileScreenTemplateManager_Value;
-pub const IFsrmFileScreenTemplateManager = extern struct {
+pub const IFsrmFileScreenTemplateManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        CreateTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTemplate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                name: ?BSTR,
-                fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                name: ?BSTR,
-                fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                options: FsrmEnumOptions,
-                fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                options: FsrmEnumOptions,
-                fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ExportTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                fileScreenTemplateNamesArray: ?*VARIANT,
-                serializedFileScreenTemplates: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                fileScreenTemplateNamesArray: ?*VARIANT,
-                serializedFileScreenTemplates: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ImportTemplates: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                serializedFileScreenTemplates: ?BSTR,
-                fileScreenTemplateNamesArray: ?*VARIANT,
-                fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileScreenTemplateManager,
-                serializedFileScreenTemplates: ?BSTR,
-                fileScreenTemplateNamesArray: ?*VARIANT,
-                fileScreenTemplates: ?*?*IFsrmCommittableCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CreateTemplate: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTemplate: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            name: ?BSTR,
+            fileScreenTemplate: ?*?*IFsrmFileScreenTemplate,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumTemplates: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            options: FsrmEnumOptions,
+            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ExportTemplates: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            fileScreenTemplateNamesArray: ?*VARIANT,
+            serializedFileScreenTemplates: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ImportTemplates: *const fn(
+            self: *const IFsrmFileScreenTemplateManager,
+            serializedFileScreenTemplates: ?BSTR,
+            fileScreenTemplateNamesArray: ?*VARIANT,
+            fileScreenTemplates: ?*?*IFsrmCommittableCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplateManager_CreateTemplate(self: *const T, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) HRESULT {
-                return @as(*const IFsrmFileScreenTemplateManager.VTable, @ptrCast(self.vtable)).CreateTemplate(@as(*const IFsrmFileScreenTemplateManager, @ptrCast(self)), fileScreenTemplate);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplateManager_GetTemplate(self: *const T, name: ?BSTR, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) HRESULT {
-                return @as(*const IFsrmFileScreenTemplateManager.VTable, @ptrCast(self.vtable)).GetTemplate(@as(*const IFsrmFileScreenTemplateManager, @ptrCast(self)), name, fileScreenTemplate);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplateManager_EnumTemplates(self: *const T, options: FsrmEnumOptions, fileScreenTemplates: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenTemplateManager.VTable, @ptrCast(self.vtable)).EnumTemplates(@as(*const IFsrmFileScreenTemplateManager, @ptrCast(self)), options, fileScreenTemplates);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplateManager_ExportTemplates(self: *const T, fileScreenTemplateNamesArray: ?*VARIANT, serializedFileScreenTemplates: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileScreenTemplateManager.VTable, @ptrCast(self.vtable)).ExportTemplates(@as(*const IFsrmFileScreenTemplateManager, @ptrCast(self)), fileScreenTemplateNamesArray, serializedFileScreenTemplates);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileScreenTemplateManager_ImportTemplates(self: *const T, serializedFileScreenTemplates: ?BSTR, fileScreenTemplateNamesArray: ?*VARIANT, fileScreenTemplates: ?*?*IFsrmCommittableCollection) HRESULT {
-                return @as(*const IFsrmFileScreenTemplateManager.VTable, @ptrCast(self.vtable)).ImportTemplates(@as(*const IFsrmFileScreenTemplateManager, @ptrCast(self)), serializedFileScreenTemplates, fileScreenTemplateNamesArray, fileScreenTemplates);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn CreateTemplate(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
+        return self.vtable.CreateTemplate(self, fileScreenTemplate);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetTemplate(self: *const IFsrmFileScreenTemplateManager, name: ?BSTR, fileScreenTemplate: ?*?*IFsrmFileScreenTemplate) callconv(.Inline) HRESULT {
+        return self.vtable.GetTemplate(self, name, fileScreenTemplate);
+    }
+    pub fn EnumTemplates(self: *const IFsrmFileScreenTemplateManager, options: FsrmEnumOptions, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumTemplates(self, options, fileScreenTemplates);
+    }
+    pub fn ExportTemplates(self: *const IFsrmFileScreenTemplateManager, fileScreenTemplateNamesArray: ?*VARIANT, serializedFileScreenTemplates: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ExportTemplates(self, fileScreenTemplateNamesArray, serializedFileScreenTemplates);
+    }
+    pub fn ImportTemplates(self: *const IFsrmFileScreenTemplateManager, serializedFileScreenTemplates: ?BSTR, fileScreenTemplateNamesArray: ?*VARIANT, fileScreenTemplates: ?*?*IFsrmCommittableCollection) callconv(.Inline) HRESULT {
+        return self.vtable.ImportTemplates(self, serializedFileScreenTemplates, fileScreenTemplateNamesArray, fileScreenTemplates);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReportManager_Value = Guid.initString("27b899fe-6ffa-4481-a184-d3daade8a02b");
 pub const IID_IFsrmReportManager = &IID_IFsrmReportManager_Value;
-pub const IFsrmReportManager = extern struct {
+pub const IFsrmReportManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        EnumReportJobs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                options: FsrmEnumOptions,
-                reportJobs: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                options: FsrmEnumOptions,
-                reportJobs: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateReportJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                reportJob: ?*?*IFsrmReportJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                reportJob: ?*?*IFsrmReportJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReportJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                taskName: ?BSTR,
-                reportJob: ?*?*IFsrmReportJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                taskName: ?BSTR,
-                reportJob: ?*?*IFsrmReportJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetOutputDirectory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                context: FsrmReportGenerationContext,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                context: FsrmReportGenerationContext,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetOutputDirectory: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                context: FsrmReportGenerationContext,
-                path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                context: FsrmReportGenerationContext,
-                path: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsFilterValidForReportType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                reportType: FsrmReportType,
-                filter: FsrmReportFilter,
-                valid: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                reportType: FsrmReportType,
-                filter: FsrmReportFilter,
-                valid: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDefaultFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                reportType: FsrmReportType,
-                filter: FsrmReportFilter,
-                filterValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                reportType: FsrmReportType,
-                filter: FsrmReportFilter,
-                filterValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetDefaultFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                reportType: FsrmReportType,
-                filter: FsrmReportFilter,
-                filterValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                reportType: FsrmReportType,
-                filter: FsrmReportFilter,
-                filterValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReportSizeLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                limit: FsrmReportLimit,
-                limitValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                limit: FsrmReportLimit,
-                limitValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetReportSizeLimit: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportManager,
-                limit: FsrmReportLimit,
-                limitValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportManager,
-                limit: FsrmReportLimit,
-                limitValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        EnumReportJobs: *const fn(
+            self: *const IFsrmReportManager,
+            options: FsrmEnumOptions,
+            reportJobs: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateReportJob: *const fn(
+            self: *const IFsrmReportManager,
+            reportJob: ?*?*IFsrmReportJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReportJob: *const fn(
+            self: *const IFsrmReportManager,
+            taskName: ?BSTR,
+            reportJob: ?*?*IFsrmReportJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetOutputDirectory: *const fn(
+            self: *const IFsrmReportManager,
+            context: FsrmReportGenerationContext,
+            path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetOutputDirectory: *const fn(
+            self: *const IFsrmReportManager,
+            context: FsrmReportGenerationContext,
+            path: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsFilterValidForReportType: *const fn(
+            self: *const IFsrmReportManager,
+            reportType: FsrmReportType,
+            filter: FsrmReportFilter,
+            valid: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDefaultFilter: *const fn(
+            self: *const IFsrmReportManager,
+            reportType: FsrmReportType,
+            filter: FsrmReportFilter,
+            filterValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetDefaultFilter: *const fn(
+            self: *const IFsrmReportManager,
+            reportType: FsrmReportType,
+            filter: FsrmReportFilter,
+            filterValue: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReportSizeLimit: *const fn(
+            self: *const IFsrmReportManager,
+            limit: FsrmReportLimit,
+            limitValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetReportSizeLimit: *const fn(
+            self: *const IFsrmReportManager,
+            limit: FsrmReportLimit,
+            limitValue: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_EnumReportJobs(self: *const T, options: FsrmEnumOptions, reportJobs: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).EnumReportJobs(@as(*const IFsrmReportManager, @ptrCast(self)), options, reportJobs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_CreateReportJob(self: *const T, reportJob: ?*?*IFsrmReportJob) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).CreateReportJob(@as(*const IFsrmReportManager, @ptrCast(self)), reportJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_GetReportJob(self: *const T, taskName: ?BSTR, reportJob: ?*?*IFsrmReportJob) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).GetReportJob(@as(*const IFsrmReportManager, @ptrCast(self)), taskName, reportJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_GetOutputDirectory(self: *const T, context: FsrmReportGenerationContext, path: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).GetOutputDirectory(@as(*const IFsrmReportManager, @ptrCast(self)), context, path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_SetOutputDirectory(self: *const T, context: FsrmReportGenerationContext, path: ?BSTR) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).SetOutputDirectory(@as(*const IFsrmReportManager, @ptrCast(self)), context, path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_IsFilterValidForReportType(self: *const T, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).IsFilterValidForReportType(@as(*const IFsrmReportManager, @ptrCast(self)), reportType, filter, valid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_GetDefaultFilter(self: *const T, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).GetDefaultFilter(@as(*const IFsrmReportManager, @ptrCast(self)), reportType, filter, filterValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_SetDefaultFilter(self: *const T, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: VARIANT) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).SetDefaultFilter(@as(*const IFsrmReportManager, @ptrCast(self)), reportType, filter, filterValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_GetReportSizeLimit(self: *const T, limit: FsrmReportLimit, limitValue: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).GetReportSizeLimit(@as(*const IFsrmReportManager, @ptrCast(self)), limit, limitValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportManager_SetReportSizeLimit(self: *const T, limit: FsrmReportLimit, limitValue: VARIANT) HRESULT {
-                return @as(*const IFsrmReportManager.VTable, @ptrCast(self.vtable)).SetReportSizeLimit(@as(*const IFsrmReportManager, @ptrCast(self)), limit, limitValue);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn EnumReportJobs(self: *const IFsrmReportManager, options: FsrmEnumOptions, reportJobs: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumReportJobs(self, options, reportJobs);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateReportJob(self: *const IFsrmReportManager, reportJob: ?*?*IFsrmReportJob) callconv(.Inline) HRESULT {
+        return self.vtable.CreateReportJob(self, reportJob);
+    }
+    pub fn GetReportJob(self: *const IFsrmReportManager, taskName: ?BSTR, reportJob: ?*?*IFsrmReportJob) callconv(.Inline) HRESULT {
+        return self.vtable.GetReportJob(self, taskName, reportJob);
+    }
+    pub fn GetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetOutputDirectory(self, context, path);
+    }
+    pub fn SetOutputDirectory(self: *const IFsrmReportManager, context: FsrmReportGenerationContext, path: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.SetOutputDirectory(self, context, path);
+    }
+    pub fn IsFilterValidForReportType(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, valid: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.IsFilterValidForReportType(self, reportType, filter, valid);
+    }
+    pub fn GetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetDefaultFilter(self, reportType, filter, filterValue);
+    }
+    pub fn SetDefaultFilter(self: *const IFsrmReportManager, reportType: FsrmReportType, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetDefaultFilter(self, reportType, filter, filterValue);
+    }
+    pub fn GetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetReportSizeLimit(self, limit, limitValue);
+    }
+    pub fn SetReportSizeLimit(self: *const IFsrmReportManager, limit: FsrmReportLimit, limitValue: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetReportSizeLimit(self, limit, limitValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReportJob_Value = Guid.initString("38e87280-715c-4c7d-a280-ea1651a19fef");
 pub const IID_IFsrmReportJob = &IID_IFsrmReportJob_Value;
-pub const IFsrmReportJob = extern struct {
+pub const IFsrmReportJob = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Task: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                taskName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                taskName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Task: *const fn(
+            self: *const IFsrmReportJob,
+            taskName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Task: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                taskName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                taskName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Task: *const fn(
+            self: *const IFsrmReportJob,
+            taskName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NamespaceRoots: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                namespaceRoots: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                namespaceRoots: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NamespaceRoots: *const fn(
+            self: *const IFsrmReportJob,
+            namespaceRoots: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NamespaceRoots: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                namespaceRoots: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                namespaceRoots: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NamespaceRoots: *const fn(
+            self: *const IFsrmReportJob,
+            namespaceRoots: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Formats: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                formats: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                formats: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Formats: *const fn(
+            self: *const IFsrmReportJob,
+            formats: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Formats: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                formats: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                formats: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Formats: *const fn(
+            self: *const IFsrmReportJob,
+            formats: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailTo: *const fn(
+            self: *const IFsrmReportJob,
+            mailTo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailTo: *const fn(
+            self: *const IFsrmReportJob,
+            mailTo: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RunningStatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                runningStatus: ?*FsrmReportRunningStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                runningStatus: ?*FsrmReportRunningStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RunningStatus: *const fn(
+            self: *const IFsrmReportJob,
+            runningStatus: ?*FsrmReportRunningStatus,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastRun: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                lastRun: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                lastRun: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastRun: *const fn(
+            self: *const IFsrmReportJob,
+            lastRun: ?*f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastError: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                lastError: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                lastError: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastError: *const fn(
+            self: *const IFsrmReportJob,
+            lastError: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastGeneratedInDirectory: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumReports: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                reports: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                reports: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateReport: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                reportType: FsrmReportType,
-                report: ?*?*IFsrmReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                reportType: FsrmReportType,
-                report: ?*?*IFsrmReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Run: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                context: FsrmReportGenerationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                context: FsrmReportGenerationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WaitForCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportJob,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastGeneratedInDirectory: *const fn(
+            self: *const IFsrmReportJob,
+            path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumReports: *const fn(
+            self: *const IFsrmReportJob,
+            reports: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateReport: *const fn(
+            self: *const IFsrmReportJob,
+            reportType: FsrmReportType,
+            report: ?*?*IFsrmReport,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Run: *const fn(
+            self: *const IFsrmReportJob,
+            context: FsrmReportGenerationContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WaitForCompletion: *const fn(
+            self: *const IFsrmReportJob,
+            waitSeconds: i32,
+            completed: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: *const fn(
+            self: *const IFsrmReportJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_Task(self: *const T, taskName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_Task(@as(*const IFsrmReportJob, @ptrCast(self)), taskName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_put_Task(self: *const T, taskName: ?BSTR) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).put_Task(@as(*const IFsrmReportJob, @ptrCast(self)), taskName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_NamespaceRoots(self: *const T, namespaceRoots: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_NamespaceRoots(@as(*const IFsrmReportJob, @ptrCast(self)), namespaceRoots);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_put_NamespaceRoots(self: *const T, namespaceRoots: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).put_NamespaceRoots(@as(*const IFsrmReportJob, @ptrCast(self)), namespaceRoots);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_Formats(self: *const T, formats: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_Formats(@as(*const IFsrmReportJob, @ptrCast(self)), formats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_put_Formats(self: *const T, formats: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).put_Formats(@as(*const IFsrmReportJob, @ptrCast(self)), formats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_MailTo(self: *const T, mailTo: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_MailTo(@as(*const IFsrmReportJob, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_put_MailTo(self: *const T, mailTo: ?BSTR) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).put_MailTo(@as(*const IFsrmReportJob, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_RunningStatus(self: *const T, runningStatus: ?*FsrmReportRunningStatus) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_RunningStatus(@as(*const IFsrmReportJob, @ptrCast(self)), runningStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_LastRun(self: *const T, lastRun: ?*f64) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_LastRun(@as(*const IFsrmReportJob, @ptrCast(self)), lastRun);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_LastError(self: *const T, lastError: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_LastError(@as(*const IFsrmReportJob, @ptrCast(self)), lastError);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_get_LastGeneratedInDirectory(self: *const T, path: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).get_LastGeneratedInDirectory(@as(*const IFsrmReportJob, @ptrCast(self)), path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_EnumReports(self: *const T, reports: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).EnumReports(@as(*const IFsrmReportJob, @ptrCast(self)), reports);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_CreateReport(self: *const T, reportType: FsrmReportType, report: ?*?*IFsrmReport) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).CreateReport(@as(*const IFsrmReportJob, @ptrCast(self)), reportType, report);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_Run(self: *const T, context: FsrmReportGenerationContext) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).Run(@as(*const IFsrmReportJob, @ptrCast(self)), context);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_WaitForCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).WaitForCompletion(@as(*const IFsrmReportJob, @ptrCast(self)), waitSeconds, completed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportJob_Cancel(self: *const T) HRESULT {
-                return @as(*const IFsrmReportJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFsrmReportJob, @ptrCast(self)));
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Task(self: *const IFsrmReportJob, taskName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Task(self, taskName);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Task(self: *const IFsrmReportJob, taskName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Task(self, taskName);
+    }
+    pub fn get_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn put_NamespaceRoots(self: *const IFsrmReportJob, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn get_Formats(self: *const IFsrmReportJob, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Formats(self, formats);
+    }
+    pub fn put_Formats(self: *const IFsrmReportJob, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_Formats(self, formats);
+    }
+    pub fn get_MailTo(self: *const IFsrmReportJob, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailTo(self, mailTo);
+    }
+    pub fn put_MailTo(self: *const IFsrmReportJob, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailTo(self, mailTo);
+    }
+    pub fn get_RunningStatus(self: *const IFsrmReportJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+        return self.vtable.get_RunningStatus(self, runningStatus);
+    }
+    pub fn get_LastRun(self: *const IFsrmReportJob, lastRun: ?*f64) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastRun(self, lastRun);
+    }
+    pub fn get_LastError(self: *const IFsrmReportJob, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastError(self, lastError);
+    }
+    pub fn get_LastGeneratedInDirectory(self: *const IFsrmReportJob, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastGeneratedInDirectory(self, path);
+    }
+    pub fn EnumReports(self: *const IFsrmReportJob, reports: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumReports(self, reports);
+    }
+    pub fn CreateReport(self: *const IFsrmReportJob, reportType: FsrmReportType, report: ?*?*IFsrmReport) callconv(.Inline) HRESULT {
+        return self.vtable.CreateReport(self, reportType, report);
+    }
+    pub fn Run(self: *const IFsrmReportJob, context: FsrmReportGenerationContext) callconv(.Inline) HRESULT {
+        return self.vtable.Run(self, context);
+    }
+    pub fn WaitForCompletion(self: *const IFsrmReportJob, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.WaitForCompletion(self, waitSeconds, completed);
+    }
+    pub fn Cancel(self: *const IFsrmReportJob) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReport_Value = Guid.initString("d8cc81d9-46b8-4fa4-bfa5-4aa9dec9b638");
 pub const IID_IFsrmReport = &IID_IFsrmReport_Value;
-pub const IFsrmReport = extern struct {
+pub const IFsrmReport = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                reportType: ?*FsrmReportType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReport,
-                reportType: ?*FsrmReportType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Type: *const fn(
+            self: *const IFsrmReport,
+            reportType: ?*FsrmReportType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReport,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmReport,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReport,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmReport,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReport,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Description: *const fn(
+            self: *const IFsrmReport,
+            description: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                description: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReport,
-                description: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Description: *const fn(
+            self: *const IFsrmReport,
+            description: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastGeneratedFileNamePrefix: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                prefix: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmReport,
-                prefix: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                filter: FsrmReportFilter,
-                filterValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReport,
-                filter: FsrmReportFilter,
-                filterValue: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFilter: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReport,
-                filter: FsrmReportFilter,
-                filterValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReport,
-                filter: FsrmReportFilter,
-                filterValue: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReport,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastGeneratedFileNamePrefix: *const fn(
+            self: *const IFsrmReport,
+            prefix: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFilter: *const fn(
+            self: *const IFsrmReport,
+            filter: FsrmReportFilter,
+            filterValue: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFilter: *const fn(
+            self: *const IFsrmReport,
+            filter: FsrmReportFilter,
+            filterValue: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmReport,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_get_Type(self: *const T, reportType: ?*FsrmReportType) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmReport, @ptrCast(self)), reportType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmReport, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmReport, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IFsrmReport, @ptrCast(self)), description);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_put_Description(self: *const T, description: ?BSTR) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).put_Description(@as(*const IFsrmReport, @ptrCast(self)), description);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_get_LastGeneratedFileNamePrefix(self: *const T, prefix: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).get_LastGeneratedFileNamePrefix(@as(*const IFsrmReport, @ptrCast(self)), prefix);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_GetFilter(self: *const T, filter: FsrmReportFilter, filterValue: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).GetFilter(@as(*const IFsrmReport, @ptrCast(self)), filter, filterValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_SetFilter(self: *const T, filter: FsrmReportFilter, filterValue: VARIANT) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).SetFilter(@as(*const IFsrmReport, @ptrCast(self)), filter, filterValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReport_Delete(self: *const T) HRESULT {
-                return @as(*const IFsrmReport.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFsrmReport, @ptrCast(self)));
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Type(self: *const IFsrmReport, reportType: ?*FsrmReportType) callconv(.Inline) HRESULT {
+        return self.vtable.get_Type(self, reportType);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Name(self: *const IFsrmReport, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const IFsrmReport, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Description(self: *const IFsrmReport, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn put_Description(self: *const IFsrmReport, description: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Description(self, description);
+    }
+    pub fn get_LastGeneratedFileNamePrefix(self: *const IFsrmReport, prefix: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastGeneratedFileNamePrefix(self, prefix);
+    }
+    pub fn GetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetFilter(self, filter, filterValue);
+    }
+    pub fn SetFilter(self: *const IFsrmReport, filter: FsrmReportFilter, filterValue: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.SetFilter(self, filter, filterValue);
+    }
+    pub fn Delete(self: *const IFsrmReport) callconv(.Inline) HRESULT {
+        return self.vtable.Delete(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmReportScheduler_Value = Guid.initString("6879caf9-6617-4484-8719-71c3d8645f94");
 pub const IID_IFsrmReportScheduler = &IID_IFsrmReportScheduler_Value;
-pub const IFsrmReportScheduler = extern struct {
+pub const IFsrmReportScheduler = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        VerifyNamespaces: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportScheduler,
-                namespacesSafeArray: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportScheduler,
-                namespacesSafeArray: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateScheduleTask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportScheduler,
-                taskName: ?BSTR,
-                namespacesSafeArray: ?*VARIANT,
-                serializedTask: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportScheduler,
-                taskName: ?BSTR,
-                namespacesSafeArray: ?*VARIANT,
-                serializedTask: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ModifyScheduleTask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportScheduler,
-                taskName: ?BSTR,
-                namespacesSafeArray: ?*VARIANT,
-                serializedTask: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportScheduler,
-                taskName: ?BSTR,
-                namespacesSafeArray: ?*VARIANT,
-                serializedTask: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteScheduleTask: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmReportScheduler,
-                taskName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmReportScheduler,
-                taskName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        VerifyNamespaces: *const fn(
+            self: *const IFsrmReportScheduler,
+            namespacesSafeArray: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateScheduleTask: *const fn(
+            self: *const IFsrmReportScheduler,
+            taskName: ?BSTR,
+            namespacesSafeArray: ?*VARIANT,
+            serializedTask: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ModifyScheduleTask: *const fn(
+            self: *const IFsrmReportScheduler,
+            taskName: ?BSTR,
+            namespacesSafeArray: ?*VARIANT,
+            serializedTask: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteScheduleTask: *const fn(
+            self: *const IFsrmReportScheduler,
+            taskName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportScheduler_VerifyNamespaces(self: *const T, namespacesSafeArray: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmReportScheduler.VTable, @ptrCast(self.vtable)).VerifyNamespaces(@as(*const IFsrmReportScheduler, @ptrCast(self)), namespacesSafeArray);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportScheduler_CreateScheduleTask(self: *const T, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) HRESULT {
-                return @as(*const IFsrmReportScheduler.VTable, @ptrCast(self.vtable)).CreateScheduleTask(@as(*const IFsrmReportScheduler, @ptrCast(self)), taskName, namespacesSafeArray, serializedTask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportScheduler_ModifyScheduleTask(self: *const T, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) HRESULT {
-                return @as(*const IFsrmReportScheduler.VTable, @ptrCast(self.vtable)).ModifyScheduleTask(@as(*const IFsrmReportScheduler, @ptrCast(self)), taskName, namespacesSafeArray, serializedTask);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmReportScheduler_DeleteScheduleTask(self: *const T, taskName: ?BSTR) HRESULT {
-                return @as(*const IFsrmReportScheduler.VTable, @ptrCast(self.vtable)).DeleteScheduleTask(@as(*const IFsrmReportScheduler, @ptrCast(self)), taskName);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn VerifyNamespaces(self: *const IFsrmReportScheduler, namespacesSafeArray: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.VerifyNamespaces(self, namespacesSafeArray);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn CreateScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.CreateScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
+    }
+    pub fn ModifyScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR, namespacesSafeArray: ?*VARIANT, serializedTask: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ModifyScheduleTask(self, taskName, namespacesSafeArray, serializedTask);
+    }
+    pub fn DeleteScheduleTask(self: *const IFsrmReportScheduler, taskName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteScheduleTask(self, taskName);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileManagementJobManager_Value = Guid.initString("ee321ecb-d95e-48e9-907c-c7685a013235");
 pub const IID_IFsrmFileManagementJobManager = &IID_IFsrmFileManagementJobManager_Value;
-pub const IFsrmFileManagementJobManager = extern struct {
+pub const IFsrmFileManagementJobManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariables: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJobManager,
-                variables: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJobManager,
-                variables: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActionVariables: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            variables: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ActionVariableDescriptions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJobManager,
-                descriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJobManager,
-                descriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumFileManagementJobs: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJobManager,
-                options: FsrmEnumOptions,
-                fileManagementJobs: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJobManager,
-                options: FsrmEnumOptions,
-                fileManagementJobs: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateFileManagementJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJobManager,
-                fileManagementJob: ?*?*IFsrmFileManagementJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJobManager,
-                fileManagementJob: ?*?*IFsrmFileManagementJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileManagementJob: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJobManager,
-                name: ?BSTR,
-                fileManagementJob: ?*?*IFsrmFileManagementJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJobManager,
-                name: ?BSTR,
-                fileManagementJob: ?*?*IFsrmFileManagementJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ActionVariableDescriptions: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            descriptions: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumFileManagementJobs: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            options: FsrmEnumOptions,
+            fileManagementJobs: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateFileManagementJob: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            fileManagementJob: ?*?*IFsrmFileManagementJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileManagementJob: *const fn(
+            self: *const IFsrmFileManagementJobManager,
+            name: ?BSTR,
+            fileManagementJob: ?*?*IFsrmFileManagementJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJobManager_get_ActionVariables(self: *const T, variables: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJobManager.VTable, @ptrCast(self.vtable)).get_ActionVariables(@as(*const IFsrmFileManagementJobManager, @ptrCast(self)), variables);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJobManager_get_ActionVariableDescriptions(self: *const T, descriptions: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJobManager.VTable, @ptrCast(self.vtable)).get_ActionVariableDescriptions(@as(*const IFsrmFileManagementJobManager, @ptrCast(self)), descriptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJobManager_EnumFileManagementJobs(self: *const T, options: FsrmEnumOptions, fileManagementJobs: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmFileManagementJobManager.VTable, @ptrCast(self.vtable)).EnumFileManagementJobs(@as(*const IFsrmFileManagementJobManager, @ptrCast(self)), options, fileManagementJobs);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJobManager_CreateFileManagementJob(self: *const T, fileManagementJob: ?*?*IFsrmFileManagementJob) HRESULT {
-                return @as(*const IFsrmFileManagementJobManager.VTable, @ptrCast(self.vtable)).CreateFileManagementJob(@as(*const IFsrmFileManagementJobManager, @ptrCast(self)), fileManagementJob);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJobManager_GetFileManagementJob(self: *const T, name: ?BSTR, fileManagementJob: ?*?*IFsrmFileManagementJob) HRESULT {
-                return @as(*const IFsrmFileManagementJobManager.VTable, @ptrCast(self.vtable)).GetFileManagementJob(@as(*const IFsrmFileManagementJobManager, @ptrCast(self)), name, fileManagementJob);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ActionVariables(self: *const IFsrmFileManagementJobManager, variables: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ActionVariables(self, variables);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_ActionVariableDescriptions(self: *const IFsrmFileManagementJobManager, descriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ActionVariableDescriptions(self, descriptions);
+    }
+    pub fn EnumFileManagementJobs(self: *const IFsrmFileManagementJobManager, options: FsrmEnumOptions, fileManagementJobs: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumFileManagementJobs(self, options, fileManagementJobs);
+    }
+    pub fn CreateFileManagementJob(self: *const IFsrmFileManagementJobManager, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+        return self.vtable.CreateFileManagementJob(self, fileManagementJob);
+    }
+    pub fn GetFileManagementJob(self: *const IFsrmFileManagementJobManager, name: ?BSTR, fileManagementJob: ?*?*IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileManagementJob(self, name, fileManagementJob);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmFileManagementJob_Value = Guid.initString("0770687e-9f36-4d6f-8778-599d188461c9");
 pub const IID_IFsrmFileManagementJob = &IID_IFsrmFileManagementJob_Value;
-pub const IFsrmFileManagementJob = extern struct {
+pub const IFsrmFileManagementJob = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmFileManagementJob,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmFileManagementJob,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NamespaceRoots: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                namespaceRoots: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                namespaceRoots: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NamespaceRoots: *const fn(
+            self: *const IFsrmFileManagementJob,
+            namespaceRoots: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NamespaceRoots: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                namespaceRoots: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                namespaceRoots: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NamespaceRoots: *const fn(
+            self: *const IFsrmFileManagementJob,
+            namespaceRoots: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                enabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                enabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Enabled: *const fn(
+            self: *const IFsrmFileManagementJob,
+            enabled: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                enabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                enabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Enabled: *const fn(
+            self: *const IFsrmFileManagementJob,
+            enabled: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OperationType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                operationType: ?*FsrmFileManagementType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                operationType: ?*FsrmFileManagementType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OperationType: *const fn(
+            self: *const IFsrmFileManagementJob,
+            operationType: ?*FsrmFileManagementType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_OperationType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                operationType: FsrmFileManagementType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                operationType: FsrmFileManagementType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_OperationType: *const fn(
+            self: *const IFsrmFileManagementJob,
+            operationType: FsrmFileManagementType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExpirationDirectory: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                expirationDirectory: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                expirationDirectory: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ExpirationDirectory: *const fn(
+            self: *const IFsrmFileManagementJob,
+            expirationDirectory: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExpirationDirectory: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                expirationDirectory: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                expirationDirectory: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ExpirationDirectory: *const fn(
+            self: *const IFsrmFileManagementJob,
+            expirationDirectory: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CustomAction: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                action: ?*?*IFsrmActionCommand,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                action: ?*?*IFsrmActionCommand,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_CustomAction: *const fn(
+            self: *const IFsrmFileManagementJob,
+            action: ?*?*IFsrmActionCommand,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Notifications: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                notifications: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                notifications: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Notifications: *const fn(
+            self: *const IFsrmFileManagementJob,
+            notifications: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Logging: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                loggingFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                loggingFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Logging: *const fn(
+            self: *const IFsrmFileManagementJob,
+            loggingFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Logging: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                loggingFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                loggingFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Logging: *const fn(
+            self: *const IFsrmFileManagementJob,
+            loggingFlags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ReportEnabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                reportEnabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                reportEnabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ReportEnabled: *const fn(
+            self: *const IFsrmFileManagementJob,
+            reportEnabled: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ReportEnabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                reportEnabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                reportEnabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ReportEnabled: *const fn(
+            self: *const IFsrmFileManagementJob,
+            reportEnabled: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Formats: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                formats: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                formats: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Formats: *const fn(
+            self: *const IFsrmFileManagementJob,
+            formats: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Formats: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                formats: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                formats: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Formats: *const fn(
+            self: *const IFsrmFileManagementJob,
+            formats: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_MailTo: *const fn(
+            self: *const IFsrmFileManagementJob,
+            mailTo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_MailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_MailTo: *const fn(
+            self: *const IFsrmFileManagementJob,
+            mailTo: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DaysSinceFileCreated: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceCreation: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceCreation: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DaysSinceFileCreated: *const fn(
+            self: *const IFsrmFileManagementJob,
+            daysSinceCreation: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DaysSinceFileCreated: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceCreation: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceCreation: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_DaysSinceFileCreated: *const fn(
+            self: *const IFsrmFileManagementJob,
+            daysSinceCreation: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DaysSinceFileLastAccessed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceAccess: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceAccess: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DaysSinceFileLastAccessed: *const fn(
+            self: *const IFsrmFileManagementJob,
+            daysSinceAccess: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DaysSinceFileLastAccessed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceAccess: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceAccess: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_DaysSinceFileLastAccessed: *const fn(
+            self: *const IFsrmFileManagementJob,
+            daysSinceAccess: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DaysSinceFileLastModified: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceModify: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceModify: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DaysSinceFileLastModified: *const fn(
+            self: *const IFsrmFileManagementJob,
+            daysSinceModify: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DaysSinceFileLastModified: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceModify: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                daysSinceModify: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_DaysSinceFileLastModified: *const fn(
+            self: *const IFsrmFileManagementJob,
+            daysSinceModify: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyConditions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                propertyConditions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                propertyConditions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyConditions: *const fn(
+            self: *const IFsrmFileManagementJob,
+            propertyConditions: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FromDate: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                fromDate: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                fromDate: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FromDate: *const fn(
+            self: *const IFsrmFileManagementJob,
+            fromDate: ?*f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FromDate: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                fromDate: f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                fromDate: f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_FromDate: *const fn(
+            self: *const IFsrmFileManagementJob,
+            fromDate: f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Task: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                taskName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                taskName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Task: *const fn(
+            self: *const IFsrmFileManagementJob,
+            taskName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Task: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                taskName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                taskName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Task: *const fn(
+            self: *const IFsrmFileManagementJob,
+            taskName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Parameters: *const fn(
+            self: *const IFsrmFileManagementJob,
+            parameters: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Parameters: *const fn(
+            self: *const IFsrmFileManagementJob,
+            parameters: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RunningStatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                runningStatus: ?*FsrmReportRunningStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                runningStatus: ?*FsrmReportRunningStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RunningStatus: *const fn(
+            self: *const IFsrmFileManagementJob,
+            runningStatus: ?*FsrmReportRunningStatus,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastError: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                lastError: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                lastError: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastError: *const fn(
+            self: *const IFsrmFileManagementJob,
+            lastError: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastReportPathWithoutExtension: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastReportPathWithoutExtension: *const fn(
+            self: *const IFsrmFileManagementJob,
+            path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastRun: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                lastRun: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                lastRun: ?*f64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastRun: *const fn(
+            self: *const IFsrmFileManagementJob,
+            lastRun: ?*f64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileNamePattern: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                fileNamePattern: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                fileNamePattern: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FileNamePattern: *const fn(
+            self: *const IFsrmFileManagementJob,
+            fileNamePattern: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_FileNamePattern: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                fileNamePattern: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                fileNamePattern: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Run: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                context: FsrmReportGenerationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                context: FsrmReportGenerationContext,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WaitForCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Cancel: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ModifyNotification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-                newDays: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-                newDays: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateNotificationAction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-                actionType: FsrmActionType,
-                action: ?*?*IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-                actionType: FsrmActionType,
-                action: ?*?*IFsrmAction,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumNotificationActions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-                actions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                days: i32,
-                actions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePropertyCondition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                name: ?BSTR,
-                propertyCondition: ?*?*IFsrmPropertyCondition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                name: ?BSTR,
-                propertyCondition: ?*?*IFsrmPropertyCondition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateCustomAction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileManagementJob,
-                customAction: ?*?*IFsrmActionCommand,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileManagementJob,
-                customAction: ?*?*IFsrmActionCommand,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_FileNamePattern: *const fn(
+            self: *const IFsrmFileManagementJob,
+            fileNamePattern: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Run: *const fn(
+            self: *const IFsrmFileManagementJob,
+            context: FsrmReportGenerationContext,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WaitForCompletion: *const fn(
+            self: *const IFsrmFileManagementJob,
+            waitSeconds: i32,
+            completed: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Cancel: *const fn(
+            self: *const IFsrmFileManagementJob,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddNotification: *const fn(
+            self: *const IFsrmFileManagementJob,
+            days: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteNotification: *const fn(
+            self: *const IFsrmFileManagementJob,
+            days: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ModifyNotification: *const fn(
+            self: *const IFsrmFileManagementJob,
+            days: i32,
+            newDays: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateNotificationAction: *const fn(
+            self: *const IFsrmFileManagementJob,
+            days: i32,
+            actionType: FsrmActionType,
+            action: ?*?*IFsrmAction,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumNotificationActions: *const fn(
+            self: *const IFsrmFileManagementJob,
+            days: i32,
+            actions: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePropertyCondition: *const fn(
+            self: *const IFsrmFileManagementJob,
+            name: ?BSTR,
+            propertyCondition: ?*?*IFsrmPropertyCondition,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateCustomAction: *const fn(
+            self: *const IFsrmFileManagementJob,
+            customAction: ?*?*IFsrmActionCommand,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmFileManagementJob, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmFileManagementJob, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_NamespaceRoots(self: *const T, namespaceRoots: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_NamespaceRoots(@as(*const IFsrmFileManagementJob, @ptrCast(self)), namespaceRoots);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_NamespaceRoots(self: *const T, namespaceRoots: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_NamespaceRoots(@as(*const IFsrmFileManagementJob, @ptrCast(self)), namespaceRoots);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IFsrmFileManagementJob, @ptrCast(self)), enabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_Enabled(self: *const T, enabled: i16) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IFsrmFileManagementJob, @ptrCast(self)), enabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_OperationType(self: *const T, operationType: ?*FsrmFileManagementType) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_OperationType(@as(*const IFsrmFileManagementJob, @ptrCast(self)), operationType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_OperationType(self: *const T, operationType: FsrmFileManagementType) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_OperationType(@as(*const IFsrmFileManagementJob, @ptrCast(self)), operationType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_ExpirationDirectory(self: *const T, expirationDirectory: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_ExpirationDirectory(@as(*const IFsrmFileManagementJob, @ptrCast(self)), expirationDirectory);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_ExpirationDirectory(self: *const T, expirationDirectory: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_ExpirationDirectory(@as(*const IFsrmFileManagementJob, @ptrCast(self)), expirationDirectory);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_CustomAction(self: *const T, action: ?*?*IFsrmActionCommand) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_CustomAction(@as(*const IFsrmFileManagementJob, @ptrCast(self)), action);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_Notifications(self: *const T, notifications: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_Notifications(@as(*const IFsrmFileManagementJob, @ptrCast(self)), notifications);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_Logging(self: *const T, loggingFlags: ?*i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_Logging(@as(*const IFsrmFileManagementJob, @ptrCast(self)), loggingFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_Logging(self: *const T, loggingFlags: i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_Logging(@as(*const IFsrmFileManagementJob, @ptrCast(self)), loggingFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_ReportEnabled(self: *const T, reportEnabled: ?*i16) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_ReportEnabled(@as(*const IFsrmFileManagementJob, @ptrCast(self)), reportEnabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_ReportEnabled(self: *const T, reportEnabled: i16) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_ReportEnabled(@as(*const IFsrmFileManagementJob, @ptrCast(self)), reportEnabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_Formats(self: *const T, formats: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_Formats(@as(*const IFsrmFileManagementJob, @ptrCast(self)), formats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_Formats(self: *const T, formats: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_Formats(@as(*const IFsrmFileManagementJob, @ptrCast(self)), formats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_MailTo(self: *const T, mailTo: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_MailTo(@as(*const IFsrmFileManagementJob, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_MailTo(self: *const T, mailTo: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_MailTo(@as(*const IFsrmFileManagementJob, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_DaysSinceFileCreated(self: *const T, daysSinceCreation: ?*i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_DaysSinceFileCreated(@as(*const IFsrmFileManagementJob, @ptrCast(self)), daysSinceCreation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_DaysSinceFileCreated(self: *const T, daysSinceCreation: i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_DaysSinceFileCreated(@as(*const IFsrmFileManagementJob, @ptrCast(self)), daysSinceCreation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_DaysSinceFileLastAccessed(self: *const T, daysSinceAccess: ?*i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_DaysSinceFileLastAccessed(@as(*const IFsrmFileManagementJob, @ptrCast(self)), daysSinceAccess);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_DaysSinceFileLastAccessed(self: *const T, daysSinceAccess: i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_DaysSinceFileLastAccessed(@as(*const IFsrmFileManagementJob, @ptrCast(self)), daysSinceAccess);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_DaysSinceFileLastModified(self: *const T, daysSinceModify: ?*i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_DaysSinceFileLastModified(@as(*const IFsrmFileManagementJob, @ptrCast(self)), daysSinceModify);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_DaysSinceFileLastModified(self: *const T, daysSinceModify: i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_DaysSinceFileLastModified(@as(*const IFsrmFileManagementJob, @ptrCast(self)), daysSinceModify);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_PropertyConditions(self: *const T, propertyConditions: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_PropertyConditions(@as(*const IFsrmFileManagementJob, @ptrCast(self)), propertyConditions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_FromDate(self: *const T, fromDate: ?*f64) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_FromDate(@as(*const IFsrmFileManagementJob, @ptrCast(self)), fromDate);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_FromDate(self: *const T, fromDate: f64) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_FromDate(@as(*const IFsrmFileManagementJob, @ptrCast(self)), fromDate);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_Task(self: *const T, taskName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_Task(@as(*const IFsrmFileManagementJob, @ptrCast(self)), taskName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_Task(self: *const T, taskName: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_Task(@as(*const IFsrmFileManagementJob, @ptrCast(self)), taskName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_Parameters(@as(*const IFsrmFileManagementJob, @ptrCast(self)), parameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IFsrmFileManagementJob, @ptrCast(self)), parameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_RunningStatus(self: *const T, runningStatus: ?*FsrmReportRunningStatus) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_RunningStatus(@as(*const IFsrmFileManagementJob, @ptrCast(self)), runningStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_LastError(self: *const T, lastError: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_LastError(@as(*const IFsrmFileManagementJob, @ptrCast(self)), lastError);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_LastReportPathWithoutExtension(self: *const T, path: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_LastReportPathWithoutExtension(@as(*const IFsrmFileManagementJob, @ptrCast(self)), path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_LastRun(self: *const T, lastRun: ?*f64) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_LastRun(@as(*const IFsrmFileManagementJob, @ptrCast(self)), lastRun);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_get_FileNamePattern(self: *const T, fileNamePattern: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).get_FileNamePattern(@as(*const IFsrmFileManagementJob, @ptrCast(self)), fileNamePattern);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_put_FileNamePattern(self: *const T, fileNamePattern: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).put_FileNamePattern(@as(*const IFsrmFileManagementJob, @ptrCast(self)), fileNamePattern);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_Run(self: *const T, context: FsrmReportGenerationContext) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).Run(@as(*const IFsrmFileManagementJob, @ptrCast(self)), context);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_WaitForCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).WaitForCompletion(@as(*const IFsrmFileManagementJob, @ptrCast(self)), waitSeconds, completed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_Cancel(self: *const T) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).Cancel(@as(*const IFsrmFileManagementJob, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_AddNotification(self: *const T, days: i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).AddNotification(@as(*const IFsrmFileManagementJob, @ptrCast(self)), days);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_DeleteNotification(self: *const T, days: i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).DeleteNotification(@as(*const IFsrmFileManagementJob, @ptrCast(self)), days);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_ModifyNotification(self: *const T, days: i32, newDays: i32) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).ModifyNotification(@as(*const IFsrmFileManagementJob, @ptrCast(self)), days, newDays);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_CreateNotificationAction(self: *const T, days: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).CreateNotificationAction(@as(*const IFsrmFileManagementJob, @ptrCast(self)), days, actionType, action);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_EnumNotificationActions(self: *const T, days: i32, actions: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).EnumNotificationActions(@as(*const IFsrmFileManagementJob, @ptrCast(self)), days, actions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_CreatePropertyCondition(self: *const T, name: ?BSTR, propertyCondition: ?*?*IFsrmPropertyCondition) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).CreatePropertyCondition(@as(*const IFsrmFileManagementJob, @ptrCast(self)), name, propertyCondition);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileManagementJob_CreateCustomAction(self: *const T, customAction: ?*?*IFsrmActionCommand) HRESULT {
-                return @as(*const IFsrmFileManagementJob.VTable, @ptrCast(self.vtable)).CreateCustomAction(@as(*const IFsrmFileManagementJob, @ptrCast(self)), customAction);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmFileManagementJob, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Name(self: *const IFsrmFileManagementJob, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_NamespaceRoots(self: *const IFsrmFileManagementJob, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn put_NamespaceRoots(self: *const IFsrmFileManagementJob, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn get_Enabled(self: *const IFsrmFileManagementJob, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_Enabled(self, enabled);
+    }
+    pub fn put_Enabled(self: *const IFsrmFileManagementJob, enabled: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_Enabled(self, enabled);
+    }
+    pub fn get_OperationType(self: *const IFsrmFileManagementJob, operationType: ?*FsrmFileManagementType) callconv(.Inline) HRESULT {
+        return self.vtable.get_OperationType(self, operationType);
+    }
+    pub fn put_OperationType(self: *const IFsrmFileManagementJob, operationType: FsrmFileManagementType) callconv(.Inline) HRESULT {
+        return self.vtable.put_OperationType(self, operationType);
+    }
+    pub fn get_ExpirationDirectory(self: *const IFsrmFileManagementJob, expirationDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ExpirationDirectory(self, expirationDirectory);
+    }
+    pub fn put_ExpirationDirectory(self: *const IFsrmFileManagementJob, expirationDirectory: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_ExpirationDirectory(self, expirationDirectory);
+    }
+    pub fn get_CustomAction(self: *const IFsrmFileManagementJob, action: ?*?*IFsrmActionCommand) callconv(.Inline) HRESULT {
+        return self.vtable.get_CustomAction(self, action);
+    }
+    pub fn get_Notifications(self: *const IFsrmFileManagementJob, notifications: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Notifications(self, notifications);
+    }
+    pub fn get_Logging(self: *const IFsrmFileManagementJob, loggingFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Logging(self, loggingFlags);
+    }
+    pub fn put_Logging(self: *const IFsrmFileManagementJob, loggingFlags: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_Logging(self, loggingFlags);
+    }
+    pub fn get_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_ReportEnabled(self, reportEnabled);
+    }
+    pub fn put_ReportEnabled(self: *const IFsrmFileManagementJob, reportEnabled: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_ReportEnabled(self, reportEnabled);
+    }
+    pub fn get_Formats(self: *const IFsrmFileManagementJob, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Formats(self, formats);
+    }
+    pub fn put_Formats(self: *const IFsrmFileManagementJob, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_Formats(self, formats);
+    }
+    pub fn get_MailTo(self: *const IFsrmFileManagementJob, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_MailTo(self, mailTo);
+    }
+    pub fn put_MailTo(self: *const IFsrmFileManagementJob, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_MailTo(self, mailTo);
+    }
+    pub fn get_DaysSinceFileCreated(self: *const IFsrmFileManagementJob, daysSinceCreation: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_DaysSinceFileCreated(self, daysSinceCreation);
+    }
+    pub fn put_DaysSinceFileCreated(self: *const IFsrmFileManagementJob, daysSinceCreation: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_DaysSinceFileCreated(self, daysSinceCreation);
+    }
+    pub fn get_DaysSinceFileLastAccessed(self: *const IFsrmFileManagementJob, daysSinceAccess: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_DaysSinceFileLastAccessed(self, daysSinceAccess);
+    }
+    pub fn put_DaysSinceFileLastAccessed(self: *const IFsrmFileManagementJob, daysSinceAccess: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_DaysSinceFileLastAccessed(self, daysSinceAccess);
+    }
+    pub fn get_DaysSinceFileLastModified(self: *const IFsrmFileManagementJob, daysSinceModify: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_DaysSinceFileLastModified(self, daysSinceModify);
+    }
+    pub fn put_DaysSinceFileLastModified(self: *const IFsrmFileManagementJob, daysSinceModify: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_DaysSinceFileLastModified(self, daysSinceModify);
+    }
+    pub fn get_PropertyConditions(self: *const IFsrmFileManagementJob, propertyConditions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertyConditions(self, propertyConditions);
+    }
+    pub fn get_FromDate(self: *const IFsrmFileManagementJob, fromDate: ?*f64) callconv(.Inline) HRESULT {
+        return self.vtable.get_FromDate(self, fromDate);
+    }
+    pub fn put_FromDate(self: *const IFsrmFileManagementJob, fromDate: f64) callconv(.Inline) HRESULT {
+        return self.vtable.put_FromDate(self, fromDate);
+    }
+    pub fn get_Task(self: *const IFsrmFileManagementJob, taskName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Task(self, taskName);
+    }
+    pub fn put_Task(self: *const IFsrmFileManagementJob, taskName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Task(self, taskName);
+    }
+    pub fn get_Parameters(self: *const IFsrmFileManagementJob, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Parameters(self, parameters);
+    }
+    pub fn put_Parameters(self: *const IFsrmFileManagementJob, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_Parameters(self, parameters);
+    }
+    pub fn get_RunningStatus(self: *const IFsrmFileManagementJob, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+        return self.vtable.get_RunningStatus(self, runningStatus);
+    }
+    pub fn get_LastError(self: *const IFsrmFileManagementJob, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastError(self, lastError);
+    }
+    pub fn get_LastReportPathWithoutExtension(self: *const IFsrmFileManagementJob, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastReportPathWithoutExtension(self, path);
+    }
+    pub fn get_LastRun(self: *const IFsrmFileManagementJob, lastRun: ?*f64) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastRun(self, lastRun);
+    }
+    pub fn get_FileNamePattern(self: *const IFsrmFileManagementJob, fileNamePattern: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_FileNamePattern(self, fileNamePattern);
+    }
+    pub fn put_FileNamePattern(self: *const IFsrmFileManagementJob, fileNamePattern: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_FileNamePattern(self, fileNamePattern);
+    }
+    pub fn Run(self: *const IFsrmFileManagementJob, context: FsrmReportGenerationContext) callconv(.Inline) HRESULT {
+        return self.vtable.Run(self, context);
+    }
+    pub fn WaitForCompletion(self: *const IFsrmFileManagementJob, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.WaitForCompletion(self, waitSeconds, completed);
+    }
+    pub fn Cancel(self: *const IFsrmFileManagementJob) callconv(.Inline) HRESULT {
+        return self.vtable.Cancel(self);
+    }
+    pub fn AddNotification(self: *const IFsrmFileManagementJob, days: i32) callconv(.Inline) HRESULT {
+        return self.vtable.AddNotification(self, days);
+    }
+    pub fn DeleteNotification(self: *const IFsrmFileManagementJob, days: i32) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteNotification(self, days);
+    }
+    pub fn ModifyNotification(self: *const IFsrmFileManagementJob, days: i32, newDays: i32) callconv(.Inline) HRESULT {
+        return self.vtable.ModifyNotification(self, days, newDays);
+    }
+    pub fn CreateNotificationAction(self: *const IFsrmFileManagementJob, days: i32, actionType: FsrmActionType, action: ?*?*IFsrmAction) callconv(.Inline) HRESULT {
+        return self.vtable.CreateNotificationAction(self, days, actionType, action);
+    }
+    pub fn EnumNotificationActions(self: *const IFsrmFileManagementJob, days: i32, actions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumNotificationActions(self, days, actions);
+    }
+    pub fn CreatePropertyCondition(self: *const IFsrmFileManagementJob, name: ?BSTR, propertyCondition: ?*?*IFsrmPropertyCondition) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePropertyCondition(self, name, propertyCondition);
+    }
+    pub fn CreateCustomAction(self: *const IFsrmFileManagementJob, customAction: ?*?*IFsrmActionCommand) callconv(.Inline) HRESULT {
+        return self.vtable.CreateCustomAction(self, customAction);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPropertyCondition_Value = Guid.initString("326af66f-2ac0-4f68-bf8c-4759f054fa29");
 pub const IID_IFsrmPropertyCondition = &IID_IFsrmPropertyCondition_Value;
-pub const IFsrmPropertyCondition = extern struct {
+pub const IFsrmPropertyCondition = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyCondition,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyCondition,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmPropertyCondition,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyCondition,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyCondition,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmPropertyCondition,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyCondition,
-                type: ?*FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyCondition,
-                type: ?*FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Type: *const fn(
+            self: *const IFsrmPropertyCondition,
+            type: ?*FsrmPropertyConditionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyCondition,
-                type: FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyCondition,
-                type: FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Type: *const fn(
+            self: *const IFsrmPropertyCondition,
+            type: FsrmPropertyConditionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyCondition,
-                value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyCondition,
-                value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Value: *const fn(
+            self: *const IFsrmPropertyCondition,
+            value: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyCondition,
-                value: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyCondition,
-                value: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPropertyCondition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPropertyCondition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Value: *const fn(
+            self: *const IFsrmPropertyCondition,
+            value: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmPropertyCondition,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyCondition_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmPropertyCondition, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyCondition_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmPropertyCondition, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyCondition_get_Type(self: *const T, type_: ?*FsrmPropertyConditionType) HRESULT {
-                return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmPropertyCondition, @ptrCast(self)), type_);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyCondition_put_Type(self: *const T, type_: FsrmPropertyConditionType) HRESULT {
-                return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IFsrmPropertyCondition, @ptrCast(self)), type_);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyCondition_get_Value(self: *const T, value: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IFsrmPropertyCondition, @ptrCast(self)), value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyCondition_put_Value(self: *const T, value: ?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IFsrmPropertyCondition, @ptrCast(self)), value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyCondition_Delete(self: *const T) HRESULT {
-                return @as(*const IFsrmPropertyCondition.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFsrmPropertyCondition, @ptrCast(self)));
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmPropertyCondition, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Name(self: *const IFsrmPropertyCondition, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Type(self: *const IFsrmPropertyCondition, @"type": ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+        return self.vtable.get_Type(self, @"type");
+    }
+    pub fn put_Type(self: *const IFsrmPropertyCondition, @"type": FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+        return self.vtable.put_Type(self, @"type");
+    }
+    pub fn get_Value(self: *const IFsrmPropertyCondition, value: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Value(self, value);
+    }
+    pub fn put_Value(self: *const IFsrmPropertyCondition, value: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Value(self, value);
+    }
+    pub fn Delete(self: *const IFsrmPropertyCondition) callconv(.Inline) HRESULT {
+        return self.vtable.Delete(self);
+    }
 };
 
 const IID_IFsrmFileCondition_Value = Guid.initString("70684ffc-691a-4a1a-b922-97752e138cc1");
 pub const IID_IFsrmFileCondition = &IID_IFsrmFileCondition_Value;
-pub const IFsrmFileCondition = extern struct {
+pub const IFsrmFileCondition = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileCondition,
-                pVal: ?*FsrmFileConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileCondition,
-                pVal: ?*FsrmFileConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Delete: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmFileCondition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmFileCondition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Type: *const fn(
+            self: *const IFsrmFileCondition,
+            pVal: ?*FsrmFileConditionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Delete: *const fn(
+            self: *const IFsrmFileCondition,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileCondition_get_Type(self: *const T, pVal: ?*FsrmFileConditionType) HRESULT {
-                return @as(*const IFsrmFileCondition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmFileCondition, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileCondition_Delete(self: *const T) HRESULT {
-                return @as(*const IFsrmFileCondition.VTable, @ptrCast(self.vtable)).Delete(@as(*const IFsrmFileCondition, @ptrCast(self)));
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Type(self: *const IFsrmFileCondition, pVal: ?*FsrmFileConditionType) callconv(.Inline) HRESULT {
+        return self.vtable.get_Type(self, pVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn Delete(self: *const IFsrmFileCondition) callconv(.Inline) HRESULT {
+        return self.vtable.Delete(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmFileConditionProperty_Value = Guid.initString("81926775-b981-4479-988f-da171d627360");
 pub const IID_IFsrmFileConditionProperty = &IID_IFsrmFileConditionProperty_Value;
-pub const IFsrmFileConditionProperty = extern struct {
+pub const IFsrmFileConditionProperty = extern union {
     pub const VTable = extern struct {
         base: IFsrmFileCondition.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyName: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertyName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PropertyName: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*FsrmFileSystemPropertyId,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*FsrmFileSystemPropertyId,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyId: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*FsrmFileSystemPropertyId,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertyId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: FsrmFileSystemPropertyId,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: FsrmFileSystemPropertyId,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PropertyId: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: FsrmFileSystemPropertyId,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Operator: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Operator: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*FsrmPropertyConditionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Operator: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: FsrmPropertyConditionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Operator: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: FsrmPropertyConditionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*FsrmPropertyValueType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*FsrmPropertyValueType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ValueType: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*FsrmPropertyValueType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ValueType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: FsrmPropertyValueType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: FsrmPropertyValueType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ValueType: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: FsrmPropertyValueType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                pVal: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Value: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            pVal: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmFileConditionProperty,
-                newVal: VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Value: *const fn(
+            self: *const IFsrmFileConditionProperty,
+            newVal: VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmFileCondition.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_get_PropertyName(self: *const T, pVal: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).get_PropertyName(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_put_PropertyName(self: *const T, newVal: ?BSTR) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).put_PropertyName(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), newVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_get_PropertyId(self: *const T, pVal: ?*FsrmFileSystemPropertyId) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).get_PropertyId(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_put_PropertyId(self: *const T, newVal: FsrmFileSystemPropertyId) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).put_PropertyId(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), newVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_get_Operator(self: *const T, pVal: ?*FsrmPropertyConditionType) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).get_Operator(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_put_Operator(self: *const T, newVal: FsrmPropertyConditionType) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).put_Operator(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), newVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_get_ValueType(self: *const T, pVal: ?*FsrmPropertyValueType) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).get_ValueType(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_put_ValueType(self: *const T, newVal: FsrmPropertyValueType) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).put_ValueType(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), newVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_get_Value(self: *const T, pVal: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), pVal);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmFileConditionProperty_put_Value(self: *const T, newVal: VARIANT) HRESULT {
-                return @as(*const IFsrmFileConditionProperty.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IFsrmFileConditionProperty, @ptrCast(self)), newVal);
-            }
-        };
+    IFsrmFileCondition: IFsrmFileCondition,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_PropertyName(self: *const IFsrmFileConditionProperty, pVal: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertyName(self, pVal);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_PropertyName(self: *const IFsrmFileConditionProperty, newVal: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_PropertyName(self, newVal);
+    }
+    pub fn get_PropertyId(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmFileSystemPropertyId) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertyId(self, pVal);
+    }
+    pub fn put_PropertyId(self: *const IFsrmFileConditionProperty, newVal: FsrmFileSystemPropertyId) callconv(.Inline) HRESULT {
+        return self.vtable.put_PropertyId(self, newVal);
+    }
+    pub fn get_Operator(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+        return self.vtable.get_Operator(self, pVal);
+    }
+    pub fn put_Operator(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyConditionType) callconv(.Inline) HRESULT {
+        return self.vtable.put_Operator(self, newVal);
+    }
+    pub fn get_ValueType(self: *const IFsrmFileConditionProperty, pVal: ?*FsrmPropertyValueType) callconv(.Inline) HRESULT {
+        return self.vtable.get_ValueType(self, pVal);
+    }
+    pub fn put_ValueType(self: *const IFsrmFileConditionProperty, newVal: FsrmPropertyValueType) callconv(.Inline) HRESULT {
+        return self.vtable.put_ValueType(self, newVal);
+    }
+    pub fn get_Value(self: *const IFsrmFileConditionProperty, pVal: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_Value(self, pVal);
+    }
+    pub fn put_Value(self: *const IFsrmFileConditionProperty, newVal: VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.put_Value(self, newVal);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPropertyDefinition_Value = Guid.initString("ede0150f-e9a3-419c-877c-01fe5d24c5d3");
 pub const IID_IFsrmPropertyDefinition = &IID_IFsrmPropertyDefinition_Value;
-pub const IFsrmPropertyDefinition = extern struct {
+pub const IFsrmPropertyDefinition = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Type: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                type: ?*FsrmPropertyDefinitionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                type: ?*FsrmPropertyDefinitionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Type: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            type: ?*FsrmPropertyDefinitionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Type: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                type: FsrmPropertyDefinitionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                type: FsrmPropertyDefinitionType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Type: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            type: FsrmPropertyDefinitionType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PossibleValues: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                possibleValues: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                possibleValues: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PossibleValues: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            possibleValues: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PossibleValues: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                possibleValues: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                possibleValues: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PossibleValues: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            possibleValues: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueDescriptions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                valueDescriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                valueDescriptions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ValueDescriptions: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            valueDescriptions: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ValueDescriptions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                valueDescriptions: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                valueDescriptions: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ValueDescriptions: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            valueDescriptions: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Parameters: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            parameters: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Parameters: *const fn(
+            self: *const IFsrmPropertyDefinition,
+            parameters: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_get_Type(self: *const T, type_: ?*FsrmPropertyDefinitionType) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).get_Type(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), type_);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_put_Type(self: *const T, type_: FsrmPropertyDefinitionType) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_Type(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), type_);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_get_PossibleValues(self: *const T, possibleValues: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).get_PossibleValues(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), possibleValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_put_PossibleValues(self: *const T, possibleValues: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_PossibleValues(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), possibleValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_get_ValueDescriptions(self: *const T, valueDescriptions: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).get_ValueDescriptions(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), valueDescriptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_put_ValueDescriptions(self: *const T, valueDescriptions: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_ValueDescriptions(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), valueDescriptions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).get_Parameters(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), parameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyDefinition.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IFsrmPropertyDefinition, @ptrCast(self)), parameters);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmPropertyDefinition, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Name(self: *const IFsrmPropertyDefinition, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Type(self: *const IFsrmPropertyDefinition, @"type": ?*FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+        return self.vtable.get_Type(self, @"type");
+    }
+    pub fn put_Type(self: *const IFsrmPropertyDefinition, @"type": FsrmPropertyDefinitionType) callconv(.Inline) HRESULT {
+        return self.vtable.put_Type(self, @"type");
+    }
+    pub fn get_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_PossibleValues(self, possibleValues);
+    }
+    pub fn put_PossibleValues(self: *const IFsrmPropertyDefinition, possibleValues: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_PossibleValues(self, possibleValues);
+    }
+    pub fn get_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ValueDescriptions(self, valueDescriptions);
+    }
+    pub fn put_ValueDescriptions(self: *const IFsrmPropertyDefinition, valueDescriptions: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_ValueDescriptions(self, valueDescriptions);
+    }
+    pub fn get_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Parameters(self, parameters);
+    }
+    pub fn put_Parameters(self: *const IFsrmPropertyDefinition, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_Parameters(self, parameters);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmPropertyDefinition2_Value = Guid.initString("47782152-d16c-4229-b4e1-0ddfe308b9f6");
 pub const IID_IFsrmPropertyDefinition2 = &IID_IFsrmPropertyDefinition2_Value;
-pub const IFsrmPropertyDefinition2 = extern struct {
+pub const IFsrmPropertyDefinition2 = extern union {
     pub const VTable = extern struct {
         base: IFsrmPropertyDefinition.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyDefinitionFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition2,
-                propertyDefinitionFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition2,
-                propertyDefinitionFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyDefinitionFlags: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            propertyDefinitionFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition2,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition2,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DisplayName: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_DisplayName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition2,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition2,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_DisplayName: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_AppliesTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition2,
-                appliesTo: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition2,
-                appliesTo: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_AppliesTo: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            appliesTo: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ValueDefinitions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinition2,
-                valueDefinitions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinition2,
-                valueDefinitions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ValueDefinitions: *const fn(
+            self: *const IFsrmPropertyDefinition2,
+            valueDefinitions: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmPropertyDefinition.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition2_get_PropertyDefinitionFlags(self: *const T, propertyDefinitionFlags: ?*i32) HRESULT {
-                return @as(*const IFsrmPropertyDefinition2.VTable, @ptrCast(self.vtable)).get_PropertyDefinitionFlags(@as(*const IFsrmPropertyDefinition2, @ptrCast(self)), propertyDefinitionFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition2_get_DisplayName(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinition2.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IFsrmPropertyDefinition2, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition2_put_DisplayName(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinition2.VTable, @ptrCast(self.vtable)).put_DisplayName(@as(*const IFsrmPropertyDefinition2, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition2_get_AppliesTo(self: *const T, appliesTo: ?*i32) HRESULT {
-                return @as(*const IFsrmPropertyDefinition2.VTable, @ptrCast(self.vtable)).get_AppliesTo(@as(*const IFsrmPropertyDefinition2, @ptrCast(self)), appliesTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinition2_get_ValueDefinitions(self: *const T, valueDefinitions: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmPropertyDefinition2.VTable, @ptrCast(self.vtable)).get_ValueDefinitions(@as(*const IFsrmPropertyDefinition2, @ptrCast(self)), valueDefinitions);
-            }
-        };
+    IFsrmPropertyDefinition: IFsrmPropertyDefinition,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_PropertyDefinitionFlags(self: *const IFsrmPropertyDefinition2, propertyDefinitionFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertyDefinitionFlags(self, propertyDefinitionFlags);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_DisplayName(self, name);
+    }
+    pub fn put_DisplayName(self: *const IFsrmPropertyDefinition2, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_DisplayName(self, name);
+    }
+    pub fn get_AppliesTo(self: *const IFsrmPropertyDefinition2, appliesTo: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_AppliesTo(self, appliesTo);
+    }
+    pub fn get_ValueDefinitions(self: *const IFsrmPropertyDefinition2, valueDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.get_ValueDefinitions(self, valueDefinitions);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmPropertyDefinitionValue_Value = Guid.initString("e946d148-bd67-4178-8e22-1c44925ed710");
 pub const IID_IFsrmPropertyDefinitionValue = &IID_IFsrmPropertyDefinitionValue_Value;
-pub const IFsrmPropertyDefinitionValue = extern struct {
+pub const IFsrmPropertyDefinitionValue = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_DisplayName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                displayName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                displayName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_DisplayName: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            displayName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Description: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                description: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Description: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            description: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UniqueID: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                uniqueID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyDefinitionValue,
-                uniqueID: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UniqueID: *const fn(
+            self: *const IFsrmPropertyDefinitionValue,
+            uniqueID: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinitionValue_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinitionValue.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmPropertyDefinitionValue, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinitionValue_get_DisplayName(self: *const T, displayName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinitionValue.VTable, @ptrCast(self.vtable)).get_DisplayName(@as(*const IFsrmPropertyDefinitionValue, @ptrCast(self)), displayName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinitionValue_get_Description(self: *const T, description: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinitionValue.VTable, @ptrCast(self.vtable)).get_Description(@as(*const IFsrmPropertyDefinitionValue, @ptrCast(self)), description);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyDefinitionValue_get_UniqueID(self: *const T, uniqueID: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyDefinitionValue.VTable, @ptrCast(self.vtable)).get_UniqueID(@as(*const IFsrmPropertyDefinitionValue, @ptrCast(self)), uniqueID);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmPropertyDefinitionValue, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_DisplayName(self: *const IFsrmPropertyDefinitionValue, displayName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_DisplayName(self, displayName);
+    }
+    pub fn get_Description(self: *const IFsrmPropertyDefinitionValue, description: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Description(self, description);
+    }
+    pub fn get_UniqueID(self: *const IFsrmPropertyDefinitionValue, uniqueID: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_UniqueID(self, uniqueID);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmProperty_Value = Guid.initString("4a73fee4-4102-4fcc-9ffb-38614f9ee768");
 pub const IID_IFsrmProperty = &IID_IFsrmProperty_Value;
-pub const IFsrmProperty = extern struct {
+pub const IFsrmProperty = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmProperty,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmProperty,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmProperty,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmProperty,
-                value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmProperty,
-                value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Value: *const fn(
+            self: *const IFsrmProperty,
+            value: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Sources: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmProperty,
-                sources: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmProperty,
-                sources: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Sources: *const fn(
+            self: *const IFsrmProperty,
+            sources: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmProperty,
-                flags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmProperty,
-                flags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyFlags: *const fn(
+            self: *const IFsrmProperty,
+            flags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmProperty_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmProperty.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmProperty, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmProperty_get_Value(self: *const T, value: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmProperty.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IFsrmProperty, @ptrCast(self)), value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmProperty_get_Sources(self: *const T, sources: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmProperty.VTable, @ptrCast(self.vtable)).get_Sources(@as(*const IFsrmProperty, @ptrCast(self)), sources);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmProperty_get_PropertyFlags(self: *const T, flags: ?*i32) HRESULT {
-                return @as(*const IFsrmProperty.VTable, @ptrCast(self.vtable)).get_PropertyFlags(@as(*const IFsrmProperty, @ptrCast(self)), flags);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmProperty, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_Value(self: *const IFsrmProperty, value: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Value(self, value);
+    }
+    pub fn get_Sources(self: *const IFsrmProperty, sources: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Sources(self, sources);
+    }
+    pub fn get_PropertyFlags(self: *const IFsrmProperty, flags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertyFlags(self, flags);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmRule_Value = Guid.initString("cb0df960-16f5-4495-9079-3f9360d831df");
 pub const IID_IFsrmRule = &IID_IFsrmRule_Value;
-pub const IFsrmRule = extern struct {
+pub const IFsrmRule = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmRule,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmRule,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RuleType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                ruleType: ?*FsrmRuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                ruleType: ?*FsrmRuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RuleType: *const fn(
+            self: *const IFsrmRule,
+            ruleType: ?*FsrmRuleType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleDefinitionName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                moduleDefinitionName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                moduleDefinitionName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleDefinitionName: *const fn(
+            self: *const IFsrmRule,
+            moduleDefinitionName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ModuleDefinitionName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                moduleDefinitionName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                moduleDefinitionName: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ModuleDefinitionName: *const fn(
+            self: *const IFsrmRule,
+            moduleDefinitionName: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NamespaceRoots: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                namespaceRoots: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                namespaceRoots: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NamespaceRoots: *const fn(
+            self: *const IFsrmRule,
+            namespaceRoots: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NamespaceRoots: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                namespaceRoots: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                namespaceRoots: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NamespaceRoots: *const fn(
+            self: *const IFsrmRule,
+            namespaceRoots: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RuleFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                ruleFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                ruleFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RuleFlags: *const fn(
+            self: *const IFsrmRule,
+            ruleFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_RuleFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                ruleFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                ruleFlags: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_RuleFlags: *const fn(
+            self: *const IFsrmRule,
+            ruleFlags: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Parameters: *const fn(
+            self: *const IFsrmRule,
+            parameters: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Parameters: *const fn(
+            self: *const IFsrmRule,
+            parameters: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastModified: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmRule,
-                lastModified: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmRule,
-                lastModified: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastModified: *const fn(
+            self: *const IFsrmRule,
+            lastModified: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmRule, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmRule, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_get_RuleType(self: *const T, ruleType: ?*FsrmRuleType) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).get_RuleType(@as(*const IFsrmRule, @ptrCast(self)), ruleType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_get_ModuleDefinitionName(self: *const T, moduleDefinitionName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).get_ModuleDefinitionName(@as(*const IFsrmRule, @ptrCast(self)), moduleDefinitionName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_put_ModuleDefinitionName(self: *const T, moduleDefinitionName: ?BSTR) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).put_ModuleDefinitionName(@as(*const IFsrmRule, @ptrCast(self)), moduleDefinitionName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_get_NamespaceRoots(self: *const T, namespaceRoots: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).get_NamespaceRoots(@as(*const IFsrmRule, @ptrCast(self)), namespaceRoots);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_put_NamespaceRoots(self: *const T, namespaceRoots: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).put_NamespaceRoots(@as(*const IFsrmRule, @ptrCast(self)), namespaceRoots);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_get_RuleFlags(self: *const T, ruleFlags: ?*i32) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).get_RuleFlags(@as(*const IFsrmRule, @ptrCast(self)), ruleFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_put_RuleFlags(self: *const T, ruleFlags: i32) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).put_RuleFlags(@as(*const IFsrmRule, @ptrCast(self)), ruleFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).get_Parameters(@as(*const IFsrmRule, @ptrCast(self)), parameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IFsrmRule, @ptrCast(self)), parameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmRule_get_LastModified(self: *const T, lastModified: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmRule.VTable, @ptrCast(self.vtable)).get_LastModified(@as(*const IFsrmRule, @ptrCast(self)), lastModified);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmRule, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Name(self: *const IFsrmRule, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_RuleType(self: *const IFsrmRule, ruleType: ?*FsrmRuleType) callconv(.Inline) HRESULT {
+        return self.vtable.get_RuleType(self, ruleType);
+    }
+    pub fn get_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ModuleDefinitionName(self, moduleDefinitionName);
+    }
+    pub fn put_ModuleDefinitionName(self: *const IFsrmRule, moduleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_ModuleDefinitionName(self, moduleDefinitionName);
+    }
+    pub fn get_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn put_NamespaceRoots(self: *const IFsrmRule, namespaceRoots: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_NamespaceRoots(self, namespaceRoots);
+    }
+    pub fn get_RuleFlags(self: *const IFsrmRule, ruleFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_RuleFlags(self, ruleFlags);
+    }
+    pub fn put_RuleFlags(self: *const IFsrmRule, ruleFlags: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_RuleFlags(self, ruleFlags);
+    }
+    pub fn get_Parameters(self: *const IFsrmRule, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Parameters(self, parameters);
+    }
+    pub fn put_Parameters(self: *const IFsrmRule, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_Parameters(self, parameters);
+    }
+    pub fn get_LastModified(self: *const IFsrmRule, lastModified: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastModified(self, lastModified);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmClassificationRule_Value = Guid.initString("afc052c2-5315-45ab-841b-c6db0e120148");
 pub const IID_IFsrmClassificationRule = &IID_IFsrmClassificationRule_Value;
-pub const IFsrmClassificationRule = extern struct {
+pub const IFsrmClassificationRule = extern union {
     pub const VTable = extern struct {
         base: IFsrmRule.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ExecutionOption: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationRule,
-                executionOption: ?*FsrmExecutionOption,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationRule,
-                executionOption: ?*FsrmExecutionOption,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ExecutionOption: *const fn(
+            self: *const IFsrmClassificationRule,
+            executionOption: ?*FsrmExecutionOption,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ExecutionOption: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationRule,
-                executionOption: FsrmExecutionOption,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationRule,
-                executionOption: FsrmExecutionOption,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ExecutionOption: *const fn(
+            self: *const IFsrmClassificationRule,
+            executionOption: FsrmExecutionOption,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyAffected: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationRule,
-                property: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationRule,
-                property: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyAffected: *const fn(
+            self: *const IFsrmClassificationRule,
+            property: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertyAffected: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationRule,
-                property: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationRule,
-                property: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PropertyAffected: *const fn(
+            self: *const IFsrmClassificationRule,
+            property: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Value: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationRule,
-                value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationRule,
-                value: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Value: *const fn(
+            self: *const IFsrmClassificationRule,
+            value: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Value: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationRule,
-                value: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationRule,
-                value: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Value: *const fn(
+            self: *const IFsrmClassificationRule,
+            value: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmRule.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationRule_get_ExecutionOption(self: *const T, executionOption: ?*FsrmExecutionOption) HRESULT {
-                return @as(*const IFsrmClassificationRule.VTable, @ptrCast(self.vtable)).get_ExecutionOption(@as(*const IFsrmClassificationRule, @ptrCast(self)), executionOption);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationRule_put_ExecutionOption(self: *const T, executionOption: FsrmExecutionOption) HRESULT {
-                return @as(*const IFsrmClassificationRule.VTable, @ptrCast(self.vtable)).put_ExecutionOption(@as(*const IFsrmClassificationRule, @ptrCast(self)), executionOption);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationRule_get_PropertyAffected(self: *const T, property: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationRule.VTable, @ptrCast(self.vtable)).get_PropertyAffected(@as(*const IFsrmClassificationRule, @ptrCast(self)), property);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationRule_put_PropertyAffected(self: *const T, property: ?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationRule.VTable, @ptrCast(self.vtable)).put_PropertyAffected(@as(*const IFsrmClassificationRule, @ptrCast(self)), property);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationRule_get_Value(self: *const T, value: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationRule.VTable, @ptrCast(self.vtable)).get_Value(@as(*const IFsrmClassificationRule, @ptrCast(self)), value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationRule_put_Value(self: *const T, value: ?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationRule.VTable, @ptrCast(self.vtable)).put_Value(@as(*const IFsrmClassificationRule, @ptrCast(self)), value);
-            }
-        };
+    IFsrmRule: IFsrmRule,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: ?*FsrmExecutionOption) callconv(.Inline) HRESULT {
+        return self.vtable.get_ExecutionOption(self, executionOption);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_ExecutionOption(self: *const IFsrmClassificationRule, executionOption: FsrmExecutionOption) callconv(.Inline) HRESULT {
+        return self.vtable.put_ExecutionOption(self, executionOption);
+    }
+    pub fn get_PropertyAffected(self: *const IFsrmClassificationRule, property: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertyAffected(self, property);
+    }
+    pub fn put_PropertyAffected(self: *const IFsrmClassificationRule, property: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_PropertyAffected(self, property);
+    }
+    pub fn get_Value(self: *const IFsrmClassificationRule, value: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Value(self, value);
+    }
+    pub fn put_Value(self: *const IFsrmClassificationRule, value: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Value(self, value);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPipelineModuleDefinition_Value = Guid.initString("515c1277-2c81-440e-8fcf-367921ed4f59");
 pub const IID_IFsrmPipelineModuleDefinition = &IID_IFsrmPipelineModuleDefinition_Value;
-pub const IFsrmPipelineModuleDefinition = extern struct {
+pub const IFsrmPipelineModuleDefinition = extern union {
     pub const VTable = extern struct {
         base: IFsrmObject.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleClsid: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                moduleClsid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                moduleClsid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleClsid: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            moduleClsid: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ModuleClsid: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                moduleClsid: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                moduleClsid: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ModuleClsid: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            moduleClsid: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                name: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Name: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            name: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Company: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                company: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                company: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Company: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            company: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Company: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                company: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                company: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Company: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            company: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Version: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                version: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                version: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Version: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            version: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Version: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                version: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                version: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Version: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            version: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                moduleType: ?*FsrmPipelineModuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                moduleType: ?*FsrmPipelineModuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleType: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            moduleType: ?*FsrmPipelineModuleType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Enabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                enabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                enabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Enabled: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            enabled: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Enabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                enabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                enabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Enabled: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            enabled: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NeedsFileContent: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                needsFileContent: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                needsFileContent: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NeedsFileContent: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            needsFileContent: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NeedsFileContent: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                needsFileContent: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                needsFileContent: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NeedsFileContent: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            needsFileContent: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Account: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                retrievalAccount: ?*FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                retrievalAccount: ?*FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Account: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            retrievalAccount: ?*FsrmAccountType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Account: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                retrievalAccount: FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                retrievalAccount: FsrmAccountType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Account: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            retrievalAccount: FsrmAccountType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SupportedExtensions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                supportedExtensions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                supportedExtensions: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SupportedExtensions: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            supportedExtensions: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_SupportedExtensions: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                supportedExtensions: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                supportedExtensions: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_SupportedExtensions: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            supportedExtensions: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                parameters: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Parameters: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            parameters: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Parameters: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleDefinition,
-                parameters: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Parameters: *const fn(
+            self: *const IFsrmPipelineModuleDefinition,
+            parameters: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmObject.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_ModuleClsid(self: *const T, moduleClsid: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_ModuleClsid(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), moduleClsid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_ModuleClsid(self: *const T, moduleClsid: ?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_ModuleClsid(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), moduleClsid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_Name(self: *const T, name: ?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_Name(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_Company(self: *const T, company: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_Company(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), company);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_Company(self: *const T, company: ?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_Company(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), company);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_Version(self: *const T, version: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_Version(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), version);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_Version(self: *const T, version: ?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_Version(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), version);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_ModuleType(self: *const T, moduleType: ?*FsrmPipelineModuleType) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_ModuleType(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), moduleType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_Enabled(self: *const T, enabled: ?*i16) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_Enabled(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), enabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_Enabled(self: *const T, enabled: i16) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_Enabled(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), enabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_NeedsFileContent(self: *const T, needsFileContent: ?*i16) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_NeedsFileContent(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), needsFileContent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_NeedsFileContent(self: *const T, needsFileContent: i16) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_NeedsFileContent(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), needsFileContent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_Account(self: *const T, retrievalAccount: ?*FsrmAccountType) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_Account(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), retrievalAccount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_Account(self: *const T, retrievalAccount: FsrmAccountType) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_Account(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), retrievalAccount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_SupportedExtensions(self: *const T, supportedExtensions: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_SupportedExtensions(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), supportedExtensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_SupportedExtensions(self: *const T, supportedExtensions: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_SupportedExtensions(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), supportedExtensions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_get_Parameters(self: *const T, parameters: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).get_Parameters(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), parameters);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleDefinition_put_Parameters(self: *const T, parameters: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPipelineModuleDefinition.VTable, @ptrCast(self.vtable)).put_Parameters(@as(*const IFsrmPipelineModuleDefinition, @ptrCast(self)), parameters);
-            }
-        };
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ModuleClsid(self: *const IFsrmPipelineModuleDefinition, moduleClsid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ModuleClsid(self, moduleClsid);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_ModuleClsid(self: *const IFsrmPipelineModuleDefinition, moduleClsid: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_ModuleClsid(self, moduleClsid);
+    }
+    pub fn get_Name(self: *const IFsrmPipelineModuleDefinition, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
+    }
+    pub fn put_Name(self: *const IFsrmPipelineModuleDefinition, name: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Name(self, name);
+    }
+    pub fn get_Company(self: *const IFsrmPipelineModuleDefinition, company: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Company(self, company);
+    }
+    pub fn put_Company(self: *const IFsrmPipelineModuleDefinition, company: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Company(self, company);
+    }
+    pub fn get_Version(self: *const IFsrmPipelineModuleDefinition, version: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Version(self, version);
+    }
+    pub fn put_Version(self: *const IFsrmPipelineModuleDefinition, version: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_Version(self, version);
+    }
+    pub fn get_ModuleType(self: *const IFsrmPipelineModuleDefinition, moduleType: ?*FsrmPipelineModuleType) callconv(.Inline) HRESULT {
+        return self.vtable.get_ModuleType(self, moduleType);
+    }
+    pub fn get_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_Enabled(self, enabled);
+    }
+    pub fn put_Enabled(self: *const IFsrmPipelineModuleDefinition, enabled: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_Enabled(self, enabled);
+    }
+    pub fn get_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_NeedsFileContent(self, needsFileContent);
+    }
+    pub fn put_NeedsFileContent(self: *const IFsrmPipelineModuleDefinition, needsFileContent: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_NeedsFileContent(self, needsFileContent);
+    }
+    pub fn get_Account(self: *const IFsrmPipelineModuleDefinition, retrievalAccount: ?*FsrmAccountType) callconv(.Inline) HRESULT {
+        return self.vtable.get_Account(self, retrievalAccount);
+    }
+    pub fn put_Account(self: *const IFsrmPipelineModuleDefinition, retrievalAccount: FsrmAccountType) callconv(.Inline) HRESULT {
+        return self.vtable.put_Account(self, retrievalAccount);
+    }
+    pub fn get_SupportedExtensions(self: *const IFsrmPipelineModuleDefinition, supportedExtensions: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_SupportedExtensions(self, supportedExtensions);
+    }
+    pub fn put_SupportedExtensions(self: *const IFsrmPipelineModuleDefinition, supportedExtensions: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_SupportedExtensions(self, supportedExtensions);
+    }
+    pub fn get_Parameters(self: *const IFsrmPipelineModuleDefinition, parameters: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Parameters(self, parameters);
+    }
+    pub fn put_Parameters(self: *const IFsrmPipelineModuleDefinition, parameters: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_Parameters(self, parameters);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmClassifierModuleDefinition_Value = Guid.initString("bb36ea26-6318-4b8c-8592-f72dd602e7a5");
 pub const IID_IFsrmClassifierModuleDefinition = &IID_IFsrmClassifierModuleDefinition_Value;
-pub const IFsrmClassifierModuleDefinition = extern struct {
+pub const IFsrmClassifierModuleDefinition = extern union {
     pub const VTable = extern struct {
         base: IFsrmPipelineModuleDefinition.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertiesAffected: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesAffected: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesAffected: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertiesAffected: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesAffected: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertiesAffected: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesAffected: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesAffected: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PropertiesAffected: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesAffected: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertiesUsed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesUsed: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesUsed: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertiesUsed: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesUsed: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_PropertiesUsed: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesUsed: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                propertiesUsed: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_PropertiesUsed: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            propertiesUsed: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_NeedsExplicitValue: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                needsExplicitValue: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                needsExplicitValue: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_NeedsExplicitValue: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            needsExplicitValue: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_NeedsExplicitValue: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                needsExplicitValue: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassifierModuleDefinition,
-                needsExplicitValue: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_NeedsExplicitValue: *const fn(
+            self: *const IFsrmClassifierModuleDefinition,
+            needsExplicitValue: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmPipelineModuleDefinition.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleDefinition_get_PropertiesAffected(self: *const T, propertiesAffected: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmClassifierModuleDefinition.VTable, @ptrCast(self.vtable)).get_PropertiesAffected(@as(*const IFsrmClassifierModuleDefinition, @ptrCast(self)), propertiesAffected);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleDefinition_put_PropertiesAffected(self: *const T, propertiesAffected: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmClassifierModuleDefinition.VTable, @ptrCast(self.vtable)).put_PropertiesAffected(@as(*const IFsrmClassifierModuleDefinition, @ptrCast(self)), propertiesAffected);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleDefinition_get_PropertiesUsed(self: *const T, propertiesUsed: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmClassifierModuleDefinition.VTable, @ptrCast(self.vtable)).get_PropertiesUsed(@as(*const IFsrmClassifierModuleDefinition, @ptrCast(self)), propertiesUsed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleDefinition_put_PropertiesUsed(self: *const T, propertiesUsed: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmClassifierModuleDefinition.VTable, @ptrCast(self.vtable)).put_PropertiesUsed(@as(*const IFsrmClassifierModuleDefinition, @ptrCast(self)), propertiesUsed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleDefinition_get_NeedsExplicitValue(self: *const T, needsExplicitValue: ?*i16) HRESULT {
-                return @as(*const IFsrmClassifierModuleDefinition.VTable, @ptrCast(self.vtable)).get_NeedsExplicitValue(@as(*const IFsrmClassifierModuleDefinition, @ptrCast(self)), needsExplicitValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleDefinition_put_NeedsExplicitValue(self: *const T, needsExplicitValue: i16) HRESULT {
-                return @as(*const IFsrmClassifierModuleDefinition.VTable, @ptrCast(self.vtable)).put_NeedsExplicitValue(@as(*const IFsrmClassifierModuleDefinition, @ptrCast(self)), needsExplicitValue);
-            }
-        };
+    IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertiesAffected(self, propertiesAffected);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_PropertiesAffected(self: *const IFsrmClassifierModuleDefinition, propertiesAffected: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_PropertiesAffected(self, propertiesAffected);
+    }
+    pub fn get_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertiesUsed(self, propertiesUsed);
+    }
+    pub fn put_PropertiesUsed(self: *const IFsrmClassifierModuleDefinition, propertiesUsed: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_PropertiesUsed(self, propertiesUsed);
+    }
+    pub fn get_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_NeedsExplicitValue(self, needsExplicitValue);
+    }
+    pub fn put_NeedsExplicitValue(self: *const IFsrmClassifierModuleDefinition, needsExplicitValue: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_NeedsExplicitValue(self, needsExplicitValue);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmStorageModuleDefinition_Value = Guid.initString("15a81350-497d-4aba-80e9-d4dbcc5521fe");
 pub const IID_IFsrmStorageModuleDefinition = &IID_IFsrmStorageModuleDefinition_Value;
-pub const IFsrmStorageModuleDefinition = extern struct {
+pub const IFsrmStorageModuleDefinition = extern union {
     pub const VTable = extern struct {
         base: IFsrmPipelineModuleDefinition.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Capabilities: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleDefinition,
-                capabilities: ?*FsrmStorageModuleCaps,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmStorageModuleDefinition,
-                capabilities: ?*FsrmStorageModuleCaps,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Capabilities: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            capabilities: ?*FsrmStorageModuleCaps,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Capabilities: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleDefinition,
-                capabilities: FsrmStorageModuleCaps,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmStorageModuleDefinition,
-                capabilities: FsrmStorageModuleCaps,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Capabilities: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            capabilities: FsrmStorageModuleCaps,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_StorageType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleDefinition,
-                storageType: ?*FsrmStorageModuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmStorageModuleDefinition,
-                storageType: ?*FsrmStorageModuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_StorageType: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            storageType: ?*FsrmStorageModuleType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_StorageType: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleDefinition,
-                storageType: FsrmStorageModuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmStorageModuleDefinition,
-                storageType: FsrmStorageModuleType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_StorageType: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            storageType: FsrmStorageModuleType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_UpdatesFileContent: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleDefinition,
-                updatesFileContent: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmStorageModuleDefinition,
-                updatesFileContent: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_UpdatesFileContent: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            updatesFileContent: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_UpdatesFileContent: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleDefinition,
-                updatesFileContent: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmStorageModuleDefinition,
-                updatesFileContent: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_UpdatesFileContent: *const fn(
+            self: *const IFsrmStorageModuleDefinition,
+            updatesFileContent: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmPipelineModuleDefinition.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleDefinition_get_Capabilities(self: *const T, capabilities: ?*FsrmStorageModuleCaps) HRESULT {
-                return @as(*const IFsrmStorageModuleDefinition.VTable, @ptrCast(self.vtable)).get_Capabilities(@as(*const IFsrmStorageModuleDefinition, @ptrCast(self)), capabilities);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleDefinition_put_Capabilities(self: *const T, capabilities: FsrmStorageModuleCaps) HRESULT {
-                return @as(*const IFsrmStorageModuleDefinition.VTable, @ptrCast(self.vtable)).put_Capabilities(@as(*const IFsrmStorageModuleDefinition, @ptrCast(self)), capabilities);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleDefinition_get_StorageType(self: *const T, storageType: ?*FsrmStorageModuleType) HRESULT {
-                return @as(*const IFsrmStorageModuleDefinition.VTable, @ptrCast(self.vtable)).get_StorageType(@as(*const IFsrmStorageModuleDefinition, @ptrCast(self)), storageType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleDefinition_put_StorageType(self: *const T, storageType: FsrmStorageModuleType) HRESULT {
-                return @as(*const IFsrmStorageModuleDefinition.VTable, @ptrCast(self.vtable)).put_StorageType(@as(*const IFsrmStorageModuleDefinition, @ptrCast(self)), storageType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleDefinition_get_UpdatesFileContent(self: *const T, updatesFileContent: ?*i16) HRESULT {
-                return @as(*const IFsrmStorageModuleDefinition.VTable, @ptrCast(self.vtable)).get_UpdatesFileContent(@as(*const IFsrmStorageModuleDefinition, @ptrCast(self)), updatesFileContent);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleDefinition_put_UpdatesFileContent(self: *const T, updatesFileContent: i16) HRESULT {
-                return @as(*const IFsrmStorageModuleDefinition.VTable, @ptrCast(self.vtable)).put_UpdatesFileContent(@as(*const IFsrmStorageModuleDefinition, @ptrCast(self)), updatesFileContent);
-            }
-        };
+    IFsrmPipelineModuleDefinition: IFsrmPipelineModuleDefinition,
+    IFsrmObject: IFsrmObject,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: ?*FsrmStorageModuleCaps) callconv(.Inline) HRESULT {
+        return self.vtable.get_Capabilities(self, capabilities);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_Capabilities(self: *const IFsrmStorageModuleDefinition, capabilities: FsrmStorageModuleCaps) callconv(.Inline) HRESULT {
+        return self.vtable.put_Capabilities(self, capabilities);
+    }
+    pub fn get_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: ?*FsrmStorageModuleType) callconv(.Inline) HRESULT {
+        return self.vtable.get_StorageType(self, storageType);
+    }
+    pub fn put_StorageType(self: *const IFsrmStorageModuleDefinition, storageType: FsrmStorageModuleType) callconv(.Inline) HRESULT {
+        return self.vtable.put_StorageType(self, storageType);
+    }
+    pub fn get_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_UpdatesFileContent(self, updatesFileContent);
+    }
+    pub fn put_UpdatesFileContent(self: *const IFsrmStorageModuleDefinition, updatesFileContent: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_UpdatesFileContent(self, updatesFileContent);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IFsrmClassificationManager_Value = Guid.initString("d2dc89da-ee91-48a0-85d8-cc72a56f7d04");
 pub const IID_IFsrmClassificationManager = &IID_IFsrmClassificationManager_Value;
-pub const IFsrmClassificationManager = extern struct {
+pub const IFsrmClassificationManager = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationReportFormats: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                formats: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                formats: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ClassificationReportFormats: *const fn(
+            self: *const IFsrmClassificationManager,
+            formats: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClassificationReportFormats: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                formats: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                formats: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ClassificationReportFormats: *const fn(
+            self: *const IFsrmClassificationManager,
+            formats: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Logging: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                logging: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                logging: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Logging: *const fn(
+            self: *const IFsrmClassificationManager,
+            logging: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_Logging: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                logging: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                logging: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_Logging: *const fn(
+            self: *const IFsrmClassificationManager,
+            logging: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationReportMailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                mailTo: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ClassificationReportMailTo: *const fn(
+            self: *const IFsrmClassificationManager,
+            mailTo: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClassificationReportMailTo: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                mailTo: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ClassificationReportMailTo: *const fn(
+            self: *const IFsrmClassificationManager,
+            mailTo: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationReportEnabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                reportEnabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                reportEnabled: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ClassificationReportEnabled: *const fn(
+            self: *const IFsrmClassificationManager,
+            reportEnabled: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        put_ClassificationReportEnabled: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                reportEnabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                reportEnabled: i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        put_ClassificationReportEnabled: *const fn(
+            self: *const IFsrmClassificationManager,
+            reportEnabled: i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationLastReportPathWithoutExtension: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                lastReportPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                lastReportPath: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ClassificationLastReportPathWithoutExtension: *const fn(
+            self: *const IFsrmClassificationManager,
+            lastReportPath: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationLastError: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                lastError: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                lastError: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ClassificationLastError: *const fn(
+            self: *const IFsrmClassificationManager,
+            lastError: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ClassificationRunningStatus: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                runningStatus: ?*FsrmReportRunningStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                runningStatus: ?*FsrmReportRunningStatus,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumPropertyDefinitions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                options: FsrmEnumOptions,
-                propertyDefinitions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                options: FsrmEnumOptions,
-                propertyDefinitions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreatePropertyDefinition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                propertyDefinition: ?*?*IFsrmPropertyDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                propertyDefinition: ?*?*IFsrmPropertyDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyDefinition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                propertyName: ?BSTR,
-                propertyDefinition: ?*?*IFsrmPropertyDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                propertyName: ?BSTR,
-                propertyDefinition: ?*?*IFsrmPropertyDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumRules: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                ruleType: FsrmRuleType,
-                options: FsrmEnumOptions,
-                Rules: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                ruleType: FsrmRuleType,
-                options: FsrmEnumOptions,
-                Rules: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateRule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                ruleType: FsrmRuleType,
-                Rule: ?*?*IFsrmRule,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                ruleType: FsrmRuleType,
-                Rule: ?*?*IFsrmRule,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetRule: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                ruleName: ?BSTR,
-                ruleType: FsrmRuleType,
-                Rule: ?*?*IFsrmRule,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                ruleName: ?BSTR,
-                ruleType: FsrmRuleType,
-                Rule: ?*?*IFsrmRule,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumModuleDefinitions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                moduleType: FsrmPipelineModuleType,
-                options: FsrmEnumOptions,
-                moduleDefinitions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                moduleType: FsrmPipelineModuleType,
-                options: FsrmEnumOptions,
-                moduleDefinitions: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateModuleDefinition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                moduleType: FsrmPipelineModuleType,
-                moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                moduleType: FsrmPipelineModuleType,
-                moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetModuleDefinition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                moduleName: ?BSTR,
-                moduleType: FsrmPipelineModuleType,
-                moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                moduleName: ?BSTR,
-                moduleType: FsrmPipelineModuleType,
-                moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RunClassification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                context: FsrmReportGenerationContext,
-                reserved: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                context: FsrmReportGenerationContext,
-                reserved: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WaitForClassificationCompletion: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                waitSeconds: i32,
-                completed: ?*i16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CancelClassification: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EnumFileProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                options: FsrmGetFilePropertyOptions,
-                fileProperties: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                options: FsrmGetFilePropertyOptions,
-                fileProperties: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                propertyName: ?BSTR,
-                options: FsrmGetFilePropertyOptions,
-                property: ?*?*IFsrmProperty,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                propertyName: ?BSTR,
-                options: FsrmGetFilePropertyOptions,
-                property: ?*?*IFsrmProperty,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFileProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                propertyName: ?BSTR,
-                propertyValue: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                propertyName: ?BSTR,
-                propertyValue: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearFileProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                property: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager,
-                filePath: ?BSTR,
-                property: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ClassificationRunningStatus: *const fn(
+            self: *const IFsrmClassificationManager,
+            runningStatus: ?*FsrmReportRunningStatus,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumPropertyDefinitions: *const fn(
+            self: *const IFsrmClassificationManager,
+            options: FsrmEnumOptions,
+            propertyDefinitions: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreatePropertyDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            propertyDefinition: ?*?*IFsrmPropertyDefinition,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            propertyName: ?BSTR,
+            propertyDefinition: ?*?*IFsrmPropertyDefinition,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumRules: *const fn(
+            self: *const IFsrmClassificationManager,
+            ruleType: FsrmRuleType,
+            options: FsrmEnumOptions,
+            Rules: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateRule: *const fn(
+            self: *const IFsrmClassificationManager,
+            ruleType: FsrmRuleType,
+            Rule: ?*?*IFsrmRule,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetRule: *const fn(
+            self: *const IFsrmClassificationManager,
+            ruleName: ?BSTR,
+            ruleType: FsrmRuleType,
+            Rule: ?*?*IFsrmRule,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumModuleDefinitions: *const fn(
+            self: *const IFsrmClassificationManager,
+            moduleType: FsrmPipelineModuleType,
+            options: FsrmEnumOptions,
+            moduleDefinitions: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateModuleDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            moduleType: FsrmPipelineModuleType,
+            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetModuleDefinition: *const fn(
+            self: *const IFsrmClassificationManager,
+            moduleName: ?BSTR,
+            moduleType: FsrmPipelineModuleType,
+            moduleDefinition: ?*?*IFsrmPipelineModuleDefinition,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RunClassification: *const fn(
+            self: *const IFsrmClassificationManager,
+            context: FsrmReportGenerationContext,
+            reserved: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WaitForClassificationCompletion: *const fn(
+            self: *const IFsrmClassificationManager,
+            waitSeconds: i32,
+            completed: ?*i16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CancelClassification: *const fn(
+            self: *const IFsrmClassificationManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EnumFileProperties: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            options: FsrmGetFilePropertyOptions,
+            fileProperties: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileProperty: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            propertyName: ?BSTR,
+            options: FsrmGetFilePropertyOptions,
+            property: ?*?*IFsrmProperty,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFileProperty: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            propertyName: ?BSTR,
+            propertyValue: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearFileProperty: *const fn(
+            self: *const IFsrmClassificationManager,
+            filePath: ?BSTR,
+            property: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_get_ClassificationReportFormats(self: *const T, formats: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).get_ClassificationReportFormats(@as(*const IFsrmClassificationManager, @ptrCast(self)), formats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_put_ClassificationReportFormats(self: *const T, formats: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).put_ClassificationReportFormats(@as(*const IFsrmClassificationManager, @ptrCast(self)), formats);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_get_Logging(self: *const T, logging: ?*i32) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).get_Logging(@as(*const IFsrmClassificationManager, @ptrCast(self)), logging);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_put_Logging(self: *const T, logging: i32) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).put_Logging(@as(*const IFsrmClassificationManager, @ptrCast(self)), logging);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_get_ClassificationReportMailTo(self: *const T, mailTo: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).get_ClassificationReportMailTo(@as(*const IFsrmClassificationManager, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_put_ClassificationReportMailTo(self: *const T, mailTo: ?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).put_ClassificationReportMailTo(@as(*const IFsrmClassificationManager, @ptrCast(self)), mailTo);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_get_ClassificationReportEnabled(self: *const T, reportEnabled: ?*i16) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).get_ClassificationReportEnabled(@as(*const IFsrmClassificationManager, @ptrCast(self)), reportEnabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_put_ClassificationReportEnabled(self: *const T, reportEnabled: i16) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).put_ClassificationReportEnabled(@as(*const IFsrmClassificationManager, @ptrCast(self)), reportEnabled);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_get_ClassificationLastReportPathWithoutExtension(self: *const T, lastReportPath: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).get_ClassificationLastReportPathWithoutExtension(@as(*const IFsrmClassificationManager, @ptrCast(self)), lastReportPath);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_get_ClassificationLastError(self: *const T, lastError: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).get_ClassificationLastError(@as(*const IFsrmClassificationManager, @ptrCast(self)), lastError);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_get_ClassificationRunningStatus(self: *const T, runningStatus: ?*FsrmReportRunningStatus) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).get_ClassificationRunningStatus(@as(*const IFsrmClassificationManager, @ptrCast(self)), runningStatus);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_EnumPropertyDefinitions(self: *const T, options: FsrmEnumOptions, propertyDefinitions: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).EnumPropertyDefinitions(@as(*const IFsrmClassificationManager, @ptrCast(self)), options, propertyDefinitions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_CreatePropertyDefinition(self: *const T, propertyDefinition: ?*?*IFsrmPropertyDefinition) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).CreatePropertyDefinition(@as(*const IFsrmClassificationManager, @ptrCast(self)), propertyDefinition);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_GetPropertyDefinition(self: *const T, propertyName: ?BSTR, propertyDefinition: ?*?*IFsrmPropertyDefinition) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).GetPropertyDefinition(@as(*const IFsrmClassificationManager, @ptrCast(self)), propertyName, propertyDefinition);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_EnumRules(self: *const T, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).EnumRules(@as(*const IFsrmClassificationManager, @ptrCast(self)), ruleType, options, Rules);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_CreateRule(self: *const T, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).CreateRule(@as(*const IFsrmClassificationManager, @ptrCast(self)), ruleType, Rule);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_GetRule(self: *const T, ruleName: ?BSTR, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).GetRule(@as(*const IFsrmClassificationManager, @ptrCast(self)), ruleName, ruleType, Rule);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_EnumModuleDefinitions(self: *const T, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).EnumModuleDefinitions(@as(*const IFsrmClassificationManager, @ptrCast(self)), moduleType, options, moduleDefinitions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_CreateModuleDefinition(self: *const T, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).CreateModuleDefinition(@as(*const IFsrmClassificationManager, @ptrCast(self)), moduleType, moduleDefinition);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_GetModuleDefinition(self: *const T, moduleName: ?BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).GetModuleDefinition(@as(*const IFsrmClassificationManager, @ptrCast(self)), moduleName, moduleType, moduleDefinition);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_RunClassification(self: *const T, context: FsrmReportGenerationContext, reserved: ?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).RunClassification(@as(*const IFsrmClassificationManager, @ptrCast(self)), context, reserved);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_WaitForClassificationCompletion(self: *const T, waitSeconds: i32, completed: ?*i16) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).WaitForClassificationCompletion(@as(*const IFsrmClassificationManager, @ptrCast(self)), waitSeconds, completed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_CancelClassification(self: *const T) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).CancelClassification(@as(*const IFsrmClassificationManager, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_EnumFileProperties(self: *const T, filePath: ?BSTR, options: FsrmGetFilePropertyOptions, fileProperties: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).EnumFileProperties(@as(*const IFsrmClassificationManager, @ptrCast(self)), filePath, options, fileProperties);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_GetFileProperty(self: *const T, filePath: ?BSTR, propertyName: ?BSTR, options: FsrmGetFilePropertyOptions, property: ?*?*IFsrmProperty) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).GetFileProperty(@as(*const IFsrmClassificationManager, @ptrCast(self)), filePath, propertyName, options, property);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_SetFileProperty(self: *const T, filePath: ?BSTR, propertyName: ?BSTR, propertyValue: ?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).SetFileProperty(@as(*const IFsrmClassificationManager, @ptrCast(self)), filePath, propertyName, propertyValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager_ClearFileProperty(self: *const T, filePath: ?BSTR, property: ?BSTR) HRESULT {
-                return @as(*const IFsrmClassificationManager.VTable, @ptrCast(self.vtable)).ClearFileProperty(@as(*const IFsrmClassificationManager, @ptrCast(self)), filePath, property);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_ClassificationReportFormats(self, formats);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn put_ClassificationReportFormats(self: *const IFsrmClassificationManager, formats: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.put_ClassificationReportFormats(self, formats);
+    }
+    pub fn get_Logging(self: *const IFsrmClassificationManager, logging: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Logging(self, logging);
+    }
+    pub fn put_Logging(self: *const IFsrmClassificationManager, logging: i32) callconv(.Inline) HRESULT {
+        return self.vtable.put_Logging(self, logging);
+    }
+    pub fn get_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ClassificationReportMailTo(self, mailTo);
+    }
+    pub fn put_ClassificationReportMailTo(self: *const IFsrmClassificationManager, mailTo: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.put_ClassificationReportMailTo(self, mailTo);
+    }
+    pub fn get_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.get_ClassificationReportEnabled(self, reportEnabled);
+    }
+    pub fn put_ClassificationReportEnabled(self: *const IFsrmClassificationManager, reportEnabled: i16) callconv(.Inline) HRESULT {
+        return self.vtable.put_ClassificationReportEnabled(self, reportEnabled);
+    }
+    pub fn get_ClassificationLastReportPathWithoutExtension(self: *const IFsrmClassificationManager, lastReportPath: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ClassificationLastReportPathWithoutExtension(self, lastReportPath);
+    }
+    pub fn get_ClassificationLastError(self: *const IFsrmClassificationManager, lastError: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ClassificationLastError(self, lastError);
+    }
+    pub fn get_ClassificationRunningStatus(self: *const IFsrmClassificationManager, runningStatus: ?*FsrmReportRunningStatus) callconv(.Inline) HRESULT {
+        return self.vtable.get_ClassificationRunningStatus(self, runningStatus);
+    }
+    pub fn EnumPropertyDefinitions(self: *const IFsrmClassificationManager, options: FsrmEnumOptions, propertyDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumPropertyDefinitions(self, options, propertyDefinitions);
+    }
+    pub fn CreatePropertyDefinition(self: *const IFsrmClassificationManager, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
+        return self.vtable.CreatePropertyDefinition(self, propertyDefinition);
+    }
+    pub fn GetPropertyDefinition(self: *const IFsrmClassificationManager, propertyName: ?BSTR, propertyDefinition: ?*?*IFsrmPropertyDefinition) callconv(.Inline) HRESULT {
+        return self.vtable.GetPropertyDefinition(self, propertyName, propertyDefinition);
+    }
+    pub fn EnumRules(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, options: FsrmEnumOptions, Rules: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumRules(self, ruleType, options, Rules);
+    }
+    pub fn CreateRule(self: *const IFsrmClassificationManager, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.Inline) HRESULT {
+        return self.vtable.CreateRule(self, ruleType, Rule);
+    }
+    pub fn GetRule(self: *const IFsrmClassificationManager, ruleName: ?BSTR, ruleType: FsrmRuleType, Rule: ?*?*IFsrmRule) callconv(.Inline) HRESULT {
+        return self.vtable.GetRule(self, ruleName, ruleType, Rule);
+    }
+    pub fn EnumModuleDefinitions(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, options: FsrmEnumOptions, moduleDefinitions: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumModuleDefinitions(self, moduleType, options, moduleDefinitions);
+    }
+    pub fn CreateModuleDefinition(self: *const IFsrmClassificationManager, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
+        return self.vtable.CreateModuleDefinition(self, moduleType, moduleDefinition);
+    }
+    pub fn GetModuleDefinition(self: *const IFsrmClassificationManager, moduleName: ?BSTR, moduleType: FsrmPipelineModuleType, moduleDefinition: ?*?*IFsrmPipelineModuleDefinition) callconv(.Inline) HRESULT {
+        return self.vtable.GetModuleDefinition(self, moduleName, moduleType, moduleDefinition);
+    }
+    pub fn RunClassification(self: *const IFsrmClassificationManager, context: FsrmReportGenerationContext, reserved: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.RunClassification(self, context, reserved);
+    }
+    pub fn WaitForClassificationCompletion(self: *const IFsrmClassificationManager, waitSeconds: i32, completed: ?*i16) callconv(.Inline) HRESULT {
+        return self.vtable.WaitForClassificationCompletion(self, waitSeconds, completed);
+    }
+    pub fn CancelClassification(self: *const IFsrmClassificationManager) callconv(.Inline) HRESULT {
+        return self.vtable.CancelClassification(self);
+    }
+    pub fn EnumFileProperties(self: *const IFsrmClassificationManager, filePath: ?BSTR, options: FsrmGetFilePropertyOptions, fileProperties: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.EnumFileProperties(self, filePath, options, fileProperties);
+    }
+    pub fn GetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, options: FsrmGetFilePropertyOptions, property: ?*?*IFsrmProperty) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileProperty(self, filePath, propertyName, options, property);
+    }
+    pub fn SetFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, propertyName: ?BSTR, propertyValue: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.SetFileProperty(self, filePath, propertyName, propertyValue);
+    }
+    pub fn ClearFileProperty(self: *const IFsrmClassificationManager, filePath: ?BSTR, property: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.ClearFileProperty(self, filePath, property);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IFsrmClassificationManager2_Value = Guid.initString("0004c1c9-127e-4765-ba07-6a3147bca112");
 pub const IID_IFsrmClassificationManager2 = &IID_IFsrmClassificationManager2_Value;
-pub const IFsrmClassificationManager2 = extern struct {
+pub const IFsrmClassificationManager2 = extern union {
     pub const VTable = extern struct {
         base: IFsrmClassificationManager.VTable,
-        ClassifyFiles: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassificationManager2,
-                filePaths: ?*SAFEARRAY,
-                propertyNames: ?*SAFEARRAY,
-                propertyValues: ?*SAFEARRAY,
-                options: FsrmGetFilePropertyOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassificationManager2,
-                filePaths: ?*SAFEARRAY,
-                propertyNames: ?*SAFEARRAY,
-                propertyValues: ?*SAFEARRAY,
-                options: FsrmGetFilePropertyOptions,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ClassifyFiles: *const fn(
+            self: *const IFsrmClassificationManager2,
+            filePaths: ?*SAFEARRAY,
+            propertyNames: ?*SAFEARRAY,
+            propertyValues: ?*SAFEARRAY,
+            options: FsrmGetFilePropertyOptions,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmClassificationManager.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassificationManager2_ClassifyFiles(self: *const T, filePaths: ?*SAFEARRAY, propertyNames: ?*SAFEARRAY, propertyValues: ?*SAFEARRAY, options: FsrmGetFilePropertyOptions) HRESULT {
-                return @as(*const IFsrmClassificationManager2.VTable, @ptrCast(self.vtable)).ClassifyFiles(@as(*const IFsrmClassificationManager2, @ptrCast(self)), filePaths, propertyNames, propertyValues, options);
-            }
-        };
+    IFsrmClassificationManager: IFsrmClassificationManager,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn ClassifyFiles(self: *const IFsrmClassificationManager2, filePaths: ?*SAFEARRAY, propertyNames: ?*SAFEARRAY, propertyValues: ?*SAFEARRAY, options: FsrmGetFilePropertyOptions) callconv(.Inline) HRESULT {
+        return self.vtable.ClassifyFiles(self, filePaths, propertyNames, propertyValues, options);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPropertyBag_Value = Guid.initString("774589d1-d300-4f7a-9a24-f7b766800250");
 pub const IID_IFsrmPropertyBag = &IID_IFsrmPropertyBag_Value;
-pub const IFsrmPropertyBag = extern struct {
+pub const IFsrmPropertyBag = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Name: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                name: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Name: *const fn(
+            self: *const IFsrmPropertyBag,
+            name: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RelativePath: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                path: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RelativePath: *const fn(
+            self: *const IFsrmPropertyBag,
+            path: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                volumeName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                volumeName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_VolumeName: *const fn(
+            self: *const IFsrmPropertyBag,
+            volumeName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RelativeNamespaceRoot: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                relativeNamespaceRoot: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                relativeNamespaceRoot: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RelativeNamespaceRoot: *const fn(
+            self: *const IFsrmPropertyBag,
+            relativeNamespaceRoot: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_VolumeIndex: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                volumeId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                volumeId: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_VolumeIndex: *const fn(
+            self: *const IFsrmPropertyBag,
+            volumeId: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FileId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                fileId: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                fileId: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FileId: *const fn(
+            self: *const IFsrmPropertyBag,
+            fileId: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ParentDirectoryId: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                parentDirectoryId: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                parentDirectoryId: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ParentDirectoryId: *const fn(
+            self: *const IFsrmPropertyBag,
+            parentDirectoryId: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Size: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                size: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                size: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Size: *const fn(
+            self: *const IFsrmPropertyBag,
+            size: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_SizeAllocated: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                sizeAllocated: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                sizeAllocated: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_SizeAllocated: *const fn(
+            self: *const IFsrmPropertyBag,
+            sizeAllocated: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_CreationTime: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                creationTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                creationTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_CreationTime: *const fn(
+            self: *const IFsrmPropertyBag,
+            creationTime: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastAccessTime: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                lastAccessTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                lastAccessTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastAccessTime: *const fn(
+            self: *const IFsrmPropertyBag,
+            lastAccessTime: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastModificationTime: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                lastModificationTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                lastModificationTime: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastModificationTime: *const fn(
+            self: *const IFsrmPropertyBag,
+            lastModificationTime: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Attributes: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                attributes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                attributes: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Attributes: *const fn(
+            self: *const IFsrmPropertyBag,
+            attributes: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_OwnerSid: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                ownerSid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                ownerSid: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_OwnerSid: *const fn(
+            self: *const IFsrmPropertyBag,
+            ownerSid: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_FilePropertyNames: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                filePropertyNames: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                filePropertyNames: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_FilePropertyNames: *const fn(
+            self: *const IFsrmPropertyBag,
+            filePropertyNames: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Messages: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                messages: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                messages: ?*?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Messages: *const fn(
+            self: *const IFsrmPropertyBag,
+            messages: ?*?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_PropertyBagFlags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                flags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                flags: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                name: ?BSTR,
-                fileProperty: ?*?*IFsrmProperty,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                name: ?BSTR,
-                fileProperty: ?*?*IFsrmProperty,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetFileProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                name: ?BSTR,
-                value: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                name: ?BSTR,
-                value: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                message: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                message: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetFileStreamInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag,
-                accessMode: FsrmFileStreamingMode,
-                interfaceType: FsrmFileStreamingInterfaceType,
-                pStreamInterface: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPropertyBag,
-                accessMode: FsrmFileStreamingMode,
-                interfaceType: FsrmFileStreamingInterfaceType,
-                pStreamInterface: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_PropertyBagFlags: *const fn(
+            self: *const IFsrmPropertyBag,
+            flags: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileProperty: *const fn(
+            self: *const IFsrmPropertyBag,
+            name: ?BSTR,
+            fileProperty: ?*?*IFsrmProperty,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetFileProperty: *const fn(
+            self: *const IFsrmPropertyBag,
+            name: ?BSTR,
+            value: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddMessage: *const fn(
+            self: *const IFsrmPropertyBag,
+            message: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetFileStreamInterface: *const fn(
+            self: *const IFsrmPropertyBag,
+            accessMode: FsrmFileStreamingMode,
+            interfaceType: FsrmFileStreamingInterfaceType,
+            pStreamInterface: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_Name(self: *const T, name: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_Name(@as(*const IFsrmPropertyBag, @ptrCast(self)), name);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_RelativePath(self: *const T, path: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_RelativePath(@as(*const IFsrmPropertyBag, @ptrCast(self)), path);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_VolumeName(self: *const T, volumeName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_VolumeName(@as(*const IFsrmPropertyBag, @ptrCast(self)), volumeName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_RelativeNamespaceRoot(self: *const T, relativeNamespaceRoot: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_RelativeNamespaceRoot(@as(*const IFsrmPropertyBag, @ptrCast(self)), relativeNamespaceRoot);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_VolumeIndex(self: *const T, volumeId: ?*u32) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_VolumeIndex(@as(*const IFsrmPropertyBag, @ptrCast(self)), volumeId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_FileId(self: *const T, fileId: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_FileId(@as(*const IFsrmPropertyBag, @ptrCast(self)), fileId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_ParentDirectoryId(self: *const T, parentDirectoryId: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_ParentDirectoryId(@as(*const IFsrmPropertyBag, @ptrCast(self)), parentDirectoryId);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_Size(self: *const T, size: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_Size(@as(*const IFsrmPropertyBag, @ptrCast(self)), size);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_SizeAllocated(self: *const T, sizeAllocated: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_SizeAllocated(@as(*const IFsrmPropertyBag, @ptrCast(self)), sizeAllocated);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_CreationTime(self: *const T, creationTime: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_CreationTime(@as(*const IFsrmPropertyBag, @ptrCast(self)), creationTime);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_LastAccessTime(self: *const T, lastAccessTime: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_LastAccessTime(@as(*const IFsrmPropertyBag, @ptrCast(self)), lastAccessTime);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_LastModificationTime(self: *const T, lastModificationTime: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_LastModificationTime(@as(*const IFsrmPropertyBag, @ptrCast(self)), lastModificationTime);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_Attributes(self: *const T, attributes: ?*u32) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_Attributes(@as(*const IFsrmPropertyBag, @ptrCast(self)), attributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_OwnerSid(self: *const T, ownerSid: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_OwnerSid(@as(*const IFsrmPropertyBag, @ptrCast(self)), ownerSid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_FilePropertyNames(self: *const T, filePropertyNames: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_FilePropertyNames(@as(*const IFsrmPropertyBag, @ptrCast(self)), filePropertyNames);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_Messages(self: *const T, messages: ?*?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_Messages(@as(*const IFsrmPropertyBag, @ptrCast(self)), messages);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_get_PropertyBagFlags(self: *const T, flags: ?*u32) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).get_PropertyBagFlags(@as(*const IFsrmPropertyBag, @ptrCast(self)), flags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_GetFileProperty(self: *const T, name: ?BSTR, fileProperty: ?*?*IFsrmProperty) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).GetFileProperty(@as(*const IFsrmPropertyBag, @ptrCast(self)), name, fileProperty);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_SetFileProperty(self: *const T, name: ?BSTR, value: ?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).SetFileProperty(@as(*const IFsrmPropertyBag, @ptrCast(self)), name, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_AddMessage(self: *const T, message: ?BSTR) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).AddMessage(@as(*const IFsrmPropertyBag, @ptrCast(self)), message);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag_GetFileStreamInterface(self: *const T, accessMode: FsrmFileStreamingMode, interfaceType: FsrmFileStreamingInterfaceType, pStreamInterface: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag.VTable, @ptrCast(self.vtable)).GetFileStreamInterface(@as(*const IFsrmPropertyBag, @ptrCast(self)), accessMode, interfaceType, pStreamInterface);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_Name(self: *const IFsrmPropertyBag, name: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_Name(self, name);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_RelativePath(self: *const IFsrmPropertyBag, path: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_RelativePath(self, path);
+    }
+    pub fn get_VolumeName(self: *const IFsrmPropertyBag, volumeName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_VolumeName(self, volumeName);
+    }
+    pub fn get_RelativeNamespaceRoot(self: *const IFsrmPropertyBag, relativeNamespaceRoot: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_RelativeNamespaceRoot(self, relativeNamespaceRoot);
+    }
+    pub fn get_VolumeIndex(self: *const IFsrmPropertyBag, volumeId: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.get_VolumeIndex(self, volumeId);
+    }
+    pub fn get_FileId(self: *const IFsrmPropertyBag, fileId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_FileId(self, fileId);
+    }
+    pub fn get_ParentDirectoryId(self: *const IFsrmPropertyBag, parentDirectoryId: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_ParentDirectoryId(self, parentDirectoryId);
+    }
+    pub fn get_Size(self: *const IFsrmPropertyBag, size: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_Size(self, size);
+    }
+    pub fn get_SizeAllocated(self: *const IFsrmPropertyBag, sizeAllocated: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_SizeAllocated(self, sizeAllocated);
+    }
+    pub fn get_CreationTime(self: *const IFsrmPropertyBag, creationTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_CreationTime(self, creationTime);
+    }
+    pub fn get_LastAccessTime(self: *const IFsrmPropertyBag, lastAccessTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastAccessTime(self, lastAccessTime);
+    }
+    pub fn get_LastModificationTime(self: *const IFsrmPropertyBag, lastModificationTime: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastModificationTime(self, lastModificationTime);
+    }
+    pub fn get_Attributes(self: *const IFsrmPropertyBag, attributes: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Attributes(self, attributes);
+    }
+    pub fn get_OwnerSid(self: *const IFsrmPropertyBag, ownerSid: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_OwnerSid(self, ownerSid);
+    }
+    pub fn get_FilePropertyNames(self: *const IFsrmPropertyBag, filePropertyNames: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_FilePropertyNames(self, filePropertyNames);
+    }
+    pub fn get_Messages(self: *const IFsrmPropertyBag, messages: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.get_Messages(self, messages);
+    }
+    pub fn get_PropertyBagFlags(self: *const IFsrmPropertyBag, flags: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.get_PropertyBagFlags(self, flags);
+    }
+    pub fn GetFileProperty(self: *const IFsrmPropertyBag, name: ?BSTR, fileProperty: ?*?*IFsrmProperty) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileProperty(self, name, fileProperty);
+    }
+    pub fn SetFileProperty(self: *const IFsrmPropertyBag, name: ?BSTR, value: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.SetFileProperty(self, name, value);
+    }
+    pub fn AddMessage(self: *const IFsrmPropertyBag, message: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.AddMessage(self, message);
+    }
+    pub fn GetFileStreamInterface(self: *const IFsrmPropertyBag, accessMode: FsrmFileStreamingMode, interfaceType: FsrmFileStreamingInterfaceType, pStreamInterface: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetFileStreamInterface(self, accessMode, interfaceType, pStreamInterface);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2012'
 const IID_IFsrmPropertyBag2_Value = Guid.initString("0e46bdbd-2402-4fed-9c30-9266e6eb2cc9");
 pub const IID_IFsrmPropertyBag2 = &IID_IFsrmPropertyBag2_Value;
-pub const IFsrmPropertyBag2 = extern struct {
+pub const IFsrmPropertyBag2 = extern union {
     pub const VTable = extern struct {
         base: IFsrmPropertyBag.VTable,
-        GetFieldValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag2,
-                field: FsrmPropertyBagField,
-                value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPropertyBag2,
-                field: FsrmPropertyBagField,
-                value: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUntrustedInFileProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPropertyBag2,
-                props: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPropertyBag2,
-                props: ?*?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetFieldValue: *const fn(
+            self: *const IFsrmPropertyBag2,
+            field: FsrmPropertyBagField,
+            value: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUntrustedInFileProperties: *const fn(
+            self: *const IFsrmPropertyBag2,
+            props: ?*?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmPropertyBag.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag2_GetFieldValue(self: *const T, field: FsrmPropertyBagField, value: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmPropertyBag2.VTable, @ptrCast(self.vtable)).GetFieldValue(@as(*const IFsrmPropertyBag2, @ptrCast(self)), field, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPropertyBag2_GetUntrustedInFileProperties(self: *const T, props: ?*?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmPropertyBag2.VTable, @ptrCast(self.vtable)).GetUntrustedInFileProperties(@as(*const IFsrmPropertyBag2, @ptrCast(self)), props);
-            }
-        };
+    IFsrmPropertyBag: IFsrmPropertyBag,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn GetFieldValue(self: *const IFsrmPropertyBag2, field: FsrmPropertyBagField, value: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.GetFieldValue(self, field, value);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetUntrustedInFileProperties(self: *const IFsrmPropertyBag2, props: ?*?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.GetUntrustedInFileProperties(self, props);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPipelineModuleImplementation_Value = Guid.initString("b7907906-2b02-4cb5-84a9-fdf54613d6cd");
 pub const IID_IFsrmPipelineModuleImplementation = &IID_IFsrmPipelineModuleImplementation_Value;
-pub const IFsrmPipelineModuleImplementation = extern struct {
+pub const IFsrmPipelineModuleImplementation = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
-        OnLoad: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleImplementation,
-                moduleDefinition: ?*IFsrmPipelineModuleDefinition,
-                moduleConnector: ?*?*IFsrmPipelineModuleConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPipelineModuleImplementation,
-                moduleDefinition: ?*IFsrmPipelineModuleDefinition,
-                moduleConnector: ?*?*IFsrmPipelineModuleConnector,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnUnload: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPipelineModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnLoad: *const fn(
+            self: *const IFsrmPipelineModuleImplementation,
+            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
+            moduleConnector: ?*?*IFsrmPipelineModuleConnector,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnUnload: *const fn(
+            self: *const IFsrmPipelineModuleImplementation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleImplementation_OnLoad(self: *const T, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleConnector: ?*?*IFsrmPipelineModuleConnector) HRESULT {
-                return @as(*const IFsrmPipelineModuleImplementation.VTable, @ptrCast(self.vtable)).OnLoad(@as(*const IFsrmPipelineModuleImplementation, @ptrCast(self)), moduleDefinition, moduleConnector);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleImplementation_OnUnload(self: *const T) HRESULT {
-                return @as(*const IFsrmPipelineModuleImplementation.VTable, @ptrCast(self.vtable)).OnUnload(@as(*const IFsrmPipelineModuleImplementation, @ptrCast(self)));
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn OnLoad(self: *const IFsrmPipelineModuleImplementation, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleConnector: ?*?*IFsrmPipelineModuleConnector) callconv(.Inline) HRESULT {
+        return self.vtable.OnLoad(self, moduleDefinition, moduleConnector);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn OnUnload(self: *const IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+        return self.vtable.OnUnload(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmClassifierModuleImplementation_Value = Guid.initString("4c968fc6-6edb-4051-9c18-73b7291ae106");
 pub const IID_IFsrmClassifierModuleImplementation = &IID_IFsrmClassifierModuleImplementation_Value;
-pub const IFsrmClassifierModuleImplementation = extern struct {
+pub const IFsrmClassifierModuleImplementation = extern union {
     pub const VTable = extern struct {
         base: IFsrmPipelineModuleImplementation.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_LastModified: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                lastModified: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                lastModified: ?*VARIANT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UseRulesAndDefinitions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                rules: ?*IFsrmCollection,
-                propertyDefinitions: ?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                rules: ?*IFsrmCollection,
-                propertyDefinitions: ?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnBeginFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                propertyBag: ?*IFsrmPropertyBag,
-                arrayRuleIds: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                propertyBag: ?*IFsrmPropertyBag,
-                arrayRuleIds: ?*SAFEARRAY,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DoesPropertyValueApply: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                property: ?BSTR,
-                value: ?BSTR,
-                applyValue: ?*i16,
-                idRule: Guid,
-                idPropDef: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                property: ?BSTR,
-                value: ?BSTR,
-                applyValue: ?*i16,
-                idRule: Guid,
-                idPropDef: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyValueToApply: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                property: ?BSTR,
-                value: ?*?BSTR,
-                idRule: Guid,
-                idPropDef: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassifierModuleImplementation,
-                property: ?BSTR,
-                value: ?*?BSTR,
-                idRule: Guid,
-                idPropDef: Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        OnEndFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmClassifierModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmClassifierModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_LastModified: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            lastModified: ?*VARIANT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UseRulesAndDefinitions: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            rules: ?*IFsrmCollection,
+            propertyDefinitions: ?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnBeginFile: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            propertyBag: ?*IFsrmPropertyBag,
+            arrayRuleIds: ?*SAFEARRAY,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DoesPropertyValueApply: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            property: ?BSTR,
+            value: ?BSTR,
+            applyValue: ?*i16,
+            idRule: Guid,
+            idPropDef: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyValueToApply: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+            property: ?BSTR,
+            value: ?*?BSTR,
+            idRule: Guid,
+            idPropDef: Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        OnEndFile: *const fn(
+            self: *const IFsrmClassifierModuleImplementation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmPipelineModuleImplementation.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleImplementation_get_LastModified(self: *const T, lastModified: ?*VARIANT) HRESULT {
-                return @as(*const IFsrmClassifierModuleImplementation.VTable, @ptrCast(self.vtable)).get_LastModified(@as(*const IFsrmClassifierModuleImplementation, @ptrCast(self)), lastModified);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleImplementation_UseRulesAndDefinitions(self: *const T, rules: ?*IFsrmCollection, propertyDefinitions: ?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmClassifierModuleImplementation.VTable, @ptrCast(self.vtable)).UseRulesAndDefinitions(@as(*const IFsrmClassifierModuleImplementation, @ptrCast(self)), rules, propertyDefinitions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleImplementation_OnBeginFile(self: *const T, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) HRESULT {
-                return @as(*const IFsrmClassifierModuleImplementation.VTable, @ptrCast(self.vtable)).OnBeginFile(@as(*const IFsrmClassifierModuleImplementation, @ptrCast(self)), propertyBag, arrayRuleIds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleImplementation_DoesPropertyValueApply(self: *const T, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) HRESULT {
-                return @as(*const IFsrmClassifierModuleImplementation.VTable, @ptrCast(self.vtable)).DoesPropertyValueApply(@as(*const IFsrmClassifierModuleImplementation, @ptrCast(self)), property, value, applyValue, idRule, idPropDef);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleImplementation_GetPropertyValueToApply(self: *const T, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) HRESULT {
-                return @as(*const IFsrmClassifierModuleImplementation.VTable, @ptrCast(self.vtable)).GetPropertyValueToApply(@as(*const IFsrmClassifierModuleImplementation, @ptrCast(self)), property, value, idRule, idPropDef);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmClassifierModuleImplementation_OnEndFile(self: *const T) HRESULT {
-                return @as(*const IFsrmClassifierModuleImplementation.VTable, @ptrCast(self.vtable)).OnEndFile(@as(*const IFsrmClassifierModuleImplementation, @ptrCast(self)));
-            }
-        };
+    IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_LastModified(self: *const IFsrmClassifierModuleImplementation, lastModified: ?*VARIANT) callconv(.Inline) HRESULT {
+        return self.vtable.get_LastModified(self, lastModified);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UseRulesAndDefinitions(self: *const IFsrmClassifierModuleImplementation, rules: ?*IFsrmCollection, propertyDefinitions: ?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.UseRulesAndDefinitions(self, rules, propertyDefinitions);
+    }
+    pub fn OnBeginFile(self: *const IFsrmClassifierModuleImplementation, propertyBag: ?*IFsrmPropertyBag, arrayRuleIds: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+        return self.vtable.OnBeginFile(self, propertyBag, arrayRuleIds);
+    }
+    pub fn DoesPropertyValueApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?BSTR, applyValue: ?*i16, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.DoesPropertyValueApply(self, property, value, applyValue, idRule, idPropDef);
+    }
+    pub fn GetPropertyValueToApply(self: *const IFsrmClassifierModuleImplementation, property: ?BSTR, value: ?*?BSTR, idRule: Guid, idPropDef: Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetPropertyValueToApply(self, property, value, idRule, idPropDef);
+    }
+    pub fn OnEndFile(self: *const IFsrmClassifierModuleImplementation) callconv(.Inline) HRESULT {
+        return self.vtable.OnEndFile(self);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmStorageModuleImplementation_Value = Guid.initString("0af4a0da-895a-4e50-8712-a96724bcec64");
 pub const IID_IFsrmStorageModuleImplementation = &IID_IFsrmStorageModuleImplementation_Value;
-pub const IFsrmStorageModuleImplementation = extern struct {
+pub const IFsrmStorageModuleImplementation = extern union {
     pub const VTable = extern struct {
         base: IFsrmPipelineModuleImplementation.VTable,
-        UseDefinitions: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleImplementation,
-                propertyDefinitions: ?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmStorageModuleImplementation,
-                propertyDefinitions: ?*IFsrmCollection,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        LoadProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleImplementation,
-                propertyBag: ?*IFsrmPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmStorageModuleImplementation,
-                propertyBag: ?*IFsrmPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SaveProperties: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmStorageModuleImplementation,
-                propertyBag: ?*IFsrmPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmStorageModuleImplementation,
-                propertyBag: ?*IFsrmPropertyBag,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        UseDefinitions: *const fn(
+            self: *const IFsrmStorageModuleImplementation,
+            propertyDefinitions: ?*IFsrmCollection,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        LoadProperties: *const fn(
+            self: *const IFsrmStorageModuleImplementation,
+            propertyBag: ?*IFsrmPropertyBag,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SaveProperties: *const fn(
+            self: *const IFsrmStorageModuleImplementation,
+            propertyBag: ?*IFsrmPropertyBag,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IFsrmPipelineModuleImplementation.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleImplementation_UseDefinitions(self: *const T, propertyDefinitions: ?*IFsrmCollection) HRESULT {
-                return @as(*const IFsrmStorageModuleImplementation.VTable, @ptrCast(self.vtable)).UseDefinitions(@as(*const IFsrmStorageModuleImplementation, @ptrCast(self)), propertyDefinitions);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleImplementation_LoadProperties(self: *const T, propertyBag: ?*IFsrmPropertyBag) HRESULT {
-                return @as(*const IFsrmStorageModuleImplementation.VTable, @ptrCast(self.vtable)).LoadProperties(@as(*const IFsrmStorageModuleImplementation, @ptrCast(self)), propertyBag);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmStorageModuleImplementation_SaveProperties(self: *const T, propertyBag: ?*IFsrmPropertyBag) HRESULT {
-                return @as(*const IFsrmStorageModuleImplementation.VTable, @ptrCast(self.vtable)).SaveProperties(@as(*const IFsrmStorageModuleImplementation, @ptrCast(self)), propertyBag);
-            }
-        };
+    IFsrmPipelineModuleImplementation: IFsrmPipelineModuleImplementation,
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn UseDefinitions(self: *const IFsrmStorageModuleImplementation, propertyDefinitions: ?*IFsrmCollection) callconv(.Inline) HRESULT {
+        return self.vtable.UseDefinitions(self, propertyDefinitions);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn LoadProperties(self: *const IFsrmStorageModuleImplementation, propertyBag: ?*IFsrmPropertyBag) callconv(.Inline) HRESULT {
+        return self.vtable.LoadProperties(self, propertyBag);
+    }
+    pub fn SaveProperties(self: *const IFsrmStorageModuleImplementation, propertyBag: ?*IFsrmPropertyBag) callconv(.Inline) HRESULT {
+        return self.vtable.SaveProperties(self, propertyBag);
+    }
 };
 
 // TODO: this type is limited to platform 'windowsServer2008'
 const IID_IFsrmPipelineModuleConnector_Value = Guid.initString("c16014f3-9aa1-46b3-b0a7-ab146eb205f2");
 pub const IID_IFsrmPipelineModuleConnector = &IID_IFsrmPipelineModuleConnector_Value;
-pub const IFsrmPipelineModuleConnector = extern struct {
+pub const IFsrmPipelineModuleConnector = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleImplementation: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleConnector,
-                pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleConnector,
-                pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleImplementation: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_ModuleName: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleConnector,
-                userName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleConnector,
-                userName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_ModuleName: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            userName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HostingUserAccount: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleConnector,
-                userAccount: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleConnector,
-                userAccount: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_HostingUserAccount: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            userAccount: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_HostingProcessPid: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleConnector,
-                pid: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IFsrmPipelineModuleConnector,
-                pid: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Bind: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFsrmPipelineModuleConnector,
-                moduleDefinition: ?*IFsrmPipelineModuleDefinition,
-                moduleImplementation: ?*IFsrmPipelineModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFsrmPipelineModuleConnector,
-                moduleDefinition: ?*IFsrmPipelineModuleDefinition,
-                moduleImplementation: ?*IFsrmPipelineModuleImplementation,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_HostingProcessPid: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            pid: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Bind: *const fn(
+            self: *const IFsrmPipelineModuleConnector,
+            moduleDefinition: ?*IFsrmPipelineModuleDefinition,
+            moduleImplementation: ?*IFsrmPipelineModuleImplementation,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleConnector_get_ModuleImplementation(self: *const T, pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation) HRESULT {
-                return @as(*const IFsrmPipelineModuleConnector.VTable, @ptrCast(self.vtable)).get_ModuleImplementation(@as(*const IFsrmPipelineModuleConnector, @ptrCast(self)), pipelineModuleImplementation);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleConnector_get_ModuleName(self: *const T, userName: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleConnector.VTable, @ptrCast(self.vtable)).get_ModuleName(@as(*const IFsrmPipelineModuleConnector, @ptrCast(self)), userName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleConnector_get_HostingUserAccount(self: *const T, userAccount: ?*?BSTR) HRESULT {
-                return @as(*const IFsrmPipelineModuleConnector.VTable, @ptrCast(self.vtable)).get_HostingUserAccount(@as(*const IFsrmPipelineModuleConnector, @ptrCast(self)), userAccount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleConnector_get_HostingProcessPid(self: *const T, pid: ?*i32) HRESULT {
-                return @as(*const IFsrmPipelineModuleConnector.VTable, @ptrCast(self.vtable)).get_HostingProcessPid(@as(*const IFsrmPipelineModuleConnector, @ptrCast(self)), pid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFsrmPipelineModuleConnector_Bind(self: *const T, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleImplementation: ?*IFsrmPipelineModuleImplementation) HRESULT {
-                return @as(*const IFsrmPipelineModuleConnector.VTable, @ptrCast(self.vtable)).Bind(@as(*const IFsrmPipelineModuleConnector, @ptrCast(self)), moduleDefinition, moduleImplementation);
-            }
-        };
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
+    pub fn get_ModuleImplementation(self: *const IFsrmPipelineModuleConnector, pipelineModuleImplementation: ?*?*IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+        return self.vtable.get_ModuleImplementation(self, pipelineModuleImplementation);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_ModuleName(self: *const IFsrmPipelineModuleConnector, userName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_ModuleName(self, userName);
+    }
+    pub fn get_HostingUserAccount(self: *const IFsrmPipelineModuleConnector, userAccount: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_HostingUserAccount(self, userAccount);
+    }
+    pub fn get_HostingProcessPid(self: *const IFsrmPipelineModuleConnector, pid: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_HostingProcessPid(self, pid);
+    }
+    pub fn Bind(self: *const IFsrmPipelineModuleConnector, moduleDefinition: ?*IFsrmPipelineModuleDefinition, moduleImplementation: ?*IFsrmPipelineModuleImplementation) callconv(.Inline) HRESULT {
+        return self.vtable.Bind(self, moduleDefinition, moduleImplementation);
+    }
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_DIFsrmClassificationEvents_Value = Guid.initString("26942db0-dabf-41d8-bbdd-b129a9f70424");
 pub const IID_DIFsrmClassificationEvents = &IID_DIFsrmClassificationEvents_Value;
-pub const DIFsrmClassificationEvents = extern struct {
+pub const DIFsrmClassificationEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -8888,12 +4972,6 @@ pub const DIFsrmClassificationEvents = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
@@ -8906,13 +4984,13 @@ const SAFEARRAY = @import("../system/com.zig").SAFEARRAY;
 const VARIANT = @import("../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -6,15 +6,21 @@
 //--------------------------------------------------------------------------------
 // Section: Types (5)
 //--------------------------------------------------------------------------------
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_HANDLE = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_INSTANCE = usize;
 
-pub const JET_SESID = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const JET_SESID = *opaque{};
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_TABLEID = usize;
 
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const JET_API_PTR = usize;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -23,24 +29,18 @@ pub const JET_API_PTR = usize;
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (0)
 //--------------------------------------------------------------------------------
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

@@ -21,7 +21,7 @@ pub const XmlNodeType = enum(i32) {
     XmlNodeType_Whitespace = 13,
     XmlNodeType_EndElement = 15,
     XmlNodeType_XmlDeclaration = 17,
-    // _XmlNodeType_Last = 17, this enum value conflicts with XmlNodeType_XmlDeclaration
+    pub const _XmlNodeType_Last = .XmlNodeType_XmlDeclaration;
 };
 pub const XmlNodeType_None = XmlNodeType.XmlNodeType_None;
 pub const XmlNodeType_Element = XmlNodeType.XmlNodeType_Element;
@@ -40,7 +40,7 @@ pub const XmlConformanceLevel = enum(i32) {
     XmlConformanceLevel_Auto = 0,
     XmlConformanceLevel_Fragment = 1,
     XmlConformanceLevel_Document = 2,
-    // _XmlConformanceLevel_Last = 2, this enum value conflicts with XmlConformanceLevel_Document
+    pub const _XmlConformanceLevel_Last = .XmlConformanceLevel_Document;
 };
 pub const XmlConformanceLevel_Auto = XmlConformanceLevel.XmlConformanceLevel_Auto;
 pub const XmlConformanceLevel_Fragment = XmlConformanceLevel.XmlConformanceLevel_Fragment;
@@ -50,7 +50,7 @@ pub const _XmlConformanceLevel_Last = XmlConformanceLevel.XmlConformanceLevel_Do
 pub const DtdProcessing = enum(i32) {
     DtdProcessing_Prohibit = 0,
     DtdProcessing_Parse = 1,
-    // _DtdProcessing_Last = 1, this enum value conflicts with DtdProcessing_Parse
+    pub const _DtdProcessing_Last = .DtdProcessing_Parse;
 };
 pub const DtdProcessing_Prohibit = DtdProcessing.DtdProcessing_Prohibit;
 pub const DtdProcessing_Parse = DtdProcessing.DtdProcessing_Parse;
@@ -78,7 +78,7 @@ pub const XmlReaderProperty = enum(i32) {
     XmlReaderProperty_ReadState = 5,
     XmlReaderProperty_MaxElementDepth = 6,
     XmlReaderProperty_MaxEntityExpansion = 7,
-    // _XmlReaderProperty_Last = 7, this enum value conflicts with XmlReaderProperty_MaxEntityExpansion
+    pub const _XmlReaderProperty_Last = .XmlReaderProperty_MaxEntityExpansion;
 };
 pub const XmlReaderProperty_MultiLanguage = XmlReaderProperty.XmlReaderProperty_MultiLanguage;
 pub const XmlReaderProperty_ConformanceLevel = XmlReaderProperty.XmlReaderProperty_ConformanceLevel;
@@ -267,7 +267,7 @@ pub const XmlStandalone = enum(i32) {
     XmlStandalone_Omit = 0,
     XmlStandalone_Yes = 1,
     XmlStandalone_No = 2,
-    // _XmlStandalone_Last = 2, this enum value conflicts with XmlStandalone_No
+    pub const _XmlStandalone_Last = .XmlStandalone_No;
 };
 pub const XmlStandalone_Omit = XmlStandalone.XmlStandalone_Omit;
 pub const XmlStandalone_Yes = XmlStandalone.XmlStandalone_Yes;
@@ -281,7 +281,7 @@ pub const XmlWriterProperty = enum(i32) {
     XmlWriterProperty_OmitXmlDeclaration = 3,
     XmlWriterProperty_ConformanceLevel = 4,
     XmlWriterProperty_CompactEmptyElement = 5,
-    // _XmlWriterProperty_Last = 5, this enum value conflicts with XmlWriterProperty_CompactEmptyElement
+    pub const _XmlWriterProperty_Last = .XmlWriterProperty_CompactEmptyElement;
 };
 pub const XmlWriterProperty_MultiLanguage = XmlWriterProperty.XmlWriterProperty_MultiLanguage;
 pub const XmlWriterProperty_Indent = XmlWriterProperty.XmlWriterProperty_Indent;
@@ -293,1283 +293,654 @@ pub const _XmlWriterProperty_Last = XmlWriterProperty.XmlWriterProperty_CompactE
 
 const IID_IXmlReader_Value = Guid.initString("7279fc81-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlReader = &IID_IXmlReader_Value;
-pub const IXmlReader = extern struct {
+pub const IXmlReader = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetInput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pInput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pInput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Read: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNodeType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pNodeType: ?*XmlNodeType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToFirstAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToNextAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToAttributeByName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MoveToElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetQualifiedName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                ppwszQualifiedName: ?*?PWSTR,
-                pcwchQualifiedName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                ppwszQualifiedName: ?*?PWSTR,
-                pcwchQualifiedName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetNamespaceUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                ppwszNamespaceUri: ?*?PWSTR,
-                pcwchNamespaceUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                ppwszNamespaceUri: ?*?PWSTR,
-                pcwchNamespaceUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLocalName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                ppwszLocalName: ?*?PWSTR,
-                pcwchLocalName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                ppwszLocalName: ?*?PWSTR,
-                pcwchLocalName: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPrefix: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                ppwszPrefix: ?*?PWSTR,
-                pcwchPrefix: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                ppwszPrefix: ?*?PWSTR,
-                pcwchPrefix: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                ppwszValue: ?*?PWSTR,
-                pcwchValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                ppwszValue: ?*?PWSTR,
-                pcwchValue: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReadValueChunk: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pwchBuffer: [*:0]u16,
-                cwchChunkSize: u32,
-                pcwchRead: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pwchBuffer: [*:0]u16,
-                cwchChunkSize: u32,
-                pcwchRead: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBaseUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                ppwszBaseUri: ?*?PWSTR,
-                pcwchBaseUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                ppwszBaseUri: ?*?PWSTR,
-                pcwchBaseUri: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsDefault: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        IsEmptyElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
-        GetLineNumber: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pnLineNumber: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pnLineNumber: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetLinePosition: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pnLinePosition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pnLinePosition: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetAttributeCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pnAttributeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pnAttributeCount: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDepth: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-                pnDepth: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlReader,
-                pnDepth: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        IsEOF: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-            else => *const fn (
-                self: *const IXmlReader,
-            ) callconv(@import("std").os.windows.WINAPI) BOOL,
-        },
+        SetInput: *const fn(
+            self: *const IXmlReader,
+            pInput: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IXmlReader,
+            nProperty: u32,
+            ppValue: ?*isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IXmlReader,
+            nProperty: u32,
+            pValue: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Read: *const fn(
+            self: *const IXmlReader,
+            pNodeType: ?*XmlNodeType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNodeType: *const fn(
+            self: *const IXmlReader,
+            pNodeType: ?*XmlNodeType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToFirstAttribute: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToNextAttribute: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToAttributeByName: *const fn(
+            self: *const IXmlReader,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MoveToElement: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetQualifiedName: *const fn(
+            self: *const IXmlReader,
+            ppwszQualifiedName: ?*?PWSTR,
+            pcwchQualifiedName: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetNamespaceUri: *const fn(
+            self: *const IXmlReader,
+            ppwszNamespaceUri: ?*?PWSTR,
+            pcwchNamespaceUri: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLocalName: *const fn(
+            self: *const IXmlReader,
+            ppwszLocalName: ?*?PWSTR,
+            pcwchLocalName: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPrefix: *const fn(
+            self: *const IXmlReader,
+            ppwszPrefix: ?*?PWSTR,
+            pcwchPrefix: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetValue: *const fn(
+            self: *const IXmlReader,
+            ppwszValue: ?*?PWSTR,
+            pcwchValue: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReadValueChunk: *const fn(
+            self: *const IXmlReader,
+            pwchBuffer: [*:0]u16,
+            cwchChunkSize: u32,
+            pcwchRead: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBaseUri: *const fn(
+            self: *const IXmlReader,
+            ppwszBaseUri: ?*?PWSTR,
+            pcwchBaseUri: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsDefault: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        IsEmptyElement: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        GetLineNumber: *const fn(
+            self: *const IXmlReader,
+            pnLineNumber: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetLinePosition: *const fn(
+            self: *const IXmlReader,
+            pnLinePosition: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetAttributeCount: *const fn(
+            self: *const IXmlReader,
+            pnAttributeCount: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDepth: *const fn(
+            self: *const IXmlReader,
+            pnDepth: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        IsEOF: *const fn(
+            self: *const IXmlReader,
+        ) callconv(@import("std").os.windows.WINAPI) BOOL,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_SetInput(self: *const T, pInput: ?*IUnknown) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).SetInput(@as(*const IXmlReader, @ptrCast(self)), pInput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetProperty(self: *const T, nProperty: u32, ppValue: ?*isize) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlReader, @ptrCast(self)), nProperty, ppValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_SetProperty(self: *const T, nProperty: u32, pValue: isize) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlReader, @ptrCast(self)), nProperty, pValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_Read(self: *const T, pNodeType: ?*XmlNodeType) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).Read(@as(*const IXmlReader, @ptrCast(self)), pNodeType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetNodeType(self: *const T, pNodeType: ?*XmlNodeType) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetNodeType(@as(*const IXmlReader, @ptrCast(self)), pNodeType);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_MoveToFirstAttribute(self: *const T) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToFirstAttribute(@as(*const IXmlReader, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_MoveToNextAttribute(self: *const T) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToNextAttribute(@as(*const IXmlReader, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_MoveToAttributeByName(self: *const T, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToAttributeByName(@as(*const IXmlReader, @ptrCast(self)), pwszLocalName, pwszNamespaceUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_MoveToElement(self: *const T) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).MoveToElement(@as(*const IXmlReader, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetQualifiedName(self: *const T, ppwszQualifiedName: ?*?PWSTR, pcwchQualifiedName: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetQualifiedName(@as(*const IXmlReader, @ptrCast(self)), ppwszQualifiedName, pcwchQualifiedName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetNamespaceUri(self: *const T, ppwszNamespaceUri: ?*?PWSTR, pcwchNamespaceUri: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetNamespaceUri(@as(*const IXmlReader, @ptrCast(self)), ppwszNamespaceUri, pcwchNamespaceUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetLocalName(self: *const T, ppwszLocalName: ?*?PWSTR, pcwchLocalName: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLocalName(@as(*const IXmlReader, @ptrCast(self)), ppwszLocalName, pcwchLocalName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetPrefix(self: *const T, ppwszPrefix: ?*?PWSTR, pcwchPrefix: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetPrefix(@as(*const IXmlReader, @ptrCast(self)), ppwszPrefix, pcwchPrefix);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetValue(self: *const T, ppwszValue: ?*?PWSTR, pcwchValue: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetValue(@as(*const IXmlReader, @ptrCast(self)), ppwszValue, pcwchValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_ReadValueChunk(self: *const T, pwchBuffer: [*:0]u16, cwchChunkSize: u32, pcwchRead: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).ReadValueChunk(@as(*const IXmlReader, @ptrCast(self)), pwchBuffer, cwchChunkSize, pcwchRead);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetBaseUri(self: *const T, ppwszBaseUri: ?*?PWSTR, pcwchBaseUri: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetBaseUri(@as(*const IXmlReader, @ptrCast(self)), ppwszBaseUri, pcwchBaseUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_IsDefault(self: *const T) BOOL {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsDefault(@as(*const IXmlReader, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_IsEmptyElement(self: *const T) BOOL {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsEmptyElement(@as(*const IXmlReader, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetLineNumber(self: *const T, pnLineNumber: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLineNumber(@as(*const IXmlReader, @ptrCast(self)), pnLineNumber);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetLinePosition(self: *const T, pnLinePosition: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetLinePosition(@as(*const IXmlReader, @ptrCast(self)), pnLinePosition);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetAttributeCount(self: *const T, pnAttributeCount: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetAttributeCount(@as(*const IXmlReader, @ptrCast(self)), pnAttributeCount);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_GetDepth(self: *const T, pnDepth: ?*u32) HRESULT {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).GetDepth(@as(*const IXmlReader, @ptrCast(self)), pnDepth);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlReader_IsEOF(self: *const T) BOOL {
-                return @as(*const IXmlReader.VTable, @ptrCast(self.vtable)).IsEOF(@as(*const IXmlReader, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetInput(self: *const IXmlReader, pInput: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetInput(self, pInput);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProperty(self: *const IXmlReader, nProperty: u32, ppValue: ?*isize) callconv(.Inline) HRESULT {
+        return self.vtable.GetProperty(self, nProperty, ppValue);
+    }
+    pub fn SetProperty(self: *const IXmlReader, nProperty: u32, pValue: isize) callconv(.Inline) HRESULT {
+        return self.vtable.SetProperty(self, nProperty, pValue);
+    }
+    pub fn Read(self: *const IXmlReader, pNodeType: ?*XmlNodeType) callconv(.Inline) HRESULT {
+        return self.vtable.Read(self, pNodeType);
+    }
+    pub fn GetNodeType(self: *const IXmlReader, pNodeType: ?*XmlNodeType) callconv(.Inline) HRESULT {
+        return self.vtable.GetNodeType(self, pNodeType);
+    }
+    pub fn MoveToFirstAttribute(self: *const IXmlReader) callconv(.Inline) HRESULT {
+        return self.vtable.MoveToFirstAttribute(self);
+    }
+    pub fn MoveToNextAttribute(self: *const IXmlReader) callconv(.Inline) HRESULT {
+        return self.vtable.MoveToNextAttribute(self);
+    }
+    pub fn MoveToAttributeByName(self: *const IXmlReader, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.MoveToAttributeByName(self, pwszLocalName, pwszNamespaceUri);
+    }
+    pub fn MoveToElement(self: *const IXmlReader) callconv(.Inline) HRESULT {
+        return self.vtable.MoveToElement(self);
+    }
+    pub fn GetQualifiedName(self: *const IXmlReader, ppwszQualifiedName: ?*?PWSTR, pcwchQualifiedName: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetQualifiedName(self, ppwszQualifiedName, pcwchQualifiedName);
+    }
+    pub fn GetNamespaceUri(self: *const IXmlReader, ppwszNamespaceUri: ?*?PWSTR, pcwchNamespaceUri: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetNamespaceUri(self, ppwszNamespaceUri, pcwchNamespaceUri);
+    }
+    pub fn GetLocalName(self: *const IXmlReader, ppwszLocalName: ?*?PWSTR, pcwchLocalName: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetLocalName(self, ppwszLocalName, pcwchLocalName);
+    }
+    pub fn GetPrefix(self: *const IXmlReader, ppwszPrefix: ?*?PWSTR, pcwchPrefix: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetPrefix(self, ppwszPrefix, pcwchPrefix);
+    }
+    pub fn GetValue(self: *const IXmlReader, ppwszValue: ?*?PWSTR, pcwchValue: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetValue(self, ppwszValue, pcwchValue);
+    }
+    pub fn ReadValueChunk(self: *const IXmlReader, pwchBuffer: [*:0]u16, cwchChunkSize: u32, pcwchRead: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.ReadValueChunk(self, pwchBuffer, cwchChunkSize, pcwchRead);
+    }
+    pub fn GetBaseUri(self: *const IXmlReader, ppwszBaseUri: ?*?PWSTR, pcwchBaseUri: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetBaseUri(self, ppwszBaseUri, pcwchBaseUri);
+    }
+    pub fn IsDefault(self: *const IXmlReader) callconv(.Inline) BOOL {
+        return self.vtable.IsDefault(self);
+    }
+    pub fn IsEmptyElement(self: *const IXmlReader) callconv(.Inline) BOOL {
+        return self.vtable.IsEmptyElement(self);
+    }
+    pub fn GetLineNumber(self: *const IXmlReader, pnLineNumber: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetLineNumber(self, pnLineNumber);
+    }
+    pub fn GetLinePosition(self: *const IXmlReader, pnLinePosition: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetLinePosition(self, pnLinePosition);
+    }
+    pub fn GetAttributeCount(self: *const IXmlReader, pnAttributeCount: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetAttributeCount(self, pnAttributeCount);
+    }
+    pub fn GetDepth(self: *const IXmlReader, pnDepth: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetDepth(self, pnDepth);
+    }
+    pub fn IsEOF(self: *const IXmlReader) callconv(.Inline) BOOL {
+        return self.vtable.IsEOF(self);
+    }
 };
 
 const IID_IXmlResolver_Value = Guid.initString("7279fc82-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlResolver = &IID_IXmlResolver_Value;
-pub const IXmlResolver = extern struct {
+pub const IXmlResolver = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ResolveUri: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlResolver,
-                pwszBaseUri: ?[*:0]const u16,
-                pwszPublicIdentifier: ?[*:0]const u16,
-                pwszSystemIdentifier: ?[*:0]const u16,
-                ppResolvedInput: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlResolver,
-                pwszBaseUri: ?[*:0]const u16,
-                pwszPublicIdentifier: ?[*:0]const u16,
-                pwszSystemIdentifier: ?[*:0]const u16,
-                ppResolvedInput: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ResolveUri: *const fn(
+            self: *const IXmlResolver,
+            pwszBaseUri: ?[*:0]const u16,
+            pwszPublicIdentifier: ?[*:0]const u16,
+            pwszSystemIdentifier: ?[*:0]const u16,
+            ppResolvedInput: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlResolver_ResolveUri(self: *const T, pwszBaseUri: ?[*:0]const u16, pwszPublicIdentifier: ?[*:0]const u16, pwszSystemIdentifier: ?[*:0]const u16, ppResolvedInput: ?*?*IUnknown) HRESULT {
-                return @as(*const IXmlResolver.VTable, @ptrCast(self.vtable)).ResolveUri(@as(*const IXmlResolver, @ptrCast(self)), pwszBaseUri, pwszPublicIdentifier, pwszSystemIdentifier, ppResolvedInput);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ResolveUri(self: *const IXmlResolver, pwszBaseUri: ?[*:0]const u16, pwszPublicIdentifier: ?[*:0]const u16, pwszSystemIdentifier: ?[*:0]const u16, ppResolvedInput: ?*?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.ResolveUri(self, pwszBaseUri, pwszPublicIdentifier, pwszSystemIdentifier, ppResolvedInput);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IXmlWriter_Value = Guid.initString("7279fc88-709d-4095-b63d-69fe4b0d9030");
 pub const IID_IXmlWriter = &IID_IXmlWriter_Value;
-pub const IXmlWriter = extern struct {
+pub const IXmlWriter = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributeString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteComment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteDocType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteElementString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEntityRef: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteFullEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNmToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNodeShallow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteProcessingInstruction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteQualifiedName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRawChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszPrefix: ?[*:0]const u16,
-                pwszLocalName: ?[*:0]const u16,
-                pwszNamespaceUri: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteSurrogateCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteWhitespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriter,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOutput: *const fn(
+            self: *const IXmlWriter,
+            pOutput: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IXmlWriter,
+            nProperty: u32,
+            ppValue: ?*isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IXmlWriter,
+            nProperty: u32,
+            pValue: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributes: *const fn(
+            self: *const IXmlWriter,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributeString: *const fn(
+            self: *const IXmlWriter,
+            pwszPrefix: ?[*:0]const u16,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCData: *const fn(
+            self: *const IXmlWriter,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCharEntity: *const fn(
+            self: *const IXmlWriter,
+            wch: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteChars: *const fn(
+            self: *const IXmlWriter,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteComment: *const fn(
+            self: *const IXmlWriter,
+            pwszComment: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteDocType: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+            pwszPublicId: ?[*:0]const u16,
+            pwszSystemId: ?[*:0]const u16,
+            pwszSubset: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteElementString: *const fn(
+            self: *const IXmlWriter,
+            pwszPrefix: ?[*:0]const u16,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndDocument: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndElement: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEntityRef: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteFullEndElement: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteName: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNmToken: *const fn(
+            self: *const IXmlWriter,
+            pwszNmToken: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNode: *const fn(
+            self: *const IXmlWriter,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNodeShallow: *const fn(
+            self: *const IXmlWriter,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteProcessingInstruction: *const fn(
+            self: *const IXmlWriter,
+            pwszName: ?[*:0]const u16,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteQualifiedName: *const fn(
+            self: *const IXmlWriter,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRaw: *const fn(
+            self: *const IXmlWriter,
+            pwszData: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRawChars: *const fn(
+            self: *const IXmlWriter,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartDocument: *const fn(
+            self: *const IXmlWriter,
+            standalone: XmlStandalone,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartElement: *const fn(
+            self: *const IXmlWriter,
+            pwszPrefix: ?[*:0]const u16,
+            pwszLocalName: ?[*:0]const u16,
+            pwszNamespaceUri: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteString: *const fn(
+            self: *const IXmlWriter,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteSurrogateCharEntity: *const fn(
+            self: *const IXmlWriter,
+            wchLow: u16,
+            wchHigh: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteWhitespace: *const fn(
+            self: *const IXmlWriter,
+            pwszWhitespace: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flush: *const fn(
+            self: *const IXmlWriter,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_SetOutput(self: *const T, pOutput: ?*IUnknown) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const IXmlWriter, @ptrCast(self)), pOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_GetProperty(self: *const T, nProperty: u32, ppValue: ?*isize) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlWriter, @ptrCast(self)), nProperty, ppValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_SetProperty(self: *const T, nProperty: u32, pValue: isize) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlWriter, @ptrCast(self)), nProperty, pValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteAttributes(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteAttributes(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteAttributeString(self: *const T, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteAttributeString(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteCData(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteCData(@as(*const IXmlWriter, @ptrCast(self)), pwszText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteCharEntity(self: *const T, wch: u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteCharEntity(@as(*const IXmlWriter, @ptrCast(self)), wch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteChars(@as(*const IXmlWriter, @ptrCast(self)), pwch, cwch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteComment(self: *const T, pwszComment: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteComment(@as(*const IXmlWriter, @ptrCast(self)), pwszComment);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteDocType(self: *const T, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteDocType(@as(*const IXmlWriter, @ptrCast(self)), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteElementString(self: *const T, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteElementString(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteEndDocument(self: *const T) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEndDocument(@as(*const IXmlWriter, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteEndElement(self: *const T) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEndElement(@as(*const IXmlWriter, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteEntityRef(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteEntityRef(@as(*const IXmlWriter, @ptrCast(self)), pwszName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteFullEndElement(self: *const T) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteFullEndElement(@as(*const IXmlWriter, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteName(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteName(@as(*const IXmlWriter, @ptrCast(self)), pwszName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteNmToken(self: *const T, pwszNmToken: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNmToken(@as(*const IXmlWriter, @ptrCast(self)), pwszNmToken);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteNode(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNode(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteNodeShallow(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteNodeShallow(@as(*const IXmlWriter, @ptrCast(self)), pReader, fWriteDefaultAttributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteProcessingInstruction(self: *const T, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteProcessingInstruction(@as(*const IXmlWriter, @ptrCast(self)), pwszName, pwszText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteQualifiedName(self: *const T, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteQualifiedName(@as(*const IXmlWriter, @ptrCast(self)), pwszLocalName, pwszNamespaceUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteRaw(self: *const T, pwszData: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteRaw(@as(*const IXmlWriter, @ptrCast(self)), pwszData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteRawChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteRawChars(@as(*const IXmlWriter, @ptrCast(self)), pwch, cwch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteStartDocument(self: *const T, standalone: XmlStandalone) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteStartDocument(@as(*const IXmlWriter, @ptrCast(self)), standalone);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteStartElement(self: *const T, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteStartElement(@as(*const IXmlWriter, @ptrCast(self)), pwszPrefix, pwszLocalName, pwszNamespaceUri);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteString(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteString(@as(*const IXmlWriter, @ptrCast(self)), pwszText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteSurrogateCharEntity(self: *const T, wchLow: u16, wchHigh: u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteSurrogateCharEntity(@as(*const IXmlWriter, @ptrCast(self)), wchLow, wchHigh);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_WriteWhitespace(self: *const T, pwszWhitespace: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).WriteWhitespace(@as(*const IXmlWriter, @ptrCast(self)), pwszWhitespace);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriter_Flush(self: *const T) HRESULT {
-                return @as(*const IXmlWriter.VTable, @ptrCast(self.vtable)).Flush(@as(*const IXmlWriter, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetOutput(self: *const IXmlWriter, pOutput: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetOutput(self, pOutput);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProperty(self: *const IXmlWriter, nProperty: u32, ppValue: ?*isize) callconv(.Inline) HRESULT {
+        return self.vtable.GetProperty(self, nProperty, ppValue);
+    }
+    pub fn SetProperty(self: *const IXmlWriter, nProperty: u32, pValue: isize) callconv(.Inline) HRESULT {
+        return self.vtable.SetProperty(self, nProperty, pValue);
+    }
+    pub fn WriteAttributes(self: *const IXmlWriter, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteAttributes(self, pReader, fWriteDefaultAttributes);
+    }
+    pub fn WriteAttributeString(self: *const IXmlWriter, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteAttributeString(self, pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
+    }
+    pub fn WriteCData(self: *const IXmlWriter, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteCData(self, pwszText);
+    }
+    pub fn WriteCharEntity(self: *const IXmlWriter, wch: u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteCharEntity(self, wch);
+    }
+    pub fn WriteChars(self: *const IXmlWriter, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteChars(self, pwch, cwch);
+    }
+    pub fn WriteComment(self: *const IXmlWriter, pwszComment: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteComment(self, pwszComment);
+    }
+    pub fn WriteDocType(self: *const IXmlWriter, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteDocType(self, pwszName, pwszPublicId, pwszSystemId, pwszSubset);
+    }
+    pub fn WriteElementString(self: *const IXmlWriter, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteElementString(self, pwszPrefix, pwszLocalName, pwszNamespaceUri, pwszValue);
+    }
+    pub fn WriteEndDocument(self: *const IXmlWriter) callconv(.Inline) HRESULT {
+        return self.vtable.WriteEndDocument(self);
+    }
+    pub fn WriteEndElement(self: *const IXmlWriter) callconv(.Inline) HRESULT {
+        return self.vtable.WriteEndElement(self);
+    }
+    pub fn WriteEntityRef(self: *const IXmlWriter, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteEntityRef(self, pwszName);
+    }
+    pub fn WriteFullEndElement(self: *const IXmlWriter) callconv(.Inline) HRESULT {
+        return self.vtable.WriteFullEndElement(self);
+    }
+    pub fn WriteName(self: *const IXmlWriter, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteName(self, pwszName);
+    }
+    pub fn WriteNmToken(self: *const IXmlWriter, pwszNmToken: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteNmToken(self, pwszNmToken);
+    }
+    pub fn WriteNode(self: *const IXmlWriter, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteNode(self, pReader, fWriteDefaultAttributes);
+    }
+    pub fn WriteNodeShallow(self: *const IXmlWriter, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteNodeShallow(self, pReader, fWriteDefaultAttributes);
+    }
+    pub fn WriteProcessingInstruction(self: *const IXmlWriter, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteProcessingInstruction(self, pwszName, pwszText);
+    }
+    pub fn WriteQualifiedName(self: *const IXmlWriter, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteQualifiedName(self, pwszLocalName, pwszNamespaceUri);
+    }
+    pub fn WriteRaw(self: *const IXmlWriter, pwszData: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteRaw(self, pwszData);
+    }
+    pub fn WriteRawChars(self: *const IXmlWriter, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteRawChars(self, pwch, cwch);
+    }
+    pub fn WriteStartDocument(self: *const IXmlWriter, standalone: XmlStandalone) callconv(.Inline) HRESULT {
+        return self.vtable.WriteStartDocument(self, standalone);
+    }
+    pub fn WriteStartElement(self: *const IXmlWriter, pwszPrefix: ?[*:0]const u16, pwszLocalName: ?[*:0]const u16, pwszNamespaceUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteStartElement(self, pwszPrefix, pwszLocalName, pwszNamespaceUri);
+    }
+    pub fn WriteString(self: *const IXmlWriter, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteString(self, pwszText);
+    }
+    pub fn WriteSurrogateCharEntity(self: *const IXmlWriter, wchLow: u16, wchHigh: u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteSurrogateCharEntity(self, wchLow, wchHigh);
+    }
+    pub fn WriteWhitespace(self: *const IXmlWriter, pwszWhitespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteWhitespace(self, pwszWhitespace);
+    }
+    pub fn Flush(self: *const IXmlWriter) callconv(.Inline) HRESULT {
+        return self.vtable.Flush(self);
+    }
 };
 
 const IID_IXmlWriterLite_Value = Guid.initString("862494c6-1310-4aad-b3cd-2dbeebf670d3");
 pub const IID_IXmlWriterLite = &IID_IXmlWriterLite_Value;
-pub const IXmlWriterLite = extern struct {
+pub const IXmlWriterLite = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetOutput: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pOutput: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                ppValue: ?*isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                nProperty: u32,
-                pValue: isize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributes: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteAttributeString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-                cwszValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-                cwszValue: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                wch: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteComment: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszComment: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteDocType: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszPublicId: ?[*:0]const u16,
-                pwszSystemId: ?[*:0]const u16,
-                pwszSubset: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteElementString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-                pwszValue: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteEntityRef: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteFullEndElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteName: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNmToken: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszNmToken: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNode: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteNodeShallow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pReader: ?*IXmlReader,
-                fWriteDefaultAttributes: BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteProcessingInstruction: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszName: ?[*:0]const u16,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRaw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszData: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteRawChars: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwch: ?[*:0]const u16,
-                cwch: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartDocument: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                standalone: XmlStandalone,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteStartElement: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszQName: [*:0]const u16,
-                cwszQName: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteString: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszText: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteSurrogateCharEntity: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                wchLow: u16,
-                wchHigh: u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        WriteWhitespace: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-                pwszWhitespace: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Flush: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXmlWriterLite,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetOutput: *const fn(
+            self: *const IXmlWriterLite,
+            pOutput: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IXmlWriterLite,
+            nProperty: u32,
+            ppValue: ?*isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IXmlWriterLite,
+            nProperty: u32,
+            pValue: isize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributes: *const fn(
+            self: *const IXmlWriterLite,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteAttributeString: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+            pwszValue: ?[*:0]const u16,
+            cwszValue: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCData: *const fn(
+            self: *const IXmlWriterLite,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteCharEntity: *const fn(
+            self: *const IXmlWriterLite,
+            wch: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteChars: *const fn(
+            self: *const IXmlWriterLite,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteComment: *const fn(
+            self: *const IXmlWriterLite,
+            pwszComment: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteDocType: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+            pwszPublicId: ?[*:0]const u16,
+            pwszSystemId: ?[*:0]const u16,
+            pwszSubset: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteElementString: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+            pwszValue: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndDocument: *const fn(
+            self: *const IXmlWriterLite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEndElement: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteEntityRef: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteFullEndElement: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteName: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNmToken: *const fn(
+            self: *const IXmlWriterLite,
+            pwszNmToken: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNode: *const fn(
+            self: *const IXmlWriterLite,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteNodeShallow: *const fn(
+            self: *const IXmlWriterLite,
+            pReader: ?*IXmlReader,
+            fWriteDefaultAttributes: BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteProcessingInstruction: *const fn(
+            self: *const IXmlWriterLite,
+            pwszName: ?[*:0]const u16,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRaw: *const fn(
+            self: *const IXmlWriterLite,
+            pwszData: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteRawChars: *const fn(
+            self: *const IXmlWriterLite,
+            pwch: ?[*:0]const u16,
+            cwch: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartDocument: *const fn(
+            self: *const IXmlWriterLite,
+            standalone: XmlStandalone,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteStartElement: *const fn(
+            self: *const IXmlWriterLite,
+            pwszQName: [*:0]const u16,
+            cwszQName: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteString: *const fn(
+            self: *const IXmlWriterLite,
+            pwszText: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteSurrogateCharEntity: *const fn(
+            self: *const IXmlWriterLite,
+            wchLow: u16,
+            wchHigh: u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        WriteWhitespace: *const fn(
+            self: *const IXmlWriterLite,
+            pwszWhitespace: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Flush: *const fn(
+            self: *const IXmlWriterLite,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_SetOutput(self: *const T, pOutput: ?*IUnknown) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).SetOutput(@as(*const IXmlWriterLite, @ptrCast(self)), pOutput);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_GetProperty(self: *const T, nProperty: u32, ppValue: ?*isize) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IXmlWriterLite, @ptrCast(self)), nProperty, ppValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_SetProperty(self: *const T, nProperty: u32, pValue: isize) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IXmlWriterLite, @ptrCast(self)), nProperty, pValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteAttributes(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteAttributes(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteAttributeString(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16, cwszValue: u32) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteAttributeString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName, pwszValue, cwszValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteCData(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteCData(@as(*const IXmlWriterLite, @ptrCast(self)), pwszText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteCharEntity(self: *const T, wch: u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteCharEntity(@as(*const IXmlWriterLite, @ptrCast(self)), wch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteChars(@as(*const IXmlWriterLite, @ptrCast(self)), pwch, cwch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteComment(self: *const T, pwszComment: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteComment(@as(*const IXmlWriterLite, @ptrCast(self)), pwszComment);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteDocType(self: *const T, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteDocType(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName, pwszPublicId, pwszSystemId, pwszSubset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteElementString(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteElementString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName, pwszValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteEndDocument(self: *const T) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEndDocument(@as(*const IXmlWriterLite, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteEndElement(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEndElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteEntityRef(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteEntityRef(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteFullEndElement(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteFullEndElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteName(self: *const T, pwszName: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteName(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteNmToken(self: *const T, pwszNmToken: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNmToken(@as(*const IXmlWriterLite, @ptrCast(self)), pwszNmToken);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteNode(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNode(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteNodeShallow(self: *const T, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteNodeShallow(@as(*const IXmlWriterLite, @ptrCast(self)), pReader, fWriteDefaultAttributes);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteProcessingInstruction(self: *const T, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteProcessingInstruction(@as(*const IXmlWriterLite, @ptrCast(self)), pwszName, pwszText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteRaw(self: *const T, pwszData: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteRaw(@as(*const IXmlWriterLite, @ptrCast(self)), pwszData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteRawChars(self: *const T, pwch: ?[*:0]const u16, cwch: u32) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteRawChars(@as(*const IXmlWriterLite, @ptrCast(self)), pwch, cwch);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteStartDocument(self: *const T, standalone: XmlStandalone) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteStartDocument(@as(*const IXmlWriterLite, @ptrCast(self)), standalone);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteStartElement(self: *const T, pwszQName: [*:0]const u16, cwszQName: u32) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteStartElement(@as(*const IXmlWriterLite, @ptrCast(self)), pwszQName, cwszQName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteString(self: *const T, pwszText: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteString(@as(*const IXmlWriterLite, @ptrCast(self)), pwszText);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteSurrogateCharEntity(self: *const T, wchLow: u16, wchHigh: u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteSurrogateCharEntity(@as(*const IXmlWriterLite, @ptrCast(self)), wchLow, wchHigh);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_WriteWhitespace(self: *const T, pwszWhitespace: ?[*:0]const u16) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).WriteWhitespace(@as(*const IXmlWriterLite, @ptrCast(self)), pwszWhitespace);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXmlWriterLite_Flush(self: *const T) HRESULT {
-                return @as(*const IXmlWriterLite.VTable, @ptrCast(self.vtable)).Flush(@as(*const IXmlWriterLite, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetOutput(self: *const IXmlWriterLite, pOutput: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetOutput(self, pOutput);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProperty(self: *const IXmlWriterLite, nProperty: u32, ppValue: ?*isize) callconv(.Inline) HRESULT {
+        return self.vtable.GetProperty(self, nProperty, ppValue);
+    }
+    pub fn SetProperty(self: *const IXmlWriterLite, nProperty: u32, pValue: isize) callconv(.Inline) HRESULT {
+        return self.vtable.SetProperty(self, nProperty, pValue);
+    }
+    pub fn WriteAttributes(self: *const IXmlWriterLite, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteAttributes(self, pReader, fWriteDefaultAttributes);
+    }
+    pub fn WriteAttributeString(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16, cwszValue: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteAttributeString(self, pwszQName, cwszQName, pwszValue, cwszValue);
+    }
+    pub fn WriteCData(self: *const IXmlWriterLite, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteCData(self, pwszText);
+    }
+    pub fn WriteCharEntity(self: *const IXmlWriterLite, wch: u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteCharEntity(self, wch);
+    }
+    pub fn WriteChars(self: *const IXmlWriterLite, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteChars(self, pwch, cwch);
+    }
+    pub fn WriteComment(self: *const IXmlWriterLite, pwszComment: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteComment(self, pwszComment);
+    }
+    pub fn WriteDocType(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16, pwszPublicId: ?[*:0]const u16, pwszSystemId: ?[*:0]const u16, pwszSubset: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteDocType(self, pwszName, pwszPublicId, pwszSystemId, pwszSubset);
+    }
+    pub fn WriteElementString(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32, pwszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteElementString(self, pwszQName, cwszQName, pwszValue);
+    }
+    pub fn WriteEndDocument(self: *const IXmlWriterLite) callconv(.Inline) HRESULT {
+        return self.vtable.WriteEndDocument(self);
+    }
+    pub fn WriteEndElement(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteEndElement(self, pwszQName, cwszQName);
+    }
+    pub fn WriteEntityRef(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteEntityRef(self, pwszName);
+    }
+    pub fn WriteFullEndElement(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteFullEndElement(self, pwszQName, cwszQName);
+    }
+    pub fn WriteName(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteName(self, pwszName);
+    }
+    pub fn WriteNmToken(self: *const IXmlWriterLite, pwszNmToken: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteNmToken(self, pwszNmToken);
+    }
+    pub fn WriteNode(self: *const IXmlWriterLite, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteNode(self, pReader, fWriteDefaultAttributes);
+    }
+    pub fn WriteNodeShallow(self: *const IXmlWriterLite, pReader: ?*IXmlReader, fWriteDefaultAttributes: BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.WriteNodeShallow(self, pReader, fWriteDefaultAttributes);
+    }
+    pub fn WriteProcessingInstruction(self: *const IXmlWriterLite, pwszName: ?[*:0]const u16, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteProcessingInstruction(self, pwszName, pwszText);
+    }
+    pub fn WriteRaw(self: *const IXmlWriterLite, pwszData: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteRaw(self, pwszData);
+    }
+    pub fn WriteRawChars(self: *const IXmlWriterLite, pwch: ?[*:0]const u16, cwch: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteRawChars(self, pwch, cwch);
+    }
+    pub fn WriteStartDocument(self: *const IXmlWriterLite, standalone: XmlStandalone) callconv(.Inline) HRESULT {
+        return self.vtable.WriteStartDocument(self, standalone);
+    }
+    pub fn WriteStartElement(self: *const IXmlWriterLite, pwszQName: [*:0]const u16, cwszQName: u32) callconv(.Inline) HRESULT {
+        return self.vtable.WriteStartElement(self, pwszQName, cwszQName);
+    }
+    pub fn WriteString(self: *const IXmlWriterLite, pwszText: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteString(self, pwszText);
+    }
+    pub fn WriteSurrogateCharEntity(self: *const IXmlWriterLite, wchLow: u16, wchHigh: u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteSurrogateCharEntity(self, wchLow, wchHigh);
+    }
+    pub fn WriteWhitespace(self: *const IXmlWriterLite, pwszWhitespace: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.WriteWhitespace(self, pwszWhitespace);
+    }
+    pub fn Flush(self: *const IXmlWriterLite) callconv(.Inline) HRESULT {
+        return self.vtable.Flush(self);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (6)
@@ -1618,15 +989,10 @@ pub extern "xmllite" fn CreateXmlWriterOutputWithEncodingName(
     ppOutput: ?*?*IUnknown,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (6)
 //--------------------------------------------------------------------------------
@@ -1638,13 +1004,13 @@ const IUnknown = @import("../../system/com.zig").IUnknown;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

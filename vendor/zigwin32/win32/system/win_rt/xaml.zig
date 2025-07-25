@@ -9,731 +9,404 @@ pub const E_SURFACE_CONTENTS_LOST = @as(u32, 2150301728);
 //--------------------------------------------------------------------------------
 const IID_ISurfaceImageSourceNative_Value = Guid.initString("f2e9edc1-d307-4525-9886-0fafaa44163c");
 pub const IID_ISurfaceImageSourceNative = &IID_ISurfaceImageSourceNative_Value;
-pub const ISurfaceImageSourceNative = extern struct {
+pub const ISurfaceImageSourceNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNative,
-                device: ?*IDXGIDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNative,
-                device: ?*IDXGIDevice,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNative,
-                updateRect: RECT,
-                surface: ?*?*IDXGISurface,
-                offset: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNative,
-                updateRect: RECT,
-                surface: ?*?*IDXGISurface,
-                offset: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNative,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNative,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDevice: *const fn(
+            self: *const ISurfaceImageSourceNative,
+            device: ?*IDXGIDevice,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginDraw: *const fn(
+            self: *const ISurfaceImageSourceNative,
+            updateRect: RECT,
+            surface: ?*?*IDXGISurface,
+            offset: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndDraw: *const fn(
+            self: *const ISurfaceImageSourceNative,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNative_SetDevice(self: *const T, device: ?*IDXGIDevice) HRESULT {
-                return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).SetDevice(@as(*const ISurfaceImageSourceNative, @ptrCast(self)), device);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNative_BeginDraw(self: *const T, updateRect: RECT, surface: ?*?*IDXGISurface, offset: ?*POINT) HRESULT {
-                return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ISurfaceImageSourceNative, @ptrCast(self)), updateRect, surface, offset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNative_EndDraw(self: *const T) HRESULT {
-                return @as(*const ISurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ISurfaceImageSourceNative, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetDevice(self: *const ISurfaceImageSourceNative, device: ?*IDXGIDevice) callconv(.Inline) HRESULT {
+        return self.vtable.SetDevice(self, device);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn BeginDraw(self: *const ISurfaceImageSourceNative, updateRect: RECT, surface: ?*?*IDXGISurface, offset: ?*POINT) callconv(.Inline) HRESULT {
+        return self.vtable.BeginDraw(self, updateRect, surface, offset);
+    }
+    pub fn EndDraw(self: *const ISurfaceImageSourceNative) callconv(.Inline) HRESULT {
+        return self.vtable.EndDraw(self);
+    }
 };
 
 const IID_IVirtualSurfaceUpdatesCallbackNative_Value = Guid.initString("dbf2e947-8e6c-4254-9eee-7738f71386c9");
 pub const IID_IVirtualSurfaceUpdatesCallbackNative = &IID_IVirtualSurfaceUpdatesCallbackNative_Value;
-pub const IVirtualSurfaceUpdatesCallbackNative = extern struct {
+pub const IVirtualSurfaceUpdatesCallbackNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        UpdatesNeeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVirtualSurfaceUpdatesCallbackNative,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVirtualSurfaceUpdatesCallbackNative,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        UpdatesNeeded: *const fn(
+            self: *const IVirtualSurfaceUpdatesCallbackNative,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVirtualSurfaceUpdatesCallbackNative_UpdatesNeeded(self: *const T) HRESULT {
-                return @as(*const IVirtualSurfaceUpdatesCallbackNative.VTable, @ptrCast(self.vtable)).UpdatesNeeded(@as(*const IVirtualSurfaceUpdatesCallbackNative, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn UpdatesNeeded(self: *const IVirtualSurfaceUpdatesCallbackNative) callconv(.Inline) HRESULT {
+        return self.vtable.UpdatesNeeded(self);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IVirtualSurfaceImageSourceNative_Value = Guid.initString("e9550983-360b-4f53-b391-afd695078691");
 pub const IID_IVirtualSurfaceImageSourceNative = &IID_IVirtualSurfaceImageSourceNative_Value;
-pub const IVirtualSurfaceImageSourceNative = extern struct {
+pub const IVirtualSurfaceImageSourceNative = extern union {
     pub const VTable = extern struct {
         base: ISurfaceImageSourceNative.VTable,
-        Invalidate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                updateRect: RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                updateRect: RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUpdateRectCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                count: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUpdateRects: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                updates: [*]RECT,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                updates: [*]RECT,
-                count: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetVisibleBounds: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                bounds: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                bounds: ?*RECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterForUpdatesNeeded: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                callback: ?*IVirtualSurfaceUpdatesCallbackNative,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                callback: ?*IVirtualSurfaceUpdatesCallbackNative,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Resize: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                newWidth: i32,
-                newHeight: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVirtualSurfaceImageSourceNative,
-                newWidth: i32,
-                newHeight: i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        Invalidate: *const fn(
+            self: *const IVirtualSurfaceImageSourceNative,
+            updateRect: RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUpdateRectCount: *const fn(
+            self: *const IVirtualSurfaceImageSourceNative,
+            count: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUpdateRects: *const fn(
+            self: *const IVirtualSurfaceImageSourceNative,
+            updates: [*]RECT,
+            count: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetVisibleBounds: *const fn(
+            self: *const IVirtualSurfaceImageSourceNative,
+            bounds: ?*RECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterForUpdatesNeeded: *const fn(
+            self: *const IVirtualSurfaceImageSourceNative,
+            callback: ?*IVirtualSurfaceUpdatesCallbackNative,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Resize: *const fn(
+            self: *const IVirtualSurfaceImageSourceNative,
+            newWidth: i32,
+            newHeight: i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISurfaceImageSourceNative.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVirtualSurfaceImageSourceNative_Invalidate(self: *const T, updateRect: RECT) HRESULT {
-                return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).Invalidate(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), updateRect);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVirtualSurfaceImageSourceNative_GetUpdateRectCount(self: *const T, count: ?*u32) HRESULT {
-                return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetUpdateRectCount(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVirtualSurfaceImageSourceNative_GetUpdateRects(self: *const T, updates: [*]RECT, count: u32) HRESULT {
-                return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetUpdateRects(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), updates, count);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVirtualSurfaceImageSourceNative_GetVisibleBounds(self: *const T, bounds: ?*RECT) HRESULT {
-                return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).GetVisibleBounds(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), bounds);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVirtualSurfaceImageSourceNative_RegisterForUpdatesNeeded(self: *const T, callback: ?*IVirtualSurfaceUpdatesCallbackNative) HRESULT {
-                return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).RegisterForUpdatesNeeded(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), callback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVirtualSurfaceImageSourceNative_Resize(self: *const T, newWidth: i32, newHeight: i32) HRESULT {
-                return @as(*const IVirtualSurfaceImageSourceNative.VTable, @ptrCast(self.vtable)).Resize(@as(*const IVirtualSurfaceImageSourceNative, @ptrCast(self)), newWidth, newHeight);
-            }
-        };
+    ISurfaceImageSourceNative: ISurfaceImageSourceNative,
+    IUnknown: IUnknown,
+    pub fn Invalidate(self: *const IVirtualSurfaceImageSourceNative, updateRect: RECT) callconv(.Inline) HRESULT {
+        return self.vtable.Invalidate(self, updateRect);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetUpdateRectCount(self: *const IVirtualSurfaceImageSourceNative, count: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetUpdateRectCount(self, count);
+    }
+    pub fn GetUpdateRects(self: *const IVirtualSurfaceImageSourceNative, updates: [*]RECT, count: u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetUpdateRects(self, updates, count);
+    }
+    pub fn GetVisibleBounds(self: *const IVirtualSurfaceImageSourceNative, bounds: ?*RECT) callconv(.Inline) HRESULT {
+        return self.vtable.GetVisibleBounds(self, bounds);
+    }
+    pub fn RegisterForUpdatesNeeded(self: *const IVirtualSurfaceImageSourceNative, callback: ?*IVirtualSurfaceUpdatesCallbackNative) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterForUpdatesNeeded(self, callback);
+    }
+    pub fn Resize(self: *const IVirtualSurfaceImageSourceNative, newWidth: i32, newHeight: i32) callconv(.Inline) HRESULT {
+        return self.vtable.Resize(self, newWidth, newHeight);
+    }
 };
 
 const IID_ISwapChainBackgroundPanelNative_Value = Guid.initString("43bebd4e-add5-4035-8f85-5608d08e9dc9");
 pub const IID_ISwapChainBackgroundPanelNative = &IID_ISwapChainBackgroundPanelNative_Value;
-pub const ISwapChainBackgroundPanelNative = extern struct {
+pub const ISwapChainBackgroundPanelNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetSwapChain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISwapChainBackgroundPanelNative,
-                swapChain: ?*IDXGISwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISwapChainBackgroundPanelNative,
-                swapChain: ?*IDXGISwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetSwapChain: *const fn(
+            self: *const ISwapChainBackgroundPanelNative,
+            swapChain: ?*IDXGISwapChain,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISwapChainBackgroundPanelNative_SetSwapChain(self: *const T, swapChain: ?*IDXGISwapChain) HRESULT {
-                return @as(*const ISwapChainBackgroundPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainBackgroundPanelNative, @ptrCast(self)), swapChain);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetSwapChain(self: *const ISwapChainBackgroundPanelNative, swapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return self.vtable.SetSwapChain(self, swapChain);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_ISurfaceImageSourceManagerNative_Value = Guid.initString("4c8798b7-1d88-4a0f-b59b-b93f600de8c8");
 pub const IID_ISurfaceImageSourceManagerNative = &IID_ISurfaceImageSourceManagerNative_Value;
-pub const ISurfaceImageSourceManagerNative = extern struct {
+pub const ISurfaceImageSourceManagerNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FlushAllSurfacesWithDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceManagerNative,
-                device: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceManagerNative,
-                device: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FlushAllSurfacesWithDevice: *const fn(
+            self: *const ISurfaceImageSourceManagerNative,
+            device: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceManagerNative_FlushAllSurfacesWithDevice(self: *const T, device: ?*IUnknown) HRESULT {
-                return @as(*const ISurfaceImageSourceManagerNative.VTable, @ptrCast(self.vtable)).FlushAllSurfacesWithDevice(@as(*const ISurfaceImageSourceManagerNative, @ptrCast(self)), device);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn FlushAllSurfacesWithDevice(self: *const ISurfaceImageSourceManagerNative, device: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.FlushAllSurfacesWithDevice(self, device);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_ISurfaceImageSourceNativeWithD2D_Value = Guid.initString("54298223-41e1-4a41-9c08-02e8256864a1");
 pub const IID_ISurfaceImageSourceNativeWithD2D = &IID_ISurfaceImageSourceNativeWithD2D_Value;
-pub const ISurfaceImageSourceNativeWithD2D = extern struct {
+pub const ISurfaceImageSourceNativeWithD2D = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetDevice: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-                device: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-                device: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BeginDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-                updateRect: ?*const RECT,
-                iid: ?*const Guid,
-                updateObject: ?*?*anyopaque,
-                offset: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-                updateRect: ?*const RECT,
-                iid: ?*const Guid,
-                updateObject: ?*?*anyopaque,
-                offset: ?*POINT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        EndDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SuspendDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ResumeDraw: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISurfaceImageSourceNativeWithD2D,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetDevice: *const fn(
+            self: *const ISurfaceImageSourceNativeWithD2D,
+            device: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BeginDraw: *const fn(
+            self: *const ISurfaceImageSourceNativeWithD2D,
+            updateRect: ?*const RECT,
+            iid: ?*const Guid,
+            updateObject: **anyopaque,
+            offset: ?*POINT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        EndDraw: *const fn(
+            self: *const ISurfaceImageSourceNativeWithD2D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SuspendDraw: *const fn(
+            self: *const ISurfaceImageSourceNativeWithD2D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ResumeDraw: *const fn(
+            self: *const ISurfaceImageSourceNativeWithD2D,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNativeWithD2D_SetDevice(self: *const T, device: ?*IUnknown) HRESULT {
-                return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).SetDevice(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)), device);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNativeWithD2D_BeginDraw(self: *const T, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: ?*?*anyopaque, offset: ?*POINT) HRESULT {
-                return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).BeginDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)), updateRect, iid, updateObject, offset);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNativeWithD2D_EndDraw(self: *const T) HRESULT {
-                return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).EndDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNativeWithD2D_SuspendDraw(self: *const T) HRESULT {
-                return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).SuspendDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISurfaceImageSourceNativeWithD2D_ResumeDraw(self: *const T) HRESULT {
-                return @as(*const ISurfaceImageSourceNativeWithD2D.VTable, @ptrCast(self.vtable)).ResumeDraw(@as(*const ISurfaceImageSourceNativeWithD2D, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetDevice(self: *const ISurfaceImageSourceNativeWithD2D, device: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetDevice(self, device);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn BeginDraw(self: *const ISurfaceImageSourceNativeWithD2D, updateRect: ?*const RECT, iid: ?*const Guid, updateObject: **anyopaque, offset: ?*POINT) callconv(.Inline) HRESULT {
+        return self.vtable.BeginDraw(self, updateRect, iid, updateObject, offset);
+    }
+    pub fn EndDraw(self: *const ISurfaceImageSourceNativeWithD2D) callconv(.Inline) HRESULT {
+        return self.vtable.EndDraw(self);
+    }
+    pub fn SuspendDraw(self: *const ISurfaceImageSourceNativeWithD2D) callconv(.Inline) HRESULT {
+        return self.vtable.SuspendDraw(self);
+    }
+    pub fn ResumeDraw(self: *const ISurfaceImageSourceNativeWithD2D) callconv(.Inline) HRESULT {
+        return self.vtable.ResumeDraw(self);
+    }
 };
 
 const IID_ISwapChainPanelNative_Value = Guid.initString("f92f19d2-3ade-45a6-a20c-f6f1ea90554b");
 pub const IID_ISwapChainPanelNative = &IID_ISwapChainPanelNative_Value;
-pub const ISwapChainPanelNative = extern struct {
+pub const ISwapChainPanelNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetSwapChain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISwapChainPanelNative,
-                swapChain: ?*IDXGISwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISwapChainPanelNative,
-                swapChain: ?*IDXGISwapChain,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetSwapChain: *const fn(
+            self: *const ISwapChainPanelNative,
+            swapChain: ?*IDXGISwapChain,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISwapChainPanelNative_SetSwapChain(self: *const T, swapChain: ?*IDXGISwapChain) HRESULT {
-                return @as(*const ISwapChainPanelNative.VTable, @ptrCast(self.vtable)).SetSwapChain(@as(*const ISwapChainPanelNative, @ptrCast(self)), swapChain);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetSwapChain(self: *const ISwapChainPanelNative, swapChain: ?*IDXGISwapChain) callconv(.Inline) HRESULT {
+        return self.vtable.SetSwapChain(self, swapChain);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_ISwapChainPanelNative2_Value = Guid.initString("d5a2f60c-37b2-44a2-937b-8d8eb9726821");
 pub const IID_ISwapChainPanelNative2 = &IID_ISwapChainPanelNative2_Value;
-pub const ISwapChainPanelNative2 = extern struct {
+pub const ISwapChainPanelNative2 = extern union {
     pub const VTable = extern struct {
         base: ISwapChainPanelNative.VTable,
-        SetSwapChainHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ISwapChainPanelNative2,
-                swapChainHandle: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ISwapChainPanelNative2,
-                swapChainHandle: ?HANDLE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetSwapChainHandle: *const fn(
+            self: *const ISwapChainPanelNative2,
+            swapChainHandle: ?HANDLE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace ISwapChainPanelNative.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ISwapChainPanelNative2_SetSwapChainHandle(self: *const T, swapChainHandle: ?HANDLE) HRESULT {
-                return @as(*const ISwapChainPanelNative2.VTable, @ptrCast(self.vtable)).SetSwapChainHandle(@as(*const ISwapChainPanelNative2, @ptrCast(self)), swapChainHandle);
-            }
-        };
+    ISwapChainPanelNative: ISwapChainPanelNative,
+    IUnknown: IUnknown,
+    pub fn SetSwapChainHandle(self: *const ISwapChainPanelNative2, swapChainHandle: ?HANDLE) callconv(.Inline) HRESULT {
+        return self.vtable.SetSwapChainHandle(self, swapChainHandle);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IDesktopWindowXamlSourceNative_Value = Guid.initString("3cbcf1bf-2f76-4e9c-96ab-e84b37972554");
 pub const IID_IDesktopWindowXamlSourceNative = &IID_IDesktopWindowXamlSourceNative_Value;
-pub const IDesktopWindowXamlSourceNative = extern struct {
+pub const IDesktopWindowXamlSourceNative = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AttachToWindow: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDesktopWindowXamlSourceNative,
-                parentWnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDesktopWindowXamlSourceNative,
-                parentWnd: ?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AttachToWindow: *const fn(
+            self: *const IDesktopWindowXamlSourceNative,
+            parentWnd: ?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_WindowHandle: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IDesktopWindowXamlSourceNative,
-                hWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IDesktopWindowXamlSourceNative,
-                hWnd: ?*?HWND,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_WindowHandle: *const fn(
+            self: *const IDesktopWindowXamlSourceNative,
+            hWnd: ?*?HWND,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDesktopWindowXamlSourceNative_AttachToWindow(self: *const T, parentWnd: ?HWND) HRESULT {
-                return @as(*const IDesktopWindowXamlSourceNative.VTable, @ptrCast(self.vtable)).AttachToWindow(@as(*const IDesktopWindowXamlSourceNative, @ptrCast(self)), parentWnd);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDesktopWindowXamlSourceNative_get_WindowHandle(self: *const T, hWnd: ?*?HWND) HRESULT {
-                return @as(*const IDesktopWindowXamlSourceNative.VTable, @ptrCast(self.vtable)).get_WindowHandle(@as(*const IDesktopWindowXamlSourceNative, @ptrCast(self)), hWnd);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AttachToWindow(self: *const IDesktopWindowXamlSourceNative, parentWnd: ?HWND) callconv(.Inline) HRESULT {
+        return self.vtable.AttachToWindow(self, parentWnd);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_WindowHandle(self: *const IDesktopWindowXamlSourceNative, hWnd: ?*?HWND) callconv(.Inline) HRESULT {
+        return self.vtable.get_WindowHandle(self, hWnd);
+    }
 };
 
 const IID_IDesktopWindowXamlSourceNative2_Value = Guid.initString("e3dcd8c7-3057-4692-99c3-7b7720afda31");
 pub const IID_IDesktopWindowXamlSourceNative2 = &IID_IDesktopWindowXamlSourceNative2_Value;
-pub const IDesktopWindowXamlSourceNative2 = extern struct {
+pub const IDesktopWindowXamlSourceNative2 = extern union {
     pub const VTable = extern struct {
         base: IDesktopWindowXamlSourceNative.VTable,
-        PreTranslateMessage: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IDesktopWindowXamlSourceNative2,
-                message: ?*const MSG,
-                result: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IDesktopWindowXamlSourceNative2,
-                message: ?*const MSG,
-                result: ?*BOOL,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        PreTranslateMessage: *const fn(
+            self: *const IDesktopWindowXamlSourceNative2,
+            message: ?*const MSG,
+            result: ?*BOOL,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDesktopWindowXamlSourceNative.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IDesktopWindowXamlSourceNative2_PreTranslateMessage(self: *const T, message: ?*const MSG, result: ?*BOOL) HRESULT {
-                return @as(*const IDesktopWindowXamlSourceNative2.VTable, @ptrCast(self.vtable)).PreTranslateMessage(@as(*const IDesktopWindowXamlSourceNative2, @ptrCast(self)), message, result);
-            }
-        };
+    IDesktopWindowXamlSourceNative: IDesktopWindowXamlSourceNative,
+    IUnknown: IUnknown,
+    pub fn PreTranslateMessage(self: *const IDesktopWindowXamlSourceNative2, message: ?*const MSG, result: ?*BOOL) callconv(.Inline) HRESULT {
+        return self.vtable.PreTranslateMessage(self, message, result);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IReferenceTrackerTarget_Value = Guid.initString("64bd43f8-bfee-4ec4-b7eb-2935158dae21");
 pub const IID_IReferenceTrackerTarget = &IID_IReferenceTrackerTarget_Value;
-pub const IReferenceTrackerTarget = extern struct {
+pub const IReferenceTrackerTarget = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AddRefFromReferenceTracker: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        ReleaseFromReferenceTracker: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-            else => *const fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) u32,
-        },
-        Peg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Unpeg: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AddRefFromReferenceTracker: *const fn(
+            self: *const IReferenceTrackerTarget,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ReleaseFromReferenceTracker: *const fn(
+            self: *const IReferenceTrackerTarget,
+        ) callconv(@import("std").os.windows.WINAPI) u32,
+        Peg: *const fn(
+            self: *const IReferenceTrackerTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Unpeg: *const fn(
+            self: *const IReferenceTrackerTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerTarget_AddRefFromReferenceTracker(self: *const T) u32 {
-                return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).AddRefFromReferenceTracker(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerTarget_ReleaseFromReferenceTracker(self: *const T) u32 {
-                return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).ReleaseFromReferenceTracker(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerTarget_Peg(self: *const T) HRESULT {
-                return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).Peg(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerTarget_Unpeg(self: *const T) HRESULT {
-                return @as(*const IReferenceTrackerTarget.VTable, @ptrCast(self.vtable)).Unpeg(@as(*const IReferenceTrackerTarget, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AddRefFromReferenceTracker(self: *const IReferenceTrackerTarget) callconv(.Inline) u32 {
+        return self.vtable.AddRefFromReferenceTracker(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ReleaseFromReferenceTracker(self: *const IReferenceTrackerTarget) callconv(.Inline) u32 {
+        return self.vtable.ReleaseFromReferenceTracker(self);
+    }
+    pub fn Peg(self: *const IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return self.vtable.Peg(self);
+    }
+    pub fn Unpeg(self: *const IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return self.vtable.Unpeg(self);
+    }
 };
 
 const IID_IReferenceTracker_Value = Guid.initString("11d3b13a-180e-4789-a8be-7712882893e6");
 pub const IID_IReferenceTracker = &IID_IReferenceTracker_Value;
-pub const IReferenceTracker = extern struct {
+pub const IReferenceTracker = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ConnectFromTrackerSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisconnectFromTrackerSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindTrackerTargets: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTracker,
-                callback: ?*IFindReferenceTargetsCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTracker,
-                callback: ?*IFindReferenceTargetsCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetReferenceTrackerManager: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTracker,
-                value: ?*?*IReferenceTrackerManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTracker,
-                value: ?*?*IReferenceTrackerManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddRefFromTrackerSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseFromTrackerSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        PegFromTrackerSource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTracker,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ConnectFromTrackerSource: *const fn(
+            self: *const IReferenceTracker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisconnectFromTrackerSource: *const fn(
+            self: *const IReferenceTracker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindTrackerTargets: *const fn(
+            self: *const IReferenceTracker,
+            callback: ?*IFindReferenceTargetsCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetReferenceTrackerManager: *const fn(
+            self: *const IReferenceTracker,
+            value: ?*?*IReferenceTrackerManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddRefFromTrackerSource: *const fn(
+            self: *const IReferenceTracker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseFromTrackerSource: *const fn(
+            self: *const IReferenceTracker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        PegFromTrackerSource: *const fn(
+            self: *const IReferenceTracker,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTracker_ConnectFromTrackerSource(self: *const T) HRESULT {
-                return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).ConnectFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTracker_DisconnectFromTrackerSource(self: *const T) HRESULT {
-                return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).DisconnectFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTracker_FindTrackerTargets(self: *const T, callback: ?*IFindReferenceTargetsCallback) HRESULT {
-                return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).FindTrackerTargets(@as(*const IReferenceTracker, @ptrCast(self)), callback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTracker_GetReferenceTrackerManager(self: *const T, value: ?*?*IReferenceTrackerManager) HRESULT {
-                return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).GetReferenceTrackerManager(@as(*const IReferenceTracker, @ptrCast(self)), value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTracker_AddRefFromTrackerSource(self: *const T) HRESULT {
-                return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).AddRefFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTracker_ReleaseFromTrackerSource(self: *const T) HRESULT {
-                return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).ReleaseFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTracker_PegFromTrackerSource(self: *const T) HRESULT {
-                return @as(*const IReferenceTracker.VTable, @ptrCast(self.vtable)).PegFromTrackerSource(@as(*const IReferenceTracker, @ptrCast(self)));
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ConnectFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return self.vtable.ConnectFromTrackerSource(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn DisconnectFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return self.vtable.DisconnectFromTrackerSource(self);
+    }
+    pub fn FindTrackerTargets(self: *const IReferenceTracker, callback: ?*IFindReferenceTargetsCallback) callconv(.Inline) HRESULT {
+        return self.vtable.FindTrackerTargets(self, callback);
+    }
+    pub fn GetReferenceTrackerManager(self: *const IReferenceTracker, value: ?*?*IReferenceTrackerManager) callconv(.Inline) HRESULT {
+        return self.vtable.GetReferenceTrackerManager(self, value);
+    }
+    pub fn AddRefFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return self.vtable.AddRefFromTrackerSource(self);
+    }
+    pub fn ReleaseFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return self.vtable.ReleaseFromTrackerSource(self);
+    }
+    pub fn PegFromTrackerSource(self: *const IReferenceTracker) callconv(.Inline) HRESULT {
+        return self.vtable.PegFromTrackerSource(self);
+    }
 };
 
 const IID_IReferenceTrackerManager_Value = Guid.initString("3cf184b4-7ccb-4dda-8455-7e6ce99a3298");
 pub const IID_IReferenceTrackerManager = &IID_IReferenceTrackerManager_Value;
-pub const IReferenceTrackerManager = extern struct {
+pub const IReferenceTrackerManager = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        ReferenceTrackingStarted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        FindTrackerTargetsCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerManager,
-                findFailed: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerManager,
-                findFailed: u8,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReferenceTrackingCompleted: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerManager,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetReferenceTrackerHost: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerManager,
-                value: ?*IReferenceTrackerHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerManager,
-                value: ?*IReferenceTrackerHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ReferenceTrackingStarted: *const fn(
+            self: *const IReferenceTrackerManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        FindTrackerTargetsCompleted: *const fn(
+            self: *const IReferenceTrackerManager,
+            findFailed: u8,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReferenceTrackingCompleted: *const fn(
+            self: *const IReferenceTrackerManager,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetReferenceTrackerHost: *const fn(
+            self: *const IReferenceTrackerManager,
+            value: ?*IReferenceTrackerHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerManager_ReferenceTrackingStarted(self: *const T) HRESULT {
-                return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).ReferenceTrackingStarted(@as(*const IReferenceTrackerManager, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerManager_FindTrackerTargetsCompleted(self: *const T, findFailed: u8) HRESULT {
-                return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).FindTrackerTargetsCompleted(@as(*const IReferenceTrackerManager, @ptrCast(self)), findFailed);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerManager_ReferenceTrackingCompleted(self: *const T) HRESULT {
-                return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).ReferenceTrackingCompleted(@as(*const IReferenceTrackerManager, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerManager_SetReferenceTrackerHost(self: *const T, value: ?*IReferenceTrackerHost) HRESULT {
-                return @as(*const IReferenceTrackerManager.VTable, @ptrCast(self.vtable)).SetReferenceTrackerHost(@as(*const IReferenceTrackerManager, @ptrCast(self)), value);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn ReferenceTrackingStarted(self: *const IReferenceTrackerManager) callconv(.Inline) HRESULT {
+        return self.vtable.ReferenceTrackingStarted(self);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn FindTrackerTargetsCompleted(self: *const IReferenceTrackerManager, findFailed: u8) callconv(.Inline) HRESULT {
+        return self.vtable.FindTrackerTargetsCompleted(self, findFailed);
+    }
+    pub fn ReferenceTrackingCompleted(self: *const IReferenceTrackerManager) callconv(.Inline) HRESULT {
+        return self.vtable.ReferenceTrackingCompleted(self);
+    }
+    pub fn SetReferenceTrackerHost(self: *const IReferenceTrackerManager, value: ?*IReferenceTrackerHost) callconv(.Inline) HRESULT {
+        return self.vtable.SetReferenceTrackerHost(self, value);
+    }
 };
 
 const IID_IFindReferenceTargetsCallback_Value = Guid.initString("04b3486c-4687-4229-8d14-505ab584dd88");
 pub const IID_IFindReferenceTargetsCallback = &IID_IFindReferenceTargetsCallback_Value;
-pub const IFindReferenceTargetsCallback = extern struct {
+pub const IFindReferenceTargetsCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        FoundTrackerTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IFindReferenceTargetsCallback,
-                target: ?*IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IFindReferenceTargetsCallback,
-                target: ?*IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        FoundTrackerTarget: *const fn(
+            self: *const IFindReferenceTargetsCallback,
+            target: ?*IReferenceTrackerTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IFindReferenceTargetsCallback_FoundTrackerTarget(self: *const T, target: ?*IReferenceTrackerTarget) HRESULT {
-                return @as(*const IFindReferenceTargetsCallback.VTable, @ptrCast(self.vtable)).FoundTrackerTarget(@as(*const IFindReferenceTargetsCallback, @ptrCast(self)), target);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn FoundTrackerTarget(self: *const IFindReferenceTargetsCallback, target: ?*IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return self.vtable.FoundTrackerTarget(self, target);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const XAML_REFERENCETRACKER_DISCONNECT = enum(i32) {
@@ -745,114 +418,63 @@ pub const XAML_REFERENCETRACKER_DISCONNECT_SUSPEND = XAML_REFERENCETRACKER_DISCO
 
 const IID_IReferenceTrackerHost_Value = Guid.initString("29a71c6a-3c42-4416-a39d-e2825a07a773");
 pub const IID_IReferenceTrackerHost = &IID_IReferenceTrackerHost_Value;
-pub const IReferenceTrackerHost = extern struct {
+pub const IReferenceTrackerHost = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        DisconnectUnusedReferenceSources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerHost,
-                options: XAML_REFERENCETRACKER_DISCONNECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerHost,
-                options: XAML_REFERENCETRACKER_DISCONNECT,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseDisconnectedReferenceSources: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        NotifyEndOfReferenceTrackingOnThread: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerHost,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetTrackerTarget: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerHost,
-                unknown: ?*IUnknown,
-                newReference: ?*?*IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerHost,
-                unknown: ?*IUnknown,
-                newReference: ?*?*IReferenceTrackerTarget,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddMemoryPressure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerHost,
-                bytesAllocated: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerHost,
-                bytesAllocated: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveMemoryPressure: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IReferenceTrackerHost,
-                bytesAllocated: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IReferenceTrackerHost,
-                bytesAllocated: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        DisconnectUnusedReferenceSources: *const fn(
+            self: *const IReferenceTrackerHost,
+            options: XAML_REFERENCETRACKER_DISCONNECT,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseDisconnectedReferenceSources: *const fn(
+            self: *const IReferenceTrackerHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        NotifyEndOfReferenceTrackingOnThread: *const fn(
+            self: *const IReferenceTrackerHost,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetTrackerTarget: *const fn(
+            self: *const IReferenceTrackerHost,
+            unknown: ?*IUnknown,
+            newReference: ?*?*IReferenceTrackerTarget,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddMemoryPressure: *const fn(
+            self: *const IReferenceTrackerHost,
+            bytesAllocated: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveMemoryPressure: *const fn(
+            self: *const IReferenceTrackerHost,
+            bytesAllocated: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerHost_DisconnectUnusedReferenceSources(self: *const T, options: XAML_REFERENCETRACKER_DISCONNECT) HRESULT {
-                return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).DisconnectUnusedReferenceSources(@as(*const IReferenceTrackerHost, @ptrCast(self)), options);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerHost_ReleaseDisconnectedReferenceSources(self: *const T) HRESULT {
-                return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).ReleaseDisconnectedReferenceSources(@as(*const IReferenceTrackerHost, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerHost_NotifyEndOfReferenceTrackingOnThread(self: *const T) HRESULT {
-                return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).NotifyEndOfReferenceTrackingOnThread(@as(*const IReferenceTrackerHost, @ptrCast(self)));
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerHost_GetTrackerTarget(self: *const T, unknown: ?*IUnknown, newReference: ?*?*IReferenceTrackerTarget) HRESULT {
-                return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).GetTrackerTarget(@as(*const IReferenceTrackerHost, @ptrCast(self)), unknown, newReference);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerHost_AddMemoryPressure(self: *const T, bytesAllocated: u64) HRESULT {
-                return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).AddMemoryPressure(@as(*const IReferenceTrackerHost, @ptrCast(self)), bytesAllocated);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IReferenceTrackerHost_RemoveMemoryPressure(self: *const T, bytesAllocated: u64) HRESULT {
-                return @as(*const IReferenceTrackerHost.VTable, @ptrCast(self.vtable)).RemoveMemoryPressure(@as(*const IReferenceTrackerHost, @ptrCast(self)), bytesAllocated);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn DisconnectUnusedReferenceSources(self: *const IReferenceTrackerHost, options: XAML_REFERENCETRACKER_DISCONNECT) callconv(.Inline) HRESULT {
+        return self.vtable.DisconnectUnusedReferenceSources(self, options);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn ReleaseDisconnectedReferenceSources(self: *const IReferenceTrackerHost) callconv(.Inline) HRESULT {
+        return self.vtable.ReleaseDisconnectedReferenceSources(self);
+    }
+    pub fn NotifyEndOfReferenceTrackingOnThread(self: *const IReferenceTrackerHost) callconv(.Inline) HRESULT {
+        return self.vtable.NotifyEndOfReferenceTrackingOnThread(self);
+    }
+    pub fn GetTrackerTarget(self: *const IReferenceTrackerHost, unknown: ?*IUnknown, newReference: ?*?*IReferenceTrackerTarget) callconv(.Inline) HRESULT {
+        return self.vtable.GetTrackerTarget(self, unknown, newReference);
+    }
+    pub fn AddMemoryPressure(self: *const IReferenceTrackerHost, bytesAllocated: u64) callconv(.Inline) HRESULT {
+        return self.vtable.AddMemoryPressure(self, bytesAllocated);
+    }
+    pub fn RemoveMemoryPressure(self: *const IReferenceTrackerHost, bytesAllocated: u64) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveMemoryPressure(self, bytesAllocated);
+    }
 };
 
 const IID_IReferenceTrackerExtension_Value = Guid.initString("4e897caa-59d5-4613-8f8c-f7ebd1f399b0");
 pub const IID_IReferenceTrackerExtension = &IID_IReferenceTrackerExtension_Value;
-pub const IReferenceTrackerExtension = extern struct {
+pub const IReferenceTrackerExtension = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    IUnknown: IUnknown,
 };
 
 pub const TrackerHandle__ = extern struct {
@@ -861,78 +483,44 @@ pub const TrackerHandle__ = extern struct {
 
 const IID_ITrackerOwner_Value = Guid.initString("eb24c20b-9816-4ac7-8cff-36f67a118f4e");
 pub const IID_ITrackerOwner = &IID_ITrackerOwner_Value;
-pub const ITrackerOwner = extern struct {
+pub const ITrackerOwner = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CreateTrackerHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITrackerOwner,
-                returnValue: ?*?*TrackerHandle__,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITrackerOwner,
-                returnValue: ?*?*TrackerHandle__,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DeleteTrackerHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITrackerOwner,
-                handle: ?*TrackerHandle__,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITrackerOwner,
-                handle: ?*TrackerHandle__,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetTrackerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITrackerOwner,
-                handle: ?*TrackerHandle__,
-                value: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const ITrackerOwner,
-                handle: ?*TrackerHandle__,
-                value: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        TryGetSafeTrackerValue: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const ITrackerOwner,
-                handle: ?*TrackerHandle__,
-                returnValue: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) u8,
-            else => *const fn (
-                self: *const ITrackerOwner,
-                handle: ?*TrackerHandle__,
-                returnValue: ?*?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) u8,
-        },
+        CreateTrackerHandle: *const fn(
+            self: *const ITrackerOwner,
+            returnValue: ?*?*TrackerHandle__,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DeleteTrackerHandle: *const fn(
+            self: *const ITrackerOwner,
+            handle: ?*TrackerHandle__,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetTrackerValue: *const fn(
+            self: *const ITrackerOwner,
+            handle: ?*TrackerHandle__,
+            value: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        TryGetSafeTrackerValue: *const fn(
+            self: *const ITrackerOwner,
+            handle: ?*TrackerHandle__,
+            returnValue: ?*?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) u8,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITrackerOwner_CreateTrackerHandle(self: *const T, returnValue: ?*?*TrackerHandle__) HRESULT {
-                return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).CreateTrackerHandle(@as(*const ITrackerOwner, @ptrCast(self)), returnValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITrackerOwner_DeleteTrackerHandle(self: *const T, handle: ?*TrackerHandle__) HRESULT {
-                return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).DeleteTrackerHandle(@as(*const ITrackerOwner, @ptrCast(self)), handle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITrackerOwner_SetTrackerValue(self: *const T, handle: ?*TrackerHandle__, value: ?*IUnknown) HRESULT {
-                return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).SetTrackerValue(@as(*const ITrackerOwner, @ptrCast(self)), handle, value);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn ITrackerOwner_TryGetSafeTrackerValue(self: *const T, handle: ?*TrackerHandle__, returnValue: ?*?*IUnknown) u8 {
-                return @as(*const ITrackerOwner.VTable, @ptrCast(self.vtable)).TryGetSafeTrackerValue(@as(*const ITrackerOwner, @ptrCast(self)), handle, returnValue);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CreateTrackerHandle(self: *const ITrackerOwner, returnValue: ?*?*TrackerHandle__) callconv(.Inline) HRESULT {
+        return self.vtable.CreateTrackerHandle(self, returnValue);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn DeleteTrackerHandle(self: *const ITrackerOwner, handle: ?*TrackerHandle__) callconv(.Inline) HRESULT {
+        return self.vtable.DeleteTrackerHandle(self, handle);
+    }
+    pub fn SetTrackerValue(self: *const ITrackerOwner, handle: ?*TrackerHandle__, value: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetTrackerValue(self, handle, value);
+    }
+    pub fn TryGetSafeTrackerValue(self: *const ITrackerOwner, handle: ?*TrackerHandle__, returnValue: ?*?*IUnknown) callconv(.Inline) u8 {
+        return self.vtable.TryGetSafeTrackerValue(self, handle, returnValue);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -941,12 +529,6 @@ pub const ITrackerOwner = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (12)
 //--------------------------------------------------------------------------------
@@ -964,13 +546,13 @@ const POINT = @import("../../foundation.zig").POINT;
 const RECT = @import("../../foundation.zig").RECT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

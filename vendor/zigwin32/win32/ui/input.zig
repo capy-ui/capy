@@ -31,30 +31,57 @@ pub const RIM_TYPEMOUSE = RID_DEVICE_INFO_TYPE.MOUSE;
 pub const RIM_TYPEKEYBOARD = RID_DEVICE_INFO_TYPE.KEYBOARD;
 pub const RIM_TYPEHID = RID_DEVICE_INFO_TYPE.HID;
 
-pub const RAWINPUTDEVICE_FLAGS = enum(u32) {
-    REMOVE = 1,
-    EXCLUDE = 16,
-    PAGEONLY = 32,
-    NOLEGACY = 48,
-    INPUTSINK = 256,
-    CAPTUREMOUSE = 512,
-    // NOHOTKEYS = 512, this enum value conflicts with CAPTUREMOUSE
-    APPKEYS = 1024,
-    EXINPUTSINK = 4096,
-    DEVNOTIFY = 8192,
+pub const RAWINPUTDEVICE_FLAGS = packed struct(u32) {
+    REMOVE: u1 = 0,
+    _1: u1 = 0,
+    _2: u1 = 0,
+    _3: u1 = 0,
+    EXCLUDE: u1 = 0,
+    PAGEONLY: u1 = 0,
+    _6: u1 = 0,
+    _7: u1 = 0,
+    INPUTSINK: u1 = 0,
+    CAPTUREMOUSE: u1 = 0,
+    APPKEYS: u1 = 0,
+    _11: u1 = 0,
+    EXINPUTSINK: u1 = 0,
+    DEVNOTIFY: u1 = 0,
+    _14: u1 = 0,
+    _15: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    _29: u1 = 0,
+    _30: u1 = 0,
+    _31: u1 = 0,
+    // NOHOTKEYS (bit index 9) conflicts with CAPTUREMOUSE
 };
-pub const RIDEV_REMOVE = RAWINPUTDEVICE_FLAGS.REMOVE;
-pub const RIDEV_EXCLUDE = RAWINPUTDEVICE_FLAGS.EXCLUDE;
-pub const RIDEV_PAGEONLY = RAWINPUTDEVICE_FLAGS.PAGEONLY;
-pub const RIDEV_NOLEGACY = RAWINPUTDEVICE_FLAGS.NOLEGACY;
-pub const RIDEV_INPUTSINK = RAWINPUTDEVICE_FLAGS.INPUTSINK;
-pub const RIDEV_CAPTUREMOUSE = RAWINPUTDEVICE_FLAGS.CAPTUREMOUSE;
-pub const RIDEV_NOHOTKEYS = RAWINPUTDEVICE_FLAGS.CAPTUREMOUSE;
-pub const RIDEV_APPKEYS = RAWINPUTDEVICE_FLAGS.APPKEYS;
-pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_FLAGS.EXINPUTSINK;
-pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_FLAGS.DEVNOTIFY;
+pub const RIDEV_REMOVE = RAWINPUTDEVICE_FLAGS{ .REMOVE = 1 };
+pub const RIDEV_EXCLUDE = RAWINPUTDEVICE_FLAGS{ .EXCLUDE = 1 };
+pub const RIDEV_PAGEONLY = RAWINPUTDEVICE_FLAGS{ .PAGEONLY = 1 };
+pub const RIDEV_NOLEGACY = RAWINPUTDEVICE_FLAGS{
+    .EXCLUDE = 1,
+    .PAGEONLY = 1,
+};
+pub const RIDEV_INPUTSINK = RAWINPUTDEVICE_FLAGS{ .INPUTSINK = 1 };
+pub const RIDEV_CAPTUREMOUSE = RAWINPUTDEVICE_FLAGS{ .CAPTUREMOUSE = 1 };
+pub const RIDEV_NOHOTKEYS = RAWINPUTDEVICE_FLAGS{ .CAPTUREMOUSE = 1 };
+pub const RIDEV_APPKEYS = RAWINPUTDEVICE_FLAGS{ .APPKEYS = 1 };
+pub const RIDEV_EXINPUTSINK = RAWINPUTDEVICE_FLAGS{ .EXINPUTSINK = 1 };
+pub const RIDEV_DEVNOTIFY = RAWINPUTDEVICE_FLAGS{ .DEVNOTIFY = 1 };
 
-pub const HRAWINPUT = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HRAWINPUT = *opaque{};
 
 pub const RAWINPUTHEADER = extern struct {
     dwType: u32,
@@ -179,6 +206,7 @@ pub const INPUT_MESSAGE_SOURCE = extern struct {
     originId: INPUT_MESSAGE_ORIGIN_ID,
 };
 
+
 //--------------------------------------------------------------------------------
 // Section: Functions (10)
 //--------------------------------------------------------------------------------
@@ -256,22 +284,16 @@ pub extern "user32" fn GetCIMSSM(
     inputMessageSource: ?*INPUT_MESSAGE_SOURCE,
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (1)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const GetRawInputDeviceInfo = thismodule.GetRawInputDeviceInfoA;
-    },
-    .wide => struct {
-        pub const GetRawInputDeviceInfo = thismodule.GetRawInputDeviceInfoW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const GetRawInputDeviceInfo = *opaque {};
-    } else struct {
-        pub const GetRawInputDeviceInfo = @compileError("'GetRawInputDeviceInfo' requires that UNICODE be set to true or false in the root module");
-    },
+pub const GetRawInputDeviceInfo = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().GetRawInputDeviceInfoA,
+    .wide => @This().GetRawInputDeviceInfoW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'GetRawInputDeviceInfo' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
@@ -283,14 +305,14 @@ const LRESULT = @import("../foundation.zig").LRESULT;
 const WPARAM = @import("../foundation.zig").WPARAM;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }
 //--------------------------------------------------------------------------------

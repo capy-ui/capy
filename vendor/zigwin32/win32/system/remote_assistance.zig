@@ -50,145 +50,83 @@ pub const RSF_REMOTE_WIN7SESSION = RENDEZVOUS_SESSION_FLAGS.REMOTE_WIN7SESSION;
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRendezvousSession_Value = Guid.initString("9ba4b1dd-8b0c-48b7-9e7c-2f25857c8df5");
 pub const IID_IRendezvousSession = &IID_IRendezvousSession_Value;
-pub const IRendezvousSession = extern struct {
+pub const IRendezvousSession = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_State: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRendezvousSession,
-                pSessionState: ?*RENDEZVOUS_SESSION_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRendezvousSession,
-                pSessionState: ?*RENDEZVOUS_SESSION_STATE,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_State: *const fn(
+            self: *const IRendezvousSession,
+            pSessionState: ?*RENDEZVOUS_SESSION_STATE,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_RemoteUser: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRendezvousSession,
-                bstrUserName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRendezvousSession,
-                bstrUserName: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_RemoteUser: *const fn(
+            self: *const IRendezvousSession,
+            bstrUserName: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
-        get_Flags: switch (@import("builtin").zig_backend) {
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            .stage1 => fn (
-                self: *const IRendezvousSession,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            // TODO: this function has a "SpecialName", should Zig do anything with this?
-            else => *const fn (
-                self: *const IRendezvousSession,
-                pFlags: ?*i32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SendContextData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRendezvousSession,
-                bstrData: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRendezvousSession,
-                bstrData: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        Terminate: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRendezvousSession,
-                hr: HRESULT,
-                bstrAppData: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRendezvousSession,
-                hr: HRESULT,
-                bstrAppData: ?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        get_Flags: *const fn(
+            self: *const IRendezvousSession,
+            pFlags: ?*i32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SendContextData: *const fn(
+            self: *const IRendezvousSession,
+            bstrData: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        Terminate: *const fn(
+            self: *const IRendezvousSession,
+            hr: HRESULT,
+            bstrAppData: ?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRendezvousSession_get_State(self: *const T, pSessionState: ?*RENDEZVOUS_SESSION_STATE) HRESULT {
-                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_State(@as(*const IRendezvousSession, @ptrCast(self)), pSessionState);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRendezvousSession_get_RemoteUser(self: *const T, bstrUserName: ?*?BSTR) HRESULT {
-                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_RemoteUser(@as(*const IRendezvousSession, @ptrCast(self)), bstrUserName);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRendezvousSession_get_Flags(self: *const T, pFlags: ?*i32) HRESULT {
-                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).get_Flags(@as(*const IRendezvousSession, @ptrCast(self)), pFlags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRendezvousSession_SendContextData(self: *const T, bstrData: ?BSTR) HRESULT {
-                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).SendContextData(@as(*const IRendezvousSession, @ptrCast(self)), bstrData);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRendezvousSession_Terminate(self: *const T, hr: HRESULT, bstrAppData: ?BSTR) HRESULT {
-                return @as(*const IRendezvousSession.VTable, @ptrCast(self.vtable)).Terminate(@as(*const IRendezvousSession, @ptrCast(self)), hr, bstrAppData);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn get_State(self: *const IRendezvousSession, pSessionState: ?*RENDEZVOUS_SESSION_STATE) callconv(.Inline) HRESULT {
+        return self.vtable.get_State(self, pSessionState);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn get_RemoteUser(self: *const IRendezvousSession, bstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.get_RemoteUser(self, bstrUserName);
+    }
+    pub fn get_Flags(self: *const IRendezvousSession, pFlags: ?*i32) callconv(.Inline) HRESULT {
+        return self.vtable.get_Flags(self, pFlags);
+    }
+    pub fn SendContextData(self: *const IRendezvousSession, bstrData: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.SendContextData(self, bstrData);
+    }
+    pub fn Terminate(self: *const IRendezvousSession, hr: HRESULT, bstrAppData: ?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.Terminate(self, hr, bstrAppData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_DRendezvousSessionEvents_Value = Guid.initString("3fa19cf8-64c4-4f53-ae60-635b3806eca6");
 pub const IID_DRendezvousSessionEvents = &IID_DRendezvousSessionEvents_Value;
-pub const DRendezvousSessionEvents = extern struct {
+pub const DRendezvousSessionEvents = extern union {
     pub const VTable = extern struct {
         base: IDispatch.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IDispatch.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    IDispatch: IDispatch,
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 const IID_IRendezvousApplication_Value = Guid.initString("4f4d070b-a275-49fb-b10d-8ec26387b50d");
 pub const IID_IRendezvousApplication = &IID_IRendezvousApplication_Value;
-pub const IRendezvousApplication = extern struct {
+pub const IRendezvousApplication = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        SetRendezvousSession: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IRendezvousApplication,
-                pRendezvousSession: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IRendezvousApplication,
-                pRendezvousSession: ?*IUnknown,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        SetRendezvousSession: *const fn(
+            self: *const IRendezvousApplication,
+            pRendezvousSession: ?*IUnknown,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IRendezvousApplication_SetRendezvousSession(self: *const T, pRendezvousSession: ?*IUnknown) HRESULT {
-                return @as(*const IRendezvousApplication.VTable, @ptrCast(self.vtable)).SetRendezvousSession(@as(*const IRendezvousApplication, @ptrCast(self)), pRendezvousSession);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn SetRendezvousSession(self: *const IRendezvousApplication, pRendezvousSession: ?*IUnknown) callconv(.Inline) HRESULT {
+        return self.vtable.SetRendezvousSession(self, pRendezvousSession);
     }
-    pub usingnamespace MethodMixin(@This());
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -197,12 +135,6 @@ pub const IRendezvousApplication = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (5)
 //--------------------------------------------------------------------------------
@@ -213,13 +145,13 @@ const IDispatch = @import("../system/com.zig").IDispatch;
 const IUnknown = @import("../system/com.zig").IUnknown;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

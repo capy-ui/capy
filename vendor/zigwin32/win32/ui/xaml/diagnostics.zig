@@ -148,685 +148,369 @@ pub const ErrorInvalidResource = VisualElementState.InvalidResource;
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IVisualTreeServiceCallback_Value = Guid.initString("aa7a8931-80e4-4fec-8f3b-553f87b4966e");
 pub const IID_IVisualTreeServiceCallback = &IID_IVisualTreeServiceCallback_Value;
-pub const IVisualTreeServiceCallback = extern struct {
+pub const IVisualTreeServiceCallback = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        OnVisualTreeChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeServiceCallback,
-                relation: ParentChildRelation,
-                element: VisualElement,
-                mutationType: VisualMutationType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeServiceCallback,
-                relation: ParentChildRelation,
-                element: VisualElement,
-                mutationType: VisualMutationType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnVisualTreeChange: *const fn(
+            self: *const IVisualTreeServiceCallback,
+            relation: ParentChildRelation,
+            element: VisualElement,
+            mutationType: VisualMutationType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeServiceCallback_OnVisualTreeChange(self: *const T, relation: ParentChildRelation, element: VisualElement, mutationType: VisualMutationType) HRESULT {
-                return @as(*const IVisualTreeServiceCallback.VTable, @ptrCast(self.vtable)).OnVisualTreeChange(@as(*const IVisualTreeServiceCallback, @ptrCast(self)), relation, element, mutationType);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn OnVisualTreeChange(self: *const IVisualTreeServiceCallback, relation: ParentChildRelation, element: VisualElement, mutationType: VisualMutationType) callconv(.Inline) HRESULT {
+        return self.vtable.OnVisualTreeChange(self, relation, element, mutationType);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IVisualTreeServiceCallback2_Value = Guid.initString("bad9eb88-ae77-4397-b948-5fa2db0a19ea");
 pub const IID_IVisualTreeServiceCallback2 = &IID_IVisualTreeServiceCallback2_Value;
-pub const IVisualTreeServiceCallback2 = extern struct {
+pub const IVisualTreeServiceCallback2 = extern union {
     pub const VTable = extern struct {
         base: IVisualTreeServiceCallback.VTable,
-        OnElementStateChanged: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeServiceCallback2,
-                element: u64,
-                elementState: VisualElementState,
-                context: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeServiceCallback2,
-                element: u64,
-                elementState: VisualElementState,
-                context: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        OnElementStateChanged: *const fn(
+            self: *const IVisualTreeServiceCallback2,
+            element: u64,
+            elementState: VisualElementState,
+            context: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVisualTreeServiceCallback.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeServiceCallback2_OnElementStateChanged(self: *const T, element: u64, elementState: VisualElementState, context: ?[*:0]const u16) HRESULT {
-                return @as(*const IVisualTreeServiceCallback2.VTable, @ptrCast(self.vtable)).OnElementStateChanged(@as(*const IVisualTreeServiceCallback2, @ptrCast(self)), element, elementState, context);
-            }
-        };
+    IVisualTreeServiceCallback: IVisualTreeServiceCallback,
+    IUnknown: IUnknown,
+    pub fn OnElementStateChanged(self: *const IVisualTreeServiceCallback2, element: u64, elementState: VisualElementState, context: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.OnElementStateChanged(self, element, elementState, context);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 const IID_IVisualTreeService_Value = Guid.initString("a593b11a-d17f-48bb-8f66-83910731c8a5");
 pub const IID_IVisualTreeService = &IID_IVisualTreeService_Value;
-pub const IVisualTreeService = extern struct {
+pub const IVisualTreeService = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        AdviseVisualTreeChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                pCallback: ?*IVisualTreeServiceCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                pCallback: ?*IVisualTreeServiceCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnadviseVisualTreeChange: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                pCallback: ?*IVisualTreeServiceCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                pCallback: ?*IVisualTreeServiceCallback,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetEnums: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                pCount: ?*u32,
-                ppEnums: [*]?*EnumType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                pCount: ?*u32,
-                ppEnums: [*]?*EnumType,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        CreateInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                typeName: ?BSTR,
-                value: ?BSTR,
-                pInstanceHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                typeName: ?BSTR,
-                value: ?BSTR,
-                pInstanceHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetPropertyValuesChain: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                pSourceCount: ?*u32,
-                ppPropertySources: [*]?*PropertyChainSource,
-                pPropertyCount: ?*u32,
-                ppPropertyValues: [*]?*PropertyChainValue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                pSourceCount: ?*u32,
-                ppPropertySources: [*]?*PropertyChainSource,
-                pPropertyCount: ?*u32,
-                ppPropertyValues: [*]?*PropertyChainValue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                value: u64,
-                propertyIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                value: u64,
-                propertyIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                propertyIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                propertyIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCollectionCount: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                pCollectionSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                pCollectionSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetCollectionElements: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                startIndex: u32,
-                pElementCount: ?*u32,
-                ppElementValues: [*]?*CollectionElementValue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                instanceHandle: u64,
-                startIndex: u32,
-                pElementCount: ?*u32,
-                ppElementValues: [*]?*CollectionElementValue,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddChild: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                parent: u64,
-                child: u64,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                parent: u64,
-                child: u64,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveChild: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                parent: u64,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                parent: u64,
-                index: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ClearChildren: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService,
-                parent: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService,
-                parent: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        AdviseVisualTreeChange: *const fn(
+            self: *const IVisualTreeService,
+            pCallback: ?*IVisualTreeServiceCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnadviseVisualTreeChange: *const fn(
+            self: *const IVisualTreeService,
+            pCallback: ?*IVisualTreeServiceCallback,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetEnums: *const fn(
+            self: *const IVisualTreeService,
+            pCount: ?*u32,
+            ppEnums: [*]?*EnumType,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        CreateInstance: *const fn(
+            self: *const IVisualTreeService,
+            typeName: ?BSTR,
+            value: ?BSTR,
+            pInstanceHandle: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetPropertyValuesChain: *const fn(
+            self: *const IVisualTreeService,
+            instanceHandle: u64,
+            pSourceCount: ?*u32,
+            ppPropertySources: [*]?*PropertyChainSource,
+            pPropertyCount: ?*u32,
+            ppPropertyValues: [*]?*PropertyChainValue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SetProperty: *const fn(
+            self: *const IVisualTreeService,
+            instanceHandle: u64,
+            value: u64,
+            propertyIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearProperty: *const fn(
+            self: *const IVisualTreeService,
+            instanceHandle: u64,
+            propertyIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCollectionCount: *const fn(
+            self: *const IVisualTreeService,
+            instanceHandle: u64,
+            pCollectionSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetCollectionElements: *const fn(
+            self: *const IVisualTreeService,
+            instanceHandle: u64,
+            startIndex: u32,
+            pElementCount: ?*u32,
+            ppElementValues: [*]?*CollectionElementValue,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddChild: *const fn(
+            self: *const IVisualTreeService,
+            parent: u64,
+            child: u64,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveChild: *const fn(
+            self: *const IVisualTreeService,
+            parent: u64,
+            index: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ClearChildren: *const fn(
+            self: *const IVisualTreeService,
+            parent: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_AdviseVisualTreeChange(self: *const T, pCallback: ?*IVisualTreeServiceCallback) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).AdviseVisualTreeChange(@as(*const IVisualTreeService, @ptrCast(self)), pCallback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_UnadviseVisualTreeChange(self: *const T, pCallback: ?*IVisualTreeServiceCallback) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).UnadviseVisualTreeChange(@as(*const IVisualTreeService, @ptrCast(self)), pCallback);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_GetEnums(self: *const T, pCount: ?*u32, ppEnums: [*]?*EnumType) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).GetEnums(@as(*const IVisualTreeService, @ptrCast(self)), pCount, ppEnums);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_CreateInstance(self: *const T, typeName: ?BSTR, value: ?BSTR, pInstanceHandle: ?*u64) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).CreateInstance(@as(*const IVisualTreeService, @ptrCast(self)), typeName, value, pInstanceHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_GetPropertyValuesChain(self: *const T, instanceHandle: u64, pSourceCount: ?*u32, ppPropertySources: [*]?*PropertyChainSource, pPropertyCount: ?*u32, ppPropertyValues: [*]?*PropertyChainValue) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).GetPropertyValuesChain(@as(*const IVisualTreeService, @ptrCast(self)), instanceHandle, pSourceCount, ppPropertySources, pPropertyCount, ppPropertyValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_SetProperty(self: *const T, instanceHandle: u64, value: u64, propertyIndex: u32) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).SetProperty(@as(*const IVisualTreeService, @ptrCast(self)), instanceHandle, value, propertyIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_ClearProperty(self: *const T, instanceHandle: u64, propertyIndex: u32) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).ClearProperty(@as(*const IVisualTreeService, @ptrCast(self)), instanceHandle, propertyIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_GetCollectionCount(self: *const T, instanceHandle: u64, pCollectionSize: ?*u32) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).GetCollectionCount(@as(*const IVisualTreeService, @ptrCast(self)), instanceHandle, pCollectionSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_GetCollectionElements(self: *const T, instanceHandle: u64, startIndex: u32, pElementCount: ?*u32, ppElementValues: [*]?*CollectionElementValue) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).GetCollectionElements(@as(*const IVisualTreeService, @ptrCast(self)), instanceHandle, startIndex, pElementCount, ppElementValues);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_AddChild(self: *const T, parent: u64, child: u64, index: u32) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).AddChild(@as(*const IVisualTreeService, @ptrCast(self)), parent, child, index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_RemoveChild(self: *const T, parent: u64, index: u32) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).RemoveChild(@as(*const IVisualTreeService, @ptrCast(self)), parent, index);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService_ClearChildren(self: *const T, parent: u64) HRESULT {
-                return @as(*const IVisualTreeService.VTable, @ptrCast(self.vtable)).ClearChildren(@as(*const IVisualTreeService, @ptrCast(self)), parent);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn AdviseVisualTreeChange(self: *const IVisualTreeService, pCallback: ?*IVisualTreeServiceCallback) callconv(.Inline) HRESULT {
+        return self.vtable.AdviseVisualTreeChange(self, pCallback);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn UnadviseVisualTreeChange(self: *const IVisualTreeService, pCallback: ?*IVisualTreeServiceCallback) callconv(.Inline) HRESULT {
+        return self.vtable.UnadviseVisualTreeChange(self, pCallback);
+    }
+    pub fn GetEnums(self: *const IVisualTreeService, pCount: ?*u32, ppEnums: [*]?*EnumType) callconv(.Inline) HRESULT {
+        return self.vtable.GetEnums(self, pCount, ppEnums);
+    }
+    pub fn CreateInstance(self: *const IVisualTreeService, typeName: ?BSTR, value: ?BSTR, pInstanceHandle: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.CreateInstance(self, typeName, value, pInstanceHandle);
+    }
+    pub fn GetPropertyValuesChain(self: *const IVisualTreeService, instanceHandle: u64, pSourceCount: ?*u32, ppPropertySources: [*]?*PropertyChainSource, pPropertyCount: ?*u32, ppPropertyValues: [*]?*PropertyChainValue) callconv(.Inline) HRESULT {
+        return self.vtable.GetPropertyValuesChain(self, instanceHandle, pSourceCount, ppPropertySources, pPropertyCount, ppPropertyValues);
+    }
+    pub fn SetProperty(self: *const IVisualTreeService, instanceHandle: u64, value: u64, propertyIndex: u32) callconv(.Inline) HRESULT {
+        return self.vtable.SetProperty(self, instanceHandle, value, propertyIndex);
+    }
+    pub fn ClearProperty(self: *const IVisualTreeService, instanceHandle: u64, propertyIndex: u32) callconv(.Inline) HRESULT {
+        return self.vtable.ClearProperty(self, instanceHandle, propertyIndex);
+    }
+    pub fn GetCollectionCount(self: *const IVisualTreeService, instanceHandle: u64, pCollectionSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetCollectionCount(self, instanceHandle, pCollectionSize);
+    }
+    pub fn GetCollectionElements(self: *const IVisualTreeService, instanceHandle: u64, startIndex: u32, pElementCount: ?*u32, ppElementValues: [*]?*CollectionElementValue) callconv(.Inline) HRESULT {
+        return self.vtable.GetCollectionElements(self, instanceHandle, startIndex, pElementCount, ppElementValues);
+    }
+    pub fn AddChild(self: *const IVisualTreeService, parent: u64, child: u64, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.AddChild(self, parent, child, index);
+    }
+    pub fn RemoveChild(self: *const IVisualTreeService, parent: u64, index: u32) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveChild(self, parent, index);
+    }
+    pub fn ClearChildren(self: *const IVisualTreeService, parent: u64) callconv(.Inline) HRESULT {
+        return self.vtable.ClearChildren(self, parent);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 const IID_IXamlDiagnostics_Value = Guid.initString("18c9e2b6-3f43-4116-9f2b-ff935d7770d2");
 pub const IID_IXamlDiagnostics = &IID_IXamlDiagnostics_Value;
-pub const IXamlDiagnostics = extern struct {
+pub const IXamlDiagnostics = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetDispatcher: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                ppDispatcher: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                ppDispatcher: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetUiLayer: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                ppLayer: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                ppLayer: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetApplication: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                ppApplication: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                ppApplication: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetIInspectableFromHandle: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                instanceHandle: u64,
-                ppInstance: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                instanceHandle: u64,
-                ppInstance: ?*?*IInspectable,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetHandleFromIInspectable: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                pInstance: ?*IInspectable,
-                pHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                pInstance: ?*IInspectable,
-                pHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        HitTest: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                rect: RECT,
-                pCount: ?*u32,
-                ppInstanceHandles: [*]?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                rect: RECT,
-                pCount: ?*u32,
-                ppInstanceHandles: [*]?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RegisterInstance: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                pInstance: ?*IInspectable,
-                pInstanceHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                pInstance: ?*IInspectable,
-                pInstanceHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetInitializationData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXamlDiagnostics,
-                pInitializationData: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXamlDiagnostics,
-                pInitializationData: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetDispatcher: *const fn(
+            self: *const IXamlDiagnostics,
+            ppDispatcher: ?*?*IInspectable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetUiLayer: *const fn(
+            self: *const IXamlDiagnostics,
+            ppLayer: ?*?*IInspectable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetApplication: *const fn(
+            self: *const IXamlDiagnostics,
+            ppApplication: ?*?*IInspectable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetIInspectableFromHandle: *const fn(
+            self: *const IXamlDiagnostics,
+            instanceHandle: u64,
+            ppInstance: ?*?*IInspectable,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetHandleFromIInspectable: *const fn(
+            self: *const IXamlDiagnostics,
+            pInstance: ?*IInspectable,
+            pHandle: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        HitTest: *const fn(
+            self: *const IXamlDiagnostics,
+            rect: RECT,
+            pCount: ?*u32,
+            ppInstanceHandles: [*]?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RegisterInstance: *const fn(
+            self: *const IXamlDiagnostics,
+            pInstance: ?*IInspectable,
+            pInstanceHandle: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetInitializationData: *const fn(
+            self: *const IXamlDiagnostics,
+            pInitializationData: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_GetDispatcher(self: *const T, ppDispatcher: ?*?*IInspectable) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).GetDispatcher(@as(*const IXamlDiagnostics, @ptrCast(self)), ppDispatcher);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_GetUiLayer(self: *const T, ppLayer: ?*?*IInspectable) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).GetUiLayer(@as(*const IXamlDiagnostics, @ptrCast(self)), ppLayer);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_GetApplication(self: *const T, ppApplication: ?*?*IInspectable) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).GetApplication(@as(*const IXamlDiagnostics, @ptrCast(self)), ppApplication);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_GetIInspectableFromHandle(self: *const T, instanceHandle: u64, ppInstance: ?*?*IInspectable) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).GetIInspectableFromHandle(@as(*const IXamlDiagnostics, @ptrCast(self)), instanceHandle, ppInstance);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_GetHandleFromIInspectable(self: *const T, pInstance: ?*IInspectable, pHandle: ?*u64) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).GetHandleFromIInspectable(@as(*const IXamlDiagnostics, @ptrCast(self)), pInstance, pHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_HitTest(self: *const T, rect: RECT, pCount: ?*u32, ppInstanceHandles: [*]?*u64) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).HitTest(@as(*const IXamlDiagnostics, @ptrCast(self)), rect, pCount, ppInstanceHandles);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_RegisterInstance(self: *const T, pInstance: ?*IInspectable, pInstanceHandle: ?*u64) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).RegisterInstance(@as(*const IXamlDiagnostics, @ptrCast(self)), pInstance, pInstanceHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXamlDiagnostics_GetInitializationData(self: *const T, pInitializationData: ?*?BSTR) HRESULT {
-                return @as(*const IXamlDiagnostics.VTable, @ptrCast(self.vtable)).GetInitializationData(@as(*const IXamlDiagnostics, @ptrCast(self)), pInitializationData);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetDispatcher(self: *const IXamlDiagnostics, ppDispatcher: ?*?*IInspectable) callconv(.Inline) HRESULT {
+        return self.vtable.GetDispatcher(self, ppDispatcher);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetUiLayer(self: *const IXamlDiagnostics, ppLayer: ?*?*IInspectable) callconv(.Inline) HRESULT {
+        return self.vtable.GetUiLayer(self, ppLayer);
+    }
+    pub fn GetApplication(self: *const IXamlDiagnostics, ppApplication: ?*?*IInspectable) callconv(.Inline) HRESULT {
+        return self.vtable.GetApplication(self, ppApplication);
+    }
+    pub fn GetIInspectableFromHandle(self: *const IXamlDiagnostics, instanceHandle: u64, ppInstance: ?*?*IInspectable) callconv(.Inline) HRESULT {
+        return self.vtable.GetIInspectableFromHandle(self, instanceHandle, ppInstance);
+    }
+    pub fn GetHandleFromIInspectable(self: *const IXamlDiagnostics, pInstance: ?*IInspectable, pHandle: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetHandleFromIInspectable(self, pInstance, pHandle);
+    }
+    pub fn HitTest(self: *const IXamlDiagnostics, rect: RECT, pCount: ?*u32, ppInstanceHandles: [*]?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.HitTest(self, rect, pCount, ppInstanceHandles);
+    }
+    pub fn RegisterInstance(self: *const IXamlDiagnostics, pInstance: ?*IInspectable, pInstanceHandle: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.RegisterInstance(self, pInstance, pInstanceHandle);
+    }
+    pub fn GetInitializationData(self: *const IXamlDiagnostics, pInitializationData: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.GetInitializationData(self, pInitializationData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IBitmapData_Value = Guid.initString("d1a34ef2-cad8-4635-a3d2-fcda8d3f3caf");
 pub const IID_IBitmapData = &IID_IBitmapData_Value;
-pub const IBitmapData = extern struct {
+pub const IBitmapData = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        CopyBytesTo: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitmapData,
-                sourceOffsetInBytes: u32,
-                maxBytesToCopy: u32,
-                pvBytes: [*:0]u8,
-                numberOfBytesCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitmapData,
-                sourceOffsetInBytes: u32,
-                maxBytesToCopy: u32,
-                pvBytes: [*:0]u8,
-                numberOfBytesCopied: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetStride: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitmapData,
-                pStride: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitmapData,
-                pStride: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetBitmapDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitmapData,
-                pBitmapDescription: ?*BitmapDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitmapData,
-                pBitmapDescription: ?*BitmapDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetSourceBitmapDescription: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IBitmapData,
-                pBitmapDescription: ?*BitmapDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IBitmapData,
-                pBitmapDescription: ?*BitmapDescription,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        CopyBytesTo: *const fn(
+            self: *const IBitmapData,
+            sourceOffsetInBytes: u32,
+            maxBytesToCopy: u32,
+            pvBytes: [*:0]u8,
+            numberOfBytesCopied: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetStride: *const fn(
+            self: *const IBitmapData,
+            pStride: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetBitmapDescription: *const fn(
+            self: *const IBitmapData,
+            pBitmapDescription: ?*BitmapDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetSourceBitmapDescription: *const fn(
+            self: *const IBitmapData,
+            pBitmapDescription: ?*BitmapDescription,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitmapData_CopyBytesTo(self: *const T, sourceOffsetInBytes: u32, maxBytesToCopy: u32, pvBytes: [*:0]u8, numberOfBytesCopied: ?*u32) HRESULT {
-                return @as(*const IBitmapData.VTable, @ptrCast(self.vtable)).CopyBytesTo(@as(*const IBitmapData, @ptrCast(self)), sourceOffsetInBytes, maxBytesToCopy, pvBytes, numberOfBytesCopied);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitmapData_GetStride(self: *const T, pStride: ?*u32) HRESULT {
-                return @as(*const IBitmapData.VTable, @ptrCast(self.vtable)).GetStride(@as(*const IBitmapData, @ptrCast(self)), pStride);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitmapData_GetBitmapDescription(self: *const T, pBitmapDescription: ?*BitmapDescription) HRESULT {
-                return @as(*const IBitmapData.VTable, @ptrCast(self.vtable)).GetBitmapDescription(@as(*const IBitmapData, @ptrCast(self)), pBitmapDescription);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IBitmapData_GetSourceBitmapDescription(self: *const T, pBitmapDescription: ?*BitmapDescription) HRESULT {
-                return @as(*const IBitmapData.VTable, @ptrCast(self.vtable)).GetSourceBitmapDescription(@as(*const IBitmapData, @ptrCast(self)), pBitmapDescription);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn CopyBytesTo(self: *const IBitmapData, sourceOffsetInBytes: u32, maxBytesToCopy: u32, pvBytes: [*:0]u8, numberOfBytesCopied: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.CopyBytesTo(self, sourceOffsetInBytes, maxBytesToCopy, pvBytes, numberOfBytesCopied);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetStride(self: *const IBitmapData, pStride: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetStride(self, pStride);
+    }
+    pub fn GetBitmapDescription(self: *const IBitmapData, pBitmapDescription: ?*BitmapDescription) callconv(.Inline) HRESULT {
+        return self.vtable.GetBitmapDescription(self, pBitmapDescription);
+    }
+    pub fn GetSourceBitmapDescription(self: *const IBitmapData, pBitmapDescription: ?*BitmapDescription) callconv(.Inline) HRESULT {
+        return self.vtable.GetSourceBitmapDescription(self, pBitmapDescription);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.14393'
 const IID_IVisualTreeService2_Value = Guid.initString("130f5136-ec43-4f61-89c7-9801a36d2e95");
 pub const IID_IVisualTreeService2 = &IID_IVisualTreeService2_Value;
-pub const IVisualTreeService2 = extern struct {
+pub const IVisualTreeService2 = extern union {
     pub const VTable = extern struct {
         base: IVisualTreeService.VTable,
-        GetPropertyIndex: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService2,
-                object: u64,
-                propertyName: ?[*:0]const u16,
-                pPropertyIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService2,
-                object: u64,
-                propertyName: ?[*:0]const u16,
-                pPropertyIndex: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetProperty: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService2,
-                object: u64,
-                propertyIndex: u32,
-                pValue: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService2,
-                object: u64,
-                propertyIndex: u32,
-                pValue: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReplaceResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService2,
-                resourceDictionary: u64,
-                key: u64,
-                newValue: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService2,
-                resourceDictionary: u64,
-                key: u64,
-                newValue: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RenderTargetBitmap: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService2,
-                handle: u64,
-                options: RenderTargetBitmapOptions,
-                maxPixelWidth: u32,
-                maxPixelHeight: u32,
-                ppBitmapData: ?*?*IBitmapData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService2,
-                handle: u64,
-                options: RenderTargetBitmapOptions,
-                maxPixelWidth: u32,
-                maxPixelHeight: u32,
-                ppBitmapData: ?*?*IBitmapData,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetPropertyIndex: *const fn(
+            self: *const IVisualTreeService2,
+            object: u64,
+            propertyName: ?[*:0]const u16,
+            pPropertyIndex: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetProperty: *const fn(
+            self: *const IVisualTreeService2,
+            object: u64,
+            propertyIndex: u32,
+            pValue: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReplaceResource: *const fn(
+            self: *const IVisualTreeService2,
+            resourceDictionary: u64,
+            key: u64,
+            newValue: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RenderTargetBitmap: *const fn(
+            self: *const IVisualTreeService2,
+            handle: u64,
+            options: RenderTargetBitmapOptions,
+            maxPixelWidth: u32,
+            maxPixelHeight: u32,
+            ppBitmapData: ?*?*IBitmapData,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVisualTreeService.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService2_GetPropertyIndex(self: *const T, object: u64, propertyName: ?[*:0]const u16, pPropertyIndex: ?*u32) HRESULT {
-                return @as(*const IVisualTreeService2.VTable, @ptrCast(self.vtable)).GetPropertyIndex(@as(*const IVisualTreeService2, @ptrCast(self)), object, propertyName, pPropertyIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService2_GetProperty(self: *const T, object: u64, propertyIndex: u32, pValue: ?*u64) HRESULT {
-                return @as(*const IVisualTreeService2.VTable, @ptrCast(self.vtable)).GetProperty(@as(*const IVisualTreeService2, @ptrCast(self)), object, propertyIndex, pValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService2_ReplaceResource(self: *const T, resourceDictionary: u64, key: u64, newValue: u64) HRESULT {
-                return @as(*const IVisualTreeService2.VTable, @ptrCast(self.vtable)).ReplaceResource(@as(*const IVisualTreeService2, @ptrCast(self)), resourceDictionary, key, newValue);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService2_RenderTargetBitmap(self: *const T, handle: u64, options: RenderTargetBitmapOptions, maxPixelWidth: u32, maxPixelHeight: u32, ppBitmapData: ?*?*IBitmapData) HRESULT {
-                return @as(*const IVisualTreeService2.VTable, @ptrCast(self.vtable)).RenderTargetBitmap(@as(*const IVisualTreeService2, @ptrCast(self)), handle, options, maxPixelWidth, maxPixelHeight, ppBitmapData);
-            }
-        };
+    IVisualTreeService: IVisualTreeService,
+    IUnknown: IUnknown,
+    pub fn GetPropertyIndex(self: *const IVisualTreeService2, object: u64, propertyName: ?[*:0]const u16, pPropertyIndex: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetPropertyIndex(self, object, propertyName, pPropertyIndex);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetProperty(self: *const IVisualTreeService2, object: u64, propertyIndex: u32, pValue: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetProperty(self, object, propertyIndex, pValue);
+    }
+    pub fn ReplaceResource(self: *const IVisualTreeService2, resourceDictionary: u64, key: u64, newValue: u64) callconv(.Inline) HRESULT {
+        return self.vtable.ReplaceResource(self, resourceDictionary, key, newValue);
+    }
+    pub fn RenderTargetBitmap(self: *const IVisualTreeService2, handle: u64, options: RenderTargetBitmapOptions, maxPixelWidth: u32, maxPixelHeight: u32, ppBitmapData: ?*?*IBitmapData) callconv(.Inline) HRESULT {
+        return self.vtable.RenderTargetBitmap(self, handle, options, maxPixelWidth, maxPixelHeight, ppBitmapData);
+    }
 };
 
 // TODO: this type is limited to platform 'windows10.0.15063'
 const IID_IVisualTreeService3_Value = Guid.initString("0e79c6e0-85a0-4be8-b41a-655cf1fd19bd");
 pub const IID_IVisualTreeService3 = &IID_IVisualTreeService3_Value;
-pub const IVisualTreeService3 = extern struct {
+pub const IVisualTreeService3 = extern union {
     pub const VTable = extern struct {
         base: IVisualTreeService2.VTable,
-        ResolveResource: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService3,
-                resourceContext: u64,
-                resourceName: ?[*:0]const u16,
-                resourceType: ResourceType,
-                propertyIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService3,
-                resourceContext: u64,
-                resourceName: ?[*:0]const u16,
-                resourceType: ResourceType,
-                propertyIndex: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetDictionaryItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService3,
-                dictionaryHandle: u64,
-                resourceName: ?[*:0]const u16,
-                resourceIsImplicitStyle: BOOL,
-                resourceHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService3,
-                dictionaryHandle: u64,
-                resourceName: ?[*:0]const u16,
-                resourceIsImplicitStyle: BOOL,
-                resourceHandle: ?*u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        AddDictionaryItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService3,
-                dictionaryHandle: u64,
-                resourceKey: u64,
-                resourceHandle: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService3,
-                dictionaryHandle: u64,
-                resourceKey: u64,
-                resourceHandle: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        RemoveDictionaryItem: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IVisualTreeService3,
-                dictionaryHandle: u64,
-                resourceKey: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IVisualTreeService3,
-                dictionaryHandle: u64,
-                resourceKey: u64,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        ResolveResource: *const fn(
+            self: *const IVisualTreeService3,
+            resourceContext: u64,
+            resourceName: ?[*:0]const u16,
+            resourceType: ResourceType,
+            propertyIndex: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetDictionaryItem: *const fn(
+            self: *const IVisualTreeService3,
+            dictionaryHandle: u64,
+            resourceName: ?[*:0]const u16,
+            resourceIsImplicitStyle: BOOL,
+            resourceHandle: ?*u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        AddDictionaryItem: *const fn(
+            self: *const IVisualTreeService3,
+            dictionaryHandle: u64,
+            resourceKey: u64,
+            resourceHandle: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        RemoveDictionaryItem: *const fn(
+            self: *const IVisualTreeService3,
+            dictionaryHandle: u64,
+            resourceKey: u64,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IVisualTreeService2.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService3_ResolveResource(self: *const T, resourceContext: u64, resourceName: ?[*:0]const u16, resourceType: ResourceType, propertyIndex: u32) HRESULT {
-                return @as(*const IVisualTreeService3.VTable, @ptrCast(self.vtable)).ResolveResource(@as(*const IVisualTreeService3, @ptrCast(self)), resourceContext, resourceName, resourceType, propertyIndex);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService3_GetDictionaryItem(self: *const T, dictionaryHandle: u64, resourceName: ?[*:0]const u16, resourceIsImplicitStyle: BOOL, resourceHandle: ?*u64) HRESULT {
-                return @as(*const IVisualTreeService3.VTable, @ptrCast(self.vtable)).GetDictionaryItem(@as(*const IVisualTreeService3, @ptrCast(self)), dictionaryHandle, resourceName, resourceIsImplicitStyle, resourceHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService3_AddDictionaryItem(self: *const T, dictionaryHandle: u64, resourceKey: u64, resourceHandle: u64) HRESULT {
-                return @as(*const IVisualTreeService3.VTable, @ptrCast(self.vtable)).AddDictionaryItem(@as(*const IVisualTreeService3, @ptrCast(self)), dictionaryHandle, resourceKey, resourceHandle);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IVisualTreeService3_RemoveDictionaryItem(self: *const T, dictionaryHandle: u64, resourceKey: u64) HRESULT {
-                return @as(*const IVisualTreeService3.VTable, @ptrCast(self.vtable)).RemoveDictionaryItem(@as(*const IVisualTreeService3, @ptrCast(self)), dictionaryHandle, resourceKey);
-            }
-        };
+    IVisualTreeService2: IVisualTreeService2,
+    IVisualTreeService: IVisualTreeService,
+    IUnknown: IUnknown,
+    pub fn ResolveResource(self: *const IVisualTreeService3, resourceContext: u64, resourceName: ?[*:0]const u16, resourceType: ResourceType, propertyIndex: u32) callconv(.Inline) HRESULT {
+        return self.vtable.ResolveResource(self, resourceContext, resourceName, resourceType, propertyIndex);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetDictionaryItem(self: *const IVisualTreeService3, dictionaryHandle: u64, resourceName: ?[*:0]const u16, resourceIsImplicitStyle: BOOL, resourceHandle: ?*u64) callconv(.Inline) HRESULT {
+        return self.vtable.GetDictionaryItem(self, dictionaryHandle, resourceName, resourceIsImplicitStyle, resourceHandle);
+    }
+    pub fn AddDictionaryItem(self: *const IVisualTreeService3, dictionaryHandle: u64, resourceKey: u64, resourceHandle: u64) callconv(.Inline) HRESULT {
+        return self.vtable.AddDictionaryItem(self, dictionaryHandle, resourceKey, resourceHandle);
+    }
+    pub fn RemoveDictionaryItem(self: *const IVisualTreeService3, dictionaryHandle: u64, resourceKey: u64) callconv(.Inline) HRESULT {
+        return self.vtable.RemoveDictionaryItem(self, dictionaryHandle, resourceKey);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (2)
@@ -849,15 +533,10 @@ pub extern "windows.ui.xaml" fn InitializeXamlDiagnosticsEx(
     wszInitializationData: ?[*:0]const u16,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (11)
 //--------------------------------------------------------------------------------
@@ -874,13 +553,13 @@ const RECT = @import("../../foundation.zig").RECT;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

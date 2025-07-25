@@ -707,16 +707,87 @@ pub const GLU_ERROR = @as(u32, 100103);
 pub const GLU_EDGE_FLAG = @as(u32, 100104);
 
 //--------------------------------------------------------------------------------
-// Section: Types (40)
+// Section: Types (43)
 //--------------------------------------------------------------------------------
+pub const PFD_PIXEL_TYPE = enum(i8) {
+    RGBA = 0,
+    COLORINDEX = 1,
+};
+pub const PFD_TYPE_RGBA = PFD_PIXEL_TYPE.RGBA;
+pub const PFD_TYPE_COLORINDEX = PFD_PIXEL_TYPE.COLORINDEX;
+
+pub const PFD_LAYER_TYPE = enum(i8) {
+    UNDERLAY_PLANE = -1,
+    MAIN_PLANE = 0,
+    OVERLAY_PLANE = 1,
+};
+pub const PFD_UNDERLAY_PLANE = PFD_LAYER_TYPE.UNDERLAY_PLANE;
+pub const PFD_MAIN_PLANE = PFD_LAYER_TYPE.MAIN_PLANE;
+pub const PFD_OVERLAY_PLANE = PFD_LAYER_TYPE.OVERLAY_PLANE;
+
+pub const PFD_FLAGS = packed struct(u32) {
+    DOUBLEBUFFER: u1 = 0,
+    STEREO: u1 = 0,
+    DRAW_TO_WINDOW: u1 = 0,
+    DRAW_TO_BITMAP: u1 = 0,
+    SUPPORT_GDI: u1 = 0,
+    SUPPORT_OPENGL: u1 = 0,
+    GENERIC_FORMAT: u1 = 0,
+    NEED_PALETTE: u1 = 0,
+    NEED_SYSTEM_PALETTE: u1 = 0,
+    SWAP_EXCHANGE: u1 = 0,
+    SWAP_COPY: u1 = 0,
+    SWAP_LAYER_BUFFERS: u1 = 0,
+    GENERIC_ACCELERATED: u1 = 0,
+    SUPPORT_DIRECTDRAW: u1 = 0,
+    DIRECT3D_ACCELERATED: u1 = 0,
+    SUPPORT_COMPOSITION: u1 = 0,
+    _16: u1 = 0,
+    _17: u1 = 0,
+    _18: u1 = 0,
+    _19: u1 = 0,
+    _20: u1 = 0,
+    _21: u1 = 0,
+    _22: u1 = 0,
+    _23: u1 = 0,
+    _24: u1 = 0,
+    _25: u1 = 0,
+    _26: u1 = 0,
+    _27: u1 = 0,
+    _28: u1 = 0,
+    DEPTH_DONTCARE: u1 = 0,
+    DOUBLEBUFFER_DONTCARE: u1 = 0,
+    STEREO_DONTCARE: u1 = 0,
+};
+pub const PFD_DOUBLEBUFFER = PFD_FLAGS{ .DOUBLEBUFFER = 1 };
+pub const PFD_STEREO = PFD_FLAGS{ .STEREO = 1 };
+pub const PFD_DRAW_TO_WINDOW = PFD_FLAGS{ .DRAW_TO_WINDOW = 1 };
+pub const PFD_DRAW_TO_BITMAP = PFD_FLAGS{ .DRAW_TO_BITMAP = 1 };
+pub const PFD_SUPPORT_GDI = PFD_FLAGS{ .SUPPORT_GDI = 1 };
+pub const PFD_SUPPORT_OPENGL = PFD_FLAGS{ .SUPPORT_OPENGL = 1 };
+pub const PFD_GENERIC_FORMAT = PFD_FLAGS{ .GENERIC_FORMAT = 1 };
+pub const PFD_NEED_PALETTE = PFD_FLAGS{ .NEED_PALETTE = 1 };
+pub const PFD_NEED_SYSTEM_PALETTE = PFD_FLAGS{ .NEED_SYSTEM_PALETTE = 1 };
+pub const PFD_SWAP_EXCHANGE = PFD_FLAGS{ .SWAP_EXCHANGE = 1 };
+pub const PFD_SWAP_COPY = PFD_FLAGS{ .SWAP_COPY = 1 };
+pub const PFD_SWAP_LAYER_BUFFERS = PFD_FLAGS{ .SWAP_LAYER_BUFFERS = 1 };
+pub const PFD_GENERIC_ACCELERATED = PFD_FLAGS{ .GENERIC_ACCELERATED = 1 };
+pub const PFD_SUPPORT_DIRECTDRAW = PFD_FLAGS{ .SUPPORT_DIRECTDRAW = 1 };
+pub const PFD_DIRECT3D_ACCELERATED = PFD_FLAGS{ .DIRECT3D_ACCELERATED = 1 };
+pub const PFD_SUPPORT_COMPOSITION = PFD_FLAGS{ .SUPPORT_COMPOSITION = 1 };
+pub const PFD_DEPTH_DONTCARE = PFD_FLAGS{ .DEPTH_DONTCARE = 1 };
+pub const PFD_DOUBLEBUFFER_DONTCARE = PFD_FLAGS{ .DOUBLEBUFFER_DONTCARE = 1 };
+pub const PFD_STEREO_DONTCARE = PFD_FLAGS{ .STEREO_DONTCARE = 1 };
+
 // TODO: this type has a FreeFunc 'wglDeleteContext', what can Zig do with this information?
-pub const HGLRC = *opaque {};
+// TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
+pub const HGLRC = *opaque{};
 
 pub const PIXELFORMATDESCRIPTOR = extern struct {
     nSize: u16,
     nVersion: u16,
-    dwFlags: u32,
-    iPixelType: u8,
+    dwFlags: PFD_FLAGS,
+    iPixelType: PFD_PIXEL_TYPE,
     cColorBits: u8,
     cRedBits: u8,
     cRedShift: u8,
@@ -734,7 +805,7 @@ pub const PIXELFORMATDESCRIPTOR = extern struct {
     cDepthBits: u8,
     cStencilBits: u8,
     cAuxBuffers: u8,
-    iLayerType: u8,
+    iLayerType: PFD_LAYER_TYPE,
     bReserved: u8,
     dwLayerMask: u32,
     dwVisibleMask: u32,
@@ -786,258 +857,123 @@ pub const LAYERPLANEDESCRIPTOR = extern struct {
     crTransparent: u32,
 };
 
-pub const PFNGLARRAYELEMENTEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        i: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        i: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLARRAYELEMENTEXTPROC = *const fn(
+    i: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLDRAWARRAYSEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        mode: u32,
-        first: i32,
-        count: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        mode: u32,
-        first: i32,
-        count: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLDRAWARRAYSEXTPROC = *const fn(
+    mode: u32,
+    first: i32,
+    count: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLVERTEXPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLVERTEXPOINTEREXTPROC = *const fn(
+    size: i32,
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLNORMALPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLNORMALPOINTEREXTPROC = *const fn(
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLCOLORPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLCOLORPOINTEREXTPROC = *const fn(
+    size: i32,
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLINDEXPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLINDEXPOINTEREXTPROC = *const fn(
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLTEXCOORDPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        size: i32,
-        type: u32,
-        stride: i32,
-        count: i32,
-        pointer: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLTEXCOORDPOINTEREXTPROC = *const fn(
+    size: i32,
+    type: u32,
+    stride: i32,
+    count: i32,
+    pointer: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLEDGEFLAGPOINTEREXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        stride: i32,
-        count: i32,
-        pointer: ?*const u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        stride: i32,
-        count: i32,
-        pointer: ?*const u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLEDGEFLAGPOINTEREXTPROC = *const fn(
+    stride: i32,
+    count: i32,
+    pointer: ?*const u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETPOINTERVEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        pname: u32,
-        params: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        pname: u32,
-        params: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLGETPOINTERVEXTPROC = *const fn(
+    pname: u32,
+    params: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLARRAYELEMENTARRAYEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        mode: u32,
-        count: i32,
-        pi: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        mode: u32,
-        count: i32,
-        pi: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLARRAYELEMENTARRAYEXTPROC = *const fn(
+    mode: u32,
+    count: i32,
+    pi: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLDRAWRANGEELEMENTSWINPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        mode: u32,
-        start: u32,
-        end: u32,
-        count: i32,
-        type: u32,
-        indices: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        mode: u32,
-        start: u32,
-        end: u32,
-        count: i32,
-        type: u32,
-        indices: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLDRAWRANGEELEMENTSWINPROC = *const fn(
+    mode: u32,
+    start: u32,
+    end: u32,
+    count: i32,
+    type: u32,
+    indices: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLADDSWAPHINTRECTWINPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        x: i32,
-        y: i32,
-        width: i32,
-        height: i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLADDSWAPHINTRECTWINPROC = *const fn(
+    x: i32,
+    y: i32,
+    width: i32,
+    height: i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLCOLORTABLEEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        target: u32,
-        internalFormat: u32,
-        width: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        target: u32,
-        internalFormat: u32,
-        width: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLCOLORTABLEEXTPROC = *const fn(
+    target: u32,
+    internalFormat: u32,
+    width: i32,
+    format: u32,
+    type: u32,
+    data: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLCOLORSUBTABLEEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        target: u32,
-        start: i32,
-        count: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        target: u32,
-        start: i32,
-        count: i32,
-        format: u32,
-        type: u32,
-        data: ?*const anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLCOLORSUBTABLEEXTPROC = *const fn(
+    target: u32,
+    start: i32,
+    count: i32,
+    format: u32,
+    type: u32,
+    data: ?*const anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETCOLORTABLEEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        target: u32,
-        format: u32,
-        type: u32,
-        data: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        target: u32,
-        format: u32,
-        type: u32,
-        data: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLGETCOLORTABLEEXTPROC = *const fn(
+    target: u32,
+    format: u32,
+    type: u32,
+    data: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETCOLORTABLEPARAMETERIVEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        target: u32,
-        pname: u32,
-        params: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        target: u32,
-        pname: u32,
-        params: ?*i32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLGETCOLORTABLEPARAMETERIVEXTPROC = *const fn(
+    target: u32,
+    pname: u32,
+    params: ?*i32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const PFNGLGETCOLORTABLEPARAMETERFVEXTPROC = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        target: u32,
-        pname: u32,
-        params: ?*f32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        target: u32,
-        pname: u32,
-        params: ?*f32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const PFNGLGETCOLORTABLEPARAMETERFVEXTPROC = *const fn(
+    target: u32,
+    pname: u32,
+    params: ?*f32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub const GLUnurbs = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -1051,149 +987,72 @@ pub const GLUtesselator = extern struct {
     placeholder: usize, // TODO: why is this type empty?
 };
 
-pub const GLUquadricErrorProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUquadricErrorProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessBeginProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessBeginProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEdgeFlagProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u8,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessEdgeFlagProc = *const fn(
+    param0: u8,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessVertexProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessVertexProc = *const fn(
+    param0: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEndProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn () callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn () callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessEndProc = *const fn(
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessErrorProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessErrorProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessCombineProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessCombineProc = *const fn(
+    param0: ?*f64,
+    param1: ?*?*anyopaque,
+    param2: ?*f32,
+    param3: ?*?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessBeginDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessBeginDataProc = *const fn(
+    param0: u32,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEdgeFlagDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u8,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u8,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessEdgeFlagDataProc = *const fn(
+    param0: u8,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessVertexDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*anyopaque,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: ?*anyopaque,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessVertexDataProc = *const fn(
+    param0: ?*anyopaque,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessEndDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessEndDataProc = *const fn(
+    param0: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessErrorDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u32,
-        param1: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessErrorDataProc = *const fn(
+    param0: u32,
+    param1: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUtessCombineDataProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: ?*f64,
-        param1: ?*?*anyopaque,
-        param2: ?*f32,
-        param3: ?*?*anyopaque,
-        param4: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUtessCombineDataProc = *const fn(
+    param0: ?*f64,
+    param1: ?*?*anyopaque,
+    param2: ?*f32,
+    param3: ?*?*anyopaque,
+    param4: ?*anyopaque,
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub const GLUnurbsErrorProc = switch (@import("builtin").zig_backend) {
-    .stage1 => fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-    else => *const fn (
-        param0: u32,
-    ) callconv(@import("std").os.windows.WINAPI) void,
-};
+pub const GLUnurbsErrorProc = *const fn(
+    param0: u32,
+) callconv(@import("std").os.windows.WINAPI) void;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (412)
@@ -1207,7 +1066,7 @@ pub extern "gdi32" fn ChoosePixelFormat(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn DescribePixelFormat(
     hdc: ?HDC,
-    iPixelFormat: i32,
+    iPixelFormat: PFD_PIXEL_TYPE,
     nBytes: u32,
     // TODO: what to do with BytesParamIndex 2?
     ppfd: ?*PIXELFORMATDESCRIPTOR,
@@ -1257,10 +1116,12 @@ pub extern "opengl32" fn wglDeleteContext(
 ) callconv(@import("std").os.windows.WINAPI) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "opengl32" fn wglGetCurrentContext() callconv(@import("std").os.windows.WINAPI) ?HGLRC;
+pub extern "opengl32" fn wglGetCurrentContext(
+) callconv(@import("std").os.windows.WINAPI) ?HGLRC;
 
 // TODO: this type is limited to platform 'windows5.0'
-pub extern "opengl32" fn wglGetCurrentDC() callconv(@import("std").os.windows.WINAPI) ?HDC;
+pub extern "opengl32" fn wglGetCurrentDC(
+) callconv(@import("std").os.windows.WINAPI) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglGetProcAddress(
@@ -1770,9 +1631,11 @@ pub extern "opengl32" fn glEnableClientState(
     array: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glEnd() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glEnd(
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glEndList() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glEndList(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "opengl32" fn glEvalCoord1d(
     u: f64,
@@ -1837,9 +1700,11 @@ pub extern "opengl32" fn glFeedbackBuffer(
     buffer: ?*f32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glFinish() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glFinish(
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glFlush() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glFlush(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "opengl32" fn glFogf(
     pname: u32,
@@ -1898,7 +1763,8 @@ pub extern "opengl32" fn glGetDoublev(
     params: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glGetError() callconv(@import("std").os.windows.WINAPI) u32;
+pub extern "opengl32" fn glGetError(
+) callconv(@import("std").os.windows.WINAPI) u32;
 
 pub extern "opengl32" fn glGetFloatv(
     pname: u32,
@@ -2099,7 +1965,8 @@ pub extern "opengl32" fn glIndexubv(
     c: ?*const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glInitNames() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glInitNames(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "opengl32" fn glInterleavedArrays(
     format: u32,
@@ -2176,7 +2043,8 @@ pub extern "opengl32" fn glListBase(
     base: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glLoadIdentity() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glLoadIdentity(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "opengl32" fn glLoadMatrixd(
     m: ?*const f64,
@@ -2439,13 +2307,17 @@ pub extern "opengl32" fn glPolygonStipple(
     mask: ?*const u8,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glPopAttrib() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glPopAttrib(
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glPopClientAttrib() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glPopClientAttrib(
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glPopMatrix() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glPopMatrix(
+) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glPopName() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glPopName(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "opengl32" fn glPrioritizeTextures(
     n: i32,
@@ -2461,7 +2333,8 @@ pub extern "opengl32" fn glPushClientAttrib(
     mask: u32,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "opengl32" fn glPushMatrix() callconv(@import("std").os.windows.WINAPI) void;
+pub extern "opengl32" fn glPushMatrix(
+) callconv(@import("std").os.windows.WINAPI) void;
 
 pub extern "opengl32" fn glPushName(
     name: u32,
@@ -3246,7 +3119,8 @@ pub extern "glu32" fn gluBuild2DMipmaps(
     data: ?*const anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) i32;
 
-pub extern "glu32" fn gluNewQuadric() callconv(@import("std").os.windows.WINAPI) ?*GLUquadric;
+pub extern "glu32" fn gluNewQuadric(
+) callconv(@import("std").os.windows.WINAPI) ?*GLUquadric;
 
 pub extern "glu32" fn gluDeleteQuadric(
     state: ?*GLUquadric,
@@ -3312,7 +3186,8 @@ pub extern "glu32" fn gluQuadricCallback(
     @"fn": isize,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "glu32" fn gluNewTess() callconv(@import("std").os.windows.WINAPI) ?*GLUtesselator;
+pub extern "glu32" fn gluNewTess(
+) callconv(@import("std").os.windows.WINAPI) ?*GLUtesselator;
 
 pub extern "glu32" fn gluDeleteTess(
     tess: ?*GLUtesselator,
@@ -3366,7 +3241,8 @@ pub extern "glu32" fn gluGetTessProperty(
     value: ?*f64,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
-pub extern "glu32" fn gluNewNurbsRenderer() callconv(@import("std").os.windows.WINAPI) ?*GLUnurbs;
+pub extern "glu32" fn gluNewNurbsRenderer(
+) callconv(@import("std").os.windows.WINAPI) ?*GLUnurbs;
 
 pub extern "glu32" fn gluDeleteNurbsRenderer(
     nobj: ?*GLUnurbs,
@@ -3466,26 +3342,23 @@ pub extern "glu32" fn gluEndPolygon(
     tess: ?*GLUtesselator,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (2)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../zig.zig").unicode_mode) {
-    .ansi => struct {
-        pub const wglUseFontBitmaps = thismodule.wglUseFontBitmapsA;
-        pub const wglUseFontOutlines = thismodule.wglUseFontOutlinesA;
-    },
-    .wide => struct {
-        pub const wglUseFontBitmaps = thismodule.wglUseFontBitmapsW;
-        pub const wglUseFontOutlines = thismodule.wglUseFontOutlinesW;
-    },
-    .unspecified => if (@import("builtin").is_test) struct {
-        pub const wglUseFontBitmaps = *opaque {};
-        pub const wglUseFontOutlines = *opaque {};
-    } else struct {
-        pub const wglUseFontBitmaps = @compileError("'wglUseFontBitmaps' requires that UNICODE be set to true or false in the root module");
-        pub const wglUseFontOutlines = @compileError("'wglUseFontOutlines' requires that UNICODE be set to true or false in the root module");
-    },
+pub const wglUseFontBitmaps = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wglUseFontBitmapsA,
+    .wide => @This().wglUseFontBitmapsW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wglUseFontBitmaps' requires that UNICODE be set to true or false in the root module",
+    ),
+};
+pub const wglUseFontOutlines = switch (@import("../zig.zig").unicode_mode) {
+    .ansi => @This().wglUseFontOutlinesA,
+    .wide => @This().wglUseFontOutlinesW,
+    .unspecified => if (@import("builtin").is_test) void else @compileError(
+        "'wglUseFontOutlines' requires that UNICODE be set to true or false in the root module",
+    ),
 };
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
@@ -3500,107 +3373,45 @@ const PWSTR = @import("../foundation.zig").PWSTR;
 
 test {
     // The following '_ = <FuncPtrType>' lines are a workaround for https://github.com/ziglang/zig/issues/4476
-    if (@hasDecl(@This(), "PFNGLARRAYELEMENTEXTPROC")) {
-        _ = PFNGLARRAYELEMENTEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLDRAWARRAYSEXTPROC")) {
-        _ = PFNGLDRAWARRAYSEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLVERTEXPOINTEREXTPROC")) {
-        _ = PFNGLVERTEXPOINTEREXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLNORMALPOINTEREXTPROC")) {
-        _ = PFNGLNORMALPOINTEREXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLCOLORPOINTEREXTPROC")) {
-        _ = PFNGLCOLORPOINTEREXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLINDEXPOINTEREXTPROC")) {
-        _ = PFNGLINDEXPOINTEREXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLTEXCOORDPOINTEREXTPROC")) {
-        _ = PFNGLTEXCOORDPOINTEREXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLEDGEFLAGPOINTEREXTPROC")) {
-        _ = PFNGLEDGEFLAGPOINTEREXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLGETPOINTERVEXTPROC")) {
-        _ = PFNGLGETPOINTERVEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLARRAYELEMENTARRAYEXTPROC")) {
-        _ = PFNGLARRAYELEMENTARRAYEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLDRAWRANGEELEMENTSWINPROC")) {
-        _ = PFNGLDRAWRANGEELEMENTSWINPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLADDSWAPHINTRECTWINPROC")) {
-        _ = PFNGLADDSWAPHINTRECTWINPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLCOLORTABLEEXTPROC")) {
-        _ = PFNGLCOLORTABLEEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLCOLORSUBTABLEEXTPROC")) {
-        _ = PFNGLCOLORSUBTABLEEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLGETCOLORTABLEEXTPROC")) {
-        _ = PFNGLGETCOLORTABLEEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLGETCOLORTABLEPARAMETERIVEXTPROC")) {
-        _ = PFNGLGETCOLORTABLEPARAMETERIVEXTPROC;
-    }
-    if (@hasDecl(@This(), "PFNGLGETCOLORTABLEPARAMETERFVEXTPROC")) {
-        _ = PFNGLGETCOLORTABLEPARAMETERFVEXTPROC;
-    }
-    if (@hasDecl(@This(), "GLUquadricErrorProc")) {
-        _ = GLUquadricErrorProc;
-    }
-    if (@hasDecl(@This(), "GLUtessBeginProc")) {
-        _ = GLUtessBeginProc;
-    }
-    if (@hasDecl(@This(), "GLUtessEdgeFlagProc")) {
-        _ = GLUtessEdgeFlagProc;
-    }
-    if (@hasDecl(@This(), "GLUtessVertexProc")) {
-        _ = GLUtessVertexProc;
-    }
-    if (@hasDecl(@This(), "GLUtessEndProc")) {
-        _ = GLUtessEndProc;
-    }
-    if (@hasDecl(@This(), "GLUtessErrorProc")) {
-        _ = GLUtessErrorProc;
-    }
-    if (@hasDecl(@This(), "GLUtessCombineProc")) {
-        _ = GLUtessCombineProc;
-    }
-    if (@hasDecl(@This(), "GLUtessBeginDataProc")) {
-        _ = GLUtessBeginDataProc;
-    }
-    if (@hasDecl(@This(), "GLUtessEdgeFlagDataProc")) {
-        _ = GLUtessEdgeFlagDataProc;
-    }
-    if (@hasDecl(@This(), "GLUtessVertexDataProc")) {
-        _ = GLUtessVertexDataProc;
-    }
-    if (@hasDecl(@This(), "GLUtessEndDataProc")) {
-        _ = GLUtessEndDataProc;
-    }
-    if (@hasDecl(@This(), "GLUtessErrorDataProc")) {
-        _ = GLUtessErrorDataProc;
-    }
-    if (@hasDecl(@This(), "GLUtessCombineDataProc")) {
-        _ = GLUtessCombineDataProc;
-    }
-    if (@hasDecl(@This(), "GLUnurbsErrorProc")) {
-        _ = GLUnurbsErrorProc;
-    }
+    if (@hasDecl(@This(), "PFNGLARRAYELEMENTEXTPROC")) { _ = PFNGLARRAYELEMENTEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLDRAWARRAYSEXTPROC")) { _ = PFNGLDRAWARRAYSEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLVERTEXPOINTEREXTPROC")) { _ = PFNGLVERTEXPOINTEREXTPROC; }
+    if (@hasDecl(@This(), "PFNGLNORMALPOINTEREXTPROC")) { _ = PFNGLNORMALPOINTEREXTPROC; }
+    if (@hasDecl(@This(), "PFNGLCOLORPOINTEREXTPROC")) { _ = PFNGLCOLORPOINTEREXTPROC; }
+    if (@hasDecl(@This(), "PFNGLINDEXPOINTEREXTPROC")) { _ = PFNGLINDEXPOINTEREXTPROC; }
+    if (@hasDecl(@This(), "PFNGLTEXCOORDPOINTEREXTPROC")) { _ = PFNGLTEXCOORDPOINTEREXTPROC; }
+    if (@hasDecl(@This(), "PFNGLEDGEFLAGPOINTEREXTPROC")) { _ = PFNGLEDGEFLAGPOINTEREXTPROC; }
+    if (@hasDecl(@This(), "PFNGLGETPOINTERVEXTPROC")) { _ = PFNGLGETPOINTERVEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLARRAYELEMENTARRAYEXTPROC")) { _ = PFNGLARRAYELEMENTARRAYEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLDRAWRANGEELEMENTSWINPROC")) { _ = PFNGLDRAWRANGEELEMENTSWINPROC; }
+    if (@hasDecl(@This(), "PFNGLADDSWAPHINTRECTWINPROC")) { _ = PFNGLADDSWAPHINTRECTWINPROC; }
+    if (@hasDecl(@This(), "PFNGLCOLORTABLEEXTPROC")) { _ = PFNGLCOLORTABLEEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLCOLORSUBTABLEEXTPROC")) { _ = PFNGLCOLORSUBTABLEEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLGETCOLORTABLEEXTPROC")) { _ = PFNGLGETCOLORTABLEEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLGETCOLORTABLEPARAMETERIVEXTPROC")) { _ = PFNGLGETCOLORTABLEPARAMETERIVEXTPROC; }
+    if (@hasDecl(@This(), "PFNGLGETCOLORTABLEPARAMETERFVEXTPROC")) { _ = PFNGLGETCOLORTABLEPARAMETERFVEXTPROC; }
+    if (@hasDecl(@This(), "GLUquadricErrorProc")) { _ = GLUquadricErrorProc; }
+    if (@hasDecl(@This(), "GLUtessBeginProc")) { _ = GLUtessBeginProc; }
+    if (@hasDecl(@This(), "GLUtessEdgeFlagProc")) { _ = GLUtessEdgeFlagProc; }
+    if (@hasDecl(@This(), "GLUtessVertexProc")) { _ = GLUtessVertexProc; }
+    if (@hasDecl(@This(), "GLUtessEndProc")) { _ = GLUtessEndProc; }
+    if (@hasDecl(@This(), "GLUtessErrorProc")) { _ = GLUtessErrorProc; }
+    if (@hasDecl(@This(), "GLUtessCombineProc")) { _ = GLUtessCombineProc; }
+    if (@hasDecl(@This(), "GLUtessBeginDataProc")) { _ = GLUtessBeginDataProc; }
+    if (@hasDecl(@This(), "GLUtessEdgeFlagDataProc")) { _ = GLUtessEdgeFlagDataProc; }
+    if (@hasDecl(@This(), "GLUtessVertexDataProc")) { _ = GLUtessVertexDataProc; }
+    if (@hasDecl(@This(), "GLUtessEndDataProc")) { _ = GLUtessEndDataProc; }
+    if (@hasDecl(@This(), "GLUtessErrorDataProc")) { _ = GLUtessErrorDataProc; }
+    if (@hasDecl(@This(), "GLUtessCombineDataProc")) { _ = GLUtessCombineDataProc; }
+    if (@hasDecl(@This(), "GLUnurbsErrorProc")) { _ = GLUnurbsErrorProc; }
 
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

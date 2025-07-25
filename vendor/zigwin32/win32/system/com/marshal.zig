@@ -9,182 +9,103 @@
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IMarshal_Value = Guid.initString("00000003-0000-0000-c000-000000000046");
 pub const IID_IMarshal = &IID_IMarshal_Value;
-pub const IMarshal = extern struct {
+pub const IMarshal = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        GetUnmarshalClass: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMarshal,
-                riid: ?*const Guid,
-                pv: ?*anyopaque,
-                dwDestContext: u32,
-                pvDestContext: ?*anyopaque,
-                mshlflags: u32,
-                pCid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMarshal,
-                riid: ?*const Guid,
-                pv: ?*anyopaque,
-                dwDestContext: u32,
-                pvDestContext: ?*anyopaque,
-                mshlflags: u32,
-                pCid: ?*Guid,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        GetMarshalSizeMax: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMarshal,
-                riid: ?*const Guid,
-                pv: ?*anyopaque,
-                dwDestContext: u32,
-                pvDestContext: ?*anyopaque,
-                mshlflags: u32,
-                pSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMarshal,
-                riid: ?*const Guid,
-                pv: ?*anyopaque,
-                dwDestContext: u32,
-                pvDestContext: ?*anyopaque,
-                mshlflags: u32,
-                pSize: ?*u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        MarshalInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMarshal,
-                pStm: ?*IStream,
-                riid: ?*const Guid,
-                pv: ?*anyopaque,
-                dwDestContext: u32,
-                pvDestContext: ?*anyopaque,
-                mshlflags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMarshal,
-                pStm: ?*IStream,
-                riid: ?*const Guid,
-                pv: ?*anyopaque,
-                dwDestContext: u32,
-                pvDestContext: ?*anyopaque,
-                mshlflags: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        UnmarshalInterface: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMarshal,
-                pStm: ?*IStream,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMarshal,
-                pStm: ?*IStream,
-                riid: ?*const Guid,
-                ppv: ?*?*anyopaque,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        ReleaseMarshalData: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMarshal,
-                pStm: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMarshal,
-                pStm: ?*IStream,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        DisconnectObject: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMarshal,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMarshal,
-                dwReserved: u32,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetUnmarshalClass: *const fn(
+            self: *const IMarshal,
+            riid: ?*const Guid,
+            pv: ?*anyopaque,
+            dwDestContext: u32,
+            pvDestContext: ?*anyopaque,
+            mshlflags: u32,
+            pCid: ?*Guid,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        GetMarshalSizeMax: *const fn(
+            self: *const IMarshal,
+            riid: ?*const Guid,
+            pv: ?*anyopaque,
+            dwDestContext: u32,
+            pvDestContext: ?*anyopaque,
+            mshlflags: u32,
+            pSize: ?*u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        MarshalInterface: *const fn(
+            self: *const IMarshal,
+            pStm: ?*IStream,
+            riid: ?*const Guid,
+            pv: ?*anyopaque,
+            dwDestContext: u32,
+            pvDestContext: ?*anyopaque,
+            mshlflags: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        UnmarshalInterface: *const fn(
+            self: *const IMarshal,
+            pStm: ?*IStream,
+            riid: ?*const Guid,
+            ppv: ?*?*anyopaque,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ReleaseMarshalData: *const fn(
+            self: *const IMarshal,
+            pStm: ?*IStream,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        DisconnectObject: *const fn(
+            self: *const IMarshal,
+            dwReserved: u32,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMarshal_GetUnmarshalClass(self: *const T, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) HRESULT {
-                return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetUnmarshalClass(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMarshal_GetMarshalSizeMax(self: *const T, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) HRESULT {
-                return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).GetMarshalSizeMax(@as(*const IMarshal, @ptrCast(self)), riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMarshal_MarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) HRESULT {
-                return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).MarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMarshal_UnmarshalInterface(self: *const T, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
-                return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).UnmarshalInterface(@as(*const IMarshal, @ptrCast(self)), pStm, riid, ppv);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMarshal_ReleaseMarshalData(self: *const T, pStm: ?*IStream) HRESULT {
-                return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).ReleaseMarshalData(@as(*const IMarshal, @ptrCast(self)), pStm);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMarshal_DisconnectObject(self: *const T, dwReserved: u32) HRESULT {
-                return @as(*const IMarshal.VTable, @ptrCast(self.vtable)).DisconnectObject(@as(*const IMarshal, @ptrCast(self)), dwReserved);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn GetUnmarshalClass(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pCid: ?*Guid) callconv(.Inline) HRESULT {
+        return self.vtable.GetUnmarshalClass(self, riid, pv, dwDestContext, pvDestContext, mshlflags, pCid);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn GetMarshalSizeMax(self: *const IMarshal, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32, pSize: ?*u32) callconv(.Inline) HRESULT {
+        return self.vtable.GetMarshalSizeMax(self, riid, pv, dwDestContext, pvDestContext, mshlflags, pSize);
+    }
+    pub fn MarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, pv: ?*anyopaque, dwDestContext: u32, pvDestContext: ?*anyopaque, mshlflags: u32) callconv(.Inline) HRESULT {
+        return self.vtable.MarshalInterface(self, pStm, riid, pv, dwDestContext, pvDestContext, mshlflags);
+    }
+    pub fn UnmarshalInterface(self: *const IMarshal, pStm: ?*IStream, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+        return self.vtable.UnmarshalInterface(self, pStm, riid, ppv);
+    }
+    pub fn ReleaseMarshalData(self: *const IMarshal, pStm: ?*IStream) callconv(.Inline) HRESULT {
+        return self.vtable.ReleaseMarshalData(self, pStm);
+    }
+    pub fn DisconnectObject(self: *const IMarshal, dwReserved: u32) callconv(.Inline) HRESULT {
+        return self.vtable.DisconnectObject(self, dwReserved);
+    }
 };
 
 const IID_IMarshal2_Value = Guid.initString("000001cf-0000-0000-c000-000000000046");
 pub const IID_IMarshal2 = &IID_IMarshal2_Value;
-pub const IMarshal2 = extern struct {
+pub const IMarshal2 = extern union {
     pub const VTable = extern struct {
         base: IMarshal.VTable,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IMarshal.MethodMixin(T);
-        };
-    }
-    pub usingnamespace MethodMixin(@This());
+    IMarshal: IMarshal,
+    IUnknown: IUnknown,
 };
 
 // TODO: this type is limited to platform 'windows8.0'
 const IID_IMarshalingStream_Value = Guid.initString("d8f2f5e6-6102-4863-9f26-389a4676efde");
 pub const IID_IMarshalingStream = &IID_IMarshalingStream_Value;
-pub const IMarshalingStream = extern struct {
+pub const IMarshalingStream = extern union {
     pub const VTable = extern struct {
         base: IStream.VTable,
-        GetMarshalingContextAttribute: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IMarshalingStream,
-                attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES,
-                pAttributeValue: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IMarshalingStream,
-                attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES,
-                pAttributeValue: ?*usize,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        GetMarshalingContextAttribute: *const fn(
+            self: *const IMarshalingStream,
+            attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES,
+            pAttributeValue: ?*usize,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IStream.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IMarshalingStream_GetMarshalingContextAttribute(self: *const T, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ?*usize) HRESULT {
-                return @as(*const IMarshalingStream.VTable, @ptrCast(self.vtable)).GetMarshalingContextAttribute(@as(*const IMarshalingStream, @ptrCast(self)), attribute, pAttributeValue);
-            }
-        };
+    IStream: IStream,
+    ISequentialStream: ISequentialStream,
+    IUnknown: IUnknown,
+    pub fn GetMarshalingContextAttribute(self: *const IMarshalingStream, attribute: CO_MARSHALING_CONTEXT_ATTRIBUTES, pAttributeValue: ?*usize) callconv(.Inline) HRESULT {
+        return self.vtable.GetMarshalingContextAttribute(self, attribute, pAttributeValue);
     }
-    pub usingnamespace MethodMixin(@This());
 };
 
 pub const STDMSHLFLAGS = enum(i32) {
@@ -193,6 +114,7 @@ pub const STDMSHLFLAGS = enum(i32) {
 };
 pub const SMEXF_SERVER = STDMSHLFLAGS.SERVER;
 pub const SMEXF_HANDLER = STDMSHLFLAGS.HANDLER;
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (121)
@@ -643,7 +565,7 @@ pub extern "ole32" fn CoMarshalInterface(
 pub extern "ole32" fn CoUnmarshalInterface(
     pStm: ?*IStream,
     riid: ?*const Guid,
-    ppv: ?*?*anyopaque,
+    ppv: **anyopaque,
 ) callconv(@import("std").os.windows.WINAPI) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
@@ -921,17 +843,12 @@ pub extern "ole32" fn HPALETTE_UserFree64(
     param1: ?*?HPALETTE,
 ) callconv(@import("std").os.windows.WINAPI) void;
 
+
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
-// Section: Imports (16)
+// Section: Imports (17)
 //--------------------------------------------------------------------------------
 const Guid = @import("../../zig.zig").Guid;
 const BSTR = @import("../../foundation.zig").BSTR;
@@ -944,6 +861,7 @@ const HMENU = @import("../../ui/windows_and_messaging.zig").HMENU;
 const HPALETTE = @import("../../graphics/gdi.zig").HPALETTE;
 const HRESULT = @import("../../foundation.zig").HRESULT;
 const HWND = @import("../../foundation.zig").HWND;
+const ISequentialStream = @import("../../system/com.zig").ISequentialStream;
 const IStream = @import("../../system/com.zig").IStream;
 const IUnknown = @import("../../system/com.zig").IUnknown;
 const SAFEARRAY = @import("../../system/com.zig").SAFEARRAY;
@@ -951,13 +869,13 @@ const STGMEDIUM = @import("../../system/com.zig").STGMEDIUM;
 const VARIANT = @import("../../system/com.zig").VARIANT;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }

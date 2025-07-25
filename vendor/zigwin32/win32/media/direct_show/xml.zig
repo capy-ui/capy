@@ -10,68 +10,39 @@ pub const CLSID_XMLGraphBuilder = Guid.initString("1bb05961-5fbf-11d2-a521-44df0
 // TODO: this type is limited to platform 'windows5.0'
 const IID_IXMLGraphBuilder_Value = Guid.initString("1bb05960-5fbf-11d2-a521-44df07c10000");
 pub const IID_IXMLGraphBuilder = &IID_IXMLGraphBuilder_Value;
-pub const IXMLGraphBuilder = extern struct {
+pub const IXMLGraphBuilder = extern union {
     pub const VTable = extern struct {
         base: IUnknown.VTable,
-        BuildFromXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pxml: ?*IXMLElement,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pxml: ?*IXMLElement,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        SaveToXML: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pbstrxml: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                pbstrxml: ?*?BSTR,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
-        BuildFromXMLFile: switch (@import("builtin").zig_backend) {
-            .stage1 => fn (
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                wszFileName: ?[*:0]const u16,
-                wszBaseURL: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-            else => *const fn (
-                self: *const IXMLGraphBuilder,
-                pGraph: ?*IGraphBuilder,
-                wszFileName: ?[*:0]const u16,
-                wszBaseURL: ?[*:0]const u16,
-            ) callconv(@import("std").os.windows.WINAPI) HRESULT,
-        },
+        BuildFromXML: *const fn(
+            self: *const IXMLGraphBuilder,
+            pGraph: ?*IGraphBuilder,
+            pxml: ?*IXMLElement,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        SaveToXML: *const fn(
+            self: *const IXMLGraphBuilder,
+            pGraph: ?*IGraphBuilder,
+            pbstrxml: ?*?BSTR,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        BuildFromXMLFile: *const fn(
+            self: *const IXMLGraphBuilder,
+            pGraph: ?*IGraphBuilder,
+            wszFileName: ?[*:0]const u16,
+            wszBaseURL: ?[*:0]const u16,
+        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
     };
     vtable: *const VTable,
-    pub fn MethodMixin(comptime T: type) type {
-        return struct {
-            pub usingnamespace IUnknown.MethodMixin(T);
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXMLGraphBuilder_BuildFromXML(self: *const T, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) HRESULT {
-                return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).BuildFromXML(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, pxml);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXMLGraphBuilder_SaveToXML(self: *const T, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) HRESULT {
-                return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).SaveToXML(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, pbstrxml);
-            }
-            // NOTE: method is namespaced with interface name to avoid conflicts for now
-            pub inline fn IXMLGraphBuilder_BuildFromXMLFile(self: *const T, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) HRESULT {
-                return @as(*const IXMLGraphBuilder.VTable, @ptrCast(self.vtable)).BuildFromXMLFile(@as(*const IXMLGraphBuilder, @ptrCast(self)), pGraph, wszFileName, wszBaseURL);
-            }
-        };
+    IUnknown: IUnknown,
+    pub fn BuildFromXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) callconv(.Inline) HRESULT {
+        return self.vtable.BuildFromXML(self, pGraph, pxml);
     }
-    pub usingnamespace MethodMixin(@This());
+    pub fn SaveToXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) callconv(.Inline) HRESULT {
+        return self.vtable.SaveToXML(self, pGraph, pbstrxml);
+    }
+    pub fn BuildFromXMLFile(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
+        return self.vtable.BuildFromXMLFile(self, pGraph, wszFileName, wszBaseURL);
+    }
 };
+
 
 //--------------------------------------------------------------------------------
 // Section: Functions (0)
@@ -80,12 +51,6 @@ pub const IXMLGraphBuilder = extern struct {
 //--------------------------------------------------------------------------------
 // Section: Unicode Aliases (0)
 //--------------------------------------------------------------------------------
-const thismodule = @This();
-pub usingnamespace switch (@import("../../zig.zig").unicode_mode) {
-    .ansi => struct {},
-    .wide => struct {},
-    .unspecified => if (@import("builtin").is_test) struct {} else struct {},
-};
 //--------------------------------------------------------------------------------
 // Section: Imports (7)
 //--------------------------------------------------------------------------------
@@ -98,13 +63,13 @@ const IXMLElement = @import("../../data/xml/ms_xml.zig").IXMLElement;
 const PWSTR = @import("../../foundation.zig").PWSTR;
 
 test {
-    @setEvalBranchQuota(comptime @import("std").meta.declarations(@This()).len * 3);
+    @setEvalBranchQuota(
+        comptime @import("std").meta.declarations(@This()).len * 3
+    );
 
     // reference all the pub declarations
     if (!@import("builtin").is_test) return;
     inline for (comptime @import("std").meta.declarations(@This())) |decl| {
-        if (decl.is_pub) {
-            _ = @field(@This(), decl.name);
-        }
+        _ = @field(@This(), decl.name);
     }
 }
