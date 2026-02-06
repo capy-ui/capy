@@ -15,8 +15,8 @@
             .lazy = true,
         },
         .zigimg = .{
-            .url = "git+https://github.com/zigimg/zigimg#74caab5edd7c5f1d2f7d87e5717435ce0f0affa1",
-            .hash = "zigimg-0.1.0-8_eo2nWlEgCddu8EGLOM_RkYshx3sC8tWv-yYA4-htS6",
+            .url = "git+https://github.com/zigimg/zigimg.git#fb74dfb7c6d83f2bd01a229826669451525a4ba8",
+            .hash = "zigimg-0.1.0-8_eo2kSGFwADIkeZYTgfnLOV-khh6ZRoGmK6F2-s_QbY",
         },
     },
     .paths = .{""},
