@@ -55,21 +55,21 @@ pub extern "kernel32" fn RegisterApplicationRecoveryCallback(
     pvParameter: ?*anyopaque,
     dwPingInterval: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn UnregisterApplicationRecoveryCallback(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn RegisterApplicationRestart(
     pwzCommandline: ?[*:0]const u16,
     dwFlags: REGISTER_APPLICATION_RESTART_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn UnregisterApplicationRestart(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetApplicationRecoveryCallback(
@@ -78,7 +78,7 @@ pub extern "kernel32" fn GetApplicationRecoveryCallback(
     ppvParameter: ?*?*anyopaque,
     pdwPingInterval: ?*u32,
     pdwFlags: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn GetApplicationRestartSettings(
@@ -86,17 +86,17 @@ pub extern "kernel32" fn GetApplicationRestartSettings(
     pwzCommandline: ?[*:0]u16,
     pcchSize: ?*u32,
     pdwFlags: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn ApplicationRecoveryInProgress(
     pbCancelled: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn ApplicationRecoveryFinished(
     bSuccess: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------

@@ -29,11 +29,11 @@ pub const ICW_USEDEFAULTS = @as(u32, 1);
 pub const PFNCHECKCONNECTIONWIZARD = *const fn(
     param0: u32,
     param1: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFNSETSHELLNEXT = *const fn(
     param0: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

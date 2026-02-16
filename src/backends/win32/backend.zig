@@ -22,7 +22,7 @@ const MSG = win32.MSG;
 const WPARAM = win32.WPARAM;
 const LPARAM = win32.LPARAM;
 const LRESULT = win32.LRESULT;
-const WINAPI = std.os.windows.WINAPI;
+const WINAPI = std.builtin.CallingConvention.winapi;
 
 // Common Control: Tabs
 const TCM_FIRST = 0x1300;
@@ -169,6 +169,133 @@ pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, a
     _ = win32.MessageBoxW(null, msg_utf16, L("Dialog"), icon);
 }
 
+/// Opens a native file/directory selection dialog.
+/// Returns the selected path, or null if cancelled.
+/// Caller owns returned memory (allocated with lib.internal.allocator).
+pub fn openFileDialog(options: shared.FileDialogOptions) ?[:0]const u8 {
+    // Initialize COM (ok if already initialized)
+    _ = win32.CoInitializeEx(null, win32.COINIT_APARTMENTTHREADED);
+
+    // Create IFileOpenDialog
+    var dialog_raw: *anyopaque = undefined;
+    const hr = win32.CoCreateInstance(
+        win32.CLSID_FileOpenDialog,
+        null,
+        win32.CLSCTX_ALL,
+        win32.IID_IFileOpenDialog,
+        @ptrCast(&dialog_raw),
+    );
+    if (hr != win32.S_OK) return null;
+    const dialog: *win32.IFileOpenDialog = @ptrCast(@alignCast(dialog_raw));
+    defer _ = dialog.IUnknown.Release();
+
+    // Set title
+    const title_utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.allocator, std.mem.sliceTo(options.title, 0)) catch return null;
+    defer lib.internal.allocator.free(title_utf16);
+    _ = dialog.IFileDialog.SetTitle(title_utf16);
+
+    // Set options
+    var fos: win32.FILEOPENDIALOGOPTIONS = .{};
+    _ = dialog.IFileDialog.GetOptions(&fos);
+    fos.FORCEFILESYSTEM = 1;
+    if (options.select_directories) {
+        fos.PICKFOLDERS = 1;
+    } else {
+        fos.FILEMUSTEXIST = 1;
+    }
+    if (options.allow_multiple) {
+        fos.ALLOWMULTISELECT = 1;
+    }
+    _ = dialog.IFileDialog.SetOptions(fos);
+
+    // Set file type filters
+    if (!options.select_directories and options.filters.len > 0) {
+        const filter_specs = lib.internal.allocator.alloc(win32.COMDLG_FILTERSPEC, options.filters.len) catch return null;
+        defer lib.internal.allocator.free(filter_specs);
+
+        // Temporary storage for UTF-16 strings
+        const names_utf16 = lib.internal.allocator.alloc(?[*:0]const u16, options.filters.len) catch return null;
+        defer {
+            for (names_utf16) |maybe_n| {
+                if (maybe_n) |n| lib.internal.allocator.free(std.mem.span(n));
+            }
+            lib.internal.allocator.free(names_utf16);
+        }
+        const patterns_utf16 = lib.internal.allocator.alloc(?[*:0]const u16, options.filters.len) catch return null;
+        defer {
+            for (patterns_utf16) |maybe_p| {
+                if (maybe_p) |p| lib.internal.allocator.free(std.mem.span(p));
+            }
+            lib.internal.allocator.free(patterns_utf16);
+        }
+
+        for (options.filters, 0..) |f, i| {
+            const name_z = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.allocator, std.mem.sliceTo(f.name, 0)) catch return null;
+            names_utf16[i] = name_z;
+            const pat_z = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.allocator, std.mem.sliceTo(f.pattern, 0)) catch return null;
+            patterns_utf16[i] = pat_z;
+            filter_specs[i] = .{
+                .pszName = name_z,
+                .pszSpec = pat_z,
+            };
+        }
+
+        _ = dialog.IFileDialog.SetFileTypes(@intCast(options.filters.len), filter_specs.ptr);
+    }
+
+    // Show dialog (blocks until user responds)
+    const show_hr = dialog.IModalWindow.Show(null);
+    if (show_hr != win32.S_OK) return null;
+
+    // Get result
+    var item: ?*win32.IShellItem = null;
+    _ = dialog.IFileDialog.GetResult(&item);
+    if (item) |shell_item| {
+        defer _ = shell_item.IUnknown.Release();
+        var path_pwstr: ?win32.PWSTR = null;
+        _ = shell_item.GetDisplayName(win32.SIGDN_FILESYSPATH, &path_pwstr);
+        if (path_pwstr) |p| {
+            defer win32.CoTaskMemFree(@ptrCast(p));
+            // Convert UTF-16 to UTF-8
+            const path_u8 = std.unicode.utf16LeToUtf8Alloc(lib.internal.allocator, std.mem.span(p)) catch return null;
+            defer lib.internal.allocator.free(path_u8);
+            // Create sentinel-terminated copy
+            const result = lib.internal.allocator.allocSentinel(u8, path_u8.len, 0) catch return null;
+            @memcpy(result, path_u8);
+            return result;
+        }
+    }
+
+    return null;
+}
+
+/// Returns true if the system is currently in dark mode.
+pub fn isDarkMode() bool {
+    // Read HKCU\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize\AppsUseLightTheme
+    var hkey: ?win32.HKEY = null;
+    const status = win32.RegOpenKeyExW(
+        win32.HKEY_CURRENT_USER,
+        L("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"),
+        0,
+        win32.KEY_READ,
+        &hkey,
+    );
+    if (status != .NO_ERROR) return false;
+    defer _ = win32.RegCloseKey(hkey.?);
+
+    var value: u32 = 1; // default: light mode
+    var size: u32 = @sizeOf(u32);
+    _ = win32.RegQueryValueExW(
+        hkey.?,
+        L("AppsUseLightTheme"),
+        null,
+        null,
+        @ptrCast(&value),
+        &size,
+    );
+    return value == 0;
+}
+
 pub var defaultWHWND: HWND = undefined;
 
 pub const Window = struct {
@@ -181,7 +308,17 @@ pub const Window = struct {
     restore_placement: win32.WINDOWPLACEMENT = undefined,
 
     const className = L("capyWClass");
-    pub usingnamespace Events(Window);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
         const parent = @as(HWND, @ptrFromInt(@as(usize, @bitCast(lp))));
@@ -265,13 +402,22 @@ pub const Window = struct {
             );
         }
 
+        // Enable dark title bar when system is in dark mode
+        if (isDarkMode()) {
+            const use_dark: u32 = 1;
+            _ = win32.DwmSetWindowAttribute(
+                hwnd,
+                win32.DWMWA_USE_IMMERSIVE_DARK_MODE,
+                &use_dark,
+                @sizeOf(u32),
+            );
+        }
+
         defaultWHWND = hwnd;
         return Window{
             .hwnd = hwnd,
             .root_menu = null,
-            .menu_item_callbacks = std.ArrayList(?*const fn () void).init(
-                lib.internal.allocator,
-            ),
+            .menu_item_callbacks = .empty,
         };
     }
 
@@ -317,14 +463,14 @@ pub const Window = struct {
                     self.menu_item_callbacks.items.len,
                     item.config.label,
                 );
-                try self.menu_item_callbacks.append(item.config.onClick);
+                try self.menu_item_callbacks.append(lib.internal.allocator, item.config.onClick);
             }
         }
     }
 
     fn clearAndFreeMenus(self: *Window) void {
         _ = win32.DestroyMenu(self.root_menu);
-        self.menu_item_callbacks.clearAndFree();
+        self.menu_item_callbacks.clearAndFree(lib.internal.allocator);
         self.root_menu = null;
     }
 
@@ -340,7 +486,7 @@ pub const Window = struct {
         if (win32.SetMenu(self.hwnd, root_menu) != 0) {
             self.root_menu = root_menu;
         } else {
-            self.menu_item_callbacks.clearAndFree();
+            self.menu_item_callbacks.clearAndFree(lib.internal.allocator);
         }
     }
 
@@ -418,6 +564,69 @@ pub const Window = struct {
         }
     }
 
+    pub fn setIcon(self: *Window, icon_data: lib.ImageData) void {
+        const icon_mod = @import("../../icon.zig");
+
+        // Downscale RGBA to 32x32 for the icon
+        const size: u32 = 32;
+        const scaled = icon_mod.downscaleRGBA(
+            icon_data.data,
+            icon_data.width,
+            icon_data.height,
+            size,
+            size,
+            lib.internal.allocator,
+        ) catch return;
+        defer lib.internal.allocator.free(scaled);
+
+        // Windows uses BGRA byte order
+        icon_mod.rgbaToBgra(scaled);
+
+        // Create a DIB section for the color bitmap (top-down = negative height)
+        var bmi: win32.BITMAPINFO = .{
+            .bmiHeader = .{
+                .biSize = @sizeOf(win32.BITMAPINFOHEADER),
+                .biWidth = @intCast(size),
+                .biHeight = -@as(i32, @intCast(size)), // top-down
+                .biPlanes = 1,
+                .biBitCount = 32,
+                .biCompression = @intCast(win32.BI_RGB),
+                .biSizeImage = 0,
+                .biXPelsPerMeter = 0,
+                .biYPelsPerMeter = 0,
+                .biClrUsed = 0,
+                .biClrImportant = 0,
+            },
+            .bmiColors = .{.{ .rgbBlue = 0, .rgbGreen = 0, .rgbRed = 0, .rgbReserved = 0 }},
+        };
+
+        var bits: ?*anyopaque = null;
+        const hbm_color = win32.CreateDIBSection(null, &bmi, win32.DIB_RGB_COLORS, &bits, null, 0) orelse return;
+
+        // Copy BGRA pixel data into the DIB section
+        if (bits) |ptr| {
+            const dst: [*]u8 = @ptrCast(ptr);
+            @memcpy(dst[0..scaled.len], scaled);
+        }
+
+        // Create monochrome mask bitmap (all opaque)
+        const hbm_mask = win32.CreateBitmap(@intCast(size), @intCast(size), 1, 1, null) orelse return;
+
+        var iconinfo = win32.ICONINFO{
+            .fIcon = 1,
+            .xHotspot = 0,
+            .yHotspot = 0,
+            .hbmMask = hbm_mask,
+            .hbmColor = hbm_color,
+        };
+
+        const hicon = win32.CreateIconIndirect(&iconinfo) orelse return;
+
+        // Set both big and small icons
+        _ = win32.SendMessageW(self.hwnd, win32.WM_SETICON, win32.ICON_BIG, @bitCast(@intFromPtr(hicon)));
+        _ = win32.SendMessageW(self.hwnd, win32.WM_SETICON, win32.ICON_SMALL, @bitCast(@intFromPtr(hicon)));
+    }
+
     pub fn show(self: *Window) void {
         _ = win32.ShowWindow(self.hwnd, win32.SW_SHOWDEFAULT);
         _ = win32.UpdateWindow(self.hwnd);
@@ -442,6 +651,35 @@ const EventUserData = struct {
 
 pub inline fn getEventUserData(peer: HWND) *EventUserData {
     return @as(*EventUserData, @ptrFromInt(@as(usize, @bitCast(win32Backend.getWindowLongPtr(peer, win32.GWL_USERDATA)))));
+}
+
+/// Measures the text content of a Win32 control using its current font.
+/// Returns the text dimensions in pixels as {width, height}.
+pub fn measureWindowText(peer: HWND) struct { width: i32, height: i32 } {
+    const hdc = win32.GetDC(peer) orelse return .{ .width = 0, .height = 0 };
+    defer _ = win32.ReleaseDC(peer, hdc);
+
+    // Use the font assigned to the control (set via WM_SETFONT), or captionFont as fallback
+    const font_result: usize = @bitCast(win32.SendMessageW(peer, win32.WM_GETFONT, 0, 0));
+    const font: win32.HGDIOBJ = if (font_result != 0)
+        @ptrFromInt(font_result)
+    else
+        @ptrCast(captionFont);
+    _ = win32.SelectObject(hdc, font);
+
+    const text_len = win32.GetWindowTextLengthW(peer);
+    if (text_len <= 0) return .{ .width = 0, .height = 0 };
+
+    var buf: [512]u16 = undefined;
+    const max_len: i32 = @intCast(@min(@as(usize, @intCast(text_len + 1)), buf.len));
+    const actual_len = win32.GetWindowTextW(peer, @ptrCast(&buf), max_len);
+    if (actual_len <= 0) return .{ .width = 0, .height = 0 };
+
+    var size: win32.SIZE = undefined;
+    if (win32.GetTextExtentPoint32W(hdc, @ptrCast(&buf), actual_len, &size) == 0)
+        return .{ .width = 0, .height = 0 };
+
+    return .{ .width = size.cx, .height = size.cy };
 }
 
 pub fn Events(comptime T: type) type {
@@ -531,6 +769,55 @@ pub fn Events(comptime T: type) type {
                                 T.onSelChange(data, hwnd, @as(usize, @intCast(sel)));
                             }
                         },
+                        win32Backend.LVN_GETDISPINFOW => {
+                            // ListView virtual mode: provide cell text data
+                            const di: *win32Backend.NMLVDISPINFOW = @ptrFromInt(@as(usize, @bitCast(lp)));
+                            const child_hwnd: HWND = nmhdr.hwndFrom.?;
+                            const child_data = getEventUserData(child_hwnd);
+                            if (child_data.peerPtr) |ptr| {
+                                const table: *@import("Table.zig") = @ptrCast(@alignCast(ptr));
+                                if (table.cell_provider) |provider| {
+                                    if (di.item.mask & win32Backend.LVIF_TEXT != 0) {
+                                        const row: usize = @intCast(di.item.iItem);
+                                        const col: usize = @intCast(di.item.iSubItem);
+                                        var buf: [256]u8 = undefined;
+                                        const text = provider(row, col, &buf);
+                                        if (di.item.pszText) |out_buf| {
+                                            const max_chars: usize = @intCast(di.item.cchTextMax);
+                                            if (max_chars > 0) {
+                                                const utf16 = std.unicode.utf8ToUtf16LeAllocZ(lib.internal.allocator, text) catch return 0;
+                                                defer lib.internal.allocator.free(utf16);
+                                                const copy_len = @min(utf16.len, max_chars - 1);
+                                                for (0..copy_len) |j| out_buf[j] = utf16[j];
+                                                out_buf[copy_len] = 0;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        win32Backend.LVN_ITEMCHANGED => {
+                            // ListView selection changed
+                            const nmlv: *const win32Backend.NMLISTVIEW = @ptrFromInt(@as(usize, @bitCast(lp)));
+                            if (nmlv.uChanged & win32Backend.LVIS_SELECTED != 0) {
+                                if (nmlv.uNewState & win32Backend.LVIS_SELECTED != 0) {
+                                    const child_hwnd: HWND = nmhdr.hwndFrom.?;
+                                    const child_data = getEventUserData(child_hwnd);
+                                    const idx: usize = @intCast(nmlv.iItem);
+                                    if (child_data.user.propertyChangeHandler) |handler|
+                                        handler("selected", @ptrCast(&idx), child_data.userdata);
+                                }
+                            }
+                        },
+                        win32Backend.LVN_COLUMNCLICK => {
+                            // ListView column header clicked
+                            const nmlv: *const win32Backend.NMLISTVIEW = @ptrFromInt(@as(usize, @bitCast(lp)));
+                            const child_hwnd: HWND = nmhdr.hwndFrom.?;
+                            const child_data = getEventUserData(child_hwnd);
+                            const col_idx: usize = @intCast(nmlv.iSubItem);
+                            if (child_data.user.propertyChangeHandler) |handler|
+                                handler("sort", @ptrCast(&col_idx), child_data.userdata);
+                        },
                         else => {},
                     }
                 },
@@ -548,32 +835,46 @@ pub fn Events(comptime T: type) type {
                         handler(@as(u32, @intCast(rect.right - rect.left)), @as(u32, @intCast(rect.bottom - rect.top)), data.userdata);
                 },
                 win32.WM_HSCROLL => {
-                    const data = getEventUserData(hwnd);
-                    var scrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
-                        .cbSize = @sizeOf(win32.SCROLLINFO),
-                        .fMask = win32.SIF_POS,
-                    });
-                    _ = win32.GetScrollInfo(hwnd, win32.SB_HORZ, &scrollInfo);
-
-                    const currentScroll = @as(u32, @intCast(scrollInfo.nPos));
-                    const newPos = switch (@as(u16, @truncate(wp))) {
-                        win32.SB_PAGEUP => currentScroll -| 50,
-                        win32.SB_PAGEDOWN => currentScroll + 50,
-                        win32.SB_LINEUP => currentScroll -| 5,
-                        win32.SB_LINEDOWN => currentScroll + 5,
-                        win32.SB_THUMBPOSITION, win32.SB_THUMBTRACK => wp >> 16,
-                        else => currentScroll,
-                    };
-
-                    if (newPos != currentScroll) {
-                        var horizontalScrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
+                    if (lp != 0) {
+                        // WM_HSCROLL from a trackbar child control (slider)
+                        const trackbar_hwnd: HWND = @ptrFromInt(@as(usize, @bitCast(lp)));
+                        const child_data = getEventUserData(trackbar_hwnd);
+                        const pos = win32.SendMessageW(trackbar_hwnd, win32Backend.TBM_GETPOS, 0, 0);
+                        // Convert trackbar integer position to actual value using stepSize
+                        const slider_ptr: ?*Slider = if (child_data.peerPtr) |ptr| @ptrCast(@alignCast(ptr)) else null;
+                        const step_size: f32 = if (slider_ptr) |s| s.stepSize else 1.0;
+                        const value: f32 = @as(f32, @floatFromInt(pos)) * step_size;
+                        if (child_data.user.propertyChangeHandler) |handler|
+                            handler("value", @ptrCast(&value), child_data.userdata);
+                    } else {
+                        // WM_HSCROLL from the window's own horizontal scrollbar
+                        const data = getEventUserData(hwnd);
+                        var scrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
                             .cbSize = @sizeOf(win32.SCROLLINFO),
                             .fMask = win32.SIF_POS,
-                            .nPos = @as(c_int, @intCast(newPos)),
                         });
-                        _ = win32.SetScrollInfo(hwnd, win32.SB_HORZ, &horizontalScrollInfo, 1);
-                        if (@hasDecl(T, "onHScroll")) {
-                            T.onHScroll(data, hwnd, newPos);
+                        _ = win32.GetScrollInfo(hwnd, win32.SB_HORZ, &scrollInfo);
+
+                        const currentScroll = @as(u32, @intCast(scrollInfo.nPos));
+                        const newPos = switch (@as(u16, @truncate(wp))) {
+                            win32.SB_PAGEUP => currentScroll -| 50,
+                            win32.SB_PAGEDOWN => currentScroll + 50,
+                            win32.SB_LINEUP => currentScroll -| 5,
+                            win32.SB_LINEDOWN => currentScroll + 5,
+                            win32.SB_THUMBPOSITION, win32.SB_THUMBTRACK => wp >> 16,
+                            else => currentScroll,
+                        };
+
+                        if (newPos != currentScroll) {
+                            var horizontalScrollInfo = std.mem.zeroInit(win32.SCROLLINFO, .{
+                                .cbSize = @sizeOf(win32.SCROLLINFO),
+                                .fMask = win32.SIF_POS,
+                                .nPos = @as(c_int, @intCast(newPos)),
+                            });
+                            _ = win32.SetScrollInfo(hwnd, win32.SB_HORZ, &horizontalScrollInfo, 1);
+                            if (@hasDecl(T, "onHScroll")) {
+                                T.onHScroll(data, hwnd, newPos);
+                            }
                         }
                     }
                 },
@@ -646,11 +947,10 @@ pub fn Events(comptime T: type) type {
                     const dci = Canvas.DrawContextImpl{
                         .render_target = render_target,
                         .brush = default_brush,
-                        .path = std.ArrayList(Canvas.DrawContextImpl.PathElement)
-                            .init(lib.internal.allocator),
+                        .path = .empty,
                     };
                     var dc = @import("../../backend.zig").DrawContext{ .impl = dci };
-                    defer dc.impl.path.deinit();
+                    defer dc.impl.path.deinit(lib.internal.allocator);
 
                     render_target.ID2D1RenderTarget.BeginDraw();
                     render_target.ID2D1RenderTarget.Clear(&win32.D2D_COLOR_F{ .r = 1, .g = 1, .b = 1, .a = 0 });
@@ -709,6 +1009,7 @@ pub fn Events(comptime T: type) type {
                 .KeyType => data.keyTypeHandler = cb,
                 // TODO: implement key press
                 .KeyPress => data.keyPressHandler = cb,
+                .KeyRelease => data.keyReleaseHandler = cb,
                 .PropertyChange => data.propertyChangeHandler = cb,
             }
         }
@@ -739,8 +1040,9 @@ pub fn Events(comptime T: type) type {
         }
 
         pub fn getPreferredSize(self: *const T) lib.Size {
-            // TODO
-            _ = self;
+            if (@hasDecl(T, "getPreferredSize_impl")) {
+                return self.getPreferredSize_impl();
+            }
             return lib.Size.init(100, 50);
         }
 
@@ -761,15 +1063,33 @@ pub const Canvas = struct {
     peer: HWND,
     data: usize = 0,
 
-    pub usingnamespace Events(Canvas);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub const DrawContextImpl = struct {
         path: std.ArrayList(PathElement),
         render_target: *win32.ID2D1HwndRenderTarget,
         brush: *win32.ID2D1SolidColorBrush,
+        stroke_width: f32 = 1.0,
+        pending_gradient: ?shared.LinearGradient = null,
+        color_r: f32 = 0,
+        color_g: f32 = 0,
+        color_b: f32 = 0,
+        color_a: f32 = 1,
 
         const PathElement = union(enum) {
-            Rectangle: struct { left: c_int, top: c_int, right: c_int, bottom: c_int },
+            rectangle: win32.D2D_RECT_F,
+            ellipse: win32.D2D1_ELLIPSE,
+            rounded_rectangle: win32.D2D1_ROUNDED_RECT,
         };
 
         pub const TextLayout = struct {
@@ -788,33 +1108,23 @@ pub const Canvas = struct {
             pub const TextSize = struct { width: u32, height: u32 };
 
             pub fn init() TextLayout {
-                // creates an HDC for the current screen, whatever it means given we can have windows on different screens
                 const hdc = win32.CreateCompatibleDC(null);
-
                 const defaultFont = @as(win32.HFONT, @ptrCast(win32.GetStockObject(win32.DEFAULT_GUI_FONT)));
                 _ = win32.SelectObject(hdc, @as(win32.HGDIOBJ, @ptrCast(defaultFont)));
                 return TextLayout{ .font = defaultFont, .hdc = hdc };
             }
 
             pub fn setFont(self: *TextLayout, font: Font) void {
-                // _ = win32.DeleteObject(@ptrCast(win32.HGDIOBJ, self.font)); // delete old font
                 const allocator = lib.internal.allocator;
-                const wideFace = std.unicode.utf8ToUtf16LeAllocZ(allocator, font.face) catch return; // invalid utf8 or not enough memory
+                const wideFace = std.unicode.utf8ToUtf16LeAllocZ(allocator, font.face) catch return;
                 defer allocator.free(wideFace);
-                if (win32.CreateFontW(0, // cWidth
-                    0, // cHeight
-                    0, // cEscapement,
-                    0, // cOrientation,
-                    win32.FW_NORMAL, // cWeight
-                    0, // bItalic
-                    0, // bUnderline
-                    0, // bStrikeOut
-                    0, // iCharSet
-                    win32.FONT_OUTPUT_PRECISION.DEFAULT_PRECIS, // iOutPrecision
-                    win32.CLIP_DEFAULT_PRECIS, // iClipPrecision
-                    win32.FONT_QUALITY.DEFAULT_QUALITY, // iQuality
-                    win32.FONT_PITCH_AND_FAMILY.DONTCARE, // iPitchAndFamily
-                    wideFace // pszFaceName
+                if (win32.CreateFontW(0, 0, 0, 0,
+                    win32.FW_NORMAL, 0, 0, 0, 0,
+                    win32.FONT_OUTPUT_PRECISION.DEFAULT_PRECIS,
+                    win32.CLIP_DEFAULT_PRECIS,
+                    win32.FONT_QUALITY.DEFAULT_QUALITY,
+                    win32.FONT_PITCH_AND_FAMILY.DONTCARE,
+                    wideFace,
                 )) |winFont| {
                     _ = win32.DeleteObject(@as(win32.HGDIOBJ, @ptrCast(self.font)));
                     self.font = winFont;
@@ -825,10 +1135,9 @@ pub const Canvas = struct {
             pub fn getTextSize(self: *TextLayout, str: []const u8) TextSize {
                 var size: win32.SIZE = undefined;
                 const allocator = lib.internal.allocator;
-                const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, str) catch return; // invalid utf8 or not enough memory
+                const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, str) catch return TextSize{ .width = 0, .height = 0 };
                 defer allocator.free(wide);
                 _ = win32.GetTextExtentPoint32W(self.hdc, wide.ptr, @as(c_int, @intCast(str.len)), &size);
-
                 return TextSize{ .width = @as(u32, @intCast(size.cx)), .height = @as(u32, @intCast(size.cy)) };
             }
 
@@ -839,72 +1148,192 @@ pub const Canvas = struct {
         };
 
         pub fn setColorRGBA(self: *DrawContextImpl, r: f32, g: f32, b: f32, a: f32) void {
-            const color = lib.Color{
-                .red = @as(u8, @intFromFloat(std.math.clamp(r, 0, 1) * 255)),
-                .green = @as(u8, @intFromFloat(std.math.clamp(g, 0, 1) * 255)),
-                .blue = @as(u8, @intFromFloat(std.math.clamp(b, 0, 1) * 255)),
-                .alpha = @as(u8, @intFromFloat(std.math.clamp(a, 0, 1) * 255)),
-            };
-            const colorref = (@as(u32, color.blue) << 16) |
-                (@as(u32, color.green) << 8) | color.red;
-            _ = colorref;
-            _ = self;
-            // _ = win32.SetDCBrushColor(self.hdc, colorref);
+            self.pending_gradient = null;
+            self.color_r = r;
+            self.color_g = g;
+            self.color_b = b;
+            self.color_a = a;
+            self.brush.SetColor(&win32.D2D_COLOR_F{ .r = r, .g = g, .b = b, .a = a });
+        }
+
+        pub fn setLinearGradient(self: *DrawContextImpl, gradient: shared.LinearGradient) void {
+            self.pending_gradient = gradient;
         }
 
         pub fn rectangle(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
-            _ = h;
-            _ = w;
-            _ = y;
-            _ = x;
-            _ = self;
-            // _ = win32.Rectangle(self.hdc, @intCast(c_int, x), @intCast(c_int, y), x + @intCast(c_int, w), y + @intCast(c_int, h));
+            const fx: f32 = @floatFromInt(x);
+            const fy: f32 = @floatFromInt(y);
+            self.path.append(lib.internal.allocator, .{ .rectangle = .{
+                .left = fx,
+                .top = fy,
+                .right = fx + @as(f32, @floatFromInt(w)),
+                .bottom = fy + @as(f32, @floatFromInt(h)),
+            } }) catch return;
+        }
+
+        pub fn roundedRectangleEx(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32, corner_radiuses: [4]f32) void {
+            const fx: f32 = @floatFromInt(x);
+            const fy: f32 = @floatFromInt(y);
+            const fw: f32 = @floatFromInt(w);
+            const fh: f32 = @floatFromInt(h);
+            const max_radius = @min(fw, fh) / 2.0;
+            // D2D rounded rect supports single radiusX/radiusY; average the four corners
+            const rx = @min((corner_radiuses[0] + corner_radiuses[1]) / 2.0, max_radius);
+            const ry = @min((corner_radiuses[2] + corner_radiuses[3]) / 2.0, max_radius);
+            self.path.append(lib.internal.allocator, .{ .rounded_rectangle = .{
+                .rect = .{ .left = fx, .top = fy, .right = fx + fw, .bottom = fy + fh },
+                .radiusX = rx,
+                .radiusY = ry,
+            } }) catch return;
         }
 
         pub fn ellipse(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32) void {
-            _ = y;
-            _ = x;
-            _ = self;
-            const cw = @as(c_int, @intCast(w));
-            _ = cw;
-            const ch = @as(c_int, @intCast(h));
-            _ = ch;
-
-            // _ = win32.Ellipse(self.hdc, @intCast(c_int, x), @intCast(c_int, y), @intCast(c_int, x) + cw, @intCast(c_int, y) + ch);
+            const fx: f32 = @floatFromInt(x);
+            const fy: f32 = @floatFromInt(y);
+            const fw: f32 = @floatFromInt(w);
+            const fh: f32 = @floatFromInt(h);
+            self.path.append(lib.internal.allocator, .{ .ellipse = .{
+                .point = .{ .x = fx + fw / 2.0, .y = fy + fh / 2.0 },
+                .radiusX = fw / 2.0,
+                .radiusY = fh / 2.0,
+            } }) catch return;
         }
 
         pub fn text(self: *DrawContextImpl, x: i32, y: i32, layout: TextLayout, str: []const u8) void {
-            _ = str;
-            _ = layout;
-            _ = y;
-            _ = x;
-            _ = self;
-            // select current color
-            // const color = win32.GetDCBrushColor(self.hdc);
-            // _ = win32.SetTextColor(self.hdc, color);
-
-            // select the font
-            // win32.SelectObject(self.hdc, @ptrCast(win32.HGDIOBJ, layout.font));
-
-            // and draw
-            // _ = win32.ExtTextOutA(self.hdc, @intCast(c_int, x), @intCast(c_int, y), 0, null, str.ptr, @intCast(std.os.windows.UINT, str.len), null);
+            if (str.len == 0) return;
+            const allocator = lib.internal.allocator;
+            const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, str) catch return;
+            defer allocator.free(wide);
+            // Use GDI interop via COM QueryInterface to draw text with the layout's GDI font
+            var gdi_rt: ?*win32.ID2D1GdiInteropRenderTarget = null;
+            if (self.render_target.IUnknown.QueryInterface(
+                win32.IID_ID2D1GdiInteropRenderTarget,
+                @ptrCast(&gdi_rt),
+            ) == 0) {
+                defer _ = gdi_rt.?.IUnknown.Release();
+                var hdc: ?win32.HDC = null;
+                if (gdi_rt.?.GetDC(win32.D2D1_DC_INITIALIZE_MODE.COPY, &hdc) == 0) {
+                    defer _ = gdi_rt.?.ReleaseDC(null);
+                    if (hdc) |dc| {
+                        _ = win32.SelectObject(dc, @as(win32.HGDIOBJ, @ptrCast(layout.font)));
+                        _ = win32.SetBkMode(dc, win32.TRANSPARENT);
+                        const colorref = (@as(u32, @intFromFloat(std.math.clamp(self.color_b, 0, 1) * 255)) << 16) |
+                            (@as(u32, @intFromFloat(std.math.clamp(self.color_g, 0, 1) * 255)) << 8) |
+                            @as(u32, @intFromFloat(std.math.clamp(self.color_r, 0, 1) * 255));
+                        _ = win32.SetTextColor(dc, colorref);
+                        _ = win32.ExtTextOutW(dc, x, y, .{}, null, wide.ptr, @intCast(wide.len), null);
+                    }
+                }
+            }
         }
 
         pub fn line(self: *DrawContextImpl, x1: i32, y1: i32, x2: i32, y2: i32) void {
-            _ = y2;
-            _ = x2;
-            _ = y1;
-            _ = x1;
+            const rt = self.render_target.ID2D1RenderTarget;
+            rt.DrawLine(
+                .{ .x = @floatFromInt(x1), .y = @floatFromInt(y1) },
+                .{ .x = @floatFromInt(x2), .y = @floatFromInt(y2) },
+                @ptrCast(self.brush),
+                self.stroke_width,
+                null,
+            );
+        }
+
+        pub fn image(self: *DrawContextImpl, x: i32, y: i32, w: u32, h: u32, data: lib.ImageData) void {
+            // ImageData.peer is void on win32 — no-op for now
             _ = self;
-            // _ = win32.MoveToEx(self.hdc, @intCast(c_int, x1), @intCast(c_int, y1), null);
-            // _ = win32.LineTo(self.hdc, @intCast(c_int, x2), @intCast(c_int, y2));
+            _ = x;
+            _ = y;
+            _ = w;
+            _ = h;
+            _ = data;
+        }
+
+        pub fn clear(self: *DrawContextImpl, x: u32, y: u32, w: u32, h: u32) void {
+            const rt = self.render_target.ID2D1RenderTarget;
+            // Save current brush color, fill region with white, restore
+            const prev = win32.D2D_COLOR_F{ .r = self.color_r, .g = self.color_g, .b = self.color_b, .a = self.color_a };
+            self.brush.SetColor(&win32.D2D_COLOR_F{ .r = 1, .g = 1, .b = 1, .a = 1 });
+            const rect = win32.D2D_RECT_F{
+                .left = @floatFromInt(x),
+                .top = @floatFromInt(y),
+                .right = @as(f32, @floatFromInt(x)) + @as(f32, @floatFromInt(w)),
+                .bottom = @as(f32, @floatFromInt(y)) + @as(f32, @floatFromInt(h)),
+            };
+            rt.FillRectangle(&rect, @ptrCast(self.brush));
+            self.brush.SetColor(&prev);
+        }
+
+        pub fn setStrokeWidth(self: *DrawContextImpl, width: f32) void {
+            self.stroke_width = width;
         }
 
         pub fn fill(self: *DrawContextImpl) void {
+            const rt = self.render_target.ID2D1RenderTarget;
+
+            if (self.pending_gradient) |gradient| {
+                // Build gradient stops
+                const max_stops = 16;
+                var stops: [max_stops]win32.D2D1_GRADIENT_STOP = undefined;
+                const count: u32 = @intCast(@min(gradient.stops.len, max_stops));
+                for (0..count) |i| {
+                    const stop = gradient.stops[i];
+                    stops[i] = .{
+                        .position = stop.offset,
+                        .color = .{
+                            .r = @as(f32, @floatFromInt(stop.color.red)) / 255.0,
+                            .g = @as(f32, @floatFromInt(stop.color.green)) / 255.0,
+                            .b = @as(f32, @floatFromInt(stop.color.blue)) / 255.0,
+                            .a = @as(f32, @floatFromInt(stop.color.alpha)) / 255.0,
+                        },
+                    };
+                }
+
+                var stop_collection: *win32.ID2D1GradientStopCollection = undefined;
+                if (rt.CreateGradientStopCollection(&stops, count, win32.D2D1_GAMMA.@"2_2", win32.D2D1_EXTEND_MODE.CLAMP, &stop_collection) == 0) {
+                    defer _ = stop_collection.IUnknown.Release();
+
+                    var grad_brush: *win32.ID2D1LinearGradientBrush = undefined;
+                    if (rt.CreateLinearGradientBrush(
+                        &.{
+                            .startPoint = .{ .x = gradient.x0, .y = gradient.y0 },
+                            .endPoint = .{ .x = gradient.x1, .y = gradient.y1 },
+                        },
+                        null,
+                        stop_collection,
+                        &grad_brush,
+                    ) == 0) {
+                        defer _ = grad_brush.IUnknown.Release();
+                        for (self.path.items) |element| {
+                            switch (element) {
+                                .rectangle => |rect| rt.FillRectangle(&rect, @ptrCast(grad_brush)),
+                                .ellipse => |ell| rt.FillEllipse(&ell, @ptrCast(grad_brush)),
+                                .rounded_rectangle => |rr| rt.FillRoundedRectangle(&rr, @ptrCast(grad_brush)),
+                            }
+                        }
+                    }
+                }
+                self.pending_gradient = null;
+            } else {
+                for (self.path.items) |element| {
+                    switch (element) {
+                        .rectangle => |rect| rt.FillRectangle(&rect, @ptrCast(self.brush)),
+                        .ellipse => |ell| rt.FillEllipse(&ell, @ptrCast(self.brush)),
+                        .rounded_rectangle => |rr| rt.FillRoundedRectangle(&rr, @ptrCast(self.brush)),
+                    }
+                }
+            }
             self.path.clearRetainingCapacity();
         }
 
         pub fn stroke(self: *DrawContextImpl) void {
+            const rt = self.render_target.ID2D1RenderTarget;
+            for (self.path.items) |element| {
+                switch (element) {
+                    .rectangle => |rect| rt.DrawRectangle(&rect, @ptrCast(self.brush), self.stroke_width, null),
+                    .ellipse => |ell| rt.DrawEllipse(&ell, @ptrCast(self.brush), self.stroke_width, null),
+                    .rounded_rectangle => |rr| rt.DrawRoundedRectangle(&rr, @ptrCast(self.brush), self.stroke_width, null),
+                }
+            }
             self.path.clearRetainingCapacity();
         }
     };
@@ -957,9 +1386,28 @@ pub const Canvas = struct {
 pub const TextField = struct {
     peer: HWND,
     /// Cache of the text field's text converted to UTF-8
-    text_utf8: std.ArrayList(u8) = std.ArrayList(u8).init(lib.internal.allocator),
+    text_utf8: std.ArrayList(u8) = .empty,
 
-    pub usingnamespace Events(TextField);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
+
+    pub fn getPreferredSize_impl(self: *const TextField) lib.Size {
+        const text = measureWindowText(self.peer);
+        // TextField has no intrinsic width; use text width or default 150
+        const w: f32 = @floatFromInt(@max(text.width + 8, 150));
+        // Height based on font + border padding
+        const h: f32 = @floatFromInt(@max(text.height + 8, 23));
+        return lib.Size.init(w, h);
+    }
 
     pub fn create() !TextField {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1004,9 +1452,11 @@ pub const TextField = struct {
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
 
-        self.text_utf8.clearAndFree();
-        std.unicode.utf16LeToUtf8ArrayList(&self.text_utf8, utf16Slice) catch @panic("OOM");
-        self.text_utf8.append(0) catch @panic("OOM");
+        self.text_utf8.clearAndFree(lib.internal.allocator);
+        const utf8 = std.unicode.utf16LeToUtf8Alloc(lib.internal.allocator, utf16Slice) catch @panic("OOM");
+        defer lib.internal.allocator.free(utf8);
+        self.text_utf8.appendSlice(lib.internal.allocator, utf8) catch @panic("OOM");
+        self.text_utf8.append(lib.internal.allocator, 0) catch @panic("OOM");
         return self.text_utf8.items[0 .. self.text_utf8.items.len - 1 :0];
     }
 
@@ -1019,7 +1469,25 @@ pub const TextArea = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(TextArea);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
+
+    pub fn getPreferredSize_impl(self: *const TextArea) lib.Size {
+        const text = measureWindowText(self.peer);
+        // Multi-line text area: reasonable default size
+        const w: f32 = @floatFromInt(@max(text.width + 8, 200));
+        const h: f32 = @floatFromInt(@max(text.height + 8, 100));
+        return lib.Size.init(w, h);
+    }
 
     pub fn create() !TextArea {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1085,7 +1553,25 @@ pub const Button = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(Button);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
+
+    pub fn getPreferredSize_impl(self: *const Button) lib.Size {
+        const text = measureWindowText(self.peer);
+        // Button chrome: ~16px horizontal padding, ~10px vertical
+        const w: f32 = @floatFromInt(@max(text.width + 16, 75));
+        const h: f32 = @floatFromInt(@max(text.height + 10, 23));
+        return lib.Size.init(w, h);
+    }
 
     pub fn create() !Button {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1136,18 +1622,39 @@ pub const Button = struct {
 };
 
 pub const Dropdown = @import("Dropdown.zig");
+pub const Table = @import("Table.zig");
+pub const ProgressBar = @import("ProgressBar.zig");
 
 pub const CheckBox = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(CheckBox);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
+
+    pub fn getPreferredSize_impl(self: *const CheckBox) lib.Size {
+        const text = measureWindowText(self.peer);
+        // Checkbox indicator (~20px) + gap + text + padding
+        const indicator = win32.GetSystemMetrics(win32.SM_CXMENUCHECK);
+        const w: f32 = @floatFromInt(@max(text.width + indicator + 8, 40));
+        const h: f32 = @floatFromInt(@max(text.height + 4, 20));
+        return lib.Size.init(w, h);
+    }
 
     pub fn create() !CheckBox {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
             L("BUTTON"), // lpClassName
             L(""), // lpWindowName
-            @as(win32.WINDOW_STYLE, @enumFromInt(@intFromEnum(win32.WS_TABSTOP) | @intFromEnum(win32.WS_CHILD) | win32.BS_AUTOCHECKBOX)), // dwStyle
+            @as(win32.WINDOW_STYLE, @bitCast(@as(u32, @bitCast(win32.WINDOW_STYLE{ .TABSTOP = 1, .CHILD = 1 })) | win32Backend.BS_AUTOCHECKBOX)), // dwStyle
             0, // X
             0, // Y
             100, // nWidth
@@ -1192,13 +1699,104 @@ pub const CheckBox = struct {
     }
 };
 
+pub const RadioButton = struct {
+    peer: HWND,
+    arena: std.heap.ArenaAllocator,
+
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
+
+    pub fn getPreferredSize_impl(self: *const RadioButton) lib.Size {
+        const text = measureWindowText(self.peer);
+        const indicator = win32.GetSystemMetrics(win32.SM_CXMENUCHECK);
+        const w: f32 = @floatFromInt(@max(text.width + indicator + 8, 40));
+        const h: f32 = @floatFromInt(@max(text.height + 4, 20));
+        return lib.Size.init(w, h);
+    }
+
+    pub fn create() !RadioButton {
+        const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT,
+            L("BUTTON"),
+            L(""),
+            @as(win32.WINDOW_STYLE, @bitCast(@as(u32, @bitCast(win32.WINDOW_STYLE{ .TABSTOP = 1, .CHILD = 1 })) | win32Backend.BS_AUTORADIOBUTTON)),
+            0, 0, 100, 100,
+            defaultWHWND,
+            null,
+            hInst,
+            null,
+        ) orelse return Win32Error.InitializationError;
+        try RadioButton.setupEvents(hwnd);
+        _ = win32.SendMessageW(hwnd, win32.WM_SETFONT, @intFromPtr(captionFont), 1);
+
+        return RadioButton{ .peer = hwnd, .arena = std.heap.ArenaAllocator.init(lib.internal.allocator) };
+    }
+
+    pub fn setLabel(self: *RadioButton, label: [:0]const u8) void {
+        const allocator = lib.internal.allocator;
+        const wide = std.unicode.utf8ToUtf16LeAllocZ(allocator, label) catch return;
+        defer allocator.free(wide);
+        if (win32.SetWindowTextW(self.peer, wide) == 0) {
+            std.os.windows.unexpectedError(transWinError(win32.GetLastError())) catch {};
+        }
+    }
+
+    pub fn setEnabled(self: *RadioButton, enabled: bool) void {
+        _ = win32.EnableWindow(self.peer, @intFromBool(enabled));
+    }
+
+    pub fn setChecked(self: *RadioButton, checked: bool) void {
+        const state: win32.WPARAM = switch (checked) {
+            true => @intFromEnum(win32.BST_CHECKED),
+            false => @intFromEnum(win32.BST_UNCHECKED),
+        };
+        _ = win32.SendMessageW(self.peer, win32.BM_SETCHECK, state, 0);
+    }
+
+    pub fn isChecked(self: *RadioButton) bool {
+        const state: win32.DLG_BUTTON_CHECK_STATE = @enumFromInt(
+            win32.SendMessageW(self.peer, win32.BM_GETCHECK, 0, 0),
+        );
+        return state != win32.BST_UNCHECKED;
+    }
+
+    pub fn setGroup(self: *RadioButton, group_leader: *const RadioButton) void {
+        // Win32 auto-manages radio button groups within a parent window.
+        _ = self;
+        _ = group_leader;
+    }
+};
+
 pub const Slider = struct {
     peer: HWND,
     min: f32 = 0,
     max: f32 = 100,
     stepSize: f32 = 1,
 
-    pub usingnamespace Events(Slider);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
+
+    pub fn getPreferredSize_impl(self: *const Slider) lib.Size {
+        _ = self;
+        return lib.Size.init(200, 25);
+    }
 
     pub fn create() !Slider {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1258,13 +1856,48 @@ pub const Slider = struct {
     pub fn setEnabled(self: *Slider, enabled: bool) void {
         _ = win32.EnableWindow(self.peer, @intFromBool(enabled));
     }
+
+    pub fn setTickCount(self: *Slider, count: u32) void {
+        // Clear existing ticks
+        _ = win32.SendMessageW(self.peer, win32Backend.TBM_CLEARTICS, 1, 0);
+        if (count > 1) {
+            // Set tick frequency based on the range and tick count
+            const range = @as(i32, @intFromFloat((self.max - self.min) / self.stepSize));
+            const freq = @divTrunc(range, @as(i32, @intCast(count - 1)));
+            _ = win32.SendMessageW(self.peer, win32Backend.TBM_SETTICFREQ, @intCast(freq), 0);
+        }
+    }
+
+    pub fn setSnapToTicks(self: *Slider, snap: bool) void {
+        _ = self;
+        _ = snap;
+        // Win32 trackbar snaps to step size already via integer positions.
+        // Snap-to-tick is handled at the component level by adjusting step size.
+    }
 };
 
 pub const Label = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(Label);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
+
+    pub fn getPreferredSize_impl(self: *const Label) lib.Size {
+        const text = measureWindowText(self.peer);
+        const w: f32 = @floatFromInt(@max(text.width + 4, 20));
+        const h: f32 = @floatFromInt(@max(text.height + 2, 16));
+        return lib.Size.init(w, h);
+    }
 
     pub fn create() !Label {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1322,7 +1955,17 @@ pub const TabContainer = struct {
     peerList: std.ArrayList(PeerType),
     shownPeer: ?PeerType = null,
 
-    pub usingnamespace Events(TabContainer);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     var classRegistered = false;
 
@@ -1395,7 +2038,7 @@ pub const TabContainer = struct {
             .peer = wrapperHwnd,
             .tabControl = hwnd,
             .arena = std.heap.ArenaAllocator.init(lib.internal.allocator),
-            .peerList = std.ArrayList(PeerType).init(lib.internal.allocator),
+            .peerList = .empty,
         };
     }
 
@@ -1415,7 +2058,7 @@ pub const TabContainer = struct {
     pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {
         const item = win32Backend.TCITEMA{ .mask = 0 };
         const newIndex = win32Backend.TabCtrl_InsertItemW(self.tabControl, @as(c_int, @intCast(position)), &item);
-        self.peerList.append(peer) catch @panic("OOM");
+        self.peerList.append(lib.internal.allocator, peer) catch @panic("OOM");
 
         if (self.shownPeer == null) {
             _ = win32.SetParent(peer, self.peer);
@@ -1458,7 +2101,17 @@ pub const ScrollView = struct {
     child: ?HWND = null,
     widget: ?*lib.Widget = null,
 
-    pub usingnamespace Events(ScrollView);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     var classRegistered = false;
 
@@ -1558,16 +2211,20 @@ pub const ScrollView = struct {
         const width = parent.right - parent.left;
         const height = parent.bottom - parent.top;
 
-        // Resize the child component to its preferred size (while keeping its current position)
-        const preferred = self.widget.?.getPreferredSize(lib.Size.init(std.math.maxInt(u32), std.math.maxInt(u32)));
+        // Resize the child to at least the visible area, or its preferred size if larger.
+        // This matches NSScrollView/GtkScrolledWindow behavior: the child should never
+        // be narrower/shorter than the scroll view's visible area.
+        const preferred = self.widget.?.getPreferredSize(lib.Size.init(std.math.floatMax(f32), std.math.floatMax(f32)));
+        const child_width: c_int = @intFromFloat(@max(preferred.width, @as(f32, @floatFromInt(width))));
+        const child_height: c_int = @intFromFloat(@max(preferred.height, @as(f32, @floatFromInt(height))));
 
         const child = win32.GetWindow(hwnd, win32.GW_CHILD);
         _ = win32.MoveWindow(
             child,
-            @max(rect.left - parent.left, @min(0, -(@as(c_int, @intFromFloat(preferred.width)) - width))),
-            @max(rect.top - parent.top, @min(0, -(@as(c_int, @intFromFloat(preferred.height)) - height))),
-            @as(c_int, @intFromFloat(preferred.width)),
-            @as(c_int, @intFromFloat(preferred.height)),
+            @max(rect.left - parent.left, @min(0, -(child_width - width))),
+            @max(rect.top - parent.top, @min(0, -(child_height - height))),
+            child_width,
+            child_height,
             1,
         );
 
@@ -1576,7 +2233,7 @@ pub const ScrollView = struct {
             .cbSize = @sizeOf(win32.SCROLLINFO),
             .fMask = .{ .RANGE = 1, .PAGE = 1 },
             .nMin = 0,
-            .nMax = @as(c_int, @intFromFloat(preferred.width)),
+            .nMax = child_width,
             .nPage = @as(c_uint, @intCast(width)),
             .nPos = 0,
             .nTrackPos = 0,
@@ -1587,7 +2244,7 @@ pub const ScrollView = struct {
             .cbSize = @sizeOf(win32.SCROLLINFO),
             .fMask = .{ .RANGE = 1, .PAGE = 1 },
             .nMin = 0,
-            .nMax = @as(c_int, @intFromFloat(preferred.height)),
+            .nMax = child_height,
             .nPage = @as(c_uint, @intCast(height)),
             .nPos = 0,
             .nTrackPos = 0,
@@ -1601,7 +2258,17 @@ const ContainerStruct = struct { hwnd: HWND, count: usize, index: usize };
 pub const Container = struct {
     peer: HWND,
 
-    pub usingnamespace Events(Container);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     var classRegistered = false;
 
@@ -1741,6 +2408,11 @@ pub const AudioGenerator = struct {
         _ = self;
     }
 };
+
+pub fn postEmptyEvent() void {
+    // Post a null message to wake up the event loop from GetMessageW
+    _ = win32.PostMessageW(defaultWHWND, win32.WM_NULL, 0, 0);
+}
 
 pub fn runStep(step: shared.EventLoopStep) bool {
     var msg: MSG = undefined;

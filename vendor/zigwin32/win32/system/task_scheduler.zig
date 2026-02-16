@@ -124,25 +124,25 @@ pub const ITaskTrigger = extern union {
         SetTrigger: *const fn(
             self: *const ITaskTrigger,
             pTrigger: ?*const TASK_TRIGGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrigger: *const fn(
             self: *const ITaskTrigger,
             pTrigger: ?*TASK_TRIGGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTriggerString: *const fn(
             self: *const ITaskTrigger,
             ppwszTrigger: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetTrigger(self: *const ITaskTrigger, pTrigger: ?*const TASK_TRIGGER) callconv(.Inline) HRESULT {
+    pub fn SetTrigger(self: *const ITaskTrigger, pTrigger: ?*const TASK_TRIGGER) HRESULT {
         return self.vtable.SetTrigger(self, pTrigger);
     }
-    pub fn GetTrigger(self: *const ITaskTrigger, pTrigger: ?*TASK_TRIGGER) callconv(.Inline) HRESULT {
+    pub fn GetTrigger(self: *const ITaskTrigger, pTrigger: ?*TASK_TRIGGER) HRESULT {
         return self.vtable.GetTrigger(self, pTrigger);
     }
-    pub fn GetTriggerString(self: *const ITaskTrigger, ppwszTrigger: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTriggerString(self: *const ITaskTrigger, ppwszTrigger: ?*?PWSTR) HRESULT {
         return self.vtable.GetTriggerString(self, ppwszTrigger);
     }
 };
@@ -157,216 +157,216 @@ pub const IScheduledWorkItem = extern union {
             self: *const IScheduledWorkItem,
             piNewTrigger: ?*u16,
             ppTrigger: ?*?*ITaskTrigger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTrigger: *const fn(
             self: *const IScheduledWorkItem,
             iTrigger: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTriggerCount: *const fn(
             self: *const IScheduledWorkItem,
             pwCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTrigger: *const fn(
             self: *const IScheduledWorkItem,
             iTrigger: u16,
             ppTrigger: ?*?*ITaskTrigger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTriggerString: *const fn(
             self: *const IScheduledWorkItem,
             iTrigger: u16,
             ppwszTrigger: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRunTimes: *const fn(
             self: *const IScheduledWorkItem,
             pstBegin: ?*const SYSTEMTIME,
             pstEnd: ?*const SYSTEMTIME,
             pCount: ?*u16,
             rgstTaskTimes: ?*?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNextRunTime: *const fn(
             self: *const IScheduledWorkItem,
             pstNextRun: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIdleWait: *const fn(
             self: *const IScheduledWorkItem,
             wIdleMinutes: u16,
             wDeadlineMinutes: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIdleWait: *const fn(
             self: *const IScheduledWorkItem,
             pwIdleMinutes: ?*u16,
             pwDeadlineMinutes: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Run: *const fn(
             self: *const IScheduledWorkItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IScheduledWorkItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EditWorkItem: *const fn(
             self: *const IScheduledWorkItem,
             hParent: ?HWND,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMostRecentRunTime: *const fn(
             self: *const IScheduledWorkItem,
             pstLastRun: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IScheduledWorkItem,
             phrStatus: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExitCode: *const fn(
             self: *const IScheduledWorkItem,
             pdwExitCode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetComment: *const fn(
             self: *const IScheduledWorkItem,
             pwszComment: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetComment: *const fn(
             self: *const IScheduledWorkItem,
             ppwszComment: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCreator: *const fn(
             self: *const IScheduledWorkItem,
             pwszCreator: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreator: *const fn(
             self: *const IScheduledWorkItem,
             ppwszCreator: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWorkItemData: *const fn(
             self: *const IScheduledWorkItem,
             cbData: u16,
             rgbData: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWorkItemData: *const fn(
             self: *const IScheduledWorkItem,
             pcbData: ?*u16,
             prgbData: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetErrorRetryCount: *const fn(
             self: *const IScheduledWorkItem,
             wRetryCount: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorRetryCount: *const fn(
             self: *const IScheduledWorkItem,
             pwRetryCount: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetErrorRetryInterval: *const fn(
             self: *const IScheduledWorkItem,
             wRetryInterval: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorRetryInterval: *const fn(
             self: *const IScheduledWorkItem,
             pwRetryInterval: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFlags: *const fn(
             self: *const IScheduledWorkItem,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IScheduledWorkItem,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAccountInformation: *const fn(
             self: *const IScheduledWorkItem,
             pwszAccountName: ?[*:0]const u16,
             pwszPassword: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccountInformation: *const fn(
             self: *const IScheduledWorkItem,
             ppwszAccountName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateTrigger(self: *const IScheduledWorkItem, piNewTrigger: ?*u16, ppTrigger: ?*?*ITaskTrigger) callconv(.Inline) HRESULT {
+    pub fn CreateTrigger(self: *const IScheduledWorkItem, piNewTrigger: ?*u16, ppTrigger: ?*?*ITaskTrigger) HRESULT {
         return self.vtable.CreateTrigger(self, piNewTrigger, ppTrigger);
     }
-    pub fn DeleteTrigger(self: *const IScheduledWorkItem, iTrigger: u16) callconv(.Inline) HRESULT {
+    pub fn DeleteTrigger(self: *const IScheduledWorkItem, iTrigger: u16) HRESULT {
         return self.vtable.DeleteTrigger(self, iTrigger);
     }
-    pub fn GetTriggerCount(self: *const IScheduledWorkItem, pwCount: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetTriggerCount(self: *const IScheduledWorkItem, pwCount: ?*u16) HRESULT {
         return self.vtable.GetTriggerCount(self, pwCount);
     }
-    pub fn GetTrigger(self: *const IScheduledWorkItem, iTrigger: u16, ppTrigger: ?*?*ITaskTrigger) callconv(.Inline) HRESULT {
+    pub fn GetTrigger(self: *const IScheduledWorkItem, iTrigger: u16, ppTrigger: ?*?*ITaskTrigger) HRESULT {
         return self.vtable.GetTrigger(self, iTrigger, ppTrigger);
     }
-    pub fn GetTriggerString(self: *const IScheduledWorkItem, iTrigger: u16, ppwszTrigger: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTriggerString(self: *const IScheduledWorkItem, iTrigger: u16, ppwszTrigger: ?*?PWSTR) HRESULT {
         return self.vtable.GetTriggerString(self, iTrigger, ppwszTrigger);
     }
-    pub fn GetRunTimes(self: *const IScheduledWorkItem, pstBegin: ?*const SYSTEMTIME, pstEnd: ?*const SYSTEMTIME, pCount: ?*u16, rgstTaskTimes: ?*?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetRunTimes(self: *const IScheduledWorkItem, pstBegin: ?*const SYSTEMTIME, pstEnd: ?*const SYSTEMTIME, pCount: ?*u16, rgstTaskTimes: ?*?*SYSTEMTIME) HRESULT {
         return self.vtable.GetRunTimes(self, pstBegin, pstEnd, pCount, rgstTaskTimes);
     }
-    pub fn GetNextRunTime(self: *const IScheduledWorkItem, pstNextRun: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetNextRunTime(self: *const IScheduledWorkItem, pstNextRun: ?*SYSTEMTIME) HRESULT {
         return self.vtable.GetNextRunTime(self, pstNextRun);
     }
-    pub fn SetIdleWait(self: *const IScheduledWorkItem, wIdleMinutes: u16, wDeadlineMinutes: u16) callconv(.Inline) HRESULT {
+    pub fn SetIdleWait(self: *const IScheduledWorkItem, wIdleMinutes: u16, wDeadlineMinutes: u16) HRESULT {
         return self.vtable.SetIdleWait(self, wIdleMinutes, wDeadlineMinutes);
     }
-    pub fn GetIdleWait(self: *const IScheduledWorkItem, pwIdleMinutes: ?*u16, pwDeadlineMinutes: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetIdleWait(self: *const IScheduledWorkItem, pwIdleMinutes: ?*u16, pwDeadlineMinutes: ?*u16) HRESULT {
         return self.vtable.GetIdleWait(self, pwIdleMinutes, pwDeadlineMinutes);
     }
-    pub fn Run(self: *const IScheduledWorkItem) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const IScheduledWorkItem) HRESULT {
         return self.vtable.Run(self);
     }
-    pub fn Terminate(self: *const IScheduledWorkItem) callconv(.Inline) HRESULT {
+    pub fn Terminate(self: *const IScheduledWorkItem) HRESULT {
         return self.vtable.Terminate(self);
     }
-    pub fn EditWorkItem(self: *const IScheduledWorkItem, hParent: ?HWND, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn EditWorkItem(self: *const IScheduledWorkItem, hParent: ?HWND, dwReserved: u32) HRESULT {
         return self.vtable.EditWorkItem(self, hParent, dwReserved);
     }
-    pub fn GetMostRecentRunTime(self: *const IScheduledWorkItem, pstLastRun: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetMostRecentRunTime(self: *const IScheduledWorkItem, pstLastRun: ?*SYSTEMTIME) HRESULT {
         return self.vtable.GetMostRecentRunTime(self, pstLastRun);
     }
-    pub fn GetStatus(self: *const IScheduledWorkItem, phrStatus: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IScheduledWorkItem, phrStatus: ?*HRESULT) HRESULT {
         return self.vtable.GetStatus(self, phrStatus);
     }
-    pub fn GetExitCode(self: *const IScheduledWorkItem, pdwExitCode: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetExitCode(self: *const IScheduledWorkItem, pdwExitCode: ?*u32) HRESULT {
         return self.vtable.GetExitCode(self, pdwExitCode);
     }
-    pub fn SetComment(self: *const IScheduledWorkItem, pwszComment: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetComment(self: *const IScheduledWorkItem, pwszComment: ?[*:0]const u16) HRESULT {
         return self.vtable.SetComment(self, pwszComment);
     }
-    pub fn GetComment(self: *const IScheduledWorkItem, ppwszComment: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetComment(self: *const IScheduledWorkItem, ppwszComment: ?*?PWSTR) HRESULT {
         return self.vtable.GetComment(self, ppwszComment);
     }
-    pub fn SetCreator(self: *const IScheduledWorkItem, pwszCreator: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetCreator(self: *const IScheduledWorkItem, pwszCreator: ?[*:0]const u16) HRESULT {
         return self.vtable.SetCreator(self, pwszCreator);
     }
-    pub fn GetCreator(self: *const IScheduledWorkItem, ppwszCreator: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCreator(self: *const IScheduledWorkItem, ppwszCreator: ?*?PWSTR) HRESULT {
         return self.vtable.GetCreator(self, ppwszCreator);
     }
-    pub fn SetWorkItemData(self: *const IScheduledWorkItem, cbData: u16, rgbData: ?*u8) callconv(.Inline) HRESULT {
+    pub fn SetWorkItemData(self: *const IScheduledWorkItem, cbData: u16, rgbData: ?*u8) HRESULT {
         return self.vtable.SetWorkItemData(self, cbData, rgbData);
     }
-    pub fn GetWorkItemData(self: *const IScheduledWorkItem, pcbData: ?*u16, prgbData: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetWorkItemData(self: *const IScheduledWorkItem, pcbData: ?*u16, prgbData: ?*?*u8) HRESULT {
         return self.vtable.GetWorkItemData(self, pcbData, prgbData);
     }
-    pub fn SetErrorRetryCount(self: *const IScheduledWorkItem, wRetryCount: u16) callconv(.Inline) HRESULT {
+    pub fn SetErrorRetryCount(self: *const IScheduledWorkItem, wRetryCount: u16) HRESULT {
         return self.vtable.SetErrorRetryCount(self, wRetryCount);
     }
-    pub fn GetErrorRetryCount(self: *const IScheduledWorkItem, pwRetryCount: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetErrorRetryCount(self: *const IScheduledWorkItem, pwRetryCount: ?*u16) HRESULT {
         return self.vtable.GetErrorRetryCount(self, pwRetryCount);
     }
-    pub fn SetErrorRetryInterval(self: *const IScheduledWorkItem, wRetryInterval: u16) callconv(.Inline) HRESULT {
+    pub fn SetErrorRetryInterval(self: *const IScheduledWorkItem, wRetryInterval: u16) HRESULT {
         return self.vtable.SetErrorRetryInterval(self, wRetryInterval);
     }
-    pub fn GetErrorRetryInterval(self: *const IScheduledWorkItem, pwRetryInterval: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetErrorRetryInterval(self: *const IScheduledWorkItem, pwRetryInterval: ?*u16) HRESULT {
         return self.vtable.GetErrorRetryInterval(self, pwRetryInterval);
     }
-    pub fn SetFlags(self: *const IScheduledWorkItem, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetFlags(self: *const IScheduledWorkItem, dwFlags: u32) HRESULT {
         return self.vtable.SetFlags(self, dwFlags);
     }
-    pub fn GetFlags(self: *const IScheduledWorkItem, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const IScheduledWorkItem, pdwFlags: ?*u32) HRESULT {
         return self.vtable.GetFlags(self, pdwFlags);
     }
-    pub fn SetAccountInformation(self: *const IScheduledWorkItem, pwszAccountName: ?[*:0]const u16, pwszPassword: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetAccountInformation(self: *const IScheduledWorkItem, pwszAccountName: ?[*:0]const u16, pwszPassword: ?[*:0]const u16) HRESULT {
         return self.vtable.SetAccountInformation(self, pwszAccountName, pwszPassword);
     }
-    pub fn GetAccountInformation(self: *const IScheduledWorkItem, ppwszAccountName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAccountInformation(self: *const IScheduledWorkItem, ppwszAccountName: ?*?PWSTR) HRESULT {
         return self.vtable.GetAccountInformation(self, ppwszAccountName);
     }
 };
@@ -380,89 +380,89 @@ pub const ITask = extern union {
         SetApplicationName: *const fn(
             self: *const ITask,
             pwszApplicationName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplicationName: *const fn(
             self: *const ITask,
             ppwszApplicationName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetParameters: *const fn(
             self: *const ITask,
             pwszParameters: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameters: *const fn(
             self: *const ITask,
             ppwszParameters: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWorkingDirectory: *const fn(
             self: *const ITask,
             pwszWorkingDirectory: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWorkingDirectory: *const fn(
             self: *const ITask,
             ppwszWorkingDirectory: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPriority: *const fn(
             self: *const ITask,
             dwPriority: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPriority: *const fn(
             self: *const ITask,
             pdwPriority: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTaskFlags: *const fn(
             self: *const ITask,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTaskFlags: *const fn(
             self: *const ITask,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxRunTime: *const fn(
             self: *const ITask,
             dwMaxRunTimeMS: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxRunTime: *const fn(
             self: *const ITask,
             pdwMaxRunTimeMS: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IScheduledWorkItem: IScheduledWorkItem,
     IUnknown: IUnknown,
-    pub fn SetApplicationName(self: *const ITask, pwszApplicationName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetApplicationName(self: *const ITask, pwszApplicationName: ?[*:0]const u16) HRESULT {
         return self.vtable.SetApplicationName(self, pwszApplicationName);
     }
-    pub fn GetApplicationName(self: *const ITask, ppwszApplicationName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetApplicationName(self: *const ITask, ppwszApplicationName: ?*?PWSTR) HRESULT {
         return self.vtable.GetApplicationName(self, ppwszApplicationName);
     }
-    pub fn SetParameters(self: *const ITask, pwszParameters: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetParameters(self: *const ITask, pwszParameters: ?[*:0]const u16) HRESULT {
         return self.vtable.SetParameters(self, pwszParameters);
     }
-    pub fn GetParameters(self: *const ITask, ppwszParameters: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetParameters(self: *const ITask, ppwszParameters: ?*?PWSTR) HRESULT {
         return self.vtable.GetParameters(self, ppwszParameters);
     }
-    pub fn SetWorkingDirectory(self: *const ITask, pwszWorkingDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetWorkingDirectory(self: *const ITask, pwszWorkingDirectory: ?[*:0]const u16) HRESULT {
         return self.vtable.SetWorkingDirectory(self, pwszWorkingDirectory);
     }
-    pub fn GetWorkingDirectory(self: *const ITask, ppwszWorkingDirectory: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetWorkingDirectory(self: *const ITask, ppwszWorkingDirectory: ?*?PWSTR) HRESULT {
         return self.vtable.GetWorkingDirectory(self, ppwszWorkingDirectory);
     }
-    pub fn SetPriority(self: *const ITask, dwPriority: u32) callconv(.Inline) HRESULT {
+    pub fn SetPriority(self: *const ITask, dwPriority: u32) HRESULT {
         return self.vtable.SetPriority(self, dwPriority);
     }
-    pub fn GetPriority(self: *const ITask, pdwPriority: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const ITask, pdwPriority: ?*u32) HRESULT {
         return self.vtable.GetPriority(self, pdwPriority);
     }
-    pub fn SetTaskFlags(self: *const ITask, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetTaskFlags(self: *const ITask, dwFlags: u32) HRESULT {
         return self.vtable.SetTaskFlags(self, dwFlags);
     }
-    pub fn GetTaskFlags(self: *const ITask, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTaskFlags(self: *const ITask, pdwFlags: ?*u32) HRESULT {
         return self.vtable.GetTaskFlags(self, pdwFlags);
     }
-    pub fn SetMaxRunTime(self: *const ITask, dwMaxRunTimeMS: u32) callconv(.Inline) HRESULT {
+    pub fn SetMaxRunTime(self: *const ITask, dwMaxRunTimeMS: u32) HRESULT {
         return self.vtable.SetMaxRunTime(self, dwMaxRunTimeMS);
     }
-    pub fn GetMaxRunTime(self: *const ITask, pdwMaxRunTimeMS: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxRunTime(self: *const ITask, pdwMaxRunTimeMS: ?*u32) HRESULT {
         return self.vtable.GetMaxRunTime(self, pdwMaxRunTimeMS);
     }
 };
@@ -478,31 +478,31 @@ pub const IEnumWorkItems = extern union {
             celt: u32,
             rgpwszNames: ?*?*?PWSTR,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumWorkItems,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumWorkItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumWorkItems,
             ppEnumWorkItems: ?*?*IEnumWorkItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumWorkItems, celt: u32, rgpwszNames: ?*?*?PWSTR, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumWorkItems, celt: u32, rgpwszNames: ?*?*?PWSTR, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, rgpwszNames, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumWorkItems, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumWorkItems, celt: u32) HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumWorkItems) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumWorkItems) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumWorkItems, ppEnumWorkItems: ?*?*IEnumWorkItems) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumWorkItems, ppEnumWorkItems: ?*?*IEnumWorkItems) HRESULT {
         return self.vtable.Clone(self, ppEnumWorkItems);
     }
 };
@@ -516,67 +516,67 @@ pub const ITaskScheduler = extern union {
         SetTargetComputer: *const fn(
             self: *const ITaskScheduler,
             pwszComputer: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTargetComputer: *const fn(
             self: *const ITaskScheduler,
             ppwszComputer: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enum: *const fn(
             self: *const ITaskScheduler,
             ppEnumWorkItems: ?*?*IEnumWorkItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Activate: *const fn(
             self: *const ITaskScheduler,
             pwszName: ?[*:0]const u16,
             riid: ?*const Guid,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const ITaskScheduler,
             pwszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NewWorkItem: *const fn(
             self: *const ITaskScheduler,
             pwszTaskName: ?[*:0]const u16,
             rclsid: ?*const Guid,
             riid: ?*const Guid,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddWorkItem: *const fn(
             self: *const ITaskScheduler,
             pwszTaskName: ?[*:0]const u16,
             pWorkItem: ?*IScheduledWorkItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsOfType: *const fn(
             self: *const ITaskScheduler,
             pwszName: ?[*:0]const u16,
             riid: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetTargetComputer(self: *const ITaskScheduler, pwszComputer: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetTargetComputer(self: *const ITaskScheduler, pwszComputer: ?[*:0]const u16) HRESULT {
         return self.vtable.SetTargetComputer(self, pwszComputer);
     }
-    pub fn GetTargetComputer(self: *const ITaskScheduler, ppwszComputer: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTargetComputer(self: *const ITaskScheduler, ppwszComputer: ?*?PWSTR) HRESULT {
         return self.vtable.GetTargetComputer(self, ppwszComputer);
     }
-    pub fn Enum(self: *const ITaskScheduler, ppEnumWorkItems: ?*?*IEnumWorkItems) callconv(.Inline) HRESULT {
+    pub fn Enum(self: *const ITaskScheduler, ppEnumWorkItems: ?*?*IEnumWorkItems) HRESULT {
         return self.vtable.Enum(self, ppEnumWorkItems);
     }
-    pub fn Activate(self: *const ITaskScheduler, pwszName: ?[*:0]const u16, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const ITaskScheduler, pwszName: ?[*:0]const u16, riid: ?*const Guid, ppUnk: ?*?*IUnknown) HRESULT {
         return self.vtable.Activate(self, pwszName, riid, ppUnk);
     }
-    pub fn Delete(self: *const ITaskScheduler, pwszName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const ITaskScheduler, pwszName: ?[*:0]const u16) HRESULT {
         return self.vtable.Delete(self, pwszName);
     }
-    pub fn NewWorkItem(self: *const ITaskScheduler, pwszTaskName: ?[*:0]const u16, rclsid: ?*const Guid, riid: ?*const Guid, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn NewWorkItem(self: *const ITaskScheduler, pwszTaskName: ?[*:0]const u16, rclsid: ?*const Guid, riid: ?*const Guid, ppUnk: ?*?*IUnknown) HRESULT {
         return self.vtable.NewWorkItem(self, pwszTaskName, rclsid, riid, ppUnk);
     }
-    pub fn AddWorkItem(self: *const ITaskScheduler, pwszTaskName: ?[*:0]const u16, pWorkItem: ?*IScheduledWorkItem) callconv(.Inline) HRESULT {
+    pub fn AddWorkItem(self: *const ITaskScheduler, pwszTaskName: ?[*:0]const u16, pWorkItem: ?*IScheduledWorkItem) HRESULT {
         return self.vtable.AddWorkItem(self, pwszTaskName, pWorkItem);
     }
-    pub fn IsOfType(self: *const ITaskScheduler, pwszName: ?[*:0]const u16, riid: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn IsOfType(self: *const ITaskScheduler, pwszName: ?[*:0]const u16, riid: ?*const Guid) HRESULT {
         return self.vtable.IsOfType(self, pwszName, riid);
     }
 };
@@ -601,11 +601,11 @@ pub const IProvideTaskPage = extern union {
             tpType: TASKPAGE,
             fPersistChanges: BOOL,
             phPage: ?*?HPROPSHEETPAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPage(self: *const IProvideTaskPage, tpType: TASKPAGE, fPersistChanges: BOOL, phPage: ?*?HPROPSHEETPAGE) callconv(.Inline) HRESULT {
+    pub fn GetPage(self: *const IProvideTaskPage, tpType: TASKPAGE, fPersistChanges: BOOL, phPage: ?*?HPROPSHEETPAGE) HRESULT {
         return self.vtable.GetPage(self, tpType, fPersistChanges, phPage);
     }
 };
@@ -791,28 +791,28 @@ pub const ITaskFolderCollection = extern union {
         get_Count: *const fn(
             self: *const ITaskFolderCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ITaskFolderCollection,
             index: VARIANT,
             ppFolder: ?*?*ITaskFolder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ITaskFolderCollection,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ITaskFolderCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ITaskFolderCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn get_Item(self: *const ITaskFolderCollection, index: VARIANT, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ITaskFolderCollection, index: VARIANT, ppFolder: ?*?*ITaskFolder) HRESULT {
         return self.vtable.get_Item(self, index, ppFolder);
     }
-    pub fn get__NewEnum(self: *const ITaskFolderCollection, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ITaskFolderCollection, ppEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnum);
     }
 };
@@ -827,78 +827,78 @@ pub const ITaskService = extern union {
             self: *const ITaskService,
             path: ?BSTR,
             ppFolder: ?*?*ITaskFolder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRunningTasks: *const fn(
             self: *const ITaskService,
             flags: i32,
             ppRunningTasks: ?*?*IRunningTaskCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NewTask: *const fn(
             self: *const ITaskService,
             flags: u32,
             ppDefinition: ?*?*ITaskDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const ITaskService,
             serverName: VARIANT,
             user: VARIANT,
             domain: VARIANT,
             password: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Connected: *const fn(
             self: *const ITaskService,
             pConnected: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetServer: *const fn(
             self: *const ITaskService,
             pServer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectedUser: *const fn(
             self: *const ITaskService,
             pUser: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectedDomain: *const fn(
             self: *const ITaskService,
             pDomain: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HighestVersion: *const fn(
             self: *const ITaskService,
             pVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetFolder(self: *const ITaskService, path: ?BSTR, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const ITaskService, path: ?BSTR, ppFolder: ?*?*ITaskFolder) HRESULT {
         return self.vtable.GetFolder(self, path, ppFolder);
     }
-    pub fn GetRunningTasks(self: *const ITaskService, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) callconv(.Inline) HRESULT {
+    pub fn GetRunningTasks(self: *const ITaskService, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) HRESULT {
         return self.vtable.GetRunningTasks(self, flags, ppRunningTasks);
     }
-    pub fn NewTask(self: *const ITaskService, flags: u32, ppDefinition: ?*?*ITaskDefinition) callconv(.Inline) HRESULT {
+    pub fn NewTask(self: *const ITaskService, flags: u32, ppDefinition: ?*?*ITaskDefinition) HRESULT {
         return self.vtable.NewTask(self, flags, ppDefinition);
     }
-    pub fn Connect(self: *const ITaskService, serverName: VARIANT, user: VARIANT, domain: VARIANT, password: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const ITaskService, serverName: VARIANT, user: VARIANT, domain: VARIANT, password: VARIANT) HRESULT {
         return self.vtable.Connect(self, serverName, user, domain, password);
     }
-    pub fn get_Connected(self: *const ITaskService, pConnected: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Connected(self: *const ITaskService, pConnected: ?*i16) HRESULT {
         return self.vtable.get_Connected(self, pConnected);
     }
-    pub fn get_TargetServer(self: *const ITaskService, pServer: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetServer(self: *const ITaskService, pServer: ?*?BSTR) HRESULT {
         return self.vtable.get_TargetServer(self, pServer);
     }
-    pub fn get_ConnectedUser(self: *const ITaskService, pUser: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ConnectedUser(self: *const ITaskService, pUser: ?*?BSTR) HRESULT {
         return self.vtable.get_ConnectedUser(self, pUser);
     }
-    pub fn get_ConnectedDomain(self: *const ITaskService, pDomain: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ConnectedDomain(self: *const ITaskService, pDomain: ?*?BSTR) HRESULT {
         return self.vtable.get_ConnectedDomain(self, pDomain);
     }
-    pub fn get_HighestVersion(self: *const ITaskService, pVersion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_HighestVersion(self: *const ITaskService, pVersion: ?*u32) HRESULT {
         return self.vtable.get_HighestVersion(self, pVersion);
     }
 };
@@ -913,30 +913,30 @@ pub const ITaskHandler = extern union {
             self: *const ITaskHandler,
             pHandlerServices: ?*IUnknown,
             data: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const ITaskHandler,
             pRetCode: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const ITaskHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const ITaskHandler,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Start(self: *const ITaskHandler, pHandlerServices: ?*IUnknown, data: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const ITaskHandler, pHandlerServices: ?*IUnknown, data: ?BSTR) HRESULT {
         return self.vtable.Start(self, pHandlerServices, data);
     }
-    pub fn Stop(self: *const ITaskHandler, pRetCode: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const ITaskHandler, pRetCode: ?*HRESULT) HRESULT {
         return self.vtable.Stop(self, pRetCode);
     }
-    pub fn Pause(self: *const ITaskHandler) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const ITaskHandler) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const ITaskHandler) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const ITaskHandler) HRESULT {
         return self.vtable.Resume(self);
     }
 };
@@ -951,18 +951,18 @@ pub const ITaskHandlerStatus = extern union {
             self: *const ITaskHandlerStatus,
             percentComplete: i16,
             statusMessage: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TaskCompleted: *const fn(
             self: *const ITaskHandlerStatus,
             taskErrCode: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UpdateStatus(self: *const ITaskHandlerStatus, percentComplete: i16, statusMessage: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn UpdateStatus(self: *const ITaskHandlerStatus, percentComplete: i16, statusMessage: ?BSTR) HRESULT {
         return self.vtable.UpdateStatus(self, percentComplete, statusMessage);
     }
-    pub fn TaskCompleted(self: *const ITaskHandlerStatus, taskErrCode: HRESULT) callconv(.Inline) HRESULT {
+    pub fn TaskCompleted(self: *const ITaskHandlerStatus, taskErrCode: HRESULT) HRESULT {
         return self.vtable.TaskCompleted(self, taskErrCode);
     }
 };
@@ -976,25 +976,25 @@ pub const ITaskVariables = extern union {
         GetInput: *const fn(
             self: *const ITaskVariables,
             pInput: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOutput: *const fn(
             self: *const ITaskVariables,
             input: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContext: *const fn(
             self: *const ITaskVariables,
             pContext: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInput(self: *const ITaskVariables, pInput: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetInput(self: *const ITaskVariables, pInput: ?*?BSTR) HRESULT {
         return self.vtable.GetInput(self, pInput);
     }
-    pub fn SetOutput(self: *const ITaskVariables, input: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetOutput(self: *const ITaskVariables, input: ?BSTR) HRESULT {
         return self.vtable.SetOutput(self, input);
     }
-    pub fn GetContext(self: *const ITaskVariables, pContext: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetContext(self: *const ITaskVariables, pContext: ?*?BSTR) HRESULT {
         return self.vtable.GetContext(self, pContext);
     }
 };
@@ -1009,36 +1009,36 @@ pub const ITaskNamedValuePair = extern union {
         get_Name: *const fn(
             self: *const ITaskNamedValuePair,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const ITaskNamedValuePair,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const ITaskNamedValuePair,
             pValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const ITaskNamedValuePair,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ITaskNamedValuePair, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ITaskNamedValuePair, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pName);
     }
-    pub fn put_Name(self: *const ITaskNamedValuePair, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const ITaskNamedValuePair, name: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Value(self: *const ITaskNamedValuePair, pValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ITaskNamedValuePair, pValue: ?*?BSTR) HRESULT {
         return self.vtable.get_Value(self, pValue);
     }
-    pub fn put_Value(self: *const ITaskNamedValuePair, value: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const ITaskNamedValuePair, value: ?BSTR) HRESULT {
         return self.vtable.put_Value(self, value);
     }
 };
@@ -1053,50 +1053,50 @@ pub const ITaskNamedValueCollection = extern union {
         get_Count: *const fn(
             self: *const ITaskNamedValueCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ITaskNamedValueCollection,
             index: i32,
             ppPair: ?*?*ITaskNamedValuePair,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ITaskNamedValueCollection,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const ITaskNamedValueCollection,
             name: ?BSTR,
             value: ?BSTR,
             ppPair: ?*?*ITaskNamedValuePair,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ITaskNamedValueCollection,
             index: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ITaskNamedValueCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ITaskNamedValueCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ITaskNamedValueCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn get_Item(self: *const ITaskNamedValueCollection, index: i32, ppPair: ?*?*ITaskNamedValuePair) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ITaskNamedValueCollection, index: i32, ppPair: ?*?*ITaskNamedValuePair) HRESULT {
         return self.vtable.get_Item(self, index, ppPair);
     }
-    pub fn get__NewEnum(self: *const ITaskNamedValueCollection, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ITaskNamedValueCollection, ppEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnum);
     }
-    pub fn Create(self: *const ITaskNamedValueCollection, name: ?BSTR, value: ?BSTR, ppPair: ?*?*ITaskNamedValuePair) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const ITaskNamedValueCollection, name: ?BSTR, value: ?BSTR, ppPair: ?*?*ITaskNamedValuePair) HRESULT {
         return self.vtable.Create(self, name, value, ppPair);
     }
-    pub fn Remove(self: *const ITaskNamedValueCollection, index: i32) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ITaskNamedValueCollection, index: i32) HRESULT {
         return self.vtable.Remove(self, index);
     }
-    pub fn Clear(self: *const ITaskNamedValueCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ITaskNamedValueCollection) HRESULT {
         return self.vtable.Clear(self);
     }
 };
@@ -1111,64 +1111,64 @@ pub const IRunningTask = extern union {
         get_Name: *const fn(
             self: *const IRunningTask,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstanceGuid: *const fn(
             self: *const IRunningTask,
             pGuid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const IRunningTask,
             pPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const IRunningTask,
             pState: ?*TASK_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentAction: *const fn(
             self: *const IRunningTask,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IRunningTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IRunningTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnginePID: *const fn(
             self: *const IRunningTask,
             pPID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IRunningTask, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IRunningTask, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pName);
     }
-    pub fn get_InstanceGuid(self: *const IRunningTask, pGuid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InstanceGuid(self: *const IRunningTask, pGuid: ?*?BSTR) HRESULT {
         return self.vtable.get_InstanceGuid(self, pGuid);
     }
-    pub fn get_Path(self: *const IRunningTask, pPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IRunningTask, pPath: ?*?BSTR) HRESULT {
         return self.vtable.get_Path(self, pPath);
     }
-    pub fn get_State(self: *const IRunningTask, pState: ?*TASK_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const IRunningTask, pState: ?*TASK_STATE) HRESULT {
         return self.vtable.get_State(self, pState);
     }
-    pub fn get_CurrentAction(self: *const IRunningTask, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CurrentAction(self: *const IRunningTask, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_CurrentAction(self, pName);
     }
-    pub fn Stop(self: *const IRunningTask) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IRunningTask) HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Refresh(self: *const IRunningTask) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IRunningTask) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_EnginePID(self: *const IRunningTask, pPID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_EnginePID(self: *const IRunningTask, pPID: ?*u32) HRESULT {
         return self.vtable.get_EnginePID(self, pPID);
     }
 };
@@ -1183,28 +1183,28 @@ pub const IRunningTaskCollection = extern union {
         get_Count: *const fn(
             self: *const IRunningTaskCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IRunningTaskCollection,
             index: VARIANT,
             ppRunningTask: ?*?*IRunningTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IRunningTaskCollection,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IRunningTaskCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IRunningTaskCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn get_Item(self: *const IRunningTaskCollection, index: VARIANT, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IRunningTaskCollection, index: VARIANT, ppRunningTask: ?*?*IRunningTask) HRESULT {
         return self.vtable.get_Item(self, index, ppRunningTask);
     }
-    pub fn get__NewEnum(self: *const IRunningTaskCollection, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IRunningTaskCollection, ppEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnum);
     }
 };
@@ -1219,32 +1219,32 @@ pub const IRegisteredTask = extern union {
         get_Name: *const fn(
             self: *const IRegisteredTask,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const IRegisteredTask,
             pPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const IRegisteredTask,
             pState: ?*TASK_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const IRegisteredTask,
             pEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IRegisteredTask,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Run: *const fn(
             self: *const IRegisteredTask,
             params: VARIANT,
             ppRunningTask: ?*?*IRunningTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RunEx: *const fn(
             self: *const IRegisteredTask,
             params: VARIANT,
@@ -1252,119 +1252,119 @@ pub const IRegisteredTask = extern union {
             sessionID: i32,
             user: ?BSTR,
             ppRunningTask: ?*?*IRunningTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInstances: *const fn(
             self: *const IRegisteredTask,
             flags: i32,
             ppRunningTasks: ?*?*IRunningTaskCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastRunTime: *const fn(
             self: *const IRegisteredTask,
             pLastRunTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastTaskResult: *const fn(
             self: *const IRegisteredTask,
             pLastTaskResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfMissedRuns: *const fn(
             self: *const IRegisteredTask,
             pNumberOfMissedRuns: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextRunTime: *const fn(
             self: *const IRegisteredTask,
             pNextRunTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Definition: *const fn(
             self: *const IRegisteredTask,
             ppDefinition: ?*?*ITaskDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Xml: *const fn(
             self: *const IRegisteredTask,
             pXml: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurityDescriptor: *const fn(
             self: *const IRegisteredTask,
             securityInformation: i32,
             pSddl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSecurityDescriptor: *const fn(
             self: *const IRegisteredTask,
             sddl: ?BSTR,
             flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IRegisteredTask,
             flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRunTimes: *const fn(
             self: *const IRegisteredTask,
             pstStart: ?*const SYSTEMTIME,
             pstEnd: ?*const SYSTEMTIME,
             pCount: ?*u32,
             pRunTimes: ?*?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IRegisteredTask, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IRegisteredTask, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pName);
     }
-    pub fn get_Path(self: *const IRegisteredTask, pPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IRegisteredTask, pPath: ?*?BSTR) HRESULT {
         return self.vtable.get_Path(self, pPath);
     }
-    pub fn get_State(self: *const IRegisteredTask, pState: ?*TASK_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const IRegisteredTask, pState: ?*TASK_STATE) HRESULT {
         return self.vtable.get_State(self, pState);
     }
-    pub fn get_Enabled(self: *const IRegisteredTask, pEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IRegisteredTask, pEnabled: ?*i16) HRESULT {
         return self.vtable.get_Enabled(self, pEnabled);
     }
-    pub fn put_Enabled(self: *const IRegisteredTask, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const IRegisteredTask, enabled: i16) HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn Run(self: *const IRegisteredTask, params: VARIANT, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
+    pub fn Run(self: *const IRegisteredTask, params: VARIANT, ppRunningTask: ?*?*IRunningTask) HRESULT {
         return self.vtable.Run(self, params, ppRunningTask);
     }
-    pub fn RunEx(self: *const IRegisteredTask, params: VARIANT, flags: i32, sessionID: i32, user: ?BSTR, ppRunningTask: ?*?*IRunningTask) callconv(.Inline) HRESULT {
+    pub fn RunEx(self: *const IRegisteredTask, params: VARIANT, flags: i32, sessionID: i32, user: ?BSTR, ppRunningTask: ?*?*IRunningTask) HRESULT {
         return self.vtable.RunEx(self, params, flags, sessionID, user, ppRunningTask);
     }
-    pub fn GetInstances(self: *const IRegisteredTask, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) callconv(.Inline) HRESULT {
+    pub fn GetInstances(self: *const IRegisteredTask, flags: i32, ppRunningTasks: ?*?*IRunningTaskCollection) HRESULT {
         return self.vtable.GetInstances(self, flags, ppRunningTasks);
     }
-    pub fn get_LastRunTime(self: *const IRegisteredTask, pLastRunTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_LastRunTime(self: *const IRegisteredTask, pLastRunTime: ?*f64) HRESULT {
         return self.vtable.get_LastRunTime(self, pLastRunTime);
     }
-    pub fn get_LastTaskResult(self: *const IRegisteredTask, pLastTaskResult: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LastTaskResult(self: *const IRegisteredTask, pLastTaskResult: ?*i32) HRESULT {
         return self.vtable.get_LastTaskResult(self, pLastTaskResult);
     }
-    pub fn get_NumberOfMissedRuns(self: *const IRegisteredTask, pNumberOfMissedRuns: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_NumberOfMissedRuns(self: *const IRegisteredTask, pNumberOfMissedRuns: ?*i32) HRESULT {
         return self.vtable.get_NumberOfMissedRuns(self, pNumberOfMissedRuns);
     }
-    pub fn get_NextRunTime(self: *const IRegisteredTask, pNextRunTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_NextRunTime(self: *const IRegisteredTask, pNextRunTime: ?*f64) HRESULT {
         return self.vtable.get_NextRunTime(self, pNextRunTime);
     }
-    pub fn get_Definition(self: *const IRegisteredTask, ppDefinition: ?*?*ITaskDefinition) callconv(.Inline) HRESULT {
+    pub fn get_Definition(self: *const IRegisteredTask, ppDefinition: ?*?*ITaskDefinition) HRESULT {
         return self.vtable.get_Definition(self, ppDefinition);
     }
-    pub fn get_Xml(self: *const IRegisteredTask, pXml: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Xml(self: *const IRegisteredTask, pXml: ?*?BSTR) HRESULT {
         return self.vtable.get_Xml(self, pXml);
     }
-    pub fn GetSecurityDescriptor(self: *const IRegisteredTask, securityInformation: i32, pSddl: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSecurityDescriptor(self: *const IRegisteredTask, securityInformation: i32, pSddl: ?*?BSTR) HRESULT {
         return self.vtable.GetSecurityDescriptor(self, securityInformation, pSddl);
     }
-    pub fn SetSecurityDescriptor(self: *const IRegisteredTask, sddl: ?BSTR, flags: i32) callconv(.Inline) HRESULT {
+    pub fn SetSecurityDescriptor(self: *const IRegisteredTask, sddl: ?BSTR, flags: i32) HRESULT {
         return self.vtable.SetSecurityDescriptor(self, sddl, flags);
     }
-    pub fn Stop(self: *const IRegisteredTask, flags: i32) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IRegisteredTask, flags: i32) HRESULT {
         return self.vtable.Stop(self, flags);
     }
-    pub fn GetRunTimes(self: *const IRegisteredTask, pstStart: ?*const SYSTEMTIME, pstEnd: ?*const SYSTEMTIME, pCount: ?*u32, pRunTimes: ?*?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetRunTimes(self: *const IRegisteredTask, pstStart: ?*const SYSTEMTIME, pstEnd: ?*const SYSTEMTIME, pCount: ?*u32, pRunTimes: ?*?*SYSTEMTIME) HRESULT {
         return self.vtable.GetRunTimes(self, pstStart, pstEnd, pCount, pRunTimes);
     }
 };
@@ -1379,108 +1379,108 @@ pub const ITrigger = extern union {
         get_Type: *const fn(
             self: *const ITrigger,
             pType: ?*TASK_TRIGGER_TYPE2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const ITrigger,
             pId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Id: *const fn(
             self: *const ITrigger,
             id: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Repetition: *const fn(
             self: *const ITrigger,
             ppRepeat: ?*?*IRepetitionPattern,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Repetition: *const fn(
             self: *const ITrigger,
             pRepeat: ?*IRepetitionPattern,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExecutionTimeLimit: *const fn(
             self: *const ITrigger,
             pTimeLimit: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExecutionTimeLimit: *const fn(
             self: *const ITrigger,
             timelimit: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartBoundary: *const fn(
             self: *const ITrigger,
             pStart: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartBoundary: *const fn(
             self: *const ITrigger,
             start: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EndBoundary: *const fn(
             self: *const ITrigger,
             pEnd: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EndBoundary: *const fn(
             self: *const ITrigger,
             end: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const ITrigger,
             pEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const ITrigger,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const ITrigger, pType: ?*TASK_TRIGGER_TYPE2) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ITrigger, pType: ?*TASK_TRIGGER_TYPE2) HRESULT {
         return self.vtable.get_Type(self, pType);
     }
-    pub fn get_Id(self: *const ITrigger, pId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ITrigger, pId: ?*?BSTR) HRESULT {
         return self.vtable.get_Id(self, pId);
     }
-    pub fn put_Id(self: *const ITrigger, id: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Id(self: *const ITrigger, id: ?BSTR) HRESULT {
         return self.vtable.put_Id(self, id);
     }
-    pub fn get_Repetition(self: *const ITrigger, ppRepeat: ?*?*IRepetitionPattern) callconv(.Inline) HRESULT {
+    pub fn get_Repetition(self: *const ITrigger, ppRepeat: ?*?*IRepetitionPattern) HRESULT {
         return self.vtable.get_Repetition(self, ppRepeat);
     }
-    pub fn put_Repetition(self: *const ITrigger, pRepeat: ?*IRepetitionPattern) callconv(.Inline) HRESULT {
+    pub fn put_Repetition(self: *const ITrigger, pRepeat: ?*IRepetitionPattern) HRESULT {
         return self.vtable.put_Repetition(self, pRepeat);
     }
-    pub fn get_ExecutionTimeLimit(self: *const ITrigger, pTimeLimit: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExecutionTimeLimit(self: *const ITrigger, pTimeLimit: ?*?BSTR) HRESULT {
         return self.vtable.get_ExecutionTimeLimit(self, pTimeLimit);
     }
-    pub fn put_ExecutionTimeLimit(self: *const ITrigger, timelimit: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ExecutionTimeLimit(self: *const ITrigger, timelimit: ?BSTR) HRESULT {
         return self.vtable.put_ExecutionTimeLimit(self, timelimit);
     }
-    pub fn get_StartBoundary(self: *const ITrigger, pStart: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_StartBoundary(self: *const ITrigger, pStart: ?*?BSTR) HRESULT {
         return self.vtable.get_StartBoundary(self, pStart);
     }
-    pub fn put_StartBoundary(self: *const ITrigger, start: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_StartBoundary(self: *const ITrigger, start: ?BSTR) HRESULT {
         return self.vtable.put_StartBoundary(self, start);
     }
-    pub fn get_EndBoundary(self: *const ITrigger, pEnd: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_EndBoundary(self: *const ITrigger, pEnd: ?*?BSTR) HRESULT {
         return self.vtable.get_EndBoundary(self, pEnd);
     }
-    pub fn put_EndBoundary(self: *const ITrigger, end: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_EndBoundary(self: *const ITrigger, end: ?BSTR) HRESULT {
         return self.vtable.put_EndBoundary(self, end);
     }
-    pub fn get_Enabled(self: *const ITrigger, pEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const ITrigger, pEnabled: ?*i16) HRESULT {
         return self.vtable.get_Enabled(self, pEnabled);
     }
-    pub fn put_Enabled(self: *const ITrigger, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const ITrigger, enabled: i16) HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
 };
@@ -1508,37 +1508,37 @@ pub const ILogonTrigger = extern union {
         get_Delay: *const fn(
             self: *const ILogonTrigger,
             pDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delay: *const fn(
             self: *const ILogonTrigger,
             delay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserId: *const fn(
             self: *const ILogonTrigger,
             pUser: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserId: *const fn(
             self: *const ILogonTrigger,
             user: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Delay(self: *const ILogonTrigger, pDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Delay(self: *const ILogonTrigger, pDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_Delay(self, pDelay);
     }
-    pub fn put_Delay(self: *const ILogonTrigger, delay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Delay(self: *const ILogonTrigger, delay: ?BSTR) HRESULT {
         return self.vtable.put_Delay(self, delay);
     }
-    pub fn get_UserId(self: *const ILogonTrigger, pUser: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserId(self: *const ILogonTrigger, pUser: ?*?BSTR) HRESULT {
         return self.vtable.get_UserId(self, pUser);
     }
-    pub fn put_UserId(self: *const ILogonTrigger, user: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_UserId(self: *const ILogonTrigger, user: ?BSTR) HRESULT {
         return self.vtable.put_UserId(self, user);
     }
 };
@@ -1553,53 +1553,53 @@ pub const ISessionStateChangeTrigger = extern union {
         get_Delay: *const fn(
             self: *const ISessionStateChangeTrigger,
             pDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delay: *const fn(
             self: *const ISessionStateChangeTrigger,
             delay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserId: *const fn(
             self: *const ISessionStateChangeTrigger,
             pUser: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserId: *const fn(
             self: *const ISessionStateChangeTrigger,
             user: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StateChange: *const fn(
             self: *const ISessionStateChangeTrigger,
             pType: ?*TASK_SESSION_STATE_CHANGE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StateChange: *const fn(
             self: *const ISessionStateChangeTrigger,
             type: TASK_SESSION_STATE_CHANGE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Delay(self: *const ISessionStateChangeTrigger, pDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Delay(self: *const ISessionStateChangeTrigger, pDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_Delay(self, pDelay);
     }
-    pub fn put_Delay(self: *const ISessionStateChangeTrigger, delay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Delay(self: *const ISessionStateChangeTrigger, delay: ?BSTR) HRESULT {
         return self.vtable.put_Delay(self, delay);
     }
-    pub fn get_UserId(self: *const ISessionStateChangeTrigger, pUser: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserId(self: *const ISessionStateChangeTrigger, pUser: ?*?BSTR) HRESULT {
         return self.vtable.get_UserId(self, pUser);
     }
-    pub fn put_UserId(self: *const ISessionStateChangeTrigger, user: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_UserId(self: *const ISessionStateChangeTrigger, user: ?BSTR) HRESULT {
         return self.vtable.put_UserId(self, user);
     }
-    pub fn get_StateChange(self: *const ISessionStateChangeTrigger, pType: ?*TASK_SESSION_STATE_CHANGE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_StateChange(self: *const ISessionStateChangeTrigger, pType: ?*TASK_SESSION_STATE_CHANGE_TYPE) HRESULT {
         return self.vtable.get_StateChange(self, pType);
     }
-    pub fn put_StateChange(self: *const ISessionStateChangeTrigger, @"type": TASK_SESSION_STATE_CHANGE_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_StateChange(self: *const ISessionStateChangeTrigger, @"type": TASK_SESSION_STATE_CHANGE_TYPE) HRESULT {
         return self.vtable.put_StateChange(self, @"type");
     }
 };
@@ -1614,53 +1614,53 @@ pub const IEventTrigger = extern union {
         get_Subscription: *const fn(
             self: *const IEventTrigger,
             pQuery: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Subscription: *const fn(
             self: *const IEventTrigger,
             query: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Delay: *const fn(
             self: *const IEventTrigger,
             pDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delay: *const fn(
             self: *const IEventTrigger,
             delay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueQueries: *const fn(
             self: *const IEventTrigger,
             ppNamedXPaths: ?*?*ITaskNamedValueCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ValueQueries: *const fn(
             self: *const IEventTrigger,
             pNamedXPaths: ?*ITaskNamedValueCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Subscription(self: *const IEventTrigger, pQuery: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Subscription(self: *const IEventTrigger, pQuery: ?*?BSTR) HRESULT {
         return self.vtable.get_Subscription(self, pQuery);
     }
-    pub fn put_Subscription(self: *const IEventTrigger, query: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Subscription(self: *const IEventTrigger, query: ?BSTR) HRESULT {
         return self.vtable.put_Subscription(self, query);
     }
-    pub fn get_Delay(self: *const IEventTrigger, pDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Delay(self: *const IEventTrigger, pDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_Delay(self, pDelay);
     }
-    pub fn put_Delay(self: *const IEventTrigger, delay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Delay(self: *const IEventTrigger, delay: ?BSTR) HRESULT {
         return self.vtable.put_Delay(self, delay);
     }
-    pub fn get_ValueQueries(self: *const IEventTrigger, ppNamedXPaths: ?*?*ITaskNamedValueCollection) callconv(.Inline) HRESULT {
+    pub fn get_ValueQueries(self: *const IEventTrigger, ppNamedXPaths: ?*?*ITaskNamedValueCollection) HRESULT {
         return self.vtable.get_ValueQueries(self, ppNamedXPaths);
     }
-    pub fn put_ValueQueries(self: *const IEventTrigger, pNamedXPaths: ?*ITaskNamedValueCollection) callconv(.Inline) HRESULT {
+    pub fn put_ValueQueries(self: *const IEventTrigger, pNamedXPaths: ?*ITaskNamedValueCollection) HRESULT {
         return self.vtable.put_ValueQueries(self, pNamedXPaths);
     }
 };
@@ -1675,21 +1675,21 @@ pub const ITimeTrigger = extern union {
         get_RandomDelay: *const fn(
             self: *const ITimeTrigger,
             pRandomDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RandomDelay: *const fn(
             self: *const ITimeTrigger,
             randomDelay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RandomDelay(self: *const ITimeTrigger, pRandomDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RandomDelay(self: *const ITimeTrigger, pRandomDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_RandomDelay(self, pRandomDelay);
     }
-    pub fn put_RandomDelay(self: *const ITimeTrigger, randomDelay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RandomDelay(self: *const ITimeTrigger, randomDelay: ?BSTR) HRESULT {
         return self.vtable.put_RandomDelay(self, randomDelay);
     }
 };
@@ -1704,37 +1704,37 @@ pub const IDailyTrigger = extern union {
         get_DaysInterval: *const fn(
             self: *const IDailyTrigger,
             pDays: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysInterval: *const fn(
             self: *const IDailyTrigger,
             days: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RandomDelay: *const fn(
             self: *const IDailyTrigger,
             pRandomDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RandomDelay: *const fn(
             self: *const IDailyTrigger,
             randomDelay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DaysInterval(self: *const IDailyTrigger, pDays: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DaysInterval(self: *const IDailyTrigger, pDays: ?*i16) HRESULT {
         return self.vtable.get_DaysInterval(self, pDays);
     }
-    pub fn put_DaysInterval(self: *const IDailyTrigger, days: i16) callconv(.Inline) HRESULT {
+    pub fn put_DaysInterval(self: *const IDailyTrigger, days: i16) HRESULT {
         return self.vtable.put_DaysInterval(self, days);
     }
-    pub fn get_RandomDelay(self: *const IDailyTrigger, pRandomDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RandomDelay(self: *const IDailyTrigger, pRandomDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_RandomDelay(self, pRandomDelay);
     }
-    pub fn put_RandomDelay(self: *const IDailyTrigger, randomDelay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RandomDelay(self: *const IDailyTrigger, randomDelay: ?BSTR) HRESULT {
         return self.vtable.put_RandomDelay(self, randomDelay);
     }
 };
@@ -1749,53 +1749,53 @@ pub const IWeeklyTrigger = extern union {
         get_DaysOfWeek: *const fn(
             self: *const IWeeklyTrigger,
             pDays: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysOfWeek: *const fn(
             self: *const IWeeklyTrigger,
             days: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WeeksInterval: *const fn(
             self: *const IWeeklyTrigger,
             pWeeks: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WeeksInterval: *const fn(
             self: *const IWeeklyTrigger,
             weeks: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RandomDelay: *const fn(
             self: *const IWeeklyTrigger,
             pRandomDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RandomDelay: *const fn(
             self: *const IWeeklyTrigger,
             randomDelay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DaysOfWeek(self: *const IWeeklyTrigger, pDays: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DaysOfWeek(self: *const IWeeklyTrigger, pDays: ?*i16) HRESULT {
         return self.vtable.get_DaysOfWeek(self, pDays);
     }
-    pub fn put_DaysOfWeek(self: *const IWeeklyTrigger, days: i16) callconv(.Inline) HRESULT {
+    pub fn put_DaysOfWeek(self: *const IWeeklyTrigger, days: i16) HRESULT {
         return self.vtable.put_DaysOfWeek(self, days);
     }
-    pub fn get_WeeksInterval(self: *const IWeeklyTrigger, pWeeks: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_WeeksInterval(self: *const IWeeklyTrigger, pWeeks: ?*i16) HRESULT {
         return self.vtable.get_WeeksInterval(self, pWeeks);
     }
-    pub fn put_WeeksInterval(self: *const IWeeklyTrigger, weeks: i16) callconv(.Inline) HRESULT {
+    pub fn put_WeeksInterval(self: *const IWeeklyTrigger, weeks: i16) HRESULT {
         return self.vtable.put_WeeksInterval(self, weeks);
     }
-    pub fn get_RandomDelay(self: *const IWeeklyTrigger, pRandomDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RandomDelay(self: *const IWeeklyTrigger, pRandomDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_RandomDelay(self, pRandomDelay);
     }
-    pub fn put_RandomDelay(self: *const IWeeklyTrigger, randomDelay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RandomDelay(self: *const IWeeklyTrigger, randomDelay: ?BSTR) HRESULT {
         return self.vtable.put_RandomDelay(self, randomDelay);
     }
 };
@@ -1810,69 +1810,69 @@ pub const IMonthlyTrigger = extern union {
         get_DaysOfMonth: *const fn(
             self: *const IMonthlyTrigger,
             pDays: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysOfMonth: *const fn(
             self: *const IMonthlyTrigger,
             days: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonthsOfYear: *const fn(
             self: *const IMonthlyTrigger,
             pMonths: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonthsOfYear: *const fn(
             self: *const IMonthlyTrigger,
             months: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnLastDayOfMonth: *const fn(
             self: *const IMonthlyTrigger,
             pLastDay: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnLastDayOfMonth: *const fn(
             self: *const IMonthlyTrigger,
             lastDay: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RandomDelay: *const fn(
             self: *const IMonthlyTrigger,
             pRandomDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RandomDelay: *const fn(
             self: *const IMonthlyTrigger,
             randomDelay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DaysOfMonth(self: *const IMonthlyTrigger, pDays: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DaysOfMonth(self: *const IMonthlyTrigger, pDays: ?*i32) HRESULT {
         return self.vtable.get_DaysOfMonth(self, pDays);
     }
-    pub fn put_DaysOfMonth(self: *const IMonthlyTrigger, days: i32) callconv(.Inline) HRESULT {
+    pub fn put_DaysOfMonth(self: *const IMonthlyTrigger, days: i32) HRESULT {
         return self.vtable.put_DaysOfMonth(self, days);
     }
-    pub fn get_MonthsOfYear(self: *const IMonthlyTrigger, pMonths: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MonthsOfYear(self: *const IMonthlyTrigger, pMonths: ?*i16) HRESULT {
         return self.vtable.get_MonthsOfYear(self, pMonths);
     }
-    pub fn put_MonthsOfYear(self: *const IMonthlyTrigger, months: i16) callconv(.Inline) HRESULT {
+    pub fn put_MonthsOfYear(self: *const IMonthlyTrigger, months: i16) HRESULT {
         return self.vtable.put_MonthsOfYear(self, months);
     }
-    pub fn get_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, pLastDay: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, pLastDay: ?*i16) HRESULT {
         return self.vtable.get_RunOnLastDayOfMonth(self, pLastDay);
     }
-    pub fn put_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, lastDay: i16) callconv(.Inline) HRESULT {
+    pub fn put_RunOnLastDayOfMonth(self: *const IMonthlyTrigger, lastDay: i16) HRESULT {
         return self.vtable.put_RunOnLastDayOfMonth(self, lastDay);
     }
-    pub fn get_RandomDelay(self: *const IMonthlyTrigger, pRandomDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RandomDelay(self: *const IMonthlyTrigger, pRandomDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_RandomDelay(self, pRandomDelay);
     }
-    pub fn put_RandomDelay(self: *const IMonthlyTrigger, randomDelay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RandomDelay(self: *const IMonthlyTrigger, randomDelay: ?BSTR) HRESULT {
         return self.vtable.put_RandomDelay(self, randomDelay);
     }
 };
@@ -1887,85 +1887,85 @@ pub const IMonthlyDOWTrigger = extern union {
         get_DaysOfWeek: *const fn(
             self: *const IMonthlyDOWTrigger,
             pDays: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DaysOfWeek: *const fn(
             self: *const IMonthlyDOWTrigger,
             days: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WeeksOfMonth: *const fn(
             self: *const IMonthlyDOWTrigger,
             pWeeks: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WeeksOfMonth: *const fn(
             self: *const IMonthlyDOWTrigger,
             weeks: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MonthsOfYear: *const fn(
             self: *const IMonthlyDOWTrigger,
             pMonths: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MonthsOfYear: *const fn(
             self: *const IMonthlyDOWTrigger,
             months: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnLastWeekOfMonth: *const fn(
             self: *const IMonthlyDOWTrigger,
             pLastWeek: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnLastWeekOfMonth: *const fn(
             self: *const IMonthlyDOWTrigger,
             lastWeek: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RandomDelay: *const fn(
             self: *const IMonthlyDOWTrigger,
             pRandomDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RandomDelay: *const fn(
             self: *const IMonthlyDOWTrigger,
             randomDelay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DaysOfWeek(self: *const IMonthlyDOWTrigger, pDays: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DaysOfWeek(self: *const IMonthlyDOWTrigger, pDays: ?*i16) HRESULT {
         return self.vtable.get_DaysOfWeek(self, pDays);
     }
-    pub fn put_DaysOfWeek(self: *const IMonthlyDOWTrigger, days: i16) callconv(.Inline) HRESULT {
+    pub fn put_DaysOfWeek(self: *const IMonthlyDOWTrigger, days: i16) HRESULT {
         return self.vtable.put_DaysOfWeek(self, days);
     }
-    pub fn get_WeeksOfMonth(self: *const IMonthlyDOWTrigger, pWeeks: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_WeeksOfMonth(self: *const IMonthlyDOWTrigger, pWeeks: ?*i16) HRESULT {
         return self.vtable.get_WeeksOfMonth(self, pWeeks);
     }
-    pub fn put_WeeksOfMonth(self: *const IMonthlyDOWTrigger, weeks: i16) callconv(.Inline) HRESULT {
+    pub fn put_WeeksOfMonth(self: *const IMonthlyDOWTrigger, weeks: i16) HRESULT {
         return self.vtable.put_WeeksOfMonth(self, weeks);
     }
-    pub fn get_MonthsOfYear(self: *const IMonthlyDOWTrigger, pMonths: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MonthsOfYear(self: *const IMonthlyDOWTrigger, pMonths: ?*i16) HRESULT {
         return self.vtable.get_MonthsOfYear(self, pMonths);
     }
-    pub fn put_MonthsOfYear(self: *const IMonthlyDOWTrigger, months: i16) callconv(.Inline) HRESULT {
+    pub fn put_MonthsOfYear(self: *const IMonthlyDOWTrigger, months: i16) HRESULT {
         return self.vtable.put_MonthsOfYear(self, months);
     }
-    pub fn get_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, pLastWeek: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, pLastWeek: ?*i16) HRESULT {
         return self.vtable.get_RunOnLastWeekOfMonth(self, pLastWeek);
     }
-    pub fn put_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, lastWeek: i16) callconv(.Inline) HRESULT {
+    pub fn put_RunOnLastWeekOfMonth(self: *const IMonthlyDOWTrigger, lastWeek: i16) HRESULT {
         return self.vtable.put_RunOnLastWeekOfMonth(self, lastWeek);
     }
-    pub fn get_RandomDelay(self: *const IMonthlyDOWTrigger, pRandomDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RandomDelay(self: *const IMonthlyDOWTrigger, pRandomDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_RandomDelay(self, pRandomDelay);
     }
-    pub fn put_RandomDelay(self: *const IMonthlyDOWTrigger, randomDelay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RandomDelay(self: *const IMonthlyDOWTrigger, randomDelay: ?BSTR) HRESULT {
         return self.vtable.put_RandomDelay(self, randomDelay);
     }
 };
@@ -1980,21 +1980,21 @@ pub const IBootTrigger = extern union {
         get_Delay: *const fn(
             self: *const IBootTrigger,
             pDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delay: *const fn(
             self: *const IBootTrigger,
             delay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Delay(self: *const IBootTrigger, pDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Delay(self: *const IBootTrigger, pDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_Delay(self, pDelay);
     }
-    pub fn put_Delay(self: *const IBootTrigger, delay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Delay(self: *const IBootTrigger, delay: ?BSTR) HRESULT {
         return self.vtable.put_Delay(self, delay);
     }
 };
@@ -2009,21 +2009,21 @@ pub const IRegistrationTrigger = extern union {
         get_Delay: *const fn(
             self: *const IRegistrationTrigger,
             pDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delay: *const fn(
             self: *const IRegistrationTrigger,
             delay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITrigger: ITrigger,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Delay(self: *const IRegistrationTrigger, pDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Delay(self: *const IRegistrationTrigger, pDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_Delay(self, pDelay);
     }
-    pub fn put_Delay(self: *const IRegistrationTrigger, delay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Delay(self: *const IRegistrationTrigger, delay: ?BSTR) HRESULT {
         return self.vtable.put_Delay(self, delay);
     }
 };
@@ -2038,28 +2038,28 @@ pub const IAction = extern union {
         get_Id: *const fn(
             self: *const IAction,
             pId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Id: *const fn(
             self: *const IAction,
             Id: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IAction,
             pType: ?*TASK_ACTION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IAction, pId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IAction, pId: ?*?BSTR) HRESULT {
         return self.vtable.get_Id(self, pId);
     }
-    pub fn put_Id(self: *const IAction, Id: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Id(self: *const IAction, Id: ?BSTR) HRESULT {
         return self.vtable.put_Id(self, Id);
     }
-    pub fn get_Type(self: *const IAction, pType: ?*TASK_ACTION_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IAction, pType: ?*TASK_ACTION_TYPE) HRESULT {
         return self.vtable.get_Type(self, pType);
     }
 };
@@ -2074,53 +2074,53 @@ pub const IExecAction = extern union {
         get_Path: *const fn(
             self: *const IExecAction,
             pPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Path: *const fn(
             self: *const IExecAction,
             path: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Arguments: *const fn(
             self: *const IExecAction,
             pArgument: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Arguments: *const fn(
             self: *const IExecAction,
             argument: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WorkingDirectory: *const fn(
             self: *const IExecAction,
             pWorkingDirectory: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WorkingDirectory: *const fn(
             self: *const IExecAction,
             workingDirectory: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAction: IAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Path(self: *const IExecAction, pPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IExecAction, pPath: ?*?BSTR) HRESULT {
         return self.vtable.get_Path(self, pPath);
     }
-    pub fn put_Path(self: *const IExecAction, path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Path(self: *const IExecAction, path: ?BSTR) HRESULT {
         return self.vtable.put_Path(self, path);
     }
-    pub fn get_Arguments(self: *const IExecAction, pArgument: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Arguments(self: *const IExecAction, pArgument: ?*?BSTR) HRESULT {
         return self.vtable.get_Arguments(self, pArgument);
     }
-    pub fn put_Arguments(self: *const IExecAction, argument: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Arguments(self: *const IExecAction, argument: ?BSTR) HRESULT {
         return self.vtable.put_Arguments(self, argument);
     }
-    pub fn get_WorkingDirectory(self: *const IExecAction, pWorkingDirectory: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_WorkingDirectory(self: *const IExecAction, pWorkingDirectory: ?*?BSTR) HRESULT {
         return self.vtable.get_WorkingDirectory(self, pWorkingDirectory);
     }
-    pub fn put_WorkingDirectory(self: *const IExecAction, workingDirectory: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_WorkingDirectory(self: *const IExecAction, workingDirectory: ?BSTR) HRESULT {
         return self.vtable.put_WorkingDirectory(self, workingDirectory);
     }
 };
@@ -2134,22 +2134,22 @@ pub const IExecAction2 = extern union {
         get_HideAppWindow: *const fn(
             self: *const IExecAction2,
             pHideAppWindow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HideAppWindow: *const fn(
             self: *const IExecAction2,
             hideAppWindow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IExecAction: IExecAction,
     IAction: IAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_HideAppWindow(self: *const IExecAction2, pHideAppWindow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_HideAppWindow(self: *const IExecAction2, pHideAppWindow: ?*i16) HRESULT {
         return self.vtable.get_HideAppWindow(self, pHideAppWindow);
     }
-    pub fn put_HideAppWindow(self: *const IExecAction2, hideAppWindow: i16) callconv(.Inline) HRESULT {
+    pub fn put_HideAppWindow(self: *const IExecAction2, hideAppWindow: i16) HRESULT {
         return self.vtable.put_HideAppWindow(self, hideAppWindow);
     }
 };
@@ -2164,37 +2164,37 @@ pub const IShowMessageAction = extern union {
         get_Title: *const fn(
             self: *const IShowMessageAction,
             pTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Title: *const fn(
             self: *const IShowMessageAction,
             title: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MessageBody: *const fn(
             self: *const IShowMessageAction,
             pMessageBody: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MessageBody: *const fn(
             self: *const IShowMessageAction,
             messageBody: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAction: IAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Title(self: *const IShowMessageAction, pTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Title(self: *const IShowMessageAction, pTitle: ?*?BSTR) HRESULT {
         return self.vtable.get_Title(self, pTitle);
     }
-    pub fn put_Title(self: *const IShowMessageAction, title: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Title(self: *const IShowMessageAction, title: ?BSTR) HRESULT {
         return self.vtable.put_Title(self, title);
     }
-    pub fn get_MessageBody(self: *const IShowMessageAction, pMessageBody: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MessageBody(self: *const IShowMessageAction, pMessageBody: ?*?BSTR) HRESULT {
         return self.vtable.get_MessageBody(self, pMessageBody);
     }
-    pub fn put_MessageBody(self: *const IShowMessageAction, messageBody: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MessageBody(self: *const IShowMessageAction, messageBody: ?BSTR) HRESULT {
         return self.vtable.put_MessageBody(self, messageBody);
     }
 };
@@ -2209,37 +2209,37 @@ pub const IComHandlerAction = extern union {
         get_ClassId: *const fn(
             self: *const IComHandlerAction,
             pClsid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ClassId: *const fn(
             self: *const IComHandlerAction,
             clsid: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Data: *const fn(
             self: *const IComHandlerAction,
             pData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Data: *const fn(
             self: *const IComHandlerAction,
             data: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAction: IAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ClassId(self: *const IComHandlerAction, pClsid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ClassId(self: *const IComHandlerAction, pClsid: ?*?BSTR) HRESULT {
         return self.vtable.get_ClassId(self, pClsid);
     }
-    pub fn put_ClassId(self: *const IComHandlerAction, clsid: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ClassId(self: *const IComHandlerAction, clsid: ?BSTR) HRESULT {
         return self.vtable.put_ClassId(self, clsid);
     }
-    pub fn get_Data(self: *const IComHandlerAction, pData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Data(self: *const IComHandlerAction, pData: ?*?BSTR) HRESULT {
         return self.vtable.get_Data(self, pData);
     }
-    pub fn put_Data(self: *const IComHandlerAction, data: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Data(self: *const IComHandlerAction, data: ?BSTR) HRESULT {
         return self.vtable.put_Data(self, data);
     }
 };
@@ -2254,165 +2254,165 @@ pub const IEmailAction = extern union {
         get_Server: *const fn(
             self: *const IEmailAction,
             pServer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Server: *const fn(
             self: *const IEmailAction,
             server: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Subject: *const fn(
             self: *const IEmailAction,
             pSubject: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Subject: *const fn(
             self: *const IEmailAction,
             subject: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_To: *const fn(
             self: *const IEmailAction,
             pTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_To: *const fn(
             self: *const IEmailAction,
             to: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cc: *const fn(
             self: *const IEmailAction,
             pCc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Cc: *const fn(
             self: *const IEmailAction,
             cc: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Bcc: *const fn(
             self: *const IEmailAction,
             pBcc: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Bcc: *const fn(
             self: *const IEmailAction,
             bcc: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReplyTo: *const fn(
             self: *const IEmailAction,
             pReplyTo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReplyTo: *const fn(
             self: *const IEmailAction,
             replyTo: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_From: *const fn(
             self: *const IEmailAction,
             pFrom: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_From: *const fn(
             self: *const IEmailAction,
             from: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HeaderFields: *const fn(
             self: *const IEmailAction,
             ppHeaderFields: ?*?*ITaskNamedValueCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HeaderFields: *const fn(
             self: *const IEmailAction,
             pHeaderFields: ?*ITaskNamedValueCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Body: *const fn(
             self: *const IEmailAction,
             pBody: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Body: *const fn(
             self: *const IEmailAction,
             body: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Attachments: *const fn(
             self: *const IEmailAction,
             pAttachements: ?*?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Attachments: *const fn(
             self: *const IEmailAction,
             pAttachements: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAction: IAction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Server(self: *const IEmailAction, pServer: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Server(self: *const IEmailAction, pServer: ?*?BSTR) HRESULT {
         return self.vtable.get_Server(self, pServer);
     }
-    pub fn put_Server(self: *const IEmailAction, server: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Server(self: *const IEmailAction, server: ?BSTR) HRESULT {
         return self.vtable.put_Server(self, server);
     }
-    pub fn get_Subject(self: *const IEmailAction, pSubject: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Subject(self: *const IEmailAction, pSubject: ?*?BSTR) HRESULT {
         return self.vtable.get_Subject(self, pSubject);
     }
-    pub fn put_Subject(self: *const IEmailAction, subject: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Subject(self: *const IEmailAction, subject: ?BSTR) HRESULT {
         return self.vtable.put_Subject(self, subject);
     }
-    pub fn get_To(self: *const IEmailAction, pTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_To(self: *const IEmailAction, pTo: ?*?BSTR) HRESULT {
         return self.vtable.get_To(self, pTo);
     }
-    pub fn put_To(self: *const IEmailAction, to: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_To(self: *const IEmailAction, to: ?BSTR) HRESULT {
         return self.vtable.put_To(self, to);
     }
-    pub fn get_Cc(self: *const IEmailAction, pCc: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Cc(self: *const IEmailAction, pCc: ?*?BSTR) HRESULT {
         return self.vtable.get_Cc(self, pCc);
     }
-    pub fn put_Cc(self: *const IEmailAction, cc: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Cc(self: *const IEmailAction, cc: ?BSTR) HRESULT {
         return self.vtable.put_Cc(self, cc);
     }
-    pub fn get_Bcc(self: *const IEmailAction, pBcc: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Bcc(self: *const IEmailAction, pBcc: ?*?BSTR) HRESULT {
         return self.vtable.get_Bcc(self, pBcc);
     }
-    pub fn put_Bcc(self: *const IEmailAction, bcc: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Bcc(self: *const IEmailAction, bcc: ?BSTR) HRESULT {
         return self.vtable.put_Bcc(self, bcc);
     }
-    pub fn get_ReplyTo(self: *const IEmailAction, pReplyTo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ReplyTo(self: *const IEmailAction, pReplyTo: ?*?BSTR) HRESULT {
         return self.vtable.get_ReplyTo(self, pReplyTo);
     }
-    pub fn put_ReplyTo(self: *const IEmailAction, replyTo: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ReplyTo(self: *const IEmailAction, replyTo: ?BSTR) HRESULT {
         return self.vtable.put_ReplyTo(self, replyTo);
     }
-    pub fn get_From(self: *const IEmailAction, pFrom: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_From(self: *const IEmailAction, pFrom: ?*?BSTR) HRESULT {
         return self.vtable.get_From(self, pFrom);
     }
-    pub fn put_From(self: *const IEmailAction, from: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_From(self: *const IEmailAction, from: ?BSTR) HRESULT {
         return self.vtable.put_From(self, from);
     }
-    pub fn get_HeaderFields(self: *const IEmailAction, ppHeaderFields: ?*?*ITaskNamedValueCollection) callconv(.Inline) HRESULT {
+    pub fn get_HeaderFields(self: *const IEmailAction, ppHeaderFields: ?*?*ITaskNamedValueCollection) HRESULT {
         return self.vtable.get_HeaderFields(self, ppHeaderFields);
     }
-    pub fn put_HeaderFields(self: *const IEmailAction, pHeaderFields: ?*ITaskNamedValueCollection) callconv(.Inline) HRESULT {
+    pub fn put_HeaderFields(self: *const IEmailAction, pHeaderFields: ?*ITaskNamedValueCollection) HRESULT {
         return self.vtable.put_HeaderFields(self, pHeaderFields);
     }
-    pub fn get_Body(self: *const IEmailAction, pBody: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Body(self: *const IEmailAction, pBody: ?*?BSTR) HRESULT {
         return self.vtable.get_Body(self, pBody);
     }
-    pub fn put_Body(self: *const IEmailAction, body: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Body(self: *const IEmailAction, body: ?BSTR) HRESULT {
         return self.vtable.put_Body(self, body);
     }
-    pub fn get_Attachments(self: *const IEmailAction, pAttachements: ?*?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn get_Attachments(self: *const IEmailAction, pAttachements: ?*?*SAFEARRAY) HRESULT {
         return self.vtable.get_Attachments(self, pAttachements);
     }
-    pub fn put_Attachments(self: *const IEmailAction, pAttachements: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn put_Attachments(self: *const IEmailAction, pAttachements: ?*SAFEARRAY) HRESULT {
         return self.vtable.put_Attachments(self, pAttachements);
     }
 };
@@ -2427,49 +2427,49 @@ pub const ITriggerCollection = extern union {
         get_Count: *const fn(
             self: *const ITriggerCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ITriggerCollection,
             index: i32,
             ppTrigger: ?*?*ITrigger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ITriggerCollection,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const ITriggerCollection,
             type: TASK_TRIGGER_TYPE2,
             ppTrigger: ?*?*ITrigger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ITriggerCollection,
             index: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ITriggerCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ITriggerCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ITriggerCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn get_Item(self: *const ITriggerCollection, index: i32, ppTrigger: ?*?*ITrigger) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ITriggerCollection, index: i32, ppTrigger: ?*?*ITrigger) HRESULT {
         return self.vtable.get_Item(self, index, ppTrigger);
     }
-    pub fn get__NewEnum(self: *const ITriggerCollection, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ITriggerCollection, ppEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnum);
     }
-    pub fn Create(self: *const ITriggerCollection, @"type": TASK_TRIGGER_TYPE2, ppTrigger: ?*?*ITrigger) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const ITriggerCollection, @"type": TASK_TRIGGER_TYPE2, ppTrigger: ?*?*ITrigger) HRESULT {
         return self.vtable.Create(self, @"type", ppTrigger);
     }
-    pub fn Remove(self: *const ITriggerCollection, index: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ITriggerCollection, index: VARIANT) HRESULT {
         return self.vtable.Remove(self, index);
     }
-    pub fn Clear(self: *const ITriggerCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ITriggerCollection) HRESULT {
         return self.vtable.Clear(self);
     }
 };
@@ -2484,81 +2484,81 @@ pub const IActionCollection = extern union {
         get_Count: *const fn(
             self: *const IActionCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IActionCollection,
             index: i32,
             ppAction: ?*?*IAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IActionCollection,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XmlText: *const fn(
             self: *const IActionCollection,
             pText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_XmlText: *const fn(
             self: *const IActionCollection,
             text: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IActionCollection,
             type: TASK_ACTION_TYPE,
             ppAction: ?*?*IAction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IActionCollection,
             index: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IActionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Context: *const fn(
             self: *const IActionCollection,
             pContext: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Context: *const fn(
             self: *const IActionCollection,
             context: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IActionCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IActionCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn get_Item(self: *const IActionCollection, index: i32, ppAction: ?*?*IAction) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IActionCollection, index: i32, ppAction: ?*?*IAction) HRESULT {
         return self.vtable.get_Item(self, index, ppAction);
     }
-    pub fn get__NewEnum(self: *const IActionCollection, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IActionCollection, ppEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnum);
     }
-    pub fn get_XmlText(self: *const IActionCollection, pText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_XmlText(self: *const IActionCollection, pText: ?*?BSTR) HRESULT {
         return self.vtable.get_XmlText(self, pText);
     }
-    pub fn put_XmlText(self: *const IActionCollection, text: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_XmlText(self: *const IActionCollection, text: ?BSTR) HRESULT {
         return self.vtable.put_XmlText(self, text);
     }
-    pub fn Create(self: *const IActionCollection, @"type": TASK_ACTION_TYPE, ppAction: ?*?*IAction) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IActionCollection, @"type": TASK_ACTION_TYPE, ppAction: ?*?*IAction) HRESULT {
         return self.vtable.Create(self, @"type", ppAction);
     }
-    pub fn Remove(self: *const IActionCollection, index: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IActionCollection, index: VARIANT) HRESULT {
         return self.vtable.Remove(self, index);
     }
-    pub fn Clear(self: *const IActionCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const IActionCollection) HRESULT {
         return self.vtable.Clear(self);
     }
-    pub fn get_Context(self: *const IActionCollection, pContext: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Context(self: *const IActionCollection, pContext: ?*?BSTR) HRESULT {
         return self.vtable.get_Context(self, pContext);
     }
-    pub fn put_Context(self: *const IActionCollection, context: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Context(self: *const IActionCollection, context: ?BSTR) HRESULT {
         return self.vtable.put_Context(self, context);
     }
 };
@@ -2573,100 +2573,100 @@ pub const IPrincipal = extern union {
         get_Id: *const fn(
             self: *const IPrincipal,
             pId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Id: *const fn(
             self: *const IPrincipal,
             Id: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const IPrincipal,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisplayName: *const fn(
             self: *const IPrincipal,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserId: *const fn(
             self: *const IPrincipal,
             pUser: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserId: *const fn(
             self: *const IPrincipal,
             user: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LogonType: *const fn(
             self: *const IPrincipal,
             pLogon: ?*TASK_LOGON_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LogonType: *const fn(
             self: *const IPrincipal,
             logon: TASK_LOGON_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupId: *const fn(
             self: *const IPrincipal,
             pGroup: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GroupId: *const fn(
             self: *const IPrincipal,
             group: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunLevel: *const fn(
             self: *const IPrincipal,
             pRunLevel: ?*TASK_RUNLEVEL_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunLevel: *const fn(
             self: *const IPrincipal,
             runLevel: TASK_RUNLEVEL_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const IPrincipal, pId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IPrincipal, pId: ?*?BSTR) HRESULT {
         return self.vtable.get_Id(self, pId);
     }
-    pub fn put_Id(self: *const IPrincipal, Id: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Id(self: *const IPrincipal, Id: ?BSTR) HRESULT {
         return self.vtable.put_Id(self, Id);
     }
-    pub fn get_DisplayName(self: *const IPrincipal, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const IPrincipal, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_DisplayName(self, pName);
     }
-    pub fn put_DisplayName(self: *const IPrincipal, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_DisplayName(self: *const IPrincipal, name: ?BSTR) HRESULT {
         return self.vtable.put_DisplayName(self, name);
     }
-    pub fn get_UserId(self: *const IPrincipal, pUser: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserId(self: *const IPrincipal, pUser: ?*?BSTR) HRESULT {
         return self.vtable.get_UserId(self, pUser);
     }
-    pub fn put_UserId(self: *const IPrincipal, user: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_UserId(self: *const IPrincipal, user: ?BSTR) HRESULT {
         return self.vtable.put_UserId(self, user);
     }
-    pub fn get_LogonType(self: *const IPrincipal, pLogon: ?*TASK_LOGON_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_LogonType(self: *const IPrincipal, pLogon: ?*TASK_LOGON_TYPE) HRESULT {
         return self.vtable.get_LogonType(self, pLogon);
     }
-    pub fn put_LogonType(self: *const IPrincipal, logon: TASK_LOGON_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_LogonType(self: *const IPrincipal, logon: TASK_LOGON_TYPE) HRESULT {
         return self.vtable.put_LogonType(self, logon);
     }
-    pub fn get_GroupId(self: *const IPrincipal, pGroup: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_GroupId(self: *const IPrincipal, pGroup: ?*?BSTR) HRESULT {
         return self.vtable.get_GroupId(self, pGroup);
     }
-    pub fn put_GroupId(self: *const IPrincipal, group: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_GroupId(self: *const IPrincipal, group: ?BSTR) HRESULT {
         return self.vtable.put_GroupId(self, group);
     }
-    pub fn get_RunLevel(self: *const IPrincipal, pRunLevel: ?*TASK_RUNLEVEL_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_RunLevel(self: *const IPrincipal, pRunLevel: ?*TASK_RUNLEVEL_TYPE) HRESULT {
         return self.vtable.get_RunLevel(self, pRunLevel);
     }
-    pub fn put_RunLevel(self: *const IPrincipal, runLevel: TASK_RUNLEVEL_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_RunLevel(self: *const IPrincipal, runLevel: TASK_RUNLEVEL_TYPE) HRESULT {
         return self.vtable.put_RunLevel(self, runLevel);
     }
 };
@@ -2681,43 +2681,43 @@ pub const IPrincipal2 = extern union {
         get_ProcessTokenSidType: *const fn(
             self: *const IPrincipal2,
             pProcessTokenSidType: ?*TASK_PROCESSTOKENSID_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ProcessTokenSidType: *const fn(
             self: *const IPrincipal2,
             processTokenSidType: TASK_PROCESSTOKENSID_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequiredPrivilegeCount: *const fn(
             self: *const IPrincipal2,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_RequiredPrivilege: *const fn(
             self: *const IPrincipal2,
             index: i32,
             pPrivilege: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRequiredPrivilege: *const fn(
             self: *const IPrincipal2,
             privilege: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ProcessTokenSidType(self: *const IPrincipal2, pProcessTokenSidType: ?*TASK_PROCESSTOKENSID_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_ProcessTokenSidType(self: *const IPrincipal2, pProcessTokenSidType: ?*TASK_PROCESSTOKENSID_TYPE) HRESULT {
         return self.vtable.get_ProcessTokenSidType(self, pProcessTokenSidType);
     }
-    pub fn put_ProcessTokenSidType(self: *const IPrincipal2, processTokenSidType: TASK_PROCESSTOKENSID_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_ProcessTokenSidType(self: *const IPrincipal2, processTokenSidType: TASK_PROCESSTOKENSID_TYPE) HRESULT {
         return self.vtable.put_ProcessTokenSidType(self, processTokenSidType);
     }
-    pub fn get_RequiredPrivilegeCount(self: *const IPrincipal2, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RequiredPrivilegeCount(self: *const IPrincipal2, pCount: ?*i32) HRESULT {
         return self.vtable.get_RequiredPrivilegeCount(self, pCount);
     }
-    pub fn get_RequiredPrivilege(self: *const IPrincipal2, index: i32, pPrivilege: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RequiredPrivilege(self: *const IPrincipal2, index: i32, pPrivilege: ?*?BSTR) HRESULT {
         return self.vtable.get_RequiredPrivilege(self, index, pPrivilege);
     }
-    pub fn AddRequiredPrivilege(self: *const IPrincipal2, privilege: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddRequiredPrivilege(self: *const IPrincipal2, privilege: ?BSTR) HRESULT {
         return self.vtable.AddRequiredPrivilege(self, privilege);
     }
 };
@@ -2732,148 +2732,148 @@ pub const IRegistrationInfo = extern union {
         get_Description: *const fn(
             self: *const IRegistrationInfo,
             pDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IRegistrationInfo,
             description: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Author: *const fn(
             self: *const IRegistrationInfo,
             pAuthor: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Author: *const fn(
             self: *const IRegistrationInfo,
             author: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const IRegistrationInfo,
             pVersion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Version: *const fn(
             self: *const IRegistrationInfo,
             version: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Date: *const fn(
             self: *const IRegistrationInfo,
             pDate: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Date: *const fn(
             self: *const IRegistrationInfo,
             date: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Documentation: *const fn(
             self: *const IRegistrationInfo,
             pDocumentation: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Documentation: *const fn(
             self: *const IRegistrationInfo,
             documentation: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XmlText: *const fn(
             self: *const IRegistrationInfo,
             pText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_XmlText: *const fn(
             self: *const IRegistrationInfo,
             text: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_URI: *const fn(
             self: *const IRegistrationInfo,
             pUri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_URI: *const fn(
             self: *const IRegistrationInfo,
             uri: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SecurityDescriptor: *const fn(
             self: *const IRegistrationInfo,
             pSddl: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SecurityDescriptor: *const fn(
             self: *const IRegistrationInfo,
             sddl: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Source: *const fn(
             self: *const IRegistrationInfo,
             pSource: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Source: *const fn(
             self: *const IRegistrationInfo,
             source: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Description(self: *const IRegistrationInfo, pDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IRegistrationInfo, pDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pDescription);
     }
-    pub fn put_Description(self: *const IRegistrationInfo, description: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IRegistrationInfo, description: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, description);
     }
-    pub fn get_Author(self: *const IRegistrationInfo, pAuthor: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Author(self: *const IRegistrationInfo, pAuthor: ?*?BSTR) HRESULT {
         return self.vtable.get_Author(self, pAuthor);
     }
-    pub fn put_Author(self: *const IRegistrationInfo, author: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Author(self: *const IRegistrationInfo, author: ?BSTR) HRESULT {
         return self.vtable.put_Author(self, author);
     }
-    pub fn get_Version(self: *const IRegistrationInfo, pVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IRegistrationInfo, pVersion: ?*?BSTR) HRESULT {
         return self.vtable.get_Version(self, pVersion);
     }
-    pub fn put_Version(self: *const IRegistrationInfo, version: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Version(self: *const IRegistrationInfo, version: ?BSTR) HRESULT {
         return self.vtable.put_Version(self, version);
     }
-    pub fn get_Date(self: *const IRegistrationInfo, pDate: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Date(self: *const IRegistrationInfo, pDate: ?*?BSTR) HRESULT {
         return self.vtable.get_Date(self, pDate);
     }
-    pub fn put_Date(self: *const IRegistrationInfo, date: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Date(self: *const IRegistrationInfo, date: ?BSTR) HRESULT {
         return self.vtable.put_Date(self, date);
     }
-    pub fn get_Documentation(self: *const IRegistrationInfo, pDocumentation: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Documentation(self: *const IRegistrationInfo, pDocumentation: ?*?BSTR) HRESULT {
         return self.vtable.get_Documentation(self, pDocumentation);
     }
-    pub fn put_Documentation(self: *const IRegistrationInfo, documentation: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Documentation(self: *const IRegistrationInfo, documentation: ?BSTR) HRESULT {
         return self.vtable.put_Documentation(self, documentation);
     }
-    pub fn get_XmlText(self: *const IRegistrationInfo, pText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_XmlText(self: *const IRegistrationInfo, pText: ?*?BSTR) HRESULT {
         return self.vtable.get_XmlText(self, pText);
     }
-    pub fn put_XmlText(self: *const IRegistrationInfo, text: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_XmlText(self: *const IRegistrationInfo, text: ?BSTR) HRESULT {
         return self.vtable.put_XmlText(self, text);
     }
-    pub fn get_URI(self: *const IRegistrationInfo, pUri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_URI(self: *const IRegistrationInfo, pUri: ?*?BSTR) HRESULT {
         return self.vtable.get_URI(self, pUri);
     }
-    pub fn put_URI(self: *const IRegistrationInfo, uri: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_URI(self: *const IRegistrationInfo, uri: ?BSTR) HRESULT {
         return self.vtable.put_URI(self, uri);
     }
-    pub fn get_SecurityDescriptor(self: *const IRegistrationInfo, pSddl: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SecurityDescriptor(self: *const IRegistrationInfo, pSddl: ?*VARIANT) HRESULT {
         return self.vtable.get_SecurityDescriptor(self, pSddl);
     }
-    pub fn put_SecurityDescriptor(self: *const IRegistrationInfo, sddl: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SecurityDescriptor(self: *const IRegistrationInfo, sddl: VARIANT) HRESULT {
         return self.vtable.put_SecurityDescriptor(self, sddl);
     }
-    pub fn get_Source(self: *const IRegistrationInfo, pSource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Source(self: *const IRegistrationInfo, pSource: ?*?BSTR) HRESULT {
         return self.vtable.get_Source(self, pSource);
     }
-    pub fn put_Source(self: *const IRegistrationInfo, source: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Source(self: *const IRegistrationInfo, source: ?BSTR) HRESULT {
         return self.vtable.put_Source(self, source);
     }
 };
@@ -2888,116 +2888,116 @@ pub const ITaskDefinition = extern union {
         get_RegistrationInfo: *const fn(
             self: *const ITaskDefinition,
             ppRegistrationInfo: ?*?*IRegistrationInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RegistrationInfo: *const fn(
             self: *const ITaskDefinition,
             pRegistrationInfo: ?*IRegistrationInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Triggers: *const fn(
             self: *const ITaskDefinition,
             ppTriggers: ?*?*ITriggerCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Triggers: *const fn(
             self: *const ITaskDefinition,
             pTriggers: ?*ITriggerCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Settings: *const fn(
             self: *const ITaskDefinition,
             ppSettings: ?*?*ITaskSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Settings: *const fn(
             self: *const ITaskDefinition,
             pSettings: ?*ITaskSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Data: *const fn(
             self: *const ITaskDefinition,
             pData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Data: *const fn(
             self: *const ITaskDefinition,
             data: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Principal: *const fn(
             self: *const ITaskDefinition,
             ppPrincipal: ?*?*IPrincipal,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Principal: *const fn(
             self: *const ITaskDefinition,
             pPrincipal: ?*IPrincipal,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Actions: *const fn(
             self: *const ITaskDefinition,
             ppActions: ?*?*IActionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Actions: *const fn(
             self: *const ITaskDefinition,
             pActions: ?*IActionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XmlText: *const fn(
             self: *const ITaskDefinition,
             pXml: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_XmlText: *const fn(
             self: *const ITaskDefinition,
             xml: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RegistrationInfo(self: *const ITaskDefinition, ppRegistrationInfo: ?*?*IRegistrationInfo) callconv(.Inline) HRESULT {
+    pub fn get_RegistrationInfo(self: *const ITaskDefinition, ppRegistrationInfo: ?*?*IRegistrationInfo) HRESULT {
         return self.vtable.get_RegistrationInfo(self, ppRegistrationInfo);
     }
-    pub fn put_RegistrationInfo(self: *const ITaskDefinition, pRegistrationInfo: ?*IRegistrationInfo) callconv(.Inline) HRESULT {
+    pub fn put_RegistrationInfo(self: *const ITaskDefinition, pRegistrationInfo: ?*IRegistrationInfo) HRESULT {
         return self.vtable.put_RegistrationInfo(self, pRegistrationInfo);
     }
-    pub fn get_Triggers(self: *const ITaskDefinition, ppTriggers: ?*?*ITriggerCollection) callconv(.Inline) HRESULT {
+    pub fn get_Triggers(self: *const ITaskDefinition, ppTriggers: ?*?*ITriggerCollection) HRESULT {
         return self.vtable.get_Triggers(self, ppTriggers);
     }
-    pub fn put_Triggers(self: *const ITaskDefinition, pTriggers: ?*ITriggerCollection) callconv(.Inline) HRESULT {
+    pub fn put_Triggers(self: *const ITaskDefinition, pTriggers: ?*ITriggerCollection) HRESULT {
         return self.vtable.put_Triggers(self, pTriggers);
     }
-    pub fn get_Settings(self: *const ITaskDefinition, ppSettings: ?*?*ITaskSettings) callconv(.Inline) HRESULT {
+    pub fn get_Settings(self: *const ITaskDefinition, ppSettings: ?*?*ITaskSettings) HRESULT {
         return self.vtable.get_Settings(self, ppSettings);
     }
-    pub fn put_Settings(self: *const ITaskDefinition, pSettings: ?*ITaskSettings) callconv(.Inline) HRESULT {
+    pub fn put_Settings(self: *const ITaskDefinition, pSettings: ?*ITaskSettings) HRESULT {
         return self.vtable.put_Settings(self, pSettings);
     }
-    pub fn get_Data(self: *const ITaskDefinition, pData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Data(self: *const ITaskDefinition, pData: ?*?BSTR) HRESULT {
         return self.vtable.get_Data(self, pData);
     }
-    pub fn put_Data(self: *const ITaskDefinition, data: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Data(self: *const ITaskDefinition, data: ?BSTR) HRESULT {
         return self.vtable.put_Data(self, data);
     }
-    pub fn get_Principal(self: *const ITaskDefinition, ppPrincipal: ?*?*IPrincipal) callconv(.Inline) HRESULT {
+    pub fn get_Principal(self: *const ITaskDefinition, ppPrincipal: ?*?*IPrincipal) HRESULT {
         return self.vtable.get_Principal(self, ppPrincipal);
     }
-    pub fn put_Principal(self: *const ITaskDefinition, pPrincipal: ?*IPrincipal) callconv(.Inline) HRESULT {
+    pub fn put_Principal(self: *const ITaskDefinition, pPrincipal: ?*IPrincipal) HRESULT {
         return self.vtable.put_Principal(self, pPrincipal);
     }
-    pub fn get_Actions(self: *const ITaskDefinition, ppActions: ?*?*IActionCollection) callconv(.Inline) HRESULT {
+    pub fn get_Actions(self: *const ITaskDefinition, ppActions: ?*?*IActionCollection) HRESULT {
         return self.vtable.get_Actions(self, ppActions);
     }
-    pub fn put_Actions(self: *const ITaskDefinition, pActions: ?*IActionCollection) callconv(.Inline) HRESULT {
+    pub fn put_Actions(self: *const ITaskDefinition, pActions: ?*IActionCollection) HRESULT {
         return self.vtable.put_Actions(self, pActions);
     }
-    pub fn get_XmlText(self: *const ITaskDefinition, pXml: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_XmlText(self: *const ITaskDefinition, pXml: ?*?BSTR) HRESULT {
         return self.vtable.get_XmlText(self, pXml);
     }
-    pub fn put_XmlText(self: *const ITaskDefinition, xml: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_XmlText(self: *const ITaskDefinition, xml: ?BSTR) HRESULT {
         return self.vtable.put_XmlText(self, xml);
     }
 };
@@ -3012,324 +3012,324 @@ pub const ITaskSettings = extern union {
         get_AllowDemandStart: *const fn(
             self: *const ITaskSettings,
             pAllowDemandStart: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowDemandStart: *const fn(
             self: *const ITaskSettings,
             allowDemandStart: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RestartInterval: *const fn(
             self: *const ITaskSettings,
             pRestartInterval: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RestartInterval: *const fn(
             self: *const ITaskSettings,
             restartInterval: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RestartCount: *const fn(
             self: *const ITaskSettings,
             pRestartCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RestartCount: *const fn(
             self: *const ITaskSettings,
             restartCount: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultipleInstances: *const fn(
             self: *const ITaskSettings,
             pPolicy: ?*TASK_INSTANCES_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultipleInstances: *const fn(
             self: *const ITaskSettings,
             policy: TASK_INSTANCES_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StopIfGoingOnBatteries: *const fn(
             self: *const ITaskSettings,
             pStopIfOnBatteries: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StopIfGoingOnBatteries: *const fn(
             self: *const ITaskSettings,
             stopIfOnBatteries: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisallowStartIfOnBatteries: *const fn(
             self: *const ITaskSettings,
             pDisallowStart: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisallowStartIfOnBatteries: *const fn(
             self: *const ITaskSettings,
             disallowStart: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowHardTerminate: *const fn(
             self: *const ITaskSettings,
             pAllowHardTerminate: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowHardTerminate: *const fn(
             self: *const ITaskSettings,
             allowHardTerminate: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartWhenAvailable: *const fn(
             self: *const ITaskSettings,
             pStartWhenAvailable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartWhenAvailable: *const fn(
             self: *const ITaskSettings,
             startWhenAvailable: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_XmlText: *const fn(
             self: *const ITaskSettings,
             pText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_XmlText: *const fn(
             self: *const ITaskSettings,
             text: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnlyIfNetworkAvailable: *const fn(
             self: *const ITaskSettings,
             pRunOnlyIfNetworkAvailable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnlyIfNetworkAvailable: *const fn(
             self: *const ITaskSettings,
             runOnlyIfNetworkAvailable: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExecutionTimeLimit: *const fn(
             self: *const ITaskSettings,
             pExecutionTimeLimit: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExecutionTimeLimit: *const fn(
             self: *const ITaskSettings,
             executionTimeLimit: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Enabled: *const fn(
             self: *const ITaskSettings,
             pEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const ITaskSettings,
             enabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeleteExpiredTaskAfter: *const fn(
             self: *const ITaskSettings,
             pExpirationDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DeleteExpiredTaskAfter: *const fn(
             self: *const ITaskSettings,
             expirationDelay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: *const fn(
             self: *const ITaskSettings,
             pPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: *const fn(
             self: *const ITaskSettings,
             priority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Compatibility: *const fn(
             self: *const ITaskSettings,
             pCompatLevel: ?*TASK_COMPATIBILITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Compatibility: *const fn(
             self: *const ITaskSettings,
             compatLevel: TASK_COMPATIBILITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Hidden: *const fn(
             self: *const ITaskSettings,
             pHidden: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Hidden: *const fn(
             self: *const ITaskSettings,
             hidden: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IdleSettings: *const fn(
             self: *const ITaskSettings,
             ppIdleSettings: ?*?*IIdleSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IdleSettings: *const fn(
             self: *const ITaskSettings,
             pIdleSettings: ?*IIdleSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunOnlyIfIdle: *const fn(
             self: *const ITaskSettings,
             pRunOnlyIfIdle: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RunOnlyIfIdle: *const fn(
             self: *const ITaskSettings,
             runOnlyIfIdle: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WakeToRun: *const fn(
             self: *const ITaskSettings,
             pWake: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WakeToRun: *const fn(
             self: *const ITaskSettings,
             wake: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSettings: *const fn(
             self: *const ITaskSettings,
             ppNetworkSettings: ?*?*INetworkSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSettings: *const fn(
             self: *const ITaskSettings,
             pNetworkSettings: ?*INetworkSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AllowDemandStart(self: *const ITaskSettings, pAllowDemandStart: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowDemandStart(self: *const ITaskSettings, pAllowDemandStart: ?*i16) HRESULT {
         return self.vtable.get_AllowDemandStart(self, pAllowDemandStart);
     }
-    pub fn put_AllowDemandStart(self: *const ITaskSettings, allowDemandStart: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowDemandStart(self: *const ITaskSettings, allowDemandStart: i16) HRESULT {
         return self.vtable.put_AllowDemandStart(self, allowDemandStart);
     }
-    pub fn get_RestartInterval(self: *const ITaskSettings, pRestartInterval: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RestartInterval(self: *const ITaskSettings, pRestartInterval: ?*?BSTR) HRESULT {
         return self.vtable.get_RestartInterval(self, pRestartInterval);
     }
-    pub fn put_RestartInterval(self: *const ITaskSettings, restartInterval: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RestartInterval(self: *const ITaskSettings, restartInterval: ?BSTR) HRESULT {
         return self.vtable.put_RestartInterval(self, restartInterval);
     }
-    pub fn get_RestartCount(self: *const ITaskSettings, pRestartCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RestartCount(self: *const ITaskSettings, pRestartCount: ?*i32) HRESULT {
         return self.vtable.get_RestartCount(self, pRestartCount);
     }
-    pub fn put_RestartCount(self: *const ITaskSettings, restartCount: i32) callconv(.Inline) HRESULT {
+    pub fn put_RestartCount(self: *const ITaskSettings, restartCount: i32) HRESULT {
         return self.vtable.put_RestartCount(self, restartCount);
     }
-    pub fn get_MultipleInstances(self: *const ITaskSettings, pPolicy: ?*TASK_INSTANCES_POLICY) callconv(.Inline) HRESULT {
+    pub fn get_MultipleInstances(self: *const ITaskSettings, pPolicy: ?*TASK_INSTANCES_POLICY) HRESULT {
         return self.vtable.get_MultipleInstances(self, pPolicy);
     }
-    pub fn put_MultipleInstances(self: *const ITaskSettings, policy: TASK_INSTANCES_POLICY) callconv(.Inline) HRESULT {
+    pub fn put_MultipleInstances(self: *const ITaskSettings, policy: TASK_INSTANCES_POLICY) HRESULT {
         return self.vtable.put_MultipleInstances(self, policy);
     }
-    pub fn get_StopIfGoingOnBatteries(self: *const ITaskSettings, pStopIfOnBatteries: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_StopIfGoingOnBatteries(self: *const ITaskSettings, pStopIfOnBatteries: ?*i16) HRESULT {
         return self.vtable.get_StopIfGoingOnBatteries(self, pStopIfOnBatteries);
     }
-    pub fn put_StopIfGoingOnBatteries(self: *const ITaskSettings, stopIfOnBatteries: i16) callconv(.Inline) HRESULT {
+    pub fn put_StopIfGoingOnBatteries(self: *const ITaskSettings, stopIfOnBatteries: i16) HRESULT {
         return self.vtable.put_StopIfGoingOnBatteries(self, stopIfOnBatteries);
     }
-    pub fn get_DisallowStartIfOnBatteries(self: *const ITaskSettings, pDisallowStart: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DisallowStartIfOnBatteries(self: *const ITaskSettings, pDisallowStart: ?*i16) HRESULT {
         return self.vtable.get_DisallowStartIfOnBatteries(self, pDisallowStart);
     }
-    pub fn put_DisallowStartIfOnBatteries(self: *const ITaskSettings, disallowStart: i16) callconv(.Inline) HRESULT {
+    pub fn put_DisallowStartIfOnBatteries(self: *const ITaskSettings, disallowStart: i16) HRESULT {
         return self.vtable.put_DisallowStartIfOnBatteries(self, disallowStart);
     }
-    pub fn get_AllowHardTerminate(self: *const ITaskSettings, pAllowHardTerminate: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowHardTerminate(self: *const ITaskSettings, pAllowHardTerminate: ?*i16) HRESULT {
         return self.vtable.get_AllowHardTerminate(self, pAllowHardTerminate);
     }
-    pub fn put_AllowHardTerminate(self: *const ITaskSettings, allowHardTerminate: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowHardTerminate(self: *const ITaskSettings, allowHardTerminate: i16) HRESULT {
         return self.vtable.put_AllowHardTerminate(self, allowHardTerminate);
     }
-    pub fn get_StartWhenAvailable(self: *const ITaskSettings, pStartWhenAvailable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_StartWhenAvailable(self: *const ITaskSettings, pStartWhenAvailable: ?*i16) HRESULT {
         return self.vtable.get_StartWhenAvailable(self, pStartWhenAvailable);
     }
-    pub fn put_StartWhenAvailable(self: *const ITaskSettings, startWhenAvailable: i16) callconv(.Inline) HRESULT {
+    pub fn put_StartWhenAvailable(self: *const ITaskSettings, startWhenAvailable: i16) HRESULT {
         return self.vtable.put_StartWhenAvailable(self, startWhenAvailable);
     }
-    pub fn get_XmlText(self: *const ITaskSettings, pText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_XmlText(self: *const ITaskSettings, pText: ?*?BSTR) HRESULT {
         return self.vtable.get_XmlText(self, pText);
     }
-    pub fn put_XmlText(self: *const ITaskSettings, text: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_XmlText(self: *const ITaskSettings, text: ?BSTR) HRESULT {
         return self.vtable.put_XmlText(self, text);
     }
-    pub fn get_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, pRunOnlyIfNetworkAvailable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, pRunOnlyIfNetworkAvailable: ?*i16) HRESULT {
         return self.vtable.get_RunOnlyIfNetworkAvailable(self, pRunOnlyIfNetworkAvailable);
     }
-    pub fn put_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, runOnlyIfNetworkAvailable: i16) callconv(.Inline) HRESULT {
+    pub fn put_RunOnlyIfNetworkAvailable(self: *const ITaskSettings, runOnlyIfNetworkAvailable: i16) HRESULT {
         return self.vtable.put_RunOnlyIfNetworkAvailable(self, runOnlyIfNetworkAvailable);
     }
-    pub fn get_ExecutionTimeLimit(self: *const ITaskSettings, pExecutionTimeLimit: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExecutionTimeLimit(self: *const ITaskSettings, pExecutionTimeLimit: ?*?BSTR) HRESULT {
         return self.vtable.get_ExecutionTimeLimit(self, pExecutionTimeLimit);
     }
-    pub fn put_ExecutionTimeLimit(self: *const ITaskSettings, executionTimeLimit: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ExecutionTimeLimit(self: *const ITaskSettings, executionTimeLimit: ?BSTR) HRESULT {
         return self.vtable.put_ExecutionTimeLimit(self, executionTimeLimit);
     }
-    pub fn get_Enabled(self: *const ITaskSettings, pEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const ITaskSettings, pEnabled: ?*i16) HRESULT {
         return self.vtable.get_Enabled(self, pEnabled);
     }
-    pub fn put_Enabled(self: *const ITaskSettings, enabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const ITaskSettings, enabled: i16) HRESULT {
         return self.vtable.put_Enabled(self, enabled);
     }
-    pub fn get_DeleteExpiredTaskAfter(self: *const ITaskSettings, pExpirationDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DeleteExpiredTaskAfter(self: *const ITaskSettings, pExpirationDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_DeleteExpiredTaskAfter(self, pExpirationDelay);
     }
-    pub fn put_DeleteExpiredTaskAfter(self: *const ITaskSettings, expirationDelay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_DeleteExpiredTaskAfter(self: *const ITaskSettings, expirationDelay: ?BSTR) HRESULT {
         return self.vtable.put_DeleteExpiredTaskAfter(self, expirationDelay);
     }
-    pub fn get_Priority(self: *const ITaskSettings, pPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Priority(self: *const ITaskSettings, pPriority: ?*i32) HRESULT {
         return self.vtable.get_Priority(self, pPriority);
     }
-    pub fn put_Priority(self: *const ITaskSettings, priority: i32) callconv(.Inline) HRESULT {
+    pub fn put_Priority(self: *const ITaskSettings, priority: i32) HRESULT {
         return self.vtable.put_Priority(self, priority);
     }
-    pub fn get_Compatibility(self: *const ITaskSettings, pCompatLevel: ?*TASK_COMPATIBILITY) callconv(.Inline) HRESULT {
+    pub fn get_Compatibility(self: *const ITaskSettings, pCompatLevel: ?*TASK_COMPATIBILITY) HRESULT {
         return self.vtable.get_Compatibility(self, pCompatLevel);
     }
-    pub fn put_Compatibility(self: *const ITaskSettings, compatLevel: TASK_COMPATIBILITY) callconv(.Inline) HRESULT {
+    pub fn put_Compatibility(self: *const ITaskSettings, compatLevel: TASK_COMPATIBILITY) HRESULT {
         return self.vtable.put_Compatibility(self, compatLevel);
     }
-    pub fn get_Hidden(self: *const ITaskSettings, pHidden: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Hidden(self: *const ITaskSettings, pHidden: ?*i16) HRESULT {
         return self.vtable.get_Hidden(self, pHidden);
     }
-    pub fn put_Hidden(self: *const ITaskSettings, hidden: i16) callconv(.Inline) HRESULT {
+    pub fn put_Hidden(self: *const ITaskSettings, hidden: i16) HRESULT {
         return self.vtable.put_Hidden(self, hidden);
     }
-    pub fn get_IdleSettings(self: *const ITaskSettings, ppIdleSettings: ?*?*IIdleSettings) callconv(.Inline) HRESULT {
+    pub fn get_IdleSettings(self: *const ITaskSettings, ppIdleSettings: ?*?*IIdleSettings) HRESULT {
         return self.vtable.get_IdleSettings(self, ppIdleSettings);
     }
-    pub fn put_IdleSettings(self: *const ITaskSettings, pIdleSettings: ?*IIdleSettings) callconv(.Inline) HRESULT {
+    pub fn put_IdleSettings(self: *const ITaskSettings, pIdleSettings: ?*IIdleSettings) HRESULT {
         return self.vtable.put_IdleSettings(self, pIdleSettings);
     }
-    pub fn get_RunOnlyIfIdle(self: *const ITaskSettings, pRunOnlyIfIdle: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_RunOnlyIfIdle(self: *const ITaskSettings, pRunOnlyIfIdle: ?*i16) HRESULT {
         return self.vtable.get_RunOnlyIfIdle(self, pRunOnlyIfIdle);
     }
-    pub fn put_RunOnlyIfIdle(self: *const ITaskSettings, runOnlyIfIdle: i16) callconv(.Inline) HRESULT {
+    pub fn put_RunOnlyIfIdle(self: *const ITaskSettings, runOnlyIfIdle: i16) HRESULT {
         return self.vtable.put_RunOnlyIfIdle(self, runOnlyIfIdle);
     }
-    pub fn get_WakeToRun(self: *const ITaskSettings, pWake: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_WakeToRun(self: *const ITaskSettings, pWake: ?*i16) HRESULT {
         return self.vtable.get_WakeToRun(self, pWake);
     }
-    pub fn put_WakeToRun(self: *const ITaskSettings, wake: i16) callconv(.Inline) HRESULT {
+    pub fn put_WakeToRun(self: *const ITaskSettings, wake: i16) HRESULT {
         return self.vtable.put_WakeToRun(self, wake);
     }
-    pub fn get_NetworkSettings(self: *const ITaskSettings, ppNetworkSettings: ?*?*INetworkSettings) callconv(.Inline) HRESULT {
+    pub fn get_NetworkSettings(self: *const ITaskSettings, ppNetworkSettings: ?*?*INetworkSettings) HRESULT {
         return self.vtable.get_NetworkSettings(self, ppNetworkSettings);
     }
-    pub fn put_NetworkSettings(self: *const ITaskSettings, pNetworkSettings: ?*INetworkSettings) callconv(.Inline) HRESULT {
+    pub fn put_NetworkSettings(self: *const ITaskSettings, pNetworkSettings: ?*INetworkSettings) HRESULT {
         return self.vtable.put_NetworkSettings(self, pNetworkSettings);
     }
 };
@@ -3344,36 +3344,36 @@ pub const ITaskSettings2 = extern union {
         get_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings2,
             pDisallowStart: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings2,
             disallowStart: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings2,
             pUseUnifiedEngine: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings2,
             useUnifiedEngine: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, pDisallowStart: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, pDisallowStart: ?*i16) HRESULT {
         return self.vtable.get_DisallowStartOnRemoteAppSession(self, pDisallowStart);
     }
-    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, disallowStart: i16) callconv(.Inline) HRESULT {
+    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings2, disallowStart: i16) HRESULT {
         return self.vtable.put_DisallowStartOnRemoteAppSession(self, disallowStart);
     }
-    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, pUseUnifiedEngine: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, pUseUnifiedEngine: ?*i16) HRESULT {
         return self.vtable.get_UseUnifiedSchedulingEngine(self, pUseUnifiedEngine);
     }
-    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, useUnifiedEngine: i16) callconv(.Inline) HRESULT {
+    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings2, useUnifiedEngine: i16) HRESULT {
         return self.vtable.put_UseUnifiedSchedulingEngine(self, useUnifiedEngine);
     }
 };
@@ -3387,76 +3387,76 @@ pub const ITaskSettings3 = extern union {
         get_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings3,
             pDisallowStart: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DisallowStartOnRemoteAppSession: *const fn(
             self: *const ITaskSettings3,
             disallowStart: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings3,
             pUseUnifiedEngine: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UseUnifiedSchedulingEngine: *const fn(
             self: *const ITaskSettings3,
             useUnifiedEngine: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaintenanceSettings: *const fn(
             self: *const ITaskSettings3,
             ppMaintenanceSettings: ?*?*IMaintenanceSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaintenanceSettings: *const fn(
             self: *const ITaskSettings3,
             pMaintenanceSettings: ?*IMaintenanceSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateMaintenanceSettings: *const fn(
             self: *const ITaskSettings3,
             ppMaintenanceSettings: ?*?*IMaintenanceSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Volatile: *const fn(
             self: *const ITaskSettings3,
             pVolatile: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Volatile: *const fn(
             self: *const ITaskSettings3,
             Volatile: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ITaskSettings: ITaskSettings,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, pDisallowStart: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, pDisallowStart: ?*i16) HRESULT {
         return self.vtable.get_DisallowStartOnRemoteAppSession(self, pDisallowStart);
     }
-    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, disallowStart: i16) callconv(.Inline) HRESULT {
+    pub fn put_DisallowStartOnRemoteAppSession(self: *const ITaskSettings3, disallowStart: i16) HRESULT {
         return self.vtable.put_DisallowStartOnRemoteAppSession(self, disallowStart);
     }
-    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, pUseUnifiedEngine: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, pUseUnifiedEngine: ?*i16) HRESULT {
         return self.vtable.get_UseUnifiedSchedulingEngine(self, pUseUnifiedEngine);
     }
-    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, useUnifiedEngine: i16) callconv(.Inline) HRESULT {
+    pub fn put_UseUnifiedSchedulingEngine(self: *const ITaskSettings3, useUnifiedEngine: i16) HRESULT {
         return self.vtable.put_UseUnifiedSchedulingEngine(self, useUnifiedEngine);
     }
-    pub fn get_MaintenanceSettings(self: *const ITaskSettings3, ppMaintenanceSettings: ?*?*IMaintenanceSettings) callconv(.Inline) HRESULT {
+    pub fn get_MaintenanceSettings(self: *const ITaskSettings3, ppMaintenanceSettings: ?*?*IMaintenanceSettings) HRESULT {
         return self.vtable.get_MaintenanceSettings(self, ppMaintenanceSettings);
     }
-    pub fn put_MaintenanceSettings(self: *const ITaskSettings3, pMaintenanceSettings: ?*IMaintenanceSettings) callconv(.Inline) HRESULT {
+    pub fn put_MaintenanceSettings(self: *const ITaskSettings3, pMaintenanceSettings: ?*IMaintenanceSettings) HRESULT {
         return self.vtable.put_MaintenanceSettings(self, pMaintenanceSettings);
     }
-    pub fn CreateMaintenanceSettings(self: *const ITaskSettings3, ppMaintenanceSettings: ?*?*IMaintenanceSettings) callconv(.Inline) HRESULT {
+    pub fn CreateMaintenanceSettings(self: *const ITaskSettings3, ppMaintenanceSettings: ?*?*IMaintenanceSettings) HRESULT {
         return self.vtable.CreateMaintenanceSettings(self, ppMaintenanceSettings);
     }
-    pub fn get_Volatile(self: *const ITaskSettings3, pVolatile: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Volatile(self: *const ITaskSettings3, pVolatile: ?*i16) HRESULT {
         return self.vtable.get_Volatile(self, pVolatile);
     }
-    pub fn put_Volatile(self: *const ITaskSettings3, Volatile: i16) callconv(.Inline) HRESULT {
+    pub fn put_Volatile(self: *const ITaskSettings3, Volatile: i16) HRESULT {
         return self.vtable.put_Volatile(self, Volatile);
     }
 };
@@ -3470,52 +3470,52 @@ pub const IMaintenanceSettings = extern union {
         put_Period: *const fn(
             self: *const IMaintenanceSettings,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Period: *const fn(
             self: *const IMaintenanceSettings,
             target: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Deadline: *const fn(
             self: *const IMaintenanceSettings,
             value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Deadline: *const fn(
             self: *const IMaintenanceSettings,
             target: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Exclusive: *const fn(
             self: *const IMaintenanceSettings,
             value: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Exclusive: *const fn(
             self: *const IMaintenanceSettings,
             target: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_Period(self: *const IMaintenanceSettings, value: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Period(self: *const IMaintenanceSettings, value: ?BSTR) HRESULT {
         return self.vtable.put_Period(self, value);
     }
-    pub fn get_Period(self: *const IMaintenanceSettings, target: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Period(self: *const IMaintenanceSettings, target: ?*?BSTR) HRESULT {
         return self.vtable.get_Period(self, target);
     }
-    pub fn put_Deadline(self: *const IMaintenanceSettings, value: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Deadline(self: *const IMaintenanceSettings, value: ?BSTR) HRESULT {
         return self.vtable.put_Deadline(self, value);
     }
-    pub fn get_Deadline(self: *const IMaintenanceSettings, target: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Deadline(self: *const IMaintenanceSettings, target: ?*?BSTR) HRESULT {
         return self.vtable.get_Deadline(self, target);
     }
-    pub fn put_Exclusive(self: *const IMaintenanceSettings, value: i16) callconv(.Inline) HRESULT {
+    pub fn put_Exclusive(self: *const IMaintenanceSettings, value: i16) HRESULT {
         return self.vtable.put_Exclusive(self, value);
     }
-    pub fn get_Exclusive(self: *const IMaintenanceSettings, target: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Exclusive(self: *const IMaintenanceSettings, target: ?*i16) HRESULT {
         return self.vtable.get_Exclusive(self, target);
     }
 };
@@ -3530,28 +3530,28 @@ pub const IRegisteredTaskCollection = extern union {
         get_Count: *const fn(
             self: *const IRegisteredTaskCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IRegisteredTaskCollection,
             index: VARIANT,
             ppRegisteredTask: ?*?*IRegisteredTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IRegisteredTaskCollection,
             ppEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IRegisteredTaskCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IRegisteredTaskCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn get_Item(self: *const IRegisteredTaskCollection, index: VARIANT, ppRegisteredTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IRegisteredTaskCollection, index: VARIANT, ppRegisteredTask: ?*?*IRegisteredTask) HRESULT {
         return self.vtable.get_Item(self, index, ppRegisteredTask);
     }
-    pub fn get__NewEnum(self: *const IRegisteredTaskCollection, ppEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IRegisteredTaskCollection, ppEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnum);
     }
 };
@@ -3566,48 +3566,48 @@ pub const ITaskFolder = extern union {
         get_Name: *const fn(
             self: *const ITaskFolder,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const ITaskFolder,
             pPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFolder: *const fn(
             self: *const ITaskFolder,
             path: ?BSTR,
             ppFolder: ?*?*ITaskFolder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFolders: *const fn(
             self: *const ITaskFolder,
             flags: i32,
             ppFolders: ?*?*ITaskFolderCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateFolder: *const fn(
             self: *const ITaskFolder,
             subFolderName: ?BSTR,
             sddl: VARIANT,
             ppFolder: ?*?*ITaskFolder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteFolder: *const fn(
             self: *const ITaskFolder,
             subFolderName: ?BSTR,
             flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTask: *const fn(
             self: *const ITaskFolder,
             path: ?BSTR,
             ppTask: ?*?*IRegisteredTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTasks: *const fn(
             self: *const ITaskFolder,
             flags: i32,
             ppTasks: ?*?*IRegisteredTaskCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const ITaskFolder,
             name: ?BSTR,
             flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterTask: *const fn(
             self: *const ITaskFolder,
             path: ?BSTR,
@@ -3618,7 +3618,7 @@ pub const ITaskFolder = extern union {
             logonType: TASK_LOGON_TYPE,
             sddl: VARIANT,
             ppTask: ?*?*IRegisteredTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterTaskDefinition: *const fn(
             self: *const ITaskFolder,
             path: ?BSTR,
@@ -3629,58 +3629,58 @@ pub const ITaskFolder = extern union {
             logonType: TASK_LOGON_TYPE,
             sddl: VARIANT,
             ppTask: ?*?*IRegisteredTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurityDescriptor: *const fn(
             self: *const ITaskFolder,
             securityInformation: i32,
             pSddl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSecurityDescriptor: *const fn(
             self: *const ITaskFolder,
             sddl: ?BSTR,
             flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ITaskFolder, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ITaskFolder, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pName);
     }
-    pub fn get_Path(self: *const ITaskFolder, pPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const ITaskFolder, pPath: ?*?BSTR) HRESULT {
         return self.vtable.get_Path(self, pPath);
     }
-    pub fn GetFolder(self: *const ITaskFolder, path: ?BSTR, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+    pub fn GetFolder(self: *const ITaskFolder, path: ?BSTR, ppFolder: ?*?*ITaskFolder) HRESULT {
         return self.vtable.GetFolder(self, path, ppFolder);
     }
-    pub fn GetFolders(self: *const ITaskFolder, flags: i32, ppFolders: ?*?*ITaskFolderCollection) callconv(.Inline) HRESULT {
+    pub fn GetFolders(self: *const ITaskFolder, flags: i32, ppFolders: ?*?*ITaskFolderCollection) HRESULT {
         return self.vtable.GetFolders(self, flags, ppFolders);
     }
-    pub fn CreateFolder(self: *const ITaskFolder, subFolderName: ?BSTR, sddl: VARIANT, ppFolder: ?*?*ITaskFolder) callconv(.Inline) HRESULT {
+    pub fn CreateFolder(self: *const ITaskFolder, subFolderName: ?BSTR, sddl: VARIANT, ppFolder: ?*?*ITaskFolder) HRESULT {
         return self.vtable.CreateFolder(self, subFolderName, sddl, ppFolder);
     }
-    pub fn DeleteFolder(self: *const ITaskFolder, subFolderName: ?BSTR, flags: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteFolder(self: *const ITaskFolder, subFolderName: ?BSTR, flags: i32) HRESULT {
         return self.vtable.DeleteFolder(self, subFolderName, flags);
     }
-    pub fn GetTask(self: *const ITaskFolder, path: ?BSTR, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+    pub fn GetTask(self: *const ITaskFolder, path: ?BSTR, ppTask: ?*?*IRegisteredTask) HRESULT {
         return self.vtable.GetTask(self, path, ppTask);
     }
-    pub fn GetTasks(self: *const ITaskFolder, flags: i32, ppTasks: ?*?*IRegisteredTaskCollection) callconv(.Inline) HRESULT {
+    pub fn GetTasks(self: *const ITaskFolder, flags: i32, ppTasks: ?*?*IRegisteredTaskCollection) HRESULT {
         return self.vtable.GetTasks(self, flags, ppTasks);
     }
-    pub fn DeleteTask(self: *const ITaskFolder, name: ?BSTR, flags: i32) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const ITaskFolder, name: ?BSTR, flags: i32) HRESULT {
         return self.vtable.DeleteTask(self, name, flags);
     }
-    pub fn RegisterTask(self: *const ITaskFolder, path: ?BSTR, xmlText: ?BSTR, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+    pub fn RegisterTask(self: *const ITaskFolder, path: ?BSTR, xmlText: ?BSTR, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) HRESULT {
         return self.vtable.RegisterTask(self, path, xmlText, flags, userId, password, logonType, sddl, ppTask);
     }
-    pub fn RegisterTaskDefinition(self: *const ITaskFolder, path: ?BSTR, pDefinition: ?*ITaskDefinition, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) callconv(.Inline) HRESULT {
+    pub fn RegisterTaskDefinition(self: *const ITaskFolder, path: ?BSTR, pDefinition: ?*ITaskDefinition, flags: i32, userId: VARIANT, password: VARIANT, logonType: TASK_LOGON_TYPE, sddl: VARIANT, ppTask: ?*?*IRegisteredTask) HRESULT {
         return self.vtable.RegisterTaskDefinition(self, path, pDefinition, flags, userId, password, logonType, sddl, ppTask);
     }
-    pub fn GetSecurityDescriptor(self: *const ITaskFolder, securityInformation: i32, pSddl: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetSecurityDescriptor(self: *const ITaskFolder, securityInformation: i32, pSddl: ?*?BSTR) HRESULT {
         return self.vtable.GetSecurityDescriptor(self, securityInformation, pSddl);
     }
-    pub fn SetSecurityDescriptor(self: *const ITaskFolder, sddl: ?BSTR, flags: i32) callconv(.Inline) HRESULT {
+    pub fn SetSecurityDescriptor(self: *const ITaskFolder, sddl: ?BSTR, flags: i32) HRESULT {
         return self.vtable.SetSecurityDescriptor(self, sddl, flags);
     }
 };
@@ -3695,68 +3695,68 @@ pub const IIdleSettings = extern union {
         get_IdleDuration: *const fn(
             self: *const IIdleSettings,
             pDelay: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IdleDuration: *const fn(
             self: *const IIdleSettings,
             delay: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WaitTimeout: *const fn(
             self: *const IIdleSettings,
             pTimeout: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_WaitTimeout: *const fn(
             self: *const IIdleSettings,
             timeout: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StopOnIdleEnd: *const fn(
             self: *const IIdleSettings,
             pStop: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StopOnIdleEnd: *const fn(
             self: *const IIdleSettings,
             stop: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RestartOnIdle: *const fn(
             self: *const IIdleSettings,
             pRestart: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RestartOnIdle: *const fn(
             self: *const IIdleSettings,
             restart: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IdleDuration(self: *const IIdleSettings, pDelay: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IdleDuration(self: *const IIdleSettings, pDelay: ?*?BSTR) HRESULT {
         return self.vtable.get_IdleDuration(self, pDelay);
     }
-    pub fn put_IdleDuration(self: *const IIdleSettings, delay: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_IdleDuration(self: *const IIdleSettings, delay: ?BSTR) HRESULT {
         return self.vtable.put_IdleDuration(self, delay);
     }
-    pub fn get_WaitTimeout(self: *const IIdleSettings, pTimeout: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_WaitTimeout(self: *const IIdleSettings, pTimeout: ?*?BSTR) HRESULT {
         return self.vtable.get_WaitTimeout(self, pTimeout);
     }
-    pub fn put_WaitTimeout(self: *const IIdleSettings, timeout: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_WaitTimeout(self: *const IIdleSettings, timeout: ?BSTR) HRESULT {
         return self.vtable.put_WaitTimeout(self, timeout);
     }
-    pub fn get_StopOnIdleEnd(self: *const IIdleSettings, pStop: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_StopOnIdleEnd(self: *const IIdleSettings, pStop: ?*i16) HRESULT {
         return self.vtable.get_StopOnIdleEnd(self, pStop);
     }
-    pub fn put_StopOnIdleEnd(self: *const IIdleSettings, stop: i16) callconv(.Inline) HRESULT {
+    pub fn put_StopOnIdleEnd(self: *const IIdleSettings, stop: i16) HRESULT {
         return self.vtable.put_StopOnIdleEnd(self, stop);
     }
-    pub fn get_RestartOnIdle(self: *const IIdleSettings, pRestart: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_RestartOnIdle(self: *const IIdleSettings, pRestart: ?*i16) HRESULT {
         return self.vtable.get_RestartOnIdle(self, pRestart);
     }
-    pub fn put_RestartOnIdle(self: *const IIdleSettings, restart: i16) callconv(.Inline) HRESULT {
+    pub fn put_RestartOnIdle(self: *const IIdleSettings, restart: i16) HRESULT {
         return self.vtable.put_RestartOnIdle(self, restart);
     }
 };
@@ -3771,36 +3771,36 @@ pub const INetworkSettings = extern union {
         get_Name: *const fn(
             self: *const INetworkSettings,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const INetworkSettings,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const INetworkSettings,
             pId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Id: *const fn(
             self: *const INetworkSettings,
             id: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const INetworkSettings, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const INetworkSettings, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pName);
     }
-    pub fn put_Name(self: *const INetworkSettings, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const INetworkSettings, name: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, name);
     }
-    pub fn get_Id(self: *const INetworkSettings, pId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const INetworkSettings, pId: ?*?BSTR) HRESULT {
         return self.vtable.get_Id(self, pId);
     }
-    pub fn put_Id(self: *const INetworkSettings, id: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Id(self: *const INetworkSettings, id: ?BSTR) HRESULT {
         return self.vtable.put_Id(self, id);
     }
 };
@@ -3815,52 +3815,52 @@ pub const IRepetitionPattern = extern union {
         get_Interval: *const fn(
             self: *const IRepetitionPattern,
             pInterval: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Interval: *const fn(
             self: *const IRepetitionPattern,
             interval: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Duration: *const fn(
             self: *const IRepetitionPattern,
             pDuration: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Duration: *const fn(
             self: *const IRepetitionPattern,
             duration: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StopAtDurationEnd: *const fn(
             self: *const IRepetitionPattern,
             pStop: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StopAtDurationEnd: *const fn(
             self: *const IRepetitionPattern,
             stop: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Interval(self: *const IRepetitionPattern, pInterval: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Interval(self: *const IRepetitionPattern, pInterval: ?*?BSTR) HRESULT {
         return self.vtable.get_Interval(self, pInterval);
     }
-    pub fn put_Interval(self: *const IRepetitionPattern, interval: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Interval(self: *const IRepetitionPattern, interval: ?BSTR) HRESULT {
         return self.vtable.put_Interval(self, interval);
     }
-    pub fn get_Duration(self: *const IRepetitionPattern, pDuration: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Duration(self: *const IRepetitionPattern, pDuration: ?*?BSTR) HRESULT {
         return self.vtable.get_Duration(self, pDuration);
     }
-    pub fn put_Duration(self: *const IRepetitionPattern, duration: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Duration(self: *const IRepetitionPattern, duration: ?BSTR) HRESULT {
         return self.vtable.put_Duration(self, duration);
     }
-    pub fn get_StopAtDurationEnd(self: *const IRepetitionPattern, pStop: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_StopAtDurationEnd(self: *const IRepetitionPattern, pStop: ?*i16) HRESULT {
         return self.vtable.get_StopAtDurationEnd(self, pStop);
     }
-    pub fn put_StopAtDurationEnd(self: *const IRepetitionPattern, stop: i16) callconv(.Inline) HRESULT {
+    pub fn put_StopAtDurationEnd(self: *const IRepetitionPattern, stop: i16) HRESULT {
         return self.vtable.put_StopAtDurationEnd(self, stop);
     }
 };

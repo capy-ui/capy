@@ -380,43 +380,43 @@ pub const ISensorManager = extern union {
             self: *const ISensorManager,
             sensorCategory: ?*Guid,
             ppSensorsFound: ?*?*ISensorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorsByType: *const fn(
             self: *const ISensorManager,
             sensorType: ?*Guid,
             ppSensorsFound: ?*?*ISensorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorByID: *const fn(
             self: *const ISensorManager,
             sensorID: ?*Guid,
             ppSensor: ?*?*ISensor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventSink: *const fn(
             self: *const ISensorManager,
             pEvents: ?*ISensorManagerEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestPermissions: *const fn(
             self: *const ISensorManager,
             hParent: ?HWND,
             pSensors: ?*ISensorCollection,
             fModal: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSensorsByCategory(self: *const ISensorManager, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
+    pub fn GetSensorsByCategory(self: *const ISensorManager, sensorCategory: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) HRESULT {
         return self.vtable.GetSensorsByCategory(self, sensorCategory, ppSensorsFound);
     }
-    pub fn GetSensorsByType(self: *const ISensorManager, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) callconv(.Inline) HRESULT {
+    pub fn GetSensorsByType(self: *const ISensorManager, sensorType: ?*Guid, ppSensorsFound: ?*?*ISensorCollection) HRESULT {
         return self.vtable.GetSensorsByType(self, sensorType, ppSensorsFound);
     }
-    pub fn GetSensorByID(self: *const ISensorManager, sensorID: ?*Guid, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
+    pub fn GetSensorByID(self: *const ISensorManager, sensorID: ?*Guid, ppSensor: ?*?*ISensor) HRESULT {
         return self.vtable.GetSensorByID(self, sensorID, ppSensor);
     }
-    pub fn SetEventSink(self: *const ISensorManager, pEvents: ?*ISensorManagerEvents) callconv(.Inline) HRESULT {
+    pub fn SetEventSink(self: *const ISensorManager, pEvents: ?*ISensorManagerEvents) HRESULT {
         return self.vtable.SetEventSink(self, pEvents);
     }
-    pub fn RequestPermissions(self: *const ISensorManager, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) callconv(.Inline) HRESULT {
+    pub fn RequestPermissions(self: *const ISensorManager, hParent: ?HWND, pSensors: ?*ISensorCollection, fModal: BOOL) HRESULT {
         return self.vtable.RequestPermissions(self, hParent, pSensors, fModal);
     }
 };
@@ -430,18 +430,18 @@ pub const ILocationPermissions = extern union {
         GetGlobalLocationPermission: *const fn(
             self: *const ILocationPermissions,
             pfEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CheckLocationCapability: *const fn(
             self: *const ILocationPermissions,
             dwClientThreadId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGlobalLocationPermission(self: *const ILocationPermissions, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetGlobalLocationPermission(self: *const ILocationPermissions, pfEnabled: ?*BOOL) HRESULT {
         return self.vtable.GetGlobalLocationPermission(self, pfEnabled);
     }
-    pub fn CheckLocationCapability(self: *const ILocationPermissions, dwClientThreadId: u32) callconv(.Inline) HRESULT {
+    pub fn CheckLocationCapability(self: *const ILocationPermissions, dwClientThreadId: u32) HRESULT {
         return self.vtable.CheckLocationCapability(self, dwClientThreadId);
     }
 };
@@ -456,45 +456,45 @@ pub const ISensorCollection = extern union {
             self: *const ISensorCollection,
             ulIndex: u32,
             ppSensor: ?*?*ISensor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const ISensorCollection,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ISensorCollection,
             pSensor: ?*ISensor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ISensorCollection,
             pSensor: ?*ISensor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveByID: *const fn(
             self: *const ISensorCollection,
             sensorID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ISensorCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAt(self: *const ISensorCollection, ulIndex: u32, ppSensor: ?*?*ISensor) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const ISensorCollection, ulIndex: u32, ppSensor: ?*?*ISensor) HRESULT {
         return self.vtable.GetAt(self, ulIndex, ppSensor);
     }
-    pub fn GetCount(self: *const ISensorCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const ISensorCollection, pCount: ?*u32) HRESULT {
         return self.vtable.GetCount(self, pCount);
     }
-    pub fn Add(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISensorCollection, pSensor: ?*ISensor) HRESULT {
         return self.vtable.Add(self, pSensor);
     }
-    pub fn Remove(self: *const ISensorCollection, pSensor: ?*ISensor) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISensorCollection, pSensor: ?*ISensor) HRESULT {
         return self.vtable.Remove(self, pSensor);
     }
-    pub fn RemoveByID(self: *const ISensorCollection, sensorID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn RemoveByID(self: *const ISensorCollection, sensorID: ?*Guid) HRESULT {
         return self.vtable.RemoveByID(self, sensorID);
     }
-    pub fn Clear(self: *const ISensorCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ISensorCollection) HRESULT {
         return self.vtable.Clear(self);
     }
 };
@@ -508,116 +508,116 @@ pub const ISensor = extern union {
         GetID: *const fn(
             self: *const ISensor,
             pID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCategory: *const fn(
             self: *const ISensor,
             pSensorCategory: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const ISensor,
             pSensorType: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFriendlyName: *const fn(
             self: *const ISensor,
             pFriendlyName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const ISensor,
             key: ?*const PROPERTYKEY,
             pProperty: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperties: *const fn(
             self: *const ISensor,
             pKeys: ?*IPortableDeviceKeyCollection,
             ppProperties: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSupportedDataFields: *const fn(
             self: *const ISensor,
             ppDataFields: ?*?*IPortableDeviceKeyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperties: *const fn(
             self: *const ISensor,
             pProperties: ?*IPortableDeviceValues,
             ppResults: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SupportsDataField: *const fn(
             self: *const ISensor,
             key: ?*const PROPERTYKEY,
             pIsSupported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetState: *const fn(
             self: *const ISensor,
             pState: ?*SensorState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetData: *const fn(
             self: *const ISensor,
             ppDataReport: ?*?*ISensorDataReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SupportsEvent: *const fn(
             self: *const ISensor,
             eventGuid: ?*const Guid,
             pIsSupported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEventInterest: *const fn(
             self: *const ISensor,
             ppValues: [*]?*Guid,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventInterest: *const fn(
             self: *const ISensor,
             pValues: ?[*]Guid,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEventSink: *const fn(
             self: *const ISensor,
             pEvents: ?*ISensorEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetID(self: *const ISensor, pID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetID(self: *const ISensor, pID: ?*Guid) HRESULT {
         return self.vtable.GetID(self, pID);
     }
-    pub fn GetCategory(self: *const ISensor, pSensorCategory: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetCategory(self: *const ISensor, pSensorCategory: ?*Guid) HRESULT {
         return self.vtable.GetCategory(self, pSensorCategory);
     }
-    pub fn GetType(self: *const ISensor, pSensorType: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const ISensor, pSensorType: ?*Guid) HRESULT {
         return self.vtable.GetType(self, pSensorType);
     }
-    pub fn GetFriendlyName(self: *const ISensor, pFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetFriendlyName(self: *const ISensor, pFriendlyName: ?*?BSTR) HRESULT {
         return self.vtable.GetFriendlyName(self, pFriendlyName);
     }
-    pub fn GetProperty(self: *const ISensor, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const ISensor, key: ?*const PROPERTYKEY, pProperty: ?*PROPVARIANT) HRESULT {
         return self.vtable.GetProperty(self, key, pProperty);
     }
-    pub fn GetProperties(self: *const ISensor, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const ISensor, pKeys: ?*IPortableDeviceKeyCollection, ppProperties: ?*?*IPortableDeviceValues) HRESULT {
         return self.vtable.GetProperties(self, pKeys, ppProperties);
     }
-    pub fn GetSupportedDataFields(self: *const ISensor, ppDataFields: ?*?*IPortableDeviceKeyCollection) callconv(.Inline) HRESULT {
+    pub fn GetSupportedDataFields(self: *const ISensor, ppDataFields: ?*?*IPortableDeviceKeyCollection) HRESULT {
         return self.vtable.GetSupportedDataFields(self, ppDataFields);
     }
-    pub fn SetProperties(self: *const ISensor, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn SetProperties(self: *const ISensor, pProperties: ?*IPortableDeviceValues, ppResults: ?*?*IPortableDeviceValues) HRESULT {
         return self.vtable.SetProperties(self, pProperties, ppResults);
     }
-    pub fn SupportsDataField(self: *const ISensor, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn SupportsDataField(self: *const ISensor, key: ?*const PROPERTYKEY, pIsSupported: ?*i16) HRESULT {
         return self.vtable.SupportsDataField(self, key, pIsSupported);
     }
-    pub fn GetState(self: *const ISensor, pState: ?*SensorState) callconv(.Inline) HRESULT {
+    pub fn GetState(self: *const ISensor, pState: ?*SensorState) HRESULT {
         return self.vtable.GetState(self, pState);
     }
-    pub fn GetData(self: *const ISensor, ppDataReport: ?*?*ISensorDataReport) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const ISensor, ppDataReport: ?*?*ISensorDataReport) HRESULT {
         return self.vtable.GetData(self, ppDataReport);
     }
-    pub fn SupportsEvent(self: *const ISensor, eventGuid: ?*const Guid, pIsSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn SupportsEvent(self: *const ISensor, eventGuid: ?*const Guid, pIsSupported: ?*i16) HRESULT {
         return self.vtable.SupportsEvent(self, eventGuid, pIsSupported);
     }
-    pub fn GetEventInterest(self: *const ISensor, ppValues: [*]?*Guid, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEventInterest(self: *const ISensor, ppValues: [*]?*Guid, pCount: ?*u32) HRESULT {
         return self.vtable.GetEventInterest(self, ppValues, pCount);
     }
-    pub fn SetEventInterest(self: *const ISensor, pValues: ?[*]Guid, count: u32) callconv(.Inline) HRESULT {
+    pub fn SetEventInterest(self: *const ISensor, pValues: ?[*]Guid, count: u32) HRESULT {
         return self.vtable.SetEventInterest(self, pValues, count);
     }
-    pub fn SetEventSink(self: *const ISensor, pEvents: ?*ISensorEvents) callconv(.Inline) HRESULT {
+    pub fn SetEventSink(self: *const ISensor, pEvents: ?*ISensorEvents) HRESULT {
         return self.vtable.SetEventSink(self, pEvents);
     }
 };
@@ -631,27 +631,27 @@ pub const ISensorDataReport = extern union {
         GetTimestamp: *const fn(
             self: *const ISensorDataReport,
             pTimeStamp: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorValue: *const fn(
             self: *const ISensorDataReport,
             pKey: ?*const PROPERTYKEY,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSensorValues: *const fn(
             self: *const ISensorDataReport,
             pKeys: ?*IPortableDeviceKeyCollection,
             ppValues: ?*?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTimestamp(self: *const ISensorDataReport, pTimeStamp: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetTimestamp(self: *const ISensorDataReport, pTimeStamp: ?*SYSTEMTIME) HRESULT {
         return self.vtable.GetTimestamp(self, pTimeStamp);
     }
-    pub fn GetSensorValue(self: *const ISensorDataReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetSensorValue(self: *const ISensorDataReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) HRESULT {
         return self.vtable.GetSensorValue(self, pKey, pValue);
     }
-    pub fn GetSensorValues(self: *const ISensorDataReport, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn GetSensorValues(self: *const ISensorDataReport, pKeys: ?*IPortableDeviceKeyCollection, ppValues: ?*?*IPortableDeviceValues) HRESULT {
         return self.vtable.GetSensorValues(self, pKeys, ppValues);
     }
 };
@@ -666,11 +666,11 @@ pub const ISensorManagerEvents = extern union {
             self: *const ISensorManagerEvents,
             pSensor: ?*ISensor,
             state: SensorState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnSensorEnter(self: *const ISensorManagerEvents, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
+    pub fn OnSensorEnter(self: *const ISensorManagerEvents, pSensor: ?*ISensor, state: SensorState) HRESULT {
         return self.vtable.OnSensorEnter(self, pSensor, state);
     }
 };
@@ -685,35 +685,35 @@ pub const ISensorEvents = extern union {
             self: *const ISensorEvents,
             pSensor: ?*ISensor,
             state: SensorState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnDataUpdated: *const fn(
             self: *const ISensorEvents,
             pSensor: ?*ISensor,
             pNewData: ?*ISensorDataReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnEvent: *const fn(
             self: *const ISensorEvents,
             pSensor: ?*ISensor,
             eventID: ?*const Guid,
             pEventData: ?*IPortableDeviceValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnLeave: *const fn(
             self: *const ISensorEvents,
             ID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStateChanged(self: *const ISensorEvents, pSensor: ?*ISensor, state: SensorState) callconv(.Inline) HRESULT {
+    pub fn OnStateChanged(self: *const ISensorEvents, pSensor: ?*ISensor, state: SensorState) HRESULT {
         return self.vtable.OnStateChanged(self, pSensor, state);
     }
-    pub fn OnDataUpdated(self: *const ISensorEvents, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) callconv(.Inline) HRESULT {
+    pub fn OnDataUpdated(self: *const ISensorEvents, pSensor: ?*ISensor, pNewData: ?*ISensorDataReport) HRESULT {
         return self.vtable.OnDataUpdated(self, pSensor, pNewData);
     }
-    pub fn OnEvent(self: *const ISensorEvents, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) callconv(.Inline) HRESULT {
+    pub fn OnEvent(self: *const ISensorEvents, pSensor: ?*ISensor, eventID: ?*const Guid, pEventData: ?*IPortableDeviceValues) HRESULT {
         return self.vtable.OnEvent(self, pSensor, eventID, pEventData);
     }
-    pub fn OnLeave(self: *const ISensorEvents, ID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn OnLeave(self: *const ISensorEvents, ID: ?*Guid) HRESULT {
         return self.vtable.OnLeave(self, ID);
     }
 };
@@ -919,116 +919,116 @@ pub const AXIS_MAX = AXIS.MAX;
 //--------------------------------------------------------------------------------
 pub extern "sensorsutilsv2" fn GetPerformanceTime(
     TimeMs: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn InitPropVariantFromFloat(
     fltVal: f32,
     ppropvar: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetPropVariant(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     TypeCheck: BOOLEAN,
     pValue: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeySetPropVariant(
     pList: ?*SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     TypeCheck: BOOLEAN,
     pValue: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetFileTime(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetGuid(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetBool(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetUlong(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetUshort(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetFloat(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetDouble(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetInt32(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetInt64(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     pRetValue: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetNthUlong(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     Occurrence: u32,
     pRetValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetNthUshort(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     Occurrence: u32,
     pRetValue: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropKeyFindKeyGetNthInt64(
     pList: ?*const SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
     Occurrence: u32,
     pRetValue: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn IsKeyPresentInPropertyList(
     pList: ?*SENSOR_PROPERTY_LIST,
     pKey: ?*const PROPERTYKEY,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "sensorsutilsv2" fn IsKeyPresentInCollectionList(
     pList: ?*SENSOR_COLLECTION_LIST,
     pKey: ?*const PROPERTYKEY,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "sensorsutilsv2" fn IsCollectionListSame(
     ListA: ?*const SENSOR_COLLECTION_LIST,
     ListB: ?*const SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "sensorsutilsv2" fn PropVariantGetInformation(
     PropVariantValue: ?*const PROPVARIANT,
@@ -1036,109 +1036,109 @@ pub extern "sensorsutilsv2" fn PropVariantGetInformation(
     PropVariantSize: ?*u32,
     PropVariantPointer: ?*?*anyopaque,
     RemappedType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropertiesListCopy(
     Target: ?*SENSOR_PROPERTY_LIST,
     Source: ?*const SENSOR_PROPERTY_LIST,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn PropertiesListGetFillableCount(
     BufferSizeBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "sensorsutilsv2" fn CollectionsListGetMarshalledSize(
     Collection: ?*const SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "sensorsutilsv2" fn CollectionsListCopyAndMarshall(
     Target: ?*SENSOR_COLLECTION_LIST,
     Source: ?*const SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn CollectionsListMarshall(
     Target: ?*SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn CollectionsListGetMarshalledSizeWithoutSerialization(
     Collection: ?*const SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "sensorsutilsv2" fn CollectionsListUpdateMarshalledPointer(
     Collection: ?*SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn SerializationBufferAllocate(
     SizeInBytes: u32,
     pBuffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn SerializationBufferFree(
     Buffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "sensorsutilsv2" fn CollectionsListGetSerializedSize(
     Collection: ?*const SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "sensorsutilsv2" fn CollectionsListSerializeToBuffer(
     SourceCollection: ?*const SENSOR_COLLECTION_LIST,
     TargetBufferSizeInBytes: u32,
     // TODO: what to do with BytesParamIndex 1?
     TargetBuffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn CollectionsListAllocateBufferAndSerialize(
     SourceCollection: ?*const SENSOR_COLLECTION_LIST,
     pTargetBufferSizeInBytes: ?*u32,
     pTargetBuffer: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn CollectionsListDeserializeFromBuffer(
     SourceBufferSizeInBytes: u32,
     // TODO: what to do with BytesParamIndex 0?
     SourceBuffer: ?*const u8,
     TargetCollection: ?*SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn SensorCollectionGetAt(
     Index: u32,
     pSensorsList: ?*SENSOR_COLLECTION_LIST,
     pKey: ?*PROPERTYKEY,
     pValue: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn CollectionsListGetFillableCount(
     BufferSizeBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "sensorsutilsv2" fn EvaluateActivityThresholds(
     newSample: ?*SENSOR_COLLECTION_LIST,
     oldSample: ?*SENSOR_COLLECTION_LIST,
     thresholds: ?*SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "sensorsutilsv2" fn CollectionsListSortSubscribedActivitiesByConfidence(
     thresholds: ?*SENSOR_COLLECTION_LIST,
     pCollection: ?*SENSOR_COLLECTION_LIST,
-) callconv(@import("std").os.windows.WINAPI) NTSTATUS;
+) callconv(.winapi) NTSTATUS;
 
 pub extern "sensorsutilsv2" fn InitPropVariantFromCLSIDArray(
     members: [*]Guid,
     size: u32,
     ppropvar: ?*PROPVARIANT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "sensorsutilsv2" fn IsSensorSubscribed(
     subscriptionList: ?*SENSOR_COLLECTION_LIST,
     currentType: Guid,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub extern "sensorsutilsv2" fn IsGUIDPresentInList(
     guidArray: [*]const Guid,
     arrayLength: u32,
     guidElem: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------

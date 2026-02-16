@@ -93,11 +93,11 @@ pub const CCAB = extern struct {
 
 pub const PFNFCIALLOC = *const fn(
     cb: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub const PFNFCIFREE = *const fn(
     memory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNFCIOPEN = *const fn(
     pszFile: ?PSTR,
@@ -105,7 +105,7 @@ pub const PFNFCIOPEN = *const fn(
     pmode: i32,
     err: ?*i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 pub const PFNFCIREAD = *const fn(
     hf: isize,
@@ -113,7 +113,7 @@ pub const PFNFCIREAD = *const fn(
     cb: u32,
     err: ?*i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFNFCIWRITE = *const fn(
     hf: isize,
@@ -121,13 +121,13 @@ pub const PFNFCIWRITE = *const fn(
     cb: u32,
     err: ?*i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFNFCICLOSE = *const fn(
     hf: isize,
     err: ?*i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PFNFCISEEK = *const fn(
     hf: isize,
@@ -135,19 +135,19 @@ pub const PFNFCISEEK = *const fn(
     seektype: i32,
     err: ?*i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PFNFCIDELETE = *const fn(
     pszFile: ?PSTR,
     err: ?*i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PFNFCIGETNEXTCABINET = *const fn(
     pccab: ?*CCAB,
     cbPrevCab: u32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFNFCIFILEPLACED = *const fn(
     pccab: ?*CCAB,
@@ -155,7 +155,7 @@ pub const PFNFCIFILEPLACED = *const fn(
     cbFile: i32,
     fContinuation: BOOL,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PFNFCIGETOPENINFO = *const fn(
     pszName: ?PSTR,
@@ -164,21 +164,21 @@ pub const PFNFCIGETOPENINFO = *const fn(
     pattribs: ?*u16,
     err: ?*i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 pub const PFNFCISTATUS = *const fn(
     typeStatus: u32,
     cb1: u32,
     cb2: u32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PFNFCIGETTEMPFILE = *const fn(
     // TODO: what to do with BytesParamIndex 1?
     pszTempName: ?PSTR,
     cbTempName: i32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const FDIERROR = enum(i32) {
     NONE = 0,
@@ -257,45 +257,45 @@ pub const FDIDECRYPT = extern struct {
 
 pub const PFNALLOC = *const fn(
     cb: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub const PFNFREE = *const fn(
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNOPEN = *const fn(
     pszFile: ?PSTR,
     oflag: i32,
     pmode: i32,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 pub const PFNREAD = *const fn(
     hf: isize,
     // TODO: what to do with BytesParamIndex 2?
     pv: ?*anyopaque,
     cb: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFNWRITE = *const fn(
     hf: isize,
     // TODO: what to do with BytesParamIndex 2?
     pv: ?*anyopaque,
     cb: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFNCLOSE = *const fn(
     hf: isize,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PFNSEEK = *const fn(
     hf: isize,
     dist: i32,
     seektype: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PFNFDIDECRYPT = *const fn(
     pfdid: ?*FDIDECRYPT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const FDINOTIFICATION = extern struct {
     cb: i32,
@@ -331,7 +331,7 @@ pub const fdintENUMERATE = FDINOTIFICATIONTYPE.ENUMERATE;
 pub const PFNFDINOTIFY = *const fn(
     fdint: FDINOTIFICATIONTYPE,
     pfdin: ?*FDINOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 
 
@@ -363,7 +363,7 @@ pub extern "cabinet" fn FCICreate(
     pfnfcigtf: ?PFNFCIGETTEMPFILE,
     pccab: ?*CCAB,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub extern "cabinet" fn FCIAddFile(
     hfci: ?*anyopaque,
@@ -374,24 +374,24 @@ pub extern "cabinet" fn FCIAddFile(
     pfnfcis: ?PFNFCISTATUS,
     pfnfcigoi: ?PFNFCIGETOPENINFO,
     typeCompress: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "cabinet" fn FCIFlushCabinet(
     hfci: ?*anyopaque,
     fGetNextCab: BOOL,
     pfnfcignc: ?PFNFCIGETNEXTCABINET,
     pfnfcis: ?PFNFCISTATUS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "cabinet" fn FCIFlushFolder(
     hfci: ?*anyopaque,
     pfnfcignc: ?PFNFCIGETNEXTCABINET,
     pfnfcis: ?PFNFCISTATUS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "cabinet" fn FCIDestroy(
     hfci: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cabinet" fn FDICreate(
@@ -404,14 +404,14 @@ pub extern "cabinet" fn FDICreate(
     pfnseek: ?PFNSEEK,
     cpuType: FDICREATE_CPU_TYPE,
     perf: ?*ERF,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cabinet" fn FDIIsCabinet(
     hfdi: ?*anyopaque,
     hf: isize,
     pfdici: ?*FDICABINETINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cabinet" fn FDICopy(
@@ -422,18 +422,18 @@ pub extern "cabinet" fn FDICopy(
     pfnfdin: ?PFNFDINOTIFY,
     pfnfdid: ?PFNFDIDECRYPT,
     pvUser: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cabinet" fn FDIDestroy(
     hfdi: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "cabinet" fn FDITruncateCabinet(
     hfdi: ?*anyopaque,
     pszCabinetName: ?PSTR,
     iFolderToDelete: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

@@ -11,7 +11,17 @@ peer: *GuiWidget,
 child: ?*GuiWidget = null,
 scale: f32 = 1.0,
 
-pub usingnamespace Events(Window);
+const _events = Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const processEvent = _events.processEvent;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
+pub const deinit = _events.deinit;
 
 pub fn create() !Window {
     return Window{
@@ -44,6 +54,12 @@ pub fn setChild(self: *Window, peer: ?*GuiWidget) void {
     } else {
         // TODO: js.clearRoot();
     }
+}
+
+pub fn setIcon(self: *Window, icon_data: anytype) void {
+    _ = self;
+    _ = icon_data;
+    // Icons are not applicable for web applications.
 }
 
 pub fn setTitle(self: *Window, title: [*:0]const u8) void {

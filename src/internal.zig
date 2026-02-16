@@ -35,9 +35,68 @@ pub const allocator = if (@hasDecl(root, "capy_allocator")) root.capy_allocator 
 
 /// Convenience function for creating widgets
 pub fn All(comptime T: type) type {
+    const E = Events(T);
+    const W = Widgeting(T);
     return struct {
-        pub usingnamespace Events(T);
-        pub usingnamespace Widgeting(T);
+        // Forwarded from Events(T)
+        pub const Callback = E.Callback;
+        pub const DrawCallback = E.DrawCallback;
+        pub const ButtonCallback = E.ButtonCallback;
+        pub const MouseMoveCallback = E.MouseMoveCallback;
+        pub const ScrollCallback = E.ScrollCallback;
+        pub const ResizeCallback = E.ResizeCallback;
+        pub const KeyTypeCallback = E.KeyTypeCallback;
+        pub const KeyPressCallback = E.KeyPressCallback;
+        pub const KeyReleaseCallback = E.KeyReleaseCallback;
+        pub const PropertyChangeCallback = E.PropertyChangeCallback;
+        pub const Handlers = E.Handlers;
+        pub const init_events = E.init_events;
+        pub const setupEvents = E.setupEvents;
+        pub const addClickHandler = E.addClickHandler;
+        pub const addDrawHandler = E.addDrawHandler;
+        pub const addMouseButtonHandler = E.addMouseButtonHandler;
+        pub const addMouseMotionHandler = E.addMouseMotionHandler;
+        pub const addScrollHandler = E.addScrollHandler;
+        pub const addResizeHandler = E.addResizeHandler;
+        pub const addKeyTypeHandler = E.addKeyTypeHandler;
+        pub const addKeyPressHandler = E.addKeyPressHandler;
+        pub const addKeyReleaseHandler = E.addKeyReleaseHandler;
+        pub const addPropertyChangeHandler = E.addPropertyChangeHandler;
+        pub const requestDraw = E.requestDraw;
+
+        // Forwarded from Widgeting(T)
+        pub const WidgetClass = W.WidgetClass;
+        pub const Atoms = W.Atoms;
+        pub const Config = W.Config;
+        pub const alloc = W.alloc;
+        pub const ref = W.ref;
+        pub const unref = W.unref;
+        pub const showWidget = W.showWidget;
+        pub const isDisplayedFn = W.isDisplayedFn;
+        pub const deinitWidget = W.deinitWidget;
+        pub const getPreferredSizeWidget = W.getPreferredSizeWidget;
+        pub const getX = W.getX;
+        pub const getY = W.getY;
+        pub const getSize = W.getSize;
+        pub const getWidth = W.getWidth;
+        pub const getHeight = W.getHeight;
+        pub const asWidget = W.asWidget;
+        pub const addUserdata = W.addUserdata;
+        pub const withUserdata = W.withUserdata;
+        pub const getUserdata = W.getUserdata;
+        pub const set = W.set;
+        pub const get = W.get;
+        pub const bind = W.bind;
+        pub const withProperty = W.withProperty;
+        pub const withBinding = W.withBinding;
+        pub const getName = W.getName;
+        pub const setName = W.setName;
+        pub const getParent = W.getParent;
+        pub const getRoot = W.getRoot;
+        pub const getAnimationController = W.getAnimationController;
+        pub const clone = W.clone;
+        pub const widget_clone = W.widget_clone;
+        pub const deinit = W.deinit;
 
         pub const WidgetData = struct {
             handlers: T.Handlers = undefined,
@@ -142,21 +201,22 @@ pub fn Widgeting(comptime T: type) type {
             component.deinit();
         }
 
-        fn deinit(self: *T) void {
+        pub fn deinit(self: *T) void {
             if (@hasDecl(T, "_deinit")) {
                 self._deinit();
             }
 
             self.widget_data.userdata.deinit(allocator);
-            self.widget_data.handlers.clickHandlers.deinit();
-            self.widget_data.handlers.drawHandlers.deinit();
-            self.widget_data.handlers.buttonHandlers.deinit();
-            self.widget_data.handlers.mouseMoveHandlers.deinit();
-            self.widget_data.handlers.scrollHandlers.deinit();
-            self.widget_data.handlers.resizeHandlers.deinit();
-            self.widget_data.handlers.keyTypeHandlers.deinit();
-            self.widget_data.handlers.keyPressHandlers.deinit();
-            self.widget_data.handlers.propertyChangeHandlers.deinit();
+            self.widget_data.handlers.clickHandlers.deinit(allocator);
+            self.widget_data.handlers.drawHandlers.deinit(allocator);
+            self.widget_data.handlers.buttonHandlers.deinit(allocator);
+            self.widget_data.handlers.mouseMoveHandlers.deinit(allocator);
+            self.widget_data.handlers.scrollHandlers.deinit(allocator);
+            self.widget_data.handlers.resizeHandlers.deinit(allocator);
+            self.widget_data.handlers.keyTypeHandlers.deinit(allocator);
+            self.widget_data.handlers.keyPressHandlers.deinit(allocator);
+            self.widget_data.handlers.keyReleaseHandlers.deinit(allocator);
+            self.widget_data.handlers.propertyChangeHandlers.deinit(allocator);
 
             // deinit all atom properties
             deinitAtoms(self);
@@ -533,7 +593,7 @@ pub fn isErrorUnion(comptime T: type) bool {
 
 pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(*Widget) {
     const fields = std.meta.fields(@TypeOf(childrens));
-    var list = std.ArrayList(*Widget).init(allocator);
+    var list: std.ArrayList(*Widget) = .empty;
     inline for (fields) |field| {
         const element = @field(childrens, field.name);
         const child =
@@ -543,7 +603,7 @@ pub fn convertTupleToWidgets(childrens: anytype) anyerror!std.ArrayList(*Widget)
                 element;
 
         const widget = getWidgetFrom(child);
-        try list.append(widget);
+        try list.append(allocator, widget);
     }
 
     return list;
@@ -581,6 +641,7 @@ pub fn Events(comptime T: type) type {
         pub const ResizeCallback = *const fn (widget: *anyopaque, size: Size) anyerror!void;
         pub const KeyTypeCallback = *const fn (widget: *anyopaque, key: []const u8) anyerror!void;
         pub const KeyPressCallback = *const fn (widget: *anyopaque, keycode: u16) anyerror!void;
+        pub const KeyReleaseCallback = *const fn (widget: *anyopaque, keycode: u16) anyerror!void;
         pub const PropertyChangeCallback = *const fn (widget: *anyopaque, property_name: []const u8, new_value: *const anyopaque) anyerror!void;
         const HandlerList = std.ArrayList(Callback);
         const DrawHandlerList = std.ArrayList(DrawCallback);
@@ -590,6 +651,7 @@ pub fn Events(comptime T: type) type {
         const ResizeHandlerList = std.ArrayList(ResizeCallback);
         const KeyTypeHandlerList = std.ArrayList(KeyTypeCallback);
         const KeyPressHandlerList = std.ArrayList(KeyPressCallback);
+        const KeyReleaseHandlerList = std.ArrayList(KeyReleaseCallback);
         const PropertyChangeHandlerList = std.ArrayList(PropertyChangeCallback);
 
         pub const Handlers = struct {
@@ -601,6 +663,7 @@ pub fn Events(comptime T: type) type {
             resizeHandlers: ResizeHandlerList,
             keyTypeHandlers: KeyTypeHandlerList,
             keyPressHandlers: KeyPressHandlerList,
+            keyReleaseHandlers: KeyReleaseHandlerList,
             propertyChangeHandlers: PropertyChangeHandlerList,
             userdata: ?*anyopaque = null,
         };
@@ -608,20 +671,21 @@ pub fn Events(comptime T: type) type {
         pub fn init_events(self: T) T {
             var obj = self;
             obj.widget_data.handlers = .{
-                .clickHandlers = HandlerList.init(allocator),
-                .drawHandlers = DrawHandlerList.init(allocator),
-                .buttonHandlers = ButtonHandlerList.init(allocator),
-                .mouseMoveHandlers = MouseMoveHandlerList.init(allocator),
-                .scrollHandlers = ScrollHandlerList.init(allocator),
-                .resizeHandlers = ResizeHandlerList.init(allocator),
-                .keyTypeHandlers = KeyTypeHandlerList.init(allocator),
-                .keyPressHandlers = KeyPressHandlerList.init(allocator),
-                .propertyChangeHandlers = PropertyChangeHandlerList.init(allocator),
+                .clickHandlers = .empty,
+                .drawHandlers = .empty,
+                .buttonHandlers = .empty,
+                .mouseMoveHandlers = .empty,
+                .scrollHandlers = .empty,
+                .resizeHandlers = .empty,
+                .keyTypeHandlers = .empty,
+                .keyPressHandlers = .empty,
+                .keyReleaseHandlers = .empty,
+                .propertyChangeHandlers = .empty,
             };
             return obj;
         }
 
-        fn errorHandler(err: anyerror) callconv(.Unspecified) void {
+        fn errorHandler(err: anyerror) callconv(.auto) void {
             std.log.err("{s}", .{@errorName(err)});
             var streamBuf: [16384]u8 = undefined;
             var stream = std.io.fixedBufferStream(&streamBuf);
@@ -633,11 +697,9 @@ pub fn Events(comptime T: type) type {
                     // can't use writeStackTrace as it is async but errorHandler should not be async!
                     // also can't use writeStackTrace when using WebAssembly
                 } else {
-                    if (std.debug.getSelfDebugInfo()) |debug_info| {
-                        var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
-                        defer arena.deinit();
-                        std.debug.writeStackTrace(trace.*, writer, debug_info, .no_color) catch {};
-                    } else |_| {}
+                    // TODO: writeStackTrace API changed in 0.15.2 (requires *std.io.Writer)
+                    // For now, just dump the basic trace info via std.debug
+                    std.debug.dumpStackTrace(trace.*);
                 }
             }
             writer.print("Please check the log.", .{}) catch {};
@@ -686,6 +748,13 @@ pub fn Events(comptime T: type) type {
             }
         }
 
+        fn keyReleaseHandler(keycode: u16, data: usize) void {
+            const self = @as(*T, @ptrFromInt(data));
+            for (self.widget_data.handlers.keyReleaseHandlers.items) |func| {
+                func(self, keycode) catch |err| errorHandler(err);
+            }
+        }
+
         fn scrollHandler(dx: f32, dy: f32, data: usize) void {
             const self = @as(*T, @ptrFromInt(data));
             for (self.widget_data.handlers.scrollHandlers.items) |func| {
@@ -703,8 +772,48 @@ pub fn Events(comptime T: type) type {
 
         fn propertyChangeHandler(name: []const u8, value: *const anyopaque, data: usize) void {
             const self = @as(*T, @ptrFromInt(data));
+
+            // State change logging
+            const state_logger = @import("state_logger.zig");
+            if (state_logger.isEnabled()) {
+                var val_buf: [256]u8 = undefined;
+                const val_str = formatPropertyValue(name, value, &val_buf);
+                state_logger.logPropertyChange(
+                    @typeName(T),
+                    self.widget_data.atoms.name.get(),
+                    @intFromPtr(self),
+                    name,
+                    val_str,
+                );
+            }
+
             for (self.widget_data.handlers.propertyChangeHandlers.items) |func| {
                 func(self, name, value) catch |err| errorHandler(err);
+            }
+        }
+
+        fn formatPropertyValue(property: []const u8, value: *const anyopaque, buf: *[256]u8) []const u8 {
+            // Known property types from components' onPropertyChange handlers:
+            // "value" -> f32 (Slider)
+            // "checked" -> bool (CheckBox, RadioButton)
+            // "selected" -> usize (Dropdown)
+            // "text" -> [:0]const u8 (TextField, TextArea)
+            if (std.mem.eql(u8, property, "value")) {
+                const v = @as(*const f32, @ptrCast(@alignCast(value))).*;
+                return std.fmt.bufPrint(buf, "{d:.2}", .{v}) catch "?";
+            } else if (std.mem.eql(u8, property, "checked")) {
+                const v = @as(*const bool, @ptrCast(@alignCast(value))).*;
+                return if (v) "true" else "false";
+            } else if (std.mem.eql(u8, property, "selected")) {
+                const v = @as(*const usize, @ptrCast(@alignCast(value))).*;
+                return std.fmt.bufPrint(buf, "{d}", .{v}) catch "?";
+            } else if (std.mem.eql(u8, property, "text")) {
+                // Text is a sentinel-terminated slice pointer
+                const v = @as(*const [:0]const u8, @ptrCast(@alignCast(value))).*;
+                return std.fmt.bufPrint(buf, "\"{s}\"", .{v}) catch "?";
+            } else {
+                // Unknown property - output property name as string
+                return std.fmt.bufPrint(buf, "\"{s}\"", .{property}) catch "?";
             }
         }
 
@@ -726,6 +835,7 @@ pub fn Events(comptime T: type) type {
             try self.peer.?.setCallback(.Resize, resizeHandler);
             try self.peer.?.setCallback(.KeyType, keyTypeHandler);
             try self.peer.?.setCallback(.KeyPress, keyPressHandler);
+            try self.peer.?.setCallback(.KeyRelease, keyReleaseHandler);
             try self.peer.?.setCallback(.PropertyChange, propertyChangeHandler);
 
             _ = try self.widget_data.atoms.opacity.addChangeListener(.{ .function = opacityChanged, .userdata = self });
@@ -742,49 +852,54 @@ pub fn Events(comptime T: type) type {
 
         pub fn addClickHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.clickHandlers.append(@as(Callback, @ptrCast(handler)));
+            try self.widget_data.handlers.clickHandlers.append(allocator, @as(Callback, @ptrCast(handler)));
         }
 
         pub fn addDrawHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.drawHandlers.append(@as(DrawCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.drawHandlers.append(allocator, @as(DrawCallback, @ptrCast(handler)));
         }
 
         pub fn addMouseButtonHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.buttonHandlers.append(@as(ButtonCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.buttonHandlers.append(allocator, @as(ButtonCallback, @ptrCast(handler)));
         }
 
         pub fn addMouseMotionHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.mouseMoveHandlers.append(@as(MouseMoveCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.mouseMoveHandlers.append(allocator, @as(MouseMoveCallback, @ptrCast(handler)));
         }
 
         pub fn addScrollHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.scrollHandlers.append(@as(ScrollCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.scrollHandlers.append(allocator, @as(ScrollCallback, @ptrCast(handler)));
         }
 
         pub fn addResizeHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.resizeHandlers.append(@as(ResizeCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.resizeHandlers.append(allocator, @as(ResizeCallback, @ptrCast(handler)));
         }
 
         pub fn addKeyTypeHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.keyTypeHandlers.append(@as(KeyTypeCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.keyTypeHandlers.append(allocator, @as(KeyTypeCallback, @ptrCast(handler)));
         }
 
         pub fn addKeyPressHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.keyPressHandlers.append(@as(KeyPressCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.keyPressHandlers.append(allocator, @as(KeyPressCallback, @ptrCast(handler)));
+        }
+
+        pub fn addKeyReleaseHandler(self: *T, handler: anytype) !void {
+            comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
+            try self.widget_data.handlers.keyReleaseHandlers.append(allocator, @as(KeyReleaseCallback, @ptrCast(handler)));
         }
 
         /// This shouldn't be used by user applications directly.
         /// Instead set a change listener to the corresponding atom.
         pub fn addPropertyChangeHandler(self: *T, handler: anytype) !void {
             comptime std.debug.assert(isValidHandler(@TypeOf(handler)));
-            try self.widget_data.handlers.propertyChangeHandlers.append(@as(PropertyChangeCallback, @ptrCast(handler)));
+            try self.widget_data.handlers.propertyChangeHandlers.append(allocator, @as(PropertyChangeCallback, @ptrCast(handler)));
         }
 
         pub fn requestDraw(self: *T) !void {

@@ -17,28 +17,28 @@ pub const IXMLGraphBuilder = extern union {
             self: *const IXMLGraphBuilder,
             pGraph: ?*IGraphBuilder,
             pxml: ?*IXMLElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveToXML: *const fn(
             self: *const IXMLGraphBuilder,
             pGraph: ?*IGraphBuilder,
             pbstrxml: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BuildFromXMLFile: *const fn(
             self: *const IXMLGraphBuilder,
             pGraph: ?*IGraphBuilder,
             wszFileName: ?[*:0]const u16,
             wszBaseURL: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BuildFromXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) callconv(.Inline) HRESULT {
+    pub fn BuildFromXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pxml: ?*IXMLElement) HRESULT {
         return self.vtable.BuildFromXML(self, pGraph, pxml);
     }
-    pub fn SaveToXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn SaveToXML(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, pbstrxml: ?*?BSTR) HRESULT {
         return self.vtable.SaveToXML(self, pGraph, pbstrxml);
     }
-    pub fn BuildFromXMLFile(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn BuildFromXMLFile(self: *const IXMLGraphBuilder, pGraph: ?*IGraphBuilder, wszFileName: ?[*:0]const u16, wszBaseURL: ?[*:0]const u16) HRESULT {
         return self.vtable.BuildFromXMLFile(self, pGraph, wszFileName, wszBaseURL);
     }
 };

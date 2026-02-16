@@ -18,11 +18,11 @@ pub fn getList() []Monitor {
         return list;
     } else {
         const allocator = lib.internal.allocator;
-        var monitors = std.ArrayList(Monitor).init(allocator);
-        defer monitors.deinit();
+        var monitors: std.ArrayList(Monitor) = .empty;
+        defer monitors.deinit(allocator);
 
-        var adapters = std.ArrayList([:0]const u16).init(allocator);
-        defer adapters.deinit();
+        var adapters: std.ArrayList([:0]const u16) = .empty;
+        defer adapters.deinit(allocator);
         defer for (adapters.items) |item| allocator.free(item);
 
         // List all adapters
@@ -36,17 +36,17 @@ pub fn getList() []Monitor {
                 if (display_device.StateFlags & win32.DISPLAY_DEVICE_ATTACHED_TO_DESKTOP != 0) {
                     const device_name: [:0]const u16 = std.mem.span(@as([*:0]u16, @ptrCast(&display_device.DeviceName)));
                     const cloned_device_name = allocator.dupeZ(u16, device_name) catch @panic("OOM");
-                    adapters.append(cloned_device_name) catch @panic("OOM");
+                    adapters.append(allocator, cloned_device_name) catch @panic("OOM");
                 }
             }
         }
 
-        var monitor_names = std.ArrayList(struct {
+        var monitor_names: std.ArrayList(struct {
             adapter: [:0]const u16,
             monitor_name: [:0]const u16,
             monitor_friendly_name: []const u8,
-        }).init(allocator);
-        defer monitor_names.deinit();
+        }) = .empty;
+        defer monitor_names.deinit(allocator);
         defer for (monitor_names.items) |item| {
             allocator.free(item.monitor_name);
             allocator.free(item.monitor_friendly_name);
@@ -65,20 +65,20 @@ pub fn getList() []Monitor {
                     const cloned_device_name = allocator.dupeZ(u16, device_name) catch @panic("OOM");
                     const device_string: [:0]const u16 = std.mem.span(@as([*:0]u16, @ptrCast(&display_device.DeviceString)));
                     const cloned_device_string = std.unicode.utf16LeToUtf8Alloc(allocator, device_string) catch @panic("OOM");
-                    monitor_names.append(.{ .adapter = adapter, .monitor_name = cloned_device_name, .monitor_friendly_name = cloned_device_string }) catch @panic("OOM");
+                    monitor_names.append(allocator, .{ .adapter = adapter, .monitor_name = cloned_device_name, .monitor_friendly_name = cloned_device_string }) catch @panic("OOM");
                 }
             }
         }
 
         for (monitor_names.items) |name| {
-            monitors.append(Monitor{
+            monitors.append(allocator, Monitor{
                 .adapter_win32_name = allocator.dupeZ(u16, name.adapter) catch @panic("OOM"),
                 .win32_name = allocator.dupeZ(u16, name.monitor_name) catch @panic("OOM"),
                 .device_name = allocator.dupe(u8, name.monitor_friendly_name) catch @panic("OOM"),
             }) catch @panic("OOM");
         }
 
-        monitor_list = monitors.toOwnedSlice() catch @panic("OOM");
+        monitor_list = monitors.toOwnedSlice(allocator) catch @panic("OOM");
         return monitor_list.?;
     }
 }
@@ -165,7 +165,7 @@ pub extern "user32" fn EnumDisplaySettingsW(
     lpszDeviceName: ?[*:0]const u16,
     iModeNum: u32,
     lpDevMode: ?*win32.DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) win32.BOOL;
+) callconv(.winapi) win32.BOOL;
 
 pub fn getNumberOfVideoModes(self: *Monitor) usize {
     var count: u32 = 0;

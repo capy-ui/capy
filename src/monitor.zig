@@ -130,6 +130,7 @@ pub const Monitor = struct {
         Monitors.init();
         defer Monitors.deinit();
 
+        if (Monitors.list.backing_list.items.len == 0) return; // no monitors available (e.g. stub backend)
         const monitor = Monitors.list.get(0);
         const width, const height = monitor.getSize();
         std.log.info("Monitor pixels: {d} px x {d} px", .{ width, height });

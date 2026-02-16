@@ -1,0 +1,65 @@
+const std = @import("std");
+const c = @import("gtk.zig");
+const lib = @import("../../capy.zig");
+const common = @import("common.zig");
+
+const RadioButton = @This();
+
+peer: *c.GtkWidget,
+
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
+
+fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.c) void {
+    _ = userdata;
+    const data = common.getEventUserData(peer);
+
+    if (data.user.clickHandler) |handler| {
+        handler(data.userdata);
+    }
+}
+
+pub fn create() common.BackendError!RadioButton {
+    const button = c.gtk_check_button_new() orelse return error.UnknownError;
+    try RadioButton.setupEvents(button);
+    _ = c.g_signal_connect_data(button, "toggled", @as(c.GCallback, @ptrCast(&gtkClicked)), null, @as(c.GClosureNotify, null), 0);
+    return RadioButton{ .peer = button };
+}
+
+pub fn setLabel(self: *const RadioButton, label: [:0]const u8) void {
+    c.gtk_check_button_set_label(@ptrCast(self.peer), label.ptr);
+}
+
+pub fn getLabel(self: *const RadioButton) [:0]const u8 {
+    const label = c.gtk_check_button_get_label(@ptrCast(self.peer));
+    return std.mem.span(label);
+}
+
+pub fn setEnabled(self: *const RadioButton, enabled: bool) void {
+    c.gtk_widget_set_sensitive(self.peer, @intFromBool(enabled));
+}
+
+pub fn setChecked(self: *const RadioButton, checked: bool) void {
+    c.gtk_check_button_set_active(@ptrCast(self.peer), @intFromBool(checked));
+}
+
+pub fn isChecked(self: *const RadioButton) bool {
+    return c.gtk_check_button_get_active(@ptrCast(self.peer)) != 0;
+}
+
+/// Link this radio button into a group with the given leader button.
+/// All buttons in a group are mutually exclusive.
+pub fn setGroup(self: *RadioButton, group_leader: *const RadioButton) void {
+    c.gtk_check_button_set_group(@ptrCast(self.peer), @ptrCast(group_leader.peer));
+}

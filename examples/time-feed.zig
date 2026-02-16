@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 // All time values are in UNIX timestamp
 const TimeActivity = struct {
     start: u64,
@@ -15,7 +13,7 @@ const ListModel = struct {
     data: std.ArrayList(TimeActivity),
 
     pub fn add(self: *ListModel, activity: TimeActivity) !void {
-        try self.data.append(activity);
+        try self.data.append(capy.internal.allocator, activity);
         self.size.set(self.size.get() + 1);
     }
 
@@ -28,12 +26,12 @@ const ListModel = struct {
         const end_day = end_epoch.getDaySeconds();
         return Card(capy.column(.{}, .{
             capy.label(.{
-                .text = std.fmt.allocPrintZ(self.arena.allocator(), "{d:0>2}:{d:0>2} - {d:0>2}:{d:0>2}", .{
+                .text = std.fmt.allocPrintSentinel(self.arena.allocator(), "{d:0>2}:{d:0>2} - {d:0>2}:{d:0>2}", .{
                     start_day.getHoursIntoDay(),
                     start_day.getMinutesIntoHour(),
                     end_day.getHoursIntoDay(),
                     end_day.getMinutesIntoHour(),
-                }) catch unreachable,
+                }, 0) catch unreachable,
             }),
             capy.label(.{ .text = activity.description }),
             capy.alignment(.{ .x = 1 }, capy.button(.{ .label = "Edit" })),
@@ -87,7 +85,7 @@ pub fn main() !void {
     try capy.init();
 
     list_model = ListModel{
-        .data = std.ArrayList(TimeActivity).init(capy.internal.allocator),
+        .data = .empty,
     };
     var window = try capy.Window.init();
     try window.set(capy.column(.{}, .{

@@ -6,7 +6,19 @@ const common = @import("common.zig");
 const TabContainer = @This();
 peer: *c.GtkWidget,
 
-pub usingnamespace common.Events(TabContainer);
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
 
 pub fn create() common.BackendError!TabContainer {
     const layout = c.gtk_notebook_new() orelse return common.BackendError.UnknownError;

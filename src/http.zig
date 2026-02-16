@@ -9,119 +9,83 @@ const backend = @import("backend.zig");
 // TODO: specify more
 pub const SendRequestError = anyerror;
 
-pub usingnamespace if (@hasDecl(backend, "Http")) struct {
-    pub const HttpRequest = struct {
-        url: []const u8,
+pub const HttpRequest = if (backend.Http != void) struct {
+    const Self = @This();
+    url: []const u8,
 
-        pub fn get(url: []const u8) HttpRequest {
-            return HttpRequest{ .url = url };
-        }
+    pub fn get(url: []const u8) Self {
+        return Self{ .url = url };
+    }
 
-        pub fn send(self: HttpRequest) !HttpResponse {
-            return HttpResponse{ .peer = backend.Http.send(self.url) };
-        }
-    };
-
-    pub const HttpResponse = struct {
-        peer: backend.HttpResponse,
-
-        pub const ReadError = error{};
-        pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
-
-        // This weird and clunky polling async API is used because Zig evented I/O mode
-        // is completely broken at the moment.
-        pub fn isReady(self: *HttpResponse) bool {
-            return self.peer.isReady();
-        }
-
-        pub fn checkError(self: *HttpResponse) !void {
-            // TODO: return possible errors
-            _ = self;
-        }
-
-        pub fn reader(self: *HttpResponse) Reader {
-            return .{ .context = self };
-        }
-
-        pub fn read(self: *HttpResponse, dest: []u8) ReadError!usize {
-            return self.peer.read(dest);
-        }
-
-        pub fn deinit(self: *HttpResponse) void {
-            _ = self; // TODO?
-        }
-    };
+    pub fn send(self: Self) !HttpResponse {
+        return HttpResponse{ .peer = backend.Http.send(self.url) };
+    }
 } else struct {
-    pub const HttpRequest = struct {
-        url: []const u8,
+    const Self = @This();
+    url: []const u8,
 
-        pub fn get(url: []const u8) HttpRequest {
-            return HttpRequest{ .url = url };
+    pub fn get(url: []const u8) Self {
+        return Self{ .url = url };
+    }
+
+    pub fn send(self: Self) !HttpResponse {
+        _ = self;
+        // TODO: rewrite for Zig 0.15.2 std.http.Client API
+        @panic("std.http.Client support not yet ported to Zig 0.15.2");
+    }
+};
+
+pub const HttpResponse = if (backend.Http != void) struct {
+    const Self = @This();
+    peer: backend.HttpResponse,
+
+    pub const ReadError = error{};
+
+    pub fn isReady(self: *Self) bool {
+        return self.peer.isReady();
+    }
+
+    pub fn checkError(self: *Self) !void {
+        _ = self;
+    }
+
+    pub fn read(self: *Self, dest: []u8) ReadError!usize {
+        return self.peer.read(dest);
+    }
+
+    pub fn readAllAlloc(self: *Self, alloc: std.mem.Allocator, max_size: usize) ![]u8 {
+        _ = max_size;
+        var result = std.ArrayList(u8).empty;
+        var buf: [4096]u8 = undefined;
+        while (true) {
+            const n = try self.read(&buf);
+            if (n == 0) break;
+            try result.appendSlice(alloc, buf[0..n]);
         }
+        return result.toOwnedSlice(alloc);
+    }
 
-        pub fn send(self: HttpRequest) !HttpResponse {
-            const client = try internal.allocator.create(std.http.Client);
-            client.* = .{ .allocator = internal.allocator };
+    pub fn deinit(self: *Self) void {
+        _ = self;
+    }
+} else struct {
+    const Self = @This();
 
-            const uri = try std.Uri.parse(self.url);
-            const server_header_buffer = try internal.allocator.alloc(u8, 64 * 1024);
-            var request = try client.open(.GET, uri, .{
-                .headers = .{},
-                .keep_alive = false,
-                .server_header_buffer = server_header_buffer,
-            });
-            try request.send();
-            try request.finish();
-            return HttpResponse{
-                .request = request,
-                .client = client,
-                .server_header_buffer = server_header_buffer,
-            };
-        }
-    };
+    pub const ReadError = error{HttpNotAvailable};
 
-    pub const HttpResponse = struct {
-        client: *std.http.Client,
-        request: std.http.Client.Request,
-        server_header_buffer: []u8,
+    pub fn isReady(_: *Self) bool {
+        return false;
+    }
 
-        pub const ReadError = std.http.Client.Request.ReadError;
-        pub const Reader = std.io.Reader(*HttpResponse, ReadError, read);
+    pub fn checkError(_: *Self) !void {}
 
-        pub fn isReady(self: *HttpResponse) bool {
-            // self.request.wait() catch return true;
-            if (self.request.connection == null) return true;
-            const connection = self.request.connection.?;
-            connection.fill() catch return true;
-            if (connection.read_end != 0) {
-                self.request.wait() catch {};
-                return true;
-            } else {
-                return false;
-            }
-        }
+    pub fn read(_: *Self, _: []u8) ReadError!usize {
+        return error.HttpNotAvailable;
+    }
 
-        pub fn checkError(self: *HttpResponse) !void {
-            try self.request.wait();
-            // if (self.response.status_code != .success_ok) {
-            //     return error.FailedRequest;
-            // }
-        }
+    pub fn readAllAlloc(_: *Self, _: std.mem.Allocator, _: usize) ![]u8 {
+        return error.HttpNotAvailable;
+    }
 
-        pub fn reader(self: *HttpResponse) Reader {
-            return .{ .context = self };
-        }
-
-        pub fn read(self: *HttpResponse, dest: []u8) ReadError!usize {
-            const amt = try self.request.read(dest);
-            return amt;
-        }
-
-        pub fn deinit(self: *HttpResponse) void {
-            self.request.deinit();
-            self.client.deinit();
-            internal.allocator.destroy(self.client);
-            internal.allocator.free(self.server_header_buffer);
-        }
-    };
+    pub fn deinit(_: *Self) void {}
 };

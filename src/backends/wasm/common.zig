@@ -21,13 +21,15 @@ pub const GuiWidget = struct {
 
     processEventFn: *const fn (object: ?*anyopaque, event: js.EventId) void,
     children: std.ArrayList(*GuiWidget),
+    allocator: std.mem.Allocator,
 
     pub fn init(comptime T: type, allocator: std.mem.Allocator, name: []const u8, typeName: []const u8) !*GuiWidget {
         const self = try allocator.create(GuiWidget);
         self.* = .{
             .processEventFn = T.processEvent,
             .element = js.createElement(name, typeName),
-            .children = std.ArrayList(*GuiWidget).init(allocator),
+            .children = .empty,
+            .allocator = allocator,
         };
         return self;
     }
@@ -65,6 +67,7 @@ pub fn Events(comptime T: type) type {
                 },
                 .KeyType => self.peer.user.keyTypeHandler = cb,
                 .KeyPress => self.peer.user.keyPressHandler = cb,
+                .KeyRelease => self.peer.user.keyReleaseHandler = cb,
                 .PropertyChange => self.peer.user.propertyChangeHandler = cb,
             }
         }

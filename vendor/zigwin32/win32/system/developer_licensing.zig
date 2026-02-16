@@ -12,16 +12,16 @@
 //--------------------------------------------------------------------------------
 pub extern "wsclient" fn CheckDeveloperLicense(
     pExpiration: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wsclient" fn AcquireDeveloperLicense(
     hwndParent: ?HWND,
     pExpiration: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wsclient" fn RemoveDeveloperLicense(
     hwndParent: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

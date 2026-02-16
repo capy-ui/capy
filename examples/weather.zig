@@ -2,8 +2,6 @@ const std = @import("std");
 const capy = @import("capy");
 const Atom = capy.Atom;
 
-pub usingnamespace capy.cross_platform;
-
 const WeatherData = struct {
     current_temperature: Atom(f32),
     wind_speed: Atom(f32),

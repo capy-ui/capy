@@ -25,7 +25,47 @@ const backend = //if (@hasDecl(@import("root"), "capyBackend"))
         },
         else => @compileError(std.fmt.comptimePrint("Unsupported OS: {}", .{builtin.os.tag})),
     };
-pub usingnamespace backend;
+// Re-export common backend interface
+pub const init = backend.init;
+pub const showNativeMessageDialog = backend.showNativeMessageDialog;
+pub const openFileDialog = backend.openFileDialog;
+pub const isDarkMode = backend.isDarkMode;
+pub const postEmptyEvent = backend.postEmptyEvent;
+pub const runStep = backend.runStep;
+pub const PeerType = backend.PeerType;
+pub const Window = backend.Window;
+pub const Container = backend.Container;
+pub const Canvas = backend.Canvas;
+pub const Label = backend.Label;
+pub const Button = backend.Button;
+pub const Monitor = backend.Monitor;
+pub const Events = backend.Events;
+
+// Backend types that may not be available on all platforms
+pub const CheckBox = if (@hasDecl(backend, "CheckBox")) backend.CheckBox else void;
+pub const RadioButton = if (@hasDecl(backend, "RadioButton")) backend.RadioButton else void;
+pub const Dropdown = if (@hasDecl(backend, "Dropdown")) backend.Dropdown else void;
+pub const Slider = if (@hasDecl(backend, "Slider")) backend.Slider else void;
+pub const TextArea = if (@hasDecl(backend, "TextArea")) backend.TextArea else void;
+pub const TextField = if (@hasDecl(backend, "TextField")) backend.TextField else void;
+pub const TabContainer = if (@hasDecl(backend, "TabContainer")) backend.TabContainer else void;
+pub const ScrollView = if (@hasDecl(backend, "ScrollView")) backend.ScrollView else void;
+pub const ImageData = if (@hasDecl(backend, "ImageData")) backend.ImageData else void;
+pub const Table = if (@hasDecl(backend, "Table")) backend.Table else void;
+pub const ProgressBar = if (@hasDecl(backend, "ProgressBar")) backend.ProgressBar else void;
+pub const NavigationSidebar = if (@hasDecl(backend, "NavigationSidebar")) backend.NavigationSidebar else void;
+pub const AudioGenerator = if (@hasDecl(backend, "AudioGenerator")) backend.AudioGenerator else void;
+pub const Http = if (@hasDecl(backend, "Http")) backend.Http else void;
+pub const HttpResponse = if (@hasDecl(backend, "HttpResponse")) backend.HttpResponse else void;
+pub const backendExport = if (@hasDecl(backend, "backendExport")) backend.backendExport else struct {};
+pub const runOnUIThread = if (@hasDecl(backend, "runOnUIThread")) backend.runOnUIThread else void;
+pub const EventUserData = if (@hasDecl(backend, "EventUserData")) backend.EventUserData else void;
+pub const GuiWidget = if (@hasDecl(backend, "GuiWidget")) backend.GuiWidget else void;
+pub const getEventUserData = if (@hasDecl(backend, "getEventUserData")) backend.getEventUserData else struct {
+    fn f(_: PeerType) *EventUserData {
+        unreachable;
+    }
+}.f;
 
 pub const DrawContext = struct {
     impl: backend.Canvas.DrawContextImpl,
@@ -139,7 +179,7 @@ test "backend: create window" {
             window.resize(random.int(u16), random.int(u16));
             try std.testing.expectEqual(i < 150, backend.runStep(.Asynchronous));
 
-            std.time.sleep(1 * std.time.ns_per_ms);
+            std.Thread.sleep(1 * std.time.ns_per_ms);
         }
     }
 }
@@ -195,4 +235,110 @@ test "backend: scrollable" {
     defer scrollable.deinit();
 
     // TODO: more tests
+}
+
+test "backend: image data from bytes" {
+    try backend.init();
+    // Create a small 2x2 RGBA image
+    const pixels = [_]u8{
+        255, 0,   0,   255, // red
+        0,   255, 0,   255, // green
+        0,   0,   255, 255, // blue
+        255, 255, 255, 255, // white
+    };
+    const img = try backend.ImageData.from(2, 2, 8, capy.Colorspace.RGBA, &pixels);
+    try std.testing.expectEqual(@as(usize, 2), img.width);
+    try std.testing.expectEqual(@as(usize, 2), img.height);
+}
+
+test "backend: keyRelease handler fires on key up" {
+    try backend.init();
+    var button = try backend.Button.create();
+    defer button.deinit();
+
+    // Track whether the handler was called and with what keycode
+    const State = struct {
+        var called: bool = false;
+        var received_keycode: u16 = 0;
+    };
+    State.called = false;
+    State.received_keycode = 0;
+
+    // Set the keyRelease callback
+    try button.setCallback(.KeyRelease, struct {
+        fn handler(keycode: u16, _: usize) void {
+            State.called = true;
+            State.received_keycode = keycode;
+        }
+    }.handler);
+
+    // Verify handler is wired up
+    const data = backend.getEventUserData(button.peer);
+    try std.testing.expect(data.user.keyReleaseHandler != null);
+
+    // Simulate key release by calling the handler directly (as the OS would)
+    const test_keycode: u16 = 42;
+    data.user.keyReleaseHandler.?(test_keycode, data.userdata);
+
+    try std.testing.expect(State.called);
+    try std.testing.expectEqual(@as(u16, 42), State.received_keycode);
+}
+
+test "backend: keyPress and keyRelease are independent" {
+    try backend.init();
+    var button = try backend.Button.create();
+    defer button.deinit();
+
+    const State = struct {
+        var press_count: u32 = 0;
+        var release_count: u32 = 0;
+    };
+    State.press_count = 0;
+    State.release_count = 0;
+
+    try button.setCallback(.KeyPress, struct {
+        fn handler(_: u16, _: usize) void {
+            State.press_count += 1;
+        }
+    }.handler);
+    try button.setCallback(.KeyRelease, struct {
+        fn handler(_: u16, _: usize) void {
+            State.release_count += 1;
+        }
+    }.handler);
+
+    const data = backend.getEventUserData(button.peer);
+
+    // Fire press twice, release once
+    data.user.keyPressHandler.?(0x20, data.userdata);
+    data.user.keyPressHandler.?(0x20, data.userdata);
+    data.user.keyReleaseHandler.?(0x20, data.userdata);
+
+    try std.testing.expectEqual(@as(u32, 2), State.press_count);
+    try std.testing.expectEqual(@as(u32, 1), State.release_count);
+}
+
+test "backend: canvas create and draw context" {
+    try backend.init();
+    var canvas = try backend.Canvas.create();
+    defer canvas.deinit();
+}
+
+test "backend: text layout init and measure" {
+    try backend.init();
+    var layout = backend.Canvas.DrawContextImpl.TextLayout.init();
+    layout.setFont(.{ .face = "Helvetica", .size = 24.0 });
+    const size = layout.getTextSize("Hello, World!");
+    // Text measurement should return non-zero dimensions for non-empty text
+    try std.testing.expect(size.width > 0);
+    try std.testing.expect(size.height > 0);
+}
+
+test "backend: text layout empty string" {
+    try backend.init();
+    var layout = backend.Canvas.DrawContextImpl.TextLayout.init();
+    layout.setFont(.{ .face = "Helvetica", .size = 16.0 });
+    const size = layout.getTextSize("");
+    try std.testing.expectEqual(@as(u32, 0), size.width);
+    try std.testing.expectEqual(@as(u32, 0), size.height);
 }

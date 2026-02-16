@@ -27,14 +27,14 @@ pub extern "licenseprotection" fn RegisterLicenseKeyWithExpiration(
     licenseKey: ?[*:0]const u16,
     validityInDays: u32,
     status: ?*LicenseProtectionStatus,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "licenseprotection" fn ValidateLicenseKeyProtection(
     licenseKey: ?[*:0]const u16,
     notValidBefore: ?*FILETIME,
     notValidAfter: ?*FILETIME,
     status: ?*LicenseProtectionStatus,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

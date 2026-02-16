@@ -405,46 +405,46 @@ pub const WINTRUST_CERT_INFO = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_MEM_ALLOC = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_CPD_MEM_ALLOC = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_MEM_FREE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_CPD_MEM_FREE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_STORE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_CPD_ADD_STORE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_SGNR = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_CPD_ADD_SGNR = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_CERT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_CPD_ADD_CERT = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_CPD_ADD_PRIVDATA = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_CPD_ADD_PRIVDATA = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_INIT_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_INIT_CALL = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_OBJTRUST_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_OBJTRUST_CALL = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_SIGTRUST_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_SIGTRUST_CALL = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_CERTTRUST_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_CERTTRUST_CALL = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_FINALPOLICY_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_FINALPOLICY_CALL = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_TESTFINALPOLICY_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_TESTFINALPOLICY_CALL = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_CLEANUP_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_CLEANUP_CALL = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVIDER_CERTCHKPOLICY_CALL = *const fn() callconv(.winapi) void;
 
 pub const CRYPT_PROVIDER_DATA = extern struct {
     cbStruct: u32,
@@ -519,7 +519,7 @@ pub const CRYPT_PROVIDER_FUNCTIONS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PFN_PROVUI_CALL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PFN_PROVUI_CALL = *const fn() callconv(.winapi) void;
 
 pub const CRYPT_PROVUI_FUNCS = extern struct {
     cbStruct: u32,
@@ -611,12 +611,12 @@ pub const CRYPT_REGISTER_ACTIONID = extern struct {
 pub const PFN_ALLOCANDFILLDEFUSAGE = *const fn(
     pszUsageOID: ?[*:0]const u8,
     psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_FREEDEFUSAGE = *const fn(
     pszUsageOID: ?[*:0]const u8,
     psDefUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const CRYPT_PROVIDER_REGDEFUSAGE = extern struct {
     cbStruct: u32,
@@ -787,7 +787,7 @@ pub const PFN_WTD_GENERIC_CHAIN_POLICY_CALLBACK = *const fn(
     cSigner: u32,
     rgpSigner: ?*?*WTD_GENERIC_CHAIN_POLICY_SIGNER_INFO,
     pvPolicyArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const WTD_GENERIC_CHAIN_POLICY_CREATE_INFO = extern struct {
     Anonymous: extern union {
@@ -855,55 +855,55 @@ pub extern "wintrust" fn WinVerifyTrust(
     hwnd: ?HWND,
     pgActionID: ?*Guid,
     pWVTData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WinVerifyTrustEx(
     hwnd: ?HWND,
     pgActionID: ?*Guid,
     pWinTrustData: ?*WINTRUST_DATA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WintrustGetRegPolicyFlags(
     pdwPolicyFlags: ?*WINTRUST_POLICY_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WintrustSetRegPolicyFlags(
     dwPolicyFlags: WINTRUST_POLICY_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WintrustAddActionID(
     pgActionID: ?*Guid,
     fdwFlags: u32,
     psProvInfo: ?*CRYPT_REGISTER_ACTIONID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WintrustRemoveActionID(
     pgActionID: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WintrustLoadFunctionPointers(
     pgActionID: ?*Guid,
     pPfns: ?*CRYPT_PROVIDER_FUNCTIONS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WintrustAddDefaultForUsage(
     pszUsageOID: ?[*:0]const u8,
     psDefUsage: ?*CRYPT_PROVIDER_REGDEFUSAGE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WintrustGetDefaultForUsage(
     dwAction: WINTRUST_GET_DEFAULT_FOR_USAGE_ACTION,
     pszUsageOID: ?[*:0]const u8,
     psUsage: ?*CRYPT_PROVIDER_DEFUSAGE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WTHelperGetProvSignerFromChain(
@@ -911,52 +911,52 @@ pub extern "wintrust" fn WTHelperGetProvSignerFromChain(
     idxSigner: u32,
     fCounterSigner: BOOL,
     idxCounterSigner: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_SGNR;
+) callconv(.winapi) ?*CRYPT_PROVIDER_SGNR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WTHelperGetProvCertFromChain(
     pSgnr: ?*CRYPT_PROVIDER_SGNR,
     idxCert: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_CERT;
+) callconv(.winapi) ?*CRYPT_PROVIDER_CERT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WTHelperProvDataFromStateData(
     hStateData: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_DATA;
+) callconv(.winapi) ?*CRYPT_PROVIDER_DATA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WTHelperGetProvPrivateDataFromChain(
     pProvData: ?*CRYPT_PROVIDER_DATA,
     pgProviderID: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) ?*CRYPT_PROVIDER_PRIVDATA;
+) callconv(.winapi) ?*CRYPT_PROVIDER_PRIVDATA;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn WTHelperCertIsSelfSigned(
     dwEncoding: u32,
     pCert: ?*CERT_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wintrust" fn WTHelperCertCheckValidSignature(
     pProvData: ?*CRYPT_PROVIDER_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn OpenPersonalTrustDBDialogEx(
     hwndParent: ?HWND,
     dwFlags: u32,
     pvReserved: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "wintrust" fn OpenPersonalTrustDBDialog(
     hwndParent: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wintrust" fn WintrustSetDefaultIncludePEPageHashes(
     fIncludePEPageHashes: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------

@@ -24,7 +24,19 @@ source_dpi: u32 = 96,
 scale: f32 = 1.0,
 child: ?*c.GtkWidget = null,
 
-pub usingnamespace common.Events(Window);
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
 
 pub fn create() common.BackendError!Window {
     const window = c.gtk_window_new() orelse return error.UnknownError;
@@ -48,7 +60,7 @@ pub fn create() common.BackendError!Window {
     return Window{ .peer = window, .wbin = wbin, .vbox = vbox };
 }
 
-fn gtkLayout(peer: *c.GdkSurface, width: c.gint, height: c.gint, userdata: ?*anyopaque) callconv(.C) c.gint {
+fn gtkLayout(peer: *c.GdkSurface, width: c.gint, height: c.gint, userdata: ?*anyopaque) callconv(.c) c.gint {
     _ = peer;
     const window: *c.GtkWidget = @ptrCast(@alignCast(userdata.?));
     const data = common.getEventUserData(window);
@@ -80,7 +92,7 @@ fn gtkLayout(peer: *c.GdkSurface, width: c.gint, height: c.gint, userdata: ?*any
     return 0;
 }
 
-fn gtkCloseRequest(peer: *c.GtkWindow, userdata: ?*anyopaque) callconv(.C) c.gint {
+fn gtkCloseRequest(peer: *c.GtkWindow, userdata: ?*anyopaque) callconv(.c) c.gint {
     _ = userdata;
     const data = common.getEventUserData(@ptrCast(peer));
     const value_bool: bool = false;
@@ -100,12 +112,38 @@ pub fn setTitle(self: *Window, title: [*:0]const u8) void {
     c.gtk_window_set_title(@as(*c.GtkWindow, @ptrCast(self.peer)), title);
 }
 
-pub fn setIcon(self: *Window, data: ImageData) void {
-    // Currently a no-op, as GTK only allows setting icon during distribution.
-    // That is the app must have a resource folder containing desired icons.
-    // TODO: maybe this could be done by creating a temporary directory and using gtk_icon_theme_add_search_path
-    _ = self;
-    _ = data;
+pub fn setIcon(self: *Window, icon_data: lib.ImageData) void {
+    // GTK4 removed gtk_window_set_icon(). Instead, we write the icon
+    // as a PNG into a temporary icon theme directory and register it.
+    const icon_name = "capy-app-icon";
+
+    // Create temp icon theme directory: /tmp/capy-icons/hicolor/256x256/apps/
+    const dir_path = "/tmp/capy-icons/hicolor/256x256/apps";
+    std.fs.cwd().makePath(dir_path) catch return;
+
+    // Save the pixbuf as PNG to the icon theme directory
+    const file_path = dir_path ++ "/" ++ icon_name ++ ".png";
+    var err: ?*c.GError = null;
+    _ = c.gdk_pixbuf_savev(
+        icon_data.peer.peer,
+        file_path,
+        "png",
+        null,
+        null,
+        &err,
+    );
+    if (err != null) {
+        c.g_error_free(err);
+        return;
+    }
+
+    // Register the icon theme search path and set the icon name
+    const display = c.gtk_widget_get_display(self.peer);
+    const theme = c.gtk_icon_theme_get_for_display(display);
+    if (theme) |t| {
+        c.gtk_icon_theme_add_search_path(t, "/tmp/capy-icons");
+    }
+    c.gtk_window_set_icon_name(@ptrCast(self.peer), icon_name);
 }
 
 pub fn setChild(self: *Window, peer: ?*c.GtkWidget) void {
@@ -151,7 +189,7 @@ fn initMenu(menu: *c.GMenu, items: []const lib.MenuItem) void {
     }
 }
 
-fn gtkActivate(peer: *c.GAction, userdata: ?*anyopaque) callconv(.C) void {
+fn gtkActivate(peer: *c.GAction, userdata: ?*anyopaque) callconv(.c) void {
     _ = peer;
 
     const callback = @as(*const fn () void, @ptrCast(userdata.?));
@@ -197,7 +235,7 @@ fn tickCallback(
     widget: ?*c.GtkWidget,
     frame_clock: ?*c.GdkFrameClock,
     user_data: ?*anyopaque,
-) callconv(.C) c.gboolean {
+) callconv(.c) c.gboolean {
     _ = frame_clock;
     _ = user_data;
     const data = common.getEventUserData(widget.?);

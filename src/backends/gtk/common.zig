@@ -37,6 +37,7 @@ pub fn Events(comptime T: type) type {
 
             const event_controller_key = c.gtk_event_controller_key_new();
             _ = c.g_signal_connect_data(event_controller_key, "key-pressed", @as(c.GCallback, @ptrCast(&gtkKeyPress)), null, null, c.G_CONNECT_AFTER);
+            _ = c.g_signal_connect_data(event_controller_key, "key-released", @as(c.GCallback, @ptrCast(&gtkKeyRelease)), null, null, c.G_CONNECT_AFTER);
             c.gtk_widget_add_controller(widget, event_controller_key);
 
             const event_controller_motion = c.gtk_event_controller_motion_new();
@@ -76,7 +77,7 @@ pub fn Events(comptime T: type) type {
             is_modifier: c.guint,
         };
 
-        fn gtkKeyPress(controller: *c.GtkEventControllerKey, keyval: c.guint, keycode: c.guint, state: c.GdkModifierType, _: usize) callconv(.C) c.gboolean {
+        fn gtkKeyPress(controller: *c.GtkEventControllerKey, keyval: c.guint, keycode: c.guint, state: c.GdkModifierType, _: usize) callconv(.c) c.gboolean {
             _ = state;
             const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
@@ -115,6 +116,15 @@ pub fn Events(comptime T: type) type {
             return 0;
         }
 
+        fn gtkKeyRelease(controller: *c.GtkEventControllerKey, _: c.guint, keycode: c.guint, _: c.GdkModifierType, _: usize) callconv(.c) void {
+            const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
+            const data = getEventUserData(peer);
+            if (data.class.keyReleaseHandler) |handler|
+                handler(@as(u16, @intCast(keycode)), @intFromPtr(data));
+            if (data.user.keyReleaseHandler) |handler|
+                handler(@as(u16, @intCast(keycode)), data.userdata);
+        }
+
         fn getWindow(peer: *c.GtkWidget) *c.GtkWidget {
             var window = peer;
             while (c.gtk_widget_get_parent(window)) |parent| {
@@ -123,7 +133,7 @@ pub fn Events(comptime T: type) type {
             return window;
         }
 
-        fn gtkButtonPress(controller: *c.GtkEventControllerLegacy, event: *c.GdkEvent, _: usize) callconv(.C) c.gboolean {
+        fn gtkButtonPress(controller: *c.GtkEventControllerLegacy, event: *c.GdkEvent, _: usize) callconv(.c) c.gboolean {
             const event_type = c.gdk_event_get_event_type(event);
             if (event_type != c.GDK_BUTTON_PRESS and event_type != c.GDK_BUTTON_RELEASE)
                 return 0;
@@ -170,7 +180,7 @@ pub fn Events(comptime T: type) type {
             return 0;
         }
 
-        fn gtkMouseMotion(controller: *c.GtkEventControllerMotion, x: f64, y: f64, _: usize) callconv(.C) c.gboolean {
+        fn gtkMouseMotion(controller: *c.GtkEventControllerMotion, x: f64, y: f64, _: usize) callconv(.c) c.gboolean {
             const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
 
@@ -187,7 +197,7 @@ pub fn Events(comptime T: type) type {
             return 0;
         }
 
-        fn gtkMouseScroll(controller: *c.GtkEventControllerScroll, delta_x: f64, delta_y: f64, _: usize) callconv(.C) void {
+        fn gtkMouseScroll(controller: *c.GtkEventControllerScroll, delta_x: f64, delta_y: f64, _: usize) callconv(.c) void {
             const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
             const dx: f32 = @floatCast(delta_x);
@@ -231,6 +241,7 @@ pub fn Events(comptime T: type) type {
                 .Resize => data.resizeHandler = cb,
                 .KeyType => data.keyTypeHandler = cb,
                 .KeyPress => data.keyPressHandler = cb,
+                .KeyRelease => data.keyReleaseHandler = cb,
                 .PropertyChange => data.propertyChangeHandler = cb,
             }
         }

@@ -719,13 +719,13 @@ pub const LPDISPLAYVAL = *const fn(
     szwVal: ?[*:0]const u16,
     szwDescription: ?[*:0]const u16,
     szwLocation: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPEVALCOMCALLBACK = *const fn(
     iStatus: STATUSTYPES,
     szData: ?[*:0]const u16,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 const IID_IValidate_Value = Guid.initString("e482e5c6-e31e-4143-a2e6-dbc3d8e4b8d3");
 pub const IID_IValidate = &IID_IValidate_Value;
@@ -735,53 +735,53 @@ pub const IValidate = extern union {
         OpenDatabase: *const fn(
             self: *const IValidate,
             szDatabase: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenCUB: *const fn(
             self: *const IValidate,
             szCUBFile: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseDatabase: *const fn(
             self: *const IValidate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseCUB: *const fn(
             self: *const IValidate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplay: *const fn(
             self: *const IValidate,
             pDisplayFunction: ?LPDISPLAYVAL,
             pContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStatus: *const fn(
             self: *const IValidate,
             pStatusFunction: ?LPEVALCOMCALLBACK,
             pContext: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Validate: *const fn(
             self: *const IValidate,
             wzICEs: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OpenDatabase(self: *const IValidate, szDatabase: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OpenDatabase(self: *const IValidate, szDatabase: ?[*:0]const u16) HRESULT {
         return self.vtable.OpenDatabase(self, szDatabase);
     }
-    pub fn OpenCUB(self: *const IValidate, szCUBFile: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn OpenCUB(self: *const IValidate, szCUBFile: ?[*:0]const u16) HRESULT {
         return self.vtable.OpenCUB(self, szCUBFile);
     }
-    pub fn CloseDatabase(self: *const IValidate) callconv(.Inline) HRESULT {
+    pub fn CloseDatabase(self: *const IValidate) HRESULT {
         return self.vtable.CloseDatabase(self);
     }
-    pub fn CloseCUB(self: *const IValidate) callconv(.Inline) HRESULT {
+    pub fn CloseCUB(self: *const IValidate) HRESULT {
         return self.vtable.CloseCUB(self);
     }
-    pub fn SetDisplay(self: *const IValidate, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetDisplay(self: *const IValidate, pDisplayFunction: ?LPDISPLAYVAL, pContext: ?*anyopaque) HRESULT {
         return self.vtable.SetDisplay(self, pDisplayFunction, pContext);
     }
-    pub fn SetStatus(self: *const IValidate, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn SetStatus(self: *const IValidate, pStatusFunction: ?LPEVALCOMCALLBACK, pContext: ?*anyopaque) HRESULT {
         return self.vtable.SetStatus(self, pStatusFunction, pContext);
     }
-    pub fn Validate(self: *const IValidate, wzICEs: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Validate(self: *const IValidate, wzICEs: ?[*:0]const u16) HRESULT {
         return self.vtable.Validate(self, wzICEs);
     }
 };
@@ -818,31 +818,31 @@ pub const IEnumMsmString = extern union {
             cFetch: u32,
             rgbstrStrings: ?*?BSTR,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumMsmString,
             cSkip: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumMsmString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumMsmString,
             pemsmStrings: ?*?*IEnumMsmString,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumMsmString, cFetch: u32, rgbstrStrings: ?*?BSTR, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumMsmString, cFetch: u32, rgbstrStrings: ?*?BSTR, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cFetch, rgbstrStrings, pcFetched);
     }
-    pub fn Skip(self: *const IEnumMsmString, cSkip: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumMsmString, cSkip: u32) HRESULT {
         return self.vtable.Skip(self, cSkip);
     }
-    pub fn Reset(self: *const IEnumMsmString) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumMsmString) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumMsmString, pemsmStrings: ?*?*IEnumMsmString) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumMsmString, pemsmStrings: ?*?*IEnumMsmString) HRESULT {
         return self.vtable.Clone(self, pemsmStrings);
     }
 };
@@ -856,28 +856,28 @@ pub const IMsmStrings = extern union {
             self: *const IMsmStrings,
             Item: i32,
             Return: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IMsmStrings,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IMsmStrings,
             NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IMsmStrings, Item: i32, Return: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IMsmStrings, Item: i32, Return: ?*?BSTR) HRESULT {
         return self.vtable.get_Item(self, Item, Return);
     }
-    pub fn get_Count(self: *const IMsmStrings, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IMsmStrings, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn get__NewEnum(self: *const IMsmStrings, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IMsmStrings, NewEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, NewEnum);
     }
 };
@@ -891,60 +891,60 @@ pub const IMsmError = extern union {
         get_Type: *const fn(
             self: *const IMsmError,
             ErrorType: ?*msmErrorType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Path: *const fn(
             self: *const IMsmError,
             ErrorPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Language: *const fn(
             self: *const IMsmError,
             ErrorLanguage: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DatabaseTable: *const fn(
             self: *const IMsmError,
             ErrorTable: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DatabaseKeys: *const fn(
             self: *const IMsmError,
             ErrorKeys: ?*?*IMsmStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleTable: *const fn(
             self: *const IMsmError,
             ErrorTable: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModuleKeys: *const fn(
             self: *const IMsmError,
             ErrorKeys: ?*?*IMsmStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const IMsmError, ErrorType: ?*msmErrorType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IMsmError, ErrorType: ?*msmErrorType) HRESULT {
         return self.vtable.get_Type(self, ErrorType);
     }
-    pub fn get_Path(self: *const IMsmError, ErrorPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Path(self: *const IMsmError, ErrorPath: ?*?BSTR) HRESULT {
         return self.vtable.get_Path(self, ErrorPath);
     }
-    pub fn get_Language(self: *const IMsmError, ErrorLanguage: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Language(self: *const IMsmError, ErrorLanguage: ?*i16) HRESULT {
         return self.vtable.get_Language(self, ErrorLanguage);
     }
-    pub fn get_DatabaseTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DatabaseTable(self: *const IMsmError, ErrorTable: ?*?BSTR) HRESULT {
         return self.vtable.get_DatabaseTable(self, ErrorTable);
     }
-    pub fn get_DatabaseKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+    pub fn get_DatabaseKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) HRESULT {
         return self.vtable.get_DatabaseKeys(self, ErrorKeys);
     }
-    pub fn get_ModuleTable(self: *const IMsmError, ErrorTable: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ModuleTable(self: *const IMsmError, ErrorTable: ?*?BSTR) HRESULT {
         return self.vtable.get_ModuleTable(self, ErrorTable);
     }
-    pub fn get_ModuleKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+    pub fn get_ModuleKeys(self: *const IMsmError, ErrorKeys: ?*?*IMsmStrings) HRESULT {
         return self.vtable.get_ModuleKeys(self, ErrorKeys);
     }
 };
@@ -959,31 +959,31 @@ pub const IEnumMsmError = extern union {
             cFetch: u32,
             rgmsmErrors: ?*?*IMsmError,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumMsmError,
             cSkip: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumMsmError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumMsmError,
             pemsmErrors: ?*?*IEnumMsmError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumMsmError, cFetch: u32, rgmsmErrors: ?*?*IMsmError, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumMsmError, cFetch: u32, rgmsmErrors: ?*?*IMsmError, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cFetch, rgmsmErrors, pcFetched);
     }
-    pub fn Skip(self: *const IEnumMsmError, cSkip: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumMsmError, cSkip: u32) HRESULT {
         return self.vtable.Skip(self, cSkip);
     }
-    pub fn Reset(self: *const IEnumMsmError) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumMsmError) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumMsmError, pemsmErrors: ?*?*IEnumMsmError) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumMsmError, pemsmErrors: ?*?*IEnumMsmError) HRESULT {
         return self.vtable.Clone(self, pemsmErrors);
     }
 };
@@ -997,28 +997,28 @@ pub const IMsmErrors = extern union {
             self: *const IMsmErrors,
             Item: i32,
             Return: ?*?*IMsmError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IMsmErrors,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IMsmErrors,
             NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IMsmErrors, Item: i32, Return: ?*?*IMsmError) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IMsmErrors, Item: i32, Return: ?*?*IMsmError) HRESULT {
         return self.vtable.get_Item(self, Item, Return);
     }
-    pub fn get_Count(self: *const IMsmErrors, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IMsmErrors, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn get__NewEnum(self: *const IMsmErrors, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IMsmErrors, NewEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, NewEnum);
     }
 };
@@ -1032,28 +1032,28 @@ pub const IMsmDependency = extern union {
         get_Module: *const fn(
             self: *const IMsmDependency,
             Module: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Language: *const fn(
             self: *const IMsmDependency,
             Language: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const IMsmDependency,
             Version: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Module(self: *const IMsmDependency, Module: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Module(self: *const IMsmDependency, Module: ?*?BSTR) HRESULT {
         return self.vtable.get_Module(self, Module);
     }
-    pub fn get_Language(self: *const IMsmDependency, Language: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Language(self: *const IMsmDependency, Language: ?*i16) HRESULT {
         return self.vtable.get_Language(self, Language);
     }
-    pub fn get_Version(self: *const IMsmDependency, Version: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IMsmDependency, Version: ?*?BSTR) HRESULT {
         return self.vtable.get_Version(self, Version);
     }
 };
@@ -1068,31 +1068,31 @@ pub const IEnumMsmDependency = extern union {
             cFetch: u32,
             rgmsmDependencies: ?*?*IMsmDependency,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumMsmDependency,
             cSkip: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumMsmDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumMsmDependency,
             pemsmDependencies: ?*?*IEnumMsmDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumMsmDependency, cFetch: u32, rgmsmDependencies: ?*?*IMsmDependency, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumMsmDependency, cFetch: u32, rgmsmDependencies: ?*?*IMsmDependency, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cFetch, rgmsmDependencies, pcFetched);
     }
-    pub fn Skip(self: *const IEnumMsmDependency, cSkip: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumMsmDependency, cSkip: u32) HRESULT {
         return self.vtable.Skip(self, cSkip);
     }
-    pub fn Reset(self: *const IEnumMsmDependency) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumMsmDependency) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumMsmDependency, pemsmDependencies: ?*?*IEnumMsmDependency) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumMsmDependency, pemsmDependencies: ?*?*IEnumMsmDependency) HRESULT {
         return self.vtable.Clone(self, pemsmDependencies);
     }
 };
@@ -1106,28 +1106,28 @@ pub const IMsmDependencies = extern union {
             self: *const IMsmDependencies,
             Item: i32,
             Return: ?*?*IMsmDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IMsmDependencies,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IMsmDependencies,
             NewEnum: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IMsmDependencies, Item: i32, Return: ?*?*IMsmDependency) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IMsmDependencies, Item: i32, Return: ?*?*IMsmDependency) HRESULT {
         return self.vtable.get_Item(self, Item, Return);
     }
-    pub fn get_Count(self: *const IMsmDependencies, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IMsmDependencies, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn get__NewEnum(self: *const IMsmDependencies, NewEnum: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IMsmDependencies, NewEnum: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, NewEnum);
     }
 };
@@ -1140,98 +1140,98 @@ pub const IMsmMerge = extern union {
         OpenDatabase: *const fn(
             self: *const IMsmMerge,
             Path: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenModule: *const fn(
             self: *const IMsmMerge,
             Path: ?BSTR,
             Language: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseDatabase: *const fn(
             self: *const IMsmMerge,
             Commit: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseModule: *const fn(
             self: *const IMsmMerge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenLog: *const fn(
             self: *const IMsmMerge,
             Path: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseLog: *const fn(
             self: *const IMsmMerge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Log: *const fn(
             self: *const IMsmMerge,
             Message: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Errors: *const fn(
             self: *const IMsmMerge,
             Errors: ?*?*IMsmErrors,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dependencies: *const fn(
             self: *const IMsmMerge,
             Dependencies: ?*?*IMsmDependencies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Merge: *const fn(
             self: *const IMsmMerge,
             Feature: ?BSTR,
             RedirectDir: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const IMsmMerge,
             Feature: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExtractCAB: *const fn(
             self: *const IMsmMerge,
             FileName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExtractFiles: *const fn(
             self: *const IMsmMerge,
             Path: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OpenDatabase(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OpenDatabase(self: *const IMsmMerge, Path: ?BSTR) HRESULT {
         return self.vtable.OpenDatabase(self, Path);
     }
-    pub fn OpenModule(self: *const IMsmMerge, Path: ?BSTR, Language: i16) callconv(.Inline) HRESULT {
+    pub fn OpenModule(self: *const IMsmMerge, Path: ?BSTR, Language: i16) HRESULT {
         return self.vtable.OpenModule(self, Path, Language);
     }
-    pub fn CloseDatabase(self: *const IMsmMerge, Commit: i16) callconv(.Inline) HRESULT {
+    pub fn CloseDatabase(self: *const IMsmMerge, Commit: i16) HRESULT {
         return self.vtable.CloseDatabase(self, Commit);
     }
-    pub fn CloseModule(self: *const IMsmMerge) callconv(.Inline) HRESULT {
+    pub fn CloseModule(self: *const IMsmMerge) HRESULT {
         return self.vtable.CloseModule(self);
     }
-    pub fn OpenLog(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn OpenLog(self: *const IMsmMerge, Path: ?BSTR) HRESULT {
         return self.vtable.OpenLog(self, Path);
     }
-    pub fn CloseLog(self: *const IMsmMerge) callconv(.Inline) HRESULT {
+    pub fn CloseLog(self: *const IMsmMerge) HRESULT {
         return self.vtable.CloseLog(self);
     }
-    pub fn Log(self: *const IMsmMerge, Message: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Log(self: *const IMsmMerge, Message: ?BSTR) HRESULT {
         return self.vtable.Log(self, Message);
     }
-    pub fn get_Errors(self: *const IMsmMerge, Errors: ?*?*IMsmErrors) callconv(.Inline) HRESULT {
+    pub fn get_Errors(self: *const IMsmMerge, Errors: ?*?*IMsmErrors) HRESULT {
         return self.vtable.get_Errors(self, Errors);
     }
-    pub fn get_Dependencies(self: *const IMsmMerge, Dependencies: ?*?*IMsmDependencies) callconv(.Inline) HRESULT {
+    pub fn get_Dependencies(self: *const IMsmMerge, Dependencies: ?*?*IMsmDependencies) HRESULT {
         return self.vtable.get_Dependencies(self, Dependencies);
     }
-    pub fn Merge(self: *const IMsmMerge, Feature: ?BSTR, RedirectDir: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Merge(self: *const IMsmMerge, Feature: ?BSTR, RedirectDir: ?BSTR) HRESULT {
         return self.vtable.Merge(self, Feature, RedirectDir);
     }
-    pub fn Connect(self: *const IMsmMerge, Feature: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IMsmMerge, Feature: ?BSTR) HRESULT {
         return self.vtable.Connect(self, Feature);
     }
-    pub fn ExtractCAB(self: *const IMsmMerge, FileName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExtractCAB(self: *const IMsmMerge, FileName: ?BSTR) HRESULT {
         return self.vtable.ExtractCAB(self, FileName);
     }
-    pub fn ExtractFiles(self: *const IMsmMerge, Path: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ExtractFiles(self: *const IMsmMerge, Path: ?BSTR) HRESULT {
         return self.vtable.ExtractFiles(self, Path);
     }
 };
@@ -1245,12 +1245,12 @@ pub const IMsmGetFiles = extern union {
         get_ModuleFiles: *const fn(
             self: *const IMsmGetFiles,
             Files: ?*?*IMsmStrings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ModuleFiles(self: *const IMsmGetFiles, Files: ?*?*IMsmStrings) callconv(.Inline) HRESULT {
+    pub fn get_ModuleFiles(self: *const IMsmGetFiles, Files: ?*?*IMsmStrings) HRESULT {
         return self.vtable.get_ModuleFiles(self, Files);
     }
 };
@@ -1304,19 +1304,19 @@ pub const INSTALLUI_HANDLERA = *const fn(
     pvContext: ?*anyopaque,
     iMessageType: u32,
     szMessage: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const INSTALLUI_HANDLERW = *const fn(
     pvContext: ?*anyopaque,
     iMessageType: u32,
     szMessage: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PINSTALLUI_HANDLER_RECORD = *const fn(
     pvContext: ?*anyopaque,
     iMessageType: u32,
     hRecord: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const INSTALLUILEVEL = enum(i32) {
     NOCHANGE = 0,
@@ -2031,22 +2031,22 @@ pub const IAssemblyName = extern union {
             PropertyId: u32,
             pvProperty: ?*anyopaque,
             cbProperty: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAssemblyName,
             PropertyId: u32,
             pvProperty: ?*anyopaque,
             pcbProperty: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finalize: *const fn(
             self: *const IAssemblyName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayName: *const fn(
             self: *const IAssemblyName,
             szDisplayName: ?[*:0]u16,
             pccDisplayName: ?*u32,
             dwDisplayFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reserved: *const fn(
             self: *const IAssemblyName,
             refIID: ?*const Guid,
@@ -2057,54 +2057,54 @@ pub const IAssemblyName = extern union {
             pvReserved: ?*anyopaque,
             cbReserved: u32,
             ppReserved: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IAssemblyName,
             lpcwBuffer: ?*u32,
             pwzName: ?[*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IAssemblyName,
             pdwVersionHi: ?*u32,
             pdwVersionLow: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEqual: *const fn(
             self: *const IAssemblyName,
             pName: ?*IAssemblyName,
             dwCmpFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IAssemblyName,
             pName: ?*?*IAssemblyName,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, cbProperty: u32) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, cbProperty: u32) HRESULT {
         return self.vtable.SetProperty(self, PropertyId, pvProperty, cbProperty);
     }
-    pub fn GetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, pcbProperty: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAssemblyName, PropertyId: u32, pvProperty: ?*anyopaque, pcbProperty: ?*u32) HRESULT {
         return self.vtable.GetProperty(self, PropertyId, pvProperty, pcbProperty);
     }
-    pub fn Finalize(self: *const IAssemblyName) callconv(.Inline) HRESULT {
+    pub fn Finalize(self: *const IAssemblyName) HRESULT {
         return self.vtable.Finalize(self);
     }
-    pub fn GetDisplayName(self: *const IAssemblyName, szDisplayName: ?[*:0]u16, pccDisplayName: ?*u32, dwDisplayFlags: u32) callconv(.Inline) HRESULT {
+    pub fn GetDisplayName(self: *const IAssemblyName, szDisplayName: ?[*:0]u16, pccDisplayName: ?*u32, dwDisplayFlags: u32) HRESULT {
         return self.vtable.GetDisplayName(self, szDisplayName, pccDisplayName, dwDisplayFlags);
     }
-    pub fn Reserved(self: *const IAssemblyName, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*anyopaque, cbReserved: u32, ppReserved: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Reserved(self: *const IAssemblyName, refIID: ?*const Guid, pUnkReserved1: ?*IUnknown, pUnkReserved2: ?*IUnknown, szReserved: ?[*:0]const u16, llReserved: i64, pvReserved: ?*anyopaque, cbReserved: u32, ppReserved: ?*?*anyopaque) HRESULT {
         return self.vtable.Reserved(self, refIID, pUnkReserved1, pUnkReserved2, szReserved, llReserved, pvReserved, cbReserved, ppReserved);
     }
-    pub fn GetName(self: *const IAssemblyName, lpcwBuffer: ?*u32, pwzName: ?[*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAssemblyName, lpcwBuffer: ?*u32, pwzName: ?[*:0]u16) HRESULT {
         return self.vtable.GetName(self, lpcwBuffer, pwzName);
     }
-    pub fn GetVersion(self: *const IAssemblyName, pdwVersionHi: ?*u32, pdwVersionLow: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IAssemblyName, pdwVersionHi: ?*u32, pdwVersionLow: ?*u32) HRESULT {
         return self.vtable.GetVersion(self, pdwVersionHi, pdwVersionLow);
     }
-    pub fn IsEqual(self: *const IAssemblyName, pName: ?*IAssemblyName, dwCmpFlags: u32) callconv(.Inline) HRESULT {
+    pub fn IsEqual(self: *const IAssemblyName, pName: ?*IAssemblyName, dwCmpFlags: u32) HRESULT {
         return self.vtable.IsEqual(self, pName, dwCmpFlags);
     }
-    pub fn Clone(self: *const IAssemblyName, pName: ?*?*IAssemblyName) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IAssemblyName, pName: ?*?*IAssemblyName) HRESULT {
         return self.vtable.Clone(self, pName);
     }
 };
@@ -2123,25 +2123,25 @@ pub const IAssemblyCacheItem = extern union {
             dwFormatFlags: u32,
             ppIStream: ?*?*IStream,
             puliMaxSize: ?*ULARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IAssemblyCacheItem,
             dwFlags: u32,
             pulDisposition: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AbortItem: *const fn(
             self: *const IAssemblyCacheItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateStream(self: *const IAssemblyCacheItem, dwFlags: u32, pszStreamName: ?[*:0]const u16, dwFormat: u32, dwFormatFlags: u32, ppIStream: ?*?*IStream, puliMaxSize: ?*ULARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn CreateStream(self: *const IAssemblyCacheItem, dwFlags: u32, pszStreamName: ?[*:0]const u16, dwFormat: u32, dwFormatFlags: u32, ppIStream: ?*?*IStream, puliMaxSize: ?*ULARGE_INTEGER) HRESULT {
         return self.vtable.CreateStream(self, dwFlags, pszStreamName, dwFormat, dwFormatFlags, ppIStream, puliMaxSize);
     }
-    pub fn Commit(self: *const IAssemblyCacheItem, dwFlags: u32, pulDisposition: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IAssemblyCacheItem, dwFlags: u32, pulDisposition: ?*u32) HRESULT {
         return self.vtable.Commit(self, dwFlags, pulDisposition);
     }
-    pub fn AbortItem(self: *const IAssemblyCacheItem) callconv(.Inline) HRESULT {
+    pub fn AbortItem(self: *const IAssemblyCacheItem) HRESULT {
         return self.vtable.AbortItem(self);
     }
 };
@@ -2158,46 +2158,46 @@ pub const IAssemblyCache = extern union {
             pszAssemblyName: ?[*:0]const u16,
             pRefData: ?*FUSION_INSTALL_REFERENCE,
             pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryAssemblyInfo: *const fn(
             self: *const IAssemblyCache,
             dwFlags: QUERYASMINFO_FLAGS,
             pszAssemblyName: ?[*:0]const u16,
             pAsmInfo: ?*ASSEMBLY_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAssemblyCacheItem: *const fn(
             self: *const IAssemblyCache,
             dwFlags: u32,
             pvReserved: ?*anyopaque,
             ppAsmItem: ?*?*IAssemblyCacheItem,
             pszAssemblyName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reserved: *const fn(
             self: *const IAssemblyCache,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InstallAssembly: *const fn(
             self: *const IAssemblyCache,
             dwFlags: u32,
             pszManifestFilePath: ?[*:0]const u16,
             pRefData: ?*FUSION_INSTALL_REFERENCE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn UninstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszAssemblyName: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE, pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION) callconv(.Inline) HRESULT {
+    pub fn UninstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszAssemblyName: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE, pulDisposition: ?*IASSEMBLYCACHE_UNINSTALL_DISPOSITION) HRESULT {
         return self.vtable.UninstallAssembly(self, dwFlags, pszAssemblyName, pRefData, pulDisposition);
     }
-    pub fn QueryAssemblyInfo(self: *const IAssemblyCache, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: ?[*:0]const u16, pAsmInfo: ?*ASSEMBLY_INFO) callconv(.Inline) HRESULT {
+    pub fn QueryAssemblyInfo(self: *const IAssemblyCache, dwFlags: QUERYASMINFO_FLAGS, pszAssemblyName: ?[*:0]const u16, pAsmInfo: ?*ASSEMBLY_INFO) HRESULT {
         return self.vtable.QueryAssemblyInfo(self, dwFlags, pszAssemblyName, pAsmInfo);
     }
-    pub fn CreateAssemblyCacheItem(self: *const IAssemblyCache, dwFlags: u32, pvReserved: ?*anyopaque, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn CreateAssemblyCacheItem(self: *const IAssemblyCache, dwFlags: u32, pvReserved: ?*anyopaque, ppAsmItem: ?*?*IAssemblyCacheItem, pszAssemblyName: ?[*:0]const u16) HRESULT {
         return self.vtable.CreateAssemblyCacheItem(self, dwFlags, pvReserved, ppAsmItem, pszAssemblyName);
     }
-    pub fn Reserved(self: *const IAssemblyCache, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Reserved(self: *const IAssemblyCache, ppUnk: ?*?*IUnknown) HRESULT {
         return self.vtable.Reserved(self, ppUnk);
     }
-    pub fn InstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszManifestFilePath: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE) callconv(.Inline) HRESULT {
+    pub fn InstallAssembly(self: *const IAssemblyCache, dwFlags: u32, pszManifestFilePath: ?[*:0]const u16, pRefData: ?*FUSION_INSTALL_REFERENCE) HRESULT {
         return self.vtable.InstallAssembly(self, dwFlags, pszManifestFilePath, pRefData);
     }
 };
@@ -3156,435 +3156,435 @@ pub const IPMApplicationInfo = extern union {
         get_ProductID: *const fn(
             self: *const IPMApplicationInfo,
             pProductID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstanceID: *const fn(
             self: *const IPMApplicationInfo,
             pInstanceID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OfferID: *const fn(
             self: *const IPMApplicationInfo,
             pOfferID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultTask: *const fn(
             self: *const IPMApplicationInfo,
             pDefaultTask: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppTitle: *const fn(
             self: *const IPMApplicationInfo,
             pAppTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IconPath: *const fn(
             self: *const IPMApplicationInfo,
             pAppIconPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NotificationState: *const fn(
             self: *const IPMApplicationInfo,
             pIsNotified: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppInstallType: *const fn(
             self: *const IPMApplicationInfo,
             pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const IPMApplicationInfo,
             pState: ?*PM_APPLICATION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRevoked: *const fn(
             self: *const IPMApplicationInfo,
             pIsRevoked: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UpdateAvailable: *const fn(
             self: *const IPMApplicationInfo,
             pIsUpdateAvailable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstallDate: *const fn(
             self: *const IPMApplicationInfo,
             pInstallDate: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsUninstallable: *const fn(
             self: *const IPMApplicationInfo,
             pIsUninstallable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsThemable: *const fn(
             self: *const IPMApplicationInfo,
             pIsThemable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTrial: *const fn(
             self: *const IPMApplicationInfo,
             pIsTrial: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstallPath: *const fn(
             self: *const IPMApplicationInfo,
             pInstallPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataRoot: *const fn(
             self: *const IPMApplicationInfo,
             pDataRoot: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Genre: *const fn(
             self: *const IPMApplicationInfo,
             pGenre: ?*PM_APP_GENRE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Publisher: *const fn(
             self: *const IPMApplicationInfo,
             pPublisher: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Author: *const fn(
             self: *const IPMApplicationInfo,
             pAuthor: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IPMApplicationInfo,
             pDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const IPMApplicationInfo,
             pVersion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_InvocationInfo: *const fn(
             self: *const IPMApplicationInfo,
             pImageUrn: ?*?BSTR,
             pParameters: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppPlatMajorVersion: *const fn(
             self: *const IPMApplicationInfo,
             pMajorVer: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppPlatMinorVersion: *const fn(
             self: *const IPMApplicationInfo,
             pMinorVer: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PublisherID: *const fn(
             self: *const IPMApplicationInfo,
             pPublisherID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsMultiCore: *const fn(
             self: *const IPMApplicationInfo,
             pIsMultiCore: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SID: *const fn(
             self: *const IPMApplicationInfo,
             pSID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppPlatMajorVersionLightUp: *const fn(
             self: *const IPMApplicationInfo,
             pMajorVer: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppPlatMinorVersionLightUp: *const fn(
             self: *const IPMApplicationInfo,
             pMinorVer: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_UpdateAvailable: *const fn(
             self: *const IPMApplicationInfo,
             IsUpdateAvailable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_NotificationState: *const fn(
             self: *const IPMApplicationInfo,
             IsNotified: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_IconPath: *const fn(
             self: *const IPMApplicationInfo,
             AppIconPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_UninstallableState: *const fn(
             self: *const IPMApplicationInfo,
             IsUninstallable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsPinableOnKidZone: *const fn(
             self: *const IPMApplicationInfo,
             pIsPinable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOriginallyPreInstalled: *const fn(
             self: *const IPMApplicationInfo,
             pIsPreinstalled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsInstallOnSD: *const fn(
             self: *const IPMApplicationInfo,
             pIsInstallOnSD: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOptoutOnSD: *const fn(
             self: *const IPMApplicationInfo,
             pIsOptoutOnSD: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOptoutBackupRestore: *const fn(
             self: *const IPMApplicationInfo,
             pIsOptoutBackupRestore: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_EnterpriseDisabled: *const fn(
             self: *const IPMApplicationInfo,
             IsDisabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_EnterpriseUninstallable: *const fn(
             self: *const IPMApplicationInfo,
             IsUninstallable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnterpriseDisabled: *const fn(
             self: *const IPMApplicationInfo,
             IsDisabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnterpriseUninstallable: *const fn(
             self: *const IPMApplicationInfo,
             IsUninstallable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsVisibleOnAppList: *const fn(
             self: *const IPMApplicationInfo,
             pIsVisible: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsInboxApp: *const fn(
             self: *const IPMApplicationInfo,
             pIsInboxApp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StorageID: *const fn(
             self: *const IPMApplicationInfo,
             pStorageID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartAppBlob: *const fn(
             self: *const IPMApplicationInfo,
             pBlob: ?*PM_STARTAPPBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsMovable: *const fn(
             self: *const IPMApplicationInfo,
             pIsMovable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeploymentAppEnumerationHubFilter: *const fn(
             self: *const IPMApplicationInfo,
             HubType: ?*PM_TILE_HUBTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifiedDate: *const fn(
             self: *const IPMApplicationInfo,
             pModifiedDate: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOriginallyRestored: *const fn(
             self: *const IPMApplicationInfo,
             pIsRestored: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShouldDeferMdilBind: *const fn(
             self: *const IPMApplicationInfo,
             pfDeferMdilBind: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFullyPreInstall: *const fn(
             self: *const IPMApplicationInfo,
             pfIsFullyPreInstall: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_IsMdilMaintenanceNeeded: *const fn(
             self: *const IPMApplicationInfo,
             fIsMdilMaintenanceNeeded: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_Title: *const fn(
             self: *const IPMApplicationInfo,
             AppTitle: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMApplicationInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMApplicationInfo, pProductID: ?*Guid) HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_InstanceID(self: *const IPMApplicationInfo, pInstanceID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_InstanceID(self: *const IPMApplicationInfo, pInstanceID: ?*Guid) HRESULT {
         return self.vtable.get_InstanceID(self, pInstanceID);
     }
-    pub fn get_OfferID(self: *const IPMApplicationInfo, pOfferID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_OfferID(self: *const IPMApplicationInfo, pOfferID: ?*Guid) HRESULT {
         return self.vtable.get_OfferID(self, pOfferID);
     }
-    pub fn get_DefaultTask(self: *const IPMApplicationInfo, pDefaultTask: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DefaultTask(self: *const IPMApplicationInfo, pDefaultTask: ?*?BSTR) HRESULT {
         return self.vtable.get_DefaultTask(self, pDefaultTask);
     }
-    pub fn get_AppTitle(self: *const IPMApplicationInfo, pAppTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AppTitle(self: *const IPMApplicationInfo, pAppTitle: ?*?BSTR) HRESULT {
         return self.vtable.get_AppTitle(self, pAppTitle);
     }
-    pub fn get_IconPath(self: *const IPMApplicationInfo, pAppIconPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IconPath(self: *const IPMApplicationInfo, pAppIconPath: ?*?BSTR) HRESULT {
         return self.vtable.get_IconPath(self, pAppIconPath);
     }
-    pub fn get_NotificationState(self: *const IPMApplicationInfo, pIsNotified: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_NotificationState(self: *const IPMApplicationInfo, pIsNotified: ?*BOOL) HRESULT {
         return self.vtable.get_NotificationState(self, pIsNotified);
     }
-    pub fn get_AppInstallType(self: *const IPMApplicationInfo, pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_AppInstallType(self: *const IPMApplicationInfo, pAppInstallType: ?*PM_APPLICATION_INSTALL_TYPE) HRESULT {
         return self.vtable.get_AppInstallType(self, pAppInstallType);
     }
-    pub fn get_State(self: *const IPMApplicationInfo, pState: ?*PM_APPLICATION_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const IPMApplicationInfo, pState: ?*PM_APPLICATION_STATE) HRESULT {
         return self.vtable.get_State(self, pState);
     }
-    pub fn get_IsRevoked(self: *const IPMApplicationInfo, pIsRevoked: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsRevoked(self: *const IPMApplicationInfo, pIsRevoked: ?*BOOL) HRESULT {
         return self.vtable.get_IsRevoked(self, pIsRevoked);
     }
-    pub fn get_UpdateAvailable(self: *const IPMApplicationInfo, pIsUpdateAvailable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_UpdateAvailable(self: *const IPMApplicationInfo, pIsUpdateAvailable: ?*BOOL) HRESULT {
         return self.vtable.get_UpdateAvailable(self, pIsUpdateAvailable);
     }
-    pub fn get_InstallDate(self: *const IPMApplicationInfo, pInstallDate: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_InstallDate(self: *const IPMApplicationInfo, pInstallDate: ?*FILETIME) HRESULT {
         return self.vtable.get_InstallDate(self, pInstallDate);
     }
-    pub fn get_IsUninstallable(self: *const IPMApplicationInfo, pIsUninstallable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsUninstallable(self: *const IPMApplicationInfo, pIsUninstallable: ?*BOOL) HRESULT {
         return self.vtable.get_IsUninstallable(self, pIsUninstallable);
     }
-    pub fn get_IsThemable(self: *const IPMApplicationInfo, pIsThemable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsThemable(self: *const IPMApplicationInfo, pIsThemable: ?*BOOL) HRESULT {
         return self.vtable.get_IsThemable(self, pIsThemable);
     }
-    pub fn get_IsTrial(self: *const IPMApplicationInfo, pIsTrial: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsTrial(self: *const IPMApplicationInfo, pIsTrial: ?*BOOL) HRESULT {
         return self.vtable.get_IsTrial(self, pIsTrial);
     }
-    pub fn get_InstallPath(self: *const IPMApplicationInfo, pInstallPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InstallPath(self: *const IPMApplicationInfo, pInstallPath: ?*?BSTR) HRESULT {
         return self.vtable.get_InstallPath(self, pInstallPath);
     }
-    pub fn get_DataRoot(self: *const IPMApplicationInfo, pDataRoot: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DataRoot(self: *const IPMApplicationInfo, pDataRoot: ?*?BSTR) HRESULT {
         return self.vtable.get_DataRoot(self, pDataRoot);
     }
-    pub fn get_Genre(self: *const IPMApplicationInfo, pGenre: ?*PM_APP_GENRE) callconv(.Inline) HRESULT {
+    pub fn get_Genre(self: *const IPMApplicationInfo, pGenre: ?*PM_APP_GENRE) HRESULT {
         return self.vtable.get_Genre(self, pGenre);
     }
-    pub fn get_Publisher(self: *const IPMApplicationInfo, pPublisher: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Publisher(self: *const IPMApplicationInfo, pPublisher: ?*?BSTR) HRESULT {
         return self.vtable.get_Publisher(self, pPublisher);
     }
-    pub fn get_Author(self: *const IPMApplicationInfo, pAuthor: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Author(self: *const IPMApplicationInfo, pAuthor: ?*?BSTR) HRESULT {
         return self.vtable.get_Author(self, pAuthor);
     }
-    pub fn get_Description(self: *const IPMApplicationInfo, pDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IPMApplicationInfo, pDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pDescription);
     }
-    pub fn get_Version(self: *const IPMApplicationInfo, pVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IPMApplicationInfo, pVersion: ?*?BSTR) HRESULT {
         return self.vtable.get_Version(self, pVersion);
     }
-    pub fn get_InvocationInfo(self: *const IPMApplicationInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMApplicationInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_AppPlatMajorVersion(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMajorVersion(self: *const IPMApplicationInfo, pMajorVer: ?*u8) HRESULT {
         return self.vtable.get_AppPlatMajorVersion(self, pMajorVer);
     }
-    pub fn get_AppPlatMinorVersion(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMinorVersion(self: *const IPMApplicationInfo, pMinorVer: ?*u8) HRESULT {
         return self.vtable.get_AppPlatMinorVersion(self, pMinorVer);
     }
-    pub fn get_PublisherID(self: *const IPMApplicationInfo, pPublisherID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_PublisherID(self: *const IPMApplicationInfo, pPublisherID: ?*Guid) HRESULT {
         return self.vtable.get_PublisherID(self, pPublisherID);
     }
-    pub fn get_IsMultiCore(self: *const IPMApplicationInfo, pIsMultiCore: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsMultiCore(self: *const IPMApplicationInfo, pIsMultiCore: ?*BOOL) HRESULT {
         return self.vtable.get_IsMultiCore(self, pIsMultiCore);
     }
-    pub fn get_SID(self: *const IPMApplicationInfo, pSID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SID(self: *const IPMApplicationInfo, pSID: ?*?BSTR) HRESULT {
         return self.vtable.get_SID(self, pSID);
     }
-    pub fn get_AppPlatMajorVersionLightUp(self: *const IPMApplicationInfo, pMajorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMajorVersionLightUp(self: *const IPMApplicationInfo, pMajorVer: ?*u8) HRESULT {
         return self.vtable.get_AppPlatMajorVersionLightUp(self, pMajorVer);
     }
-    pub fn get_AppPlatMinorVersionLightUp(self: *const IPMApplicationInfo, pMinorVer: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_AppPlatMinorVersionLightUp(self: *const IPMApplicationInfo, pMinorVer: ?*u8) HRESULT {
         return self.vtable.get_AppPlatMinorVersionLightUp(self, pMinorVer);
     }
-    pub fn set_UpdateAvailable(self: *const IPMApplicationInfo, IsUpdateAvailable: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_UpdateAvailable(self: *const IPMApplicationInfo, IsUpdateAvailable: BOOL) HRESULT {
         return self.vtable.set_UpdateAvailable(self, IsUpdateAvailable);
     }
-    pub fn set_NotificationState(self: *const IPMApplicationInfo, IsNotified: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_NotificationState(self: *const IPMApplicationInfo, IsNotified: BOOL) HRESULT {
         return self.vtable.set_NotificationState(self, IsNotified);
     }
-    pub fn set_IconPath(self: *const IPMApplicationInfo, AppIconPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_IconPath(self: *const IPMApplicationInfo, AppIconPath: ?BSTR) HRESULT {
         return self.vtable.set_IconPath(self, AppIconPath);
     }
-    pub fn set_UninstallableState(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_UninstallableState(self: *const IPMApplicationInfo, IsUninstallable: BOOL) HRESULT {
         return self.vtable.set_UninstallableState(self, IsUninstallable);
     }
-    pub fn get_IsPinableOnKidZone(self: *const IPMApplicationInfo, pIsPinable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsPinableOnKidZone(self: *const IPMApplicationInfo, pIsPinable: ?*BOOL) HRESULT {
         return self.vtable.get_IsPinableOnKidZone(self, pIsPinable);
     }
-    pub fn get_IsOriginallyPreInstalled(self: *const IPMApplicationInfo, pIsPreinstalled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOriginallyPreInstalled(self: *const IPMApplicationInfo, pIsPreinstalled: ?*BOOL) HRESULT {
         return self.vtable.get_IsOriginallyPreInstalled(self, pIsPreinstalled);
     }
-    pub fn get_IsInstallOnSD(self: *const IPMApplicationInfo, pIsInstallOnSD: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsInstallOnSD(self: *const IPMApplicationInfo, pIsInstallOnSD: ?*BOOL) HRESULT {
         return self.vtable.get_IsInstallOnSD(self, pIsInstallOnSD);
     }
-    pub fn get_IsOptoutOnSD(self: *const IPMApplicationInfo, pIsOptoutOnSD: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOptoutOnSD(self: *const IPMApplicationInfo, pIsOptoutOnSD: ?*BOOL) HRESULT {
         return self.vtable.get_IsOptoutOnSD(self, pIsOptoutOnSD);
     }
-    pub fn get_IsOptoutBackupRestore(self: *const IPMApplicationInfo, pIsOptoutBackupRestore: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOptoutBackupRestore(self: *const IPMApplicationInfo, pIsOptoutBackupRestore: ?*BOOL) HRESULT {
         return self.vtable.get_IsOptoutBackupRestore(self, pIsOptoutBackupRestore);
     }
-    pub fn set_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: BOOL) HRESULT {
         return self.vtable.set_EnterpriseDisabled(self, IsDisabled);
     }
-    pub fn set_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: BOOL) HRESULT {
         return self.vtable.set_EnterpriseUninstallable(self, IsUninstallable);
     }
-    pub fn get_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_EnterpriseDisabled(self: *const IPMApplicationInfo, IsDisabled: ?*BOOL) HRESULT {
         return self.vtable.get_EnterpriseDisabled(self, IsDisabled);
     }
-    pub fn get_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_EnterpriseUninstallable(self: *const IPMApplicationInfo, IsUninstallable: ?*BOOL) HRESULT {
         return self.vtable.get_EnterpriseUninstallable(self, IsUninstallable);
     }
-    pub fn get_IsVisibleOnAppList(self: *const IPMApplicationInfo, pIsVisible: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsVisibleOnAppList(self: *const IPMApplicationInfo, pIsVisible: ?*BOOL) HRESULT {
         return self.vtable.get_IsVisibleOnAppList(self, pIsVisible);
     }
-    pub fn get_IsInboxApp(self: *const IPMApplicationInfo, pIsInboxApp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsInboxApp(self: *const IPMApplicationInfo, pIsInboxApp: ?*BOOL) HRESULT {
         return self.vtable.get_IsInboxApp(self, pIsInboxApp);
     }
-    pub fn get_StorageID(self: *const IPMApplicationInfo, pStorageID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_StorageID(self: *const IPMApplicationInfo, pStorageID: ?*Guid) HRESULT {
         return self.vtable.get_StorageID(self, pStorageID);
     }
-    pub fn get_StartAppBlob(self: *const IPMApplicationInfo, pBlob: ?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartAppBlob(self: *const IPMApplicationInfo, pBlob: ?*PM_STARTAPPBLOB) HRESULT {
         return self.vtable.get_StartAppBlob(self, pBlob);
     }
-    pub fn get_IsMovable(self: *const IPMApplicationInfo, pIsMovable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsMovable(self: *const IPMApplicationInfo, pIsMovable: ?*BOOL) HRESULT {
         return self.vtable.get_IsMovable(self, pIsMovable);
     }
-    pub fn get_DeploymentAppEnumerationHubFilter(self: *const IPMApplicationInfo, HubType: ?*PM_TILE_HUBTYPE) callconv(.Inline) HRESULT {
+    pub fn get_DeploymentAppEnumerationHubFilter(self: *const IPMApplicationInfo, HubType: ?*PM_TILE_HUBTYPE) HRESULT {
         return self.vtable.get_DeploymentAppEnumerationHubFilter(self, HubType);
     }
-    pub fn get_ModifiedDate(self: *const IPMApplicationInfo, pModifiedDate: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_ModifiedDate(self: *const IPMApplicationInfo, pModifiedDate: ?*FILETIME) HRESULT {
         return self.vtable.get_ModifiedDate(self, pModifiedDate);
     }
-    pub fn get_IsOriginallyRestored(self: *const IPMApplicationInfo, pIsRestored: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOriginallyRestored(self: *const IPMApplicationInfo, pIsRestored: ?*BOOL) HRESULT {
         return self.vtable.get_IsOriginallyRestored(self, pIsRestored);
     }
-    pub fn get_ShouldDeferMdilBind(self: *const IPMApplicationInfo, pfDeferMdilBind: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_ShouldDeferMdilBind(self: *const IPMApplicationInfo, pfDeferMdilBind: ?*BOOL) HRESULT {
         return self.vtable.get_ShouldDeferMdilBind(self, pfDeferMdilBind);
     }
-    pub fn get_IsFullyPreInstall(self: *const IPMApplicationInfo, pfIsFullyPreInstall: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsFullyPreInstall(self: *const IPMApplicationInfo, pfIsFullyPreInstall: ?*BOOL) HRESULT {
         return self.vtable.get_IsFullyPreInstall(self, pfIsFullyPreInstall);
     }
-    pub fn set_IsMdilMaintenanceNeeded(self: *const IPMApplicationInfo, fIsMdilMaintenanceNeeded: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsMdilMaintenanceNeeded(self: *const IPMApplicationInfo, fIsMdilMaintenanceNeeded: BOOL) HRESULT {
         return self.vtable.set_IsMdilMaintenanceNeeded(self, fIsMdilMaintenanceNeeded);
     }
-    pub fn set_Title(self: *const IPMApplicationInfo, AppTitle: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_Title(self: *const IPMApplicationInfo, AppTitle: ?BSTR) HRESULT {
         return self.vtable.set_Title(self, AppTitle);
     }
 };
@@ -3598,26 +3598,26 @@ pub const IPMTilePropertyInfo = extern union {
         get_PropertyID: *const fn(
             self: *const IPMTilePropertyInfo,
             pPropID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyValue: *const fn(
             self: *const IPMTilePropertyInfo,
             pPropValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_Property: *const fn(
             self: *const IPMTilePropertyInfo,
             PropValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_PropertyID(self: *const IPMTilePropertyInfo, pPropID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_PropertyID(self: *const IPMTilePropertyInfo, pPropID: ?*u32) HRESULT {
         return self.vtable.get_PropertyID(self, pPropID);
     }
-    pub fn get_PropertyValue(self: *const IPMTilePropertyInfo, pPropValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PropertyValue(self: *const IPMTilePropertyInfo, pPropValue: ?*?BSTR) HRESULT {
         return self.vtable.get_PropertyValue(self, pPropValue);
     }
-    pub fn set_Property(self: *const IPMTilePropertyInfo, PropValue: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_Property(self: *const IPMTilePropertyInfo, PropValue: ?BSTR) HRESULT {
         return self.vtable.set_Property(self, PropValue);
     }
 };
@@ -3631,11 +3631,11 @@ pub const IPMTilePropertyEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMTilePropertyEnumerator,
             ppPropInfo: ?*?*IPMTilePropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMTilePropertyEnumerator, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMTilePropertyEnumerator, ppPropInfo: ?*?*IPMTilePropertyInfo) HRESULT {
         return self.vtable.get_Next(self, ppPropInfo);
     }
 };
@@ -3649,192 +3649,192 @@ pub const IPMTileInfo = extern union {
         get_ProductID: *const fn(
             self: *const IPMTileInfo,
             pProductID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TileID: *const fn(
             self: *const IPMTileInfo,
             pTileID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TemplateType: *const fn(
             self: *const IPMTileInfo,
             pTemplateType: ?*TILE_TEMPLATE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_HubPinnedState: *const fn(
             self: *const IPMTileInfo,
             HubType: PM_TILE_HUBTYPE,
             pPinned: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_HubPosition: *const fn(
             self: *const IPMTileInfo,
             HubType: PM_TILE_HUBTYPE,
             pPosition: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsNotified: *const fn(
             self: *const IPMTileInfo,
             pIsNotified: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDefault: *const fn(
             self: *const IPMTileInfo,
             pIsDefault: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskID: *const fn(
             self: *const IPMTileInfo,
             pTaskID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TileType: *const fn(
             self: *const IPMTileInfo,
             pStartTileType: ?*PM_STARTTILE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsThemable: *const fn(
             self: *const IPMTileInfo,
             pIsThemable: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_PropertyById: *const fn(
             self: *const IPMTileInfo,
             PropID: u32,
             ppPropInfo: ?*?*IPMTilePropertyInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_InvocationInfo: *const fn(
             self: *const IPMTileInfo,
             pImageUrn: ?*?BSTR,
             pParameters: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyEnum: *const fn(
             self: *const IPMTileInfo,
             ppTilePropEnum: ?*?*IPMTilePropertyEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_HubTileSize: *const fn(
             self: *const IPMTileInfo,
             HubType: PM_TILE_HUBTYPE,
             pSize: ?*PM_TILE_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_HubPosition: *const fn(
             self: *const IPMTileInfo,
             HubType: PM_TILE_HUBTYPE,
             Position: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_NotifiedState: *const fn(
             self: *const IPMTileInfo,
             Notified: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_HubPinnedState: *const fn(
             self: *const IPMTileInfo,
             HubType: PM_TILE_HUBTYPE,
             Pinned: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_HubTileSize: *const fn(
             self: *const IPMTileInfo,
             HubType: PM_TILE_HUBTYPE,
             Size: PM_TILE_SIZE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_InvocationInfo: *const fn(
             self: *const IPMTileInfo,
             TaskName: ?BSTR,
             TaskParameters: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTileBlob: *const fn(
             self: *const IPMTileInfo,
             pBlob: ?*PM_STARTTILEBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRestoring: *const fn(
             self: *const IPMTileInfo,
             pIsRestoring: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAutoRestoreDisabled: *const fn(
             self: *const IPMTileInfo,
             pIsAutoRestoreDisabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_IsRestoring: *const fn(
             self: *const IPMTileInfo,
             Restoring: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_IsAutoRestoreDisabled: *const fn(
             self: *const IPMTileInfo,
             AutoRestoreDisabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMTileInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMTileInfo, pProductID: ?*Guid) HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TileID(self: *const IPMTileInfo, pTileID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TileID(self: *const IPMTileInfo, pTileID: ?*?BSTR) HRESULT {
         return self.vtable.get_TileID(self, pTileID);
     }
-    pub fn get_TemplateType(self: *const IPMTileInfo, pTemplateType: ?*TILE_TEMPLATE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_TemplateType(self: *const IPMTileInfo, pTemplateType: ?*TILE_TEMPLATE_TYPE) HRESULT {
         return self.vtable.get_TemplateType(self, pTemplateType);
     }
-    pub fn get_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPinned: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPinned: ?*BOOL) HRESULT {
         return self.vtable.get_HubPinnedState(self, HubType, pPinned);
     }
-    pub fn get_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPosition: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pPosition: ?*u32) HRESULT {
         return self.vtable.get_HubPosition(self, HubType, pPosition);
     }
-    pub fn get_IsNotified(self: *const IPMTileInfo, pIsNotified: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsNotified(self: *const IPMTileInfo, pIsNotified: ?*BOOL) HRESULT {
         return self.vtable.get_IsNotified(self, pIsNotified);
     }
-    pub fn get_IsDefault(self: *const IPMTileInfo, pIsDefault: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsDefault(self: *const IPMTileInfo, pIsDefault: ?*BOOL) HRESULT {
         return self.vtable.get_IsDefault(self, pIsDefault);
     }
-    pub fn get_TaskID(self: *const IPMTileInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMTileInfo, pTaskID: ?*?BSTR) HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_TileType(self: *const IPMTileInfo, pStartTileType: ?*PM_STARTTILE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_TileType(self: *const IPMTileInfo, pStartTileType: ?*PM_STARTTILE_TYPE) HRESULT {
         return self.vtable.get_TileType(self, pStartTileType);
     }
-    pub fn get_IsThemable(self: *const IPMTileInfo, pIsThemable: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsThemable(self: *const IPMTileInfo, pIsThemable: ?*BOOL) HRESULT {
         return self.vtable.get_IsThemable(self, pIsThemable);
     }
-    pub fn get_PropertyById(self: *const IPMTileInfo, PropID: u32, ppPropInfo: ?*?*IPMTilePropertyInfo) callconv(.Inline) HRESULT {
+    pub fn get_PropertyById(self: *const IPMTileInfo, PropID: u32, ppPropInfo: ?*?*IPMTilePropertyInfo) HRESULT {
         return self.vtable.get_PropertyById(self, PropID, ppPropInfo);
     }
-    pub fn get_InvocationInfo(self: *const IPMTileInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMTileInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_PropertyEnum(self: *const IPMTileInfo, ppTilePropEnum: ?*?*IPMTilePropertyEnumerator) callconv(.Inline) HRESULT {
+    pub fn get_PropertyEnum(self: *const IPMTileInfo, ppTilePropEnum: ?*?*IPMTilePropertyEnumerator) HRESULT {
         return self.vtable.get_PropertyEnum(self, ppTilePropEnum);
     }
-    pub fn get_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pSize: ?*PM_TILE_SIZE) callconv(.Inline) HRESULT {
+    pub fn get_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, pSize: ?*PM_TILE_SIZE) HRESULT {
         return self.vtable.get_HubTileSize(self, HubType, pSize);
     }
-    pub fn set_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Position: u32) callconv(.Inline) HRESULT {
+    pub fn set_HubPosition(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Position: u32) HRESULT {
         return self.vtable.set_HubPosition(self, HubType, Position);
     }
-    pub fn set_NotifiedState(self: *const IPMTileInfo, Notified: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_NotifiedState(self: *const IPMTileInfo, Notified: BOOL) HRESULT {
         return self.vtable.set_NotifiedState(self, Notified);
     }
-    pub fn set_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Pinned: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_HubPinnedState(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Pinned: BOOL) HRESULT {
         return self.vtable.set_HubPinnedState(self, HubType, Pinned);
     }
-    pub fn set_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Size: PM_TILE_SIZE) callconv(.Inline) HRESULT {
+    pub fn set_HubTileSize(self: *const IPMTileInfo, HubType: PM_TILE_HUBTYPE, Size: PM_TILE_SIZE) HRESULT {
         return self.vtable.set_HubTileSize(self, HubType, Size);
     }
-    pub fn set_InvocationInfo(self: *const IPMTileInfo, TaskName: ?BSTR, TaskParameters: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn set_InvocationInfo(self: *const IPMTileInfo, TaskName: ?BSTR, TaskParameters: ?BSTR) HRESULT {
         return self.vtable.set_InvocationInfo(self, TaskName, TaskParameters);
     }
-    pub fn get_StartTileBlob(self: *const IPMTileInfo, pBlob: ?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartTileBlob(self: *const IPMTileInfo, pBlob: ?*PM_STARTTILEBLOB) HRESULT {
         return self.vtable.get_StartTileBlob(self, pBlob);
     }
-    pub fn get_IsRestoring(self: *const IPMTileInfo, pIsRestoring: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsRestoring(self: *const IPMTileInfo, pIsRestoring: ?*BOOL) HRESULT {
         return self.vtable.get_IsRestoring(self, pIsRestoring);
     }
-    pub fn get_IsAutoRestoreDisabled(self: *const IPMTileInfo, pIsAutoRestoreDisabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsAutoRestoreDisabled(self: *const IPMTileInfo, pIsAutoRestoreDisabled: ?*BOOL) HRESULT {
         return self.vtable.get_IsAutoRestoreDisabled(self, pIsAutoRestoreDisabled);
     }
-    pub fn set_IsRestoring(self: *const IPMTileInfo, Restoring: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsRestoring(self: *const IPMTileInfo, Restoring: BOOL) HRESULT {
         return self.vtable.set_IsRestoring(self, Restoring);
     }
-    pub fn set_IsAutoRestoreDisabled(self: *const IPMTileInfo, AutoRestoreDisabled: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsAutoRestoreDisabled(self: *const IPMTileInfo, AutoRestoreDisabled: BOOL) HRESULT {
         return self.vtable.set_IsAutoRestoreDisabled(self, AutoRestoreDisabled);
     }
 };
@@ -3848,11 +3848,11 @@ pub const IPMTileInfoEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMTileInfoEnumerator,
             ppTileInfo: ?*?*IPMTileInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMTileInfoEnumerator, ppTileInfo: ?*?*IPMTileInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMTileInfoEnumerator, ppTileInfo: ?*?*IPMTileInfo) HRESULT {
         return self.vtable.get_Next(self, ppTileInfo);
     }
 };
@@ -3866,11 +3866,11 @@ pub const IPMApplicationInfoEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMApplicationInfoEnumerator,
             ppAppInfo: ?*?*IPMApplicationInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMApplicationInfoEnumerator, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMApplicationInfoEnumerator, ppAppInfo: ?*?*IPMApplicationInfo) HRESULT {
         return self.vtable.get_Next(self, ppAppInfo);
     }
 };
@@ -3884,186 +3884,186 @@ pub const IPMLiveTileJobInfo = extern union {
         get_ProductID: *const fn(
             self: *const IPMLiveTileJobInfo,
             pProductID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TileID: *const fn(
             self: *const IPMLiveTileJobInfo,
             pTileID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextSchedule: *const fn(
             self: *const IPMLiveTileJobInfo,
             pNextSchedule: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_NextSchedule: *const fn(
             self: *const IPMLiveTileJobInfo,
             ftNextSchedule: FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartSchedule: *const fn(
             self: *const IPMLiveTileJobInfo,
             pStartSchedule: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_StartSchedule: *const fn(
             self: *const IPMLiveTileJobInfo,
             ftStartSchedule: FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IntervalDuration: *const fn(
             self: *const IPMLiveTileJobInfo,
             pIntervalDuration: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_IntervalDuration: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulIntervalDuration: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunForever: *const fn(
             self: *const IPMLiveTileJobInfo,
             IsRunForever: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_RunForever: *const fn(
             self: *const IPMLiveTileJobInfo,
             fRunForever: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxRunCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             pMaxRunCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_MaxRunCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulMaxRunCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             pRunCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_RunCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulRunCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecurrenceType: *const fn(
             self: *const IPMLiveTileJobInfo,
             pRecurrenceType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_RecurrenceType: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulRecurrenceType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_TileXML: *const fn(
             self: *const IPMLiveTileJobInfo,
             pTileXml: [*]?*u8,
             pcbTileXml: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_TileXML: *const fn(
             self: *const IPMLiveTileJobInfo,
             pTileXml: [*:0]u8,
             cbTileXml: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_UrlXML: *const fn(
             self: *const IPMLiveTileJobInfo,
             pUrlXML: [*]?*u8,
             pcbUrlXML: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_UrlXML: *const fn(
             self: *const IPMLiveTileJobInfo,
             pUrlXML: [*:0]u8,
             cbUrlXML: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AttemptCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             pAttemptCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_AttemptCount: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulAttemptCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DownloadState: *const fn(
             self: *const IPMLiveTileJobInfo,
             pDownloadState: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_DownloadState: *const fn(
             self: *const IPMLiveTileJobInfo,
             ulDownloadState: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMLiveTileJobInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMLiveTileJobInfo, pProductID: ?*Guid) HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TileID(self: *const IPMLiveTileJobInfo, pTileID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TileID(self: *const IPMLiveTileJobInfo, pTileID: ?*?BSTR) HRESULT {
         return self.vtable.get_TileID(self, pTileID);
     }
-    pub fn get_NextSchedule(self: *const IPMLiveTileJobInfo, pNextSchedule: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_NextSchedule(self: *const IPMLiveTileJobInfo, pNextSchedule: ?*FILETIME) HRESULT {
         return self.vtable.get_NextSchedule(self, pNextSchedule);
     }
-    pub fn set_NextSchedule(self: *const IPMLiveTileJobInfo, ftNextSchedule: FILETIME) callconv(.Inline) HRESULT {
+    pub fn set_NextSchedule(self: *const IPMLiveTileJobInfo, ftNextSchedule: FILETIME) HRESULT {
         return self.vtable.set_NextSchedule(self, ftNextSchedule);
     }
-    pub fn get_StartSchedule(self: *const IPMLiveTileJobInfo, pStartSchedule: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn get_StartSchedule(self: *const IPMLiveTileJobInfo, pStartSchedule: ?*FILETIME) HRESULT {
         return self.vtable.get_StartSchedule(self, pStartSchedule);
     }
-    pub fn set_StartSchedule(self: *const IPMLiveTileJobInfo, ftStartSchedule: FILETIME) callconv(.Inline) HRESULT {
+    pub fn set_StartSchedule(self: *const IPMLiveTileJobInfo, ftStartSchedule: FILETIME) HRESULT {
         return self.vtable.set_StartSchedule(self, ftStartSchedule);
     }
-    pub fn get_IntervalDuration(self: *const IPMLiveTileJobInfo, pIntervalDuration: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_IntervalDuration(self: *const IPMLiveTileJobInfo, pIntervalDuration: ?*u32) HRESULT {
         return self.vtable.get_IntervalDuration(self, pIntervalDuration);
     }
-    pub fn set_IntervalDuration(self: *const IPMLiveTileJobInfo, ulIntervalDuration: u32) callconv(.Inline) HRESULT {
+    pub fn set_IntervalDuration(self: *const IPMLiveTileJobInfo, ulIntervalDuration: u32) HRESULT {
         return self.vtable.set_IntervalDuration(self, ulIntervalDuration);
     }
-    pub fn get_RunForever(self: *const IPMLiveTileJobInfo, IsRunForever: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_RunForever(self: *const IPMLiveTileJobInfo, IsRunForever: ?*BOOL) HRESULT {
         return self.vtable.get_RunForever(self, IsRunForever);
     }
-    pub fn set_RunForever(self: *const IPMLiveTileJobInfo, fRunForever: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_RunForever(self: *const IPMLiveTileJobInfo, fRunForever: BOOL) HRESULT {
         return self.vtable.set_RunForever(self, fRunForever);
     }
-    pub fn get_MaxRunCount(self: *const IPMLiveTileJobInfo, pMaxRunCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MaxRunCount(self: *const IPMLiveTileJobInfo, pMaxRunCount: ?*u32) HRESULT {
         return self.vtable.get_MaxRunCount(self, pMaxRunCount);
     }
-    pub fn set_MaxRunCount(self: *const IPMLiveTileJobInfo, ulMaxRunCount: u32) callconv(.Inline) HRESULT {
+    pub fn set_MaxRunCount(self: *const IPMLiveTileJobInfo, ulMaxRunCount: u32) HRESULT {
         return self.vtable.set_MaxRunCount(self, ulMaxRunCount);
     }
-    pub fn get_RunCount(self: *const IPMLiveTileJobInfo, pRunCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_RunCount(self: *const IPMLiveTileJobInfo, pRunCount: ?*u32) HRESULT {
         return self.vtable.get_RunCount(self, pRunCount);
     }
-    pub fn set_RunCount(self: *const IPMLiveTileJobInfo, ulRunCount: u32) callconv(.Inline) HRESULT {
+    pub fn set_RunCount(self: *const IPMLiveTileJobInfo, ulRunCount: u32) HRESULT {
         return self.vtable.set_RunCount(self, ulRunCount);
     }
-    pub fn get_RecurrenceType(self: *const IPMLiveTileJobInfo, pRecurrenceType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_RecurrenceType(self: *const IPMLiveTileJobInfo, pRecurrenceType: ?*u32) HRESULT {
         return self.vtable.get_RecurrenceType(self, pRecurrenceType);
     }
-    pub fn set_RecurrenceType(self: *const IPMLiveTileJobInfo, ulRecurrenceType: u32) callconv(.Inline) HRESULT {
+    pub fn set_RecurrenceType(self: *const IPMLiveTileJobInfo, ulRecurrenceType: u32) HRESULT {
         return self.vtable.set_RecurrenceType(self, ulRecurrenceType);
     }
-    pub fn get_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*]?*u8, pcbTileXml: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*]?*u8, pcbTileXml: ?*u32) HRESULT {
         return self.vtable.get_TileXML(self, pTileXml, pcbTileXml);
     }
-    pub fn set_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*:0]u8, cbTileXml: u32) callconv(.Inline) HRESULT {
+    pub fn set_TileXML(self: *const IPMLiveTileJobInfo, pTileXml: [*:0]u8, cbTileXml: u32) HRESULT {
         return self.vtable.set_TileXML(self, pTileXml, cbTileXml);
     }
-    pub fn get_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*]?*u8, pcbUrlXML: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*]?*u8, pcbUrlXML: ?*u32) HRESULT {
         return self.vtable.get_UrlXML(self, pUrlXML, pcbUrlXML);
     }
-    pub fn set_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*:0]u8, cbUrlXML: u32) callconv(.Inline) HRESULT {
+    pub fn set_UrlXML(self: *const IPMLiveTileJobInfo, pUrlXML: [*:0]u8, cbUrlXML: u32) HRESULT {
         return self.vtable.set_UrlXML(self, pUrlXML, cbUrlXML);
     }
-    pub fn get_AttemptCount(self: *const IPMLiveTileJobInfo, pAttemptCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_AttemptCount(self: *const IPMLiveTileJobInfo, pAttemptCount: ?*u32) HRESULT {
         return self.vtable.get_AttemptCount(self, pAttemptCount);
     }
-    pub fn set_AttemptCount(self: *const IPMLiveTileJobInfo, ulAttemptCount: u32) callconv(.Inline) HRESULT {
+    pub fn set_AttemptCount(self: *const IPMLiveTileJobInfo, ulAttemptCount: u32) HRESULT {
         return self.vtable.set_AttemptCount(self, ulAttemptCount);
     }
-    pub fn get_DownloadState(self: *const IPMLiveTileJobInfo, pDownloadState: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_DownloadState(self: *const IPMLiveTileJobInfo, pDownloadState: ?*u32) HRESULT {
         return self.vtable.get_DownloadState(self, pDownloadState);
     }
-    pub fn set_DownloadState(self: *const IPMLiveTileJobInfo, ulDownloadState: u32) callconv(.Inline) HRESULT {
+    pub fn set_DownloadState(self: *const IPMLiveTileJobInfo, ulDownloadState: u32) HRESULT {
         return self.vtable.set_DownloadState(self, ulDownloadState);
     }
 };
@@ -4077,11 +4077,11 @@ pub const IPMLiveTileJobInfoEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMLiveTileJobInfoEnumerator,
             ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMLiveTileJobInfoEnumerator, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMLiveTileJobInfoEnumerator, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) HRESULT {
         return self.vtable.get_Next(self, ppLiveTileJobInfo);
     }
 };
@@ -4094,52 +4094,52 @@ pub const IPMDeploymentManager = extern union {
         ReportDownloadBegin: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportDownloadProgress: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
             usProgress: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportDownloadComplete: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
             hrResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginInstall: *const fn(
             self: *const IPMDeploymentManager,
             pInstallInfo: ?*PM_INSTALLINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUpdate: *const fn(
             self: *const IPMDeploymentManager,
             pUpdateInfo: ?*PM_UPDATEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginDeployPackage: *const fn(
             self: *const IPMDeploymentManager,
             pInstallInfo: ?*PM_INSTALLINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUpdateDeployedPackageLegacy: *const fn(
             self: *const IPMDeploymentManager,
             pUpdateInfo: ?*PM_UPDATEINFO_LEGACY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUninstall: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginEnterpriseAppInstall: *const fn(
             self: *const IPMDeploymentManager,
             pInstallInfo: ?*PM_INSTALLINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginEnterpriseAppUpdate: *const fn(
             self: *const IPMDeploymentManager,
             pUpdateInfo: ?*PM_UPDATEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUpdateLicense: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
             offerID: Guid,
             pbLicense: [*:0]u8,
             cbLicense: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLicenseChallenge: *const fn(
             self: *const IPMDeploymentManager,
             PackagePath: ?BSTR,
@@ -4153,13 +4153,13 @@ pub const IPMDeploymentManager = extern union {
             pcbSaltValue: ?*u32,
             ppbKGVValue: ?[*]?*u8,
             pcbKGVValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLicenseChallengeByProductID: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
             ppbChallenge: [*]?*u8,
             pcbLicense: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLicenseChallengeByProductID2: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
@@ -4173,90 +4173,90 @@ pub const IPMDeploymentManager = extern union {
             pcbSaltValue: ?*u32,
             ppbKGVValue: ?[*]?*u8,
             pcbKGVValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RevokeLicense: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RebindMdilBinaries: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
             FileNames: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RebindAllMdilBinaries: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
             InstanceID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegenerateXbf: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
             AssemblyPaths: ?*SAFEARRAY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateXbfForCurrentLocale: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginProvision: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
             XMLpath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginDeprovision: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReindexSQLCEDatabases: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetApplicationsNeedMaintenance: *const fn(
             self: *const IPMDeploymentManager,
             RequiredMaintenanceOperations: u32,
             pcApplications: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateChamberProfile: *const fn(
             self: *const IPMDeploymentManager,
             ProductID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnterprisePolicyIsApplicationAllowed: *const fn(
             self: *const IPMDeploymentManager,
             productId: Guid,
             publisherName: ?[*:0]const u16,
             pIsAllowed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUpdateDeployedPackage: *const fn(
             self: *const IPMDeploymentManager,
             pUpdateInfo: ?*PM_UPDATEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportRestoreCancelled: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResolveResourceString: *const fn(
             self: *const IPMDeploymentManager,
             resourceString: ?[*:0]const u16,
             pResolvedResourceString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateCapabilitiesForModernApps: *const fn(
             self: *const IPMDeploymentManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportDownloadStatusUpdate: *const fn(
             self: *const IPMDeploymentManager,
             productId: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginUninstallWithOptions: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
             removalOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindDeferredMdilBinaries: *const fn(
             self: *const IPMDeploymentManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GenerateXamlLightupXbfForCurrentLocale: *const fn(
             self: *const IPMDeploymentManager,
             PackageFamilyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddLicenseForAppx: *const fn(
             self: *const IPMDeploymentManager,
             productID: Guid,
@@ -4264,116 +4264,116 @@ pub const IPMDeploymentManager = extern union {
             cbLicense: u32,
             pbPlayReadyHeader: ?[*:0]u8,
             cbPlayReadyHeader: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FixJunctionsForAppsOnSDCard: *const fn(
             self: *const IPMDeploymentManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReportDownloadBegin(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadBegin(self: *const IPMDeploymentManager, productID: Guid) HRESULT {
         return self.vtable.ReportDownloadBegin(self, productID);
     }
-    pub fn ReportDownloadProgress(self: *const IPMDeploymentManager, productID: Guid, usProgress: u16) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadProgress(self: *const IPMDeploymentManager, productID: Guid, usProgress: u16) HRESULT {
         return self.vtable.ReportDownloadProgress(self, productID, usProgress);
     }
-    pub fn ReportDownloadComplete(self: *const IPMDeploymentManager, productID: Guid, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadComplete(self: *const IPMDeploymentManager, productID: Guid, hrResult: HRESULT) HRESULT {
         return self.vtable.ReportDownloadComplete(self, productID, hrResult);
     }
-    pub fn BeginInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+    pub fn BeginInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) HRESULT {
         return self.vtable.BeginInstall(self, pInstallInfo);
     }
-    pub fn BeginUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+    pub fn BeginUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) HRESULT {
         return self.vtable.BeginUpdate(self, pUpdateInfo);
     }
-    pub fn BeginDeployPackage(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+    pub fn BeginDeployPackage(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) HRESULT {
         return self.vtable.BeginDeployPackage(self, pInstallInfo);
     }
-    pub fn BeginUpdateDeployedPackageLegacy(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO_LEGACY) callconv(.Inline) HRESULT {
+    pub fn BeginUpdateDeployedPackageLegacy(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO_LEGACY) HRESULT {
         return self.vtable.BeginUpdateDeployedPackageLegacy(self, pUpdateInfo);
     }
-    pub fn BeginUninstall(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn BeginUninstall(self: *const IPMDeploymentManager, productID: Guid) HRESULT {
         return self.vtable.BeginUninstall(self, productID);
     }
-    pub fn BeginEnterpriseAppInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) callconv(.Inline) HRESULT {
+    pub fn BeginEnterpriseAppInstall(self: *const IPMDeploymentManager, pInstallInfo: ?*PM_INSTALLINFO) HRESULT {
         return self.vtable.BeginEnterpriseAppInstall(self, pInstallInfo);
     }
-    pub fn BeginEnterpriseAppUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+    pub fn BeginEnterpriseAppUpdate(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) HRESULT {
         return self.vtable.BeginEnterpriseAppUpdate(self, pUpdateInfo);
     }
-    pub fn BeginUpdateLicense(self: *const IPMDeploymentManager, productID: Guid, offerID: Guid, pbLicense: [*:0]u8, cbLicense: u32) callconv(.Inline) HRESULT {
+    pub fn BeginUpdateLicense(self: *const IPMDeploymentManager, productID: Guid, offerID: Guid, pbLicense: [*:0]u8, cbLicense: u32) HRESULT {
         return self.vtable.BeginUpdateLicense(self, productID, offerID, pbLicense, cbLicense);
     }
-    pub fn GetLicenseChallenge(self: *const IPMDeploymentManager, PackagePath: ?BSTR, ppbChallenge: [*]?*u8, pcbChallenge: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLicenseChallenge(self: *const IPMDeploymentManager, PackagePath: ?BSTR, ppbChallenge: [*]?*u8, pcbChallenge: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) HRESULT {
         return self.vtable.GetLicenseChallenge(self, PackagePath, ppbChallenge, pcbChallenge, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
     }
-    pub fn GetLicenseChallengeByProductID(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLicenseChallengeByProductID(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32) HRESULT {
         return self.vtable.GetLicenseChallengeByProductID(self, ProductID, ppbChallenge, pcbLicense);
     }
-    pub fn GetLicenseChallengeByProductID2(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLicenseChallengeByProductID2(self: *const IPMDeploymentManager, ProductID: Guid, ppbChallenge: [*]?*u8, pcbLicense: ?*u32, ppbKID: ?[*]?*u8, pcbKID: ?*u32, ppbDeviceID: ?[*]?*u8, pcbDeviceID: ?*u32, ppbSaltValue: ?[*]?*u8, pcbSaltValue: ?*u32, ppbKGVValue: ?[*]?*u8, pcbKGVValue: ?*u32) HRESULT {
         return self.vtable.GetLicenseChallengeByProductID2(self, ProductID, ppbChallenge, pcbLicense, ppbKID, pcbKID, ppbDeviceID, pcbDeviceID, ppbSaltValue, pcbSaltValue, ppbKGVValue, pcbKGVValue);
     }
-    pub fn RevokeLicense(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn RevokeLicense(self: *const IPMDeploymentManager, productID: Guid) HRESULT {
         return self.vtable.RevokeLicense(self, productID);
     }
-    pub fn RebindMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, FileNames: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn RebindMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, FileNames: ?*SAFEARRAY) HRESULT {
         return self.vtable.RebindMdilBinaries(self, ProductID, FileNames);
     }
-    pub fn RebindAllMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, InstanceID: Guid) callconv(.Inline) HRESULT {
+    pub fn RebindAllMdilBinaries(self: *const IPMDeploymentManager, ProductID: Guid, InstanceID: Guid) HRESULT {
         return self.vtable.RebindAllMdilBinaries(self, ProductID, InstanceID);
     }
-    pub fn RegenerateXbf(self: *const IPMDeploymentManager, ProductID: Guid, AssemblyPaths: ?*SAFEARRAY) callconv(.Inline) HRESULT {
+    pub fn RegenerateXbf(self: *const IPMDeploymentManager, ProductID: Guid, AssemblyPaths: ?*SAFEARRAY) HRESULT {
         return self.vtable.RegenerateXbf(self, ProductID, AssemblyPaths);
     }
-    pub fn GenerateXbfForCurrentLocale(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn GenerateXbfForCurrentLocale(self: *const IPMDeploymentManager, ProductID: Guid) HRESULT {
         return self.vtable.GenerateXbfForCurrentLocale(self, ProductID);
     }
-    pub fn BeginProvision(self: *const IPMDeploymentManager, ProductID: Guid, XMLpath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn BeginProvision(self: *const IPMDeploymentManager, ProductID: Guid, XMLpath: ?BSTR) HRESULT {
         return self.vtable.BeginProvision(self, ProductID, XMLpath);
     }
-    pub fn BeginDeprovision(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn BeginDeprovision(self: *const IPMDeploymentManager, ProductID: Guid) HRESULT {
         return self.vtable.BeginDeprovision(self, ProductID);
     }
-    pub fn ReindexSQLCEDatabases(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn ReindexSQLCEDatabases(self: *const IPMDeploymentManager, ProductID: Guid) HRESULT {
         return self.vtable.ReindexSQLCEDatabases(self, ProductID);
     }
-    pub fn SetApplicationsNeedMaintenance(self: *const IPMDeploymentManager, RequiredMaintenanceOperations: u32, pcApplications: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetApplicationsNeedMaintenance(self: *const IPMDeploymentManager, RequiredMaintenanceOperations: u32, pcApplications: ?*u32) HRESULT {
         return self.vtable.SetApplicationsNeedMaintenance(self, RequiredMaintenanceOperations, pcApplications);
     }
-    pub fn UpdateChamberProfile(self: *const IPMDeploymentManager, ProductID: Guid) callconv(.Inline) HRESULT {
+    pub fn UpdateChamberProfile(self: *const IPMDeploymentManager, ProductID: Guid) HRESULT {
         return self.vtable.UpdateChamberProfile(self, ProductID);
     }
-    pub fn EnterprisePolicyIsApplicationAllowed(self: *const IPMDeploymentManager, productId: Guid, publisherName: ?[*:0]const u16, pIsAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn EnterprisePolicyIsApplicationAllowed(self: *const IPMDeploymentManager, productId: Guid, publisherName: ?[*:0]const u16, pIsAllowed: ?*BOOL) HRESULT {
         return self.vtable.EnterprisePolicyIsApplicationAllowed(self, productId, publisherName, pIsAllowed);
     }
-    pub fn BeginUpdateDeployedPackage(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) callconv(.Inline) HRESULT {
+    pub fn BeginUpdateDeployedPackage(self: *const IPMDeploymentManager, pUpdateInfo: ?*PM_UPDATEINFO) HRESULT {
         return self.vtable.BeginUpdateDeployedPackage(self, pUpdateInfo);
     }
-    pub fn ReportRestoreCancelled(self: *const IPMDeploymentManager, productID: Guid) callconv(.Inline) HRESULT {
+    pub fn ReportRestoreCancelled(self: *const IPMDeploymentManager, productID: Guid) HRESULT {
         return self.vtable.ReportRestoreCancelled(self, productID);
     }
-    pub fn ResolveResourceString(self: *const IPMDeploymentManager, resourceString: ?[*:0]const u16, pResolvedResourceString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ResolveResourceString(self: *const IPMDeploymentManager, resourceString: ?[*:0]const u16, pResolvedResourceString: ?*?BSTR) HRESULT {
         return self.vtable.ResolveResourceString(self, resourceString, pResolvedResourceString);
     }
-    pub fn UpdateCapabilitiesForModernApps(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+    pub fn UpdateCapabilitiesForModernApps(self: *const IPMDeploymentManager) HRESULT {
         return self.vtable.UpdateCapabilitiesForModernApps(self);
     }
-    pub fn ReportDownloadStatusUpdate(self: *const IPMDeploymentManager, productId: Guid) callconv(.Inline) HRESULT {
+    pub fn ReportDownloadStatusUpdate(self: *const IPMDeploymentManager, productId: Guid) HRESULT {
         return self.vtable.ReportDownloadStatusUpdate(self, productId);
     }
-    pub fn BeginUninstallWithOptions(self: *const IPMDeploymentManager, productID: Guid, removalOptions: u32) callconv(.Inline) HRESULT {
+    pub fn BeginUninstallWithOptions(self: *const IPMDeploymentManager, productID: Guid, removalOptions: u32) HRESULT {
         return self.vtable.BeginUninstallWithOptions(self, productID, removalOptions);
     }
-    pub fn BindDeferredMdilBinaries(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+    pub fn BindDeferredMdilBinaries(self: *const IPMDeploymentManager) HRESULT {
         return self.vtable.BindDeferredMdilBinaries(self);
     }
-    pub fn GenerateXamlLightupXbfForCurrentLocale(self: *const IPMDeploymentManager, PackageFamilyName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn GenerateXamlLightupXbfForCurrentLocale(self: *const IPMDeploymentManager, PackageFamilyName: ?BSTR) HRESULT {
         return self.vtable.GenerateXamlLightupXbfForCurrentLocale(self, PackageFamilyName);
     }
-    pub fn AddLicenseForAppx(self: *const IPMDeploymentManager, productID: Guid, pbLicense: [*:0]u8, cbLicense: u32, pbPlayReadyHeader: ?[*:0]u8, cbPlayReadyHeader: u32) callconv(.Inline) HRESULT {
+    pub fn AddLicenseForAppx(self: *const IPMDeploymentManager, productID: Guid, pbLicense: [*:0]u8, cbLicense: u32, pbPlayReadyHeader: ?[*:0]u8, cbPlayReadyHeader: u32) HRESULT {
         return self.vtable.AddLicenseForAppx(self, productID, pbLicense, cbLicense, pbPlayReadyHeader, cbPlayReadyHeader);
     }
-    pub fn FixJunctionsForAppsOnSDCard(self: *const IPMDeploymentManager) callconv(.Inline) HRESULT {
+    pub fn FixJunctionsForAppsOnSDCard(self: *const IPMDeploymentManager) HRESULT {
         return self.vtable.FixJunctionsForAppsOnSDCard(self);
     }
 };
@@ -4387,156 +4387,156 @@ pub const IPMEnumerationManager = extern union {
             self: *const IPMEnumerationManager,
             ppAppEnum: ?*?*IPMApplicationInfoEnumerator,
             Filter: PM_ENUM_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AllTiles: *const fn(
             self: *const IPMEnumerationManager,
             ppTileEnum: ?*?*IPMTileInfoEnumerator,
             Filter: PM_ENUM_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AllTasks: *const fn(
             self: *const IPMEnumerationManager,
             ppTaskEnum: ?*?*IPMTaskInfoEnumerator,
             Filter: PM_ENUM_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AllExtensions: *const fn(
             self: *const IPMEnumerationManager,
             ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator,
             Filter: PM_ENUM_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AllBackgroundServiceAgents: *const fn(
             self: *const IPMEnumerationManager,
             ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator,
             Filter: PM_ENUM_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AllBackgroundWorkers: *const fn(
             self: *const IPMEnumerationManager,
             ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator,
             Filter: PM_ENUM_FILTER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ApplicationInfo: *const fn(
             self: *const IPMEnumerationManager,
             ProductID: Guid,
             ppAppInfo: ?*?*IPMApplicationInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_TileInfo: *const fn(
             self: *const IPMEnumerationManager,
             ProductID: Guid,
             TileID: ?BSTR,
             ppTileInfo: ?*?*IPMTileInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_TaskInfo: *const fn(
             self: *const IPMEnumerationManager,
             ProductID: Guid,
             TaskID: ?BSTR,
             ppTaskInfo: ?*?*IPMTaskInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_TaskInfoEx: *const fn(
             self: *const IPMEnumerationManager,
             ProductID: Guid,
             TaskID: ?[*:0]const u16,
             ppTaskInfo: ?*?*IPMTaskInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_BackgroundServiceAgentInfo: *const fn(
             self: *const IPMEnumerationManager,
             BSAID: u32,
             ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllLiveTileJobs: *const fn(
             self: *const IPMEnumerationManager,
             ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_LiveTileJob: *const fn(
             self: *const IPMEnumerationManager,
             ProductID: Guid,
             TileID: ?BSTR,
             RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE,
             ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ApplicationInfoExternal: *const fn(
             self: *const IPMEnumerationManager,
             ProductID: Guid,
             ppAppInfo: ?*?*IPMApplicationInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_FileHandlerGenericLogo: *const fn(
             self: *const IPMEnumerationManager,
             FileType: ?BSTR,
             LogoSize: PM_LOGO_SIZE,
             pLogo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ApplicationInfoFromAccessClaims: *const fn(
             self: *const IPMEnumerationManager,
             SysAppID0: ?BSTR,
             SysAppID1: ?BSTR,
             ppAppInfo: ?*?*IPMApplicationInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_StartTileEnumeratorBlob: *const fn(
             self: *const IPMEnumerationManager,
             Filter: PM_ENUM_FILTER,
             pcTiles: ?*u32,
             ppTileBlobs: [*]?*PM_STARTTILEBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_StartAppEnumeratorBlob: *const fn(
             self: *const IPMEnumerationManager,
             Filter: PM_ENUM_FILTER,
             pcApps: ?*u32,
             ppAppBlobs: [*]?*PM_STARTAPPBLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllApplications(self: *const IPMEnumerationManager, ppAppEnum: ?*?*IPMApplicationInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllApplications(self: *const IPMEnumerationManager, ppAppEnum: ?*?*IPMApplicationInfoEnumerator, Filter: PM_ENUM_FILTER) HRESULT {
         return self.vtable.get_AllApplications(self, ppAppEnum, Filter);
     }
-    pub fn get_AllTiles(self: *const IPMEnumerationManager, ppTileEnum: ?*?*IPMTileInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllTiles(self: *const IPMEnumerationManager, ppTileEnum: ?*?*IPMTileInfoEnumerator, Filter: PM_ENUM_FILTER) HRESULT {
         return self.vtable.get_AllTiles(self, ppTileEnum, Filter);
     }
-    pub fn get_AllTasks(self: *const IPMEnumerationManager, ppTaskEnum: ?*?*IPMTaskInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllTasks(self: *const IPMEnumerationManager, ppTaskEnum: ?*?*IPMTaskInfoEnumerator, Filter: PM_ENUM_FILTER) HRESULT {
         return self.vtable.get_AllTasks(self, ppTaskEnum, Filter);
     }
-    pub fn get_AllExtensions(self: *const IPMEnumerationManager, ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllExtensions(self: *const IPMEnumerationManager, ppExtensionEnum: ?*?*IPMExtensionInfoEnumerator, Filter: PM_ENUM_FILTER) HRESULT {
         return self.vtable.get_AllExtensions(self, ppExtensionEnum, Filter);
     }
-    pub fn get_AllBackgroundServiceAgents(self: *const IPMEnumerationManager, ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllBackgroundServiceAgents(self: *const IPMEnumerationManager, ppBSAEnum: ?*?*IPMBackgroundServiceAgentInfoEnumerator, Filter: PM_ENUM_FILTER) HRESULT {
         return self.vtable.get_AllBackgroundServiceAgents(self, ppBSAEnum, Filter);
     }
-    pub fn get_AllBackgroundWorkers(self: *const IPMEnumerationManager, ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator, Filter: PM_ENUM_FILTER) callconv(.Inline) HRESULT {
+    pub fn get_AllBackgroundWorkers(self: *const IPMEnumerationManager, ppBSWEnum: ?*?*IPMBackgroundWorkerInfoEnumerator, Filter: PM_ENUM_FILTER) HRESULT {
         return self.vtable.get_AllBackgroundWorkers(self, ppBSWEnum, Filter);
     }
-    pub fn get_ApplicationInfo(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationInfo(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) HRESULT {
         return self.vtable.get_ApplicationInfo(self, ProductID, ppAppInfo);
     }
-    pub fn get_TileInfo(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, ppTileInfo: ?*?*IPMTileInfo) callconv(.Inline) HRESULT {
+    pub fn get_TileInfo(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, ppTileInfo: ?*?*IPMTileInfo) HRESULT {
         return self.vtable.get_TileInfo(self, ProductID, TileID, ppTileInfo);
     }
-    pub fn get_TaskInfo(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?BSTR, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+    pub fn get_TaskInfo(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?BSTR, ppTaskInfo: ?*?*IPMTaskInfo) HRESULT {
         return self.vtable.get_TaskInfo(self, ProductID, TaskID, ppTaskInfo);
     }
-    pub fn get_TaskInfoEx(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?[*:0]const u16, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+    pub fn get_TaskInfoEx(self: *const IPMEnumerationManager, ProductID: Guid, TaskID: ?[*:0]const u16, ppTaskInfo: ?*?*IPMTaskInfo) HRESULT {
         return self.vtable.get_TaskInfoEx(self, ProductID, TaskID, ppTaskInfo);
     }
-    pub fn get_BackgroundServiceAgentInfo(self: *const IPMEnumerationManager, BSAID: u32, ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.Inline) HRESULT {
+    pub fn get_BackgroundServiceAgentInfo(self: *const IPMEnumerationManager, BSAID: u32, ppTaskInfo: ?*?*IPMBackgroundServiceAgentInfo) HRESULT {
         return self.vtable.get_BackgroundServiceAgentInfo(self, BSAID, ppTaskInfo);
     }
-    pub fn get_AllLiveTileJobs(self: *const IPMEnumerationManager, ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn get_AllLiveTileJobs(self: *const IPMEnumerationManager, ppLiveTileJobEnum: ?*?*IPMLiveTileJobInfoEnumerator) HRESULT {
         return self.vtable.get_AllLiveTileJobs(self, ppLiveTileJobEnum);
     }
-    pub fn get_LiveTileJob(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) callconv(.Inline) HRESULT {
+    pub fn get_LiveTileJob(self: *const IPMEnumerationManager, ProductID: Guid, TileID: ?BSTR, RecurrenceType: PM_LIVETILE_RECURRENCE_TYPE, ppLiveTileJobInfo: ?*?*IPMLiveTileJobInfo) HRESULT {
         return self.vtable.get_LiveTileJob(self, ProductID, TileID, RecurrenceType, ppLiveTileJobInfo);
     }
-    pub fn get_ApplicationInfoExternal(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationInfoExternal(self: *const IPMEnumerationManager, ProductID: Guid, ppAppInfo: ?*?*IPMApplicationInfo) HRESULT {
         return self.vtable.get_ApplicationInfoExternal(self, ProductID, ppAppInfo);
     }
-    pub fn get_FileHandlerGenericLogo(self: *const IPMEnumerationManager, FileType: ?BSTR, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FileHandlerGenericLogo(self: *const IPMEnumerationManager, FileType: ?BSTR, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) HRESULT {
         return self.vtable.get_FileHandlerGenericLogo(self, FileType, LogoSize, pLogo);
     }
-    pub fn get_ApplicationInfoFromAccessClaims(self: *const IPMEnumerationManager, SysAppID0: ?BSTR, SysAppID1: ?BSTR, ppAppInfo: ?*?*IPMApplicationInfo) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationInfoFromAccessClaims(self: *const IPMEnumerationManager, SysAppID0: ?BSTR, SysAppID1: ?BSTR, ppAppInfo: ?*?*IPMApplicationInfo) HRESULT {
         return self.vtable.get_ApplicationInfoFromAccessClaims(self, SysAppID0, SysAppID1, ppAppInfo);
     }
-    pub fn get_StartTileEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcTiles: ?*u32, ppTileBlobs: [*]?*PM_STARTTILEBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartTileEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcTiles: ?*u32, ppTileBlobs: [*]?*PM_STARTTILEBLOB) HRESULT {
         return self.vtable.get_StartTileEnumeratorBlob(self, Filter, pcTiles, ppTileBlobs);
     }
-    pub fn get_StartAppEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcApps: ?*u32, ppAppBlobs: [*]?*PM_STARTAPPBLOB) callconv(.Inline) HRESULT {
+    pub fn get_StartAppEnumeratorBlob(self: *const IPMEnumerationManager, Filter: PM_ENUM_FILTER, pcApps: ?*u32, ppAppBlobs: [*]?*PM_STARTAPPBLOB) HRESULT {
         return self.vtable.get_StartAppEnumeratorBlob(self, Filter, pcApps, ppAppBlobs);
     }
 };
@@ -4550,171 +4550,171 @@ pub const IPMTaskInfo = extern union {
         get_ProductID: *const fn(
             self: *const IPMTaskInfo,
             pProductID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskID: *const fn(
             self: *const IPMTaskInfo,
             pTaskID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NavigationPage: *const fn(
             self: *const IPMTaskInfo,
             pNavigationPage: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskTransition: *const fn(
             self: *const IPMTaskInfo,
             pTaskTransition: ?*PM_TASK_TRANSITION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RuntimeType: *const fn(
             self: *const IPMTaskInfo,
             pRuntimetype: ?*PACKMAN_RUNTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActivationPolicy: *const fn(
             self: *const IPMTaskInfo,
             pActivationPolicy: ?*PM_ACTIVATION_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskType: *const fn(
             self: *const IPMTaskInfo,
             pTaskType: ?*PM_TASK_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_InvocationInfo: *const fn(
             self: *const IPMTaskInfo,
             pImageUrn: ?*?BSTR,
             pParameters: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImagePath: *const fn(
             self: *const IPMTaskInfo,
             pImagePath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImageParams: *const fn(
             self: *const IPMTaskInfo,
             pImageParams: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstallRootFolder: *const fn(
             self: *const IPMTaskInfo,
             pInstallRootFolder: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataRootFolder: *const fn(
             self: *const IPMTaskInfo,
             pDataRootFolder: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsSingleInstanceHost: *const fn(
             self: *const IPMTaskInfo,
             pIsSingleInstanceHost: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsInteropEnabled: *const fn(
             self: *const IPMTaskInfo,
             pIsInteropEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationState: *const fn(
             self: *const IPMTaskInfo,
             pApplicationState: ?*PM_APPLICATION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstallType: *const fn(
             self: *const IPMTaskInfo,
             pInstallType: ?*PM_APPLICATION_INSTALL_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Version: *const fn(
             self: *const IPMTaskInfo,
             pTargetMajorVersion: ?*u8,
             pTargetMinorVersion: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BitsPerPixel: *const fn(
             self: *const IPMTaskInfo,
             pBitsPerPixel: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SuppressesDehydration: *const fn(
             self: *const IPMTaskInfo,
             pSuppressesDehydration: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BackgroundExecutionAbilities: *const fn(
             self: *const IPMTaskInfo,
             pBackgroundExecutionAbilities: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOptedForExtendedMem: *const fn(
             self: *const IPMTaskInfo,
             pIsOptedIn: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMTaskInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMTaskInfo, pProductID: ?*Guid) HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TaskID(self: *const IPMTaskInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMTaskInfo, pTaskID: ?*?BSTR) HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_NavigationPage(self: *const IPMTaskInfo, pNavigationPage: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_NavigationPage(self: *const IPMTaskInfo, pNavigationPage: ?*?BSTR) HRESULT {
         return self.vtable.get_NavigationPage(self, pNavigationPage);
     }
-    pub fn get_TaskTransition(self: *const IPMTaskInfo, pTaskTransition: ?*PM_TASK_TRANSITION) callconv(.Inline) HRESULT {
+    pub fn get_TaskTransition(self: *const IPMTaskInfo, pTaskTransition: ?*PM_TASK_TRANSITION) HRESULT {
         return self.vtable.get_TaskTransition(self, pTaskTransition);
     }
-    pub fn get_RuntimeType(self: *const IPMTaskInfo, pRuntimetype: ?*PACKMAN_RUNTIME) callconv(.Inline) HRESULT {
+    pub fn get_RuntimeType(self: *const IPMTaskInfo, pRuntimetype: ?*PACKMAN_RUNTIME) HRESULT {
         return self.vtable.get_RuntimeType(self, pRuntimetype);
     }
-    pub fn get_ActivationPolicy(self: *const IPMTaskInfo, pActivationPolicy: ?*PM_ACTIVATION_POLICY) callconv(.Inline) HRESULT {
+    pub fn get_ActivationPolicy(self: *const IPMTaskInfo, pActivationPolicy: ?*PM_ACTIVATION_POLICY) HRESULT {
         return self.vtable.get_ActivationPolicy(self, pActivationPolicy);
     }
-    pub fn get_TaskType(self: *const IPMTaskInfo, pTaskType: ?*PM_TASK_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_TaskType(self: *const IPMTaskInfo, pTaskType: ?*PM_TASK_TYPE) HRESULT {
         return self.vtable.get_TaskType(self, pTaskType);
     }
-    pub fn get_InvocationInfo(self: *const IPMTaskInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMTaskInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_ImagePath(self: *const IPMTaskInfo, pImagePath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ImagePath(self: *const IPMTaskInfo, pImagePath: ?*?BSTR) HRESULT {
         return self.vtable.get_ImagePath(self, pImagePath);
     }
-    pub fn get_ImageParams(self: *const IPMTaskInfo, pImageParams: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ImageParams(self: *const IPMTaskInfo, pImageParams: ?*?BSTR) HRESULT {
         return self.vtable.get_ImageParams(self, pImageParams);
     }
-    pub fn get_InstallRootFolder(self: *const IPMTaskInfo, pInstallRootFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InstallRootFolder(self: *const IPMTaskInfo, pInstallRootFolder: ?*?BSTR) HRESULT {
         return self.vtable.get_InstallRootFolder(self, pInstallRootFolder);
     }
-    pub fn get_DataRootFolder(self: *const IPMTaskInfo, pDataRootFolder: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DataRootFolder(self: *const IPMTaskInfo, pDataRootFolder: ?*?BSTR) HRESULT {
         return self.vtable.get_DataRootFolder(self, pDataRootFolder);
     }
-    pub fn get_IsSingleInstanceHost(self: *const IPMTaskInfo, pIsSingleInstanceHost: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsSingleInstanceHost(self: *const IPMTaskInfo, pIsSingleInstanceHost: ?*BOOL) HRESULT {
         return self.vtable.get_IsSingleInstanceHost(self, pIsSingleInstanceHost);
     }
-    pub fn get_IsInteropEnabled(self: *const IPMTaskInfo, pIsInteropEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsInteropEnabled(self: *const IPMTaskInfo, pIsInteropEnabled: ?*BOOL) HRESULT {
         return self.vtable.get_IsInteropEnabled(self, pIsInteropEnabled);
     }
-    pub fn get_ApplicationState(self: *const IPMTaskInfo, pApplicationState: ?*PM_APPLICATION_STATE) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationState(self: *const IPMTaskInfo, pApplicationState: ?*PM_APPLICATION_STATE) HRESULT {
         return self.vtable.get_ApplicationState(self, pApplicationState);
     }
-    pub fn get_InstallType(self: *const IPMTaskInfo, pInstallType: ?*PM_APPLICATION_INSTALL_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_InstallType(self: *const IPMTaskInfo, pInstallType: ?*PM_APPLICATION_INSTALL_TYPE) HRESULT {
         return self.vtable.get_InstallType(self, pInstallType);
     }
-    pub fn get_Version(self: *const IPMTaskInfo, pTargetMajorVersion: ?*u8, pTargetMinorVersion: ?*u8) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IPMTaskInfo, pTargetMajorVersion: ?*u8, pTargetMinorVersion: ?*u8) HRESULT {
         return self.vtable.get_Version(self, pTargetMajorVersion, pTargetMinorVersion);
     }
-    pub fn get_BitsPerPixel(self: *const IPMTaskInfo, pBitsPerPixel: ?*u16) callconv(.Inline) HRESULT {
+    pub fn get_BitsPerPixel(self: *const IPMTaskInfo, pBitsPerPixel: ?*u16) HRESULT {
         return self.vtable.get_BitsPerPixel(self, pBitsPerPixel);
     }
-    pub fn get_SuppressesDehydration(self: *const IPMTaskInfo, pSuppressesDehydration: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SuppressesDehydration(self: *const IPMTaskInfo, pSuppressesDehydration: ?*BOOL) HRESULT {
         return self.vtable.get_SuppressesDehydration(self, pSuppressesDehydration);
     }
-    pub fn get_BackgroundExecutionAbilities(self: *const IPMTaskInfo, pBackgroundExecutionAbilities: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BackgroundExecutionAbilities(self: *const IPMTaskInfo, pBackgroundExecutionAbilities: ?*?BSTR) HRESULT {
         return self.vtable.get_BackgroundExecutionAbilities(self, pBackgroundExecutionAbilities);
     }
-    pub fn get_IsOptedForExtendedMem(self: *const IPMTaskInfo, pIsOptedIn: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsOptedForExtendedMem(self: *const IPMTaskInfo, pIsOptedIn: ?*BOOL) HRESULT {
         return self.vtable.get_IsOptedForExtendedMem(self, pIsOptedIn);
     }
 };
@@ -4728,11 +4728,11 @@ pub const IPMTaskInfoEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMTaskInfoEnumerator,
             ppTaskInfo: ?*?*IPMTaskInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMTaskInfoEnumerator, ppTaskInfo: ?*?*IPMTaskInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMTaskInfoEnumerator, ppTaskInfo: ?*?*IPMTaskInfo) HRESULT {
         return self.vtable.get_Next(self, ppTaskInfo);
     }
 };
@@ -4746,51 +4746,51 @@ pub const IPMExtensionInfo = extern union {
         get_SupplierPID: *const fn(
             self: *const IPMExtensionInfo,
             pSupplierPID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupplierTaskID: *const fn(
             self: *const IPMExtensionInfo,
             pSupplierTID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Title: *const fn(
             self: *const IPMExtensionInfo,
             pTitle: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IconPath: *const fn(
             self: *const IPMExtensionInfo,
             pIconPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtraFile: *const fn(
             self: *const IPMExtensionInfo,
             pFilePath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_InvocationInfo: *const fn(
             self: *const IPMExtensionInfo,
             pImageUrn: ?*?BSTR,
             pParameters: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SupplierPID(self: *const IPMExtensionInfo, pSupplierPID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_SupplierPID(self: *const IPMExtensionInfo, pSupplierPID: ?*Guid) HRESULT {
         return self.vtable.get_SupplierPID(self, pSupplierPID);
     }
-    pub fn get_SupplierTaskID(self: *const IPMExtensionInfo, pSupplierTID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SupplierTaskID(self: *const IPMExtensionInfo, pSupplierTID: ?*?BSTR) HRESULT {
         return self.vtable.get_SupplierTaskID(self, pSupplierTID);
     }
-    pub fn get_Title(self: *const IPMExtensionInfo, pTitle: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Title(self: *const IPMExtensionInfo, pTitle: ?*?BSTR) HRESULT {
         return self.vtable.get_Title(self, pTitle);
     }
-    pub fn get_IconPath(self: *const IPMExtensionInfo, pIconPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IconPath(self: *const IPMExtensionInfo, pIconPath: ?*?BSTR) HRESULT {
         return self.vtable.get_IconPath(self, pIconPath);
     }
-    pub fn get_ExtraFile(self: *const IPMExtensionInfo, pFilePath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ExtraFile(self: *const IPMExtensionInfo, pFilePath: ?*?BSTR) HRESULT {
         return self.vtable.get_ExtraFile(self, pFilePath);
     }
-    pub fn get_InvocationInfo(self: *const IPMExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
 };
@@ -4804,59 +4804,59 @@ pub const IPMExtensionFileExtensionInfo = extern union {
         get_Name: *const fn(
             self: *const IPMExtensionFileExtensionInfo,
             pName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayName: *const fn(
             self: *const IPMExtensionFileExtensionInfo,
             pDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Logo: *const fn(
             self: *const IPMExtensionFileExtensionInfo,
             LogoSize: PM_LOGO_SIZE,
             pLogo: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ContentType: *const fn(
             self: *const IPMExtensionFileExtensionInfo,
             FileType: ?BSTR,
             pContentType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_FileType: *const fn(
             self: *const IPMExtensionFileExtensionInfo,
             ContentType: ?BSTR,
             pFileType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_InvocationInfo: *const fn(
             self: *const IPMExtensionFileExtensionInfo,
             pImageUrn: ?*?BSTR,
             pParameters: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AllFileTypes: *const fn(
             self: *const IPMExtensionFileExtensionInfo,
             pcbTypes: ?*u32,
             ppTypes: [*]?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IPMExtensionFileExtensionInfo, pName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IPMExtensionFileExtensionInfo, pName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pName);
     }
-    pub fn get_DisplayName(self: *const IPMExtensionFileExtensionInfo, pDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const IPMExtensionFileExtensionInfo, pDisplayName: ?*?BSTR) HRESULT {
         return self.vtable.get_DisplayName(self, pDisplayName);
     }
-    pub fn get_Logo(self: *const IPMExtensionFileExtensionInfo, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Logo(self: *const IPMExtensionFileExtensionInfo, LogoSize: PM_LOGO_SIZE, pLogo: ?*?BSTR) HRESULT {
         return self.vtable.get_Logo(self, LogoSize, pLogo);
     }
-    pub fn get_ContentType(self: *const IPMExtensionFileExtensionInfo, FileType: ?BSTR, pContentType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ContentType(self: *const IPMExtensionFileExtensionInfo, FileType: ?BSTR, pContentType: ?*?BSTR) HRESULT {
         return self.vtable.get_ContentType(self, FileType, pContentType);
     }
-    pub fn get_FileType(self: *const IPMExtensionFileExtensionInfo, ContentType: ?BSTR, pFileType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FileType(self: *const IPMExtensionFileExtensionInfo, ContentType: ?BSTR, pFileType: ?*?BSTR) HRESULT {
         return self.vtable.get_FileType(self, ContentType, pFileType);
     }
-    pub fn get_InvocationInfo(self: *const IPMExtensionFileExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionFileExtensionInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
-    pub fn get_AllFileTypes(self: *const IPMExtensionFileExtensionInfo, pcbTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileExtensionInfo, pcbTypes: ?*u32, ppTypes: [*]?*?BSTR) HRESULT {
         return self.vtable.get_AllFileTypes(self, pcbTypes, ppTypes);
     }
 };
@@ -4870,19 +4870,19 @@ pub const IPMExtensionProtocolInfo = extern union {
         get_Protocol: *const fn(
             self: *const IPMExtensionProtocolInfo,
             pProtocol: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_InvocationInfo: *const fn(
             self: *const IPMExtensionProtocolInfo,
             pImageUrn: ?*?BSTR,
             pParameters: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Protocol(self: *const IPMExtensionProtocolInfo, pProtocol: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Protocol(self: *const IPMExtensionProtocolInfo, pProtocol: ?*?BSTR) HRESULT {
         return self.vtable.get_Protocol(self, pProtocol);
     }
-    pub fn get_InvocationInfo(self: *const IPMExtensionProtocolInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionProtocolInfo, pImageUrn: ?*?BSTR, pParameters: ?*?BSTR) HRESULT {
         return self.vtable.get_InvocationInfo(self, pImageUrn, pParameters);
     }
 };
@@ -4896,27 +4896,27 @@ pub const IPMExtensionShareTargetInfo = extern union {
             self: *const IPMExtensionShareTargetInfo,
             pcTypes: ?*u32,
             ppTypes: [*]?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AllDataFormats: *const fn(
             self: *const IPMExtensionShareTargetInfo,
             pcDataFormats: ?*u32,
             ppDataFormats: [*]?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportsAllFileTypes: *const fn(
             self: *const IPMExtensionShareTargetInfo,
             pSupportsAllTypes: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllFileTypes(self: *const IPMExtensionShareTargetInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionShareTargetInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) HRESULT {
         return self.vtable.get_AllFileTypes(self, pcTypes, ppTypes);
     }
-    pub fn get_AllDataFormats(self: *const IPMExtensionShareTargetInfo, pcDataFormats: ?*u32, ppDataFormats: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllDataFormats(self: *const IPMExtensionShareTargetInfo, pcDataFormats: ?*u32, ppDataFormats: [*]?*?BSTR) HRESULT {
         return self.vtable.get_AllDataFormats(self, pcDataFormats, ppDataFormats);
     }
-    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionShareTargetInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionShareTargetInfo, pSupportsAllTypes: ?*BOOL) HRESULT {
         return self.vtable.get_SupportsAllFileTypes(self, pSupportsAllTypes);
     }
 };
@@ -4930,11 +4930,11 @@ pub const IPMExtensionContractInfo = extern union {
             self: *const IPMExtensionContractInfo,
             pAUMID: ?*?BSTR,
             pArgs: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_InvocationInfo(self: *const IPMExtensionContractInfo, pAUMID: ?*?BSTR, pArgs: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InvocationInfo(self: *const IPMExtensionContractInfo, pAUMID: ?*?BSTR, pArgs: ?*?BSTR) HRESULT {
         return self.vtable.get_InvocationInfo(self, pAUMID, pArgs);
     }
 };
@@ -4948,19 +4948,19 @@ pub const IPMExtensionFileOpenPickerInfo = extern union {
             self: *const IPMExtensionFileOpenPickerInfo,
             pcTypes: ?*u32,
             ppTypes: [*]?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportsAllFileTypes: *const fn(
             self: *const IPMExtensionFileOpenPickerInfo,
             pSupportsAllTypes: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) HRESULT {
         return self.vtable.get_AllFileTypes(self, pcTypes, ppTypes);
     }
-    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileOpenPickerInfo, pSupportsAllTypes: ?*BOOL) HRESULT {
         return self.vtable.get_SupportsAllFileTypes(self, pSupportsAllTypes);
     }
 };
@@ -4974,19 +4974,19 @@ pub const IPMExtensionFileSavePickerInfo = extern union {
             self: *const IPMExtensionFileSavePickerInfo,
             pcTypes: ?*u32,
             ppTypes: [*]?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportsAllFileTypes: *const fn(
             self: *const IPMExtensionFileSavePickerInfo,
             pSupportsAllTypes: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_AllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pcTypes: ?*u32, ppTypes: [*]?*?BSTR) HRESULT {
         return self.vtable.get_AllFileTypes(self, pcTypes, ppTypes);
     }
-    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pSupportsAllTypes: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsAllFileTypes(self: *const IPMExtensionFileSavePickerInfo, pSupportsAllTypes: ?*BOOL) HRESULT {
         return self.vtable.get_SupportsAllFileTypes(self, pSupportsAllTypes);
     }
 };
@@ -5000,11 +5000,11 @@ pub const IPMExtensionCachedFileUpdaterInfo = extern union {
         get_SupportsUpdates: *const fn(
             self: *const IPMExtensionCachedFileUpdaterInfo,
             pSupportsUpdates: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SupportsUpdates(self: *const IPMExtensionCachedFileUpdaterInfo, pSupportsUpdates: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_SupportsUpdates(self: *const IPMExtensionCachedFileUpdaterInfo, pSupportsUpdates: ?*BOOL) HRESULT {
         return self.vtable.get_SupportsUpdates(self, pSupportsUpdates);
     }
 };
@@ -5018,11 +5018,11 @@ pub const IPMExtensionInfoEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMExtensionInfoEnumerator,
             ppExtensionInfo: ?*?*IPMExtensionInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMExtensionInfoEnumerator, ppExtensionInfo: ?*?*IPMExtensionInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMExtensionInfoEnumerator, ppExtensionInfo: ?*?*IPMExtensionInfo) HRESULT {
         return self.vtable.get_Next(self, ppExtensionInfo);
     }
 };
@@ -5036,113 +5036,113 @@ pub const IPMBackgroundServiceAgentInfo = extern union {
         get_ProductID: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pProductID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskID: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pTaskID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BSAID: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pBSAID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BGSpecifier: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pBGSpecifier: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BGName: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pBGName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BGSource: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pBGSource: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BGType: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pBGType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsPeriodic: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pIsPeriodic: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsScheduled: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pIsScheduled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsScheduleAllowed: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pIsScheduleAllowed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLaunchOnBoot: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             pLaunchOnBoot: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_IsScheduled: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             IsScheduled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         set_IsScheduleAllowed: *const fn(
             self: *const IPMBackgroundServiceAgentInfo,
             IsScheduleAllowed: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMBackgroundServiceAgentInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMBackgroundServiceAgentInfo, pProductID: ?*Guid) HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TaskID(self: *const IPMBackgroundServiceAgentInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMBackgroundServiceAgentInfo, pTaskID: ?*?BSTR) HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_BSAID(self: *const IPMBackgroundServiceAgentInfo, pBSAID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_BSAID(self: *const IPMBackgroundServiceAgentInfo, pBSAID: ?*u32) HRESULT {
         return self.vtable.get_BSAID(self, pBSAID);
     }
-    pub fn get_BGSpecifier(self: *const IPMBackgroundServiceAgentInfo, pBGSpecifier: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGSpecifier(self: *const IPMBackgroundServiceAgentInfo, pBGSpecifier: ?*?BSTR) HRESULT {
         return self.vtable.get_BGSpecifier(self, pBGSpecifier);
     }
-    pub fn get_BGName(self: *const IPMBackgroundServiceAgentInfo, pBGName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGName(self: *const IPMBackgroundServiceAgentInfo, pBGName: ?*?BSTR) HRESULT {
         return self.vtable.get_BGName(self, pBGName);
     }
-    pub fn get_BGSource(self: *const IPMBackgroundServiceAgentInfo, pBGSource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGSource(self: *const IPMBackgroundServiceAgentInfo, pBGSource: ?*?BSTR) HRESULT {
         return self.vtable.get_BGSource(self, pBGSource);
     }
-    pub fn get_BGType(self: *const IPMBackgroundServiceAgentInfo, pBGType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGType(self: *const IPMBackgroundServiceAgentInfo, pBGType: ?*?BSTR) HRESULT {
         return self.vtable.get_BGType(self, pBGType);
     }
-    pub fn get_IsPeriodic(self: *const IPMBackgroundServiceAgentInfo, pIsPeriodic: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsPeriodic(self: *const IPMBackgroundServiceAgentInfo, pIsPeriodic: ?*BOOL) HRESULT {
         return self.vtable.get_IsPeriodic(self, pIsPeriodic);
     }
-    pub fn get_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, pIsScheduled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, pIsScheduled: ?*BOOL) HRESULT {
         return self.vtable.get_IsScheduled(self, pIsScheduled);
     }
-    pub fn get_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, pIsScheduleAllowed: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, pIsScheduleAllowed: ?*BOOL) HRESULT {
         return self.vtable.get_IsScheduleAllowed(self, pIsScheduleAllowed);
     }
-    pub fn get_Description(self: *const IPMBackgroundServiceAgentInfo, pDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IPMBackgroundServiceAgentInfo, pDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pDescription);
     }
-    pub fn get_IsLaunchOnBoot(self: *const IPMBackgroundServiceAgentInfo, pLaunchOnBoot: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsLaunchOnBoot(self: *const IPMBackgroundServiceAgentInfo, pLaunchOnBoot: ?*BOOL) HRESULT {
         return self.vtable.get_IsLaunchOnBoot(self, pLaunchOnBoot);
     }
-    pub fn set_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, IsScheduled: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsScheduled(self: *const IPMBackgroundServiceAgentInfo, IsScheduled: BOOL) HRESULT {
         return self.vtable.set_IsScheduled(self, IsScheduled);
     }
-    pub fn set_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, IsScheduleAllowed: BOOL) callconv(.Inline) HRESULT {
+    pub fn set_IsScheduleAllowed(self: *const IPMBackgroundServiceAgentInfo, IsScheduleAllowed: BOOL) HRESULT {
         return self.vtable.set_IsScheduleAllowed(self, IsScheduleAllowed);
     }
 };
@@ -5156,51 +5156,51 @@ pub const IPMBackgroundWorkerInfo = extern union {
         get_ProductID: *const fn(
             self: *const IPMBackgroundWorkerInfo,
             pProductID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TaskID: *const fn(
             self: *const IPMBackgroundWorkerInfo,
             pTaskID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BGName: *const fn(
             self: *const IPMBackgroundWorkerInfo,
             pBGName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxStartupLatency: *const fn(
             self: *const IPMBackgroundWorkerInfo,
             pMaxStartupLatency: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExpectedRuntime: *const fn(
             self: *const IPMBackgroundWorkerInfo,
             pExpectedRuntime: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsBootWorker: *const fn(
             self: *const IPMBackgroundWorkerInfo,
             pIsBootWorker: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_ProductID(self: *const IPMBackgroundWorkerInfo, pProductID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ProductID(self: *const IPMBackgroundWorkerInfo, pProductID: ?*Guid) HRESULT {
         return self.vtable.get_ProductID(self, pProductID);
     }
-    pub fn get_TaskID(self: *const IPMBackgroundWorkerInfo, pTaskID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TaskID(self: *const IPMBackgroundWorkerInfo, pTaskID: ?*?BSTR) HRESULT {
         return self.vtable.get_TaskID(self, pTaskID);
     }
-    pub fn get_BGName(self: *const IPMBackgroundWorkerInfo, pBGName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BGName(self: *const IPMBackgroundWorkerInfo, pBGName: ?*?BSTR) HRESULT {
         return self.vtable.get_BGName(self, pBGName);
     }
-    pub fn get_MaxStartupLatency(self: *const IPMBackgroundWorkerInfo, pMaxStartupLatency: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MaxStartupLatency(self: *const IPMBackgroundWorkerInfo, pMaxStartupLatency: ?*u32) HRESULT {
         return self.vtable.get_MaxStartupLatency(self, pMaxStartupLatency);
     }
-    pub fn get_ExpectedRuntime(self: *const IPMBackgroundWorkerInfo, pExpectedRuntime: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ExpectedRuntime(self: *const IPMBackgroundWorkerInfo, pExpectedRuntime: ?*u32) HRESULT {
         return self.vtable.get_ExpectedRuntime(self, pExpectedRuntime);
     }
-    pub fn get_IsBootWorker(self: *const IPMBackgroundWorkerInfo, pIsBootWorker: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsBootWorker(self: *const IPMBackgroundWorkerInfo, pIsBootWorker: ?*BOOL) HRESULT {
         return self.vtable.get_IsBootWorker(self, pIsBootWorker);
     }
 };
@@ -5214,11 +5214,11 @@ pub const IPMBackgroundServiceAgentInfoEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMBackgroundServiceAgentInfoEnumerator,
             ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMBackgroundServiceAgentInfoEnumerator, ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMBackgroundServiceAgentInfoEnumerator, ppBSAInfo: ?*?*IPMBackgroundServiceAgentInfo) HRESULT {
         return self.vtable.get_Next(self, ppBSAInfo);
     }
 };
@@ -5232,11 +5232,11 @@ pub const IPMBackgroundWorkerInfoEnumerator = extern union {
         get_Next: *const fn(
             self: *const IPMBackgroundWorkerInfoEnumerator,
             ppBWInfo: ?*?*IPMBackgroundWorkerInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Next(self: *const IPMBackgroundWorkerInfoEnumerator, ppBWInfo: ?*?*IPMBackgroundWorkerInfo) callconv(.Inline) HRESULT {
+    pub fn get_Next(self: *const IPMBackgroundWorkerInfoEnumerator, ppBWInfo: ?*?*IPMBackgroundWorkerInfo) HRESULT {
         return self.vtable.get_Next(self, ppBWInfo);
     }
 };
@@ -5245,7 +5245,7 @@ pub const PPATCH_PROGRESS_CALLBACK = *const fn(
     CallbackContext: ?*anyopaque,
     CurrentPosition: u32,
     MaximumPosition: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PPATCH_SYMLOAD_CALLBACK = *const fn(
     WhichFile: u32,
@@ -5256,7 +5256,7 @@ pub const PPATCH_SYMLOAD_CALLBACK = *const fn(
     ImageFileCheckSum: u32,
     ImageFileTimeDate: u32,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PATCH_IGNORE_RANGE = extern struct {
     OffsetInOldFile: u32,
@@ -5496,31 +5496,31 @@ pub const ACTCTX_SECTION_KEYED_DATA = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiCloseHandle(
     hAny: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiCloseAllHandles(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetInternalUI(
     dwUILevel: INSTALLUILEVEL,
     phWnd: ?*?HWND,
-) callconv(@import("std").os.windows.WINAPI) INSTALLUILEVEL;
+) callconv(.winapi) INSTALLUILEVEL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetExternalUIA(
     puiHandler: ?INSTALLUI_HANDLERA,
     dwMessageFilter: u32,
     pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?INSTALLUI_HANDLERA;
+) callconv(.winapi) ?INSTALLUI_HANDLERA;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetExternalUIW(
     puiHandler: ?INSTALLUI_HANDLERW,
     dwMessageFilter: u32,
     pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?INSTALLUI_HANDLERW;
+) callconv(.winapi) ?INSTALLUI_HANDLERW;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetExternalUIRecord(
@@ -5528,31 +5528,31 @@ pub extern "msi" fn MsiSetExternalUIRecord(
     dwMessageFilter: u32,
     pvContext: ?*anyopaque,
     ppuiPrevHandler: ?PINSTALLUI_HANDLER_RECORD,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnableLogA(
     dwLogMode: INSTALLOGMODE,
     szLogFile: ?[*:0]const u8,
     dwLogAttributes: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnableLogW(
     dwLogMode: INSTALLOGMODE,
     szLogFile: ?[*:0]const u16,
     dwLogAttributes: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryProductStateA(
     szProduct: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryProductStateW(
     szProduct: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoA(
@@ -5560,7 +5560,7 @@ pub extern "msi" fn MsiGetProductInfoA(
     szAttribute: ?[*:0]const u8,
     lpValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoW(
@@ -5568,7 +5568,7 @@ pub extern "msi" fn MsiGetProductInfoW(
     szAttribute: ?[*:0]const u16,
     lpValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoExA(
@@ -5578,7 +5578,7 @@ pub extern "msi" fn MsiGetProductInfoExA(
     szProperty: ?[*:0]const u8,
     szValue: ?[*:0]u8,
     pcchValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoExW(
@@ -5588,33 +5588,33 @@ pub extern "msi" fn MsiGetProductInfoExW(
     szProperty: ?[*:0]const u16,
     szValue: ?[*:0]u16,
     pcchValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiInstallProductA(
     szPackagePath: ?[*:0]const u8,
     szCommandLine: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiInstallProductW(
     szPackagePath: ?[*:0]const u16,
     szCommandLine: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiConfigureProductA(
     szProduct: ?[*:0]const u8,
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiConfigureProductW(
     szProduct: ?[*:0]const u16,
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiConfigureProductExA(
@@ -5622,7 +5622,7 @@ pub extern "msi" fn MsiConfigureProductExA(
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
     szCommandLine: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiConfigureProductExW(
@@ -5630,19 +5630,19 @@ pub extern "msi" fn MsiConfigureProductExW(
     iInstallLevel: INSTALLLEVEL,
     eInstallState: INSTALLSTATE,
     szCommandLine: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiReinstallProductA(
     szProduct: ?[*:0]const u8,
     szReinstallMode: REINSTALLMODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiReinstallProductW(
     szProduct: ?[*:0]const u16,
     szReinstallMode: REINSTALLMODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiAdvertiseProductExA(
@@ -5652,7 +5652,7 @@ pub extern "msi" fn MsiAdvertiseProductExA(
     lgidLanguage: u16,
     dwPlatform: u32,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiAdvertiseProductExW(
@@ -5662,7 +5662,7 @@ pub extern "msi" fn MsiAdvertiseProductExW(
     lgidLanguage: u16,
     dwPlatform: u32,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiAdvertiseProductA(
@@ -5670,7 +5670,7 @@ pub extern "msi" fn MsiAdvertiseProductA(
     szScriptfilePath: ?[*:0]const u8,
     szTransforms: ?[*:0]const u8,
     lgidLanguage: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiAdvertiseProductW(
@@ -5678,7 +5678,7 @@ pub extern "msi" fn MsiAdvertiseProductW(
     szScriptfilePath: ?[*:0]const u16,
     szTransforms: ?[*:0]const u16,
     lgidLanguage: u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProcessAdvertiseScriptA(
@@ -5687,7 +5687,7 @@ pub extern "msi" fn MsiProcessAdvertiseScriptA(
     hRegData: ?HKEY,
     fShortcuts: BOOL,
     fRemoveItems: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProcessAdvertiseScriptW(
@@ -5696,7 +5696,7 @@ pub extern "msi" fn MsiProcessAdvertiseScriptW(
     hRegData: ?HKEY,
     fShortcuts: BOOL,
     fRemoveItems: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiAdvertiseScriptA(
@@ -5704,7 +5704,7 @@ pub extern "msi" fn MsiAdvertiseScriptA(
     dwFlags: u32,
     phRegData: ?*?HKEY,
     fRemoveItems: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiAdvertiseScriptW(
@@ -5712,7 +5712,7 @@ pub extern "msi" fn MsiAdvertiseScriptW(
     dwFlags: u32,
     phRegData: ?*?HKEY,
     fRemoveItems: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoFromScriptA(
@@ -5724,7 +5724,7 @@ pub extern "msi" fn MsiGetProductInfoFromScriptA(
     pcchNameBuf: ?*u32,
     lpPackageBuf: ?[*:0]u8,
     pcchPackageBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductInfoFromScriptW(
@@ -5736,19 +5736,19 @@ pub extern "msi" fn MsiGetProductInfoFromScriptW(
     pcchNameBuf: ?*u32,
     lpPackageBuf: ?[*:0]u16,
     pcchPackageBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductCodeA(
     szComponent: ?[*:0]const u8,
     lpBuf39: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductCodeW(
     szComponent: ?[*:0]const u16,
     lpBuf39: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetUserInfoA(
@@ -5759,7 +5759,7 @@ pub extern "msi" fn MsiGetUserInfoA(
     pcchOrgNameBuf: ?*u32,
     lpSerialBuf: ?[*:0]u8,
     pcchSerialBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) USERINFOSTATE;
+) callconv(.winapi) USERINFOSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetUserInfoW(
@@ -5770,17 +5770,17 @@ pub extern "msi" fn MsiGetUserInfoW(
     pcchOrgNameBuf: ?*u32,
     lpSerialBuf: ?[*:0]u16,
     pcchSerialBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) USERINFOSTATE;
+) callconv(.winapi) USERINFOSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiCollectUserInfoA(
     szProduct: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiCollectUserInfoW(
     szProduct: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiApplyPatchA(
@@ -5788,7 +5788,7 @@ pub extern "msi" fn MsiApplyPatchA(
     szInstallPackage: ?[*:0]const u8,
     eInstallType: INSTALLTYPE,
     szCommandLine: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiApplyPatchW(
@@ -5796,7 +5796,7 @@ pub extern "msi" fn MsiApplyPatchW(
     szInstallPackage: ?[*:0]const u16,
     eInstallType: INSTALLTYPE,
     szCommandLine: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPatchInfoA(
@@ -5804,7 +5804,7 @@ pub extern "msi" fn MsiGetPatchInfoA(
     szAttribute: ?[*:0]const u8,
     lpValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPatchInfoW(
@@ -5812,7 +5812,7 @@ pub extern "msi" fn MsiGetPatchInfoW(
     szAttribute: ?[*:0]const u16,
     lpValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumPatchesA(
@@ -5821,7 +5821,7 @@ pub extern "msi" fn MsiEnumPatchesA(
     lpPatchBuf: ?PSTR,
     lpTransformsBuf: [*:0]u8,
     pcchTransformsBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumPatchesW(
@@ -5830,7 +5830,7 @@ pub extern "msi" fn MsiEnumPatchesW(
     lpPatchBuf: ?PWSTR,
     lpTransformsBuf: [*:0]u16,
     pcchTransformsBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRemovePatchesA(
@@ -5838,7 +5838,7 @@ pub extern "msi" fn MsiRemovePatchesA(
     szProductCode: ?[*:0]const u8,
     eUninstallType: INSTALLTYPE,
     szPropertyList: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRemovePatchesW(
@@ -5846,7 +5846,7 @@ pub extern "msi" fn MsiRemovePatchesW(
     szProductCode: ?[*:0]const u16,
     eUninstallType: INSTALLTYPE,
     szPropertyList: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msi" fn MsiExtractPatchXMLDataA(
@@ -5854,7 +5854,7 @@ pub extern "msi" fn MsiExtractPatchXMLDataA(
     dwReserved: u32,
     szXMLData: ?[*:0]u8,
     pcchXMLData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msi" fn MsiExtractPatchXMLDataW(
@@ -5862,7 +5862,7 @@ pub extern "msi" fn MsiExtractPatchXMLDataW(
     dwReserved: u32,
     szXMLData: ?[*:0]u16,
     pcchXMLData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPatchInfoExA(
@@ -5873,7 +5873,7 @@ pub extern "msi" fn MsiGetPatchInfoExA(
     szProperty: ?[*:0]const u8,
     lpValue: ?[*:0]u8,
     pcchValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPatchInfoExW(
@@ -5884,21 +5884,21 @@ pub extern "msi" fn MsiGetPatchInfoExW(
     szProperty: ?[*:0]const u16,
     lpValue: ?[*:0]u16,
     pcchValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiApplyMultiplePatchesA(
     szPatchPackages: ?[*:0]const u8,
     szProductCode: ?[*:0]const u8,
     szPropertiesList: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiApplyMultiplePatchesW(
     szPatchPackages: ?[*:0]const u16,
     szProductCode: ?[*:0]const u16,
     szPropertiesList: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDeterminePatchSequenceA(
@@ -5907,7 +5907,7 @@ pub extern "msi" fn MsiDeterminePatchSequenceA(
     dwContext: MSIINSTALLCONTEXT,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDeterminePatchSequenceW(
@@ -5916,21 +5916,21 @@ pub extern "msi" fn MsiDeterminePatchSequenceW(
     dwContext: MSIINSTALLCONTEXT,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDetermineApplicablePatchesA(
     szProductPackagePath: ?[*:0]const u8,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDetermineApplicablePatchesW(
     szProductPackagePath: ?[*:0]const u16,
     cPatchInfo: u32,
     pPatchInfo: [*]MSIPATCHSEQUENCEINFOW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumPatchesExA(
@@ -5944,7 +5944,7 @@ pub extern "msi" fn MsiEnumPatchesExA(
     pdwTargetProductContext: ?*MSIINSTALLCONTEXT,
     szTargetUserSid: ?[*:0]u8,
     pcchTargetUserSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumPatchesExW(
@@ -5958,19 +5958,19 @@ pub extern "msi" fn MsiEnumPatchesExW(
     pdwTargetProductContext: ?*MSIINSTALLCONTEXT,
     szTargetUserSid: ?[*:0]u16,
     pcchTargetUserSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryFeatureStateA(
     szProduct: ?[*:0]const u8,
     szFeature: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryFeatureStateW(
     szProduct: ?[*:0]const u16,
     szFeature: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryFeatureStateExA(
@@ -5979,7 +5979,7 @@ pub extern "msi" fn MsiQueryFeatureStateExA(
     dwContext: MSIINSTALLCONTEXT,
     szFeature: ?[*:0]const u8,
     pdwState: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryFeatureStateExW(
@@ -5988,19 +5988,19 @@ pub extern "msi" fn MsiQueryFeatureStateExW(
     dwContext: MSIINSTALLCONTEXT,
     szFeature: ?[*:0]const u16,
     pdwState: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiUseFeatureA(
     szProduct: ?[*:0]const u8,
     szFeature: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiUseFeatureW(
     szProduct: ?[*:0]const u16,
     szFeature: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiUseFeatureExA(
@@ -6008,7 +6008,7 @@ pub extern "msi" fn MsiUseFeatureExA(
     szFeature: ?[*:0]const u8,
     dwInstallMode: u32,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiUseFeatureExW(
@@ -6016,7 +6016,7 @@ pub extern "msi" fn MsiUseFeatureExW(
     szFeature: ?[*:0]const u16,
     dwInstallMode: u32,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureUsageA(
@@ -6024,7 +6024,7 @@ pub extern "msi" fn MsiGetFeatureUsageA(
     szFeature: ?[*:0]const u8,
     pdwUseCount: ?*u32,
     pwDateUsed: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureUsageW(
@@ -6032,35 +6032,35 @@ pub extern "msi" fn MsiGetFeatureUsageW(
     szFeature: ?[*:0]const u16,
     pdwUseCount: ?*u32,
     pwDateUsed: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiConfigureFeatureA(
     szProduct: ?[*:0]const u8,
     szFeature: ?[*:0]const u8,
     eInstallState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiConfigureFeatureW(
     szProduct: ?[*:0]const u16,
     szFeature: ?[*:0]const u16,
     eInstallState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiReinstallFeatureA(
     szProduct: ?[*:0]const u8,
     szFeature: ?[*:0]const u8,
     dwReinstallMode: REINSTALLMODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiReinstallFeatureW(
     szProduct: ?[*:0]const u16,
     szFeature: ?[*:0]const u16,
     dwReinstallMode: REINSTALLMODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProvideComponentA(
@@ -6070,7 +6070,7 @@ pub extern "msi" fn MsiProvideComponentA(
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProvideComponentW(
@@ -6080,7 +6080,7 @@ pub extern "msi" fn MsiProvideComponentW(
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProvideQualifiedComponentA(
@@ -6089,7 +6089,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentA(
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProvideQualifiedComponentW(
@@ -6098,7 +6098,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentW(
     dwInstallMode: INSTALLMODE,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProvideQualifiedComponentExA(
@@ -6110,7 +6110,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentExA(
     dwUnused2: u32,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProvideQualifiedComponentExW(
@@ -6122,7 +6122,7 @@ pub extern "msi" fn MsiProvideQualifiedComponentExW(
     dwUnused2: u32,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetComponentPathA(
@@ -6130,7 +6130,7 @@ pub extern "msi" fn MsiGetComponentPathA(
     szComponent: ?[*:0]const u8,
     lpPathBuf: ?[*:0]u8,
     pcchBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetComponentPathW(
@@ -6138,7 +6138,7 @@ pub extern "msi" fn MsiGetComponentPathW(
     szComponent: ?[*:0]const u16,
     lpPathBuf: ?[*:0]u16,
     pcchBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 // This function from dll 'msi' is being skipped because it has some sort of issue
@@ -6156,7 +6156,7 @@ pub extern "msi" fn MsiProvideAssemblyA(
     dwAssemblyInfo: MSIASSEMBLYINFO,
     lpPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProvideAssemblyW(
@@ -6166,7 +6166,7 @@ pub extern "msi" fn MsiProvideAssemblyW(
     dwAssemblyInfo: MSIASSEMBLYINFO,
     lpPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryComponentStateA(
@@ -6175,7 +6175,7 @@ pub extern "msi" fn MsiQueryComponentStateA(
     dwContext: MSIINSTALLCONTEXT,
     szComponentCode: ?[*:0]const u8,
     pdwState: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiQueryComponentStateW(
@@ -6184,19 +6184,19 @@ pub extern "msi" fn MsiQueryComponentStateW(
     dwContext: MSIINSTALLCONTEXT,
     szComponentCode: ?[*:0]const u16,
     pdwState: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumProductsA(
     iProductIndex: u32,
     lpProductBuf: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumProductsW(
     iProductIndex: u32,
     lpProductBuf: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumProductsExA(
@@ -6208,7 +6208,7 @@ pub extern "msi" fn MsiEnumProductsExA(
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumProductsExW(
@@ -6220,7 +6220,7 @@ pub extern "msi" fn MsiEnumProductsExW(
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumRelatedProductsA(
@@ -6228,7 +6228,7 @@ pub extern "msi" fn MsiEnumRelatedProductsA(
     dwReserved: u32,
     iProductIndex: u32,
     lpProductBuf: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumRelatedProductsW(
@@ -6236,7 +6236,7 @@ pub extern "msi" fn MsiEnumRelatedProductsW(
     dwReserved: u32,
     iProductIndex: u32,
     lpProductBuf: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumFeaturesA(
@@ -6244,7 +6244,7 @@ pub extern "msi" fn MsiEnumFeaturesA(
     iFeatureIndex: u32,
     lpFeatureBuf: ?PSTR,
     lpParentBuf: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumFeaturesW(
@@ -6252,19 +6252,19 @@ pub extern "msi" fn MsiEnumFeaturesW(
     iFeatureIndex: u32,
     lpFeatureBuf: ?PWSTR,
     lpParentBuf: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentsA(
     iComponentIndex: u32,
     lpComponentBuf: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentsW(
     iComponentIndex: u32,
     lpComponentBuf: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentsExA(
@@ -6275,7 +6275,7 @@ pub extern "msi" fn MsiEnumComponentsExA(
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentsExW(
@@ -6286,21 +6286,21 @@ pub extern "msi" fn MsiEnumComponentsExW(
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumClientsA(
     szComponent: ?[*:0]const u8,
     iProductIndex: u32,
     lpProductBuf: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumClientsW(
     szComponent: ?[*:0]const u16,
     iProductIndex: u32,
     lpProductBuf: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumClientsExA(
@@ -6312,7 +6312,7 @@ pub extern "msi" fn MsiEnumClientsExA(
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u8,
     pcchSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumClientsExW(
@@ -6324,7 +6324,7 @@ pub extern "msi" fn MsiEnumClientsExW(
     pdwInstalledContext: ?*MSIINSTALLCONTEXT,
     szSid: ?[*:0]u16,
     pcchSid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentQualifiersA(
@@ -6334,7 +6334,7 @@ pub extern "msi" fn MsiEnumComponentQualifiersA(
     pcchQualifierBuf: ?*u32,
     lpApplicationDataBuf: ?[*:0]u8,
     pcchApplicationDataBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentQualifiersW(
@@ -6344,45 +6344,45 @@ pub extern "msi" fn MsiEnumComponentQualifiersW(
     pcchQualifierBuf: ?*u32,
     lpApplicationDataBuf: ?[*:0]u16,
     pcchApplicationDataBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenProductA(
     szProduct: ?[*:0]const u8,
     hProduct: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenProductW(
     szProduct: ?[*:0]const u16,
     hProduct: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenPackageA(
     szPackagePath: ?[*:0]const u8,
     hProduct: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenPackageW(
     szPackagePath: ?[*:0]const u16,
     hProduct: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenPackageExA(
     szPackagePath: ?[*:0]const u8,
     dwOptions: u32,
     hProduct: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenPackageExW(
     szPackagePath: ?[*:0]const u16,
     dwOptions: u32,
     hProduct: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPatchFileListA(
@@ -6390,7 +6390,7 @@ pub extern "msi" fn MsiGetPatchFileListA(
     szPatchPackages: ?[*:0]const u8,
     pcFiles: ?*u32,
     pphFileRecords: ?*?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPatchFileListW(
@@ -6398,7 +6398,7 @@ pub extern "msi" fn MsiGetPatchFileListW(
     szPatchPackages: ?[*:0]const u16,
     pcFiles: ?*u32,
     pphFileRecords: ?*?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductPropertyA(
@@ -6406,7 +6406,7 @@ pub extern "msi" fn MsiGetProductPropertyA(
     szProperty: ?[*:0]const u8,
     lpValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetProductPropertyW(
@@ -6414,17 +6414,17 @@ pub extern "msi" fn MsiGetProductPropertyW(
     szProperty: ?[*:0]const u16,
     lpValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiVerifyPackageA(
     szPackagePath: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiVerifyPackageW(
     szPackagePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureInfoA(
@@ -6435,7 +6435,7 @@ pub extern "msi" fn MsiGetFeatureInfoA(
     pcchTitleBuf: ?*u32,
     lpHelpBuf: ?[*:0]u8,
     pcchHelpBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureInfoW(
@@ -6446,61 +6446,61 @@ pub extern "msi" fn MsiGetFeatureInfoW(
     pcchTitleBuf: ?*u32,
     lpHelpBuf: ?[*:0]u16,
     pcchHelpBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiInstallMissingComponentA(
     szProduct: ?[*:0]const u8,
     szComponent: ?[*:0]const u8,
     eInstallState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiInstallMissingComponentW(
     szProduct: ?[*:0]const u16,
     szComponent: ?[*:0]const u16,
     eInstallState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiInstallMissingFileA(
     szProduct: ?[*:0]const u8,
     szFile: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiInstallMissingFileW(
     szProduct: ?[*:0]const u16,
     szFile: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiLocateComponentA(
     szComponent: ?[*:0]const u8,
     lpPathBuf: ?[*:0]u8,
     pcchBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiLocateComponentW(
     szComponent: ?[*:0]const u16,
     lpPathBuf: ?[*:0]u16,
     pcchBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) INSTALLSTATE;
+) callconv(.winapi) INSTALLSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearAllA(
     szProduct: ?[*:0]const u8,
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearAllW(
     szProduct: ?[*:0]const u16,
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListAddSourceA(
@@ -6508,7 +6508,7 @@ pub extern "msi" fn MsiSourceListAddSourceA(
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
     szSource: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListAddSourceW(
@@ -6516,21 +6516,21 @@ pub extern "msi" fn MsiSourceListAddSourceW(
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
     szSource: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListForceResolutionA(
     szProduct: ?[*:0]const u8,
     szUserName: ?[*:0]const u8,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListForceResolutionW(
     szProduct: ?[*:0]const u16,
     szUserName: ?[*:0]const u16,
     dwReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListAddSourceExA(
@@ -6540,7 +6540,7 @@ pub extern "msi" fn MsiSourceListAddSourceExA(
     dwOptions: u32,
     szSource: ?[*:0]const u8,
     dwIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListAddSourceExW(
@@ -6550,7 +6550,7 @@ pub extern "msi" fn MsiSourceListAddSourceExW(
     dwOptions: u32,
     szSource: ?[*:0]const u16,
     dwIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListAddMediaDiskA(
@@ -6561,7 +6561,7 @@ pub extern "msi" fn MsiSourceListAddMediaDiskA(
     dwDiskId: u32,
     szVolumeLabel: ?[*:0]const u8,
     szDiskPrompt: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListAddMediaDiskW(
@@ -6572,7 +6572,7 @@ pub extern "msi" fn MsiSourceListAddMediaDiskW(
     dwDiskId: u32,
     szVolumeLabel: ?[*:0]const u16,
     szDiskPrompt: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearSourceA(
@@ -6581,7 +6581,7 @@ pub extern "msi" fn MsiSourceListClearSourceA(
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szSource: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearSourceW(
@@ -6590,7 +6590,7 @@ pub extern "msi" fn MsiSourceListClearSourceW(
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     szSource: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearMediaDiskA(
@@ -6599,7 +6599,7 @@ pub extern "msi" fn MsiSourceListClearMediaDiskA(
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwDiskId: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearMediaDiskW(
@@ -6608,7 +6608,7 @@ pub extern "msi" fn MsiSourceListClearMediaDiskW(
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
     dwDiskId: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearAllExA(
@@ -6616,7 +6616,7 @@ pub extern "msi" fn MsiSourceListClearAllExA(
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListClearAllExW(
@@ -6624,7 +6624,7 @@ pub extern "msi" fn MsiSourceListClearAllExW(
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListForceResolutionExA(
@@ -6632,7 +6632,7 @@ pub extern "msi" fn MsiSourceListForceResolutionExA(
     szUserSid: ?[*:0]const u8,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListForceResolutionExW(
@@ -6640,7 +6640,7 @@ pub extern "msi" fn MsiSourceListForceResolutionExW(
     szUserSid: ?[*:0]const u16,
     dwContext: MSIINSTALLCONTEXT,
     dwOptions: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListSetInfoA(
@@ -6650,7 +6650,7 @@ pub extern "msi" fn MsiSourceListSetInfoA(
     dwOptions: u32,
     szProperty: ?[*:0]const u8,
     szValue: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListSetInfoW(
@@ -6660,7 +6660,7 @@ pub extern "msi" fn MsiSourceListSetInfoW(
     dwOptions: u32,
     szProperty: ?[*:0]const u16,
     szValue: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListGetInfoA(
@@ -6671,7 +6671,7 @@ pub extern "msi" fn MsiSourceListGetInfoA(
     szProperty: ?[*:0]const u8,
     szValue: ?[*:0]u8,
     pcchValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListGetInfoW(
@@ -6682,7 +6682,7 @@ pub extern "msi" fn MsiSourceListGetInfoW(
     szProperty: ?[*:0]const u16,
     szValue: ?[*:0]u16,
     pcchValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListEnumSourcesA(
@@ -6693,7 +6693,7 @@ pub extern "msi" fn MsiSourceListEnumSourcesA(
     dwIndex: u32,
     szSource: ?[*:0]u8,
     pcchSource: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListEnumSourcesW(
@@ -6704,7 +6704,7 @@ pub extern "msi" fn MsiSourceListEnumSourcesW(
     dwIndex: u32,
     szSource: ?[*:0]u16,
     pcchSource: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListEnumMediaDisksA(
@@ -6718,7 +6718,7 @@ pub extern "msi" fn MsiSourceListEnumMediaDisksA(
     pcchVolumeLabel: ?*u32,
     szDiskPrompt: ?[*:0]u8,
     pcchDiskPrompt: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSourceListEnumMediaDisksW(
@@ -6732,7 +6732,7 @@ pub extern "msi" fn MsiSourceListEnumMediaDisksW(
     pcchVolumeLabel: ?*u32,
     szDiskPrompt: ?[*:0]u16,
     pcchDiskPrompt: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFileVersionA(
@@ -6741,7 +6741,7 @@ pub extern "msi" fn MsiGetFileVersionA(
     pcchVersionBuf: ?*u32,
     lpLangBuf: ?[*:0]u8,
     pcchLangBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFileVersionW(
@@ -6750,21 +6750,21 @@ pub extern "msi" fn MsiGetFileVersionW(
     pcchVersionBuf: ?*u32,
     lpLangBuf: ?[*:0]u16,
     pcchLangBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFileHashA(
     szFilePath: ?[*:0]const u8,
     dwOptions: u32,
     pHash: ?*MSIFILEHASHINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFileHashW(
     szFilePath: ?[*:0]const u16,
     dwOptions: u32,
     pHash: ?*MSIFILEHASHINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFileSignatureInformationA(
@@ -6774,7 +6774,7 @@ pub extern "msi" fn MsiGetFileSignatureInformationA(
     // TODO: what to do with BytesParamIndex 4?
     pbHashData: ?*u8,
     pcbHashData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFileSignatureInformationW(
@@ -6784,7 +6784,7 @@ pub extern "msi" fn MsiGetFileSignatureInformationW(
     // TODO: what to do with BytesParamIndex 4?
     pbHashData: ?*u8,
     pcbHashData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetShortcutTargetA(
@@ -6792,7 +6792,7 @@ pub extern "msi" fn MsiGetShortcutTargetA(
     szProductCode: ?PSTR,
     szFeatureId: ?PSTR,
     szComponentCode: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetShortcutTargetW(
@@ -6800,31 +6800,31 @@ pub extern "msi" fn MsiGetShortcutTargetW(
     szProductCode: ?PWSTR,
     szFeatureId: ?PWSTR,
     szComponentCode: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiIsProductElevatedA(
     szProduct: ?[*:0]const u8,
     pfElevated: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiIsProductElevatedW(
     szProduct: ?[*:0]const u16,
     pfElevated: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiNotifySidChangeA(
     pOldSid: ?[*:0]const u8,
     pNewSid: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiNotifySidChangeW(
     pOldSid: ?[*:0]const u16,
     pNewSid: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiBeginTransactionA(
@@ -6832,7 +6832,7 @@ pub extern "msi" fn MsiBeginTransactionA(
     dwTransactionAttributes: u32,
     phTransactionHandle: ?*MSIHANDLE,
     phChangeOfOwnerEvent: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiBeginTransactionW(
@@ -6840,104 +6840,104 @@ pub extern "msi" fn MsiBeginTransactionW(
     dwTransactionAttributes: u32,
     phTransactionHandle: ?*MSIHANDLE,
     phChangeOfOwnerEvent: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEndTransaction(
     dwTransactionState: MSITRANSACTIONSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiJoinTransaction(
     hTransactionHandle: MSIHANDLE,
     dwTransactionAttributes: u32,
     phChangeOfOwnerEvent: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseOpenViewA(
     hDatabase: MSIHANDLE,
     szQuery: ?[*:0]const u8,
     phView: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseOpenViewW(
     hDatabase: MSIHANDLE,
     szQuery: ?[*:0]const u16,
     phView: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiViewGetErrorA(
     hView: MSIHANDLE,
     szColumnNameBuffer: ?[*:0]u8,
     pcchBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) MSIDBERROR;
+) callconv(.winapi) MSIDBERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiViewGetErrorW(
     hView: MSIHANDLE,
     szColumnNameBuffer: ?[*:0]u16,
     pcchBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) MSIDBERROR;
+) callconv(.winapi) MSIDBERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiViewExecute(
     hView: MSIHANDLE,
     hRecord: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiViewFetch(
     hView: MSIHANDLE,
     phRecord: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiViewModify(
     hView: MSIHANDLE,
     eModifyMode: MSIMODIFY,
     hRecord: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiViewGetColumnInfo(
     hView: MSIHANDLE,
     eColumnInfo: MSICOLINFO,
     phRecord: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiViewClose(
     hView: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseGetPrimaryKeysA(
     hDatabase: MSIHANDLE,
     szTableName: ?[*:0]const u8,
     phRecord: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseGetPrimaryKeysW(
     hDatabase: MSIHANDLE,
     szTableName: ?[*:0]const u16,
     phRecord: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseIsTablePersistentA(
     hDatabase: MSIHANDLE,
     szTableName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
+) callconv(.winapi) MSICONDITION;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseIsTablePersistentW(
     hDatabase: MSIHANDLE,
     szTableName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
+) callconv(.winapi) MSICONDITION;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetSummaryInformationA(
@@ -6945,7 +6945,7 @@ pub extern "msi" fn MsiGetSummaryInformationA(
     szDatabasePath: ?[*:0]const u8,
     uiUpdateCount: u32,
     phSummaryInfo: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetSummaryInformationW(
@@ -6953,13 +6953,13 @@ pub extern "msi" fn MsiGetSummaryInformationW(
     szDatabasePath: ?[*:0]const u16,
     uiUpdateCount: u32,
     phSummaryInfo: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSummaryInfoGetPropertyCount(
     hSummaryInfo: MSIHANDLE,
     puiPropertyCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSummaryInfoSetPropertyA(
@@ -6969,7 +6969,7 @@ pub extern "msi" fn MsiSummaryInfoSetPropertyA(
     iValue: i32,
     pftValue: ?*FILETIME,
     szValue: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSummaryInfoSetPropertyW(
@@ -6979,7 +6979,7 @@ pub extern "msi" fn MsiSummaryInfoSetPropertyW(
     iValue: i32,
     pftValue: ?*FILETIME,
     szValue: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSummaryInfoGetPropertyA(
@@ -6990,7 +6990,7 @@ pub extern "msi" fn MsiSummaryInfoGetPropertyA(
     pftValue: ?*FILETIME,
     szValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSummaryInfoGetPropertyW(
@@ -7001,40 +7001,40 @@ pub extern "msi" fn MsiSummaryInfoGetPropertyW(
     pftValue: ?*FILETIME,
     szValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSummaryInfoPersist(
     hSummaryInfo: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenDatabaseA(
     szDatabasePath: ?[*:0]const u8,
     szPersist: ?[*:0]const u8,
     phDatabase: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiOpenDatabaseW(
     szDatabasePath: ?[*:0]const u16,
     szPersist: ?[*:0]const u16,
     phDatabase: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseImportA(
     hDatabase: MSIHANDLE,
     szFolderPath: ?[*:0]const u8,
     szFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseImportW(
     hDatabase: MSIHANDLE,
     szFolderPath: ?[*:0]const u16,
     szFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseExportA(
@@ -7042,7 +7042,7 @@ pub extern "msi" fn MsiDatabaseExportA(
     szTableName: ?[*:0]const u8,
     szFolderPath: ?[*:0]const u8,
     szFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseExportW(
@@ -7050,21 +7050,21 @@ pub extern "msi" fn MsiDatabaseExportW(
     szTableName: ?[*:0]const u16,
     szFolderPath: ?[*:0]const u16,
     szFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseMergeA(
     hDatabase: MSIHANDLE,
     hDatabaseMerge: MSIHANDLE,
     szTableName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseMergeW(
     hDatabase: MSIHANDLE,
     hDatabaseMerge: MSIHANDLE,
     szTableName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseGenerateTransformA(
@@ -7073,7 +7073,7 @@ pub extern "msi" fn MsiDatabaseGenerateTransformA(
     szTransformFile: ?[*:0]const u8,
     iReserved1: i32,
     iReserved2: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseGenerateTransformW(
@@ -7082,21 +7082,21 @@ pub extern "msi" fn MsiDatabaseGenerateTransformW(
     szTransformFile: ?[*:0]const u16,
     iReserved1: i32,
     iReserved2: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseApplyTransformA(
     hDatabase: MSIHANDLE,
     szTransformFile: ?[*:0]const u8,
     iErrorConditions: MSITRANSFORM_ERROR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseApplyTransformW(
     hDatabase: MSIHANDLE,
     szTransformFile: ?[*:0]const u16,
     iErrorConditions: MSITRANSFORM_ERROR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiCreateTransformSummaryInfoA(
@@ -7105,7 +7105,7 @@ pub extern "msi" fn MsiCreateTransformSummaryInfoA(
     szTransformFile: ?[*:0]const u8,
     iErrorConditions: MSITRANSFORM_ERROR,
     iValidation: MSITRANSFORM_VALIDATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiCreateTransformSummaryInfoW(
@@ -7114,61 +7114,61 @@ pub extern "msi" fn MsiCreateTransformSummaryInfoW(
     szTransformFile: ?[*:0]const u16,
     iErrorConditions: MSITRANSFORM_ERROR,
     iValidation: MSITRANSFORM_VALIDATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDatabaseCommit(
     hDatabase: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetDatabaseState(
     hDatabase: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) MSIDBSTATE;
+) callconv(.winapi) MSIDBSTATE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiCreateRecord(
     cParams: u32,
-) callconv(@import("std").os.windows.WINAPI) MSIHANDLE;
+) callconv(.winapi) MSIHANDLE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordIsNull(
     hRecord: MSIHANDLE,
     iField: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordDataSize(
     hRecord: MSIHANDLE,
     iField: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordSetInteger(
     hRecord: MSIHANDLE,
     iField: u32,
     iValue: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordSetStringA(
     hRecord: MSIHANDLE,
     iField: u32,
     szValue: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordSetStringW(
     hRecord: MSIHANDLE,
     iField: u32,
     szValue: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordGetInteger(
     hRecord: MSIHANDLE,
     iField: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordGetStringA(
@@ -7176,7 +7176,7 @@ pub extern "msi" fn MsiRecordGetStringA(
     iField: u32,
     szValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordGetStringW(
@@ -7184,26 +7184,26 @@ pub extern "msi" fn MsiRecordGetStringW(
     iField: u32,
     szValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordGetFieldCount(
     hRecord: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordSetStreamA(
     hRecord: MSIHANDLE,
     iField: u32,
     szFilePath: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordSetStreamW(
     hRecord: MSIHANDLE,
     iField: u32,
     szFilePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordReadStream(
@@ -7212,31 +7212,31 @@ pub extern "msi" fn MsiRecordReadStream(
     // TODO: what to do with BytesParamIndex 3?
     szDataBuf: ?PSTR,
     pcbDataBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiRecordClearData(
     hRecord: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetActiveDatabase(
     hInstall: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) MSIHANDLE;
+) callconv(.winapi) MSIHANDLE;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetPropertyA(
     hInstall: MSIHANDLE,
     szName: ?[*:0]const u8,
     szValue: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetPropertyW(
     hInstall: MSIHANDLE,
     szName: ?[*:0]const u16,
     szValue: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPropertyA(
@@ -7244,7 +7244,7 @@ pub extern "msi" fn MsiGetPropertyA(
     szName: ?[*:0]const u8,
     szValueBuf: ?[*:0]u8,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetPropertyW(
@@ -7252,25 +7252,25 @@ pub extern "msi" fn MsiGetPropertyW(
     szName: ?[*:0]const u16,
     szValueBuf: ?[*:0]u16,
     pcchValueBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetLanguage(
     hInstall: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetMode(
     hInstall: MSIHANDLE,
     eRunMode: MSIRUNMODE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetMode(
     hInstall: MSIHANDLE,
     eRunMode: MSIRUNMODE,
     fState: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiFormatRecordA(
@@ -7278,7 +7278,7 @@ pub extern "msi" fn MsiFormatRecordA(
     hRecord: MSIHANDLE,
     szResultBuf: ?[*:0]u8,
     pcchResultBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiFormatRecordW(
@@ -7286,52 +7286,52 @@ pub extern "msi" fn MsiFormatRecordW(
     hRecord: MSIHANDLE,
     szResultBuf: ?[*:0]u16,
     pcchResultBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDoActionA(
     hInstall: MSIHANDLE,
     szAction: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiDoActionW(
     hInstall: MSIHANDLE,
     szAction: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSequenceA(
     hInstall: MSIHANDLE,
     szTable: ?[*:0]const u8,
     iSequenceMode: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSequenceW(
     hInstall: MSIHANDLE,
     szTable: ?[*:0]const u16,
     iSequenceMode: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiProcessMessage(
     hInstall: MSIHANDLE,
     eMessageType: INSTALLMESSAGE,
     hRecord: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEvaluateConditionA(
     hInstall: MSIHANDLE,
     szCondition: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
+) callconv(.winapi) MSICONDITION;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEvaluateConditionW(
     hInstall: MSIHANDLE,
     szCondition: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) MSICONDITION;
+) callconv(.winapi) MSICONDITION;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureStateA(
@@ -7339,7 +7339,7 @@ pub extern "msi" fn MsiGetFeatureStateA(
     szFeature: ?[*:0]const u8,
     piInstalled: ?*INSTALLSTATE,
     piAction: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureStateW(
@@ -7347,35 +7347,35 @@ pub extern "msi" fn MsiGetFeatureStateW(
     szFeature: ?[*:0]const u16,
     piInstalled: ?*INSTALLSTATE,
     piAction: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetFeatureStateA(
     hInstall: MSIHANDLE,
     szFeature: ?[*:0]const u8,
     iState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetFeatureStateW(
     hInstall: MSIHANDLE,
     szFeature: ?[*:0]const u16,
     iState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetFeatureAttributesA(
     hInstall: MSIHANDLE,
     szFeature: ?[*:0]const u8,
     dwAttributes: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetFeatureAttributesW(
     hInstall: MSIHANDLE,
     szFeature: ?[*:0]const u16,
     dwAttributes: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetComponentStateA(
@@ -7383,7 +7383,7 @@ pub extern "msi" fn MsiGetComponentStateA(
     szComponent: ?[*:0]const u8,
     piInstalled: ?*INSTALLSTATE,
     piAction: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetComponentStateW(
@@ -7391,21 +7391,21 @@ pub extern "msi" fn MsiGetComponentStateW(
     szComponent: ?[*:0]const u16,
     piInstalled: ?*INSTALLSTATE,
     piAction: ?*INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetComponentStateA(
     hInstall: MSIHANDLE,
     szComponent: ?[*:0]const u8,
     iState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetComponentStateW(
     hInstall: MSIHANDLE,
     szComponent: ?[*:0]const u16,
     iState: INSTALLSTATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureCostA(
@@ -7414,7 +7414,7 @@ pub extern "msi" fn MsiGetFeatureCostA(
     iCostTree: MSICOSTTREE,
     iState: INSTALLSTATE,
     piCost: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureCostW(
@@ -7423,7 +7423,7 @@ pub extern "msi" fn MsiGetFeatureCostW(
     iCostTree: MSICOSTTREE,
     iState: INSTALLSTATE,
     piCost: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentCostsA(
@@ -7435,7 +7435,7 @@ pub extern "msi" fn MsiEnumComponentCostsA(
     pcchDriveBuf: ?*u32,
     piCost: ?*i32,
     piTempCost: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnumComponentCostsW(
@@ -7447,27 +7447,27 @@ pub extern "msi" fn MsiEnumComponentCostsW(
     pcchDriveBuf: ?*u32,
     piCost: ?*i32,
     piTempCost: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetInstallLevel(
     hInstall: MSIHANDLE,
     iInstallLevel: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureValidStatesA(
     hInstall: MSIHANDLE,
     szFeature: ?[*:0]const u8,
     lpInstallStates: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetFeatureValidStatesW(
     hInstall: MSIHANDLE,
     szFeature: ?[*:0]const u16,
     lpInstallStates: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetSourcePathA(
@@ -7475,7 +7475,7 @@ pub extern "msi" fn MsiGetSourcePathA(
     szFolder: ?[*:0]const u8,
     szPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetSourcePathW(
@@ -7483,7 +7483,7 @@ pub extern "msi" fn MsiGetSourcePathW(
     szFolder: ?[*:0]const u16,
     szPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetTargetPathA(
@@ -7491,7 +7491,7 @@ pub extern "msi" fn MsiGetTargetPathA(
     szFolder: ?[*:0]const u8,
     szPathBuf: ?[*:0]u8,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetTargetPathW(
@@ -7499,87 +7499,87 @@ pub extern "msi" fn MsiGetTargetPathW(
     szFolder: ?[*:0]const u16,
     szPathBuf: ?[*:0]u16,
     pcchPathBuf: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetTargetPathA(
     hInstall: MSIHANDLE,
     szFolder: ?[*:0]const u8,
     szFolderPath: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiSetTargetPathW(
     hInstall: MSIHANDLE,
     szFolder: ?[*:0]const u16,
     szFolderPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiVerifyDiskSpace(
     hInstall: MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiEnableUIPreview(
     hDatabase: MSIHANDLE,
     phPreview: ?*MSIHANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiPreviewDialogA(
     hPreview: MSIHANDLE,
     szDialogName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiPreviewDialogW(
     hPreview: MSIHANDLE,
     szDialogName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiPreviewBillboardA(
     hPreview: MSIHANDLE,
     szControlName: ?[*:0]const u8,
     szBillboard: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiPreviewBillboardW(
     hPreview: MSIHANDLE,
     szControlName: ?[*:0]const u16,
     szBillboard: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "msi" fn MsiGetLastErrorRecord(
-) callconv(@import("std").os.windows.WINAPI) MSIHANDLE;
+) callconv(.winapi) MSIHANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SfcGetNextProtectedFile(
     RpcHandle: ?HANDLE,
     ProtFileData: ?*PROTECTED_FILE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SfcIsFileProtected(
     RpcHandle: ?HANDLE,
     ProtFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "sfc" fn SfcIsKeyProtected(
     KeyHandle: ?HKEY,
     SubKeyName: ?[*:0]const u16,
     KeySam: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "sfc" fn SfpVerifyFile(
     pszFileName: ?[*:0]const u8,
     pszError: [*:0]u8,
     dwErrSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileA(
     OldFileName: ?[*:0]const u8,
@@ -7587,7 +7587,7 @@ pub extern "mspatchc" fn CreatePatchFileA(
     PatchFileName: ?[*:0]const u8,
     OptionFlags: u32,
     OptionData: ?*PATCH_OPTION_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileW(
     OldFileName: ?[*:0]const u16,
@@ -7595,7 +7595,7 @@ pub extern "mspatchc" fn CreatePatchFileW(
     PatchFileName: ?[*:0]const u16,
     OptionFlags: u32,
     OptionData: ?*PATCH_OPTION_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileByHandles(
     OldFileHandle: ?HANDLE,
@@ -7603,7 +7603,7 @@ pub extern "mspatchc" fn CreatePatchFileByHandles(
     PatchFileHandle: ?HANDLE,
     OptionFlags: u32,
     OptionData: ?*PATCH_OPTION_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileExA(
     OldFileCount: u32,
@@ -7614,7 +7614,7 @@ pub extern "mspatchc" fn CreatePatchFileExA(
     OptionData: ?*PATCH_OPTION_DATA,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileExW(
     OldFileCount: u32,
@@ -7625,7 +7625,7 @@ pub extern "mspatchc" fn CreatePatchFileExW(
     OptionData: ?*PATCH_OPTION_DATA,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn CreatePatchFileByHandlesEx(
     OldFileCount: u32,
@@ -7636,40 +7636,40 @@ pub extern "mspatchc" fn CreatePatchFileByHandlesEx(
     OptionData: ?*PATCH_OPTION_DATA,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn ExtractPatchHeaderToFileA(
     PatchFileName: ?[*:0]const u8,
     PatchHeaderFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn ExtractPatchHeaderToFileW(
     PatchFileName: ?[*:0]const u16,
     PatchHeaderFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatchc" fn ExtractPatchHeaderToFileByHandles(
     PatchFileHandle: ?HANDLE,
     PatchHeaderFileHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn TestApplyPatchToFileA(
     PatchFileName: ?[*:0]const u8,
     OldFileName: ?[*:0]const u8,
     ApplyOptionFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn TestApplyPatchToFileW(
     PatchFileName: ?[*:0]const u16,
     OldFileName: ?[*:0]const u16,
     ApplyOptionFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn TestApplyPatchToFileByHandles(
     PatchFileHandle: ?HANDLE,
     OldFileHandle: ?HANDLE,
     ApplyOptionFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn TestApplyPatchToFileByBuffers(
     // TODO: what to do with BytesParamIndex 1?
@@ -7680,28 +7680,28 @@ pub extern "mspatcha" fn TestApplyPatchToFileByBuffers(
     OldFileSize: u32,
     NewFileSize: ?*u32,
     ApplyOptionFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileA(
     PatchFileName: ?[*:0]const u8,
     OldFileName: ?[*:0]const u8,
     NewFileName: ?[*:0]const u8,
     ApplyOptionFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileW(
     PatchFileName: ?[*:0]const u16,
     OldFileName: ?[*:0]const u16,
     NewFileName: ?[*:0]const u16,
     ApplyOptionFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileByHandles(
     PatchFileHandle: ?HANDLE,
     OldFileHandle: ?HANDLE,
     NewFileHandle: ?HANDLE,
     ApplyOptionFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileExA(
     PatchFileName: ?[*:0]const u8,
@@ -7710,7 +7710,7 @@ pub extern "mspatcha" fn ApplyPatchToFileExA(
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileExW(
     PatchFileName: ?[*:0]const u16,
@@ -7719,7 +7719,7 @@ pub extern "mspatcha" fn ApplyPatchToFileExW(
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileByHandlesEx(
     PatchFileHandle: ?HANDLE,
@@ -7728,7 +7728,7 @@ pub extern "mspatcha" fn ApplyPatchToFileByHandlesEx(
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn ApplyPatchToFileByBuffers(
     // TODO: what to do with BytesParamIndex 1?
@@ -7745,7 +7745,7 @@ pub extern "mspatcha" fn ApplyPatchToFileByBuffers(
     ApplyOptionFlags: u32,
     ProgressCallback: ?PPATCH_PROGRESS_CALLBACK,
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureA(
     FileName: ?[*:0]const u8,
@@ -7758,7 +7758,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureA(
     SignatureBufferSize: u32,
     // TODO: what to do with BytesParamIndex 7?
     SignatureBuffer: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureW(
     FileName: ?[*:0]const u16,
@@ -7771,7 +7771,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureW(
     SignatureBufferSize: u32,
     // TODO: what to do with BytesParamIndex 7?
     SignatureBuffer: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureByHandle(
     FileHandle: ?HANDLE,
@@ -7784,7 +7784,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByHandle(
     SignatureBufferSize: u32,
     // TODO: what to do with BytesParamIndex 7?
     SignatureBuffer: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
     // TODO: what to do with BytesParamIndex 1?
@@ -7799,7 +7799,7 @@ pub extern "mspatcha" fn GetFilePatchSignatureByBuffer(
     SignatureBufferSize: u32,
     // TODO: what to do with BytesParamIndex 8?
     SignatureBuffer: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mspatcha" fn NormalizeFileForPatchSignature(
     // TODO: what to do with BytesParamIndex 1?
@@ -7813,22 +7813,22 @@ pub extern "mspatcha" fn NormalizeFileForPatchSignature(
     IgnoreRangeArray: ?[*]PATCH_IGNORE_RANGE,
     RetainRangeCount: u32,
     RetainRangeArray: ?[*]PATCH_RETAIN_RANGE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "msdelta" fn GetDeltaInfoB(
     Delta: DELTA_INPUT,
     lpHeaderInfo: ?*DELTA_HEADER_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn GetDeltaInfoA(
     lpDeltaName: ?[*:0]const u8,
     lpHeaderInfo: ?*DELTA_HEADER_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn GetDeltaInfoW(
     lpDeltaName: ?[*:0]const u16,
     lpHeaderInfo: ?*DELTA_HEADER_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn ApplyDeltaGetReverseB(
     ApplyFlags: i64,
@@ -7837,14 +7837,14 @@ pub extern "msdelta" fn ApplyDeltaGetReverseB(
     lpReverseFileTime: ?*const FILETIME,
     lpTarget: ?*DELTA_OUTPUT,
     lpTargetReverse: ?*DELTA_OUTPUT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn ApplyDeltaB(
     ApplyFlags: i64,
     Source: DELTA_INPUT,
     Delta: DELTA_INPUT,
     lpTarget: ?*DELTA_OUTPUT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn ApplyDeltaProvidedB(
     ApplyFlags: i64,
@@ -7853,21 +7853,21 @@ pub extern "msdelta" fn ApplyDeltaProvidedB(
     // TODO: what to do with BytesParamIndex 4?
     lpTarget: ?*anyopaque,
     uTargetSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn ApplyDeltaA(
     ApplyFlags: i64,
     lpSourceName: ?[*:0]const u8,
     lpDeltaName: ?[*:0]const u8,
     lpTargetName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn ApplyDeltaW(
     ApplyFlags: i64,
     lpSourceName: ?[*:0]const u16,
     lpDeltaName: ?[*:0]const u16,
     lpTargetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn CreateDeltaB(
     FileTypeSet: i64,
@@ -7881,7 +7881,7 @@ pub extern "msdelta" fn CreateDeltaB(
     lpTargetFileTime: ?*const FILETIME,
     HashAlgId: u32,
     lpDelta: ?*DELTA_OUTPUT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn CreateDeltaA(
     FileTypeSet: i64,
@@ -7895,7 +7895,7 @@ pub extern "msdelta" fn CreateDeltaA(
     lpTargetFileTime: ?*const FILETIME,
     HashAlgId: u32,
     lpDeltaName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn CreateDeltaW(
     FileTypeSet: i64,
@@ -7909,28 +7909,28 @@ pub extern "msdelta" fn CreateDeltaW(
     lpTargetFileTime: ?*const FILETIME,
     HashAlgId: u32,
     lpDeltaName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn GetDeltaSignatureB(
     FileTypeSet: i64,
     HashAlgId: u32,
     Source: DELTA_INPUT,
     lpHash: ?*DELTA_HASH,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn GetDeltaSignatureA(
     FileTypeSet: i64,
     HashAlgId: u32,
     lpSourceName: ?[*:0]const u8,
     lpHash: ?*DELTA_HASH,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn GetDeltaSignatureW(
     FileTypeSet: i64,
     HashAlgId: u32,
     lpSourceName: ?[*:0]const u16,
     lpHash: ?*DELTA_HASH,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn DeltaNormalizeProvidedB(
     FileTypeSet: i64,
@@ -7939,53 +7939,53 @@ pub extern "msdelta" fn DeltaNormalizeProvidedB(
     // TODO: what to do with BytesParamIndex 4?
     lpSource: ?*anyopaque,
     uSourceSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "msdelta" fn DeltaFree(
     lpMemory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateActCtxA(
     pActCtx: ?*ACTCTXA,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn CreateActCtxW(
     pActCtx: ?*ACTCTXW,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn AddRefActCtx(
     hActCtx: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn ReleaseActCtx(
     hActCtx: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn ZombifyActCtx(
     hActCtx: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn ActivateActCtx(
     hActCtx: ?HANDLE,
     lpCookie: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn DeactivateActCtx(
     dwFlags: u32,
     ulCookie: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn GetCurrentActCtx(
     lphActCtx: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FindActCtxSectionStringA(
@@ -7994,7 +7994,7 @@ pub extern "kernel32" fn FindActCtxSectionStringA(
     ulSectionId: u32,
     lpStringToFind: ?[*:0]const u8,
     ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FindActCtxSectionStringW(
@@ -8003,7 +8003,7 @@ pub extern "kernel32" fn FindActCtxSectionStringW(
     ulSectionId: u32,
     lpStringToFind: ?[*:0]const u16,
     ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn FindActCtxSectionGuid(
@@ -8012,7 +8012,7 @@ pub extern "kernel32" fn FindActCtxSectionGuid(
     ulSectionId: u32,
     lpGuidToFind: ?*const Guid,
     ReturnedData: ?*ACTCTX_SECTION_KEYED_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "kernel32" fn QueryActCtxW(
@@ -8024,7 +8024,7 @@ pub extern "kernel32" fn QueryActCtxW(
     pvBuffer: ?*anyopaque,
     cbBuffer: usize,
     pcbWrittenOrRequired: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "kernel32" fn QueryActCtxSettingsW(
@@ -8036,7 +8036,7 @@ pub extern "kernel32" fn QueryActCtxSettingsW(
     pvBuffer: ?PWSTR,
     dwBuffer: usize,
     pdwWrittenOrRequired: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

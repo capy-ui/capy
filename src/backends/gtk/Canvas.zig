@@ -10,7 +10,19 @@ const Window = @import("Window.zig");
 /// Actual GtkCanvas
 peer: *c.GtkWidget,
 
-pub usingnamespace common.Events(Canvas);
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
 
 // TODO: use f32 for coordinates?
 // avoid the burden of converting between signed and unsigned integers?
@@ -216,7 +228,7 @@ pub const DrawContextImpl = struct {
     }
 };
 
-fn gtkCanvasDraw(peer: ?*c.GtkDrawingArea, cr: ?*c.cairo_t, _: c_int, _: c_int, _: ?*anyopaque) callconv(.C) void {
+fn gtkCanvasDraw(peer: ?*c.GtkDrawingArea, cr: ?*c.cairo_t, _: c_int, _: c_int, _: ?*anyopaque) callconv(.c) void {
     const data = common.getEventUserData(@ptrCast(peer.?));
     const dc_impl = DrawContextImpl{ .cr = cr.?, .widget = @ptrCast(peer.?) };
     var dc = @import("../../backend.zig").DrawContext{ .impl = dc_impl };

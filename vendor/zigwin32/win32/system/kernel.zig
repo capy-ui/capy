@@ -172,7 +172,7 @@ pub const EXCEPTION_ROUTINE = *const fn(
     EstablisherFrame: ?*anyopaque,
     ContextRecord: ?*CONTEXT,
     DispatcherContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) EXCEPTION_DISPOSITION;
+) callconv(.winapi) EXCEPTION_DISPOSITION;
 
 pub const NT_PRODUCT_TYPE = enum(i32) {
     WinNt = 1,
@@ -314,40 +314,40 @@ pub const FLOATING_SAVE_AREA = switch(@import("../zig.zig").arch) {
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInitializeSListHead(
     ListHead: ?*SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlFirstEntrySList(
     ListHead: ?*const SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+) callconv(.winapi) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInterlockedPopEntrySList(
     ListHead: ?*SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+) callconv(.winapi) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInterlockedPushEntrySList(
     ListHead: ?*SLIST_HEADER,
     ListEntry: ?*SLIST_ENTRY,
-) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+) callconv(.winapi) ?*SLIST_ENTRY;
 
 pub extern "ntdll" fn RtlInterlockedPushListSListEx(
     ListHead: ?*SLIST_HEADER,
     List: ?*SLIST_ENTRY,
     ListEnd: ?*SLIST_ENTRY,
     Count: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+) callconv(.winapi) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlInterlockedFlushSList(
     ListHead: ?*SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) ?*SLIST_ENTRY;
+) callconv(.winapi) ?*SLIST_ENTRY;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "ntdll" fn RtlQueryDepthSList(
     ListHead: ?*SLIST_HEADER,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 
 //--------------------------------------------------------------------------------

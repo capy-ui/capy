@@ -38,7 +38,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
             BiggerThan: T,
             SmallerThan: T,
 
-            pub fn format(value: HypothesisElement, comptime _: []const u8, _: std.fmt.FormatOptions, writer: anytype) !void {
+            pub fn format(value: HypothesisElement, writer: anytype) !void {
                 switch (value) {
                     .BiggerThan => |v| {
                         try writer.print("bigger than {d}", .{v});
@@ -93,14 +93,15 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
             }
         }
 
-        pub fn format(value: Self, comptime _: []const u8, _: std.fmt.FormatOptions, writer: anytype) !void {
+        pub fn format(value: Self, writer: anytype) !void {
             for (value.elements.items) |item| {
-                try writer.print("{}, ", .{item});
+                try writer.print("{f}, ", .{item});
             }
         }
 
-        pub fn deinit(self: Self) void {
-            self.elements.deinit();
+        pub fn deinit(self: *const Self) void {
+            var elems = self.elements;
+            elems.deinit(std.testing.allocator);
         }
     };
 
@@ -115,17 +116,17 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
         }
 
         pub fn hypothetize(self: *Self, callback: fn (T) anyerror!void) !Hypothesis {
-            var elements = std.ArrayList(Hypothesis.HypothesisElement).init(std.testing.allocator);
+            var elements: std.ArrayList(Hypothesis.HypothesisElement) = .empty;
             if (comptime trait.isNumber(T)) {
-                std.sort.sort(T, self.items, {}, comptime std.sort.asc(T));
+                std.mem.sort(T, self.items, {}, comptime std.sort.asc(T));
                 const smallest = self.items[0];
                 const biggest = self.items[self.items.len - 1];
-                try elements.append(.{ .BiggerThan = biggest });
-                try elements.append(.{ .SmallerThan = smallest });
+                try elements.append(std.testing.allocator, .{ .BiggerThan = biggest });
+                try elements.append(std.testing.allocator, .{ .SmallerThan = smallest });
             }
 
             var hypothesis = Hypothesis{ .elements = elements };
-            std.debug.print("\nCaught {d} errors. Base hypothesis: {}", .{ self.items.len, hypothesis });
+            std.debug.print("\nCaught {d} errors. Base hypothesis: {f}", .{ self.items.len, hypothesis });
             std.debug.print("\nRefining hypothesis..", .{});
             hypothesis.refine(3000, callback);
             return hypothesis;
@@ -148,7 +149,7 @@ pub fn testFunction(comptime T: type, duration: i64, func: fn (T) anyerror!void)
         const hypothesis = try breakCond.hypothetize(func);
         defer hypothesis.deinit();
 
-        std.debug.print("\nThe function fails when using a value that is {}\n", .{hypothesis});
+        std.debug.print("\nThe function fails when using a value that is {f}\n", .{hypothesis});
         std.debug.print("---\nError return trace with {any}:\n", .{errorsWith.keys()[0]});
         return try func(errorsWith.keys()[0]);
     }
@@ -204,6 +205,8 @@ test "simple struct init" {
 }
 
 test "basic bisecting" {
+    // Skip: this test intentionally provides a failing property to the fuzzer,
+    // and testFunction re-throws the error after diagnosis, so it always fails.
     if (true) return error.SkipZigTest;
 
     // As we're seeking values under 1000 among 4 billion randomly generated values,

@@ -16,7 +16,62 @@ pub const Orientation = enum { Horizontal, Vertical };
 /// To avoid any cross-platform bugs, ensure that min divided by stepSize and max divided by
 /// stepSize both are between -32767 and 32768.
 pub const Slider = struct {
-    pub usingnamespace @import("../internal.zig").All(Slider);
+    const _all = @import("../internal.zig").All(@This());
+    pub const WidgetData = _all.WidgetData;
+    pub const WidgetClass = _all.WidgetClass;
+    pub const Atoms = _all.Atoms;
+    pub const Config = _all.Config;
+    pub const Callback = _all.Callback;
+    pub const DrawCallback = _all.DrawCallback;
+    pub const ButtonCallback = _all.ButtonCallback;
+    pub const MouseMoveCallback = _all.MouseMoveCallback;
+    pub const ScrollCallback = _all.ScrollCallback;
+    pub const ResizeCallback = _all.ResizeCallback;
+    pub const KeyTypeCallback = _all.KeyTypeCallback;
+    pub const KeyPressCallback = _all.KeyPressCallback;
+    pub const PropertyChangeCallback = _all.PropertyChangeCallback;
+    pub const Handlers = _all.Handlers;
+    pub const init_events = _all.init_events;
+    pub const setupEvents = _all.setupEvents;
+    pub const addClickHandler = _all.addClickHandler;
+    pub const addDrawHandler = _all.addDrawHandler;
+    pub const addMouseButtonHandler = _all.addMouseButtonHandler;
+    pub const addMouseMotionHandler = _all.addMouseMotionHandler;
+    pub const addScrollHandler = _all.addScrollHandler;
+    pub const addResizeHandler = _all.addResizeHandler;
+    pub const addKeyTypeHandler = _all.addKeyTypeHandler;
+    pub const addKeyPressHandler = _all.addKeyPressHandler;
+    pub const addPropertyChangeHandler = _all.addPropertyChangeHandler;
+    pub const requestDraw = _all.requestDraw;
+    pub const alloc = _all.alloc;
+    pub const ref = _all.ref;
+    pub const unref = _all.unref;
+    pub const showWidget = _all.showWidget;
+    pub const isDisplayedFn = _all.isDisplayedFn;
+    pub const deinitWidget = _all.deinitWidget;
+    pub const getPreferredSizeWidget = _all.getPreferredSizeWidget;
+    pub const getX = _all.getX;
+    pub const getY = _all.getY;
+    pub const getSize = _all.getSize;
+    pub const getWidth = _all.getWidth;
+    pub const getHeight = _all.getHeight;
+    pub const asWidget = _all.asWidget;
+    pub const addUserdata = _all.addUserdata;
+    pub const withUserdata = _all.withUserdata;
+    pub const getUserdata = _all.getUserdata;
+    pub const set = _all.set;
+    pub const get = _all.get;
+    pub const bind = _all.bind;
+    pub const withProperty = _all.withProperty;
+    pub const withBinding = _all.withBinding;
+    pub const getName = _all.getName;
+    pub const setName = _all.setName;
+    pub const getParent = _all.getParent;
+    pub const getRoot = _all.getRoot;
+    pub const getAnimationController = _all.getAnimationController;
+    pub const clone = _all.clone;
+    pub const widget_clone = _all.widget_clone;
+    pub const deinit = _all.deinit;
 
     peer: ?backend.Slider = null,
     widget_data: Slider.WidgetData = .{},
@@ -31,6 +86,11 @@ pub const Slider = struct {
     /// This means the value can only be a multiple of step.
     step: Atom(f32) = Atom(f32).of(1),
     enabled: Atom(bool) = Atom(bool).of(true),
+    /// Number of tick marks to display. 0 means no tick marks.
+    /// For example, tick_count=11 with min=0 and max=100 gives ticks at 0,10,20,...,100.
+    tick_count: Atom(u32) = Atom(u32).of(0),
+    /// When true, the slider value snaps to the nearest tick mark position.
+    snap_to_ticks: Atom(bool) = Atom(bool).of(false),
 
     pub fn init(config: Slider.Config) Slider {
         var component = Slider.init_events(Slider{
@@ -66,6 +126,16 @@ pub const Slider = struct {
         self.peer.?.setEnabled(newValue);
     }
 
+    fn onTickCountAtomChanged(newValue: u32, userdata: ?*anyopaque) void {
+        const self: *Slider = @ptrCast(@alignCast(userdata));
+        self.peer.?.setTickCount(newValue);
+    }
+
+    fn onSnapToTicksAtomChanged(newValue: bool, userdata: ?*anyopaque) void {
+        const self: *Slider = @ptrCast(@alignCast(userdata));
+        self.peer.?.setSnapToTicks(newValue);
+    }
+
     fn onPropertyChange(self: *Slider, property_name: []const u8, new_value: *const anyopaque) !void {
         if (std.mem.eql(u8, property_name, "value")) {
             const value = @as(*const f32, @ptrCast(@alignCast(new_value)));
@@ -81,6 +151,8 @@ pub const Slider = struct {
             self.peer.?.setValue(self.value.get());
             self.peer.?.setStepSize(self.step.get() * std.math.sign(self.step.get()));
             self.peer.?.setEnabled(self.enabled.get());
+            self.peer.?.setTickCount(self.tick_count.get());
+            self.peer.?.setSnapToTicks(self.snap_to_ticks.get());
             try self.setupEvents();
 
             _ = try self.value.addChangeListener(.{ .function = onValueAtomChanged, .userdata = self });
@@ -88,6 +160,8 @@ pub const Slider = struct {
             _ = try self.max.addChangeListener(.{ .function = onMaxAtomChanged, .userdata = self });
             _ = try self.enabled.addChangeListener(.{ .function = onEnabledAtomChanged, .userdata = self });
             _ = try self.step.addChangeListener(.{ .function = onStepAtomChanged, .userdata = self });
+            _ = try self.tick_count.addChangeListener(.{ .function = onTickCountAtomChanged, .userdata = self });
+            _ = try self.snap_to_ticks.addChangeListener(.{ .function = onSnapToTicksAtomChanged, .userdata = self });
 
             try self.addPropertyChangeHandler(&onPropertyChange);
         }

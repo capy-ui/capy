@@ -6,9 +6,21 @@ const common = @import("common.zig");
 const Slider = @This();
 peer: *c.GtkWidget,
 
-pub usingnamespace common.Events(Slider);
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
 
-fn gtkValueChanged(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+fn gtkValueChanged(peer: *c.GtkWidget, userdata: usize) callconv(.c) void {
     _ = userdata;
     const data = common.getEventUserData(peer);
 
@@ -75,4 +87,27 @@ pub fn setOrientation(self: *Slider, orientation: lib.Orientation) void {
         .Vertical => c.GTK_ORIENTATION_VERTICAL,
     };
     c.gtk_orientable_set_orientation(@as(*c.GtkOrientable, @ptrCast(self.peer)), gtkOrientation);
+}
+
+pub fn setTickCount(self: *Slider, count: u32) void {
+    const scale: *c.GtkScale = @ptrCast(self.peer);
+    c.gtk_scale_clear_marks(scale);
+    if (count > 1) {
+        const adjustment = c.gtk_range_get_adjustment(@as(*c.GtkRange, @ptrCast(self.peer)));
+        const min_val = c.gtk_adjustment_get_lower(adjustment);
+        const max_val = c.gtk_adjustment_get_upper(adjustment) - c.gtk_adjustment_get_step_increment(adjustment);
+        const step = (max_val - min_val) / @as(f64, @floatFromInt(count - 1));
+        for (0..count) |i| {
+            const mark_value = min_val + step * @as(f64, @floatFromInt(i));
+            c.gtk_scale_add_mark(scale, mark_value, c.GTK_POS_BOTTOM, null);
+        }
+    }
+}
+
+pub fn setSnapToTicks(self: *Slider, snap: bool) void {
+    _ = self;
+    _ = snap;
+    // GTK doesn't have native snap-to-tick. The existing gtkValueChanged
+    // callback already rounds to the step size, which provides snapping
+    // when step is set to match tick intervals.
 }

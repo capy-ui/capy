@@ -28,12 +28,12 @@ pub const COMPRESSOR_HANDLE = isize;
 pub const PFN_COMPRESS_ALLOCATE = *const fn(
     UserContext: ?*anyopaque,
     Size: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub const PFN_COMPRESS_FREE = *const fn(
     UserContext: ?*anyopaque,
     Memory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const COMPRESS_ALLOCATION_ROUTINES = extern struct {
     Allocate: ?PFN_COMPRESS_ALLOCATE,
@@ -59,7 +59,7 @@ pub extern "cabinet" fn CreateCompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
     CompressorHandle: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn SetCompressorInformation(
@@ -68,7 +68,7 @@ pub extern "cabinet" fn SetCompressorInformation(
     // TODO: what to do with BytesParamIndex 3?
     CompressInformation: ?*const anyopaque,
     CompressInformationSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn QueryCompressorInformation(
@@ -77,7 +77,7 @@ pub extern "cabinet" fn QueryCompressorInformation(
     // TODO: what to do with BytesParamIndex 3?
     CompressInformation: ?*anyopaque,
     CompressInformationSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn Compress(
@@ -89,24 +89,24 @@ pub extern "cabinet" fn Compress(
     CompressedBuffer: ?*anyopaque,
     CompressedBufferSize: usize,
     CompressedDataSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn ResetCompressor(
     CompressorHandle: COMPRESSOR_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn CloseCompressor(
     CompressorHandle: COMPRESSOR_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn CreateDecompressor(
     Algorithm: COMPRESS_ALGORITHM,
     AllocationRoutines: ?*COMPRESS_ALLOCATION_ROUTINES,
     DecompressorHandle: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn SetDecompressorInformation(
@@ -115,7 +115,7 @@ pub extern "cabinet" fn SetDecompressorInformation(
     // TODO: what to do with BytesParamIndex 3?
     CompressInformation: ?*const anyopaque,
     CompressInformationSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn QueryDecompressorInformation(
@@ -124,7 +124,7 @@ pub extern "cabinet" fn QueryDecompressorInformation(
     // TODO: what to do with BytesParamIndex 3?
     CompressInformation: ?*anyopaque,
     CompressInformationSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn Decompress(
@@ -136,17 +136,17 @@ pub extern "cabinet" fn Decompress(
     UncompressedBuffer: ?*anyopaque,
     UncompressedBufferSize: usize,
     UncompressedDataSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn ResetDecompressor(
     DecompressorHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cabinet" fn CloseDecompressor(
     DecompressorHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

@@ -19,6 +19,9 @@ pub const rect = @import("components/Canvas.zig").rect;
 pub const CheckBox = @import("components/CheckBox.zig").CheckBox;
 pub const checkBox = @import("components/CheckBox.zig").checkBox;
 
+pub const RadioButton = @import("components/RadioButton.zig").RadioButton;
+pub const radioButton = @import("components/RadioButton.zig").radioButton;
+
 pub const Dropdown = @import("components/Dropdown.zig").Dropdown;
 pub const dropdown = @import("components/Dropdown.zig").dropdown;
 
@@ -59,13 +62,93 @@ pub const textArea = @import("components/TextArea.zig").textArea;
 pub const TextField = @import("components/TextField.zig").TextField;
 pub const textField = @import("components/TextField.zig").textField;
 
-// Misc.
-pub usingnamespace @import("containers.zig");
-pub usingnamespace @import("color.zig");
-pub usingnamespace @import("data.zig");
-pub usingnamespace @import("image.zig");
-pub usingnamespace @import("list.zig");
-pub usingnamespace @import("timer.zig");
+// Canvas-based widgets
+pub const Divider = @import("components/Divider.zig").Divider;
+pub const divider = @import("components/Divider.zig").divider;
+
+pub const ProgressBar = @import("components/ProgressBar.zig").ProgressBar;
+pub const progressBar = @import("components/ProgressBar.zig").progressBar;
+
+pub const Spinner = @import("components/Spinner.zig").Spinner;
+pub const spinner = @import("components/Spinner.zig").spinner;
+
+pub const SegmentedControl = @import("components/SegmentedControl.zig").SegmentedControl;
+pub const segmentedControl = @import("components/SegmentedControl.zig").segmentedControl;
+
+pub const MenuButton = @import("components/MenuButton.zig").MenuButton;
+pub const menuButton = @import("components/MenuButton.zig").menuButton;
+
+pub const AlertDialog = @import("components/AlertDialog.zig").AlertDialog;
+pub const alertDialog = @import("components/AlertDialog.zig").alertDialog;
+
+pub const FlyoutPanel = @import("components/FlyoutPanel.zig").FlyoutPanel;
+pub const flyoutPanel = @import("components/FlyoutPanel.zig").flyoutPanel;
+pub const Edge = @import("components/FlyoutPanel.zig").Edge;
+
+pub const ContextMenu = @import("components/ContextMenu.zig").ContextMenu;
+pub const contextMenu = @import("components/ContextMenu.zig").contextMenu;
+pub const ContextMenuItem = @import("components/ContextMenu.zig").ContextMenuItem;
+
+pub const Table = @import("components/Table.zig").Table;
+pub const table = @import("components/Table.zig").table;
+pub const ColumnDef = @import("components/Table.zig").ColumnDef;
+pub const CellProvider = @import("components/Table.zig").CellProvider;
+
+// Overlay utilities
+pub const overlay = @import("overlay.zig");
+
+// Containers
+const containers = @import("containers.zig");
+pub const Layout = containers.Layout;
+pub const ColumnLayout = containers.ColumnLayout;
+pub const RowLayout = containers.RowLayout;
+pub const MarginLayout = containers.MarginLayout;
+pub const StackLayout = containers.StackLayout;
+pub const GridLayout = containers.GridLayout;
+pub const GridLayoutConfig = containers.GridLayoutConfig;
+pub const Container = containers.Container;
+pub const GridConfig = containers.GridConfig;
+pub const grid = containers.grid;
+pub const expanded = containers.expanded;
+pub const stack = containers.stack;
+pub const row = containers.row;
+pub const column = containers.column;
+pub const margin = containers.margin;
+
+// Color
+const color_mod = @import("color.zig");
+pub const Colorspace = color_mod.Colorspace;
+pub const Color = color_mod.Color;
+pub const Colors = color_mod.Colors;
+
+// Data
+const data_mod = @import("data.zig");
+pub const lerp = data_mod.lerp;
+pub const Easing = data_mod.Easing;
+pub const Easings = data_mod.Easings;
+pub const isAtom = data_mod.isAtom;
+pub const isListAtom = data_mod.isListAtom;
+pub const Atom = data_mod.Atom;
+pub const ListAtom = data_mod.ListAtom;
+pub const FormattedAtom = data_mod.FormattedAtom;
+pub const Position = data_mod.Position;
+pub const Size = data_mod.Size;
+pub const Rectangle = data_mod.Rectangle;
+
+// Image data
+const image_mod = @import("image.zig");
+pub const ImageData = image_mod.ImageData;
+pub const ScalableVectorData = image_mod.ScalableVectorData;
+
+// List
+const list_mod = @import("list.zig");
+pub const GenericListModel = list_mod.GenericListModel;
+pub const List = list_mod.List;
+pub const columnList = list_mod.columnList;
+
+// Timer
+const timer_mod = @import("timer.zig");
+pub const Timer = timer_mod.Timer;
 
 pub const Monitor = @import("monitor.zig").Monitor;
 pub const Monitors = @import("monitor.zig").Monitors;
@@ -87,6 +170,9 @@ pub const http = @import("http.zig");
 pub const dev_tools = @import("dev_tools.zig");
 pub const audio = @import("audio.zig");
 pub const testing = @import("testing.zig");
+pub const event_simulator = @import("event_simulator.zig");
+pub const icon = @import("icon.zig");
+pub const icon_embed = @import("icon_embed.zig");
 
 pub const allocator = internal.allocator;
 
@@ -102,6 +188,14 @@ else
 
 pub const EventLoopStep = @import("backends/shared.zig").EventLoopStep;
 pub const MouseButton = @import("backends/shared.zig").MouseButton;
+pub const FileDialogOptions = @import("backends/shared.zig").FileDialogOptions;
+
+/// Opens a native file/directory selection dialog.
+/// Returns the selected path, or null if cancelled.
+/// Caller owns returned memory (free with `capy.allocator.free(result)`).
+pub const openFileDialog = backend.openFileDialog;
+pub const isDarkMode = backend.isDarkMode;
+pub const SystemColors = @import("system_colors.zig");
 
 // This is a private global variable used for safety.
 var isCapyInitialized: bool = false;
@@ -120,11 +214,13 @@ pub fn init() !void {
             return num >= 1;
         }
     }.a) catch @panic("OOM");
+    @import("state_logger.zig").init();
     isCapyInitialized = true;
 }
 
 pub fn deinit() void {
     isCapyInitialized = false;
+    @import("state_logger.zig").deinit();
     Monitors.deinit();
 
     @import("timer.zig").runningTimers.deinit();

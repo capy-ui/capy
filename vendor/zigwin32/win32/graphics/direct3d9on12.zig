@@ -20,13 +20,13 @@ pub const PFN_Direct3DCreate9On12Ex = *const fn(
     pOverrideList: ?*D3D9ON12_ARGS,
     NumOverrideEntries: u32,
     ppOutputInterface: ?*?*IDirect3D9Ex,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFN_Direct3DCreate9On12 = *const fn(
     SDKVersion: u32,
     pOverrideList: ?*D3D9ON12_ARGS,
     NumOverrideEntries: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*IDirect3D9;
+) callconv(.winapi) ?*IDirect3D9;
 
 const IID_IDirect3DDevice9On12_Value = Guid.initString("e7fda234-b589-4049-940d-8878977531c8");
 pub const IID_IDirect3DDevice9On12 = &IID_IDirect3DDevice9On12_Value;
@@ -37,31 +37,31 @@ pub const IDirect3DDevice9On12 = extern union {
             self: *const IDirect3DDevice9On12,
             riid: ?*const Guid,
             ppvDevice: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnwrapUnderlyingResource: *const fn(
             self: *const IDirect3DDevice9On12,
             pResource: ?*IDirect3DResource9,
             pCommandQueue: ?*ID3D12CommandQueue,
             riid: ?*const Guid,
             ppvResource12: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReturnUnderlyingResource: *const fn(
             self: *const IDirect3DDevice9On12,
             pResource: ?*IDirect3DResource9,
             NumSync: u32,
             pSignalValues: ?*u64,
             ppFences: ?*?*ID3D12Fence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetD3D12Device(self: *const IDirect3DDevice9On12, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetD3D12Device(self: *const IDirect3DDevice9On12, riid: ?*const Guid, ppvDevice: ?*?*anyopaque) HRESULT {
         return self.vtable.GetD3D12Device(self, riid, ppvDevice);
     }
-    pub fn UnwrapUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn UnwrapUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, pCommandQueue: ?*ID3D12CommandQueue, riid: ?*const Guid, ppvResource12: ?*?*anyopaque) HRESULT {
         return self.vtable.UnwrapUnderlyingResource(self, pResource, pCommandQueue, riid, ppvResource12);
     }
-    pub fn ReturnUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, NumSync: u32, pSignalValues: ?*u64, ppFences: ?*?*ID3D12Fence) callconv(.Inline) HRESULT {
+    pub fn ReturnUnderlyingResource(self: *const IDirect3DDevice9On12, pResource: ?*IDirect3DResource9, NumSync: u32, pSignalValues: ?*u64, ppFences: ?*?*ID3D12Fence) HRESULT {
         return self.vtable.ReturnUnderlyingResource(self, pResource, NumSync, pSignalValues, ppFences);
     }
 };
@@ -75,13 +75,13 @@ pub extern "d3d9" fn Direct3DCreate9On12Ex(
     pOverrideList: ?*D3D9ON12_ARGS,
     NumOverrideEntries: u32,
     ppOutputInterface: ?*?*IDirect3D9Ex,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3d9" fn Direct3DCreate9On12(
     SDKVersion: u32,
     pOverrideList: ?*D3D9ON12_ARGS,
     NumOverrideEntries: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*IDirect3D9;
+) callconv(.winapi) ?*IDirect3D9;
 
 
 //--------------------------------------------------------------------------------

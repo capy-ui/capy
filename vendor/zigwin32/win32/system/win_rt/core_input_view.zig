@@ -16,12 +16,12 @@ pub const ICoreFrameworkInputViewInterop = extern union {
             appWindow: ?HWND,
             riid: ?*const Guid,
             coreFrameworkInputView: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const ICoreFrameworkInputViewInterop, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const ICoreFrameworkInputViewInterop, appWindow: ?HWND, riid: ?*const Guid, coreFrameworkInputView: **anyopaque) HRESULT {
         return self.vtable.GetForWindow(self, appWindow, riid, coreFrameworkInputView);
     }
 };

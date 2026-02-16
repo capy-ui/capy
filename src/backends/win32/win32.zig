@@ -1,7 +1,10 @@
 const std = @import("std");
 const zigwin32 = @import("zigwin32");
 
-pub usingnamespace std.os.windows.kernel32;
+// TODO: `pub usingnamespace std.os.windows.kernel32;` was removed.
+// If any kernel32 functions are needed, forward them explicitly here.
+// Analysis shows no kernel32 functions are currently accessed through this module
+// (they are accessed via zigwin32.everything instead).
 // pub usingnamespace zigwin32.user32;
 
 pub const HINSTANCE = std.os.windows.HINSTANCE;
@@ -12,7 +15,7 @@ pub const LRESULT = std.os.windows.LRESULT;
 pub const HRESULT = std.os.windows.HRESULT;
 pub const RECT = std.os.windows.RECT;
 pub const LPRECT = *RECT;
-pub const WINAPI = std.os.windows.WINAPI;
+pub const WINAPI = std.builtin.CallingConvention.winapi;
 pub const HDC = std.os.windows.HDC;
 pub const HBRUSH = std.os.windows.HBRUSH;
 pub const HMENU = std.os.windows.HMENU;
@@ -48,6 +51,10 @@ pub const TBM_GETPOS = 0x0400;
 pub const TBM_SETRANGE = 0x0406;
 pub const TBM_SETRANGEMIN = 0x0407;
 pub const TBM_SETRANGEMAX = 0x0408;
+pub const TBM_SETTIC = 0x0404;
+pub const TBM_SETTICFREQ = 0x0414;
+pub const TBM_CLEARTICS = 0x0409;
+pub const TBS_AUTOTICKS: u32 = 0x0001;
 
 // STATIC controls
 /// Centers text horizontally.
@@ -63,6 +70,102 @@ pub const CBS_HASSTRINGS = 0x0200;
 pub const CB_GETCURSEL = 0x0147;
 pub const CB_SETCURSEL = 0x014E;
 pub const CB_ERR: LRESULT = -1;
+
+// ListView controls
+pub const LVS_REPORT: u32 = 0x0001;
+pub const LVS_SINGLESEL: u32 = 0x0004;
+pub const LVS_SHOWSELALWAYS: u32 = 0x0008;
+pub const LVS_OWNERDATA: u32 = 0x1000;
+pub const LVS_EX_FULLROWSELECT: u32 = 0x00000020;
+pub const LVS_EX_GRIDLINES: u32 = 0x00000001;
+pub const LVS_EX_HEADERDRAGDROP: u32 = 0x00000010;
+pub const LVS_EX_DOUBLEBUFFER: u32 = 0x00010000;
+
+pub const LVM_FIRST: u32 = 0x1000;
+pub const LVM_INSERTCOLUMNW: u32 = LVM_FIRST + 97;
+pub const LVM_DELETECOLUMN: u32 = LVM_FIRST + 28;
+pub const LVM_SETITEMCOUNT: u32 = LVM_FIRST + 47;
+pub const LVM_SETEXTENDEDLISTVIEWSTYLE: u32 = LVM_FIRST + 54;
+pub const LVM_GETSELECTEDCOUNT: u32 = LVM_FIRST + 50;
+pub const LVM_GETNEXTITEM: u32 = LVM_FIRST + 12;
+pub const LVM_SETITEMSTATE: u32 = LVM_FIRST + 43;
+pub const LVM_GETCOLUMNCOUNT: u32 = LVM_FIRST + 211;
+pub const LVM_DELETEALLITEMS: u32 = LVM_FIRST + 9;
+pub const LVM_REDRAWITEMS: u32 = LVM_FIRST + 21;
+pub const LVM_GETITEMCOUNT: u32 = LVM_FIRST + 4;
+
+pub const LVNI_SELECTED: u32 = 0x0002;
+pub const LVIS_SELECTED: u32 = 0x0002;
+pub const LVIS_FOCUSED: u32 = 0x0001;
+
+pub const LVN_FIRST: u32 = @as(u32, 0) -% 100;
+pub const LVN_ITEMCHANGED: u32 = LVN_FIRST -% 1;
+pub const LVN_GETDISPINFOW: u32 = LVN_FIRST -% 77;
+pub const LVN_COLUMNCLICK: u32 = LVN_FIRST -% 8;
+
+pub const LVCF_FMT: u32 = 0x0001;
+pub const LVCF_WIDTH: u32 = 0x0002;
+pub const LVCF_TEXT: u32 = 0x0004;
+pub const LVCF_SUBITEM: u32 = 0x0008;
+
+pub const LVCFMT_LEFT: c_int = 0x0000;
+
+pub const LVIF_TEXT: u32 = 0x0001;
+pub const LVIF_STATE: u32 = 0x0008;
+
+pub const LVCOLUMNW = extern struct {
+    mask: u32 = 0,
+    fmt: c_int = 0,
+    cx: c_int = 0,
+    pszText: ?[*:0]const u16 = null,
+    cchTextMax: c_int = 0,
+    iSubItem: c_int = 0,
+    iImage: c_int = 0,
+    iOrder: c_int = 0,
+    cxMin: c_int = 0,
+    cxDefault: c_int = 0,
+    cxIdeal: c_int = 0,
+};
+
+pub const LVITEMW = extern struct {
+    mask: u32 = 0,
+    iItem: c_int = 0,
+    iSubItem: c_int = 0,
+    state: u32 = 0,
+    stateMask: u32 = 0,
+    pszText: ?[*:0]u16 = null,
+    cchTextMax: c_int = 0,
+    iImage: c_int = 0,
+    lParam: LPARAM = 0,
+    iIndent: c_int = 0,
+    iGroupId: c_int = 0,
+    cColumns: u32 = 0,
+    puColumns: ?*u32 = null,
+    piColFmt: ?*c_int = null,
+    iGroup: c_int = 0,
+};
+
+pub const NMHDR = extern struct {
+    hwndFrom: ?HWND = null,
+    idFrom: usize = 0,
+    code: u32 = 0,
+};
+
+pub const NMLISTVIEW = extern struct {
+    hdr: NMHDR = .{},
+    iItem: c_int = 0,
+    iSubItem: c_int = 0,
+    uNewState: u32 = 0,
+    uOldState: u32 = 0,
+    uChanged: u32 = 0,
+    ptAction: extern struct { x: i32 = 0, y: i32 = 0 } = .{},
+    lParam: LPARAM = 0,
+};
+
+pub const NMLVDISPINFOW = extern struct {
+    hdr: NMHDR = .{},
+    item: LVITEMW = .{},
+};
 
 pub const SWP_NOACTIVATE = 0x0010;
 pub const SWP_NOOWNERZORDER = 0x0200;
@@ -193,12 +296,6 @@ pub const PAINTSTRUCT = extern struct {
 pub const POINT = extern struct { x: LONG, y: LONG };
 
 pub const SIZE = extern struct { cx: std.os.windows.LONG, cy: std.os.windows.LONG };
-
-pub const NMHDR = extern struct {
-    hwndFrom: HWND,
-    idFrom: UINT,
-    code: UINT,
-};
 
 pub const LOGFONTA = extern struct {
     lfHeight: LONG,
@@ -403,18 +500,18 @@ pub const GpStatus = enum(c_int) { Ok, GenericError, InvalidParameter, OutOfMemo
 
 pub const DebugEventLevel = enum(c_int) { DebugEventLevelFatal, DebugEventLevelWarning };
 
-pub const DebugEventProc = *const fn (level: DebugEventLevel, message: [*]const u8) callconv(.C) void;
+pub const DebugEventProc = *const fn (level: DebugEventLevel, message: [*]const u8) callconv(.c) void;
 pub const GdiplusStartupInput = extern struct {
     GdiplusVersion: u32 = 1,
     DebugEventCallback: ?DebugEventProc = null,
     SuppressBackgroundThread: BOOL = 0,
     SuppressExternalCodecs: BOOL = 0,
-    GdiplusStartupInput: ?*const fn (debugEventCallback: DebugEventProc, suppressBackgroundThread: BOOL, supressExternalCodecs: BOOL) callconv(.C) void = null,
+    GdiplusStartupInput: ?*const fn (debugEventCallback: DebugEventProc, suppressBackgroundThread: BOOL, supressExternalCodecs: BOOL) callconv(.c) void = null,
 };
 
 pub const GdiplusStartupOutput = extern struct {
-    NotificationHookProc: *const fn () callconv(.C) void, // TODO
-    NotificationUnhookProc: *const fn () callconv(.C) void, // TODO
+    NotificationHookProc: *const fn () callconv(.c) void, // TODO
+    NotificationUnhookProc: *const fn () callconv(.c) void, // TODO
 };
 
 pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) callconv(WINAPI) GpStatus;

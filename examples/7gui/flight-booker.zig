@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 var selected_index: capy.Atom(usize) = capy.Atom(usize).of(0);
 
 pub fn main() !void {

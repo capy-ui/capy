@@ -120,28 +120,28 @@ pub const IOpcUri = extern union {
         GetRelationshipsPartUri: *const fn(
             self: *const IOpcUri,
             relationshipPartUri: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRelativeUri: *const fn(
             self: *const IOpcUri,
             targetPartUri: ?*IOpcPartUri,
             relativeUri: ?*?*IUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CombinePartUri: *const fn(
             self: *const IOpcUri,
             relativeUri: ?*IUri,
             combinedUri: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUri: IUri,
     IUnknown: IUnknown,
-    pub fn GetRelationshipsPartUri(self: *const IOpcUri, relationshipPartUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn GetRelationshipsPartUri(self: *const IOpcUri, relationshipPartUri: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.GetRelationshipsPartUri(self, relationshipPartUri);
     }
-    pub fn GetRelativeUri(self: *const IOpcUri, targetPartUri: ?*IOpcPartUri, relativeUri: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn GetRelativeUri(self: *const IOpcUri, targetPartUri: ?*IOpcPartUri, relativeUri: ?*?*IUri) HRESULT {
         return self.vtable.GetRelativeUri(self, targetPartUri, relativeUri);
     }
-    pub fn CombinePartUri(self: *const IOpcUri, relativeUri: ?*IUri, combinedUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn CombinePartUri(self: *const IOpcUri, relativeUri: ?*IUri, combinedUri: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.CombinePartUri(self, relativeUri, combinedUri);
     }
 };
@@ -156,27 +156,27 @@ pub const IOpcPartUri = extern union {
             self: *const IOpcPartUri,
             partUri: ?*IOpcPartUri,
             comparisonResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceUri: *const fn(
             self: *const IOpcPartUri,
             sourceUri: ?*?*IOpcUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsRelationshipsPartUri: *const fn(
             self: *const IOpcPartUri,
             isRelationshipUri: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOpcUri: IOpcUri,
     IUri: IUri,
     IUnknown: IUnknown,
-    pub fn ComparePartUri(self: *const IOpcPartUri, partUri: ?*IOpcPartUri, comparisonResult: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ComparePartUri(self: *const IOpcPartUri, partUri: ?*IOpcPartUri, comparisonResult: ?*i32) HRESULT {
         return self.vtable.ComparePartUri(self, partUri, comparisonResult);
     }
-    pub fn GetSourceUri(self: *const IOpcPartUri, sourceUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+    pub fn GetSourceUri(self: *const IOpcPartUri, sourceUri: ?*?*IOpcUri) HRESULT {
         return self.vtable.GetSourceUri(self, sourceUri);
     }
-    pub fn IsRelationshipsPartUri(self: *const IOpcPartUri, isRelationshipUri: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsRelationshipsPartUri(self: *const IOpcPartUri, isRelationshipUri: ?*BOOL) HRESULT {
         return self.vtable.IsRelationshipsPartUri(self, isRelationshipUri);
     }
 };
@@ -346,18 +346,18 @@ pub const IOpcPackage = extern union {
         GetPartSet: *const fn(
             self: *const IOpcPackage,
             partSet: ?*?*IOpcPartSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRelationshipSet: *const fn(
             self: *const IOpcPackage,
             relationshipSet: ?*?*IOpcRelationshipSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPartSet(self: *const IOpcPackage, partSet: ?*?*IOpcPartSet) callconv(.Inline) HRESULT {
+    pub fn GetPartSet(self: *const IOpcPackage, partSet: ?*?*IOpcPartSet) HRESULT {
         return self.vtable.GetPartSet(self, partSet);
     }
-    pub fn GetRelationshipSet(self: *const IOpcPackage, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.Inline) HRESULT {
+    pub fn GetRelationshipSet(self: *const IOpcPackage, relationshipSet: ?*?*IOpcRelationshipSet) HRESULT {
         return self.vtable.GetRelationshipSet(self, relationshipSet);
     }
 };
@@ -371,39 +371,39 @@ pub const IOpcPart = extern union {
         GetRelationshipSet: *const fn(
             self: *const IOpcPart,
             relationshipSet: ?*?*IOpcRelationshipSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentStream: *const fn(
             self: *const IOpcPart,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IOpcPart,
             name: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IOpcPart,
             contentType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompressionOptions: *const fn(
             self: *const IOpcPart,
             compressionOptions: ?*OPC_COMPRESSION_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRelationshipSet(self: *const IOpcPart, relationshipSet: ?*?*IOpcRelationshipSet) callconv(.Inline) HRESULT {
+    pub fn GetRelationshipSet(self: *const IOpcPart, relationshipSet: ?*?*IOpcRelationshipSet) HRESULT {
         return self.vtable.GetRelationshipSet(self, relationshipSet);
     }
-    pub fn GetContentStream(self: *const IOpcPart, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetContentStream(self: *const IOpcPart, stream: ?*?*IStream) HRESULT {
         return self.vtable.GetContentStream(self, stream);
     }
-    pub fn GetName(self: *const IOpcPart, name: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IOpcPart, name: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetContentType(self: *const IOpcPart, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetContentType(self: *const IOpcPart, contentType: ?*?PWSTR) HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
-    pub fn GetCompressionOptions(self: *const IOpcPart, compressionOptions: ?*OPC_COMPRESSION_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetCompressionOptions(self: *const IOpcPart, compressionOptions: ?*OPC_COMPRESSION_OPTIONS) HRESULT {
         return self.vtable.GetCompressionOptions(self, compressionOptions);
     }
 };
@@ -417,39 +417,39 @@ pub const IOpcRelationship = extern union {
         GetId: *const fn(
             self: *const IOpcRelationship,
             relationshipIdentifier: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRelationshipType: *const fn(
             self: *const IOpcRelationship,
             relationshipType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceUri: *const fn(
             self: *const IOpcRelationship,
             sourceUri: ?*?*IOpcUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTargetUri: *const fn(
             self: *const IOpcRelationship,
             targetUri: ?*?*IUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTargetMode: *const fn(
             self: *const IOpcRelationship,
             targetMode: ?*OPC_URI_TARGET_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IOpcRelationship, relationshipIdentifier: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const IOpcRelationship, relationshipIdentifier: ?*?PWSTR) HRESULT {
         return self.vtable.GetId(self, relationshipIdentifier);
     }
-    pub fn GetRelationshipType(self: *const IOpcRelationship, relationshipType: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetRelationshipType(self: *const IOpcRelationship, relationshipType: ?*?PWSTR) HRESULT {
         return self.vtable.GetRelationshipType(self, relationshipType);
     }
-    pub fn GetSourceUri(self: *const IOpcRelationship, sourceUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+    pub fn GetSourceUri(self: *const IOpcRelationship, sourceUri: ?*?*IOpcUri) HRESULT {
         return self.vtable.GetSourceUri(self, sourceUri);
     }
-    pub fn GetTargetUri(self: *const IOpcRelationship, targetUri: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn GetTargetUri(self: *const IOpcRelationship, targetUri: ?*?*IUri) HRESULT {
         return self.vtable.GetTargetUri(self, targetUri);
     }
-    pub fn GetTargetMode(self: *const IOpcRelationship, targetMode: ?*OPC_URI_TARGET_MODE) callconv(.Inline) HRESULT {
+    pub fn GetTargetMode(self: *const IOpcRelationship, targetMode: ?*OPC_URI_TARGET_MODE) HRESULT {
         return self.vtable.GetTargetMode(self, targetMode);
     }
 };
@@ -464,43 +464,43 @@ pub const IOpcPartSet = extern union {
             self: *const IOpcPartSet,
             name: ?*IOpcPartUri,
             part: ?*?*IOpcPart,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePart: *const fn(
             self: *const IOpcPartSet,
             name: ?*IOpcPartUri,
             contentType: ?[*:0]const u16,
             compressionOptions: OPC_COMPRESSION_OPTIONS,
             part: ?*?*IOpcPart,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePart: *const fn(
             self: *const IOpcPartSet,
             name: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PartExists: *const fn(
             self: *const IOpcPartSet,
             name: ?*IOpcPartUri,
             partExists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcPartSet,
             partEnumerator: ?*?*IOpcPartEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPart(self: *const IOpcPartSet, name: ?*IOpcPartUri, part: ?*?*IOpcPart) callconv(.Inline) HRESULT {
+    pub fn GetPart(self: *const IOpcPartSet, name: ?*IOpcPartUri, part: ?*?*IOpcPart) HRESULT {
         return self.vtable.GetPart(self, name, part);
     }
-    pub fn CreatePart(self: *const IOpcPartSet, name: ?*IOpcPartUri, contentType: ?[*:0]const u16, compressionOptions: OPC_COMPRESSION_OPTIONS, part: ?*?*IOpcPart) callconv(.Inline) HRESULT {
+    pub fn CreatePart(self: *const IOpcPartSet, name: ?*IOpcPartUri, contentType: ?[*:0]const u16, compressionOptions: OPC_COMPRESSION_OPTIONS, part: ?*?*IOpcPart) HRESULT {
         return self.vtable.CreatePart(self, name, contentType, compressionOptions, part);
     }
-    pub fn DeletePart(self: *const IOpcPartSet, name: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn DeletePart(self: *const IOpcPartSet, name: ?*IOpcPartUri) HRESULT {
         return self.vtable.DeletePart(self, name);
     }
-    pub fn PartExists(self: *const IOpcPartSet, name: ?*IOpcPartUri, partExists: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn PartExists(self: *const IOpcPartSet, name: ?*IOpcPartUri, partExists: ?*BOOL) HRESULT {
         return self.vtable.PartExists(self, name, partExists);
     }
-    pub fn GetEnumerator(self: *const IOpcPartSet, partEnumerator: ?*?*IOpcPartEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcPartSet, partEnumerator: ?*?*IOpcPartEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, partEnumerator);
     }
 };
@@ -515,7 +515,7 @@ pub const IOpcRelationshipSet = extern union {
             self: *const IOpcRelationshipSet,
             relationshipIdentifier: ?[*:0]const u16,
             relationship: ?*?*IOpcRelationship,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRelationship: *const fn(
             self: *const IOpcRelationshipSet,
             relationshipIdentifier: ?[*:0]const u16,
@@ -523,51 +523,51 @@ pub const IOpcRelationshipSet = extern union {
             targetUri: ?*IUri,
             targetMode: OPC_URI_TARGET_MODE,
             relationship: ?*?*IOpcRelationship,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRelationship: *const fn(
             self: *const IOpcRelationshipSet,
             relationshipIdentifier: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RelationshipExists: *const fn(
             self: *const IOpcRelationshipSet,
             relationshipIdentifier: ?[*:0]const u16,
             relationshipExists: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcRelationshipSet,
             relationshipEnumerator: ?*?*IOpcRelationshipEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumeratorForType: *const fn(
             self: *const IOpcRelationshipSet,
             relationshipType: ?[*:0]const u16,
             relationshipEnumerator: ?*?*IOpcRelationshipEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRelationshipsContentStream: *const fn(
             self: *const IOpcRelationshipSet,
             contents: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationship: ?*?*IOpcRelationship) callconv(.Inline) HRESULT {
+    pub fn GetRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationship: ?*?*IOpcRelationship) HRESULT {
         return self.vtable.GetRelationship(self, relationshipIdentifier, relationship);
     }
-    pub fn CreateRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipType: ?[*:0]const u16, targetUri: ?*IUri, targetMode: OPC_URI_TARGET_MODE, relationship: ?*?*IOpcRelationship) callconv(.Inline) HRESULT {
+    pub fn CreateRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipType: ?[*:0]const u16, targetUri: ?*IUri, targetMode: OPC_URI_TARGET_MODE, relationship: ?*?*IOpcRelationship) HRESULT {
         return self.vtable.CreateRelationship(self, relationshipIdentifier, relationshipType, targetUri, targetMode, relationship);
     }
-    pub fn DeleteRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteRelationship(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16) HRESULT {
         return self.vtable.DeleteRelationship(self, relationshipIdentifier);
     }
-    pub fn RelationshipExists(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipExists: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn RelationshipExists(self: *const IOpcRelationshipSet, relationshipIdentifier: ?[*:0]const u16, relationshipExists: ?*BOOL) HRESULT {
         return self.vtable.RelationshipExists(self, relationshipIdentifier, relationshipExists);
     }
-    pub fn GetEnumerator(self: *const IOpcRelationshipSet, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcRelationshipSet, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, relationshipEnumerator);
     }
-    pub fn GetEnumeratorForType(self: *const IOpcRelationshipSet, relationshipType: ?[*:0]const u16, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumeratorForType(self: *const IOpcRelationshipSet, relationshipType: ?[*:0]const u16, relationshipEnumerator: ?*?*IOpcRelationshipEnumerator) HRESULT {
         return self.vtable.GetEnumeratorForType(self, relationshipType, relationshipEnumerator);
     }
-    pub fn GetRelationshipsContentStream(self: *const IOpcRelationshipSet, contents: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetRelationshipsContentStream(self: *const IOpcRelationshipSet, contents: ?*?*IStream) HRESULT {
         return self.vtable.GetRelationshipsContentStream(self, contents);
     }
 };
@@ -581,32 +581,32 @@ pub const IOpcPartEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcPartEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcPartEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcPartEnumerator,
             part: ?*?*IOpcPart,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcPartEnumerator,
             copy: ?*?*IOpcPartEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcPartEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcPartEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcPartEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcPartEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcPartEnumerator, part: ?*?*IOpcPart) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcPartEnumerator, part: ?*?*IOpcPart) HRESULT {
         return self.vtable.GetCurrent(self, part);
     }
-    pub fn Clone(self: *const IOpcPartEnumerator, copy: ?*?*IOpcPartEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcPartEnumerator, copy: ?*?*IOpcPartEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -620,32 +620,32 @@ pub const IOpcRelationshipEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcRelationshipEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcRelationshipEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcRelationshipEnumerator,
             relationship: ?*?*IOpcRelationship,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcRelationshipEnumerator,
             copy: ?*?*IOpcRelationshipEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcRelationshipEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcRelationshipEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcRelationshipEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcRelationshipEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcRelationshipEnumerator, relationship: ?*?*IOpcRelationship) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcRelationshipEnumerator, relationship: ?*?*IOpcRelationship) HRESULT {
         return self.vtable.GetCurrent(self, relationship);
     }
-    pub fn Clone(self: *const IOpcRelationshipEnumerator, copy: ?*?*IOpcRelationshipEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcRelationshipEnumerator, copy: ?*?*IOpcRelationshipEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -659,40 +659,40 @@ pub const IOpcSignaturePartReference = extern union {
         GetPartName: *const fn(
             self: *const IOpcSignaturePartReference,
             partName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IOpcSignaturePartReference,
             contentType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IOpcSignaturePartReference,
             digestMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDigestValue: *const fn(
             self: *const IOpcSignaturePartReference,
             digestValue: [*]?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformMethod: *const fn(
             self: *const IOpcSignaturePartReference,
             transformMethod: ?*OPC_CANONICALIZATION_METHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPartName(self: *const IOpcSignaturePartReference, partName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn GetPartName(self: *const IOpcSignaturePartReference, partName: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.GetPartName(self, partName);
     }
-    pub fn GetContentType(self: *const IOpcSignaturePartReference, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetContentType(self: *const IOpcSignaturePartReference, contentType: ?*?PWSTR) HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
-    pub fn GetDigestMethod(self: *const IOpcSignaturePartReference, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDigestMethod(self: *const IOpcSignaturePartReference, digestMethod: ?*?PWSTR) HRESULT {
         return self.vtable.GetDigestMethod(self, digestMethod);
     }
-    pub fn GetDigestValue(self: *const IOpcSignaturePartReference, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDigestValue(self: *const IOpcSignaturePartReference, digestValue: [*]?*u8, count: ?*u32) HRESULT {
         return self.vtable.GetDigestValue(self, digestValue, count);
     }
-    pub fn GetTransformMethod(self: *const IOpcSignaturePartReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+    pub fn GetTransformMethod(self: *const IOpcSignaturePartReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
         return self.vtable.GetTransformMethod(self, transformMethod);
     }
 };
@@ -706,47 +706,47 @@ pub const IOpcSignatureRelationshipReference = extern union {
         GetSourceUri: *const fn(
             self: *const IOpcSignatureRelationshipReference,
             sourceUri: ?*?*IOpcUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IOpcSignatureRelationshipReference,
             digestMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDigestValue: *const fn(
             self: *const IOpcSignatureRelationshipReference,
             digestValue: [*]?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformMethod: *const fn(
             self: *const IOpcSignatureRelationshipReference,
             transformMethod: ?*OPC_CANONICALIZATION_METHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRelationshipSigningOption: *const fn(
             self: *const IOpcSignatureRelationshipReference,
             relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRelationshipSelectorEnumerator: *const fn(
             self: *const IOpcSignatureRelationshipReference,
             selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSourceUri(self: *const IOpcSignatureRelationshipReference, sourceUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+    pub fn GetSourceUri(self: *const IOpcSignatureRelationshipReference, sourceUri: ?*?*IOpcUri) HRESULT {
         return self.vtable.GetSourceUri(self, sourceUri);
     }
-    pub fn GetDigestMethod(self: *const IOpcSignatureRelationshipReference, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDigestMethod(self: *const IOpcSignatureRelationshipReference, digestMethod: ?*?PWSTR) HRESULT {
         return self.vtable.GetDigestMethod(self, digestMethod);
     }
-    pub fn GetDigestValue(self: *const IOpcSignatureRelationshipReference, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDigestValue(self: *const IOpcSignatureRelationshipReference, digestValue: [*]?*u8, count: ?*u32) HRESULT {
         return self.vtable.GetDigestValue(self, digestValue, count);
     }
-    pub fn GetTransformMethod(self: *const IOpcSignatureRelationshipReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+    pub fn GetTransformMethod(self: *const IOpcSignatureRelationshipReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
         return self.vtable.GetTransformMethod(self, transformMethod);
     }
-    pub fn GetRelationshipSigningOption(self: *const IOpcSignatureRelationshipReference, relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION) callconv(.Inline) HRESULT {
+    pub fn GetRelationshipSigningOption(self: *const IOpcSignatureRelationshipReference, relationshipSigningOption: ?*OPC_RELATIONSHIPS_SIGNING_OPTION) HRESULT {
         return self.vtable.GetRelationshipSigningOption(self, relationshipSigningOption);
     }
-    pub fn GetRelationshipSelectorEnumerator(self: *const IOpcSignatureRelationshipReference, selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetRelationshipSelectorEnumerator(self: *const IOpcSignatureRelationshipReference, selectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) HRESULT {
         return self.vtable.GetRelationshipSelectorEnumerator(self, selectorEnumerator);
     }
 };
@@ -760,18 +760,18 @@ pub const IOpcRelationshipSelector = extern union {
         GetSelectorType: *const fn(
             self: *const IOpcRelationshipSelector,
             selector: ?*OPC_RELATIONSHIP_SELECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelectionCriterion: *const fn(
             self: *const IOpcRelationshipSelector,
             selectionCriterion: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSelectorType(self: *const IOpcRelationshipSelector, selector: ?*OPC_RELATIONSHIP_SELECTOR) callconv(.Inline) HRESULT {
+    pub fn GetSelectorType(self: *const IOpcRelationshipSelector, selector: ?*OPC_RELATIONSHIP_SELECTOR) HRESULT {
         return self.vtable.GetSelectorType(self, selector);
     }
-    pub fn GetSelectionCriterion(self: *const IOpcRelationshipSelector, selectionCriterion: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSelectionCriterion(self: *const IOpcRelationshipSelector, selectionCriterion: ?*?PWSTR) HRESULT {
         return self.vtable.GetSelectionCriterion(self, selectionCriterion);
     }
 };
@@ -785,47 +785,47 @@ pub const IOpcSignatureReference = extern union {
         GetId: *const fn(
             self: *const IOpcSignatureReference,
             referenceId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUri: *const fn(
             self: *const IOpcSignatureReference,
             referenceUri: ?*?*IUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IOpcSignatureReference,
             type: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTransformMethod: *const fn(
             self: *const IOpcSignatureReference,
             transformMethod: ?*OPC_CANONICALIZATION_METHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDigestMethod: *const fn(
             self: *const IOpcSignatureReference,
             digestMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDigestValue: *const fn(
             self: *const IOpcSignatureReference,
             digestValue: [*]?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetId(self: *const IOpcSignatureReference, referenceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const IOpcSignatureReference, referenceId: ?*?PWSTR) HRESULT {
         return self.vtable.GetId(self, referenceId);
     }
-    pub fn GetUri(self: *const IOpcSignatureReference, referenceUri: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn GetUri(self: *const IOpcSignatureReference, referenceUri: ?*?*IUri) HRESULT {
         return self.vtable.GetUri(self, referenceUri);
     }
-    pub fn GetType(self: *const IOpcSignatureReference, @"type": ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IOpcSignatureReference, @"type": ?*?PWSTR) HRESULT {
         return self.vtable.GetType(self, @"type");
     }
-    pub fn GetTransformMethod(self: *const IOpcSignatureReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+    pub fn GetTransformMethod(self: *const IOpcSignatureReference, transformMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
         return self.vtable.GetTransformMethod(self, transformMethod);
     }
-    pub fn GetDigestMethod(self: *const IOpcSignatureReference, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDigestMethod(self: *const IOpcSignatureReference, digestMethod: ?*?PWSTR) HRESULT {
         return self.vtable.GetDigestMethod(self, digestMethod);
     }
-    pub fn GetDigestValue(self: *const IOpcSignatureReference, digestValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDigestValue(self: *const IOpcSignatureReference, digestValue: [*]?*u8, count: ?*u32) HRESULT {
         return self.vtable.GetDigestValue(self, digestValue, count);
     }
 };
@@ -840,11 +840,11 @@ pub const IOpcSignatureCustomObject = extern union {
             self: *const IOpcSignatureCustomObject,
             xmlMarkup: [*]?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetXml(self: *const IOpcSignatureCustomObject, xmlMarkup: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetXml(self: *const IOpcSignatureCustomObject, xmlMarkup: [*]?*u8, count: ?*u32) HRESULT {
         return self.vtable.GetXml(self, xmlMarkup, count);
     }
 };
@@ -860,111 +860,111 @@ pub const IOpcDigitalSignature = extern union {
             prefixes: [*]?*?PWSTR,
             namespaces: [*]?*?PWSTR,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureId: *const fn(
             self: *const IOpcDigitalSignature,
             signatureId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignaturePartName: *const fn(
             self: *const IOpcDigitalSignature,
             signaturePartName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureMethod: *const fn(
             self: *const IOpcDigitalSignature,
             signatureMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCanonicalizationMethod: *const fn(
             self: *const IOpcDigitalSignature,
             canonicalizationMethod: ?*OPC_CANONICALIZATION_METHOD,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureValue: *const fn(
             self: *const IOpcDigitalSignature,
             signatureValue: [*]?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignaturePartReferenceEnumerator: *const fn(
             self: *const IOpcDigitalSignature,
             partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureRelationshipReferenceEnumerator: *const fn(
             self: *const IOpcDigitalSignature,
             relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSigningTime: *const fn(
             self: *const IOpcDigitalSignature,
             signingTime: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimeFormat: *const fn(
             self: *const IOpcDigitalSignature,
             timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageObjectReference: *const fn(
             self: *const IOpcDigitalSignature,
             packageObjectReference: ?*?*IOpcSignatureReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateEnumerator: *const fn(
             self: *const IOpcDigitalSignature,
             certificateEnumerator: ?*?*IOpcCertificateEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomReferenceEnumerator: *const fn(
             self: *const IOpcDigitalSignature,
             customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomObjectEnumerator: *const fn(
             self: *const IOpcDigitalSignature,
             customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureXml: *const fn(
             self: *const IOpcDigitalSignature,
             signatureXml: ?*?*u8,
             count: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNamespaces(self: *const IOpcDigitalSignature, prefixes: [*]?*?PWSTR, namespaces: [*]?*?PWSTR, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNamespaces(self: *const IOpcDigitalSignature, prefixes: [*]?*?PWSTR, namespaces: [*]?*?PWSTR, count: ?*u32) HRESULT {
         return self.vtable.GetNamespaces(self, prefixes, namespaces, count);
     }
-    pub fn GetSignatureId(self: *const IOpcDigitalSignature, signatureId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSignatureId(self: *const IOpcDigitalSignature, signatureId: ?*?PWSTR) HRESULT {
         return self.vtable.GetSignatureId(self, signatureId);
     }
-    pub fn GetSignaturePartName(self: *const IOpcDigitalSignature, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn GetSignaturePartName(self: *const IOpcDigitalSignature, signaturePartName: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.GetSignaturePartName(self, signaturePartName);
     }
-    pub fn GetSignatureMethod(self: *const IOpcDigitalSignature, signatureMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSignatureMethod(self: *const IOpcDigitalSignature, signatureMethod: ?*?PWSTR) HRESULT {
         return self.vtable.GetSignatureMethod(self, signatureMethod);
     }
-    pub fn GetCanonicalizationMethod(self: *const IOpcDigitalSignature, canonicalizationMethod: ?*OPC_CANONICALIZATION_METHOD) callconv(.Inline) HRESULT {
+    pub fn GetCanonicalizationMethod(self: *const IOpcDigitalSignature, canonicalizationMethod: ?*OPC_CANONICALIZATION_METHOD) HRESULT {
         return self.vtable.GetCanonicalizationMethod(self, canonicalizationMethod);
     }
-    pub fn GetSignatureValue(self: *const IOpcDigitalSignature, signatureValue: [*]?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSignatureValue(self: *const IOpcDigitalSignature, signatureValue: [*]?*u8, count: ?*u32) HRESULT {
         return self.vtable.GetSignatureValue(self, signatureValue, count);
     }
-    pub fn GetSignaturePartReferenceEnumerator(self: *const IOpcDigitalSignature, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetSignaturePartReferenceEnumerator(self: *const IOpcDigitalSignature, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) HRESULT {
         return self.vtable.GetSignaturePartReferenceEnumerator(self, partReferenceEnumerator);
     }
-    pub fn GetSignatureRelationshipReferenceEnumerator(self: *const IOpcDigitalSignature, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetSignatureRelationshipReferenceEnumerator(self: *const IOpcDigitalSignature, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) HRESULT {
         return self.vtable.GetSignatureRelationshipReferenceEnumerator(self, relationshipReferenceEnumerator);
     }
-    pub fn GetSigningTime(self: *const IOpcDigitalSignature, signingTime: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSigningTime(self: *const IOpcDigitalSignature, signingTime: ?*?PWSTR) HRESULT {
         return self.vtable.GetSigningTime(self, signingTime);
     }
-    pub fn GetTimeFormat(self: *const IOpcDigitalSignature, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+    pub fn GetTimeFormat(self: *const IOpcDigitalSignature, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
         return self.vtable.GetTimeFormat(self, timeFormat);
     }
-    pub fn GetPackageObjectReference(self: *const IOpcDigitalSignature, packageObjectReference: ?*?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+    pub fn GetPackageObjectReference(self: *const IOpcDigitalSignature, packageObjectReference: ?*?*IOpcSignatureReference) HRESULT {
         return self.vtable.GetPackageObjectReference(self, packageObjectReference);
     }
-    pub fn GetCertificateEnumerator(self: *const IOpcDigitalSignature, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetCertificateEnumerator(self: *const IOpcDigitalSignature, certificateEnumerator: ?*?*IOpcCertificateEnumerator) HRESULT {
         return self.vtable.GetCertificateEnumerator(self, certificateEnumerator);
     }
-    pub fn GetCustomReferenceEnumerator(self: *const IOpcDigitalSignature, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetCustomReferenceEnumerator(self: *const IOpcDigitalSignature, customReferenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
         return self.vtable.GetCustomReferenceEnumerator(self, customReferenceEnumerator);
     }
-    pub fn GetCustomObjectEnumerator(self: *const IOpcDigitalSignature, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetCustomObjectEnumerator(self: *const IOpcDigitalSignature, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
         return self.vtable.GetCustomObjectEnumerator(self, customObjectEnumerator);
     }
-    pub fn GetSignatureXml(self: *const IOpcDigitalSignature, signatureXml: ?*?*u8, count: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSignatureXml(self: *const IOpcDigitalSignature, signatureXml: ?*?*u8, count: ?*u32) HRESULT {
         return self.vtable.GetSignatureXml(self, signatureXml, count);
     }
 };
@@ -978,123 +978,123 @@ pub const IOpcSigningOptions = extern union {
         GetSignatureId: *const fn(
             self: *const IOpcSigningOptions,
             signatureId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignatureId: *const fn(
             self: *const IOpcSigningOptions,
             signatureId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureMethod: *const fn(
             self: *const IOpcSigningOptions,
             signatureMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignatureMethod: *const fn(
             self: *const IOpcSigningOptions,
             signatureMethod: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultDigestMethod: *const fn(
             self: *const IOpcSigningOptions,
             digestMethod: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultDigestMethod: *const fn(
             self: *const IOpcSigningOptions,
             digestMethod: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateEmbeddingOption: *const fn(
             self: *const IOpcSigningOptions,
             embeddingOption: ?*OPC_CERTIFICATE_EMBEDDING_OPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCertificateEmbeddingOption: *const fn(
             self: *const IOpcSigningOptions,
             embeddingOption: OPC_CERTIFICATE_EMBEDDING_OPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimeFormat: *const fn(
             self: *const IOpcSigningOptions,
             timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTimeFormat: *const fn(
             self: *const IOpcSigningOptions,
             timeFormat: OPC_SIGNATURE_TIME_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignaturePartReferenceSet: *const fn(
             self: *const IOpcSigningOptions,
             partReferenceSet: ?*?*IOpcSignaturePartReferenceSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureRelationshipReferenceSet: *const fn(
             self: *const IOpcSigningOptions,
             relationshipReferenceSet: ?*?*IOpcSignatureRelationshipReferenceSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomObjectSet: *const fn(
             self: *const IOpcSigningOptions,
             customObjectSet: ?*?*IOpcSignatureCustomObjectSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCustomReferenceSet: *const fn(
             self: *const IOpcSigningOptions,
             customReferenceSet: ?*?*IOpcSignatureReferenceSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCertificateSet: *const fn(
             self: *const IOpcSigningOptions,
             certificateSet: ?*?*IOpcCertificateSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignaturePartName: *const fn(
             self: *const IOpcSigningOptions,
             signaturePartName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignaturePartName: *const fn(
             self: *const IOpcSigningOptions,
             signaturePartName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSignatureId(self: *const IOpcSigningOptions, signatureId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSignatureId(self: *const IOpcSigningOptions, signatureId: ?*?PWSTR) HRESULT {
         return self.vtable.GetSignatureId(self, signatureId);
     }
-    pub fn SetSignatureId(self: *const IOpcSigningOptions, signatureId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetSignatureId(self: *const IOpcSigningOptions, signatureId: ?[*:0]const u16) HRESULT {
         return self.vtable.SetSignatureId(self, signatureId);
     }
-    pub fn GetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?*?PWSTR) HRESULT {
         return self.vtable.GetSignatureMethod(self, signatureMethod);
     }
-    pub fn SetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetSignatureMethod(self: *const IOpcSigningOptions, signatureMethod: ?[*:0]const u16) HRESULT {
         return self.vtable.SetSignatureMethod(self, signatureMethod);
     }
-    pub fn GetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?*?PWSTR) HRESULT {
         return self.vtable.GetDefaultDigestMethod(self, digestMethod);
     }
-    pub fn SetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDefaultDigestMethod(self: *const IOpcSigningOptions, digestMethod: ?[*:0]const u16) HRESULT {
         return self.vtable.SetDefaultDigestMethod(self, digestMethod);
     }
-    pub fn GetCertificateEmbeddingOption(self: *const IOpcSigningOptions, embeddingOption: ?*OPC_CERTIFICATE_EMBEDDING_OPTION) callconv(.Inline) HRESULT {
+    pub fn GetCertificateEmbeddingOption(self: *const IOpcSigningOptions, embeddingOption: ?*OPC_CERTIFICATE_EMBEDDING_OPTION) HRESULT {
         return self.vtable.GetCertificateEmbeddingOption(self, embeddingOption);
     }
-    pub fn SetCertificateEmbeddingOption(self: *const IOpcSigningOptions, embeddingOption: OPC_CERTIFICATE_EMBEDDING_OPTION) callconv(.Inline) HRESULT {
+    pub fn SetCertificateEmbeddingOption(self: *const IOpcSigningOptions, embeddingOption: OPC_CERTIFICATE_EMBEDDING_OPTION) HRESULT {
         return self.vtable.SetCertificateEmbeddingOption(self, embeddingOption);
     }
-    pub fn GetTimeFormat(self: *const IOpcSigningOptions, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+    pub fn GetTimeFormat(self: *const IOpcSigningOptions, timeFormat: ?*OPC_SIGNATURE_TIME_FORMAT) HRESULT {
         return self.vtable.GetTimeFormat(self, timeFormat);
     }
-    pub fn SetTimeFormat(self: *const IOpcSigningOptions, timeFormat: OPC_SIGNATURE_TIME_FORMAT) callconv(.Inline) HRESULT {
+    pub fn SetTimeFormat(self: *const IOpcSigningOptions, timeFormat: OPC_SIGNATURE_TIME_FORMAT) HRESULT {
         return self.vtable.SetTimeFormat(self, timeFormat);
     }
-    pub fn GetSignaturePartReferenceSet(self: *const IOpcSigningOptions, partReferenceSet: ?*?*IOpcSignaturePartReferenceSet) callconv(.Inline) HRESULT {
+    pub fn GetSignaturePartReferenceSet(self: *const IOpcSigningOptions, partReferenceSet: ?*?*IOpcSignaturePartReferenceSet) HRESULT {
         return self.vtable.GetSignaturePartReferenceSet(self, partReferenceSet);
     }
-    pub fn GetSignatureRelationshipReferenceSet(self: *const IOpcSigningOptions, relationshipReferenceSet: ?*?*IOpcSignatureRelationshipReferenceSet) callconv(.Inline) HRESULT {
+    pub fn GetSignatureRelationshipReferenceSet(self: *const IOpcSigningOptions, relationshipReferenceSet: ?*?*IOpcSignatureRelationshipReferenceSet) HRESULT {
         return self.vtable.GetSignatureRelationshipReferenceSet(self, relationshipReferenceSet);
     }
-    pub fn GetCustomObjectSet(self: *const IOpcSigningOptions, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) callconv(.Inline) HRESULT {
+    pub fn GetCustomObjectSet(self: *const IOpcSigningOptions, customObjectSet: ?*?*IOpcSignatureCustomObjectSet) HRESULT {
         return self.vtable.GetCustomObjectSet(self, customObjectSet);
     }
-    pub fn GetCustomReferenceSet(self: *const IOpcSigningOptions, customReferenceSet: ?*?*IOpcSignatureReferenceSet) callconv(.Inline) HRESULT {
+    pub fn GetCustomReferenceSet(self: *const IOpcSigningOptions, customReferenceSet: ?*?*IOpcSignatureReferenceSet) HRESULT {
         return self.vtable.GetCustomReferenceSet(self, customReferenceSet);
     }
-    pub fn GetCertificateSet(self: *const IOpcSigningOptions, certificateSet: ?*?*IOpcCertificateSet) callconv(.Inline) HRESULT {
+    pub fn GetCertificateSet(self: *const IOpcSigningOptions, certificateSet: ?*?*IOpcCertificateSet) HRESULT {
         return self.vtable.GetCertificateSet(self, certificateSet);
     }
-    pub fn GetSignaturePartName(self: *const IOpcSigningOptions, signaturePartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn GetSignaturePartName(self: *const IOpcSigningOptions, signaturePartName: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.GetSignaturePartName(self, signaturePartName);
     }
-    pub fn SetSignaturePartName(self: *const IOpcSigningOptions, signaturePartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn SetSignaturePartName(self: *const IOpcSigningOptions, signaturePartName: ?*IOpcPartUri) HRESULT {
         return self.vtable.SetSignaturePartName(self, signaturePartName);
     }
 };
@@ -1108,67 +1108,67 @@ pub const IOpcDigitalSignatureManager = extern union {
         GetSignatureOriginPartName: *const fn(
             self: *const IOpcDigitalSignatureManager,
             signatureOriginPartName: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSignatureOriginPartName: *const fn(
             self: *const IOpcDigitalSignatureManager,
             signatureOriginPartName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignatureEnumerator: *const fn(
             self: *const IOpcDigitalSignatureManager,
             signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveSignature: *const fn(
             self: *const IOpcDigitalSignatureManager,
             signaturePartName: ?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSigningOptions: *const fn(
             self: *const IOpcDigitalSignatureManager,
             signingOptions: ?*?*IOpcSigningOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Validate: *const fn(
             self: *const IOpcDigitalSignatureManager,
             signature: ?*IOpcDigitalSignature,
             certificate: ?*const CERT_CONTEXT,
             validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Sign: *const fn(
             self: *const IOpcDigitalSignatureManager,
             certificate: ?*const CERT_CONTEXT,
             signingOptions: ?*IOpcSigningOptions,
             digitalSignature: ?*?*IOpcDigitalSignature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReplaceSignatureXml: *const fn(
             self: *const IOpcDigitalSignatureManager,
             signaturePartName: ?*IOpcPartUri,
             newSignatureXml: ?*const u8,
             count: u32,
             digitalSignature: ?*?*IOpcDigitalSignature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn GetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.GetSignatureOriginPartName(self, signatureOriginPartName);
     }
-    pub fn SetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn SetSignatureOriginPartName(self: *const IOpcDigitalSignatureManager, signatureOriginPartName: ?*IOpcPartUri) HRESULT {
         return self.vtable.SetSignatureOriginPartName(self, signatureOriginPartName);
     }
-    pub fn GetSignatureEnumerator(self: *const IOpcDigitalSignatureManager, signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetSignatureEnumerator(self: *const IOpcDigitalSignatureManager, signatureEnumerator: ?*?*IOpcDigitalSignatureEnumerator) HRESULT {
         return self.vtable.GetSignatureEnumerator(self, signatureEnumerator);
     }
-    pub fn RemoveSignature(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn RemoveSignature(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri) HRESULT {
         return self.vtable.RemoveSignature(self, signaturePartName);
     }
-    pub fn CreateSigningOptions(self: *const IOpcDigitalSignatureManager, signingOptions: ?*?*IOpcSigningOptions) callconv(.Inline) HRESULT {
+    pub fn CreateSigningOptions(self: *const IOpcDigitalSignatureManager, signingOptions: ?*?*IOpcSigningOptions) HRESULT {
         return self.vtable.CreateSigningOptions(self, signingOptions);
     }
-    pub fn Validate(self: *const IOpcDigitalSignatureManager, signature: ?*IOpcDigitalSignature, certificate: ?*const CERT_CONTEXT, validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT) callconv(.Inline) HRESULT {
+    pub fn Validate(self: *const IOpcDigitalSignatureManager, signature: ?*IOpcDigitalSignature, certificate: ?*const CERT_CONTEXT, validationResult: ?*OPC_SIGNATURE_VALIDATION_RESULT) HRESULT {
         return self.vtable.Validate(self, signature, certificate, validationResult);
     }
-    pub fn Sign(self: *const IOpcDigitalSignatureManager, certificate: ?*const CERT_CONTEXT, signingOptions: ?*IOpcSigningOptions, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.Inline) HRESULT {
+    pub fn Sign(self: *const IOpcDigitalSignatureManager, certificate: ?*const CERT_CONTEXT, signingOptions: ?*IOpcSigningOptions, digitalSignature: ?*?*IOpcDigitalSignature) HRESULT {
         return self.vtable.Sign(self, certificate, signingOptions, digitalSignature);
     }
-    pub fn ReplaceSignatureXml(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri, newSignatureXml: ?*const u8, count: u32, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.Inline) HRESULT {
+    pub fn ReplaceSignatureXml(self: *const IOpcDigitalSignatureManager, signaturePartName: ?*IOpcPartUri, newSignatureXml: ?*const u8, count: u32, digitalSignature: ?*?*IOpcDigitalSignature) HRESULT {
         return self.vtable.ReplaceSignatureXml(self, signaturePartName, newSignatureXml, count, digitalSignature);
     }
 };
@@ -1182,32 +1182,32 @@ pub const IOpcSignaturePartReferenceEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcSignaturePartReferenceEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcSignaturePartReferenceEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcSignaturePartReferenceEnumerator,
             partReference: ?*?*IOpcSignaturePartReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcSignaturePartReferenceEnumerator,
             copy: ?*?*IOpcSignaturePartReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignaturePartReferenceEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcSignaturePartReferenceEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcSignaturePartReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcSignaturePartReferenceEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcSignaturePartReferenceEnumerator, partReference: ?*?*IOpcSignaturePartReference) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcSignaturePartReferenceEnumerator, partReference: ?*?*IOpcSignaturePartReference) HRESULT {
         return self.vtable.GetCurrent(self, partReference);
     }
-    pub fn Clone(self: *const IOpcSignaturePartReferenceEnumerator, copy: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcSignaturePartReferenceEnumerator, copy: ?*?*IOpcSignaturePartReferenceEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -1221,32 +1221,32 @@ pub const IOpcSignatureRelationshipReferenceEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcSignatureRelationshipReferenceEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcSignatureRelationshipReferenceEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcSignatureRelationshipReferenceEnumerator,
             relationshipReference: ?*?*IOpcSignatureRelationshipReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcSignatureRelationshipReferenceEnumerator,
             copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcSignatureRelationshipReferenceEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcSignatureRelationshipReferenceEnumerator, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcSignatureRelationshipReferenceEnumerator, relationshipReference: ?*?*IOpcSignatureRelationshipReference) HRESULT {
         return self.vtable.GetCurrent(self, relationshipReference);
     }
-    pub fn Clone(self: *const IOpcSignatureRelationshipReferenceEnumerator, copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcSignatureRelationshipReferenceEnumerator, copy: ?*?*IOpcSignatureRelationshipReferenceEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -1260,32 +1260,32 @@ pub const IOpcRelationshipSelectorEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcRelationshipSelectorEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcRelationshipSelectorEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcRelationshipSelectorEnumerator,
             relationshipSelector: ?*?*IOpcRelationshipSelector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcRelationshipSelectorEnumerator,
             copy: ?*?*IOpcRelationshipSelectorEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcRelationshipSelectorEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcRelationshipSelectorEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcRelationshipSelectorEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcRelationshipSelectorEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcRelationshipSelectorEnumerator, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcRelationshipSelectorEnumerator, relationshipSelector: ?*?*IOpcRelationshipSelector) HRESULT {
         return self.vtable.GetCurrent(self, relationshipSelector);
     }
-    pub fn Clone(self: *const IOpcRelationshipSelectorEnumerator, copy: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcRelationshipSelectorEnumerator, copy: ?*?*IOpcRelationshipSelectorEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -1299,32 +1299,32 @@ pub const IOpcSignatureReferenceEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcSignatureReferenceEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcSignatureReferenceEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcSignatureReferenceEnumerator,
             reference: ?*?*IOpcSignatureReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcSignatureReferenceEnumerator,
             copy: ?*?*IOpcSignatureReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignatureReferenceEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcSignatureReferenceEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcSignatureReferenceEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcSignatureReferenceEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcSignatureReferenceEnumerator, reference: ?*?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcSignatureReferenceEnumerator, reference: ?*?*IOpcSignatureReference) HRESULT {
         return self.vtable.GetCurrent(self, reference);
     }
-    pub fn Clone(self: *const IOpcSignatureReferenceEnumerator, copy: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcSignatureReferenceEnumerator, copy: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -1338,32 +1338,32 @@ pub const IOpcSignatureCustomObjectEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcSignatureCustomObjectEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcSignatureCustomObjectEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcSignatureCustomObjectEnumerator,
             customObject: ?*?*IOpcSignatureCustomObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcSignatureCustomObjectEnumerator,
             copy: ?*?*IOpcSignatureCustomObjectEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcSignatureCustomObjectEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcSignatureCustomObjectEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcSignatureCustomObjectEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcSignatureCustomObjectEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcSignatureCustomObjectEnumerator, customObject: ?*?*IOpcSignatureCustomObject) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcSignatureCustomObjectEnumerator, customObject: ?*?*IOpcSignatureCustomObject) HRESULT {
         return self.vtable.GetCurrent(self, customObject);
     }
-    pub fn Clone(self: *const IOpcSignatureCustomObjectEnumerator, copy: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcSignatureCustomObjectEnumerator, copy: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -1377,32 +1377,32 @@ pub const IOpcCertificateEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcCertificateEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcCertificateEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcCertificateEnumerator,
             certificate: ?*const ?*CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcCertificateEnumerator,
             copy: ?*?*IOpcCertificateEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcCertificateEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcCertificateEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcCertificateEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcCertificateEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcCertificateEnumerator, certificate: ?*const ?*CERT_CONTEXT) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcCertificateEnumerator, certificate: ?*const ?*CERT_CONTEXT) HRESULT {
         return self.vtable.GetCurrent(self, certificate);
     }
-    pub fn Clone(self: *const IOpcCertificateEnumerator, copy: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcCertificateEnumerator, copy: ?*?*IOpcCertificateEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -1416,32 +1416,32 @@ pub const IOpcDigitalSignatureEnumerator = extern union {
         MoveNext: *const fn(
             self: *const IOpcDigitalSignatureEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MovePrevious: *const fn(
             self: *const IOpcDigitalSignatureEnumerator,
             hasPrevious: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IOpcDigitalSignatureEnumerator,
             digitalSignature: ?*?*IOpcDigitalSignature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IOpcDigitalSignatureEnumerator,
             copy: ?*?*IOpcDigitalSignatureEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn MoveNext(self: *const IOpcDigitalSignatureEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IOpcDigitalSignatureEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
-    pub fn MovePrevious(self: *const IOpcDigitalSignatureEnumerator, hasPrevious: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MovePrevious(self: *const IOpcDigitalSignatureEnumerator, hasPrevious: ?*BOOL) HRESULT {
         return self.vtable.MovePrevious(self, hasPrevious);
     }
-    pub fn GetCurrent(self: *const IOpcDigitalSignatureEnumerator, digitalSignature: ?*?*IOpcDigitalSignature) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IOpcDigitalSignatureEnumerator, digitalSignature: ?*?*IOpcDigitalSignature) HRESULT {
         return self.vtable.GetCurrent(self, digitalSignature);
     }
-    pub fn Clone(self: *const IOpcDigitalSignatureEnumerator, copy: ?*?*IOpcDigitalSignatureEnumerator) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IOpcDigitalSignatureEnumerator, copy: ?*?*IOpcDigitalSignatureEnumerator) HRESULT {
         return self.vtable.Clone(self, copy);
     }
 };
@@ -1458,25 +1458,25 @@ pub const IOpcSignaturePartReferenceSet = extern union {
             digestMethod: ?[*:0]const u16,
             transformMethod: OPC_CANONICALIZATION_METHOD,
             partReference: ?*?*IOpcSignaturePartReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IOpcSignaturePartReferenceSet,
             partReference: ?*IOpcSignaturePartReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcSignaturePartReferenceSet,
             partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignaturePartReferenceSet, partUri: ?*IOpcPartUri, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, partReference: ?*?*IOpcSignaturePartReference) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IOpcSignaturePartReferenceSet, partUri: ?*IOpcPartUri, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, partReference: ?*?*IOpcSignaturePartReference) HRESULT {
         return self.vtable.Create(self, partUri, digestMethod, transformMethod, partReference);
     }
-    pub fn Delete(self: *const IOpcSignaturePartReferenceSet, partReference: ?*IOpcSignaturePartReference) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IOpcSignaturePartReferenceSet, partReference: ?*IOpcSignaturePartReference) HRESULT {
         return self.vtable.Delete(self, partReference);
     }
-    pub fn GetEnumerator(self: *const IOpcSignaturePartReferenceSet, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcSignaturePartReferenceSet, partReferenceEnumerator: ?*?*IOpcSignaturePartReferenceEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, partReferenceEnumerator);
     }
 };
@@ -1495,32 +1495,32 @@ pub const IOpcSignatureRelationshipReferenceSet = extern union {
             selectorSet: ?*IOpcRelationshipSelectorSet,
             transformMethod: OPC_CANONICALIZATION_METHOD,
             relationshipReference: ?*?*IOpcSignatureRelationshipReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRelationshipSelectorSet: *const fn(
             self: *const IOpcSignatureRelationshipReferenceSet,
             selectorSet: ?*?*IOpcRelationshipSelectorSet,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IOpcSignatureRelationshipReferenceSet,
             relationshipReference: ?*IOpcSignatureRelationshipReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcSignatureRelationshipReferenceSet,
             relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignatureRelationshipReferenceSet, sourceUri: ?*IOpcUri, digestMethod: ?[*:0]const u16, relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION, selectorSet: ?*IOpcRelationshipSelectorSet, transformMethod: OPC_CANONICALIZATION_METHOD, relationshipReference: ?*?*IOpcSignatureRelationshipReference) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IOpcSignatureRelationshipReferenceSet, sourceUri: ?*IOpcUri, digestMethod: ?[*:0]const u16, relationshipSigningOption: OPC_RELATIONSHIPS_SIGNING_OPTION, selectorSet: ?*IOpcRelationshipSelectorSet, transformMethod: OPC_CANONICALIZATION_METHOD, relationshipReference: ?*?*IOpcSignatureRelationshipReference) HRESULT {
         return self.vtable.Create(self, sourceUri, digestMethod, relationshipSigningOption, selectorSet, transformMethod, relationshipReference);
     }
-    pub fn CreateRelationshipSelectorSet(self: *const IOpcSignatureRelationshipReferenceSet, selectorSet: ?*?*IOpcRelationshipSelectorSet) callconv(.Inline) HRESULT {
+    pub fn CreateRelationshipSelectorSet(self: *const IOpcSignatureRelationshipReferenceSet, selectorSet: ?*?*IOpcRelationshipSelectorSet) HRESULT {
         return self.vtable.CreateRelationshipSelectorSet(self, selectorSet);
     }
-    pub fn Delete(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReference: ?*IOpcSignatureRelationshipReference) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReference: ?*IOpcSignatureRelationshipReference) HRESULT {
         return self.vtable.Delete(self, relationshipReference);
     }
-    pub fn GetEnumerator(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcSignatureRelationshipReferenceSet, relationshipReferenceEnumerator: ?*?*IOpcSignatureRelationshipReferenceEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, relationshipReferenceEnumerator);
     }
 };
@@ -1536,25 +1536,25 @@ pub const IOpcRelationshipSelectorSet = extern union {
             selector: OPC_RELATIONSHIP_SELECTOR,
             selectionCriterion: ?[*:0]const u16,
             relationshipSelector: ?*?*IOpcRelationshipSelector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IOpcRelationshipSelectorSet,
             relationshipSelector: ?*IOpcRelationshipSelector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcRelationshipSelectorSet,
             relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcRelationshipSelectorSet, selector: OPC_RELATIONSHIP_SELECTOR, selectionCriterion: ?[*:0]const u16, relationshipSelector: ?*?*IOpcRelationshipSelector) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IOpcRelationshipSelectorSet, selector: OPC_RELATIONSHIP_SELECTOR, selectionCriterion: ?[*:0]const u16, relationshipSelector: ?*?*IOpcRelationshipSelector) HRESULT {
         return self.vtable.Create(self, selector, selectionCriterion, relationshipSelector);
     }
-    pub fn Delete(self: *const IOpcRelationshipSelectorSet, relationshipSelector: ?*IOpcRelationshipSelector) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IOpcRelationshipSelectorSet, relationshipSelector: ?*IOpcRelationshipSelector) HRESULT {
         return self.vtable.Delete(self, relationshipSelector);
     }
-    pub fn GetEnumerator(self: *const IOpcRelationshipSelectorSet, relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcRelationshipSelectorSet, relationshipSelectorEnumerator: ?*?*IOpcRelationshipSelectorEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, relationshipSelectorEnumerator);
     }
 };
@@ -1573,25 +1573,25 @@ pub const IOpcSignatureReferenceSet = extern union {
             digestMethod: ?[*:0]const u16,
             transformMethod: OPC_CANONICALIZATION_METHOD,
             reference: ?*?*IOpcSignatureReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IOpcSignatureReferenceSet,
             reference: ?*IOpcSignatureReference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcSignatureReferenceSet,
             referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignatureReferenceSet, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, @"type": ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?*?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IOpcSignatureReferenceSet, referenceUri: ?*IUri, referenceId: ?[*:0]const u16, @"type": ?[*:0]const u16, digestMethod: ?[*:0]const u16, transformMethod: OPC_CANONICALIZATION_METHOD, reference: ?*?*IOpcSignatureReference) HRESULT {
         return self.vtable.Create(self, referenceUri, referenceId, @"type", digestMethod, transformMethod, reference);
     }
-    pub fn Delete(self: *const IOpcSignatureReferenceSet, reference: ?*IOpcSignatureReference) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IOpcSignatureReferenceSet, reference: ?*IOpcSignatureReference) HRESULT {
         return self.vtable.Delete(self, reference);
     }
-    pub fn GetEnumerator(self: *const IOpcSignatureReferenceSet, referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcSignatureReferenceSet, referenceEnumerator: ?*?*IOpcSignatureReferenceEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, referenceEnumerator);
     }
 };
@@ -1607,25 +1607,25 @@ pub const IOpcSignatureCustomObjectSet = extern union {
             xmlMarkup: [*:0]const u8,
             count: u32,
             customObject: ?*?*IOpcSignatureCustomObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IOpcSignatureCustomObjectSet,
             customObject: ?*IOpcSignatureCustomObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcSignatureCustomObjectSet,
             customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Create(self: *const IOpcSignatureCustomObjectSet, xmlMarkup: [*:0]const u8, count: u32, customObject: ?*?*IOpcSignatureCustomObject) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IOpcSignatureCustomObjectSet, xmlMarkup: [*:0]const u8, count: u32, customObject: ?*?*IOpcSignatureCustomObject) HRESULT {
         return self.vtable.Create(self, xmlMarkup, count, customObject);
     }
-    pub fn Delete(self: *const IOpcSignatureCustomObjectSet, customObject: ?*IOpcSignatureCustomObject) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IOpcSignatureCustomObjectSet, customObject: ?*IOpcSignatureCustomObject) HRESULT {
         return self.vtable.Delete(self, customObject);
     }
-    pub fn GetEnumerator(self: *const IOpcSignatureCustomObjectSet, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcSignatureCustomObjectSet, customObjectEnumerator: ?*?*IOpcSignatureCustomObjectEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, customObjectEnumerator);
     }
 };
@@ -1639,25 +1639,25 @@ pub const IOpcCertificateSet = extern union {
         Add: *const fn(
             self: *const IOpcCertificateSet,
             certificate: ?*const CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IOpcCertificateSet,
             certificate: ?*const CERT_CONTEXT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumerator: *const fn(
             self: *const IOpcCertificateSet,
             certificateEnumerator: ?*?*IOpcCertificateEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Add(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) HRESULT {
         return self.vtable.Add(self, certificate);
     }
-    pub fn Remove(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IOpcCertificateSet, certificate: ?*const CERT_CONTEXT) HRESULT {
         return self.vtable.Remove(self, certificate);
     }
-    pub fn GetEnumerator(self: *const IOpcCertificateSet, certificateEnumerator: ?*?*IOpcCertificateEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetEnumerator(self: *const IOpcCertificateSet, certificateEnumerator: ?*?*IOpcCertificateEnumerator) HRESULT {
         return self.vtable.GetEnumerator(self, certificateEnumerator);
     }
 };
@@ -1671,12 +1671,12 @@ pub const IOpcFactory = extern union {
         CreatePackageRootUri: *const fn(
             self: *const IOpcFactory,
             rootUri: ?*?*IOpcUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePartUri: *const fn(
             self: *const IOpcFactory,
             pwzUri: ?[*:0]const u16,
             partUri: ?*?*IOpcPartUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStreamOnFile: *const fn(
             self: *const IOpcFactory,
             filename: ?[*:0]const u16,
@@ -1684,50 +1684,50 @@ pub const IOpcFactory = extern union {
             securityAttributes: ?*SECURITY_ATTRIBUTES,
             dwFlagsAndAttributes: u32,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackage: *const fn(
             self: *const IOpcFactory,
             package: ?*?*IOpcPackage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadPackageFromStream: *const fn(
             self: *const IOpcFactory,
             stream: ?*IStream,
             flags: OPC_READ_FLAGS,
             package: ?*?*IOpcPackage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WritePackageToStream: *const fn(
             self: *const IOpcFactory,
             package: ?*IOpcPackage,
             flags: OPC_WRITE_FLAGS,
             stream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDigitalSignatureManager: *const fn(
             self: *const IOpcFactory,
             package: ?*IOpcPackage,
             signatureManager: ?*?*IOpcDigitalSignatureManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreatePackageRootUri(self: *const IOpcFactory, rootUri: ?*?*IOpcUri) callconv(.Inline) HRESULT {
+    pub fn CreatePackageRootUri(self: *const IOpcFactory, rootUri: ?*?*IOpcUri) HRESULT {
         return self.vtable.CreatePackageRootUri(self, rootUri);
     }
-    pub fn CreatePartUri(self: *const IOpcFactory, pwzUri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) callconv(.Inline) HRESULT {
+    pub fn CreatePartUri(self: *const IOpcFactory, pwzUri: ?[*:0]const u16, partUri: ?*?*IOpcPartUri) HRESULT {
         return self.vtable.CreatePartUri(self, pwzUri, partUri);
     }
-    pub fn CreateStreamOnFile(self: *const IOpcFactory, filename: ?[*:0]const u16, ioMode: OPC_STREAM_IO_MODE, securityAttributes: ?*SECURITY_ATTRIBUTES, dwFlagsAndAttributes: u32, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateStreamOnFile(self: *const IOpcFactory, filename: ?[*:0]const u16, ioMode: OPC_STREAM_IO_MODE, securityAttributes: ?*SECURITY_ATTRIBUTES, dwFlagsAndAttributes: u32, stream: ?*?*IStream) HRESULT {
         return self.vtable.CreateStreamOnFile(self, filename, ioMode, securityAttributes, dwFlagsAndAttributes, stream);
     }
-    pub fn CreatePackage(self: *const IOpcFactory, package: ?*?*IOpcPackage) callconv(.Inline) HRESULT {
+    pub fn CreatePackage(self: *const IOpcFactory, package: ?*?*IOpcPackage) HRESULT {
         return self.vtable.CreatePackage(self, package);
     }
-    pub fn ReadPackageFromStream(self: *const IOpcFactory, stream: ?*IStream, flags: OPC_READ_FLAGS, package: ?*?*IOpcPackage) callconv(.Inline) HRESULT {
+    pub fn ReadPackageFromStream(self: *const IOpcFactory, stream: ?*IStream, flags: OPC_READ_FLAGS, package: ?*?*IOpcPackage) HRESULT {
         return self.vtable.ReadPackageFromStream(self, stream, flags, package);
     }
-    pub fn WritePackageToStream(self: *const IOpcFactory, package: ?*IOpcPackage, flags: OPC_WRITE_FLAGS, stream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn WritePackageToStream(self: *const IOpcFactory, package: ?*IOpcPackage, flags: OPC_WRITE_FLAGS, stream: ?*IStream) HRESULT {
         return self.vtable.WritePackageToStream(self, package, flags, stream);
     }
-    pub fn CreateDigitalSignatureManager(self: *const IOpcFactory, package: ?*IOpcPackage, signatureManager: ?*?*IOpcDigitalSignatureManager) callconv(.Inline) HRESULT {
+    pub fn CreateDigitalSignatureManager(self: *const IOpcFactory, package: ?*IOpcPackage, signatureManager: ?*?*IOpcDigitalSignatureManager) HRESULT {
         return self.vtable.CreateDigitalSignatureManager(self, package, signatureManager);
     }
 };

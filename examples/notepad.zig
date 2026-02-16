@@ -1,8 +1,6 @@
 const std = @import("std");
 const capy = @import("capy");
 
-pub usingnamespace capy.cross_platform;
-
 pub fn main() !void {
     try capy.init();
 

@@ -122,23 +122,23 @@ pub const DIAGNOSTIC_REPORT_DATA = extern struct {
 pub extern "diagnosticdataquery" fn DdqCreateSession(
     accessLevel: DdqAccessLevel,
     hSession: ?*HDIAGNOSTIC_DATA_QUERY_SESSION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqCloseSession(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetSessionAccessLevel(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     accessLevel: ?*DdqAccessLevel,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticDataAccessLevelAllowed(
     accessLevel: ?*DdqAccessLevel,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordStats(
@@ -147,88 +147,88 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordStats(
     recordCount: ?*u32,
     minRowId: ?*i64,
     maxRowId: ?*i64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordPayload(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     rowId: i64,
     payload: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordLocaleTags(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     locale: ?[*:0]const u16,
     hTagDescription: ?*HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqFreeDiagnosticRecordLocaleTags(
     hTagDescription: HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordLocaleTagAtIndex(
     hTagDescription: HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
     index: u32,
     tagDescription: ?*DIAGNOSTIC_DATA_EVENT_TAG_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordLocaleTagCount(
     hTagDescription: HDIAGNOSTIC_EVENT_TAG_DESCRIPTION,
     tagDescriptionCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordProducers(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     hProducerDescription: ?*HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqFreeDiagnosticRecordProducers(
     hProducerDescription: HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordProducerAtIndex(
     hProducerDescription: HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
     index: u32,
     producerDescription: ?*DIAGNOSTIC_DATA_EVENT_PRODUCER_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordProducerCount(
     hProducerDescription: HDIAGNOSTIC_EVENT_PRODUCER_DESCRIPTION,
     producerDescriptionCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordProducerCategories(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     producerName: ?[*:0]const u16,
     hCategoryDescription: ?*HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqFreeDiagnosticRecordProducerCategories(
     hCategoryDescription: HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordCategoryAtIndex(
     hCategoryDescription: HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
     index: u32,
     categoryDescription: ?*DIAGNOSTIC_DATA_EVENT_CATEGORY_DESCRIPTION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordCategoryCount(
     hCategoryDescription: HDIAGNOSTIC_EVENT_CATEGORY_DESCRIPTION,
     categoryDescriptionCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqIsDiagnosticRecordSampledIn(
@@ -241,7 +241,7 @@ pub extern "diagnosticdataquery" fn DdqIsDiagnosticRecordSampledIn(
     eventVersion: ?*const u32,
     eventKeywords: ?*const u64,
     isSampledIn: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordPage(
@@ -251,62 +251,62 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordPage(
     pageRecordCount: u32,
     baseRowId: i64,
     hRecord: ?*HDIAGNOSTIC_RECORD,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqFreeDiagnosticRecordPage(
     hRecord: HDIAGNOSTIC_RECORD,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordAtIndex(
     hRecord: HDIAGNOSTIC_RECORD,
     index: u32,
     record: ?*DIAGNOSTIC_DATA_RECORD,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordCount(
     hRecord: HDIAGNOSTIC_RECORD,
     recordCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticReportStoreReportCount(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     reportStoreType: u32,
     reportCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqCancelDiagnosticRecordOperation(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticReport(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     reportStoreType: u32,
     hReport: ?*HDIAGNOSTIC_REPORT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqFreeDiagnosticReport(
     hReport: HDIAGNOSTIC_REPORT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticReportAtIndex(
     hReport: HDIAGNOSTIC_REPORT,
     index: u32,
     report: ?*DIAGNOSTIC_REPORT_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticReportCount(
     hReport: HDIAGNOSTIC_REPORT,
     reportCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqExtractDiagnosticReport(
@@ -314,7 +314,7 @@ pub extern "diagnosticdataquery" fn DdqExtractDiagnosticReport(
     reportStoreType: u32,
     reportKey: ?[*:0]const u16,
     destinationPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordTagDistribution(
@@ -323,7 +323,7 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordTagDistribution(
     producerNameCount: u32,
     tagStats: [*]?*DIAGNOSTIC_DATA_EVENT_TAG_STATS,
     statCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordBinaryDistribution(
@@ -333,7 +333,7 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordBinaryDistribution(
     topNBinaries: u32,
     binaryStats: [*]?*DIAGNOSTIC_DATA_EVENT_BINARY_STATS,
     statCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordSummary(
@@ -341,19 +341,19 @@ pub extern "diagnosticdataquery" fn DdqGetDiagnosticRecordSummary(
     producerNames: [*]const ?[*:0]const u16,
     producerNameCount: u32,
     generalStats: ?*DIAGNOSTIC_DATA_GENERAL_STATS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqSetTranscriptConfiguration(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     desiredConfig: ?*const DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.19041'
 pub extern "diagnosticdataquery" fn DdqGetTranscriptConfiguration(
     hSession: HDIAGNOSTIC_DATA_QUERY_SESSION,
     currentConfig: ?*DIAGNOSTIC_DATA_EVENT_TRANSCRIPT_CONFIGURATION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

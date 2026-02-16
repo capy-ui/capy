@@ -175,20 +175,20 @@ pub const IObjectArray = extern union {
         GetCount: *const fn(
             self: *const IObjectArray,
             pcObjects: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IObjectArray,
             uiIndex: u32,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IObjectArray, pcObjects: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IObjectArray, pcObjects: ?*u32) HRESULT {
         return self.vtable.GetCount(self, pcObjects);
     }
-    pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IObjectArray, uiIndex: u32, riid: ?*const Guid, ppv: **anyopaque) HRESULT {
         return self.vtable.GetAt(self, uiIndex, riid, ppv);
     }
 };
@@ -202,32 +202,32 @@ pub const IObjectCollection = extern union {
         AddObject: *const fn(
             self: *const IObjectCollection,
             punk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFromArray: *const fn(
             self: *const IObjectCollection,
             poaSource: ?*IObjectArray,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveObjectAt: *const fn(
             self: *const IObjectCollection,
             uiIndex: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const IObjectCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IObjectArray: IObjectArray,
     IUnknown: IUnknown,
-    pub fn AddObject(self: *const IObjectCollection, punk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn AddObject(self: *const IObjectCollection, punk: ?*IUnknown) HRESULT {
         return self.vtable.AddObject(self, punk);
     }
-    pub fn AddFromArray(self: *const IObjectCollection, poaSource: ?*IObjectArray) callconv(.Inline) HRESULT {
+    pub fn AddFromArray(self: *const IObjectCollection, poaSource: ?*IObjectArray) HRESULT {
         return self.vtable.AddFromArray(self, poaSource);
     }
-    pub fn RemoveObjectAt(self: *const IObjectCollection, uiIndex: u32) callconv(.Inline) HRESULT {
+    pub fn RemoveObjectAt(self: *const IObjectCollection, uiIndex: u32) HRESULT {
         return self.vtable.RemoveObjectAt(self, uiIndex);
     }
-    pub fn Clear(self: *const IObjectCollection) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const IObjectCollection) HRESULT {
         return self.vtable.Clear(self);
     }
 };

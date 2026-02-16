@@ -7,9 +7,21 @@ const CheckBox = @This();
 
 peer: *c.GtkWidget,
 
-pub usingnamespace common.Events(CheckBox);
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
 
-fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+fn gtkClicked(peer: *c.GtkWidget, userdata: usize) callconv(.c) void {
     _ = userdata;
     const data = common.getEventUserData(peer);
 
