@@ -108,7 +108,7 @@ pub const WNV_REDIRECT_PARAM = extern struct {
 //--------------------------------------------------------------------------------
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "wnvapi" fn WnvOpen(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "wnvapi" fn WnvRequestNotification(
@@ -116,7 +116,7 @@ pub extern "wnvapi" fn WnvRequestNotification(
     NotificationParam: ?*WNV_NOTIFICATION_PARAM,
     Overlapped: ?*OVERLAPPED,
     BytesTransferred: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

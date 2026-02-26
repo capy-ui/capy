@@ -546,7 +546,7 @@ pub const LPOFNHOOKPROC = *const fn(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 
 
@@ -557,7 +557,7 @@ pub const LPCCHOOKPROC = *const fn(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 
 
@@ -570,7 +570,7 @@ pub const LPFRHOOKPROC = *const fn(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 
 
@@ -579,7 +579,7 @@ pub const LPCFHOOKPROC = *const fn(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 
 
@@ -588,14 +588,14 @@ pub const LPPRINTHOOKPROC = *const fn(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 pub const LPSETUPHOOKPROC = *const fn(
     param0: ?HWND,
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 
 
@@ -607,10 +607,10 @@ pub const IPrintDialogCallback = extern union {
         base: IUnknown.VTable,
         InitDone: *const fn(
             self: *const IPrintDialogCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SelectionChange: *const fn(
             self: *const IPrintDialogCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HandleMessage: *const fn(
             self: *const IPrintDialogCallback,
             hDlg: ?HWND,
@@ -618,17 +618,17 @@ pub const IPrintDialogCallback = extern union {
             wParam: WPARAM,
             lParam: LPARAM,
             pResult: ?*LRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitDone(self: *const IPrintDialogCallback) callconv(.Inline) HRESULT {
+    pub fn InitDone(self: *const IPrintDialogCallback) HRESULT {
         return self.vtable.InitDone(self);
     }
-    pub fn SelectionChange(self: *const IPrintDialogCallback) callconv(.Inline) HRESULT {
+    pub fn SelectionChange(self: *const IPrintDialogCallback) HRESULT {
         return self.vtable.SelectionChange(self);
     }
-    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) callconv(.Inline) HRESULT {
+    pub fn HandleMessage(self: *const IPrintDialogCallback, hDlg: ?HWND, uMsg: u32, wParam: WPARAM, lParam: LPARAM, pResult: ?*LRESULT) HRESULT {
         return self.vtable.HandleMessage(self, hDlg, uMsg, wParam, lParam, pResult);
     }
 };
@@ -643,27 +643,27 @@ pub const IPrintDialogServices = extern union {
             self: *const IPrintDialogServices,
             pDevMode: ?*DEVMODEA,
             pcbSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPrinterName: *const fn(
             self: *const IPrintDialogServices,
             pPrinterName: ?[*:0]u16,
             pcchSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPortName: *const fn(
             self: *const IPrintDialogServices,
             pPortName: ?[*:0]u16,
             pcchSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentDevMode(self: *const IPrintDialogServices, pDevMode: ?*DEVMODEA, pcbSize: ?*u32) HRESULT {
         return self.vtable.GetCurrentDevMode(self, pDevMode, pcbSize);
     }
-    pub fn GetCurrentPrinterName(self: *const IPrintDialogServices, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPrinterName(self: *const IPrintDialogServices, pPrinterName: ?[*:0]u16, pcchSize: ?*u32) HRESULT {
         return self.vtable.GetCurrentPrinterName(self, pPrinterName, pcchSize);
     }
-    pub fn GetCurrentPortName(self: *const IPrintDialogServices, pPortName: ?[*:0]u16, pcchSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPortName(self: *const IPrintDialogServices, pPortName: ?[*:0]u16, pcchSize: ?*u32) HRESULT {
         return self.vtable.GetCurrentPortName(self, pPortName, pcchSize);
     }
 };
@@ -677,14 +677,14 @@ pub const LPPAGEPAINTHOOK = *const fn(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 pub const LPPAGESETUPHOOK = *const fn(
     param0: ?HWND,
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 
 
@@ -1421,100 +1421,100 @@ pub const PAGESETUPDLGW = switch(@import("../../zig.zig").arch) {
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn GetOpenFileNameA(
     param0: ?*OPENFILENAMEA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn GetOpenFileNameW(
     param0: ?*OPENFILENAMEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn GetSaveFileNameA(
     param0: ?*OPENFILENAMEA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn GetSaveFileNameW(
     param0: ?*OPENFILENAMEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn GetFileTitleA(
     param0: ?[*:0]const u8,
     Buf: [*:0]u8,
     cchSize: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn GetFileTitleW(
     param0: ?[*:0]const u16,
     Buf: [*:0]u16,
     cchSize: u16,
-) callconv(@import("std").os.windows.WINAPI) i16;
+) callconv(.winapi) i16;
 
 pub extern "comdlg32" fn ChooseColorA(
     param0: ?*CHOOSECOLORA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "comdlg32" fn ChooseColorW(
     param0: ?*CHOOSECOLORW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn FindTextA(
     param0: ?*FINDREPLACEA,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn FindTextW(
     param0: ?*FINDREPLACEW,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn ReplaceTextA(
     param0: ?*FINDREPLACEA,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn ReplaceTextW(
     param0: ?*FINDREPLACEW,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 pub extern "comdlg32" fn ChooseFontA(
     param0: ?*CHOOSEFONTA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "comdlg32" fn ChooseFontW(
     param0: ?*CHOOSEFONTW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "comdlg32" fn PrintDlgA(
     pPD: ?*PRINTDLGA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "comdlg32" fn PrintDlgW(
     pPD: ?*PRINTDLGW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "comdlg32" fn PrintDlgExA(
     pPD: ?*PRINTDLGEXA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "comdlg32" fn PrintDlgExW(
     pPD: ?*PRINTDLGEXW,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "comdlg32" fn CommDlgExtendedError(
-) callconv(@import("std").os.windows.WINAPI) COMMON_DLG_ERRORS;
+) callconv(.winapi) COMMON_DLG_ERRORS;
 
 pub extern "comdlg32" fn PageSetupDlgA(
     param0: ?*PAGESETUPDLGA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "comdlg32" fn PageSetupDlgW(
     param0: ?*PAGESETUPDLGW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

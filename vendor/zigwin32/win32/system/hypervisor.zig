@@ -1908,26 +1908,26 @@ pub const WHV_EMULATOR_IO_ACCESS_INFO = extern struct {
 pub const WHV_EMULATOR_IO_PORT_CALLBACK = *const fn(
     Context: ?*anyopaque,
     IoAccess: ?*WHV_EMULATOR_IO_ACCESS_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const WHV_EMULATOR_MEMORY_CALLBACK = *const fn(
     Context: ?*anyopaque,
     MemoryAccess: ?*WHV_EMULATOR_MEMORY_ACCESS_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const WHV_EMULATOR_GET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
     Context: ?*anyopaque,
     RegisterNames: [*]const WHV_REGISTER_NAME,
     RegisterCount: u32,
     RegisterValues: [*]WHV_REGISTER_VALUE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const WHV_EMULATOR_SET_VIRTUAL_PROCESSOR_REGISTERS_CALLBACK = *const fn(
     Context: ?*anyopaque,
     RegisterNames: [*]const WHV_REGISTER_NAME,
     RegisterCount: u32,
     RegisterValues: [*]const WHV_REGISTER_VALUE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = *const fn(
     Context: ?*anyopaque,
@@ -1935,7 +1935,7 @@ pub const WHV_EMULATOR_TRANSLATE_GVA_PAGE_CALLBACK = *const fn(
     TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
     TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT_CODE,
     Gpa: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const WHV_EMULATOR_CALLBACKS = extern struct {
     Size: u32,
@@ -2054,44 +2054,44 @@ pub const HdvMmioMappingFlagExecutable = HDV_MMIO_MAPPING_FLAGS{ .Executable = 1
 
 pub const HDV_PCI_DEVICE_INITIALIZE = *const fn(
     deviceContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_DEVICE_TEARDOWN = *const fn(
     deviceContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const HDV_PCI_DEVICE_SET_CONFIGURATION = *const fn(
     deviceContext: ?*anyopaque,
     configurationValueCount: u32,
     configurationValues: [*]const ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_DEVICE_GET_DETAILS = *const fn(
     deviceContext: ?*anyopaque,
     pnpId: ?*HDV_PCI_PNP_ID,
     probedBarsCount: u32,
     probedBars: [*]u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_DEVICE_START = *const fn(
     deviceContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_DEVICE_STOP = *const fn(
     deviceContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const HDV_PCI_READ_CONFIG_SPACE = *const fn(
     deviceContext: ?*anyopaque,
     offset: u32,
     value: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_WRITE_CONFIG_SPACE = *const fn(
     deviceContext: ?*anyopaque,
     offset: u32,
     value: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_READ_INTERCEPTED_MEMORY = *const fn(
     deviceContext: ?*anyopaque,
@@ -2099,7 +2099,7 @@ pub const HDV_PCI_READ_INTERCEPTED_MEMORY = *const fn(
     offset: u64,
     length: u64,
     value: [*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_WRITE_INTERCEPTED_MEMORY = *const fn(
     deviceContext: ?*anyopaque,
@@ -2107,7 +2107,7 @@ pub const HDV_PCI_WRITE_INTERCEPTED_MEMORY = *const fn(
     offset: u64,
     length: u64,
     value: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const HDV_PCI_INTERFACE_VERSION = enum(i32) {
     Invalid = 0,
@@ -2606,12 +2606,12 @@ pub const DOS_IMAGE_INFO = extern struct {
 
 pub const GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK = *const fn(
     InfoMessage: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const FOUND_IMAGE_CALLBACK = *const fn(
     Context: ?*anyopaque,
     ImageInfo: ?*DOS_IMAGE_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const MODULE_INFO = extern struct {
     ProcessImageName: ?[*:0]const u8,
@@ -2628,23 +2628,23 @@ pub extern "winhvplatform" fn WHvGetCapability(
     CapabilityBuffer: ?*anyopaque,
     CapabilityBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreatePartition(
     Partition: ?*WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetupPartition(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvResetPartition(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvDeletePartition(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetPartitionProperty(
     Partition: WHV_PARTITION_HANDLE,
@@ -2653,7 +2653,7 @@ pub extern "winhvplatform" fn WHvGetPartitionProperty(
     PropertyBuffer: ?*anyopaque,
     PropertyBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetPartitionProperty(
     Partition: WHV_PARTITION_HANDLE,
@@ -2661,15 +2661,15 @@ pub extern "winhvplatform" fn WHvSetPartitionProperty(
     // TODO: what to do with BytesParamIndex 3?
     PropertyBuffer: ?*const anyopaque,
     PropertyBufferSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSuspendPartitionTime(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvResumePartitionTime(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvMapGpaRange(
     Partition: WHV_PARTITION_HANDLE,
@@ -2677,7 +2677,7 @@ pub extern "winhvplatform" fn WHvMapGpaRange(
     GuestAddress: u64,
     SizeInBytes: u64,
     Flags: WHV_MAP_GPA_RANGE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvMapGpaRange2(
     Partition: WHV_PARTITION_HANDLE,
@@ -2686,13 +2686,13 @@ pub extern "winhvplatform" fn WHvMapGpaRange2(
     GuestAddress: u64,
     SizeInBytes: u64,
     Flags: WHV_MAP_GPA_RANGE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvUnmapGpaRange(
     Partition: WHV_PARTITION_HANDLE,
     GuestAddress: u64,
     SizeInBytes: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvTranslateGva(
     Partition: WHV_PARTITION_HANDLE,
@@ -2701,25 +2701,25 @@ pub extern "winhvplatform" fn WHvTranslateGva(
     TranslateFlags: WHV_TRANSLATE_GVA_FLAGS,
     TranslationResult: ?*WHV_TRANSLATE_GVA_RESULT,
     Gpa: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreateVirtualProcessor(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreateVirtualProcessor2(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     Properties: [*]const WHV_VIRTUAL_PROCESSOR_PROPERTY,
     PropertyCount: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvDeleteVirtualProcessor(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvRunVirtualProcessor(
     Partition: WHV_PARTITION_HANDLE,
@@ -2727,13 +2727,13 @@ pub extern "winhvplatform" fn WHvRunVirtualProcessor(
     // TODO: what to do with BytesParamIndex 3?
     ExitContext: ?*anyopaque,
     ExitContextSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCancelRunVirtualProcessor(
     Partition: WHV_PARTITION_HANDLE,
     VpIndex: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVirtualProcessorRegisters(
     Partition: WHV_PARTITION_HANDLE,
@@ -2741,7 +2741,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorRegisters(
     RegisterNames: [*]const WHV_REGISTER_NAME,
     RegisterCount: u32,
     RegisterValues: [*]WHV_REGISTER_VALUE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetVirtualProcessorRegisters(
     Partition: WHV_PARTITION_HANDLE,
@@ -2749,7 +2749,7 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorRegisters(
     RegisterNames: [*]const WHV_REGISTER_NAME,
     RegisterCount: u32,
     RegisterValues: [*]const WHV_REGISTER_VALUE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState(
     Partition: WHV_PARTITION_HANDLE,
@@ -2758,7 +2758,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState(
     State: ?*anyopaque,
     StateSize: u32,
     WrittenSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState(
     Partition: WHV_PARTITION_HANDLE,
@@ -2766,13 +2766,13 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState(
     // TODO: what to do with BytesParamIndex 3?
     State: ?*const anyopaque,
     StateSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvRequestInterrupt(
     Partition: WHV_PARTITION_HANDLE,
     Interrupt: ?*const WHV_INTERRUPT_CONTROL,
     InterruptControlSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVirtualProcessorXsaveState(
     Partition: WHV_PARTITION_HANDLE,
@@ -2781,7 +2781,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorXsaveState(
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetVirtualProcessorXsaveState(
     Partition: WHV_PARTITION_HANDLE,
@@ -2789,7 +2789,7 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorXsaveState(
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*const anyopaque,
     BufferSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvQueryGpaRangeDirtyBitmap(
     Partition: WHV_PARTITION_HANDLE,
@@ -2798,7 +2798,7 @@ pub extern "winhvplatform" fn WHvQueryGpaRangeDirtyBitmap(
     // TODO: what to do with BytesParamIndex 4?
     Bitmap: ?*u64,
     BitmapSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetPartitionCounters(
     Partition: WHV_PARTITION_HANDLE,
@@ -2807,7 +2807,7 @@ pub extern "winhvplatform" fn WHvGetPartitionCounters(
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVirtualProcessorCounters(
     Partition: WHV_PARTITION_HANDLE,
@@ -2817,7 +2817,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorCounters(
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState2(
     Partition: WHV_PARTITION_HANDLE,
@@ -2826,7 +2826,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorInterruptControllerState2(
     State: ?*anyopaque,
     StateSize: u32,
     WrittenSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState2(
     Partition: WHV_PARTITION_HANDLE,
@@ -2834,18 +2834,18 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorInterruptControllerState2(
     // TODO: what to do with BytesParamIndex 3?
     State: ?*const anyopaque,
     StateSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvRegisterPartitionDoorbellEvent(
     Partition: WHV_PARTITION_HANDLE,
     MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
     EventHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvUnregisterPartitionDoorbellEvent(
     Partition: WHV_PARTITION_HANDLE,
     MatchData: ?*const WHV_DOORBELL_MATCH_DATA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvAdviseGpaRange(
     Partition: WHV_PARTITION_HANDLE,
@@ -2855,7 +2855,7 @@ pub extern "winhvplatform" fn WHvAdviseGpaRange(
     // TODO: what to do with BytesParamIndex 5?
     AdviceBuffer: ?*const anyopaque,
     AdviceBufferSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvReadGpaRange(
     Partition: WHV_PARTITION_HANDLE,
@@ -2865,7 +2865,7 @@ pub extern "winhvplatform" fn WHvReadGpaRange(
     // TODO: what to do with BytesParamIndex 5?
     Data: ?*anyopaque,
     DataSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvWriteGpaRange(
     Partition: WHV_PARTITION_HANDLE,
@@ -2875,13 +2875,13 @@ pub extern "winhvplatform" fn WHvWriteGpaRange(
     // TODO: what to do with BytesParamIndex 5?
     Data: ?*const anyopaque,
     DataSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSignalVirtualProcessorSynicEvent(
     Partition: WHV_PARTITION_HANDLE,
     SynicEvent: WHV_SYNIC_EVENT_PARAMETERS,
     NewlySignaled: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVirtualProcessorState(
     Partition: WHV_PARTITION_HANDLE,
@@ -2891,7 +2891,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorState(
     Buffer: ?*anyopaque,
     BufferSizeInBytes: u32,
     BytesWritten: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetVirtualProcessorState(
     Partition: WHV_PARTITION_HANDLE,
@@ -2900,7 +2900,7 @@ pub extern "winhvplatform" fn WHvSetVirtualProcessorState(
     // TODO: what to do with BytesParamIndex 4?
     Buffer: ?*const anyopaque,
     BufferSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvAllocateVpciResource(
     ProviderId: ?*const Guid,
@@ -2908,7 +2908,7 @@ pub extern "winhvplatform" fn WHvAllocateVpciResource(
     ResourceDescriptor: ?[*]const u8,
     ResourceDescriptorSizeInBytes: u32,
     VpciResource: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreateVpciDevice(
     Partition: WHV_PARTITION_HANDLE,
@@ -2916,12 +2916,12 @@ pub extern "winhvplatform" fn WHvCreateVpciDevice(
     VpciResource: ?HANDLE,
     Flags: WHV_CREATE_VPCI_DEVICE_FLAGS,
     NotificationEventHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvDeleteVpciDevice(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVpciDeviceProperty(
     Partition: WHV_PARTITION_HANDLE,
@@ -2931,7 +2931,7 @@ pub extern "winhvplatform" fn WHvGetVpciDeviceProperty(
     PropertyBuffer: ?*anyopaque,
     PropertyBufferSizeInBytes: u32,
     WrittenSizeInBytes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVpciDeviceNotification(
     Partition: WHV_PARTITION_HANDLE,
@@ -2939,39 +2939,39 @@ pub extern "winhvplatform" fn WHvGetVpciDeviceNotification(
     // TODO: what to do with BytesParamIndex 3?
     Notification: ?*WHV_VPCI_DEVICE_NOTIFICATION,
     NotificationSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvMapVpciDeviceMmioRanges(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
     MappingCount: ?*u32,
     Mappings: ?*?*WHV_VPCI_MMIO_MAPPING,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvUnmapVpciDeviceMmioRanges(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetVpciDevicePowerState(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
     PowerState: DEVICE_POWER_STATE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvReadVpciDeviceRegister(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
     Register: ?*const WHV_VPCI_DEVICE_REGISTER,
     Data: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvWriteVpciDeviceRegister(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
     Register: ?*const WHV_VPCI_DEVICE_REGISTER,
     Data: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvMapVpciDeviceInterrupt(
     Partition: WHV_PARTITION_HANDLE,
@@ -2981,13 +2981,13 @@ pub extern "winhvplatform" fn WHvMapVpciDeviceInterrupt(
     Target: ?*const WHV_VPCI_INTERRUPT_TARGET,
     MsiAddress: ?*u64,
     MsiData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvUnmapVpciDeviceInterrupt(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
     Index: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvRetargetVpciDeviceInterrupt(
     Partition: WHV_PARTITION_HANDLE,
@@ -2995,14 +2995,14 @@ pub extern "winhvplatform" fn WHvRetargetVpciDeviceInterrupt(
     MsiAddress: u64,
     MsiData: u32,
     Target: ?*const WHV_VPCI_INTERRUPT_TARGET,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvRequestVpciDeviceInterrupt(
     Partition: WHV_PARTITION_HANDLE,
     LogicalDeviceId: u64,
     MsiAddress: u64,
     MsiData: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVpciDeviceInterruptTarget(
     Partition: WHV_PARTITION_HANDLE,
@@ -3013,44 +3013,44 @@ pub extern "winhvplatform" fn WHvGetVpciDeviceInterruptTarget(
     Target: ?*WHV_VPCI_INTERRUPT_TARGET,
     TargetSizeInBytes: u32,
     BytesWritten: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreateTrigger(
     Partition: WHV_PARTITION_HANDLE,
     Parameters: ?*const WHV_TRIGGER_PARAMETERS,
     TriggerHandle: ?*?*anyopaque,
     EventHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvUpdateTriggerParameters(
     Partition: WHV_PARTITION_HANDLE,
     Parameters: ?*const WHV_TRIGGER_PARAMETERS,
     TriggerHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvDeleteTrigger(
     Partition: WHV_PARTITION_HANDLE,
     TriggerHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCreateNotificationPort(
     Partition: WHV_PARTITION_HANDLE,
     Parameters: ?*const WHV_NOTIFICATION_PORT_PARAMETERS,
     EventHandle: ?HANDLE,
     PortHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvSetNotificationPortProperty(
     Partition: WHV_PARTITION_HANDLE,
     PortHandle: ?*anyopaque,
     PropertyCode: WHV_NOTIFICATION_PORT_PROPERTY_CODE,
     PropertyValue: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvDeleteNotificationPort(
     Partition: WHV_PARTITION_HANDLE,
     PortHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvPostVirtualProcessorSynicMessage(
     Partition: WHV_PARTITION_HANDLE,
@@ -3059,7 +3059,7 @@ pub extern "winhvplatform" fn WHvPostVirtualProcessorSynicMessage(
     // TODO: what to do with BytesParamIndex 4?
     Message: ?*const anyopaque,
     MessageSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetVirtualProcessorCpuidOutput(
     Partition: WHV_PARTITION_HANDLE,
@@ -3067,7 +3067,7 @@ pub extern "winhvplatform" fn WHvGetVirtualProcessorCpuidOutput(
     Eax: u32,
     Ecx: u32,
     CpuidOutput: ?*WHV_CPUID_OUTPUT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvGetInterruptTargetVpSet(
     Partition: WHV_PARTITION_HANDLE,
@@ -3076,34 +3076,34 @@ pub extern "winhvplatform" fn WHvGetInterruptTargetVpSet(
     TargetVps: [*]u32,
     VpCount: u32,
     TargetVpCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvStartPartitionMigration(
     Partition: WHV_PARTITION_HANDLE,
     MigrationHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCancelPartitionMigration(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvCompletePartitionMigration(
     Partition: WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvplatform" fn WHvAcceptPartitionMigration(
     MigrationHandle: ?HANDLE,
     Partition: ?*WHV_PARTITION_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvemulation" fn WHvEmulatorCreateEmulator(
     Callbacks: ?*const WHV_EMULATOR_CALLBACKS,
     Emulator: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvemulation" fn WHvEmulatorDestroyEmulator(
     Emulator: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvemulation" fn WHvEmulatorTryIoEmulation(
     Emulator: ?*anyopaque,
@@ -3111,7 +3111,7 @@ pub extern "winhvemulation" fn WHvEmulatorTryIoEmulation(
     VpContext: ?*const WHV_VP_EXIT_CONTEXT,
     IoInstructionContext: ?*const WHV_X64_IO_PORT_ACCESS_CONTEXT,
     EmulatorReturnStatus: ?*WHV_EMULATOR_STATUS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winhvemulation" fn WHvEmulatorTryMmioEmulation(
     Emulator: ?*anyopaque,
@@ -3119,16 +3119,16 @@ pub extern "winhvemulation" fn WHvEmulatorTryMmioEmulation(
     VpContext: ?*const WHV_VP_EXIT_CONTEXT,
     MmioInstructionContext: ?*const WHV_MEMORY_ACCESS_CONTEXT,
     EmulatorReturnStatus: ?*WHV_EMULATOR_STATUS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvInitializeDeviceHost(
     computeSystem: HCS_SYSTEM,
     deviceHostHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvTeardownDeviceHost(
     deviceHostHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvCreateDeviceInstance(
     deviceHostHandle: ?*anyopaque,
@@ -3138,21 +3138,21 @@ pub extern "vmdevicehost" fn HdvCreateDeviceInstance(
     deviceInterface: ?*const anyopaque,
     deviceContext: ?*anyopaque,
     deviceHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvReadGuestMemory(
     requestor: ?*anyopaque,
     guestPhysicalAddress: u64,
     byteCount: u32,
     buffer: [*:0]u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvWriteGuestMemory(
     requestor: ?*anyopaque,
     guestPhysicalAddress: u64,
     byteCount: u32,
     buffer: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvCreateGuestMemoryAperture(
     requestor: ?*anyopaque,
@@ -3160,18 +3160,18 @@ pub extern "vmdevicehost" fn HdvCreateGuestMemoryAperture(
     byteCount: u32,
     writeProtected: BOOL,
     mappedAddress: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvDestroyGuestMemoryAperture(
     requestor: ?*anyopaque,
     mappedAddress: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvDeliverGuestInterrupt(
     requestor: ?*anyopaque,
     msiAddress: u64,
     msiData: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvRegisterDoorbell(
     requestor: ?*anyopaque,
@@ -3180,7 +3180,7 @@ pub extern "vmdevicehost" fn HdvRegisterDoorbell(
     TriggerValue: u64,
     Flags: u64,
     DoorbellEvent: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvUnregisterDoorbell(
     requestor: ?*anyopaque,
@@ -3188,7 +3188,7 @@ pub extern "vmdevicehost" fn HdvUnregisterDoorbell(
     BarOffset: u64,
     TriggerValue: u64,
     Flags: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvCreateSectionBackedMmioRange(
     requestor: ?*anyopaque,
@@ -3198,13 +3198,13 @@ pub extern "vmdevicehost" fn HdvCreateSectionBackedMmioRange(
     MappingFlags: HDV_MMIO_MAPPING_FLAGS,
     sectionHandle: ?HANDLE,
     sectionOffsetInPages: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmdevicehost" fn HdvDestroySectionBackedMmioRange(
     requestor: ?*anyopaque,
     barIndex: HDV_PCI_BAR_SELECTOR,
     offsetInPages: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn LocateSavedStateFiles(
     vmName: ?[*:0]const u16,
@@ -3212,121 +3212,121 @@ pub extern "vmsavedstatedumpprovider" fn LocateSavedStateFiles(
     binPath: ?*?PWSTR,
     vsvPath: ?*?PWSTR,
     vmrsPath: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn LoadSavedStateFile(
     vmrsFile: ?[*:0]const u16,
     vmSavedStateDumpHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ApplyPendingSavedStateFileReplayLog(
     vmrsFile: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn LoadSavedStateFiles(
     binFile: ?[*:0]const u16,
     vsvFile: ?[*:0]const u16,
     vmSavedStateDumpHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ReleaseSavedStateFiles(
     vmSavedStateDumpHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetGuestEnabledVirtualTrustLevels(
     vmSavedStateDumpHandle: ?*anyopaque,
     virtualTrustLevels: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetGuestOsInfo(
     vmSavedStateDumpHandle: ?*anyopaque,
     virtualTrustLevel: u8,
     guestOsInfo: ?*GUEST_OS_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetVpCount(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetArchitecture(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     architecture: ?*VIRTUAL_PROCESSOR_ARCH,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ForceArchitecture(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     architecture: VIRTUAL_PROCESSOR_ARCH,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetActiveVirtualTrustLevel(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     virtualTrustLevel: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetEnabledVirtualTrustLevels(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     virtualTrustLevels: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ForceActiveVirtualTrustLevel(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     virtualTrustLevel: u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn IsActiveVirtualTrustLevelEnabled(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     activeVirtualTrustLevelEnabled: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn IsNestedVirtualizationEnabled(
     vmSavedStateDumpHandle: ?*anyopaque,
     enabled: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetNestedVirtualizationMode(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     enabled: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ForceNestedHostMode(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     hostMode: BOOL,
     oldMode: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn InKernelSpace(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     inKernelSpace: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetRegisterValue(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     registerId: u32,
     registerValue: ?*VIRTUAL_PROCESSOR_REGISTER,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetPagingMode(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     pagingMode: ?*PAGING_MODE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ForcePagingMode(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     pagingMode: PAGING_MODE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ReadGuestPhysicalAddress(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3335,7 +3335,7 @@ pub extern "vmsavedstatedumpprovider" fn ReadGuestPhysicalAddress(
     buffer: ?*anyopaque,
     bufferSize: u32,
     bytesRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GuestVirtualAddressToPhysicalAddress(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3343,20 +3343,20 @@ pub extern "vmsavedstatedumpprovider" fn GuestVirtualAddressToPhysicalAddress(
     virtualAddress: u64,
     physicalAddress: ?*u64,
     unmappedRegionSize: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetGuestPhysicalMemoryChunks(
     vmSavedStateDumpHandle: ?*anyopaque,
     memoryChunkPageSize: ?*u64,
     memoryChunks: ?*GPA_MEMORY_CHUNK,
     memoryChunkCount: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GuestPhysicalAddressToRawSavedMemoryOffset(
     vmSavedStateDumpHandle: ?*anyopaque,
     physicalAddress: u64,
     rawSavedMemoryOffset: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ReadGuestRawSavedMemory(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3365,22 +3365,22 @@ pub extern "vmsavedstatedumpprovider" fn ReadGuestRawSavedMemory(
     buffer: ?*anyopaque,
     bufferSize: u32,
     bytesRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetGuestRawSavedMemorySize(
     vmSavedStateDumpHandle: ?*anyopaque,
     guestRawSavedMemorySize: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn SetMemoryBlockCacheLimit(
     vmSavedStateDumpHandle: ?*anyopaque,
     memoryBlockCacheLimit: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetMemoryBlockCacheLimit(
     vmSavedStateDumpHandle: ?*anyopaque,
     memoryBlockCacheLimit: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ApplyGuestMemoryFix(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3388,26 +3388,26 @@ pub extern "vmsavedstatedumpprovider" fn ApplyGuestMemoryFix(
     virtualAddress: u64,
     fixBuffer: ?*anyopaque,
     fixBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn LoadSavedStateSymbolProvider(
     vmSavedStateDumpHandle: ?*anyopaque,
     userSymbols: ?[*:0]const u16,
     force: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ReleaseSavedStateSymbolProvider(
     vmSavedStateDumpHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolProviderHandle(
     vmSavedStateDumpHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "vmsavedstatedumpprovider" fn SetSavedStateSymbolProviderDebugInfoCallback(
     vmSavedStateDumpHandle: ?*anyopaque,
     Callback: ?GUEST_SYMBOLS_PROVIDER_DEBUG_INFO_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbols(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3415,7 +3415,7 @@ pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbols(
     moduleName: ?[*:0]const u8,
     baseAddress: u64,
     sizeOfBase: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbolsEx(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3424,7 +3424,7 @@ pub extern "vmsavedstatedumpprovider" fn LoadSavedStateModuleSymbolsEx(
     moduleName: ?[*:0]const u8,
     baseAddress: u64,
     sizeOfBase: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ResolveSavedStateGlobalVariableAddress(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3432,7 +3432,7 @@ pub extern "vmsavedstatedumpprovider" fn ResolveSavedStateGlobalVariableAddress(
     globalName: ?[*:0]const u8,
     virtualAddress: ?*u64,
     size: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ReadSavedStateGlobalVariable(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3440,14 +3440,14 @@ pub extern "vmsavedstatedumpprovider" fn ReadSavedStateGlobalVariable(
     globalName: ?[*:0]const u8,
     buffer: ?*anyopaque,
     bufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolTypeSize(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     typeName: ?[*:0]const u8,
     size: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn FindSavedStateSymbolFieldInType(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3456,14 +3456,14 @@ pub extern "vmsavedstatedumpprovider" fn FindSavedStateSymbolFieldInType(
     fieldName: ?[*:0]const u16,
     offset: ?*u32,
     found: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn GetSavedStateSymbolFieldInfo(
     vmSavedStateDumpHandle: ?*anyopaque,
     vpId: u32,
     typeName: ?[*:0]const u8,
     typeFieldInfoMap: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn ScanMemoryForDosImages(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3474,7 +3474,7 @@ pub extern "vmsavedstatedumpprovider" fn ScanMemoryForDosImages(
     foundImageCallback: ?FOUND_IMAGE_CALLBACK,
     standaloneAddress: ?*u64,
     standaloneAddressCount: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "vmsavedstatedumpprovider" fn CallStackUnwind(
     vmSavedStateDumpHandle: ?*anyopaque,
@@ -3483,7 +3483,7 @@ pub extern "vmsavedstatedumpprovider" fn CallStackUnwind(
     imageInfoCount: u32,
     frameCount: u32,
     callStack: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

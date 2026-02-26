@@ -2,11 +2,11 @@
     .name = .capy,
     .fingerprint = 0x4724968847bbbb92,
     .version = "0.4.1",
-    .minimum_zig_version = "0.14.1",
+    .minimum_zig_version = "0.15.2",
     .dependencies = .{
         .@"zig-objc" = .{
-            .url = "https://github.com/mitchellh/zig-objc/archive/362d12f4d91dfde84668e0befc5a8ca76659965a.zip",
-            .hash = "12206038da3a8d42de25babfadaa3b8fb01c223850a1f1ce309034172d150df61a8c",
+            .url = "https://github.com/mitchellh/zig-objc/archive/27d0e03242e7ee6842bf8a86d2e0bb1f586a9847.tar.gz",
+            .hash = "zig_objc-0.0.0-Ir_Sp7oUAQC3JpeR9EGUFGcHRSx_33IehitnjBCy-CwD",
             .lazy = true,
         },
         .macos_sdk = .{
@@ -15,8 +15,8 @@
             .lazy = true,
         },
         .zigimg = .{
-            .url = "git+https://github.com/zigimg/zigimg#74caab5edd7c5f1d2f7d87e5717435ce0f0affa1",
-            .hash = "zigimg-0.1.0-8_eo2nWlEgCddu8EGLOM_RkYshx3sC8tWv-yYA4-htS6",
+            .url = "git+https://github.com/zigimg/zigimg#fb74dfb7c6d83f2bd01a229826669451525a4ba8",
+            .hash = "zigimg-0.1.0-8_eo2kSGFwADIkeZYTgfnLOV-khh6ZRoGmK6F2-s_QbY",
         },
     },
     .paths = .{""},

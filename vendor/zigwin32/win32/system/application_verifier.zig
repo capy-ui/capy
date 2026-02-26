@@ -120,19 +120,19 @@ pub const AVRF_RESOURCE_ENUMERATE_CALLBACK = *const fn(
     ResourceDescription: ?*anyopaque,
     EnumerationContext: ?*anyopaque,
     EnumerationLevel: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const AVRF_HEAPALLOCATION_ENUMERATE_CALLBACK = *const fn(
     HeapAllocation: ?*AVRF_HEAP_ALLOCATION,
     EnumerationContext: ?*anyopaque,
     EnumerationLevel: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const AVRF_HANDLEOPERATION_ENUMERATE_CALLBACK = *const fn(
     HandleOperation: ?*AVRF_HANDLE_OPERATION,
     EnumerationContext: ?*anyopaque,
     EnumerationLevel: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------
@@ -144,7 +144,7 @@ pub extern "verifier" fn VerifierEnumerateResource(
     ResourceType: eAvrfResourceTypes,
     ResourceCallback: ?AVRF_RESOURCE_ENUMERATE_CALLBACK,
     EnumerationContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

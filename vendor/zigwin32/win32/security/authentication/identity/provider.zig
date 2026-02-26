@@ -78,11 +78,11 @@ pub const IIdentityAdvise = extern union {
             self: *const IIdentityAdvise,
             dwIdentityUpdateEvents: IdentityUpdateEvent,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IdentityUpdated(self: *const IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn IdentityUpdated(self: *const IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, lpszUniqueID: ?[*:0]const u16) HRESULT {
         return self.vtable.IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
     }
 };
@@ -96,17 +96,17 @@ pub const AsyncIIdentityAdvise = extern union {
             self: *const AsyncIIdentityAdvise,
             dwIdentityUpdateEvents: u32,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_IdentityUpdated: *const fn(
             self: *const AsyncIIdentityAdvise,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_IdentityUpdated(self: *const AsyncIIdentityAdvise, dwIdentityUpdateEvents: u32, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Begin_IdentityUpdated(self: *const AsyncIIdentityAdvise, dwIdentityUpdateEvents: u32, lpszUniqueID: ?[*:0]const u16) HRESULT {
         return self.vtable.Begin_IdentityUpdated(self, dwIdentityUpdateEvents, lpszUniqueID);
     }
-    pub fn Finish_IdentityUpdated(self: *const AsyncIIdentityAdvise) callconv(.Inline) HRESULT {
+    pub fn Finish_IdentityUpdated(self: *const AsyncIIdentityAdvise) HRESULT {
         return self.vtable.Finish_IdentityUpdated(self);
     }
 };
@@ -123,66 +123,66 @@ pub const IIdentityProvider = extern union {
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IIdentityProvider,
             lpszUserName: ?[*:0]const u16,
             ppPropertyStore: ?*?*IPropertyStore,
             pKeywordsToAdd: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Import: *const fn(
             self: *const IIdentityProvider,
             pPropertyStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
             pKeywordsToDelete: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindByUniqueID: *const fn(
             self: *const IIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProviderPropertyStore: *const fn(
             self: *const IIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Advise: *const fn(
             self: *const IIdentityProvider,
             pIdentityAdvise: ?*IIdentityAdvise,
             dwIdentityUpdateEvents: IdentityUpdateEvent,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnAdvise: *const fn(
             self: *const IIdentityProvider,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIdentityEnum(self: *const IIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn GetIdentityEnum(self: *const IIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) HRESULT {
         return self.vtable.GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
     }
-    pub fn Create(self: *const IIdentityProvider, lpszUserName: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IIdentityProvider, lpszUserName: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore, pKeywordsToAdd: ?*const PROPVARIANT) HRESULT {
         return self.vtable.Create(self, lpszUserName, ppPropertyStore, pKeywordsToAdd);
     }
-    pub fn Import(self: *const IIdentityProvider, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Import(self: *const IIdentityProvider, pPropertyStore: ?*IPropertyStore) HRESULT {
         return self.vtable.Import(self, pPropertyStore);
     }
-    pub fn Delete(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) HRESULT {
         return self.vtable.Delete(self, lpszUniqueID, pKeywordsToDelete);
     }
-    pub fn FindByUniqueID(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn FindByUniqueID(self: *const IIdentityProvider, lpszUniqueID: ?[*:0]const u16, ppPropertyStore: ?*?*IPropertyStore) HRESULT {
         return self.vtable.FindByUniqueID(self, lpszUniqueID, ppPropertyStore);
     }
-    pub fn GetProviderPropertyStore(self: *const IIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn GetProviderPropertyStore(self: *const IIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) HRESULT {
         return self.vtable.GetProviderPropertyStore(self, ppPropertyStore);
     }
-    pub fn Advise(self: *const IIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Advise(self: *const IIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: IdentityUpdateEvent, pdwCookie: ?*u32) HRESULT {
         return self.vtable.Advise(self, pIdentityAdvise, dwIdentityUpdateEvents, pdwCookie);
     }
-    pub fn UnAdvise(self: *const IIdentityProvider, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn UnAdvise(self: *const IIdentityProvider, dwCookie: u32) HRESULT {
         return self.vtable.UnAdvise(self, dwCookie);
     }
 };
@@ -197,115 +197,115 @@ pub const AsyncIIdentityProvider = extern union {
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetIdentityEnum: *const fn(
             self: *const AsyncIIdentityProvider,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Create: *const fn(
             self: *const AsyncIIdentityProvider,
             lpszUserName: ?[*:0]const u16,
             pKeywordsToAdd: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Create: *const fn(
             self: *const AsyncIIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Import: *const fn(
             self: *const AsyncIIdentityProvider,
             pPropertyStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Import: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Delete: *const fn(
             self: *const AsyncIIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
             pKeywordsToDelete: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Delete: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_FindByUniqueID: *const fn(
             self: *const AsyncIIdentityProvider,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_FindByUniqueID: *const fn(
             self: *const AsyncIIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetProviderPropertyStore: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetProviderPropertyStore: *const fn(
             self: *const AsyncIIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Advise: *const fn(
             self: *const AsyncIIdentityProvider,
             pIdentityAdvise: ?*IIdentityAdvise,
             dwIdentityUpdateEvents: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Advise: *const fn(
             self: *const AsyncIIdentityProvider,
             pdwCookie: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_UnAdvise: *const fn(
             self: *const AsyncIIdentityProvider,
             dwCookie: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_UnAdvise: *const fn(
             self: *const AsyncIIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_GetIdentityEnum(self: *const AsyncIIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn Begin_GetIdentityEnum(self: *const AsyncIIdentityProvider, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) HRESULT {
         return self.vtable.Begin_GetIdentityEnum(self, eIdentityType, pFilterkey, pFilterPropVarValue);
     }
-    pub fn Finish_GetIdentityEnum(self: *const AsyncIIdentityProvider, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn Finish_GetIdentityEnum(self: *const AsyncIIdentityProvider, ppIdentityEnum: ?*?*IEnumUnknown) HRESULT {
         return self.vtable.Finish_GetIdentityEnum(self, ppIdentityEnum);
     }
-    pub fn Begin_Create(self: *const AsyncIIdentityProvider, lpszUserName: ?[*:0]const u16, pKeywordsToAdd: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn Begin_Create(self: *const AsyncIIdentityProvider, lpszUserName: ?[*:0]const u16, pKeywordsToAdd: ?*const PROPVARIANT) HRESULT {
         return self.vtable.Begin_Create(self, lpszUserName, pKeywordsToAdd);
     }
-    pub fn Finish_Create(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Finish_Create(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) HRESULT {
         return self.vtable.Finish_Create(self, ppPropertyStore);
     }
-    pub fn Begin_Import(self: *const AsyncIIdentityProvider, pPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Begin_Import(self: *const AsyncIIdentityProvider, pPropertyStore: ?*IPropertyStore) HRESULT {
         return self.vtable.Begin_Import(self, pPropertyStore);
     }
-    pub fn Finish_Import(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Finish_Import(self: *const AsyncIIdentityProvider) HRESULT {
         return self.vtable.Finish_Import(self);
     }
-    pub fn Begin_Delete(self: *const AsyncIIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn Begin_Delete(self: *const AsyncIIdentityProvider, lpszUniqueID: ?[*:0]const u16, pKeywordsToDelete: ?*const PROPVARIANT) HRESULT {
         return self.vtable.Begin_Delete(self, lpszUniqueID, pKeywordsToDelete);
     }
-    pub fn Finish_Delete(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Finish_Delete(self: *const AsyncIIdentityProvider) HRESULT {
         return self.vtable.Finish_Delete(self);
     }
-    pub fn Begin_FindByUniqueID(self: *const AsyncIIdentityProvider, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Begin_FindByUniqueID(self: *const AsyncIIdentityProvider, lpszUniqueID: ?[*:0]const u16) HRESULT {
         return self.vtable.Begin_FindByUniqueID(self, lpszUniqueID);
     }
-    pub fn Finish_FindByUniqueID(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Finish_FindByUniqueID(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) HRESULT {
         return self.vtable.Finish_FindByUniqueID(self, ppPropertyStore);
     }
-    pub fn Begin_GetProviderPropertyStore(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Begin_GetProviderPropertyStore(self: *const AsyncIIdentityProvider) HRESULT {
         return self.vtable.Begin_GetProviderPropertyStore(self);
     }
-    pub fn Finish_GetProviderPropertyStore(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Finish_GetProviderPropertyStore(self: *const AsyncIIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) HRESULT {
         return self.vtable.Finish_GetProviderPropertyStore(self, ppPropertyStore);
     }
-    pub fn Begin_Advise(self: *const AsyncIIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_Advise(self: *const AsyncIIdentityProvider, pIdentityAdvise: ?*IIdentityAdvise, dwIdentityUpdateEvents: u32) HRESULT {
         return self.vtable.Begin_Advise(self, pIdentityAdvise, dwIdentityUpdateEvents);
     }
-    pub fn Finish_Advise(self: *const AsyncIIdentityProvider, pdwCookie: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Finish_Advise(self: *const AsyncIIdentityProvider, pdwCookie: ?*u32) HRESULT {
         return self.vtable.Finish_Advise(self, pdwCookie);
     }
-    pub fn Begin_UnAdvise(self: *const AsyncIIdentityProvider, dwCookie: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_UnAdvise(self: *const AsyncIIdentityProvider, dwCookie: u32) HRESULT {
         return self.vtable.Begin_UnAdvise(self, dwCookie);
     }
-    pub fn Finish_UnAdvise(self: *const AsyncIIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Finish_UnAdvise(self: *const AsyncIIdentityProvider) HRESULT {
         return self.vtable.Finish_UnAdvise(self);
     }
 };
@@ -320,27 +320,27 @@ pub const IAssociatedIdentityProvider = extern union {
             self: *const IAssociatedIdentityProvider,
             hwndParent: ?HWND,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisassociateIdentity: *const fn(
             self: *const IAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeCredential: *const fn(
             self: *const IAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AssociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn AssociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, ppPropertyStore: ?*?*IPropertyStore) HRESULT {
         return self.vtable.AssociateIdentity(self, hwndParent, ppPropertyStore);
     }
-    pub fn DisassociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DisassociateIdentity(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) HRESULT {
         return self.vtable.DisassociateIdentity(self, hwndParent, lpszUniqueID);
     }
-    pub fn ChangeCredential(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ChangeCredential(self: *const IAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) HRESULT {
         return self.vtable.ChangeCredential(self, hwndParent, lpszUniqueID);
     }
 };
@@ -353,46 +353,46 @@ pub const AsyncIAssociatedIdentityProvider = extern union {
         Begin_AssociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             hwndParent: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_AssociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             ppPropertyStore: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_DisassociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_DisassociateIdentity: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_ChangeCredential: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
             hwndParent: ?HWND,
             lpszUniqueID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ChangeCredential: *const fn(
             self: *const AsyncIAssociatedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND) callconv(.Inline) HRESULT {
+    pub fn Begin_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND) HRESULT {
         return self.vtable.Begin_AssociateIdentity(self, hwndParent);
     }
-    pub fn Finish_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Finish_AssociateIdentity(self: *const AsyncIAssociatedIdentityProvider, ppPropertyStore: ?*?*IPropertyStore) HRESULT {
         return self.vtable.Finish_AssociateIdentity(self, ppPropertyStore);
     }
-    pub fn Begin_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Begin_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) HRESULT {
         return self.vtable.Begin_DisassociateIdentity(self, hwndParent, lpszUniqueID);
     }
-    pub fn Finish_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Finish_DisassociateIdentity(self: *const AsyncIAssociatedIdentityProvider) HRESULT {
         return self.vtable.Finish_DisassociateIdentity(self);
     }
-    pub fn Begin_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Begin_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider, hwndParent: ?HWND, lpszUniqueID: ?[*:0]const u16) HRESULT {
         return self.vtable.Begin_ChangeCredential(self, hwndParent, lpszUniqueID);
     }
-    pub fn Finish_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Finish_ChangeCredential(self: *const AsyncIAssociatedIdentityProvider) HRESULT {
         return self.vtable.Finish_ChangeCredential(self);
     }
 };
@@ -433,41 +433,41 @@ pub const IConnectedIdentityProvider = extern union {
             self: *const IConnectedIdentityProvider,
             AuthBuffer: [*:0]u8,
             AuthBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisconnectIdentity: *const fn(
             self: *const IConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsConnected: *const fn(
             self: *const IConnectedIdentityProvider,
             Connected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUrl: *const fn(
             self: *const IConnectedIdentityProvider,
             Identifier: IDENTITY_URL,
             Context: ?*IBindCtx,
             PostData: ?*VARIANT,
             Url: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccountState: *const fn(
             self: *const IConnectedIdentityProvider,
             pState: ?*ACCOUNT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectIdentity(self: *const IConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
+    pub fn ConnectIdentity(self: *const IConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) HRESULT {
         return self.vtable.ConnectIdentity(self, AuthBuffer, AuthBufferSize);
     }
-    pub fn DisconnectIdentity(self: *const IConnectedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn DisconnectIdentity(self: *const IConnectedIdentityProvider) HRESULT {
         return self.vtable.DisconnectIdentity(self);
     }
-    pub fn IsConnected(self: *const IConnectedIdentityProvider, Connected: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsConnected(self: *const IConnectedIdentityProvider, Connected: ?*BOOL) HRESULT {
         return self.vtable.IsConnected(self, Connected);
     }
-    pub fn GetUrl(self: *const IConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetUrl(self: *const IConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx, PostData: ?*VARIANT, Url: ?*?PWSTR) HRESULT {
         return self.vtable.GetUrl(self, Identifier, Context, PostData, Url);
     }
-    pub fn GetAccountState(self: *const IConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.Inline) HRESULT {
+    pub fn GetAccountState(self: *const IConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) HRESULT {
         return self.vtable.GetAccountState(self, pState);
     }
 };
@@ -481,71 +481,71 @@ pub const AsyncIConnectedIdentityProvider = extern union {
             self: *const AsyncIConnectedIdentityProvider,
             AuthBuffer: [*:0]u8,
             AuthBufferSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ConnectIdentity: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_DisconnectIdentity: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_DisconnectIdentity: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_IsConnected: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_IsConnected: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             Connected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetUrl: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             Identifier: IDENTITY_URL,
             Context: ?*IBindCtx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetUrl: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             PostData: ?*VARIANT,
             Url: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetAccountState: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetAccountState: *const fn(
             self: *const AsyncIConnectedIdentityProvider,
             pState: ?*ACCOUNT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider, AuthBuffer: [*:0]u8, AuthBufferSize: u32) HRESULT {
         return self.vtable.Begin_ConnectIdentity(self, AuthBuffer, AuthBufferSize);
     }
-    pub fn Finish_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Finish_ConnectIdentity(self: *const AsyncIConnectedIdentityProvider) HRESULT {
         return self.vtable.Finish_ConnectIdentity(self);
     }
-    pub fn Begin_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Begin_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) HRESULT {
         return self.vtable.Begin_DisconnectIdentity(self);
     }
-    pub fn Finish_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Finish_DisconnectIdentity(self: *const AsyncIConnectedIdentityProvider) HRESULT {
         return self.vtable.Finish_DisconnectIdentity(self);
     }
-    pub fn Begin_IsConnected(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Begin_IsConnected(self: *const AsyncIConnectedIdentityProvider) HRESULT {
         return self.vtable.Begin_IsConnected(self);
     }
-    pub fn Finish_IsConnected(self: *const AsyncIConnectedIdentityProvider, Connected: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn Finish_IsConnected(self: *const AsyncIConnectedIdentityProvider, Connected: ?*BOOL) HRESULT {
         return self.vtable.Finish_IsConnected(self, Connected);
     }
-    pub fn Begin_GetUrl(self: *const AsyncIConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx) callconv(.Inline) HRESULT {
+    pub fn Begin_GetUrl(self: *const AsyncIConnectedIdentityProvider, Identifier: IDENTITY_URL, Context: ?*IBindCtx) HRESULT {
         return self.vtable.Begin_GetUrl(self, Identifier, Context);
     }
-    pub fn Finish_GetUrl(self: *const AsyncIConnectedIdentityProvider, PostData: ?*VARIANT, Url: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn Finish_GetUrl(self: *const AsyncIConnectedIdentityProvider, PostData: ?*VARIANT, Url: ?*?PWSTR) HRESULT {
         return self.vtable.Finish_GetUrl(self, PostData, Url);
     }
-    pub fn Begin_GetAccountState(self: *const AsyncIConnectedIdentityProvider) callconv(.Inline) HRESULT {
+    pub fn Begin_GetAccountState(self: *const AsyncIConnectedIdentityProvider) HRESULT {
         return self.vtable.Begin_GetAccountState(self);
     }
-    pub fn Finish_GetAccountState(self: *const AsyncIConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) callconv(.Inline) HRESULT {
+    pub fn Finish_GetAccountState(self: *const AsyncIConnectedIdentityProvider, pState: ?*ACCOUNT_STATE) HRESULT {
         return self.vtable.Finish_GetAccountState(self, pState);
     }
 };
@@ -559,20 +559,20 @@ pub const IIdentityAuthentication = extern union {
             self: *const IIdentityAuthentication,
             CredBuffer: ?[*:0]u8,
             CredBufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateIdentityCredential: *const fn(
             self: *const IIdentityAuthentication,
             CredBuffer: [*:0]u8,
             CredBufferLength: u32,
             ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
+    pub fn SetIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) HRESULT {
         return self.vtable.SetIdentityCredential(self, CredBuffer, CredBufferLength);
     }
-    pub fn ValidateIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn ValidateIdentityCredential(self: *const IIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) HRESULT {
         return self.vtable.ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
     }
 };
@@ -586,33 +586,33 @@ pub const AsyncIIdentityAuthentication = extern union {
             self: *const AsyncIIdentityAuthentication,
             CredBuffer: ?[*:0]u8,
             CredBufferLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_SetIdentityCredential: *const fn(
             self: *const AsyncIIdentityAuthentication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_ValidateIdentityCredential: *const fn(
             self: *const AsyncIIdentityAuthentication,
             CredBuffer: [*:0]u8,
             CredBufferLength: u32,
             ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ValidateIdentityCredential: *const fn(
             self: *const AsyncIIdentityAuthentication,
             ppIdentityProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_SetIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) callconv(.Inline) HRESULT {
+    pub fn Begin_SetIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: ?[*:0]u8, CredBufferLength: u32) HRESULT {
         return self.vtable.Begin_SetIdentityCredential(self, CredBuffer, CredBufferLength);
     }
-    pub fn Finish_SetIdentityCredential(self: *const AsyncIIdentityAuthentication) callconv(.Inline) HRESULT {
+    pub fn Finish_SetIdentityCredential(self: *const AsyncIIdentityAuthentication) HRESULT {
         return self.vtable.Finish_SetIdentityCredential(self);
     }
-    pub fn Begin_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Begin_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, CredBuffer: [*:0]u8, CredBufferLength: u32, ppIdentityProperties: ?*?*IPropertyStore) HRESULT {
         return self.vtable.Begin_ValidateIdentityCredential(self, CredBuffer, CredBufferLength, ppIdentityProperties);
     }
-    pub fn Finish_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, ppIdentityProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Finish_ValidateIdentityCredential(self: *const AsyncIIdentityAuthentication, ppIdentityProperties: ?*?*IPropertyStore) HRESULT {
         return self.vtable.Finish_ValidateIdentityCredential(self, ppIdentityProperties);
     }
 };
@@ -632,18 +632,18 @@ pub const IIdentityStore = extern union {
         GetCount: *const fn(
             self: *const IIdentityStore,
             pdwProviders: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IIdentityStore,
             dwProvider: u32,
             pProvGuid: ?*Guid,
             ppIdentityProvider: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddToCache: *const fn(
             self: *const IIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertToSid: *const fn(
             self: *const IIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
@@ -651,36 +651,36 @@ pub const IIdentityStore = extern union {
             cbSid: u16,
             pSid: ?[*:0]u8,
             pcbRequiredSid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateIdentities: *const fn(
             self: *const IIdentityStore,
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IIdentityStore, pdwProviders: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IIdentityStore, pdwProviders: ?*u32) HRESULT {
         return self.vtable.GetCount(self, pdwProviders);
     }
-    pub fn GetAt(self: *const IIdentityStore, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IIdentityStore, dwProvider: u32, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) HRESULT {
         return self.vtable.GetAt(self, dwProvider, pProvGuid, ppIdentityProvider);
     }
-    pub fn AddToCache(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn AddToCache(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) HRESULT {
         return self.vtable.AddToCache(self, lpszUniqueID, ProviderGUID);
     }
-    pub fn ConvertToSid(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?[*:0]u8, pcbRequiredSid: ?*u16) callconv(.Inline) HRESULT {
+    pub fn ConvertToSid(self: *const IIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?[*:0]u8, pcbRequiredSid: ?*u16) HRESULT {
         return self.vtable.ConvertToSid(self, lpszUniqueID, ProviderGUID, cbSid, pSid, pcbRequiredSid);
     }
-    pub fn EnumerateIdentities(self: *const IIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn EnumerateIdentities(self: *const IIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT, ppIdentityEnum: ?*?*IEnumUnknown) HRESULT {
         return self.vtable.EnumerateIdentities(self, eIdentityType, pFilterkey, pFilterPropVarValue, ppIdentityEnum);
     }
-    pub fn Reset(self: *const IIdentityStore) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IIdentityStore) HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -692,94 +692,94 @@ pub const AsyncIIdentityStore = extern union {
         base: IUnknown.VTable,
         Begin_GetCount: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetCount: *const fn(
             self: *const AsyncIIdentityStore,
             pdwProviders: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_GetAt: *const fn(
             self: *const AsyncIIdentityStore,
             dwProvider: u32,
             pProvGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_GetAt: *const fn(
             self: *const AsyncIIdentityStore,
             pProvGuid: ?*Guid,
             ppIdentityProvider: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_AddToCache: *const fn(
             self: *const AsyncIIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_AddToCache: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_ConvertToSid: *const fn(
             self: *const AsyncIIdentityStore,
             lpszUniqueID: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
             cbSid: u16,
             pSid: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_ConvertToSid: *const fn(
             self: *const AsyncIIdentityStore,
             pSid: ?*u8,
             pcbRequiredSid: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_EnumerateIdentities: *const fn(
             self: *const AsyncIIdentityStore,
             eIdentityType: IDENTITY_TYPE,
             pFilterkey: ?*const PROPERTYKEY,
             pFilterPropVarValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_EnumerateIdentities: *const fn(
             self: *const AsyncIIdentityStore,
             ppIdentityEnum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_Reset: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_Reset: *const fn(
             self: *const AsyncIIdentityStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_GetCount(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
+    pub fn Begin_GetCount(self: *const AsyncIIdentityStore) HRESULT {
         return self.vtable.Begin_GetCount(self);
     }
-    pub fn Finish_GetCount(self: *const AsyncIIdentityStore, pdwProviders: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Finish_GetCount(self: *const AsyncIIdentityStore, pdwProviders: ?*u32) HRESULT {
         return self.vtable.Finish_GetCount(self, pdwProviders);
     }
-    pub fn Begin_GetAt(self: *const AsyncIIdentityStore, dwProvider: u32, pProvGuid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Begin_GetAt(self: *const AsyncIIdentityStore, dwProvider: u32, pProvGuid: ?*Guid) HRESULT {
         return self.vtable.Begin_GetAt(self, dwProvider, pProvGuid);
     }
-    pub fn Finish_GetAt(self: *const AsyncIIdentityStore, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Finish_GetAt(self: *const AsyncIIdentityStore, pProvGuid: ?*Guid, ppIdentityProvider: ?*?*IUnknown) HRESULT {
         return self.vtable.Finish_GetAt(self, pProvGuid, ppIdentityProvider);
     }
-    pub fn Begin_AddToCache(self: *const AsyncIIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Begin_AddToCache(self: *const AsyncIIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid) HRESULT {
         return self.vtable.Begin_AddToCache(self, lpszUniqueID, ProviderGUID);
     }
-    pub fn Finish_AddToCache(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
+    pub fn Finish_AddToCache(self: *const AsyncIIdentityStore) HRESULT {
         return self.vtable.Finish_AddToCache(self);
     }
-    pub fn Begin_ConvertToSid(self: *const AsyncIIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?*u8) callconv(.Inline) HRESULT {
+    pub fn Begin_ConvertToSid(self: *const AsyncIIdentityStore, lpszUniqueID: ?[*:0]const u16, ProviderGUID: ?*const Guid, cbSid: u16, pSid: ?*u8) HRESULT {
         return self.vtable.Begin_ConvertToSid(self, lpszUniqueID, ProviderGUID, cbSid, pSid);
     }
-    pub fn Finish_ConvertToSid(self: *const AsyncIIdentityStore, pSid: ?*u8, pcbRequiredSid: ?*u16) callconv(.Inline) HRESULT {
+    pub fn Finish_ConvertToSid(self: *const AsyncIIdentityStore, pSid: ?*u8, pcbRequiredSid: ?*u16) HRESULT {
         return self.vtable.Finish_ConvertToSid(self, pSid, pcbRequiredSid);
     }
-    pub fn Begin_EnumerateIdentities(self: *const AsyncIIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn Begin_EnumerateIdentities(self: *const AsyncIIdentityStore, eIdentityType: IDENTITY_TYPE, pFilterkey: ?*const PROPERTYKEY, pFilterPropVarValue: ?*const PROPVARIANT) HRESULT {
         return self.vtable.Begin_EnumerateIdentities(self, eIdentityType, pFilterkey, pFilterPropVarValue);
     }
-    pub fn Finish_EnumerateIdentities(self: *const AsyncIIdentityStore, ppIdentityEnum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn Finish_EnumerateIdentities(self: *const AsyncIIdentityStore, ppIdentityEnum: ?*?*IEnumUnknown) HRESULT {
         return self.vtable.Finish_EnumerateIdentities(self, ppIdentityEnum);
     }
-    pub fn Begin_Reset(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
+    pub fn Begin_Reset(self: *const AsyncIIdentityStore) HRESULT {
         return self.vtable.Begin_Reset(self);
     }
-    pub fn Finish_Reset(self: *const AsyncIIdentityStore) callconv(.Inline) HRESULT {
+    pub fn Finish_Reset(self: *const AsyncIIdentityStore) HRESULT {
         return self.vtable.Finish_Reset(self);
     }
 };
@@ -794,19 +794,19 @@ pub const IIdentityStoreEx = extern union {
             LocalName: ?[*:0]const u16,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteConnectedIdentity: *const fn(
             self: *const IIdentityStoreEx,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateConnectedIdentity(self: *const IIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn CreateConnectedIdentity(self: *const IIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) HRESULT {
         return self.vtable.CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
     }
-    pub fn DeleteConnectedIdentity(self: *const IIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn DeleteConnectedIdentity(self: *const IIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) HRESULT {
         return self.vtable.DeleteConnectedIdentity(self, ConnectedName, ProviderGUID);
     }
 };
@@ -821,31 +821,31 @@ pub const AsyncIIdentityStoreEx = extern union {
             LocalName: ?[*:0]const u16,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_CreateConnectedIdentity: *const fn(
             self: *const AsyncIIdentityStoreEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Begin_DeleteConnectedIdentity: *const fn(
             self: *const AsyncIIdentityStoreEx,
             ConnectedName: ?[*:0]const u16,
             ProviderGUID: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Finish_DeleteConnectedIdentity: *const fn(
             self: *const AsyncIIdentityStoreEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin_CreateConnectedIdentity(self: *const AsyncIIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Begin_CreateConnectedIdentity(self: *const AsyncIIdentityStoreEx, LocalName: ?[*:0]const u16, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) HRESULT {
         return self.vtable.Begin_CreateConnectedIdentity(self, LocalName, ConnectedName, ProviderGUID);
     }
-    pub fn Finish_CreateConnectedIdentity(self: *const AsyncIIdentityStoreEx) callconv(.Inline) HRESULT {
+    pub fn Finish_CreateConnectedIdentity(self: *const AsyncIIdentityStoreEx) HRESULT {
         return self.vtable.Finish_CreateConnectedIdentity(self);
     }
-    pub fn Begin_DeleteConnectedIdentity(self: *const AsyncIIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Begin_DeleteConnectedIdentity(self: *const AsyncIIdentityStoreEx, ConnectedName: ?[*:0]const u16, ProviderGUID: ?*const Guid) HRESULT {
         return self.vtable.Begin_DeleteConnectedIdentity(self, ConnectedName, ProviderGUID);
     }
-    pub fn Finish_DeleteConnectedIdentity(self: *const AsyncIIdentityStoreEx) callconv(.Inline) HRESULT {
+    pub fn Finish_DeleteConnectedIdentity(self: *const AsyncIIdentityStoreEx) HRESULT {
         return self.vtable.Finish_DeleteConnectedIdentity(self);
     }
 };

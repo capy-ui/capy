@@ -253,42 +253,42 @@ pub const IFilter = extern union {
             cAttributes: u32,
             aAttributes: [*]const FULLPROPSPEC,
             pFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         GetChunk: *const fn(
             self: *const IFilter,
             pStat: ?*STAT_CHUNK,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         GetText: *const fn(
             self: *const IFilter,
             pcwcBuffer: ?*u32,
             awcBuffer: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         GetValue: *const fn(
             self: *const IFilter,
             ppPropValue: ?*?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
         BindRegion: *const fn(
             self: *const IFilter,
             origPos: FILTERREGION,
             riid: ?*const Guid,
             ppunk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IFilter, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) callconv(.Inline) i32 {
+    pub fn Init(self: *const IFilter, grfFlags: u32, cAttributes: u32, aAttributes: [*]const FULLPROPSPEC, pFlags: ?*u32) i32 {
         return self.vtable.Init(self, grfFlags, cAttributes, aAttributes, pFlags);
     }
-    pub fn GetChunk(self: *const IFilter, pStat: ?*STAT_CHUNK) callconv(.Inline) i32 {
+    pub fn GetChunk(self: *const IFilter, pStat: ?*STAT_CHUNK) i32 {
         return self.vtable.GetChunk(self, pStat);
     }
-    pub fn GetText(self: *const IFilter, pcwcBuffer: ?*u32, awcBuffer: [*:0]u16) callconv(.Inline) i32 {
+    pub fn GetText(self: *const IFilter, pcwcBuffer: ?*u32, awcBuffer: [*:0]u16) i32 {
         return self.vtable.GetText(self, pcwcBuffer, awcBuffer);
     }
-    pub fn GetValue(self: *const IFilter, ppPropValue: ?*?*PROPVARIANT) callconv(.Inline) i32 {
+    pub fn GetValue(self: *const IFilter, ppPropValue: ?*?*PROPVARIANT) i32 {
         return self.vtable.GetValue(self, ppPropValue);
     }
-    pub fn BindRegion(self: *const IFilter, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) callconv(.Inline) i32 {
+    pub fn BindRegion(self: *const IFilter, origPos: FILTERREGION, riid: ?*const Guid, ppunk: ?*?*anyopaque) i32 {
         return self.vtable.BindRegion(self, origPos, riid, ppunk);
     }
 };
@@ -306,19 +306,19 @@ pub const IPhraseSink = extern union {
             pwcModifier: ?[*:0]const u16,
             cwcModifier: u32,
             ulAttachmentType: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PutPhrase: *const fn(
             self: *const IPhraseSink,
             pwcPhrase: ?[*:0]const u16,
             cwcPhrase: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn PutSmallPhrase(self: *const IPhraseSink, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) callconv(.Inline) HRESULT {
+    pub fn PutSmallPhrase(self: *const IPhraseSink, pwcNoun: ?[*:0]const u16, cwcNoun: u32, pwcModifier: ?[*:0]const u16, cwcModifier: u32, ulAttachmentType: u32) HRESULT {
         return self.vtable.PutSmallPhrase(self, pwcNoun, cwcNoun, pwcModifier, cwcModifier, ulAttachmentType);
     }
-    pub fn PutPhrase(self: *const IPhraseSink, pwcPhrase: ?[*:0]const u16, cwcPhrase: u32) callconv(.Inline) HRESULT {
+    pub fn PutPhrase(self: *const IPhraseSink, pwcPhrase: ?[*:0]const u16, cwcPhrase: u32) HRESULT {
         return self.vtable.PutPhrase(self, pwcPhrase, cwcPhrase);
     }
 };
@@ -386,28 +386,28 @@ pub extern "query" fn LoadIFilter(
     pwcsPath: ?[*:0]const u16,
     pUnkOuter: ?*IUnknown,
     ppIUnk: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "query" fn LoadIFilterEx(
     pwcsPath: ?[*:0]const u16,
     dwFlags: u32,
     riid: ?*const Guid,
     ppIUnk: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "query" fn BindIFilterFromStorage(
     pStg: ?*IStorage,
     pUnkOuter: ?*IUnknown,
     ppIUnk: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "query" fn BindIFilterFromStream(
     pStm: ?*IStream,
     pUnkOuter: ?*IUnknown,
     ppIUnk: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -656,14 +656,14 @@ pub const IWMDMMetaData = extern union {
             pwszTagName: ?[*:0]const u16,
             pValue: ?[*:0]u8,
             iLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryByName: *const fn(
             self: *const IWMDMMetaData,
             pwszTagName: ?[*:0]const u16,
             pType: ?*WMDM_TAG_DATATYPE,
             pValue: [*]?*u8,
             pcbLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryByIndex: *const fn(
             self: *const IWMDMMetaData,
             iIndex: u32,
@@ -671,24 +671,24 @@ pub const IWMDMMetaData = extern union {
             pType: ?*WMDM_TAG_DATATYPE,
             ppValue: [*]?*u8,
             pcbLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemCount: *const fn(
             self: *const IWMDMMetaData,
             iCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddItem(self: *const IWMDMMetaData, Type: WMDM_TAG_DATATYPE, pwszTagName: ?[*:0]const u16, pValue: ?[*:0]u8, iLength: u32) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const IWMDMMetaData, Type: WMDM_TAG_DATATYPE, pwszTagName: ?[*:0]const u16, pValue: ?[*:0]u8, iLength: u32) HRESULT {
         return self.vtable.AddItem(self, Type, pwszTagName, pValue, iLength);
     }
-    pub fn QueryByName(self: *const IWMDMMetaData, pwszTagName: ?[*:0]const u16, pType: ?*WMDM_TAG_DATATYPE, pValue: [*]?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QueryByName(self: *const IWMDMMetaData, pwszTagName: ?[*:0]const u16, pType: ?*WMDM_TAG_DATATYPE, pValue: [*]?*u8, pcbLength: ?*u32) HRESULT {
         return self.vtable.QueryByName(self, pwszTagName, pType, pValue, pcbLength);
     }
-    pub fn QueryByIndex(self: *const IWMDMMetaData, iIndex: u32, ppwszName: ?*?*u16, pType: ?*WMDM_TAG_DATATYPE, ppValue: [*]?*u8, pcbLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QueryByIndex(self: *const IWMDMMetaData, iIndex: u32, ppwszName: ?*?*u16, pType: ?*WMDM_TAG_DATATYPE, ppValue: [*]?*u8, pcbLength: ?*u32) HRESULT {
         return self.vtable.QueryByIndex(self, iIndex, ppwszName, pType, ppValue, pcbLength);
     }
-    pub fn GetItemCount(self: *const IWMDMMetaData, iCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemCount(self: *const IWMDMMetaData, iCount: ?*u32) HRESULT {
         return self.vtable.GetItemCount(self, iCount);
     }
 };
@@ -701,25 +701,25 @@ pub const IWMDeviceManager = extern union {
         GetRevision: *const fn(
             self: *const IWMDeviceManager,
             pdwRevision: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceCount: *const fn(
             self: *const IWMDeviceManager,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevices: *const fn(
             self: *const IWMDeviceManager,
             ppEnumDevice: ?*?*IWMDMEnumDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRevision(self: *const IWMDeviceManager, pdwRevision: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRevision(self: *const IWMDeviceManager, pdwRevision: ?*u32) HRESULT {
         return self.vtable.GetRevision(self, pdwRevision);
     }
-    pub fn GetDeviceCount(self: *const IWMDeviceManager, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceCount(self: *const IWMDeviceManager, pdwCount: ?*u32) HRESULT {
         return self.vtable.GetDeviceCount(self, pdwCount);
     }
-    pub fn EnumDevices(self: *const IWMDeviceManager, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.Inline) HRESULT {
+    pub fn EnumDevices(self: *const IWMDeviceManager, ppEnumDevice: ?*?*IWMDMEnumDevice) HRESULT {
         return self.vtable.EnumDevices(self, ppEnumDevice);
     }
 };
@@ -733,25 +733,25 @@ pub const IWMDeviceManager2 = extern union {
             self: *const IWMDeviceManager2,
             pwszCanonicalName: ?[*:0]const u16,
             ppDevice: ?*?*IWMDMDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevices2: *const fn(
             self: *const IWMDeviceManager2,
             ppEnumDevice: ?*?*IWMDMEnumDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reinitialize: *const fn(
             self: *const IWMDeviceManager2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDeviceManager: IWMDeviceManager,
     IUnknown: IUnknown,
-    pub fn GetDeviceFromCanonicalName(self: *const IWMDeviceManager2, pwszCanonicalName: ?[*:0]const u16, ppDevice: ?*?*IWMDMDevice) callconv(.Inline) HRESULT {
+    pub fn GetDeviceFromCanonicalName(self: *const IWMDeviceManager2, pwszCanonicalName: ?[*:0]const u16, ppDevice: ?*?*IWMDMDevice) HRESULT {
         return self.vtable.GetDeviceFromCanonicalName(self, pwszCanonicalName, ppDevice);
     }
-    pub fn EnumDevices2(self: *const IWMDeviceManager2, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.Inline) HRESULT {
+    pub fn EnumDevices2(self: *const IWMDeviceManager2, ppEnumDevice: ?*?*IWMDMEnumDevice) HRESULT {
         return self.vtable.EnumDevices2(self, ppEnumDevice);
     }
-    pub fn Reinitialize(self: *const IWMDeviceManager2) callconv(.Inline) HRESULT {
+    pub fn Reinitialize(self: *const IWMDeviceManager2) HRESULT {
         return self.vtable.Reinitialize(self);
     }
 };
@@ -764,13 +764,13 @@ pub const IWMDeviceManager3 = extern union {
         SetDeviceEnumPreference: *const fn(
             self: *const IWMDeviceManager3,
             dwEnumPref: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDeviceManager2: IWMDeviceManager2,
     IWMDeviceManager: IWMDeviceManager,
     IUnknown: IUnknown,
-    pub fn SetDeviceEnumPreference(self: *const IWMDeviceManager3, dwEnumPref: u32) callconv(.Inline) HRESULT {
+    pub fn SetDeviceEnumPreference(self: *const IWMDeviceManager3, dwEnumPref: u32) HRESULT {
         return self.vtable.SetDeviceEnumPreference(self, dwEnumPref);
     }
 };
@@ -783,58 +783,58 @@ pub const IWMDMStorageGlobals = extern union {
         GetCapabilities: *const fn(
             self: *const IWMDMStorageGlobals,
             pdwCapabilities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSerialNumber: *const fn(
             self: *const IWMDMStorageGlobals,
             pSerialNum: ?*WMDMID,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalSize: *const fn(
             self: *const IWMDMStorageGlobals,
             pdwTotalSizeLow: ?*u32,
             pdwTotalSizeHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalFree: *const fn(
             self: *const IWMDMStorageGlobals,
             pdwFreeLow: ?*u32,
             pdwFreeHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalBad: *const fn(
             self: *const IWMDMStorageGlobals,
             pdwBadLow: ?*u32,
             pdwBadHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IWMDMStorageGlobals,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IWMDMStorageGlobals,
             fuMode: u32,
             pProgress: ?*IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const IWMDMStorageGlobals, pdwCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IWMDMStorageGlobals, pdwCapabilities: ?*u32) HRESULT {
         return self.vtable.GetCapabilities(self, pdwCapabilities);
     }
-    pub fn GetSerialNumber(self: *const IWMDMStorageGlobals, pSerialNum: ?*WMDMID, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetSerialNumber(self: *const IWMDMStorageGlobals, pSerialNum: ?*WMDMID, abMac: ?*u8) HRESULT {
         return self.vtable.GetSerialNumber(self, pSerialNum, abMac);
     }
-    pub fn GetTotalSize(self: *const IWMDMStorageGlobals, pdwTotalSizeLow: ?*u32, pdwTotalSizeHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalSize(self: *const IWMDMStorageGlobals, pdwTotalSizeLow: ?*u32, pdwTotalSizeHigh: ?*u32) HRESULT {
         return self.vtable.GetTotalSize(self, pdwTotalSizeLow, pdwTotalSizeHigh);
     }
-    pub fn GetTotalFree(self: *const IWMDMStorageGlobals, pdwFreeLow: ?*u32, pdwFreeHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalFree(self: *const IWMDMStorageGlobals, pdwFreeLow: ?*u32, pdwFreeHigh: ?*u32) HRESULT {
         return self.vtable.GetTotalFree(self, pdwFreeLow, pdwFreeHigh);
     }
-    pub fn GetTotalBad(self: *const IWMDMStorageGlobals, pdwBadLow: ?*u32, pdwBadHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalBad(self: *const IWMDMStorageGlobals, pdwBadLow: ?*u32, pdwBadHigh: ?*u32) HRESULT {
         return self.vtable.GetTotalBad(self, pdwBadLow, pdwBadHigh);
     }
-    pub fn GetStatus(self: *const IWMDMStorageGlobals, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IWMDMStorageGlobals, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn Initialize(self: *const IWMDMStorageGlobals, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IWMDMStorageGlobals, fuMode: u32, pProgress: ?*IWMDMProgress) HRESULT {
         return self.vtable.Initialize(self, fuMode, pProgress);
     }
 };
@@ -848,72 +848,72 @@ pub const IWMDMStorage = extern union {
             self: *const IWMDMStorage,
             dwAttributes: u32,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStorageGlobals: *const fn(
             self: *const IWMDMStorage,
             ppStorageGlobals: ?*?*IWMDMStorageGlobals,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributes: *const fn(
             self: *const IWMDMStorage,
             pdwAttributes: ?*u32,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IWMDMStorage,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDate: *const fn(
             self: *const IWMDMStorage,
             pDateTimeUTC: ?*WMDMDATETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IWMDMStorage,
             pdwSizeLow: ?*u32,
             pdwSizeHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRights: *const fn(
             self: *const IWMDMStorage,
             ppRights: [*]?*WMDMRIGHTS,
             pnRightsCount: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumStorage: *const fn(
             self: *const IWMDMStorage,
             pEnumStorage: ?*?*IWMDMEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendOpaqueCommand: *const fn(
             self: *const IWMDMStorage,
             pCommand: ?*OPAQUECOMMAND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAttributes(self: *const IWMDMStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetAttributes(self: *const IWMDMStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.SetAttributes(self, dwAttributes, pFormat);
     }
-    pub fn GetStorageGlobals(self: *const IWMDMStorage, ppStorageGlobals: ?*?*IWMDMStorageGlobals) callconv(.Inline) HRESULT {
+    pub fn GetStorageGlobals(self: *const IWMDMStorage, ppStorageGlobals: ?*?*IWMDMStorageGlobals) HRESULT {
         return self.vtable.GetStorageGlobals(self, ppStorageGlobals);
     }
-    pub fn GetAttributes(self: *const IWMDMStorage, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetAttributes(self: *const IWMDMStorage, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.GetAttributes(self, pdwAttributes, pFormat);
     }
-    pub fn GetName(self: *const IWMDMStorage, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IWMDMStorage, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetName(self, pwszName, nMaxChars);
     }
-    pub fn GetDate(self: *const IWMDMStorage, pDateTimeUTC: ?*WMDMDATETIME) callconv(.Inline) HRESULT {
+    pub fn GetDate(self: *const IWMDMStorage, pDateTimeUTC: ?*WMDMDATETIME) HRESULT {
         return self.vtable.GetDate(self, pDateTimeUTC);
     }
-    pub fn GetSize(self: *const IWMDMStorage, pdwSizeLow: ?*u32, pdwSizeHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IWMDMStorage, pdwSizeLow: ?*u32, pdwSizeHigh: ?*u32) HRESULT {
         return self.vtable.GetSize(self, pdwSizeLow, pdwSizeHigh);
     }
-    pub fn GetRights(self: *const IWMDMStorage, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetRights(self: *const IWMDMStorage, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.GetRights(self, ppRights, pnRightsCount, abMac);
     }
-    pub fn EnumStorage(self: *const IWMDMStorage, pEnumStorage: ?*?*IWMDMEnumStorage) callconv(.Inline) HRESULT {
+    pub fn EnumStorage(self: *const IWMDMStorage, pEnumStorage: ?*?*IWMDMEnumStorage) HRESULT {
         return self.vtable.EnumStorage(self, pEnumStorage);
     }
-    pub fn SendOpaqueCommand(self: *const IWMDMStorage, pCommand: ?*OPAQUECOMMAND) callconv(.Inline) HRESULT {
+    pub fn SendOpaqueCommand(self: *const IWMDMStorage, pCommand: ?*OPAQUECOMMAND) HRESULT {
         return self.vtable.SendOpaqueCommand(self, pCommand);
     }
 };
@@ -927,32 +927,32 @@ pub const IWMDMStorage2 = extern union {
             self: *const IWMDMStorage2,
             pszStorageName: ?[*:0]const u16,
             ppStorage: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAttributes2: *const fn(
             self: *const IWMDMStorage2,
             dwAttributes: u32,
             dwAttributesEx: u32,
             pFormat: ?*WAVEFORMATEX,
             pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributes2: *const fn(
             self: *const IWMDMStorage2,
             pdwAttributes: ?*u32,
             pdwAttributesEx: ?*u32,
             pAudioFormat: ?*WAVEFORMATEX,
             pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMStorage: IWMDMStorage,
     IUnknown: IUnknown,
-    pub fn GetStorage(self: *const IWMDMStorage2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn GetStorage(self: *const IWMDMStorage2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.GetStorage(self, pszStorageName, ppStorage);
     }
-    pub fn SetAttributes2(self: *const IWMDMStorage2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+    pub fn SetAttributes2(self: *const IWMDMStorage2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) HRESULT {
         return self.vtable.SetAttributes2(self, dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
     }
-    pub fn GetAttributes2(self: *const IWMDMStorage2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+    pub fn GetAttributes2(self: *const IWMDMStorage2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) HRESULT {
         return self.vtable.GetAttributes2(self, pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
     }
 };
@@ -965,36 +965,36 @@ pub const IWMDMStorage3 = extern union {
         GetMetadata: *const fn(
             self: *const IWMDMStorage3,
             ppMetadata: ?*?*IWMDMMetaData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMetadata: *const fn(
             self: *const IWMDMStorage3,
             pMetadata: ?*IWMDMMetaData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEmptyMetadataObject: *const fn(
             self: *const IWMDMStorage3,
             ppMetadata: ?*?*IWMDMMetaData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEnumPreference: *const fn(
             self: *const IWMDMStorage3,
             pMode: ?*WMDM_STORAGE_ENUM_MODE,
             nViews: u32,
             pViews: ?[*]WMDMMetadataView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMStorage2: IWMDMStorage2,
     IWMDMStorage: IWMDMStorage,
     IUnknown: IUnknown,
-    pub fn GetMetadata(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) callconv(.Inline) HRESULT {
+    pub fn GetMetadata(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) HRESULT {
         return self.vtable.GetMetadata(self, ppMetadata);
     }
-    pub fn SetMetadata(self: *const IWMDMStorage3, pMetadata: ?*IWMDMMetaData) callconv(.Inline) HRESULT {
+    pub fn SetMetadata(self: *const IWMDMStorage3, pMetadata: ?*IWMDMMetaData) HRESULT {
         return self.vtable.SetMetadata(self, pMetadata);
     }
-    pub fn CreateEmptyMetadataObject(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) callconv(.Inline) HRESULT {
+    pub fn CreateEmptyMetadataObject(self: *const IWMDMStorage3, ppMetadata: ?*?*IWMDMMetaData) HRESULT {
         return self.vtable.CreateEmptyMetadataObject(self, ppMetadata);
     }
-    pub fn SetEnumPreference(self: *const IWMDMStorage3, pMode: ?*WMDM_STORAGE_ENUM_MODE, nViews: u32, pViews: ?[*]WMDMMetadataView) callconv(.Inline) HRESULT {
+    pub fn SetEnumPreference(self: *const IWMDMStorage3, pMode: ?*WMDM_STORAGE_ENUM_MODE, nViews: u32, pViews: ?[*]WMDMMetadataView) HRESULT {
         return self.vtable.SetEnumPreference(self, pMode, nViews, pViews);
     }
 };
@@ -1008,56 +1008,56 @@ pub const IWMDMStorage4 = extern union {
             self: *const IWMDMStorage4,
             dwRefs: u32,
             ppIWMDMStorage: ?[*]?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReferences: *const fn(
             self: *const IWMDMStorage4,
             pdwRefs: ?*u32,
             pppIWMDMStorage: [*]?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRightsWithProgress: *const fn(
             self: *const IWMDMStorage4,
             pIProgressCallback: ?*IWMDMProgress3,
             ppRights: [*]?*WMDMRIGHTS,
             pnRightsCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecifiedMetadata: *const fn(
             self: *const IWMDMStorage4,
             cProperties: u32,
             ppwszPropNames: [*]?PWSTR,
             ppMetadata: ?*?*IWMDMMetaData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindStorage: *const fn(
             self: *const IWMDMStorage4,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: ?[*:0]const u16,
             ppStorage: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParent: *const fn(
             self: *const IWMDMStorage4,
             ppStorage: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMStorage3: IWMDMStorage3,
     IWMDMStorage2: IWMDMStorage2,
     IWMDMStorage: IWMDMStorage,
     IUnknown: IUnknown,
-    pub fn SetReferences(self: *const IWMDMStorage4, dwRefs: u32, ppIWMDMStorage: ?[*]?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn SetReferences(self: *const IWMDMStorage4, dwRefs: u32, ppIWMDMStorage: ?[*]?*IWMDMStorage) HRESULT {
         return self.vtable.SetReferences(self, dwRefs, ppIWMDMStorage);
     }
-    pub fn GetReferences(self: *const IWMDMStorage4, pdwRefs: ?*u32, pppIWMDMStorage: [*]?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn GetReferences(self: *const IWMDMStorage4, pdwRefs: ?*u32, pppIWMDMStorage: [*]?*?*IWMDMStorage) HRESULT {
         return self.vtable.GetReferences(self, pdwRefs, pppIWMDMStorage);
     }
-    pub fn GetRightsWithProgress(self: *const IWMDMStorage4, pIProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRightsWithProgress(self: *const IWMDMStorage4, pIProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) HRESULT {
         return self.vtable.GetRightsWithProgress(self, pIProgressCallback, ppRights, pnRightsCount);
     }
-    pub fn GetSpecifiedMetadata(self: *const IWMDMStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, ppMetadata: ?*?*IWMDMMetaData) callconv(.Inline) HRESULT {
+    pub fn GetSpecifiedMetadata(self: *const IWMDMStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, ppMetadata: ?*?*IWMDMMetaData) HRESULT {
         return self.vtable.GetSpecifiedMetadata(self, cProperties, ppwszPropNames, ppMetadata);
     }
-    pub fn FindStorage(self: *const IWMDMStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn FindStorage(self: *const IWMDMStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
     }
-    pub fn GetParent(self: *const IWMDMStorage4, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn GetParent(self: *const IWMDMStorage4, ppStorage: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.GetParent(self, ppStorage);
     }
 };
@@ -1069,82 +1069,82 @@ pub const IWMDMOperation = extern union {
         base: IUnknown.VTable,
         BeginRead: *const fn(
             self: *const IWMDMOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginWrite: *const fn(
             self: *const IWMDMOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectName: *const fn(
             self: *const IWMDMOperation,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetObjectName: *const fn(
             self: *const IWMDMOperation,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectAttributes: *const fn(
             self: *const IWMDMOperation,
             pdwAttributes: ?*u32,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetObjectAttributes: *const fn(
             self: *const IWMDMOperation,
             dwAttributes: u32,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectTotalSize: *const fn(
             self: *const IWMDMOperation,
             pdwSize: ?*u32,
             pdwSizeHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetObjectTotalSize: *const fn(
             self: *const IWMDMOperation,
             dwSize: u32,
             dwSizeHigh: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransferObjectData: *const fn(
             self: *const IWMDMOperation,
             pData: [*:0]u8,
             pdwSize: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End: *const fn(
             self: *const IWMDMOperation,
             phCompletionCode: ?*HRESULT,
             pNewObject: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginRead(self: *const IWMDMOperation) callconv(.Inline) HRESULT {
+    pub fn BeginRead(self: *const IWMDMOperation) HRESULT {
         return self.vtable.BeginRead(self);
     }
-    pub fn BeginWrite(self: *const IWMDMOperation) callconv(.Inline) HRESULT {
+    pub fn BeginWrite(self: *const IWMDMOperation) HRESULT {
         return self.vtable.BeginWrite(self);
     }
-    pub fn GetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetObjectName(self, pwszName, nMaxChars);
     }
-    pub fn SetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn SetObjectName(self: *const IWMDMOperation, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.SetObjectName(self, pwszName, nMaxChars);
     }
-    pub fn GetObjectAttributes(self: *const IWMDMOperation, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetObjectAttributes(self: *const IWMDMOperation, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.GetObjectAttributes(self, pdwAttributes, pFormat);
     }
-    pub fn SetObjectAttributes(self: *const IWMDMOperation, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetObjectAttributes(self: *const IWMDMOperation, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.SetObjectAttributes(self, dwAttributes, pFormat);
     }
-    pub fn GetObjectTotalSize(self: *const IWMDMOperation, pdwSize: ?*u32, pdwSizeHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectTotalSize(self: *const IWMDMOperation, pdwSize: ?*u32, pdwSizeHigh: ?*u32) HRESULT {
         return self.vtable.GetObjectTotalSize(self, pdwSize, pdwSizeHigh);
     }
-    pub fn SetObjectTotalSize(self: *const IWMDMOperation, dwSize: u32, dwSizeHigh: u32) callconv(.Inline) HRESULT {
+    pub fn SetObjectTotalSize(self: *const IWMDMOperation, dwSize: u32, dwSizeHigh: u32) HRESULT {
         return self.vtable.SetObjectTotalSize(self, dwSize, dwSizeHigh);
     }
-    pub fn TransferObjectData(self: *const IWMDMOperation, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn TransferObjectData(self: *const IWMDMOperation, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.TransferObjectData(self, pData, pdwSize, abMac);
     }
-    pub fn End(self: *const IWMDMOperation, phCompletionCode: ?*HRESULT, pNewObject: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn End(self: *const IWMDMOperation, phCompletionCode: ?*HRESULT, pNewObject: ?*IUnknown) HRESULT {
         return self.vtable.End(self, phCompletionCode, pNewObject);
     }
 };
@@ -1160,22 +1160,22 @@ pub const IWMDMOperation2 = extern union {
             dwAttributesEx: u32,
             pFormat: ?*WAVEFORMATEX,
             pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectAttributes2: *const fn(
             self: *const IWMDMOperation2,
             pdwAttributes: ?*u32,
             pdwAttributesEx: ?*u32,
             pAudioFormat: ?*WAVEFORMATEX,
             pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMOperation: IWMDMOperation,
     IUnknown: IUnknown,
-    pub fn SetObjectAttributes2(self: *const IWMDMOperation2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+    pub fn SetObjectAttributes2(self: *const IWMDMOperation2, dwAttributes: u32, dwAttributesEx: u32, pFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) HRESULT {
         return self.vtable.SetObjectAttributes2(self, dwAttributes, dwAttributesEx, pFormat, pVideoFormat);
     }
-    pub fn GetObjectAttributes2(self: *const IWMDMOperation2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+    pub fn GetObjectAttributes2(self: *const IWMDMOperation2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) HRESULT {
         return self.vtable.GetObjectAttributes2(self, pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
     }
 };
@@ -1189,12 +1189,12 @@ pub const IWMDMOperation3 = extern union {
             self: *const IWMDMOperation3,
             pData: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMOperation: IWMDMOperation,
     IUnknown: IUnknown,
-    pub fn TransferObjectDataOnClearChannel(self: *const IWMDMOperation3, pData: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn TransferObjectDataOnClearChannel(self: *const IWMDMOperation3, pData: [*:0]u8, pdwSize: ?*u32) HRESULT {
         return self.vtable.TransferObjectDataOnClearChannel(self, pData, pdwSize);
     }
 };
@@ -1207,24 +1207,24 @@ pub const IWMDMProgress = extern union {
         Begin: *const fn(
             self: *const IWMDMProgress,
             dwEstimatedTicks: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Progress: *const fn(
             self: *const IWMDMProgress,
             dwTranspiredTicks: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End: *const fn(
             self: *const IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin(self: *const IWMDMProgress, dwEstimatedTicks: u32) callconv(.Inline) HRESULT {
+    pub fn Begin(self: *const IWMDMProgress, dwEstimatedTicks: u32) HRESULT {
         return self.vtable.Begin(self, dwEstimatedTicks);
     }
-    pub fn Progress(self: *const IWMDMProgress, dwTranspiredTicks: u32) callconv(.Inline) HRESULT {
+    pub fn Progress(self: *const IWMDMProgress, dwTranspiredTicks: u32) HRESULT {
         return self.vtable.Progress(self, dwTranspiredTicks);
     }
-    pub fn End(self: *const IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn End(self: *const IWMDMProgress) HRESULT {
         return self.vtable.End(self);
     }
 };
@@ -1237,12 +1237,12 @@ pub const IWMDMProgress2 = extern union {
         End2: *const fn(
             self: *const IWMDMProgress2,
             hrCompletionCode: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMProgress: IWMDMProgress,
     IUnknown: IUnknown,
-    pub fn End2(self: *const IWMDMProgress2, hrCompletionCode: HRESULT) callconv(.Inline) HRESULT {
+    pub fn End2(self: *const IWMDMProgress2, hrCompletionCode: HRESULT) HRESULT {
         return self.vtable.End2(self, hrCompletionCode);
     }
 };
@@ -1257,31 +1257,31 @@ pub const IWMDMProgress3 = extern union {
             EventId: Guid,
             dwEstimatedTicks: u32,
             pContext: ?*OPAQUECOMMAND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Progress3: *const fn(
             self: *const IWMDMProgress3,
             EventId: Guid,
             dwTranspiredTicks: u32,
             pContext: ?*OPAQUECOMMAND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End3: *const fn(
             self: *const IWMDMProgress3,
             EventId: Guid,
             hrCompletionCode: HRESULT,
             pContext: ?*OPAQUECOMMAND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMProgress2: IWMDMProgress2,
     IWMDMProgress: IWMDMProgress,
     IUnknown: IUnknown,
-    pub fn Begin3(self: *const IWMDMProgress3, EventId: Guid, dwEstimatedTicks: u32, pContext: ?*OPAQUECOMMAND) callconv(.Inline) HRESULT {
+    pub fn Begin3(self: *const IWMDMProgress3, EventId: Guid, dwEstimatedTicks: u32, pContext: ?*OPAQUECOMMAND) HRESULT {
         return self.vtable.Begin3(self, EventId, dwEstimatedTicks, pContext);
     }
-    pub fn Progress3(self: *const IWMDMProgress3, EventId: Guid, dwTranspiredTicks: u32, pContext: ?*OPAQUECOMMAND) callconv(.Inline) HRESULT {
+    pub fn Progress3(self: *const IWMDMProgress3, EventId: Guid, dwTranspiredTicks: u32, pContext: ?*OPAQUECOMMAND) HRESULT {
         return self.vtable.Progress3(self, EventId, dwTranspiredTicks, pContext);
     }
-    pub fn End3(self: *const IWMDMProgress3, EventId: Guid, hrCompletionCode: HRESULT, pContext: ?*OPAQUECOMMAND) callconv(.Inline) HRESULT {
+    pub fn End3(self: *const IWMDMProgress3, EventId: Guid, hrCompletionCode: HRESULT, pContext: ?*OPAQUECOMMAND) HRESULT {
         return self.vtable.End3(self, EventId, hrCompletionCode, pContext);
     }
 };
@@ -1295,87 +1295,87 @@ pub const IWMDMDevice = extern union {
             self: *const IWMDMDevice,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetManufacturer: *const fn(
             self: *const IWMDMDevice,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IWMDMDevice,
             pdwVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IWMDMDevice,
             pdwType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSerialNumber: *const fn(
             self: *const IWMDMDevice,
             pSerialNumber: ?*WMDMID,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPowerSource: *const fn(
             self: *const IWMDMDevice,
             pdwPowerSource: ?*u32,
             pdwPercentRemaining: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IWMDMDevice,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIcon: *const fn(
             self: *const IWMDMDevice,
             hIcon: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumStorage: *const fn(
             self: *const IWMDMDevice,
             ppEnumStorage: ?*?*IWMDMEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatSupport: *const fn(
             self: *const IWMDMDevice,
             ppFormatEx: [*]?*WAVEFORMATEX,
             pnFormatCount: ?*u32,
             pppwszMimeType: [*]?*?PWSTR,
             pnMimeTypeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendOpaqueCommand: *const fn(
             self: *const IWMDMDevice,
             pCommand: ?*OPAQUECOMMAND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetName(self, pwszName, nMaxChars);
     }
-    pub fn GetManufacturer(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetManufacturer(self: *const IWMDMDevice, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetManufacturer(self, pwszName, nMaxChars);
     }
-    pub fn GetVersion(self: *const IWMDMDevice, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IWMDMDevice, pdwVersion: ?*u32) HRESULT {
         return self.vtable.GetVersion(self, pdwVersion);
     }
-    pub fn GetType(self: *const IWMDMDevice, pdwType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IWMDMDevice, pdwType: ?*u32) HRESULT {
         return self.vtable.GetType(self, pdwType);
     }
-    pub fn GetSerialNumber(self: *const IWMDMDevice, pSerialNumber: ?*WMDMID, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetSerialNumber(self: *const IWMDMDevice, pSerialNumber: ?*WMDMID, abMac: ?*u8) HRESULT {
         return self.vtable.GetSerialNumber(self, pSerialNumber, abMac);
     }
-    pub fn GetPowerSource(self: *const IWMDMDevice, pdwPowerSource: ?*u32, pdwPercentRemaining: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPowerSource(self: *const IWMDMDevice, pdwPowerSource: ?*u32, pdwPercentRemaining: ?*u32) HRESULT {
         return self.vtable.GetPowerSource(self, pdwPowerSource, pdwPercentRemaining);
     }
-    pub fn GetStatus(self: *const IWMDMDevice, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IWMDMDevice, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn GetDeviceIcon(self: *const IWMDMDevice, hIcon: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceIcon(self: *const IWMDMDevice, hIcon: ?*u32) HRESULT {
         return self.vtable.GetDeviceIcon(self, hIcon);
     }
-    pub fn EnumStorage(self: *const IWMDMDevice, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.Inline) HRESULT {
+    pub fn EnumStorage(self: *const IWMDMDevice, ppEnumStorage: ?*?*IWMDMEnumStorage) HRESULT {
         return self.vtable.EnumStorage(self, ppEnumStorage);
     }
-    pub fn GetFormatSupport(self: *const IWMDMDevice, ppFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormatSupport(self: *const IWMDMDevice, ppFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) HRESULT {
         return self.vtable.GetFormatSupport(self, ppFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
     }
-    pub fn SendOpaqueCommand(self: *const IWMDMDevice, pCommand: ?*OPAQUECOMMAND) callconv(.Inline) HRESULT {
+    pub fn SendOpaqueCommand(self: *const IWMDMDevice, pCommand: ?*OPAQUECOMMAND) HRESULT {
         return self.vtable.SendOpaqueCommand(self, pCommand);
     }
 };
@@ -1389,7 +1389,7 @@ pub const IWMDMDevice2 = extern union {
             self: *const IWMDMDevice2,
             pszStorageName: ?[*:0]const u16,
             ppStorage: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatSupport2: *const fn(
             self: *const IWMDMDevice2,
             dwFlags: u32,
@@ -1399,32 +1399,32 @@ pub const IWMDMDevice2 = extern union {
             pnVideoFormatCount: ?*u32,
             ppFileType: [*]?*WMFILECAPABILITIES,
             pnFileTypeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecifyPropertyPages: *const fn(
             self: *const IWMDMDevice2,
             ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
             pppUnknowns: [*]?*?*IUnknown,
             pcUnks: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCanonicalName: *const fn(
             self: *const IWMDMDevice2,
             pwszPnPName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMDevice: IWMDMDevice,
     IUnknown: IUnknown,
-    pub fn GetStorage(self: *const IWMDMDevice2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn GetStorage(self: *const IWMDMDevice2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.GetStorage(self, pszStorageName, ppStorage);
     }
-    pub fn GetFormatSupport2(self: *const IWMDMDevice2, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormatSupport2(self: *const IWMDMDevice2, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) HRESULT {
         return self.vtable.GetFormatSupport2(self, dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
     }
-    pub fn GetSpecifyPropertyPages(self: *const IWMDMDevice2, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSpecifyPropertyPages(self: *const IWMDMDevice2, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) HRESULT {
         return self.vtable.GetSpecifyPropertyPages(self, ppSpecifyPropPages, pppUnknowns, pcUnks);
     }
-    pub fn GetCanonicalName(self: *const IWMDMDevice2, pwszPnPName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetCanonicalName(self: *const IWMDMDevice2, pwszPnPName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetCanonicalName(self, pwszPnPName, nMaxChars);
     }
 };
@@ -1438,17 +1438,17 @@ pub const IWMDMDevice3 = extern union {
             self: *const IWMDMDevice3,
             pwszPropName: ?[*:0]const u16,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IWMDMDevice3,
             pwszPropName: ?[*:0]const u16,
             pValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatCapability: *const fn(
             self: *const IWMDMDevice3,
             format: WMDM_FORMATCODE,
             pFormatSupport: ?*WMDM_FORMAT_CAPABILITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceIoControl: *const fn(
             self: *const IWMDMDevice3,
             dwIoControlCode: u32,
@@ -1456,31 +1456,31 @@ pub const IWMDMDevice3 = extern union {
             nInBufferSize: u32,
             lpOutBuffer: [*:0]u8,
             pnOutBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindStorage: *const fn(
             self: *const IWMDMDevice3,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: ?[*:0]const u16,
             ppStorage: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMDevice2: IWMDMDevice2,
     IWMDMDevice: IWMDMDevice,
     IUnknown: IUnknown,
-    pub fn GetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*PROPVARIANT) HRESULT {
         return self.vtable.GetProperty(self, pwszPropName, pValue);
     }
-    pub fn SetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IWMDMDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*const PROPVARIANT) HRESULT {
         return self.vtable.SetProperty(self, pwszPropName, pValue);
     }
-    pub fn GetFormatCapability(self: *const IWMDMDevice3, format: WMDM_FORMATCODE, pFormatSupport: ?*WMDM_FORMAT_CAPABILITY) callconv(.Inline) HRESULT {
+    pub fn GetFormatCapability(self: *const IWMDMDevice3, format: WMDM_FORMATCODE, pFormatSupport: ?*WMDM_FORMAT_CAPABILITY) HRESULT {
         return self.vtable.GetFormatCapability(self, format, pFormatSupport);
     }
-    pub fn DeviceIoControl(self: *const IWMDMDevice3, dwIoControlCode: u32, lpInBuffer: [*:0]u8, nInBufferSize: u32, lpOutBuffer: [*:0]u8, pnOutBufferSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DeviceIoControl(self: *const IWMDMDevice3, dwIoControlCode: u32, lpInBuffer: [*:0]u8, nInBufferSize: u32, lpOutBuffer: [*:0]u8, pnOutBufferSize: ?*u32) HRESULT {
         return self.vtable.DeviceIoControl(self, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, pnOutBufferSize);
     }
-    pub fn FindStorage(self: *const IWMDMDevice3, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn FindStorage(self: *const IWMDMDevice3, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
     }
 };
@@ -1495,20 +1495,20 @@ pub const IWMDMDeviceSession = extern union {
             type: WMDM_SESSION_TYPE,
             pCtx: ?[*:0]u8,
             dwSizeCtx: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSession: *const fn(
             self: *const IWMDMDeviceSession,
             type: WMDM_SESSION_TYPE,
             pCtx: ?[*:0]u8,
             dwSizeCtx: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
+    pub fn BeginSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) HRESULT {
         return self.vtable.BeginSession(self, @"type", pCtx, dwSizeCtx);
     }
-    pub fn EndSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
+    pub fn EndSession(self: *const IWMDMDeviceSession, @"type": WMDM_SESSION_TYPE, pCtx: ?[*:0]u8, dwSizeCtx: u32) HRESULT {
         return self.vtable.EndSession(self, @"type", pCtx, dwSizeCtx);
     }
 };
@@ -1523,32 +1523,32 @@ pub const IWMDMEnumDevice = extern union {
             celt: u32,
             ppDevice: [*]?*IWMDMDevice,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IWMDMEnumDevice,
             celt: u32,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IWMDMEnumDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IWMDMEnumDevice,
             ppEnumDevice: ?*?*IWMDMEnumDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IWMDMEnumDevice, celt: u32, ppDevice: [*]?*IWMDMDevice, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IWMDMEnumDevice, celt: u32, ppDevice: [*]?*IWMDMDevice, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, ppDevice, pceltFetched);
     }
-    pub fn Skip(self: *const IWMDMEnumDevice, celt: u32, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IWMDMEnumDevice, celt: u32, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Skip(self, celt, pceltFetched);
     }
-    pub fn Reset(self: *const IWMDMEnumDevice) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IWMDMEnumDevice) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IWMDMEnumDevice, ppEnumDevice: ?*?*IWMDMEnumDevice) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IWMDMEnumDevice, ppEnumDevice: ?*?*IWMDMEnumDevice) HRESULT {
         return self.vtable.Clone(self, ppEnumDevice);
     }
 };
@@ -1561,57 +1561,57 @@ pub const IWMDMDeviceControl = extern union {
         GetStatus: *const fn(
             self: *const IWMDMDeviceControl,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCapabilities: *const fn(
             self: *const IWMDMDeviceControl,
             pdwCapabilitiesMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Play: *const fn(
             self: *const IWMDMDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Record: *const fn(
             self: *const IWMDMDeviceControl,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IWMDMDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const IWMDMDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IWMDMDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IWMDMDeviceControl,
             fuMode: u32,
             nOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IWMDMDeviceControl, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IWMDMDeviceControl, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn GetCapabilities(self: *const IWMDMDeviceControl, pdwCapabilitiesMask: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IWMDMDeviceControl, pdwCapabilitiesMask: ?*u32) HRESULT {
         return self.vtable.GetCapabilities(self, pdwCapabilitiesMask);
     }
-    pub fn Play(self: *const IWMDMDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Play(self: *const IWMDMDeviceControl) HRESULT {
         return self.vtable.Play(self);
     }
-    pub fn Record(self: *const IWMDMDeviceControl, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn Record(self: *const IWMDMDeviceControl, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.Record(self, pFormat);
     }
-    pub fn Pause(self: *const IWMDMDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const IWMDMDeviceControl) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const IWMDMDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IWMDMDeviceControl) HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn Stop(self: *const IWMDMDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IWMDMDeviceControl) HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Seek(self: *const IWMDMDeviceControl, fuMode: u32, nOffset: i32) callconv(.Inline) HRESULT {
+    pub fn Seek(self: *const IWMDMDeviceControl, fuMode: u32, nOffset: i32) HRESULT {
         return self.vtable.Seek(self, fuMode, nOffset);
     }
 };
@@ -1626,32 +1626,32 @@ pub const IWMDMEnumStorage = extern union {
             celt: u32,
             ppStorage: [*]?*IWMDMStorage,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IWMDMEnumStorage,
             celt: u32,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IWMDMEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IWMDMEnumStorage,
             ppEnumStorage: ?*?*IWMDMEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IWMDMEnumStorage, celt: u32, ppStorage: [*]?*IWMDMStorage, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IWMDMEnumStorage, celt: u32, ppStorage: [*]?*IWMDMStorage, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, ppStorage, pceltFetched);
     }
-    pub fn Skip(self: *const IWMDMEnumStorage, celt: u32, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IWMDMEnumStorage, celt: u32, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Skip(self, celt, pceltFetched);
     }
-    pub fn Reset(self: *const IWMDMEnumStorage) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IWMDMEnumStorage) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IWMDMEnumStorage, ppEnumStorage: ?*?*IWMDMEnumStorage) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IWMDMEnumStorage, ppEnumStorage: ?*?*IWMDMEnumStorage) HRESULT {
         return self.vtable.Clone(self, ppEnumStorage);
     }
 };
@@ -1668,47 +1668,47 @@ pub const IWMDMStorageControl = extern union {
             pOperation: ?*IWMDMOperation,
             pProgress: ?*IWMDMProgress,
             ppNewObject: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IWMDMStorageControl,
             fuMode: u32,
             pProgress: ?*IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Rename: *const fn(
             self: *const IWMDMStorageControl,
             fuMode: u32,
             pwszNewName: ?PWSTR,
             pProgress: ?*IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IWMDMStorageControl,
             fuMode: u32,
             pwszFile: ?PWSTR,
             pProgress: ?*IWMDMProgress,
             pOperation: ?*IWMDMOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IWMDMStorageControl,
             fuMode: u32,
             pTargetObject: ?*IWMDMStorage,
             pProgress: ?*IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Insert(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn Insert(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, ppNewObject: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.Insert(self, fuMode, pwszFile, pOperation, pProgress, ppNewObject);
     }
-    pub fn Delete(self: *const IWMDMStorageControl, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IWMDMStorageControl, fuMode: u32, pProgress: ?*IWMDMProgress) HRESULT {
         return self.vtable.Delete(self, fuMode, pProgress);
     }
-    pub fn Rename(self: *const IWMDMStorageControl, fuMode: u32, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn Rename(self: *const IWMDMStorageControl, fuMode: u32, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) HRESULT {
         return self.vtable.Rename(self, fuMode, pwszNewName, pProgress);
     }
-    pub fn Read(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pProgress: ?*IWMDMProgress, pOperation: ?*IWMDMOperation) callconv(.Inline) HRESULT {
+    pub fn Read(self: *const IWMDMStorageControl, fuMode: u32, pwszFile: ?PWSTR, pProgress: ?*IWMDMProgress, pOperation: ?*IWMDMOperation) HRESULT {
         return self.vtable.Read(self, fuMode, pwszFile, pProgress, pOperation);
     }
-    pub fn Move(self: *const IWMDMStorageControl, fuMode: u32, pTargetObject: ?*IWMDMStorage, pProgress: ?*IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn Move(self: *const IWMDMStorageControl, fuMode: u32, pTargetObject: ?*IWMDMStorage, pProgress: ?*IWMDMProgress) HRESULT {
         return self.vtable.Move(self, fuMode, pTargetObject, pProgress);
     }
 };
@@ -1727,12 +1727,12 @@ pub const IWMDMStorageControl2 = extern union {
             pProgress: ?*IWMDMProgress,
             pUnknown: ?*IUnknown,
             ppNewObject: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMStorageControl: IWMDMStorageControl,
     IUnknown: IUnknown,
-    pub fn Insert2(self: *const IWMDMStorageControl2, fuMode: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn Insert2(self: *const IWMDMStorageControl2, fuMode: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.Insert2(self, fuMode, pwszFileSource, pwszFileDest, pOperation, pProgress, pUnknown, ppNewObject);
     }
 };
@@ -1753,13 +1753,13 @@ pub const IWMDMStorageControl3 = extern union {
             pMetaData: ?*IWMDMMetaData,
             pUnknown: ?*IUnknown,
             ppNewObject: ?*?*IWMDMStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWMDMStorageControl2: IWMDMStorageControl2,
     IWMDMStorageControl: IWMDMStorageControl,
     IUnknown: IUnknown,
-    pub fn Insert3(self: *const IWMDMStorageControl3, fuMode: u32, fuType: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pMetaData: ?*IWMDMMetaData, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) callconv(.Inline) HRESULT {
+    pub fn Insert3(self: *const IWMDMStorageControl3, fuMode: u32, fuType: u32, pwszFileSource: ?PWSTR, pwszFileDest: ?PWSTR, pOperation: ?*IWMDMOperation, pProgress: ?*IWMDMProgress, pMetaData: ?*IWMDMMetaData, pUnknown: ?*IUnknown, ppNewObject: ?*?*IWMDMStorage) HRESULT {
         return self.vtable.Insert3(self, fuMode, fuType, pwszFileSource, pwszFileDest, pOperation, pProgress, pMetaData, pUnknown, ppNewObject);
     }
 };
@@ -1772,53 +1772,53 @@ pub const IWMDMObjectInfo = extern union {
         GetPlayLength: *const fn(
             self: *const IWMDMObjectInfo,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPlayLength: *const fn(
             self: *const IWMDMObjectInfo,
             dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlayOffset: *const fn(
             self: *const IWMDMObjectInfo,
             pdwOffset: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPlayOffset: *const fn(
             self: *const IWMDMObjectInfo,
             dwOffset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalLength: *const fn(
             self: *const IWMDMObjectInfo,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastPlayPosition: *const fn(
             self: *const IWMDMObjectInfo,
             pdwLastPos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLongestPlayPosition: *const fn(
             self: *const IWMDMObjectInfo,
             pdwLongestPos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPlayLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPlayLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) HRESULT {
         return self.vtable.GetPlayLength(self, pdwLength);
     }
-    pub fn SetPlayLength(self: *const IWMDMObjectInfo, dwLength: u32) callconv(.Inline) HRESULT {
+    pub fn SetPlayLength(self: *const IWMDMObjectInfo, dwLength: u32) HRESULT {
         return self.vtable.SetPlayLength(self, dwLength);
     }
-    pub fn GetPlayOffset(self: *const IWMDMObjectInfo, pdwOffset: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPlayOffset(self: *const IWMDMObjectInfo, pdwOffset: ?*u32) HRESULT {
         return self.vtable.GetPlayOffset(self, pdwOffset);
     }
-    pub fn SetPlayOffset(self: *const IWMDMObjectInfo, dwOffset: u32) callconv(.Inline) HRESULT {
+    pub fn SetPlayOffset(self: *const IWMDMObjectInfo, dwOffset: u32) HRESULT {
         return self.vtable.SetPlayOffset(self, dwOffset);
     }
-    pub fn GetTotalLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalLength(self: *const IWMDMObjectInfo, pdwLength: ?*u32) HRESULT {
         return self.vtable.GetTotalLength(self, pdwLength);
     }
-    pub fn GetLastPlayPosition(self: *const IWMDMObjectInfo, pdwLastPos: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLastPlayPosition(self: *const IWMDMObjectInfo, pdwLastPos: ?*u32) HRESULT {
         return self.vtable.GetLastPlayPosition(self, pdwLastPos);
     }
-    pub fn GetLongestPlayPosition(self: *const IWMDMObjectInfo, pdwLongestPos: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLongestPlayPosition(self: *const IWMDMObjectInfo, pdwLongestPos: ?*u32) HRESULT {
         return self.vtable.GetLongestPlayPosition(self, pdwLongestPos);
     }
 };
@@ -1833,11 +1833,11 @@ pub const IWMDMRevoked = extern union {
             ppwszRevocationURL: [*]?PWSTR,
             pdwBufferLen: ?*u32,
             pdwRevokedBitFlag: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRevocationURL(self: *const IWMDMRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRevocationURL(self: *const IWMDMRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32, pdwRevokedBitFlag: ?*u32) HRESULT {
         return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen, pdwRevokedBitFlag);
     }
 };
@@ -1851,11 +1851,11 @@ pub const IWMDMNotification = extern union {
             self: *const IWMDMNotification,
             dwMessageType: u32,
             pwszCanonicalName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn WMDMMessage(self: *const IWMDMNotification, dwMessageType: u32, pwszCanonicalName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn WMDMMessage(self: *const IWMDMNotification, dwMessageType: u32, pwszCanonicalName: ?[*:0]const u16) HRESULT {
         return self.vtable.WMDMMessage(self, dwMessageType, pwszCanonicalName);
     }
 };
@@ -1953,18 +1953,18 @@ pub const IMDServiceProvider = extern union {
         GetDeviceCount: *const fn(
             self: *const IMDServiceProvider,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDevices: *const fn(
             self: *const IMDServiceProvider,
             ppEnumDevice: ?*?*IMDSPEnumDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDeviceCount(self: *const IMDServiceProvider, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceCount(self: *const IMDServiceProvider, pdwCount: ?*u32) HRESULT {
         return self.vtable.GetDeviceCount(self, pdwCount);
     }
-    pub fn EnumDevices(self: *const IMDServiceProvider, ppEnumDevice: ?*?*IMDSPEnumDevice) callconv(.Inline) HRESULT {
+    pub fn EnumDevices(self: *const IMDServiceProvider, ppEnumDevice: ?*?*IMDSPEnumDevice) HRESULT {
         return self.vtable.EnumDevices(self, ppEnumDevice);
     }
 };
@@ -1979,12 +1979,12 @@ pub const IMDServiceProvider2 = extern union {
             pwszDevicePath: ?[*:0]const u16,
             pdwCount: ?*u32,
             pppDeviceArray: [*]?*?*IMDSPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDServiceProvider: IMDServiceProvider,
     IUnknown: IUnknown,
-    pub fn CreateDevice(self: *const IMDServiceProvider2, pwszDevicePath: ?[*:0]const u16, pdwCount: ?*u32, pppDeviceArray: [*]?*?*IMDSPDevice) callconv(.Inline) HRESULT {
+    pub fn CreateDevice(self: *const IMDServiceProvider2, pwszDevicePath: ?[*:0]const u16, pdwCount: ?*u32, pppDeviceArray: [*]?*?*IMDSPDevice) HRESULT {
         return self.vtable.CreateDevice(self, pwszDevicePath, pdwCount, pppDeviceArray);
     }
 };
@@ -1997,13 +1997,13 @@ pub const IMDServiceProvider3 = extern union {
         SetDeviceEnumPreference: *const fn(
             self: *const IMDServiceProvider3,
             dwEnumPref: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDServiceProvider2: IMDServiceProvider2,
     IMDServiceProvider: IMDServiceProvider,
     IUnknown: IUnknown,
-    pub fn SetDeviceEnumPreference(self: *const IMDServiceProvider3, dwEnumPref: u32) callconv(.Inline) HRESULT {
+    pub fn SetDeviceEnumPreference(self: *const IMDServiceProvider3, dwEnumPref: u32) HRESULT {
         return self.vtable.SetDeviceEnumPreference(self, dwEnumPref);
     }
 };
@@ -2018,32 +2018,32 @@ pub const IMDSPEnumDevice = extern union {
             celt: u32,
             ppDevice: [*]?*IMDSPDevice,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IMDSPEnumDevice,
             celt: u32,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMDSPEnumDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMDSPEnumDevice,
             ppEnumDevice: ?*?*IMDSPEnumDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IMDSPEnumDevice, celt: u32, ppDevice: [*]?*IMDSPDevice, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IMDSPEnumDevice, celt: u32, ppDevice: [*]?*IMDSPDevice, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, ppDevice, pceltFetched);
     }
-    pub fn Skip(self: *const IMDSPEnumDevice, celt: u32, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IMDSPEnumDevice, celt: u32, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Skip(self, celt, pceltFetched);
     }
-    pub fn Reset(self: *const IMDSPEnumDevice) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMDSPEnumDevice) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IMDSPEnumDevice, ppEnumDevice: ?*?*IMDSPEnumDevice) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IMDSPEnumDevice, ppEnumDevice: ?*?*IMDSPEnumDevice) HRESULT {
         return self.vtable.Clone(self, ppEnumDevice);
     }
 };
@@ -2057,87 +2057,87 @@ pub const IMDSPDevice = extern union {
             self: *const IMDSPDevice,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetManufacturer: *const fn(
             self: *const IMDSPDevice,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IMDSPDevice,
             pdwVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetType: *const fn(
             self: *const IMDSPDevice,
             pdwType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSerialNumber: *const fn(
             self: *const IMDSPDevice,
             pSerialNumber: ?*WMDMID,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPowerSource: *const fn(
             self: *const IMDSPDevice,
             pdwPowerSource: ?*u32,
             pdwPercentRemaining: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IMDSPDevice,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIcon: *const fn(
             self: *const IMDSPDevice,
             hIcon: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumStorage: *const fn(
             self: *const IMDSPDevice,
             ppEnumStorage: ?*?*IMDSPEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatSupport: *const fn(
             self: *const IMDSPDevice,
             pFormatEx: [*]?*WAVEFORMATEX,
             pnFormatCount: ?*u32,
             pppwszMimeType: [*]?*?PWSTR,
             pnMimeTypeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendOpaqueCommand: *const fn(
             self: *const IMDSPDevice,
             pCommand: ?*OPAQUECOMMAND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IMDSPDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IMDSPDevice, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetName(self, pwszName, nMaxChars);
     }
-    pub fn GetManufacturer(self: *const IMDSPDevice, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetManufacturer(self: *const IMDSPDevice, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetManufacturer(self, pwszName, nMaxChars);
     }
-    pub fn GetVersion(self: *const IMDSPDevice, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IMDSPDevice, pdwVersion: ?*u32) HRESULT {
         return self.vtable.GetVersion(self, pdwVersion);
     }
-    pub fn GetType(self: *const IMDSPDevice, pdwType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetType(self: *const IMDSPDevice, pdwType: ?*u32) HRESULT {
         return self.vtable.GetType(self, pdwType);
     }
-    pub fn GetSerialNumber(self: *const IMDSPDevice, pSerialNumber: ?*WMDMID, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetSerialNumber(self: *const IMDSPDevice, pSerialNumber: ?*WMDMID, abMac: ?*u8) HRESULT {
         return self.vtable.GetSerialNumber(self, pSerialNumber, abMac);
     }
-    pub fn GetPowerSource(self: *const IMDSPDevice, pdwPowerSource: ?*u32, pdwPercentRemaining: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPowerSource(self: *const IMDSPDevice, pdwPowerSource: ?*u32, pdwPercentRemaining: ?*u32) HRESULT {
         return self.vtable.GetPowerSource(self, pdwPowerSource, pdwPercentRemaining);
     }
-    pub fn GetStatus(self: *const IMDSPDevice, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IMDSPDevice, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn GetDeviceIcon(self: *const IMDSPDevice, hIcon: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceIcon(self: *const IMDSPDevice, hIcon: ?*u32) HRESULT {
         return self.vtable.GetDeviceIcon(self, hIcon);
     }
-    pub fn EnumStorage(self: *const IMDSPDevice, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.Inline) HRESULT {
+    pub fn EnumStorage(self: *const IMDSPDevice, ppEnumStorage: ?*?*IMDSPEnumStorage) HRESULT {
         return self.vtable.EnumStorage(self, ppEnumStorage);
     }
-    pub fn GetFormatSupport(self: *const IMDSPDevice, pFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormatSupport(self: *const IMDSPDevice, pFormatEx: [*]?*WAVEFORMATEX, pnFormatCount: ?*u32, pppwszMimeType: [*]?*?PWSTR, pnMimeTypeCount: ?*u32) HRESULT {
         return self.vtable.GetFormatSupport(self, pFormatEx, pnFormatCount, pppwszMimeType, pnMimeTypeCount);
     }
-    pub fn SendOpaqueCommand(self: *const IMDSPDevice, pCommand: ?*OPAQUECOMMAND) callconv(.Inline) HRESULT {
+    pub fn SendOpaqueCommand(self: *const IMDSPDevice, pCommand: ?*OPAQUECOMMAND) HRESULT {
         return self.vtable.SendOpaqueCommand(self, pCommand);
     }
 };
@@ -2151,7 +2151,7 @@ pub const IMDSPDevice2 = extern union {
             self: *const IMDSPDevice2,
             pszStorageName: ?[*:0]const u16,
             ppStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatSupport2: *const fn(
             self: *const IMDSPDevice2,
             dwFlags: u32,
@@ -2161,32 +2161,32 @@ pub const IMDSPDevice2 = extern union {
             pnVideoFormatCount: ?*u32,
             ppFileType: [*]?*WMFILECAPABILITIES,
             pnFileTypeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecifyPropertyPages: *const fn(
             self: *const IMDSPDevice2,
             ppSpecifyPropPages: ?*?*ISpecifyPropertyPages,
             pppUnknowns: [*]?*?*IUnknown,
             pcUnks: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCanonicalName: *const fn(
             self: *const IMDSPDevice2,
             pwszPnPName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDSPDevice: IMDSPDevice,
     IUnknown: IUnknown,
-    pub fn GetStorage(self: *const IMDSPDevice2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn GetStorage(self: *const IMDSPDevice2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.GetStorage(self, pszStorageName, ppStorage);
     }
-    pub fn GetFormatSupport2(self: *const IMDSPDevice2, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormatSupport2(self: *const IMDSPDevice2, dwFlags: u32, ppAudioFormatEx: [*]?*WAVEFORMATEX, pnAudioFormatCount: ?*u32, ppVideoFormatEx: [*]?*VIDEOINFOHEADER, pnVideoFormatCount: ?*u32, ppFileType: [*]?*WMFILECAPABILITIES, pnFileTypeCount: ?*u32) HRESULT {
         return self.vtable.GetFormatSupport2(self, dwFlags, ppAudioFormatEx, pnAudioFormatCount, ppVideoFormatEx, pnVideoFormatCount, ppFileType, pnFileTypeCount);
     }
-    pub fn GetSpecifyPropertyPages(self: *const IMDSPDevice2, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSpecifyPropertyPages(self: *const IMDSPDevice2, ppSpecifyPropPages: ?*?*ISpecifyPropertyPages, pppUnknowns: [*]?*?*IUnknown, pcUnks: ?*u32) HRESULT {
         return self.vtable.GetSpecifyPropertyPages(self, ppSpecifyPropPages, pppUnknowns, pcUnks);
     }
-    pub fn GetCanonicalName(self: *const IMDSPDevice2, pwszPnPName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetCanonicalName(self: *const IMDSPDevice2, pwszPnPName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetCanonicalName(self, pwszPnPName, nMaxChars);
     }
 };
@@ -2200,17 +2200,17 @@ pub const IMDSPDevice3 = extern union {
             self: *const IMDSPDevice3,
             pwszPropName: ?[*:0]const u16,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IMDSPDevice3,
             pwszPropName: ?[*:0]const u16,
             pValue: ?*const PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormatCapability: *const fn(
             self: *const IMDSPDevice3,
             format: WMDM_FORMATCODE,
             pFormatSupport: ?*WMDM_FORMAT_CAPABILITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceIoControl: *const fn(
             self: *const IMDSPDevice3,
             dwIoControlCode: u32,
@@ -2218,31 +2218,31 @@ pub const IMDSPDevice3 = extern union {
             nInBufferSize: u32,
             lpOutBuffer: [*:0]u8,
             pnOutBufferSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindStorage: *const fn(
             self: *const IMDSPDevice3,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: ?[*:0]const u16,
             ppStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDSPDevice2: IMDSPDevice2,
     IMDSPDevice: IMDSPDevice,
     IUnknown: IUnknown,
-    pub fn GetProperty(self: *const IMDSPDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IMDSPDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*PROPVARIANT) HRESULT {
         return self.vtable.GetProperty(self, pwszPropName, pValue);
     }
-    pub fn SetProperty(self: *const IMDSPDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*const PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IMDSPDevice3, pwszPropName: ?[*:0]const u16, pValue: ?*const PROPVARIANT) HRESULT {
         return self.vtable.SetProperty(self, pwszPropName, pValue);
     }
-    pub fn GetFormatCapability(self: *const IMDSPDevice3, format: WMDM_FORMATCODE, pFormatSupport: ?*WMDM_FORMAT_CAPABILITY) callconv(.Inline) HRESULT {
+    pub fn GetFormatCapability(self: *const IMDSPDevice3, format: WMDM_FORMATCODE, pFormatSupport: ?*WMDM_FORMAT_CAPABILITY) HRESULT {
         return self.vtable.GetFormatCapability(self, format, pFormatSupport);
     }
-    pub fn DeviceIoControl(self: *const IMDSPDevice3, dwIoControlCode: u32, lpInBuffer: [*:0]u8, nInBufferSize: u32, lpOutBuffer: [*:0]u8, pnOutBufferSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DeviceIoControl(self: *const IMDSPDevice3, dwIoControlCode: u32, lpInBuffer: [*:0]u8, nInBufferSize: u32, lpOutBuffer: [*:0]u8, pnOutBufferSize: ?*u32) HRESULT {
         return self.vtable.DeviceIoControl(self, dwIoControlCode, lpInBuffer, nInBufferSize, lpOutBuffer, pnOutBufferSize);
     }
-    pub fn FindStorage(self: *const IMDSPDevice3, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn FindStorage(self: *const IMDSPDevice3, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
     }
 };
@@ -2255,57 +2255,57 @@ pub const IMDSPDeviceControl = extern union {
         GetDCStatus: *const fn(
             self: *const IMDSPDeviceControl,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCapabilities: *const fn(
             self: *const IMDSPDeviceControl,
             pdwCapabilitiesMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Play: *const fn(
             self: *const IMDSPDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Record: *const fn(
             self: *const IMDSPDeviceControl,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IMDSPDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const IMDSPDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IMDSPDeviceControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IMDSPDeviceControl,
             fuMode: u32,
             nOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDCStatus(self: *const IMDSPDeviceControl, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDCStatus(self: *const IMDSPDeviceControl, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetDCStatus(self, pdwStatus);
     }
-    pub fn GetCapabilities(self: *const IMDSPDeviceControl, pdwCapabilitiesMask: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IMDSPDeviceControl, pdwCapabilitiesMask: ?*u32) HRESULT {
         return self.vtable.GetCapabilities(self, pdwCapabilitiesMask);
     }
-    pub fn Play(self: *const IMDSPDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Play(self: *const IMDSPDeviceControl) HRESULT {
         return self.vtable.Play(self);
     }
-    pub fn Record(self: *const IMDSPDeviceControl, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn Record(self: *const IMDSPDeviceControl, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.Record(self, pFormat);
     }
-    pub fn Pause(self: *const IMDSPDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const IMDSPDeviceControl) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const IMDSPDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IMDSPDeviceControl) HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn Stop(self: *const IMDSPDeviceControl) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IMDSPDeviceControl) HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Seek(self: *const IMDSPDeviceControl, fuMode: u32, nOffset: i32) callconv(.Inline) HRESULT {
+    pub fn Seek(self: *const IMDSPDeviceControl, fuMode: u32, nOffset: i32) HRESULT {
         return self.vtable.Seek(self, fuMode, nOffset);
     }
 };
@@ -2320,32 +2320,32 @@ pub const IMDSPEnumStorage = extern union {
             celt: u32,
             ppStorage: [*]?*IMDSPStorage,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IMDSPEnumStorage,
             celt: u32,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMDSPEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IMDSPEnumStorage,
             ppEnumStorage: ?*?*IMDSPEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IMDSPEnumStorage, celt: u32, ppStorage: [*]?*IMDSPStorage, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IMDSPEnumStorage, celt: u32, ppStorage: [*]?*IMDSPStorage, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, ppStorage, pceltFetched);
     }
-    pub fn Skip(self: *const IMDSPEnumStorage, celt: u32, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IMDSPEnumStorage, celt: u32, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Skip(self, celt, pceltFetched);
     }
-    pub fn Reset(self: *const IMDSPEnumStorage) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMDSPEnumStorage) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IMDSPEnumStorage, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IMDSPEnumStorage, ppEnumStorage: ?*?*IMDSPEnumStorage) HRESULT {
         return self.vtable.Clone(self, ppEnumStorage);
     }
 };
@@ -2359,82 +2359,82 @@ pub const IMDSPStorage = extern union {
             self: *const IMDSPStorage,
             dwAttributes: u32,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStorageGlobals: *const fn(
             self: *const IMDSPStorage,
             ppStorageGlobals: ?*?*IMDSPStorageGlobals,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributes: *const fn(
             self: *const IMDSPStorage,
             pdwAttributes: ?*u32,
             pFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IMDSPStorage,
             pwszName: [*:0]u16,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDate: *const fn(
             self: *const IMDSPStorage,
             pDateTimeUTC: ?*WMDMDATETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IMDSPStorage,
             pdwSizeLow: ?*u32,
             pdwSizeHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRights: *const fn(
             self: *const IMDSPStorage,
             ppRights: [*]?*WMDMRIGHTS,
             pnRightsCount: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStorage: *const fn(
             self: *const IMDSPStorage,
             dwAttributes: u32,
             pFormat: ?*WAVEFORMATEX,
             pwszName: ?PWSTR,
             ppNewStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumStorage: *const fn(
             self: *const IMDSPStorage,
             ppEnumStorage: ?*?*IMDSPEnumStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendOpaqueCommand: *const fn(
             self: *const IMDSPStorage,
             pCommand: ?*OPAQUECOMMAND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAttributes(self: *const IMDSPStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetAttributes(self: *const IMDSPStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.SetAttributes(self, dwAttributes, pFormat);
     }
-    pub fn GetStorageGlobals(self: *const IMDSPStorage, ppStorageGlobals: ?*?*IMDSPStorageGlobals) callconv(.Inline) HRESULT {
+    pub fn GetStorageGlobals(self: *const IMDSPStorage, ppStorageGlobals: ?*?*IMDSPStorageGlobals) HRESULT {
         return self.vtable.GetStorageGlobals(self, ppStorageGlobals);
     }
-    pub fn GetAttributes(self: *const IMDSPStorage, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetAttributes(self: *const IMDSPStorage, pdwAttributes: ?*u32, pFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.GetAttributes(self, pdwAttributes, pFormat);
     }
-    pub fn GetName(self: *const IMDSPStorage, pwszName: [*:0]u16, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IMDSPStorage, pwszName: [*:0]u16, nMaxChars: u32) HRESULT {
         return self.vtable.GetName(self, pwszName, nMaxChars);
     }
-    pub fn GetDate(self: *const IMDSPStorage, pDateTimeUTC: ?*WMDMDATETIME) callconv(.Inline) HRESULT {
+    pub fn GetDate(self: *const IMDSPStorage, pDateTimeUTC: ?*WMDMDATETIME) HRESULT {
         return self.vtable.GetDate(self, pDateTimeUTC);
     }
-    pub fn GetSize(self: *const IMDSPStorage, pdwSizeLow: ?*u32, pdwSizeHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IMDSPStorage, pdwSizeLow: ?*u32, pdwSizeHigh: ?*u32) HRESULT {
         return self.vtable.GetSize(self, pdwSizeLow, pdwSizeHigh);
     }
-    pub fn GetRights(self: *const IMDSPStorage, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetRights(self: *const IMDSPStorage, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.GetRights(self, ppRights, pnRightsCount, abMac);
     }
-    pub fn CreateStorage(self: *const IMDSPStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX, pwszName: ?PWSTR, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn CreateStorage(self: *const IMDSPStorage, dwAttributes: u32, pFormat: ?*WAVEFORMATEX, pwszName: ?PWSTR, ppNewStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.CreateStorage(self, dwAttributes, pFormat, pwszName, ppNewStorage);
     }
-    pub fn EnumStorage(self: *const IMDSPStorage, ppEnumStorage: ?*?*IMDSPEnumStorage) callconv(.Inline) HRESULT {
+    pub fn EnumStorage(self: *const IMDSPStorage, ppEnumStorage: ?*?*IMDSPEnumStorage) HRESULT {
         return self.vtable.EnumStorage(self, ppEnumStorage);
     }
-    pub fn SendOpaqueCommand(self: *const IMDSPStorage, pCommand: ?*OPAQUECOMMAND) callconv(.Inline) HRESULT {
+    pub fn SendOpaqueCommand(self: *const IMDSPStorage, pCommand: ?*OPAQUECOMMAND) HRESULT {
         return self.vtable.SendOpaqueCommand(self, pCommand);
     }
 };
@@ -2448,7 +2448,7 @@ pub const IMDSPStorage2 = extern union {
             self: *const IMDSPStorage2,
             pszStorageName: ?[*:0]const u16,
             ppStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStorage2: *const fn(
             self: *const IMDSPStorage2,
             dwAttributes: u32,
@@ -2458,35 +2458,35 @@ pub const IMDSPStorage2 = extern union {
             pwszName: ?PWSTR,
             qwFileSize: u64,
             ppNewStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAttributes2: *const fn(
             self: *const IMDSPStorage2,
             dwAttributes: u32,
             dwAttributesEx: u32,
             pAudioFormat: ?*WAVEFORMATEX,
             pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttributes2: *const fn(
             self: *const IMDSPStorage2,
             pdwAttributes: ?*u32,
             pdwAttributesEx: ?*u32,
             pAudioFormat: ?*WAVEFORMATEX,
             pVideoFormat: ?*VIDEOINFOHEADER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDSPStorage: IMDSPStorage,
     IUnknown: IUnknown,
-    pub fn GetStorage(self: *const IMDSPStorage2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn GetStorage(self: *const IMDSPStorage2, pszStorageName: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.GetStorage(self, pszStorageName, ppStorage);
     }
-    pub fn CreateStorage2(self: *const IMDSPStorage2, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER, pwszName: ?PWSTR, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn CreateStorage2(self: *const IMDSPStorage2, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER, pwszName: ?PWSTR, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.CreateStorage2(self, dwAttributes, dwAttributesEx, pAudioFormat, pVideoFormat, pwszName, qwFileSize, ppNewStorage);
     }
-    pub fn SetAttributes2(self: *const IMDSPStorage2, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+    pub fn SetAttributes2(self: *const IMDSPStorage2, dwAttributes: u32, dwAttributesEx: u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) HRESULT {
         return self.vtable.SetAttributes2(self, dwAttributes, dwAttributesEx, pAudioFormat, pVideoFormat);
     }
-    pub fn GetAttributes2(self: *const IMDSPStorage2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) callconv(.Inline) HRESULT {
+    pub fn GetAttributes2(self: *const IMDSPStorage2, pdwAttributes: ?*u32, pdwAttributesEx: ?*u32, pAudioFormat: ?*WAVEFORMATEX, pVideoFormat: ?*VIDEOINFOHEADER) HRESULT {
         return self.vtable.GetAttributes2(self, pdwAttributes, pdwAttributesEx, pAudioFormat, pVideoFormat);
     }
 };
@@ -2499,20 +2499,20 @@ pub const IMDSPStorage3 = extern union {
         GetMetadata: *const fn(
             self: *const IMDSPStorage3,
             pMetadata: ?*IWMDMMetaData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMetadata: *const fn(
             self: *const IMDSPStorage3,
             pMetadata: ?*IWMDMMetaData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDSPStorage2: IMDSPStorage2,
     IMDSPStorage: IMDSPStorage,
     IUnknown: IUnknown,
-    pub fn GetMetadata(self: *const IMDSPStorage3, pMetadata: ?*IWMDMMetaData) callconv(.Inline) HRESULT {
+    pub fn GetMetadata(self: *const IMDSPStorage3, pMetadata: ?*IWMDMMetaData) HRESULT {
         return self.vtable.GetMetadata(self, pMetadata);
     }
-    pub fn SetMetadata(self: *const IMDSPStorage3, pMetadata: ?*IWMDMMetaData) callconv(.Inline) HRESULT {
+    pub fn SetMetadata(self: *const IMDSPStorage3, pMetadata: ?*IWMDMMetaData) HRESULT {
         return self.vtable.SetMetadata(self, pMetadata);
     }
 };
@@ -2526,12 +2526,12 @@ pub const IMDSPStorage4 = extern union {
             self: *const IMDSPStorage4,
             dwRefs: u32,
             ppISPStorage: ?[*]?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReferences: *const fn(
             self: *const IMDSPStorage4,
             pdwRefs: ?*u32,
             pppISPStorage: [*]?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateStorageWithMetadata: *const fn(
             self: *const IMDSPStorage4,
             dwAttributes: u32,
@@ -2539,45 +2539,45 @@ pub const IMDSPStorage4 = extern union {
             pMetadata: ?*IWMDMMetaData,
             qwFileSize: u64,
             ppNewStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpecifiedMetadata: *const fn(
             self: *const IMDSPStorage4,
             cProperties: u32,
             ppwszPropNames: [*]?PWSTR,
             pMetadata: ?*IWMDMMetaData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindStorage: *const fn(
             self: *const IMDSPStorage4,
             findScope: WMDM_FIND_SCOPE,
             pwszUniqueID: ?[*:0]const u16,
             ppStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParent: *const fn(
             self: *const IMDSPStorage4,
             ppStorage: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDSPStorage3: IMDSPStorage3,
     IMDSPStorage2: IMDSPStorage2,
     IMDSPStorage: IMDSPStorage,
     IUnknown: IUnknown,
-    pub fn SetReferences(self: *const IMDSPStorage4, dwRefs: u32, ppISPStorage: ?[*]?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn SetReferences(self: *const IMDSPStorage4, dwRefs: u32, ppISPStorage: ?[*]?*IMDSPStorage) HRESULT {
         return self.vtable.SetReferences(self, dwRefs, ppISPStorage);
     }
-    pub fn GetReferences(self: *const IMDSPStorage4, pdwRefs: ?*u32, pppISPStorage: [*]?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn GetReferences(self: *const IMDSPStorage4, pdwRefs: ?*u32, pppISPStorage: [*]?*?*IMDSPStorage) HRESULT {
         return self.vtable.GetReferences(self, pdwRefs, pppISPStorage);
     }
-    pub fn CreateStorageWithMetadata(self: *const IMDSPStorage4, dwAttributes: u32, pwszName: ?[*:0]const u16, pMetadata: ?*IWMDMMetaData, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn CreateStorageWithMetadata(self: *const IMDSPStorage4, dwAttributes: u32, pwszName: ?[*:0]const u16, pMetadata: ?*IWMDMMetaData, qwFileSize: u64, ppNewStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.CreateStorageWithMetadata(self, dwAttributes, pwszName, pMetadata, qwFileSize, ppNewStorage);
     }
-    pub fn GetSpecifiedMetadata(self: *const IMDSPStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, pMetadata: ?*IWMDMMetaData) callconv(.Inline) HRESULT {
+    pub fn GetSpecifiedMetadata(self: *const IMDSPStorage4, cProperties: u32, ppwszPropNames: [*]?PWSTR, pMetadata: ?*IWMDMMetaData) HRESULT {
         return self.vtable.GetSpecifiedMetadata(self, cProperties, ppwszPropNames, pMetadata);
     }
-    pub fn FindStorage(self: *const IMDSPStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn FindStorage(self: *const IMDSPStorage4, findScope: WMDM_FIND_SCOPE, pwszUniqueID: ?[*:0]const u16, ppStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.FindStorage(self, findScope, pwszUniqueID, ppStorage);
     }
-    pub fn GetParent(self: *const IMDSPStorage4, ppStorage: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn GetParent(self: *const IMDSPStorage4, ppStorage: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.GetParent(self, ppStorage);
     }
 };
@@ -2590,72 +2590,72 @@ pub const IMDSPStorageGlobals = extern union {
         GetCapabilities: *const fn(
             self: *const IMDSPStorageGlobals,
             pdwCapabilities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSerialNumber: *const fn(
             self: *const IMDSPStorageGlobals,
             pSerialNum: ?*WMDMID,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalSize: *const fn(
             self: *const IMDSPStorageGlobals,
             pdwTotalSizeLow: ?*u32,
             pdwTotalSizeHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalFree: *const fn(
             self: *const IMDSPStorageGlobals,
             pdwFreeLow: ?*u32,
             pdwFreeHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalBad: *const fn(
             self: *const IMDSPStorageGlobals,
             pdwBadLow: ?*u32,
             pdwBadHigh: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IMDSPStorageGlobals,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IMDSPStorageGlobals,
             fuMode: u32,
             pProgress: ?*IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevice: *const fn(
             self: *const IMDSPStorageGlobals,
             ppDevice: ?*?*IMDSPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRootStorage: *const fn(
             self: *const IMDSPStorageGlobals,
             ppRoot: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCapabilities(self: *const IMDSPStorageGlobals, pdwCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IMDSPStorageGlobals, pdwCapabilities: ?*u32) HRESULT {
         return self.vtable.GetCapabilities(self, pdwCapabilities);
     }
-    pub fn GetSerialNumber(self: *const IMDSPStorageGlobals, pSerialNum: ?*WMDMID, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetSerialNumber(self: *const IMDSPStorageGlobals, pSerialNum: ?*WMDMID, abMac: ?*u8) HRESULT {
         return self.vtable.GetSerialNumber(self, pSerialNum, abMac);
     }
-    pub fn GetTotalSize(self: *const IMDSPStorageGlobals, pdwTotalSizeLow: ?*u32, pdwTotalSizeHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalSize(self: *const IMDSPStorageGlobals, pdwTotalSizeLow: ?*u32, pdwTotalSizeHigh: ?*u32) HRESULT {
         return self.vtable.GetTotalSize(self, pdwTotalSizeLow, pdwTotalSizeHigh);
     }
-    pub fn GetTotalFree(self: *const IMDSPStorageGlobals, pdwFreeLow: ?*u32, pdwFreeHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalFree(self: *const IMDSPStorageGlobals, pdwFreeLow: ?*u32, pdwFreeHigh: ?*u32) HRESULT {
         return self.vtable.GetTotalFree(self, pdwFreeLow, pdwFreeHigh);
     }
-    pub fn GetTotalBad(self: *const IMDSPStorageGlobals, pdwBadLow: ?*u32, pdwBadHigh: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalBad(self: *const IMDSPStorageGlobals, pdwBadLow: ?*u32, pdwBadHigh: ?*u32) HRESULT {
         return self.vtable.GetTotalBad(self, pdwBadLow, pdwBadHigh);
     }
-    pub fn GetStatus(self: *const IMDSPStorageGlobals, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IMDSPStorageGlobals, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn Initialize(self: *const IMDSPStorageGlobals, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IMDSPStorageGlobals, fuMode: u32, pProgress: ?*IWMDMProgress) HRESULT {
         return self.vtable.Initialize(self, fuMode, pProgress);
     }
-    pub fn GetDevice(self: *const IMDSPStorageGlobals, ppDevice: ?*?*IMDSPDevice) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IMDSPStorageGlobals, ppDevice: ?*?*IMDSPDevice) HRESULT {
         return self.vtable.GetDevice(self, ppDevice);
     }
-    pub fn GetRootStorage(self: *const IMDSPStorageGlobals, ppRoot: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn GetRootStorage(self: *const IMDSPStorageGlobals, ppRoot: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.GetRootStorage(self, ppRoot);
     }
 };
@@ -2668,53 +2668,53 @@ pub const IMDSPObjectInfo = extern union {
         GetPlayLength: *const fn(
             self: *const IMDSPObjectInfo,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPlayLength: *const fn(
             self: *const IMDSPObjectInfo,
             dwLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPlayOffset: *const fn(
             self: *const IMDSPObjectInfo,
             pdwOffset: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPlayOffset: *const fn(
             self: *const IMDSPObjectInfo,
             dwOffset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTotalLength: *const fn(
             self: *const IMDSPObjectInfo,
             pdwLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLastPlayPosition: *const fn(
             self: *const IMDSPObjectInfo,
             pdwLastPos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLongestPlayPosition: *const fn(
             self: *const IMDSPObjectInfo,
             pdwLongestPos: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPlayLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPlayLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) HRESULT {
         return self.vtable.GetPlayLength(self, pdwLength);
     }
-    pub fn SetPlayLength(self: *const IMDSPObjectInfo, dwLength: u32) callconv(.Inline) HRESULT {
+    pub fn SetPlayLength(self: *const IMDSPObjectInfo, dwLength: u32) HRESULT {
         return self.vtable.SetPlayLength(self, dwLength);
     }
-    pub fn GetPlayOffset(self: *const IMDSPObjectInfo, pdwOffset: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPlayOffset(self: *const IMDSPObjectInfo, pdwOffset: ?*u32) HRESULT {
         return self.vtable.GetPlayOffset(self, pdwOffset);
     }
-    pub fn SetPlayOffset(self: *const IMDSPObjectInfo, dwOffset: u32) callconv(.Inline) HRESULT {
+    pub fn SetPlayOffset(self: *const IMDSPObjectInfo, dwOffset: u32) HRESULT {
         return self.vtable.SetPlayOffset(self, dwOffset);
     }
-    pub fn GetTotalLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetTotalLength(self: *const IMDSPObjectInfo, pdwLength: ?*u32) HRESULT {
         return self.vtable.GetTotalLength(self, pdwLength);
     }
-    pub fn GetLastPlayPosition(self: *const IMDSPObjectInfo, pdwLastPos: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLastPlayPosition(self: *const IMDSPObjectInfo, pdwLastPos: ?*u32) HRESULT {
         return self.vtable.GetLastPlayPosition(self, pdwLastPos);
     }
-    pub fn GetLongestPlayPosition(self: *const IMDSPObjectInfo, pdwLongestPos: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLongestPlayPosition(self: *const IMDSPObjectInfo, pdwLongestPos: ?*u32) HRESULT {
         return self.vtable.GetLongestPlayPosition(self, pdwLongestPos);
     }
 };
@@ -2727,68 +2727,68 @@ pub const IMDSPObject = extern union {
         Open: *const fn(
             self: *const IMDSPObject,
             fuMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const IMDSPObject,
             pData: [*:0]u8,
             pdwSize: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IMDSPObject,
             pData: [*:0]u8,
             pdwSize: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IMDSPObject,
             fuMode: u32,
             pProgress: ?*IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IMDSPObject,
             fuFlags: u32,
             dwOffset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Rename: *const fn(
             self: *const IMDSPObject,
             pwszNewName: ?PWSTR,
             pProgress: ?*IWMDMProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const IMDSPObject,
             fuMode: u32,
             pProgress: ?*IWMDMProgress,
             pTarget: ?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMDSPObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Open(self: *const IMDSPObject, fuMode: u32) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IMDSPObject, fuMode: u32) HRESULT {
         return self.vtable.Open(self, fuMode);
     }
-    pub fn Read(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn Read(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.Read(self, pData, pdwSize, abMac);
     }
-    pub fn Write(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn Write(self: *const IMDSPObject, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.Write(self, pData, pdwSize, abMac);
     }
-    pub fn Delete(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress) HRESULT {
         return self.vtable.Delete(self, fuMode, pProgress);
     }
-    pub fn Seek(self: *const IMDSPObject, fuFlags: u32, dwOffset: u32) callconv(.Inline) HRESULT {
+    pub fn Seek(self: *const IMDSPObject, fuFlags: u32, dwOffset: u32) HRESULT {
         return self.vtable.Seek(self, fuFlags, dwOffset);
     }
-    pub fn Rename(self: *const IMDSPObject, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) callconv(.Inline) HRESULT {
+    pub fn Rename(self: *const IMDSPObject, pwszNewName: ?PWSTR, pProgress: ?*IWMDMProgress) HRESULT {
         return self.vtable.Rename(self, pwszNewName, pProgress);
     }
-    pub fn Move(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress, pTarget: ?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn Move(self: *const IMDSPObject, fuMode: u32, pProgress: ?*IWMDMProgress, pTarget: ?*IMDSPStorage) HRESULT {
         return self.vtable.Move(self, fuMode, pProgress, pTarget);
     }
-    pub fn Close(self: *const IMDSPObject) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IMDSPObject) HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -2802,20 +2802,20 @@ pub const IMDSPObject2 = extern union {
             self: *const IMDSPObject2,
             pData: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteOnClearChannel: *const fn(
             self: *const IMDSPObject2,
             pData: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMDSPObject: IMDSPObject,
     IUnknown: IUnknown,
-    pub fn ReadOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn ReadOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) HRESULT {
         return self.vtable.ReadOnClearChannel(self, pData, pdwSize);
     }
-    pub fn WriteOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn WriteOnClearChannel(self: *const IMDSPObject2, pData: [*:0]u8, pdwSize: ?*u32) HRESULT {
         return self.vtable.WriteOnClearChannel(self, pData, pdwSize);
     }
 };
@@ -2834,11 +2834,11 @@ pub const IMDSPDirectTransfer = extern union {
             pSourceMetaData: ?*IWMDMMetaData,
             pTransferProgress: ?*IWMDMProgress,
             ppNewObject: ?*?*IMDSPStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TransferToDevice(self: *const IMDSPDirectTransfer, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?PWSTR, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: ?*?*IMDSPStorage) callconv(.Inline) HRESULT {
+    pub fn TransferToDevice(self: *const IMDSPDirectTransfer, pwszSourceFilePath: ?[*:0]const u16, pSourceOperation: ?*IWMDMOperation, fuFlags: u32, pwszDestinationName: ?PWSTR, pSourceMetaData: ?*IWMDMMetaData, pTransferProgress: ?*IWMDMProgress, ppNewObject: ?*?*IMDSPStorage) HRESULT {
         return self.vtable.TransferToDevice(self, pwszSourceFilePath, pSourceOperation, fuFlags, pwszDestinationName, pSourceMetaData, pTransferProgress, ppNewObject);
     }
 };
@@ -2852,11 +2852,11 @@ pub const IMDSPRevoked = extern union {
             self: *const IMDSPRevoked,
             ppwszRevocationURL: [*]?PWSTR,
             pdwBufferLen: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRevocationURL(self: *const IMDSPRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRevocationURL(self: *const IMDSPRevoked, ppwszRevocationURL: [*]?PWSTR, pdwBufferLen: ?*u32) HRESULT {
         return self.vtable.GetRevocationURL(self, ppwszRevocationURL, pdwBufferLen);
     }
 };
@@ -2869,11 +2869,11 @@ pub const ISCPSecureAuthenticate = extern union {
         GetSecureQuery: *const fn(
             self: *const ISCPSecureAuthenticate,
             ppSecureQuery: ?*?*ISCPSecureQuery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSecureQuery(self: *const ISCPSecureAuthenticate, ppSecureQuery: ?*?*ISCPSecureQuery) callconv(.Inline) HRESULT {
+    pub fn GetSecureQuery(self: *const ISCPSecureAuthenticate, ppSecureQuery: ?*?*ISCPSecureQuery) HRESULT {
         return self.vtable.GetSecureQuery(self, ppSecureQuery);
     }
 };
@@ -2886,12 +2886,12 @@ pub const ISCPSecureAuthenticate2 = extern union {
         GetSCPSession: *const fn(
             self: *const ISCPSecureAuthenticate2,
             ppSCPSession: ?*?*ISCPSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISCPSecureAuthenticate: ISCPSecureAuthenticate,
     IUnknown: IUnknown,
-    pub fn GetSCPSession(self: *const ISCPSecureAuthenticate2, ppSCPSession: ?*?*ISCPSession) callconv(.Inline) HRESULT {
+    pub fn GetSCPSession(self: *const ISCPSecureAuthenticate2, ppSCPSession: ?*?*ISCPSession) HRESULT {
         return self.vtable.GetSCPSession(self, ppSCPSession);
     }
 };
@@ -2908,7 +2908,7 @@ pub const ISCPSecureQuery = extern union {
             pdwMinExamineData: ?*u32,
             pdwMinDecideData: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExamineData: *const fn(
             self: *const ISCPSecureQuery,
             fuFlags: u32,
@@ -2916,7 +2916,7 @@ pub const ISCPSecureQuery = extern union {
             pData: [*:0]u8,
             dwSize: u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MakeDecision: *const fn(
             self: *const ISCPSecureQuery,
             fuFlags: u32,
@@ -2928,7 +2928,7 @@ pub const ISCPSecureQuery = extern union {
             pStorageGlobals: ?*IMDSPStorageGlobals,
             ppExchange: ?*?*ISCPSecureExchange,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRights: *const fn(
             self: *const ISCPSecureQuery,
             pData: [*:0]u8,
@@ -2939,20 +2939,20 @@ pub const ISCPSecureQuery = extern union {
             ppRights: [*]?*WMDMRIGHTS,
             pnRightsCount: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDataDemands(self: *const ISCPSecureQuery, pfuFlags: ?*u32, pdwMinRightsData: ?*u32, pdwMinExamineData: ?*u32, pdwMinDecideData: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetDataDemands(self: *const ISCPSecureQuery, pfuFlags: ?*u32, pdwMinRightsData: ?*u32, pdwMinExamineData: ?*u32, pdwMinDecideData: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.GetDataDemands(self, pfuFlags, pdwMinRightsData, pdwMinExamineData, pdwMinDecideData, abMac);
     }
-    pub fn ExamineData(self: *const ISCPSecureQuery, fuFlags: u32, pwszExtension: ?PWSTR, pData: [*:0]u8, dwSize: u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn ExamineData(self: *const ISCPSecureQuery, fuFlags: u32, pwszExtension: ?PWSTR, pData: [*:0]u8, dwSize: u32, abMac: ?*u8) HRESULT {
         return self.vtable.ExamineData(self, fuFlags, pwszExtension, pData, dwSize, abMac);
     }
-    pub fn MakeDecision(self: *const ISCPSecureQuery, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn MakeDecision(self: *const ISCPSecureQuery, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) HRESULT {
         return self.vtable.MakeDecision(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, ppExchange, abMac);
     }
-    pub fn GetRights(self: *const ISCPSecureQuery, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetRights(self: *const ISCPSecureQuery, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.GetRights(self, pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, ppRights, pnRightsCount, abMac);
     }
 };
@@ -2982,12 +2982,12 @@ pub const ISCPSecureQuery2 = extern union {
             pUnknown: ?*IUnknown,
             ppExchange: ?*?*ISCPSecureExchange,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISCPSecureQuery: ISCPSecureQuery,
     IUnknown: IUnknown,
-    pub fn MakeDecision2(self: *const ISCPSecureQuery2, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn MakeDecision2(self: *const ISCPSecureQuery2, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange, abMac: ?*u8) HRESULT {
         return self.vtable.MakeDecision2(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange, abMac);
     }
 };
@@ -3003,26 +3003,26 @@ pub const ISCPSecureExchange = extern union {
             dwSize: u32,
             pfuReadyFlags: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ObjectData: *const fn(
             self: *const ISCPSecureExchange,
             pData: [*:0]u8,
             pdwSize: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransferComplete: *const fn(
             self: *const ISCPSecureExchange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn TransferContainerData(self: *const ISCPSecureExchange, pData: [*:0]u8, dwSize: u32, pfuReadyFlags: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn TransferContainerData(self: *const ISCPSecureExchange, pData: [*:0]u8, dwSize: u32, pfuReadyFlags: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.TransferContainerData(self, pData, dwSize, pfuReadyFlags, abMac);
     }
-    pub fn ObjectData(self: *const ISCPSecureExchange, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn ObjectData(self: *const ISCPSecureExchange, pData: [*:0]u8, pdwSize: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.ObjectData(self, pData, pdwSize, abMac);
     }
-    pub fn TransferComplete(self: *const ISCPSecureExchange) callconv(.Inline) HRESULT {
+    pub fn TransferComplete(self: *const ISCPSecureExchange) HRESULT {
         return self.vtable.TransferComplete(self);
     }
 };
@@ -3039,12 +3039,12 @@ pub const ISCPSecureExchange2 = extern union {
             pProgressCallback: ?*IWMDMProgress3,
             pfuReadyFlags: ?*u32,
             abMac: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISCPSecureExchange: ISCPSecureExchange,
     IUnknown: IUnknown,
-    pub fn TransferContainerData2(self: *const ISCPSecureExchange2, pData: [*:0]u8, dwSize: u32, pProgressCallback: ?*IWMDMProgress3, pfuReadyFlags: ?*u32, abMac: ?*u8) callconv(.Inline) HRESULT {
+    pub fn TransferContainerData2(self: *const ISCPSecureExchange2, pData: [*:0]u8, dwSize: u32, pProgressCallback: ?*IWMDMProgress3, pfuReadyFlags: ?*u32, abMac: ?*u8) HRESULT {
         return self.vtable.TransferContainerData2(self, pData, dwSize, pProgressCallback, pfuReadyFlags, abMac);
     }
 };
@@ -3061,29 +3061,29 @@ pub const ISCPSecureExchange3 = extern union {
             dwSize: u32,
             pProgressCallback: ?*IWMDMProgress3,
             pfuReadyFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectDataOnClearChannel: *const fn(
             self: *const ISCPSecureExchange3,
             pDevice: ?*IMDSPDevice,
             pData: [*:0]u8,
             pdwSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransferCompleteForDevice: *const fn(
             self: *const ISCPSecureExchange3,
             pDevice: ?*IMDSPDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISCPSecureExchange2: ISCPSecureExchange2,
     ISCPSecureExchange: ISCPSecureExchange,
     IUnknown: IUnknown,
-    pub fn TransferContainerDataOnClearChannel(self: *const ISCPSecureExchange3, pDevice: ?*IMDSPDevice, pData: [*:0]u8, dwSize: u32, pProgressCallback: ?*IWMDMProgress3, pfuReadyFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn TransferContainerDataOnClearChannel(self: *const ISCPSecureExchange3, pDevice: ?*IMDSPDevice, pData: [*:0]u8, dwSize: u32, pProgressCallback: ?*IWMDMProgress3, pfuReadyFlags: ?*u32) HRESULT {
         return self.vtable.TransferContainerDataOnClearChannel(self, pDevice, pData, dwSize, pProgressCallback, pfuReadyFlags);
     }
-    pub fn GetObjectDataOnClearChannel(self: *const ISCPSecureExchange3, pDevice: ?*IMDSPDevice, pData: [*:0]u8, pdwSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetObjectDataOnClearChannel(self: *const ISCPSecureExchange3, pDevice: ?*IMDSPDevice, pData: [*:0]u8, pdwSize: ?*u32) HRESULT {
         return self.vtable.GetObjectDataOnClearChannel(self, pDevice, pData, pdwSize);
     }
-    pub fn TransferCompleteForDevice(self: *const ISCPSecureExchange3, pDevice: ?*IMDSPDevice) callconv(.Inline) HRESULT {
+    pub fn TransferCompleteForDevice(self: *const ISCPSecureExchange3, pDevice: ?*IMDSPDevice) HRESULT {
         return self.vtable.TransferCompleteForDevice(self, pDevice);
     }
 };
@@ -3098,26 +3098,26 @@ pub const ISCPSession = extern union {
             pIDevice: ?*IMDSPDevice,
             pCtx: [*:0]u8,
             dwSizeCtx: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSession: *const fn(
             self: *const ISCPSession,
             pCtx: [*:0]u8,
             dwSizeCtx: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecureQuery: *const fn(
             self: *const ISCPSession,
             ppSecureQuery: ?*?*ISCPSecureQuery,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BeginSession(self: *const ISCPSession, pIDevice: ?*IMDSPDevice, pCtx: [*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
+    pub fn BeginSession(self: *const ISCPSession, pIDevice: ?*IMDSPDevice, pCtx: [*:0]u8, dwSizeCtx: u32) HRESULT {
         return self.vtable.BeginSession(self, pIDevice, pCtx, dwSizeCtx);
     }
-    pub fn EndSession(self: *const ISCPSession, pCtx: [*:0]u8, dwSizeCtx: u32) callconv(.Inline) HRESULT {
+    pub fn EndSession(self: *const ISCPSession, pCtx: [*:0]u8, dwSizeCtx: u32) HRESULT {
         return self.vtable.EndSession(self, pCtx, dwSizeCtx);
     }
-    pub fn GetSecureQuery(self: *const ISCPSession, ppSecureQuery: ?*?*ISCPSecureQuery) callconv(.Inline) HRESULT {
+    pub fn GetSecureQuery(self: *const ISCPSession, ppSecureQuery: ?*?*ISCPSecureQuery) HRESULT {
         return self.vtable.GetSecureQuery(self, ppSecureQuery);
     }
 };
@@ -3137,7 +3137,7 @@ pub const ISCPSecureQuery3 = extern union {
             pProgressCallback: ?*IWMDMProgress3,
             ppRights: [*]?*WMDMRIGHTS,
             pnRightsCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MakeDecisionOnClearChannel: *const fn(
             self: *const ISCPSecureQuery3,
             fuFlags: u32,
@@ -3158,16 +3158,16 @@ pub const ISCPSecureQuery3 = extern union {
             pqwFileSize: ?*u64,
             pUnknown: ?*IUnknown,
             ppExchange: ?*?*ISCPSecureExchange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISCPSecureQuery2: ISCPSecureQuery2,
     ISCPSecureQuery: ISCPSecureQuery,
     IUnknown: IUnknown,
-    pub fn GetRightsOnClearChannel(self: *const ISCPSecureQuery3, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRightsOnClearChannel(self: *const ISCPSecureQuery3, pData: [*:0]u8, dwSize: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStgGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, ppRights: [*]?*WMDMRIGHTS, pnRightsCount: ?*u32) HRESULT {
         return self.vtable.GetRightsOnClearChannel(self, pData, dwSize, pbSPSessionKey, dwSessionKeyLen, pStgGlobals, pProgressCallback, ppRights, pnRightsCount);
     }
-    pub fn MakeDecisionOnClearChannel(self: *const ISCPSecureQuery3, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange) callconv(.Inline) HRESULT {
+    pub fn MakeDecisionOnClearChannel(self: *const ISCPSecureQuery3, fuFlags: u32, pData: [*:0]u8, dwSize: u32, dwAppSec: u32, pbSPSessionKey: [*:0]u8, dwSessionKeyLen: u32, pStorageGlobals: ?*IMDSPStorageGlobals, pProgressCallback: ?*IWMDMProgress3, pAppCertApp: [*:0]u8, dwAppCertAppLen: u32, pAppCertSP: [*:0]u8, dwAppCertSPLen: u32, pszRevocationURL: [*]?PWSTR, pdwRevocationURLLen: ?*u32, pdwRevocationBitFlag: ?*u32, pqwFileSize: ?*u64, pUnknown: ?*IUnknown, ppExchange: ?*?*ISCPSecureExchange) HRESULT {
         return self.vtable.MakeDecisionOnClearChannel(self, fuFlags, pData, dwSize, dwAppSec, pbSPSessionKey, dwSessionKeyLen, pStorageGlobals, pProgressCallback, pAppCertApp, dwAppCertAppLen, pAppCertSP, dwAppCertSPLen, pszRevocationURL, pdwRevocationURLLen, pdwRevocationBitFlag, pqwFileSize, pUnknown, ppExchange);
     }
 };
@@ -3185,19 +3185,19 @@ pub const IComponentAuthenticate = extern union {
             dwDataInLen: u32,
             ppbDataOut: [*]?*u8,
             pdwDataOutLen: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SACGetProtocols: *const fn(
             self: *const IComponentAuthenticate,
             ppdwProtocols: [*]?*u32,
             pdwProtocolCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SACAuth(self: *const IComponentAuthenticate, dwProtocolID: u32, dwPass: u32, pbDataIn: [*:0]u8, dwDataInLen: u32, ppbDataOut: [*]?*u8, pdwDataOutLen: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SACAuth(self: *const IComponentAuthenticate, dwProtocolID: u32, dwPass: u32, pbDataIn: [*:0]u8, dwDataInLen: u32, ppbDataOut: [*]?*u8, pdwDataOutLen: ?*u32) HRESULT {
         return self.vtable.SACAuth(self, dwProtocolID, dwPass, pbDataIn, dwDataInLen, ppbDataOut, pdwDataOutLen);
     }
-    pub fn SACGetProtocols(self: *const IComponentAuthenticate, ppdwProtocols: [*]?*u32, pdwProtocolCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SACGetProtocols(self: *const IComponentAuthenticate, ppdwProtocols: [*]?*u32, pdwProtocolCount: ?*u32) HRESULT {
         return self.vtable.SACGetProtocols(self, ppdwProtocols, pdwProtocolCount);
     }
 };
@@ -3213,74 +3213,74 @@ pub const IWMDMLogger = extern union {
         IsEnabled: *const fn(
             self: *const IWMDMLogger,
             pfEnabled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enable: *const fn(
             self: *const IWMDMLogger,
             fEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLogFileName: *const fn(
             self: *const IWMDMLogger,
             pszFilename: ?PSTR,
             nMaxChars: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLogFileName: *const fn(
             self: *const IWMDMLogger,
             pszFilename: ?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LogString: *const fn(
             self: *const IWMDMLogger,
             dwFlags: u32,
             pszSrcName: ?PSTR,
             pszLog: ?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LogDword: *const fn(
             self: *const IWMDMLogger,
             dwFlags: u32,
             pszSrcName: ?PSTR,
             pszLogFormat: ?PSTR,
             dwLog: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IWMDMLogger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSizeParams: *const fn(
             self: *const IWMDMLogger,
             pdwMaxSize: ?*u32,
             pdwShrinkToSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSizeParams: *const fn(
             self: *const IWMDMLogger,
             dwMaxSize: u32,
             dwShrinkToSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsEnabled(self: *const IWMDMLogger, pfEnabled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsEnabled(self: *const IWMDMLogger, pfEnabled: ?*BOOL) HRESULT {
         return self.vtable.IsEnabled(self, pfEnabled);
     }
-    pub fn Enable(self: *const IWMDMLogger, fEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn Enable(self: *const IWMDMLogger, fEnable: BOOL) HRESULT {
         return self.vtable.Enable(self, fEnable);
     }
-    pub fn GetLogFileName(self: *const IWMDMLogger, pszFilename: ?PSTR, nMaxChars: u32) callconv(.Inline) HRESULT {
+    pub fn GetLogFileName(self: *const IWMDMLogger, pszFilename: ?PSTR, nMaxChars: u32) HRESULT {
         return self.vtable.GetLogFileName(self, pszFilename, nMaxChars);
     }
-    pub fn SetLogFileName(self: *const IWMDMLogger, pszFilename: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn SetLogFileName(self: *const IWMDMLogger, pszFilename: ?PSTR) HRESULT {
         return self.vtable.SetLogFileName(self, pszFilename);
     }
-    pub fn LogString(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?PSTR, pszLog: ?PSTR) callconv(.Inline) HRESULT {
+    pub fn LogString(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?PSTR, pszLog: ?PSTR) HRESULT {
         return self.vtable.LogString(self, dwFlags, pszSrcName, pszLog);
     }
-    pub fn LogDword(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?PSTR, pszLogFormat: ?PSTR, dwLog: u32) callconv(.Inline) HRESULT {
+    pub fn LogDword(self: *const IWMDMLogger, dwFlags: u32, pszSrcName: ?PSTR, pszLogFormat: ?PSTR, dwLog: u32) HRESULT {
         return self.vtable.LogDword(self, dwFlags, pszSrcName, pszLogFormat, dwLog);
     }
-    pub fn Reset(self: *const IWMDMLogger) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IWMDMLogger) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetSizeParams(self: *const IWMDMLogger, pdwMaxSize: ?*u32, pdwShrinkToSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSizeParams(self: *const IWMDMLogger, pdwMaxSize: ?*u32, pdwShrinkToSize: ?*u32) HRESULT {
         return self.vtable.GetSizeParams(self, pdwMaxSize, pdwShrinkToSize);
     }
-    pub fn SetSizeParams(self: *const IWMDMLogger, dwMaxSize: u32, dwShrinkToSize: u32) callconv(.Inline) HRESULT {
+    pub fn SetSizeParams(self: *const IWMDMLogger, dwMaxSize: u32, dwShrinkToSize: u32) HRESULT {
         return self.vtable.SetSizeParams(self, dwMaxSize, dwShrinkToSize);
     }
 };

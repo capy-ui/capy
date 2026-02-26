@@ -948,12 +948,12 @@ pub const IMSMQQuery = extern union {
             RelCreateTime: ?*VARIANT,
             RelModifyTime: ?*VARIANT,
             ppqinfos: ?*?*IMSMQQueueInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn LookupQueue(self: *const IMSMQQuery, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos) callconv(.Inline) HRESULT {
+    pub fn LookupQueue(self: *const IMSMQQuery, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos) HRESULT {
         return self.vtable.LookupQueue(self, QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
     }
 };
@@ -967,239 +967,239 @@ pub const IMSMQQueueInfo = extern union {
         get_QueueGuid: *const fn(
             self: *const IMSMQQueueInfo,
             pbstrGuidQueue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo,
             pbstrGuidServiceType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo,
             bstrGuidServiceType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQQueueInfo,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQQueueInfo,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathName: *const fn(
             self: *const IMSMQQueueInfo,
             pbstrPathName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PathName: *const fn(
             self: *const IMSMQQueueInfo,
             bstrPathName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FormatName: *const fn(
             self: *const IMSMQQueueInfo,
             pbstrFormatName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FormatName: *const fn(
             self: *const IMSMQQueueInfo,
             bstrFormatName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional: *const fn(
             self: *const IMSMQQueueInfo,
             pisTransactional: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQQueueInfo,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQQueueInfo,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Quota: *const fn(
             self: *const IMSMQQueueInfo,
             plQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Quota: *const fn(
             self: *const IMSMQQueueInfo,
             lQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BasePriority: *const fn(
             self: *const IMSMQQueueInfo,
             plBasePriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BasePriority: *const fn(
             self: *const IMSMQQueueInfo,
             lBasePriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreateTime: *const fn(
             self: *const IMSMQQueueInfo,
             pvarCreateTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifyTime: *const fn(
             self: *const IMSMQQueueInfo,
             pvarModifyTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Authenticate: *const fn(
             self: *const IMSMQQueueInfo,
             plAuthenticate: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Authenticate: *const fn(
             self: *const IMSMQQueueInfo,
             lAuthenticate: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo,
             plJournalQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo,
             lJournalQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable: *const fn(
             self: *const IMSMQQueueInfo,
             pisWorldReadable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IMSMQQueueInfo,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IMSMQQueueInfo,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_QueueGuid(self: *const IMSMQQueueInfo, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo, pbstrGuidQueue: ?*?BSTR) HRESULT {
         return self.vtable.get_QueueGuid(self, pbstrGuidQueue);
     }
-    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo, pbstrGuidServiceType: ?*?BSTR) HRESULT {
         return self.vtable.get_ServiceTypeGuid(self, pbstrGuidServiceType);
     }
-    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo, bstrGuidServiceType: ?BSTR) HRESULT {
         return self.vtable.put_ServiceTypeGuid(self, bstrGuidServiceType);
     }
-    pub fn get_Label(self: *const IMSMQQueueInfo, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQQueueInfo, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQQueueInfo, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQQueueInfo, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_PathName(self: *const IMSMQQueueInfo, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathName(self: *const IMSMQQueueInfo, pbstrPathName: ?*?BSTR) HRESULT {
         return self.vtable.get_PathName(self, pbstrPathName);
     }
-    pub fn put_PathName(self: *const IMSMQQueueInfo, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_PathName(self: *const IMSMQQueueInfo, bstrPathName: ?BSTR) HRESULT {
         return self.vtable.put_PathName(self, bstrPathName);
     }
-    pub fn get_FormatName(self: *const IMSMQQueueInfo, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FormatName(self: *const IMSMQQueueInfo, pbstrFormatName: ?*?BSTR) HRESULT {
         return self.vtable.get_FormatName(self, pbstrFormatName);
     }
-    pub fn put_FormatName(self: *const IMSMQQueueInfo, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FormatName(self: *const IMSMQQueueInfo, bstrFormatName: ?BSTR) HRESULT {
         return self.vtable.put_FormatName(self, bstrFormatName);
     }
-    pub fn get_IsTransactional(self: *const IMSMQQueueInfo, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo, pisTransactional: ?*i16) HRESULT {
         return self.vtable.get_IsTransactional(self, pisTransactional);
     }
-    pub fn get_PrivLevel(self: *const IMSMQQueueInfo, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQQueueInfo, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_Journal(self: *const IMSMQQueueInfo, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQQueueInfo, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQQueueInfo, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQQueueInfo, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_Quota(self: *const IMSMQQueueInfo, plQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Quota(self: *const IMSMQQueueInfo, plQuota: ?*i32) HRESULT {
         return self.vtable.get_Quota(self, plQuota);
     }
-    pub fn put_Quota(self: *const IMSMQQueueInfo, lQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_Quota(self: *const IMSMQQueueInfo, lQuota: i32) HRESULT {
         return self.vtable.put_Quota(self, lQuota);
     }
-    pub fn get_BasePriority(self: *const IMSMQQueueInfo, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo, plBasePriority: ?*i32) HRESULT {
         return self.vtable.get_BasePriority(self, plBasePriority);
     }
-    pub fn put_BasePriority(self: *const IMSMQQueueInfo, lBasePriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo, lBasePriority: i32) HRESULT {
         return self.vtable.put_BasePriority(self, lBasePriority);
     }
-    pub fn get_CreateTime(self: *const IMSMQQueueInfo, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo, pvarCreateTime: ?*VARIANT) HRESULT {
         return self.vtable.get_CreateTime(self, pvarCreateTime);
     }
-    pub fn get_ModifyTime(self: *const IMSMQQueueInfo, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo, pvarModifyTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ModifyTime(self, pvarModifyTime);
     }
-    pub fn get_Authenticate(self: *const IMSMQQueueInfo, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo, plAuthenticate: ?*i32) HRESULT {
         return self.vtable.get_Authenticate(self, plAuthenticate);
     }
-    pub fn put_Authenticate(self: *const IMSMQQueueInfo, lAuthenticate: i32) callconv(.Inline) HRESULT {
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo, lAuthenticate: i32) HRESULT {
         return self.vtable.put_Authenticate(self, lAuthenticate);
     }
-    pub fn get_JournalQuota(self: *const IMSMQQueueInfo, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo, plJournalQuota: ?*i32) HRESULT {
         return self.vtable.get_JournalQuota(self, plJournalQuota);
     }
-    pub fn put_JournalQuota(self: *const IMSMQQueueInfo, lJournalQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo, lJournalQuota: i32) HRESULT {
         return self.vtable.put_JournalQuota(self, lJournalQuota);
     }
-    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo, pisWorldReadable: ?*i16) HRESULT {
         return self.vtable.get_IsWorldReadable(self, pisWorldReadable);
     }
-    pub fn Create(self: *const IMSMQQueueInfo, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IMSMQQueueInfo, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
         return self.vtable.Create(self, IsTransactional, IsWorldReadable);
     }
-    pub fn Delete(self: *const IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IMSMQQueueInfo) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Open(self: *const IMSMQQueueInfo, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IMSMQQueueInfo, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue) HRESULT {
         return self.vtable.Open(self, Access, ShareMode, ppq);
     }
-    pub fn Refresh(self: *const IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IMSMQQueueInfo) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn Update(self: *const IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IMSMQQueueInfo) HRESULT {
         return self.vtable.Update(self);
     }
 };
@@ -1213,271 +1213,271 @@ pub const IMSMQQueueInfo2 = extern union {
         get_QueueGuid: *const fn(
             self: *const IMSMQQueueInfo2,
             pbstrGuidQueue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo2,
             pbstrGuidServiceType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo2,
             bstrGuidServiceType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQQueueInfo2,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQQueueInfo2,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathName: *const fn(
             self: *const IMSMQQueueInfo2,
             pbstrPathName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PathName: *const fn(
             self: *const IMSMQQueueInfo2,
             bstrPathName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FormatName: *const fn(
             self: *const IMSMQQueueInfo2,
             pbstrFormatName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FormatName: *const fn(
             self: *const IMSMQQueueInfo2,
             bstrFormatName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional: *const fn(
             self: *const IMSMQQueueInfo2,
             pisTransactional: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo2,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo2,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQQueueInfo2,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQQueueInfo2,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Quota: *const fn(
             self: *const IMSMQQueueInfo2,
             plQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Quota: *const fn(
             self: *const IMSMQQueueInfo2,
             lQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BasePriority: *const fn(
             self: *const IMSMQQueueInfo2,
             plBasePriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BasePriority: *const fn(
             self: *const IMSMQQueueInfo2,
             lBasePriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreateTime: *const fn(
             self: *const IMSMQQueueInfo2,
             pvarCreateTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifyTime: *const fn(
             self: *const IMSMQQueueInfo2,
             pvarModifyTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Authenticate: *const fn(
             self: *const IMSMQQueueInfo2,
             plAuthenticate: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Authenticate: *const fn(
             self: *const IMSMQQueueInfo2,
             lAuthenticate: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo2,
             plJournalQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo2,
             lJournalQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable: *const fn(
             self: *const IMSMQQueueInfo2,
             pisWorldReadable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IMSMQQueueInfo2,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IMSMQQueueInfo2,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathNameDNS: *const fn(
             self: *const IMSMQQueueInfo2,
             pbstrPathNameDNS: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueueInfo2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Security: *const fn(
             self: *const IMSMQQueueInfo2,
             pvarSecurity: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Security: *const fn(
             self: *const IMSMQQueueInfo2,
             varSecurity: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_QueueGuid(self: *const IMSMQQueueInfo2, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo2, pbstrGuidQueue: ?*?BSTR) HRESULT {
         return self.vtable.get_QueueGuid(self, pbstrGuidQueue);
     }
-    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo2, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo2, pbstrGuidServiceType: ?*?BSTR) HRESULT {
         return self.vtable.get_ServiceTypeGuid(self, pbstrGuidServiceType);
     }
-    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo2, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo2, bstrGuidServiceType: ?BSTR) HRESULT {
         return self.vtable.put_ServiceTypeGuid(self, bstrGuidServiceType);
     }
-    pub fn get_Label(self: *const IMSMQQueueInfo2, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQQueueInfo2, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQQueueInfo2, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQQueueInfo2, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_PathName(self: *const IMSMQQueueInfo2, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathName(self: *const IMSMQQueueInfo2, pbstrPathName: ?*?BSTR) HRESULT {
         return self.vtable.get_PathName(self, pbstrPathName);
     }
-    pub fn put_PathName(self: *const IMSMQQueueInfo2, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_PathName(self: *const IMSMQQueueInfo2, bstrPathName: ?BSTR) HRESULT {
         return self.vtable.put_PathName(self, bstrPathName);
     }
-    pub fn get_FormatName(self: *const IMSMQQueueInfo2, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FormatName(self: *const IMSMQQueueInfo2, pbstrFormatName: ?*?BSTR) HRESULT {
         return self.vtable.get_FormatName(self, pbstrFormatName);
     }
-    pub fn put_FormatName(self: *const IMSMQQueueInfo2, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FormatName(self: *const IMSMQQueueInfo2, bstrFormatName: ?BSTR) HRESULT {
         return self.vtable.put_FormatName(self, bstrFormatName);
     }
-    pub fn get_IsTransactional(self: *const IMSMQQueueInfo2, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo2, pisTransactional: ?*i16) HRESULT {
         return self.vtable.get_IsTransactional(self, pisTransactional);
     }
-    pub fn get_PrivLevel(self: *const IMSMQQueueInfo2, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo2, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQQueueInfo2, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo2, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_Journal(self: *const IMSMQQueueInfo2, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQQueueInfo2, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQQueueInfo2, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQQueueInfo2, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_Quota(self: *const IMSMQQueueInfo2, plQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Quota(self: *const IMSMQQueueInfo2, plQuota: ?*i32) HRESULT {
         return self.vtable.get_Quota(self, plQuota);
     }
-    pub fn put_Quota(self: *const IMSMQQueueInfo2, lQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_Quota(self: *const IMSMQQueueInfo2, lQuota: i32) HRESULT {
         return self.vtable.put_Quota(self, lQuota);
     }
-    pub fn get_BasePriority(self: *const IMSMQQueueInfo2, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo2, plBasePriority: ?*i32) HRESULT {
         return self.vtable.get_BasePriority(self, plBasePriority);
     }
-    pub fn put_BasePriority(self: *const IMSMQQueueInfo2, lBasePriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo2, lBasePriority: i32) HRESULT {
         return self.vtable.put_BasePriority(self, lBasePriority);
     }
-    pub fn get_CreateTime(self: *const IMSMQQueueInfo2, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo2, pvarCreateTime: ?*VARIANT) HRESULT {
         return self.vtable.get_CreateTime(self, pvarCreateTime);
     }
-    pub fn get_ModifyTime(self: *const IMSMQQueueInfo2, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo2, pvarModifyTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ModifyTime(self, pvarModifyTime);
     }
-    pub fn get_Authenticate(self: *const IMSMQQueueInfo2, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo2, plAuthenticate: ?*i32) HRESULT {
         return self.vtable.get_Authenticate(self, plAuthenticate);
     }
-    pub fn put_Authenticate(self: *const IMSMQQueueInfo2, lAuthenticate: i32) callconv(.Inline) HRESULT {
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo2, lAuthenticate: i32) HRESULT {
         return self.vtable.put_Authenticate(self, lAuthenticate);
     }
-    pub fn get_JournalQuota(self: *const IMSMQQueueInfo2, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo2, plJournalQuota: ?*i32) HRESULT {
         return self.vtable.get_JournalQuota(self, plJournalQuota);
     }
-    pub fn put_JournalQuota(self: *const IMSMQQueueInfo2, lJournalQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo2, lJournalQuota: i32) HRESULT {
         return self.vtable.put_JournalQuota(self, lJournalQuota);
     }
-    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo2, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo2, pisWorldReadable: ?*i16) HRESULT {
         return self.vtable.get_IsWorldReadable(self, pisWorldReadable);
     }
-    pub fn Create(self: *const IMSMQQueueInfo2, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IMSMQQueueInfo2, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
         return self.vtable.Create(self, IsTransactional, IsWorldReadable);
     }
-    pub fn Delete(self: *const IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IMSMQQueueInfo2) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Open(self: *const IMSMQQueueInfo2, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue2) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IMSMQQueueInfo2, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue2) HRESULT {
         return self.vtable.Open(self, Access, ShareMode, ppq);
     }
-    pub fn Refresh(self: *const IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IMSMQQueueInfo2) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn Update(self: *const IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IMSMQQueueInfo2) HRESULT {
         return self.vtable.Update(self);
     }
-    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo2, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo2, pbstrPathNameDNS: ?*?BSTR) HRESULT {
         return self.vtable.get_PathNameDNS(self, pbstrPathNameDNS);
     }
-    pub fn get_Properties(self: *const IMSMQQueueInfo2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueueInfo2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_Security(self: *const IMSMQQueueInfo2, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Security(self: *const IMSMQQueueInfo2, pvarSecurity: ?*VARIANT) HRESULT {
         return self.vtable.get_Security(self, pvarSecurity);
     }
-    pub fn put_Security(self: *const IMSMQQueueInfo2, varSecurity: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Security(self: *const IMSMQQueueInfo2, varSecurity: VARIANT) HRESULT {
         return self.vtable.put_Security(self, varSecurity);
     }
 };
@@ -1491,311 +1491,311 @@ pub const IMSMQQueueInfo3 = extern union {
         get_QueueGuid: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrGuidQueue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrGuidServiceType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo3,
             bstrGuidServiceType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQQueueInfo3,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathName: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrPathName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PathName: *const fn(
             self: *const IMSMQQueueInfo3,
             bstrPathName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FormatName: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrFormatName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FormatName: *const fn(
             self: *const IMSMQQueueInfo3,
             bstrFormatName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional: *const fn(
             self: *const IMSMQQueueInfo3,
             pisTransactional: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo3,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo3,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQQueueInfo3,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQQueueInfo3,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Quota: *const fn(
             self: *const IMSMQQueueInfo3,
             plQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Quota: *const fn(
             self: *const IMSMQQueueInfo3,
             lQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BasePriority: *const fn(
             self: *const IMSMQQueueInfo3,
             plBasePriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BasePriority: *const fn(
             self: *const IMSMQQueueInfo3,
             lBasePriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreateTime: *const fn(
             self: *const IMSMQQueueInfo3,
             pvarCreateTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifyTime: *const fn(
             self: *const IMSMQQueueInfo3,
             pvarModifyTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Authenticate: *const fn(
             self: *const IMSMQQueueInfo3,
             plAuthenticate: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Authenticate: *const fn(
             self: *const IMSMQQueueInfo3,
             lAuthenticate: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo3,
             plJournalQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo3,
             lJournalQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable: *const fn(
             self: *const IMSMQQueueInfo3,
             pisWorldReadable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IMSMQQueueInfo3,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IMSMQQueueInfo3,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathNameDNS: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrPathNameDNS: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueueInfo3,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Security: *const fn(
             self: *const IMSMQQueueInfo3,
             pvarSecurity: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Security: *const fn(
             self: *const IMSMQQueueInfo3,
             varSecurity: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional2: *const fn(
             self: *const IMSMQQueueInfo3,
             pisTransactional: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable2: *const fn(
             self: *const IMSMQQueueInfo3,
             pisWorldReadable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MulticastAddress: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrMulticastAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MulticastAddress: *const fn(
             self: *const IMSMQQueueInfo3,
             bstrMulticastAddress: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ADsPath: *const fn(
             self: *const IMSMQQueueInfo3,
             pbstrADsPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_QueueGuid(self: *const IMSMQQueueInfo3, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo3, pbstrGuidQueue: ?*?BSTR) HRESULT {
         return self.vtable.get_QueueGuid(self, pbstrGuidQueue);
     }
-    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo3, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo3, pbstrGuidServiceType: ?*?BSTR) HRESULT {
         return self.vtable.get_ServiceTypeGuid(self, pbstrGuidServiceType);
     }
-    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo3, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo3, bstrGuidServiceType: ?BSTR) HRESULT {
         return self.vtable.put_ServiceTypeGuid(self, bstrGuidServiceType);
     }
-    pub fn get_Label(self: *const IMSMQQueueInfo3, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQQueueInfo3, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQQueueInfo3, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQQueueInfo3, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_PathName(self: *const IMSMQQueueInfo3, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathName(self: *const IMSMQQueueInfo3, pbstrPathName: ?*?BSTR) HRESULT {
         return self.vtable.get_PathName(self, pbstrPathName);
     }
-    pub fn put_PathName(self: *const IMSMQQueueInfo3, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_PathName(self: *const IMSMQQueueInfo3, bstrPathName: ?BSTR) HRESULT {
         return self.vtable.put_PathName(self, bstrPathName);
     }
-    pub fn get_FormatName(self: *const IMSMQQueueInfo3, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FormatName(self: *const IMSMQQueueInfo3, pbstrFormatName: ?*?BSTR) HRESULT {
         return self.vtable.get_FormatName(self, pbstrFormatName);
     }
-    pub fn put_FormatName(self: *const IMSMQQueueInfo3, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FormatName(self: *const IMSMQQueueInfo3, bstrFormatName: ?BSTR) HRESULT {
         return self.vtable.put_FormatName(self, bstrFormatName);
     }
-    pub fn get_IsTransactional(self: *const IMSMQQueueInfo3, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo3, pisTransactional: ?*i16) HRESULT {
         return self.vtable.get_IsTransactional(self, pisTransactional);
     }
-    pub fn get_PrivLevel(self: *const IMSMQQueueInfo3, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo3, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQQueueInfo3, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo3, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_Journal(self: *const IMSMQQueueInfo3, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQQueueInfo3, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQQueueInfo3, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQQueueInfo3, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_Quota(self: *const IMSMQQueueInfo3, plQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Quota(self: *const IMSMQQueueInfo3, plQuota: ?*i32) HRESULT {
         return self.vtable.get_Quota(self, plQuota);
     }
-    pub fn put_Quota(self: *const IMSMQQueueInfo3, lQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_Quota(self: *const IMSMQQueueInfo3, lQuota: i32) HRESULT {
         return self.vtable.put_Quota(self, lQuota);
     }
-    pub fn get_BasePriority(self: *const IMSMQQueueInfo3, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo3, plBasePriority: ?*i32) HRESULT {
         return self.vtable.get_BasePriority(self, plBasePriority);
     }
-    pub fn put_BasePriority(self: *const IMSMQQueueInfo3, lBasePriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo3, lBasePriority: i32) HRESULT {
         return self.vtable.put_BasePriority(self, lBasePriority);
     }
-    pub fn get_CreateTime(self: *const IMSMQQueueInfo3, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo3, pvarCreateTime: ?*VARIANT) HRESULT {
         return self.vtable.get_CreateTime(self, pvarCreateTime);
     }
-    pub fn get_ModifyTime(self: *const IMSMQQueueInfo3, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo3, pvarModifyTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ModifyTime(self, pvarModifyTime);
     }
-    pub fn get_Authenticate(self: *const IMSMQQueueInfo3, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo3, plAuthenticate: ?*i32) HRESULT {
         return self.vtable.get_Authenticate(self, plAuthenticate);
     }
-    pub fn put_Authenticate(self: *const IMSMQQueueInfo3, lAuthenticate: i32) callconv(.Inline) HRESULT {
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo3, lAuthenticate: i32) HRESULT {
         return self.vtable.put_Authenticate(self, lAuthenticate);
     }
-    pub fn get_JournalQuota(self: *const IMSMQQueueInfo3, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo3, plJournalQuota: ?*i32) HRESULT {
         return self.vtable.get_JournalQuota(self, plJournalQuota);
     }
-    pub fn put_JournalQuota(self: *const IMSMQQueueInfo3, lJournalQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo3, lJournalQuota: i32) HRESULT {
         return self.vtable.put_JournalQuota(self, lJournalQuota);
     }
-    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*i16) HRESULT {
         return self.vtable.get_IsWorldReadable(self, pisWorldReadable);
     }
-    pub fn Create(self: *const IMSMQQueueInfo3, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IMSMQQueueInfo3, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
         return self.vtable.Create(self, IsTransactional, IsWorldReadable);
     }
-    pub fn Delete(self: *const IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IMSMQQueueInfo3) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Open(self: *const IMSMQQueueInfo3, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue3) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IMSMQQueueInfo3, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue3) HRESULT {
         return self.vtable.Open(self, Access, ShareMode, ppq);
     }
-    pub fn Refresh(self: *const IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IMSMQQueueInfo3) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn Update(self: *const IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IMSMQQueueInfo3) HRESULT {
         return self.vtable.Update(self);
     }
-    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo3, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo3, pbstrPathNameDNS: ?*?BSTR) HRESULT {
         return self.vtable.get_PathNameDNS(self, pbstrPathNameDNS);
     }
-    pub fn get_Properties(self: *const IMSMQQueueInfo3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueueInfo3, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_Security(self: *const IMSMQQueueInfo3, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Security(self: *const IMSMQQueueInfo3, pvarSecurity: ?*VARIANT) HRESULT {
         return self.vtable.get_Security(self, pvarSecurity);
     }
-    pub fn put_Security(self: *const IMSMQQueueInfo3, varSecurity: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Security(self: *const IMSMQQueueInfo3, varSecurity: VARIANT) HRESULT {
         return self.vtable.put_Security(self, varSecurity);
     }
-    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo3, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo3, pisTransactional: ?*i16) HRESULT {
         return self.vtable.get_IsTransactional2(self, pisTransactional);
     }
-    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo3, pisWorldReadable: ?*i16) HRESULT {
         return self.vtable.get_IsWorldReadable2(self, pisWorldReadable);
     }
-    pub fn get_MulticastAddress(self: *const IMSMQQueueInfo3, pbstrMulticastAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MulticastAddress(self: *const IMSMQQueueInfo3, pbstrMulticastAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_MulticastAddress(self, pbstrMulticastAddress);
     }
-    pub fn put_MulticastAddress(self: *const IMSMQQueueInfo3, bstrMulticastAddress: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MulticastAddress(self: *const IMSMQQueueInfo3, bstrMulticastAddress: ?BSTR) HRESULT {
         return self.vtable.put_MulticastAddress(self, bstrMulticastAddress);
     }
-    pub fn get_ADsPath(self: *const IMSMQQueueInfo3, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ADsPath(self: *const IMSMQQueueInfo3, pbstrADsPath: ?*?BSTR) HRESULT {
         return self.vtable.get_ADsPath(self, pbstrADsPath);
     }
 };
@@ -1809,311 +1809,311 @@ pub const IMSMQQueueInfo4 = extern union {
         get_QueueGuid: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrGuidQueue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrGuidServiceType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServiceTypeGuid: *const fn(
             self: *const IMSMQQueueInfo4,
             bstrGuidServiceType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQQueueInfo4,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathName: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrPathName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PathName: *const fn(
             self: *const IMSMQQueueInfo4,
             bstrPathName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FormatName: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrFormatName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FormatName: *const fn(
             self: *const IMSMQQueueInfo4,
             bstrFormatName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional: *const fn(
             self: *const IMSMQQueueInfo4,
             pisTransactional: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo4,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQQueueInfo4,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQQueueInfo4,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQQueueInfo4,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Quota: *const fn(
             self: *const IMSMQQueueInfo4,
             plQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Quota: *const fn(
             self: *const IMSMQQueueInfo4,
             lQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BasePriority: *const fn(
             self: *const IMSMQQueueInfo4,
             plBasePriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BasePriority: *const fn(
             self: *const IMSMQQueueInfo4,
             lBasePriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CreateTime: *const fn(
             self: *const IMSMQQueueInfo4,
             pvarCreateTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ModifyTime: *const fn(
             self: *const IMSMQQueueInfo4,
             pvarModifyTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Authenticate: *const fn(
             self: *const IMSMQQueueInfo4,
             plAuthenticate: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Authenticate: *const fn(
             self: *const IMSMQQueueInfo4,
             lAuthenticate: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo4,
             plJournalQuota: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_JournalQuota: *const fn(
             self: *const IMSMQQueueInfo4,
             lJournalQuota: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable: *const fn(
             self: *const IMSMQQueueInfo4,
             pisWorldReadable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IMSMQQueueInfo4,
             IsTransactional: ?*VARIANT,
             IsWorldReadable: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const IMSMQQueueInfo4,
             Access: i32,
             ShareMode: i32,
             ppq: ?*?*IMSMQQueue4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Update: *const fn(
             self: *const IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathNameDNS: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrPathNameDNS: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueueInfo4,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Security: *const fn(
             self: *const IMSMQQueueInfo4,
             pvarSecurity: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Security: *const fn(
             self: *const IMSMQQueueInfo4,
             varSecurity: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTransactional2: *const fn(
             self: *const IMSMQQueueInfo4,
             pisTransactional: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsWorldReadable2: *const fn(
             self: *const IMSMQQueueInfo4,
             pisWorldReadable: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MulticastAddress: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrMulticastAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MulticastAddress: *const fn(
             self: *const IMSMQQueueInfo4,
             bstrMulticastAddress: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ADsPath: *const fn(
             self: *const IMSMQQueueInfo4,
             pbstrADsPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_QueueGuid(self: *const IMSMQQueueInfo4, pbstrGuidQueue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_QueueGuid(self: *const IMSMQQueueInfo4, pbstrGuidQueue: ?*?BSTR) HRESULT {
         return self.vtable.get_QueueGuid(self, pbstrGuidQueue);
     }
-    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo4, pbstrGuidServiceType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ServiceTypeGuid(self: *const IMSMQQueueInfo4, pbstrGuidServiceType: ?*?BSTR) HRESULT {
         return self.vtable.get_ServiceTypeGuid(self, pbstrGuidServiceType);
     }
-    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo4, bstrGuidServiceType: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ServiceTypeGuid(self: *const IMSMQQueueInfo4, bstrGuidServiceType: ?BSTR) HRESULT {
         return self.vtable.put_ServiceTypeGuid(self, bstrGuidServiceType);
     }
-    pub fn get_Label(self: *const IMSMQQueueInfo4, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQQueueInfo4, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQQueueInfo4, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQQueueInfo4, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_PathName(self: *const IMSMQQueueInfo4, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathName(self: *const IMSMQQueueInfo4, pbstrPathName: ?*?BSTR) HRESULT {
         return self.vtable.get_PathName(self, pbstrPathName);
     }
-    pub fn put_PathName(self: *const IMSMQQueueInfo4, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_PathName(self: *const IMSMQQueueInfo4, bstrPathName: ?BSTR) HRESULT {
         return self.vtable.put_PathName(self, bstrPathName);
     }
-    pub fn get_FormatName(self: *const IMSMQQueueInfo4, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FormatName(self: *const IMSMQQueueInfo4, pbstrFormatName: ?*?BSTR) HRESULT {
         return self.vtable.get_FormatName(self, pbstrFormatName);
     }
-    pub fn put_FormatName(self: *const IMSMQQueueInfo4, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FormatName(self: *const IMSMQQueueInfo4, bstrFormatName: ?BSTR) HRESULT {
         return self.vtable.put_FormatName(self, bstrFormatName);
     }
-    pub fn get_IsTransactional(self: *const IMSMQQueueInfo4, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsTransactional(self: *const IMSMQQueueInfo4, pisTransactional: ?*i16) HRESULT {
         return self.vtable.get_IsTransactional(self, pisTransactional);
     }
-    pub fn get_PrivLevel(self: *const IMSMQQueueInfo4, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQQueueInfo4, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQQueueInfo4, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQQueueInfo4, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_Journal(self: *const IMSMQQueueInfo4, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQQueueInfo4, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQQueueInfo4, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQQueueInfo4, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_Quota(self: *const IMSMQQueueInfo4, plQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Quota(self: *const IMSMQQueueInfo4, plQuota: ?*i32) HRESULT {
         return self.vtable.get_Quota(self, plQuota);
     }
-    pub fn put_Quota(self: *const IMSMQQueueInfo4, lQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_Quota(self: *const IMSMQQueueInfo4, lQuota: i32) HRESULT {
         return self.vtable.put_Quota(self, lQuota);
     }
-    pub fn get_BasePriority(self: *const IMSMQQueueInfo4, plBasePriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BasePriority(self: *const IMSMQQueueInfo4, plBasePriority: ?*i32) HRESULT {
         return self.vtable.get_BasePriority(self, plBasePriority);
     }
-    pub fn put_BasePriority(self: *const IMSMQQueueInfo4, lBasePriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_BasePriority(self: *const IMSMQQueueInfo4, lBasePriority: i32) HRESULT {
         return self.vtable.put_BasePriority(self, lBasePriority);
     }
-    pub fn get_CreateTime(self: *const IMSMQQueueInfo4, pvarCreateTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CreateTime(self: *const IMSMQQueueInfo4, pvarCreateTime: ?*VARIANT) HRESULT {
         return self.vtable.get_CreateTime(self, pvarCreateTime);
     }
-    pub fn get_ModifyTime(self: *const IMSMQQueueInfo4, pvarModifyTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ModifyTime(self: *const IMSMQQueueInfo4, pvarModifyTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ModifyTime(self, pvarModifyTime);
     }
-    pub fn get_Authenticate(self: *const IMSMQQueueInfo4, plAuthenticate: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Authenticate(self: *const IMSMQQueueInfo4, plAuthenticate: ?*i32) HRESULT {
         return self.vtable.get_Authenticate(self, plAuthenticate);
     }
-    pub fn put_Authenticate(self: *const IMSMQQueueInfo4, lAuthenticate: i32) callconv(.Inline) HRESULT {
+    pub fn put_Authenticate(self: *const IMSMQQueueInfo4, lAuthenticate: i32) HRESULT {
         return self.vtable.put_Authenticate(self, lAuthenticate);
     }
-    pub fn get_JournalQuota(self: *const IMSMQQueueInfo4, plJournalQuota: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_JournalQuota(self: *const IMSMQQueueInfo4, plJournalQuota: ?*i32) HRESULT {
         return self.vtable.get_JournalQuota(self, plJournalQuota);
     }
-    pub fn put_JournalQuota(self: *const IMSMQQueueInfo4, lJournalQuota: i32) callconv(.Inline) HRESULT {
+    pub fn put_JournalQuota(self: *const IMSMQQueueInfo4, lJournalQuota: i32) HRESULT {
         return self.vtable.put_JournalQuota(self, lJournalQuota);
     }
-    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsWorldReadable(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*i16) HRESULT {
         return self.vtable.get_IsWorldReadable(self, pisWorldReadable);
     }
-    pub fn Create(self: *const IMSMQQueueInfo4, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IMSMQQueueInfo4, IsTransactional: ?*VARIANT, IsWorldReadable: ?*VARIANT) HRESULT {
         return self.vtable.Create(self, IsTransactional, IsWorldReadable);
     }
-    pub fn Delete(self: *const IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IMSMQQueueInfo4) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Open(self: *const IMSMQQueueInfo4, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue4) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IMSMQQueueInfo4, Access: i32, ShareMode: i32, ppq: ?*?*IMSMQQueue4) HRESULT {
         return self.vtable.Open(self, Access, ShareMode, ppq);
     }
-    pub fn Refresh(self: *const IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IMSMQQueueInfo4) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn Update(self: *const IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn Update(self: *const IMSMQQueueInfo4) HRESULT {
         return self.vtable.Update(self);
     }
-    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo4, pbstrPathNameDNS: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathNameDNS(self: *const IMSMQQueueInfo4, pbstrPathNameDNS: ?*?BSTR) HRESULT {
         return self.vtable.get_PathNameDNS(self, pbstrPathNameDNS);
     }
-    pub fn get_Properties(self: *const IMSMQQueueInfo4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueueInfo4, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_Security(self: *const IMSMQQueueInfo4, pvarSecurity: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Security(self: *const IMSMQQueueInfo4, pvarSecurity: ?*VARIANT) HRESULT {
         return self.vtable.get_Security(self, pvarSecurity);
     }
-    pub fn put_Security(self: *const IMSMQQueueInfo4, varSecurity: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Security(self: *const IMSMQQueueInfo4, varSecurity: VARIANT) HRESULT {
         return self.vtable.put_Security(self, varSecurity);
     }
-    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo4, pisTransactional: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsTransactional2(self: *const IMSMQQueueInfo4, pisTransactional: ?*i16) HRESULT {
         return self.vtable.get_IsTransactional2(self, pisTransactional);
     }
-    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsWorldReadable2(self: *const IMSMQQueueInfo4, pisWorldReadable: ?*i16) HRESULT {
         return self.vtable.get_IsWorldReadable2(self, pisWorldReadable);
     }
-    pub fn get_MulticastAddress(self: *const IMSMQQueueInfo4, pbstrMulticastAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MulticastAddress(self: *const IMSMQQueueInfo4, pbstrMulticastAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_MulticastAddress(self, pbstrMulticastAddress);
     }
-    pub fn put_MulticastAddress(self: *const IMSMQQueueInfo4, bstrMulticastAddress: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_MulticastAddress(self: *const IMSMQQueueInfo4, bstrMulticastAddress: ?BSTR) HRESULT {
         return self.vtable.put_MulticastAddress(self, bstrMulticastAddress);
     }
-    pub fn get_ADsPath(self: *const IMSMQQueueInfo4, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ADsPath(self: *const IMSMQQueueInfo4, pbstrADsPath: ?*?BSTR) HRESULT {
         return self.vtable.get_ADsPath(self, pbstrADsPath);
     }
 };
@@ -2127,30 +2127,30 @@ pub const IMSMQQueue = extern union {
         get_Access: *const fn(
             self: *const IMSMQQueue,
             plAccess: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShareMode: *const fn(
             self: *const IMSMQQueue,
             plShareMode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueueInfo: *const fn(
             self: *const IMSMQQueue,
             ppqinfo: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const IMSMQQueue,
             plHandle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen: *const fn(
             self: *const IMSMQQueue,
             pisOpen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMSMQQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Receive: *const fn(
             self: *const IMSMQQueue,
             Transaction: ?*VARIANT,
@@ -2158,23 +2158,23 @@ pub const IMSMQQueue = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Peek: *const fn(
             self: *const IMSMQQueue,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableNotification: *const fn(
             self: *const IMSMQQueue,
             Event: ?*IMSMQEvent,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMSMQQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveCurrent: *const fn(
             self: *const IMSMQQueue,
             Transaction: ?*VARIANT,
@@ -2182,62 +2182,62 @@ pub const IMSMQQueue = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNext: *const fn(
             self: *const IMSMQQueue,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekCurrent: *const fn(
             self: *const IMSMQQueue,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Access(self: *const IMSMQQueue, plAccess: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Access(self: *const IMSMQQueue, plAccess: ?*i32) HRESULT {
         return self.vtable.get_Access(self, plAccess);
     }
-    pub fn get_ShareMode(self: *const IMSMQQueue, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ShareMode(self: *const IMSMQQueue, plShareMode: ?*i32) HRESULT {
         return self.vtable.get_ShareMode(self, plShareMode);
     }
-    pub fn get_QueueInfo(self: *const IMSMQQueue, ppqinfo: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_QueueInfo(self: *const IMSMQQueue, ppqinfo: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_QueueInfo(self, ppqinfo);
     }
-    pub fn get_Handle(self: *const IMSMQQueue, plHandle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const IMSMQQueue, plHandle: ?*i32) HRESULT {
         return self.vtable.get_Handle(self, plHandle);
     }
-    pub fn get_IsOpen(self: *const IMSMQQueue, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOpen(self: *const IMSMQQueue, pisOpen: ?*i16) HRESULT {
         return self.vtable.get_IsOpen(self, pisOpen);
     }
-    pub fn Close(self: *const IMSMQQueue) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IMSMQQueue) HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn Receive(self: *const IMSMQQueue, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Receive(self: *const IMSMQQueue, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Receive(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn Peek(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Peek(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Peek(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn EnableNotification(self: *const IMSMQQueue, Event: ?*IMSMQEvent, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn EnableNotification(self: *const IMSMQQueue, Event: ?*IMSMQEvent, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
         return self.vtable.EnableNotification(self, Event, Cursor, ReceiveTimeout);
     }
-    pub fn Reset(self: *const IMSMQQueue) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueue) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn ReceiveCurrent(self: *const IMSMQQueue, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn ReceiveCurrent(self: *const IMSMQQueue, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.ReceiveCurrent(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekNext(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekNext(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekNext(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekCurrent(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekCurrent(self: *const IMSMQQueue, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekCurrent(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
 };
@@ -2251,30 +2251,30 @@ pub const IMSMQQueue2 = extern union {
         get_Access: *const fn(
             self: *const IMSMQQueue2,
             plAccess: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShareMode: *const fn(
             self: *const IMSMQQueue2,
             plShareMode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueueInfo: *const fn(
             self: *const IMSMQQueue2,
             ppqinfo: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const IMSMQQueue2,
             plHandle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen: *const fn(
             self: *const IMSMQQueue2,
             pisOpen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMSMQQueue2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Receive_v1: *const fn(
             self: *const IMSMQQueue2,
             Transaction: ?*VARIANT,
@@ -2282,23 +2282,23 @@ pub const IMSMQQueue2 = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Peek_v1: *const fn(
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableNotification: *const fn(
             self: *const IMSMQQueue2,
             Event: ?*IMSMQEvent2,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMSMQQueue2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveCurrent_v1: *const fn(
             self: *const IMSMQQueue2,
             Transaction: ?*VARIANT,
@@ -2306,21 +2306,21 @@ pub const IMSMQQueue2 = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNext_v1: *const fn(
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekCurrent_v1: *const fn(
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Receive: *const fn(
             self: *const IMSMQQueue2,
             Transaction: ?*VARIANT,
@@ -2329,7 +2329,7 @@ pub const IMSMQQueue2 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Peek: *const fn(
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
@@ -2337,7 +2337,7 @@ pub const IMSMQQueue2 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveCurrent: *const fn(
             self: *const IMSMQQueue2,
             Transaction: ?*VARIANT,
@@ -2346,7 +2346,7 @@ pub const IMSMQQueue2 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNext: *const fn(
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
@@ -2354,7 +2354,7 @@ pub const IMSMQQueue2 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekCurrent: *const fn(
             self: *const IMSMQQueue2,
             WantDestinationQueue: ?*VARIANT,
@@ -2362,71 +2362,71 @@ pub const IMSMQQueue2 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueue2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Access(self: *const IMSMQQueue2, plAccess: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Access(self: *const IMSMQQueue2, plAccess: ?*i32) HRESULT {
         return self.vtable.get_Access(self, plAccess);
     }
-    pub fn get_ShareMode(self: *const IMSMQQueue2, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ShareMode(self: *const IMSMQQueue2, plShareMode: ?*i32) HRESULT {
         return self.vtable.get_ShareMode(self, plShareMode);
     }
-    pub fn get_QueueInfo(self: *const IMSMQQueue2, ppqinfo: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_QueueInfo(self: *const IMSMQQueue2, ppqinfo: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_QueueInfo(self, ppqinfo);
     }
-    pub fn get_Handle(self: *const IMSMQQueue2, plHandle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const IMSMQQueue2, plHandle: ?*i32) HRESULT {
         return self.vtable.get_Handle(self, plHandle);
     }
-    pub fn get_IsOpen(self: *const IMSMQQueue2, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOpen(self: *const IMSMQQueue2, pisOpen: ?*i16) HRESULT {
         return self.vtable.get_IsOpen(self, pisOpen);
     }
-    pub fn Close(self: *const IMSMQQueue2) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IMSMQQueue2) HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn Receive_v1(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Receive_v1(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Receive_v1(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn Peek_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Peek_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Peek_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn EnableNotification(self: *const IMSMQQueue2, Event: ?*IMSMQEvent2, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn EnableNotification(self: *const IMSMQQueue2, Event: ?*IMSMQEvent2, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
         return self.vtable.EnableNotification(self, Event, Cursor, ReceiveTimeout);
     }
-    pub fn Reset(self: *const IMSMQQueue2) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueue2) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.ReceiveCurrent_v1(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekNext_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekNext_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekNext_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekCurrent_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekCurrent_v1(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekCurrent_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn Receive(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+    pub fn Receive(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
         return self.vtable.Receive(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn Peek(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+    pub fn Peek(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
         return self.vtable.Peek(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveCurrent(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+    pub fn ReceiveCurrent(self: *const IMSMQQueue2, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
         return self.vtable.ReceiveCurrent(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn PeekNext(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+    pub fn PeekNext(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
         return self.vtable.PeekNext(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn PeekCurrent(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) callconv(.Inline) HRESULT {
+    pub fn PeekCurrent(self: *const IMSMQQueue2, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage2) HRESULT {
         return self.vtable.PeekCurrent(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn get_Properties(self: *const IMSMQQueue2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueue2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -2440,30 +2440,30 @@ pub const IMSMQQueue3 = extern union {
         get_Access: *const fn(
             self: *const IMSMQQueue3,
             plAccess: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShareMode: *const fn(
             self: *const IMSMQQueue3,
             plShareMode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueueInfo: *const fn(
             self: *const IMSMQQueue3,
             ppqinfo: ?*?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const IMSMQQueue3,
             plHandle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen: *const fn(
             self: *const IMSMQQueue3,
             pisOpen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMSMQQueue3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Receive_v1: *const fn(
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
@@ -2471,23 +2471,23 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Peek_v1: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableNotification: *const fn(
             self: *const IMSMQQueue3,
             Event: ?*IMSMQEvent3,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMSMQQueue3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveCurrent_v1: *const fn(
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
@@ -2495,21 +2495,21 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNext_v1: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekCurrent_v1: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Receive: *const fn(
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
@@ -2518,7 +2518,7 @@ pub const IMSMQQueue3 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Peek: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
@@ -2526,7 +2526,7 @@ pub const IMSMQQueue3 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveCurrent: *const fn(
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
@@ -2535,7 +2535,7 @@ pub const IMSMQQueue3 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNext: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
@@ -2543,7 +2543,7 @@ pub const IMSMQQueue3 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekCurrent: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
@@ -2551,17 +2551,17 @@ pub const IMSMQQueue3 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueue3,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle2: *const fn(
             self: *const IMSMQQueue3,
             pvarHandle: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveByLookupId: *const fn(
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
@@ -2570,7 +2570,7 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveNextByLookupId: *const fn(
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
@@ -2579,7 +2579,7 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceivePreviousByLookupId: *const fn(
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
@@ -2588,7 +2588,7 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveFirstByLookupId: *const fn(
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
@@ -2596,7 +2596,7 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveLastByLookupId: *const fn(
             self: *const IMSMQQueue3,
             Transaction: ?*VARIANT,
@@ -2604,7 +2604,7 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekByLookupId: *const fn(
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
@@ -2612,7 +2612,7 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNextByLookupId: *const fn(
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
@@ -2620,7 +2620,7 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekPreviousByLookupId: *const fn(
             self: *const IMSMQQueue3,
             LookupId: VARIANT,
@@ -2628,127 +2628,127 @@ pub const IMSMQQueue3 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekFirstByLookupId: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekLastByLookupId: *const fn(
             self: *const IMSMQQueue3,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Purge: *const fn(
             self: *const IMSMQQueue3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen2: *const fn(
             self: *const IMSMQQueue3,
             pisOpen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Access(self: *const IMSMQQueue3, plAccess: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Access(self: *const IMSMQQueue3, plAccess: ?*i32) HRESULT {
         return self.vtable.get_Access(self, plAccess);
     }
-    pub fn get_ShareMode(self: *const IMSMQQueue3, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ShareMode(self: *const IMSMQQueue3, plShareMode: ?*i32) HRESULT {
         return self.vtable.get_ShareMode(self, plShareMode);
     }
-    pub fn get_QueueInfo(self: *const IMSMQQueue3, ppqinfo: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn get_QueueInfo(self: *const IMSMQQueue3, ppqinfo: ?*?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.get_QueueInfo(self, ppqinfo);
     }
-    pub fn get_Handle(self: *const IMSMQQueue3, plHandle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const IMSMQQueue3, plHandle: ?*i32) HRESULT {
         return self.vtable.get_Handle(self, plHandle);
     }
-    pub fn get_IsOpen(self: *const IMSMQQueue3, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOpen(self: *const IMSMQQueue3, pisOpen: ?*i16) HRESULT {
         return self.vtable.get_IsOpen(self, pisOpen);
     }
-    pub fn Close(self: *const IMSMQQueue3) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IMSMQQueue3) HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn Receive_v1(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Receive_v1(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Receive_v1(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn Peek_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Peek_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Peek_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn EnableNotification(self: *const IMSMQQueue3, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn EnableNotification(self: *const IMSMQQueue3, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
         return self.vtable.EnableNotification(self, Event, Cursor, ReceiveTimeout);
     }
-    pub fn Reset(self: *const IMSMQQueue3) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueue3) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.ReceiveCurrent_v1(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekNext_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekNext_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekNext_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekCurrent_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekCurrent_v1(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekCurrent_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn Receive(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn Receive(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.Receive(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn Peek(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn Peek(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.Peek(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveCurrent(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn ReceiveCurrent(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.ReceiveCurrent(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn PeekNext(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn PeekNext(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.PeekNext(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn PeekCurrent(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn PeekCurrent(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.PeekCurrent(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn get_Properties(self: *const IMSMQQueue3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueue3, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_Handle2(self: *const IMSMQQueue3, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Handle2(self: *const IMSMQQueue3, pvarHandle: ?*VARIANT) HRESULT {
         return self.vtable.get_Handle2(self, pvarHandle);
     }
-    pub fn ReceiveByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn ReceiveByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.ReceiveByLookupId(self, LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveNextByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn ReceiveNextByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.ReceiveNextByLookupId(self, LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceivePreviousByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn ReceivePreviousByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.ReceivePreviousByLookupId(self, LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveFirstByLookupId(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn ReceiveFirstByLookupId(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.ReceiveFirstByLookupId(self, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveLastByLookupId(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn ReceiveLastByLookupId(self: *const IMSMQQueue3, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.ReceiveLastByLookupId(self, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn PeekByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.PeekByLookupId(self, LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekNextByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn PeekNextByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.PeekNextByLookupId(self, LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekPreviousByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn PeekPreviousByLookupId(self: *const IMSMQQueue3, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.PeekPreviousByLookupId(self, LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekFirstByLookupId(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn PeekFirstByLookupId(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.PeekFirstByLookupId(self, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekLastByLookupId(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn PeekLastByLookupId(self: *const IMSMQQueue3, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage3) HRESULT {
         return self.vtable.PeekLastByLookupId(self, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn Purge(self: *const IMSMQQueue3) callconv(.Inline) HRESULT {
+    pub fn Purge(self: *const IMSMQQueue3) HRESULT {
         return self.vtable.Purge(self);
     }
-    pub fn get_IsOpen2(self: *const IMSMQQueue3, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOpen2(self: *const IMSMQQueue3, pisOpen: ?*i16) HRESULT {
         return self.vtable.get_IsOpen2(self, pisOpen);
     }
 };
@@ -2762,30 +2762,30 @@ pub const IMSMQQueue4 = extern union {
         get_Access: *const fn(
             self: *const IMSMQQueue4,
             plAccess: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ShareMode: *const fn(
             self: *const IMSMQQueue4,
             plShareMode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueueInfo: *const fn(
             self: *const IMSMQQueue4,
             ppqinfo: ?*?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const IMSMQQueue4,
             plHandle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen: *const fn(
             self: *const IMSMQQueue4,
             pisOpen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMSMQQueue4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Receive_v1: *const fn(
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
@@ -2793,23 +2793,23 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Peek_v1: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableNotification: *const fn(
             self: *const IMSMQQueue4,
             Event: ?*IMSMQEvent3,
             Cursor: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IMSMQQueue4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveCurrent_v1: *const fn(
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
@@ -2817,21 +2817,21 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNext_v1: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekCurrent_v1: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             ReceiveTimeout: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Receive: *const fn(
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
@@ -2840,7 +2840,7 @@ pub const IMSMQQueue4 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Peek: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
@@ -2848,7 +2848,7 @@ pub const IMSMQQueue4 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveCurrent: *const fn(
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
@@ -2857,7 +2857,7 @@ pub const IMSMQQueue4 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNext: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
@@ -2865,7 +2865,7 @@ pub const IMSMQQueue4 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekCurrent: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
@@ -2873,17 +2873,17 @@ pub const IMSMQQueue4 = extern union {
             ReceiveTimeout: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueue4,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle2: *const fn(
             self: *const IMSMQQueue4,
             pvarHandle: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveByLookupId: *const fn(
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
@@ -2892,7 +2892,7 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveNextByLookupId: *const fn(
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
@@ -2901,7 +2901,7 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceivePreviousByLookupId: *const fn(
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
@@ -2910,7 +2910,7 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveFirstByLookupId: *const fn(
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
@@ -2918,7 +2918,7 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveLastByLookupId: *const fn(
             self: *const IMSMQQueue4,
             Transaction: ?*VARIANT,
@@ -2926,7 +2926,7 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekByLookupId: *const fn(
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
@@ -2934,7 +2934,7 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekNextByLookupId: *const fn(
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
@@ -2942,7 +2942,7 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekPreviousByLookupId: *const fn(
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
@@ -2950,29 +2950,29 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekFirstByLookupId: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PeekLastByLookupId: *const fn(
             self: *const IMSMQQueue4,
             WantDestinationQueue: ?*VARIANT,
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Purge: *const fn(
             self: *const IMSMQQueue4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen2: *const fn(
             self: *const IMSMQQueue4,
             pisOpen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReceiveByLookupIdAllowPeek: *const fn(
             self: *const IMSMQQueue4,
             LookupId: VARIANT,
@@ -2981,108 +2981,108 @@ pub const IMSMQQueue4 = extern union {
             WantBody: ?*VARIANT,
             WantConnectorType: ?*VARIANT,
             ppmsg: ?*?*IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Access(self: *const IMSMQQueue4, plAccess: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Access(self: *const IMSMQQueue4, plAccess: ?*i32) HRESULT {
         return self.vtable.get_Access(self, plAccess);
     }
-    pub fn get_ShareMode(self: *const IMSMQQueue4, plShareMode: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ShareMode(self: *const IMSMQQueue4, plShareMode: ?*i32) HRESULT {
         return self.vtable.get_ShareMode(self, plShareMode);
     }
-    pub fn get_QueueInfo(self: *const IMSMQQueue4, ppqinfo: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn get_QueueInfo(self: *const IMSMQQueue4, ppqinfo: ?*?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.get_QueueInfo(self, ppqinfo);
     }
-    pub fn get_Handle(self: *const IMSMQQueue4, plHandle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const IMSMQQueue4, plHandle: ?*i32) HRESULT {
         return self.vtable.get_Handle(self, plHandle);
     }
-    pub fn get_IsOpen(self: *const IMSMQQueue4, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOpen(self: *const IMSMQQueue4, pisOpen: ?*i16) HRESULT {
         return self.vtable.get_IsOpen(self, pisOpen);
     }
-    pub fn Close(self: *const IMSMQQueue4) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IMSMQQueue4) HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn Receive_v1(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Receive_v1(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Receive_v1(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn Peek_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn Peek_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.Peek_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn EnableNotification(self: *const IMSMQQueue4, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn EnableNotification(self: *const IMSMQQueue4, Event: ?*IMSMQEvent3, Cursor: ?*VARIANT, ReceiveTimeout: ?*VARIANT) HRESULT {
         return self.vtable.EnableNotification(self, Event, Cursor, ReceiveTimeout);
     }
-    pub fn Reset(self: *const IMSMQQueue4) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueue4) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn ReceiveCurrent_v1(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.ReceiveCurrent_v1(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekNext_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekNext_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekNext_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn PeekCurrent_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn PeekCurrent_v1(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, ppmsg: ?*?*IMSMQMessage) HRESULT {
         return self.vtable.PeekCurrent_v1(self, WantDestinationQueue, WantBody, ReceiveTimeout, ppmsg);
     }
-    pub fn Receive(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn Receive(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.Receive(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn Peek(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn Peek(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.Peek(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveCurrent(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn ReceiveCurrent(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.ReceiveCurrent(self, Transaction, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn PeekNext(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn PeekNext(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.PeekNext(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn PeekCurrent(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn PeekCurrent(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, ReceiveTimeout: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.PeekCurrent(self, WantDestinationQueue, WantBody, ReceiveTimeout, WantConnectorType, ppmsg);
     }
-    pub fn get_Properties(self: *const IMSMQQueue4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueue4, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_Handle2(self: *const IMSMQQueue4, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Handle2(self: *const IMSMQQueue4, pvarHandle: ?*VARIANT) HRESULT {
         return self.vtable.get_Handle2(self, pvarHandle);
     }
-    pub fn ReceiveByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn ReceiveByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.ReceiveByLookupId(self, LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveNextByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn ReceiveNextByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.ReceiveNextByLookupId(self, LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceivePreviousByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn ReceivePreviousByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.ReceivePreviousByLookupId(self, LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveFirstByLookupId(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn ReceiveFirstByLookupId(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.ReceiveFirstByLookupId(self, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn ReceiveLastByLookupId(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn ReceiveLastByLookupId(self: *const IMSMQQueue4, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.ReceiveLastByLookupId(self, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn PeekByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.PeekByLookupId(self, LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekNextByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn PeekNextByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.PeekNextByLookupId(self, LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekPreviousByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn PeekPreviousByLookupId(self: *const IMSMQQueue4, LookupId: VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.PeekPreviousByLookupId(self, LookupId, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekFirstByLookupId(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn PeekFirstByLookupId(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.PeekFirstByLookupId(self, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn PeekLastByLookupId(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn PeekLastByLookupId(self: *const IMSMQQueue4, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.PeekLastByLookupId(self, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
-    pub fn Purge(self: *const IMSMQQueue4) callconv(.Inline) HRESULT {
+    pub fn Purge(self: *const IMSMQQueue4) HRESULT {
         return self.vtable.Purge(self);
     }
-    pub fn get_IsOpen2(self: *const IMSMQQueue4, pisOpen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOpen2(self: *const IMSMQQueue4, pisOpen: ?*i16) HRESULT {
         return self.vtable.get_IsOpen2(self, pisOpen);
     }
-    pub fn ReceiveByLookupIdAllowPeek(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn ReceiveByLookupIdAllowPeek(self: *const IMSMQQueue4, LookupId: VARIANT, Transaction: ?*VARIANT, WantDestinationQueue: ?*VARIANT, WantBody: ?*VARIANT, WantConnectorType: ?*VARIANT, ppmsg: ?*?*IMSMQMessage4) HRESULT {
         return self.vtable.ReceiveByLookupIdAllowPeek(self, LookupId, Transaction, WantDestinationQueue, WantBody, WantConnectorType, ppmsg);
     }
 };
@@ -3096,392 +3096,392 @@ pub const IMSMQMessage = extern union {
         get_Class: *const fn(
             self: *const IMSMQMessage,
             plClass: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQMessage,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQMessage,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthLevel: *const fn(
             self: *const IMSMQMessage,
             plAuthLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthLevel: *const fn(
             self: *const IMSMQMessage,
             lAuthLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated: *const fn(
             self: *const IMSMQMessage,
             pisAuthenticated: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Delivery: *const fn(
             self: *const IMSMQMessage,
             plDelivery: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delivery: *const fn(
             self: *const IMSMQMessage,
             lDelivery: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Trace: *const fn(
             self: *const IMSMQMessage,
             plTrace: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Trace: *const fn(
             self: *const IMSMQMessage,
             lTrace: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: *const fn(
             self: *const IMSMQMessage,
             plPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: *const fn(
             self: *const IMSMQMessage,
             lPriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQMessage,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQMessage,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage,
             pqinfoResponse: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppSpecific: *const fn(
             self: *const IMSMQMessage,
             plAppSpecific: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AppSpecific: *const fn(
             self: *const IMSMQMessage,
             lAppSpecific: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceMachineGuid: *const fn(
             self: *const IMSMQMessage,
             pbstrGuidSrcMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BodyLength: *const fn(
             self: *const IMSMQMessage,
             pcbBody: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Body: *const fn(
             self: *const IMSMQMessage,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Body: *const fn(
             self: *const IMSMQMessage,
             varBody: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage,
             pqinfoAdmin: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IMSMQMessage,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CorrelationId: *const fn(
             self: *const IMSMQMessage,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CorrelationId: *const fn(
             self: *const IMSMQMessage,
             varMsgId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ack: *const fn(
             self: *const IMSMQMessage,
             plAck: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Ack: *const fn(
             self: *const IMSMQMessage,
             lAck: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQMessage,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQMessage,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage,
             plMaxTimeToReachQueue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage,
             lMaxTimeToReachQueue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage,
             plMaxTimeToReceive: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage,
             lMaxTimeToReceive: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const IMSMQMessage,
             plHashAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IMSMQMessage,
             lHashAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage,
             plEncryptAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage,
             lEncryptAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SentTime: *const fn(
             self: *const IMSMQMessage,
             pvarSentTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArrivedTime: *const fn(
             self: *const IMSMQMessage,
             plArrivedTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationQueueInfo: *const fn(
             self: *const IMSMQMessage,
             ppqinfoDest: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderCertificate: *const fn(
             self: *const IMSMQMessage,
             pvarSenderCert: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderCertificate: *const fn(
             self: *const IMSMQMessage,
             varSenderCert: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderId: *const fn(
             self: *const IMSMQMessage,
             pvarSenderId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderIdType: *const fn(
             self: *const IMSMQMessage,
             plSenderIdType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderIdType: *const fn(
             self: *const IMSMQMessage,
             lSenderIdType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Send: *const fn(
             self: *const IMSMQMessage,
             DestinationQueue: ?*IMSMQQueue,
             Transaction: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext: *const fn(
             self: *const IMSMQMessage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Class(self: *const IMSMQMessage, plClass: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Class(self: *const IMSMQMessage, plClass: ?*i32) HRESULT {
         return self.vtable.get_Class(self, plClass);
     }
-    pub fn get_PrivLevel(self: *const IMSMQMessage, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQMessage, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQMessage, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQMessage, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_AuthLevel(self: *const IMSMQMessage, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AuthLevel(self: *const IMSMQMessage, plAuthLevel: ?*i32) HRESULT {
         return self.vtable.get_AuthLevel(self, plAuthLevel);
     }
-    pub fn put_AuthLevel(self: *const IMSMQMessage, lAuthLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_AuthLevel(self: *const IMSMQMessage, lAuthLevel: i32) HRESULT {
         return self.vtable.put_AuthLevel(self, lAuthLevel);
     }
-    pub fn get_IsAuthenticated(self: *const IMSMQMessage, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage, pisAuthenticated: ?*i16) HRESULT {
         return self.vtable.get_IsAuthenticated(self, pisAuthenticated);
     }
-    pub fn get_Delivery(self: *const IMSMQMessage, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Delivery(self: *const IMSMQMessage, plDelivery: ?*i32) HRESULT {
         return self.vtable.get_Delivery(self, plDelivery);
     }
-    pub fn put_Delivery(self: *const IMSMQMessage, lDelivery: i32) callconv(.Inline) HRESULT {
+    pub fn put_Delivery(self: *const IMSMQMessage, lDelivery: i32) HRESULT {
         return self.vtable.put_Delivery(self, lDelivery);
     }
-    pub fn get_Trace(self: *const IMSMQMessage, plTrace: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Trace(self: *const IMSMQMessage, plTrace: ?*i32) HRESULT {
         return self.vtable.get_Trace(self, plTrace);
     }
-    pub fn put_Trace(self: *const IMSMQMessage, lTrace: i32) callconv(.Inline) HRESULT {
+    pub fn put_Trace(self: *const IMSMQMessage, lTrace: i32) HRESULT {
         return self.vtable.put_Trace(self, lTrace);
     }
-    pub fn get_Priority(self: *const IMSMQMessage, plPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Priority(self: *const IMSMQMessage, plPriority: ?*i32) HRESULT {
         return self.vtable.get_Priority(self, plPriority);
     }
-    pub fn put_Priority(self: *const IMSMQMessage, lPriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_Priority(self: *const IMSMQMessage, lPriority: i32) HRESULT {
         return self.vtable.put_Priority(self, lPriority);
     }
-    pub fn get_Journal(self: *const IMSMQMessage, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQMessage, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQMessage, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQMessage, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_ResponseQueueInfo(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_ResponseQueueInfo(self, pqinfoResponse);
     }
-    pub fn get_AppSpecific(self: *const IMSMQMessage, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AppSpecific(self: *const IMSMQMessage, plAppSpecific: ?*i32) HRESULT {
         return self.vtable.get_AppSpecific(self, plAppSpecific);
     }
-    pub fn put_AppSpecific(self: *const IMSMQMessage, lAppSpecific: i32) callconv(.Inline) HRESULT {
+    pub fn put_AppSpecific(self: *const IMSMQMessage, lAppSpecific: i32) HRESULT {
         return self.vtable.put_AppSpecific(self, lAppSpecific);
     }
-    pub fn get_SourceMachineGuid(self: *const IMSMQMessage, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
         return self.vtable.get_SourceMachineGuid(self, pbstrGuidSrcMachine);
     }
-    pub fn get_BodyLength(self: *const IMSMQMessage, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BodyLength(self: *const IMSMQMessage, pcbBody: ?*i32) HRESULT {
         return self.vtable.get_BodyLength(self, pcbBody);
     }
-    pub fn get_Body(self: *const IMSMQMessage, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Body(self: *const IMSMQMessage, pvarBody: ?*VARIANT) HRESULT {
         return self.vtable.get_Body(self, pvarBody);
     }
-    pub fn put_Body(self: *const IMSMQMessage, varBody: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Body(self: *const IMSMQMessage, varBody: VARIANT) HRESULT {
         return self.vtable.put_Body(self, varBody);
     }
-    pub fn get_AdminQueueInfo(self: *const IMSMQMessage, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_AdminQueueInfo(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_AdminQueueInfo(self, pqinfoAdmin);
     }
-    pub fn get_Id(self: *const IMSMQMessage, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IMSMQMessage, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_Id(self, pvarMsgId);
     }
-    pub fn get_CorrelationId(self: *const IMSMQMessage, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CorrelationId(self: *const IMSMQMessage, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_CorrelationId(self, pvarMsgId);
     }
-    pub fn put_CorrelationId(self: *const IMSMQMessage, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_CorrelationId(self: *const IMSMQMessage, varMsgId: VARIANT) HRESULT {
         return self.vtable.put_CorrelationId(self, varMsgId);
     }
-    pub fn get_Ack(self: *const IMSMQMessage, plAck: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Ack(self: *const IMSMQMessage, plAck: ?*i32) HRESULT {
         return self.vtable.get_Ack(self, plAck);
     }
-    pub fn put_Ack(self: *const IMSMQMessage, lAck: i32) callconv(.Inline) HRESULT {
+    pub fn put_Ack(self: *const IMSMQMessage, lAck: i32) HRESULT {
         return self.vtable.put_Ack(self, lAck);
     }
-    pub fn get_Label(self: *const IMSMQMessage, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQMessage, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQMessage, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQMessage, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage, plMaxTimeToReachQueue: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReachQueue(self, plMaxTimeToReachQueue);
     }
-    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage, lMaxTimeToReachQueue: i32) HRESULT {
         return self.vtable.put_MaxTimeToReachQueue(self, lMaxTimeToReachQueue);
     }
-    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage, plMaxTimeToReceive: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReceive(self, plMaxTimeToReceive);
     }
-    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage, lMaxTimeToReceive: i32) HRESULT {
         return self.vtable.put_MaxTimeToReceive(self, lMaxTimeToReceive);
     }
-    pub fn get_HashAlgorithm(self: *const IMSMQMessage, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage, plHashAlg: ?*i32) HRESULT {
         return self.vtable.get_HashAlgorithm(self, plHashAlg);
     }
-    pub fn put_HashAlgorithm(self: *const IMSMQMessage, lHashAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage, lHashAlg: i32) HRESULT {
         return self.vtable.put_HashAlgorithm(self, lHashAlg);
     }
-    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage, plEncryptAlg: ?*i32) HRESULT {
         return self.vtable.get_EncryptAlgorithm(self, plEncryptAlg);
     }
-    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage, lEncryptAlg: i32) HRESULT {
         return self.vtable.put_EncryptAlgorithm(self, lEncryptAlg);
     }
-    pub fn get_SentTime(self: *const IMSMQMessage, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SentTime(self: *const IMSMQMessage, pvarSentTime: ?*VARIANT) HRESULT {
         return self.vtable.get_SentTime(self, pvarSentTime);
     }
-    pub fn get_ArrivedTime(self: *const IMSMQMessage, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ArrivedTime(self: *const IMSMQMessage, plArrivedTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ArrivedTime(self, plArrivedTime);
     }
-    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage, ppqinfoDest: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage, ppqinfoDest: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_DestinationQueueInfo(self, ppqinfoDest);
     }
-    pub fn get_SenderCertificate(self: *const IMSMQMessage, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderCertificate(self: *const IMSMQMessage, pvarSenderCert: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderCertificate(self, pvarSenderCert);
     }
-    pub fn put_SenderCertificate(self: *const IMSMQMessage, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SenderCertificate(self: *const IMSMQMessage, varSenderCert: VARIANT) HRESULT {
         return self.vtable.put_SenderCertificate(self, varSenderCert);
     }
-    pub fn get_SenderId(self: *const IMSMQMessage, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderId(self: *const IMSMQMessage, pvarSenderId: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderId(self, pvarSenderId);
     }
-    pub fn get_SenderIdType(self: *const IMSMQMessage, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SenderIdType(self: *const IMSMQMessage, plSenderIdType: ?*i32) HRESULT {
         return self.vtable.get_SenderIdType(self, plSenderIdType);
     }
-    pub fn put_SenderIdType(self: *const IMSMQMessage, lSenderIdType: i32) callconv(.Inline) HRESULT {
+    pub fn put_SenderIdType(self: *const IMSMQMessage, lSenderIdType: i32) HRESULT {
         return self.vtable.put_SenderIdType(self, lSenderIdType);
     }
-    pub fn Send(self: *const IMSMQMessage, DestinationQueue: ?*IMSMQQueue, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Send(self: *const IMSMQMessage, DestinationQueue: ?*IMSMQQueue, Transaction: ?*VARIANT) HRESULT {
         return self.vtable.Send(self, DestinationQueue, Transaction);
     }
-    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage) callconv(.Inline) HRESULT {
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage) HRESULT {
         return self.vtable.AttachCurrentSecurityContext(self);
     }
 };
@@ -3493,19 +3493,19 @@ pub const IMSMQQueueInfos = extern union {
         base: IDispatch.VTable,
         Reset: *const fn(
             self: *const IMSMQQueueInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IMSMQQueueInfos,
             ppqinfoNext: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IMSMQQueueInfos) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueueInfos) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Next(self: *const IMSMQQueueInfos, ppqinfoNext: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IMSMQQueueInfos, ppqinfoNext: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.Next(self, ppqinfoNext);
     }
 };
@@ -3517,27 +3517,27 @@ pub const IMSMQQueueInfos2 = extern union {
         base: IDispatch.VTable,
         Reset: *const fn(
             self: *const IMSMQQueueInfos2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IMSMQQueueInfos2,
             ppqinfoNext: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueueInfos2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IMSMQQueueInfos2) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueueInfos2) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Next(self: *const IMSMQQueueInfos2, ppqinfoNext: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IMSMQQueueInfos2, ppqinfoNext: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.Next(self, ppqinfoNext);
     }
-    pub fn get_Properties(self: *const IMSMQQueueInfos2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueueInfos2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -3549,27 +3549,27 @@ pub const IMSMQQueueInfos3 = extern union {
         base: IDispatch.VTable,
         Reset: *const fn(
             self: *const IMSMQQueueInfos3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IMSMQQueueInfos3,
             ppqinfoNext: ?*?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueueInfos3,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IMSMQQueueInfos3) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueueInfos3) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Next(self: *const IMSMQQueueInfos3, ppqinfoNext: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IMSMQQueueInfos3, ppqinfoNext: ?*?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.Next(self, ppqinfoNext);
     }
-    pub fn get_Properties(self: *const IMSMQQueueInfos3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueueInfos3, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -3581,27 +3581,27 @@ pub const IMSMQQueueInfos4 = extern union {
         base: IDispatch.VTable,
         Reset: *const fn(
             self: *const IMSMQQueueInfos4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IMSMQQueueInfos4,
             ppqinfoNext: ?*?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQueueInfos4,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IMSMQQueueInfos4) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IMSMQQueueInfos4) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Next(self: *const IMSMQQueueInfos4, ppqinfoNext: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IMSMQQueueInfos4, ppqinfoNext: ?*?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.Next(self, ppqinfoNext);
     }
-    pub fn get_Properties(self: *const IMSMQQueueInfos4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQueueInfos4, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -3626,13 +3626,13 @@ pub const IMSMQEvent2 = extern union {
         get_Properties: *const fn(
             self: *const IMSMQEvent2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMSMQEvent: IMSMQEvent,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Properties(self: *const IMSMQEvent2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQEvent2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -3659,29 +3659,29 @@ pub const IMSMQTransaction = extern union {
         get_Transaction: *const fn(
             self: *const IMSMQTransaction,
             plTransaction: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IMSMQTransaction,
             fRetaining: ?*VARIANT,
             grfTC: ?*VARIANT,
             grfRM: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Abort: *const fn(
             self: *const IMSMQTransaction,
             fRetaining: ?*VARIANT,
             fAsync: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Transaction(self: *const IMSMQTransaction, plTransaction: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Transaction(self: *const IMSMQTransaction, plTransaction: ?*i32) HRESULT {
         return self.vtable.get_Transaction(self, plTransaction);
     }
-    pub fn Commit(self: *const IMSMQTransaction, fRetaining: ?*VARIANT, grfTC: ?*VARIANT, grfRM: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IMSMQTransaction, fRetaining: ?*VARIANT, grfTC: ?*VARIANT, grfRM: ?*VARIANT) HRESULT {
         return self.vtable.Commit(self, fRetaining, grfTC, grfRM);
     }
-    pub fn Abort(self: *const IMSMQTransaction, fRetaining: ?*VARIANT, fAsync: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Abort(self: *const IMSMQTransaction, fRetaining: ?*VARIANT, fAsync: ?*VARIANT) HRESULT {
         return self.vtable.Abort(self, fRetaining, fAsync);
     }
 };
@@ -3694,12 +3694,12 @@ pub const IMSMQCoordinatedTransactionDispenser = extern union {
         BeginTransaction: *const fn(
             self: *const IMSMQCoordinatedTransactionDispenser,
             ptransaction: ?*?*IMSMQTransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser, ptransaction: ?*?*IMSMQTransaction) callconv(.Inline) HRESULT {
+    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser, ptransaction: ?*?*IMSMQTransaction) HRESULT {
         return self.vtable.BeginTransaction(self, ptransaction);
     }
 };
@@ -3712,12 +3712,12 @@ pub const IMSMQTransactionDispenser = extern union {
         BeginTransaction: *const fn(
             self: *const IMSMQTransactionDispenser,
             ptransaction: ?*?*IMSMQTransaction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser, ptransaction: ?*?*IMSMQTransaction) callconv(.Inline) HRESULT {
+    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser, ptransaction: ?*?*IMSMQTransaction) HRESULT {
         return self.vtable.BeginTransaction(self, ptransaction);
     }
 };
@@ -3739,20 +3739,20 @@ pub const IMSMQQuery2 = extern union {
             RelCreateTime: ?*VARIANT,
             RelModifyTime: ?*VARIANT,
             ppqinfos: ?*?*IMSMQQueueInfos2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQuery2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn LookupQueue(self: *const IMSMQQuery2, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos2) callconv(.Inline) HRESULT {
+    pub fn LookupQueue(self: *const IMSMQQuery2, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos2) HRESULT {
         return self.vtable.LookupQueue(self, QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
     }
-    pub fn get_Properties(self: *const IMSMQQuery2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQuery2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -3774,12 +3774,12 @@ pub const IMSMQQuery3 = extern union {
             RelCreateTime: ?*VARIANT,
             RelModifyTime: ?*VARIANT,
             ppqinfos: ?*?*IMSMQQueueInfos3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQuery3,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupQueue: *const fn(
             self: *const IMSMQQuery3,
             QueueGuid: ?*VARIANT,
@@ -3794,18 +3794,18 @@ pub const IMSMQQuery3 = extern union {
             MulticastAddress: ?*VARIANT,
             RelMulticastAddress: ?*VARIANT,
             ppqinfos: ?*?*IMSMQQueueInfos3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn LookupQueue_v2(self: *const IMSMQQuery3, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) callconv(.Inline) HRESULT {
+    pub fn LookupQueue_v2(self: *const IMSMQQuery3, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) HRESULT {
         return self.vtable.LookupQueue_v2(self, QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
     }
-    pub fn get_Properties(self: *const IMSMQQuery3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQuery3, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn LookupQueue(self: *const IMSMQQuery3, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) callconv(.Inline) HRESULT {
+    pub fn LookupQueue(self: *const IMSMQQuery3, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos3) HRESULT {
         return self.vtable.LookupQueue(self, QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
     }
 };
@@ -3827,12 +3827,12 @@ pub const IMSMQQuery4 = extern union {
             RelCreateTime: ?*VARIANT,
             RelModifyTime: ?*VARIANT,
             ppqinfos: ?*?*IMSMQQueueInfos4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQQuery4,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupQueue: *const fn(
             self: *const IMSMQQuery4,
             QueueGuid: ?*VARIANT,
@@ -3847,18 +3847,18 @@ pub const IMSMQQuery4 = extern union {
             MulticastAddress: ?*VARIANT,
             RelMulticastAddress: ?*VARIANT,
             ppqinfos: ?*?*IMSMQQueueInfos4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn LookupQueue_v2(self: *const IMSMQQuery4, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) callconv(.Inline) HRESULT {
+    pub fn LookupQueue_v2(self: *const IMSMQQuery4, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) HRESULT {
         return self.vtable.LookupQueue_v2(self, QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, ppqinfos);
     }
-    pub fn get_Properties(self: *const IMSMQQuery4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQQuery4, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn LookupQueue(self: *const IMSMQQuery4, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) callconv(.Inline) HRESULT {
+    pub fn LookupQueue(self: *const IMSMQQuery4, QueueGuid: ?*VARIANT, ServiceTypeGuid: ?*VARIANT, Label: ?*VARIANT, CreateTime: ?*VARIANT, ModifyTime: ?*VARIANT, RelServiceType: ?*VARIANT, RelLabel: ?*VARIANT, RelCreateTime: ?*VARIANT, RelModifyTime: ?*VARIANT, MulticastAddress: ?*VARIANT, RelMulticastAddress: ?*VARIANT, ppqinfos: ?*?*IMSMQQueueInfos4) HRESULT {
         return self.vtable.LookupQueue(self, QueueGuid, ServiceTypeGuid, Label, CreateTime, ModifyTime, RelServiceType, RelLabel, RelCreateTime, RelModifyTime, MulticastAddress, RelMulticastAddress, ppqinfos);
     }
 };
@@ -3872,598 +3872,598 @@ pub const IMSMQMessage2 = extern union {
         get_Class: *const fn(
             self: *const IMSMQMessage2,
             plClass: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQMessage2,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQMessage2,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthLevel: *const fn(
             self: *const IMSMQMessage2,
             plAuthLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthLevel: *const fn(
             self: *const IMSMQMessage2,
             lAuthLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated: *const fn(
             self: *const IMSMQMessage2,
             pisAuthenticated: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Delivery: *const fn(
             self: *const IMSMQMessage2,
             plDelivery: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delivery: *const fn(
             self: *const IMSMQMessage2,
             lDelivery: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Trace: *const fn(
             self: *const IMSMQMessage2,
             plTrace: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Trace: *const fn(
             self: *const IMSMQMessage2,
             lTrace: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: *const fn(
             self: *const IMSMQMessage2,
             plPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: *const fn(
             self: *const IMSMQMessage2,
             lPriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQMessage2,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQMessage2,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo_v1: *const fn(
             self: *const IMSMQMessage2,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo_v1: *const fn(
             self: *const IMSMQMessage2,
             pqinfoResponse: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppSpecific: *const fn(
             self: *const IMSMQMessage2,
             plAppSpecific: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AppSpecific: *const fn(
             self: *const IMSMQMessage2,
             lAppSpecific: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceMachineGuid: *const fn(
             self: *const IMSMQMessage2,
             pbstrGuidSrcMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BodyLength: *const fn(
             self: *const IMSMQMessage2,
             pcbBody: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Body: *const fn(
             self: *const IMSMQMessage2,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Body: *const fn(
             self: *const IMSMQMessage2,
             varBody: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo_v1: *const fn(
             self: *const IMSMQMessage2,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo_v1: *const fn(
             self: *const IMSMQMessage2,
             pqinfoAdmin: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IMSMQMessage2,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CorrelationId: *const fn(
             self: *const IMSMQMessage2,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CorrelationId: *const fn(
             self: *const IMSMQMessage2,
             varMsgId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ack: *const fn(
             self: *const IMSMQMessage2,
             plAck: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Ack: *const fn(
             self: *const IMSMQMessage2,
             lAck: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQMessage2,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQMessage2,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage2,
             plMaxTimeToReachQueue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage2,
             lMaxTimeToReachQueue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage2,
             plMaxTimeToReceive: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage2,
             lMaxTimeToReceive: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const IMSMQMessage2,
             plHashAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IMSMQMessage2,
             lHashAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage2,
             plEncryptAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage2,
             lEncryptAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SentTime: *const fn(
             self: *const IMSMQMessage2,
             pvarSentTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArrivedTime: *const fn(
             self: *const IMSMQMessage2,
             plArrivedTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationQueueInfo: *const fn(
             self: *const IMSMQMessage2,
             ppqinfoDest: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderCertificate: *const fn(
             self: *const IMSMQMessage2,
             pvarSenderCert: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderCertificate: *const fn(
             self: *const IMSMQMessage2,
             varSenderCert: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderId: *const fn(
             self: *const IMSMQMessage2,
             pvarSenderId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderIdType: *const fn(
             self: *const IMSMQMessage2,
             plSenderIdType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderIdType: *const fn(
             self: *const IMSMQMessage2,
             lSenderIdType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Send: *const fn(
             self: *const IMSMQMessage2,
             DestinationQueue: ?*IMSMQQueue2,
             Transaction: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext: *const fn(
             self: *const IMSMQMessage2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderVersion: *const fn(
             self: *const IMSMQMessage2,
             plSenderVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Extension: *const fn(
             self: *const IMSMQMessage2,
             pvarExtension: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Extension: *const fn(
             self: *const IMSMQMessage2,
             varExtension: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectorTypeGuid: *const fn(
             self: *const IMSMQMessage2,
             pbstrGuidConnectorType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectorTypeGuid: *const fn(
             self: *const IMSMQMessage2,
             bstrGuidConnectorType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionStatusQueueInfo: *const fn(
             self: *const IMSMQMessage2,
             ppqinfoXactStatus: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationSymmetricKey: *const fn(
             self: *const IMSMQMessage2,
             pvarDestSymmKey: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DestinationSymmetricKey: *const fn(
             self: *const IMSMQMessage2,
             varDestSymmKey: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Signature: *const fn(
             self: *const IMSMQMessage2,
             pvarSignature: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Signature: *const fn(
             self: *const IMSMQMessage2,
             varSignature: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationProviderType: *const fn(
             self: *const IMSMQMessage2,
             plAuthProvType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationProviderType: *const fn(
             self: *const IMSMQMessage2,
             lAuthProvType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationProviderName: *const fn(
             self: *const IMSMQMessage2,
             pbstrAuthProvName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationProviderName: *const fn(
             self: *const IMSMQMessage2,
             bstrAuthProvName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderId: *const fn(
             self: *const IMSMQMessage2,
             varSenderId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MsgClass: *const fn(
             self: *const IMSMQMessage2,
             plMsgClass: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MsgClass: *const fn(
             self: *const IMSMQMessage2,
             lMsgClass: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQMessage2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionId: *const fn(
             self: *const IMSMQMessage2,
             pvarXactId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstInTransaction: *const fn(
             self: *const IMSMQMessage2,
             pisFirstInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLastInTransaction: *const fn(
             self: *const IMSMQMessage2,
             pisLastInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage2,
             ppqinfoResponse: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage2,
             pqinfoResponse: ?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage2,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage2,
             pqinfoAdmin: ?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReceivedAuthenticationLevel: *const fn(
             self: *const IMSMQMessage2,
             psReceivedAuthenticationLevel: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Class(self: *const IMSMQMessage2, plClass: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Class(self: *const IMSMQMessage2, plClass: ?*i32) HRESULT {
         return self.vtable.get_Class(self, plClass);
     }
-    pub fn get_PrivLevel(self: *const IMSMQMessage2, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQMessage2, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQMessage2, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQMessage2, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_AuthLevel(self: *const IMSMQMessage2, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AuthLevel(self: *const IMSMQMessage2, plAuthLevel: ?*i32) HRESULT {
         return self.vtable.get_AuthLevel(self, plAuthLevel);
     }
-    pub fn put_AuthLevel(self: *const IMSMQMessage2, lAuthLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_AuthLevel(self: *const IMSMQMessage2, lAuthLevel: i32) HRESULT {
         return self.vtable.put_AuthLevel(self, lAuthLevel);
     }
-    pub fn get_IsAuthenticated(self: *const IMSMQMessage2, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage2, pisAuthenticated: ?*i16) HRESULT {
         return self.vtable.get_IsAuthenticated(self, pisAuthenticated);
     }
-    pub fn get_Delivery(self: *const IMSMQMessage2, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Delivery(self: *const IMSMQMessage2, plDelivery: ?*i32) HRESULT {
         return self.vtable.get_Delivery(self, plDelivery);
     }
-    pub fn put_Delivery(self: *const IMSMQMessage2, lDelivery: i32) callconv(.Inline) HRESULT {
+    pub fn put_Delivery(self: *const IMSMQMessage2, lDelivery: i32) HRESULT {
         return self.vtable.put_Delivery(self, lDelivery);
     }
-    pub fn get_Trace(self: *const IMSMQMessage2, plTrace: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Trace(self: *const IMSMQMessage2, plTrace: ?*i32) HRESULT {
         return self.vtable.get_Trace(self, plTrace);
     }
-    pub fn put_Trace(self: *const IMSMQMessage2, lTrace: i32) callconv(.Inline) HRESULT {
+    pub fn put_Trace(self: *const IMSMQMessage2, lTrace: i32) HRESULT {
         return self.vtable.put_Trace(self, lTrace);
     }
-    pub fn get_Priority(self: *const IMSMQMessage2, plPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Priority(self: *const IMSMQMessage2, plPriority: ?*i32) HRESULT {
         return self.vtable.get_Priority(self, plPriority);
     }
-    pub fn put_Priority(self: *const IMSMQMessage2, lPriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_Priority(self: *const IMSMQMessage2, lPriority: i32) HRESULT {
         return self.vtable.put_Priority(self, lPriority);
     }
-    pub fn get_Journal(self: *const IMSMQMessage2, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQMessage2, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQMessage2, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQMessage2, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage2, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage2, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_ResponseQueueInfo_v1(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage2, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage2, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_ResponseQueueInfo_v1(self, pqinfoResponse);
     }
-    pub fn get_AppSpecific(self: *const IMSMQMessage2, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AppSpecific(self: *const IMSMQMessage2, plAppSpecific: ?*i32) HRESULT {
         return self.vtable.get_AppSpecific(self, plAppSpecific);
     }
-    pub fn put_AppSpecific(self: *const IMSMQMessage2, lAppSpecific: i32) callconv(.Inline) HRESULT {
+    pub fn put_AppSpecific(self: *const IMSMQMessage2, lAppSpecific: i32) HRESULT {
         return self.vtable.put_AppSpecific(self, lAppSpecific);
     }
-    pub fn get_SourceMachineGuid(self: *const IMSMQMessage2, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage2, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
         return self.vtable.get_SourceMachineGuid(self, pbstrGuidSrcMachine);
     }
-    pub fn get_BodyLength(self: *const IMSMQMessage2, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BodyLength(self: *const IMSMQMessage2, pcbBody: ?*i32) HRESULT {
         return self.vtable.get_BodyLength(self, pcbBody);
     }
-    pub fn get_Body(self: *const IMSMQMessage2, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Body(self: *const IMSMQMessage2, pvarBody: ?*VARIANT) HRESULT {
         return self.vtable.get_Body(self, pvarBody);
     }
-    pub fn put_Body(self: *const IMSMQMessage2, varBody: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Body(self: *const IMSMQMessage2, varBody: VARIANT) HRESULT {
         return self.vtable.put_Body(self, varBody);
     }
-    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage2, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage2, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_AdminQueueInfo_v1(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage2, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage2, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_AdminQueueInfo_v1(self, pqinfoAdmin);
     }
-    pub fn get_Id(self: *const IMSMQMessage2, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IMSMQMessage2, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_Id(self, pvarMsgId);
     }
-    pub fn get_CorrelationId(self: *const IMSMQMessage2, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CorrelationId(self: *const IMSMQMessage2, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_CorrelationId(self, pvarMsgId);
     }
-    pub fn put_CorrelationId(self: *const IMSMQMessage2, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_CorrelationId(self: *const IMSMQMessage2, varMsgId: VARIANT) HRESULT {
         return self.vtable.put_CorrelationId(self, varMsgId);
     }
-    pub fn get_Ack(self: *const IMSMQMessage2, plAck: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Ack(self: *const IMSMQMessage2, plAck: ?*i32) HRESULT {
         return self.vtable.get_Ack(self, plAck);
     }
-    pub fn put_Ack(self: *const IMSMQMessage2, lAck: i32) callconv(.Inline) HRESULT {
+    pub fn put_Ack(self: *const IMSMQMessage2, lAck: i32) HRESULT {
         return self.vtable.put_Ack(self, lAck);
     }
-    pub fn get_Label(self: *const IMSMQMessage2, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQMessage2, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQMessage2, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQMessage2, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage2, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage2, plMaxTimeToReachQueue: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReachQueue(self, plMaxTimeToReachQueue);
     }
-    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage2, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage2, lMaxTimeToReachQueue: i32) HRESULT {
         return self.vtable.put_MaxTimeToReachQueue(self, lMaxTimeToReachQueue);
     }
-    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage2, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage2, plMaxTimeToReceive: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReceive(self, plMaxTimeToReceive);
     }
-    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage2, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage2, lMaxTimeToReceive: i32) HRESULT {
         return self.vtable.put_MaxTimeToReceive(self, lMaxTimeToReceive);
     }
-    pub fn get_HashAlgorithm(self: *const IMSMQMessage2, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage2, plHashAlg: ?*i32) HRESULT {
         return self.vtable.get_HashAlgorithm(self, plHashAlg);
     }
-    pub fn put_HashAlgorithm(self: *const IMSMQMessage2, lHashAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage2, lHashAlg: i32) HRESULT {
         return self.vtable.put_HashAlgorithm(self, lHashAlg);
     }
-    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage2, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage2, plEncryptAlg: ?*i32) HRESULT {
         return self.vtable.get_EncryptAlgorithm(self, plEncryptAlg);
     }
-    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage2, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage2, lEncryptAlg: i32) HRESULT {
         return self.vtable.put_EncryptAlgorithm(self, lEncryptAlg);
     }
-    pub fn get_SentTime(self: *const IMSMQMessage2, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SentTime(self: *const IMSMQMessage2, pvarSentTime: ?*VARIANT) HRESULT {
         return self.vtable.get_SentTime(self, pvarSentTime);
     }
-    pub fn get_ArrivedTime(self: *const IMSMQMessage2, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ArrivedTime(self: *const IMSMQMessage2, plArrivedTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ArrivedTime(self, plArrivedTime);
     }
-    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage2, ppqinfoDest: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage2, ppqinfoDest: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_DestinationQueueInfo(self, ppqinfoDest);
     }
-    pub fn get_SenderCertificate(self: *const IMSMQMessage2, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderCertificate(self: *const IMSMQMessage2, pvarSenderCert: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderCertificate(self, pvarSenderCert);
     }
-    pub fn put_SenderCertificate(self: *const IMSMQMessage2, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SenderCertificate(self: *const IMSMQMessage2, varSenderCert: VARIANT) HRESULT {
         return self.vtable.put_SenderCertificate(self, varSenderCert);
     }
-    pub fn get_SenderId(self: *const IMSMQMessage2, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderId(self: *const IMSMQMessage2, pvarSenderId: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderId(self, pvarSenderId);
     }
-    pub fn get_SenderIdType(self: *const IMSMQMessage2, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SenderIdType(self: *const IMSMQMessage2, plSenderIdType: ?*i32) HRESULT {
         return self.vtable.get_SenderIdType(self, plSenderIdType);
     }
-    pub fn put_SenderIdType(self: *const IMSMQMessage2, lSenderIdType: i32) callconv(.Inline) HRESULT {
+    pub fn put_SenderIdType(self: *const IMSMQMessage2, lSenderIdType: i32) HRESULT {
         return self.vtable.put_SenderIdType(self, lSenderIdType);
     }
-    pub fn Send(self: *const IMSMQMessage2, DestinationQueue: ?*IMSMQQueue2, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Send(self: *const IMSMQMessage2, DestinationQueue: ?*IMSMQQueue2, Transaction: ?*VARIANT) HRESULT {
         return self.vtable.Send(self, DestinationQueue, Transaction);
     }
-    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage2) callconv(.Inline) HRESULT {
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage2) HRESULT {
         return self.vtable.AttachCurrentSecurityContext(self);
     }
-    pub fn get_SenderVersion(self: *const IMSMQMessage2, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SenderVersion(self: *const IMSMQMessage2, plSenderVersion: ?*i32) HRESULT {
         return self.vtable.get_SenderVersion(self, plSenderVersion);
     }
-    pub fn get_Extension(self: *const IMSMQMessage2, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Extension(self: *const IMSMQMessage2, pvarExtension: ?*VARIANT) HRESULT {
         return self.vtable.get_Extension(self, pvarExtension);
     }
-    pub fn put_Extension(self: *const IMSMQMessage2, varExtension: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Extension(self: *const IMSMQMessage2, varExtension: VARIANT) HRESULT {
         return self.vtable.put_Extension(self, varExtension);
     }
-    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage2, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage2, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
         return self.vtable.get_ConnectorTypeGuid(self, pbstrGuidConnectorType);
     }
-    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage2, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage2, bstrGuidConnectorType: ?BSTR) HRESULT {
         return self.vtable.put_ConnectorTypeGuid(self, bstrGuidConnectorType);
     }
-    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage2, ppqinfoXactStatus: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage2, ppqinfoXactStatus: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_TransactionStatusQueueInfo(self, ppqinfoXactStatus);
     }
-    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage2, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage2, pvarDestSymmKey: ?*VARIANT) HRESULT {
         return self.vtable.get_DestinationSymmetricKey(self, pvarDestSymmKey);
     }
-    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage2, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage2, varDestSymmKey: VARIANT) HRESULT {
         return self.vtable.put_DestinationSymmetricKey(self, varDestSymmKey);
     }
-    pub fn get_Signature(self: *const IMSMQMessage2, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Signature(self: *const IMSMQMessage2, pvarSignature: ?*VARIANT) HRESULT {
         return self.vtable.get_Signature(self, pvarSignature);
     }
-    pub fn put_Signature(self: *const IMSMQMessage2, varSignature: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Signature(self: *const IMSMQMessage2, varSignature: VARIANT) HRESULT {
         return self.vtable.put_Signature(self, varSignature);
     }
-    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage2, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage2, plAuthProvType: ?*i32) HRESULT {
         return self.vtable.get_AuthenticationProviderType(self, plAuthProvType);
     }
-    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage2, lAuthProvType: i32) callconv(.Inline) HRESULT {
+    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage2, lAuthProvType: i32) HRESULT {
         return self.vtable.put_AuthenticationProviderType(self, lAuthProvType);
     }
-    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage2, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage2, pbstrAuthProvName: ?*?BSTR) HRESULT {
         return self.vtable.get_AuthenticationProviderName(self, pbstrAuthProvName);
     }
-    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage2, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage2, bstrAuthProvName: ?BSTR) HRESULT {
         return self.vtable.put_AuthenticationProviderName(self, bstrAuthProvName);
     }
-    pub fn put_SenderId(self: *const IMSMQMessage2, varSenderId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SenderId(self: *const IMSMQMessage2, varSenderId: VARIANT) HRESULT {
         return self.vtable.put_SenderId(self, varSenderId);
     }
-    pub fn get_MsgClass(self: *const IMSMQMessage2, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MsgClass(self: *const IMSMQMessage2, plMsgClass: ?*i32) HRESULT {
         return self.vtable.get_MsgClass(self, plMsgClass);
     }
-    pub fn put_MsgClass(self: *const IMSMQMessage2, lMsgClass: i32) callconv(.Inline) HRESULT {
+    pub fn put_MsgClass(self: *const IMSMQMessage2, lMsgClass: i32) HRESULT {
         return self.vtable.put_MsgClass(self, lMsgClass);
     }
-    pub fn get_Properties(self: *const IMSMQMessage2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQMessage2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_TransactionId(self: *const IMSMQMessage2, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_TransactionId(self: *const IMSMQMessage2, pvarXactId: ?*VARIANT) HRESULT {
         return self.vtable.get_TransactionId(self, pvarXactId);
     }
-    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage2, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage2, pisFirstInXact: ?*i16) HRESULT {
         return self.vtable.get_IsFirstInTransaction(self, pisFirstInXact);
     }
-    pub fn get_IsLastInTransaction(self: *const IMSMQMessage2, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLastInTransaction(self: *const IMSMQMessage2, pisLastInXact: ?*i16) HRESULT {
         return self.vtable.get_IsLastInTransaction(self, pisLastInXact);
     }
-    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage2, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage2, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_ResponseQueueInfo(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage2, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage2, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.putref_ResponseQueueInfo(self, pqinfoResponse);
     }
-    pub fn get_AdminQueueInfo(self: *const IMSMQMessage2, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage2, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_AdminQueueInfo(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage2, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage2, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.putref_AdminQueueInfo(self, pqinfoAdmin);
     }
-    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage2, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage2, psReceivedAuthenticationLevel: ?*i16) HRESULT {
         return self.vtable.get_ReceivedAuthenticationLevel(self, psReceivedAuthenticationLevel);
     }
 };
@@ -4477,721 +4477,721 @@ pub const IMSMQMessage3 = extern union {
         get_Class: *const fn(
             self: *const IMSMQMessage3,
             plClass: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQMessage3,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQMessage3,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthLevel: *const fn(
             self: *const IMSMQMessage3,
             plAuthLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthLevel: *const fn(
             self: *const IMSMQMessage3,
             lAuthLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated: *const fn(
             self: *const IMSMQMessage3,
             pisAuthenticated: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Delivery: *const fn(
             self: *const IMSMQMessage3,
             plDelivery: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delivery: *const fn(
             self: *const IMSMQMessage3,
             lDelivery: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Trace: *const fn(
             self: *const IMSMQMessage3,
             plTrace: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Trace: *const fn(
             self: *const IMSMQMessage3,
             lTrace: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: *const fn(
             self: *const IMSMQMessage3,
             plPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: *const fn(
             self: *const IMSMQMessage3,
             lPriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQMessage3,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQMessage3,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo_v1: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo_v1: *const fn(
             self: *const IMSMQMessage3,
             pqinfoResponse: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppSpecific: *const fn(
             self: *const IMSMQMessage3,
             plAppSpecific: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AppSpecific: *const fn(
             self: *const IMSMQMessage3,
             lAppSpecific: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceMachineGuid: *const fn(
             self: *const IMSMQMessage3,
             pbstrGuidSrcMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BodyLength: *const fn(
             self: *const IMSMQMessage3,
             pcbBody: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Body: *const fn(
             self: *const IMSMQMessage3,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Body: *const fn(
             self: *const IMSMQMessage3,
             varBody: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo_v1: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo_v1: *const fn(
             self: *const IMSMQMessage3,
             pqinfoAdmin: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IMSMQMessage3,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CorrelationId: *const fn(
             self: *const IMSMQMessage3,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CorrelationId: *const fn(
             self: *const IMSMQMessage3,
             varMsgId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ack: *const fn(
             self: *const IMSMQMessage3,
             plAck: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Ack: *const fn(
             self: *const IMSMQMessage3,
             lAck: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQMessage3,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQMessage3,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage3,
             plMaxTimeToReachQueue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage3,
             lMaxTimeToReachQueue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage3,
             plMaxTimeToReceive: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage3,
             lMaxTimeToReceive: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const IMSMQMessage3,
             plHashAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IMSMQMessage3,
             lHashAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage3,
             plEncryptAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage3,
             lEncryptAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SentTime: *const fn(
             self: *const IMSMQMessage3,
             pvarSentTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArrivedTime: *const fn(
             self: *const IMSMQMessage3,
             plArrivedTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationQueueInfo: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoDest: ?*?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderCertificate: *const fn(
             self: *const IMSMQMessage3,
             pvarSenderCert: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderCertificate: *const fn(
             self: *const IMSMQMessage3,
             varSenderCert: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderId: *const fn(
             self: *const IMSMQMessage3,
             pvarSenderId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderIdType: *const fn(
             self: *const IMSMQMessage3,
             plSenderIdType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderIdType: *const fn(
             self: *const IMSMQMessage3,
             lSenderIdType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Send: *const fn(
             self: *const IMSMQMessage3,
             DestinationQueue: ?*IDispatch,
             Transaction: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext: *const fn(
             self: *const IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderVersion: *const fn(
             self: *const IMSMQMessage3,
             plSenderVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Extension: *const fn(
             self: *const IMSMQMessage3,
             pvarExtension: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Extension: *const fn(
             self: *const IMSMQMessage3,
             varExtension: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectorTypeGuid: *const fn(
             self: *const IMSMQMessage3,
             pbstrGuidConnectorType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectorTypeGuid: *const fn(
             self: *const IMSMQMessage3,
             bstrGuidConnectorType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionStatusQueueInfo: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoXactStatus: ?*?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationSymmetricKey: *const fn(
             self: *const IMSMQMessage3,
             pvarDestSymmKey: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DestinationSymmetricKey: *const fn(
             self: *const IMSMQMessage3,
             varDestSymmKey: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Signature: *const fn(
             self: *const IMSMQMessage3,
             pvarSignature: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Signature: *const fn(
             self: *const IMSMQMessage3,
             varSignature: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationProviderType: *const fn(
             self: *const IMSMQMessage3,
             plAuthProvType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationProviderType: *const fn(
             self: *const IMSMQMessage3,
             lAuthProvType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationProviderName: *const fn(
             self: *const IMSMQMessage3,
             pbstrAuthProvName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationProviderName: *const fn(
             self: *const IMSMQMessage3,
             bstrAuthProvName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderId: *const fn(
             self: *const IMSMQMessage3,
             varSenderId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MsgClass: *const fn(
             self: *const IMSMQMessage3,
             plMsgClass: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MsgClass: *const fn(
             self: *const IMSMQMessage3,
             lMsgClass: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQMessage3,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionId: *const fn(
             self: *const IMSMQMessage3,
             pvarXactId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstInTransaction: *const fn(
             self: *const IMSMQMessage3,
             pisFirstInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLastInTransaction: *const fn(
             self: *const IMSMQMessage3,
             pisLastInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo_v2: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoResponse: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo_v2: *const fn(
             self: *const IMSMQMessage3,
             pqinfoResponse: ?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo_v2: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo_v2: *const fn(
             self: *const IMSMQMessage3,
             pqinfoAdmin: ?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReceivedAuthenticationLevel: *const fn(
             self: *const IMSMQMessage3,
             psReceivedAuthenticationLevel: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoResponse: ?*?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage3,
             pqinfoResponse: ?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage3,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage3,
             pqinfoAdmin: ?*IMSMQQueueInfo3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseDestination: *const fn(
             self: *const IMSMQMessage3,
             ppdestResponse: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseDestination: *const fn(
             self: *const IMSMQMessage3,
             pdestResponse: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Destination: *const fn(
             self: *const IMSMQMessage3,
             ppdestDestination: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LookupId: *const fn(
             self: *const IMSMQMessage3,
             pvarLookupId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated2: *const fn(
             self: *const IMSMQMessage3,
             pisAuthenticated: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstInTransaction2: *const fn(
             self: *const IMSMQMessage3,
             pisFirstInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLastInTransaction2: *const fn(
             self: *const IMSMQMessage3,
             pisLastInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext2: *const fn(
             self: *const IMSMQMessage3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SoapEnvelope: *const fn(
             self: *const IMSMQMessage3,
             pbstrSoapEnvelope: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CompoundMessage: *const fn(
             self: *const IMSMQMessage3,
             pvarCompoundMessage: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SoapHeader: *const fn(
             self: *const IMSMQMessage3,
             bstrSoapHeader: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SoapBody: *const fn(
             self: *const IMSMQMessage3,
             bstrSoapBody: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Class(self: *const IMSMQMessage3, plClass: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Class(self: *const IMSMQMessage3, plClass: ?*i32) HRESULT {
         return self.vtable.get_Class(self, plClass);
     }
-    pub fn get_PrivLevel(self: *const IMSMQMessage3, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQMessage3, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQMessage3, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQMessage3, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_AuthLevel(self: *const IMSMQMessage3, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AuthLevel(self: *const IMSMQMessage3, plAuthLevel: ?*i32) HRESULT {
         return self.vtable.get_AuthLevel(self, plAuthLevel);
     }
-    pub fn put_AuthLevel(self: *const IMSMQMessage3, lAuthLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_AuthLevel(self: *const IMSMQMessage3, lAuthLevel: i32) HRESULT {
         return self.vtable.put_AuthLevel(self, lAuthLevel);
     }
-    pub fn get_IsAuthenticated(self: *const IMSMQMessage3, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage3, pisAuthenticated: ?*i16) HRESULT {
         return self.vtable.get_IsAuthenticated(self, pisAuthenticated);
     }
-    pub fn get_Delivery(self: *const IMSMQMessage3, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Delivery(self: *const IMSMQMessage3, plDelivery: ?*i32) HRESULT {
         return self.vtable.get_Delivery(self, plDelivery);
     }
-    pub fn put_Delivery(self: *const IMSMQMessage3, lDelivery: i32) callconv(.Inline) HRESULT {
+    pub fn put_Delivery(self: *const IMSMQMessage3, lDelivery: i32) HRESULT {
         return self.vtable.put_Delivery(self, lDelivery);
     }
-    pub fn get_Trace(self: *const IMSMQMessage3, plTrace: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Trace(self: *const IMSMQMessage3, plTrace: ?*i32) HRESULT {
         return self.vtable.get_Trace(self, plTrace);
     }
-    pub fn put_Trace(self: *const IMSMQMessage3, lTrace: i32) callconv(.Inline) HRESULT {
+    pub fn put_Trace(self: *const IMSMQMessage3, lTrace: i32) HRESULT {
         return self.vtable.put_Trace(self, lTrace);
     }
-    pub fn get_Priority(self: *const IMSMQMessage3, plPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Priority(self: *const IMSMQMessage3, plPriority: ?*i32) HRESULT {
         return self.vtable.get_Priority(self, plPriority);
     }
-    pub fn put_Priority(self: *const IMSMQMessage3, lPriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_Priority(self: *const IMSMQMessage3, lPriority: i32) HRESULT {
         return self.vtable.put_Priority(self, lPriority);
     }
-    pub fn get_Journal(self: *const IMSMQMessage3, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQMessage3, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQMessage3, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQMessage3, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_ResponseQueueInfo_v1(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_ResponseQueueInfo_v1(self, pqinfoResponse);
     }
-    pub fn get_AppSpecific(self: *const IMSMQMessage3, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AppSpecific(self: *const IMSMQMessage3, plAppSpecific: ?*i32) HRESULT {
         return self.vtable.get_AppSpecific(self, plAppSpecific);
     }
-    pub fn put_AppSpecific(self: *const IMSMQMessage3, lAppSpecific: i32) callconv(.Inline) HRESULT {
+    pub fn put_AppSpecific(self: *const IMSMQMessage3, lAppSpecific: i32) HRESULT {
         return self.vtable.put_AppSpecific(self, lAppSpecific);
     }
-    pub fn get_SourceMachineGuid(self: *const IMSMQMessage3, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage3, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
         return self.vtable.get_SourceMachineGuid(self, pbstrGuidSrcMachine);
     }
-    pub fn get_BodyLength(self: *const IMSMQMessage3, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BodyLength(self: *const IMSMQMessage3, pcbBody: ?*i32) HRESULT {
         return self.vtable.get_BodyLength(self, pcbBody);
     }
-    pub fn get_Body(self: *const IMSMQMessage3, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Body(self: *const IMSMQMessage3, pvarBody: ?*VARIANT) HRESULT {
         return self.vtable.get_Body(self, pvarBody);
     }
-    pub fn put_Body(self: *const IMSMQMessage3, varBody: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Body(self: *const IMSMQMessage3, varBody: VARIANT) HRESULT {
         return self.vtable.put_Body(self, varBody);
     }
-    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_AdminQueueInfo_v1(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_AdminQueueInfo_v1(self, pqinfoAdmin);
     }
-    pub fn get_Id(self: *const IMSMQMessage3, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IMSMQMessage3, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_Id(self, pvarMsgId);
     }
-    pub fn get_CorrelationId(self: *const IMSMQMessage3, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CorrelationId(self: *const IMSMQMessage3, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_CorrelationId(self, pvarMsgId);
     }
-    pub fn put_CorrelationId(self: *const IMSMQMessage3, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_CorrelationId(self: *const IMSMQMessage3, varMsgId: VARIANT) HRESULT {
         return self.vtable.put_CorrelationId(self, varMsgId);
     }
-    pub fn get_Ack(self: *const IMSMQMessage3, plAck: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Ack(self: *const IMSMQMessage3, plAck: ?*i32) HRESULT {
         return self.vtable.get_Ack(self, plAck);
     }
-    pub fn put_Ack(self: *const IMSMQMessage3, lAck: i32) callconv(.Inline) HRESULT {
+    pub fn put_Ack(self: *const IMSMQMessage3, lAck: i32) HRESULT {
         return self.vtable.put_Ack(self, lAck);
     }
-    pub fn get_Label(self: *const IMSMQMessage3, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQMessage3, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQMessage3, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQMessage3, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage3, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage3, plMaxTimeToReachQueue: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReachQueue(self, plMaxTimeToReachQueue);
     }
-    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage3, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage3, lMaxTimeToReachQueue: i32) HRESULT {
         return self.vtable.put_MaxTimeToReachQueue(self, lMaxTimeToReachQueue);
     }
-    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage3, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage3, plMaxTimeToReceive: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReceive(self, plMaxTimeToReceive);
     }
-    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage3, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage3, lMaxTimeToReceive: i32) HRESULT {
         return self.vtable.put_MaxTimeToReceive(self, lMaxTimeToReceive);
     }
-    pub fn get_HashAlgorithm(self: *const IMSMQMessage3, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage3, plHashAlg: ?*i32) HRESULT {
         return self.vtable.get_HashAlgorithm(self, plHashAlg);
     }
-    pub fn put_HashAlgorithm(self: *const IMSMQMessage3, lHashAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage3, lHashAlg: i32) HRESULT {
         return self.vtable.put_HashAlgorithm(self, lHashAlg);
     }
-    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage3, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage3, plEncryptAlg: ?*i32) HRESULT {
         return self.vtable.get_EncryptAlgorithm(self, plEncryptAlg);
     }
-    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage3, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage3, lEncryptAlg: i32) HRESULT {
         return self.vtable.put_EncryptAlgorithm(self, lEncryptAlg);
     }
-    pub fn get_SentTime(self: *const IMSMQMessage3, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SentTime(self: *const IMSMQMessage3, pvarSentTime: ?*VARIANT) HRESULT {
         return self.vtable.get_SentTime(self, pvarSentTime);
     }
-    pub fn get_ArrivedTime(self: *const IMSMQMessage3, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ArrivedTime(self: *const IMSMQMessage3, plArrivedTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ArrivedTime(self, plArrivedTime);
     }
-    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage3, ppqinfoDest: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage3, ppqinfoDest: ?*?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.get_DestinationQueueInfo(self, ppqinfoDest);
     }
-    pub fn get_SenderCertificate(self: *const IMSMQMessage3, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderCertificate(self: *const IMSMQMessage3, pvarSenderCert: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderCertificate(self, pvarSenderCert);
     }
-    pub fn put_SenderCertificate(self: *const IMSMQMessage3, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SenderCertificate(self: *const IMSMQMessage3, varSenderCert: VARIANT) HRESULT {
         return self.vtable.put_SenderCertificate(self, varSenderCert);
     }
-    pub fn get_SenderId(self: *const IMSMQMessage3, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderId(self: *const IMSMQMessage3, pvarSenderId: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderId(self, pvarSenderId);
     }
-    pub fn get_SenderIdType(self: *const IMSMQMessage3, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SenderIdType(self: *const IMSMQMessage3, plSenderIdType: ?*i32) HRESULT {
         return self.vtable.get_SenderIdType(self, plSenderIdType);
     }
-    pub fn put_SenderIdType(self: *const IMSMQMessage3, lSenderIdType: i32) callconv(.Inline) HRESULT {
+    pub fn put_SenderIdType(self: *const IMSMQMessage3, lSenderIdType: i32) HRESULT {
         return self.vtable.put_SenderIdType(self, lSenderIdType);
     }
-    pub fn Send(self: *const IMSMQMessage3, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Send(self: *const IMSMQMessage3, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) HRESULT {
         return self.vtable.Send(self, DestinationQueue, Transaction);
     }
-    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage3) HRESULT {
         return self.vtable.AttachCurrentSecurityContext(self);
     }
-    pub fn get_SenderVersion(self: *const IMSMQMessage3, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SenderVersion(self: *const IMSMQMessage3, plSenderVersion: ?*i32) HRESULT {
         return self.vtable.get_SenderVersion(self, plSenderVersion);
     }
-    pub fn get_Extension(self: *const IMSMQMessage3, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Extension(self: *const IMSMQMessage3, pvarExtension: ?*VARIANT) HRESULT {
         return self.vtable.get_Extension(self, pvarExtension);
     }
-    pub fn put_Extension(self: *const IMSMQMessage3, varExtension: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Extension(self: *const IMSMQMessage3, varExtension: VARIANT) HRESULT {
         return self.vtable.put_Extension(self, varExtension);
     }
-    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage3, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage3, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
         return self.vtable.get_ConnectorTypeGuid(self, pbstrGuidConnectorType);
     }
-    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage3, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage3, bstrGuidConnectorType: ?BSTR) HRESULT {
         return self.vtable.put_ConnectorTypeGuid(self, bstrGuidConnectorType);
     }
-    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage3, ppqinfoXactStatus: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage3, ppqinfoXactStatus: ?*?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.get_TransactionStatusQueueInfo(self, ppqinfoXactStatus);
     }
-    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage3, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage3, pvarDestSymmKey: ?*VARIANT) HRESULT {
         return self.vtable.get_DestinationSymmetricKey(self, pvarDestSymmKey);
     }
-    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage3, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage3, varDestSymmKey: VARIANT) HRESULT {
         return self.vtable.put_DestinationSymmetricKey(self, varDestSymmKey);
     }
-    pub fn get_Signature(self: *const IMSMQMessage3, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Signature(self: *const IMSMQMessage3, pvarSignature: ?*VARIANT) HRESULT {
         return self.vtable.get_Signature(self, pvarSignature);
     }
-    pub fn put_Signature(self: *const IMSMQMessage3, varSignature: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Signature(self: *const IMSMQMessage3, varSignature: VARIANT) HRESULT {
         return self.vtable.put_Signature(self, varSignature);
     }
-    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage3, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage3, plAuthProvType: ?*i32) HRESULT {
         return self.vtable.get_AuthenticationProviderType(self, plAuthProvType);
     }
-    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage3, lAuthProvType: i32) callconv(.Inline) HRESULT {
+    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage3, lAuthProvType: i32) HRESULT {
         return self.vtable.put_AuthenticationProviderType(self, lAuthProvType);
     }
-    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage3, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage3, pbstrAuthProvName: ?*?BSTR) HRESULT {
         return self.vtable.get_AuthenticationProviderName(self, pbstrAuthProvName);
     }
-    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage3, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage3, bstrAuthProvName: ?BSTR) HRESULT {
         return self.vtable.put_AuthenticationProviderName(self, bstrAuthProvName);
     }
-    pub fn put_SenderId(self: *const IMSMQMessage3, varSenderId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SenderId(self: *const IMSMQMessage3, varSenderId: VARIANT) HRESULT {
         return self.vtable.put_SenderId(self, varSenderId);
     }
-    pub fn get_MsgClass(self: *const IMSMQMessage3, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MsgClass(self: *const IMSMQMessage3, plMsgClass: ?*i32) HRESULT {
         return self.vtable.get_MsgClass(self, plMsgClass);
     }
-    pub fn put_MsgClass(self: *const IMSMQMessage3, lMsgClass: i32) callconv(.Inline) HRESULT {
+    pub fn put_MsgClass(self: *const IMSMQMessage3, lMsgClass: i32) HRESULT {
         return self.vtable.put_MsgClass(self, lMsgClass);
     }
-    pub fn get_Properties(self: *const IMSMQMessage3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQMessage3, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_TransactionId(self: *const IMSMQMessage3, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_TransactionId(self: *const IMSMQMessage3, pvarXactId: ?*VARIANT) HRESULT {
         return self.vtable.get_TransactionId(self, pvarXactId);
     }
-    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage3, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage3, pisFirstInXact: ?*i16) HRESULT {
         return self.vtable.get_IsFirstInTransaction(self, pisFirstInXact);
     }
-    pub fn get_IsLastInTransaction(self: *const IMSMQMessage3, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLastInTransaction(self: *const IMSMQMessage3, pisLastInXact: ?*i16) HRESULT {
         return self.vtable.get_IsLastInTransaction(self, pisLastInXact);
     }
-    pub fn get_ResponseQueueInfo_v2(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo_v2(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_ResponseQueueInfo_v2(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo_v2(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo_v2(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.putref_ResponseQueueInfo_v2(self, pqinfoResponse);
     }
-    pub fn get_AdminQueueInfo_v2(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo_v2(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_AdminQueueInfo_v2(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo_v2(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo_v2(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.putref_AdminQueueInfo_v2(self, pqinfoAdmin);
     }
-    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage3, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage3, psReceivedAuthenticationLevel: ?*i16) HRESULT {
         return self.vtable.get_ReceivedAuthenticationLevel(self, psReceivedAuthenticationLevel);
     }
-    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage3, ppqinfoResponse: ?*?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.get_ResponseQueueInfo(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage3, pqinfoResponse: ?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.putref_ResponseQueueInfo(self, pqinfoResponse);
     }
-    pub fn get_AdminQueueInfo(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage3, ppqinfoAdmin: ?*?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.get_AdminQueueInfo(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo3) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage3, pqinfoAdmin: ?*IMSMQQueueInfo3) HRESULT {
         return self.vtable.putref_AdminQueueInfo(self, pqinfoAdmin);
     }
-    pub fn get_ResponseDestination(self: *const IMSMQMessage3, ppdestResponse: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_ResponseDestination(self: *const IMSMQMessage3, ppdestResponse: ?*?*IDispatch) HRESULT {
         return self.vtable.get_ResponseDestination(self, ppdestResponse);
     }
-    pub fn putref_ResponseDestination(self: *const IMSMQMessage3, pdestResponse: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseDestination(self: *const IMSMQMessage3, pdestResponse: ?*IDispatch) HRESULT {
         return self.vtable.putref_ResponseDestination(self, pdestResponse);
     }
-    pub fn get_Destination(self: *const IMSMQMessage3, ppdestDestination: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Destination(self: *const IMSMQMessage3, ppdestDestination: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Destination(self, ppdestDestination);
     }
-    pub fn get_LookupId(self: *const IMSMQMessage3, pvarLookupId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_LookupId(self: *const IMSMQMessage3, pvarLookupId: ?*VARIANT) HRESULT {
         return self.vtable.get_LookupId(self, pvarLookupId);
     }
-    pub fn get_IsAuthenticated2(self: *const IMSMQMessage3, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsAuthenticated2(self: *const IMSMQMessage3, pisAuthenticated: ?*i16) HRESULT {
         return self.vtable.get_IsAuthenticated2(self, pisAuthenticated);
     }
-    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage3, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage3, pisFirstInXact: ?*i16) HRESULT {
         return self.vtable.get_IsFirstInTransaction2(self, pisFirstInXact);
     }
-    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage3, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage3, pisLastInXact: ?*i16) HRESULT {
         return self.vtable.get_IsLastInTransaction2(self, pisLastInXact);
     }
-    pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage3) callconv(.Inline) HRESULT {
+    pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage3) HRESULT {
         return self.vtable.AttachCurrentSecurityContext2(self);
     }
-    pub fn get_SoapEnvelope(self: *const IMSMQMessage3, pbstrSoapEnvelope: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SoapEnvelope(self: *const IMSMQMessage3, pbstrSoapEnvelope: ?*?BSTR) HRESULT {
         return self.vtable.get_SoapEnvelope(self, pbstrSoapEnvelope);
     }
-    pub fn get_CompoundMessage(self: *const IMSMQMessage3, pvarCompoundMessage: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CompoundMessage(self: *const IMSMQMessage3, pvarCompoundMessage: ?*VARIANT) HRESULT {
         return self.vtable.get_CompoundMessage(self, pvarCompoundMessage);
     }
-    pub fn put_SoapHeader(self: *const IMSMQMessage3, bstrSoapHeader: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_SoapHeader(self: *const IMSMQMessage3, bstrSoapHeader: ?BSTR) HRESULT {
         return self.vtable.put_SoapHeader(self, bstrSoapHeader);
     }
-    pub fn put_SoapBody(self: *const IMSMQMessage3, bstrSoapBody: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_SoapBody(self: *const IMSMQMessage3, bstrSoapBody: ?BSTR) HRESULT {
         return self.vtable.put_SoapBody(self, bstrSoapBody);
     }
 };
@@ -5205,721 +5205,721 @@ pub const IMSMQMessage4 = extern union {
         get_Class: *const fn(
             self: *const IMSMQMessage4,
             plClass: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivLevel: *const fn(
             self: *const IMSMQMessage4,
             plPrivLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PrivLevel: *const fn(
             self: *const IMSMQMessage4,
             lPrivLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthLevel: *const fn(
             self: *const IMSMQMessage4,
             plAuthLevel: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthLevel: *const fn(
             self: *const IMSMQMessage4,
             lAuthLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated: *const fn(
             self: *const IMSMQMessage4,
             pisAuthenticated: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Delivery: *const fn(
             self: *const IMSMQMessage4,
             plDelivery: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Delivery: *const fn(
             self: *const IMSMQMessage4,
             lDelivery: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Trace: *const fn(
             self: *const IMSMQMessage4,
             plTrace: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Trace: *const fn(
             self: *const IMSMQMessage4,
             lTrace: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: *const fn(
             self: *const IMSMQMessage4,
             plPriority: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: *const fn(
             self: *const IMSMQMessage4,
             lPriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Journal: *const fn(
             self: *const IMSMQMessage4,
             plJournal: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Journal: *const fn(
             self: *const IMSMQMessage4,
             lJournal: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo_v1: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoResponse: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo_v1: *const fn(
             self: *const IMSMQMessage4,
             pqinfoResponse: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppSpecific: *const fn(
             self: *const IMSMQMessage4,
             plAppSpecific: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AppSpecific: *const fn(
             self: *const IMSMQMessage4,
             lAppSpecific: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceMachineGuid: *const fn(
             self: *const IMSMQMessage4,
             pbstrGuidSrcMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BodyLength: *const fn(
             self: *const IMSMQMessage4,
             pcbBody: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Body: *const fn(
             self: *const IMSMQMessage4,
             pvarBody: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Body: *const fn(
             self: *const IMSMQMessage4,
             varBody: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo_v1: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo_v1: *const fn(
             self: *const IMSMQMessage4,
             pqinfoAdmin: ?*IMSMQQueueInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IMSMQMessage4,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CorrelationId: *const fn(
             self: *const IMSMQMessage4,
             pvarMsgId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CorrelationId: *const fn(
             self: *const IMSMQMessage4,
             varMsgId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Ack: *const fn(
             self: *const IMSMQMessage4,
             plAck: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Ack: *const fn(
             self: *const IMSMQMessage4,
             lAck: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Label: *const fn(
             self: *const IMSMQMessage4,
             pbstrLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Label: *const fn(
             self: *const IMSMQMessage4,
             bstrLabel: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage4,
             plMaxTimeToReachQueue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReachQueue: *const fn(
             self: *const IMSMQMessage4,
             lMaxTimeToReachQueue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage4,
             plMaxTimeToReceive: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxTimeToReceive: *const fn(
             self: *const IMSMQMessage4,
             lMaxTimeToReceive: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HashAlgorithm: *const fn(
             self: *const IMSMQMessage4,
             plHashAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_HashAlgorithm: *const fn(
             self: *const IMSMQMessage4,
             lHashAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage4,
             plEncryptAlg: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EncryptAlgorithm: *const fn(
             self: *const IMSMQMessage4,
             lEncryptAlg: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SentTime: *const fn(
             self: *const IMSMQMessage4,
             pvarSentTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ArrivedTime: *const fn(
             self: *const IMSMQMessage4,
             plArrivedTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationQueueInfo: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoDest: ?*?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderCertificate: *const fn(
             self: *const IMSMQMessage4,
             pvarSenderCert: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderCertificate: *const fn(
             self: *const IMSMQMessage4,
             varSenderCert: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderId: *const fn(
             self: *const IMSMQMessage4,
             pvarSenderId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderIdType: *const fn(
             self: *const IMSMQMessage4,
             plSenderIdType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderIdType: *const fn(
             self: *const IMSMQMessage4,
             lSenderIdType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Send: *const fn(
             self: *const IMSMQMessage4,
             DestinationQueue: ?*IDispatch,
             Transaction: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext: *const fn(
             self: *const IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SenderVersion: *const fn(
             self: *const IMSMQMessage4,
             plSenderVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Extension: *const fn(
             self: *const IMSMQMessage4,
             pvarExtension: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Extension: *const fn(
             self: *const IMSMQMessage4,
             varExtension: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConnectorTypeGuid: *const fn(
             self: *const IMSMQMessage4,
             pbstrGuidConnectorType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ConnectorTypeGuid: *const fn(
             self: *const IMSMQMessage4,
             bstrGuidConnectorType: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionStatusQueueInfo: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoXactStatus: ?*?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DestinationSymmetricKey: *const fn(
             self: *const IMSMQMessage4,
             pvarDestSymmKey: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DestinationSymmetricKey: *const fn(
             self: *const IMSMQMessage4,
             varDestSymmKey: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Signature: *const fn(
             self: *const IMSMQMessage4,
             pvarSignature: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Signature: *const fn(
             self: *const IMSMQMessage4,
             varSignature: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationProviderType: *const fn(
             self: *const IMSMQMessage4,
             plAuthProvType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationProviderType: *const fn(
             self: *const IMSMQMessage4,
             lAuthProvType: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthenticationProviderName: *const fn(
             self: *const IMSMQMessage4,
             pbstrAuthProvName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthenticationProviderName: *const fn(
             self: *const IMSMQMessage4,
             bstrAuthProvName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SenderId: *const fn(
             self: *const IMSMQMessage4,
             varSenderId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MsgClass: *const fn(
             self: *const IMSMQMessage4,
             plMsgClass: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MsgClass: *const fn(
             self: *const IMSMQMessage4,
             lMsgClass: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQMessage4,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionId: *const fn(
             self: *const IMSMQMessage4,
             pvarXactId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstInTransaction: *const fn(
             self: *const IMSMQMessage4,
             pisFirstInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLastInTransaction: *const fn(
             self: *const IMSMQMessage4,
             pisLastInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo_v2: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoResponse: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo_v2: *const fn(
             self: *const IMSMQMessage4,
             pqinfoResponse: ?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo_v2: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo_v2: *const fn(
             self: *const IMSMQMessage4,
             pqinfoAdmin: ?*IMSMQQueueInfo2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReceivedAuthenticationLevel: *const fn(
             self: *const IMSMQMessage4,
             psReceivedAuthenticationLevel: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoResponse: ?*?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseQueueInfo: *const fn(
             self: *const IMSMQMessage4,
             pqinfoResponse: ?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage4,
             ppqinfoAdmin: ?*?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AdminQueueInfo: *const fn(
             self: *const IMSMQMessage4,
             pqinfoAdmin: ?*IMSMQQueueInfo4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResponseDestination: *const fn(
             self: *const IMSMQMessage4,
             ppdestResponse: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_ResponseDestination: *const fn(
             self: *const IMSMQMessage4,
             pdestResponse: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Destination: *const fn(
             self: *const IMSMQMessage4,
             ppdestDestination: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LookupId: *const fn(
             self: *const IMSMQMessage4,
             pvarLookupId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsAuthenticated2: *const fn(
             self: *const IMSMQMessage4,
             pisAuthenticated: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsFirstInTransaction2: *const fn(
             self: *const IMSMQMessage4,
             pisFirstInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLastInTransaction2: *const fn(
             self: *const IMSMQMessage4,
             pisLastInXact: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AttachCurrentSecurityContext2: *const fn(
             self: *const IMSMQMessage4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SoapEnvelope: *const fn(
             self: *const IMSMQMessage4,
             pbstrSoapEnvelope: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CompoundMessage: *const fn(
             self: *const IMSMQMessage4,
             pvarCompoundMessage: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SoapHeader: *const fn(
             self: *const IMSMQMessage4,
             bstrSoapHeader: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SoapBody: *const fn(
             self: *const IMSMQMessage4,
             bstrSoapBody: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Class(self: *const IMSMQMessage4, plClass: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Class(self: *const IMSMQMessage4, plClass: ?*i32) HRESULT {
         return self.vtable.get_Class(self, plClass);
     }
-    pub fn get_PrivLevel(self: *const IMSMQMessage4, plPrivLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PrivLevel(self: *const IMSMQMessage4, plPrivLevel: ?*i32) HRESULT {
         return self.vtable.get_PrivLevel(self, plPrivLevel);
     }
-    pub fn put_PrivLevel(self: *const IMSMQMessage4, lPrivLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_PrivLevel(self: *const IMSMQMessage4, lPrivLevel: i32) HRESULT {
         return self.vtable.put_PrivLevel(self, lPrivLevel);
     }
-    pub fn get_AuthLevel(self: *const IMSMQMessage4, plAuthLevel: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AuthLevel(self: *const IMSMQMessage4, plAuthLevel: ?*i32) HRESULT {
         return self.vtable.get_AuthLevel(self, plAuthLevel);
     }
-    pub fn put_AuthLevel(self: *const IMSMQMessage4, lAuthLevel: i32) callconv(.Inline) HRESULT {
+    pub fn put_AuthLevel(self: *const IMSMQMessage4, lAuthLevel: i32) HRESULT {
         return self.vtable.put_AuthLevel(self, lAuthLevel);
     }
-    pub fn get_IsAuthenticated(self: *const IMSMQMessage4, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsAuthenticated(self: *const IMSMQMessage4, pisAuthenticated: ?*i16) HRESULT {
         return self.vtable.get_IsAuthenticated(self, pisAuthenticated);
     }
-    pub fn get_Delivery(self: *const IMSMQMessage4, plDelivery: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Delivery(self: *const IMSMQMessage4, plDelivery: ?*i32) HRESULT {
         return self.vtable.get_Delivery(self, plDelivery);
     }
-    pub fn put_Delivery(self: *const IMSMQMessage4, lDelivery: i32) callconv(.Inline) HRESULT {
+    pub fn put_Delivery(self: *const IMSMQMessage4, lDelivery: i32) HRESULT {
         return self.vtable.put_Delivery(self, lDelivery);
     }
-    pub fn get_Trace(self: *const IMSMQMessage4, plTrace: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Trace(self: *const IMSMQMessage4, plTrace: ?*i32) HRESULT {
         return self.vtable.get_Trace(self, plTrace);
     }
-    pub fn put_Trace(self: *const IMSMQMessage4, lTrace: i32) callconv(.Inline) HRESULT {
+    pub fn put_Trace(self: *const IMSMQMessage4, lTrace: i32) HRESULT {
         return self.vtable.put_Trace(self, lTrace);
     }
-    pub fn get_Priority(self: *const IMSMQMessage4, plPriority: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Priority(self: *const IMSMQMessage4, plPriority: ?*i32) HRESULT {
         return self.vtable.get_Priority(self, plPriority);
     }
-    pub fn put_Priority(self: *const IMSMQMessage4, lPriority: i32) callconv(.Inline) HRESULT {
+    pub fn put_Priority(self: *const IMSMQMessage4, lPriority: i32) HRESULT {
         return self.vtable.put_Priority(self, lPriority);
     }
-    pub fn get_Journal(self: *const IMSMQMessage4, plJournal: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Journal(self: *const IMSMQMessage4, plJournal: ?*i32) HRESULT {
         return self.vtable.get_Journal(self, plJournal);
     }
-    pub fn put_Journal(self: *const IMSMQMessage4, lJournal: i32) callconv(.Inline) HRESULT {
+    pub fn put_Journal(self: *const IMSMQMessage4, lJournal: i32) HRESULT {
         return self.vtable.put_Journal(self, lJournal);
     }
-    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo_v1(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_ResponseQueueInfo_v1(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo_v1(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_ResponseQueueInfo_v1(self, pqinfoResponse);
     }
-    pub fn get_AppSpecific(self: *const IMSMQMessage4, plAppSpecific: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AppSpecific(self: *const IMSMQMessage4, plAppSpecific: ?*i32) HRESULT {
         return self.vtable.get_AppSpecific(self, plAppSpecific);
     }
-    pub fn put_AppSpecific(self: *const IMSMQMessage4, lAppSpecific: i32) callconv(.Inline) HRESULT {
+    pub fn put_AppSpecific(self: *const IMSMQMessage4, lAppSpecific: i32) HRESULT {
         return self.vtable.put_AppSpecific(self, lAppSpecific);
     }
-    pub fn get_SourceMachineGuid(self: *const IMSMQMessage4, pbstrGuidSrcMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SourceMachineGuid(self: *const IMSMQMessage4, pbstrGuidSrcMachine: ?*?BSTR) HRESULT {
         return self.vtable.get_SourceMachineGuid(self, pbstrGuidSrcMachine);
     }
-    pub fn get_BodyLength(self: *const IMSMQMessage4, pcbBody: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BodyLength(self: *const IMSMQMessage4, pcbBody: ?*i32) HRESULT {
         return self.vtable.get_BodyLength(self, pcbBody);
     }
-    pub fn get_Body(self: *const IMSMQMessage4, pvarBody: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Body(self: *const IMSMQMessage4, pvarBody: ?*VARIANT) HRESULT {
         return self.vtable.get_Body(self, pvarBody);
     }
-    pub fn put_Body(self: *const IMSMQMessage4, varBody: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Body(self: *const IMSMQMessage4, varBody: VARIANT) HRESULT {
         return self.vtable.put_Body(self, varBody);
     }
-    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo_v1(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo) HRESULT {
         return self.vtable.get_AdminQueueInfo_v1(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo_v1(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo) HRESULT {
         return self.vtable.putref_AdminQueueInfo_v1(self, pqinfoAdmin);
     }
-    pub fn get_Id(self: *const IMSMQMessage4, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IMSMQMessage4, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_Id(self, pvarMsgId);
     }
-    pub fn get_CorrelationId(self: *const IMSMQMessage4, pvarMsgId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CorrelationId(self: *const IMSMQMessage4, pvarMsgId: ?*VARIANT) HRESULT {
         return self.vtable.get_CorrelationId(self, pvarMsgId);
     }
-    pub fn put_CorrelationId(self: *const IMSMQMessage4, varMsgId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_CorrelationId(self: *const IMSMQMessage4, varMsgId: VARIANT) HRESULT {
         return self.vtable.put_CorrelationId(self, varMsgId);
     }
-    pub fn get_Ack(self: *const IMSMQMessage4, plAck: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Ack(self: *const IMSMQMessage4, plAck: ?*i32) HRESULT {
         return self.vtable.get_Ack(self, plAck);
     }
-    pub fn put_Ack(self: *const IMSMQMessage4, lAck: i32) callconv(.Inline) HRESULT {
+    pub fn put_Ack(self: *const IMSMQMessage4, lAck: i32) HRESULT {
         return self.vtable.put_Ack(self, lAck);
     }
-    pub fn get_Label(self: *const IMSMQMessage4, pbstrLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Label(self: *const IMSMQMessage4, pbstrLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_Label(self, pbstrLabel);
     }
-    pub fn put_Label(self: *const IMSMQMessage4, bstrLabel: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Label(self: *const IMSMQMessage4, bstrLabel: ?BSTR) HRESULT {
         return self.vtable.put_Label(self, bstrLabel);
     }
-    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage4, plMaxTimeToReachQueue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReachQueue(self: *const IMSMQMessage4, plMaxTimeToReachQueue: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReachQueue(self, plMaxTimeToReachQueue);
     }
-    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage4, lMaxTimeToReachQueue: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReachQueue(self: *const IMSMQMessage4, lMaxTimeToReachQueue: i32) HRESULT {
         return self.vtable.put_MaxTimeToReachQueue(self, lMaxTimeToReachQueue);
     }
-    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage4, plMaxTimeToReceive: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxTimeToReceive(self: *const IMSMQMessage4, plMaxTimeToReceive: ?*i32) HRESULT {
         return self.vtable.get_MaxTimeToReceive(self, plMaxTimeToReceive);
     }
-    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage4, lMaxTimeToReceive: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxTimeToReceive(self: *const IMSMQMessage4, lMaxTimeToReceive: i32) HRESULT {
         return self.vtable.put_MaxTimeToReceive(self, lMaxTimeToReceive);
     }
-    pub fn get_HashAlgorithm(self: *const IMSMQMessage4, plHashAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_HashAlgorithm(self: *const IMSMQMessage4, plHashAlg: ?*i32) HRESULT {
         return self.vtable.get_HashAlgorithm(self, plHashAlg);
     }
-    pub fn put_HashAlgorithm(self: *const IMSMQMessage4, lHashAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_HashAlgorithm(self: *const IMSMQMessage4, lHashAlg: i32) HRESULT {
         return self.vtable.put_HashAlgorithm(self, lHashAlg);
     }
-    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage4, plEncryptAlg: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EncryptAlgorithm(self: *const IMSMQMessage4, plEncryptAlg: ?*i32) HRESULT {
         return self.vtable.get_EncryptAlgorithm(self, plEncryptAlg);
     }
-    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage4, lEncryptAlg: i32) callconv(.Inline) HRESULT {
+    pub fn put_EncryptAlgorithm(self: *const IMSMQMessage4, lEncryptAlg: i32) HRESULT {
         return self.vtable.put_EncryptAlgorithm(self, lEncryptAlg);
     }
-    pub fn get_SentTime(self: *const IMSMQMessage4, pvarSentTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SentTime(self: *const IMSMQMessage4, pvarSentTime: ?*VARIANT) HRESULT {
         return self.vtable.get_SentTime(self, pvarSentTime);
     }
-    pub fn get_ArrivedTime(self: *const IMSMQMessage4, plArrivedTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ArrivedTime(self: *const IMSMQMessage4, plArrivedTime: ?*VARIANT) HRESULT {
         return self.vtable.get_ArrivedTime(self, plArrivedTime);
     }
-    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage4, ppqinfoDest: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn get_DestinationQueueInfo(self: *const IMSMQMessage4, ppqinfoDest: ?*?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.get_DestinationQueueInfo(self, ppqinfoDest);
     }
-    pub fn get_SenderCertificate(self: *const IMSMQMessage4, pvarSenderCert: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderCertificate(self: *const IMSMQMessage4, pvarSenderCert: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderCertificate(self, pvarSenderCert);
     }
-    pub fn put_SenderCertificate(self: *const IMSMQMessage4, varSenderCert: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SenderCertificate(self: *const IMSMQMessage4, varSenderCert: VARIANT) HRESULT {
         return self.vtable.put_SenderCertificate(self, varSenderCert);
     }
-    pub fn get_SenderId(self: *const IMSMQMessage4, pvarSenderId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SenderId(self: *const IMSMQMessage4, pvarSenderId: ?*VARIANT) HRESULT {
         return self.vtable.get_SenderId(self, pvarSenderId);
     }
-    pub fn get_SenderIdType(self: *const IMSMQMessage4, plSenderIdType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SenderIdType(self: *const IMSMQMessage4, plSenderIdType: ?*i32) HRESULT {
         return self.vtable.get_SenderIdType(self, plSenderIdType);
     }
-    pub fn put_SenderIdType(self: *const IMSMQMessage4, lSenderIdType: i32) callconv(.Inline) HRESULT {
+    pub fn put_SenderIdType(self: *const IMSMQMessage4, lSenderIdType: i32) HRESULT {
         return self.vtable.put_SenderIdType(self, lSenderIdType);
     }
-    pub fn Send(self: *const IMSMQMessage4, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Send(self: *const IMSMQMessage4, DestinationQueue: ?*IDispatch, Transaction: ?*VARIANT) HRESULT {
         return self.vtable.Send(self, DestinationQueue, Transaction);
     }
-    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn AttachCurrentSecurityContext(self: *const IMSMQMessage4) HRESULT {
         return self.vtable.AttachCurrentSecurityContext(self);
     }
-    pub fn get_SenderVersion(self: *const IMSMQMessage4, plSenderVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SenderVersion(self: *const IMSMQMessage4, plSenderVersion: ?*i32) HRESULT {
         return self.vtable.get_SenderVersion(self, plSenderVersion);
     }
-    pub fn get_Extension(self: *const IMSMQMessage4, pvarExtension: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Extension(self: *const IMSMQMessage4, pvarExtension: ?*VARIANT) HRESULT {
         return self.vtable.get_Extension(self, pvarExtension);
     }
-    pub fn put_Extension(self: *const IMSMQMessage4, varExtension: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Extension(self: *const IMSMQMessage4, varExtension: VARIANT) HRESULT {
         return self.vtable.put_Extension(self, varExtension);
     }
-    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage4, pbstrGuidConnectorType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ConnectorTypeGuid(self: *const IMSMQMessage4, pbstrGuidConnectorType: ?*?BSTR) HRESULT {
         return self.vtable.get_ConnectorTypeGuid(self, pbstrGuidConnectorType);
     }
-    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage4, bstrGuidConnectorType: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ConnectorTypeGuid(self: *const IMSMQMessage4, bstrGuidConnectorType: ?BSTR) HRESULT {
         return self.vtable.put_ConnectorTypeGuid(self, bstrGuidConnectorType);
     }
-    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage4, ppqinfoXactStatus: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn get_TransactionStatusQueueInfo(self: *const IMSMQMessage4, ppqinfoXactStatus: ?*?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.get_TransactionStatusQueueInfo(self, ppqinfoXactStatus);
     }
-    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage4, pvarDestSymmKey: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DestinationSymmetricKey(self: *const IMSMQMessage4, pvarDestSymmKey: ?*VARIANT) HRESULT {
         return self.vtable.get_DestinationSymmetricKey(self, pvarDestSymmKey);
     }
-    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage4, varDestSymmKey: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_DestinationSymmetricKey(self: *const IMSMQMessage4, varDestSymmKey: VARIANT) HRESULT {
         return self.vtable.put_DestinationSymmetricKey(self, varDestSymmKey);
     }
-    pub fn get_Signature(self: *const IMSMQMessage4, pvarSignature: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Signature(self: *const IMSMQMessage4, pvarSignature: ?*VARIANT) HRESULT {
         return self.vtable.get_Signature(self, pvarSignature);
     }
-    pub fn put_Signature(self: *const IMSMQMessage4, varSignature: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Signature(self: *const IMSMQMessage4, varSignature: VARIANT) HRESULT {
         return self.vtable.put_Signature(self, varSignature);
     }
-    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage4, plAuthProvType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AuthenticationProviderType(self: *const IMSMQMessage4, plAuthProvType: ?*i32) HRESULT {
         return self.vtable.get_AuthenticationProviderType(self, plAuthProvType);
     }
-    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage4, lAuthProvType: i32) callconv(.Inline) HRESULT {
+    pub fn put_AuthenticationProviderType(self: *const IMSMQMessage4, lAuthProvType: i32) HRESULT {
         return self.vtable.put_AuthenticationProviderType(self, lAuthProvType);
     }
-    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage4, pbstrAuthProvName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AuthenticationProviderName(self: *const IMSMQMessage4, pbstrAuthProvName: ?*?BSTR) HRESULT {
         return self.vtable.get_AuthenticationProviderName(self, pbstrAuthProvName);
     }
-    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage4, bstrAuthProvName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_AuthenticationProviderName(self: *const IMSMQMessage4, bstrAuthProvName: ?BSTR) HRESULT {
         return self.vtable.put_AuthenticationProviderName(self, bstrAuthProvName);
     }
-    pub fn put_SenderId(self: *const IMSMQMessage4, varSenderId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_SenderId(self: *const IMSMQMessage4, varSenderId: VARIANT) HRESULT {
         return self.vtable.put_SenderId(self, varSenderId);
     }
-    pub fn get_MsgClass(self: *const IMSMQMessage4, plMsgClass: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MsgClass(self: *const IMSMQMessage4, plMsgClass: ?*i32) HRESULT {
         return self.vtable.get_MsgClass(self, plMsgClass);
     }
-    pub fn put_MsgClass(self: *const IMSMQMessage4, lMsgClass: i32) callconv(.Inline) HRESULT {
+    pub fn put_MsgClass(self: *const IMSMQMessage4, lMsgClass: i32) HRESULT {
         return self.vtable.put_MsgClass(self, lMsgClass);
     }
-    pub fn get_Properties(self: *const IMSMQMessage4, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQMessage4, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
-    pub fn get_TransactionId(self: *const IMSMQMessage4, pvarXactId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_TransactionId(self: *const IMSMQMessage4, pvarXactId: ?*VARIANT) HRESULT {
         return self.vtable.get_TransactionId(self, pvarXactId);
     }
-    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage4, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsFirstInTransaction(self: *const IMSMQMessage4, pisFirstInXact: ?*i16) HRESULT {
         return self.vtable.get_IsFirstInTransaction(self, pisFirstInXact);
     }
-    pub fn get_IsLastInTransaction(self: *const IMSMQMessage4, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLastInTransaction(self: *const IMSMQMessage4, pisLastInXact: ?*i16) HRESULT {
         return self.vtable.get_IsLastInTransaction(self, pisLastInXact);
     }
-    pub fn get_ResponseQueueInfo_v2(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo_v2(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_ResponseQueueInfo_v2(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo_v2(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo_v2(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.putref_ResponseQueueInfo_v2(self, pqinfoResponse);
     }
-    pub fn get_AdminQueueInfo_v2(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo_v2(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.get_AdminQueueInfo_v2(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo_v2(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo2) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo_v2(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo2) HRESULT {
         return self.vtable.putref_AdminQueueInfo_v2(self, pqinfoAdmin);
     }
-    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage4, psReceivedAuthenticationLevel: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_ReceivedAuthenticationLevel(self: *const IMSMQMessage4, psReceivedAuthenticationLevel: ?*i16) HRESULT {
         return self.vtable.get_ReceivedAuthenticationLevel(self, psReceivedAuthenticationLevel);
     }
-    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn get_ResponseQueueInfo(self: *const IMSMQMessage4, ppqinfoResponse: ?*?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.get_ResponseQueueInfo(self, ppqinfoResponse);
     }
-    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseQueueInfo(self: *const IMSMQMessage4, pqinfoResponse: ?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.putref_ResponseQueueInfo(self, pqinfoResponse);
     }
-    pub fn get_AdminQueueInfo(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn get_AdminQueueInfo(self: *const IMSMQMessage4, ppqinfoAdmin: ?*?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.get_AdminQueueInfo(self, ppqinfoAdmin);
     }
-    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo4) callconv(.Inline) HRESULT {
+    pub fn putref_AdminQueueInfo(self: *const IMSMQMessage4, pqinfoAdmin: ?*IMSMQQueueInfo4) HRESULT {
         return self.vtable.putref_AdminQueueInfo(self, pqinfoAdmin);
     }
-    pub fn get_ResponseDestination(self: *const IMSMQMessage4, ppdestResponse: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_ResponseDestination(self: *const IMSMQMessage4, ppdestResponse: ?*?*IDispatch) HRESULT {
         return self.vtable.get_ResponseDestination(self, ppdestResponse);
     }
-    pub fn putref_ResponseDestination(self: *const IMSMQMessage4, pdestResponse: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn putref_ResponseDestination(self: *const IMSMQMessage4, pdestResponse: ?*IDispatch) HRESULT {
         return self.vtable.putref_ResponseDestination(self, pdestResponse);
     }
-    pub fn get_Destination(self: *const IMSMQMessage4, ppdestDestination: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Destination(self: *const IMSMQMessage4, ppdestDestination: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Destination(self, ppdestDestination);
     }
-    pub fn get_LookupId(self: *const IMSMQMessage4, pvarLookupId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_LookupId(self: *const IMSMQMessage4, pvarLookupId: ?*VARIANT) HRESULT {
         return self.vtable.get_LookupId(self, pvarLookupId);
     }
-    pub fn get_IsAuthenticated2(self: *const IMSMQMessage4, pisAuthenticated: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsAuthenticated2(self: *const IMSMQMessage4, pisAuthenticated: ?*i16) HRESULT {
         return self.vtable.get_IsAuthenticated2(self, pisAuthenticated);
     }
-    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage4, pisFirstInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsFirstInTransaction2(self: *const IMSMQMessage4, pisFirstInXact: ?*i16) HRESULT {
         return self.vtable.get_IsFirstInTransaction2(self, pisFirstInXact);
     }
-    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage4, pisLastInXact: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLastInTransaction2(self: *const IMSMQMessage4, pisLastInXact: ?*i16) HRESULT {
         return self.vtable.get_IsLastInTransaction2(self, pisLastInXact);
     }
-    pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage4) callconv(.Inline) HRESULT {
+    pub fn AttachCurrentSecurityContext2(self: *const IMSMQMessage4) HRESULT {
         return self.vtable.AttachCurrentSecurityContext2(self);
     }
-    pub fn get_SoapEnvelope(self: *const IMSMQMessage4, pbstrSoapEnvelope: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SoapEnvelope(self: *const IMSMQMessage4, pbstrSoapEnvelope: ?*?BSTR) HRESULT {
         return self.vtable.get_SoapEnvelope(self, pbstrSoapEnvelope);
     }
-    pub fn get_CompoundMessage(self: *const IMSMQMessage4, pvarCompoundMessage: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CompoundMessage(self: *const IMSMQMessage4, pvarCompoundMessage: ?*VARIANT) HRESULT {
         return self.vtable.get_CompoundMessage(self, pvarCompoundMessage);
     }
-    pub fn put_SoapHeader(self: *const IMSMQMessage4, bstrSoapHeader: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_SoapHeader(self: *const IMSMQMessage4, bstrSoapHeader: ?BSTR) HRESULT {
         return self.vtable.put_SoapHeader(self, bstrSoapHeader);
     }
-    pub fn put_SoapBody(self: *const IMSMQMessage4, bstrSoapBody: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_SoapBody(self: *const IMSMQMessage4, bstrSoapBody: ?BSTR) HRESULT {
         return self.vtable.put_SoapBody(self, bstrSoapBody);
     }
 };
@@ -5933,29 +5933,29 @@ pub const IMSMQPrivateEvent = extern union {
         get_Hwnd: *const fn(
             self: *const IMSMQPrivateEvent,
             phwnd: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FireArrivedEvent: *const fn(
             self: *const IMSMQPrivateEvent,
             pq: ?*IMSMQQueue,
             msgcursor: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FireArrivedErrorEvent: *const fn(
             self: *const IMSMQPrivateEvent,
             pq: ?*IMSMQQueue,
             hrStatus: HRESULT,
             msgcursor: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Hwnd(self: *const IMSMQPrivateEvent, phwnd: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Hwnd(self: *const IMSMQPrivateEvent, phwnd: ?*i32) HRESULT {
         return self.vtable.get_Hwnd(self, phwnd);
     }
-    pub fn FireArrivedEvent(self: *const IMSMQPrivateEvent, pq: ?*IMSMQQueue, msgcursor: i32) callconv(.Inline) HRESULT {
+    pub fn FireArrivedEvent(self: *const IMSMQPrivateEvent, pq: ?*IMSMQQueue, msgcursor: i32) HRESULT {
         return self.vtable.FireArrivedEvent(self, pq, msgcursor);
     }
-    pub fn FireArrivedErrorEvent(self: *const IMSMQPrivateEvent, pq: ?*IMSMQQueue, hrStatus: HRESULT, msgcursor: i32) callconv(.Inline) HRESULT {
+    pub fn FireArrivedErrorEvent(self: *const IMSMQPrivateEvent, pq: ?*IMSMQQueue, hrStatus: HRESULT, msgcursor: i32) HRESULT {
         return self.vtable.FireArrivedErrorEvent(self, pq, hrStatus, msgcursor);
     }
 };
@@ -5979,21 +5979,21 @@ pub const IMSMQTransaction2 = extern union {
         InitNew: *const fn(
             self: *const IMSMQTransaction2,
             varTransaction: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQTransaction2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMSMQTransaction: IMSMQTransaction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InitNew(self: *const IMSMQTransaction2, varTransaction: VARIANT) callconv(.Inline) HRESULT {
+    pub fn InitNew(self: *const IMSMQTransaction2, varTransaction: VARIANT) HRESULT {
         return self.vtable.InitNew(self, varTransaction);
     }
-    pub fn get_Properties(self: *const IMSMQTransaction2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQTransaction2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -6007,14 +6007,14 @@ pub const IMSMQTransaction3 = extern union {
         get_ITransaction: *const fn(
             self: *const IMSMQTransaction3,
             pvarITransaction: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMSMQTransaction2: IMSMQTransaction2,
     IMSMQTransaction: IMSMQTransaction,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ITransaction(self: *const IMSMQTransaction3, pvarITransaction: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ITransaction(self: *const IMSMQTransaction3, pvarITransaction: ?*VARIANT) HRESULT {
         return self.vtable.get_ITransaction(self, pvarITransaction);
     }
 };
@@ -6027,20 +6027,20 @@ pub const IMSMQCoordinatedTransactionDispenser2 = extern union {
         BeginTransaction: *const fn(
             self: *const IMSMQCoordinatedTransactionDispenser2,
             ptransaction: ?*?*IMSMQTransaction2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQCoordinatedTransactionDispenser2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser2, ptransaction: ?*?*IMSMQTransaction2) callconv(.Inline) HRESULT {
+    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser2, ptransaction: ?*?*IMSMQTransaction2) HRESULT {
         return self.vtable.BeginTransaction(self, ptransaction);
     }
-    pub fn get_Properties(self: *const IMSMQCoordinatedTransactionDispenser2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQCoordinatedTransactionDispenser2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -6053,20 +6053,20 @@ pub const IMSMQCoordinatedTransactionDispenser3 = extern union {
         BeginTransaction: *const fn(
             self: *const IMSMQCoordinatedTransactionDispenser3,
             ptransaction: ?*?*IMSMQTransaction3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQCoordinatedTransactionDispenser3,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser3, ptransaction: ?*?*IMSMQTransaction3) callconv(.Inline) HRESULT {
+    pub fn BeginTransaction(self: *const IMSMQCoordinatedTransactionDispenser3, ptransaction: ?*?*IMSMQTransaction3) HRESULT {
         return self.vtable.BeginTransaction(self, ptransaction);
     }
-    pub fn get_Properties(self: *const IMSMQCoordinatedTransactionDispenser3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQCoordinatedTransactionDispenser3, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -6079,20 +6079,20 @@ pub const IMSMQTransactionDispenser2 = extern union {
         BeginTransaction: *const fn(
             self: *const IMSMQTransactionDispenser2,
             ptransaction: ?*?*IMSMQTransaction2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQTransactionDispenser2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser2, ptransaction: ?*?*IMSMQTransaction2) callconv(.Inline) HRESULT {
+    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser2, ptransaction: ?*?*IMSMQTransaction2) HRESULT {
         return self.vtable.BeginTransaction(self, ptransaction);
     }
-    pub fn get_Properties(self: *const IMSMQTransactionDispenser2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQTransactionDispenser2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -6105,20 +6105,20 @@ pub const IMSMQTransactionDispenser3 = extern union {
         BeginTransaction: *const fn(
             self: *const IMSMQTransactionDispenser3,
             ptransaction: ?*?*IMSMQTransaction3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQTransactionDispenser3,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser3, ptransaction: ?*?*IMSMQTransaction3) callconv(.Inline) HRESULT {
+    pub fn BeginTransaction(self: *const IMSMQTransactionDispenser3, ptransaction: ?*?*IMSMQTransaction3) HRESULT {
         return self.vtable.BeginTransaction(self, ptransaction);
     }
-    pub fn get_Properties(self: *const IMSMQTransactionDispenser3, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQTransactionDispenser3, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -6132,12 +6132,12 @@ pub const IMSMQApplication = extern union {
             self: *const IMSMQApplication,
             MachineName: ?BSTR,
             pbstrGuid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn MachineIdOfMachineName(self: *const IMSMQApplication, MachineName: ?BSTR, pbstrGuid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn MachineIdOfMachineName(self: *const IMSMQApplication, MachineName: ?BSTR, pbstrGuid: ?*?BSTR) HRESULT {
         return self.vtable.MachineIdOfMachineName(self, MachineName, pbstrGuid);
     }
 };
@@ -6151,61 +6151,61 @@ pub const IMSMQApplication2 = extern union {
             self: *const IMSMQApplication2,
             Flags: ?*VARIANT,
             ExternalCertificate: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MachineNameOfMachineId: *const fn(
             self: *const IMSMQApplication2,
             bstrGuid: ?BSTR,
             pbstrMachineName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MSMQVersionMajor: *const fn(
             self: *const IMSMQApplication2,
             psMSMQVersionMajor: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MSMQVersionMinor: *const fn(
             self: *const IMSMQApplication2,
             psMSMQVersionMinor: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MSMQVersionBuild: *const fn(
             self: *const IMSMQApplication2,
             psMSMQVersionBuild: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsDsEnabled: *const fn(
             self: *const IMSMQApplication2,
             pfIsDsEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQApplication2,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMSMQApplication: IMSMQApplication,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RegisterCertificate(self: *const IMSMQApplication2, Flags: ?*VARIANT, ExternalCertificate: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn RegisterCertificate(self: *const IMSMQApplication2, Flags: ?*VARIANT, ExternalCertificate: ?*VARIANT) HRESULT {
         return self.vtable.RegisterCertificate(self, Flags, ExternalCertificate);
     }
-    pub fn MachineNameOfMachineId(self: *const IMSMQApplication2, bstrGuid: ?BSTR, pbstrMachineName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn MachineNameOfMachineId(self: *const IMSMQApplication2, bstrGuid: ?BSTR, pbstrMachineName: ?*?BSTR) HRESULT {
         return self.vtable.MachineNameOfMachineId(self, bstrGuid, pbstrMachineName);
     }
-    pub fn get_MSMQVersionMajor(self: *const IMSMQApplication2, psMSMQVersionMajor: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MSMQVersionMajor(self: *const IMSMQApplication2, psMSMQVersionMajor: ?*i16) HRESULT {
         return self.vtable.get_MSMQVersionMajor(self, psMSMQVersionMajor);
     }
-    pub fn get_MSMQVersionMinor(self: *const IMSMQApplication2, psMSMQVersionMinor: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MSMQVersionMinor(self: *const IMSMQApplication2, psMSMQVersionMinor: ?*i16) HRESULT {
         return self.vtable.get_MSMQVersionMinor(self, psMSMQVersionMinor);
     }
-    pub fn get_MSMQVersionBuild(self: *const IMSMQApplication2, psMSMQVersionBuild: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_MSMQVersionBuild(self: *const IMSMQApplication2, psMSMQVersionBuild: ?*i16) HRESULT {
         return self.vtable.get_MSMQVersionBuild(self, psMSMQVersionBuild);
     }
-    pub fn get_IsDsEnabled(self: *const IMSMQApplication2, pfIsDsEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsDsEnabled(self: *const IMSMQApplication2, pfIsDsEnabled: ?*i16) HRESULT {
         return self.vtable.get_IsDsEnabled(self, pfIsDsEnabled);
     }
-    pub fn get_Properties(self: *const IMSMQApplication2, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQApplication2, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -6219,80 +6219,80 @@ pub const IMSMQApplication3 = extern union {
         get_ActiveQueues: *const fn(
             self: *const IMSMQApplication3,
             pvActiveQueues: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateQueues: *const fn(
             self: *const IMSMQApplication3,
             pvPrivateQueues: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DirectoryServiceServer: *const fn(
             self: *const IMSMQApplication3,
             pbstrDirectoryServiceServer: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsConnected: *const fn(
             self: *const IMSMQApplication3,
             pfIsConnected: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BytesInAllQueues: *const fn(
             self: *const IMSMQApplication3,
             pvBytesInAllQueues: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Machine: *const fn(
             self: *const IMSMQApplication3,
             bstrMachine: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Machine: *const fn(
             self: *const IMSMQApplication3,
             pbstrMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const IMSMQApplication3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IMSMQApplication3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Tidy: *const fn(
             self: *const IMSMQApplication3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMSMQApplication2: IMSMQApplication2,
     IMSMQApplication: IMSMQApplication,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ActiveQueues(self: *const IMSMQApplication3, pvActiveQueues: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ActiveQueues(self: *const IMSMQApplication3, pvActiveQueues: ?*VARIANT) HRESULT {
         return self.vtable.get_ActiveQueues(self, pvActiveQueues);
     }
-    pub fn get_PrivateQueues(self: *const IMSMQApplication3, pvPrivateQueues: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PrivateQueues(self: *const IMSMQApplication3, pvPrivateQueues: ?*VARIANT) HRESULT {
         return self.vtable.get_PrivateQueues(self, pvPrivateQueues);
     }
-    pub fn get_DirectoryServiceServer(self: *const IMSMQApplication3, pbstrDirectoryServiceServer: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DirectoryServiceServer(self: *const IMSMQApplication3, pbstrDirectoryServiceServer: ?*?BSTR) HRESULT {
         return self.vtable.get_DirectoryServiceServer(self, pbstrDirectoryServiceServer);
     }
-    pub fn get_IsConnected(self: *const IMSMQApplication3, pfIsConnected: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsConnected(self: *const IMSMQApplication3, pfIsConnected: ?*i16) HRESULT {
         return self.vtable.get_IsConnected(self, pfIsConnected);
     }
-    pub fn get_BytesInAllQueues(self: *const IMSMQApplication3, pvBytesInAllQueues: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_BytesInAllQueues(self: *const IMSMQApplication3, pvBytesInAllQueues: ?*VARIANT) HRESULT {
         return self.vtable.get_BytesInAllQueues(self, pvBytesInAllQueues);
     }
-    pub fn put_Machine(self: *const IMSMQApplication3, bstrMachine: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Machine(self: *const IMSMQApplication3, bstrMachine: ?BSTR) HRESULT {
         return self.vtable.put_Machine(self, bstrMachine);
     }
-    pub fn get_Machine(self: *const IMSMQApplication3, pbstrMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Machine(self: *const IMSMQApplication3, pbstrMachine: ?*?BSTR) HRESULT {
         return self.vtable.get_Machine(self, pbstrMachine);
     }
-    pub fn Connect(self: *const IMSMQApplication3) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IMSMQApplication3) HRESULT {
         return self.vtable.Connect(self);
     }
-    pub fn Disconnect(self: *const IMSMQApplication3) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IMSMQApplication3) HRESULT {
         return self.vtable.Disconnect(self);
     }
-    pub fn Tidy(self: *const IMSMQApplication3) callconv(.Inline) HRESULT {
+    pub fn Tidy(self: *const IMSMQApplication3) HRESULT {
         return self.vtable.Tidy(self);
     }
 };
@@ -6304,112 +6304,112 @@ pub const IMSMQDestination = extern union {
         base: IDispatch.VTable,
         Open: *const fn(
             self: *const IMSMQDestination,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IMSMQDestination,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsOpen: *const fn(
             self: *const IMSMQDestination,
             pfIsOpen: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IADs: *const fn(
             self: *const IMSMQDestination,
             ppIADs: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_IADs: *const fn(
             self: *const IMSMQDestination,
             pIADs: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ADsPath: *const fn(
             self: *const IMSMQDestination,
             pbstrADsPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ADsPath: *const fn(
             self: *const IMSMQDestination,
             bstrADsPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathName: *const fn(
             self: *const IMSMQDestination,
             pbstrPathName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PathName: *const fn(
             self: *const IMSMQDestination,
             bstrPathName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FormatName: *const fn(
             self: *const IMSMQDestination,
             pbstrFormatName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FormatName: *const fn(
             self: *const IMSMQDestination,
             bstrFormatName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Destinations: *const fn(
             self: *const IMSMQDestination,
             ppDestinations: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Destinations: *const fn(
             self: *const IMSMQDestination,
             pDestinations: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IMSMQDestination,
             ppcolProperties: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Open(self: *const IMSMQDestination) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const IMSMQDestination) HRESULT {
         return self.vtable.Open(self);
     }
-    pub fn Close(self: *const IMSMQDestination) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IMSMQDestination) HRESULT {
         return self.vtable.Close(self);
     }
-    pub fn get_IsOpen(self: *const IMSMQDestination, pfIsOpen: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsOpen(self: *const IMSMQDestination, pfIsOpen: ?*i16) HRESULT {
         return self.vtable.get_IsOpen(self, pfIsOpen);
     }
-    pub fn get_IADs(self: *const IMSMQDestination, ppIADs: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_IADs(self: *const IMSMQDestination, ppIADs: ?*?*IDispatch) HRESULT {
         return self.vtable.get_IADs(self, ppIADs);
     }
-    pub fn putref_IADs(self: *const IMSMQDestination, pIADs: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn putref_IADs(self: *const IMSMQDestination, pIADs: ?*IDispatch) HRESULT {
         return self.vtable.putref_IADs(self, pIADs);
     }
-    pub fn get_ADsPath(self: *const IMSMQDestination, pbstrADsPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ADsPath(self: *const IMSMQDestination, pbstrADsPath: ?*?BSTR) HRESULT {
         return self.vtable.get_ADsPath(self, pbstrADsPath);
     }
-    pub fn put_ADsPath(self: *const IMSMQDestination, bstrADsPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ADsPath(self: *const IMSMQDestination, bstrADsPath: ?BSTR) HRESULT {
         return self.vtable.put_ADsPath(self, bstrADsPath);
     }
-    pub fn get_PathName(self: *const IMSMQDestination, pbstrPathName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PathName(self: *const IMSMQDestination, pbstrPathName: ?*?BSTR) HRESULT {
         return self.vtable.get_PathName(self, pbstrPathName);
     }
-    pub fn put_PathName(self: *const IMSMQDestination, bstrPathName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_PathName(self: *const IMSMQDestination, bstrPathName: ?BSTR) HRESULT {
         return self.vtable.put_PathName(self, bstrPathName);
     }
-    pub fn get_FormatName(self: *const IMSMQDestination, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FormatName(self: *const IMSMQDestination, pbstrFormatName: ?*?BSTR) HRESULT {
         return self.vtable.get_FormatName(self, pbstrFormatName);
     }
-    pub fn put_FormatName(self: *const IMSMQDestination, bstrFormatName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FormatName(self: *const IMSMQDestination, bstrFormatName: ?BSTR) HRESULT {
         return self.vtable.put_FormatName(self, bstrFormatName);
     }
-    pub fn get_Destinations(self: *const IMSMQDestination, ppDestinations: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Destinations(self: *const IMSMQDestination, ppDestinations: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Destinations(self, ppDestinations);
     }
-    pub fn putref_Destinations(self: *const IMSMQDestination, pDestinations: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn putref_Destinations(self: *const IMSMQDestination, pDestinations: ?*IDispatch) HRESULT {
         return self.vtable.putref_Destinations(self, pDestinations);
     }
-    pub fn get_Properties(self: *const IMSMQDestination, ppcolProperties: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IMSMQDestination, ppcolProperties: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Properties(self, ppcolProperties);
     }
 };
@@ -6423,20 +6423,20 @@ pub const IMSMQPrivateDestination = extern union {
         get_Handle: *const fn(
             self: *const IMSMQPrivateDestination,
             pvarHandle: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Handle: *const fn(
             self: *const IMSMQPrivateDestination,
             varHandle: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Handle(self: *const IMSMQPrivateDestination, pvarHandle: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const IMSMQPrivateDestination, pvarHandle: ?*VARIANT) HRESULT {
         return self.vtable.get_Handle(self, pvarHandle);
     }
-    pub fn put_Handle(self: *const IMSMQPrivateDestination, varHandle: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Handle(self: *const IMSMQPrivateDestination, varHandle: VARIANT) HRESULT {
         return self.vtable.put_Handle(self, varHandle);
     }
 };
@@ -6450,27 +6450,27 @@ pub const IMSMQCollection = extern union {
             self: *const IMSMQCollection,
             Index: ?*VARIANT,
             pvarRet: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IMSMQCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         _NewEnum: *const fn(
             self: *const IMSMQCollection,
             ppunk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Item(self: *const IMSMQCollection, Index: ?*VARIANT, pvarRet: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const IMSMQCollection, Index: ?*VARIANT, pvarRet: ?*VARIANT) HRESULT {
         return self.vtable.Item(self, Index, pvarRet);
     }
-    pub fn get_Count(self: *const IMSMQCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IMSMQCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn _NewEnum(self: *const IMSMQCollection, ppunk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn _NewEnum(self: *const IMSMQCollection, ppunk: ?*?*IUnknown) HRESULT {
         return self.vtable._NewEnum(self, ppunk);
     }
 };
@@ -6485,76 +6485,76 @@ pub const IMSMQManagement = extern union {
             Machine: ?*VARIANT,
             Pathname: ?*VARIANT,
             FormatName: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FormatName: *const fn(
             self: *const IMSMQManagement,
             pbstrFormatName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Machine: *const fn(
             self: *const IMSMQManagement,
             pbstrMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MessageCount: *const fn(
             self: *const IMSMQManagement,
             plMessageCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ForeignStatus: *const fn(
             self: *const IMSMQManagement,
             plForeignStatus: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueueType: *const fn(
             self: *const IMSMQManagement,
             plQueueType: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLocal: *const fn(
             self: *const IMSMQManagement,
             pfIsLocal: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransactionalStatus: *const fn(
             self: *const IMSMQManagement,
             plTransactionalStatus: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BytesInQueue: *const fn(
             self: *const IMSMQManagement,
             pvBytesInQueue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IMSMQManagement, Machine: ?*VARIANT, Pathname: ?*VARIANT, FormatName: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const IMSMQManagement, Machine: ?*VARIANT, Pathname: ?*VARIANT, FormatName: ?*VARIANT) HRESULT {
         return self.vtable.Init(self, Machine, Pathname, FormatName);
     }
-    pub fn get_FormatName(self: *const IMSMQManagement, pbstrFormatName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FormatName(self: *const IMSMQManagement, pbstrFormatName: ?*?BSTR) HRESULT {
         return self.vtable.get_FormatName(self, pbstrFormatName);
     }
-    pub fn get_Machine(self: *const IMSMQManagement, pbstrMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Machine(self: *const IMSMQManagement, pbstrMachine: ?*?BSTR) HRESULT {
         return self.vtable.get_Machine(self, pbstrMachine);
     }
-    pub fn get_MessageCount(self: *const IMSMQManagement, plMessageCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MessageCount(self: *const IMSMQManagement, plMessageCount: ?*i32) HRESULT {
         return self.vtable.get_MessageCount(self, plMessageCount);
     }
-    pub fn get_ForeignStatus(self: *const IMSMQManagement, plForeignStatus: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ForeignStatus(self: *const IMSMQManagement, plForeignStatus: ?*i32) HRESULT {
         return self.vtable.get_ForeignStatus(self, plForeignStatus);
     }
-    pub fn get_QueueType(self: *const IMSMQManagement, plQueueType: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_QueueType(self: *const IMSMQManagement, plQueueType: ?*i32) HRESULT {
         return self.vtable.get_QueueType(self, plQueueType);
     }
-    pub fn get_IsLocal(self: *const IMSMQManagement, pfIsLocal: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsLocal(self: *const IMSMQManagement, pfIsLocal: ?*i16) HRESULT {
         return self.vtable.get_IsLocal(self, pfIsLocal);
     }
-    pub fn get_TransactionalStatus(self: *const IMSMQManagement, plTransactionalStatus: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_TransactionalStatus(self: *const IMSMQManagement, plTransactionalStatus: ?*i32) HRESULT {
         return self.vtable.get_TransactionalStatus(self, plTransactionalStatus);
     }
-    pub fn get_BytesInQueue(self: *const IMSMQManagement, pvBytesInQueue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_BytesInQueue(self: *const IMSMQManagement, pvBytesInQueue: ?*VARIANT) HRESULT {
         return self.vtable.get_BytesInQueue(self, pvBytesInQueue);
     }
 };
@@ -6568,46 +6568,46 @@ pub const IMSMQOutgoingQueueManagement = extern union {
         get_State: *const fn(
             self: *const IMSMQOutgoingQueueManagement,
             plState: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextHops: *const fn(
             self: *const IMSMQOutgoingQueueManagement,
             pvNextHops: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EodGetSendInfo: *const fn(
             self: *const IMSMQOutgoingQueueManagement,
             ppCollection: ?*?*IMSMQCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const IMSMQOutgoingQueueManagement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const IMSMQOutgoingQueueManagement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EodResend: *const fn(
             self: *const IMSMQOutgoingQueueManagement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMSMQManagement: IMSMQManagement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_State(self: *const IMSMQOutgoingQueueManagement, plState: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const IMSMQOutgoingQueueManagement, plState: ?*i32) HRESULT {
         return self.vtable.get_State(self, plState);
     }
-    pub fn get_NextHops(self: *const IMSMQOutgoingQueueManagement, pvNextHops: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_NextHops(self: *const IMSMQOutgoingQueueManagement, pvNextHops: ?*VARIANT) HRESULT {
         return self.vtable.get_NextHops(self, pvNextHops);
     }
-    pub fn EodGetSendInfo(self: *const IMSMQOutgoingQueueManagement, ppCollection: ?*?*IMSMQCollection) callconv(.Inline) HRESULT {
+    pub fn EodGetSendInfo(self: *const IMSMQOutgoingQueueManagement, ppCollection: ?*?*IMSMQCollection) HRESULT {
         return self.vtable.EodGetSendInfo(self, ppCollection);
     }
-    pub fn Resume(self: *const IMSMQOutgoingQueueManagement) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const IMSMQOutgoingQueueManagement) HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn Pause(self: *const IMSMQOutgoingQueueManagement) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const IMSMQOutgoingQueueManagement) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn EodResend(self: *const IMSMQOutgoingQueueManagement) callconv(.Inline) HRESULT {
+    pub fn EodResend(self: *const IMSMQOutgoingQueueManagement) HRESULT {
         return self.vtable.EodResend(self);
     }
 };
@@ -6621,28 +6621,28 @@ pub const IMSMQQueueManagement = extern union {
         get_JournalMessageCount: *const fn(
             self: *const IMSMQQueueManagement,
             plJournalMessageCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BytesInJournal: *const fn(
             self: *const IMSMQQueueManagement,
             pvBytesInJournal: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EodGetReceiveInfo: *const fn(
             self: *const IMSMQQueueManagement,
             pvCollection: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IMSMQManagement: IMSMQManagement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_JournalMessageCount(self: *const IMSMQQueueManagement, plJournalMessageCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_JournalMessageCount(self: *const IMSMQQueueManagement, plJournalMessageCount: ?*i32) HRESULT {
         return self.vtable.get_JournalMessageCount(self, plJournalMessageCount);
     }
-    pub fn get_BytesInJournal(self: *const IMSMQQueueManagement, pvBytesInJournal: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_BytesInJournal(self: *const IMSMQQueueManagement, pvBytesInJournal: ?*VARIANT) HRESULT {
         return self.vtable.get_BytesInJournal(self, pvBytesInJournal);
     }
-    pub fn EodGetReceiveInfo(self: *const IMSMQQueueManagement, pvCollection: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn EodGetReceiveInfo(self: *const IMSMQQueueManagement, pvCollection: ?*VARIANT) HRESULT {
         return self.vtable.EodGetReceiveInfo(self, pvCollection);
     }
 };

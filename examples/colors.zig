@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 var prng: std.Random.DefaultPrng = undefined; // initialized in main()
 var random = prng.random();
 

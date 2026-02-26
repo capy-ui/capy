@@ -18,94 +18,94 @@ pub const IChannelCredentials = extern union {
             password: ?BSTR,
             impersonationLevel: i32,
             allowNtlm: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetUserNameCredential: *const fn(
             self: *const IChannelCredentials,
             username: ?BSTR,
             password: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClientCertificateFromStore: *const fn(
             self: *const IChannelCredentials,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
             findYype: ?BSTR,
             findValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClientCertificateFromStoreByName: *const fn(
             self: *const IChannelCredentials,
             subjectName: ?BSTR,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClientCertificateFromFile: *const fn(
             self: *const IChannelCredentials,
             filename: ?BSTR,
             password: ?BSTR,
             keystorageFlags: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultServiceCertificateFromStore: *const fn(
             self: *const IChannelCredentials,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
             findType: ?BSTR,
             findValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultServiceCertificateFromStoreByName: *const fn(
             self: *const IChannelCredentials,
             subjectName: ?BSTR,
             storeLocation: ?BSTR,
             storeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultServiceCertificateFromFile: *const fn(
             self: *const IChannelCredentials,
             filename: ?BSTR,
             password: ?BSTR,
             keystorageFlags: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetServiceCertificateAuthentication: *const fn(
             self: *const IChannelCredentials,
             storeLocation: ?BSTR,
             revocationMode: ?BSTR,
             certificateValidationMode: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetIssuedToken: *const fn(
             self: *const IChannelCredentials,
             localIssuerAddres: ?BSTR,
             localIssuerBindingType: ?BSTR,
             localIssuerBinding: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetWindowsCredential(self: *const IChannelCredentials, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetWindowsCredential(self: *const IChannelCredentials, domain: ?BSTR, username: ?BSTR, password: ?BSTR, impersonationLevel: i32, allowNtlm: BOOL) HRESULT {
         return self.vtable.SetWindowsCredential(self, domain, username, password, impersonationLevel, allowNtlm);
     }
-    pub fn SetUserNameCredential(self: *const IChannelCredentials, username: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetUserNameCredential(self: *const IChannelCredentials, username: ?BSTR, password: ?BSTR) HRESULT {
         return self.vtable.SetUserNameCredential(self, username, password);
     }
-    pub fn SetClientCertificateFromStore(self: *const IChannelCredentials, storeLocation: ?BSTR, storeName: ?BSTR, findYype: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetClientCertificateFromStore(self: *const IChannelCredentials, storeLocation: ?BSTR, storeName: ?BSTR, findYype: ?BSTR, findValue: VARIANT) HRESULT {
         return self.vtable.SetClientCertificateFromStore(self, storeLocation, storeName, findYype, findValue);
     }
-    pub fn SetClientCertificateFromStoreByName(self: *const IChannelCredentials, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetClientCertificateFromStoreByName(self: *const IChannelCredentials, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) HRESULT {
         return self.vtable.SetClientCertificateFromStoreByName(self, subjectName, storeLocation, storeName);
     }
-    pub fn SetClientCertificateFromFile(self: *const IChannelCredentials, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetClientCertificateFromFile(self: *const IChannelCredentials, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) HRESULT {
         return self.vtable.SetClientCertificateFromFile(self, filename, password, keystorageFlags);
     }
-    pub fn SetDefaultServiceCertificateFromStore(self: *const IChannelCredentials, storeLocation: ?BSTR, storeName: ?BSTR, findType: ?BSTR, findValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetDefaultServiceCertificateFromStore(self: *const IChannelCredentials, storeLocation: ?BSTR, storeName: ?BSTR, findType: ?BSTR, findValue: VARIANT) HRESULT {
         return self.vtable.SetDefaultServiceCertificateFromStore(self, storeLocation, storeName, findType, findValue);
     }
-    pub fn SetDefaultServiceCertificateFromStoreByName(self: *const IChannelCredentials, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetDefaultServiceCertificateFromStoreByName(self: *const IChannelCredentials, subjectName: ?BSTR, storeLocation: ?BSTR, storeName: ?BSTR) HRESULT {
         return self.vtable.SetDefaultServiceCertificateFromStoreByName(self, subjectName, storeLocation, storeName);
     }
-    pub fn SetDefaultServiceCertificateFromFile(self: *const IChannelCredentials, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetDefaultServiceCertificateFromFile(self: *const IChannelCredentials, filename: ?BSTR, password: ?BSTR, keystorageFlags: ?BSTR) HRESULT {
         return self.vtable.SetDefaultServiceCertificateFromFile(self, filename, password, keystorageFlags);
     }
-    pub fn SetServiceCertificateAuthentication(self: *const IChannelCredentials, storeLocation: ?BSTR, revocationMode: ?BSTR, certificateValidationMode: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetServiceCertificateAuthentication(self: *const IChannelCredentials, storeLocation: ?BSTR, revocationMode: ?BSTR, certificateValidationMode: ?BSTR) HRESULT {
         return self.vtable.SetServiceCertificateAuthentication(self, storeLocation, revocationMode, certificateValidationMode);
     }
-    pub fn SetIssuedToken(self: *const IChannelCredentials, localIssuerAddres: ?BSTR, localIssuerBindingType: ?BSTR, localIssuerBinding: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetIssuedToken(self: *const IChannelCredentials, localIssuerAddres: ?BSTR, localIssuerBindingType: ?BSTR, localIssuerBinding: ?BSTR) HRESULT {
         return self.vtable.SetIssuedToken(self, localIssuerAddres, localIssuerBindingType, localIssuerBinding);
     }
 };

@@ -23,11 +23,11 @@ pub const INotificationActivationCallback = extern union {
             invokedArgs: ?[*:0]const u16,
             data: [*]const NOTIFICATION_USER_INPUT_DATA,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Activate(self: *const INotificationActivationCallback, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) callconv(.Inline) HRESULT {
+    pub fn Activate(self: *const INotificationActivationCallback, appUserModelId: ?[*:0]const u16, invokedArgs: ?[*:0]const u16, data: [*]const NOTIFICATION_USER_INPUT_DATA, count: u32) HRESULT {
         return self.vtable.Activate(self, appUserModelId, invokedArgs, data, count);
     }
 };

@@ -41,25 +41,25 @@ pub extern "kernel32" fn EnableThreadProfiling(
     Flags: u32,
     HardwareCounters: u64,
     PerformanceDataHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn DisableThreadProfiling(
     PerformanceDataHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn QueryThreadProfiling(
     ThreadHandle: ?HANDLE,
     Enabled: ?*BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "kernel32" fn ReadThreadProfilingData(
     PerformanceDataHandle: ?HANDLE,
     Flags: u32,
     PerformanceData: ?*PERFORMANCE_DATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

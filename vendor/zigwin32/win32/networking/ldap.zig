@@ -579,7 +579,7 @@ pub const LDAPAPIFeatureInfoW = extern struct {
 
 pub const DBGPRINT = *const fn(
     Format: ?[*]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const ldapsearch = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -617,7 +617,7 @@ pub const QUERYFORCONNECTION = *const fn(
     SecAuthIdentity: ?*anyopaque,
     CurrentUserToken: ?*anyopaque,
     ConnectionToUse: ?*?*ldap,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const NOTIFYOFNEWCONNECTION = *const fn(
     PrimaryConnection: ?*ldap,
@@ -629,12 +629,12 @@ pub const NOTIFYOFNEWCONNECTION = *const fn(
     SecAuthIdentity: ?*anyopaque,
     CurrentUser: ?*anyopaque,
     ErrorCodeFromBind: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub const DEREFERENCECONNECTION = *const fn(
     PrimaryConnection: ?*ldap,
     ConnectionToDereference: ?*ldap,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LDAP_REFERRAL_CALLBACK = extern struct {
     SizeOfCallbacks: u32,
@@ -647,12 +647,12 @@ pub const QUERYCLIENTCERT = *const fn(
     Connection: ?*ldap,
     trusted_CAs: ?*SecPkgContext_IssuerListInfoEx,
     ppCertificate: ?*?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub const VERIFYSERVERCERT = *const fn(
     Connection: ?*ldap,
     pServerCert: ?*?*CERT_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 
 //--------------------------------------------------------------------------------
@@ -662,148 +662,148 @@ pub const VERIFYSERVERCERT = *const fn(
 pub extern "wldap32" fn ldap_openW(
     HostName: ?[*:0]const u16,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_openA(
     HostName: ?[*:0]const u8,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_initW(
     HostName: ?[*:0]const u16,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_initA(
     HostName: ?[*:0]const u8,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_sslinitW(
     HostName: ?PWSTR,
     PortNumber: u32,
     secure: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_sslinitA(
     HostName: ?PSTR,
     PortNumber: u32,
     secure: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_connect(
     ld: ?*ldap,
     timeout: ?*LDAP_TIMEVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_open(
     HostName: ?PSTR,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_init(
     HostName: ?PSTR,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_sslinit(
     HostName: ?PSTR,
     PortNumber: u32,
     secure: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn cldap_openW(
     HostName: ?PWSTR,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn cldap_openA(
     HostName: ?PSTR,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn cldap_open(
     HostName: ?PSTR,
     PortNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_unbind(
     ld: ?*ldap,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_unbind_s(
     ld: ?*ldap,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_option(
     ld: ?*ldap,
     option: i32,
     outvalue: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_optionW(
     ld: ?*ldap,
     option: i32,
     outvalue: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_set_option(
     ld: ?*ldap,
     option: i32,
     invalue: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_set_optionW(
     ld: ?*ldap,
     option: i32,
     invalue: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_simple_bindW(
     ld: ?*ldap,
     dn: ?PWSTR,
     passwd: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_simple_bindA(
     ld: ?*ldap,
     dn: ?PSTR,
     passwd: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_simple_bind_sW(
     ld: ?*ldap,
     dn: ?PWSTR,
     passwd: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_simple_bind_sA(
     ld: ?*ldap,
     dn: ?PSTR,
     passwd: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_bindW(
@@ -811,7 +811,7 @@ pub extern "wldap32" fn ldap_bindW(
     dn: ?PWSTR,
     cred: ?[*]u16,
     method: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_bindA(
@@ -819,7 +819,7 @@ pub extern "wldap32" fn ldap_bindA(
     dn: ?PSTR,
     cred: ?[*]u8,
     method: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_bind_sW(
@@ -827,7 +827,7 @@ pub extern "wldap32" fn ldap_bind_sW(
     dn: ?PWSTR,
     cred: ?[*]u16,
     method: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_bind_sA(
@@ -835,7 +835,7 @@ pub extern "wldap32" fn ldap_bind_sA(
     dn: ?PSTR,
     cred: ?[*]u8,
     method: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_sasl_bindA(
@@ -846,7 +846,7 @@ pub extern "wldap32" fn ldap_sasl_bindA(
     ServerCtrls: ?*?*ldapcontrolA,
     ClientCtrls: ?*?*ldapcontrolA,
     MessageNumber: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_sasl_bindW(
@@ -857,7 +857,7 @@ pub extern "wldap32" fn ldap_sasl_bindW(
     ServerCtrls: ?*?*ldapcontrolW,
     ClientCtrls: ?*?*ldapcontrolW,
     MessageNumber: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_sasl_bind_sA(
@@ -868,7 +868,7 @@ pub extern "wldap32" fn ldap_sasl_bind_sA(
     ServerCtrls: ?*?*ldapcontrolA,
     ClientCtrls: ?*?*ldapcontrolA,
     ServerData: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_sasl_bind_sW(
@@ -879,21 +879,21 @@ pub extern "wldap32" fn ldap_sasl_bind_sW(
     ServerCtrls: ?*?*ldapcontrolW,
     ClientCtrls: ?*?*ldapcontrolW,
     ServerData: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_simple_bind(
     ld: ?*ldap,
     dn: ?[*:0]const u8,
     passwd: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_simple_bind_s(
     ld: ?*ldap,
     dn: ?[*:0]const u8,
     passwd: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_bind(
@@ -901,7 +901,7 @@ pub extern "wldap32" fn ldap_bind(
     dn: ?[*:0]const u8,
     cred: ?[*:0]const u8,
     method: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_bind_s(
@@ -909,7 +909,7 @@ pub extern "wldap32" fn ldap_bind_s(
     dn: ?[*:0]const u8,
     cred: ?[*:0]const u8,
     method: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_searchW(
@@ -919,7 +919,7 @@ pub extern "wldap32" fn ldap_searchW(
     filter: ?[*:0]const u16,
     attrs: ?*?*u16,
     attrsonly: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_searchA(
@@ -929,7 +929,7 @@ pub extern "wldap32" fn ldap_searchA(
     filter: ?[*:0]const u8,
     attrs: ?*?*i8,
     attrsonly: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_sW(
@@ -940,7 +940,7 @@ pub extern "wldap32" fn ldap_search_sW(
     attrs: ?*?*u16,
     attrsonly: u32,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_sA(
@@ -951,7 +951,7 @@ pub extern "wldap32" fn ldap_search_sA(
     attrs: ?*?*i8,
     attrsonly: u32,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_stW(
@@ -963,7 +963,7 @@ pub extern "wldap32" fn ldap_search_stW(
     attrsonly: u32,
     timeout: ?*LDAP_TIMEVAL,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_stA(
@@ -975,7 +975,7 @@ pub extern "wldap32" fn ldap_search_stA(
     attrsonly: u32,
     timeout: ?*LDAP_TIMEVAL,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_extW(
@@ -990,7 +990,7 @@ pub extern "wldap32" fn ldap_search_extW(
     TimeLimit: u32,
     SizeLimit: u32,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_extA(
@@ -1005,7 +1005,7 @@ pub extern "wldap32" fn ldap_search_extA(
     TimeLimit: u32,
     SizeLimit: u32,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_ext_sW(
@@ -1020,7 +1020,7 @@ pub extern "wldap32" fn ldap_search_ext_sW(
     timeout: ?*LDAP_TIMEVAL,
     SizeLimit: u32,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_ext_sA(
@@ -1035,7 +1035,7 @@ pub extern "wldap32" fn ldap_search_ext_sA(
     timeout: ?*LDAP_TIMEVAL,
     SizeLimit: u32,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search(
@@ -1045,7 +1045,7 @@ pub extern "wldap32" fn ldap_search(
     filter: ?PSTR,
     attrs: ?*?*i8,
     attrsonly: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_s(
@@ -1056,7 +1056,7 @@ pub extern "wldap32" fn ldap_search_s(
     attrs: ?*?*i8,
     attrsonly: u32,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_st(
@@ -1068,7 +1068,7 @@ pub extern "wldap32" fn ldap_search_st(
     attrsonly: u32,
     timeout: ?*LDAP_TIMEVAL,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_ext(
@@ -1083,7 +1083,7 @@ pub extern "wldap32" fn ldap_search_ext(
     TimeLimit: u32,
     SizeLimit: u32,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_ext_s(
@@ -1098,47 +1098,47 @@ pub extern "wldap32" fn ldap_search_ext_s(
     timeout: ?*LDAP_TIMEVAL,
     SizeLimit: u32,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_check_filterW(
     ld: ?*ldap,
     SearchFilter: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_check_filterA(
     ld: ?*ldap,
     SearchFilter: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modifyW(
     ld: ?*ldap,
     dn: ?PWSTR,
     mods: ?*?*ldapmodW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modifyA(
     ld: ?*ldap,
     dn: ?PSTR,
     mods: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_sW(
     ld: ?*ldap,
     dn: ?PWSTR,
     mods: ?*?*ldapmodW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_sA(
     ld: ?*ldap,
     dn: ?PSTR,
     mods: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_extW(
@@ -1148,7 +1148,7 @@ pub extern "wldap32" fn ldap_modify_extW(
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_extA(
@@ -1158,7 +1158,7 @@ pub extern "wldap32" fn ldap_modify_extA(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_ext_sW(
@@ -1167,7 +1167,7 @@ pub extern "wldap32" fn ldap_modify_ext_sW(
     mods: ?*?*ldapmodW,
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_ext_sA(
@@ -1176,21 +1176,21 @@ pub extern "wldap32" fn ldap_modify_ext_sA(
     mods: ?*?*ldapmodA,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify(
     ld: ?*ldap,
     dn: ?PSTR,
     mods: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_s(
     ld: ?*ldap,
     dn: ?PSTR,
     mods: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_ext(
@@ -1200,7 +1200,7 @@ pub extern "wldap32" fn ldap_modify_ext(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modify_ext_s(
@@ -1209,7 +1209,7 @@ pub extern "wldap32" fn ldap_modify_ext_s(
     mods: ?*?*ldapmodA,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn2W(
@@ -1217,7 +1217,7 @@ pub extern "wldap32" fn ldap_modrdn2W(
     DistinguishedName: ?[*:0]const u16,
     NewDistinguishedName: ?[*:0]const u16,
     DeleteOldRdn: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn2A(
@@ -1225,21 +1225,21 @@ pub extern "wldap32" fn ldap_modrdn2A(
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
     DeleteOldRdn: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdnW(
     ExternalHandle: ?*ldap,
     DistinguishedName: ?[*:0]const u16,
     NewDistinguishedName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdnA(
     ExternalHandle: ?*ldap,
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn2_sW(
@@ -1247,7 +1247,7 @@ pub extern "wldap32" fn ldap_modrdn2_sW(
     DistinguishedName: ?[*:0]const u16,
     NewDistinguishedName: ?[*:0]const u16,
     DeleteOldRdn: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn2_sA(
@@ -1255,21 +1255,21 @@ pub extern "wldap32" fn ldap_modrdn2_sA(
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
     DeleteOldRdn: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn_sW(
     ExternalHandle: ?*ldap,
     DistinguishedName: ?[*:0]const u16,
     NewDistinguishedName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn_sA(
     ExternalHandle: ?*ldap,
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn2(
@@ -1277,14 +1277,14 @@ pub extern "wldap32" fn ldap_modrdn2(
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
     DeleteOldRdn: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn(
     ExternalHandle: ?*ldap,
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn2_s(
@@ -1292,14 +1292,14 @@ pub extern "wldap32" fn ldap_modrdn2_s(
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
     DeleteOldRdn: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_modrdn_s(
     ExternalHandle: ?*ldap,
     DistinguishedName: ?[*:0]const u8,
     NewDistinguishedName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_rename_extW(
@@ -1311,7 +1311,7 @@ pub extern "wldap32" fn ldap_rename_extW(
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_rename_extA(
@@ -1323,7 +1323,7 @@ pub extern "wldap32" fn ldap_rename_extA(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_rename_ext_sW(
@@ -1334,7 +1334,7 @@ pub extern "wldap32" fn ldap_rename_ext_sW(
     DeleteOldRdn: i32,
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_rename_ext_sA(
@@ -1345,7 +1345,7 @@ pub extern "wldap32" fn ldap_rename_ext_sA(
     DeleteOldRdn: i32,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_rename_ext(
@@ -1357,7 +1357,7 @@ pub extern "wldap32" fn ldap_rename_ext(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_rename_ext_s(
@@ -1368,35 +1368,35 @@ pub extern "wldap32" fn ldap_rename_ext_s(
     DeleteOldRdn: i32,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_addW(
     ld: ?*ldap,
     dn: ?PWSTR,
     attrs: ?*?*ldapmodW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_addA(
     ld: ?*ldap,
     dn: ?PSTR,
     attrs: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_sW(
     ld: ?*ldap,
     dn: ?PWSTR,
     attrs: ?*?*ldapmodW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_sA(
     ld: ?*ldap,
     dn: ?PSTR,
     attrs: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_extW(
@@ -1406,7 +1406,7 @@ pub extern "wldap32" fn ldap_add_extW(
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_extA(
@@ -1416,7 +1416,7 @@ pub extern "wldap32" fn ldap_add_extA(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_ext_sW(
@@ -1425,7 +1425,7 @@ pub extern "wldap32" fn ldap_add_ext_sW(
     attrs: ?*?*ldapmodW,
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_ext_sA(
@@ -1434,21 +1434,21 @@ pub extern "wldap32" fn ldap_add_ext_sA(
     attrs: ?*?*ldapmodA,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add(
     ld: ?*ldap,
     dn: ?PSTR,
     attrs: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_s(
     ld: ?*ldap,
     dn: ?PSTR,
     attrs: ?*?*ldapmodA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_ext(
@@ -1458,7 +1458,7 @@ pub extern "wldap32" fn ldap_add_ext(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_add_ext_s(
@@ -1467,7 +1467,7 @@ pub extern "wldap32" fn ldap_add_ext_s(
     attrs: ?*?*ldapmodA,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compareW(
@@ -1475,7 +1475,7 @@ pub extern "wldap32" fn ldap_compareW(
     dn: ?[*:0]const u16,
     attr: ?[*:0]const u16,
     value: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compareA(
@@ -1483,7 +1483,7 @@ pub extern "wldap32" fn ldap_compareA(
     dn: ?[*:0]const u8,
     attr: ?[*:0]const u8,
     value: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_sW(
@@ -1491,7 +1491,7 @@ pub extern "wldap32" fn ldap_compare_sW(
     dn: ?[*:0]const u16,
     attr: ?[*:0]const u16,
     value: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_sA(
@@ -1499,7 +1499,7 @@ pub extern "wldap32" fn ldap_compare_sA(
     dn: ?[*:0]const u8,
     attr: ?[*:0]const u8,
     value: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare(
@@ -1507,7 +1507,7 @@ pub extern "wldap32" fn ldap_compare(
     dn: ?[*:0]const u8,
     attr: ?[*:0]const u8,
     value: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_s(
@@ -1515,7 +1515,7 @@ pub extern "wldap32" fn ldap_compare_s(
     dn: ?[*:0]const u8,
     attr: ?[*:0]const u8,
     value: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_extW(
@@ -1527,7 +1527,7 @@ pub extern "wldap32" fn ldap_compare_extW(
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_extA(
@@ -1539,7 +1539,7 @@ pub extern "wldap32" fn ldap_compare_extA(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_ext_sW(
@@ -1550,7 +1550,7 @@ pub extern "wldap32" fn ldap_compare_ext_sW(
     Data: ?*LDAP_BERVAL,
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_ext_sA(
@@ -1561,7 +1561,7 @@ pub extern "wldap32" fn ldap_compare_ext_sA(
     Data: ?*LDAP_BERVAL,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_ext(
@@ -1573,7 +1573,7 @@ pub extern "wldap32" fn ldap_compare_ext(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_compare_ext_s(
@@ -1584,31 +1584,31 @@ pub extern "wldap32" fn ldap_compare_ext_s(
     Data: ?*LDAP_BERVAL,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_deleteW(
     ld: ?*ldap,
     dn: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_deleteA(
     ld: ?*ldap,
     dn: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_sW(
     ld: ?*ldap,
     dn: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_sA(
     ld: ?*ldap,
     dn: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_extW(
@@ -1617,7 +1617,7 @@ pub extern "wldap32" fn ldap_delete_extW(
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_extA(
@@ -1626,7 +1626,7 @@ pub extern "wldap32" fn ldap_delete_extA(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_ext_sW(
@@ -1634,7 +1634,7 @@ pub extern "wldap32" fn ldap_delete_ext_sW(
     dn: ?[*:0]const u16,
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_ext_sA(
@@ -1642,19 +1642,19 @@ pub extern "wldap32" fn ldap_delete_ext_sA(
     dn: ?[*:0]const u8,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete(
     ld: ?*ldap,
     dn: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_s(
     ld: ?*ldap,
     dn: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_ext(
@@ -1663,7 +1663,7 @@ pub extern "wldap32" fn ldap_delete_ext(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_delete_ext_s(
@@ -1671,13 +1671,13 @@ pub extern "wldap32" fn ldap_delete_ext_s(
     dn: ?[*:0]const u8,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_abandon(
     ld: ?*ldap,
     msgid: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_result(
@@ -1686,19 +1686,19 @@ pub extern "wldap32" fn ldap_result(
     all: u32,
     timeout: ?*LDAP_TIMEVAL,
     res: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_msgfree(
     res: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_result2error(
     ld: ?*ldap,
     res: ?*LDAPMessage,
     freeit: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_resultW(
@@ -1710,7 +1710,7 @@ pub extern "wldap32" fn ldap_parse_resultW(
     Referrals: ?*?*?*u16,
     ServerControls: ?*?*?*ldapcontrolW,
     Freeit: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_resultA(
@@ -1722,7 +1722,7 @@ pub extern "wldap32" fn ldap_parse_resultA(
     Referrals: ?*?*?*i8,
     ServerControls: ?*?*?*ldapcontrolA,
     Freeit: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_extended_resultA(
@@ -1731,7 +1731,7 @@ pub extern "wldap32" fn ldap_parse_extended_resultA(
     ResultOID: ?*?PSTR,
     ResultData: ?*?*LDAP_BERVAL,
     Freeit: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_extended_resultW(
@@ -1740,37 +1740,37 @@ pub extern "wldap32" fn ldap_parse_extended_resultW(
     ResultOID: ?*?PWSTR,
     ResultData: ?*?*LDAP_BERVAL,
     Freeit: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_controls_freeA(
     Controls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_control_freeA(
     Controls: ?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_controls_freeW(
     Control: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_control_freeW(
     Control: ?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_free_controlsW(
     Controls: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_free_controlsA(
     Controls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_result(
@@ -1782,284 +1782,284 @@ pub extern "wldap32" fn ldap_parse_result(
     Referrals: ?*?*?PSTR,
     ServerControls: ?*?*?*ldapcontrolA,
     Freeit: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_controls_free(
     Controls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_control_free(
     Control: ?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_free_controls(
     Controls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_err2stringW(
     err: u32,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_err2stringA(
     err: u32,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_err2string(
     err: u32,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_perror(
     ld: ?*ldap,
     msg: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_first_entry(
     ld: ?*ldap,
     res: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?*LDAPMessage;
+) callconv(.winapi) ?*LDAPMessage;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_next_entry(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?*LDAPMessage;
+) callconv(.winapi) ?*LDAPMessage;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_count_entries(
     ld: ?*ldap,
     res: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_first_attributeW(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     ptr: ?*?*berelement,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_first_attributeA(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     ptr: ?*?*berelement,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_first_attribute(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     ptr: ?*?*berelement,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_next_attributeW(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     ptr: ?*berelement,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_next_attributeA(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     ptr: ?*berelement,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_next_attribute(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     ptr: ?*berelement,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_valuesW(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     attr: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR;
+) callconv(.winapi) ?*?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_valuesA(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     attr: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?*?PSTR;
+) callconv(.winapi) ?*?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_values(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
     attr: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?*?PSTR;
+) callconv(.winapi) ?*?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_values_lenW(
     ExternalHandle: ?*ldap,
     Message: ?*LDAPMessage,
     attr: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*?*LDAP_BERVAL;
+) callconv(.winapi) ?*?*LDAP_BERVAL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_values_lenA(
     ExternalHandle: ?*ldap,
     Message: ?*LDAPMessage,
     attr: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?*?*LDAP_BERVAL;
+) callconv(.winapi) ?*?*LDAP_BERVAL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_values_len(
     ExternalHandle: ?*ldap,
     Message: ?*LDAPMessage,
     attr: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?*?*LDAP_BERVAL;
+) callconv(.winapi) ?*?*LDAP_BERVAL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_count_valuesW(
     vals: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_count_valuesA(
     vals: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_count_values(
     vals: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_count_values_len(
     vals: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_value_freeW(
     vals: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_value_freeA(
     vals: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_value_free(
     vals: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_value_free_len(
     vals: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_dnW(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_dnA(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_dn(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_explode_dnW(
     dn: ?[*:0]const u16,
     notypes: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*?PWSTR;
+) callconv(.winapi) ?*?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_explode_dnA(
     dn: ?[*:0]const u8,
     notypes: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*?PSTR;
+) callconv(.winapi) ?*?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_explode_dn(
     dn: ?[*:0]const u8,
     notypes: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*?PSTR;
+) callconv(.winapi) ?*?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_dn2ufnW(
     dn: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_dn2ufnA(
     dn: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_dn2ufn(
     dn: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_memfreeW(
     Block: ?[*]u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_memfreeA(
     Block: ?[*]u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_bvfree(
     bv: ?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_memfree(
     Block: ?[*]u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_ufn2dnW(
     ufn: ?[*:0]const u16,
     pDn: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_ufn2dnA(
     ufn: ?[*:0]const u8,
     pDn: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_ufn2dn(
     ufn: ?[*:0]const u8,
     pDn: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wldap32" fn ldap_startup(
     version: ?*ldap_version_info,
     Instance: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_cleanup(
     hInstance: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_escape_filter_elementW(
@@ -2069,7 +2069,7 @@ pub extern "wldap32" fn ldap_escape_filter_elementW(
     // TODO: what to do with BytesParamIndex 3?
     destFilterElement: ?[*]u16,
     destLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_escape_filter_elementA(
@@ -2079,7 +2079,7 @@ pub extern "wldap32" fn ldap_escape_filter_elementA(
     // TODO: what to do with BytesParamIndex 3?
     destFilterElement: ?[*]u8,
     destLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_escape_filter_element(
@@ -2089,15 +2089,15 @@ pub extern "wldap32" fn ldap_escape_filter_element(
     // TODO: what to do with BytesParamIndex 3?
     destFilterElement: ?[*]u8,
     destLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wldap32" fn ldap_set_dbg_flags(
     NewFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wldap32" fn ldap_set_dbg_routine(
     DebugPrintRoutine: ?DBGPRINT,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn LdapUTF8ToUnicode(
@@ -2105,7 +2105,7 @@ pub extern "wldap32" fn LdapUTF8ToUnicode(
     cchSrc: i32,
     lpDestStr: [*:0]u16,
     cchDest: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn LdapUnicodeToUTF8(
@@ -2113,7 +2113,7 @@ pub extern "wldap32" fn LdapUnicodeToUTF8(
     cchSrc: i32,
     lpDestStr: [*:0]u8,
     cchDest: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_sort_controlA(
@@ -2121,7 +2121,7 @@ pub extern "wldap32" fn ldap_create_sort_controlA(
     SortKeys: ?*?*ldapsortkeyA,
     IsCritical: u8,
     Control: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_sort_controlW(
@@ -2129,7 +2129,7 @@ pub extern "wldap32" fn ldap_create_sort_controlW(
     SortKeys: ?*?*ldapsortkeyW,
     IsCritical: u8,
     Control: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_sort_controlA(
@@ -2137,7 +2137,7 @@ pub extern "wldap32" fn ldap_parse_sort_controlA(
     Control: ?*?*ldapcontrolA,
     Result: ?*u32,
     Attribute: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_sort_controlW(
@@ -2145,7 +2145,7 @@ pub extern "wldap32" fn ldap_parse_sort_controlW(
     Control: ?*?*ldapcontrolW,
     Result: ?*u32,
     Attribute: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_sort_control(
@@ -2153,7 +2153,7 @@ pub extern "wldap32" fn ldap_create_sort_control(
     SortKeys: ?*?*ldapsortkeyA,
     IsCritical: u8,
     Control: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_sort_control(
@@ -2161,7 +2161,7 @@ pub extern "wldap32" fn ldap_parse_sort_control(
     Control: ?*?*ldapcontrolA,
     Result: ?*u32,
     Attribute: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_encode_sort_controlW(
@@ -2169,7 +2169,7 @@ pub extern "wldap32" fn ldap_encode_sort_controlW(
     SortKeys: ?*?*ldapsortkeyW,
     Control: ?*ldapcontrolW,
     Criticality: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_encode_sort_controlA(
@@ -2177,7 +2177,7 @@ pub extern "wldap32" fn ldap_encode_sort_controlA(
     SortKeys: ?*?*ldapsortkeyA,
     Control: ?*ldapcontrolA,
     Criticality: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_page_controlW(
@@ -2186,7 +2186,7 @@ pub extern "wldap32" fn ldap_create_page_controlW(
     Cookie: ?*LDAP_BERVAL,
     IsCritical: u8,
     Control: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_page_controlA(
@@ -2195,7 +2195,7 @@ pub extern "wldap32" fn ldap_create_page_controlA(
     Cookie: ?*LDAP_BERVAL,
     IsCritical: u8,
     Control: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_page_controlW(
@@ -2203,7 +2203,7 @@ pub extern "wldap32" fn ldap_parse_page_controlW(
     ServerControls: ?*?*ldapcontrolW,
     TotalCount: ?*u32,
     Cookie: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_page_controlA(
@@ -2211,7 +2211,7 @@ pub extern "wldap32" fn ldap_parse_page_controlA(
     ServerControls: ?*?*ldapcontrolA,
     TotalCount: ?*u32,
     Cookie: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_page_control(
@@ -2220,7 +2220,7 @@ pub extern "wldap32" fn ldap_create_page_control(
     Cookie: ?*LDAP_BERVAL,
     IsCritical: u8,
     Control: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_page_control(
@@ -2228,7 +2228,7 @@ pub extern "wldap32" fn ldap_parse_page_control(
     ServerControls: ?*?*ldapcontrolA,
     TotalCount: ?*u32,
     Cookie: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_init_pageW(
@@ -2243,7 +2243,7 @@ pub extern "wldap32" fn ldap_search_init_pageW(
     PageTimeLimit: u32,
     TotalSizeLimit: u32,
     SortKeys: ?*?*ldapsortkeyW,
-) callconv(@import("std").os.windows.WINAPI) ?*ldapsearch;
+) callconv(.winapi) ?*ldapsearch;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_init_pageA(
@@ -2258,7 +2258,7 @@ pub extern "wldap32" fn ldap_search_init_pageA(
     PageTimeLimit: u32,
     TotalSizeLimit: u32,
     SortKeys: ?*?*ldapsortkeyA,
-) callconv(@import("std").os.windows.WINAPI) ?*ldapsearch;
+) callconv(.winapi) ?*ldapsearch;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_init_page(
@@ -2273,7 +2273,7 @@ pub extern "wldap32" fn ldap_search_init_page(
     PageTimeLimit: u32,
     TotalSizeLimit: u32,
     SortKeys: ?*?*ldapsortkeyA,
-) callconv(@import("std").os.windows.WINAPI) ?*ldapsearch;
+) callconv(.winapi) ?*ldapsearch;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_next_page(
@@ -2281,7 +2281,7 @@ pub extern "wldap32" fn ldap_get_next_page(
     SearchHandle: ?*ldapsearch,
     PageSize: u32,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_next_page_s(
@@ -2291,7 +2291,7 @@ pub extern "wldap32" fn ldap_get_next_page_s(
     PageSize: u32,
     TotalCount: ?*u32,
     Results: ?*?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_get_paged_count(
@@ -2299,13 +2299,13 @@ pub extern "wldap32" fn ldap_get_paged_count(
     SearchBlock: ?*ldapsearch,
     TotalCount: ?*u32,
     Results: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_search_abandon_page(
     ExternalHandle: ?*ldap,
     SearchBlock: ?*ldapsearch,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_vlv_controlW(
@@ -2313,7 +2313,7 @@ pub extern "wldap32" fn ldap_create_vlv_controlW(
     VlvInfo: ?*ldapvlvinfo,
     IsCritical: u8,
     Control: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_create_vlv_controlA(
@@ -2321,7 +2321,7 @@ pub extern "wldap32" fn ldap_create_vlv_controlA(
     VlvInfo: ?*ldapvlvinfo,
     IsCritical: u8,
     Control: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_vlv_controlW(
@@ -2331,7 +2331,7 @@ pub extern "wldap32" fn ldap_parse_vlv_controlW(
     ListCount: ?*u32,
     Context: ?*?*LDAP_BERVAL,
     ErrCode: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_vlv_controlA(
@@ -2341,7 +2341,7 @@ pub extern "wldap32" fn ldap_parse_vlv_controlA(
     ListCount: ?*u32,
     Context: ?*?*LDAP_BERVAL,
     ErrCode: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_start_tls_sW(
@@ -2350,7 +2350,7 @@ pub extern "wldap32" fn ldap_start_tls_sW(
     result: ?*?*LDAPMessage,
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_start_tls_sA(
@@ -2359,51 +2359,51 @@ pub extern "wldap32" fn ldap_start_tls_sA(
     result: ?*?*LDAPMessage,
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_stop_tls_s(
     ExternalHandle: ?*ldap,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_first_reference(
     ld: ?*ldap,
     res: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?*LDAPMessage;
+) callconv(.winapi) ?*LDAPMessage;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_next_reference(
     ld: ?*ldap,
     entry: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?*LDAPMessage;
+) callconv(.winapi) ?*LDAPMessage;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_count_references(
     ld: ?*ldap,
     res: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_referenceW(
     Connection: ?*ldap,
     ResultMessage: ?*LDAPMessage,
     Referrals: ?*?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_referenceA(
     Connection: ?*ldap,
     ResultMessage: ?*LDAPMessage,
     Referrals: ?*?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_parse_reference(
     Connection: ?*ldap,
     ResultMessage: ?*LDAPMessage,
     Referrals: ?*?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_extended_operationW(
@@ -2413,7 +2413,7 @@ pub extern "wldap32" fn ldap_extended_operationW(
     ServerControls: ?*?*ldapcontrolW,
     ClientControls: ?*?*ldapcontrolW,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_extended_operationA(
@@ -2423,7 +2423,7 @@ pub extern "wldap32" fn ldap_extended_operationA(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_extended_operation_sA(
@@ -2434,7 +2434,7 @@ pub extern "wldap32" fn ldap_extended_operation_sA(
     ClientControls: ?*?*ldapcontrolA,
     ReturnedOid: ?*?PSTR,
     ReturnedData: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_extended_operation_sW(
@@ -2445,7 +2445,7 @@ pub extern "wldap32" fn ldap_extended_operation_sW(
     ClientControls: ?*?*ldapcontrolW,
     ReturnedOid: ?*?PWSTR,
     ReturnedData: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_extended_operation(
@@ -2455,98 +2455,98 @@ pub extern "wldap32" fn ldap_extended_operation(
     ServerControls: ?*?*ldapcontrolA,
     ClientControls: ?*?*ldapcontrolA,
     MessageNumber: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_close_extended_op(
     ld: ?*ldap,
     MessageNumber: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn LdapGetLastError(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn LdapMapErrorToWin32(
     LdapError: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ldap_conn_from_msg(
     PrimaryConn: ?*ldap,
     res: ?*LDAPMessage,
-) callconv(@import("std").os.windows.WINAPI) ?*ldap;
+) callconv(.winapi) ?*ldap;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_init(
     pBerVal: ?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) ?*berelement;
+) callconv(.winapi) ?*berelement;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_free(
     pBerElement: ?*berelement,
     fbuf: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_bvecfree(
     pBerVal: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_bvdup(
     pBerVal: ?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) ?*LDAP_BERVAL;
+) callconv(.winapi) ?*LDAP_BERVAL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_alloc_t(
     options: i32,
-) callconv(@import("std").os.windows.WINAPI) ?*berelement;
+) callconv(.winapi) ?*berelement;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_skip_tag(
     pBerElement: ?*berelement,
     pLen: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_peek_tag(
     pBerElement: ?*berelement,
     pLen: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_first_element(
     pBerElement: ?*berelement,
     pLen: ?*u32,
     ppOpaque: ?*?*CHAR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_next_element(
     pBerElement: ?*berelement,
     pLen: ?*u32,
     @"opaque": ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_flatten(
     pBerElement: ?*berelement,
     pBerVal: ?*?*LDAP_BERVAL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_printf(
     pBerElement: ?*berelement,
     fmt: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wldap32" fn ber_scanf(
     pBerElement: ?*berelement,
     fmt: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

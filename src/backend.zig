@@ -25,7 +25,42 @@ const backend = //if (@hasDecl(@import("root"), "capyBackend"))
         },
         else => @compileError(std.fmt.comptimePrint("Unsupported OS: {}", .{builtin.os.tag})),
     };
-pub usingnamespace backend;
+// Re-export common backend interface
+pub const init = backend.init;
+pub const showNativeMessageDialog = backend.showNativeMessageDialog;
+pub const postEmptyEvent = backend.postEmptyEvent;
+pub const runStep = backend.runStep;
+pub const PeerType = backend.PeerType;
+pub const Window = backend.Window;
+pub const Container = backend.Container;
+pub const Canvas = backend.Canvas;
+pub const Label = backend.Label;
+pub const Button = backend.Button;
+pub const Monitor = backend.Monitor;
+pub const Events = backend.Events;
+
+// Backend types that may not be available on all platforms
+pub const CheckBox = if (@hasDecl(backend, "CheckBox")) backend.CheckBox else void;
+pub const Dropdown = if (@hasDecl(backend, "Dropdown")) backend.Dropdown else void;
+pub const Slider = if (@hasDecl(backend, "Slider")) backend.Slider else void;
+pub const TextArea = if (@hasDecl(backend, "TextArea")) backend.TextArea else void;
+pub const TextField = if (@hasDecl(backend, "TextField")) backend.TextField else void;
+pub const TabContainer = if (@hasDecl(backend, "TabContainer")) backend.TabContainer else void;
+pub const ScrollView = if (@hasDecl(backend, "ScrollView")) backend.ScrollView else void;
+pub const ImageData = if (@hasDecl(backend, "ImageData")) backend.ImageData else void;
+pub const NavigationSidebar = if (@hasDecl(backend, "NavigationSidebar")) backend.NavigationSidebar else void;
+pub const AudioGenerator = if (@hasDecl(backend, "AudioGenerator")) backend.AudioGenerator else void;
+pub const Http = if (@hasDecl(backend, "Http")) backend.Http else void;
+pub const HttpResponse = if (@hasDecl(backend, "HttpResponse")) backend.HttpResponse else void;
+pub const backendExport = if (@hasDecl(backend, "backendExport")) backend.backendExport else struct {};
+pub const runOnUIThread = if (@hasDecl(backend, "runOnUIThread")) backend.runOnUIThread else void;
+pub const EventUserData = if (@hasDecl(backend, "EventUserData")) backend.EventUserData else void;
+pub const GuiWidget = if (@hasDecl(backend, "GuiWidget")) backend.GuiWidget else void;
+pub const getEventUserData = if (@hasDecl(backend, "getEventUserData")) backend.getEventUserData else struct {
+    fn f(_: PeerType) *EventUserData {
+        unreachable;
+    }
+}.f;
 
 pub const DrawContext = struct {
     impl: backend.Canvas.DrawContextImpl,
@@ -139,7 +174,7 @@ test "backend: create window" {
             window.resize(random.int(u16), random.int(u16));
             try std.testing.expectEqual(i < 150, backend.runStep(.Asynchronous));
 
-            std.time.sleep(1 * std.time.ns_per_ms);
+            std.Thread.sleep(1 * std.time.ns_per_ms);
         }
     }
 }

@@ -6,7 +6,7 @@ const backend = @import("backend.zig");
 pub const AudioWriteCallback = *const fn (generator: *const AudioGenerator, time: u64, n_frames: u32) void;
 
 // TODO: remove global variables
-var generators = std.ArrayList(*AudioGenerator).init(internal.allocator);
+var generators: std.ArrayList(*AudioGenerator) = .empty;
 var generatorsMutex = std.Thread.Mutex{};
 
 pub const AudioGenerator = struct {
@@ -33,7 +33,7 @@ pub const AudioGenerator = struct {
         generatorsMutex.lock();
         defer generatorsMutex.unlock();
 
-        try generators.append(self);
+        try generators.append(internal.allocator, self);
     }
 
     pub fn play(self: *AudioGenerator) void {
@@ -45,7 +45,7 @@ pub const AudioGenerator = struct {
     }
 
     pub fn onWriteRequested(self: *AudioGenerator, frames_requested: u32) void {
-        const callback: AudioWriteCallback = @ptrCast(self.write_callback);
+        const callback: AudioWriteCallback = @alignCast(@ptrCast(self.write_callback));
         callback(self, self.time, frames_requested);
         self.time += frames_requested;
 
@@ -91,5 +91,5 @@ pub fn backendUpdate() void {
 
 pub fn deinit() void {
     generatorsMutex.lock();
-    generators.deinit();
+    generators.deinit(internal.allocator);
 }

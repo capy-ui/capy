@@ -89,6 +89,11 @@ pub const Color = packed struct {
         };
     }
 
+    /// Returns true if two colors are identical.
+    pub fn eql(self: Color, other: Color) bool {
+        return @as(u32, @bitCast(self)) == @as(u32, @bitCast(other));
+    }
+
     pub fn toBytes(self: Color, dest: []u8) void {
         std.mem.bytesAsSlice(Color, dest)[0] = self;
     }

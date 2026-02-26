@@ -18,14 +18,14 @@ pub const PFNREADOBJECTSECURITY = *const fn(
     param1: u32,
     param2: ?*?PSECURITY_DESCRIPTOR,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFNWRITEOBJECTSECURITY = *const fn(
     param0: ?[*:0]const u16,
     param1: u32,
     param2: ?PSECURITY_DESCRIPTOR,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFNDSCREATEISECINFO = *const fn(
     param0: ?[*:0]const u16,
@@ -35,7 +35,7 @@ pub const PFNDSCREATEISECINFO = *const fn(
     param4: ?PFNREADOBJECTSECURITY,
     param5: ?PFNWRITEOBJECTSECURITY,
     param6: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFNDSCREATEISECINFOEX = *const fn(
     param0: ?[*:0]const u16,
@@ -48,7 +48,7 @@ pub const PFNDSCREATEISECINFOEX = *const fn(
     param7: ?PFNREADOBJECTSECURITY,
     param8: ?PFNWRITEOBJECTSECURITY,
     param9: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFNDSCREATESECPAGE = *const fn(
     param0: ?[*:0]const u16,
@@ -58,7 +58,7 @@ pub const PFNDSCREATESECPAGE = *const fn(
     param4: ?PFNREADOBJECTSECURITY,
     param5: ?PFNWRITEOBJECTSECURITY,
     param6: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const PFNDSEDITSECURITY = *const fn(
     param0: ?HWND,
@@ -69,7 +69,7 @@ pub const PFNDSEDITSECURITY = *const fn(
     param5: ?PFNREADOBJECTSECURITY,
     param6: ?PFNWRITEOBJECTSECURITY,
     param7: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ pub extern "dssec" fn DSCreateISecurityInfoObject(
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "dssec" fn DSCreateISecurityInfoObjectEx(
@@ -98,7 +98,7 @@ pub extern "dssec" fn DSCreateISecurityInfoObjectEx(
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "dssec" fn DSCreateSecurityPage(
@@ -109,7 +109,7 @@ pub extern "dssec" fn DSCreateSecurityPage(
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "dssec" fn DSEditSecurity(
@@ -121,7 +121,7 @@ pub extern "dssec" fn DSEditSecurity(
     pfnReadSD: ?PFNREADOBJECTSECURITY,
     pfnWriteSD: ?PFNWRITEOBJECTSECURITY,
     lpContext: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -784,7 +784,7 @@ pub const PFN_AUTHZ_DYNAMIC_ACCESS_CHECK = *const fn(
     pAce: ?*ACE_HEADER,
     pArgs: ?*anyopaque,
     pbAceApplicable: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = *const fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
@@ -793,11 +793,11 @@ pub const PFN_AUTHZ_COMPUTE_DYNAMIC_GROUPS = *const fn(
     pSidCount: ?*u32,
     pRestrictedSidAttrArray: ?*?*SID_AND_ATTRIBUTES,
     pRestrictedSidCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_AUTHZ_FREE_DYNAMIC_GROUPS = *const fn(
     pSidAttrArray: ?*SID_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = *const fn(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
@@ -805,11 +805,11 @@ pub const PFN_AUTHZ_GET_CENTRAL_ACCESS_POLICY = *const fn(
     pArgs: ?*anyopaque,
     pCentralAccessPolicyApplicable: ?*BOOL,
     ppCentralAccessPolicy: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_AUTHZ_FREE_CENTRAL_ACCESS_POLICY = *const fn(
     pCentralAccessPolicy: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const AUTHZ_SECURITY_ATTRIBUTE_FQBN_VALUE = extern struct {
     Version: u64,
@@ -978,419 +978,419 @@ pub const IAzAuthorizationStore = extern union {
         get_Description: *const fn(
             self: *const IAzAuthorizationStore,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzAuthorizationStore,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DomainTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DomainTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScriptEngineTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ScriptEngineTimeout: *const fn(
             self: *const IAzAuthorizationStore,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaxScriptEngines: *const fn(
             self: *const IAzAuthorizationStore,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaxScriptEngines: *const fn(
             self: *const IAzAuthorizationStore,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenerateAudits: *const fn(
             self: *const IAzAuthorizationStore,
             pbProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenerateAudits: *const fn(
             self: *const IAzAuthorizationStore,
             bProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzAuthorizationStore,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: AZ_PROP_CONSTANTS,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzAuthorizationStore,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: *const fn(
             self: *const IAzAuthorizationStore,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: *const fn(
             self: *const IAzAuthorizationStore,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministrator: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministrator: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReader: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReader: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IAzAuthorizationStore,
             lFlags: AZ_PROP_CONSTANTS,
             bstrPolicyURL: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateCache: *const fn(
             self: *const IAzAuthorizationStore,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IAzAuthorizationStore,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Applications: *const fn(
             self: *const IAzAuthorizationStore,
             ppAppCollection: ?*?*IAzApplications,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: *const fn(
             self: *const IAzAuthorizationStore,
             ppGroupCollection: ?*?*IAzApplicationGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplicationGroup: *const fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplicationGroup: *const fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplicationGroup: *const fn(
             self: *const IAzAuthorizationStore,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzAuthorizationStore,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsers: *const fn(
             self: *const IAzAuthorizationStore,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUser: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUser: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetMachine: *const fn(
             self: *const IAzAuthorizationStore,
             pbstrTargetMachine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplyStoreSacl: *const fn(
             self: *const IAzAuthorizationStore,
             pbApplyStoreSacl: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplyStoreSacl: *const fn(
             self: *const IAzAuthorizationStore,
             bApplyStoreSacl: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: *const fn(
             self: *const IAzAuthorizationStore,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: *const fn(
             self: *const IAzAuthorizationStore,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministratorName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministratorName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReaderName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReaderName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsersName: *const fn(
             self: *const IAzAuthorizationStore,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUserName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUserName: *const fn(
             self: *const IAzAuthorizationStore,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseApplication: *const fn(
             self: *const IAzAuthorizationStore,
             bstrApplicationName: ?BSTR,
             lFlag: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzAuthorizationStore, pbstrDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzAuthorizationStore, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzAuthorizationStore, bstrDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzAuthorizationStore, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzAuthorizationStore, pbstrApplicationData: ?*?BSTR) HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzAuthorizationStore, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzAuthorizationStore, bstrApplicationData: ?BSTR) HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_DomainTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DomainTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) HRESULT {
         return self.vtable.get_DomainTimeout(self, plProp);
     }
-    pub fn put_DomainTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_DomainTimeout(self: *const IAzAuthorizationStore, lProp: i32) HRESULT {
         return self.vtable.put_DomainTimeout(self, lProp);
     }
-    pub fn get_ScriptEngineTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ScriptEngineTimeout(self: *const IAzAuthorizationStore, plProp: ?*i32) HRESULT {
         return self.vtable.get_ScriptEngineTimeout(self, plProp);
     }
-    pub fn put_ScriptEngineTimeout(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_ScriptEngineTimeout(self: *const IAzAuthorizationStore, lProp: i32) HRESULT {
         return self.vtable.put_ScriptEngineTimeout(self, lProp);
     }
-    pub fn get_MaxScriptEngines(self: *const IAzAuthorizationStore, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaxScriptEngines(self: *const IAzAuthorizationStore, plProp: ?*i32) HRESULT {
         return self.vtable.get_MaxScriptEngines(self, plProp);
     }
-    pub fn put_MaxScriptEngines(self: *const IAzAuthorizationStore, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_MaxScriptEngines(self: *const IAzAuthorizationStore, lProp: i32) HRESULT {
         return self.vtable.put_MaxScriptEngines(self, lProp);
     }
-    pub fn get_GenerateAudits(self: *const IAzAuthorizationStore, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_GenerateAudits(self: *const IAzAuthorizationStore, pbProp: ?*BOOL) HRESULT {
         return self.vtable.get_GenerateAudits(self, pbProp);
     }
-    pub fn put_GenerateAudits(self: *const IAzAuthorizationStore, bProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_GenerateAudits(self: *const IAzAuthorizationStore, bProp: BOOL) HRESULT {
         return self.vtable.put_GenerateAudits(self, bProp);
     }
-    pub fn get_Writable(self: *const IAzAuthorizationStore, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzAuthorizationStore, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzAuthorizationStore, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzAuthorizationStore, lPropId: AZ_PROP_CONSTANTS, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzAuthorizationStore, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn get_PolicyAdministrators(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministrators(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
     }
-    pub fn get_PolicyReaders(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReaders(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyReaders(self, pvarReaders);
     }
-    pub fn AddPolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministrator(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReader(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
     }
-    pub fn Initialize(self: *const IAzAuthorizationStore, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IAzAuthorizationStore, lFlags: AZ_PROP_CONSTANTS, bstrPolicyURL: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.Initialize(self, lFlags, bstrPolicyURL, varReserved);
     }
-    pub fn UpdateCache(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn UpdateCache(self: *const IAzAuthorizationStore, varReserved: VARIANT) HRESULT {
         return self.vtable.UpdateCache(self, varReserved);
     }
-    pub fn Delete(self: *const IAzAuthorizationStore, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IAzAuthorizationStore, varReserved: VARIANT) HRESULT {
         return self.vtable.Delete(self, varReserved);
     }
-    pub fn get_Applications(self: *const IAzAuthorizationStore, ppAppCollection: ?*?*IAzApplications) callconv(.Inline) HRESULT {
+    pub fn get_Applications(self: *const IAzAuthorizationStore, ppAppCollection: ?*?*IAzApplications) HRESULT {
         return self.vtable.get_Applications(self, ppAppCollection);
     }
-    pub fn OpenApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
+    pub fn OpenApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) HRESULT {
         return self.vtable.OpenApplication(self, bstrApplicationName, varReserved, ppApplication);
     }
-    pub fn CreateApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) callconv(.Inline) HRESULT {
+    pub fn CreateApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication) HRESULT {
         return self.vtable.CreateApplication(self, bstrApplicationName, varReserved, ppApplication);
     }
-    pub fn DeleteApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteApplication(self, bstrApplicationName, varReserved);
     }
-    pub fn get_ApplicationGroups(self: *const IAzAuthorizationStore, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationGroups(self: *const IAzAuthorizationStore, ppGroupCollection: ?*?*IAzApplicationGroups) HRESULT {
         return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
     }
-    pub fn CreateApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn CreateApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) HRESULT {
         return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn OpenApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn OpenApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) HRESULT {
         return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn DeleteApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplicationGroup(self: *const IAzAuthorizationStore, bstrGroupName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
     }
-    pub fn Submit(self: *const IAzAuthorizationStore, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzAuthorizationStore, lFlags: i32, varReserved: VARIANT) HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn get_DelegatedPolicyUsers(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsers(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) HRESULT {
         return self.vtable.get_DelegatedPolicyUsers(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUser(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn get_TargetMachine(self: *const IAzAuthorizationStore, pbstrTargetMachine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TargetMachine(self: *const IAzAuthorizationStore, pbstrTargetMachine: ?*?BSTR) HRESULT {
         return self.vtable.get_TargetMachine(self, pbstrTargetMachine);
     }
-    pub fn get_ApplyStoreSacl(self: *const IAzAuthorizationStore, pbApplyStoreSacl: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_ApplyStoreSacl(self: *const IAzAuthorizationStore, pbApplyStoreSacl: ?*BOOL) HRESULT {
         return self.vtable.get_ApplyStoreSacl(self, pbApplyStoreSacl);
     }
-    pub fn put_ApplyStoreSacl(self: *const IAzAuthorizationStore, bApplyStoreSacl: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_ApplyStoreSacl(self: *const IAzAuthorizationStore, bApplyStoreSacl: BOOL) HRESULT {
         return self.vtable.put_ApplyStoreSacl(self, bApplyStoreSacl);
     }
-    pub fn get_PolicyAdministratorsName(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministratorsName(self: *const IAzAuthorizationStore, pvarAdmins: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
     }
-    pub fn get_PolicyReadersName(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReadersName(self: *const IAzAuthorizationStore, pvarReaders: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyReadersName(self, pvarReaders);
     }
-    pub fn AddPolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministratorName(self: *const IAzAuthorizationStore, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReaderName(self: *const IAzAuthorizationStore, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn get_DelegatedPolicyUsersName(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsersName(self: *const IAzAuthorizationStore, pvarDelegatedPolicyUsers: ?*VARIANT) HRESULT {
         return self.vtable.get_DelegatedPolicyUsersName(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUserName(self: *const IAzAuthorizationStore, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn CloseApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, lFlag: i32) callconv(.Inline) HRESULT {
+    pub fn CloseApplication(self: *const IAzAuthorizationStore, bstrApplicationName: ?BSTR, lFlag: i32) HRESULT {
         return self.vtable.CloseApplication(self, bstrApplicationName, lFlag);
     }
 };
@@ -1406,22 +1406,22 @@ pub const IAzAuthorizationStore2 = extern union {
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplication2: *const fn(
             self: *const IAzAuthorizationStore2,
             bstrApplicationName: ?BSTR,
             varReserved: VARIANT,
             ppApplication: ?*?*IAzApplication2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzAuthorizationStore: IAzAuthorizationStore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
+    pub fn OpenApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) HRESULT {
         return self.vtable.OpenApplication2(self, bstrApplicationName, varReserved, ppApplication);
     }
-    pub fn CreateApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) callconv(.Inline) HRESULT {
+    pub fn CreateApplication2(self: *const IAzAuthorizationStore2, bstrApplicationName: ?BSTR, varReserved: VARIANT, ppApplication: ?*?*IAzApplication2) HRESULT {
         return self.vtable.CreateApplication2(self, bstrApplicationName, varReserved, ppApplication);
     }
 };
@@ -1435,44 +1435,44 @@ pub const IAzAuthorizationStore3 = extern union {
         IsUpdateNeeded: *const fn(
             self: *const IAzAuthorizationStore3,
             pbIsUpdateNeeded: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BizruleGroupSupported: *const fn(
             self: *const IAzAuthorizationStore3,
             pbSupported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpgradeStoresFunctionalLevel: *const fn(
             self: *const IAzAuthorizationStore3,
             lFunctionalLevel: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsFunctionalLevelUpgradeSupported: *const fn(
             self: *const IAzAuthorizationStore3,
             lFunctionalLevel: i32,
             pbSupported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSchemaVersion: *const fn(
             self: *const IAzAuthorizationStore3,
             plMajorVersion: ?*i32,
             plMinorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzAuthorizationStore2: IAzAuthorizationStore2,
     IAzAuthorizationStore: IAzAuthorizationStore,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsUpdateNeeded(self: *const IAzAuthorizationStore3, pbIsUpdateNeeded: ?*i16) HRESULT {
         return self.vtable.IsUpdateNeeded(self, pbIsUpdateNeeded);
     }
-    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn BizruleGroupSupported(self: *const IAzAuthorizationStore3, pbSupported: ?*i16) HRESULT {
         return self.vtable.BizruleGroupSupported(self, pbSupported);
     }
-    pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) callconv(.Inline) HRESULT {
+    pub fn UpgradeStoresFunctionalLevel(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32) HRESULT {
         return self.vtable.UpgradeStoresFunctionalLevel(self, lFunctionalLevel);
     }
-    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsFunctionalLevelUpgradeSupported(self: *const IAzAuthorizationStore3, lFunctionalLevel: i32, pbSupported: ?*i16) HRESULT {
         return self.vtable.IsFunctionalLevelUpgradeSupported(self, lFunctionalLevel, pbSupported);
     }
-    pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetSchemaVersion(self: *const IAzAuthorizationStore3, plMajorVersion: ?*i32, plMinorVersion: ?*i32) HRESULT {
         return self.vtable.GetSchemaVersion(self, plMajorVersion, plMinorVersion);
     }
 };
@@ -1487,511 +1487,511 @@ pub const IAzApplication = extern union {
         get_Name: *const fn(
             self: *const IAzApplication,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzApplication,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzApplication,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzApplication,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzApplication,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzApplication,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AuthzInterfaceClsid: *const fn(
             self: *const IAzApplication,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AuthzInterfaceClsid: *const fn(
             self: *const IAzApplication,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const IAzApplication,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Version: *const fn(
             self: *const IAzApplication,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GenerateAudits: *const fn(
             self: *const IAzApplication,
             pbProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GenerateAudits: *const fn(
             self: *const IAzApplication,
             bProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplyStoreSacl: *const fn(
             self: *const IAzApplication,
             pbProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplyStoreSacl: *const fn(
             self: *const IAzApplication,
             bProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzApplication,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: *const fn(
             self: *const IAzApplication,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: *const fn(
             self: *const IAzApplication,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministrator: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministrator: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReader: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReader: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scopes: *const fn(
             self: *const IAzApplication,
             ppScopeCollection: ?*?*IAzScopes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenScope: *const fn(
             self: *const IAzApplication,
             bstrScopeName: ?BSTR,
             varReserved: VARIANT,
             ppScope: ?*?*IAzScope,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScope: *const fn(
             self: *const IAzApplication,
             bstrScopeName: ?BSTR,
             varReserved: VARIANT,
             ppScope: ?*?*IAzScope,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteScope: *const fn(
             self: *const IAzApplication,
             bstrScopeName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: *const fn(
             self: *const IAzApplication,
             ppOperationCollection: ?*?*IAzOperations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenOperation: *const fn(
             self: *const IAzApplication,
             bstrOperationName: ?BSTR,
             varReserved: VARIANT,
             ppOperation: ?*?*IAzOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateOperation: *const fn(
             self: *const IAzApplication,
             bstrOperationName: ?BSTR,
             varReserved: VARIANT,
             ppOperation: ?*?*IAzOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteOperation: *const fn(
             self: *const IAzApplication,
             bstrOperationName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzApplication,
             ppTaskCollection: ?*?*IAzTasks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenTask: *const fn(
             self: *const IAzApplication,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTask: *const fn(
             self: *const IAzApplication,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzApplication,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: *const fn(
             self: *const IAzApplication,
             ppGroupCollection: ?*?*IAzApplicationGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplicationGroup: *const fn(
             self: *const IAzApplication,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplicationGroup: *const fn(
             self: *const IAzApplication,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplicationGroup: *const fn(
             self: *const IAzApplication,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Roles: *const fn(
             self: *const IAzApplication,
             ppRoleCollection: ?*?*IAzRoles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRole: *const fn(
             self: *const IAzApplication,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRole: *const fn(
             self: *const IAzApplication,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRole: *const fn(
             self: *const IAzApplication,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContextFromToken: *const fn(
             self: *const IAzApplication,
             ullTokenHandle: u64,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzApplication,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzApplication,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContextFromName: *const fn(
             self: *const IAzApplication,
             ClientName: ?BSTR,
             DomainName: ?BSTR,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsers: *const fn(
             self: *const IAzApplication,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUser: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUser: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContextFromStringSid: *const fn(
             self: *const IAzApplication,
             SidString: ?BSTR,
             lOptions: i32,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: *const fn(
             self: *const IAzApplication,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: *const fn(
             self: *const IAzApplication,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministratorName: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministratorName: *const fn(
             self: *const IAzApplication,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReaderName: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReaderName: *const fn(
             self: *const IAzApplication,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DelegatedPolicyUsersName: *const fn(
             self: *const IAzApplication,
             pvarDelegatedPolicyUsers: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddDelegatedPolicyUserName: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteDelegatedPolicyUserName: *const fn(
             self: *const IAzApplication,
             bstrDelegatedPolicyUser: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzApplication, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzApplication, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzApplication, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzApplication, bstrName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzApplication, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzApplication, pbstrDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzApplication, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzApplication, bstrDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzApplication, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzApplication, pbstrApplicationData: ?*?BSTR) HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzApplication, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzApplication, bstrApplicationData: ?BSTR) HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_AuthzInterfaceClsid(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AuthzInterfaceClsid(self: *const IAzApplication, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_AuthzInterfaceClsid(self, pbstrProp);
     }
-    pub fn put_AuthzInterfaceClsid(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_AuthzInterfaceClsid(self: *const IAzApplication, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_AuthzInterfaceClsid(self, bstrProp);
     }
-    pub fn get_Version(self: *const IAzApplication, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IAzApplication, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_Version(self, pbstrProp);
     }
-    pub fn put_Version(self: *const IAzApplication, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Version(self: *const IAzApplication, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_Version(self, bstrProp);
     }
-    pub fn get_GenerateAudits(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_GenerateAudits(self: *const IAzApplication, pbProp: ?*BOOL) HRESULT {
         return self.vtable.get_GenerateAudits(self, pbProp);
     }
-    pub fn put_GenerateAudits(self: *const IAzApplication, bProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_GenerateAudits(self: *const IAzApplication, bProp: BOOL) HRESULT {
         return self.vtable.put_GenerateAudits(self, bProp);
     }
-    pub fn get_ApplyStoreSacl(self: *const IAzApplication, pbProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_ApplyStoreSacl(self: *const IAzApplication, pbProp: ?*BOOL) HRESULT {
         return self.vtable.get_ApplyStoreSacl(self, pbProp);
     }
-    pub fn put_ApplyStoreSacl(self: *const IAzApplication, bProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_ApplyStoreSacl(self: *const IAzApplication, bProp: BOOL) HRESULT {
         return self.vtable.put_ApplyStoreSacl(self, bProp);
     }
-    pub fn get_Writable(self: *const IAzApplication, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzApplication, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzApplication, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzApplication, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn get_PolicyAdministrators(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministrators(self: *const IAzApplication, pvarAdmins: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
     }
-    pub fn get_PolicyReaders(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReaders(self: *const IAzApplication, pvarReaders: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyReaders(self, pvarReaders);
     }
-    pub fn AddPolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministrator(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReader(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
     }
-    pub fn get_Scopes(self: *const IAzApplication, ppScopeCollection: ?*?*IAzScopes) callconv(.Inline) HRESULT {
+    pub fn get_Scopes(self: *const IAzApplication, ppScopeCollection: ?*?*IAzScopes) HRESULT {
         return self.vtable.get_Scopes(self, ppScopeCollection);
     }
-    pub fn OpenScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+    pub fn OpenScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) HRESULT {
         return self.vtable.OpenScope(self, bstrScopeName, varReserved, ppScope);
     }
-    pub fn CreateScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+    pub fn CreateScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT, ppScope: ?*?*IAzScope) HRESULT {
         return self.vtable.CreateScope(self, bstrScopeName, varReserved, ppScope);
     }
-    pub fn DeleteScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteScope(self: *const IAzApplication, bstrScopeName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteScope(self, bstrScopeName, varReserved);
     }
-    pub fn get_Operations(self: *const IAzApplication, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
+    pub fn get_Operations(self: *const IAzApplication, ppOperationCollection: ?*?*IAzOperations) HRESULT {
         return self.vtable.get_Operations(self, ppOperationCollection);
     }
-    pub fn OpenOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
+    pub fn OpenOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) HRESULT {
         return self.vtable.OpenOperation(self, bstrOperationName, varReserved, ppOperation);
     }
-    pub fn CreateOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) callconv(.Inline) HRESULT {
+    pub fn CreateOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT, ppOperation: ?*?*IAzOperation) HRESULT {
         return self.vtable.CreateOperation(self, bstrOperationName, varReserved, ppOperation);
     }
-    pub fn DeleteOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteOperation(self: *const IAzApplication, bstrOperationName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteOperation(self, bstrOperationName, varReserved);
     }
-    pub fn get_Tasks(self: *const IAzApplication, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzApplication, ppTaskCollection: ?*?*IAzTasks) HRESULT {
         return self.vtable.get_Tasks(self, ppTaskCollection);
     }
-    pub fn OpenTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn OpenTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) HRESULT {
         return self.vtable.OpenTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn CreateTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn CreateTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) HRESULT {
         return self.vtable.CreateTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn DeleteTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzApplication, bstrTaskName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteTask(self, bstrTaskName, varReserved);
     }
-    pub fn get_ApplicationGroups(self: *const IAzApplication, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationGroups(self: *const IAzApplication, ppGroupCollection: ?*?*IAzApplicationGroups) HRESULT {
         return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
     }
-    pub fn OpenApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn OpenApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) HRESULT {
         return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn CreateApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn CreateApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) HRESULT {
         return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn DeleteApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplicationGroup(self: *const IAzApplication, bstrGroupName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
     }
-    pub fn get_Roles(self: *const IAzApplication, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
+    pub fn get_Roles(self: *const IAzApplication, ppRoleCollection: ?*?*IAzRoles) HRESULT {
         return self.vtable.get_Roles(self, ppRoleCollection);
     }
-    pub fn OpenRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn OpenRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) HRESULT {
         return self.vtable.OpenRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn CreateRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn CreateRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) HRESULT {
         return self.vtable.CreateRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn DeleteRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteRole(self: *const IAzApplication, bstrRoleName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteRole(self, bstrRoleName, varReserved);
     }
-    pub fn InitializeClientContextFromToken(self: *const IAzApplication, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromToken(self: *const IAzApplication, ullTokenHandle: u64, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) HRESULT {
         return self.vtable.InitializeClientContextFromToken(self, ullTokenHandle, varReserved, ppClientContext);
     }
-    pub fn AddPropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzApplication, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzApplication, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzApplication, lFlags: i32, varReserved: VARIANT) HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn InitializeClientContextFromName(self: *const IAzApplication, ClientName: ?BSTR, DomainName: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromName(self: *const IAzApplication, ClientName: ?BSTR, DomainName: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) HRESULT {
         return self.vtable.InitializeClientContextFromName(self, ClientName, DomainName, varReserved, ppClientContext);
     }
-    pub fn get_DelegatedPolicyUsers(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsers(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) HRESULT {
         return self.vtable.get_DelegatedPolicyUsers(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUser(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteDelegatedPolicyUser(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn InitializeClientContextFromStringSid(self: *const IAzApplication, SidString: ?BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromStringSid(self: *const IAzApplication, SidString: ?BSTR, lOptions: i32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext) HRESULT {
         return self.vtable.InitializeClientContextFromStringSid(self, SidString, lOptions, varReserved, ppClientContext);
     }
-    pub fn get_PolicyAdministratorsName(self: *const IAzApplication, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministratorsName(self: *const IAzApplication, pvarAdmins: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
     }
-    pub fn get_PolicyReadersName(self: *const IAzApplication, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReadersName(self: *const IAzApplication, pvarReaders: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyReadersName(self, pvarReaders);
     }
-    pub fn AddPolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministratorName(self: *const IAzApplication, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReaderName(self: *const IAzApplication, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn get_DelegatedPolicyUsersName(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_DelegatedPolicyUsersName(self: *const IAzApplication, pvarDelegatedPolicyUsers: ?*VARIANT) HRESULT {
         return self.vtable.get_DelegatedPolicyUsersName(self, pvarDelegatedPolicyUsers);
     }
-    pub fn AddDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
-    pub fn DeleteDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteDelegatedPolicyUserName(self: *const IAzApplication, bstrDelegatedPolicyUser: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteDelegatedPolicyUserName(self, bstrDelegatedPolicyUser, varReserved);
     }
 };
@@ -2008,22 +2008,22 @@ pub const IAzApplication2 = extern union {
             ulTokenHandleHighPart: u32,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitializeClientContext2: *const fn(
             self: *const IAzApplication2,
             IdentifyingString: ?BSTR,
             varReserved: VARIANT,
             ppClientContext: ?*?*IAzClientContext2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzApplication: IAzApplication,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn InitializeClientContextFromToken2(self: *const IAzApplication2, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContextFromToken2(self: *const IAzApplication2, ulTokenHandleLowPart: u32, ulTokenHandleHighPart: u32, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) HRESULT {
         return self.vtable.InitializeClientContextFromToken2(self, ulTokenHandleLowPart, ulTokenHandleHighPart, varReserved, ppClientContext);
     }
-    pub fn InitializeClientContext2(self: *const IAzApplication2, IdentifyingString: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) callconv(.Inline) HRESULT {
+    pub fn InitializeClientContext2(self: *const IAzApplication2, IdentifyingString: ?BSTR, varReserved: VARIANT, ppClientContext: ?*?*IAzClientContext2) HRESULT {
         return self.vtable.InitializeClientContext2(self, IdentifyingString, varReserved, ppClientContext);
     }
 };
@@ -2038,28 +2038,28 @@ pub const IAzApplications = extern union {
             self: *const IAzApplications,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzApplications,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzApplications,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzApplications, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzApplications, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzApplications, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzApplications, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzApplications, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzApplications, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2074,102 +2074,102 @@ pub const IAzOperation = extern union {
         get_Name: *const fn(
             self: *const IAzOperation,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzOperation,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzOperation,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzOperation,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzOperation,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzOperation,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OperationID: *const fn(
             self: *const IAzOperation,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_OperationID: *const fn(
             self: *const IAzOperation,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzOperation,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzOperation,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzOperation,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzOperation,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzOperation, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzOperation, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzOperation, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzOperation, bstrName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzOperation, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzOperation, pbstrDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzOperation, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzOperation, bstrDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzOperation, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzOperation, pbstrApplicationData: ?*?BSTR) HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzOperation, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzOperation, bstrApplicationData: ?BSTR) HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_OperationID(self: *const IAzOperation, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_OperationID(self: *const IAzOperation, plProp: ?*i32) HRESULT {
         return self.vtable.get_OperationID(self, plProp);
     }
-    pub fn put_OperationID(self: *const IAzOperation, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_OperationID(self: *const IAzOperation, lProp: i32) HRESULT {
         return self.vtable.put_OperationID(self, lProp);
     }
-    pub fn get_Writable(self: *const IAzOperation, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzOperation, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzOperation, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzOperation, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzOperation, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzOperation, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzOperation, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzOperation, lFlags: i32, varReserved: VARIANT) HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
 };
@@ -2184,28 +2184,28 @@ pub const IAzOperations = extern union {
             self: *const IAzOperations,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzOperations,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzOperations,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzOperations, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzOperations, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzOperations, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzOperations, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzOperations, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzOperations, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2220,216 +2220,216 @@ pub const IAzTask = extern union {
         get_Name: *const fn(
             self: *const IAzTask,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzTask,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzTask,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzTask,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzTask,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzTask,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRule: *const fn(
             self: *const IAzTask,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRule: *const fn(
             self: *const IAzTask,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleLanguage: *const fn(
             self: *const IAzTask,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleLanguage: *const fn(
             self: *const IAzTask,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleImportedPath: *const fn(
             self: *const IAzTask,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleImportedPath: *const fn(
             self: *const IAzTask,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsRoleDefinition: *const fn(
             self: *const IAzTask,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsRoleDefinition: *const fn(
             self: *const IAzTask,
             fProp: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: *const fn(
             self: *const IAzTask,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzTask,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOperation: *const fn(
             self: *const IAzTask,
             bstrOp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteOperation: *const fn(
             self: *const IAzTask,
             bstrOp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTask: *const fn(
             self: *const IAzTask,
             bstrTask: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzTask,
             bstrTask: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzTask,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzTask,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzTask,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzTask, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzTask, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzTask, bstrName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzTask, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzTask, pbstrDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzTask, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzTask, bstrDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzTask, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzTask, pbstrApplicationData: ?*?BSTR) HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzTask, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzTask, bstrApplicationData: ?BSTR) HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_BizRule(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRule(self: *const IAzTask, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_BizRule(self, pbstrProp);
     }
-    pub fn put_BizRule(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRule(self: *const IAzTask, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_BizRule(self, bstrProp);
     }
-    pub fn get_BizRuleLanguage(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleLanguage(self: *const IAzTask, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_BizRuleLanguage(self, pbstrProp);
     }
-    pub fn put_BizRuleLanguage(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleLanguage(self: *const IAzTask, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_BizRuleLanguage(self, bstrProp);
     }
-    pub fn get_BizRuleImportedPath(self: *const IAzTask, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleImportedPath(self: *const IAzTask, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_BizRuleImportedPath(self, pbstrProp);
     }
-    pub fn put_BizRuleImportedPath(self: *const IAzTask, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleImportedPath(self: *const IAzTask, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_BizRuleImportedPath(self, bstrProp);
     }
-    pub fn get_IsRoleDefinition(self: *const IAzTask, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsRoleDefinition(self: *const IAzTask, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_IsRoleDefinition(self, pfProp);
     }
-    pub fn put_IsRoleDefinition(self: *const IAzTask, fProp: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_IsRoleDefinition(self: *const IAzTask, fProp: BOOL) HRESULT {
         return self.vtable.put_IsRoleDefinition(self, fProp);
     }
-    pub fn get_Operations(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Operations(self: *const IAzTask, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_Operations(self, pvarProp);
     }
-    pub fn get_Tasks(self: *const IAzTask, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzTask, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_Tasks(self, pvarProp);
     }
-    pub fn AddOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddOperation(self, bstrOp, varReserved);
     }
-    pub fn DeleteOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteOperation(self: *const IAzTask, bstrOp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteOperation(self, bstrOp, varReserved);
     }
-    pub fn AddTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddTask(self, bstrTask, varReserved);
     }
-    pub fn DeleteTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzTask, bstrTask: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteTask(self, bstrTask, varReserved);
     }
-    pub fn get_Writable(self: *const IAzTask, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzTask, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzTask, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzTask, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzTask, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzTask, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzTask, lFlags: i32, varReserved: VARIANT) HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
 };
@@ -2444,28 +2444,28 @@ pub const IAzTasks = extern union {
             self: *const IAzTasks,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzTasks,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzTasks,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzTasks, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzTasks, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzTasks, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzTasks, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzTasks, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2480,318 +2480,318 @@ pub const IAzScope = extern union {
         get_Name: *const fn(
             self: *const IAzScope,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzScope,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzScope,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzScope,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzScope,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzScope,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzScope,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzScope,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministrators: *const fn(
             self: *const IAzScope,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReaders: *const fn(
             self: *const IAzScope,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministrator: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministrator: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReader: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReader: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationGroups: *const fn(
             self: *const IAzScope,
             ppGroupCollection: ?*?*IAzApplicationGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenApplicationGroup: *const fn(
             self: *const IAzScope,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateApplicationGroup: *const fn(
             self: *const IAzScope,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
             ppGroup: ?*?*IAzApplicationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteApplicationGroup: *const fn(
             self: *const IAzScope,
             bstrGroupName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Roles: *const fn(
             self: *const IAzScope,
             ppRoleCollection: ?*?*IAzRoles,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRole: *const fn(
             self: *const IAzScope,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRole: *const fn(
             self: *const IAzScope,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
             ppRole: ?*?*IAzRole,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRole: *const fn(
             self: *const IAzScope,
             bstrRoleName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzScope,
             ppTaskCollection: ?*?*IAzTasks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenTask: *const fn(
             self: *const IAzScope,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateTask: *const fn(
             self: *const IAzScope,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
             ppTask: ?*?*IAzTask,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzScope,
             bstrTaskName: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzScope,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CanBeDelegated: *const fn(
             self: *const IAzScope,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizrulesWritable: *const fn(
             self: *const IAzScope,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyAdministratorsName: *const fn(
             self: *const IAzScope,
             pvarAdmins: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PolicyReadersName: *const fn(
             self: *const IAzScope,
             pvarReaders: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyAdministratorName: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyAdministratorName: *const fn(
             self: *const IAzScope,
             bstrAdmin: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPolicyReaderName: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePolicyReaderName: *const fn(
             self: *const IAzScope,
             bstrReader: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzScope, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzScope, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzScope, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzScope, bstrName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzScope, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzScope, pbstrDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzScope, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzScope, bstrDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzScope, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzScope, pbstrApplicationData: ?*?BSTR) HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzScope, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzScope, bstrApplicationData: ?BSTR) HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn get_Writable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzScope, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzScope, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzScope, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzScope, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn get_PolicyAdministrators(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministrators(self: *const IAzScope, pvarAdmins: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyAdministrators(self, pvarAdmins);
     }
-    pub fn get_PolicyReaders(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReaders(self: *const IAzScope, pvarReaders: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyReaders(self, pvarReaders);
     }
-    pub fn AddPolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministrator(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyAdministrator(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyReader(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReader(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyReader(self, bstrReader, varReserved);
     }
-    pub fn get_ApplicationGroups(self: *const IAzScope, ppGroupCollection: ?*?*IAzApplicationGroups) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationGroups(self: *const IAzScope, ppGroupCollection: ?*?*IAzApplicationGroups) HRESULT {
         return self.vtable.get_ApplicationGroups(self, ppGroupCollection);
     }
-    pub fn OpenApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn OpenApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) HRESULT {
         return self.vtable.OpenApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn CreateApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) callconv(.Inline) HRESULT {
+    pub fn CreateApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT, ppGroup: ?*?*IAzApplicationGroup) HRESULT {
         return self.vtable.CreateApplicationGroup(self, bstrGroupName, varReserved, ppGroup);
     }
-    pub fn DeleteApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteApplicationGroup(self: *const IAzScope, bstrGroupName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteApplicationGroup(self, bstrGroupName, varReserved);
     }
-    pub fn get_Roles(self: *const IAzScope, ppRoleCollection: ?*?*IAzRoles) callconv(.Inline) HRESULT {
+    pub fn get_Roles(self: *const IAzScope, ppRoleCollection: ?*?*IAzRoles) HRESULT {
         return self.vtable.get_Roles(self, ppRoleCollection);
     }
-    pub fn OpenRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn OpenRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) HRESULT {
         return self.vtable.OpenRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn CreateRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) callconv(.Inline) HRESULT {
+    pub fn CreateRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT, ppRole: ?*?*IAzRole) HRESULT {
         return self.vtable.CreateRole(self, bstrRoleName, varReserved, ppRole);
     }
-    pub fn DeleteRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteRole(self: *const IAzScope, bstrRoleName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteRole(self, bstrRoleName, varReserved);
     }
-    pub fn get_Tasks(self: *const IAzScope, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzScope, ppTaskCollection: ?*?*IAzTasks) HRESULT {
         return self.vtable.get_Tasks(self, ppTaskCollection);
     }
-    pub fn OpenTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn OpenTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) HRESULT {
         return self.vtable.OpenTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn CreateTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) callconv(.Inline) HRESULT {
+    pub fn CreateTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT, ppTask: ?*?*IAzTask) HRESULT {
         return self.vtable.CreateTask(self, bstrTaskName, varReserved, ppTask);
     }
-    pub fn DeleteTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzScope, bstrTaskName: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteTask(self, bstrTaskName, varReserved);
     }
-    pub fn Submit(self: *const IAzScope, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzScope, lFlags: i32, varReserved: VARIANT) HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn get_CanBeDelegated(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_CanBeDelegated(self: *const IAzScope, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_CanBeDelegated(self, pfProp);
     }
-    pub fn get_BizrulesWritable(self: *const IAzScope, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_BizrulesWritable(self: *const IAzScope, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_BizrulesWritable(self, pfProp);
     }
-    pub fn get_PolicyAdministratorsName(self: *const IAzScope, pvarAdmins: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyAdministratorsName(self: *const IAzScope, pvarAdmins: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyAdministratorsName(self, pvarAdmins);
     }
-    pub fn get_PolicyReadersName(self: *const IAzScope, pvarReaders: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PolicyReadersName(self: *const IAzScope, pvarReaders: ?*VARIANT) HRESULT {
         return self.vtable.get_PolicyReadersName(self, pvarReaders);
     }
-    pub fn AddPolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn DeletePolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyAdministratorName(self: *const IAzScope, bstrAdmin: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyAdministratorName(self, bstrAdmin, varReserved);
     }
-    pub fn AddPolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPolicyReaderName(self, bstrReader, varReserved);
     }
-    pub fn DeletePolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePolicyReaderName(self: *const IAzScope, bstrReader: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePolicyReaderName(self, bstrReader, varReserved);
     }
 };
@@ -2806,28 +2806,28 @@ pub const IAzScopes = extern union {
             self: *const IAzScopes,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzScopes,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzScopes,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzScopes, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzScopes, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzScopes, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzScopes, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzScopes, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -2842,264 +2842,264 @@ pub const IAzApplicationGroup = extern union {
         get_Name: *const fn(
             self: *const IAzApplicationGroup,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzApplicationGroup,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const IAzApplicationGroup,
             plProp: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: *const fn(
             self: *const IAzApplicationGroup,
             lProp: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LdapQuery: *const fn(
             self: *const IAzApplicationGroup,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LdapQuery: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppMembers: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppNonMembers: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembers: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzApplicationGroup,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzApplicationGroup,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAppMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAppMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAppNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAppNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteNonMember: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzApplicationGroup,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzApplicationGroup,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzApplicationGroup,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddNonMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteNonMemberName: *const fn(
             self: *const IAzApplicationGroup,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MembersName: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonMembersName: *const fn(
             self: *const IAzApplicationGroup,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzApplicationGroup, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzApplicationGroup, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzApplicationGroup, bstrName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Type(self: *const IAzApplicationGroup, plProp: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IAzApplicationGroup, plProp: ?*i32) HRESULT {
         return self.vtable.get_Type(self, plProp);
     }
-    pub fn put_Type(self: *const IAzApplicationGroup, lProp: i32) callconv(.Inline) HRESULT {
+    pub fn put_Type(self: *const IAzApplicationGroup, lProp: i32) HRESULT {
         return self.vtable.put_Type(self, lProp);
     }
-    pub fn get_LdapQuery(self: *const IAzApplicationGroup, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LdapQuery(self: *const IAzApplicationGroup, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_LdapQuery(self, pbstrProp);
     }
-    pub fn put_LdapQuery(self: *const IAzApplicationGroup, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LdapQuery(self: *const IAzApplicationGroup, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_LdapQuery(self, bstrProp);
     }
-    pub fn get_AppMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_AppMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_AppMembers(self, pvarProp);
     }
-    pub fn get_AppNonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_AppNonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_AppNonMembers(self, pvarProp);
     }
-    pub fn get_Members(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Members(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_Members(self, pvarProp);
     }
-    pub fn get_NonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_NonMembers(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_NonMembers(self, pvarProp);
     }
-    pub fn get_Description(self: *const IAzApplicationGroup, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzApplicationGroup, pbstrDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzApplicationGroup, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzApplicationGroup, bstrDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn AddAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddAppMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteAppMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
     }
-    pub fn AddAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddAppNonMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteAppNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteAppNonMember(self, bstrProp, varReserved);
     }
-    pub fn AddMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteMember(self, bstrProp, varReserved);
     }
-    pub fn AddNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddNonMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteNonMember(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteNonMember(self, bstrProp, varReserved);
     }
-    pub fn get_Writable(self: *const IAzApplicationGroup, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzApplicationGroup, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzApplicationGroup, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzApplicationGroup, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn AddPropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzApplicationGroup, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzApplicationGroup, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzApplicationGroup, lFlags: i32, varReserved: VARIANT) HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn AddMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddMemberName(self, bstrProp, varReserved);
     }
-    pub fn DeleteMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
     }
-    pub fn AddNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddNonMemberName(self, bstrProp, varReserved);
     }
-    pub fn DeleteNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteNonMemberName(self: *const IAzApplicationGroup, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteNonMemberName(self, bstrProp, varReserved);
     }
-    pub fn get_MembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_MembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_MembersName(self, pvarProp);
     }
-    pub fn get_NonMembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_NonMembersName(self: *const IAzApplicationGroup, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_NonMembersName(self, pvarProp);
     }
 };
@@ -3114,28 +3114,28 @@ pub const IAzApplicationGroups = extern union {
             self: *const IAzApplicationGroups,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzApplicationGroups,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzApplicationGroups,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzApplicationGroups, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzApplicationGroups, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzApplicationGroups, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzApplicationGroups, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzApplicationGroups, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -3150,224 +3150,224 @@ pub const IAzRole = extern union {
         get_Name: *const fn(
             self: *const IAzRole,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IAzRole,
             bstrName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IAzRole,
             pbstrDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IAzRole,
             bstrDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ApplicationData: *const fn(
             self: *const IAzRole,
             pbstrApplicationData: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ApplicationData: *const fn(
             self: *const IAzRole,
             bstrApplicationData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAppMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAppMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTask: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteTask: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOperation: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteOperation: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMember: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Writable: *const fn(
             self: *const IAzRole,
             pfProp: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetProperty: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AppMembers: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Operations: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tasks: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPropertyItem: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePropertyItem: *const fn(
             self: *const IAzRole,
             lPropId: i32,
             varProp: VARIANT,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Submit: *const fn(
             self: *const IAzRole,
             lFlags: i32,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMemberName: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteMemberName: *const fn(
             self: *const IAzRole,
             bstrProp: ?BSTR,
             varReserved: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MembersName: *const fn(
             self: *const IAzRole,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzRole, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const IAzRole, bstrName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IAzRole, bstrName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrName);
     }
-    pub fn get_Description(self: *const IAzRole, pbstrDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IAzRole, pbstrDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbstrDescription);
     }
-    pub fn put_Description(self: *const IAzRole, bstrDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IAzRole, bstrDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bstrDescription);
     }
-    pub fn get_ApplicationData(self: *const IAzRole, pbstrApplicationData: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ApplicationData(self: *const IAzRole, pbstrApplicationData: ?*?BSTR) HRESULT {
         return self.vtable.get_ApplicationData(self, pbstrApplicationData);
     }
-    pub fn put_ApplicationData(self: *const IAzRole, bstrApplicationData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ApplicationData(self: *const IAzRole, bstrApplicationData: ?BSTR) HRESULT {
         return self.vtable.put_ApplicationData(self, bstrApplicationData);
     }
-    pub fn AddAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddAppMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteAppMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteAppMember(self, bstrProp, varReserved);
     }
-    pub fn AddTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddTask(self, bstrProp, varReserved);
     }
-    pub fn DeleteTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteTask(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteTask(self, bstrProp, varReserved);
     }
-    pub fn AddOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddOperation(self, bstrProp, varReserved);
     }
-    pub fn DeleteOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteOperation(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteOperation(self, bstrProp, varReserved);
     }
-    pub fn AddMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddMember(self, bstrProp, varReserved);
     }
-    pub fn DeleteMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMember(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteMember(self, bstrProp, varReserved);
     }
-    pub fn get_Writable(self: *const IAzRole, pfProp: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Writable(self: *const IAzRole, pfProp: ?*BOOL) HRESULT {
         return self.vtable.get_Writable(self, pfProp);
     }
-    pub fn GetProperty(self: *const IAzRole, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzRole, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn SetProperty(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetProperty(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.SetProperty(self, lPropId, varProp, varReserved);
     }
-    pub fn get_AppMembers(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_AppMembers(self: *const IAzRole, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_AppMembers(self, pvarProp);
     }
-    pub fn get_Members(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Members(self: *const IAzRole, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_Members(self, pvarProp);
     }
-    pub fn get_Operations(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Operations(self: *const IAzRole, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_Operations(self, pvarProp);
     }
-    pub fn get_Tasks(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Tasks(self: *const IAzRole, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_Tasks(self, pvarProp);
     }
-    pub fn AddPropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.AddPropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn DeletePropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeletePropertyItem(self: *const IAzRole, lPropId: i32, varProp: VARIANT, varReserved: VARIANT) HRESULT {
         return self.vtable.DeletePropertyItem(self, lPropId, varProp, varReserved);
     }
-    pub fn Submit(self: *const IAzRole, lFlags: i32, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Submit(self: *const IAzRole, lFlags: i32, varReserved: VARIANT) HRESULT {
         return self.vtable.Submit(self, lFlags, varReserved);
     }
-    pub fn AddMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.AddMemberName(self, bstrProp, varReserved);
     }
-    pub fn DeleteMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteMemberName(self: *const IAzRole, bstrProp: ?BSTR, varReserved: VARIANT) HRESULT {
         return self.vtable.DeleteMemberName(self, bstrProp, varReserved);
     }
-    pub fn get_MembersName(self: *const IAzRole, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_MembersName(self: *const IAzRole, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.get_MembersName(self, pvarProp);
     }
 };
@@ -3382,28 +3382,28 @@ pub const IAzRoles = extern union {
             self: *const IAzRoles,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzRoles,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzRoles,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzRoles, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzRoles, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzRoles, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzRoles, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzRoles, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -3425,108 +3425,108 @@ pub const IAzClientContext = extern union {
             varInterfaceFlags: VARIANT,
             varInterfaces: VARIANT,
             pvarResults: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBusinessRuleString: *const fn(
             self: *const IAzClientContext,
             pbstrBusinessRuleString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDn: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserSamCompat: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDisplay: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserGuid: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserCanonical: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserUpn: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserDnsSamCompat: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IAzClientContext,
             lPropId: i32,
             varReserved: VARIANT,
             pvarProp: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRoles: *const fn(
             self: *const IAzClientContext,
             bstrScopeName: ?BSTR,
             pvarRoleNames: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleForAccessCheck: *const fn(
             self: *const IAzClientContext,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RoleForAccessCheck: *const fn(
             self: *const IAzClientContext,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AccessCheck(self: *const IAzClientContext, bstrObjectName: ?BSTR, varScopeNames: VARIANT, varOperations: VARIANT, varParameterNames: VARIANT, varParameterValues: VARIANT, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT, pvarResults: ?*VARIANT) HRESULT {
         return self.vtable.AccessCheck(self, bstrObjectName, varScopeNames, varOperations, varParameterNames, varParameterValues, varInterfaceNames, varInterfaceFlags, varInterfaces, pvarResults);
     }
-    pub fn GetBusinessRuleString(self: *const IAzClientContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetBusinessRuleString(self: *const IAzClientContext, pbstrBusinessRuleString: ?*?BSTR) HRESULT {
         return self.vtable.GetBusinessRuleString(self, pbstrBusinessRuleString);
     }
-    pub fn get_UserDn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserDn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_UserDn(self, pbstrProp);
     }
-    pub fn get_UserSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_UserSamCompat(self, pbstrProp);
     }
-    pub fn get_UserDisplay(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserDisplay(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_UserDisplay(self, pbstrProp);
     }
-    pub fn get_UserGuid(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserGuid(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_UserGuid(self, pbstrProp);
     }
-    pub fn get_UserCanonical(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserCanonical(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_UserCanonical(self, pbstrProp);
     }
-    pub fn get_UserUpn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserUpn(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_UserUpn(self, pbstrProp);
     }
-    pub fn get_UserDnsSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserDnsSamCompat(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_UserDnsSamCompat(self, pbstrProp);
     }
-    pub fn GetProperty(self: *const IAzClientContext, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IAzClientContext, lPropId: i32, varReserved: VARIANT, pvarProp: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, lPropId, varReserved, pvarProp);
     }
-    pub fn GetRoles(self: *const IAzClientContext, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetRoles(self: *const IAzClientContext, bstrScopeName: ?BSTR, pvarRoleNames: ?*VARIANT) HRESULT {
         return self.vtable.GetRoles(self, bstrScopeName, pvarRoleNames);
     }
-    pub fn get_RoleForAccessCheck(self: *const IAzClientContext, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RoleForAccessCheck(self: *const IAzClientContext, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_RoleForAccessCheck(self, pbstrProp);
     }
-    pub fn put_RoleForAccessCheck(self: *const IAzClientContext, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_RoleForAccessCheck(self: *const IAzClientContext, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_RoleForAccessCheck(self, bstrProp);
     }
 };
@@ -3543,51 +3543,51 @@ pub const IAzClientContext2 = extern union {
             PageSize: i32,
             pvarCursor: ?*VARIANT,
             pvarScopeNames: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRoles: *const fn(
             self: *const IAzClientContext2,
             varRoles: VARIANT,
             bstrScopeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddApplicationGroups: *const fn(
             self: *const IAzClientContext2,
             varApplicationGroups: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddStringSids: *const fn(
             self: *const IAzClientContext2,
             varStringSids: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LDAPQueryDN: *const fn(
             self: *const IAzClientContext2,
             bstrLDAPQueryDN: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LDAPQueryDN: *const fn(
             self: *const IAzClientContext2,
             pbstrLDAPQueryDN: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzClientContext: IAzClientContext,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetAssignedScopesPage(self: *const IAzClientContext2, lOptions: i32, PageSize: i32, pvarCursor: ?*VARIANT, pvarScopeNames: ?*VARIANT) HRESULT {
         return self.vtable.GetAssignedScopesPage(self, lOptions, PageSize, pvarCursor, pvarScopeNames);
     }
-    pub fn AddRoles(self: *const IAzClientContext2, varRoles: VARIANT, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddRoles(self: *const IAzClientContext2, varRoles: VARIANT, bstrScopeName: ?BSTR) HRESULT {
         return self.vtable.AddRoles(self, varRoles, bstrScopeName);
     }
-    pub fn AddApplicationGroups(self: *const IAzClientContext2, varApplicationGroups: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddApplicationGroups(self: *const IAzClientContext2, varApplicationGroups: VARIANT) HRESULT {
         return self.vtable.AddApplicationGroups(self, varApplicationGroups);
     }
-    pub fn AddStringSids(self: *const IAzClientContext2, varStringSids: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddStringSids(self: *const IAzClientContext2, varStringSids: VARIANT) HRESULT {
         return self.vtable.AddStringSids(self, varStringSids);
     }
-    pub fn put_LDAPQueryDN(self: *const IAzClientContext2, bstrLDAPQueryDN: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_LDAPQueryDN(self: *const IAzClientContext2, bstrLDAPQueryDN: ?BSTR) HRESULT {
         return self.vtable.put_LDAPQueryDN(self, bstrLDAPQueryDN);
     }
-    pub fn get_LDAPQueryDN(self: *const IAzClientContext2, pbstrLDAPQueryDN: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LDAPQueryDN(self: *const IAzClientContext2, pbstrLDAPQueryDN: ?*?BSTR) HRESULT {
         return self.vtable.get_LDAPQueryDN(self, pbstrLDAPQueryDN);
     }
 };
@@ -3602,36 +3602,36 @@ pub const IAzBizRuleContext = extern union {
         put_BusinessRuleResult: *const fn(
             self: *const IAzBizRuleContext,
             bResult: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BusinessRuleString: *const fn(
             self: *const IAzBizRuleContext,
             bstrBusinessRuleString: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BusinessRuleString: *const fn(
             self: *const IAzBizRuleContext,
             pbstrBusinessRuleString: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameter: *const fn(
             self: *const IAzBizRuleContext,
             bstrParameterName: ?BSTR,
             pvarParameterValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_BusinessRuleResult(self: *const IAzBizRuleContext, bResult: BOOL) HRESULT {
         return self.vtable.put_BusinessRuleResult(self, bResult);
     }
-    pub fn put_BusinessRuleString(self: *const IAzBizRuleContext, bstrBusinessRuleString: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BusinessRuleString(self: *const IAzBizRuleContext, bstrBusinessRuleString: ?BSTR) HRESULT {
         return self.vtable.put_BusinessRuleString(self, bstrBusinessRuleString);
     }
-    pub fn get_BusinessRuleString(self: *const IAzBizRuleContext, pbstrBusinessRuleString: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BusinessRuleString(self: *const IAzBizRuleContext, pbstrBusinessRuleString: ?*?BSTR) HRESULT {
         return self.vtable.get_BusinessRuleString(self, pbstrBusinessRuleString);
     }
-    pub fn GetParameter(self: *const IAzBizRuleContext, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetParameter(self: *const IAzBizRuleContext, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) HRESULT {
         return self.vtable.GetParameter(self, bstrParameterName, pvarParameterValue);
     }
 };
@@ -3646,49 +3646,49 @@ pub const IAzBizRuleParameters = extern union {
             self: *const IAzBizRuleParameters,
             bstrParameterName: ?BSTR,
             varParameterValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddParameters: *const fn(
             self: *const IAzBizRuleParameters,
             varParameterNames: VARIANT,
             varParameterValues: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParameterValue: *const fn(
             self: *const IAzBizRuleParameters,
             bstrParameterName: ?BSTR,
             pvarParameterValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IAzBizRuleParameters,
             varParameterName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAll: *const fn(
             self: *const IAzBizRuleParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzBizRuleParameters,
             plCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddParameter(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, varParameterValue: VARIANT) HRESULT {
         return self.vtable.AddParameter(self, bstrParameterName, varParameterValue);
     }
-    pub fn AddParameters(self: *const IAzBizRuleParameters, varParameterNames: VARIANT, varParameterValues: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddParameters(self: *const IAzBizRuleParameters, varParameterNames: VARIANT, varParameterValues: VARIANT) HRESULT {
         return self.vtable.AddParameters(self, varParameterNames, varParameterValues);
     }
-    pub fn GetParameterValue(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetParameterValue(self: *const IAzBizRuleParameters, bstrParameterName: ?BSTR, pvarParameterValue: ?*VARIANT) HRESULT {
         return self.vtable.GetParameterValue(self, bstrParameterName, pvarParameterValue);
     }
-    pub fn Remove(self: *const IAzBizRuleParameters, varParameterName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IAzBizRuleParameters, varParameterName: ?BSTR) HRESULT {
         return self.vtable.Remove(self, varParameterName);
     }
-    pub fn RemoveAll(self: *const IAzBizRuleParameters) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const IAzBizRuleParameters) HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn get_Count(self: *const IAzBizRuleParameters, plCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzBizRuleParameters, plCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
 };
@@ -3704,51 +3704,51 @@ pub const IAzBizRuleInterfaces = extern union {
             bstrInterfaceName: ?BSTR,
             lInterfaceFlag: i32,
             varInterface: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddInterfaces: *const fn(
             self: *const IAzBizRuleInterfaces,
             varInterfaceNames: VARIANT,
             varInterfaceFlags: VARIANT,
             varInterfaces: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInterfaceValue: *const fn(
             self: *const IAzBizRuleInterfaces,
             bstrInterfaceName: ?BSTR,
             lInterfaceFlag: ?*i32,
             varInterface: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IAzBizRuleInterfaces,
             bstrInterfaceName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveAll: *const fn(
             self: *const IAzBizRuleInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzBizRuleInterfaces,
             plCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddInterface(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: i32, varInterface: VARIANT) HRESULT {
         return self.vtable.AddInterface(self, bstrInterfaceName, lInterfaceFlag, varInterface);
     }
-    pub fn AddInterfaces(self: *const IAzBizRuleInterfaces, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddInterfaces(self: *const IAzBizRuleInterfaces, varInterfaceNames: VARIANT, varInterfaceFlags: VARIANT, varInterfaces: VARIANT) HRESULT {
         return self.vtable.AddInterfaces(self, varInterfaceNames, varInterfaceFlags, varInterfaces);
     }
-    pub fn GetInterfaceValue(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetInterfaceValue(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR, lInterfaceFlag: ?*i32, varInterface: ?*VARIANT) HRESULT {
         return self.vtable.GetInterfaceValue(self, bstrInterfaceName, lInterfaceFlag, varInterface);
     }
-    pub fn Remove(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IAzBizRuleInterfaces, bstrInterfaceName: ?BSTR) HRESULT {
         return self.vtable.Remove(self, bstrInterfaceName);
     }
-    pub fn RemoveAll(self: *const IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+    pub fn RemoveAll(self: *const IAzBizRuleInterfaces) HRESULT {
         return self.vtable.RemoveAll(self);
     }
-    pub fn get_Count(self: *const IAzBizRuleInterfaces, plCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzBizRuleInterfaces, plCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
 };
@@ -3765,72 +3765,72 @@ pub const IAzClientContext3 = extern union {
             bstrScopeName: ?BSTR,
             lOperation: i32,
             plResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsInRoleAssignment: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             bstrRoleName: ?BSTR,
             pbIsInRole: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOperations: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             ppOperationCollection: ?*?*IAzOperations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTasks: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             ppTaskCollection: ?*?*IAzTasks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleParameters: *const fn(
             self: *const IAzClientContext3,
             ppBizRuleParam: ?*?*IAzBizRuleParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleInterfaces: *const fn(
             self: *const IAzClientContext3,
             ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGroups: *const fn(
             self: *const IAzClientContext3,
             bstrScopeName: ?BSTR,
             ulOptions: AZ_PROP_CONSTANTS,
             pGroupArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Sids: *const fn(
             self: *const IAzClientContext3,
             pStringSidArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzClientContext2: IAzClientContext2,
     IAzClientContext: IAzClientContext,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AccessCheck2(self: *const IAzClientContext3, bstrObjectName: ?BSTR, bstrScopeName: ?BSTR, lOperation: i32, plResult: ?*u32) HRESULT {
         return self.vtable.AccessCheck2(self, bstrObjectName, bstrScopeName, lOperation, plResult);
     }
-    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsInRoleAssignment(self: *const IAzClientContext3, bstrScopeName: ?BSTR, bstrRoleName: ?BSTR, pbIsInRole: ?*i16) HRESULT {
         return self.vtable.IsInRoleAssignment(self, bstrScopeName, bstrRoleName, pbIsInRole);
     }
-    pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) callconv(.Inline) HRESULT {
+    pub fn GetOperations(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppOperationCollection: ?*?*IAzOperations) HRESULT {
         return self.vtable.GetOperations(self, bstrScopeName, ppOperationCollection);
     }
-    pub fn GetTasks(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) callconv(.Inline) HRESULT {
+    pub fn GetTasks(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ppTaskCollection: ?*?*IAzTasks) HRESULT {
         return self.vtable.GetTasks(self, bstrScopeName, ppTaskCollection);
     }
-    pub fn get_BizRuleParameters(self: *const IAzClientContext3, ppBizRuleParam: ?*?*IAzBizRuleParameters) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleParameters(self: *const IAzClientContext3, ppBizRuleParam: ?*?*IAzBizRuleParameters) HRESULT {
         return self.vtable.get_BizRuleParameters(self, ppBizRuleParam);
     }
-    pub fn get_BizRuleInterfaces(self: *const IAzClientContext3, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleInterfaces(self: *const IAzClientContext3, ppBizRuleInterfaces: ?*?*IAzBizRuleInterfaces) HRESULT {
         return self.vtable.get_BizRuleInterfaces(self, ppBizRuleInterfaces);
     }
-    pub fn GetGroups(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetGroups(self: *const IAzClientContext3, bstrScopeName: ?BSTR, ulOptions: AZ_PROP_CONSTANTS, pGroupArray: ?*VARIANT) HRESULT {
         return self.vtable.GetGroups(self, bstrScopeName, ulOptions, pGroupArray);
     }
-    pub fn get_Sids(self: *const IAzClientContext3, pStringSidArray: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Sids(self: *const IAzClientContext3, pStringSidArray: ?*VARIANT) HRESULT {
         return self.vtable.get_Sids(self, pStringSidArray);
     }
 };
@@ -3845,67 +3845,67 @@ pub const IAzScope2 = extern union {
         get_RoleDefinitions: *const fn(
             self: *const IAzScope2,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleDefinition: *const fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleDefinition: *const fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzScope2,
             bstrRoleDefinitionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleAssignments: *const fn(
             self: *const IAzScope2,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleAssignment: *const fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleAssignment: *const fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleAssignment: *const fn(
             self: *const IAzScope2,
             bstrRoleAssignmentName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzScope: IAzScope,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RoleDefinitions(self: *const IAzScope2, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzScope2, ppRoleDefinitions: ?*?*IAzRoleDefinitions) HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
-    pub fn CreateRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn CreateRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) HRESULT {
         return self.vtable.CreateRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn OpenRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn OpenRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) HRESULT {
         return self.vtable.OpenRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzScope2, bstrRoleDefinitionName: ?BSTR) HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinitionName);
     }
-    pub fn get_RoleAssignments(self: *const IAzScope2, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn get_RoleAssignments(self: *const IAzScope2, ppRoleAssignments: ?*?*IAzRoleAssignments) HRESULT {
         return self.vtable.get_RoleAssignments(self, ppRoleAssignments);
     }
-    pub fn CreateRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn CreateRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) HRESULT {
         return self.vtable.CreateRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn OpenRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn OpenRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) HRESULT {
         return self.vtable.OpenRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn DeleteRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleAssignment(self: *const IAzScope2, bstrRoleAssignmentName: ?BSTR) HRESULT {
         return self.vtable.DeleteRoleAssignment(self, bstrRoleAssignmentName);
     }
 };
@@ -3920,115 +3920,115 @@ pub const IAzApplication3 = extern union {
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
             pbExist: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenScope2: *const fn(
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
             ppScope2: ?*?*IAzScope2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateScope2: *const fn(
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
             ppScope2: ?*?*IAzScope2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteScope2: *const fn(
             self: *const IAzApplication3,
             bstrScopeName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: *const fn(
             self: *const IAzApplication3,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleDefinition: *const fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleDefinition: *const fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: ?BSTR,
             ppRoleDefinitions: ?*?*IAzRoleDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzApplication3,
             bstrRoleDefinitionName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleAssignments: *const fn(
             self: *const IAzApplication3,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRoleAssignment: *const fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenRoleAssignment: *const fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: ?BSTR,
             ppRoleAssignment: ?*?*IAzRoleAssignment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleAssignment: *const fn(
             self: *const IAzApplication3,
             bstrRoleAssignmentName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRulesEnabled: *const fn(
             self: *const IAzApplication3,
             pbEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRulesEnabled: *const fn(
             self: *const IAzApplication3,
             bEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzApplication2: IAzApplication2,
     IAzApplication: IAzApplication,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) callconv(.Inline) HRESULT {
+    pub fn ScopeExists(self: *const IAzApplication3, bstrScopeName: ?BSTR, pbExist: ?*i16) HRESULT {
         return self.vtable.ScopeExists(self, bstrScopeName, pbExist);
     }
-    pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
+    pub fn OpenScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) HRESULT {
         return self.vtable.OpenScope2(self, bstrScopeName, ppScope2);
     }
-    pub fn CreateScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) callconv(.Inline) HRESULT {
+    pub fn CreateScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR, ppScope2: ?*?*IAzScope2) HRESULT {
         return self.vtable.CreateScope2(self, bstrScopeName, ppScope2);
     }
-    pub fn DeleteScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteScope2(self: *const IAzApplication3, bstrScopeName: ?BSTR) HRESULT {
         return self.vtable.DeleteScope2(self, bstrScopeName);
     }
-    pub fn get_RoleDefinitions(self: *const IAzApplication3, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzApplication3, ppRoleDefinitions: ?*?*IAzRoleDefinitions) HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
-    pub fn CreateRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn CreateRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) HRESULT {
         return self.vtable.CreateRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn OpenRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) callconv(.Inline) HRESULT {
+    pub fn OpenRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR, ppRoleDefinitions: ?*?*IAzRoleDefinition) HRESULT {
         return self.vtable.OpenRoleDefinition(self, bstrRoleDefinitionName, ppRoleDefinitions);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzApplication3, bstrRoleDefinitionName: ?BSTR) HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinitionName);
     }
-    pub fn get_RoleAssignments(self: *const IAzApplication3, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn get_RoleAssignments(self: *const IAzApplication3, ppRoleAssignments: ?*?*IAzRoleAssignments) HRESULT {
         return self.vtable.get_RoleAssignments(self, ppRoleAssignments);
     }
-    pub fn CreateRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn CreateRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) HRESULT {
         return self.vtable.CreateRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn OpenRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) callconv(.Inline) HRESULT {
+    pub fn OpenRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR, ppRoleAssignment: ?*?*IAzRoleAssignment) HRESULT {
         return self.vtable.OpenRoleAssignment(self, bstrRoleAssignmentName, ppRoleAssignment);
     }
-    pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleAssignment(self: *const IAzApplication3, bstrRoleAssignmentName: ?BSTR) HRESULT {
         return self.vtable.DeleteRoleAssignment(self, bstrRoleAssignmentName);
     }
-    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_BizRulesEnabled(self: *const IAzApplication3, pbEnabled: ?*i16) HRESULT {
         return self.vtable.get_BizRulesEnabled(self, pbEnabled);
     }
-    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_BizRulesEnabled(self: *const IAzApplication3, bEnabled: i16) HRESULT {
         return self.vtable.put_BizRulesEnabled(self, bEnabled);
     }
 };
@@ -4044,13 +4044,13 @@ pub const IAzOperation2 = extern union {
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzOperation: IAzOperation,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzOperation2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -4065,28 +4065,28 @@ pub const IAzRoleDefinitions = extern union {
             self: *const IAzRoleDefinitions,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzRoleDefinitions,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzRoleDefinitions,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzRoleDefinitions, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzRoleDefinitions, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzRoleDefinitions, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzRoleDefinitions, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzRoleDefinitions, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -4102,35 +4102,35 @@ pub const IAzRoleDefinition = extern union {
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRoleDefinition: *const fn(
             self: *const IAzRoleDefinition,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzRoleDefinition,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: *const fn(
             self: *const IAzRoleDefinition,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzTask: IAzTask,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzRoleDefinition, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
-    pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) HRESULT {
         return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzRoleDefinition, bstrRoleDefinition: ?BSTR) HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn get_RoleDefinitions(self: *const IAzRoleDefinition, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzRoleDefinition, ppRoleDefinitions: ?*?*IAzRoleDefinitions) HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
 };
@@ -4144,36 +4144,36 @@ pub const IAzRoleAssignment = extern union {
         AddRoleDefinition: *const fn(
             self: *const IAzRoleAssignment,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteRoleDefinition: *const fn(
             self: *const IAzRoleAssignment,
             bstrRoleDefinition: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RoleDefinitions: *const fn(
             self: *const IAzRoleAssignment,
             ppRoleDefinitions: ?*?*IAzRoleDefinitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Scope: *const fn(
             self: *const IAzRoleAssignment,
             ppScope: ?*?*IAzScope,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzRole: IAzRole,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) HRESULT {
         return self.vtable.AddRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn DeleteRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteRoleDefinition(self: *const IAzRoleAssignment, bstrRoleDefinition: ?BSTR) HRESULT {
         return self.vtable.DeleteRoleDefinition(self, bstrRoleDefinition);
     }
-    pub fn get_RoleDefinitions(self: *const IAzRoleAssignment, ppRoleDefinitions: ?*?*IAzRoleDefinitions) callconv(.Inline) HRESULT {
+    pub fn get_RoleDefinitions(self: *const IAzRoleAssignment, ppRoleDefinitions: ?*?*IAzRoleDefinitions) HRESULT {
         return self.vtable.get_RoleDefinitions(self, ppRoleDefinitions);
     }
-    pub fn get_Scope(self: *const IAzRoleAssignment, ppScope: ?*?*IAzScope) callconv(.Inline) HRESULT {
+    pub fn get_Scope(self: *const IAzRoleAssignment, ppScope: ?*?*IAzScope) HRESULT {
         return self.vtable.get_Scope(self, ppScope);
     }
 };
@@ -4188,28 +4188,28 @@ pub const IAzRoleAssignments = extern union {
             self: *const IAzRoleAssignments,
             Index: i32,
             pvarObtPtr: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IAzRoleAssignments,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IAzRoleAssignments,
             ppEnumPtr: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IAzRoleAssignments, Index: i32, pvarObtPtr: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, Index, pvarObtPtr);
     }
-    pub fn get_Count(self: *const IAzRoleAssignments, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IAzRoleAssignments, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const IAzRoleAssignments, ppEnumPtr: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IAzRoleAssignments, ppEnumPtr: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumPtr);
     }
 };
@@ -4224,20 +4224,20 @@ pub const IAzPrincipalLocator = extern union {
         get_NameResolver: *const fn(
             self: *const IAzPrincipalLocator,
             ppNameResolver: ?*?*IAzNameResolver,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectPicker: *const fn(
             self: *const IAzPrincipalLocator,
             ppObjectPicker: ?*?*IAzObjectPicker,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) callconv(.Inline) HRESULT {
+    pub fn get_NameResolver(self: *const IAzPrincipalLocator, ppNameResolver: ?*?*IAzNameResolver) HRESULT {
         return self.vtable.get_NameResolver(self, ppNameResolver);
     }
-    pub fn get_ObjectPicker(self: *const IAzPrincipalLocator, ppObjectPicker: ?*?*IAzObjectPicker) callconv(.Inline) HRESULT {
+    pub fn get_ObjectPicker(self: *const IAzPrincipalLocator, ppObjectPicker: ?*?*IAzObjectPicker) HRESULT {
         return self.vtable.get_ObjectPicker(self, ppObjectPicker);
     }
 };
@@ -4253,21 +4253,21 @@ pub const IAzNameResolver = extern union {
             bstrSid: ?BSTR,
             pSidType: ?*i32,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NamesFromSids: *const fn(
             self: *const IAzNameResolver,
             vSids: VARIANT,
             pvSidTypes: ?*VARIANT,
             pvNames: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn NameFromSid(self: *const IAzNameResolver, bstrSid: ?BSTR, pSidType: ?*i32, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.NameFromSid(self, bstrSid, pSidType, pbstrName);
     }
-    pub fn NamesFromSids(self: *const IAzNameResolver, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn NamesFromSids(self: *const IAzNameResolver, vSids: VARIANT, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT) HRESULT {
         return self.vtable.NamesFromSids(self, vSids, pvSidTypes, pvNames);
     }
 };
@@ -4285,20 +4285,20 @@ pub const IAzObjectPicker = extern union {
             pvSidTypes: ?*VARIANT,
             pvNames: ?*VARIANT,
             pvSids: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IAzObjectPicker,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetPrincipals(self: *const IAzObjectPicker, hParentWnd: ?HWND, bstrTitle: ?BSTR, pvSidTypes: ?*VARIANT, pvNames: ?*VARIANT, pvSids: ?*VARIANT) HRESULT {
         return self.vtable.GetPrincipals(self, hParentWnd, bstrTitle, pvSidTypes, pvNames, pvSids);
     }
-    pub fn get_Name(self: *const IAzObjectPicker, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IAzObjectPicker, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
 };
@@ -4313,62 +4313,62 @@ pub const IAzApplicationGroup2 = extern union {
         get_BizRule: *const fn(
             self: *const IAzApplicationGroup2,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRule: *const fn(
             self: *const IAzApplicationGroup2,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleLanguage: *const fn(
             self: *const IAzApplicationGroup2,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleLanguage: *const fn(
             self: *const IAzApplicationGroup2,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BizRuleImportedPath: *const fn(
             self: *const IAzApplicationGroup2,
             pbstrProp: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BizRuleImportedPath: *const fn(
             self: *const IAzApplicationGroup2,
             bstrProp: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RoleAssignments: *const fn(
             self: *const IAzApplicationGroup2,
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzApplicationGroup: IAzApplicationGroup,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRule(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_BizRule(self, pbstrProp);
     }
-    pub fn put_BizRule(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRule(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_BizRule(self, bstrProp);
     }
-    pub fn get_BizRuleLanguage(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleLanguage(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_BizRuleLanguage(self, pbstrProp);
     }
-    pub fn put_BizRuleLanguage(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleLanguage(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_BizRuleLanguage(self, bstrProp);
     }
-    pub fn get_BizRuleImportedPath(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BizRuleImportedPath(self: *const IAzApplicationGroup2, pbstrProp: ?*?BSTR) HRESULT {
         return self.vtable.get_BizRuleImportedPath(self, pbstrProp);
     }
-    pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_BizRuleImportedPath(self: *const IAzApplicationGroup2, bstrProp: ?BSTR) HRESULT {
         return self.vtable.put_BizRuleImportedPath(self, bstrProp);
     }
-    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzApplicationGroup2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -4384,13 +4384,13 @@ pub const IAzTask2 = extern union {
             bstrScopeName: ?BSTR,
             bRecursive: i16,
             ppRoleAssignments: ?*?*IAzRoleAssignments,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAzTask: IAzTask,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) callconv(.Inline) HRESULT {
+    pub fn RoleAssignments(self: *const IAzTask2, bstrScopeName: ?BSTR, bRecursive: i16, ppRoleAssignments: ?*?*IAzRoleAssignments) HRESULT {
         return self.vtable.RoleAssignments(self, bstrScopeName, bRecursive, ppRoleAssignments);
     }
 };
@@ -4600,7 +4600,7 @@ pub const FN_PROGRESS = *const fn(
     pInvokeSetting: ?*PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
     SecuritySet: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type has an InvalidHandleValue of '0', what can Zig do with this information?
 pub const AUTHZ_ACCESS_CHECK_RESULTS_HANDLE = isize;
@@ -4635,7 +4635,7 @@ pub extern "authz" fn AuthzAccessCheck(
     OptionalSecurityDescriptorCount: u32,
     pReply: ?*AUTHZ_ACCESS_REPLY,
     phAccessCheckResults: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzCachedAccessCheck(
@@ -4644,7 +4644,7 @@ pub extern "authz" fn AuthzCachedAccessCheck(
     pRequest: ?*AUTHZ_ACCESS_REQUEST,
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
     pReply: ?*AUTHZ_ACCESS_REPLY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzOpenObjectAudit(
@@ -4656,12 +4656,12 @@ pub extern "authz" fn AuthzOpenObjectAudit(
     OptionalSecurityDescriptorArray: ?[*]?PSECURITY_DESCRIPTOR,
     OptionalSecurityDescriptorCount: u32,
     pReply: ?*AUTHZ_ACCESS_REPLY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeHandle(
     hAccessCheckResults: AUTHZ_ACCESS_CHECK_RESULTS_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeResourceManager(
@@ -4671,7 +4671,7 @@ pub extern "authz" fn AuthzInitializeResourceManager(
     pfnFreeDynamicGroups: ?PFN_AUTHZ_FREE_DYNAMIC_GROUPS,
     szResourceManagerName: ?[*:0]const u16,
     phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 // This function from dll 'AUTHZ' is being skipped because it has some sort of issue
@@ -4681,12 +4681,12 @@ pub fn AuthzInitializeResourceManagerEx() void { @panic("this function is not wo
 pub extern "authz" fn AuthzInitializeRemoteResourceManager(
     pRpcInitInfo: ?*AUTHZ_RPC_INIT_INFO_CLIENT,
     phAuthzResourceManager: ?*AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeResourceManager(
     hAuthzResourceManager: AUTHZ_RESOURCE_MANAGER_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeContextFromToken(
@@ -4697,7 +4697,7 @@ pub extern "authz" fn AuthzInitializeContextFromToken(
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
     phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeContextFromSid(
@@ -4708,7 +4708,7 @@ pub extern "authz" fn AuthzInitializeContextFromSid(
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
     phAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
@@ -4718,14 +4718,14 @@ pub extern "authz" fn AuthzInitializeContextFromAuthzContext(
     Identifier: LUID,
     DynamicGroupArgs: ?*anyopaque,
     phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzInitializeCompoundContext(
     UserContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     DeviceContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     phCompoundContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzAddSidsToContext(
@@ -4735,14 +4735,14 @@ pub extern "authz" fn AuthzAddSidsToContext(
     RestrictedSids: ?*SID_AND_ATTRIBUTES,
     RestrictedSidCount: u32,
     phNewAuthzClientContext: ?*AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "authz" fn AuthzModifySecurityAttributes(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
     pOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
     pAttributes: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzModifyClaims(
@@ -4750,7 +4750,7 @@ pub extern "authz" fn AuthzModifyClaims(
     ClaimClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     pClaimOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
     pClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzModifySids(
@@ -4758,7 +4758,7 @@ pub extern "authz" fn AuthzModifySids(
     SidClass: AUTHZ_CONTEXT_INFORMATION_CLASS,
     pSidOperations: ?*AUTHZ_SID_OPERATION,
     pSids: ?*TOKEN_GROUPS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzSetAppContainerInformation(
@@ -4766,7 +4766,7 @@ pub extern "authz" fn AuthzSetAppContainerInformation(
     pAppContainerSid: ?PSID,
     CapabilityCount: u32,
     pCapabilitySids: ?[*]SID_AND_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzGetInformationFromContext(
@@ -4775,12 +4775,12 @@ pub extern "authz" fn AuthzGetInformationFromContext(
     BufferSize: u32,
     pSizeRequired: ?*u32,
     Buffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeContext(
     hAuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
@@ -4792,7 +4792,7 @@ pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent(
     szAdditionalInfo: ?PWSTR,
     phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
@@ -4805,12 +4805,12 @@ pub extern "authz" fn AuthzInitializeObjectAccessAuditEvent2(
     szAdditionalInfo2: ?PWSTR,
     phAuditEvent: ?*isize,
     dwAdditionalParameterCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "authz" fn AuthzFreeAuditEvent(
     hAuditEvent: ?AUTHZ_AUDIT_EVENT_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "authz" fn AuthzEvaluateSacl(
     AuthzClientContext: AUTHZ_CLIENT_CONTEXT_HANDLE,
@@ -4819,19 +4819,19 @@ pub extern "authz" fn AuthzEvaluateSacl(
     GrantedAccess: u32,
     AccessGranted: BOOL,
     pbGenerateAudit: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzInstallSecurityEventSource(
     dwFlags: u32,
     pRegistration: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzUninstallSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzEnumerateSecurityEventSources(
@@ -4839,20 +4839,20 @@ pub extern "authz" fn AuthzEnumerateSecurityEventSources(
     Buffer: ?*AUTHZ_SOURCE_SCHEMA_REGISTRATION,
     pdwCount: ?*u32,
     pdwLength: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzRegisterSecurityEventSource(
     dwFlags: u32,
     szEventSourceName: ?[*:0]const u16,
     phEventProvider: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzUnregisterSecurityEventSource(
     dwFlags: u32,
     phEventProvider: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzReportSecurityEvent(
@@ -4861,7 +4861,7 @@ pub extern "authz" fn AuthzReportSecurityEvent(
     dwAuditId: u32,
     pUserSid: ?PSID,
     dwCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "authz" fn AuthzReportSecurityEventFromParams(
@@ -4870,23 +4870,23 @@ pub extern "authz" fn AuthzReportSecurityEventFromParams(
     dwAuditId: u32,
     pUserSid: ?PSID,
     pParams: ?*AUDIT_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzRegisterCapChangeNotification(
     phCapChangeSubscription: ?*?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
     pfnCapChangeCallback: ?LPTHREAD_START_ROUTINE,
     pCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzUnregisterCapChangeNotification(
     hCapChangeSubscription: ?*AUTHZ_CAP_CHANGE_SUBSCRIPTION_HANDLE__,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "authz" fn AuthzFreeCentralAccessPolicyCache(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetEntriesInAclA(
@@ -4894,7 +4894,7 @@ pub extern "advapi32" fn SetEntriesInAclA(
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_A,
     OldAcl: ?*ACL,
     NewAcl: ?*?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetEntriesInAclW(
@@ -4902,35 +4902,35 @@ pub extern "advapi32" fn SetEntriesInAclW(
     pListOfExplicitEntries: ?[*]EXPLICIT_ACCESS_W,
     OldAcl: ?*ACL,
     NewAcl: ?*?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetExplicitEntriesFromAclA(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_A,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetExplicitEntriesFromAclW(
     pacl: ?*ACL,
     pcCountOfExplicitEntries: ?*u32,
     pListOfExplicitEntries: ?*?*EXPLICIT_ACCESS_W,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetEffectiveRightsFromAclA(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_A,
     pAccessRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetEffectiveRightsFromAclW(
     pacl: ?*ACL,
     pTrustee: ?*TRUSTEE_W,
     pAccessRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetAuditedPermissionsFromAclA(
@@ -4938,7 +4938,7 @@ pub extern "advapi32" fn GetAuditedPermissionsFromAclA(
     pTrustee: ?*TRUSTEE_A,
     pSuccessfulAuditedRights: ?*u32,
     pFailedAuditRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
@@ -4946,7 +4946,7 @@ pub extern "advapi32" fn GetAuditedPermissionsFromAclW(
     pTrustee: ?*TRUSTEE_W,
     pSuccessfulAuditedRights: ?*u32,
     pFailedAuditRights: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetNamedSecurityInfoA(
@@ -4958,7 +4958,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoA(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetNamedSecurityInfoW(
@@ -4970,7 +4970,7 @@ pub extern "advapi32" fn GetNamedSecurityInfoW(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetSecurityInfo(
@@ -4982,7 +4982,7 @@ pub extern "advapi32" fn GetSecurityInfo(
     ppDacl: ?*?*ACL,
     ppSacl: ?*?*ACL,
     ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoA(
@@ -4993,7 +4993,7 @@ pub extern "advapi32" fn SetNamedSecurityInfoA(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetNamedSecurityInfoW(
@@ -5004,7 +5004,7 @@ pub extern "advapi32" fn SetNamedSecurityInfoW(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn SetSecurityInfo(
@@ -5015,7 +5015,7 @@ pub extern "advapi32" fn SetSecurityInfo(
     psidGroup: ?PSID,
     pDacl: ?*ACL,
     pSacl: ?*ACL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceA(
@@ -5029,7 +5029,7 @@ pub extern "advapi32" fn GetInheritanceSourceA(
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetInheritanceSourceW(
@@ -5043,14 +5043,14 @@ pub extern "advapi32" fn GetInheritanceSourceW(
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
     pGenericMapping: ?*GENERIC_MAPPING,
     pInheritArray: ?*INHERITED_FROMW,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn FreeInheritedFromArray(
     pInheritArray: [*]INHERITED_FROMW,
     AceCnt: u16,
     pfnArray: ?*FN_OBJECT_MGR_FUNCTIONS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
@@ -5065,7 +5065,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoA(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
@@ -5080,7 +5080,7 @@ pub extern "advapi32" fn TreeResetNamedSecurityInfoW(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
@@ -5095,7 +5095,7 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoA(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
@@ -5110,7 +5110,7 @@ pub extern "advapi32" fn TreeSetNamedSecurityInfoW(
     fnProgress: ?FN_PROGRESS,
     ProgressInvokeSetting: PROG_INVOKE_SETTING,
     Args: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildSecurityDescriptorA(
@@ -5123,7 +5123,7 @@ pub extern "advapi32" fn BuildSecurityDescriptorA(
     pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
     pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildSecurityDescriptorW(
@@ -5136,7 +5136,7 @@ pub extern "advapi32" fn BuildSecurityDescriptorW(
     pOldSD: ?PSECURITY_DESCRIPTOR,
     pSizeNewSD: ?*u32,
     pNewSD: ?*?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
@@ -5147,7 +5147,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsA(
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_A,
     pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
@@ -5158,7 +5158,7 @@ pub extern "advapi32" fn LookupSecurityDescriptorPartsW(
     pcCountOfAuditEntries: ?*u32,
     ppListOfAuditEntries: ?*?*EXPLICIT_ACCESS_W,
     pSD: ?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildExplicitAccessWithNameA(
@@ -5167,7 +5167,7 @@ pub extern "advapi32" fn BuildExplicitAccessWithNameA(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: ACE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildExplicitAccessWithNameW(
@@ -5176,7 +5176,7 @@ pub extern "advapi32" fn BuildExplicitAccessWithNameW(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: ACE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
     pExplicitAccess: ?*EXPLICIT_ACCESS_A,
@@ -5185,7 +5185,7 @@ pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameA(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
     pExplicitAccess: ?*EXPLICIT_ACCESS_W,
@@ -5194,41 +5194,41 @@ pub extern "advapi32" fn BuildImpersonateExplicitAccessWithNameW(
     AccessPermissions: u32,
     AccessMode: ACCESS_MODE,
     Inheritance: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithNameA(
     pTrustee: ?*TRUSTEE_A,
     pName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithNameW(
     pTrustee: ?*TRUSTEE_W,
     pName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateTrusteeA(
     pTrustee: ?*TRUSTEE_A,
     pImpersonateTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "advapi32" fn BuildImpersonateTrusteeW(
     pTrustee: ?*TRUSTEE_W,
     pImpersonateTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithSidA(
     pTrustee: ?*TRUSTEE_A,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithSidW(
     pTrustee: ?*TRUSTEE_W,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidA(
@@ -5237,7 +5237,7 @@ pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidA(
     pObjectGuid: ?*Guid,
     pInheritedObjectGuid: ?*Guid,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidW(
@@ -5246,7 +5246,7 @@ pub extern "advapi32" fn BuildTrusteeWithObjectsAndSidW(
     pObjectGuid: ?*Guid,
     pInheritedObjectGuid: ?*Guid,
     pSid: ?PSID,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 // This function from dll 'ADVAPI32' is being skipped because it has some sort of issue
@@ -5259,72 +5259,72 @@ pub fn BuildTrusteeWithObjectsAndNameW() void { @panic("this function is not wor
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeNameA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeNameW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeTypeA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_TYPE;
+) callconv(.winapi) TRUSTEE_TYPE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeTypeW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_TYPE;
+) callconv(.winapi) TRUSTEE_TYPE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeFormA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
+) callconv(.winapi) TRUSTEE_FORM;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn GetTrusteeFormW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) TRUSTEE_FORM;
+) callconv(.winapi) TRUSTEE_FORM;
 
 pub extern "advapi32" fn GetMultipleTrusteeOperationA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) MULTIPLE_TRUSTEE_OPERATION;
+) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
 
 pub extern "advapi32" fn GetMultipleTrusteeOperationW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) MULTIPLE_TRUSTEE_OPERATION;
+) callconv(.winapi) MULTIPLE_TRUSTEE_OPERATION;
 
 pub extern "advapi32" fn GetMultipleTrusteeA(
     pTrustee: ?*TRUSTEE_A,
-) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_A;
+) callconv(.winapi) ?*TRUSTEE_A;
 
 pub extern "advapi32" fn GetMultipleTrusteeW(
     pTrustee: ?*TRUSTEE_W,
-) callconv(@import("std").os.windows.WINAPI) ?*TRUSTEE_W;
+) callconv(.winapi) ?*TRUSTEE_W;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSidToStringSidA(
     Sid: ?PSID,
     StringSid: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSidToStringSidW(
     Sid: ?PSID,
     StringSid: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSidToSidA(
     StringSid: ?[*:0]const u8,
     Sid: ?*?PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSidToSidW(
     StringSid: ?[*:0]const u16,
     Sid: ?*?PSID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
@@ -5332,7 +5332,7 @@ pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorA(
     StringSDRevision: u32,
     SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
@@ -5340,7 +5340,7 @@ pub extern "advapi32" fn ConvertStringSecurityDescriptorToSecurityDescriptorW(
     StringSDRevision: u32,
     SecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
     SecurityDescriptorSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
@@ -5349,7 +5349,7 @@ pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorA(
     SecurityInformation: u32,
     StringSecurityDescriptor: ?*?PSTR,
     StringSecurityDescriptorLen: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
@@ -5358,7 +5358,7 @@ pub extern "advapi32" fn ConvertSecurityDescriptorToStringSecurityDescriptorW(
     SecurityInformation: u32,
     StringSecurityDescriptor: ?*?PWSTR,
     StringSecurityDescriptorLen: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

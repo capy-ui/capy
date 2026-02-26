@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 pub const app_allocator = capy.internal.allocator;
 var app_window: capy.Window = undefined;
 var dev_protocol_stream: ?std.net.Stream = null;
@@ -74,6 +72,6 @@ fn onConnect(widget: *anyopaque) !void {
     dev_protocol_stream = try std.net.tcpConnectToAddress(address);
     try root.navigateTo("Dev Tools", .{});
 
-    const writer = dev_protocol_stream.?.writer();
-    try writer.writeByte(@intFromEnum(capy.dev_tools.RequestId.get_windows_num));
+    const stream = dev_protocol_stream.?;
+    try stream.writeAll(&[_]u8{@intFromEnum(capy.dev_tools.RequestId.get_windows_num)});
 }

@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 pub const OOBE_COMPLETED_CALLBACK = *const fn(
     CallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------
@@ -16,17 +16,17 @@ pub const OOBE_COMPLETED_CALLBACK = *const fn(
 //--------------------------------------------------------------------------------
 pub extern "kernel32" fn OOBEComplete(
     isOOBEComplete: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn RegisterWaitUntilOOBECompleted(
     OOBECompletedCallback: ?OOBE_COMPLETED_CALLBACK,
     CallbackContext: ?*anyopaque,
     WaitHandle: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "kernel32" fn UnregisterWaitUntilOOBECompleted(
     WaitHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

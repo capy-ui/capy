@@ -462,13 +462,13 @@ pub extern "kernel32" fn PssCaptureSnapshot(
     CaptureFlags: PSS_CAPTURE_FLAGS,
     ThreadContextFlags: u32,
     SnapshotHandle: ?*?HPSS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssFreeSnapshot(
     ProcessHandle: ?HANDLE,
     SnapshotHandle: ?HPSS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssQuerySnapshot(
@@ -477,7 +477,7 @@ pub extern "kernel32" fn PssQuerySnapshot(
     // TODO: what to do with BytesParamIndex 3?
     Buffer: ?*anyopaque,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkSnapshot(
@@ -486,7 +486,7 @@ pub extern "kernel32" fn PssWalkSnapshot(
     WalkMarkerHandle: ?HPSSWALK,
     Buffer: ?[*]u8,
     BufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 // This function from dll 'KERNEL32' is being skipped because it has some sort of issue
@@ -496,29 +496,29 @@ pub fn PssDuplicateSnapshot() void { @panic("this function is not working"); }
 pub extern "kernel32" fn PssWalkMarkerCreate(
     Allocator: ?*const PSS_ALLOCATOR,
     WalkMarkerHandle: ?*?HPSSWALK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerFree(
     WalkMarkerHandle: ?HPSSWALK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerGetPosition(
     WalkMarkerHandle: ?HPSSWALK,
     Position: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerSetPosition(
     WalkMarkerHandle: ?HPSSWALK,
     Position: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn PssWalkMarkerSeekToBeginning(
     WalkMarkerHandle: ?HPSSWALK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

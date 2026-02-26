@@ -65,7 +65,7 @@ pub fn init() !void {
     if (addr.listen(.{})) |addr_server| {
         server = addr_server;
         serverThread = try std.Thread.spawn(.{}, serverRunner, .{});
-        log.debug("Server opened at {}", .{addr});
+        log.debug("Server opened at {any}", .{addr});
         log.debug("Run 'zig build dev-tools' to debug this application", .{});
         log.debug("You can add 'pub const enable_dev_tools = false;' to your main file in order to disable dev tools.", .{});
     } else |err| {
@@ -73,23 +73,44 @@ pub fn init() !void {
     }
 }
 
-fn readStructField(comptime T: type, reader: anytype) !T {
+fn readStructField(comptime T: type, reader: *std.Io.Reader) !T {
     if (comptime trait.isIntegral(T)) {
-        return try reader.readInt(T, .big);
+        return try reader.takeInt(T, .big);
     } else if (T == []const u8) {
-        const length = try std.leb.readULEB128(u32, reader);
+        // Read a ULEB128 length prefix manually
+        var length: u32 = 0;
+        var shift: u5 = 0;
+        while (true) {
+            const byte = try reader.takeByte();
+            length |= @as(u32, byte & 0x7f) << shift;
+            if (byte & 0x80 == 0) break;
+            shift +%= 7;
+        }
         const bytes = try internal.allocator.alloc(u8, length);
-        try reader.readNoEof(bytes);
+        try reader.readSliceAll(bytes);
         return bytes;
     }
 }
 
-fn writeStructField(comptime T: type, writer: anytype, value: T) !void {
+fn writeStructField(comptime T: type, writer: *std.Io.Writer, value: T) !void {
     if (comptime trait.isIntegral(T)) {
-        try writer.writeInt(T, value, .big);
+        var buf: [@sizeOf(T)]u8 = undefined;
+        std.mem.writeInt(T, &buf, value, .big);
+        try writer.writeAll(&buf);
     } else if (T == []const u8) {
-        try std.leb.writeULEB128(writer, value.len);
-        _ = try writer.writeAll(value);
+        // Write a ULEB128 length prefix manually
+        var len = @as(u32, @intCast(value.len));
+        while (true) {
+            const byte: u8 = @truncate(len & 0x7f);
+            len >>= 7;
+            if (len == 0) {
+                try writer.writeAll(&[_]u8{byte});
+                break;
+            } else {
+                try writer.writeAll(&[_]u8{byte | 0x80});
+            }
+        }
+        try writer.writeAll(value);
     }
 }
 
@@ -107,9 +128,9 @@ fn writeStruct(comptime T: type, value: T, writer: anytype) !void {
     }
 }
 
-fn writeResponse(writer: anytype, response: Response) !void {
+fn writeResponse(writer: *std.Io.Writer, response: Response) !void {
     const tag = std.meta.activeTag(response);
-    try writer.writeInt(u8, @intFromEnum(tag), .big);
+    try writer.writeAll(&[_]u8{@intFromEnum(tag)});
     inline for (std.meta.fields(Response)) |response_field| {
         if (tag == @field(ResponseId, response_field.name)) {
             const ResponseType = response_field.type;
@@ -118,9 +139,9 @@ fn writeResponse(writer: anytype, response: Response) !void {
     }
 }
 
-fn writeRequest(writer: anytype, request: Request) !void {
+fn writeRequest(writer: *std.Io.Writer, request: Request) !void {
     const tag = std.meta.activeTag(request);
-    try writer.writeInt(u8, @intFromEnum(tag), .big);
+    try writer.writeAll(&[_]u8{@intFromEnum(tag)});
     inline for (std.meta.fields(Request)) |request_field| {
         if (tag == @field(RequestId, request_field.name)) {
             const RequestType = request_field.type;
@@ -130,15 +151,19 @@ fn writeRequest(writer: anytype, request: Request) !void {
 }
 
 fn connectionRunner(connection: std.net.Server.Connection) !void {
-    log.debug("accepted connection from {}", .{connection.address});
+    log.debug("accepted connection from {any}", .{connection.address});
     const stream = connection.stream;
 
-    const reader = stream.reader();
-    const writer = stream.writer();
+    var read_buf: [4096]u8 = undefined;
+    var write_buf: [4096]u8 = undefined;
+    var net_reader = stream.reader(&read_buf);
+    const reader = net_reader.interface();
+    var net_writer = stream.writer(&write_buf);
+    const writer = &net_writer.interface;
 
     while (true) {
-        const request_id = try reader.readEnum(RequestId, .big);
-        std.log.info("request id: 0x{}", .{request_id});
+        const request_id: RequestId = @enumFromInt((try reader.takeArray(1))[0]);
+        std.log.info("request id: 0x{any}", .{request_id});
         inline for (std.meta.fields(Request)) |request_field| {
             const RequestType = request_field.type;
             if (request_id == @field(RequestId, request_field.name)) {
@@ -151,7 +176,7 @@ fn connectionRunner(connection: std.net.Server.Connection) !void {
                     },
                     else => @panic("TODO"),
                 }
-                std.log.info("{s}: {}", .{ request_field.name, request });
+                std.log.info("{s}: {any}", .{ request_field.name, request });
             }
         }
     }

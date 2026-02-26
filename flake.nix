@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-    
+
     zig-overlay = {
       url = "github:mitchellh/zig-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,72 +19,55 @@
           overlays = [ zig-overlay.overlays.default ];
         };
 
-        # The project requires exactly this Zig version (2024.11.0-mach)
-        zigPkg = pkgs.stdenv.mkDerivation rec {
-          pname = "zig";
-          version = "0.14.1";
-          
-          src = pkgs.fetchurl {
-            url = "https://ziglang.org/download/${version}/zig-x86_64-linux-${version}.tar.xz";
-            sha256 = "sha256-JK7uyK8Ww4GTSmzX2VyAeoyyz335+kDTWaqIQZXEcWw=";
-          };
-          
-          installPhase = ''
-            mkdir -p $out/bin
-            cp zig $out/bin/
-            chmod +x $out/bin/zig
-            
-            mkdir -p $out/lib
-            cp -r lib/* $out/lib/
-          '';
-          
-          dontFixup = true;
-        };
+        zigPkg = pkgs.zigpkgs."0.15.2";
+
+        inherit (pkgs) lib stdenv;
       in
       {
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
+          buildInputs = [
             # Core development tools
             zigPkg
-            
-            # Build tools
-            gnumake
-            pkg-config
-            
+            pkgs.gnumake
+            pkgs.pkg-config
+            # pkgs.zls  # TODO: re-enable when ZLS is compatible with current Zig version
+            pkgs.git
+          ]
+          ++ lib.optionals stdenv.isLinux [
             # GTK and related libraries for Linux backend
-            gtk3
-            gtk4
-            glib
-            cairo
-            pango
-            gdk-pixbuf
-            
-            # Android development (optional)
-            android-tools
-            
+            pkgs.gtk3
+            pkgs.gtk4
+            pkgs.glib
+            pkgs.cairo
+            pkgs.pango
+            pkgs.gdk-pixbuf
+
             # OpenGL/Graphics
-            libGL
-            libGLU
-            mesa
-            
+            pkgs.libGL
+            pkgs.libGLU
+            pkgs.mesa
+
             # Audio libraries
-            alsa-lib
-            pipewire
-            
-            # Development utilities
-            gdb
-            valgrind
-            strace
-            
-            # Code formatting and linting
-            zls # Zig Language Server
-            
-            # Version control
-            git
+            pkgs.alsa-lib
+            pkgs.pipewire
+
+            # Android development (optional)
+            pkgs.android-tools
+
+            # Linux debugging tools
+            pkgs.gdb
+            pkgs.valgrind
+            pkgs.strace
+          ]
+          ++ lib.optionals stdenv.isDarwin [
+            pkgs.apple-sdk
+            pkgs.libiconv
           ];
 
           shellHook = ''
-            echo "🎨 Capy Development Environment"
+            # Zig doesn't recognize Nix's -fmacro-prefix-map C flags; suppress warnings
+            unset NIX_CFLAGS_COMPILE
+            echo "Capy Development Environment"
             echo "Zig version: $(zig version)"
             echo ""
             echo "Available commands:"
@@ -92,45 +75,21 @@
             echo "  zig build test         - Run tests"
             echo "  zig build <example>    - Build and run specific example"
             echo ""
-            echo "Examples:"
-            echo "  zig build 300-buttons"
-            echo "  zig build abc"
-            echo "  zig build balls"
-            echo "  zig build border-layout"
-            echo "  zig build calculator"
-            echo "  zig build colors"
-            echo "  zig build demo"
-            echo "  zig build dev-tools"
-            echo "  zig build dummy-installer"
-            echo "  zig build entry"
-            echo "  zig build fade"
-            echo "  zig build foo_app"
-            echo "  zig build graph"
-            echo "  zig build hacker-news"
-            echo "  zig build many-counters"
-            echo "  zig build media-player"
-            echo "  zig build notepad"
-            echo "  zig build osm-viewer"
-            echo "  zig build slide-viewer"
-            echo "  zig build tabs"
-            echo "  zig build test-backend"
-            echo "  zig build time-feed"
-            echo "  zig build totp"
-            echo "  zig build transition"
-            echo "  zig build weather"
-            echo ""
-            
+          '' + lib.optionalString stdenv.isLinux ''
             # Set up pkg-config paths for GTK
             export PKG_CONFIG_PATH="${pkgs.gtk3}/lib/pkgconfig:${pkgs.gtk4}/lib/pkgconfig:$PKG_CONFIG_PATH"
-            
+
             # Set up library paths
-            export LD_LIBRARY_PATH="${pkgs.lib.makeLibraryPath [
+            export LD_LIBRARY_PATH="${lib.makeLibraryPath [
               pkgs.gtk3
               pkgs.gtk4
               pkgs.libGL
               pkgs.mesa
               pkgs.alsa-lib
             ]}:$LD_LIBRARY_PATH"
+          '' + lib.optionalString stdenv.isDarwin ''
+            # macOS-specific environment setup
+            # Frameworks are found automatically via the SDK
           '';
         };
       });

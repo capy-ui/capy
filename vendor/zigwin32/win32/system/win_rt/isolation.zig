@@ -15,11 +15,11 @@ pub const IIsolatedEnvironmentInterop = extern union {
             self: *const IIsolatedEnvironmentInterop,
             containerHwnd: ?HWND,
             hostHwnd: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHostHwndInterop(self: *const IIsolatedEnvironmentInterop, containerHwnd: ?HWND, hostHwnd: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetHostHwndInterop(self: *const IIsolatedEnvironmentInterop, containerHwnd: ?HWND, hostHwnd: ?*?HWND) HRESULT {
         return self.vtable.GetHostHwndInterop(self, containerHwnd, hostHwnd);
     }
 };

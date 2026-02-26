@@ -226,44 +226,44 @@ pub const IAppxFactory = extern union {
             outputStream: ?*IStream,
             settings: ?*APPX_PACKAGE_SETTINGS,
             packageWriter: ?*?*IAppxPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePackageReader: *const fn(
             self: *const IAppxFactory,
             inputStream: ?*IStream,
             packageReader: ?*?*IAppxPackageReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateManifestReader: *const fn(
             self: *const IAppxFactory,
             inputStream: ?*IStream,
             manifestReader: ?*?*IAppxManifestReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBlockMapReader: *const fn(
             self: *const IAppxFactory,
             inputStream: ?*IStream,
             blockMapReader: ?*?*IAppxBlockMapReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateValidatedBlockMapReader: *const fn(
             self: *const IAppxFactory,
             blockMapStream: ?*IStream,
             signatureFileName: ?[*:0]const u16,
             blockMapReader: ?*?*IAppxBlockMapReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreatePackageWriter(self: *const IAppxFactory, outputStream: ?*IStream, settings: ?*APPX_PACKAGE_SETTINGS, packageWriter: ?*?*IAppxPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreatePackageWriter(self: *const IAppxFactory, outputStream: ?*IStream, settings: ?*APPX_PACKAGE_SETTINGS, packageWriter: ?*?*IAppxPackageWriter) HRESULT {
         return self.vtable.CreatePackageWriter(self, outputStream, settings, packageWriter);
     }
-    pub fn CreatePackageReader(self: *const IAppxFactory, inputStream: ?*IStream, packageReader: ?*?*IAppxPackageReader) callconv(.Inline) HRESULT {
+    pub fn CreatePackageReader(self: *const IAppxFactory, inputStream: ?*IStream, packageReader: ?*?*IAppxPackageReader) HRESULT {
         return self.vtable.CreatePackageReader(self, inputStream, packageReader);
     }
-    pub fn CreateManifestReader(self: *const IAppxFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxManifestReader) callconv(.Inline) HRESULT {
+    pub fn CreateManifestReader(self: *const IAppxFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxManifestReader) HRESULT {
         return self.vtable.CreateManifestReader(self, inputStream, manifestReader);
     }
-    pub fn CreateBlockMapReader(self: *const IAppxFactory, inputStream: ?*IStream, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateBlockMapReader(self: *const IAppxFactory, inputStream: ?*IStream, blockMapReader: ?*?*IAppxBlockMapReader) HRESULT {
         return self.vtable.CreateBlockMapReader(self, inputStream, blockMapReader);
     }
-    pub fn CreateValidatedBlockMapReader(self: *const IAppxFactory, blockMapStream: ?*IStream, signatureFileName: ?[*:0]const u16, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateValidatedBlockMapReader(self: *const IAppxFactory, blockMapStream: ?*IStream, signatureFileName: ?[*:0]const u16, blockMapReader: ?*?*IAppxBlockMapReader) HRESULT {
         return self.vtable.CreateValidatedBlockMapReader(self, blockMapStream, signatureFileName, blockMapReader);
     }
 };
@@ -278,27 +278,27 @@ pub const IAppxFactory2 = extern union {
             self: *const IAppxFactory2,
             inputStream: ?*IStream,
             contentGroupMapReader: ?*?*IAppxContentGroupMapReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSourceContentGroupMapReader: *const fn(
             self: *const IAppxFactory2,
             inputStream: ?*IStream,
             reader: ?*?*IAppxSourceContentGroupMapReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateContentGroupMapWriter: *const fn(
             self: *const IAppxFactory2,
             stream: ?*IStream,
             contentGroupMapWriter: ?*?*IAppxContentGroupMapWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, contentGroupMapReader: ?*?*IAppxContentGroupMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, contentGroupMapReader: ?*?*IAppxContentGroupMapReader) HRESULT {
         return self.vtable.CreateContentGroupMapReader(self, inputStream, contentGroupMapReader);
     }
-    pub fn CreateSourceContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, reader: ?*?*IAppxSourceContentGroupMapReader) callconv(.Inline) HRESULT {
+    pub fn CreateSourceContentGroupMapReader(self: *const IAppxFactory2, inputStream: ?*IStream, reader: ?*?*IAppxSourceContentGroupMapReader) HRESULT {
         return self.vtable.CreateSourceContentGroupMapReader(self, inputStream, reader);
     }
-    pub fn CreateContentGroupMapWriter(self: *const IAppxFactory2, stream: ?*IStream, contentGroupMapWriter: ?*?*IAppxContentGroupMapWriter) callconv(.Inline) HRESULT {
+    pub fn CreateContentGroupMapWriter(self: *const IAppxFactory2, stream: ?*IStream, contentGroupMapWriter: ?*?*IAppxContentGroupMapWriter) HRESULT {
         return self.vtable.CreateContentGroupMapWriter(self, stream, contentGroupMapWriter);
     }
 };
@@ -312,41 +312,41 @@ pub const IAppxPackageReader = extern union {
         GetBlockMap: *const fn(
             self: *const IAppxPackageReader,
             blockMapReader: ?*?*IAppxBlockMapReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFootprintFile: *const fn(
             self: *const IAppxPackageReader,
             type: APPX_FOOTPRINT_FILE_TYPE,
             file: ?*?*IAppxFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPayloadFile: *const fn(
             self: *const IAppxPackageReader,
             fileName: ?[*:0]const u16,
             file: ?*?*IAppxFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPayloadFiles: *const fn(
             self: *const IAppxPackageReader,
             filesEnumerator: ?*?*IAppxFilesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetManifest: *const fn(
             self: *const IAppxPackageReader,
             manifestReader: ?*?*IAppxManifestReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBlockMap(self: *const IAppxPackageReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn GetBlockMap(self: *const IAppxPackageReader, blockMapReader: ?*?*IAppxBlockMapReader) HRESULT {
         return self.vtable.GetBlockMap(self, blockMapReader);
     }
-    pub fn GetFootprintFile(self: *const IAppxPackageReader, @"type": APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetFootprintFile(self: *const IAppxPackageReader, @"type": APPX_FOOTPRINT_FILE_TYPE, file: ?*?*IAppxFile) HRESULT {
         return self.vtable.GetFootprintFile(self, @"type", file);
     }
-    pub fn GetPayloadFile(self: *const IAppxPackageReader, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetPayloadFile(self: *const IAppxPackageReader, fileName: ?[*:0]const u16, file: ?*?*IAppxFile) HRESULT {
         return self.vtable.GetPayloadFile(self, fileName, file);
     }
-    pub fn GetPayloadFiles(self: *const IAppxPackageReader, filesEnumerator: ?*?*IAppxFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPayloadFiles(self: *const IAppxPackageReader, filesEnumerator: ?*?*IAppxFilesEnumerator) HRESULT {
         return self.vtable.GetPayloadFiles(self, filesEnumerator);
     }
-    pub fn GetManifest(self: *const IAppxPackageReader, manifestReader: ?*?*IAppxManifestReader) callconv(.Inline) HRESULT {
+    pub fn GetManifest(self: *const IAppxPackageReader, manifestReader: ?*?*IAppxManifestReader) HRESULT {
         return self.vtable.GetManifest(self, manifestReader);
     }
 };
@@ -363,18 +363,18 @@ pub const IAppxPackageWriter = extern union {
             contentType: ?[*:0]const u16,
             compressionOption: APPX_COMPRESSION_OPTION,
             inputStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IAppxPackageWriter,
             manifest: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFile(self: *const IAppxPackageWriter, fileName: ?[*:0]const u16, contentType: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFile(self: *const IAppxPackageWriter, fileName: ?[*:0]const u16, contentType: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) HRESULT {
         return self.vtable.AddPayloadFile(self, fileName, contentType, compressionOption, inputStream);
     }
-    pub fn Close(self: *const IAppxPackageWriter, manifest: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxPackageWriter, manifest: ?*IStream) HRESULT {
         return self.vtable.Close(self, manifest);
     }
 };
@@ -389,11 +389,11 @@ pub const IAppxPackageWriter2 = extern union {
             self: *const IAppxPackageWriter2,
             manifest: ?*IStream,
             contentGroupMap: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Close(self: *const IAppxPackageWriter2, manifest: ?*IStream, contentGroupMap: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxPackageWriter2, manifest: ?*IStream, contentGroupMap: ?*IStream) HRESULT {
         return self.vtable.Close(self, manifest, contentGroupMap);
     }
 };
@@ -409,11 +409,11 @@ pub const IAppxPackageWriter3 = extern union {
             fileCount: u32,
             payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM,
             memoryLimit: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFiles(self: *const IAppxPackageWriter3, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFiles(self: *const IAppxPackageWriter3, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) HRESULT {
         return self.vtable.AddPayloadFiles(self, fileCount, payloadFiles, memoryLimit);
     }
 };
@@ -427,39 +427,39 @@ pub const IAppxFile = extern union {
         GetCompressionOption: *const fn(
             self: *const IAppxFile,
             compressionOption: ?*APPX_COMPRESSION_OPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContentType: *const fn(
             self: *const IAppxFile,
             contentType: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IAppxFile,
             fileName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IAppxFile,
             size: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IAppxFile,
             stream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCompressionOption(self: *const IAppxFile, compressionOption: ?*APPX_COMPRESSION_OPTION) callconv(.Inline) HRESULT {
+    pub fn GetCompressionOption(self: *const IAppxFile, compressionOption: ?*APPX_COMPRESSION_OPTION) HRESULT {
         return self.vtable.GetCompressionOption(self, compressionOption);
     }
-    pub fn GetContentType(self: *const IAppxFile, contentType: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetContentType(self: *const IAppxFile, contentType: ?*?PWSTR) HRESULT {
         return self.vtable.GetContentType(self, contentType);
     }
-    pub fn GetName(self: *const IAppxFile, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxFile, fileName: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, fileName);
     }
-    pub fn GetSize(self: *const IAppxFile, size: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IAppxFile, size: ?*u64) HRESULT {
         return self.vtable.GetSize(self, size);
     }
-    pub fn GetStream(self: *const IAppxFile, stream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxFile, stream: ?*?*IStream) HRESULT {
         return self.vtable.GetStream(self, stream);
     }
 };
@@ -473,25 +473,25 @@ pub const IAppxFilesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxFilesEnumerator,
             file: ?*?*IAppxFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxFilesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxFilesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxFilesEnumerator, file: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxFilesEnumerator, file: ?*?*IAppxFile) HRESULT {
         return self.vtable.GetCurrent(self, file);
     }
-    pub fn GetHasCurrent(self: *const IAppxFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxFilesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxFilesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxFilesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -506,32 +506,32 @@ pub const IAppxBlockMapReader = extern union {
             self: *const IAppxBlockMapReader,
             filename: ?[*:0]const u16,
             file: ?*?*IAppxBlockMapFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFiles: *const fn(
             self: *const IAppxBlockMapReader,
             enumerator: ?*?*IAppxBlockMapFilesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHashMethod: *const fn(
             self: *const IAppxBlockMapReader,
             hashMethod: ?*?*IUri,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IAppxBlockMapReader,
             blockMapStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFile(self: *const IAppxBlockMapReader, filename: ?[*:0]const u16, file: ?*?*IAppxBlockMapFile) callconv(.Inline) HRESULT {
+    pub fn GetFile(self: *const IAppxBlockMapReader, filename: ?[*:0]const u16, file: ?*?*IAppxBlockMapFile) HRESULT {
         return self.vtable.GetFile(self, filename, file);
     }
-    pub fn GetFiles(self: *const IAppxBlockMapReader, enumerator: ?*?*IAppxBlockMapFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetFiles(self: *const IAppxBlockMapReader, enumerator: ?*?*IAppxBlockMapFilesEnumerator) HRESULT {
         return self.vtable.GetFiles(self, enumerator);
     }
-    pub fn GetHashMethod(self: *const IAppxBlockMapReader, hashMethod: ?*?*IUri) callconv(.Inline) HRESULT {
+    pub fn GetHashMethod(self: *const IAppxBlockMapReader, hashMethod: ?*?*IUri) HRESULT {
         return self.vtable.GetHashMethod(self, hashMethod);
     }
-    pub fn GetStream(self: *const IAppxBlockMapReader, blockMapStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxBlockMapReader, blockMapStream: ?*?*IStream) HRESULT {
         return self.vtable.GetStream(self, blockMapStream);
     }
 };
@@ -545,40 +545,40 @@ pub const IAppxBlockMapFile = extern union {
         GetBlocks: *const fn(
             self: *const IAppxBlockMapFile,
             blocks: ?*?*IAppxBlockMapBlocksEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalFileHeaderSize: *const fn(
             self: *const IAppxBlockMapFile,
             lfhSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetName: *const fn(
             self: *const IAppxBlockMapFile,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUncompressedSize: *const fn(
             self: *const IAppxBlockMapFile,
             size: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateFileHash: *const fn(
             self: *const IAppxBlockMapFile,
             fileStream: ?*IStream,
             isValid: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBlocks(self: *const IAppxBlockMapFile, blocks: ?*?*IAppxBlockMapBlocksEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetBlocks(self: *const IAppxBlockMapFile, blocks: ?*?*IAppxBlockMapBlocksEnumerator) HRESULT {
         return self.vtable.GetBlocks(self, blocks);
     }
-    pub fn GetLocalFileHeaderSize(self: *const IAppxBlockMapFile, lfhSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLocalFileHeaderSize(self: *const IAppxBlockMapFile, lfhSize: ?*u32) HRESULT {
         return self.vtable.GetLocalFileHeaderSize(self, lfhSize);
     }
-    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxBlockMapFile, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetUncompressedSize(self: *const IAppxBlockMapFile, size: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetUncompressedSize(self: *const IAppxBlockMapFile, size: ?*u64) HRESULT {
         return self.vtable.GetUncompressedSize(self, size);
     }
-    pub fn ValidateFileHash(self: *const IAppxBlockMapFile, fileStream: ?*IStream, isValid: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn ValidateFileHash(self: *const IAppxBlockMapFile, fileStream: ?*IStream, isValid: ?*BOOL) HRESULT {
         return self.vtable.ValidateFileHash(self, fileStream, isValid);
     }
 };
@@ -592,25 +592,25 @@ pub const IAppxBlockMapFilesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxBlockMapFilesEnumerator,
             file: ?*?*IAppxBlockMapFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxBlockMapFilesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxBlockMapFilesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBlockMapFilesEnumerator, file: ?*?*IAppxBlockMapFile) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBlockMapFilesEnumerator, file: ?*?*IAppxBlockMapFile) HRESULT {
         return self.vtable.GetCurrent(self, file);
     }
-    pub fn GetHasCurrent(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBlockMapFilesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasCurrent);
     }
 };
@@ -625,18 +625,18 @@ pub const IAppxBlockMapBlock = extern union {
             self: *const IAppxBlockMapBlock,
             bufferSize: ?*u32,
             buffer: ?*?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCompressedSize: *const fn(
             self: *const IAppxBlockMapBlock,
             size: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetHash(self: *const IAppxBlockMapBlock, bufferSize: ?*u32, buffer: ?*?*u8) callconv(.Inline) HRESULT {
+    pub fn GetHash(self: *const IAppxBlockMapBlock, bufferSize: ?*u32, buffer: ?*?*u8) HRESULT {
         return self.vtable.GetHash(self, bufferSize, buffer);
     }
-    pub fn GetCompressedSize(self: *const IAppxBlockMapBlock, size: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCompressedSize(self: *const IAppxBlockMapBlock, size: ?*u32) HRESULT {
         return self.vtable.GetCompressedSize(self, size);
     }
 };
@@ -650,25 +650,25 @@ pub const IAppxBlockMapBlocksEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxBlockMapBlocksEnumerator,
             block: ?*?*IAppxBlockMapBlock,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxBlockMapBlocksEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxBlockMapBlocksEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBlockMapBlocksEnumerator, block: ?*?*IAppxBlockMapBlock) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBlockMapBlocksEnumerator, block: ?*?*IAppxBlockMapBlock) HRESULT {
         return self.vtable.GetCurrent(self, block);
     }
-    pub fn GetHasCurrent(self: *const IAppxBlockMapBlocksEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBlockMapBlocksEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBlockMapBlocksEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBlockMapBlocksEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -682,68 +682,68 @@ pub const IAppxManifestReader = extern union {
         GetPackageId: *const fn(
             self: *const IAppxManifestReader,
             packageId: ?*?*IAppxManifestPackageId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperties: *const fn(
             self: *const IAppxManifestReader,
             packageProperties: ?*?*IAppxManifestProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageDependencies: *const fn(
             self: *const IAppxManifestReader,
             dependencies: ?*?*IAppxManifestPackageDependenciesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCapabilities: *const fn(
             self: *const IAppxManifestReader,
             capabilities: ?*APPX_CAPABILITIES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResources: *const fn(
             self: *const IAppxManifestReader,
             resources: ?*?*IAppxManifestResourcesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceCapabilities: *const fn(
             self: *const IAppxManifestReader,
             deviceCapabilities: ?*?*IAppxManifestDeviceCapabilitiesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrerequisite: *const fn(
             self: *const IAppxManifestReader,
             name: ?[*:0]const u16,
             value: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetApplications: *const fn(
             self: *const IAppxManifestReader,
             applications: ?*?*IAppxManifestApplicationsEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IAppxManifestReader,
             manifestStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxManifestReader, packageId: ?*?*IAppxManifestPackageId) HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetProperties(self: *const IAppxManifestReader, packageProperties: ?*?*IAppxManifestProperties) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const IAppxManifestReader, packageProperties: ?*?*IAppxManifestProperties) HRESULT {
         return self.vtable.GetProperties(self, packageProperties);
     }
-    pub fn GetPackageDependencies(self: *const IAppxManifestReader, dependencies: ?*?*IAppxManifestPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPackageDependencies(self: *const IAppxManifestReader, dependencies: ?*?*IAppxManifestPackageDependenciesEnumerator) HRESULT {
         return self.vtable.GetPackageDependencies(self, dependencies);
     }
-    pub fn GetCapabilities(self: *const IAppxManifestReader, capabilities: ?*APPX_CAPABILITIES) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IAppxManifestReader, capabilities: ?*APPX_CAPABILITIES) HRESULT {
         return self.vtable.GetCapabilities(self, capabilities);
     }
-    pub fn GetResources(self: *const IAppxManifestReader, resources: ?*?*IAppxManifestResourcesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetResources(self: *const IAppxManifestReader, resources: ?*?*IAppxManifestResourcesEnumerator) HRESULT {
         return self.vtable.GetResources(self, resources);
     }
-    pub fn GetDeviceCapabilities(self: *const IAppxManifestReader, deviceCapabilities: ?*?*IAppxManifestDeviceCapabilitiesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetDeviceCapabilities(self: *const IAppxManifestReader, deviceCapabilities: ?*?*IAppxManifestDeviceCapabilitiesEnumerator) HRESULT {
         return self.vtable.GetDeviceCapabilities(self, deviceCapabilities);
     }
-    pub fn GetPrerequisite(self: *const IAppxManifestReader, name: ?[*:0]const u16, value: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetPrerequisite(self: *const IAppxManifestReader, name: ?[*:0]const u16, value: ?*u64) HRESULT {
         return self.vtable.GetPrerequisite(self, name, value);
     }
-    pub fn GetApplications(self: *const IAppxManifestReader, applications: ?*?*IAppxManifestApplicationsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetApplications(self: *const IAppxManifestReader, applications: ?*?*IAppxManifestApplicationsEnumerator) HRESULT {
         return self.vtable.GetApplications(self, applications);
     }
-    pub fn GetStream(self: *const IAppxManifestReader, manifestStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxManifestReader, manifestStream: ?*?*IStream) HRESULT {
         return self.vtable.GetStream(self, manifestStream);
     }
 };
@@ -757,12 +757,12 @@ pub const IAppxManifestReader2 = extern union {
         GetQualifiedResources: *const fn(
             self: *const IAppxManifestReader2,
             resources: ?*?*IAppxManifestQualifiedResourcesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAppxManifestReader: IAppxManifestReader,
     IUnknown: IUnknown,
-    pub fn GetQualifiedResources(self: *const IAppxManifestReader2, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetQualifiedResources(self: *const IAppxManifestReader2, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) HRESULT {
         return self.vtable.GetQualifiedResources(self, resources);
     }
 };
@@ -776,20 +776,20 @@ pub const IAppxManifestReader3 = extern union {
             self: *const IAppxManifestReader3,
             capabilityClass: APPX_CAPABILITY_CLASS_TYPE,
             capabilities: ?*?*IAppxManifestCapabilitiesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTargetDeviceFamilies: *const fn(
             self: *const IAppxManifestReader3,
             targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAppxManifestReader2: IAppxManifestReader2,
     IAppxManifestReader: IAppxManifestReader,
     IUnknown: IUnknown,
-    pub fn GetCapabilitiesByCapabilityClass(self: *const IAppxManifestReader3, capabilityClass: APPX_CAPABILITY_CLASS_TYPE, capabilities: ?*?*IAppxManifestCapabilitiesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetCapabilitiesByCapabilityClass(self: *const IAppxManifestReader3, capabilityClass: APPX_CAPABILITY_CLASS_TYPE, capabilities: ?*?*IAppxManifestCapabilitiesEnumerator) HRESULT {
         return self.vtable.GetCapabilitiesByCapabilityClass(self, capabilityClass, capabilities);
     }
-    pub fn GetTargetDeviceFamilies(self: *const IAppxManifestReader3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetTargetDeviceFamilies(self: *const IAppxManifestReader3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) HRESULT {
         return self.vtable.GetTargetDeviceFamilies(self, targetDeviceFamilies);
     }
 };
@@ -802,14 +802,14 @@ pub const IAppxManifestReader4 = extern union {
         GetOptionalPackageInfo: *const fn(
             self: *const IAppxManifestReader4,
             optionalPackageInfo: ?*?*IAppxManifestOptionalPackageInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAppxManifestReader3: IAppxManifestReader3,
     IAppxManifestReader2: IAppxManifestReader2,
     IAppxManifestReader: IAppxManifestReader,
     IUnknown: IUnknown,
-    pub fn GetOptionalPackageInfo(self: *const IAppxManifestReader4, optionalPackageInfo: ?*?*IAppxManifestOptionalPackageInfo) callconv(.Inline) HRESULT {
+    pub fn GetOptionalPackageInfo(self: *const IAppxManifestReader4, optionalPackageInfo: ?*?*IAppxManifestOptionalPackageInfo) HRESULT {
         return self.vtable.GetOptionalPackageInfo(self, optionalPackageInfo);
     }
 };
@@ -823,11 +823,11 @@ pub const IAppxManifestReader5 = extern union {
         GetMainPackageDependencies: *const fn(
             self: *const IAppxManifestReader5,
             mainPackageDependencies: ?*?*IAppxManifestMainPackageDependenciesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetMainPackageDependencies(self: *const IAppxManifestReader5, mainPackageDependencies: ?*?*IAppxManifestMainPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetMainPackageDependencies(self: *const IAppxManifestReader5, mainPackageDependencies: ?*?*IAppxManifestMainPackageDependenciesEnumerator) HRESULT {
         return self.vtable.GetMainPackageDependencies(self, mainPackageDependencies);
     }
 };
@@ -841,11 +841,11 @@ pub const IAppxManifestReader6 = extern union {
         GetIsNonQualifiedResourcePackage: *const fn(
             self: *const IAppxManifestReader6,
             isNonQualifiedResourcePackage: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxManifestReader6, isNonQualifiedResourcePackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxManifestReader6, isNonQualifiedResourcePackage: ?*BOOL) HRESULT {
         return self.vtable.GetIsNonQualifiedResourcePackage(self, isNonQualifiedResourcePackage);
     }
 };
@@ -858,25 +858,25 @@ pub const IAppxManifestReader7 = extern union {
         GetDriverDependencies: *const fn(
             self: *const IAppxManifestReader7,
             driverDependencies: ?*?*IAppxManifestDriverDependenciesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOSPackageDependencies: *const fn(
             self: *const IAppxManifestReader7,
             osPackageDependencies: ?*?*IAppxManifestOSPackageDependenciesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHostRuntimeDependencies: *const fn(
             self: *const IAppxManifestReader7,
             hostRuntimeDependencies: ?*?*IAppxManifestHostRuntimeDependenciesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDriverDependencies(self: *const IAppxManifestReader7, driverDependencies: ?*?*IAppxManifestDriverDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetDriverDependencies(self: *const IAppxManifestReader7, driverDependencies: ?*?*IAppxManifestDriverDependenciesEnumerator) HRESULT {
         return self.vtable.GetDriverDependencies(self, driverDependencies);
     }
-    pub fn GetOSPackageDependencies(self: *const IAppxManifestReader7, osPackageDependencies: ?*?*IAppxManifestOSPackageDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetOSPackageDependencies(self: *const IAppxManifestReader7, osPackageDependencies: ?*?*IAppxManifestOSPackageDependenciesEnumerator) HRESULT {
         return self.vtable.GetOSPackageDependencies(self, osPackageDependencies);
     }
-    pub fn GetHostRuntimeDependencies(self: *const IAppxManifestReader7, hostRuntimeDependencies: ?*?*IAppxManifestHostRuntimeDependenciesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetHostRuntimeDependencies(self: *const IAppxManifestReader7, hostRuntimeDependencies: ?*?*IAppxManifestHostRuntimeDependenciesEnumerator) HRESULT {
         return self.vtable.GetHostRuntimeDependencies(self, hostRuntimeDependencies);
     }
 };
@@ -889,25 +889,25 @@ pub const IAppxManifestDriverDependenciesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestDriverDependenciesEnumerator,
             driverDependency: ?*?*IAppxManifestDriverDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestDriverDependenciesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestDriverDependenciesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, driverDependency: ?*?*IAppxManifestDriverDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, driverDependency: ?*?*IAppxManifestDriverDependency) HRESULT {
         return self.vtable.GetCurrent(self, driverDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestDriverDependenciesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestDriverDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestDriverDependenciesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -920,11 +920,11 @@ pub const IAppxManifestDriverDependency = extern union {
         GetDriverConstraints: *const fn(
             self: *const IAppxManifestDriverDependency,
             driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDriverConstraints(self: *const IAppxManifestDriverDependency, driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetDriverConstraints(self: *const IAppxManifestDriverDependency, driverConstraints: ?*?*IAppxManifestDriverConstraintsEnumerator) HRESULT {
         return self.vtable.GetDriverConstraints(self, driverConstraints);
     }
 };
@@ -937,25 +937,25 @@ pub const IAppxManifestDriverConstraintsEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestDriverConstraintsEnumerator,
             driverConstraint: ?*?*IAppxManifestDriverConstraint,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestDriverConstraintsEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestDriverConstraintsEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, driverConstraint: ?*?*IAppxManifestDriverConstraint) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, driverConstraint: ?*?*IAppxManifestDriverConstraint) HRESULT {
         return self.vtable.GetCurrent(self, driverConstraint);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestDriverConstraintsEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestDriverConstraintsEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestDriverConstraintsEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -968,25 +968,25 @@ pub const IAppxManifestDriverConstraint = extern union {
         GetName: *const fn(
             self: *const IAppxManifestDriverConstraint,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestDriverConstraint,
             minVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinDate: *const fn(
             self: *const IAppxManifestDriverConstraint,
             minDate: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestDriverConstraint, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestDriverConstraint, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestDriverConstraint, minVersion: ?*u64) HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
-    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMinDate(self: *const IAppxManifestDriverConstraint, minDate: ?*?PWSTR) HRESULT {
         return self.vtable.GetMinDate(self, minDate);
     }
 };
@@ -999,25 +999,25 @@ pub const IAppxManifestOSPackageDependenciesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestOSPackageDependenciesEnumerator,
             osPackageDependency: ?*?*IAppxManifestOSPackageDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestOSPackageDependenciesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestOSPackageDependenciesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, osPackageDependency: ?*?*IAppxManifestOSPackageDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, osPackageDependency: ?*?*IAppxManifestOSPackageDependency) HRESULT {
         return self.vtable.GetCurrent(self, osPackageDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestOSPackageDependenciesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1030,18 +1030,18 @@ pub const IAppxManifestOSPackageDependency = extern union {
         GetName: *const fn(
             self: *const IAppxManifestOSPackageDependency,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IAppxManifestOSPackageDependency,
             version: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestOSPackageDependency, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetVersion(self: *const IAppxManifestOSPackageDependency, version: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IAppxManifestOSPackageDependency, version: ?*u64) HRESULT {
         return self.vtable.GetVersion(self, version);
     }
 };
@@ -1054,25 +1054,25 @@ pub const IAppxManifestHostRuntimeDependenciesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
             hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestHostRuntimeDependenciesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hostRuntimeDependency: ?*?*IAppxManifestHostRuntimeDependency) HRESULT {
         return self.vtable.GetCurrent(self, hostRuntimeDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestHostRuntimeDependenciesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1085,25 +1085,25 @@ pub const IAppxManifestHostRuntimeDependency = extern union {
         GetName: *const fn(
             self: *const IAppxManifestHostRuntimeDependency,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestHostRuntimeDependency,
             publisher: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestHostRuntimeDependency,
             minVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestHostRuntimeDependency, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestHostRuntimeDependency, publisher: ?*?PWSTR) HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestHostRuntimeDependency, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestHostRuntimeDependency, minVersion: ?*u64) HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
 };
@@ -1116,11 +1116,11 @@ pub const IAppxManifestHostRuntimeDependency2 = extern union {
         GetPackageFamilyName: *const fn(
             self: *const IAppxManifestHostRuntimeDependency2,
             packageFamilyName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestHostRuntimeDependency2, packageFamilyName: ?*?PWSTR) HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -1134,18 +1134,18 @@ pub const IAppxManifestOptionalPackageInfo = extern union {
         GetIsOptionalPackage: *const fn(
             self: *const IAppxManifestOptionalPackageInfo,
             isOptionalPackage: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMainPackageName: *const fn(
             self: *const IAppxManifestOptionalPackageInfo,
             mainPackageName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsOptionalPackage(self: *const IAppxManifestOptionalPackageInfo, isOptionalPackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsOptionalPackage(self: *const IAppxManifestOptionalPackageInfo, isOptionalPackage: ?*BOOL) HRESULT {
         return self.vtable.GetIsOptionalPackage(self, isOptionalPackage);
     }
-    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetMainPackageName(self: *const IAppxManifestOptionalPackageInfo, mainPackageName: ?*?PWSTR) HRESULT {
         return self.vtable.GetMainPackageName(self, mainPackageName);
     }
 };
@@ -1159,25 +1159,25 @@ pub const IAppxManifestMainPackageDependenciesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestMainPackageDependenciesEnumerator,
             mainPackageDependency: ?*?*IAppxManifestMainPackageDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestMainPackageDependenciesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestMainPackageDependenciesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, mainPackageDependency: ?*?*IAppxManifestMainPackageDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, mainPackageDependency: ?*?*IAppxManifestMainPackageDependency) HRESULT {
         return self.vtable.GetCurrent(self, mainPackageDependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestMainPackageDependenciesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1191,25 +1191,25 @@ pub const IAppxManifestMainPackageDependency = extern union {
         GetName: *const fn(
             self: *const IAppxManifestMainPackageDependency,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestMainPackageDependency,
             publisher: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageFamilyName: *const fn(
             self: *const IAppxManifestMainPackageDependency,
             packageFamilyName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestMainPackageDependency, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestMainPackageDependency, publisher: ?*?PWSTR) HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestMainPackageDependency, packageFamilyName: ?*?PWSTR) HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -1223,61 +1223,61 @@ pub const IAppxManifestPackageId = extern union {
         GetName: *const fn(
             self: *const IAppxManifestPackageId,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetArchitecture: *const fn(
             self: *const IAppxManifestPackageId,
             architecture: ?*APPX_PACKAGE_ARCHITECTURE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestPackageId,
             publisher: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const IAppxManifestPackageId,
             packageVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResourceId: *const fn(
             self: *const IAppxManifestPackageId,
             resourceId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ComparePublisher: *const fn(
             self: *const IAppxManifestPackageId,
             other: ?[*:0]const u16,
             isSame: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageFullName: *const fn(
             self: *const IAppxManifestPackageId,
             packageFullName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageFamilyName: *const fn(
             self: *const IAppxManifestPackageId,
             packageFamilyName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestPackageId, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetArchitecture(self: *const IAppxManifestPackageId, architecture: ?*APPX_PACKAGE_ARCHITECTURE) callconv(.Inline) HRESULT {
+    pub fn GetArchitecture(self: *const IAppxManifestPackageId, architecture: ?*APPX_PACKAGE_ARCHITECTURE) HRESULT {
         return self.vtable.GetArchitecture(self, architecture);
     }
-    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestPackageId, publisher: ?*?PWSTR) HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetVersion(self: *const IAppxManifestPackageId, packageVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const IAppxManifestPackageId, packageVersion: ?*u64) HRESULT {
         return self.vtable.GetVersion(self, packageVersion);
     }
-    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetResourceId(self: *const IAppxManifestPackageId, resourceId: ?*?PWSTR) HRESULT {
         return self.vtable.GetResourceId(self, resourceId);
     }
-    pub fn ComparePublisher(self: *const IAppxManifestPackageId, other: ?[*:0]const u16, isSame: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn ComparePublisher(self: *const IAppxManifestPackageId, other: ?[*:0]const u16, isSame: ?*BOOL) HRESULT {
         return self.vtable.ComparePublisher(self, other, isSame);
     }
-    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFullName(self: *const IAppxManifestPackageId, packageFullName: ?*?PWSTR) HRESULT {
         return self.vtable.GetPackageFullName(self, packageFullName);
     }
-    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPackageFamilyName(self: *const IAppxManifestPackageId, packageFamilyName: ?*?PWSTR) HRESULT {
         return self.vtable.GetPackageFamilyName(self, packageFamilyName);
     }
 };
@@ -1291,12 +1291,12 @@ pub const IAppxManifestPackageId2 = extern union {
         GetArchitecture2: *const fn(
             self: *const IAppxManifestPackageId2,
             architecture: ?*APPX_PACKAGE_ARCHITECTURE2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAppxManifestPackageId: IAppxManifestPackageId,
     IUnknown: IUnknown,
-    pub fn GetArchitecture2(self: *const IAppxManifestPackageId2, architecture: ?*APPX_PACKAGE_ARCHITECTURE2) callconv(.Inline) HRESULT {
+    pub fn GetArchitecture2(self: *const IAppxManifestPackageId2, architecture: ?*APPX_PACKAGE_ARCHITECTURE2) HRESULT {
         return self.vtable.GetArchitecture2(self, architecture);
     }
 };
@@ -1311,19 +1311,19 @@ pub const IAppxManifestProperties = extern union {
             self: *const IAppxManifestProperties,
             name: ?[*:0]const u16,
             value: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringValue: *const fn(
             self: *const IAppxManifestProperties,
             name: ?[*:0]const u16,
             value: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBoolValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBoolValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*BOOL) HRESULT {
         return self.vtable.GetBoolValue(self, name, value);
     }
-    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const IAppxManifestProperties, name: ?[*:0]const u16, value: ?*?PWSTR) HRESULT {
         return self.vtable.GetStringValue(self, name, value);
     }
 };
@@ -1336,25 +1336,25 @@ pub const IAppxManifestTargetDeviceFamiliesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestTargetDeviceFamiliesEnumerator,
             targetDeviceFamily: ?*?*IAppxManifestTargetDeviceFamily,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestTargetDeviceFamiliesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestTargetDeviceFamiliesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, targetDeviceFamily: ?*?*IAppxManifestTargetDeviceFamily) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, targetDeviceFamily: ?*?*IAppxManifestTargetDeviceFamily) HRESULT {
         return self.vtable.GetCurrent(self, targetDeviceFamily);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestTargetDeviceFamiliesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1368,25 +1368,25 @@ pub const IAppxManifestTargetDeviceFamily = extern union {
         GetName: *const fn(
             self: *const IAppxManifestTargetDeviceFamily,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestTargetDeviceFamily,
             minVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxVersionTested: *const fn(
             self: *const IAppxManifestTargetDeviceFamily,
             maxVersionTested: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestTargetDeviceFamily, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestTargetDeviceFamily, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestTargetDeviceFamily, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestTargetDeviceFamily, minVersion: ?*u64) HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
-    pub fn GetMaxVersionTested(self: *const IAppxManifestTargetDeviceFamily, maxVersionTested: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMaxVersionTested(self: *const IAppxManifestTargetDeviceFamily, maxVersionTested: ?*u64) HRESULT {
         return self.vtable.GetMaxVersionTested(self, maxVersionTested);
     }
 };
@@ -1400,25 +1400,25 @@ pub const IAppxManifestPackageDependenciesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestPackageDependenciesEnumerator,
             dependency: ?*?*IAppxManifestPackageDependency,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestPackageDependenciesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestPackageDependenciesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, dependency: ?*?*IAppxManifestPackageDependency) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, dependency: ?*?*IAppxManifestPackageDependency) HRESULT {
         return self.vtable.GetCurrent(self, dependency);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestPackageDependenciesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestPackageDependenciesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestPackageDependenciesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1432,25 +1432,25 @@ pub const IAppxManifestPackageDependency = extern union {
         GetName: *const fn(
             self: *const IAppxManifestPackageDependency,
             name: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPublisher: *const fn(
             self: *const IAppxManifestPackageDependency,
             publisher: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinVersion: *const fn(
             self: *const IAppxManifestPackageDependency,
             minVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxManifestPackageDependency, name: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, name);
     }
-    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPublisher(self: *const IAppxManifestPackageDependency, publisher: ?*?PWSTR) HRESULT {
         return self.vtable.GetPublisher(self, publisher);
     }
-    pub fn GetMinVersion(self: *const IAppxManifestPackageDependency, minVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetMinVersion(self: *const IAppxManifestPackageDependency, minVersion: ?*u64) HRESULT {
         return self.vtable.GetMinVersion(self, minVersion);
     }
 };
@@ -1464,12 +1464,12 @@ pub const IAppxManifestPackageDependency2 = extern union {
         GetMaxMajorVersionTested: *const fn(
             self: *const IAppxManifestPackageDependency2,
             maxMajorVersionTested: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IAppxManifestPackageDependency: IAppxManifestPackageDependency,
     IUnknown: IUnknown,
-    pub fn GetMaxMajorVersionTested(self: *const IAppxManifestPackageDependency2, maxMajorVersionTested: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetMaxMajorVersionTested(self: *const IAppxManifestPackageDependency2, maxMajorVersionTested: ?*u16) HRESULT {
         return self.vtable.GetMaxMajorVersionTested(self, maxMajorVersionTested);
     }
 };
@@ -1482,11 +1482,11 @@ pub const IAppxManifestPackageDependency3 = extern union {
         GetIsOptional: *const fn(
             self: *const IAppxManifestPackageDependency3,
             isOptional: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsOptional(self: *const IAppxManifestPackageDependency3, isOptional: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsOptional(self: *const IAppxManifestPackageDependency3, isOptional: ?*BOOL) HRESULT {
         return self.vtable.GetIsOptional(self, isOptional);
     }
 };
@@ -1500,25 +1500,25 @@ pub const IAppxManifestResourcesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestResourcesEnumerator,
             resource: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestResourcesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestResourcesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestResourcesEnumerator, resource: ?*?PWSTR) HRESULT {
         return self.vtable.GetCurrent(self, resource);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestResourcesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestResourcesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestResourcesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1532,25 +1532,25 @@ pub const IAppxManifestDeviceCapabilitiesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
             deviceCapability: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestDeviceCapabilitiesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, deviceCapability: ?*?PWSTR) HRESULT {
         return self.vtable.GetCurrent(self, deviceCapability);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestDeviceCapabilitiesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1563,25 +1563,25 @@ pub const IAppxManifestCapabilitiesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
             capability: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestCapabilitiesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestCapabilitiesEnumerator, capability: ?*?PWSTR) HRESULT {
         return self.vtable.GetCurrent(self, capability);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestCapabilitiesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestCapabilitiesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestCapabilitiesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestCapabilitiesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1595,25 +1595,25 @@ pub const IAppxManifestApplicationsEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestApplicationsEnumerator,
             application: ?*?*IAppxManifestApplication,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestApplicationsEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestApplicationsEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestApplicationsEnumerator, application: ?*?*IAppxManifestApplication) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestApplicationsEnumerator, application: ?*?*IAppxManifestApplication) HRESULT {
         return self.vtable.GetCurrent(self, application);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestApplicationsEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestApplicationsEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestApplicationsEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestApplicationsEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1628,18 +1628,18 @@ pub const IAppxManifestApplication = extern union {
             self: *const IAppxManifestApplication,
             name: ?[*:0]const u16,
             value: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAppUserModelId: *const fn(
             self: *const IAppxManifestApplication,
             appUserModelId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const IAppxManifestApplication, name: ?[*:0]const u16, value: ?*?PWSTR) HRESULT {
         return self.vtable.GetStringValue(self, name, value);
     }
-    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetAppUserModelId(self: *const IAppxManifestApplication, appUserModelId: ?*?PWSTR) HRESULT {
         return self.vtable.GetAppUserModelId(self, appUserModelId);
     }
 };
@@ -1652,25 +1652,25 @@ pub const IAppxManifestQualifiedResourcesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxManifestQualifiedResourcesEnumerator,
             resource: ?*?*IAppxManifestQualifiedResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxManifestQualifiedResourcesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxManifestQualifiedResourcesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, resource: ?*?*IAppxManifestQualifiedResource) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, resource: ?*?*IAppxManifestQualifiedResource) HRESULT {
         return self.vtable.GetCurrent(self, resource);
     }
-    pub fn GetHasCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxManifestQualifiedResourcesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxManifestQualifiedResourcesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxManifestQualifiedResourcesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1683,25 +1683,25 @@ pub const IAppxManifestQualifiedResource = extern union {
         GetLanguage: *const fn(
             self: *const IAppxManifestQualifiedResource,
             language: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScale: *const fn(
             self: *const IAppxManifestQualifiedResource,
             scale: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDXFeatureLevel: *const fn(
             self: *const IAppxManifestQualifiedResource,
             dxFeatureLevel: ?*DX_FEATURE_LEVEL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetLanguage(self: *const IAppxManifestQualifiedResource, language: ?*?PWSTR) HRESULT {
         return self.vtable.GetLanguage(self, language);
     }
-    pub fn GetScale(self: *const IAppxManifestQualifiedResource, scale: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScale(self: *const IAppxManifestQualifiedResource, scale: ?*u32) HRESULT {
         return self.vtable.GetScale(self, scale);
     }
-    pub fn GetDXFeatureLevel(self: *const IAppxManifestQualifiedResource, dxFeatureLevel: ?*DX_FEATURE_LEVEL) callconv(.Inline) HRESULT {
+    pub fn GetDXFeatureLevel(self: *const IAppxManifestQualifiedResource, dxFeatureLevel: ?*DX_FEATURE_LEVEL) HRESULT {
         return self.vtable.GetDXFeatureLevel(self, dxFeatureLevel);
     }
 };
@@ -1717,27 +1717,27 @@ pub const IAppxBundleFactory = extern union {
             outputStream: ?*IStream,
             bundleVersion: u64,
             bundleWriter: ?*?*IAppxBundleWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBundleReader: *const fn(
             self: *const IAppxBundleFactory,
             inputStream: ?*IStream,
             bundleReader: ?*?*IAppxBundleReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateBundleManifestReader: *const fn(
             self: *const IAppxBundleFactory,
             inputStream: ?*IStream,
             manifestReader: ?*?*IAppxBundleManifestReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateBundleWriter(self: *const IAppxBundleFactory, outputStream: ?*IStream, bundleVersion: u64, bundleWriter: ?*?*IAppxBundleWriter) callconv(.Inline) HRESULT {
+    pub fn CreateBundleWriter(self: *const IAppxBundleFactory, outputStream: ?*IStream, bundleVersion: u64, bundleWriter: ?*?*IAppxBundleWriter) HRESULT {
         return self.vtable.CreateBundleWriter(self, outputStream, bundleVersion, bundleWriter);
     }
-    pub fn CreateBundleReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, bundleReader: ?*?*IAppxBundleReader) callconv(.Inline) HRESULT {
+    pub fn CreateBundleReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, bundleReader: ?*?*IAppxBundleReader) HRESULT {
         return self.vtable.CreateBundleReader(self, inputStream, bundleReader);
     }
-    pub fn CreateBundleManifestReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.Inline) HRESULT {
+    pub fn CreateBundleManifestReader(self: *const IAppxBundleFactory, inputStream: ?*IStream, manifestReader: ?*?*IAppxBundleManifestReader) HRESULT {
         return self.vtable.CreateBundleManifestReader(self, inputStream, manifestReader);
     }
 };
@@ -1752,17 +1752,17 @@ pub const IAppxBundleWriter = extern union {
             self: *const IAppxBundleWriter,
             fileName: ?[*:0]const u16,
             packageStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IAppxBundleWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackage(self: *const IAppxBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackage(self: *const IAppxBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) HRESULT {
         return self.vtable.AddPayloadPackage(self, fileName, packageStream);
     }
-    pub fn Close(self: *const IAppxBundleWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxBundleWriter) HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -1777,11 +1777,11 @@ pub const IAppxBundleWriter2 = extern union {
             self: *const IAppxBundleWriter2,
             fileName: ?[*:0]const u16,
             inputStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
     }
 };
@@ -1796,18 +1796,18 @@ pub const IAppxBundleWriter3 = extern union {
             self: *const IAppxBundleWriter3,
             fileName: ?[*:0]const u16,
             inputStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IAppxBundleWriter3,
             hashMethodString: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPackageReference(self: *const IAppxBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPackageReference(self: *const IAppxBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream) HRESULT {
         return self.vtable.AddPackageReference(self, fileName, inputStream);
     }
-    pub fn Close(self: *const IAppxBundleWriter3, hashMethodString: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxBundleWriter3, hashMethodString: ?[*:0]const u16) HRESULT {
         return self.vtable.Close(self, hashMethodString);
     }
 };
@@ -1823,29 +1823,29 @@ pub const IAppxBundleWriter4 = extern union {
             fileName: ?[*:0]const u16,
             packageStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPackageReference: *const fn(
             self: *const IAppxBundleWriter4,
             fileName: ?[*:0]const u16,
             inputStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddExternalPackageReference: *const fn(
             self: *const IAppxBundleWriter4,
             fileName: ?[*:0]const u16,
             inputStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackage(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackage(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) HRESULT {
         return self.vtable.AddPayloadPackage(self, fileName, packageStream, isDefaultApplicablePackage);
     }
-    pub fn AddPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) HRESULT {
         return self.vtable.AddPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
     }
-    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxBundleWriter4, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
     }
 };
@@ -1860,40 +1860,40 @@ pub const IAppxBundleReader = extern union {
             self: *const IAppxBundleReader,
             fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE,
             footprintFile: ?*?*IAppxFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBlockMap: *const fn(
             self: *const IAppxBundleReader,
             blockMapReader: ?*?*IAppxBlockMapReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetManifest: *const fn(
             self: *const IAppxBundleReader,
             manifestReader: ?*?*IAppxBundleManifestReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPayloadPackages: *const fn(
             self: *const IAppxBundleReader,
             payloadPackages: ?*?*IAppxFilesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPayloadPackage: *const fn(
             self: *const IAppxBundleReader,
             fileName: ?[*:0]const u16,
             payloadPackage: ?*?*IAppxFile,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFootprintFile(self: *const IAppxBundleReader, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetFootprintFile(self: *const IAppxBundleReader, fileType: APPX_BUNDLE_FOOTPRINT_FILE_TYPE, footprintFile: ?*?*IAppxFile) HRESULT {
         return self.vtable.GetFootprintFile(self, fileType, footprintFile);
     }
-    pub fn GetBlockMap(self: *const IAppxBundleReader, blockMapReader: ?*?*IAppxBlockMapReader) callconv(.Inline) HRESULT {
+    pub fn GetBlockMap(self: *const IAppxBundleReader, blockMapReader: ?*?*IAppxBlockMapReader) HRESULT {
         return self.vtable.GetBlockMap(self, blockMapReader);
     }
-    pub fn GetManifest(self: *const IAppxBundleReader, manifestReader: ?*?*IAppxBundleManifestReader) callconv(.Inline) HRESULT {
+    pub fn GetManifest(self: *const IAppxBundleReader, manifestReader: ?*?*IAppxBundleManifestReader) HRESULT {
         return self.vtable.GetManifest(self, manifestReader);
     }
-    pub fn GetPayloadPackages(self: *const IAppxBundleReader, payloadPackages: ?*?*IAppxFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPayloadPackages(self: *const IAppxBundleReader, payloadPackages: ?*?*IAppxFilesEnumerator) HRESULT {
         return self.vtable.GetPayloadPackages(self, payloadPackages);
     }
-    pub fn GetPayloadPackage(self: *const IAppxBundleReader, fileName: ?[*:0]const u16, payloadPackage: ?*?*IAppxFile) callconv(.Inline) HRESULT {
+    pub fn GetPayloadPackage(self: *const IAppxBundleReader, fileName: ?[*:0]const u16, payloadPackage: ?*?*IAppxFile) HRESULT {
         return self.vtable.GetPayloadPackage(self, fileName, payloadPackage);
     }
 };
@@ -1907,25 +1907,25 @@ pub const IAppxBundleManifestReader = extern union {
         GetPackageId: *const fn(
             self: *const IAppxBundleManifestReader,
             packageId: ?*?*IAppxManifestPackageId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageInfoItems: *const fn(
             self: *const IAppxBundleManifestReader,
             packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IAppxBundleManifestReader,
             manifestStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxBundleManifestReader, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxBundleManifestReader, packageId: ?*?*IAppxManifestPackageId) HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestReader, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestReader, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) HRESULT {
         return self.vtable.GetPackageInfoItems(self, packageInfoItems);
     }
-    pub fn GetStream(self: *const IAppxBundleManifestReader, manifestStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IAppxBundleManifestReader, manifestStream: ?*?*IStream) HRESULT {
         return self.vtable.GetStream(self, manifestStream);
     }
 };
@@ -1939,11 +1939,11 @@ pub const IAppxBundleManifestReader2 = extern union {
         GetOptionalBundles: *const fn(
             self: *const IAppxBundleManifestReader2,
             optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOptionalBundles(self: *const IAppxBundleManifestReader2, optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetOptionalBundles(self: *const IAppxBundleManifestReader2, optionalBundles: ?*?*IAppxBundleManifestOptionalBundleInfoEnumerator) HRESULT {
         return self.vtable.GetOptionalBundles(self, optionalBundles);
     }
 };
@@ -1957,25 +1957,25 @@ pub const IAppxBundleManifestPackageInfoEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxBundleManifestPackageInfoEnumerator,
             packageInfo: ?*?*IAppxBundleManifestPackageInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxBundleManifestPackageInfoEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxBundleManifestPackageInfoEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, packageInfo: ?*?*IAppxBundleManifestPackageInfo) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, packageInfo: ?*?*IAppxBundleManifestPackageInfo) HRESULT {
         return self.vtable.GetCurrent(self, packageInfo);
     }
-    pub fn GetHasCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBundleManifestPackageInfoEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBundleManifestPackageInfoEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBundleManifestPackageInfoEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -1989,46 +1989,46 @@ pub const IAppxBundleManifestPackageInfo = extern union {
         GetPackageType: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
             packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageId: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
             packageId: ?*?*IAppxManifestPackageId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileName: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
             fileName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOffset: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
             offset: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSize: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
             size: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResources: *const fn(
             self: *const IAppxBundleManifestPackageInfo,
             resources: ?*?*IAppxManifestQualifiedResourcesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageType(self: *const IAppxBundleManifestPackageInfo, packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetPackageType(self: *const IAppxBundleManifestPackageInfo, packageType: ?*APPX_BUNDLE_PAYLOAD_PACKAGE_TYPE) HRESULT {
         return self.vtable.GetPackageType(self, packageType);
     }
-    pub fn GetPackageId(self: *const IAppxBundleManifestPackageInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxBundleManifestPackageInfo, packageId: ?*?*IAppxManifestPackageId) HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFileName(self: *const IAppxBundleManifestPackageInfo, fileName: ?*?PWSTR) HRESULT {
         return self.vtable.GetFileName(self, fileName);
     }
-    pub fn GetOffset(self: *const IAppxBundleManifestPackageInfo, offset: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetOffset(self: *const IAppxBundleManifestPackageInfo, offset: ?*u64) HRESULT {
         return self.vtable.GetOffset(self, offset);
     }
-    pub fn GetSize(self: *const IAppxBundleManifestPackageInfo, size: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetSize(self: *const IAppxBundleManifestPackageInfo, size: ?*u64) HRESULT {
         return self.vtable.GetSize(self, size);
     }
-    pub fn GetResources(self: *const IAppxBundleManifestPackageInfo, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetResources(self: *const IAppxBundleManifestPackageInfo, resources: ?*?*IAppxManifestQualifiedResourcesEnumerator) HRESULT {
         return self.vtable.GetResources(self, resources);
     }
 };
@@ -2042,25 +2042,25 @@ pub const IAppxBundleManifestPackageInfo2 = extern union {
         GetIsPackageReference: *const fn(
             self: *const IAppxBundleManifestPackageInfo2,
             isPackageReference: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsNonQualifiedResourcePackage: *const fn(
             self: *const IAppxBundleManifestPackageInfo2,
             isNonQualifiedResourcePackage: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsDefaultApplicablePackage: *const fn(
             self: *const IAppxBundleManifestPackageInfo2,
             isDefaultApplicablePackage: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsPackageReference(self: *const IAppxBundleManifestPackageInfo2, isPackageReference: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsPackageReference(self: *const IAppxBundleManifestPackageInfo2, isPackageReference: ?*BOOL) HRESULT {
         return self.vtable.GetIsPackageReference(self, isPackageReference);
     }
-    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxBundleManifestPackageInfo2, isNonQualifiedResourcePackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsNonQualifiedResourcePackage(self: *const IAppxBundleManifestPackageInfo2, isNonQualifiedResourcePackage: ?*BOOL) HRESULT {
         return self.vtable.GetIsNonQualifiedResourcePackage(self, isNonQualifiedResourcePackage);
     }
-    pub fn GetIsDefaultApplicablePackage(self: *const IAppxBundleManifestPackageInfo2, isDefaultApplicablePackage: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsDefaultApplicablePackage(self: *const IAppxBundleManifestPackageInfo2, isDefaultApplicablePackage: ?*BOOL) HRESULT {
         return self.vtable.GetIsDefaultApplicablePackage(self, isDefaultApplicablePackage);
     }
 };
@@ -2073,11 +2073,11 @@ pub const IAppxBundleManifestPackageInfo3 = extern union {
         GetTargetDeviceFamilies: *const fn(
             self: *const IAppxBundleManifestPackageInfo3,
             targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTargetDeviceFamilies(self: *const IAppxBundleManifestPackageInfo3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetTargetDeviceFamilies(self: *const IAppxBundleManifestPackageInfo3, targetDeviceFamilies: ?*?*IAppxManifestTargetDeviceFamiliesEnumerator) HRESULT {
         return self.vtable.GetTargetDeviceFamilies(self, targetDeviceFamilies);
     }
 };
@@ -2090,11 +2090,11 @@ pub const IAppxBundleManifestPackageInfo4 = extern union {
         GetIsStub: *const fn(
             self: *const IAppxBundleManifestPackageInfo4,
             isStub: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIsStub(self: *const IAppxBundleManifestPackageInfo4, isStub: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsStub(self: *const IAppxBundleManifestPackageInfo4, isStub: ?*BOOL) HRESULT {
         return self.vtable.GetIsStub(self, isStub);
     }
 };
@@ -2108,25 +2108,25 @@ pub const IAppxBundleManifestOptionalBundleInfoEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
             optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfoEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, optionalBundle: ?*?*IAppxBundleManifestOptionalBundleInfo) HRESULT {
         return self.vtable.GetCurrent(self, optionalBundle);
     }
-    pub fn GetHasCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxBundleManifestOptionalBundleInfoEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -2140,25 +2140,25 @@ pub const IAppxBundleManifestOptionalBundleInfo = extern union {
         GetPackageId: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
             packageId: ?*?*IAppxManifestPackageId,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileName: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
             fileName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPackageInfoItems: *const fn(
             self: *const IAppxBundleManifestOptionalBundleInfo,
             packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPackageId(self: *const IAppxBundleManifestOptionalBundleInfo, packageId: ?*?*IAppxManifestPackageId) callconv(.Inline) HRESULT {
+    pub fn GetPackageId(self: *const IAppxBundleManifestOptionalBundleInfo, packageId: ?*?*IAppxManifestPackageId) HRESULT {
         return self.vtable.GetPackageId(self, packageId);
     }
-    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFileName(self: *const IAppxBundleManifestOptionalBundleInfo, fileName: ?*?PWSTR) HRESULT {
         return self.vtable.GetFileName(self, fileName);
     }
-    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestOptionalBundleInfo, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetPackageInfoItems(self: *const IAppxBundleManifestOptionalBundleInfo, packageInfoItems: ?*?*IAppxBundleManifestPackageInfoEnumerator) HRESULT {
         return self.vtable.GetPackageInfoItems(self, packageInfoItems);
     }
 };
@@ -2172,25 +2172,25 @@ pub const IAppxContentGroupFilesEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxContentGroupFilesEnumerator,
             file: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxContentGroupFilesEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxContentGroupFilesEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxContentGroupFilesEnumerator, file: ?*?PWSTR) HRESULT {
         return self.vtable.GetCurrent(self, file);
     }
-    pub fn GetHasCurrent(self: *const IAppxContentGroupFilesEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxContentGroupFilesEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxContentGroupFilesEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxContentGroupFilesEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -2204,18 +2204,18 @@ pub const IAppxContentGroup = extern union {
         GetName: *const fn(
             self: *const IAppxContentGroup,
             groupName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFiles: *const fn(
             self: *const IAppxContentGroup,
             enumerator: ?*?*IAppxContentGroupFilesEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IAppxContentGroup, groupName: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, groupName);
     }
-    pub fn GetFiles(self: *const IAppxContentGroup, enumerator: ?*?*IAppxContentGroupFilesEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetFiles(self: *const IAppxContentGroup, enumerator: ?*?*IAppxContentGroupFilesEnumerator) HRESULT {
         return self.vtable.GetFiles(self, enumerator);
     }
 };
@@ -2229,25 +2229,25 @@ pub const IAppxContentGroupsEnumerator = extern union {
         GetCurrent: *const fn(
             self: *const IAppxContentGroupsEnumerator,
             stream: ?*?*IAppxContentGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHasCurrent: *const fn(
             self: *const IAppxContentGroupsEnumerator,
             hasCurrent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveNext: *const fn(
             self: *const IAppxContentGroupsEnumerator,
             hasNext: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCurrent(self: *const IAppxContentGroupsEnumerator, stream: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IAppxContentGroupsEnumerator, stream: ?*?*IAppxContentGroup) HRESULT {
         return self.vtable.GetCurrent(self, stream);
     }
-    pub fn GetHasCurrent(self: *const IAppxContentGroupsEnumerator, hasCurrent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetHasCurrent(self: *const IAppxContentGroupsEnumerator, hasCurrent: ?*BOOL) HRESULT {
         return self.vtable.GetHasCurrent(self, hasCurrent);
     }
-    pub fn MoveNext(self: *const IAppxContentGroupsEnumerator, hasNext: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MoveNext(self: *const IAppxContentGroupsEnumerator, hasNext: ?*BOOL) HRESULT {
         return self.vtable.MoveNext(self, hasNext);
     }
 };
@@ -2261,18 +2261,18 @@ pub const IAppxContentGroupMapReader = extern union {
         GetRequiredGroup: *const fn(
             self: *const IAppxContentGroupMapReader,
             requiredGroup: ?*?*IAppxContentGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAutomaticGroups: *const fn(
             self: *const IAppxContentGroupMapReader,
             automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRequiredGroup(self: *const IAppxContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
+    pub fn GetRequiredGroup(self: *const IAppxContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) HRESULT {
         return self.vtable.GetRequiredGroup(self, requiredGroup);
     }
-    pub fn GetAutomaticGroups(self: *const IAppxContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetAutomaticGroups(self: *const IAppxContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) HRESULT {
         return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
     }
 };
@@ -2286,18 +2286,18 @@ pub const IAppxSourceContentGroupMapReader = extern union {
         GetRequiredGroup: *const fn(
             self: *const IAppxSourceContentGroupMapReader,
             requiredGroup: ?*?*IAppxContentGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAutomaticGroups: *const fn(
             self: *const IAppxSourceContentGroupMapReader,
             automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRequiredGroup(self: *const IAppxSourceContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) callconv(.Inline) HRESULT {
+    pub fn GetRequiredGroup(self: *const IAppxSourceContentGroupMapReader, requiredGroup: ?*?*IAppxContentGroup) HRESULT {
         return self.vtable.GetRequiredGroup(self, requiredGroup);
     }
-    pub fn GetAutomaticGroups(self: *const IAppxSourceContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) callconv(.Inline) HRESULT {
+    pub fn GetAutomaticGroups(self: *const IAppxSourceContentGroupMapReader, automaticGroupsEnumerator: ?*?*IAppxContentGroupsEnumerator) HRESULT {
         return self.vtable.GetAutomaticGroups(self, automaticGroupsEnumerator);
     }
 };
@@ -2311,24 +2311,24 @@ pub const IAppxContentGroupMapWriter = extern union {
         AddAutomaticGroup: *const fn(
             self: *const IAppxContentGroupMapWriter,
             groupName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddAutomaticFile: *const fn(
             self: *const IAppxContentGroupMapWriter,
             fileName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IAppxContentGroupMapWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAutomaticGroup(self: *const IAppxContentGroupMapWriter, groupName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddAutomaticGroup(self: *const IAppxContentGroupMapWriter, groupName: ?[*:0]const u16) HRESULT {
         return self.vtable.AddAutomaticGroup(self, groupName);
     }
-    pub fn AddAutomaticFile(self: *const IAppxContentGroupMapWriter, fileName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddAutomaticFile(self: *const IAppxContentGroupMapWriter, fileName: ?[*:0]const u16) HRESULT {
         return self.vtable.AddAutomaticFile(self, fileName);
     }
-    pub fn Close(self: *const IAppxContentGroupMapWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxContentGroupMapWriter) HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -2345,18 +2345,18 @@ pub const IAppxPackagingDiagnosticEventSink = extern union {
             contextName: ?[*:0]const u8,
             contextMessage: ?[*:0]const u16,
             detailsMessage: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReportError: *const fn(
             self: *const IAppxPackagingDiagnosticEventSink,
             errorMessage: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReportContextChange(self: *const IAppxPackagingDiagnosticEventSink, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: ?[*:0]const u8, contextMessage: ?[*:0]const u16, detailsMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ReportContextChange(self: *const IAppxPackagingDiagnosticEventSink, changeType: APPX_PACKAGING_CONTEXT_CHANGE_TYPE, contextId: i32, contextName: ?[*:0]const u8, contextMessage: ?[*:0]const u16, detailsMessage: ?[*:0]const u16) HRESULT {
         return self.vtable.ReportContextChange(self, changeType, contextId, contextName, contextMessage, detailsMessage);
     }
-    pub fn ReportError(self: *const IAppxPackagingDiagnosticEventSink, errorMessage: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn ReportError(self: *const IAppxPackagingDiagnosticEventSink, errorMessage: ?[*:0]const u16) HRESULT {
         return self.vtable.ReportError(self, errorMessage);
     }
 };
@@ -2369,11 +2369,11 @@ pub const IAppxPackagingDiagnosticEventSinkManager = extern union {
         SetSinkForProcess: *const fn(
             self: *const IAppxPackagingDiagnosticEventSinkManager,
             sink: ?*IAppxPackagingDiagnosticEventSink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSinkForProcess(self: *const IAppxPackagingDiagnosticEventSinkManager, sink: ?*IAppxPackagingDiagnosticEventSink) callconv(.Inline) HRESULT {
+    pub fn SetSinkForProcess(self: *const IAppxPackagingDiagnosticEventSinkManager, sink: ?*IAppxPackagingDiagnosticEventSink) HRESULT {
         return self.vtable.SetSinkForProcess(self, sink);
     }
 };
@@ -2455,13 +2455,13 @@ pub const IAppxEncryptionFactory = extern union {
             settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecryptPackage: *const fn(
             self: *const IAppxEncryptionFactory,
             inputStream: ?*IStream,
             outputStream: ?*IStream,
             keyInfo: ?*const APPX_KEY_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncryptedPackageWriter: *const fn(
             self: *const IAppxEncryptionFactory,
             outputStream: ?*IStream,
@@ -2470,13 +2470,13 @@ pub const IAppxEncryptionFactory = extern union {
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
             packageWriter: ?*?*IAppxEncryptedPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncryptedPackageReader: *const fn(
             self: *const IAppxEncryptionFactory,
             inputStream: ?*IStream,
             keyInfo: ?*const APPX_KEY_INFO,
             packageReader: ?*?*IAppxPackageReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncryptBundle: *const fn(
             self: *const IAppxEncryptionFactory,
             inputStream: ?*IStream,
@@ -2484,13 +2484,13 @@ pub const IAppxEncryptionFactory = extern union {
             settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS,
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DecryptBundle: *const fn(
             self: *const IAppxEncryptionFactory,
             inputStream: ?*IStream,
             outputStream: ?*IStream,
             keyInfo: ?*const APPX_KEY_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncryptedBundleWriter: *const fn(
             self: *const IAppxEncryptionFactory,
             outputStream: ?*IStream,
@@ -2499,38 +2499,38 @@ pub const IAppxEncryptionFactory = extern union {
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
             bundleWriter: ?*?*IAppxEncryptedBundleWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncryptedBundleReader: *const fn(
             self: *const IAppxEncryptionFactory,
             inputStream: ?*IStream,
             keyInfo: ?*const APPX_KEY_INFO,
             bundleReader: ?*?*IAppxBundleReader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) HRESULT {
         return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn DecryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+    pub fn DecryptPackage(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) HRESULT {
         return self.vtable.DecryptPackage(self, inputStream, outputStream, keyInfo);
     }
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, manifestStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, manifestStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) HRESULT {
         return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, settings, keyInfo, exemptedFiles, packageWriter);
     }
-    pub fn CreateEncryptedPackageReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, packageReader: ?*?*IAppxPackageReader) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, packageReader: ?*?*IAppxPackageReader) HRESULT {
         return self.vtable.CreateEncryptedPackageReader(self, inputStream, keyInfo, packageReader);
     }
-    pub fn EncryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) HRESULT {
         return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn DecryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+    pub fn DecryptBundle(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, outputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO) HRESULT {
         return self.vtable.DecryptBundle(self, inputStream, outputStream, keyInfo);
     }
-    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) HRESULT {
         return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
     }
-    pub fn CreateEncryptedBundleReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, bundleReader: ?*?*IAppxBundleReader) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedBundleReader(self: *const IAppxEncryptionFactory, inputStream: ?*IStream, keyInfo: ?*const APPX_KEY_INFO, bundleReader: ?*?*IAppxBundleReader) HRESULT {
         return self.vtable.CreateEncryptedBundleReader(self, inputStream, keyInfo, bundleReader);
     }
 };
@@ -2550,11 +2550,11 @@ pub const IAppxEncryptionFactory2 = extern union {
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
             packageWriter: ?*?*IAppxEncryptedPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory2, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory2, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) HRESULT {
         return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
     }
 };
@@ -2572,7 +2572,7 @@ pub const IAppxEncryptionFactory3 = extern union {
             settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncryptedPackageWriter: *const fn(
             self: *const IAppxEncryptionFactory3,
             outputStream: ?*IStream,
@@ -2582,7 +2582,7 @@ pub const IAppxEncryptionFactory3 = extern union {
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
             packageWriter: ?*?*IAppxEncryptedPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncryptBundle: *const fn(
             self: *const IAppxEncryptionFactory3,
             inputStream: ?*IStream,
@@ -2590,7 +2590,7 @@ pub const IAppxEncryptionFactory3 = extern union {
             settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateEncryptedBundleWriter: *const fn(
             self: *const IAppxEncryptionFactory3,
             outputStream: ?*IStream,
@@ -2599,20 +2599,20 @@ pub const IAppxEncryptionFactory3 = extern union {
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
             bundleWriter: ?*?*IAppxEncryptedBundleWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) HRESULT {
         return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedPackageWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, manifestStream: ?*IStream, contentGroupMapStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, packageWriter: ?*?*IAppxEncryptedPackageWriter) HRESULT {
         return self.vtable.CreateEncryptedPackageWriter(self, outputStream, manifestStream, contentGroupMapStream, settings, keyInfo, exemptedFiles, packageWriter);
     }
-    pub fn EncryptBundle(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) callconv(.Inline) HRESULT {
+    pub fn EncryptBundle(self: *const IAppxEncryptionFactory3, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS) HRESULT {
         return self.vtable.EncryptBundle(self, inputStream, outputStream, settings, keyInfo, exemptedFiles);
     }
-    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+    pub fn CreateEncryptedBundleWriter(self: *const IAppxEncryptionFactory3, outputStream: ?*IStream, bundleVersion: u64, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, bundleWriter: ?*?*IAppxEncryptedBundleWriter) HRESULT {
         return self.vtable.CreateEncryptedBundleWriter(self, outputStream, bundleVersion, settings, keyInfo, exemptedFiles, bundleWriter);
     }
 };
@@ -2631,11 +2631,11 @@ pub const IAppxEncryptionFactory4 = extern union {
             keyInfo: ?*const APPX_KEY_INFO,
             exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS,
             memoryLimit: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EncryptPackage(self: *const IAppxEncryptionFactory4, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) callconv(.Inline) HRESULT {
+    pub fn EncryptPackage(self: *const IAppxEncryptionFactory4, inputStream: ?*IStream, outputStream: ?*IStream, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO, exemptedFiles: ?*const APPX_ENCRYPTED_EXEMPTIONS, memoryLimit: u64) HRESULT {
         return self.vtable.EncryptPackage(self, inputStream, outputStream, settings, keyInfo, exemptedFiles, memoryLimit);
     }
 };
@@ -2651,17 +2651,17 @@ pub const IAppxEncryptedPackageWriter = extern union {
             fileName: ?[*:0]const u16,
             compressionOption: APPX_COMPRESSION_OPTION,
             inputStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IAppxEncryptedPackageWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFileEncrypted(self: *const IAppxEncryptedPackageWriter, fileName: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFileEncrypted(self: *const IAppxEncryptedPackageWriter, fileName: ?[*:0]const u16, compressionOption: APPX_COMPRESSION_OPTION, inputStream: ?*IStream) HRESULT {
         return self.vtable.AddPayloadFileEncrypted(self, fileName, compressionOption, inputStream);
     }
-    pub fn Close(self: *const IAppxEncryptedPackageWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxEncryptedPackageWriter) HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -2677,11 +2677,11 @@ pub const IAppxEncryptedPackageWriter2 = extern union {
             fileCount: u32,
             payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM,
             memoryLimit: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadFilesEncrypted(self: *const IAppxEncryptedPackageWriter2, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) callconv(.Inline) HRESULT {
+    pub fn AddPayloadFilesEncrypted(self: *const IAppxEncryptedPackageWriter2, fileCount: u32, payloadFiles: [*]APPX_PACKAGE_WRITER_PAYLOAD_STREAM, memoryLimit: u64) HRESULT {
         return self.vtable.AddPayloadFilesEncrypted(self, fileCount, payloadFiles, memoryLimit);
     }
 };
@@ -2696,17 +2696,17 @@ pub const IAppxEncryptedBundleWriter = extern union {
             self: *const IAppxEncryptedBundleWriter,
             fileName: ?[*:0]const u16,
             packageStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IAppxEncryptedBundleWriter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter, fileName: ?[*:0]const u16, packageStream: ?*IStream) HRESULT {
         return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream);
     }
-    pub fn Close(self: *const IAppxEncryptedBundleWriter) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const IAppxEncryptedBundleWriter) HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -2721,11 +2721,11 @@ pub const IAppxEncryptedBundleWriter2 = extern union {
             self: *const IAppxEncryptedBundleWriter2,
             fileName: ?[*:0]const u16,
             inputStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter2, fileName: ?[*:0]const u16, inputStream: ?*IStream) HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream);
     }
 };
@@ -2784,20 +2784,20 @@ pub const IAppxEncryptedBundleWriter3 = extern union {
             fileName: ?[*:0]const u16,
             packageStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddExternalPackageReference: *const fn(
             self: *const IAppxEncryptedBundleWriter3,
             fileName: ?[*:0]const u16,
             inputStream: ?*IStream,
             isDefaultApplicablePackage: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddPayloadPackageEncrypted(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, packageStream: ?*IStream, isDefaultApplicablePackage: BOOL) HRESULT {
         return self.vtable.AddPayloadPackageEncrypted(self, fileName, packageStream, isDefaultApplicablePackage);
     }
-    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddExternalPackageReference(self: *const IAppxEncryptedBundleWriter3, fileName: ?[*:0]const u16, inputStream: ?*IStream, isDefaultApplicablePackage: BOOL) HRESULT {
         return self.vtable.AddExternalPackageReference(self, fileName, inputStream, isDefaultApplicablePackage);
     }
 };
@@ -2811,26 +2811,26 @@ pub const IAppxPackageEditor = extern union {
         SetWorkingDirectory: *const fn(
             self: *const IAppxPackageEditor,
             workingDirectory: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDeltaPackage: *const fn(
             self: *const IAppxPackageEditor,
             updatedPackageStream: ?*IStream,
             baselinePackageStream: ?*IStream,
             deltaPackageStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDeltaPackageUsingBaselineBlockMap: *const fn(
             self: *const IAppxPackageEditor,
             updatedPackageStream: ?*IStream,
             baselineBlockMapStream: ?*IStream,
             baselinePackageFullName: ?[*:0]const u16,
             deltaPackageStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdatePackage: *const fn(
             self: *const IAppxPackageEditor,
             baselinePackageStream: ?*IStream,
             deltaPackageStream: ?*IStream,
             updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateEncryptedPackage: *const fn(
             self: *const IAppxPackageEditor,
             baselineEncryptedPackageStream: ?*IStream,
@@ -2838,33 +2838,33 @@ pub const IAppxPackageEditor = extern union {
             updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION,
             settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2,
             keyInfo: ?*const APPX_KEY_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdatePackageManifest: *const fn(
             self: *const IAppxPackageEditor,
             packageStream: ?*IStream,
             updatedManifestStream: ?*IStream,
             isPackageEncrypted: BOOL,
             options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetWorkingDirectory(self: *const IAppxPackageEditor, workingDirectory: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetWorkingDirectory(self: *const IAppxPackageEditor, workingDirectory: ?[*:0]const u16) HRESULT {
         return self.vtable.SetWorkingDirectory(self, workingDirectory);
     }
-    pub fn CreateDeltaPackage(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateDeltaPackage(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream) HRESULT {
         return self.vtable.CreateDeltaPackage(self, updatedPackageStream, baselinePackageStream, deltaPackageStream);
     }
-    pub fn CreateDeltaPackageUsingBaselineBlockMap(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselineBlockMapStream: ?*IStream, baselinePackageFullName: ?[*:0]const u16, deltaPackageStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateDeltaPackageUsingBaselineBlockMap(self: *const IAppxPackageEditor, updatedPackageStream: ?*IStream, baselineBlockMapStream: ?*IStream, baselinePackageFullName: ?[*:0]const u16, deltaPackageStream: ?*IStream) HRESULT {
         return self.vtable.CreateDeltaPackageUsingBaselineBlockMap(self, updatedPackageStream, baselineBlockMapStream, baselinePackageFullName, deltaPackageStream);
     }
-    pub fn UpdatePackage(self: *const IAppxPackageEditor, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION) callconv(.Inline) HRESULT {
+    pub fn UpdatePackage(self: *const IAppxPackageEditor, baselinePackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION) HRESULT {
         return self.vtable.UpdatePackage(self, baselinePackageStream, deltaPackageStream, updateOption);
     }
-    pub fn UpdateEncryptedPackage(self: *const IAppxPackageEditor, baselineEncryptedPackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO) callconv(.Inline) HRESULT {
+    pub fn UpdateEncryptedPackage(self: *const IAppxPackageEditor, baselineEncryptedPackageStream: ?*IStream, deltaPackageStream: ?*IStream, updateOption: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_OPTION, settings: ?*const APPX_ENCRYPTED_PACKAGE_SETTINGS2, keyInfo: ?*const APPX_KEY_INFO) HRESULT {
         return self.vtable.UpdateEncryptedPackage(self, baselineEncryptedPackageStream, deltaPackageStream, updateOption, settings, keyInfo);
     }
-    pub fn UpdatePackageManifest(self: *const IAppxPackageEditor, packageStream: ?*IStream, updatedManifestStream: ?*IStream, isPackageEncrypted: BOOL, options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS) callconv(.Inline) HRESULT {
+    pub fn UpdatePackageManifest(self: *const IAppxPackageEditor, packageStream: ?*IStream, updatedManifestStream: ?*IStream, isPackageEncrypted: BOOL, options: APPX_PACKAGE_EDITOR_UPDATE_PACKAGE_MANIFEST_OPTIONS) HRESULT {
         return self.vtable.UpdatePackageManifest(self, packageStream, updatedManifestStream, isPackageEncrypted, options);
     }
 };
@@ -3059,25 +3059,25 @@ pub extern "kernel32" fn GetCurrentPackageId(
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 0?
     buffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackageFullName(
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackageFamilyName(
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackagePath(
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageId(
@@ -3085,35 +3085,35 @@ pub extern "kernel32" fn GetPackageId(
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageFullName(
     hProcess: ?HANDLE,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFullNameFromToken(
     token: ?HANDLE,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageFamilyName(
     hProcess: ?HANDLE,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetPackageFamilyNameFromToken(
     token: ?HANDLE,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackagePath(
@@ -3121,21 +3121,21 @@ pub extern "kernel32" fn GetPackagePath(
     reserved: u32,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn GetPackagePathByFullName(
     packageFullName: ?[*:0]const u16,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn GetStagedPackagePathByFullName(
     packageFullName: ?[*:0]const u16,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
@@ -3143,7 +3143,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackagePathByFullName2(
     packagePathType: PackagePathType,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullName2(
@@ -3151,7 +3151,7 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetStagedPackagePathByFullNam
     packagePathType: PackagePathType,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
@@ -3161,51 +3161,51 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackageInfo2(
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetCurrentPackagePath2(
     packagePathType: PackagePathType,
     pathLength: ?*u32,
     path: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn GetCurrentApplicationUserModelId(
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn GetApplicationUserModelId(
     hProcess: ?HANDLE,
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetApplicationUserModelIdFromToken(
     token: ?HANDLE,
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFullName(
     packageFullName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageFamilyName(
     packageFamilyName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageId(
     packageId: ?*const PACKAGE_ID,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyApplicationUserModelId(
     applicationUserModelId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn VerifyPackageRelativeApplicationId(
     packageRelativeApplicationId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageIdFromFullName(
@@ -3214,28 +3214,28 @@ pub extern "kernel32" fn PackageIdFromFullName(
     bufferLength: ?*u32,
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageFullNameFromId(
     packageId: ?*const PACKAGE_ID,
     packageFullNameLength: ?*u32,
     packageFullName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageFamilyNameFromId(
     packageId: ?*const PACKAGE_ID,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageFamilyNameFromFullName(
     packageFullName: ?[*:0]const u16,
     packageFamilyNameLength: ?*u32,
     packageFamilyName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn PackageNameAndPublisherIdFromFamilyName(
@@ -3244,7 +3244,7 @@ pub extern "kernel32" fn PackageNameAndPublisherIdFromFamilyName(
     packageName: ?[*:0]u16,
     packagePublisherIdLength: ?*u32,
     packagePublisherId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn FormatApplicationUserModelId(
@@ -3252,7 +3252,7 @@ pub extern "kernel32" fn FormatApplicationUserModelId(
     packageRelativeApplicationId: ?[*:0]const u16,
     applicationUserModelIdLength: ?*u32,
     applicationUserModelId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn ParseApplicationUserModelId(
@@ -3261,7 +3261,7 @@ pub extern "kernel32" fn ParseApplicationUserModelId(
     packageFamilyName: ?[*:0]u16,
     packageRelativeApplicationIdLength: ?*u32,
     packageRelativeApplicationId: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackagesByPackageFamily(
@@ -3270,7 +3270,7 @@ pub extern "kernel32" fn GetPackagesByPackageFamily(
     packageFullNames: ?[*]?PWSTR,
     bufferLength: ?*u32,
     buffer: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn FindPackagesByPackageFamily(
@@ -3281,13 +3281,13 @@ pub extern "kernel32" fn FindPackagesByPackageFamily(
     bufferLength: ?*u32,
     buffer: ?[*:0]u16,
     packageProperties: ?[*]u32,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn GetStagedPackageOrigin(
     packageFullName: ?[*:0]const u16,
     origin: ?*PackageOrigin,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetCurrentPackageInfo(
@@ -3296,26 +3296,26 @@ pub extern "kernel32" fn GetCurrentPackageInfo(
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn OpenPackageInfoByFullName(
     packageFullName: ?[*:0]const u16,
     reserved: u32,
     packageInfoReference: ?*?*_PACKAGE_INFO_REFERENCE,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "api-ms-win-appmodel-runtime-l1-1-1" fn OpenPackageInfoByFullNameForUser(
     userSid: ?PSID,
     packageFullName: ?[*:0]const u16,
     reserved: u32,
     packageInfoReference: ?*?*_PACKAGE_INFO_REFERENCE,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn ClosePackageInfo(
     packageInfoReference: ?*_PACKAGE_INFO_REFERENCE,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "kernel32" fn GetPackageInfo(
@@ -3325,7 +3325,7 @@ pub extern "kernel32" fn GetPackageInfo(
     // TODO: what to do with BytesParamIndex 2?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "kernel32" fn GetPackageApplicationIds(
@@ -3334,7 +3334,7 @@ pub extern "kernel32" fn GetPackageApplicationIds(
     // TODO: what to do with BytesParamIndex 1?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
@@ -3345,12 +3345,12 @@ pub extern "api-ms-win-appmodel-runtime-l1-1-3" fn GetPackageInfo2(
     // TODO: what to do with BytesParamIndex 3?
     buffer: ?*u8,
     count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn CheckIsMSIXPackage(
     packageFullName: ?[*:0]const u16,
     isMSIXPackage: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernelbase" fn TryCreatePackageDependency(
     user: ?PSID,
@@ -3361,11 +3361,11 @@ pub extern "kernelbase" fn TryCreatePackageDependency(
     lifetimeArtifact: ?[*:0]const u16,
     options: CreatePackageDependencyOptions,
     packageDependencyId: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernelbase" fn DeletePackageDependency(
     packageDependencyId: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernelbase" fn AddPackageDependency(
     packageDependencyId: ?[*:0]const u16,
@@ -3373,93 +3373,93 @@ pub extern "kernelbase" fn AddPackageDependency(
     options: AddPackageDependencyOptions,
     packageDependencyContext: ?*?*PACKAGEDEPENDENCY_CONTEXT__,
     packageFullName: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernelbase" fn RemovePackageDependency(
     packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernelbase" fn GetResolvedPackageFullNameForPackageDependency(
     packageDependencyId: ?[*:0]const u16,
     packageFullName: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernelbase" fn GetIdForPackageDependencyContext(
     packageDependencyContext: ?*PACKAGEDEPENDENCY_CONTEXT__,
     packageDependencyId: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn AppPolicyGetLifecycleManagement(
     processToken: ?HANDLE,
     policy: ?*AppPolicyLifecycleManagement,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetWindowingModel(
     processToken: ?HANDLE,
     policy: ?*AppPolicyWindowingModel,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetMediaFoundationCodecLoading(
     processToken: ?HANDLE,
     policy: ?*AppPolicyMediaFoundationCodecLoading,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetClrCompat(
     processToken: ?HANDLE,
     policy: ?*AppPolicyClrCompat,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetThreadInitializationType(
     processToken: ?HANDLE,
     policy: ?*AppPolicyThreadInitializationType,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetShowDeveloperDiagnostic(
     processToken: ?HANDLE,
     policy: ?*AppPolicyShowDeveloperDiagnostic,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetProcessTerminationMethod(
     processToken: ?HANDLE,
     policy: ?*AppPolicyProcessTerminationMethod,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn AppPolicyGetCreateFileAccess(
     processToken: ?HANDLE,
     policy: ?*AppPolicyCreateFileAccess,
-) callconv(@import("std").os.windows.WINAPI) WIN32_ERROR;
+) callconv(.winapi) WIN32_ERROR;
 
 pub extern "kernel32" fn CreatePackageVirtualizationContext(
     packageFamilyName: ?[*:0]const u16,
     context: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn ActivatePackageVirtualizationContext(
     context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
     cookie: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn ReleasePackageVirtualizationContext(
     context: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "kernel32" fn DeactivatePackageVirtualizationContext(
     cookie: usize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "kernel32" fn DuplicatePackageVirtualizationContext(
     sourceContext: ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
     destContext: ?*?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "kernel32" fn GetCurrentPackageVirtualizationContext(
-) callconv(@import("std").os.windows.WINAPI) ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__;
+) callconv(.winapi) ?*PACKAGE_VIRTUALIZATION_CONTEXT_HANDLE__;
 
 pub extern "kernel32" fn GetProcessesInVirtualizationContext(
     packageFamilyName: ?[*:0]const u16,
     count: ?*u32,
     processes: ?*?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

@@ -24,7 +24,7 @@ export fn wbin_get_type() c.GType {
     return wbin_type;
 }
 
-fn wbin_class_init(class: *WBinClass) callconv(.C) void {
+fn wbin_class_init(class: *WBinClass) callconv(.c) void {
     const widget_class = @as(*c.GtkWidgetClass, @ptrCast(class));
     // widget_class.measure = wbin_measure;
     widget_class.size_allocate = wbin_size_allocate;
@@ -40,7 +40,7 @@ fn wbin_class_init(class: *WBinClass) callconv(.C) void {
     widget_class.focus = focus_fn;
 }
 
-fn wbin_measure(widget: [*c]c.GtkWidget, orientation: c.GtkOrientation, for_size: c_int, minimum: [*c]c_int, natural: [*c]c_int, minimum_baseline: [*c]c_int, natural_baseline: [*c]c_int) callconv(.C) void {
+fn wbin_measure(widget: [*c]c.GtkWidget, orientation: c.GtkOrientation, for_size: c_int, minimum: [*c]c_int, natural: [*c]c_int, minimum_baseline: [*c]c_int, natural_baseline: [*c]c_int) callconv(.c) void {
     _ = orientation;
     _ = for_size;
     _ = widget;
@@ -50,7 +50,7 @@ fn wbin_measure(widget: [*c]c.GtkWidget, orientation: c.GtkOrientation, for_size
     natural_baseline.* = -1; // no baseline
 }
 
-fn wbin_get_request_mode(widget: ?*c.GtkWidget) callconv(.C) c.GtkSizeRequestMode {
+fn wbin_get_request_mode(widget: ?*c.GtkWidget) callconv(.c) c.GtkSizeRequestMode {
     _ = widget;
     return c.GTK_SIZE_REQUEST_CONSTANT_SIZE;
 }
@@ -60,7 +60,7 @@ fn wbin_size_allocate(
     width: c_int,
     height: c_int,
     baseline: c_int,
-) callconv(.C) void {
+) callconv(.c) void {
     const child = c.gtk_widget_get_first_child(widget);
     if (child != null) {
         c.gtk_widget_allocate(child, width, height, baseline, null);

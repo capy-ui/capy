@@ -9,8 +9,7 @@
 
 **As of now, Capy is NOT ready for use in production as I'm still making breaking changes**
 
-**Capy targets Zig version `0.14.1`, the plan is to return to [Nominated Zig versions](https://machengine.org/docs/nominated-zig/)
-once a new one is published**
+**Capy targets Zig version `0.15.2`**
 
 ---
 
@@ -102,8 +101,8 @@ Legends:
 ✅ Windows x86_64  
 ✅ Windows i386
 
-🏃 macOS M1  
-🏃 macOS x86_64  
+🧪 macOS M1 (Apple Silicon)
+🧪 macOS x86_64
 
 ✅ Linux x86_64  
 ✅ Linux i386  
@@ -130,20 +129,20 @@ with other DEs.
 ## Supported components
 For now, not every platform supports the same components. So here's a list of the ones that are supported:
 
-|                  |win32|macOS|GTK|Android|wasm|
-|------------------|-----|-----|---|-----|-----|
+|                  |win32|macOS|GTK    |Android|wasm|
+|------------------|-----|-----|-------|-------|-----|
 |Button            |✅|✅|✅|✅|✅|
-|Canvas            |❌|❌|✅|✅|✅|
-|CheckBox          |✅|❌|✅|❌|❌|
-|Dropdown          |✅|❌|✅|❌|❌|
-|Image             |❌|❌|✅|❌|✅|
+|Canvas            |❌|🧪|✅|✅|✅|
+|CheckBox          |✅|🧪|✅|❌|❌|
+|Dropdown          |✅|🧪|✅|❌|❌|
+|Image             |❌|🧪|✅|❌|✅|
 |Label             |✅|✅|✅|✅|✅|
-|Menu              |❌|❌|❌|❌|❌|
-|Navigation        |❌|❌|❌|❌|❌|
-|NavigationSidebar |❌|❌|✅|❌|❌|
-|Scrollable        |✅|❌|✅|❌|❌|
-|Slider            |✅|❌|✅|❌|✅|
-|Tabs              |✅|❌|✅|❌|❌|
-|TextArea          |✅|❌|✅|❌|❌|
-|TextField         |✅|❌|✅|✅|✅|
+|Menu              |✅|🧪|✅|❌|❌|
+|Navigation        |❌|❌|✅|❌|❌|
+|NavigationSidebar |❌|🧪|✅|❌|❌|
+|Scrollable        |✅|🧪|✅|❌|❌|
+|Slider            |✅|🧪|✅|❌|✅|
+|Tabs              |✅|🧪|✅|❌|❌|
+|TextArea          |✅|🧪|✅|❌|❌|
+|TextField         |✅|🧪|✅|✅|✅|
 |Window            |✅|✅|✅|✅|✅

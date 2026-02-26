@@ -195,18 +195,18 @@ pub const IClockVectorElement = extern union {
         GetReplicaKey: *const fn(
             self: *const IClockVectorElement,
             pdwReplicaKey: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTickCount: *const fn(
             self: *const IClockVectorElement,
             pullTickCount: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetReplicaKey(self: *const IClockVectorElement, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetReplicaKey(self: *const IClockVectorElement, pdwReplicaKey: ?*u32) HRESULT {
         return self.vtable.GetReplicaKey(self, pdwReplicaKey);
     }
-    pub fn GetTickCount(self: *const IClockVectorElement, pullTickCount: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetTickCount(self: *const IClockVectorElement, pullTickCount: ?*u64) HRESULT {
         return self.vtable.GetTickCount(self, pullTickCount);
     }
 };
@@ -220,19 +220,19 @@ pub const IFeedClockVectorElement = extern union {
         GetSyncTime: *const fn(
             self: *const IFeedClockVectorElement,
             pSyncTime: ?*SYNC_TIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const IFeedClockVectorElement,
             pbFlags: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IClockVectorElement: IClockVectorElement,
     IUnknown: IUnknown,
-    pub fn GetSyncTime(self: *const IFeedClockVectorElement, pSyncTime: ?*SYNC_TIME) callconv(.Inline) HRESULT {
+    pub fn GetSyncTime(self: *const IFeedClockVectorElement, pSyncTime: ?*SYNC_TIME) HRESULT {
         return self.vtable.GetSyncTime(self, pSyncTime);
     }
-    pub fn GetFlags(self: *const IFeedClockVectorElement, pbFlags: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const IFeedClockVectorElement, pbFlags: ?*u8) HRESULT {
         return self.vtable.GetFlags(self, pbFlags);
     }
 };
@@ -247,18 +247,18 @@ pub const IClockVector = extern union {
             self: *const IClockVector,
             riid: ?*const Guid,
             ppiEnumClockVector: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClockVectorElementCount: *const fn(
             self: *const IClockVector,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClockVectorElements(self: *const IClockVector, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetClockVectorElements(self: *const IClockVector, riid: ?*const Guid, ppiEnumClockVector: ?*?*anyopaque) HRESULT {
         return self.vtable.GetClockVectorElements(self, riid, ppiEnumClockVector);
     }
-    pub fn GetClockVectorElementCount(self: *const IClockVector, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClockVectorElementCount(self: *const IClockVector, pdwCount: ?*u32) HRESULT {
         return self.vtable.GetClockVectorElementCount(self, pdwCount);
     }
 };
@@ -272,19 +272,19 @@ pub const IFeedClockVector = extern union {
         GetUpdateCount: *const fn(
             self: *const IFeedClockVector,
             pdwUpdateCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsNoConflictsSpecified: *const fn(
             self: *const IFeedClockVector,
             pfIsNoConflictsSpecified: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IClockVector: IClockVector,
     IUnknown: IUnknown,
-    pub fn GetUpdateCount(self: *const IFeedClockVector, pdwUpdateCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUpdateCount(self: *const IFeedClockVector, pdwUpdateCount: ?*u32) HRESULT {
         return self.vtable.GetUpdateCount(self, pdwUpdateCount);
     }
-    pub fn IsNoConflictsSpecified(self: *const IFeedClockVector, pfIsNoConflictsSpecified: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsNoConflictsSpecified(self: *const IFeedClockVector, pfIsNoConflictsSpecified: ?*BOOL) HRESULT {
         return self.vtable.IsNoConflictsSpecified(self, pfIsNoConflictsSpecified);
     }
 };
@@ -300,31 +300,31 @@ pub const IEnumClockVector = extern union {
             cClockVectorElements: u32,
             ppiClockVectorElements: ?*?*IClockVectorElement,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumClockVector,
             cSyncVersions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumClockVector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumClockVector,
             ppiEnum: ?*?*IEnumClockVector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IClockVectorElement, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cClockVectorElements, ppiClockVectorElements, pcFetched);
     }
-    pub fn Skip(self: *const IEnumClockVector, cSyncVersions: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumClockVector, cSyncVersions: u32) HRESULT {
         return self.vtable.Skip(self, cSyncVersions);
     }
-    pub fn Reset(self: *const IEnumClockVector) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumClockVector) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumClockVector, ppiEnum: ?*?*IEnumClockVector) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumClockVector, ppiEnum: ?*?*IEnumClockVector) HRESULT {
         return self.vtable.Clone(self, ppiEnum);
     }
 };
@@ -340,31 +340,31 @@ pub const IEnumFeedClockVector = extern union {
             cClockVectorElements: u32,
             ppiClockVectorElements: ?*?*IFeedClockVectorElement,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumFeedClockVector,
             cSyncVersions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumFeedClockVector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumFeedClockVector,
             ppiEnum: ?*?*IEnumFeedClockVector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumFeedClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumFeedClockVector, cClockVectorElements: u32, ppiClockVectorElements: ?*?*IFeedClockVectorElement, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cClockVectorElements, ppiClockVectorElements, pcFetched);
     }
-    pub fn Skip(self: *const IEnumFeedClockVector, cSyncVersions: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumFeedClockVector, cSyncVersions: u32) HRESULT {
         return self.vtable.Skip(self, cSyncVersions);
     }
-    pub fn Reset(self: *const IEnumFeedClockVector) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumFeedClockVector) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumFeedClockVector, ppiEnum: ?*?*IEnumFeedClockVector) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumFeedClockVector, ppiEnum: ?*?*IEnumFeedClockVector) HRESULT {
         return self.vtable.Clone(self, ppiEnum);
     }
 };
@@ -379,40 +379,40 @@ pub const ICoreFragment = extern union {
             self: *const ICoreFragment,
             pChangeUnitId: ?*u8,
             pChangeUnitIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NextRange: *const fn(
             self: *const ICoreFragment,
             pItemId: ?*u8,
             pItemIdSize: ?*u32,
             piClockVector: ?*?*IClockVector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICoreFragment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColumnCount: *const fn(
             self: *const ICoreFragment,
             pColumnCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRangeCount: *const fn(
             self: *const ICoreFragment,
             pRangeCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NextColumn(self: *const ICoreFragment, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn NextColumn(self: *const ICoreFragment, pChangeUnitId: ?*u8, pChangeUnitIdSize: ?*u32) HRESULT {
         return self.vtable.NextColumn(self, pChangeUnitId, pChangeUnitIdSize);
     }
-    pub fn NextRange(self: *const ICoreFragment, pItemId: ?*u8, pItemIdSize: ?*u32, piClockVector: ?*?*IClockVector) callconv(.Inline) HRESULT {
+    pub fn NextRange(self: *const ICoreFragment, pItemId: ?*u8, pItemIdSize: ?*u32, piClockVector: ?*?*IClockVector) HRESULT {
         return self.vtable.NextRange(self, pItemId, pItemIdSize, piClockVector);
     }
-    pub fn Reset(self: *const ICoreFragment) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ICoreFragment) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn GetColumnCount(self: *const ICoreFragment, pColumnCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetColumnCount(self: *const ICoreFragment, pColumnCount: ?*u32) HRESULT {
         return self.vtable.GetColumnCount(self, pColumnCount);
     }
-    pub fn GetRangeCount(self: *const ICoreFragment, pRangeCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRangeCount(self: *const ICoreFragment, pRangeCount: ?*u32) HRESULT {
         return self.vtable.GetRangeCount(self, pRangeCount);
     }
 };
@@ -428,17 +428,17 @@ pub const ICoreFragmentInspector = extern union {
             requestedCount: u32,
             ppiCoreFragments: ?*?*ICoreFragment,
             pFetchedCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ICoreFragmentInspector,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn NextCoreFragments(self: *const ICoreFragmentInspector, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn NextCoreFragments(self: *const ICoreFragmentInspector, requestedCount: u32, ppiCoreFragments: ?*?*ICoreFragment, pFetchedCount: ?*u32) HRESULT {
         return self.vtable.NextCoreFragments(self, requestedCount, ppiCoreFragments, pFetchedCount);
     }
-    pub fn Reset(self: *const ICoreFragmentInspector) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ICoreFragmentInspector) HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -453,27 +453,27 @@ pub const IRangeException = extern union {
             self: *const IRangeException,
             pbClosedRangeStart: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClosedRangeEnd: *const fn(
             self: *const IRangeException,
             pbClosedRangeEnd: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClockVector: *const fn(
             self: *const IRangeException,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClosedRangeStart(self: *const IRangeException, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClosedRangeStart(self: *const IRangeException, pbClosedRangeStart: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetClosedRangeStart(self, pbClosedRangeStart, pcbIdSize);
     }
-    pub fn GetClosedRangeEnd(self: *const IRangeException, pbClosedRangeEnd: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClosedRangeEnd(self: *const IRangeException, pbClosedRangeEnd: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetClosedRangeEnd(self, pbClosedRangeEnd, pcbIdSize);
     }
-    pub fn GetClockVector(self: *const IRangeException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetClockVector(self: *const IRangeException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.GetClockVector(self, riid, ppUnk);
     }
 };
@@ -489,31 +489,31 @@ pub const IEnumRangeExceptions = extern union {
             cExceptions: u32,
             ppRangeException: ?*?*IRangeException,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumRangeExceptions,
             cExceptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumRangeExceptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumRangeExceptions,
             ppEnum: ?*?*IEnumRangeExceptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumRangeExceptions, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumRangeExceptions, cExceptions: u32, ppRangeException: ?*?*IRangeException, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cExceptions, ppRangeException, pcFetched);
     }
-    pub fn Skip(self: *const IEnumRangeExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumRangeExceptions, cExceptions: u32) HRESULT {
         return self.vtable.Skip(self, cExceptions);
     }
-    pub fn Reset(self: *const IEnumRangeExceptions) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumRangeExceptions) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumRangeExceptions, ppEnum: ?*?*IEnumRangeExceptions) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumRangeExceptions, ppEnum: ?*?*IEnumRangeExceptions) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -528,19 +528,19 @@ pub const ISingleItemException = extern union {
             self: *const ISingleItemException,
             pbItemId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClockVector: *const fn(
             self: *const ISingleItemException,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemId(self: *const ISingleItemException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemId(self: *const ISingleItemException, pbItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetItemId(self, pbItemId, pcbIdSize);
     }
-    pub fn GetClockVector(self: *const ISingleItemException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetClockVector(self: *const ISingleItemException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.GetClockVector(self, riid, ppUnk);
     }
 };
@@ -556,31 +556,31 @@ pub const IEnumSingleItemExceptions = extern union {
             cExceptions: u32,
             ppSingleItemException: ?*?*ISingleItemException,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSingleItemExceptions,
             cExceptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSingleItemExceptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSingleItemExceptions,
             ppEnum: ?*?*IEnumSingleItemExceptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSingleItemExceptions, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSingleItemExceptions, cExceptions: u32, ppSingleItemException: ?*?*ISingleItemException, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cExceptions, ppSingleItemException, pcFetched);
     }
-    pub fn Skip(self: *const IEnumSingleItemExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSingleItemExceptions, cExceptions: u32) HRESULT {
         return self.vtable.Skip(self, cExceptions);
     }
-    pub fn Reset(self: *const IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSingleItemExceptions) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSingleItemExceptions, ppEnum: ?*?*IEnumSingleItemExceptions) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSingleItemExceptions, ppEnum: ?*?*IEnumSingleItemExceptions) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -595,27 +595,27 @@ pub const IChangeUnitException = extern union {
             self: *const IChangeUnitException,
             pbItemId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnitId: *const fn(
             self: *const IChangeUnitException,
             pbChangeUnitId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClockVector: *const fn(
             self: *const IChangeUnitException,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemId(self: *const IChangeUnitException, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemId(self: *const IChangeUnitException, pbItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetItemId(self, pbItemId, pcbIdSize);
     }
-    pub fn GetChangeUnitId(self: *const IChangeUnitException, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnitId(self: *const IChangeUnitException, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetChangeUnitId(self, pbChangeUnitId, pcbIdSize);
     }
-    pub fn GetClockVector(self: *const IChangeUnitException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetClockVector(self: *const IChangeUnitException, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.GetClockVector(self, riid, ppUnk);
     }
 };
@@ -631,31 +631,31 @@ pub const IEnumChangeUnitExceptions = extern union {
             cExceptions: u32,
             ppChangeUnitException: ?*?*IChangeUnitException,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumChangeUnitExceptions,
             cExceptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumChangeUnitExceptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumChangeUnitExceptions,
             ppEnum: ?*?*IEnumChangeUnitExceptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumChangeUnitExceptions, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumChangeUnitExceptions, cExceptions: u32, ppChangeUnitException: ?*?*IChangeUnitException, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cExceptions, ppChangeUnitException, pcFetched);
     }
-    pub fn Skip(self: *const IEnumChangeUnitExceptions, cExceptions: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumChangeUnitExceptions, cExceptions: u32) HRESULT {
         return self.vtable.Skip(self, cExceptions);
     }
-    pub fn Reset(self: *const IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumChangeUnitExceptions) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumChangeUnitExceptions, ppEnum: ?*?*IEnumChangeUnitExceptions) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumChangeUnitExceptions, ppEnum: ?*?*IEnumChangeUnitExceptions) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -670,28 +670,28 @@ pub const IReplicaKeyMap = extern union {
             self: *const IReplicaKeyMap,
             pbReplicaId: ?*const u8,
             pdwReplicaKey: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LookupReplicaId: *const fn(
             self: *const IReplicaKeyMap,
             dwReplicaKey: u32,
             pbReplicaId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const IReplicaKeyMap,
             pbReplicaKeyMap: ?*u8,
             pcbReplicaKeyMap: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LookupReplicaKey(self: *const IReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+    pub fn LookupReplicaKey(self: *const IReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) HRESULT {
         return self.vtable.LookupReplicaKey(self, pbReplicaId, pdwReplicaKey);
     }
-    pub fn LookupReplicaId(self: *const IReplicaKeyMap, dwReplicaKey: u32, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn LookupReplicaId(self: *const IReplicaKeyMap, dwReplicaKey: u32, pbReplicaId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.LookupReplicaId(self, dwReplicaKey, pbReplicaId, pcbIdSize);
     }
-    pub fn Serialize(self: *const IReplicaKeyMap, pbReplicaKeyMap: ?*u8, pcbReplicaKeyMap: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const IReplicaKeyMap, pbReplicaKeyMap: ?*u8, pcbReplicaKeyMap: ?*u32) HRESULT {
         return self.vtable.Serialize(self, pbReplicaKeyMap, pcbReplicaKeyMap);
     }
 };
@@ -706,11 +706,11 @@ pub const IConstructReplicaKeyMap = extern union {
             self: *const IConstructReplicaKeyMap,
             pbReplicaId: ?*const u8,
             pdwReplicaKey: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindOrAddReplica(self: *const IConstructReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) callconv(.Inline) HRESULT {
+    pub fn FindOrAddReplica(self: *const IConstructReplicaKeyMap, pbReplicaId: ?*const u8, pdwReplicaKey: ?*u32) HRESULT {
         return self.vtable.FindOrAddReplica(self, pbReplicaId, pdwReplicaKey);
     }
 };
@@ -725,43 +725,43 @@ pub const ISyncKnowledge = extern union {
             self: *const ISyncKnowledge,
             pbReplicaId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ISyncKnowledge,
             fSerializeReplicaKeyMap: BOOL,
             pbKnowledge: ?*u8,
             pcbKnowledge: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLocalTickCount: *const fn(
             self: *const ISyncKnowledge,
             ullTickCount: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContainsChange: *const fn(
             self: *const ISyncKnowledge,
             pbVersionOwnerReplicaId: ?*const u8,
             pgidItemId: ?*const u8,
             pSyncVersion: ?*const SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContainsChangeUnit: *const fn(
             self: *const ISyncKnowledge,
             pbVersionOwnerReplicaId: ?*const u8,
             pbItemId: ?*const u8,
             pbChangeUnitId: ?*const u8,
             pSyncVersion: ?*const SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScopeVector: *const fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReplicaKeyMap: *const fn(
             self: *const ISyncKnowledge,
             ppReplicaKeyMap: ?*?*IReplicaKeyMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const ISyncKnowledge,
             ppClonedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertVersion: *const fn(
             self: *const ISyncKnowledge,
             pKnowledgeIn: ?*ISyncKnowledge,
@@ -770,155 +770,155 @@ pub const ISyncKnowledge = extern union {
             pbNewOwnerId: ?*u8,
             pcbIdSize: ?*u32,
             pVersionOut: ?*SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MapRemoteToLocal: *const fn(
             self: *const ISyncKnowledge,
             pRemoteKnowledge: ?*ISyncKnowledge,
             ppMappedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Union: *const fn(
             self: *const ISyncKnowledge,
             pKnowledge: ?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProjectOntoItem: *const fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
             ppKnowledgeOut: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProjectOntoChangeUnit: *const fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
             pbChangeUnitId: ?*const u8,
             ppKnowledgeOut: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProjectOntoRange: *const fn(
             self: *const ISyncKnowledge,
             psrngSyncRange: ?*const SYNC_RANGE,
             ppKnowledgeOut: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExcludeItem: *const fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ExcludeChangeUnit: *const fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
             pbChangeUnitId: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContainsKnowledge: *const fn(
             self: *const ISyncKnowledge,
             pKnowledge: ?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindMinTickCountForReplica: *const fn(
             self: *const ISyncKnowledge,
             pbReplicaId: ?*const u8,
             pullReplicaTickCount: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRangeExceptions: *const fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSingleItemExceptions: *const fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnitExceptions: *const fn(
             self: *const ISyncKnowledge,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindClockVectorForItem: *const fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindClockVectorForChangeUnit: *const fn(
             self: *const ISyncKnowledge,
             pbItemId: ?*const u8,
             pbChangeUnitId: ?*const u8,
             riid: ?*const Guid,
             ppUnk: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVersion: *const fn(
             self: *const ISyncKnowledge,
             pdwVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOwnerReplicaId(self: *const ISyncKnowledge, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOwnerReplicaId(self: *const ISyncKnowledge, pbReplicaId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetOwnerReplicaId(self, pbReplicaId, pcbIdSize);
     }
-    pub fn Serialize(self: *const ISyncKnowledge, fSerializeReplicaKeyMap: BOOL, pbKnowledge: ?*u8, pcbKnowledge: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const ISyncKnowledge, fSerializeReplicaKeyMap: BOOL, pbKnowledge: ?*u8, pcbKnowledge: ?*u32) HRESULT {
         return self.vtable.Serialize(self, fSerializeReplicaKeyMap, pbKnowledge, pcbKnowledge);
     }
-    pub fn SetLocalTickCount(self: *const ISyncKnowledge, ullTickCount: u64) callconv(.Inline) HRESULT {
+    pub fn SetLocalTickCount(self: *const ISyncKnowledge, ullTickCount: u64) HRESULT {
         return self.vtable.SetLocalTickCount(self, ullTickCount);
     }
-    pub fn ContainsChange(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pgidItemId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn ContainsChange(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pgidItemId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) HRESULT {
         return self.vtable.ContainsChange(self, pbVersionOwnerReplicaId, pgidItemId, pSyncVersion);
     }
-    pub fn ContainsChangeUnit(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn ContainsChangeUnit(self: *const ISyncKnowledge, pbVersionOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pSyncVersion: ?*const SYNC_VERSION) HRESULT {
         return self.vtable.ContainsChangeUnit(self, pbVersionOwnerReplicaId, pbItemId, pbChangeUnitId, pSyncVersion);
     }
-    pub fn GetScopeVector(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetScopeVector(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.GetScopeVector(self, riid, ppUnk);
     }
-    pub fn GetReplicaKeyMap(self: *const ISyncKnowledge, ppReplicaKeyMap: ?*?*IReplicaKeyMap) callconv(.Inline) HRESULT {
+    pub fn GetReplicaKeyMap(self: *const ISyncKnowledge, ppReplicaKeyMap: ?*?*IReplicaKeyMap) HRESULT {
         return self.vtable.GetReplicaKeyMap(self, ppReplicaKeyMap);
     }
-    pub fn Clone(self: *const ISyncKnowledge, ppClonedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const ISyncKnowledge, ppClonedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.Clone(self, ppClonedKnowledge);
     }
-    pub fn ConvertVersion(self: *const ISyncKnowledge, pKnowledgeIn: ?*ISyncKnowledge, pbCurrentOwnerId: ?*const u8, pVersionIn: ?*const SYNC_VERSION, pbNewOwnerId: ?*u8, pcbIdSize: ?*u32, pVersionOut: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn ConvertVersion(self: *const ISyncKnowledge, pKnowledgeIn: ?*ISyncKnowledge, pbCurrentOwnerId: ?*const u8, pVersionIn: ?*const SYNC_VERSION, pbNewOwnerId: ?*u8, pcbIdSize: ?*u32, pVersionOut: ?*SYNC_VERSION) HRESULT {
         return self.vtable.ConvertVersion(self, pKnowledgeIn, pbCurrentOwnerId, pVersionIn, pbNewOwnerId, pcbIdSize, pVersionOut);
     }
-    pub fn MapRemoteToLocal(self: *const ISyncKnowledge, pRemoteKnowledge: ?*ISyncKnowledge, ppMappedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn MapRemoteToLocal(self: *const ISyncKnowledge, pRemoteKnowledge: ?*ISyncKnowledge, ppMappedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.MapRemoteToLocal(self, pRemoteKnowledge, ppMappedKnowledge);
     }
-    pub fn Union(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn Union(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) HRESULT {
         return self.vtable.Union(self, pKnowledge);
     }
-    pub fn ProjectOntoItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn ProjectOntoItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.ProjectOntoItem(self, pbItemId, ppKnowledgeOut);
     }
-    pub fn ProjectOntoChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn ProjectOntoChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, ppKnowledgeOut: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.ProjectOntoChangeUnit(self, pbItemId, pbChangeUnitId, ppKnowledgeOut);
     }
-    pub fn ProjectOntoRange(self: *const ISyncKnowledge, psrngSyncRange: ?*const SYNC_RANGE, ppKnowledgeOut: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn ProjectOntoRange(self: *const ISyncKnowledge, psrngSyncRange: ?*const SYNC_RANGE, ppKnowledgeOut: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.ProjectOntoRange(self, psrngSyncRange, ppKnowledgeOut);
     }
-    pub fn ExcludeItem(self: *const ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
+    pub fn ExcludeItem(self: *const ISyncKnowledge, pbItemId: ?*const u8) HRESULT {
         return self.vtable.ExcludeItem(self, pbItemId);
     }
-    pub fn ExcludeChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
+    pub fn ExcludeChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) HRESULT {
         return self.vtable.ExcludeChangeUnit(self, pbItemId, pbChangeUnitId);
     }
-    pub fn ContainsKnowledge(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn ContainsKnowledge(self: *const ISyncKnowledge, pKnowledge: ?*ISyncKnowledge) HRESULT {
         return self.vtable.ContainsKnowledge(self, pKnowledge);
     }
-    pub fn FindMinTickCountForReplica(self: *const ISyncKnowledge, pbReplicaId: ?*const u8, pullReplicaTickCount: ?*u64) callconv(.Inline) HRESULT {
+    pub fn FindMinTickCountForReplica(self: *const ISyncKnowledge, pbReplicaId: ?*const u8, pullReplicaTickCount: ?*u64) HRESULT {
         return self.vtable.FindMinTickCountForReplica(self, pbReplicaId, pullReplicaTickCount);
     }
-    pub fn GetRangeExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetRangeExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.GetRangeExceptions(self, riid, ppUnk);
     }
-    pub fn GetSingleItemExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetSingleItemExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.GetSingleItemExceptions(self, riid, ppUnk);
     }
-    pub fn GetChangeUnitExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnitExceptions(self: *const ISyncKnowledge, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.GetChangeUnitExceptions(self, riid, ppUnk);
     }
-    pub fn FindClockVectorForItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FindClockVectorForItem(self: *const ISyncKnowledge, pbItemId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.FindClockVectorForItem(self, pbItemId, riid, ppUnk);
     }
-    pub fn FindClockVectorForChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn FindClockVectorForChangeUnit(self: *const ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, riid: ?*const Guid, ppUnk: ?*?*anyopaque) HRESULT {
         return self.vtable.FindClockVectorForChangeUnit(self, pbItemId, pbChangeUnitId, riid, ppUnk);
     }
-    pub fn GetVersion(self: *const ISyncKnowledge, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVersion(self: *const ISyncKnowledge, pdwVersion: ?*u32) HRESULT {
         return self.vtable.GetVersion(self, pdwVersion);
     }
 };
@@ -933,12 +933,12 @@ pub const IForgottenKnowledge = extern union {
             self: *const IForgottenKnowledge,
             pKnowledge: ?*ISyncKnowledge,
             pVersion: ?*const SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncKnowledge: ISyncKnowledge,
     IUnknown: IUnknown,
-    pub fn ForgetToVersion(self: *const IForgottenKnowledge, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn ForgetToVersion(self: *const IForgottenKnowledge, pKnowledge: ?*ISyncKnowledge, pVersion: ?*const SYNC_VERSION) HRESULT {
         return self.vtable.ForgetToVersion(self, pKnowledge, pVersion);
     }
 };
@@ -952,119 +952,119 @@ pub const ISyncKnowledge2 = extern union {
         GetIdParameters: *const fn(
             self: *const ISyncKnowledge2,
             pIdParameters: ?*ID_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProjectOntoColumnSet: *const fn(
             self: *const ISyncKnowledge2,
             ppColumns: ?*const ?*u8,
             count: u32,
             ppiKnowledgeOut: ?*?*ISyncKnowledge2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SerializeWithOptions: *const fn(
             self: *const ISyncKnowledge2,
             targetFormatVersion: SYNC_SERIALIZATION_VERSION,
             dwFlags: u32,
             pbBuffer: ?*u8,
             pdwSerializedSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLowestUncontainedId: *const fn(
             self: *const ISyncKnowledge2,
             piSyncKnowledge: ?*ISyncKnowledge2,
             pbItemId: ?*u8,
             pcbItemIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInspector: *const fn(
             self: *const ISyncKnowledge2,
             riid: ?*const Guid,
             ppiInspector: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinimumSupportedVersion: *const fn(
             self: *const ISyncKnowledge2,
             pVersion: ?*SYNC_SERIALIZATION_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatistics: *const fn(
             self: *const ISyncKnowledge2,
             which: SYNC_STATISTICS,
             pValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContainsKnowledgeForItem: *const fn(
             self: *const ISyncKnowledge2,
             pKnowledge: ?*ISyncKnowledge,
             pbItemId: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ContainsKnowledgeForChangeUnit: *const fn(
             self: *const ISyncKnowledge2,
             pKnowledge: ?*ISyncKnowledge,
             pbItemId: ?*const u8,
             pbChangeUnitId: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProjectOntoKnowledgeWithPrerequisite: *const fn(
             self: *const ISyncKnowledge2,
             pPrerequisiteKnowledge: ?*ISyncKnowledge,
             pTemplateKnowledge: ?*ISyncKnowledge,
             ppProjectedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Complement: *const fn(
             self: *const ISyncKnowledge2,
             pSyncKnowledge: ?*ISyncKnowledge,
             ppComplementedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IntersectsWithKnowledge: *const fn(
             self: *const ISyncKnowledge2,
             pSyncKnowledge: ?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKnowledgeCookie: *const fn(
             self: *const ISyncKnowledge2,
             ppKnowledgeCookie: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompareToKnowledgeCookie: *const fn(
             self: *const ISyncKnowledge2,
             pKnowledgeCookie: ?*IUnknown,
             pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncKnowledge: ISyncKnowledge,
     IUnknown: IUnknown,
-    pub fn GetIdParameters(self: *const ISyncKnowledge2, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn GetIdParameters(self: *const ISyncKnowledge2, pIdParameters: ?*ID_PARAMETERS) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
-    pub fn ProjectOntoColumnSet(self: *const ISyncKnowledge2, ppColumns: ?*const ?*u8, count: u32, ppiKnowledgeOut: ?*?*ISyncKnowledge2) callconv(.Inline) HRESULT {
+    pub fn ProjectOntoColumnSet(self: *const ISyncKnowledge2, ppColumns: ?*const ?*u8, count: u32, ppiKnowledgeOut: ?*?*ISyncKnowledge2) HRESULT {
         return self.vtable.ProjectOntoColumnSet(self, ppColumns, count, ppiKnowledgeOut);
     }
-    pub fn SerializeWithOptions(self: *const ISyncKnowledge2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SerializeWithOptions(self: *const ISyncKnowledge2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) HRESULT {
         return self.vtable.SerializeWithOptions(self, targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
     }
-    pub fn GetLowestUncontainedId(self: *const ISyncKnowledge2, piSyncKnowledge: ?*ISyncKnowledge2, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLowestUncontainedId(self: *const ISyncKnowledge2, piSyncKnowledge: ?*ISyncKnowledge2, pbItemId: ?*u8, pcbItemIdSize: ?*u32) HRESULT {
         return self.vtable.GetLowestUncontainedId(self, piSyncKnowledge, pbItemId, pcbItemIdSize);
     }
-    pub fn GetInspector(self: *const ISyncKnowledge2, riid: ?*const Guid, ppiInspector: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetInspector(self: *const ISyncKnowledge2, riid: ?*const Guid, ppiInspector: ?*?*anyopaque) HRESULT {
         return self.vtable.GetInspector(self, riid, ppiInspector);
     }
-    pub fn GetMinimumSupportedVersion(self: *const ISyncKnowledge2, pVersion: ?*SYNC_SERIALIZATION_VERSION) callconv(.Inline) HRESULT {
+    pub fn GetMinimumSupportedVersion(self: *const ISyncKnowledge2, pVersion: ?*SYNC_SERIALIZATION_VERSION) HRESULT {
         return self.vtable.GetMinimumSupportedVersion(self, pVersion);
     }
-    pub fn GetStatistics(self: *const ISyncKnowledge2, which: SYNC_STATISTICS, pValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatistics(self: *const ISyncKnowledge2, which: SYNC_STATISTICS, pValue: ?*u32) HRESULT {
         return self.vtable.GetStatistics(self, which, pValue);
     }
-    pub fn ContainsKnowledgeForItem(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8) callconv(.Inline) HRESULT {
+    pub fn ContainsKnowledgeForItem(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8) HRESULT {
         return self.vtable.ContainsKnowledgeForItem(self, pKnowledge, pbItemId);
     }
-    pub fn ContainsKnowledgeForChangeUnit(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) callconv(.Inline) HRESULT {
+    pub fn ContainsKnowledgeForChangeUnit(self: *const ISyncKnowledge2, pKnowledge: ?*ISyncKnowledge, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8) HRESULT {
         return self.vtable.ContainsKnowledgeForChangeUnit(self, pKnowledge, pbItemId, pbChangeUnitId);
     }
-    pub fn ProjectOntoKnowledgeWithPrerequisite(self: *const ISyncKnowledge2, pPrerequisiteKnowledge: ?*ISyncKnowledge, pTemplateKnowledge: ?*ISyncKnowledge, ppProjectedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn ProjectOntoKnowledgeWithPrerequisite(self: *const ISyncKnowledge2, pPrerequisiteKnowledge: ?*ISyncKnowledge, pTemplateKnowledge: ?*ISyncKnowledge, ppProjectedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.ProjectOntoKnowledgeWithPrerequisite(self, pPrerequisiteKnowledge, pTemplateKnowledge, ppProjectedKnowledge);
     }
-    pub fn Complement(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge, ppComplementedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn Complement(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge, ppComplementedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.Complement(self, pSyncKnowledge, ppComplementedKnowledge);
     }
-    pub fn IntersectsWithKnowledge(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn IntersectsWithKnowledge(self: *const ISyncKnowledge2, pSyncKnowledge: ?*ISyncKnowledge) HRESULT {
         return self.vtable.IntersectsWithKnowledge(self, pSyncKnowledge);
     }
-    pub fn GetKnowledgeCookie(self: *const ISyncKnowledge2, ppKnowledgeCookie: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetKnowledgeCookie(self: *const ISyncKnowledge2, ppKnowledgeCookie: ?*?*IUnknown) HRESULT {
         return self.vtable.GetKnowledgeCookie(self, ppKnowledgeCookie);
     }
-    pub fn CompareToKnowledgeCookie(self: *const ISyncKnowledge2, pKnowledgeCookie: ?*IUnknown, pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT) callconv(.Inline) HRESULT {
+    pub fn CompareToKnowledgeCookie(self: *const ISyncKnowledge2, pKnowledgeCookie: ?*IUnknown, pResult: ?*KNOWLEDGE_COOKIE_COMPARISON_RESULT) HRESULT {
         return self.vtable.CompareToKnowledgeCookie(self, pKnowledgeCookie, pResult);
     }
 };
@@ -1079,27 +1079,27 @@ pub const IRecoverableErrorData = extern union {
             self: *const IRecoverableErrorData,
             pcszItemDisplayName: ?[*:0]const u16,
             pcszErrorDescription: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemDisplayName: *const fn(
             self: *const IRecoverableErrorData,
             pszItemDisplayName: ?PWSTR,
             pcchItemDisplayName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorDescription: *const fn(
             self: *const IRecoverableErrorData,
             pszErrorDescription: ?PWSTR,
             pcchErrorDescription: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IRecoverableErrorData, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IRecoverableErrorData, pcszItemDisplayName: ?[*:0]const u16, pcszErrorDescription: ?[*:0]const u16) HRESULT {
         return self.vtable.Initialize(self, pcszItemDisplayName, pcszErrorDescription);
     }
-    pub fn GetItemDisplayName(self: *const IRecoverableErrorData, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemDisplayName(self: *const IRecoverableErrorData, pszItemDisplayName: ?PWSTR, pcchItemDisplayName: ?*u32) HRESULT {
         return self.vtable.GetItemDisplayName(self, pszItemDisplayName, pcchItemDisplayName);
     }
-    pub fn GetErrorDescription(self: *const IRecoverableErrorData, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetErrorDescription(self: *const IRecoverableErrorData, pszErrorDescription: ?PWSTR, pcchErrorDescription: ?*u32) HRESULT {
         return self.vtable.GetErrorDescription(self, pszErrorDescription, pcchErrorDescription);
     }
 };
@@ -1113,42 +1113,42 @@ pub const IRecoverableError = extern union {
         GetStage: *const fn(
             self: *const IRecoverableError,
             pStage: ?*SYNC_PROGRESS_STAGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProvider: *const fn(
             self: *const IRecoverableError,
             pProviderRole: ?*SYNC_PROVIDER_ROLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeWithRecoverableError: *const fn(
             self: *const IRecoverableError,
             ppChangeWithRecoverableError: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecoverableErrorDataForChange: *const fn(
             self: *const IRecoverableError,
             phrError: ?*HRESULT,
             ppErrorData: ?*?*IRecoverableErrorData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecoverableErrorDataForChangeUnit: *const fn(
             self: *const IRecoverableError,
             pChangeUnit: ?*ISyncChangeUnit,
             phrError: ?*HRESULT,
             ppErrorData: ?*?*IRecoverableErrorData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStage(self: *const IRecoverableError, pStage: ?*SYNC_PROGRESS_STAGE) callconv(.Inline) HRESULT {
+    pub fn GetStage(self: *const IRecoverableError, pStage: ?*SYNC_PROGRESS_STAGE) HRESULT {
         return self.vtable.GetStage(self, pStage);
     }
-    pub fn GetProvider(self: *const IRecoverableError, pProviderRole: ?*SYNC_PROVIDER_ROLE) callconv(.Inline) HRESULT {
+    pub fn GetProvider(self: *const IRecoverableError, pProviderRole: ?*SYNC_PROVIDER_ROLE) HRESULT {
         return self.vtable.GetProvider(self, pProviderRole);
     }
-    pub fn GetChangeWithRecoverableError(self: *const IRecoverableError, ppChangeWithRecoverableError: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetChangeWithRecoverableError(self: *const IRecoverableError, ppChangeWithRecoverableError: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetChangeWithRecoverableError(self, ppChangeWithRecoverableError);
     }
-    pub fn GetRecoverableErrorDataForChange(self: *const IRecoverableError, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+    pub fn GetRecoverableErrorDataForChange(self: *const IRecoverableError, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) HRESULT {
         return self.vtable.GetRecoverableErrorDataForChange(self, phrError, ppErrorData);
     }
-    pub fn GetRecoverableErrorDataForChangeUnit(self: *const IRecoverableError, pChangeUnit: ?*ISyncChangeUnit, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+    pub fn GetRecoverableErrorDataForChangeUnit(self: *const IRecoverableError, pChangeUnit: ?*ISyncChangeUnit, phrError: ?*HRESULT, ppErrorData: ?*?*IRecoverableErrorData) HRESULT {
         return self.vtable.GetRecoverableErrorDataForChangeUnit(self, pChangeUnit, phrError, ppErrorData);
     }
 };
@@ -1162,62 +1162,62 @@ pub const IChangeConflict = extern union {
         GetDestinationProviderConflictingChange: *const fn(
             self: *const IChangeConflict,
             ppConflictingChange: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceProviderConflictingChange: *const fn(
             self: *const IChangeConflict,
             ppConflictingChange: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDestinationProviderConflictingData: *const fn(
             self: *const IChangeConflict,
             ppConflictingData: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceProviderConflictingData: *const fn(
             self: *const IChangeConflict,
             ppConflictingData: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResolveActionForChange: *const fn(
             self: *const IChangeConflict,
             pResolveAction: ?*SYNC_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResolveActionForChange: *const fn(
             self: *const IChangeConflict,
             resolveAction: SYNC_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResolveActionForChangeUnit: *const fn(
             self: *const IChangeConflict,
             pChangeUnit: ?*ISyncChangeUnit,
             pResolveAction: ?*SYNC_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetResolveActionForChangeUnit: *const fn(
             self: *const IChangeConflict,
             pChangeUnit: ?*ISyncChangeUnit,
             resolveAction: SYNC_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDestinationProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetDestinationProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetDestinationProviderConflictingChange(self, ppConflictingChange);
     }
-    pub fn GetSourceProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetSourceProviderConflictingChange(self: *const IChangeConflict, ppConflictingChange: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetSourceProviderConflictingChange(self, ppConflictingChange);
     }
-    pub fn GetDestinationProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetDestinationProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) HRESULT {
         return self.vtable.GetDestinationProviderConflictingData(self, ppConflictingData);
     }
-    pub fn GetSourceProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetSourceProviderConflictingData(self: *const IChangeConflict, ppConflictingData: ?*?*IUnknown) HRESULT {
         return self.vtable.GetSourceProviderConflictingData(self, ppConflictingData);
     }
-    pub fn GetResolveActionForChange(self: *const IChangeConflict, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn GetResolveActionForChange(self: *const IChangeConflict, pResolveAction: ?*SYNC_RESOLVE_ACTION) HRESULT {
         return self.vtable.GetResolveActionForChange(self, pResolveAction);
     }
-    pub fn SetResolveActionForChange(self: *const IChangeConflict, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn SetResolveActionForChange(self: *const IChangeConflict, resolveAction: SYNC_RESOLVE_ACTION) HRESULT {
         return self.vtable.SetResolveActionForChange(self, resolveAction);
     }
-    pub fn GetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, pResolveAction: ?*SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn GetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, pResolveAction: ?*SYNC_RESOLVE_ACTION) HRESULT {
         return self.vtable.GetResolveActionForChangeUnit(self, pChangeUnit, pResolveAction);
     }
-    pub fn SetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn SetResolveActionForChangeUnit(self: *const IChangeConflict, pChangeUnit: ?*ISyncChangeUnit, resolveAction: SYNC_RESOLVE_ACTION) HRESULT {
         return self.vtable.SetResolveActionForChangeUnit(self, pChangeUnit, resolveAction);
     }
 };
@@ -1230,89 +1230,89 @@ pub const IConstraintConflict = extern union {
         GetDestinationProviderConflictingChange: *const fn(
             self: *const IConstraintConflict,
             ppConflictingChange: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceProviderConflictingChange: *const fn(
             self: *const IConstraintConflict,
             ppConflictingChange: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDestinationProviderOriginalChange: *const fn(
             self: *const IConstraintConflict,
             ppOriginalChange: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDestinationProviderConflictingData: *const fn(
             self: *const IConstraintConflict,
             ppConflictingData: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceProviderConflictingData: *const fn(
             self: *const IConstraintConflict,
             ppConflictingData: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDestinationProviderOriginalData: *const fn(
             self: *const IConstraintConflict,
             ppOriginalData: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstraintResolveActionForChange: *const fn(
             self: *const IConstraintConflict,
             pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConstraintResolveActionForChange: *const fn(
             self: *const IConstraintConflict,
             constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstraintResolveActionForChangeUnit: *const fn(
             self: *const IConstraintConflict,
             pChangeUnit: ?*ISyncChangeUnit,
             pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConstraintResolveActionForChangeUnit: *const fn(
             self: *const IConstraintConflict,
             pChangeUnit: ?*ISyncChangeUnit,
             constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConstraintConflictReason: *const fn(
             self: *const IConstraintConflict,
             pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsTemporary: *const fn(
             self: *const IConstraintConflict,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDestinationProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetDestinationProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetDestinationProviderConflictingChange(self, ppConflictingChange);
     }
-    pub fn GetSourceProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetSourceProviderConflictingChange(self: *const IConstraintConflict, ppConflictingChange: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetSourceProviderConflictingChange(self, ppConflictingChange);
     }
-    pub fn GetDestinationProviderOriginalChange(self: *const IConstraintConflict, ppOriginalChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetDestinationProviderOriginalChange(self: *const IConstraintConflict, ppOriginalChange: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetDestinationProviderOriginalChange(self, ppOriginalChange);
     }
-    pub fn GetDestinationProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetDestinationProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) HRESULT {
         return self.vtable.GetDestinationProviderConflictingData(self, ppConflictingData);
     }
-    pub fn GetSourceProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetSourceProviderConflictingData(self: *const IConstraintConflict, ppConflictingData: ?*?*IUnknown) HRESULT {
         return self.vtable.GetSourceProviderConflictingData(self, ppConflictingData);
     }
-    pub fn GetDestinationProviderOriginalData(self: *const IConstraintConflict, ppOriginalData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetDestinationProviderOriginalData(self: *const IConstraintConflict, ppOriginalData: ?*?*IUnknown) HRESULT {
         return self.vtable.GetDestinationProviderOriginalData(self, ppOriginalData);
     }
-    pub fn GetConstraintResolveActionForChange(self: *const IConstraintConflict, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn GetConstraintResolveActionForChange(self: *const IConstraintConflict, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
         return self.vtable.GetConstraintResolveActionForChange(self, pConstraintResolveAction);
     }
-    pub fn SetConstraintResolveActionForChange(self: *const IConstraintConflict, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn SetConstraintResolveActionForChange(self: *const IConstraintConflict, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
         return self.vtable.SetConstraintResolveActionForChange(self, constraintResolveAction);
     }
-    pub fn GetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn GetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, pConstraintResolveAction: ?*SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
         return self.vtable.GetConstraintResolveActionForChangeUnit(self, pChangeUnit, pConstraintResolveAction);
     }
-    pub fn SetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) callconv(.Inline) HRESULT {
+    pub fn SetConstraintResolveActionForChangeUnit(self: *const IConstraintConflict, pChangeUnit: ?*ISyncChangeUnit, constraintResolveAction: SYNC_CONSTRAINT_RESOLVE_ACTION) HRESULT {
         return self.vtable.SetConstraintResolveActionForChangeUnit(self, pChangeUnit, constraintResolveAction);
     }
-    pub fn GetConstraintConflictReason(self: *const IConstraintConflict, pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON) callconv(.Inline) HRESULT {
+    pub fn GetConstraintConflictReason(self: *const IConstraintConflict, pConstraintConflictReason: ?*CONSTRAINT_CONFLICT_REASON) HRESULT {
         return self.vtable.GetConstraintConflictReason(self, pConstraintConflictReason);
     }
-    pub fn IsTemporary(self: *const IConstraintConflict) callconv(.Inline) HRESULT {
+    pub fn IsTemporary(self: *const IConstraintConflict) HRESULT {
         return self.vtable.IsTemporary(self);
     }
 };
@@ -1329,39 +1329,39 @@ pub const ISyncCallback = extern union {
             syncStage: SYNC_PROGRESS_STAGE,
             dwCompletedWork: u32,
             dwTotalWork: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnChange: *const fn(
             self: *const ISyncCallback,
             pSyncChange: ?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnConflict: *const fn(
             self: *const ISyncCallback,
             pConflict: ?*IChangeConflict,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnFullEnumerationNeeded: *const fn(
             self: *const ISyncCallback,
             pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnRecoverableError: *const fn(
             self: *const ISyncCallback,
             pRecoverableError: ?*IRecoverableError,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnProgress(self: *const ISyncCallback, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
+    pub fn OnProgress(self: *const ISyncCallback, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) HRESULT {
         return self.vtable.OnProgress(self, provider, syncStage, dwCompletedWork, dwTotalWork);
     }
-    pub fn OnChange(self: *const ISyncCallback, pSyncChange: ?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn OnChange(self: *const ISyncCallback, pSyncChange: ?*ISyncChange) HRESULT {
         return self.vtable.OnChange(self, pSyncChange);
     }
-    pub fn OnConflict(self: *const ISyncCallback, pConflict: ?*IChangeConflict) callconv(.Inline) HRESULT {
+    pub fn OnConflict(self: *const ISyncCallback, pConflict: ?*IChangeConflict) HRESULT {
         return self.vtable.OnConflict(self, pConflict);
     }
-    pub fn OnFullEnumerationNeeded(self: *const ISyncCallback, pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION) callconv(.Inline) HRESULT {
+    pub fn OnFullEnumerationNeeded(self: *const ISyncCallback, pFullEnumerationAction: ?*SYNC_FULL_ENUMERATION_ACTION) HRESULT {
         return self.vtable.OnFullEnumerationNeeded(self, pFullEnumerationAction);
     }
-    pub fn OnRecoverableError(self: *const ISyncCallback, pRecoverableError: ?*IRecoverableError) callconv(.Inline) HRESULT {
+    pub fn OnRecoverableError(self: *const ISyncCallback, pRecoverableError: ?*IRecoverableError) HRESULT {
         return self.vtable.OnRecoverableError(self, pRecoverableError);
     }
 };
@@ -1376,20 +1376,20 @@ pub const ISyncCallback2 = extern union {
             self: *const ISyncCallback2,
             dwChangesApplied: u32,
             dwChangesFailed: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnChangeFailed: *const fn(
             self: *const ISyncCallback2,
             dwChangesApplied: u32,
             dwChangesFailed: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncCallback: ISyncCallback,
     IUnknown: IUnknown,
-    pub fn OnChangeApplied(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
+    pub fn OnChangeApplied(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) HRESULT {
         return self.vtable.OnChangeApplied(self, dwChangesApplied, dwChangesFailed);
     }
-    pub fn OnChangeFailed(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) callconv(.Inline) HRESULT {
+    pub fn OnChangeFailed(self: *const ISyncCallback2, dwChangesApplied: u32, dwChangesFailed: u32) HRESULT {
         return self.vtable.OnChangeFailed(self, dwChangesApplied, dwChangesFailed);
     }
 };
@@ -1402,11 +1402,11 @@ pub const ISyncConstraintCallback = extern union {
         OnConstraintConflict: *const fn(
             self: *const ISyncConstraintCallback,
             pConflict: ?*IConstraintConflict,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnConstraintConflict(self: *const ISyncConstraintCallback, pConflict: ?*IConstraintConflict) callconv(.Inline) HRESULT {
+    pub fn OnConstraintConflict(self: *const ISyncConstraintCallback, pConflict: ?*IConstraintConflict) HRESULT {
         return self.vtable.OnConstraintConflict(self, pConflict);
     }
 };
@@ -1420,11 +1420,11 @@ pub const ISyncProvider = extern union {
         GetIdParameters: *const fn(
             self: *const ISyncProvider,
             pIdParameters: ?*ID_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIdParameters(self: *const ISyncProvider, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn GetIdParameters(self: *const ISyncProvider, pIdParameters: ?*ID_PARAMETERS) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
 };
@@ -1438,60 +1438,60 @@ pub const ISyncSessionState = extern union {
         IsCanceled: *const fn(
             self: *const ISyncSessionState,
             pfIsCanceled: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInfoForChangeApplication: *const fn(
             self: *const ISyncSessionState,
             pbChangeApplierInfo: ?*u8,
             pcbChangeApplierInfo: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadInfoFromChangeApplication: *const fn(
             self: *const ISyncSessionState,
             pbChangeApplierInfo: ?*const u8,
             cbChangeApplierInfo: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForgottenKnowledgeRecoveryRangeStart: *const fn(
             self: *const ISyncSessionState,
             pbRangeStart: ?*u8,
             pcbRangeStart: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetForgottenKnowledgeRecoveryRangeEnd: *const fn(
             self: *const ISyncSessionState,
             pbRangeEnd: ?*u8,
             pcbRangeEnd: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetForgottenKnowledgeRecoveryRange: *const fn(
             self: *const ISyncSessionState,
             pRange: ?*const SYNC_RANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnProgress: *const fn(
             self: *const ISyncSessionState,
             provider: SYNC_PROVIDER_ROLE,
             syncStage: SYNC_PROGRESS_STAGE,
             dwCompletedWork: u32,
             dwTotalWork: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsCanceled(self: *const ISyncSessionState, pfIsCanceled: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsCanceled(self: *const ISyncSessionState, pfIsCanceled: ?*BOOL) HRESULT {
         return self.vtable.IsCanceled(self, pfIsCanceled);
     }
-    pub fn GetInfoForChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*u8, pcbChangeApplierInfo: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetInfoForChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*u8, pcbChangeApplierInfo: ?*u32) HRESULT {
         return self.vtable.GetInfoForChangeApplication(self, pbChangeApplierInfo, pcbChangeApplierInfo);
     }
-    pub fn LoadInfoFromChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*const u8, cbChangeApplierInfo: u32) callconv(.Inline) HRESULT {
+    pub fn LoadInfoFromChangeApplication(self: *const ISyncSessionState, pbChangeApplierInfo: ?*const u8, cbChangeApplierInfo: u32) HRESULT {
         return self.vtable.LoadInfoFromChangeApplication(self, pbChangeApplierInfo, cbChangeApplierInfo);
     }
-    pub fn GetForgottenKnowledgeRecoveryRangeStart(self: *const ISyncSessionState, pbRangeStart: ?*u8, pcbRangeStart: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetForgottenKnowledgeRecoveryRangeStart(self: *const ISyncSessionState, pbRangeStart: ?*u8, pcbRangeStart: ?*u32) HRESULT {
         return self.vtable.GetForgottenKnowledgeRecoveryRangeStart(self, pbRangeStart, pcbRangeStart);
     }
-    pub fn GetForgottenKnowledgeRecoveryRangeEnd(self: *const ISyncSessionState, pbRangeEnd: ?*u8, pcbRangeEnd: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetForgottenKnowledgeRecoveryRangeEnd(self: *const ISyncSessionState, pbRangeEnd: ?*u8, pcbRangeEnd: ?*u32) HRESULT {
         return self.vtable.GetForgottenKnowledgeRecoveryRangeEnd(self, pbRangeEnd, pcbRangeEnd);
     }
-    pub fn SetForgottenKnowledgeRecoveryRange(self: *const ISyncSessionState, pRange: ?*const SYNC_RANGE) callconv(.Inline) HRESULT {
+    pub fn SetForgottenKnowledgeRecoveryRange(self: *const ISyncSessionState, pRange: ?*const SYNC_RANGE) HRESULT {
         return self.vtable.SetForgottenKnowledgeRecoveryRange(self, pRange);
     }
-    pub fn OnProgress(self: *const ISyncSessionState, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) callconv(.Inline) HRESULT {
+    pub fn OnProgress(self: *const ISyncSessionState, provider: SYNC_PROVIDER_ROLE, syncStage: SYNC_PROGRESS_STAGE, dwCompletedWork: u32, dwTotalWork: u32) HRESULT {
         return self.vtable.OnProgress(self, provider, syncStage, dwCompletedWork, dwTotalWork);
     }
 };
@@ -1505,11 +1505,11 @@ pub const ISyncSessionExtendedErrorInfo = extern union {
         GetSyncProviderWithError: *const fn(
             self: *const ISyncSessionExtendedErrorInfo,
             ppProviderWithError: ?*?*ISyncProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSyncProviderWithError(self: *const ISyncSessionExtendedErrorInfo, ppProviderWithError: ?*?*ISyncProvider) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderWithError(self: *const ISyncSessionExtendedErrorInfo, ppProviderWithError: ?*?*ISyncProvider) HRESULT {
         return self.vtable.GetSyncProviderWithError(self, ppProviderWithError);
     }
 };
@@ -1523,19 +1523,19 @@ pub const ISyncSessionState2 = extern union {
         SetProviderWithError: *const fn(
             self: *const ISyncSessionState2,
             fSelf: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSessionErrorStatus: *const fn(
             self: *const ISyncSessionState2,
             phrSessionError: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncSessionState: ISyncSessionState,
     IUnknown: IUnknown,
-    pub fn SetProviderWithError(self: *const ISyncSessionState2, fSelf: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetProviderWithError(self: *const ISyncSessionState2, fSelf: BOOL) HRESULT {
         return self.vtable.SetProviderWithError(self, fSelf);
     }
-    pub fn GetSessionErrorStatus(self: *const ISyncSessionState2, phrSessionError: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn GetSessionErrorStatus(self: *const ISyncSessionState2, phrSessionError: ?*HRESULT) HRESULT {
         return self.vtable.GetSessionErrorStatus(self, phrSessionError);
     }
 };
@@ -1550,11 +1550,11 @@ pub const ISyncFilterInfo = extern union {
             self: *const ISyncFilterInfo,
             pbBuffer: ?*u8,
             pcbBuffer: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Serialize(self: *const ISyncFilterInfo, pbBuffer: ?*u8, pcbBuffer: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const ISyncFilterInfo, pbBuffer: ?*u8, pcbBuffer: ?*u32) HRESULT {
         return self.vtable.Serialize(self, pbBuffer, pcbBuffer);
     }
 };
@@ -1568,12 +1568,12 @@ pub const ISyncFilterInfo2 = extern union {
         GetFlags: *const fn(
             self: *const ISyncFilterInfo2,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
     IUnknown: IUnknown,
-    pub fn GetFlags(self: *const ISyncFilterInfo2, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const ISyncFilterInfo2, pdwFlags: ?*u32) HRESULT {
         return self.vtable.GetFlags(self, pdwFlags);
     }
 };
@@ -1588,28 +1588,28 @@ pub const IChangeUnitListFilterInfo = extern union {
             self: *const IChangeUnitListFilterInfo,
             ppbChangeUnitIds: ?*const ?*u8,
             dwChangeUnitCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnitIdCount: *const fn(
             self: *const IChangeUnitListFilterInfo,
             pdwChangeUnitIdCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnitId: *const fn(
             self: *const IChangeUnitListFilterInfo,
             dwChangeUnitIdIndex: u32,
             pbChangeUnitId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IChangeUnitListFilterInfo, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IChangeUnitListFilterInfo, ppbChangeUnitIds: ?*const ?*u8, dwChangeUnitCount: u32) HRESULT {
         return self.vtable.Initialize(self, ppbChangeUnitIds, dwChangeUnitCount);
     }
-    pub fn GetChangeUnitIdCount(self: *const IChangeUnitListFilterInfo, pdwChangeUnitIdCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnitIdCount(self: *const IChangeUnitListFilterInfo, pdwChangeUnitIdCount: ?*u32) HRESULT {
         return self.vtable.GetChangeUnitIdCount(self, pdwChangeUnitIdCount);
     }
-    pub fn GetChangeUnitId(self: *const IChangeUnitListFilterInfo, dwChangeUnitIdIndex: u32, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnitId(self: *const IChangeUnitListFilterInfo, dwChangeUnitIdIndex: u32, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetChangeUnitId(self, dwChangeUnitIdIndex, pbChangeUnitId, pcbIdSize);
     }
 };
@@ -1622,19 +1622,19 @@ pub const ISyncFilter = extern union {
         IsIdentical: *const fn(
             self: *const ISyncFilter,
             pSyncFilter: ?*ISyncFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ISyncFilter,
             pbSyncFilter: ?*u8,
             pcbSyncFilter: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsIdentical(self: *const ISyncFilter, pSyncFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+    pub fn IsIdentical(self: *const ISyncFilter, pSyncFilter: ?*ISyncFilter) HRESULT {
         return self.vtable.IsIdentical(self, pSyncFilter);
     }
-    pub fn Serialize(self: *const ISyncFilter, pbSyncFilter: ?*u8, pcbSyncFilter: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const ISyncFilter, pbSyncFilter: ?*u8, pcbSyncFilter: ?*u32) HRESULT {
         return self.vtable.Serialize(self, pbSyncFilter, pcbSyncFilter);
     }
 };
@@ -1649,11 +1649,11 @@ pub const ISyncFilterDeserializer = extern union {
             pbSyncFilter: ?*const u8,
             dwCbSyncFilter: u32,
             ppISyncFilter: ?*?*ISyncFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DeserializeSyncFilter(self: *const ISyncFilterDeserializer, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+    pub fn DeserializeSyncFilter(self: *const ISyncFilterDeserializer, pbSyncFilter: ?*const u8, dwCbSyncFilter: u32, ppISyncFilter: ?*?*ISyncFilter) HRESULT {
         return self.vtable.DeserializeSyncFilter(self, pbSyncFilter, dwCbSyncFilter, ppISyncFilter);
     }
 };
@@ -1666,12 +1666,12 @@ pub const ICustomFilterInfo = extern union {
         GetSyncFilter: *const fn(
             self: *const ICustomFilterInfo,
             pISyncFilter: ?*?*ISyncFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
     IUnknown: IUnknown,
-    pub fn GetSyncFilter(self: *const ICustomFilterInfo, pISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+    pub fn GetSyncFilter(self: *const ICustomFilterInfo, pISyncFilter: ?*?*ISyncFilter) HRESULT {
         return self.vtable.GetSyncFilter(self, pISyncFilter);
     }
 };
@@ -1689,27 +1689,27 @@ pub const ICombinedFilterInfo = extern union {
         GetFilterCount: *const fn(
             self: *const ICombinedFilterInfo,
             pdwFilterCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterInfo: *const fn(
             self: *const ICombinedFilterInfo,
             dwFilterIndex: u32,
             ppIFilterInfo: ?*?*ISyncFilterInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterCombinationType: *const fn(
             self: *const ICombinedFilterInfo,
             pFilterCombinationType: ?*FILTER_COMBINATION_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncFilterInfo: ISyncFilterInfo,
     IUnknown: IUnknown,
-    pub fn GetFilterCount(self: *const ICombinedFilterInfo, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFilterCount(self: *const ICombinedFilterInfo, pdwFilterCount: ?*u32) HRESULT {
         return self.vtable.GetFilterCount(self, pdwFilterCount);
     }
-    pub fn GetFilterInfo(self: *const ICombinedFilterInfo, dwFilterIndex: u32, ppIFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
+    pub fn GetFilterInfo(self: *const ICombinedFilterInfo, dwFilterIndex: u32, ppIFilterInfo: ?*?*ISyncFilterInfo) HRESULT {
         return self.vtable.GetFilterInfo(self, dwFilterIndex, ppIFilterInfo);
     }
-    pub fn GetFilterCombinationType(self: *const ICombinedFilterInfo, pFilterCombinationType: ?*FILTER_COMBINATION_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetFilterCombinationType(self: *const ICombinedFilterInfo, pFilterCombinationType: ?*FILTER_COMBINATION_TYPE) HRESULT {
         return self.vtable.GetFilterCombinationType(self, pFilterCombinationType);
     }
 };
@@ -1725,31 +1725,31 @@ pub const IEnumSyncChanges = extern union {
             cChanges: u32,
             ppChange: ?*?*ISyncChange,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSyncChanges,
             cChanges: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSyncChanges,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSyncChanges,
             ppEnum: ?*?*IEnumSyncChanges,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSyncChanges, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSyncChanges, cChanges: u32, ppChange: ?*?*ISyncChange, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cChanges, ppChange, pcFetched);
     }
-    pub fn Skip(self: *const IEnumSyncChanges, cChanges: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSyncChanges, cChanges: u32) HRESULT {
         return self.vtable.Skip(self, cChanges);
     }
-    pub fn Reset(self: *const IEnumSyncChanges) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSyncChanges) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSyncChanges, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSyncChanges, ppEnum: ?*?*IEnumSyncChanges) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -1764,11 +1764,11 @@ pub const ISyncChangeBuilder = extern union {
             self: *const ISyncChangeBuilder,
             pbChangeUnitId: ?*const u8,
             pChangeUnitVersion: ?*const SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddChangeUnitMetadata(self: *const ISyncChangeBuilder, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn AddChangeUnitMetadata(self: *const ISyncChangeBuilder, pbChangeUnitId: ?*const u8, pChangeUnitVersion: ?*const SYNC_VERSION) HRESULT {
         return self.vtable.AddChangeUnitMetadata(self, pbChangeUnitId, pChangeUnitVersion);
     }
 };
@@ -1782,17 +1782,17 @@ pub const IFilterTrackingSyncChangeBuilder = extern union {
             self: *const IFilterTrackingSyncChangeBuilder,
             dwFilterKey: u32,
             pFilterChange: ?*const SYNC_FILTER_CHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllChangeUnitsPresentFlag: *const fn(
             self: *const IFilterTrackingSyncChangeBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddFilterChange(self: *const IFilterTrackingSyncChangeBuilder, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+    pub fn AddFilterChange(self: *const IFilterTrackingSyncChangeBuilder, dwFilterKey: u32, pFilterChange: ?*const SYNC_FILTER_CHANGE) HRESULT {
         return self.vtable.AddFilterChange(self, dwFilterKey, pFilterChange);
     }
-    pub fn SetAllChangeUnitsPresentFlag(self: *const IFilterTrackingSyncChangeBuilder) callconv(.Inline) HRESULT {
+    pub fn SetAllChangeUnitsPresentFlag(self: *const IFilterTrackingSyncChangeBuilder) HRESULT {
         return self.vtable.SetAllChangeUnitsPresentFlag(self);
     }
 };
@@ -1806,28 +1806,28 @@ pub const ISyncChangeBatchBase = extern union {
         GetChangeEnumerator: *const fn(
             self: *const ISyncChangeBatchBase,
             ppEnum: ?*?*IEnumSyncChanges,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIsLastBatch: *const fn(
             self: *const ISyncChangeBatchBase,
             pfLastBatch: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWorkEstimateForBatch: *const fn(
             self: *const ISyncChangeBatchBase,
             pdwWorkForBatch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRemainingWorkEstimateForSession: *const fn(
             self: *const ISyncChangeBatchBase,
             pdwRemainingWorkForSession: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BeginOrderedGroup: *const fn(
             self: *const ISyncChangeBatchBase,
             pbLowerBound: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndOrderedGroup: *const fn(
             self: *const ISyncChangeBatchBase,
             pbUpperBound: ?*const u8,
             pMadeWithKnowledge: ?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItemMetadataToGroup: *const fn(
             self: *const ISyncChangeBatchBase,
             pbOwnerReplicaId: ?*const u8,
@@ -1837,78 +1837,78 @@ pub const ISyncChangeBatchBase = extern union {
             dwFlags: u32,
             dwWorkForChange: u32,
             ppChangeBuilder: ?*?*ISyncChangeBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedKnowledge: *const fn(
             self: *const ISyncChangeBatchBase,
             ppLearnedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrerequisiteKnowledge: *const fn(
             self: *const ISyncChangeBatchBase,
             ppPrerequisteKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSourceForgottenKnowledge: *const fn(
             self: *const ISyncChangeBatchBase,
             ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLastBatch: *const fn(
             self: *const ISyncChangeBatchBase,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWorkEstimateForBatch: *const fn(
             self: *const ISyncChangeBatchBase,
             dwWorkForBatch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRemainingWorkEstimateForSession: *const fn(
             self: *const ISyncChangeBatchBase,
             dwRemainingWorkForSession: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ISyncChangeBatchBase,
             pbChangeBatch: ?*u8,
             pcbChangeBatch: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetChangeEnumerator(self: *const ISyncChangeBatchBase, ppEnum: ?*?*IEnumSyncChanges) callconv(.Inline) HRESULT {
+    pub fn GetChangeEnumerator(self: *const ISyncChangeBatchBase, ppEnum: ?*?*IEnumSyncChanges) HRESULT {
         return self.vtable.GetChangeEnumerator(self, ppEnum);
     }
-    pub fn GetIsLastBatch(self: *const ISyncChangeBatchBase, pfLastBatch: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetIsLastBatch(self: *const ISyncChangeBatchBase, pfLastBatch: ?*BOOL) HRESULT {
         return self.vtable.GetIsLastBatch(self, pfLastBatch);
     }
-    pub fn GetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, pdwWorkForBatch: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, pdwWorkForBatch: ?*u32) HRESULT {
         return self.vtable.GetWorkEstimateForBatch(self, pdwWorkForBatch);
     }
-    pub fn GetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, pdwRemainingWorkForSession: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, pdwRemainingWorkForSession: ?*u32) HRESULT {
         return self.vtable.GetRemainingWorkEstimateForSession(self, pdwRemainingWorkForSession);
     }
-    pub fn BeginOrderedGroup(self: *const ISyncChangeBatchBase, pbLowerBound: ?*const u8) callconv(.Inline) HRESULT {
+    pub fn BeginOrderedGroup(self: *const ISyncChangeBatchBase, pbLowerBound: ?*const u8) HRESULT {
         return self.vtable.BeginOrderedGroup(self, pbLowerBound);
     }
-    pub fn EndOrderedGroup(self: *const ISyncChangeBatchBase, pbUpperBound: ?*const u8, pMadeWithKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn EndOrderedGroup(self: *const ISyncChangeBatchBase, pbUpperBound: ?*const u8, pMadeWithKnowledge: ?*ISyncKnowledge) HRESULT {
         return self.vtable.EndOrderedGroup(self, pbUpperBound, pMadeWithKnowledge);
     }
-    pub fn AddItemMetadataToGroup(self: *const ISyncChangeBatchBase, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+    pub fn AddItemMetadataToGroup(self: *const ISyncChangeBatchBase, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
         return self.vtable.AddItemMetadataToGroup(self, pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, ppChangeBuilder);
     }
-    pub fn GetLearnedKnowledge(self: *const ISyncChangeBatchBase, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedKnowledge(self: *const ISyncChangeBatchBase, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedKnowledge(self, ppLearnedKnowledge);
     }
-    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeBatchBase, ppPrerequisteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeBatchBase, ppPrerequisteKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetPrerequisiteKnowledge(self, ppPrerequisteKnowledge);
     }
-    pub fn GetSourceForgottenKnowledge(self: *const ISyncChangeBatchBase, ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetSourceForgottenKnowledge(self: *const ISyncChangeBatchBase, ppSourceForgottenKnowledge: ?*?*IForgottenKnowledge) HRESULT {
         return self.vtable.GetSourceForgottenKnowledge(self, ppSourceForgottenKnowledge);
     }
-    pub fn SetLastBatch(self: *const ISyncChangeBatchBase) callconv(.Inline) HRESULT {
+    pub fn SetLastBatch(self: *const ISyncChangeBatchBase) HRESULT {
         return self.vtable.SetLastBatch(self);
     }
-    pub fn SetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, dwWorkForBatch: u32) callconv(.Inline) HRESULT {
+    pub fn SetWorkEstimateForBatch(self: *const ISyncChangeBatchBase, dwWorkForBatch: u32) HRESULT {
         return self.vtable.SetWorkEstimateForBatch(self, dwWorkForBatch);
     }
-    pub fn SetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, dwRemainingWorkForSession: u32) callconv(.Inline) HRESULT {
+    pub fn SetRemainingWorkEstimateForSession(self: *const ISyncChangeBatchBase, dwRemainingWorkForSession: u32) HRESULT {
         return self.vtable.SetRemainingWorkEstimateForSession(self, dwRemainingWorkForSession);
     }
-    pub fn Serialize(self: *const ISyncChangeBatchBase, pbChangeBatch: ?*u8, pcbChangeBatch: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const ISyncChangeBatchBase, pbChangeBatch: ?*u8, pcbChangeBatch: ?*u32) HRESULT {
         return self.vtable.Serialize(self, pbChangeBatch, pcbChangeBatch);
     }
 };
@@ -1921,12 +1921,12 @@ pub const ISyncChangeBatch = extern union {
         base: ISyncChangeBatchBase.VTable,
         BeginUnorderedGroup: *const fn(
             self: *const ISyncChangeBatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndUnorderedGroup: *const fn(
             self: *const ISyncChangeBatch,
             pMadeWithKnowledge: ?*ISyncKnowledge,
             fAllChangesForKnowledge: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddLoggedConflict: *const fn(
             self: *const ISyncChangeBatch,
             pbOwnerReplicaId: ?*const u8,
@@ -1937,18 +1937,18 @@ pub const ISyncChangeBatch = extern union {
             dwWorkForChange: u32,
             pConflictKnowledge: ?*ISyncKnowledge,
             ppChangeBuilder: ?*?*ISyncChangeBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
     IUnknown: IUnknown,
-    pub fn BeginUnorderedGroup(self: *const ISyncChangeBatch) callconv(.Inline) HRESULT {
+    pub fn BeginUnorderedGroup(self: *const ISyncChangeBatch) HRESULT {
         return self.vtable.BeginUnorderedGroup(self);
     }
-    pub fn EndUnorderedGroup(self: *const ISyncChangeBatch, pMadeWithKnowledge: ?*ISyncKnowledge, fAllChangesForKnowledge: BOOL) callconv(.Inline) HRESULT {
+    pub fn EndUnorderedGroup(self: *const ISyncChangeBatch, pMadeWithKnowledge: ?*ISyncKnowledge, fAllChangesForKnowledge: BOOL) HRESULT {
         return self.vtable.EndUnorderedGroup(self, pMadeWithKnowledge, fAllChangesForKnowledge);
     }
-    pub fn AddLoggedConflict(self: *const ISyncChangeBatch, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+    pub fn AddLoggedConflict(self: *const ISyncChangeBatch, pbOwnerReplicaId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwFlags: u32, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
         return self.vtable.AddLoggedConflict(self, pbOwnerReplicaId, pbItemId, pChangeVersion, pCreationVersion, dwFlags, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
     }
 };
@@ -1962,28 +1962,28 @@ pub const ISyncFullEnumerationChangeBatch = extern union {
         GetLearnedKnowledgeAfterRecoveryComplete: *const fn(
             self: *const ISyncFullEnumerationChangeBatch,
             ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClosedLowerBoundItemId: *const fn(
             self: *const ISyncFullEnumerationChangeBatch,
             pbClosedLowerBoundItemId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClosedUpperBoundItemId: *const fn(
             self: *const ISyncFullEnumerationChangeBatch,
             pbClosedUpperBoundItemId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
     IUnknown: IUnknown,
-    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChangeBatch, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChangeBatch, ppLearnedKnowledgeAfterRecoveryComplete: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedKnowledgeAfterRecoveryComplete(self, ppLearnedKnowledgeAfterRecoveryComplete);
     }
-    pub fn GetClosedLowerBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedLowerBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClosedLowerBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedLowerBoundItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetClosedLowerBoundItemId(self, pbClosedLowerBoundItemId, pcbIdSize);
     }
-    pub fn GetClosedUpperBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedUpperBoundItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClosedUpperBoundItemId(self: *const ISyncFullEnumerationChangeBatch, pbClosedUpperBoundItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetClosedUpperBoundItemId(self, pbClosedUpperBoundItemId, pcbIdSize);
     }
 };
@@ -1997,27 +1997,27 @@ pub const ISyncChangeBatchWithPrerequisite = extern union {
         SetPrerequisiteKnowledge: *const fn(
             self: *const ISyncChangeBatchWithPrerequisite,
             pPrerequisiteKnowledge: ?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedKnowledgeWithPrerequisite: *const fn(
             self: *const ISyncChangeBatchWithPrerequisite,
             pDestinationKnowledge: ?*ISyncKnowledge,
             ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedForgottenKnowledge: *const fn(
             self: *const ISyncChangeBatchWithPrerequisite,
             ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
     IUnknown: IUnknown,
-    pub fn SetPrerequisiteKnowledge(self: *const ISyncChangeBatchWithPrerequisite, pPrerequisiteKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn SetPrerequisiteKnowledge(self: *const ISyncChangeBatchWithPrerequisite, pPrerequisiteKnowledge: ?*ISyncKnowledge) HRESULT {
         return self.vtable.SetPrerequisiteKnowledge(self, pPrerequisiteKnowledge);
     }
-    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeBatchWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeBatchWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedWithPrerequisiteKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedKnowledgeWithPrerequisite(self, pDestinationKnowledge, ppLearnedWithPrerequisiteKnowledge);
     }
-    pub fn GetLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithPrerequisite, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithPrerequisite, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) HRESULT {
         return self.vtable.GetLearnedForgottenKnowledge(self, ppLearnedForgottenKnowledge);
     }
 };
@@ -2034,12 +2034,12 @@ pub const ISyncChangeBatchBase2 = extern union {
             dwFlags: u32,
             pbBuffer: ?*u8,
             pdwSerializedSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
     IUnknown: IUnknown,
-    pub fn SerializeWithOptions(self: *const ISyncChangeBatchBase2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SerializeWithOptions(self: *const ISyncChangeBatchBase2, targetFormatVersion: SYNC_SERIALIZATION_VERSION, dwFlags: u32, pbBuffer: ?*u8, pdwSerializedSize: ?*u32) HRESULT {
         return self.vtable.SerializeWithOptions(self, targetFormatVersion, dwFlags, pbBuffer, pdwSerializedSize);
     }
 };
@@ -2053,33 +2053,33 @@ pub const ISyncChangeBatchAdvanced = extern union {
         GetFilterInfo: *const fn(
             self: *const ISyncChangeBatchAdvanced,
             ppFilterInfo: ?*?*ISyncFilterInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertFullEnumerationChangeBatchToRegularChangeBatch: *const fn(
             self: *const ISyncChangeBatchAdvanced,
             ppChangeBatch: ?*?*ISyncChangeBatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUpperBoundItemId: *const fn(
             self: *const ISyncChangeBatchAdvanced,
             pbItemId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBatchLevelKnowledgeShouldBeApplied: *const fn(
             self: *const ISyncChangeBatchAdvanced,
             pfBatchKnowledgeShouldBeApplied: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFilterInfo(self: *const ISyncChangeBatchAdvanced, ppFilterInfo: ?*?*ISyncFilterInfo) callconv(.Inline) HRESULT {
+    pub fn GetFilterInfo(self: *const ISyncChangeBatchAdvanced, ppFilterInfo: ?*?*ISyncFilterInfo) HRESULT {
         return self.vtable.GetFilterInfo(self, ppFilterInfo);
     }
-    pub fn ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const ISyncChangeBatchAdvanced, ppChangeBatch: ?*?*ISyncChangeBatch) callconv(.Inline) HRESULT {
+    pub fn ConvertFullEnumerationChangeBatchToRegularChangeBatch(self: *const ISyncChangeBatchAdvanced, ppChangeBatch: ?*?*ISyncChangeBatch) HRESULT {
         return self.vtable.ConvertFullEnumerationChangeBatchToRegularChangeBatch(self, ppChangeBatch);
     }
-    pub fn GetUpperBoundItemId(self: *const ISyncChangeBatchAdvanced, pbItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUpperBoundItemId(self: *const ISyncChangeBatchAdvanced, pbItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetUpperBoundItemId(self, pbItemId, pcbIdSize);
     }
-    pub fn GetBatchLevelKnowledgeShouldBeApplied(self: *const ISyncChangeBatchAdvanced, pfBatchKnowledgeShouldBeApplied: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBatchLevelKnowledgeShouldBeApplied(self: *const ISyncChangeBatchAdvanced, pfBatchKnowledgeShouldBeApplied: ?*BOOL) HRESULT {
         return self.vtable.GetBatchLevelKnowledgeShouldBeApplied(self, pfBatchKnowledgeShouldBeApplied);
     }
 };
@@ -2098,7 +2098,7 @@ pub const ISyncChangeBatch2 = extern union {
             pCreationVersion: ?*const SYNC_VERSION,
             dwWorkForChange: u32,
             ppChangeBuilder: ?*?*ISyncChangeBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddMergeTombstoneLoggedConflict: *const fn(
             self: *const ISyncChangeBatch2,
             pbOwnerReplicaId: ?*const u8,
@@ -2109,16 +2109,16 @@ pub const ISyncChangeBatch2 = extern union {
             dwWorkForChange: u32,
             pConflictKnowledge: ?*ISyncKnowledge,
             ppChangeBuilder: ?*?*ISyncChangeBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncChangeBatch: ISyncChangeBatch,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
     IUnknown: IUnknown,
-    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
         return self.vtable.AddMergeTombstoneMetadataToGroup(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
     }
-    pub fn AddMergeTombstoneLoggedConflict(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+    pub fn AddMergeTombstoneLoggedConflict(self: *const ISyncChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, pConflictKnowledge: ?*ISyncKnowledge, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
         return self.vtable.AddMergeTombstoneLoggedConflict(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, pConflictKnowledge, ppChangeBuilder);
     }
 };
@@ -2137,13 +2137,13 @@ pub const ISyncFullEnumerationChangeBatch2 = extern union {
             pCreationVersion: ?*const SYNC_VERSION,
             dwWorkForChange: u32,
             ppChangeBuilder: ?*?*ISyncChangeBuilder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncFullEnumerationChangeBatch: ISyncFullEnumerationChangeBatch,
     ISyncChangeBatchBase: ISyncChangeBatchBase,
     IUnknown: IUnknown,
-    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncFullEnumerationChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) callconv(.Inline) HRESULT {
+    pub fn AddMergeTombstoneMetadataToGroup(self: *const ISyncFullEnumerationChangeBatch2, pbOwnerReplicaId: ?*const u8, pbWinnerItemId: ?*const u8, pbItemId: ?*const u8, pChangeVersion: ?*const SYNC_VERSION, pCreationVersion: ?*const SYNC_VERSION, dwWorkForChange: u32, ppChangeBuilder: ?*?*ISyncChangeBuilder) HRESULT {
         return self.vtable.AddMergeTombstoneMetadataToGroup(self, pbOwnerReplicaId, pbWinnerItemId, pbItemId, pChangeVersion, pCreationVersion, dwWorkForChange, ppChangeBuilder);
     }
 };
@@ -2158,19 +2158,19 @@ pub const IKnowledgeSyncProvider = extern union {
             self: *const IKnowledgeSyncProvider,
             role: SYNC_PROVIDER_ROLE,
             pSessionState: ?*ISyncSessionState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncBatchParameters: *const fn(
             self: *const IKnowledgeSyncProvider,
             ppSyncKnowledge: ?*?*ISyncKnowledge,
             pdwRequestedBatchSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeBatch: *const fn(
             self: *const IKnowledgeSyncProvider,
             dwBatchSize: u32,
             pSyncKnowledge: ?*ISyncKnowledge,
             ppSyncChangeBatch: ?*?*ISyncChangeBatch,
             ppUnkDataRetriever: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFullEnumerationChangeBatch: *const fn(
             self: *const IKnowledgeSyncProvider,
             dwBatchSize: u32,
@@ -2178,7 +2178,7 @@ pub const IKnowledgeSyncProvider = extern union {
             pSyncKnowledge: ?*ISyncKnowledge,
             ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch,
             ppUnkDataRetriever: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessChangeBatch: *const fn(
             self: *const IKnowledgeSyncProvider,
             resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
@@ -2186,7 +2186,7 @@ pub const IKnowledgeSyncProvider = extern union {
             pUnkDataRetriever: ?*IUnknown,
             pCallback: ?*ISyncCallback,
             pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessFullEnumerationChangeBatch: *const fn(
             self: *const IKnowledgeSyncProvider,
             resolutionPolicy: CONFLICT_RESOLUTION_POLICY,
@@ -2194,34 +2194,34 @@ pub const IKnowledgeSyncProvider = extern union {
             pUnkDataRetriever: ?*IUnknown,
             pCallback: ?*ISyncCallback,
             pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EndSession: *const fn(
             self: *const IKnowledgeSyncProvider,
             pSessionState: ?*ISyncSessionState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISyncProvider: ISyncProvider,
     IUnknown: IUnknown,
-    pub fn BeginSession(self: *const IKnowledgeSyncProvider, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
+    pub fn BeginSession(self: *const IKnowledgeSyncProvider, role: SYNC_PROVIDER_ROLE, pSessionState: ?*ISyncSessionState) HRESULT {
         return self.vtable.BeginSession(self, role, pSessionState);
     }
-    pub fn GetSyncBatchParameters(self: *const IKnowledgeSyncProvider, ppSyncKnowledge: ?*?*ISyncKnowledge, pdwRequestedBatchSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSyncBatchParameters(self: *const IKnowledgeSyncProvider, ppSyncKnowledge: ?*?*ISyncKnowledge, pdwRequestedBatchSize: ?*u32) HRESULT {
         return self.vtable.GetSyncBatchParameters(self, ppSyncKnowledge, pdwRequestedBatchSize);
     }
-    pub fn GetChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) HRESULT {
         return self.vtable.GetChangeBatch(self, dwBatchSize, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
     }
-    pub fn GetFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pbLowerEnumerationBound: ?*const u8, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, dwBatchSize: u32, pbLowerEnumerationBound: ?*const u8, pSyncKnowledge: ?*ISyncKnowledge, ppSyncChangeBatch: ?*?*ISyncFullEnumerationChangeBatch, ppUnkDataRetriever: ?*?*IUnknown) HRESULT {
         return self.vtable.GetFullEnumerationChangeBatch(self, dwBatchSize, pbLowerEnumerationBound, pSyncKnowledge, ppSyncChangeBatch, ppUnkDataRetriever);
     }
-    pub fn ProcessChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+    pub fn ProcessChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) HRESULT {
         return self.vtable.ProcessChangeBatch(self, resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
     }
-    pub fn ProcessFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) callconv(.Inline) HRESULT {
+    pub fn ProcessFullEnumerationChangeBatch(self: *const IKnowledgeSyncProvider, resolutionPolicy: CONFLICT_RESOLUTION_POLICY, pSourceChangeBatch: ?*ISyncFullEnumerationChangeBatch, pUnkDataRetriever: ?*IUnknown, pCallback: ?*ISyncCallback, pSyncSessionStatistics: ?*SYNC_SESSION_STATISTICS) HRESULT {
         return self.vtable.ProcessFullEnumerationChangeBatch(self, resolutionPolicy, pSourceChangeBatch, pUnkDataRetriever, pCallback, pSyncSessionStatistics);
     }
-    pub fn EndSession(self: *const IKnowledgeSyncProvider, pSessionState: ?*ISyncSessionState) callconv(.Inline) HRESULT {
+    pub fn EndSession(self: *const IKnowledgeSyncProvider, pSessionState: ?*ISyncSessionState) HRESULT {
         return self.vtable.EndSession(self, pSessionState);
     }
 };
@@ -2235,27 +2235,27 @@ pub const ISyncChangeUnit = extern union {
         GetItemChange: *const fn(
             self: *const ISyncChangeUnit,
             ppSyncChange: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnitId: *const fn(
             self: *const ISyncChangeUnit,
             pbChangeUnitId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnitVersion: *const fn(
             self: *const ISyncChangeUnit,
             pbCurrentReplicaId: ?*const u8,
             pVersion: ?*SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemChange(self: *const ISyncChangeUnit, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetItemChange(self: *const ISyncChangeUnit, ppSyncChange: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetItemChange(self, ppSyncChange);
     }
-    pub fn GetChangeUnitId(self: *const ISyncChangeUnit, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnitId(self: *const ISyncChangeUnit, pbChangeUnitId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetChangeUnitId(self, pbChangeUnitId, pcbIdSize);
     }
-    pub fn GetChangeUnitVersion(self: *const ISyncChangeUnit, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnitVersion(self: *const ISyncChangeUnit, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) HRESULT {
         return self.vtable.GetChangeUnitVersion(self, pbCurrentReplicaId, pVersion);
     }
 };
@@ -2271,31 +2271,31 @@ pub const IEnumSyncChangeUnits = extern union {
             cChanges: u32,
             ppChangeUnit: ?*?*ISyncChangeUnit,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSyncChangeUnits,
             cChanges: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSyncChangeUnits,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSyncChangeUnits,
             ppEnum: ?*?*IEnumSyncChangeUnits,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSyncChangeUnits, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSyncChangeUnits, cChanges: u32, ppChangeUnit: ?*?*ISyncChangeUnit, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cChanges, ppChangeUnit, pcFetched);
     }
-    pub fn Skip(self: *const IEnumSyncChangeUnits, cChanges: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSyncChangeUnits, cChanges: u32) HRESULT {
         return self.vtable.Skip(self, cChanges);
     }
-    pub fn Reset(self: *const IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSyncChangeUnits) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSyncChangeUnits, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSyncChangeUnits, ppEnum: ?*?*IEnumSyncChangeUnits) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -2310,77 +2310,77 @@ pub const ISyncChange = extern union {
             self: *const ISyncChange,
             pbReplicaId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRootItemId: *const fn(
             self: *const ISyncChange,
             pbRootItemId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeVersion: *const fn(
             self: *const ISyncChange,
             pbCurrentReplicaId: ?*const u8,
             pVersion: ?*SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCreationVersion: *const fn(
             self: *const ISyncChange,
             pbCurrentReplicaId: ?*const u8,
             pVersion: ?*SYNC_VERSION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlags: *const fn(
             self: *const ISyncChange,
             pdwFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWorkEstimate: *const fn(
             self: *const ISyncChange,
             pdwWork: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnits: *const fn(
             self: *const ISyncChange,
             ppEnum: ?*?*IEnumSyncChangeUnits,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMadeWithKnowledge: *const fn(
             self: *const ISyncChange,
             ppMadeWithKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedKnowledge: *const fn(
             self: *const ISyncChange,
             ppLearnedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWorkEstimate: *const fn(
             self: *const ISyncChange,
             dwWork: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOwnerReplicaId(self: *const ISyncChange, pbReplicaId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOwnerReplicaId(self: *const ISyncChange, pbReplicaId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetOwnerReplicaId(self, pbReplicaId, pcbIdSize);
     }
-    pub fn GetRootItemId(self: *const ISyncChange, pbRootItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRootItemId(self: *const ISyncChange, pbRootItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetRootItemId(self, pbRootItemId, pcbIdSize);
     }
-    pub fn GetChangeVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn GetChangeVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) HRESULT {
         return self.vtable.GetChangeVersion(self, pbCurrentReplicaId, pVersion);
     }
-    pub fn GetCreationVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) callconv(.Inline) HRESULT {
+    pub fn GetCreationVersion(self: *const ISyncChange, pbCurrentReplicaId: ?*const u8, pVersion: ?*SYNC_VERSION) HRESULT {
         return self.vtable.GetCreationVersion(self, pbCurrentReplicaId, pVersion);
     }
-    pub fn GetFlags(self: *const ISyncChange, pdwFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFlags(self: *const ISyncChange, pdwFlags: ?*u32) HRESULT {
         return self.vtable.GetFlags(self, pdwFlags);
     }
-    pub fn GetWorkEstimate(self: *const ISyncChange, pdwWork: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetWorkEstimate(self: *const ISyncChange, pdwWork: ?*u32) HRESULT {
         return self.vtable.GetWorkEstimate(self, pdwWork);
     }
-    pub fn GetChangeUnits(self: *const ISyncChange, ppEnum: ?*?*IEnumSyncChangeUnits) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnits(self: *const ISyncChange, ppEnum: ?*?*IEnumSyncChangeUnits) HRESULT {
         return self.vtable.GetChangeUnits(self, ppEnum);
     }
-    pub fn GetMadeWithKnowledge(self: *const ISyncChange, ppMadeWithKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetMadeWithKnowledge(self: *const ISyncChange, ppMadeWithKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetMadeWithKnowledge(self, ppMadeWithKnowledge);
     }
-    pub fn GetLearnedKnowledge(self: *const ISyncChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedKnowledge(self: *const ISyncChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedKnowledge(self, ppLearnedKnowledge);
     }
-    pub fn SetWorkEstimate(self: *const ISyncChange, dwWork: u32) callconv(.Inline) HRESULT {
+    pub fn SetWorkEstimate(self: *const ISyncChange, dwWork: u32) HRESULT {
         return self.vtable.SetWorkEstimate(self, dwWork);
     }
 };
@@ -2394,19 +2394,19 @@ pub const ISyncChangeWithPrerequisite = extern union {
         GetPrerequisiteKnowledge: *const fn(
             self: *const ISyncChangeWithPrerequisite,
             ppPrerequisiteKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedKnowledgeWithPrerequisite: *const fn(
             self: *const ISyncChangeWithPrerequisite,
             pDestinationKnowledge: ?*ISyncKnowledge,
             ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeWithPrerequisite, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetPrerequisiteKnowledge(self: *const ISyncChangeWithPrerequisite, ppPrerequisiteKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetPrerequisiteKnowledge(self, ppPrerequisiteKnowledge);
     }
-    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedKnowledgeWithPrerequisite(self: *const ISyncChangeWithPrerequisite, pDestinationKnowledge: ?*ISyncKnowledge, ppLearnedKnowledgeWithPrerequisite: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedKnowledgeWithPrerequisite(self, pDestinationKnowledge, ppLearnedKnowledgeWithPrerequisite);
     }
 };
@@ -2420,18 +2420,18 @@ pub const ISyncFullEnumerationChange = extern union {
         GetLearnedKnowledgeAfterRecoveryComplete: *const fn(
             self: *const ISyncFullEnumerationChange,
             ppLearnedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedForgottenKnowledge: *const fn(
             self: *const ISyncFullEnumerationChange,
             ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedKnowledgeAfterRecoveryComplete(self: *const ISyncFullEnumerationChange, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedKnowledgeAfterRecoveryComplete(self, ppLearnedKnowledge);
     }
-    pub fn GetLearnedForgottenKnowledge(self: *const ISyncFullEnumerationChange, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedForgottenKnowledge(self: *const ISyncFullEnumerationChange, ppLearnedForgottenKnowledge: ?*?*IForgottenKnowledge) HRESULT {
         return self.vtable.GetLearnedForgottenKnowledge(self, ppLearnedForgottenKnowledge);
     }
 };
@@ -2445,11 +2445,11 @@ pub const ISyncMergeTombstoneChange = extern union {
             self: *const ISyncMergeTombstoneChange,
             pbWinnerItemId: ?*u8,
             pcbIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetWinnerItemId(self: *const ISyncMergeTombstoneChange, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetWinnerItemId(self: *const ISyncMergeTombstoneChange, pbWinnerItemId: ?*u8, pcbIdSize: ?*u32) HRESULT {
         return self.vtable.GetWinnerItemId(self, pbWinnerItemId, pcbIdSize);
     }
 };
@@ -2463,11 +2463,11 @@ pub const IEnumItemIds = extern union {
             self: *const IEnumItemIds,
             pbItemId: ?*u8,
             pcbItemIdSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumItemIds, pbItemId: ?*u8, pcbItemIdSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumItemIds, pbItemId: ?*u8, pcbItemIdSize: ?*u32) HRESULT {
         return self.vtable.Next(self, pbItemId, pcbItemIdSize);
     }
 };
@@ -2480,35 +2480,35 @@ pub const IFilterKeyMap = extern union {
         GetCount: *const fn(
             self: *const IFilterKeyMap,
             pdwCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddFilter: *const fn(
             self: *const IFilterKeyMap,
             pISyncFilter: ?*ISyncFilter,
             pdwFilterKey: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilter: *const fn(
             self: *const IFilterKeyMap,
             dwFilterKey: u32,
             ppISyncFilter: ?*?*ISyncFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const IFilterKeyMap,
             pbFilterKeyMap: ?*u8,
             pcbFilterKeyMap: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCount(self: *const IFilterKeyMap, pdwCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IFilterKeyMap, pdwCount: ?*u32) HRESULT {
         return self.vtable.GetCount(self, pdwCount);
     }
-    pub fn AddFilter(self: *const IFilterKeyMap, pISyncFilter: ?*ISyncFilter, pdwFilterKey: ?*u32) callconv(.Inline) HRESULT {
+    pub fn AddFilter(self: *const IFilterKeyMap, pISyncFilter: ?*ISyncFilter, pdwFilterKey: ?*u32) HRESULT {
         return self.vtable.AddFilter(self, pISyncFilter, pdwFilterKey);
     }
-    pub fn GetFilter(self: *const IFilterKeyMap, dwFilterKey: u32, ppISyncFilter: ?*?*ISyncFilter) callconv(.Inline) HRESULT {
+    pub fn GetFilter(self: *const IFilterKeyMap, dwFilterKey: u32, ppISyncFilter: ?*?*ISyncFilter) HRESULT {
         return self.vtable.GetFilter(self, dwFilterKey, ppISyncFilter);
     }
-    pub fn Serialize(self: *const IFilterKeyMap, pbFilterKeyMap: ?*u8, pcbFilterKeyMap: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const IFilterKeyMap, pbFilterKeyMap: ?*u8, pcbFilterKeyMap: ?*u32) HRESULT {
         return self.vtable.Serialize(self, pbFilterKeyMap, pcbFilterKeyMap);
     }
 };
@@ -2521,81 +2521,81 @@ pub const ISyncChangeWithFilterKeyMap = extern union {
         GetFilterCount: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             pdwFilterCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterChange: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             dwFilterKey: u32,
             pFilterChange: ?*SYNC_FILTER_CHANGE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllChangeUnitsPresentFlag: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             pfAllChangeUnitsPresent: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilterForgottenKnowledge: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             dwFilterKey: u32,
             ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredReplicaLearnedKnowledge: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             ppLearnedKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedFilterForgottenKnowledge: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
             ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledge: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: *const fn(
             self: *const ISyncChangeWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
             ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFilterCount(self: *const ISyncChangeWithFilterKeyMap, pdwFilterCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFilterCount(self: *const ISyncChangeWithFilterKeyMap, pdwFilterCount: ?*u32) HRESULT {
         return self.vtable.GetFilterCount(self, pdwFilterCount);
     }
-    pub fn GetFilterChange(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, pFilterChange: ?*SYNC_FILTER_CHANGE) callconv(.Inline) HRESULT {
+    pub fn GetFilterChange(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, pFilterChange: ?*SYNC_FILTER_CHANGE) HRESULT {
         return self.vtable.GetFilterChange(self, dwFilterKey, pFilterChange);
     }
-    pub fn GetAllChangeUnitsPresentFlag(self: *const ISyncChangeWithFilterKeyMap, pfAllChangeUnitsPresent: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetAllChangeUnitsPresentFlag(self: *const ISyncChangeWithFilterKeyMap, pfAllChangeUnitsPresent: ?*BOOL) HRESULT {
         return self.vtable.GetAllChangeUnitsPresentFlag(self, pfAllChangeUnitsPresent);
     }
-    pub fn GetFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, dwFilterKey: u32, ppIFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetFilterForgottenKnowledge(self, dwFilterKey, ppIFilterForgottenKnowledge);
     }
-    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetFilteredReplicaLearnedKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedKnowledge);
     }
-    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedFilterForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
     }
-    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetFilteredReplicaLearnedForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
     }
-    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
     }
-    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
     }
 };
@@ -2608,73 +2608,73 @@ pub const ISyncChangeBatchWithFilterKeyMap = extern union {
         GetFilterKeyMap: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             ppIFilterKeyMap: ?*?*IFilterKeyMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFilterKeyMap: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             pIFilterKeyMap: ?*IFilterKeyMap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFilterForgottenKnowledge: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             dwFilterKey: u32,
             pFilterForgottenKnowledge: ?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredReplicaLearnedKnowledge: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedFilterForgottenKnowledge: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
             ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledge: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete: *const fn(
             self: *const ISyncChangeBatchWithFilterKeyMap,
             pDestinationKnowledge: ?*ISyncKnowledge,
             pNewMoveins: ?*IEnumItemIds,
             dwFilterKey: u32,
             ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, ppIFilterKeyMap: ?*?*IFilterKeyMap) callconv(.Inline) HRESULT {
+    pub fn GetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, ppIFilterKeyMap: ?*?*IFilterKeyMap) HRESULT {
         return self.vtable.GetFilterKeyMap(self, ppIFilterKeyMap);
     }
-    pub fn SetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, pIFilterKeyMap: ?*IFilterKeyMap) callconv(.Inline) HRESULT {
+    pub fn SetFilterKeyMap(self: *const ISyncChangeBatchWithFilterKeyMap, pIFilterKeyMap: ?*IFilterKeyMap) HRESULT {
         return self.vtable.SetFilterKeyMap(self, pIFilterKeyMap);
     }
-    pub fn SetFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, dwFilterKey: u32, pFilterForgottenKnowledge: ?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn SetFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, dwFilterKey: u32, pFilterForgottenKnowledge: ?*ISyncKnowledge) HRESULT {
         return self.vtable.SetFilterForgottenKnowledge(self, dwFilterKey, pFilterForgottenKnowledge);
     }
-    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetFilteredReplicaLearnedKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetFilteredReplicaLearnedKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
     }
-    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedFilterForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedFilterForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
     }
-    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetFilteredReplicaLearnedForgottenKnowledge(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetFilteredReplicaLearnedForgottenKnowledge(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
     }
-    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, ppLearnedForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetFilteredReplicaLearnedForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, ppLearnedForgottenKnowledge);
     }
-    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) callconv(.Inline) HRESULT {
+    pub fn GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self: *const ISyncChangeBatchWithFilterKeyMap, pDestinationKnowledge: ?*ISyncKnowledge, pNewMoveins: ?*IEnumItemIds, dwFilterKey: u32, ppLearnedFilterForgottenKnowledge: ?*?*ISyncKnowledge) HRESULT {
         return self.vtable.GetLearnedFilterForgottenKnowledgeAfterRecoveryComplete(self, pDestinationKnowledge, pNewMoveins, dwFilterKey, ppLearnedFilterForgottenKnowledge);
     }
 };
@@ -2688,18 +2688,18 @@ pub const IDataRetrieverCallback = extern union {
         LoadChangeDataComplete: *const fn(
             self: *const IDataRetrieverCallback,
             pUnkData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadChangeDataError: *const fn(
             self: *const IDataRetrieverCallback,
             hrError: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LoadChangeDataComplete(self: *const IDataRetrieverCallback, pUnkData: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn LoadChangeDataComplete(self: *const IDataRetrieverCallback, pUnkData: ?*IUnknown) HRESULT {
         return self.vtable.LoadChangeDataComplete(self, pUnkData);
     }
-    pub fn LoadChangeDataError(self: *const IDataRetrieverCallback, hrError: HRESULT) callconv(.Inline) HRESULT {
+    pub fn LoadChangeDataError(self: *const IDataRetrieverCallback, hrError: HRESULT) HRESULT {
         return self.vtable.LoadChangeDataError(self, hrError);
     }
 };
@@ -2713,28 +2713,28 @@ pub const ILoadChangeContext = extern union {
         GetSyncChange: *const fn(
             self: *const ILoadChangeContext,
             ppSyncChange: ?*?*ISyncChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRecoverableErrorOnChange: *const fn(
             self: *const ILoadChangeContext,
             hrError: HRESULT,
             pErrorData: ?*IRecoverableErrorData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRecoverableErrorOnChangeUnit: *const fn(
             self: *const ILoadChangeContext,
             hrError: HRESULT,
             pChangeUnit: ?*ISyncChangeUnit,
             pErrorData: ?*IRecoverableErrorData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSyncChange(self: *const ILoadChangeContext, ppSyncChange: ?*?*ISyncChange) callconv(.Inline) HRESULT {
+    pub fn GetSyncChange(self: *const ILoadChangeContext, ppSyncChange: ?*?*ISyncChange) HRESULT {
         return self.vtable.GetSyncChange(self, ppSyncChange);
     }
-    pub fn SetRecoverableErrorOnChange(self: *const ILoadChangeContext, hrError: HRESULT, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+    pub fn SetRecoverableErrorOnChange(self: *const ILoadChangeContext, hrError: HRESULT, pErrorData: ?*IRecoverableErrorData) HRESULT {
         return self.vtable.SetRecoverableErrorOnChange(self, hrError, pErrorData);
     }
-    pub fn SetRecoverableErrorOnChangeUnit(self: *const ILoadChangeContext, hrError: HRESULT, pChangeUnit: ?*ISyncChangeUnit, pErrorData: ?*IRecoverableErrorData) callconv(.Inline) HRESULT {
+    pub fn SetRecoverableErrorOnChangeUnit(self: *const ILoadChangeContext, hrError: HRESULT, pChangeUnit: ?*ISyncChangeUnit, pErrorData: ?*IRecoverableErrorData) HRESULT {
         return self.vtable.SetRecoverableErrorOnChangeUnit(self, hrError, pChangeUnit, pErrorData);
     }
 };
@@ -2748,19 +2748,19 @@ pub const ISynchronousDataRetriever = extern union {
         GetIdParameters: *const fn(
             self: *const ISynchronousDataRetriever,
             pIdParameters: ?*ID_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadChangeData: *const fn(
             self: *const ISynchronousDataRetriever,
             pLoadChangeContext: ?*ILoadChangeContext,
             ppUnkData: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIdParameters(self: *const ISynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn GetIdParameters(self: *const ISynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
-    pub fn LoadChangeData(self: *const ISynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext, ppUnkData: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn LoadChangeData(self: *const ISynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext, ppUnkData: ?*?*IUnknown) HRESULT {
         return self.vtable.LoadChangeData(self, pLoadChangeContext, ppUnkData);
     }
 };
@@ -2774,32 +2774,32 @@ pub const IAsynchronousDataRetriever = extern union {
         GetIdParameters: *const fn(
             self: *const IAsynchronousDataRetriever,
             pIdParameters: ?*ID_PARAMETERS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterCallback: *const fn(
             self: *const IAsynchronousDataRetriever,
             pDataRetrieverCallback: ?*IDataRetrieverCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RevokeCallback: *const fn(
             self: *const IAsynchronousDataRetriever,
             pDataRetrieverCallback: ?*IDataRetrieverCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadChangeData: *const fn(
             self: *const IAsynchronousDataRetriever,
             pLoadChangeContext: ?*ILoadChangeContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetIdParameters(self: *const IAsynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) callconv(.Inline) HRESULT {
+    pub fn GetIdParameters(self: *const IAsynchronousDataRetriever, pIdParameters: ?*ID_PARAMETERS) HRESULT {
         return self.vtable.GetIdParameters(self, pIdParameters);
     }
-    pub fn RegisterCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
+    pub fn RegisterCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) HRESULT {
         return self.vtable.RegisterCallback(self, pDataRetrieverCallback);
     }
-    pub fn RevokeCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) callconv(.Inline) HRESULT {
+    pub fn RevokeCallback(self: *const IAsynchronousDataRetriever, pDataRetrieverCallback: ?*IDataRetrieverCallback) HRESULT {
         return self.vtable.RevokeCallback(self, pDataRetrieverCallback);
     }
-    pub fn LoadChangeData(self: *const IAsynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext) callconv(.Inline) HRESULT {
+    pub fn LoadChangeData(self: *const IAsynchronousDataRetriever, pLoadChangeContext: ?*ILoadChangeContext) HRESULT {
         return self.vtable.LoadChangeData(self, pLoadChangeContext);
     }
 };
@@ -2814,11 +2814,11 @@ pub const IFilterRequestCallback = extern union {
             self: *const IFilterRequestCallback,
             pFilter: ?*IUnknown,
             filteringType: FILTERING_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestFilter(self: *const IFilterRequestCallback, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
+    pub fn RequestFilter(self: *const IFilterRequestCallback, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) HRESULT {
         return self.vtable.RequestFilter(self, pFilter, filteringType);
     }
 };
@@ -2832,11 +2832,11 @@ pub const IRequestFilteredSync = extern union {
         SpecifyFilter: *const fn(
             self: *const IRequestFilteredSync,
             pCallback: ?*IFilterRequestCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SpecifyFilter(self: *const IRequestFilteredSync, pCallback: ?*IFilterRequestCallback) callconv(.Inline) HRESULT {
+    pub fn SpecifyFilter(self: *const IRequestFilteredSync, pCallback: ?*IFilterRequestCallback) HRESULT {
         return self.vtable.SpecifyFilter(self, pCallback);
     }
 };
@@ -2851,11 +2851,11 @@ pub const ISupportFilteredSync = extern union {
             self: *const ISupportFilteredSync,
             pFilter: ?*IUnknown,
             filteringType: FILTERING_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddFilter(self: *const ISupportFilteredSync, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) callconv(.Inline) HRESULT {
+    pub fn AddFilter(self: *const ISupportFilteredSync, pFilter: ?*IUnknown, filteringType: FILTERING_TYPE) HRESULT {
         return self.vtable.AddFilter(self, pFilter, filteringType);
     }
 };
@@ -2868,11 +2868,11 @@ pub const IFilterTrackingRequestCallback = extern union {
         RequestTrackedFilter: *const fn(
             self: *const IFilterTrackingRequestCallback,
             pFilter: ?*ISyncFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestTrackedFilter(self: *const IFilterTrackingRequestCallback, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+    pub fn RequestTrackedFilter(self: *const IFilterTrackingRequestCallback, pFilter: ?*ISyncFilter) HRESULT {
         return self.vtable.RequestTrackedFilter(self, pFilter);
     }
 };
@@ -2885,18 +2885,18 @@ pub const IFilterTrackingProvider = extern union {
         SpecifyTrackedFilters: *const fn(
             self: *const IFilterTrackingProvider,
             pCallback: ?*IFilterTrackingRequestCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddTrackedFilter: *const fn(
             self: *const IFilterTrackingProvider,
             pFilter: ?*ISyncFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SpecifyTrackedFilters(self: *const IFilterTrackingProvider, pCallback: ?*IFilterTrackingRequestCallback) callconv(.Inline) HRESULT {
+    pub fn SpecifyTrackedFilters(self: *const IFilterTrackingProvider, pCallback: ?*IFilterTrackingRequestCallback) HRESULT {
         return self.vtable.SpecifyTrackedFilters(self, pCallback);
     }
-    pub fn AddTrackedFilter(self: *const IFilterTrackingProvider, pFilter: ?*ISyncFilter) callconv(.Inline) HRESULT {
+    pub fn AddTrackedFilter(self: *const IFilterTrackingProvider, pFilter: ?*ISyncFilter) HRESULT {
         return self.vtable.AddTrackedFilter(self, pFilter);
     }
 };
@@ -2911,20 +2911,20 @@ pub const ISupportLastWriteTime = extern union {
             self: *const ISupportLastWriteTime,
             pbItemId: ?*const u8,
             pullTimestamp: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChangeUnitChangeTime: *const fn(
             self: *const ISupportLastWriteTime,
             pbItemId: ?*const u8,
             pbChangeUnitId: ?*const u8,
             pullTimestamp: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetItemChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pullTimestamp: ?*u64) HRESULT {
         return self.vtable.GetItemChangeTime(self, pbItemId, pullTimestamp);
     }
-    pub fn GetChangeUnitChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pullTimestamp: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetChangeUnitChangeTime(self: *const ISupportLastWriteTime, pbItemId: ?*const u8, pbChangeUnitId: ?*const u8, pullTimestamp: ?*u64) HRESULT {
         return self.vtable.GetChangeUnitChangeTime(self, pbItemId, pbChangeUnitId, pullTimestamp);
     }
 };
@@ -2938,11 +2938,11 @@ pub const IProviderConverter = extern union {
         Initialize: *const fn(
             self: *const IProviderConverter,
             pISyncProvider: ?*ISyncProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IProviderConverter, pISyncProvider: ?*ISyncProvider) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IProviderConverter, pISyncProvider: ?*ISyncProvider) HRESULT {
         return self.vtable.Initialize(self, pISyncProvider);
     }
 };
@@ -2957,38 +2957,38 @@ pub const ISyncDataConverter = extern union {
             pUnkDataRetrieverIn: ?*IUnknown,
             pEnumSyncChanges: ?*IEnumSyncChanges,
             ppUnkDataOut: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertDataRetrieverToProviderFormat: *const fn(
             self: *const ISyncDataConverter,
             pUnkDataRetrieverIn: ?*IUnknown,
             pEnumSyncChanges: ?*IEnumSyncChanges,
             ppUnkDataOut: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertDataFromProviderFormat: *const fn(
             self: *const ISyncDataConverter,
             pDataContext: ?*ILoadChangeContext,
             pUnkDataIn: ?*IUnknown,
             ppUnkDataOut: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertDataToProviderFormat: *const fn(
             self: *const ISyncDataConverter,
             pDataContext: ?*ILoadChangeContext,
             pUnkDataOut: ?*IUnknown,
             ppUnkDataout: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConvertDataRetrieverFromProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ConvertDataRetrieverFromProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) HRESULT {
         return self.vtable.ConvertDataRetrieverFromProviderFormat(self, pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
     }
-    pub fn ConvertDataRetrieverToProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ConvertDataRetrieverToProviderFormat(self: *const ISyncDataConverter, pUnkDataRetrieverIn: ?*IUnknown, pEnumSyncChanges: ?*IEnumSyncChanges, ppUnkDataOut: ?*?*IUnknown) HRESULT {
         return self.vtable.ConvertDataRetrieverToProviderFormat(self, pUnkDataRetrieverIn, pEnumSyncChanges, ppUnkDataOut);
     }
-    pub fn ConvertDataFromProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataIn: ?*IUnknown, ppUnkDataOut: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ConvertDataFromProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataIn: ?*IUnknown, ppUnkDataOut: ?*?*IUnknown) HRESULT {
         return self.vtable.ConvertDataFromProviderFormat(self, pDataContext, pUnkDataIn, ppUnkDataOut);
     }
-    pub fn ConvertDataToProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataOut: ?*IUnknown, ppUnkDataout: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn ConvertDataToProviderFormat(self: *const ISyncDataConverter, pDataContext: ?*ILoadChangeContext, pUnkDataOut: ?*IUnknown, ppUnkDataout: ?*?*IUnknown) HRESULT {
         return self.vtable.ConvertDataToProviderFormat(self, pDataContext, pUnkDataOut, ppUnkDataout);
     }
 };
@@ -3026,31 +3026,31 @@ pub const ISyncProviderRegistration = extern union {
             self: *const ISyncProviderRegistration,
             pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration,
             ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterSyncProviderConfigUI: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateSyncProviderConfigUIs: *const fn(
             self: *const ISyncProviderRegistration,
             pguidContentType: ?*const Guid,
             dwSupportedArchitecture: u32,
             ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSyncProviderRegistrationInstance: *const fn(
             self: *const ISyncProviderRegistration,
             pProviderConfiguration: ?*const SyncProviderConfiguration,
             ppProviderInfo: ?*?*ISyncProviderInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterSyncProvider: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncProviderConfigUIInfoforProvider: *const fn(
             self: *const ISyncProviderRegistration,
             pguidProviderInstanceId: ?*const Guid,
             ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateSyncProviders: *const fn(
             self: *const ISyncProviderRegistration,
             pguidContentType: ?*const Guid,
@@ -3059,102 +3059,102 @@ pub const ISyncProviderRegistration = extern union {
             refProviderClsId: ?*const Guid,
             dwSupportedArchitecture: u32,
             ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncProviderInfo: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
             ppProviderInfo: ?*?*ISyncProviderInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncProviderFromInstanceId: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
             dwClsContext: u32,
             ppSyncProvider: ?*?*IRegisteredSyncProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncProviderConfigUIInfo: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
             ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncProviderConfigUIFromInstanceId: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
             dwClsContext: u32,
             ppConfigUI: ?*?*ISyncProviderConfigUI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncProviderState: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
             pdwStateFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSyncProviderState: *const fn(
             self: *const ISyncProviderRegistration,
             pguidInstanceId: ?*const Guid,
             dwStateFlagsMask: u32,
             dwStateFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterForEvent: *const fn(
             self: *const ISyncProviderRegistration,
             phEvent: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RevokeEvent: *const fn(
             self: *const ISyncProviderRegistration,
             hEvent: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChange: *const fn(
             self: *const ISyncProviderRegistration,
             hEvent: ?HANDLE,
             ppChange: ?*?*ISyncRegistrationChange,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateSyncProviderConfigUIRegistrationInstance(self: *const ISyncProviderRegistration, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+    pub fn CreateSyncProviderConfigUIRegistrationInstance(self: *const ISyncProviderRegistration, pConfigUIConfig: ?*const SyncProviderConfigUIConfiguration, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) HRESULT {
         return self.vtable.CreateSyncProviderConfigUIRegistrationInstance(self, pConfigUIConfig, ppConfigUIInfo);
     }
-    pub fn UnregisterSyncProviderConfigUI(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn UnregisterSyncProviderConfigUI(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) HRESULT {
         return self.vtable.UnregisterSyncProviderConfigUI(self, pguidInstanceId);
     }
-    pub fn EnumerateSyncProviderConfigUIs(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+    pub fn EnumerateSyncProviderConfigUIs(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderConfigUIInfos: ?*?*IEnumSyncProviderConfigUIInfos) HRESULT {
         return self.vtable.EnumerateSyncProviderConfigUIs(self, pguidContentType, dwSupportedArchitecture, ppEnumSyncProviderConfigUIInfos);
     }
-    pub fn CreateSyncProviderRegistrationInstance(self: *const ISyncProviderRegistration, pProviderConfiguration: ?*const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+    pub fn CreateSyncProviderRegistrationInstance(self: *const ISyncProviderRegistration, pProviderConfiguration: ?*const SyncProviderConfiguration, ppProviderInfo: ?*?*ISyncProviderInfo) HRESULT {
         return self.vtable.CreateSyncProviderRegistrationInstance(self, pProviderConfiguration, ppProviderInfo);
     }
-    pub fn UnregisterSyncProvider(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn UnregisterSyncProvider(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid) HRESULT {
         return self.vtable.UnregisterSyncProvider(self, pguidInstanceId);
     }
-    pub fn GetSyncProviderConfigUIInfoforProvider(self: *const ISyncProviderRegistration, pguidProviderInstanceId: ?*const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderConfigUIInfoforProvider(self: *const ISyncProviderRegistration, pguidProviderInstanceId: ?*const Guid, ppProviderConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) HRESULT {
         return self.vtable.GetSyncProviderConfigUIInfoforProvider(self, pguidProviderInstanceId, ppProviderConfigUIInfo);
     }
-    pub fn EnumerateSyncProviders(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+    pub fn EnumerateSyncProviders(self: *const ISyncProviderRegistration, pguidContentType: ?*const Guid, dwStateFlagsToFilterMask: u32, dwStateFlagsToFilter: u32, refProviderClsId: ?*const Guid, dwSupportedArchitecture: u32, ppEnumSyncProviderInfos: ?*?*IEnumSyncProviderInfos) HRESULT {
         return self.vtable.EnumerateSyncProviders(self, pguidContentType, dwStateFlagsToFilterMask, dwStateFlagsToFilter, refProviderClsId, dwSupportedArchitecture, ppEnumSyncProviderInfos);
     }
-    pub fn GetSyncProviderInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppProviderInfo: ?*?*ISyncProviderInfo) HRESULT {
         return self.vtable.GetSyncProviderInfo(self, pguidInstanceId, ppProviderInfo);
     }
-    pub fn GetSyncProviderFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) HRESULT {
         return self.vtable.GetSyncProviderFromInstanceId(self, pguidInstanceId, dwClsContext, ppSyncProvider);
     }
-    pub fn GetSyncProviderConfigUIInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderConfigUIInfo(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, ppConfigUIInfo: ?*?*ISyncProviderConfigUIInfo) HRESULT {
         return self.vtable.GetSyncProviderConfigUIInfo(self, pguidInstanceId, ppConfigUIInfo);
     }
-    pub fn GetSyncProviderConfigUIFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderConfigUIFromInstanceId(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwClsContext: u32, ppConfigUI: ?*?*ISyncProviderConfigUI) HRESULT {
         return self.vtable.GetSyncProviderConfigUIFromInstanceId(self, pguidInstanceId, dwClsContext, ppConfigUI);
     }
-    pub fn GetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, pdwStateFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, pdwStateFlags: ?*u32) HRESULT {
         return self.vtable.GetSyncProviderState(self, pguidInstanceId, pdwStateFlags);
     }
-    pub fn SetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) callconv(.Inline) HRESULT {
+    pub fn SetSyncProviderState(self: *const ISyncProviderRegistration, pguidInstanceId: ?*const Guid, dwStateFlagsMask: u32, dwStateFlags: u32) HRESULT {
         return self.vtable.SetSyncProviderState(self, pguidInstanceId, dwStateFlagsMask, dwStateFlags);
     }
-    pub fn RegisterForEvent(self: *const ISyncProviderRegistration, phEvent: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn RegisterForEvent(self: *const ISyncProviderRegistration, phEvent: ?*?HANDLE) HRESULT {
         return self.vtable.RegisterForEvent(self, phEvent);
     }
-    pub fn RevokeEvent(self: *const ISyncProviderRegistration, hEvent: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn RevokeEvent(self: *const ISyncProviderRegistration, hEvent: ?HANDLE) HRESULT {
         return self.vtable.RevokeEvent(self, hEvent);
     }
-    pub fn GetChange(self: *const ISyncProviderRegistration, hEvent: ?HANDLE, ppChange: ?*?*ISyncRegistrationChange) callconv(.Inline) HRESULT {
+    pub fn GetChange(self: *const ISyncProviderRegistration, hEvent: ?HANDLE, ppChange: ?*?*ISyncRegistrationChange) HRESULT {
         return self.vtable.GetChange(self, hEvent, ppChange);
     }
 };
@@ -3170,31 +3170,31 @@ pub const IEnumSyncProviderConfigUIInfos = extern union {
             cFactories: u32,
             ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSyncProviderConfigUIInfos,
             cFactories: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSyncProviderConfigUIInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSyncProviderConfigUIInfos,
             ppEnum: ?*?*IEnumSyncProviderConfigUIInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32, ppSyncProviderConfigUIInfo: [*]?*ISyncProviderConfigUIInfo, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cFactories, ppSyncProviderConfigUIInfo, pcFetched);
     }
-    pub fn Skip(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSyncProviderConfigUIInfos, cFactories: u32) HRESULT {
         return self.vtable.Skip(self, cFactories);
     }
-    pub fn Reset(self: *const IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSyncProviderConfigUIInfos) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSyncProviderConfigUIInfos, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSyncProviderConfigUIInfos, ppEnum: ?*?*IEnumSyncProviderConfigUIInfos) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -3210,31 +3210,31 @@ pub const IEnumSyncProviderInfos = extern union {
             cInstances: u32,
             ppSyncProviderInfo: [*]?*ISyncProviderInfo,
             pcFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSyncProviderInfos,
             cInstances: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSyncProviderInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSyncProviderInfos,
             ppEnum: ?*?*IEnumSyncProviderInfos,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSyncProviderInfos, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSyncProviderInfos, cInstances: u32, ppSyncProviderInfo: [*]?*ISyncProviderInfo, pcFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cInstances, ppSyncProviderInfo, pcFetched);
     }
-    pub fn Skip(self: *const IEnumSyncProviderInfos, cInstances: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSyncProviderInfos, cInstances: u32) HRESULT {
         return self.vtable.Skip(self, cInstances);
     }
-    pub fn Reset(self: *const IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSyncProviderInfos) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSyncProviderInfos, ppEnum: ?*?*IEnumSyncProviderInfos) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSyncProviderInfos, ppEnum: ?*?*IEnumSyncProviderInfos) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -3249,12 +3249,12 @@ pub const ISyncProviderInfo = extern union {
             self: *const ISyncProviderInfo,
             dwClsContext: u32,
             ppSyncProvider: ?*?*IRegisteredSyncProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPropertyStore: IPropertyStore,
     IUnknown: IUnknown,
-    pub fn GetSyncProvider(self: *const ISyncProviderInfo, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+    pub fn GetSyncProvider(self: *const ISyncProviderInfo, dwClsContext: u32, ppSyncProvider: ?*?*IRegisteredSyncProvider) HRESULT {
         return self.vtable.GetSyncProvider(self, dwClsContext, ppSyncProvider);
     }
 };
@@ -3269,12 +3269,12 @@ pub const ISyncProviderConfigUIInfo = extern union {
             self: *const ISyncProviderConfigUIInfo,
             dwClsContext: u32,
             ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPropertyStore: IPropertyStore,
     IUnknown: IUnknown,
-    pub fn GetSyncProviderConfigUI(self: *const ISyncProviderConfigUIInfo, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) callconv(.Inline) HRESULT {
+    pub fn GetSyncProviderConfigUI(self: *const ISyncProviderConfigUIInfo, dwClsContext: u32, ppSyncProviderConfigUI: ?*?*ISyncProviderConfigUI) HRESULT {
         return self.vtable.GetSyncProviderConfigUI(self, dwClsContext, ppSyncProviderConfigUI);
     }
 };
@@ -3290,36 +3290,36 @@ pub const ISyncProviderConfigUI = extern union {
             pguidInstanceId: ?*const Guid,
             pguidContentType: ?*const Guid,
             pConfigurationProperties: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRegisteredProperties: *const fn(
             self: *const ISyncProviderConfigUI,
             ppConfigUIProperties: ?*?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateAndRegisterNewSyncProvider: *const fn(
             self: *const ISyncProviderConfigUI,
             hwndParent: ?HWND,
             pUnkContext: ?*IUnknown,
             ppProviderInfo: ?*?*ISyncProviderInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ModifySyncProvider: *const fn(
             self: *const ISyncProviderConfigUI,
             hwndParent: ?HWND,
             pUnkContext: ?*IUnknown,
             pProviderInfo: ?*ISyncProviderInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const ISyncProviderConfigUI, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const ISyncProviderConfigUI, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pConfigurationProperties: ?*IPropertyStore) HRESULT {
         return self.vtable.Init(self, pguidInstanceId, pguidContentType, pConfigurationProperties);
     }
-    pub fn GetRegisteredProperties(self: *const ISyncProviderConfigUI, ppConfigUIProperties: ?*?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn GetRegisteredProperties(self: *const ISyncProviderConfigUI, ppConfigUIProperties: ?*?*IPropertyStore) HRESULT {
         return self.vtable.GetRegisteredProperties(self, ppConfigUIProperties);
     }
-    pub fn CreateAndRegisterNewSyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+    pub fn CreateAndRegisterNewSyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, ppProviderInfo: ?*?*ISyncProviderInfo) HRESULT {
         return self.vtable.CreateAndRegisterNewSyncProvider(self, hwndParent, pUnkContext, ppProviderInfo);
     }
-    pub fn ModifySyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) callconv(.Inline) HRESULT {
+    pub fn ModifySyncProvider(self: *const ISyncProviderConfigUI, hwndParent: ?HWND, pUnkContext: ?*IUnknown, pProviderInfo: ?*ISyncProviderInfo) HRESULT {
         return self.vtable.ModifySyncProvider(self, hwndParent, pUnkContext, pProviderInfo);
     }
 };
@@ -3335,24 +3335,24 @@ pub const IRegisteredSyncProvider = extern union {
             pguidInstanceId: ?*const Guid,
             pguidContentType: ?*const Guid,
             pContextPropertyStore: ?*IPropertyStore,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInstanceId: *const fn(
             self: *const IRegisteredSyncProvider,
             pguidInstanceId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IRegisteredSyncProvider,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Init(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) callconv(.Inline) HRESULT {
+    pub fn Init(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*const Guid, pguidContentType: ?*const Guid, pContextPropertyStore: ?*IPropertyStore) HRESULT {
         return self.vtable.Init(self, pguidInstanceId, pguidContentType, pContextPropertyStore);
     }
-    pub fn GetInstanceId(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetInstanceId(self: *const IRegisteredSyncProvider, pguidInstanceId: ?*Guid) HRESULT {
         return self.vtable.GetInstanceId(self, pguidInstanceId);
     }
-    pub fn Reset(self: *const IRegisteredSyncProvider) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IRegisteredSyncProvider) HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -3383,18 +3383,18 @@ pub const ISyncRegistrationChange = extern union {
         GetEvent: *const fn(
             self: *const ISyncRegistrationChange,
             psreEvent: ?*SYNC_REGISTRATION_EVENT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInstanceId: *const fn(
             self: *const ISyncRegistrationChange,
             pguidInstanceId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEvent(self: *const ISyncRegistrationChange, psreEvent: ?*SYNC_REGISTRATION_EVENT) callconv(.Inline) HRESULT {
+    pub fn GetEvent(self: *const ISyncRegistrationChange, psreEvent: ?*SYNC_REGISTRATION_EVENT) HRESULT {
         return self.vtable.GetEvent(self, psreEvent);
     }
-    pub fn GetInstanceId(self: *const ISyncRegistrationChange, pguidInstanceId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetInstanceId(self: *const ISyncRegistrationChange, pguidInstanceId: ?*Guid) HRESULT {
         return self.vtable.GetInstanceId(self, pguidInstanceId);
     }
 };

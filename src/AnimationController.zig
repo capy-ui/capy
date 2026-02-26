@@ -43,7 +43,8 @@ fn update(ptr: ?*anyopaque) void {
     const self: *AnimationController = @ptrCast(@alignCast(ptr.?));
 
     // List of atoms that are no longer animated and that need to be removed from the list
-    var toRemove = std.BoundedArray(usize, 64).init(0) catch unreachable;
+    var toRemoveBuf: [64]usize = undefined;
+    var toRemoveLen: usize = 0;
     {
         var iterator = self.animated_atoms.iterate();
         defer iterator.deinit();
@@ -51,9 +52,11 @@ fn update(ptr: ?*anyopaque) void {
             var i: usize = 0;
             while (iterator.next()) |item| : (i += 1) {
                 if (item.fnPtr(item.userdata) == false) { // animation ended
-                    toRemove.append(i) catch |err| switch (err) {
-                        error.Overflow => {}, // It can be removed on the next call to animateAtoms()
-                    };
+                    if (toRemoveLen < toRemoveBuf.len) {
+                        toRemoveBuf[toRemoveLen] = i;
+                        toRemoveLen += 1;
+                    }
+                    // else: It can be removed on the next call to animateAtoms()
                 }
             }
         }
@@ -62,7 +65,7 @@ fn update(ptr: ?*anyopaque) void {
         // the mutex
         {
             // The index list is ordered in increasing index order
-            const indexList = toRemove.constSlice();
+            const indexList = toRemoveBuf[0..toRemoveLen];
             // So we iterate it backward in order to avoid indices being invalidated
             if (indexList.len > 0) {
                 var i: usize = indexList.len - 1;

@@ -51,22 +51,22 @@ pub const WSL_DISTRIBUTION_FLAGS_ENABLE_DRIVE_MOUNTING = WSL_DISTRIBUTION_FLAGS{
 //--------------------------------------------------------------------------------
 pub extern "api-ms-win-wsl-api-l1-1-0" fn WslIsDistributionRegistered(
     distributionName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "api-ms-win-wsl-api-l1-1-0" fn WslRegisterDistribution(
     distributionName: ?[*:0]const u16,
     tarGzFilename: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-wsl-api-l1-1-0" fn WslUnregisterDistribution(
     distributionName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-wsl-api-l1-1-0" fn WslConfigureDistribution(
     distributionName: ?[*:0]const u16,
     defaultUID: u32,
     wslDistributionFlags: WSL_DISTRIBUTION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
     distributionName: ?[*:0]const u16,
@@ -75,14 +75,14 @@ pub extern "api-ms-win-wsl-api-l1-1-0" fn WslGetDistributionConfiguration(
     wslDistributionFlags: ?*WSL_DISTRIBUTION_FLAGS,
     defaultEnvironmentVariables: ?*?*?PSTR,
     defaultEnvironmentVariableCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunchInteractive(
     distributionName: ?[*:0]const u16,
     command: ?[*:0]const u16,
     useCurrentWorkingDirectory: BOOL,
     exitCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunch(
     distributionName: ?[*:0]const u16,
@@ -92,7 +92,7 @@ pub extern "api-ms-win-wsl-api-l1-1-0" fn WslLaunch(
     stdOut: ?HANDLE,
     stdErr: ?HANDLE,
     process: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

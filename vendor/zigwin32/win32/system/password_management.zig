@@ -35,7 +35,7 @@ pub extern "advapi32" fn MSChapSrvChangePassword(
     LmNewOwfPassword: ?*LM_OWF_PASSWORD,
     NtOldOwfPassword: ?*LM_OWF_PASSWORD,
     NtNewOwfPassword: ?*LM_OWF_PASSWORD,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn MSChapSrvChangePassword2(
@@ -46,7 +46,7 @@ pub extern "advapi32" fn MSChapSrvChangePassword2(
     LmPresent: BOOLEAN,
     NewPasswordEncryptedWithOldLm: ?*SAMPR_ENCRYPTED_USER_PASSWORD,
     OldLmOwfPasswordEncryptedWithNewLmOrNt: ?*ENCRYPTED_LM_OWF_PASSWORD,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

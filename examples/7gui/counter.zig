@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 // Thanks to `FormattedAtom` (see below) we can use an int for couting
 var count = capy.Atom(i64).of(0);
 

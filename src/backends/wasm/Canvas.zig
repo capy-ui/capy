@@ -10,7 +10,17 @@ const Canvas = @This();
 peer: *GuiWidget,
 dirty: bool,
 
-pub usingnamespace Events(Canvas);
+const _events = Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const processEvent = _events.processEvent;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
+pub const deinit = _events.deinit;
 
 pub const DrawContextImpl = struct {
     ctx: js.CanvasContextId,

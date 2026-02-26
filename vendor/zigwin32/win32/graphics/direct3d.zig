@@ -564,24 +564,24 @@ pub const ID3DBlob = extern union {
         base: IUnknown.VTable,
         GetBufferPointer: *const fn(
             self: *const ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) ?*anyopaque,
+        ) callconv(.winapi) ?*anyopaque,
         GetBufferSize: *const fn(
             self: *const ID3DBlob,
-        ) callconv(@import("std").os.windows.WINAPI) usize,
+        ) callconv(.winapi) usize,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBufferPointer(self: *const ID3DBlob) callconv(.Inline) ?*anyopaque {
+    pub fn GetBufferPointer(self: *const ID3DBlob) ?*anyopaque {
         return self.vtable.GetBufferPointer(self);
     }
-    pub fn GetBufferSize(self: *const ID3DBlob) callconv(.Inline) usize {
+    pub fn GetBufferSize(self: *const ID3DBlob) usize {
         return self.vtable.GetBufferSize(self);
     }
 };
 
 pub const PFN_DESTRUCTION_CALLBACK = *const fn(
     pData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 // This COM type is Agile, not sure what that means
@@ -595,18 +595,18 @@ pub const ID3DDestructionNotifier = extern union {
             callbackFn: ?PFN_DESTRUCTION_CALLBACK,
             pData: ?*anyopaque,
             pCallbackID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterDestructionCallback: *const fn(
             self: *const ID3DDestructionNotifier,
             callbackID: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RegisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackFn: ?PFN_DESTRUCTION_CALLBACK, pData: ?*anyopaque, pCallbackID: ?*u32) HRESULT {
         return self.vtable.RegisterDestructionCallback(self, callbackFn, pData, pCallbackID);
     }
-    pub fn UnregisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackID: u32) callconv(.Inline) HRESULT {
+    pub fn UnregisterDestructionCallback(self: *const ID3DDestructionNotifier, callbackID: u32) HRESULT {
         return self.vtable.UnregisterDestructionCallback(self, callbackID);
     }
 };
@@ -634,17 +634,17 @@ pub const ID3DInclude = extern union {
             pParentData: ?*const anyopaque,
             ppData: ?*?*anyopaque,
             pBytes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ID3DInclude,
             pData: ?*const anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn Open(self: *const ID3DInclude, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const ID3DInclude, IncludeType: D3D_INCLUDE_TYPE, pFileName: ?[*:0]const u8, pParentData: ?*const anyopaque, ppData: ?*?*anyopaque, pBytes: ?*u32) HRESULT {
         return self.vtable.Open(self, IncludeType, pFileName, pParentData, ppData, pBytes);
     }
-    pub fn Close(self: *const ID3DInclude, pData: ?*const anyopaque) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ID3DInclude, pData: ?*const anyopaque) HRESULT {
         return self.vtable.Close(self, pData);
     }
 };

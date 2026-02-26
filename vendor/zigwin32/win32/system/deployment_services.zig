@@ -236,7 +236,7 @@ pub const WDS_CLI_CRED = extern struct {
 pub const PFN_WdsCliTraceFunction = *const fn(
     pwszFormat: ?[*:0]const u16,
     Params: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WDS_CLI_IMAGE_TYPE = enum(i32) {
     UNKNOWN = 0,
@@ -272,7 +272,7 @@ pub const PFN_WdsCliCallback = *const fn(
     wParam: WPARAM,
     lParam: LPARAM,
     pvUserData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PXE_DHCP_OPTION = extern struct {
     OptionType: u8,
@@ -422,13 +422,13 @@ pub const PFN_WdsTransportClientSessionStart = *const fn(
     hSessionKey: ?HANDLE,
     pCallerData: ?*anyopaque,
     ullFileSize: ?*ULARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFN_WdsTransportClientSessionStartEx = *const fn(
     hSessionKey: ?HANDLE,
     pCallerData: ?*anyopaque,
     Info: ?*TRANSPORTCLIENT_SESSION_INFO,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFN_WdsTransportClientReceiveMetadata = *const fn(
     hSessionKey: ?HANDLE,
@@ -436,7 +436,7 @@ pub const PFN_WdsTransportClientReceiveMetadata = *const fn(
     // TODO: what to do with BytesParamIndex 3?
     pMetadata: ?*anyopaque,
     ulSize: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFN_WdsTransportClientReceiveContents = *const fn(
     hSessionKey: ?HANDLE,
@@ -445,20 +445,20 @@ pub const PFN_WdsTransportClientReceiveContents = *const fn(
     pContents: ?*anyopaque,
     ulSize: u32,
     pullContentOffset: ?*ULARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFN_WdsTransportClientSessionComplete = *const fn(
     hSessionKey: ?HANDLE,
     pCallerData: ?*anyopaque,
     dwError: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFN_WdsTransportClientSessionNegotiate = *const fn(
     hSessionKey: ?HANDLE,
     pCallerData: ?*anyopaque,
     pInfo: ?*TRANSPORTCLIENT_SESSION_INFO,
     hNegotiateKey: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WDS_TRANSPORTCLIENT_REQUEST = extern struct {
     ulLength: u32,
@@ -665,30 +665,30 @@ pub const IWdsTransportCacheable = extern union {
         get_Dirty: *const fn(
             self: *const IWdsTransportCacheable,
             pbDirty: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Discard: *const fn(
             self: *const IWdsTransportCacheable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IWdsTransportCacheable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const IWdsTransportCacheable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Dirty(self: *const IWdsTransportCacheable, pbDirty: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Dirty(self: *const IWdsTransportCacheable, pbDirty: ?*i16) HRESULT {
         return self.vtable.get_Dirty(self, pbDirty);
     }
-    pub fn Discard(self: *const IWdsTransportCacheable) callconv(.Inline) HRESULT {
+    pub fn Discard(self: *const IWdsTransportCacheable) HRESULT {
         return self.vtable.Discard(self);
     }
-    pub fn Refresh(self: *const IWdsTransportCacheable) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IWdsTransportCacheable) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn Commit(self: *const IWdsTransportCacheable) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IWdsTransportCacheable) HRESULT {
         return self.vtable.Commit(self);
     }
 };
@@ -703,28 +703,28 @@ pub const IWdsTransportCollection = extern union {
         get_Count: *const fn(
             self: *const IWdsTransportCollection,
             pulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const IWdsTransportCollection,
             ulIndex: u32,
             ppVal: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IWdsTransportCollection,
             ppVal: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IWdsTransportCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IWdsTransportCollection, pulCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, pulCount);
     }
-    pub fn get_Item(self: *const IWdsTransportCollection, ulIndex: u32, ppVal: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IWdsTransportCollection, ulIndex: u32, ppVal: ?*?*IDispatch) HRESULT {
         return self.vtable.get_Item(self, ulIndex, ppVal);
     }
-    pub fn get__NewEnum(self: *const IWdsTransportCollection, ppVal: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IWdsTransportCollection, ppVal: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppVal);
     }
 };
@@ -739,12 +739,12 @@ pub const IWdsTransportManager = extern union {
             self: *const IWdsTransportManager,
             bszServerName: ?BSTR,
             ppWdsTransportServer: ?*?*IWdsTransportServer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetWdsTransportServer(self: *const IWdsTransportManager, bszServerName: ?BSTR, ppWdsTransportServer: ?*?*IWdsTransportServer) callconv(.Inline) HRESULT {
+    pub fn GetWdsTransportServer(self: *const IWdsTransportManager, bszServerName: ?BSTR, ppWdsTransportServer: ?*?*IWdsTransportServer) HRESULT {
         return self.vtable.GetWdsTransportServer(self, bszServerName, ppWdsTransportServer);
     }
 };
@@ -759,44 +759,44 @@ pub const IWdsTransportServer = extern union {
         get_Name: *const fn(
             self: *const IWdsTransportServer,
             pbszName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SetupManager: *const fn(
             self: *const IWdsTransportServer,
             ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ConfigurationManager: *const fn(
             self: *const IWdsTransportServer,
             ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceManager: *const fn(
             self: *const IWdsTransportServer,
             ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisconnectClient: *const fn(
             self: *const IWdsTransportServer,
             ulClientId: u32,
             DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IWdsTransportServer, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IWdsTransportServer, pbszName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbszName);
     }
-    pub fn get_SetupManager(self: *const IWdsTransportServer, ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager) callconv(.Inline) HRESULT {
+    pub fn get_SetupManager(self: *const IWdsTransportServer, ppWdsTransportSetupManager: ?*?*IWdsTransportSetupManager) HRESULT {
         return self.vtable.get_SetupManager(self, ppWdsTransportSetupManager);
     }
-    pub fn get_ConfigurationManager(self: *const IWdsTransportServer, ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn get_ConfigurationManager(self: *const IWdsTransportServer, ppWdsTransportConfigurationManager: ?*?*IWdsTransportConfigurationManager) HRESULT {
         return self.vtable.get_ConfigurationManager(self, ppWdsTransportConfigurationManager);
     }
-    pub fn get_NamespaceManager(self: *const IWdsTransportServer, ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager) callconv(.Inline) HRESULT {
+    pub fn get_NamespaceManager(self: *const IWdsTransportServer, ppWdsTransportNamespaceManager: ?*?*IWdsTransportNamespaceManager) HRESULT {
         return self.vtable.get_NamespaceManager(self, ppWdsTransportNamespaceManager);
     }
-    pub fn DisconnectClient(self: *const IWdsTransportServer, ulClientId: u32, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.Inline) HRESULT {
+    pub fn DisconnectClient(self: *const IWdsTransportServer, ulClientId: u32, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) HRESULT {
         return self.vtable.DisconnectClient(self, ulClientId, DisconnectionType);
     }
 };
@@ -811,13 +811,13 @@ pub const IWdsTransportServer2 = extern union {
         get_TftpManager: *const fn(
             self: *const IWdsTransportServer2,
             ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportServer: IWdsTransportServer,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_TftpManager(self: *const IWdsTransportServer2, ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager) callconv(.Inline) HRESULT {
+    pub fn get_TftpManager(self: *const IWdsTransportServer2, ppWdsTransportTftpManager: ?*?*IWdsTransportTftpManager) HRESULT {
         return self.vtable.get_TftpManager(self, ppWdsTransportTftpManager);
     }
 };
@@ -832,45 +832,45 @@ pub const IWdsTransportSetupManager = extern union {
         get_Version: *const fn(
             self: *const IWdsTransportSetupManager,
             pullVersion: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InstalledFeatures: *const fn(
             self: *const IWdsTransportSetupManager,
             pulInstalledFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Protocols: *const fn(
             self: *const IWdsTransportSetupManager,
             pulProtocols: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RegisterContentProvider: *const fn(
             self: *const IWdsTransportSetupManager,
             bszName: ?BSTR,
             bszDescription: ?BSTR,
             bszFilePath: ?BSTR,
             bszInitializationRoutine: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeregisterContentProvider: *const fn(
             self: *const IWdsTransportSetupManager,
             bszName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Version(self: *const IWdsTransportSetupManager, pullVersion: ?*u64) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const IWdsTransportSetupManager, pullVersion: ?*u64) HRESULT {
         return self.vtable.get_Version(self, pullVersion);
     }
-    pub fn get_InstalledFeatures(self: *const IWdsTransportSetupManager, pulInstalledFeatures: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_InstalledFeatures(self: *const IWdsTransportSetupManager, pulInstalledFeatures: ?*u32) HRESULT {
         return self.vtable.get_InstalledFeatures(self, pulInstalledFeatures);
     }
-    pub fn get_Protocols(self: *const IWdsTransportSetupManager, pulProtocols: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Protocols(self: *const IWdsTransportSetupManager, pulProtocols: ?*u32) HRESULT {
         return self.vtable.get_Protocols(self, pulProtocols);
     }
-    pub fn RegisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR, bszDescription: ?BSTR, bszFilePath: ?BSTR, bszInitializationRoutine: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn RegisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR, bszDescription: ?BSTR, bszFilePath: ?BSTR, bszInitializationRoutine: ?BSTR) HRESULT {
         return self.vtable.RegisterContentProvider(self, bszName, bszDescription, bszFilePath, bszInitializationRoutine);
     }
-    pub fn DeregisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeregisterContentProvider(self: *const IWdsTransportSetupManager, bszName: ?BSTR) HRESULT {
         return self.vtable.DeregisterContentProvider(self, bszName);
     }
 };
@@ -885,21 +885,21 @@ pub const IWdsTransportSetupManager2 = extern union {
         get_TftpCapabilities: *const fn(
             self: *const IWdsTransportSetupManager2,
             pulTftpCapabilities: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentProviders: *const fn(
             self: *const IWdsTransportSetupManager2,
             ppProviderCollection: ?*?*IWdsTransportCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportSetupManager: IWdsTransportSetupManager,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_TftpCapabilities(self: *const IWdsTransportSetupManager2, pulTftpCapabilities: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TftpCapabilities(self: *const IWdsTransportSetupManager2, pulTftpCapabilities: ?*u32) HRESULT {
         return self.vtable.get_TftpCapabilities(self, pulTftpCapabilities);
     }
-    pub fn get_ContentProviders(self: *const IWdsTransportSetupManager2, ppProviderCollection: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+    pub fn get_ContentProviders(self: *const IWdsTransportSetupManager2, ppProviderCollection: ?*?*IWdsTransportCollection) HRESULT {
         return self.vtable.get_ContentProviders(self, ppProviderCollection);
     }
 };
@@ -914,65 +914,65 @@ pub const IWdsTransportConfigurationManager = extern union {
         get_ServicePolicy: *const fn(
             self: *const IWdsTransportConfigurationManager,
             ppWdsTransportServicePolicy: ?*?*IWdsTransportServicePolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DiagnosticsPolicy: *const fn(
             self: *const IWdsTransportConfigurationManager,
             ppWdsTransportDiagnosticsPolicy: ?*?*IWdsTransportDiagnosticsPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_WdsTransportServicesRunning: *const fn(
             self: *const IWdsTransportConfigurationManager,
             bRealtimeStatus: i16,
             pbServicesRunning: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableWdsTransportServices: *const fn(
             self: *const IWdsTransportConfigurationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableWdsTransportServices: *const fn(
             self: *const IWdsTransportConfigurationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartWdsTransportServices: *const fn(
             self: *const IWdsTransportConfigurationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopWdsTransportServices: *const fn(
             self: *const IWdsTransportConfigurationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestartWdsTransportServices: *const fn(
             self: *const IWdsTransportConfigurationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyWdsTransportServices: *const fn(
             self: *const IWdsTransportConfigurationManager,
             ServiceNotification: WDSTRANSPORT_SERVICE_NOTIFICATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ServicePolicy(self: *const IWdsTransportConfigurationManager, ppWdsTransportServicePolicy: ?*?*IWdsTransportServicePolicy) callconv(.Inline) HRESULT {
+    pub fn get_ServicePolicy(self: *const IWdsTransportConfigurationManager, ppWdsTransportServicePolicy: ?*?*IWdsTransportServicePolicy) HRESULT {
         return self.vtable.get_ServicePolicy(self, ppWdsTransportServicePolicy);
     }
-    pub fn get_DiagnosticsPolicy(self: *const IWdsTransportConfigurationManager, ppWdsTransportDiagnosticsPolicy: ?*?*IWdsTransportDiagnosticsPolicy) callconv(.Inline) HRESULT {
+    pub fn get_DiagnosticsPolicy(self: *const IWdsTransportConfigurationManager, ppWdsTransportDiagnosticsPolicy: ?*?*IWdsTransportDiagnosticsPolicy) HRESULT {
         return self.vtable.get_DiagnosticsPolicy(self, ppWdsTransportDiagnosticsPolicy);
     }
-    pub fn get_WdsTransportServicesRunning(self: *const IWdsTransportConfigurationManager, bRealtimeStatus: i16, pbServicesRunning: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_WdsTransportServicesRunning(self: *const IWdsTransportConfigurationManager, bRealtimeStatus: i16, pbServicesRunning: ?*i16) HRESULT {
         return self.vtable.get_WdsTransportServicesRunning(self, bRealtimeStatus, pbServicesRunning);
     }
-    pub fn EnableWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn EnableWdsTransportServices(self: *const IWdsTransportConfigurationManager) HRESULT {
         return self.vtable.EnableWdsTransportServices(self);
     }
-    pub fn DisableWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn DisableWdsTransportServices(self: *const IWdsTransportConfigurationManager) HRESULT {
         return self.vtable.DisableWdsTransportServices(self);
     }
-    pub fn StartWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn StartWdsTransportServices(self: *const IWdsTransportConfigurationManager) HRESULT {
         return self.vtable.StartWdsTransportServices(self);
     }
-    pub fn StopWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn StopWdsTransportServices(self: *const IWdsTransportConfigurationManager) HRESULT {
         return self.vtable.StopWdsTransportServices(self);
     }
-    pub fn RestartWdsTransportServices(self: *const IWdsTransportConfigurationManager) callconv(.Inline) HRESULT {
+    pub fn RestartWdsTransportServices(self: *const IWdsTransportConfigurationManager) HRESULT {
         return self.vtable.RestartWdsTransportServices(self);
     }
-    pub fn NotifyWdsTransportServices(self: *const IWdsTransportConfigurationManager, ServiceNotification: WDSTRANSPORT_SERVICE_NOTIFICATION) callconv(.Inline) HRESULT {
+    pub fn NotifyWdsTransportServices(self: *const IWdsTransportConfigurationManager, ServiceNotification: WDSTRANSPORT_SERVICE_NOTIFICATION) HRESULT {
         return self.vtable.NotifyWdsTransportServices(self, ServiceNotification);
     }
 };
@@ -987,13 +987,13 @@ pub const IWdsTransportConfigurationManager2 = extern union {
         get_MulticastSessionPolicy: *const fn(
             self: *const IWdsTransportConfigurationManager2,
             ppWdsTransportMulticastSessionPolicy: ?*?*IWdsTransportMulticastSessionPolicy,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportConfigurationManager: IWdsTransportConfigurationManager,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_MulticastSessionPolicy(self: *const IWdsTransportConfigurationManager2, ppWdsTransportMulticastSessionPolicy: ?*?*IWdsTransportMulticastSessionPolicy) callconv(.Inline) HRESULT {
+    pub fn get_MulticastSessionPolicy(self: *const IWdsTransportConfigurationManager2, ppWdsTransportMulticastSessionPolicy: ?*?*IWdsTransportMulticastSessionPolicy) HRESULT {
         return self.vtable.get_MulticastSessionPolicy(self, ppWdsTransportMulticastSessionPolicy);
     }
 };
@@ -1011,30 +1011,30 @@ pub const IWdsTransportNamespaceManager = extern union {
             bszContentProvider: ?BSTR,
             bszConfiguration: ?BSTR,
             ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveNamespace: *const fn(
             self: *const IWdsTransportNamespaceManager,
             bszNamespaceName: ?BSTR,
             ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveNamespaces: *const fn(
             self: *const IWdsTransportNamespaceManager,
             bszContentProvider: ?BSTR,
             bszNamespaceName: ?BSTR,
             bIncludeTombstones: i16,
             ppWdsTransportNamespaces: ?*?*IWdsTransportCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateNamespace(self: *const IWdsTransportNamespaceManager, NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE, bszNamespaceName: ?BSTR, bszContentProvider: ?BSTR, bszConfiguration: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+    pub fn CreateNamespace(self: *const IWdsTransportNamespaceManager, NamespaceType: WDSTRANSPORT_NAMESPACE_TYPE, bszNamespaceName: ?BSTR, bszContentProvider: ?BSTR, bszConfiguration: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) HRESULT {
         return self.vtable.CreateNamespace(self, NamespaceType, bszNamespaceName, bszContentProvider, bszConfiguration, ppWdsTransportNamespace);
     }
-    pub fn RetrieveNamespace(self: *const IWdsTransportNamespaceManager, bszNamespaceName: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+    pub fn RetrieveNamespace(self: *const IWdsTransportNamespaceManager, bszNamespaceName: ?BSTR, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) HRESULT {
         return self.vtable.RetrieveNamespace(self, bszNamespaceName, ppWdsTransportNamespace);
     }
-    pub fn RetrieveNamespaces(self: *const IWdsTransportNamespaceManager, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: i16, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+    pub fn RetrieveNamespaces(self: *const IWdsTransportNamespaceManager, bszContentProvider: ?BSTR, bszNamespaceName: ?BSTR, bIncludeTombstones: i16, ppWdsTransportNamespaces: ?*?*IWdsTransportCollection) HRESULT {
         return self.vtable.RetrieveNamespaces(self, bszContentProvider, bszNamespaceName, bIncludeTombstones, ppWdsTransportNamespaces);
     }
 };
@@ -1048,12 +1048,12 @@ pub const IWdsTransportTftpManager = extern union {
         RetrieveTftpClients: *const fn(
             self: *const IWdsTransportTftpManager,
             ppWdsTransportTftpClients: ?*?*IWdsTransportCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RetrieveTftpClients(self: *const IWdsTransportTftpManager, ppWdsTransportTftpClients: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+    pub fn RetrieveTftpClients(self: *const IWdsTransportTftpManager, ppWdsTransportTftpClients: ?*?*IWdsTransportCollection) HRESULT {
         return self.vtable.RetrieveTftpClients(self, ppWdsTransportTftpClients);
     }
 };
@@ -1068,101 +1068,101 @@ pub const IWdsTransportServicePolicy = extern union {
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_IpAddressSource: *const fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_StartIpAddress: *const fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             pbszStartIpAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_StartIpAddress: *const fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             bszStartIpAddress: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_EndIpAddress: *const fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             pbszEndIpAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         put_EndIpAddress: *const fn(
             self: *const IWdsTransportServicePolicy,
             AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE,
             bszEndIpAddress: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartPort: *const fn(
             self: *const IWdsTransportServicePolicy,
             pulStartPort: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartPort: *const fn(
             self: *const IWdsTransportServicePolicy,
             ulStartPort: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EndPort: *const fn(
             self: *const IWdsTransportServicePolicy,
             pulEndPort: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EndPort: *const fn(
             self: *const IWdsTransportServicePolicy,
             ulEndPort: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkProfile: *const fn(
             self: *const IWdsTransportServicePolicy,
             pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkProfile: *const fn(
             self: *const IWdsTransportServicePolicy,
             ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportCacheable: IWdsTransportCacheable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pSourceType: ?*WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) HRESULT {
         return self.vtable.get_IpAddressSource(self, AddressType, pSourceType);
     }
-    pub fn put_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_IpAddressSource(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, SourceType: WDSTRANSPORT_IP_ADDRESS_SOURCE_TYPE) HRESULT {
         return self.vtable.put_IpAddressSource(self, AddressType, SourceType);
     }
-    pub fn get_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszStartIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszStartIpAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_StartIpAddress(self, AddressType, pbszStartIpAddress);
     }
-    pub fn put_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszStartIpAddress: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_StartIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszStartIpAddress: ?BSTR) HRESULT {
         return self.vtable.put_StartIpAddress(self, AddressType, bszStartIpAddress);
     }
-    pub fn get_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszEndIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, pbszEndIpAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_EndIpAddress(self, AddressType, pbszEndIpAddress);
     }
-    pub fn put_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszEndIpAddress: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_EndIpAddress(self: *const IWdsTransportServicePolicy, AddressType: WDSTRANSPORT_IP_ADDRESS_TYPE, bszEndIpAddress: ?BSTR) HRESULT {
         return self.vtable.put_EndIpAddress(self, AddressType, bszEndIpAddress);
     }
-    pub fn get_StartPort(self: *const IWdsTransportServicePolicy, pulStartPort: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_StartPort(self: *const IWdsTransportServicePolicy, pulStartPort: ?*u32) HRESULT {
         return self.vtable.get_StartPort(self, pulStartPort);
     }
-    pub fn put_StartPort(self: *const IWdsTransportServicePolicy, ulStartPort: u32) callconv(.Inline) HRESULT {
+    pub fn put_StartPort(self: *const IWdsTransportServicePolicy, ulStartPort: u32) HRESULT {
         return self.vtable.put_StartPort(self, ulStartPort);
     }
-    pub fn get_EndPort(self: *const IWdsTransportServicePolicy, pulEndPort: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_EndPort(self: *const IWdsTransportServicePolicy, pulEndPort: ?*u32) HRESULT {
         return self.vtable.get_EndPort(self, pulEndPort);
     }
-    pub fn put_EndPort(self: *const IWdsTransportServicePolicy, ulEndPort: u32) callconv(.Inline) HRESULT {
+    pub fn put_EndPort(self: *const IWdsTransportServicePolicy, ulEndPort: u32) HRESULT {
         return self.vtable.put_EndPort(self, ulEndPort);
     }
-    pub fn get_NetworkProfile(self: *const IWdsTransportServicePolicy, pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_NetworkProfile(self: *const IWdsTransportServicePolicy, pProfileType: ?*WDSTRANSPORT_NETWORK_PROFILE_TYPE) HRESULT {
         return self.vtable.get_NetworkProfile(self, pProfileType);
     }
-    pub fn put_NetworkProfile(self: *const IWdsTransportServicePolicy, ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_NetworkProfile(self: *const IWdsTransportServicePolicy, ProfileType: WDSTRANSPORT_NETWORK_PROFILE_TYPE) HRESULT {
         return self.vtable.put_NetworkProfile(self, ProfileType);
     }
 };
@@ -1177,54 +1177,54 @@ pub const IWdsTransportServicePolicy2 = extern union {
         get_UdpPortPolicy: *const fn(
             self: *const IWdsTransportServicePolicy2,
             pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UdpPortPolicy: *const fn(
             self: *const IWdsTransportServicePolicy2,
             UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TftpMaximumBlockSize: *const fn(
             self: *const IWdsTransportServicePolicy2,
             pulTftpMaximumBlockSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_TftpMaximumBlockSize: *const fn(
             self: *const IWdsTransportServicePolicy2,
             ulTftpMaximumBlockSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnableTftpVariableWindowExtension: *const fn(
             self: *const IWdsTransportServicePolicy2,
             pbEnableTftpVariableWindowExtension: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EnableTftpVariableWindowExtension: *const fn(
             self: *const IWdsTransportServicePolicy2,
             bEnableTftpVariableWindowExtension: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportServicePolicy: IWdsTransportServicePolicy,
     IWdsTransportCacheable: IWdsTransportCacheable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY) callconv(.Inline) HRESULT {
+    pub fn get_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, pUdpPortPolicy: ?*WDSTRANSPORT_UDP_PORT_POLICY) HRESULT {
         return self.vtable.get_UdpPortPolicy(self, pUdpPortPolicy);
     }
-    pub fn put_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY) callconv(.Inline) HRESULT {
+    pub fn put_UdpPortPolicy(self: *const IWdsTransportServicePolicy2, UdpPortPolicy: WDSTRANSPORT_UDP_PORT_POLICY) HRESULT {
         return self.vtable.put_UdpPortPolicy(self, UdpPortPolicy);
     }
-    pub fn get_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, pulTftpMaximumBlockSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, pulTftpMaximumBlockSize: ?*u32) HRESULT {
         return self.vtable.get_TftpMaximumBlockSize(self, pulTftpMaximumBlockSize);
     }
-    pub fn put_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, ulTftpMaximumBlockSize: u32) callconv(.Inline) HRESULT {
+    pub fn put_TftpMaximumBlockSize(self: *const IWdsTransportServicePolicy2, ulTftpMaximumBlockSize: u32) HRESULT {
         return self.vtable.put_TftpMaximumBlockSize(self, ulTftpMaximumBlockSize);
     }
-    pub fn get_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, pbEnableTftpVariableWindowExtension: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, pbEnableTftpVariableWindowExtension: ?*i16) HRESULT {
         return self.vtable.get_EnableTftpVariableWindowExtension(self, pbEnableTftpVariableWindowExtension);
     }
-    pub fn put_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, bEnableTftpVariableWindowExtension: i16) callconv(.Inline) HRESULT {
+    pub fn put_EnableTftpVariableWindowExtension(self: *const IWdsTransportServicePolicy2, bEnableTftpVariableWindowExtension: i16) HRESULT {
         return self.vtable.put_EnableTftpVariableWindowExtension(self, bEnableTftpVariableWindowExtension);
     }
 };
@@ -1239,37 +1239,37 @@ pub const IWdsTransportDiagnosticsPolicy = extern union {
         get_Enabled: *const fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             pbEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Enabled: *const fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             bEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Components: *const fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             pulComponents: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Components: *const fn(
             self: *const IWdsTransportDiagnosticsPolicy,
             ulComponents: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportCacheable: IWdsTransportCacheable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Enabled(self: *const IWdsTransportDiagnosticsPolicy, pbEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Enabled(self: *const IWdsTransportDiagnosticsPolicy, pbEnabled: ?*i16) HRESULT {
         return self.vtable.get_Enabled(self, pbEnabled);
     }
-    pub fn put_Enabled(self: *const IWdsTransportDiagnosticsPolicy, bEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_Enabled(self: *const IWdsTransportDiagnosticsPolicy, bEnabled: i16) HRESULT {
         return self.vtable.put_Enabled(self, bEnabled);
     }
-    pub fn get_Components(self: *const IWdsTransportDiagnosticsPolicy, pulComponents: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Components(self: *const IWdsTransportDiagnosticsPolicy, pulComponents: ?*u32) HRESULT {
         return self.vtable.get_Components(self, pulComponents);
     }
-    pub fn put_Components(self: *const IWdsTransportDiagnosticsPolicy, ulComponents: u32) callconv(.Inline) HRESULT {
+    pub fn put_Components(self: *const IWdsTransportDiagnosticsPolicy, ulComponents: u32) HRESULT {
         return self.vtable.put_Components(self, ulComponents);
     }
 };
@@ -1284,69 +1284,69 @@ pub const IWdsTransportMulticastSessionPolicy = extern union {
         get_SlowClientHandling: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pSlowClientHandling: ?*WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SlowClientHandling: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             SlowClientHandling: WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AutoDisconnectThreshold: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pulThreshold: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AutoDisconnectThreshold: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             ulThreshold: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MultistreamStreamCount: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pulStreamCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MultistreamStreamCount: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             ulStreamCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SlowClientFallback: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             pbClientFallback: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SlowClientFallback: *const fn(
             self: *const IWdsTransportMulticastSessionPolicy,
             bClientFallback: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportCacheable: IWdsTransportCacheable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SlowClientHandling(self: *const IWdsTransportMulticastSessionPolicy, pSlowClientHandling: ?*WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_SlowClientHandling(self: *const IWdsTransportMulticastSessionPolicy, pSlowClientHandling: ?*WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) HRESULT {
         return self.vtable.get_SlowClientHandling(self, pSlowClientHandling);
     }
-    pub fn put_SlowClientHandling(self: *const IWdsTransportMulticastSessionPolicy, SlowClientHandling: WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_SlowClientHandling(self: *const IWdsTransportMulticastSessionPolicy, SlowClientHandling: WDSTRANSPORT_SLOW_CLIENT_HANDLING_TYPE) HRESULT {
         return self.vtable.put_SlowClientHandling(self, SlowClientHandling);
     }
-    pub fn get_AutoDisconnectThreshold(self: *const IWdsTransportMulticastSessionPolicy, pulThreshold: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_AutoDisconnectThreshold(self: *const IWdsTransportMulticastSessionPolicy, pulThreshold: ?*u32) HRESULT {
         return self.vtable.get_AutoDisconnectThreshold(self, pulThreshold);
     }
-    pub fn put_AutoDisconnectThreshold(self: *const IWdsTransportMulticastSessionPolicy, ulThreshold: u32) callconv(.Inline) HRESULT {
+    pub fn put_AutoDisconnectThreshold(self: *const IWdsTransportMulticastSessionPolicy, ulThreshold: u32) HRESULT {
         return self.vtable.put_AutoDisconnectThreshold(self, ulThreshold);
     }
-    pub fn get_MultistreamStreamCount(self: *const IWdsTransportMulticastSessionPolicy, pulStreamCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MultistreamStreamCount(self: *const IWdsTransportMulticastSessionPolicy, pulStreamCount: ?*u32) HRESULT {
         return self.vtable.get_MultistreamStreamCount(self, pulStreamCount);
     }
-    pub fn put_MultistreamStreamCount(self: *const IWdsTransportMulticastSessionPolicy, ulStreamCount: u32) callconv(.Inline) HRESULT {
+    pub fn put_MultistreamStreamCount(self: *const IWdsTransportMulticastSessionPolicy, ulStreamCount: u32) HRESULT {
         return self.vtable.put_MultistreamStreamCount(self, ulStreamCount);
     }
-    pub fn get_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, pbClientFallback: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, pbClientFallback: ?*i16) HRESULT {
         return self.vtable.get_SlowClientFallback(self, pbClientFallback);
     }
-    pub fn put_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, bClientFallback: i16) callconv(.Inline) HRESULT {
+    pub fn put_SlowClientFallback(self: *const IWdsTransportMulticastSessionPolicy, bClientFallback: i16) HRESULT {
         return self.vtable.put_SlowClientFallback(self, bClientFallback);
     }
 };
@@ -1361,165 +1361,165 @@ pub const IWdsTransportNamespace = extern union {
         get_Type: *const fn(
             self: *const IWdsTransportNamespace,
             pType: ?*WDSTRANSPORT_NAMESPACE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IWdsTransportNamespace,
             pulId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IWdsTransportNamespace,
             pbszName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IWdsTransportNamespace,
             bszName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FriendlyName: *const fn(
             self: *const IWdsTransportNamespace,
             pbszFriendlyName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FriendlyName: *const fn(
             self: *const IWdsTransportNamespace,
             bszFriendlyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IWdsTransportNamespace,
             pbszDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Description: *const fn(
             self: *const IWdsTransportNamespace,
             bszDescription: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ContentProvider: *const fn(
             self: *const IWdsTransportNamespace,
             pbszContentProvider: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ContentProvider: *const fn(
             self: *const IWdsTransportNamespace,
             bszContentProvider: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Configuration: *const fn(
             self: *const IWdsTransportNamespace,
             pbszConfiguration: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Configuration: *const fn(
             self: *const IWdsTransportNamespace,
             bszConfiguration: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Registered: *const fn(
             self: *const IWdsTransportNamespace,
             pbRegistered: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Tombstoned: *const fn(
             self: *const IWdsTransportNamespace,
             pbTombstoned: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TombstoneTime: *const fn(
             self: *const IWdsTransportNamespace,
             pTombstoneTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransmissionStarted: *const fn(
             self: *const IWdsTransportNamespace,
             pbTransmissionStarted: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Register: *const fn(
             self: *const IWdsTransportNamespace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Deregister: *const fn(
             self: *const IWdsTransportNamespace,
             bTerminateSessions: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IWdsTransportNamespace,
             ppWdsTransportNamespaceClone: ?*?*IWdsTransportNamespace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IWdsTransportNamespace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveContents: *const fn(
             self: *const IWdsTransportNamespace,
             ppWdsTransportContents: ?*?*IWdsTransportCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const IWdsTransportNamespace, pType: ?*WDSTRANSPORT_NAMESPACE_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const IWdsTransportNamespace, pType: ?*WDSTRANSPORT_NAMESPACE_TYPE) HRESULT {
         return self.vtable.get_Type(self, pType);
     }
-    pub fn get_Id(self: *const IWdsTransportNamespace, pulId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IWdsTransportNamespace, pulId: ?*u32) HRESULT {
         return self.vtable.get_Id(self, pulId);
     }
-    pub fn get_Name(self: *const IWdsTransportNamespace, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IWdsTransportNamespace, pbszName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbszName);
     }
-    pub fn put_Name(self: *const IWdsTransportNamespace, bszName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IWdsTransportNamespace, bszName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bszName);
     }
-    pub fn get_FriendlyName(self: *const IWdsTransportNamespace, pbszFriendlyName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FriendlyName(self: *const IWdsTransportNamespace, pbszFriendlyName: ?*?BSTR) HRESULT {
         return self.vtable.get_FriendlyName(self, pbszFriendlyName);
     }
-    pub fn put_FriendlyName(self: *const IWdsTransportNamespace, bszFriendlyName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FriendlyName(self: *const IWdsTransportNamespace, bszFriendlyName: ?BSTR) HRESULT {
         return self.vtable.put_FriendlyName(self, bszFriendlyName);
     }
-    pub fn get_Description(self: *const IWdsTransportNamespace, pbszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IWdsTransportNamespace, pbszDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbszDescription);
     }
-    pub fn put_Description(self: *const IWdsTransportNamespace, bszDescription: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Description(self: *const IWdsTransportNamespace, bszDescription: ?BSTR) HRESULT {
         return self.vtable.put_Description(self, bszDescription);
     }
-    pub fn get_ContentProvider(self: *const IWdsTransportNamespace, pbszContentProvider: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ContentProvider(self: *const IWdsTransportNamespace, pbszContentProvider: ?*?BSTR) HRESULT {
         return self.vtable.get_ContentProvider(self, pbszContentProvider);
     }
-    pub fn put_ContentProvider(self: *const IWdsTransportNamespace, bszContentProvider: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ContentProvider(self: *const IWdsTransportNamespace, bszContentProvider: ?BSTR) HRESULT {
         return self.vtable.put_ContentProvider(self, bszContentProvider);
     }
-    pub fn get_Configuration(self: *const IWdsTransportNamespace, pbszConfiguration: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Configuration(self: *const IWdsTransportNamespace, pbszConfiguration: ?*?BSTR) HRESULT {
         return self.vtable.get_Configuration(self, pbszConfiguration);
     }
-    pub fn put_Configuration(self: *const IWdsTransportNamespace, bszConfiguration: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Configuration(self: *const IWdsTransportNamespace, bszConfiguration: ?BSTR) HRESULT {
         return self.vtable.put_Configuration(self, bszConfiguration);
     }
-    pub fn get_Registered(self: *const IWdsTransportNamespace, pbRegistered: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Registered(self: *const IWdsTransportNamespace, pbRegistered: ?*i16) HRESULT {
         return self.vtable.get_Registered(self, pbRegistered);
     }
-    pub fn get_Tombstoned(self: *const IWdsTransportNamespace, pbTombstoned: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Tombstoned(self: *const IWdsTransportNamespace, pbTombstoned: ?*i16) HRESULT {
         return self.vtable.get_Tombstoned(self, pbTombstoned);
     }
-    pub fn get_TombstoneTime(self: *const IWdsTransportNamespace, pTombstoneTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_TombstoneTime(self: *const IWdsTransportNamespace, pTombstoneTime: ?*f64) HRESULT {
         return self.vtable.get_TombstoneTime(self, pTombstoneTime);
     }
-    pub fn get_TransmissionStarted(self: *const IWdsTransportNamespace, pbTransmissionStarted: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_TransmissionStarted(self: *const IWdsTransportNamespace, pbTransmissionStarted: ?*i16) HRESULT {
         return self.vtable.get_TransmissionStarted(self, pbTransmissionStarted);
     }
-    pub fn Register(self: *const IWdsTransportNamespace) callconv(.Inline) HRESULT {
+    pub fn Register(self: *const IWdsTransportNamespace) HRESULT {
         return self.vtable.Register(self);
     }
-    pub fn Deregister(self: *const IWdsTransportNamespace, bTerminateSessions: i16) callconv(.Inline) HRESULT {
+    pub fn Deregister(self: *const IWdsTransportNamespace, bTerminateSessions: i16) HRESULT {
         return self.vtable.Deregister(self, bTerminateSessions);
     }
-    pub fn Clone(self: *const IWdsTransportNamespace, ppWdsTransportNamespaceClone: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IWdsTransportNamespace, ppWdsTransportNamespaceClone: ?*?*IWdsTransportNamespace) HRESULT {
         return self.vtable.Clone(self, ppWdsTransportNamespaceClone);
     }
-    pub fn Refresh(self: *const IWdsTransportNamespace) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IWdsTransportNamespace) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn RetrieveContents(self: *const IWdsTransportNamespace, ppWdsTransportContents: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+    pub fn RetrieveContents(self: *const IWdsTransportNamespace, ppWdsTransportContents: ?*?*IWdsTransportCollection) HRESULT {
         return self.vtable.RetrieveContents(self, ppWdsTransportContents);
     }
 };
@@ -1545,13 +1545,13 @@ pub const IWdsTransportNamespaceScheduledCast = extern union {
         base: IWdsTransportNamespace.VTable,
         StartTransmission: *const fn(
             self: *const IWdsTransportNamespaceScheduledCast,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportNamespace: IWdsTransportNamespace,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn StartTransmission(self: *const IWdsTransportNamespaceScheduledCast) callconv(.Inline) HRESULT {
+    pub fn StartTransmission(self: *const IWdsTransportNamespaceScheduledCast) HRESULT {
         return self.vtable.StartTransmission(self);
     }
 };
@@ -1580,38 +1580,38 @@ pub const IWdsTransportNamespaceScheduledCastAutoStart = extern union {
         get_MinimumClients: *const fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             pulMinimumClients: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinimumClients: *const fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             ulMinimumClients: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTime: *const fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             pStartTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_StartTime: *const fn(
             self: *const IWdsTransportNamespaceScheduledCastAutoStart,
             StartTime: f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWdsTransportNamespaceScheduledCast: IWdsTransportNamespaceScheduledCast,
     IWdsTransportNamespace: IWdsTransportNamespace,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_MinimumClients(self: *const IWdsTransportNamespaceScheduledCastAutoStart, pulMinimumClients: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MinimumClients(self: *const IWdsTransportNamespaceScheduledCastAutoStart, pulMinimumClients: ?*u32) HRESULT {
         return self.vtable.get_MinimumClients(self, pulMinimumClients);
     }
-    pub fn put_MinimumClients(self: *const IWdsTransportNamespaceScheduledCastAutoStart, ulMinimumClients: u32) callconv(.Inline) HRESULT {
+    pub fn put_MinimumClients(self: *const IWdsTransportNamespaceScheduledCastAutoStart, ulMinimumClients: u32) HRESULT {
         return self.vtable.put_MinimumClients(self, ulMinimumClients);
     }
-    pub fn get_StartTime(self: *const IWdsTransportNamespaceScheduledCastAutoStart, pStartTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_StartTime(self: *const IWdsTransportNamespaceScheduledCastAutoStart, pStartTime: ?*f64) HRESULT {
         return self.vtable.get_StartTime(self, pStartTime);
     }
-    pub fn put_StartTime(self: *const IWdsTransportNamespaceScheduledCastAutoStart, StartTime: f64) callconv(.Inline) HRESULT {
+    pub fn put_StartTime(self: *const IWdsTransportNamespaceScheduledCastAutoStart, StartTime: f64) HRESULT {
         return self.vtable.put_StartTime(self, StartTime);
     }
 };
@@ -1626,41 +1626,41 @@ pub const IWdsTransportContent = extern union {
         get_Namespace: *const fn(
             self: *const IWdsTransportContent,
             ppWdsTransportNamespace: ?*?*IWdsTransportNamespace,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IWdsTransportContent,
             pulId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IWdsTransportContent,
             pbszName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveSessions: *const fn(
             self: *const IWdsTransportContent,
             ppWdsTransportSessions: ?*?*IWdsTransportCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IWdsTransportContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Namespace(self: *const IWdsTransportContent, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) callconv(.Inline) HRESULT {
+    pub fn get_Namespace(self: *const IWdsTransportContent, ppWdsTransportNamespace: ?*?*IWdsTransportNamespace) HRESULT {
         return self.vtable.get_Namespace(self, ppWdsTransportNamespace);
     }
-    pub fn get_Id(self: *const IWdsTransportContent, pulId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IWdsTransportContent, pulId: ?*u32) HRESULT {
         return self.vtable.get_Id(self, pulId);
     }
-    pub fn get_Name(self: *const IWdsTransportContent, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IWdsTransportContent, pbszName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbszName);
     }
-    pub fn RetrieveSessions(self: *const IWdsTransportContent, ppWdsTransportSessions: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+    pub fn RetrieveSessions(self: *const IWdsTransportContent, ppWdsTransportSessions: ?*?*IWdsTransportCollection) HRESULT {
         return self.vtable.RetrieveSessions(self, ppWdsTransportSessions);
     }
-    pub fn Terminate(self: *const IWdsTransportContent) callconv(.Inline) HRESULT {
+    pub fn Terminate(self: *const IWdsTransportContent) HRESULT {
         return self.vtable.Terminate(self);
     }
 };
@@ -1675,65 +1675,65 @@ pub const IWdsTransportSession = extern union {
         get_Content: *const fn(
             self: *const IWdsTransportSession,
             ppWdsTransportContent: ?*?*IWdsTransportContent,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IWdsTransportSession,
             pulId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkInterfaceName: *const fn(
             self: *const IWdsTransportSession,
             pbszNetworkInterfaceName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkInterfaceAddress: *const fn(
             self: *const IWdsTransportSession,
             pbszNetworkInterfaceAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TransferRate: *const fn(
             self: *const IWdsTransportSession,
             pulTransferRate: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MasterClientId: *const fn(
             self: *const IWdsTransportSession,
             pulMasterClientId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RetrieveClients: *const fn(
             self: *const IWdsTransportSession,
             ppWdsTransportClients: ?*?*IWdsTransportCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IWdsTransportSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Content(self: *const IWdsTransportSession, ppWdsTransportContent: ?*?*IWdsTransportContent) callconv(.Inline) HRESULT {
+    pub fn get_Content(self: *const IWdsTransportSession, ppWdsTransportContent: ?*?*IWdsTransportContent) HRESULT {
         return self.vtable.get_Content(self, ppWdsTransportContent);
     }
-    pub fn get_Id(self: *const IWdsTransportSession, pulId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IWdsTransportSession, pulId: ?*u32) HRESULT {
         return self.vtable.get_Id(self, pulId);
     }
-    pub fn get_NetworkInterfaceName(self: *const IWdsTransportSession, pbszNetworkInterfaceName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_NetworkInterfaceName(self: *const IWdsTransportSession, pbszNetworkInterfaceName: ?*?BSTR) HRESULT {
         return self.vtable.get_NetworkInterfaceName(self, pbszNetworkInterfaceName);
     }
-    pub fn get_NetworkInterfaceAddress(self: *const IWdsTransportSession, pbszNetworkInterfaceAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_NetworkInterfaceAddress(self: *const IWdsTransportSession, pbszNetworkInterfaceAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_NetworkInterfaceAddress(self, pbszNetworkInterfaceAddress);
     }
-    pub fn get_TransferRate(self: *const IWdsTransportSession, pulTransferRate: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TransferRate(self: *const IWdsTransportSession, pulTransferRate: ?*u32) HRESULT {
         return self.vtable.get_TransferRate(self, pulTransferRate);
     }
-    pub fn get_MasterClientId(self: *const IWdsTransportSession, pulMasterClientId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MasterClientId(self: *const IWdsTransportSession, pulMasterClientId: ?*u32) HRESULT {
         return self.vtable.get_MasterClientId(self, pulMasterClientId);
     }
-    pub fn RetrieveClients(self: *const IWdsTransportSession, ppWdsTransportClients: ?*?*IWdsTransportCollection) callconv(.Inline) HRESULT {
+    pub fn RetrieveClients(self: *const IWdsTransportSession, ppWdsTransportClients: ?*?*IWdsTransportCollection) HRESULT {
         return self.vtable.RetrieveClients(self, ppWdsTransportClients);
     }
-    pub fn Terminate(self: *const IWdsTransportSession) callconv(.Inline) HRESULT {
+    pub fn Terminate(self: *const IWdsTransportSession) HRESULT {
         return self.vtable.Terminate(self);
     }
 };
@@ -1748,99 +1748,99 @@ pub const IWdsTransportClient = extern union {
         get_Session: *const fn(
             self: *const IWdsTransportClient,
             ppWdsTransportSession: ?*?*IWdsTransportSession,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IWdsTransportClient,
             pulId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IWdsTransportClient,
             pbszName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MacAddress: *const fn(
             self: *const IWdsTransportClient,
             pbszMacAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddress: *const fn(
             self: *const IWdsTransportClient,
             pbszIpAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PercentCompletion: *const fn(
             self: *const IWdsTransportClient,
             pulPercentCompletion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JoinDuration: *const fn(
             self: *const IWdsTransportClient,
             pulJoinDuration: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CpuUtilization: *const fn(
             self: *const IWdsTransportClient,
             pulCpuUtilization: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MemoryUtilization: *const fn(
             self: *const IWdsTransportClient,
             pulMemoryUtilization: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkUtilization: *const fn(
             self: *const IWdsTransportClient,
             pulNetworkUtilization: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserIdentity: *const fn(
             self: *const IWdsTransportClient,
             pbszUserIdentity: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IWdsTransportClient,
             DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Session(self: *const IWdsTransportClient, ppWdsTransportSession: ?*?*IWdsTransportSession) callconv(.Inline) HRESULT {
+    pub fn get_Session(self: *const IWdsTransportClient, ppWdsTransportSession: ?*?*IWdsTransportSession) HRESULT {
         return self.vtable.get_Session(self, ppWdsTransportSession);
     }
-    pub fn get_Id(self: *const IWdsTransportClient, pulId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IWdsTransportClient, pulId: ?*u32) HRESULT {
         return self.vtable.get_Id(self, pulId);
     }
-    pub fn get_Name(self: *const IWdsTransportClient, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IWdsTransportClient, pbszName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbszName);
     }
-    pub fn get_MacAddress(self: *const IWdsTransportClient, pbszMacAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_MacAddress(self: *const IWdsTransportClient, pbszMacAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_MacAddress(self, pbszMacAddress);
     }
-    pub fn get_IpAddress(self: *const IWdsTransportClient, pbszIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IpAddress(self: *const IWdsTransportClient, pbszIpAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_IpAddress(self, pbszIpAddress);
     }
-    pub fn get_PercentCompletion(self: *const IWdsTransportClient, pulPercentCompletion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_PercentCompletion(self: *const IWdsTransportClient, pulPercentCompletion: ?*u32) HRESULT {
         return self.vtable.get_PercentCompletion(self, pulPercentCompletion);
     }
-    pub fn get_JoinDuration(self: *const IWdsTransportClient, pulJoinDuration: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_JoinDuration(self: *const IWdsTransportClient, pulJoinDuration: ?*u32) HRESULT {
         return self.vtable.get_JoinDuration(self, pulJoinDuration);
     }
-    pub fn get_CpuUtilization(self: *const IWdsTransportClient, pulCpuUtilization: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_CpuUtilization(self: *const IWdsTransportClient, pulCpuUtilization: ?*u32) HRESULT {
         return self.vtable.get_CpuUtilization(self, pulCpuUtilization);
     }
-    pub fn get_MemoryUtilization(self: *const IWdsTransportClient, pulMemoryUtilization: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_MemoryUtilization(self: *const IWdsTransportClient, pulMemoryUtilization: ?*u32) HRESULT {
         return self.vtable.get_MemoryUtilization(self, pulMemoryUtilization);
     }
-    pub fn get_NetworkUtilization(self: *const IWdsTransportClient, pulNetworkUtilization: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_NetworkUtilization(self: *const IWdsTransportClient, pulNetworkUtilization: ?*u32) HRESULT {
         return self.vtable.get_NetworkUtilization(self, pulNetworkUtilization);
     }
-    pub fn get_UserIdentity(self: *const IWdsTransportClient, pbszUserIdentity: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserIdentity(self: *const IWdsTransportClient, pbszUserIdentity: ?*?BSTR) HRESULT {
         return self.vtable.get_UserIdentity(self, pbszUserIdentity);
     }
-    pub fn Disconnect(self: *const IWdsTransportClient, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IWdsTransportClient, DisconnectionType: WDSTRANSPORT_DISCONNECT_TYPE) HRESULT {
         return self.vtable.Disconnect(self, DisconnectionType);
     }
 };
@@ -1855,60 +1855,60 @@ pub const IWdsTransportTftpClient = extern union {
         get_FileName: *const fn(
             self: *const IWdsTransportTftpClient,
             pbszFileName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IpAddress: *const fn(
             self: *const IWdsTransportTftpClient,
             pbszIpAddress: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timeout: *const fn(
             self: *const IWdsTransportTftpClient,
             pulTimeout: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentFileOffset: *const fn(
             self: *const IWdsTransportTftpClient,
             pul64CurrentOffset: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileSize: *const fn(
             self: *const IWdsTransportTftpClient,
             pul64FileSize: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BlockSize: *const fn(
             self: *const IWdsTransportTftpClient,
             pulBlockSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowSize: *const fn(
             self: *const IWdsTransportTftpClient,
             pulWindowSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_FileName(self: *const IWdsTransportTftpClient, pbszFileName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FileName(self: *const IWdsTransportTftpClient, pbszFileName: ?*?BSTR) HRESULT {
         return self.vtable.get_FileName(self, pbszFileName);
     }
-    pub fn get_IpAddress(self: *const IWdsTransportTftpClient, pbszIpAddress: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_IpAddress(self: *const IWdsTransportTftpClient, pbszIpAddress: ?*?BSTR) HRESULT {
         return self.vtable.get_IpAddress(self, pbszIpAddress);
     }
-    pub fn get_Timeout(self: *const IWdsTransportTftpClient, pulTimeout: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Timeout(self: *const IWdsTransportTftpClient, pulTimeout: ?*u32) HRESULT {
         return self.vtable.get_Timeout(self, pulTimeout);
     }
-    pub fn get_CurrentFileOffset(self: *const IWdsTransportTftpClient, pul64CurrentOffset: ?*u64) callconv(.Inline) HRESULT {
+    pub fn get_CurrentFileOffset(self: *const IWdsTransportTftpClient, pul64CurrentOffset: ?*u64) HRESULT {
         return self.vtable.get_CurrentFileOffset(self, pul64CurrentOffset);
     }
-    pub fn get_FileSize(self: *const IWdsTransportTftpClient, pul64FileSize: ?*u64) callconv(.Inline) HRESULT {
+    pub fn get_FileSize(self: *const IWdsTransportTftpClient, pul64FileSize: ?*u64) HRESULT {
         return self.vtable.get_FileSize(self, pul64FileSize);
     }
-    pub fn get_BlockSize(self: *const IWdsTransportTftpClient, pulBlockSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_BlockSize(self: *const IWdsTransportTftpClient, pulBlockSize: ?*u32) HRESULT {
         return self.vtable.get_BlockSize(self, pulBlockSize);
     }
-    pub fn get_WindowSize(self: *const IWdsTransportTftpClient, pulWindowSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_WindowSize(self: *const IWdsTransportTftpClient, pulWindowSize: ?*u32) HRESULT {
         return self.vtable.get_WindowSize(self, pulWindowSize);
     }
 };
@@ -1923,36 +1923,36 @@ pub const IWdsTransportContentProvider = extern union {
         get_Name: *const fn(
             self: *const IWdsTransportContentProvider,
             pbszName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Description: *const fn(
             self: *const IWdsTransportContentProvider,
             pbszDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FilePath: *const fn(
             self: *const IWdsTransportContentProvider,
             pbszFilePath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitializationRoutine: *const fn(
             self: *const IWdsTransportContentProvider,
             pbszInitializationRoutine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IWdsTransportContentProvider, pbszName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IWdsTransportContentProvider, pbszName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbszName);
     }
-    pub fn get_Description(self: *const IWdsTransportContentProvider, pbszDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Description(self: *const IWdsTransportContentProvider, pbszDescription: ?*?BSTR) HRESULT {
         return self.vtable.get_Description(self, pbszDescription);
     }
-    pub fn get_FilePath(self: *const IWdsTransportContentProvider, pbszFilePath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FilePath(self: *const IWdsTransportContentProvider, pbszFilePath: ?*?BSTR) HRESULT {
         return self.vtable.get_FilePath(self, pbszFilePath);
     }
-    pub fn get_InitializationRoutine(self: *const IWdsTransportContentProvider, pbszInitializationRoutine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_InitializationRoutine(self: *const IWdsTransportContentProvider, pbszInitializationRoutine: ?*?BSTR) HRESULT {
         return self.vtable.get_InitializationRoutine(self, pbszInitializationRoutine);
     }
 };
@@ -1964,60 +1964,60 @@ pub const IWdsTransportContentProvider = extern union {
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliClose(
     Handle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliRegisterTrace(
     pfn: ?PFN_WdsCliTraceFunction,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wdsclientapi" fn WdsCliFreeStringArray(
     ppwszArray: ?[*]?PWSTR,
     ulCount: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliFindFirstImage(
     hSession: ?HANDLE,
     phFindHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliFindNextImage(
     Handle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetEnumerationFlags(
     Handle: ?HANDLE,
     pdwFlags: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageHandleFromFindHandle(
     FindHandle: ?HANDLE,
     phImageHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageHandleFromTransferHandle(
     hTransfer: ?HANDLE,
     phImageHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliCreateSession(
     pwszServer: ?PWSTR,
     pCred: ?*WDS_CLI_CRED,
     phSession: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliAuthorizeSession(
     hSession: ?HANDLE,
     pCred: ?*WDS_CLI_CRED,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliInitializeLog(
@@ -2025,104 +2025,104 @@ pub extern "wdsclientapi" fn WdsCliInitializeLog(
     ulClientArchitecture: CPU_ARCHITECTURE,
     pwszClientId: ?PWSTR,
     pwszClientAddress: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliLog(
     hSession: ?HANDLE,
     ulLogLevel: u32,
     ulMessageCode: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageName(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageDescription(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wdsclientapi" fn WdsCliGetImageType(
     hIfh: ?HANDLE,
     pImageType: ?*WDS_CLI_IMAGE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wdsclientapi" fn WdsCliGetImageFiles(
     hIfh: ?HANDLE,
     pppwszFiles: ?*?*?PWSTR,
     pdwCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageLanguage(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageLanguages(
     hIfh: ?HANDLE,
     pppszValues: ?*?*?*i8,
     pdwNumValues: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageVersion(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImagePath(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageIndex(
     hIfh: ?HANDLE,
     pdwValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageArchitecture(
     hIfh: ?HANDLE,
     pdwValue: ?*CPU_ARCHITECTURE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageLastModifiedTime(
     hIfh: ?HANDLE,
     ppSysTimeValue: ?*?*SYSTEMTIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageSize(
     hIfh: ?HANDLE,
     pullValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageHalName(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageGroup(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetImageNamespace(
     hIfh: ?HANDLE,
     ppwszValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wdsclientapi" fn WdsCliGetImageParameter(
     hIfh: ?HANDLE,
@@ -2130,17 +2130,17 @@ pub extern "wdsclientapi" fn WdsCliGetImageParameter(
     // TODO: what to do with BytesParamIndex 3?
     pResponse: ?*anyopaque,
     uResponseLen: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliGetTransferSize(
     hIfh: ?HANDLE,
     pullValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "wdsclientapi" fn WdsCliSetTransferBufferSize(
     ulSizeInBytes: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliTransferImage(
@@ -2151,7 +2151,7 @@ pub extern "wdsclientapi" fn WdsCliTransferImage(
     pfnWdsCliCallback: ?PFN_WdsCliCallback,
     pvUserData: ?*anyopaque,
     phTransfer: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliTransferFile(
@@ -2164,17 +2164,17 @@ pub extern "wdsclientapi" fn WdsCliTransferFile(
     pfnWdsCliCallback: ?PFN_WdsCliCallback,
     pvUserData: ?*anyopaque,
     phTransfer: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliCancelTransfer(
     hTransfer: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsclientapi" fn WdsCliWaitForTransfer(
     hTransfer: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wdsclientapi" fn WdsCliObtainDriverPackages(
@@ -2182,7 +2182,7 @@ pub extern "wdsclientapi" fn WdsCliObtainDriverPackages(
     ppwszServerName: ?*?PWSTR,
     pppwszDriverPackages: ?*?*?PWSTR,
     pulCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdsclientapi" fn WdsCliObtainDriverPackagesEx(
@@ -2191,13 +2191,13 @@ pub extern "wdsclientapi" fn WdsCliObtainDriverPackagesEx(
     ppwszServerName: ?*?PWSTR,
     pppwszDriverPackages: ?*?*?PWSTR,
     pulCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdsclientapi" fn WdsCliGetDriverQueryXml(
     pwszWinDirPath: ?PWSTR,
     ppwszDriverQuery: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderRegister(
@@ -2206,39 +2206,39 @@ pub extern "wdspxe" fn PxeProviderRegister(
     Index: u32,
     bIsCritical: BOOL,
     phProviderKey: ?*?HKEY,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderUnRegister(
     pszProviderName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderQueryIndex(
     pszProviderName: ?[*:0]const u16,
     puIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderEnumFirst(
     phEnum: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderEnumNext(
     hEnum: ?HANDLE,
     ppProvider: ?*?*PXE_PROVIDER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderEnumClose(
     hEnum: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderFreeInfo(
     pProvider: ?*PXE_PROVIDER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeRegisterCallback(
@@ -2246,7 +2246,7 @@ pub extern "wdspxe" fn PxeRegisterCallback(
     CallbackType: u32,
     pCallbackFunction: ?*anyopaque,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeSendReply(
@@ -2255,41 +2255,41 @@ pub extern "wdspxe" fn PxeSendReply(
     pPacket: ?*anyopaque,
     uPacketLen: u32,
     pAddress: ?*PXE_ADDRESS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeAsyncRecvDone(
     hClientRequest: ?HANDLE,
     Action: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeTrace(
     hProvider: ?HANDLE,
     Severity: u32,
     pszFormat: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wdspxe" fn PxeTraceV(
     hProvider: ?HANDLE,
     Severity: u32,
     pszFormat: ?[*:0]const u16,
     Params: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxePacketAllocate(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
     uSize: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxePacketFree(
     hProvider: ?HANDLE,
     hClientRequest: ?HANDLE,
     pPacket: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeProviderSetAttribute(
@@ -2298,7 +2298,7 @@ pub extern "wdspxe" fn PxeProviderSetAttribute(
     // TODO: what to do with BytesParamIndex 3?
     pParameterBuffer: ?*anyopaque,
     uParamLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpInitialize(
@@ -2309,7 +2309,7 @@ pub extern "wdspxe" fn PxeDhcpInitialize(
     pReplyPacket: ?*anyopaque,
     uMaxReplyPacketLen: u32,
     puReplyPacketLen: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6Initialize(
@@ -2320,7 +2320,7 @@ pub extern "wdspxe" fn PxeDhcpv6Initialize(
     pReply: ?*anyopaque,
     cbReply: u32,
     pcbReplyUsed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpAppendOption(
@@ -2332,7 +2332,7 @@ pub extern "wdspxe" fn PxeDhcpAppendOption(
     bOptionLen: u8,
     // TODO: what to do with BytesParamIndex 4?
     pValue: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6AppendOption(
@@ -2344,7 +2344,7 @@ pub extern "wdspxe" fn PxeDhcpv6AppendOption(
     cbOption: u16,
     // TODO: what to do with BytesParamIndex 4?
     pOption: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
@@ -2355,7 +2355,7 @@ pub extern "wdspxe" fn PxeDhcpAppendOptionRaw(
     uBufferLen: u16,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6AppendOptionRaw(
@@ -2366,7 +2366,7 @@ pub extern "wdspxe" fn PxeDhcpv6AppendOptionRaw(
     cbBuffer: u16,
     // TODO: what to do with BytesParamIndex 3?
     pBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpIsValid(
@@ -2375,7 +2375,7 @@ pub extern "wdspxe" fn PxeDhcpIsValid(
     uPacketLen: u32,
     bRequestPacket: BOOL,
     pbPxeOptionPresent: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6IsValid(
@@ -2384,7 +2384,7 @@ pub extern "wdspxe" fn PxeDhcpv6IsValid(
     uPacketLen: u32,
     bRequestPacket: BOOL,
     pbPxeOptionPresent: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpGetOptionValue(
@@ -2395,7 +2395,7 @@ pub extern "wdspxe" fn PxeDhcpGetOptionValue(
     bOption: u8,
     pbOptionLen: ?*u8,
     ppOptionValue: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6GetOptionValue(
@@ -2406,7 +2406,7 @@ pub extern "wdspxe" fn PxeDhcpv6GetOptionValue(
     wOption: u16,
     pwOptionLen: ?*u16,
     ppOptionValue: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
@@ -2417,7 +2417,7 @@ pub extern "wdspxe" fn PxeDhcpGetVendorOptionValue(
     uInstance: u32,
     pbOptionLen: ?*u8,
     ppOptionValue: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6GetVendorOptionValue(
@@ -2429,7 +2429,7 @@ pub extern "wdspxe" fn PxeDhcpv6GetVendorOptionValue(
     uInstance: u32,
     pwOptionLen: ?*u16,
     ppOptionValue: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
@@ -2441,7 +2441,7 @@ pub extern "wdspxe" fn PxeDhcpv6ParseRelayForw(
     pnRelayMessages: ?*u32,
     ppInnerPacket: ?*?*u8,
     pcbInnerPacket: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeDhcpv6CreateRelayRepl(
@@ -2454,7 +2454,7 @@ pub extern "wdspxe" fn PxeDhcpv6CreateRelayRepl(
     pReplyBuffer: ?*anyopaque,
     cbReplyBuffer: u32,
     pcbReplyBuffer: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdspxe" fn PxeGetServerInfo(
@@ -2462,7 +2462,7 @@ pub extern "wdspxe" fn PxeGetServerInfo(
     // TODO: what to do with BytesParamIndex 2?
     pBuffer: ?*anyopaque,
     uBufferLen: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdspxe" fn PxeGetServerInfoEx(
@@ -2471,14 +2471,14 @@ pub extern "wdspxe" fn PxeGetServerInfoEx(
     pBuffer: ?*anyopaque,
     uBufferLen: u32,
     puBufferUsed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdsmc" fn WdsTransportServerRegisterCallback(
     hProvider: ?HANDLE,
     CallbackId: TRANSPORTPROVIDER_CALLBACK_ID,
     pfnCallback: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdsmc" fn WdsTransportServerCompleteRead(
@@ -2486,14 +2486,14 @@ pub extern "wdsmc" fn WdsTransportServerCompleteRead(
     ulBytesRead: u32,
     pvUserData: ?*anyopaque,
     hReadResult: HRESULT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdsmc" fn WdsTransportServerTrace(
     hProvider: ?HANDLE,
     Severity: u32,
     pwszFormat: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdsmc" fn WdsTransportServerTraceV(
@@ -2501,91 +2501,91 @@ pub extern "wdsmc" fn WdsTransportServerTraceV(
     Severity: u32,
     pwszFormat: ?[*:0]const u16,
     Params: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdsmc" fn WdsTransportServerAllocateBuffer(
     hProvider: ?HANDLE,
     ulBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "wdsmc" fn WdsTransportServerFreeBuffer(
     hProvider: ?HANDLE,
     pvBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientInitialize(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientInitializeSession(
     pSessionRequest: ?*WDS_TRANSPORTCLIENT_REQUEST,
     pCallerData: ?*anyopaque,
     hSessionKey: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientRegisterCallback(
     hSessionKey: ?HANDLE,
     CallbackId: TRANSPORTCLIENT_CALLBACK_ID,
     pfnCallback: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientStartSession(
     hSessionKey: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientCompleteReceive(
     hSessionKey: ?HANDLE,
     ulSize: u32,
     pullOffset: ?*ULARGE_INTEGER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientCancelSession(
     hSessionKey: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wdstptc" fn WdsTransportClientCancelSessionEx(
     hSessionKey: ?HANDLE,
     dwErrorCode: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientWaitForCompletion(
     hSessionKey: ?HANDLE,
     uTimeout: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientQueryStatus(
     hSessionKey: ?HANDLE,
     puStatus: ?*u32,
     puErrorCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientCloseSession(
     hSessionKey: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientAddRefBuffer(
     pvBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientReleaseBuffer(
     pvBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdstptc" fn WdsTransportClientShutdown(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpParseInitialize(
@@ -2594,7 +2594,7 @@ pub extern "wdsbp" fn WdsBpParseInitialize(
     uPacketLen: u32,
     pbPacketType: ?*u8,
     phHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wdsbp" fn WdsBpParseInitializev6(
@@ -2603,18 +2603,18 @@ pub extern "wdsbp" fn WdsBpParseInitializev6(
     uPacketLen: u32,
     pbPacketType: ?*u8,
     phHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpInitialize(
     bPacketType: u8,
     phHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpCloseHandle(
     hHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpQueryOption(
@@ -2624,7 +2624,7 @@ pub extern "wdsbp" fn WdsBpQueryOption(
     // TODO: what to do with BytesParamIndex 2?
     pValue: ?*anyopaque,
     puBytes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpAddOption(
@@ -2633,7 +2633,7 @@ pub extern "wdsbp" fn WdsBpAddOption(
     uValueLen: u32,
     // TODO: what to do with BytesParamIndex 2?
     pValue: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wdsbp" fn WdsBpGetOptionBuffer(
@@ -2642,7 +2642,7 @@ pub extern "wdsbp" fn WdsBpGetOptionBuffer(
     // TODO: what to do with BytesParamIndex 1?
     pBuffer: ?*anyopaque,
     puBytes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

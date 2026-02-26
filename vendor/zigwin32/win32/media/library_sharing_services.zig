@@ -28,20 +28,20 @@ pub const IWindowsMediaLibrarySharingDeviceProperty = extern union {
         get_Name: *const fn(
             self: *const IWindowsMediaLibrarySharingDeviceProperty,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const IWindowsMediaLibrarySharingDeviceProperty,
             value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IWindowsMediaLibrarySharingDeviceProperty, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IWindowsMediaLibrarySharingDeviceProperty, name: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, name);
     }
-    pub fn get_Value(self: *const IWindowsMediaLibrarySharingDeviceProperty, value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const IWindowsMediaLibrarySharingDeviceProperty, value: ?*VARIANT) HRESULT {
         return self.vtable.get_Value(self, value);
     }
 };
@@ -56,28 +56,28 @@ pub const IWindowsMediaLibrarySharingDeviceProperties = extern union {
             self: *const IWindowsMediaLibrarySharingDeviceProperties,
             index: i32,
             property: ?*?*IWindowsMediaLibrarySharingDeviceProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IWindowsMediaLibrarySharingDeviceProperties,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IWindowsMediaLibrarySharingDeviceProperties,
             name: ?BSTR,
             property: ?*?*IWindowsMediaLibrarySharingDeviceProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDeviceProperties, index: i32, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDeviceProperties, index: i32, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) HRESULT {
         return self.vtable.get_Item(self, index, property);
     }
-    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDeviceProperties, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDeviceProperties, count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn GetProperty(self: *const IWindowsMediaLibrarySharingDeviceProperties, name: ?BSTR, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IWindowsMediaLibrarySharingDeviceProperties, name: ?BSTR, property: ?*?*IWindowsMediaLibrarySharingDeviceProperty) HRESULT {
         return self.vtable.GetProperty(self, name, property);
     }
 };
@@ -92,36 +92,36 @@ pub const IWindowsMediaLibrarySharingDevice = extern union {
         get_DeviceID: *const fn(
             self: *const IWindowsMediaLibrarySharingDevice,
             deviceID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Authorization: *const fn(
             self: *const IWindowsMediaLibrarySharingDevice,
             authorization: ?*WindowsMediaLibrarySharingDeviceAuthorizationStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Authorization: *const fn(
             self: *const IWindowsMediaLibrarySharingDevice,
             authorization: WindowsMediaLibrarySharingDeviceAuthorizationStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const IWindowsMediaLibrarySharingDevice,
             deviceProperties: ?*?*IWindowsMediaLibrarySharingDeviceProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DeviceID(self: *const IWindowsMediaLibrarySharingDevice, deviceID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DeviceID(self: *const IWindowsMediaLibrarySharingDevice, deviceID: ?*?BSTR) HRESULT {
         return self.vtable.get_DeviceID(self, deviceID);
     }
-    pub fn get_Authorization(self: *const IWindowsMediaLibrarySharingDevice, authorization: ?*WindowsMediaLibrarySharingDeviceAuthorizationStatus) callconv(.Inline) HRESULT {
+    pub fn get_Authorization(self: *const IWindowsMediaLibrarySharingDevice, authorization: ?*WindowsMediaLibrarySharingDeviceAuthorizationStatus) HRESULT {
         return self.vtable.get_Authorization(self, authorization);
     }
-    pub fn put_Authorization(self: *const IWindowsMediaLibrarySharingDevice, authorization: WindowsMediaLibrarySharingDeviceAuthorizationStatus) callconv(.Inline) HRESULT {
+    pub fn put_Authorization(self: *const IWindowsMediaLibrarySharingDevice, authorization: WindowsMediaLibrarySharingDeviceAuthorizationStatus) HRESULT {
         return self.vtable.put_Authorization(self, authorization);
     }
-    pub fn get_Properties(self: *const IWindowsMediaLibrarySharingDevice, deviceProperties: ?*?*IWindowsMediaLibrarySharingDeviceProperties) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const IWindowsMediaLibrarySharingDevice, deviceProperties: ?*?*IWindowsMediaLibrarySharingDeviceProperties) HRESULT {
         return self.vtable.get_Properties(self, deviceProperties);
     }
 };
@@ -136,28 +136,28 @@ pub const IWindowsMediaLibrarySharingDevices = extern union {
             self: *const IWindowsMediaLibrarySharingDevices,
             index: i32,
             device: ?*?*IWindowsMediaLibrarySharingDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IWindowsMediaLibrarySharingDevices,
             count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDevice: *const fn(
             self: *const IWindowsMediaLibrarySharingDevices,
             deviceID: ?BSTR,
             device: ?*?*IWindowsMediaLibrarySharingDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDevices, index: i32, device: ?*?*IWindowsMediaLibrarySharingDevice) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const IWindowsMediaLibrarySharingDevices, index: i32, device: ?*?*IWindowsMediaLibrarySharingDevice) HRESULT {
         return self.vtable.get_Item(self, index, device);
     }
-    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDevices, count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IWindowsMediaLibrarySharingDevices, count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, count);
     }
-    pub fn GetDevice(self: *const IWindowsMediaLibrarySharingDevices, deviceID: ?BSTR, device: ?*?*IWindowsMediaLibrarySharingDevice) callconv(.Inline) HRESULT {
+    pub fn GetDevice(self: *const IWindowsMediaLibrarySharingDevices, deviceID: ?BSTR, device: ?*?*IWindowsMediaLibrarySharingDevice) HRESULT {
         return self.vtable.GetDevice(self, deviceID, device);
     }
 };
@@ -171,156 +171,156 @@ pub const IWindowsMediaLibrarySharingServices = extern union {
         showShareMediaCPL: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             device: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_userHomeMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_userHomeMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_userHomeMediaSharingLibraryName: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             libraryName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_userHomeMediaSharingLibraryName: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             libraryName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_computerHomeMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingAllowed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_computerHomeMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingAllowed: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_userInternetMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_userInternetMediaSharingState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_computerInternetMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingAllowed: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_computerInternetMediaSharingAllowedState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingAllowed: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_internetMediaSharingSecurityGroup: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             securityGroup: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_internetMediaSharingSecurityGroup: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             securityGroup: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_allowSharingToAllDevices: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingEnabled: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_allowSharingToAllDevices: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             sharingEnabled: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setDefaultAuthorization: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             MACAddresses: ?BSTR,
             friendlyName: ?BSTR,
             authorization: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         setAuthorizationState: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             MACAddress: ?BSTR,
             authorizationState: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         getAllDevices: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             devices: ?*?*IWindowsMediaLibrarySharingDevices,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_customSettingsApplied: *const fn(
             self: *const IWindowsMediaLibrarySharingServices,
             customSettingsApplied: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn showShareMediaCPL(self: *const IWindowsMediaLibrarySharingServices, device: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn showShareMediaCPL(self: *const IWindowsMediaLibrarySharingServices, device: ?BSTR) HRESULT {
         return self.vtable.showShareMediaCPL(self, device);
     }
-    pub fn get_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) HRESULT {
         return self.vtable.get_userHomeMediaSharingState(self, sharingEnabled);
     }
-    pub fn put_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_userHomeMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) HRESULT {
         return self.vtable.put_userHomeMediaSharingState(self, sharingEnabled);
     }
-    pub fn get_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?*?BSTR) HRESULT {
         return self.vtable.get_userHomeMediaSharingLibraryName(self, libraryName);
     }
-    pub fn put_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_userHomeMediaSharingLibraryName(self: *const IWindowsMediaLibrarySharingServices, libraryName: ?BSTR) HRESULT {
         return self.vtable.put_userHomeMediaSharingLibraryName(self, libraryName);
     }
-    pub fn get_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) HRESULT {
         return self.vtable.get_computerHomeMediaSharingAllowedState(self, sharingAllowed);
     }
-    pub fn put_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) callconv(.Inline) HRESULT {
+    pub fn put_computerHomeMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) HRESULT {
         return self.vtable.put_computerHomeMediaSharingAllowedState(self, sharingAllowed);
     }
-    pub fn get_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) HRESULT {
         return self.vtable.get_userInternetMediaSharingState(self, sharingEnabled);
     }
-    pub fn put_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_userInternetMediaSharingState(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) HRESULT {
         return self.vtable.put_userInternetMediaSharingState(self, sharingEnabled);
     }
-    pub fn get_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: ?*i16) HRESULT {
         return self.vtable.get_computerInternetMediaSharingAllowedState(self, sharingAllowed);
     }
-    pub fn put_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) callconv(.Inline) HRESULT {
+    pub fn put_computerInternetMediaSharingAllowedState(self: *const IWindowsMediaLibrarySharingServices, sharingAllowed: i16) HRESULT {
         return self.vtable.put_computerInternetMediaSharingAllowedState(self, sharingAllowed);
     }
-    pub fn get_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?*?BSTR) HRESULT {
         return self.vtable.get_internetMediaSharingSecurityGroup(self, securityGroup);
     }
-    pub fn put_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_internetMediaSharingSecurityGroup(self: *const IWindowsMediaLibrarySharingServices, securityGroup: ?BSTR) HRESULT {
         return self.vtable.put_internetMediaSharingSecurityGroup(self, securityGroup);
     }
-    pub fn get_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: ?*i16) HRESULT {
         return self.vtable.get_allowSharingToAllDevices(self, sharingEnabled);
     }
-    pub fn put_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) callconv(.Inline) HRESULT {
+    pub fn put_allowSharingToAllDevices(self: *const IWindowsMediaLibrarySharingServices, sharingEnabled: i16) HRESULT {
         return self.vtable.put_allowSharingToAllDevices(self, sharingEnabled);
     }
-    pub fn setDefaultAuthorization(self: *const IWindowsMediaLibrarySharingServices, MACAddresses: ?BSTR, friendlyName: ?BSTR, authorization: i16) callconv(.Inline) HRESULT {
+    pub fn setDefaultAuthorization(self: *const IWindowsMediaLibrarySharingServices, MACAddresses: ?BSTR, friendlyName: ?BSTR, authorization: i16) HRESULT {
         return self.vtable.setDefaultAuthorization(self, MACAddresses, friendlyName, authorization);
     }
-    pub fn setAuthorizationState(self: *const IWindowsMediaLibrarySharingServices, MACAddress: ?BSTR, authorizationState: i16) callconv(.Inline) HRESULT {
+    pub fn setAuthorizationState(self: *const IWindowsMediaLibrarySharingServices, MACAddress: ?BSTR, authorizationState: i16) HRESULT {
         return self.vtable.setAuthorizationState(self, MACAddress, authorizationState);
     }
-    pub fn getAllDevices(self: *const IWindowsMediaLibrarySharingServices, devices: ?*?*IWindowsMediaLibrarySharingDevices) callconv(.Inline) HRESULT {
+    pub fn getAllDevices(self: *const IWindowsMediaLibrarySharingServices, devices: ?*?*IWindowsMediaLibrarySharingDevices) HRESULT {
         return self.vtable.getAllDevices(self, devices);
     }
-    pub fn get_customSettingsApplied(self: *const IWindowsMediaLibrarySharingServices, customSettingsApplied: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_customSettingsApplied(self: *const IWindowsMediaLibrarySharingServices, customSettingsApplied: ?*i16) HRESULT {
         return self.vtable.get_customSettingsApplied(self, customSettingsApplied);
     }
 };

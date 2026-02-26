@@ -953,14 +953,14 @@ pub const LPDDENUMCALLBACKA = *const fn(
     param1: ?PSTR,
     param2: ?PSTR,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDDENUMCALLBACKW = *const fn(
     param0: ?*Guid,
     param1: ?PWSTR,
     param2: ?PWSTR,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDDENUMCALLBACKEXA = *const fn(
     param0: ?*Guid,
@@ -968,7 +968,7 @@ pub const LPDDENUMCALLBACKEXA = *const fn(
     param2: ?PSTR,
     param3: ?*anyopaque,
     param4: ?HMONITOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDDENUMCALLBACKEXW = *const fn(
     param0: ?*Guid,
@@ -976,38 +976,38 @@ pub const LPDDENUMCALLBACKEXW = *const fn(
     param2: ?PWSTR,
     param3: ?*anyopaque,
     param4: ?HMONITOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDIRECTDRAWENUMERATEEXA = *const fn(
     lpCallback: ?LPDDENUMCALLBACKEXA,
     lpContext: ?*anyopaque,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const LPDIRECTDRAWENUMERATEEXW = *const fn(
     lpCallback: ?LPDDENUMCALLBACKEXW,
     lpContext: ?*anyopaque,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const LPDDENUMMODESCALLBACK = *const fn(
     param0: ?*DDSURFACEDESC,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const LPDDENUMMODESCALLBACK2 = *const fn(
     param0: ?*DDSURFACEDESC2,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDENUMSURFACESCALLBACK = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDENUMSURFACESCALLBACK = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDENUMSURFACESCALLBACK2 = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDENUMSURFACESCALLBACK2 = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDENUMSURFACESCALLBACK7 = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDENUMSURFACESCALLBACK7 = *const fn() callconv(.winapi) void;
 
 pub const DDARGB = extern struct {
     blue: u8,
@@ -1479,7 +1479,7 @@ pub const LPCLIPPERCALLBACK = *const fn(
     hWnd: ?HWND,
     code: u32,
     lpContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 const IID_IDirectDraw_Value = Guid.initString("6c14db80-a733-11ce-a521-0020af0be560");
 pub const IID_IDirectDraw = &IID_IDirectDraw_Value;
@@ -1488,162 +1488,162 @@ pub const IDirectDraw = extern union {
         base: IUnknown.VTable,
         Compact: *const fn(
             self: *const IDirectDraw,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateClipper: *const fn(
             self: *const IDirectDraw,
             param0: u32,
             param1: ?*?*IDirectDrawClipper,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePalette: *const fn(
             self: *const IDirectDraw,
             param0: u32,
             param1: ?*PALETTEENTRY,
             param2: ?*?*IDirectDrawPalette,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurface: *const fn(
             self: *const IDirectDraw,
             param0: ?*DDSURFACEDESC,
             param1: ?*?*IDirectDrawSurface,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DuplicateSurface: *const fn(
             self: *const IDirectDraw,
             param0: ?*IDirectDrawSurface,
             param1: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDisplayModes: *const fn(
             self: *const IDirectDraw,
             param0: u32,
             param1: ?*DDSURFACEDESC,
             param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumSurfaces: *const fn(
             self: *const IDirectDraw,
             param0: u32,
             param1: ?*DDSURFACEDESC,
             param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlipToGDISurface: *const fn(
             self: *const IDirectDraw,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDraw,
             param0: ?*DDCAPS_DX7,
             param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayMode: *const fn(
             self: *const IDirectDraw,
             param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFourCCCodes: *const fn(
             self: *const IDirectDraw,
             param0: ?*u32,
             param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGDISurface: *const fn(
             self: *const IDirectDraw,
             param0: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMonitorFrequency: *const fn(
             self: *const IDirectDraw,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScanLine: *const fn(
             self: *const IDirectDraw,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVerticalBlankStatus: *const fn(
             self: *const IDirectDraw,
             param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDraw,
             param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreDisplayMode: *const fn(
             self: *const IDirectDraw,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectDraw,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayMode: *const fn(
             self: *const IDirectDraw,
             param0: u32,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForVerticalBlank: *const fn(
             self: *const IDirectDraw,
             param0: u32,
             param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw) HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw) HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw, param0: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw, param0: ?*u32, param1: ?*u32) HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw, param0: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw, param0: ?*?*IDirectDrawSurface) HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw, param0: ?*u32) HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw, param0: ?*u32) HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw, param0: ?*i32) HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw, param0: ?*Guid) HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw) HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw, param0: ?HWND, param1: u32) HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw, param0: u32, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw, param0: u32, param1: u32, param2: u32) HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw, param0: u32, param1: ?HANDLE) HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
 };
@@ -1655,90 +1655,90 @@ pub const IDirectDraw2 = extern union {
         base: IUnknown.VTable,
         Compact: *const fn(
             self: *const IDirectDraw2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateClipper: *const fn(
             self: *const IDirectDraw2,
             param0: u32,
             param1: ?*?*IDirectDrawClipper,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePalette: *const fn(
             self: *const IDirectDraw2,
             param0: u32,
             param1: ?*PALETTEENTRY,
             param2: ?*?*IDirectDrawPalette,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurface: *const fn(
             self: *const IDirectDraw2,
             param0: ?*DDSURFACEDESC,
             param1: ?*?*IDirectDrawSurface,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DuplicateSurface: *const fn(
             self: *const IDirectDraw2,
             param0: ?*IDirectDrawSurface,
             param1: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDisplayModes: *const fn(
             self: *const IDirectDraw2,
             param0: u32,
             param1: ?*DDSURFACEDESC,
             param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumSurfaces: *const fn(
             self: *const IDirectDraw2,
             param0: u32,
             param1: ?*DDSURFACEDESC,
             param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlipToGDISurface: *const fn(
             self: *const IDirectDraw2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDraw2,
             param0: ?*DDCAPS_DX7,
             param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayMode: *const fn(
             self: *const IDirectDraw2,
             param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFourCCCodes: *const fn(
             self: *const IDirectDraw2,
             param0: ?*u32,
             param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGDISurface: *const fn(
             self: *const IDirectDraw2,
             param0: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMonitorFrequency: *const fn(
             self: *const IDirectDraw2,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScanLine: *const fn(
             self: *const IDirectDraw2,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVerticalBlankStatus: *const fn(
             self: *const IDirectDraw2,
             param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDraw2,
             param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreDisplayMode: *const fn(
             self: *const IDirectDraw2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectDraw2,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayMode: *const fn(
             self: *const IDirectDraw2,
             param0: u32,
@@ -1746,82 +1746,82 @@ pub const IDirectDraw2 = extern union {
             param2: u32,
             param3: u32,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForVerticalBlank: *const fn(
             self: *const IDirectDraw2,
             param0: u32,
             param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAvailableVidMem: *const fn(
             self: *const IDirectDraw2,
             param0: ?*DDSCAPS,
             param1: ?*u32,
             param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw2) HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw2, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw2, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw2, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw2, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC, param1: ?*?*IDirectDrawSurface, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw2, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw2, param0: ?*IDirectDrawSurface, param1: ?*?*IDirectDrawSurface) HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK) HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw2, param0: u32, param1: ?*DDSURFACEDESC, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw2) HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw2, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw2, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw2, param0: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw2, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw2, param0: ?*u32, param1: ?*u32) HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw2, param0: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw2, param0: ?*?*IDirectDrawSurface) HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw2, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw2, param0: ?*u32) HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw2, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw2, param0: ?*u32) HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw2, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw2, param0: ?*i32) HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw2, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw2, param0: ?*Guid) HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw2) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw2) HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw2, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw2, param0: ?HWND, param1: u32) HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw2, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw2, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw2, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw2, param0: u32, param1: ?HANDLE) HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
-    pub fn GetAvailableVidMem(self: *const IDirectDraw2, param0: ?*DDSCAPS, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableVidMem(self: *const IDirectDraw2, param0: ?*DDSCAPS, param1: ?*u32, param2: ?*u32) HRESULT {
         return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
 };
@@ -1833,90 +1833,90 @@ pub const IDirectDraw4 = extern union {
         base: IUnknown.VTable,
         Compact: *const fn(
             self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateClipper: *const fn(
             self: *const IDirectDraw4,
             param0: u32,
             param1: ?*?*IDirectDrawClipper,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePalette: *const fn(
             self: *const IDirectDraw4,
             param0: u32,
             param1: ?*PALETTEENTRY,
             param2: ?*?*IDirectDrawPalette,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurface: *const fn(
             self: *const IDirectDraw4,
             param0: ?*DDSURFACEDESC2,
             param1: ?*?*IDirectDrawSurface4,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DuplicateSurface: *const fn(
             self: *const IDirectDraw4,
             param0: ?*IDirectDrawSurface4,
             param1: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDisplayModes: *const fn(
             self: *const IDirectDraw4,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
             param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumSurfaces: *const fn(
             self: *const IDirectDraw4,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
             param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlipToGDISurface: *const fn(
             self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDraw4,
             param0: ?*DDCAPS_DX7,
             param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayMode: *const fn(
             self: *const IDirectDraw4,
             param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFourCCCodes: *const fn(
             self: *const IDirectDraw4,
             param0: ?*u32,
             param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGDISurface: *const fn(
             self: *const IDirectDraw4,
             param0: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMonitorFrequency: *const fn(
             self: *const IDirectDraw4,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScanLine: *const fn(
             self: *const IDirectDraw4,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVerticalBlankStatus: *const fn(
             self: *const IDirectDraw4,
             param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDraw4,
             param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreDisplayMode: *const fn(
             self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectDraw4,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayMode: *const fn(
             self: *const IDirectDraw4,
             param0: u32,
@@ -1924,110 +1924,110 @@ pub const IDirectDraw4 = extern union {
             param2: u32,
             param3: u32,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForVerticalBlank: *const fn(
             self: *const IDirectDraw4,
             param0: u32,
             param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAvailableVidMem: *const fn(
             self: *const IDirectDraw4,
             param0: ?*DDSCAPS2,
             param1: ?*u32,
             param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfaceFromDC: *const fn(
             self: *const IDirectDraw4,
             param0: ?HDC,
             param1: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreAllSurfaces: *const fn(
             self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TestCooperativeLevel: *const fn(
             self: *const IDirectDraw4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIdentifier: *const fn(
             self: *const IDirectDraw4,
             param0: ?*DDDEVICEIDENTIFIER,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw4) HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw4, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw4, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw4, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw4, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface4, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface4, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw4, param0: ?*IDirectDrawSurface4, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw4, param0: ?*IDirectDrawSurface4, param1: ?*?*IDirectDrawSurface4) HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw4, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK2) HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw4) HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw4, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw4, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw4, param0: ?*DDSURFACEDESC2) HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw4, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw4, param0: ?*u32, param1: ?*u32) HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw4, param0: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw4, param0: ?*?*IDirectDrawSurface4) HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw4, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw4, param0: ?*u32) HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw4, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw4, param0: ?*u32) HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw4, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw4, param0: ?*i32) HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw4, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw4, param0: ?*Guid) HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw4) HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw4, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw4, param0: ?HWND, param1: u32) HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw4, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw4, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw4, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw4, param0: u32, param1: ?HANDLE) HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
-    pub fn GetAvailableVidMem(self: *const IDirectDraw4, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableVidMem(self: *const IDirectDraw4, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) HRESULT {
         return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
-    pub fn GetSurfaceFromDC(self: *const IDirectDraw4, param0: ?HDC, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceFromDC(self: *const IDirectDraw4, param0: ?HDC, param1: ?*?*IDirectDrawSurface4) HRESULT {
         return self.vtable.GetSurfaceFromDC(self, param0, param1);
     }
-    pub fn RestoreAllSurfaces(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn RestoreAllSurfaces(self: *const IDirectDraw4) HRESULT {
         return self.vtable.RestoreAllSurfaces(self);
     }
-    pub fn TestCooperativeLevel(self: *const IDirectDraw4) callconv(.Inline) HRESULT {
+    pub fn TestCooperativeLevel(self: *const IDirectDraw4) HRESULT {
         return self.vtable.TestCooperativeLevel(self);
     }
-    pub fn GetDeviceIdentifier(self: *const IDirectDraw4, param0: ?*DDDEVICEIDENTIFIER, param1: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceIdentifier(self: *const IDirectDraw4, param0: ?*DDDEVICEIDENTIFIER, param1: u32) HRESULT {
         return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
 };
@@ -2039,90 +2039,90 @@ pub const IDirectDraw7 = extern union {
         base: IUnknown.VTable,
         Compact: *const fn(
             self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateClipper: *const fn(
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?*?*IDirectDrawClipper,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePalette: *const fn(
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?*PALETTEENTRY,
             param2: ?*?*IDirectDrawPalette,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateSurface: *const fn(
             self: *const IDirectDraw7,
             param0: ?*DDSURFACEDESC2,
             param1: ?*?*IDirectDrawSurface7,
             param2: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DuplicateSurface: *const fn(
             self: *const IDirectDraw7,
             param0: ?*IDirectDrawSurface7,
             param1: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumDisplayModes: *const fn(
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
             param2: ?*anyopaque,
             param3: ?LPDDENUMMODESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumSurfaces: *const fn(
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?*DDSURFACEDESC2,
             param2: ?*anyopaque,
             param3: ?LPDDENUMSURFACESCALLBACK7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FlipToGDISurface: *const fn(
             self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDraw7,
             param0: ?*DDCAPS_DX7,
             param1: ?*DDCAPS_DX7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayMode: *const fn(
             self: *const IDirectDraw7,
             param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFourCCCodes: *const fn(
             self: *const IDirectDraw7,
             param0: ?*u32,
             param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGDISurface: *const fn(
             self: *const IDirectDraw7,
             param0: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMonitorFrequency: *const fn(
             self: *const IDirectDraw7,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetScanLine: *const fn(
             self: *const IDirectDraw7,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVerticalBlankStatus: *const fn(
             self: *const IDirectDraw7,
             param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDraw7,
             param0: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreDisplayMode: *const fn(
             self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectDraw7,
             param0: ?HWND,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDisplayMode: *const fn(
             self: *const IDirectDraw7,
             param0: u32,
@@ -2130,127 +2130,127 @@ pub const IDirectDraw7 = extern union {
             param2: u32,
             param3: u32,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForVerticalBlank: *const fn(
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAvailableVidMem: *const fn(
             self: *const IDirectDraw7,
             param0: ?*DDSCAPS2,
             param1: ?*u32,
             param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfaceFromDC: *const fn(
             self: *const IDirectDraw7,
             param0: ?HDC,
             param1: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RestoreAllSurfaces: *const fn(
             self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TestCooperativeLevel: *const fn(
             self: *const IDirectDraw7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDeviceIdentifier: *const fn(
             self: *const IDirectDraw7,
             param0: ?*DDDEVICEIDENTIFIER2,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartModeTest: *const fn(
             self: *const IDirectDraw7,
             param0: ?*SIZE,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EvaluateMode: *const fn(
             self: *const IDirectDraw7,
             param0: u32,
             param1: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Compact(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectDraw7) HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn CreateClipper(self: *const IDirectDraw7, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateClipper(self: *const IDirectDraw7, param0: u32, param1: ?*?*IDirectDrawClipper, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateClipper(self, param0, param1, param2);
     }
-    pub fn CreatePalette(self: *const IDirectDraw7, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreatePalette(self: *const IDirectDraw7, param0: u32, param1: ?*PALETTEENTRY, param2: ?*?*IDirectDrawPalette, param3: ?*IUnknown) HRESULT {
         return self.vtable.CreatePalette(self, param0, param1, param2, param3);
     }
-    pub fn CreateSurface(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface7, param2: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSurface(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2, param1: ?*?*IDirectDrawSurface7, param2: ?*IUnknown) HRESULT {
         return self.vtable.CreateSurface(self, param0, param1, param2);
     }
-    pub fn DuplicateSurface(self: *const IDirectDraw7, param0: ?*IDirectDrawSurface7, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn DuplicateSurface(self: *const IDirectDraw7, param0: ?*IDirectDrawSurface7, param1: ?*?*IDirectDrawSurface7) HRESULT {
         return self.vtable.DuplicateSurface(self, param0, param1);
     }
-    pub fn EnumDisplayModes(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumDisplayModes(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMMODESCALLBACK2) HRESULT {
         return self.vtable.EnumDisplayModes(self, param0, param1, param2, param3);
     }
-    pub fn EnumSurfaces(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+    pub fn EnumSurfaces(self: *const IDirectDraw7, param0: u32, param1: ?*DDSURFACEDESC2, param2: ?*anyopaque, param3: ?LPDDENUMSURFACESCALLBACK7) HRESULT {
         return self.vtable.EnumSurfaces(self, param0, param1, param2, param3);
     }
-    pub fn FlipToGDISurface(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn FlipToGDISurface(self: *const IDirectDraw7) HRESULT {
         return self.vtable.FlipToGDISurface(self);
     }
-    pub fn GetCaps(self: *const IDirectDraw7, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDraw7, param0: ?*DDCAPS_DX7, param1: ?*DDCAPS_DX7) HRESULT {
         return self.vtable.GetCaps(self, param0, param1);
     }
-    pub fn GetDisplayMode(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetDisplayMode(self: *const IDirectDraw7, param0: ?*DDSURFACEDESC2) HRESULT {
         return self.vtable.GetDisplayMode(self, param0);
     }
-    pub fn GetFourCCCodes(self: *const IDirectDraw7, param0: ?*u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFourCCCodes(self: *const IDirectDraw7, param0: ?*u32, param1: ?*u32) HRESULT {
         return self.vtable.GetFourCCCodes(self, param0, param1);
     }
-    pub fn GetGDISurface(self: *const IDirectDraw7, param0: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn GetGDISurface(self: *const IDirectDraw7, param0: ?*?*IDirectDrawSurface7) HRESULT {
         return self.vtable.GetGDISurface(self, param0);
     }
-    pub fn GetMonitorFrequency(self: *const IDirectDraw7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMonitorFrequency(self: *const IDirectDraw7, param0: ?*u32) HRESULT {
         return self.vtable.GetMonitorFrequency(self, param0);
     }
-    pub fn GetScanLine(self: *const IDirectDraw7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetScanLine(self: *const IDirectDraw7, param0: ?*u32) HRESULT {
         return self.vtable.GetScanLine(self, param0);
     }
-    pub fn GetVerticalBlankStatus(self: *const IDirectDraw7, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVerticalBlankStatus(self: *const IDirectDraw7, param0: ?*i32) HRESULT {
         return self.vtable.GetVerticalBlankStatus(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDraw7, param0: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDraw7, param0: ?*Guid) HRESULT {
         return self.vtable.Initialize(self, param0);
     }
-    pub fn RestoreDisplayMode(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn RestoreDisplayMode(self: *const IDirectDraw7) HRESULT {
         return self.vtable.RestoreDisplayMode(self);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectDraw7, param0: ?HWND, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectDraw7, param0: ?HWND, param1: u32) HRESULT {
         return self.vtable.SetCooperativeLevel(self, param0, param1);
     }
-    pub fn SetDisplayMode(self: *const IDirectDraw7, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) callconv(.Inline) HRESULT {
+    pub fn SetDisplayMode(self: *const IDirectDraw7, param0: u32, param1: u32, param2: u32, param3: u32, param4: u32) HRESULT {
         return self.vtable.SetDisplayMode(self, param0, param1, param2, param3, param4);
     }
-    pub fn WaitForVerticalBlank(self: *const IDirectDraw7, param0: u32, param1: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn WaitForVerticalBlank(self: *const IDirectDraw7, param0: u32, param1: ?HANDLE) HRESULT {
         return self.vtable.WaitForVerticalBlank(self, param0, param1);
     }
-    pub fn GetAvailableVidMem(self: *const IDirectDraw7, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAvailableVidMem(self: *const IDirectDraw7, param0: ?*DDSCAPS2, param1: ?*u32, param2: ?*u32) HRESULT {
         return self.vtable.GetAvailableVidMem(self, param0, param1, param2);
     }
-    pub fn GetSurfaceFromDC(self: *const IDirectDraw7, param0: ?HDC, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceFromDC(self: *const IDirectDraw7, param0: ?HDC, param1: ?*?*IDirectDrawSurface7) HRESULT {
         return self.vtable.GetSurfaceFromDC(self, param0, param1);
     }
-    pub fn RestoreAllSurfaces(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn RestoreAllSurfaces(self: *const IDirectDraw7) HRESULT {
         return self.vtable.RestoreAllSurfaces(self);
     }
-    pub fn TestCooperativeLevel(self: *const IDirectDraw7) callconv(.Inline) HRESULT {
+    pub fn TestCooperativeLevel(self: *const IDirectDraw7) HRESULT {
         return self.vtable.TestCooperativeLevel(self);
     }
-    pub fn GetDeviceIdentifier(self: *const IDirectDraw7, param0: ?*DDDEVICEIDENTIFIER2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceIdentifier(self: *const IDirectDraw7, param0: ?*DDDEVICEIDENTIFIER2, param1: u32) HRESULT {
         return self.vtable.GetDeviceIdentifier(self, param0, param1);
     }
-    pub fn StartModeTest(self: *const IDirectDraw7, param0: ?*SIZE, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn StartModeTest(self: *const IDirectDraw7, param0: ?*SIZE, param1: u32, param2: u32) HRESULT {
         return self.vtable.StartModeTest(self, param0, param1, param2);
     }
-    pub fn EvaluateMode(self: *const IDirectDraw7, param0: u32, param1: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EvaluateMode(self: *const IDirectDraw7, param0: u32, param1: ?*u32) HRESULT {
         return self.vtable.EvaluateMode(self, param0, param1);
     }
 };
@@ -2263,40 +2263,40 @@ pub const IDirectDrawPalette = extern union {
         GetCaps: *const fn(
             self: *const IDirectDrawPalette,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEntries: *const fn(
             self: *const IDirectDrawPalette,
             param0: u32,
             param1: u32,
             param2: u32,
             param3: ?*PALETTEENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDrawPalette,
             param0: ?*IDirectDraw,
             param1: u32,
             param2: ?*PALETTEENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetEntries: *const fn(
             self: *const IDirectDrawPalette,
             param0: u32,
             param1: u32,
             param2: u32,
             param3: ?*PALETTEENTRY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectDrawPalette, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawPalette, param0: ?*u32) HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn GetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) HRESULT {
         return self.vtable.GetEntries(self, param0, param1, param2, param3);
     }
-    pub fn Initialize(self: *const IDirectDrawPalette, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawPalette, param0: ?*IDirectDraw, param1: u32, param2: ?*PALETTEENTRY) HRESULT {
         return self.vtable.Initialize(self, param0, param1, param2);
     }
-    pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) callconv(.Inline) HRESULT {
+    pub fn SetEntries(self: *const IDirectDrawPalette, param0: u32, param1: u32, param2: u32, param3: ?*PALETTEENTRY) HRESULT {
         return self.vtable.SetEntries(self, param0, param1, param2, param3);
     }
 };
@@ -2311,49 +2311,49 @@ pub const IDirectDrawClipper = extern union {
             param0: ?*RECT,
             param1: ?*RGNDATA,
             param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetHWnd: *const fn(
             self: *const IDirectDrawClipper,
             param0: ?*?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDrawClipper,
             param0: ?*IDirectDraw,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsClipListChanged: *const fn(
             self: *const IDirectDrawClipper,
             param0: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipList: *const fn(
             self: *const IDirectDrawClipper,
             param0: ?*RGNDATA,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetHWnd: *const fn(
             self: *const IDirectDrawClipper,
             param0: u32,
             param1: ?HWND,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClipList(self: *const IDirectDrawClipper, param0: ?*RECT, param1: ?*RGNDATA, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetClipList(self: *const IDirectDrawClipper, param0: ?*RECT, param1: ?*RGNDATA, param2: ?*u32) HRESULT {
         return self.vtable.GetClipList(self, param0, param1, param2);
     }
-    pub fn GetHWnd(self: *const IDirectDrawClipper, param0: ?*?HWND) callconv(.Inline) HRESULT {
+    pub fn GetHWnd(self: *const IDirectDrawClipper, param0: ?*?HWND) HRESULT {
         return self.vtable.GetHWnd(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawClipper, param0: ?*IDirectDraw, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawClipper, param0: ?*IDirectDraw, param1: u32) HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsClipListChanged(self: *const IDirectDrawClipper, param0: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsClipListChanged(self: *const IDirectDrawClipper, param0: ?*BOOL) HRESULT {
         return self.vtable.IsClipListChanged(self, param0);
     }
-    pub fn SetClipList(self: *const IDirectDrawClipper, param0: ?*RGNDATA, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetClipList(self: *const IDirectDrawClipper, param0: ?*RGNDATA, param1: u32) HRESULT {
         return self.vtable.SetClipList(self, param0, param1);
     }
-    pub fn SetHWnd(self: *const IDirectDrawClipper, param0: u32, param1: ?HWND) callconv(.Inline) HRESULT {
+    pub fn SetHWnd(self: *const IDirectDrawClipper, param0: u32, param1: ?HWND) HRESULT {
         return self.vtable.SetHWnd(self, param0, param1);
     }
 };
@@ -2366,11 +2366,11 @@ pub const IDirectDrawSurface = extern union {
         AddAttachedSurface: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOverlayDirtyRect: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Blt: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*RECT,
@@ -2378,13 +2378,13 @@ pub const IDirectDrawSurface = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltBatch: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*DDBLTBATCH,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltFast: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
@@ -2392,119 +2392,119 @@ pub const IDirectDrawSurface = extern union {
             param2: ?*IDirectDrawSurface,
             param3: ?*RECT,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAttachedSurface: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
             param1: ?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAttachedSurfaces: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumOverlayZOrders: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
             param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flip: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*IDirectDrawSurface,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttachedSurface: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*DDSCAPS,
             param1: ?*?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBltStatus: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*DDSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipper: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorKey: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDC: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlipStatus: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*i32,
             param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPalette: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*IDirectDraw,
             param1: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLost: *const fn(
             self: *const IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*RECT,
             param1: ?*DDSURFACEDESC,
             param2: u32,
             param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDC: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipper: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorKey: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface,
             param0: i32,
             param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlay: *const fn(
             self: *const IDirectDrawSurface,
             param0: ?*RECT,
@@ -2512,116 +2512,116 @@ pub const IDirectDrawSurface = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayDisplay: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayZOrder: *const fn(
             self: *const IDirectDrawSurface,
             param0: u32,
             param1: ?*IDirectDrawSurface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface) HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface, param0: ?*RECT) HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface, param0: u32, param1: u32, param2: ?*IDirectDrawSurface, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface, param0: u32, param1: u32, param2: ?*IDirectDrawSurface, param3: ?*RECT, param4: u32) HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface, param0: ?*IDirectDrawSurface, param1: u32) HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface) HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface, param0: u32) HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface, param0: ?*DDSCAPS) HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawClipper) HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface, param0: ?*?HDC) HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface, param0: u32) HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface, param0: ?*i32, param1: ?*i32) HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface, param0: ?*?*IDirectDrawPalette) HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface, param0: ?*DDPIXELFORMAT) HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface, param0: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface) HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface, param0: ?HDC) HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface) HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface, param0: ?*IDirectDrawClipper) HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface, param0: i32, param1: i32) HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface, param0: ?*IDirectDrawPalette) HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface, param0: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface, param0: ?*anyopaque) HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface, param0: ?*RECT, param1: ?*IDirectDrawSurface, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface, param0: u32) HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface, param0: u32, param1: ?*IDirectDrawSurface) HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
 };
@@ -2634,11 +2634,11 @@ pub const IDirectDrawSurface2 = extern union {
         AddAttachedSurface: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOverlayDirtyRect: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Blt: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*RECT,
@@ -2646,13 +2646,13 @@ pub const IDirectDrawSurface2 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltBatch: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*DDBLTBATCH,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltFast: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
@@ -2660,119 +2660,119 @@ pub const IDirectDrawSurface2 = extern union {
             param2: ?*IDirectDrawSurface2,
             param3: ?*RECT,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAttachedSurface: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
             param1: ?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAttachedSurfaces: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumOverlayZOrders: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
             param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flip: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*IDirectDrawSurface2,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttachedSurface: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*DDSCAPS,
             param1: ?*?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBltStatus: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*DDSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipper: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorKey: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDC: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlipStatus: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*i32,
             param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPalette: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*IDirectDraw,
             param1: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLost: *const fn(
             self: *const IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*RECT,
             param1: ?*DDSURFACEDESC,
             param2: u32,
             param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDC: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipper: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorKey: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface2,
             param0: i32,
             param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlay: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*RECT,
@@ -2780,137 +2780,137 @@ pub const IDirectDrawSurface2 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayDisplay: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayZOrder: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
             param1: ?*IDirectDrawSurface2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDDInterface: *const fn(
             self: *const IDirectDrawSurface2,
             param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageLock: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageUnlock: *const fn(
             self: *const IDirectDrawSurface2,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2) HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface2, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface2, param0: ?*RECT) HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface2, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface2, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface2, param0: u32, param1: u32, param2: ?*IDirectDrawSurface2, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface2, param0: u32, param1: u32, param2: ?*IDirectDrawSurface2, param3: ?*RECT, param4: u32) HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface2, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface2, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface2, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface2, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawSurface2, param1: u32) HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface2) HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface2, param0: u32) HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface2, param0: ?*DDSCAPS) HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawClipper) HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface2, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface2, param0: ?*?HDC) HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface2, param0: u32) HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface2, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface2, param0: ?*i32, param1: ?*i32) HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface2, param0: ?*?*IDirectDrawPalette) HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface2, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface2, param0: ?*DDPIXELFORMAT) HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface2, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface2, param0: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface2, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface2, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface2) HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface2, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface2, param0: ?HDC) HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface2) HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawClipper) HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface2, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface2, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface2, param0: i32, param1: i32) HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface2, param0: ?*IDirectDrawPalette) HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface2, param0: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface2, param0: ?*anyopaque) HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface2, param0: ?*RECT, param1: ?*IDirectDrawSurface2, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface2, param0: u32) HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface2, param0: u32, param1: ?*IDirectDrawSurface2) HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface2, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface2, param0: ?*?*anyopaque) HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface2, param0: u32) HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface2, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface2, param0: u32) HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
 };
@@ -2923,11 +2923,11 @@ pub const IDirectDrawSurface3 = extern union {
         AddAttachedSurface: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOverlayDirtyRect: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Blt: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*RECT,
@@ -2935,13 +2935,13 @@ pub const IDirectDrawSurface3 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltBatch: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*DDBLTBATCH,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltFast: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
@@ -2949,119 +2949,119 @@ pub const IDirectDrawSurface3 = extern union {
             param2: ?*IDirectDrawSurface3,
             param3: ?*RECT,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAttachedSurface: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
             param1: ?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAttachedSurfaces: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumOverlayZOrders: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
             param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flip: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*IDirectDrawSurface3,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttachedSurface: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*DDSCAPS,
             param1: ?*?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBltStatus: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*DDSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipper: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorKey: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDC: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlipStatus: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*i32,
             param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPalette: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*IDirectDraw,
             param1: ?*DDSURFACEDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLost: *const fn(
             self: *const IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*RECT,
             param1: ?*DDSURFACEDESC,
             param2: u32,
             param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDC: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipper: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorKey: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface3,
             param0: i32,
             param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlay: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*RECT,
@@ -3069,145 +3069,145 @@ pub const IDirectDrawSurface3 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayDisplay: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayZOrder: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
             param1: ?*IDirectDrawSurface3,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDDInterface: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageLock: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageUnlock: *const fn(
             self: *const IDirectDrawSurface3,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface3,
             param0: ?*DDSURFACEDESC,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3) HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface3, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface3, param0: ?*RECT) HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface3, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface3, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface3, param0: u32, param1: u32, param2: ?*IDirectDrawSurface3, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface3, param0: u32, param1: u32, param2: ?*IDirectDrawSurface3, param3: ?*RECT, param4: u32) HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface3, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface3, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface3, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface3, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK) HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawSurface3, param1: u32) HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS, param1: ?*?*IDirectDrawSurface3) HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface3, param0: u32) HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface3, param0: ?*DDSCAPS) HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawClipper) HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface3, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface3, param0: ?*?HDC) HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface3, param0: u32) HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface3, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface3, param0: ?*i32, param1: ?*i32) HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface3, param0: ?*?*IDirectDrawPalette) HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface3, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface3, param0: ?*DDPIXELFORMAT) HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface3, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface3, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC) HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface3) HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*DDSURFACEDESC, param2: u32, param3: ?HANDLE) HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface3, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface3, param0: ?HDC) HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface3) HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawClipper) HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface3, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface3, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface3, param0: i32, param1: i32) HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface3, param0: ?*IDirectDrawPalette) HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface3, param0: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface3, param0: ?*anyopaque) HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface3, param0: ?*RECT, param1: ?*IDirectDrawSurface3, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface3, param0: u32) HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface3, param0: u32, param1: ?*IDirectDrawSurface3) HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface3, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface3, param0: ?*?*anyopaque) HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface3, param0: u32) HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface3, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface3, param0: u32) HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
-    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface3, param0: ?*DDSURFACEDESC, param1: u32) HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
 };
@@ -3220,11 +3220,11 @@ pub const IDirectDrawSurface4 = extern union {
         AddAttachedSurface: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOverlayDirtyRect: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Blt: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*RECT,
@@ -3232,13 +3232,13 @@ pub const IDirectDrawSurface4 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltBatch: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*DDBLTBATCH,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltFast: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
@@ -3246,119 +3246,119 @@ pub const IDirectDrawSurface4 = extern union {
             param2: ?*IDirectDrawSurface4,
             param3: ?*RECT,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAttachedSurface: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
             param1: ?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAttachedSurfaces: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumOverlayZOrders: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
             param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flip: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*IDirectDrawSurface4,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttachedSurface: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*DDSCAPS2,
             param1: ?*?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBltStatus: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*DDSCAPS2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipper: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorKey: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDC: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlipStatus: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*i32,
             param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPalette: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*IDirectDraw,
             param1: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLost: *const fn(
             self: *const IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*RECT,
             param1: ?*DDSURFACEDESC2,
             param2: u32,
             param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDC: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipper: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorKey: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface4,
             param0: i32,
             param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlay: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*RECT,
@@ -3366,184 +3366,184 @@ pub const IDirectDrawSurface4 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayDisplay: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayZOrder: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
             param1: ?*IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDDInterface: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageLock: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageUnlock: *const fn(
             self: *const IDirectDrawSurface4,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*DDSURFACEDESC2,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*const Guid,
             param1: ?*anyopaque,
             param2: u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrivateData: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*const Guid,
             param1: ?*anyopaque,
             param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FreePrivateData: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUniquenessValue: *const fn(
             self: *const IDirectDrawSurface4,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeUniquenessValue: *const fn(
             self: *const IDirectDrawSurface4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4) HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface4, param0: ?*RECT) HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface4, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface4, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface4, param0: u32, param1: u32, param2: ?*IDirectDrawSurface4, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface4, param0: u32, param1: u32, param2: ?*IDirectDrawSurface4, param3: ?*RECT, param4: u32) HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface4, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface4, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK2) HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface4, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK2) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface4, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK2) HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawSurface4, param1: u32) HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface4) HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface4, param0: u32) HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface4, param0: ?*DDSCAPS2) HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawClipper) HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface4, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface4, param0: ?*?HDC) HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface4, param0: u32) HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface4, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface4, param0: ?*i32, param1: ?*i32) HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface4, param0: ?*?*IDirectDrawPalette) HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface4, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface4, param0: ?*DDPIXELFORMAT) HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2) HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface4, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface4, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface4) HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface4, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface4, param0: ?HDC) HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface4) HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawClipper) HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface4, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface4, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface4, param0: i32, param1: i32) HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface4, param0: ?*IDirectDrawPalette) HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface4, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface4, param0: ?*RECT) HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface4, param0: ?*RECT, param1: ?*IDirectDrawSurface4, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface4, param0: u32) HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface4, param0: u32, param1: ?*IDirectDrawSurface4) HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface4, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface4, param0: ?*?*anyopaque) HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface4, param0: u32) HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface4, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface4, param0: u32) HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
-    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface4, param0: ?*DDSURFACEDESC2, param1: u32) HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
-    pub fn SetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) HRESULT {
         return self.vtable.SetPrivateData(self, param0, param1, param2, param3);
     }
-    pub fn GetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) HRESULT {
         return self.vtable.GetPrivateData(self, param0, param1, param2);
     }
-    pub fn FreePrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn FreePrivateData(self: *const IDirectDrawSurface4, param0: ?*const Guid) HRESULT {
         return self.vtable.FreePrivateData(self, param0);
     }
-    pub fn GetUniquenessValue(self: *const IDirectDrawSurface4, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUniquenessValue(self: *const IDirectDrawSurface4, param0: ?*u32) HRESULT {
         return self.vtable.GetUniquenessValue(self, param0);
     }
-    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface4) callconv(.Inline) HRESULT {
+    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface4) HRESULT {
         return self.vtable.ChangeUniquenessValue(self);
     }
 };
@@ -3556,11 +3556,11 @@ pub const IDirectDrawSurface7 = extern union {
         AddAttachedSurface: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOverlayDirtyRect: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Blt: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*RECT,
@@ -3568,13 +3568,13 @@ pub const IDirectDrawSurface7 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDBLTFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltBatch: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*DDBLTBATCH,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BltFast: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
@@ -3582,119 +3582,119 @@ pub const IDirectDrawSurface7 = extern union {
             param2: ?*IDirectDrawSurface7,
             param3: ?*RECT,
             param4: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteAttachedSurface: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
             param1: ?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumAttachedSurfaces: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*anyopaque,
             param1: ?LPDDENUMSURFACESCALLBACK7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumOverlayZOrders: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
             param1: ?*anyopaque,
             param2: ?LPDDENUMSURFACESCALLBACK7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flip: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*IDirectDrawSurface7,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttachedSurface: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*DDSCAPS2,
             param1: ?*?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBltStatus: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*DDSCAPS2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClipper: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorKey: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDC: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFlipStatus: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*i32,
             param1: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPalette: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPixelFormat: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*DDPIXELFORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*IDirectDraw,
             param1: ?*DDSURFACEDESC2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLost: *const fn(
             self: *const IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*RECT,
             param1: ?*DDSURFACEDESC2,
             param2: u32,
             param3: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseDC: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetClipper: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*IDirectDrawClipper,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorKey: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
             param1: ?*DDCOLORKEY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOverlayPosition: *const fn(
             self: *const IDirectDrawSurface7,
             param0: i32,
             param1: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPalette: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*IDirectDrawPalette,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*RECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlay: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*RECT,
@@ -3702,212 +3702,212 @@ pub const IDirectDrawSurface7 = extern union {
             param2: ?*RECT,
             param3: u32,
             param4: ?*DDOVERLAYFX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayDisplay: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateOverlayZOrder: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
             param1: ?*IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDDInterface: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageLock: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PageUnlock: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSurfaceDesc: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*DDSURFACEDESC2,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrivateData: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*const Guid,
             param1: ?*anyopaque,
             param2: u32,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrivateData: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*const Guid,
             param1: ?*anyopaque,
             param2: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FreePrivateData: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUniquenessValue: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeUniquenessValue: *const fn(
             self: *const IDirectDrawSurface7,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPriority: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPriority: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLOD: *const fn(
             self: *const IDirectDrawSurface7,
             param0: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLOD: *const fn(
             self: *const IDirectDrawSurface7,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn AddAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7) HRESULT {
         return self.vtable.AddAttachedSurface(self, param0);
     }
-    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn AddOverlayDirtyRect(self: *const IDirectDrawSurface7, param0: ?*RECT) HRESULT {
         return self.vtable.AddOverlayDirtyRect(self, param0);
     }
-    pub fn Blt(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) callconv(.Inline) HRESULT {
+    pub fn Blt(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDBLTFX) HRESULT {
         return self.vtable.Blt(self, param0, param1, param2, param3, param4);
     }
-    pub fn BltBatch(self: *const IDirectDrawSurface7, param0: ?*DDBLTBATCH, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn BltBatch(self: *const IDirectDrawSurface7, param0: ?*DDBLTBATCH, param1: u32, param2: u32) HRESULT {
         return self.vtable.BltBatch(self, param0, param1, param2);
     }
-    pub fn BltFast(self: *const IDirectDrawSurface7, param0: u32, param1: u32, param2: ?*IDirectDrawSurface7, param3: ?*RECT, param4: u32) callconv(.Inline) HRESULT {
+    pub fn BltFast(self: *const IDirectDrawSurface7, param0: u32, param1: u32, param2: ?*IDirectDrawSurface7, param3: ?*RECT, param4: u32) HRESULT {
         return self.vtable.BltFast(self, param0, param1, param2, param3, param4);
     }
-    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn DeleteAttachedSurface(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) HRESULT {
         return self.vtable.DeleteAttachedSurface(self, param0, param1);
     }
-    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface7, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+    pub fn EnumAttachedSurfaces(self: *const IDirectDrawSurface7, param0: ?*anyopaque, param1: ?LPDDENUMSURFACESCALLBACK7) HRESULT {
         return self.vtable.EnumAttachedSurfaces(self, param0, param1);
     }
-    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface7, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK7) callconv(.Inline) HRESULT {
+    pub fn EnumOverlayZOrders(self: *const IDirectDrawSurface7, param0: u32, param1: ?*anyopaque, param2: ?LPDDENUMSURFACESCALLBACK7) HRESULT {
         return self.vtable.EnumOverlayZOrders(self, param0, param1, param2);
     }
-    pub fn Flip(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawSurface7, param1: u32) HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn GetAttachedSurface(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2, param1: ?*?*IDirectDrawSurface7) HRESULT {
         return self.vtable.GetAttachedSurface(self, param0, param1);
     }
-    pub fn GetBltStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetBltStatus(self: *const IDirectDrawSurface7, param0: u32) HRESULT {
         return self.vtable.GetBltStatus(self, param0);
     }
-    pub fn GetCaps(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawSurface7, param0: ?*DDSCAPS2) HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetClipper(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn GetClipper(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawClipper) HRESULT {
         return self.vtable.GetClipper(self, param0);
     }
-    pub fn GetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn GetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.GetColorKey(self, param0, param1);
     }
-    pub fn GetDC(self: *const IDirectDrawSurface7, param0: ?*?HDC) callconv(.Inline) HRESULT {
+    pub fn GetDC(self: *const IDirectDrawSurface7, param0: ?*?HDC) HRESULT {
         return self.vtable.GetDC(self, param0);
     }
-    pub fn GetFlipStatus(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn GetFlipStatus(self: *const IDirectDrawSurface7, param0: u32) HRESULT {
         return self.vtable.GetFlipStatus(self, param0);
     }
-    pub fn GetOverlayPosition(self: *const IDirectDrawSurface7, param0: ?*i32, param1: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetOverlayPosition(self: *const IDirectDrawSurface7, param0: ?*i32, param1: ?*i32) HRESULT {
         return self.vtable.GetOverlayPosition(self, param0, param1);
     }
-    pub fn GetPalette(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn GetPalette(self: *const IDirectDrawSurface7, param0: ?*?*IDirectDrawPalette) HRESULT {
         return self.vtable.GetPalette(self, param0);
     }
-    pub fn GetPixelFormat(self: *const IDirectDrawSurface7, param0: ?*DDPIXELFORMAT) callconv(.Inline) HRESULT {
+    pub fn GetPixelFormat(self: *const IDirectDrawSurface7, param0: ?*DDPIXELFORMAT) HRESULT {
         return self.vtable.GetPixelFormat(self, param0);
     }
-    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn GetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2) HRESULT {
         return self.vtable.GetSurfaceDesc(self, param0);
     }
-    pub fn Initialize(self: *const IDirectDrawSurface7, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectDrawSurface7, param0: ?*IDirectDraw, param1: ?*DDSURFACEDESC2) HRESULT {
         return self.vtable.Initialize(self, param0, param1);
     }
-    pub fn IsLost(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn IsLost(self: *const IDirectDrawSurface7) HRESULT {
         return self.vtable.IsLost(self);
     }
-    pub fn Lock(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*DDSURFACEDESC2, param2: u32, param3: ?HANDLE) HRESULT {
         return self.vtable.Lock(self, param0, param1, param2, param3);
     }
-    pub fn ReleaseDC(self: *const IDirectDrawSurface7, param0: ?HDC) callconv(.Inline) HRESULT {
+    pub fn ReleaseDC(self: *const IDirectDrawSurface7, param0: ?HDC) HRESULT {
         return self.vtable.ReleaseDC(self, param0);
     }
-    pub fn Restore(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectDrawSurface7) HRESULT {
         return self.vtable.Restore(self);
     }
-    pub fn SetClipper(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawClipper) callconv(.Inline) HRESULT {
+    pub fn SetClipper(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawClipper) HRESULT {
         return self.vtable.SetClipper(self, param0);
     }
-    pub fn SetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) callconv(.Inline) HRESULT {
+    pub fn SetColorKey(self: *const IDirectDrawSurface7, param0: u32, param1: ?*DDCOLORKEY) HRESULT {
         return self.vtable.SetColorKey(self, param0, param1);
     }
-    pub fn SetOverlayPosition(self: *const IDirectDrawSurface7, param0: i32, param1: i32) callconv(.Inline) HRESULT {
+    pub fn SetOverlayPosition(self: *const IDirectDrawSurface7, param0: i32, param1: i32) HRESULT {
         return self.vtable.SetOverlayPosition(self, param0, param1);
     }
-    pub fn SetPalette(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawPalette) callconv(.Inline) HRESULT {
+    pub fn SetPalette(self: *const IDirectDrawSurface7, param0: ?*IDirectDrawPalette) HRESULT {
         return self.vtable.SetPalette(self, param0);
     }
-    pub fn Unlock(self: *const IDirectDrawSurface7, param0: ?*RECT) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectDrawSurface7, param0: ?*RECT) HRESULT {
         return self.vtable.Unlock(self, param0);
     }
-    pub fn UpdateOverlay(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlay(self: *const IDirectDrawSurface7, param0: ?*RECT, param1: ?*IDirectDrawSurface7, param2: ?*RECT, param3: u32, param4: ?*DDOVERLAYFX) HRESULT {
         return self.vtable.UpdateOverlay(self, param0, param1, param2, param3, param4);
     }
-    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayDisplay(self: *const IDirectDrawSurface7, param0: u32) HRESULT {
         return self.vtable.UpdateOverlayDisplay(self, param0);
     }
-    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn UpdateOverlayZOrder(self: *const IDirectDrawSurface7, param0: u32, param1: ?*IDirectDrawSurface7) HRESULT {
         return self.vtable.UpdateOverlayZOrder(self, param0, param1);
     }
-    pub fn GetDDInterface(self: *const IDirectDrawSurface7, param0: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetDDInterface(self: *const IDirectDrawSurface7, param0: ?*?*anyopaque) HRESULT {
         return self.vtable.GetDDInterface(self, param0);
     }
-    pub fn PageLock(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageLock(self: *const IDirectDrawSurface7, param0: u32) HRESULT {
         return self.vtable.PageLock(self, param0);
     }
-    pub fn PageUnlock(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn PageUnlock(self: *const IDirectDrawSurface7, param0: u32) HRESULT {
         return self.vtable.PageUnlock(self, param0);
     }
-    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetSurfaceDesc(self: *const IDirectDrawSurface7, param0: ?*DDSURFACEDESC2, param1: u32) HRESULT {
         return self.vtable.SetSurfaceDesc(self, param0, param1);
     }
-    pub fn SetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) callconv(.Inline) HRESULT {
+    pub fn SetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: u32, param3: u32) HRESULT {
         return self.vtable.SetPrivateData(self, param0, param1, param2, param3);
     }
-    pub fn GetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid, param1: ?*anyopaque, param2: ?*u32) HRESULT {
         return self.vtable.GetPrivateData(self, param0, param1, param2);
     }
-    pub fn FreePrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn FreePrivateData(self: *const IDirectDrawSurface7, param0: ?*const Guid) HRESULT {
         return self.vtable.FreePrivateData(self, param0);
     }
-    pub fn GetUniquenessValue(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUniquenessValue(self: *const IDirectDrawSurface7, param0: ?*u32) HRESULT {
         return self.vtable.GetUniquenessValue(self, param0);
     }
-    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface7) callconv(.Inline) HRESULT {
+    pub fn ChangeUniquenessValue(self: *const IDirectDrawSurface7) HRESULT {
         return self.vtable.ChangeUniquenessValue(self);
     }
-    pub fn SetPriority(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SetPriority(self: *const IDirectDrawSurface7, param0: u32) HRESULT {
         return self.vtable.SetPriority(self, param0);
     }
-    pub fn GetPriority(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const IDirectDrawSurface7, param0: ?*u32) HRESULT {
         return self.vtable.GetPriority(self, param0);
     }
-    pub fn SetLOD(self: *const IDirectDrawSurface7, param0: u32) callconv(.Inline) HRESULT {
+    pub fn SetLOD(self: *const IDirectDrawSurface7, param0: u32) HRESULT {
         return self.vtable.SetLOD(self, param0);
     }
-    pub fn GetLOD(self: *const IDirectDrawSurface7, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLOD(self: *const IDirectDrawSurface7, param0: ?*u32) HRESULT {
         return self.vtable.GetLOD(self, param0);
     }
 };
@@ -3920,18 +3920,18 @@ pub const IDirectDrawColorControl = extern union {
         GetColorControls: *const fn(
             self: *const IDirectDrawColorControl,
             param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorControls: *const fn(
             self: *const IDirectDrawColorControl,
             param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn GetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) HRESULT {
         return self.vtable.GetColorControls(self, param0);
     }
-    pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn SetColorControls(self: *const IDirectDrawColorControl, param0: ?*DDCOLORCONTROL) HRESULT {
         return self.vtable.SetColorControls(self, param0);
     }
 };
@@ -3945,19 +3945,19 @@ pub const IDirectDrawGammaControl = extern union {
             self: *const IDirectDrawGammaControl,
             param0: u32,
             param1: ?*DDGAMMARAMP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGammaRamp: *const fn(
             self: *const IDirectDrawGammaControl,
             param0: u32,
             param1: ?*DDGAMMARAMP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.Inline) HRESULT {
+    pub fn GetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) HRESULT {
         return self.vtable.GetGammaRamp(self, param0, param1);
     }
-    pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) callconv(.Inline) HRESULT {
+    pub fn SetGammaRamp(self: *const IDirectDrawGammaControl, param0: u32, param1: ?*DDGAMMARAMP) HRESULT {
         return self.vtable.SetGammaRamp(self, param0, param1);
     }
 };
@@ -4061,7 +4061,7 @@ pub const IDirectDrawVideoPortNotifyVtbl = extern struct {
 pub const LPDDENUMVIDEOCALLBACK = *const fn(
     param0: ?*DDVIDEOPORTCAPS,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 const IID_IDDVideoPortContainer_Value = Guid.initString("6c142760-a733-11ce-a521-0020af0be560");
 pub const IID_IDDVideoPortContainer = &IID_IDDVideoPortContainer_Value;
@@ -4074,38 +4074,38 @@ pub const IDDVideoPortContainer = extern union {
             param1: ?*DDVIDEOPORTDESC,
             param2: ?*?*IDirectDrawVideoPort,
             param3: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumVideoPorts: *const fn(
             self: *const IDDVideoPortContainer,
             param0: u32,
             param1: ?*DDVIDEOPORTCAPS,
             param2: ?*anyopaque,
             param3: ?LPDDENUMVIDEOCALLBACK,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoPortConnectInfo: *const fn(
             self: *const IDDVideoPortContainer,
             param0: u32,
             pcInfo: ?*u32,
             param2: ?[*]DDVIDEOPORTCONNECT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryVideoPortStatus: *const fn(
             self: *const IDDVideoPortContainer,
             param0: u32,
             param1: ?*DDVIDEOPORTSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateVideoPort(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateVideoPort(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTDESC, param2: ?*?*IDirectDrawVideoPort, param3: ?*IUnknown) HRESULT {
         return self.vtable.CreateVideoPort(self, param0, param1, param2, param3);
     }
-    pub fn EnumVideoPorts(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) callconv(.Inline) HRESULT {
+    pub fn EnumVideoPorts(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTCAPS, param2: ?*anyopaque, param3: ?LPDDENUMVIDEOCALLBACK) HRESULT {
         return self.vtable.EnumVideoPorts(self, param0, param1, param2, param3);
     }
-    pub fn GetVideoPortConnectInfo(self: *const IDDVideoPortContainer, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) callconv(.Inline) HRESULT {
+    pub fn GetVideoPortConnectInfo(self: *const IDDVideoPortContainer, param0: u32, pcInfo: ?*u32, param2: ?[*]DDVIDEOPORTCONNECT) HRESULT {
         return self.vtable.GetVideoPortConnectInfo(self, param0, pcInfo, param2);
     }
-    pub fn QueryVideoPortStatus(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTSTATUS) callconv(.Inline) HRESULT {
+    pub fn QueryVideoPortStatus(self: *const IDDVideoPortContainer, param0: u32, param1: ?*DDVIDEOPORTSTATUS) HRESULT {
         return self.vtable.QueryVideoPortStatus(self, param0, param1);
     }
 };
@@ -4119,7 +4119,7 @@ pub const IDirectDrawVideoPort = extern union {
             self: *const IDirectDrawVideoPort,
             param0: ?*IDirectDrawSurface,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBandwidthInfo: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*DDPIXELFORMAT,
@@ -4127,105 +4127,105 @@ pub const IDirectDrawVideoPort = extern union {
             param2: u32,
             param3: u32,
             param4: ?*DDVIDEOPORTBANDWIDTH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetColorControls: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputFormats: *const fn(
             self: *const IDirectDrawVideoPort,
             lpNumFormats: ?*u32,
             param1: ?[*]DDPIXELFORMAT,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputFormats: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*DDPIXELFORMAT,
             lpNumFormats: ?*u32,
             param2: ?[*]DDPIXELFORMAT,
             param3: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFieldPolarity: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoLine: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVideoSignalStatus: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetColorControls: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*DDCOLORCONTROL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTargetSurface: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*IDirectDrawSurface,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartVideo: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*DDVIDEOPORTINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopVideo: *const fn(
             self: *const IDirectDrawVideoPort,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateVideo: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: ?*DDVIDEOPORTINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForSync: *const fn(
             self: *const IDirectDrawVideoPort,
             param0: u32,
             param1: u32,
             param2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Flip(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
+    pub fn Flip(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) HRESULT {
         return self.vtable.Flip(self, param0, param1);
     }
-    pub fn GetBandwidthInfo(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, param1: u32, param2: u32, param3: u32, param4: ?*DDVIDEOPORTBANDWIDTH) callconv(.Inline) HRESULT {
+    pub fn GetBandwidthInfo(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, param1: u32, param2: u32, param3: u32, param4: ?*DDVIDEOPORTBANDWIDTH) HRESULT {
         return self.vtable.GetBandwidthInfo(self, param0, param1, param2, param3, param4);
     }
-    pub fn GetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn GetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) HRESULT {
         return self.vtable.GetColorControls(self, param0);
     }
-    pub fn GetInputFormats(self: *const IDirectDrawVideoPort, lpNumFormats: ?*u32, param1: ?[*]DDPIXELFORMAT, param2: u32) callconv(.Inline) HRESULT {
+    pub fn GetInputFormats(self: *const IDirectDrawVideoPort, lpNumFormats: ?*u32, param1: ?[*]DDPIXELFORMAT, param2: u32) HRESULT {
         return self.vtable.GetInputFormats(self, lpNumFormats, param1, param2);
     }
-    pub fn GetOutputFormats(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, lpNumFormats: ?*u32, param2: ?[*]DDPIXELFORMAT, param3: u32) callconv(.Inline) HRESULT {
+    pub fn GetOutputFormats(self: *const IDirectDrawVideoPort, param0: ?*DDPIXELFORMAT, lpNumFormats: ?*u32, param2: ?[*]DDPIXELFORMAT, param3: u32) HRESULT {
         return self.vtable.GetOutputFormats(self, param0, lpNumFormats, param2, param3);
     }
-    pub fn GetFieldPolarity(self: *const IDirectDrawVideoPort, param0: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetFieldPolarity(self: *const IDirectDrawVideoPort, param0: ?*i32) HRESULT {
         return self.vtable.GetFieldPolarity(self, param0);
     }
-    pub fn GetVideoLine(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVideoLine(self: *const IDirectDrawVideoPort, param0: ?*u32) HRESULT {
         return self.vtable.GetVideoLine(self, param0);
     }
-    pub fn GetVideoSignalStatus(self: *const IDirectDrawVideoPort, param0: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVideoSignalStatus(self: *const IDirectDrawVideoPort, param0: ?*u32) HRESULT {
         return self.vtable.GetVideoSignalStatus(self, param0);
     }
-    pub fn SetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) callconv(.Inline) HRESULT {
+    pub fn SetColorControls(self: *const IDirectDrawVideoPort, param0: ?*DDCOLORCONTROL) HRESULT {
         return self.vtable.SetColorControls(self, param0);
     }
-    pub fn SetTargetSurface(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) callconv(.Inline) HRESULT {
+    pub fn SetTargetSurface(self: *const IDirectDrawVideoPort, param0: ?*IDirectDrawSurface, param1: u32) HRESULT {
         return self.vtable.SetTargetSurface(self, param0, param1);
     }
-    pub fn StartVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.Inline) HRESULT {
+    pub fn StartVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) HRESULT {
         return self.vtable.StartVideo(self, param0);
     }
-    pub fn StopVideo(self: *const IDirectDrawVideoPort) callconv(.Inline) HRESULT {
+    pub fn StopVideo(self: *const IDirectDrawVideoPort) HRESULT {
         return self.vtable.StopVideo(self);
     }
-    pub fn UpdateVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) callconv(.Inline) HRESULT {
+    pub fn UpdateVideo(self: *const IDirectDrawVideoPort, param0: ?*DDVIDEOPORTINFO) HRESULT {
         return self.vtable.UpdateVideo(self, param0);
     }
-    pub fn WaitForSync(self: *const IDirectDrawVideoPort, param0: u32, param1: u32, param2: u32) callconv(.Inline) HRESULT {
+    pub fn WaitForSync(self: *const IDirectDrawVideoPort, param0: u32, param1: u32, param2: u32) HRESULT {
         return self.vtable.WaitForSync(self, param0, param1, param2);
     }
 };
@@ -4239,18 +4239,18 @@ pub const IDirectDrawVideoPortNotify = extern union {
             self: *const IDirectDrawVideoPortNotify,
             param0: ?*?HANDLE,
             param1: ?*DDVIDEOPORTNOTIFY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseNotification: *const fn(
             self: *const IDirectDrawVideoPortNotify,
             param0: ?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AcquireNotification(self: *const IDirectDrawVideoPortNotify, param0: ?*?HANDLE, param1: ?*DDVIDEOPORTNOTIFY) callconv(.Inline) HRESULT {
+    pub fn AcquireNotification(self: *const IDirectDrawVideoPortNotify, param0: ?*?HANDLE, param1: ?*DDVIDEOPORTNOTIFY) HRESULT {
         return self.vtable.AcquireNotification(self, param0, param1);
     }
-    pub fn ReleaseNotification(self: *const IDirectDrawVideoPortNotify, param0: ?HANDLE) callconv(.Inline) HRESULT {
+    pub fn ReleaseNotification(self: *const IDirectDrawVideoPortNotify, param0: ?HANDLE) HRESULT {
         return self.vtable.ReleaseNotification(self, param0);
     }
 };
@@ -4351,24 +4351,24 @@ pub const IDirectDrawKernel = extern union {
         GetCaps: *const fn(
             self: *const IDirectDrawKernel,
             param0: ?*DDKERNELCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetKernelHandle: *const fn(
             self: *const IDirectDrawKernel,
             param0: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseKernelHandle: *const fn(
             self: *const IDirectDrawKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectDrawKernel, param0: ?*DDKERNELCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectDrawKernel, param0: ?*DDKERNELCAPS) HRESULT {
         return self.vtable.GetCaps(self, param0);
     }
-    pub fn GetKernelHandle(self: *const IDirectDrawKernel, param0: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetKernelHandle(self: *const IDirectDrawKernel, param0: ?*usize) HRESULT {
         return self.vtable.GetKernelHandle(self, param0);
     }
-    pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) callconv(.Inline) HRESULT {
+    pub fn ReleaseKernelHandle(self: *const IDirectDrawKernel) HRESULT {
         return self.vtable.ReleaseKernelHandle(self);
     }
 };
@@ -4381,17 +4381,17 @@ pub const IDirectDrawSurfaceKernel = extern union {
         GetKernelHandle: *const fn(
             self: *const IDirectDrawSurfaceKernel,
             param0: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseKernelHandle: *const fn(
             self: *const IDirectDrawSurfaceKernel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetKernelHandle(self: *const IDirectDrawSurfaceKernel, param0: ?*usize) callconv(.Inline) HRESULT {
+    pub fn GetKernelHandle(self: *const IDirectDrawSurfaceKernel, param0: ?*usize) HRESULT {
         return self.vtable.GetKernelHandle(self, param0);
     }
-    pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) callconv(.Inline) HRESULT {
+    pub fn ReleaseKernelHandle(self: *const IDirectDrawSurfaceKernel) HRESULT {
         return self.vtable.ReleaseKernelHandle(self);
     }
 };
@@ -4582,7 +4582,7 @@ pub const DDVERSIONDATA = extern struct {
 
 pub const LPDD32BITDRIVERINIT = *const fn(
     dwContext: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const VIDMEM = extern struct {
     dwFlags: u32,
@@ -4637,40 +4637,40 @@ pub const IUNKNOWN_LIST = extern struct {
 pub const LPDDHEL_INIT = *const fn(
     param0: ?*DDRAWI_DIRECTDRAW_GBL,
     param1: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETCOLORKEY = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_SETCOLORKEY = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CANCREATESURFACE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_CANCREATESURFACE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_WAITFORVERTICALBLANK = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_WAITFORVERTICALBLANK = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CREATESURFACE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_CREATESURFACE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_DESTROYDRIVER = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_DESTROYDRIVER = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETMODE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_SETMODE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CREATEPALETTE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_CREATEPALETTE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETSCANLINE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_GETSCANLINE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETEXCLUSIVEMODE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_SETEXCLUSIVEMODE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_FLIPTOGDISURFACE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_FLIPTOGDISURFACE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETDRIVERINFO = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_GETDRIVERINFO = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDCALLBACKS = extern struct {
     dwSize: u32,
@@ -4688,10 +4688,10 @@ pub const DDHAL_DDCALLBACKS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALPALCB_DESTROYPALETTE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALPALCB_DESTROYPALETTE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALPALCB_SETENTRIES = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALPALCB_SETENTRIES = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDPALETTECALLBACKS = extern struct {
     dwSize: u32,
@@ -4701,43 +4701,43 @@ pub const DDHAL_DDPALETTECALLBACKS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_LOCK = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_LOCK = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_UNLOCK = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_UNLOCK = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_BLT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_BLT = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_UPDATEOVERLAY = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_UPDATEOVERLAY = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETOVERLAYPOSITION = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_SETOVERLAYPOSITION = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETPALETTE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_SETPALETTE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_FLIP = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_FLIP = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_DESTROYSURFACE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_DESTROYSURFACE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETCLIPLIST = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_SETCLIPLIST = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_ADDATTACHEDSURFACE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_SETCOLORKEY = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_SETCOLORKEY = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_GETBLTSTATUS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_GETBLTSTATUS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALSURFCB_GETFLIPSTATUS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALSURFCB_GETFLIPSTATUS = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDSURFACECALLBACKS = extern struct {
     dwSize: u32,
@@ -4759,13 +4759,13 @@ pub const DDHAL_DDSURFACECALLBACKS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETAVAILDRIVERMEMORY = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_GETAVAILDRIVERMEMORY = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_UPDATENONLOCALHEAP = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_UPDATENONLOCALHEAP = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETHEAPALIGNMENT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_GETHEAPALIGNMENT = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
     dwSize: u32,
@@ -4777,13 +4777,13 @@ pub const DDHAL_DDMISCELLANEOUSCALLBACKS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_CREATESURFACEEX = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_CREATESURFACEEX = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_GETDRIVERSTATE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_GETDRIVERSTATE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_DESTROYDDLOCAL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_DESTROYDDLOCAL = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
     dwSize: u32,
@@ -4796,23 +4796,23 @@ pub const DDHAL_DDMISCELLANEOUS2CALLBACKS = extern struct {
 
 pub const LPDDHALEXEBUFCB_CANCREATEEXEBUF = *const fn(
     param0: ?*DDHAL_CANCREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPDDHALEXEBUFCB_CREATEEXEBUF = *const fn(
     param0: ?*DDHAL_CREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPDDHALEXEBUFCB_DESTROYEXEBUF = *const fn(
     param0: ?*DDHAL_DESTROYSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPDDHALEXEBUFCB_LOCKEXEBUF = *const fn(
     param0: ?*DDHAL_LOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPDDHALEXEBUFCB_UNLOCKEXEBUF = *const fn(
     param0: ?*DDHAL_UNLOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DDHAL_DDEXEBUFCALLBACKS = extern struct {
     dwSize: u32,
@@ -4825,49 +4825,49 @@ pub const DDHAL_DDEXEBUFCALLBACKS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_CANCREATEVIDEOPORT = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_CREATEVIDEOPORT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_CREATEVIDEOPORT = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_FLIP = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_FLIP = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETBANDWIDTH = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETBANDWIDTH = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETINPUTFORMATS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETINPUTFORMATS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETOUTPUTFORMATS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETFIELD = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETFIELD = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETLINE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETLINE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETVPORTCONNECT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETVPORTCONNECT = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_DESTROYVPORT = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_DESTROYVPORT = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETFLIPSTATUS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETFLIPSTATUS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_UPDATE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_UPDATE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_WAITFORSYNC = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_WAITFORSYNC = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_GETSIGNALSTATUS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_GETSIGNALSTATUS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALVPORTCB_COLORCONTROL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALVPORTCB_COLORCONTROL = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
     dwSize: u32,
@@ -4891,7 +4891,7 @@ pub const DDHAL_DDVIDEOPORTCALLBACKS = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALCOLORCB_COLORCONTROL = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALCOLORCB_COLORCONTROL = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDCOLORCONTROLCALLBACKS = extern struct {
     dwSize: u32,
@@ -4901,11 +4901,11 @@ pub const DDHAL_DDCOLORCONTROLCALLBACKS = extern struct {
 
 pub const LPDDHALKERNELCB_SYNCSURFACE = *const fn(
     param0: ?*DDHAL_SYNCSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPDDHALKERNELCB_SYNCVIDEOPORT = *const fn(
     param0: ?*DDHAL_SYNCVIDEOPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DDHAL_DDKERNELCALLBACKS = extern struct {
     dwSize: u32,
@@ -4917,37 +4917,37 @@ pub const DDHAL_DDKERNELCALLBACKS = extern struct {
 pub const LPDDGAMMACALIBRATORPROC = *const fn(
     param0: ?*DDGAMMARAMP,
     param1: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETGUIDS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_GETGUIDS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETFORMATS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_GETFORMATS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_CREATE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_CREATE = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_GETCOMPBUFFINFO = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_GETINTERNALINFO = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_GETINTERNALINFO = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_BEGINFRAME = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_BEGINFRAME = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_ENDFRAME = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_ENDFRAME = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_RENDER = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_RENDER = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_QUERYSTATUS = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_QUERYSTATUS = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHALMOCOMPCB_DESTROY = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHALMOCOMPCB_DESTROY = *const fn() callconv(.winapi) void;
 
 pub const DDHAL_DDMOTIONCOMPCALLBACKS = extern struct {
     dwSize: u32,
@@ -5490,13 +5490,13 @@ pub const DDHALINFO = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_SETINFO = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_SETINFO = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_VIDMEMALLOC = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_VIDMEMALLOC = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const LPDDHAL_VIDMEMFREE = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const LPDDHAL_VIDMEMFREE = *const fn() callconv(.winapi) void;
 
 pub const DDHALDDRAWFNS = extern struct {
     dwSize: u32,
@@ -6132,43 +6132,43 @@ pub const VIDEOMEMORYINFO = extern struct {
 
 pub const PDD_SETCOLORKEY = *const fn(
     param0: ?*DD_DRVSETCOLORKEYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_CANCREATESURFACE = *const fn(
     param0: ?*DD_CANCREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_WAITFORVERTICALBLANK = *const fn(
     param0: ?*DD_WAITFORVERTICALBLANKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_CREATESURFACE = *const fn(
     param0: ?*DD_CREATESURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_DESTROYDRIVER = *const fn(
     param0: ?*_DD_DESTROYDRIVERDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SETMODE = *const fn(
     param0: ?*_DD_SETMODEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_CREATEPALETTE = *const fn(
     param0: ?*DD_CREATEPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_GETSCANLINE = *const fn(
     param0: ?*DD_GETSCANLINEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MAPMEMORY = *const fn(
     param0: ?*DD_MAPMEMORYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_GETDRIVERINFO = *const fn(
     param0: ?*DD_GETDRIVERINFODATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_CALLBACKS = extern struct {
     dwSize: u32,
@@ -6186,7 +6186,7 @@ pub const DD_CALLBACKS = extern struct {
 
 pub const PDD_GETAVAILDRIVERMEMORY = *const fn(
     param0: ?*DD_GETAVAILDRIVERMEMORYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_MISCELLANEOUSCALLBACKS = extern struct {
     dwSize: u32,
@@ -6196,19 +6196,19 @@ pub const DD_MISCELLANEOUSCALLBACKS = extern struct {
 
 pub const PDD_ALPHABLT = *const fn(
     param0: ?*DD_BLTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_CREATESURFACEEX = *const fn(
     param0: ?*DD_CREATESURFACEEXDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_GETDRIVERSTATE = *const fn(
     param0: ?*DD_GETDRIVERSTATEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_DESTROYDDLOCAL = *const fn(
     param0: ?*DD_DESTROYDDLOCALDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_MISCELLANEOUS2CALLBACKS = extern struct {
     dwSize: u32,
@@ -6221,15 +6221,15 @@ pub const DD_MISCELLANEOUS2CALLBACKS = extern struct {
 
 pub const PDD_FREEDRIVERMEMORY = *const fn(
     param0: ?*DD_FREEDRIVERMEMORYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SETEXCLUSIVEMODE = *const fn(
     param0: ?*DD_SETEXCLUSIVEMODEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_FLIPTOGDISURFACE = *const fn(
     param0: ?*DD_FLIPTOGDISURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_NTCALLBACKS = extern struct {
     dwSize: u32,
@@ -6241,11 +6241,11 @@ pub const DD_NTCALLBACKS = extern struct {
 
 pub const PDD_PALCB_DESTROYPALETTE = *const fn(
     param0: ?*DD_DESTROYPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_PALCB_SETENTRIES = *const fn(
     param0: ?*DD_SETENTRIESDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_PALETTECALLBACKS = extern struct {
     dwSize: u32,
@@ -6256,55 +6256,55 @@ pub const DD_PALETTECALLBACKS = extern struct {
 
 pub const PDD_SURFCB_LOCK = *const fn(
     param0: ?*DD_LOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_UNLOCK = *const fn(
     param0: ?*DD_UNLOCKDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_BLT = *const fn(
     param0: ?*DD_BLTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_UPDATEOVERLAY = *const fn(
     param0: ?*DD_UPDATEOVERLAYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_SETOVERLAYPOSITION = *const fn(
     param0: ?*DD_SETOVERLAYPOSITIONDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_SETPALETTE = *const fn(
     param0: ?*DD_SETPALETTEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_FLIP = *const fn(
     param0: ?*DD_FLIPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_DESTROYSURFACE = *const fn(
     param0: ?*DD_DESTROYSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_SETCLIPLIST = *const fn(
     param0: ?*DD_SETCLIPLISTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_ADDATTACHEDSURFACE = *const fn(
     param0: ?*DD_ADDATTACHEDSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_SETCOLORKEY = *const fn(
     param0: ?*DD_SETCOLORKEYDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_GETBLTSTATUS = *const fn(
     param0: ?*DD_GETBLTSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_SURFCB_GETFLIPSTATUS = *const fn(
     param0: ?*DD_GETFLIPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_SURFACECALLBACKS = extern struct {
     dwSize: u32,
@@ -6327,67 +6327,67 @@ pub const DD_SURFACECALLBACKS = extern struct {
 
 pub const PDD_VPORTCB_CANCREATEVIDEOPORT = *const fn(
     param0: ?*DD_CANCREATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_CREATEVIDEOPORT = *const fn(
     param0: ?*DD_CREATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_FLIP = *const fn(
     param0: ?*DD_FLIPVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETBANDWIDTH = *const fn(
     param0: ?*DD_GETVPORTBANDWIDTHDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETINPUTFORMATS = *const fn(
     param0: ?*DD_GETVPORTINPUTFORMATDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETOUTPUTFORMATS = *const fn(
     param0: ?*DD_GETVPORTOUTPUTFORMATDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETAUTOFLIPSURF = *const fn(
     param0: ?*_DD_GETVPORTAUTOFLIPSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETFIELD = *const fn(
     param0: ?*DD_GETVPORTFIELDDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETLINE = *const fn(
     param0: ?*DD_GETVPORTLINEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETVPORTCONNECT = *const fn(
     param0: ?*DD_GETVPORTCONNECTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_DESTROYVPORT = *const fn(
     param0: ?*DD_DESTROYVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETFLIPSTATUS = *const fn(
     param0: ?*DD_GETVPORTFLIPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_UPDATE = *const fn(
     param0: ?*DD_UPDATEVPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_WAITFORSYNC = *const fn(
     param0: ?*DD_WAITFORVPORTSYNCDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_GETSIGNALSTATUS = *const fn(
     param0: ?*DD_GETVPORTSIGNALDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_VPORTCB_COLORCONTROL = *const fn(
     param0: ?*DD_VPORTCOLORDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_VIDEOPORTCALLBACKS = extern struct {
     dwSize: u32,
@@ -6412,7 +6412,7 @@ pub const DD_VIDEOPORTCALLBACKS = extern struct {
 
 pub const PDD_COLORCB_COLORCONTROL = *const fn(
     param0: ?*DD_COLORCONTROLDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_COLORCONTROLCALLBACKS = extern struct {
     dwSize: u32,
@@ -6422,11 +6422,11 @@ pub const DD_COLORCONTROLCALLBACKS = extern struct {
 
 pub const PDD_KERNELCB_SYNCSURFACE = *const fn(
     param0: ?*DD_SYNCSURFACEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_KERNELCB_SYNCVIDEOPORT = *const fn(
     param0: ?*DD_SYNCVIDEOPORTDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_KERNELCALLBACKS = extern struct {
     dwSize: u32,
@@ -6437,43 +6437,43 @@ pub const DD_KERNELCALLBACKS = extern struct {
 
 pub const PDD_MOCOMPCB_GETGUIDS = *const fn(
     param0: ?*DD_GETMOCOMPGUIDSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_GETFORMATS = *const fn(
     param0: ?*DD_GETMOCOMPFORMATSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_CREATE = *const fn(
     param0: ?*DD_CREATEMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_GETCOMPBUFFINFO = *const fn(
     param0: ?*DD_GETMOCOMPCOMPBUFFDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_GETINTERNALINFO = *const fn(
     param0: ?*DD_GETINTERNALMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_BEGINFRAME = *const fn(
     param0: ?*DD_BEGINMOCOMPFRAMEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_ENDFRAME = *const fn(
     param0: ?*DD_ENDMOCOMPFRAMEDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_RENDER = *const fn(
     param0: ?*DD_RENDERMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_QUERYSTATUS = *const fn(
     param0: ?*DD_QUERYMOCOMPSTATUSDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDD_MOCOMPCB_DESTROY = *const fn(
     param0: ?*DD_DESTROYMOCOMPDATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DD_MOTIONCOMPCALLBACKS = extern struct {
     dwSize: u32,
@@ -7354,7 +7354,7 @@ pub const DX_IRQDATA = extern struct {
 
 pub const PDX_IRQCALLBACK = *const fn(
     pIrqData: ?*DX_IRQDATA,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const DDGETIRQINFO = extern struct {
     dwFlags: u32,
@@ -7455,79 +7455,79 @@ pub const PDX_GETIRQINFO = *const fn(
     param0: ?*anyopaque,
     param1: ?*anyopaque,
     param2: ?*DDGETIRQINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_ENABLEIRQ = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDENABLEIRQINFO,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_SKIPNEXTFIELD = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDSKIPNEXTFIELDINFO,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_BOBNEXTFIELD = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDBOBNEXTFIELDINFO,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_SETSTATE = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDSETSTATEININFO,
     param2: ?*DDSETSTATEOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_LOCK = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDLOCKININFO,
     param2: ?*DDLOCKOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_FLIPOVERLAY = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDFLIPOVERLAYINFO,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_FLIPVIDEOPORT = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDFLIPVIDEOPORTINFO,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_GETPOLARITY = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDGETPOLARITYININFO,
     param2: ?*DDGETPOLARITYOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_GETCURRENTAUTOFLIP = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDGETCURRENTAUTOFLIPININFO,
     param2: ?*DDGETCURRENTAUTOFLIPOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_GETPREVIOUSAUTOFLIP = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDGETPREVIOUSAUTOFLIPININFO,
     param2: ?*DDGETPREVIOUSAUTOFLIPOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_TRANSFER = *const fn(
     param0: ?*anyopaque,
     param1: ?*DDTRANSFERININFO,
     param2: ?*DDTRANSFEROUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PDX_GETTRANSFERSTATUS = *const fn(
     param0: ?*anyopaque,
     param1: ?*anyopaque,
     param2: ?*DDGETTRANSFERSTATUSOUTINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DXAPI_INTERFACE = extern struct {
     Size: u16,
@@ -7557,43 +7557,43 @@ pub const DXAPI_INTERFACE = extern struct {
 pub extern "ddraw" fn DirectDrawEnumerateW(
     lpCallback: ?LPDDENUMCALLBACKW,
     lpContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ddraw" fn DirectDrawEnumerateA(
     lpCallback: ?LPDDENUMCALLBACKA,
     lpContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ddraw" fn DirectDrawEnumerateExW(
     lpCallback: ?LPDDENUMCALLBACKEXW,
     lpContext: ?*anyopaque,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ddraw" fn DirectDrawEnumerateExA(
     lpCallback: ?LPDDENUMCALLBACKEXA,
     lpContext: ?*anyopaque,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ddraw" fn DirectDrawCreate(
     lpGUID: ?*Guid,
     lplpDD: ?*?*IDirectDraw,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ddraw" fn DirectDrawCreateEx(
     lpGuid: ?*Guid,
     lplpDD: ?*?*anyopaque,
     iid: ?*const Guid,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "ddraw" fn DirectDrawCreateClipper(
     dwFlags: u32,
     lplpDDClipper: ?*?*IDirectDrawClipper,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

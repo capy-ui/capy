@@ -22,14 +22,14 @@ pub fn build(b: *std.build.Builder) !void {
         .password = "ziguana",
     };
 
-    var libraries = std.ArrayList([]const u8).init(b.allocator);
-    try libraries.append("GLESv2");
-    try libraries.append("EGL");
-    try libraries.append("android");
-    try libraries.append("log");
+    var libraries: std.ArrayList([]const u8) = .empty;
+    try libraries.append(b.allocator, "GLESv2");
+    try libraries.append(b.allocator, "EGL");
+    try libraries.append(b.allocator, "android");
+    try libraries.append(b.allocator, "log");
 
-    if (opensl) try libraries.append("OpenSLES");
-    if (aaudio) try libraries.append("aaudio");
+    if (opensl) try libraries.append(b.allocator, "OpenSLES");
+    if (aaudio) try libraries.append(b.allocator, "aaudio");
 
     // This is a configuration for your application.
     // Android requires several configurations to be done, this is a typical config

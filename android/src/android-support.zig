@@ -14,9 +14,11 @@ pub const NativeInvocationHandler = @import("NativeInvocationHandler.zig");
 
 const app_log = std.log.scoped(.app_glue);
 
-// Export the flat functions for now
-// pub const native = android;
-pub usingnamespace android;
+// TODO: `pub usingnamespace android;` was removed to eliminate usingnamespace.
+// The android-bind.zig module contains hundreds of auto-generated Android NDK bindings.
+// To complete this replacement, identify which declarations from android-bind.zig are
+// actually used by consumers of this module and forward them explicitly.
+// For now, this is Android-only code and does not affect macOS compilation.
 
 const AndroidApp = @import("root").AndroidApp;
 

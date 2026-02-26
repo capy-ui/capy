@@ -19,18 +19,18 @@ pub const IThumbnailExtractor = extern union {
             pulOutputLength: ?*u32,
             pulOutputHeight: ?*u32,
             phOutputBitmap: ?*?HBITMAP,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnFileUpdated: *const fn(
             self: *const IThumbnailExtractor,
             pStg: ?*IStorage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ExtractThumbnail(self: *const IThumbnailExtractor, pStg: ?*IStorage, ulLength: u32, ulHeight: u32, pulOutputLength: ?*u32, pulOutputHeight: ?*u32, phOutputBitmap: ?*?HBITMAP) callconv(.Inline) HRESULT {
+    pub fn ExtractThumbnail(self: *const IThumbnailExtractor, pStg: ?*IStorage, ulLength: u32, ulHeight: u32, pulOutputLength: ?*u32, pulOutputHeight: ?*u32, phOutputBitmap: ?*?HBITMAP) HRESULT {
         return self.vtable.ExtractThumbnail(self, pStg, ulLength, ulHeight, pulOutputLength, pulOutputHeight, phOutputBitmap);
     }
-    pub fn OnFileUpdated(self: *const IThumbnailExtractor, pStg: ?*IStorage) callconv(.Inline) HRESULT {
+    pub fn OnFileUpdated(self: *const IThumbnailExtractor, pStg: ?*IStorage) HRESULT {
         return self.vtable.OnFileUpdated(self, pStg);
     }
 };
@@ -44,11 +44,11 @@ pub const IDummyHICONIncluder = extern union {
             self: *const IDummyHICONIncluder,
             h1: ?HICON,
             h2: ?HDC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Dummy(self: *const IDummyHICONIncluder, h1: ?HICON, h2: ?HDC) callconv(.Inline) HRESULT {
+    pub fn Dummy(self: *const IDummyHICONIncluder, h1: ?HICON, h2: ?HDC) HRESULT {
         return self.vtable.Dummy(self, h1, h2);
     }
 };

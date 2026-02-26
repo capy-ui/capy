@@ -25,11 +25,11 @@ pub fn init() BackendError!void {
 }
 
 pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrintSentinel(lib.internal.allocator, fmt, args, 0) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer lib.internal.scratch_allocator.free(msg);
+    defer lib.internal.allocator.free(msg);
     _ = msgType;
     @panic("TODO: message dialogs on Android");
 }
@@ -231,7 +231,16 @@ pub const Window = struct {
     source_dpi: u32 = 96,
     scale: f32 = 1.0,
 
-    pub usingnamespace Events(Window);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const deinit = _events.deinit;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
 
     pub fn create() BackendError!Window {
         return Window{};
@@ -298,7 +307,16 @@ pub const Window = struct {
 pub const Button = struct {
     peer: PeerType,
 
-    pub usingnamespace Events(Button);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const deinit = _events.deinit;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
 
     const CLASS = if (USE_MATERIAL) "com/google/android/material/button/MaterialButton" else "android/widget/Button";
 
@@ -333,7 +351,16 @@ pub const Label = struct {
     peer: PeerType,
     nullTerminated: ?[:0]const u8 = null,
 
-    pub usingnamespace Events(Label);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const deinit = _events.deinit;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
 
     pub fn create() BackendError!Label {
         var view: PeerType = undefined;
@@ -374,7 +401,16 @@ pub const Label = struct {
 pub const TextField = struct {
     peer: PeerType,
 
-    pub usingnamespace Events(TextField);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const deinit = _events.deinit;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
 
     pub fn create() BackendError!TextField {
         var view: PeerType = undefined;
@@ -397,7 +433,7 @@ pub const TextField = struct {
     pub fn setText(self_ptr: *TextField, text_ptr: []const u8) void {
         theApp.runOnUiThread(struct {
             fn callback(self: *TextField, text: []const u8) void {
-                const allocator = lib.internal.scratch_allocator;
+                const allocator = lib.internal.allocator;
                 const nulTerminated = allocator.dupeZ(u8, text) catch return;
                 defer allocator.free(nulTerminated);
 
@@ -428,7 +464,16 @@ pub const TextField = struct {
 pub const Canvas = struct {
     peer: PeerType,
 
-    pub usingnamespace Events(Canvas);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const deinit = _events.deinit;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
 
     pub const DrawContextImpl = struct {
         canvas: android.jobject,
@@ -613,7 +658,16 @@ pub const Canvas = struct {
 pub const Container = struct {
     peer: PeerType,
 
-    pub usingnamespace Events(Container);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const deinit = _events.deinit;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
 
     pub fn create() BackendError!Container {
         var layout: PeerType = undefined;
@@ -793,7 +847,7 @@ pub const backendExport = struct {
 
             // TODO: use a mutex so that there aren't concurrent requests which wouldn't mix well with addFd
             const Args = @TypeOf(args);
-            const allocator = lib.internal.scratch_allocator;
+            const allocator = lib.internal.allocator;
 
             const args_ptr = try allocator.create(Args);
             args_ptr.* = args;
@@ -801,7 +855,7 @@ pub const backendExport = struct {
 
             const expected_value = self.uiThreadCondition.load(.Monotonic);
             const Instance = struct {
-                fn callback(_: c_int, _: c_int, data: ?*anyopaque) callconv(.C) c_int {
+                fn callback(_: c_int, _: c_int, data: ?*anyopaque) callconv(.c) c_int {
                     const args_data = @as(*Args, @ptrCast(@alignCast(data.?)));
                     defer allocator.destroy(args_data);
 

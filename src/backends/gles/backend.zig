@@ -11,7 +11,7 @@ const lasting_allocator = lib.internal.allocator;
 
 const EventType = shared.BackendEventType;
 
-var activeWindows = std.ArrayList(*c.GLFWwindow).init(lasting_allocator);
+var activeWindows: std.ArrayList(*c.GLFWwindow) = .empty;
 
 pub const GuiWidget = struct {
     userdata: usize = 0,
@@ -27,11 +27,11 @@ pub const GuiWidget = struct {
 pub const MessageType = enum { Information, Warning, Error };
 
 pub fn showNativeMessageDialog(msgType: MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrintSentinel(lib.internal.allocator, fmt, args, 0) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer lib.internal.scratch_allocator.free(msg);
+    defer lib.internal.allocator.free(msg);
     std.log.info("native message dialog (TODO): ({}) {s}", .{ msgType, msg });
 }
 
@@ -80,8 +80,8 @@ const Shader = struct {
         c.glGetShaderiv(self.id, c.GL_COMPILE_STATUS, &result);
         c.glGetShaderiv(self.id, c.GL_INFO_LOG_LENGTH, &infoLogLen);
         if (infoLogLen > 0) {
-            const infoLog = try lib.internal.scratch_allocator.allocSentinel(u8, @as(usize, @intCast(infoLogLen)), 0);
-            defer lib.internal.scratch_allocator.free(infoLog);
+            const infoLog = try lib.internal.allocator.allocSentinel(u8, @as(usize, @intCast(infoLogLen)), 0);
+            defer lib.internal.allocator.free(infoLog);
             c.glGetShaderInfoLog(self.id, infoLogLen, null, infoLog.ptr);
             std.log.crit("shader compile error:\n{s}", .{infoLog});
             return error.ShaderError;
@@ -136,7 +136,7 @@ pub const Window = struct {
         c.glUseProgram(program);
         std.log.info("program: {d}", .{program});
 
-        try activeWindows.append(window);
+        try activeWindows.append(lasting_allocator, window);
         return Window{ .window = window };
     }
 
@@ -213,7 +213,14 @@ pub fn Events(comptime T: type) type {
 pub const TextField = struct {
     peer: *GuiWidget,
 
-    pub usingnamespace Events(TextField);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
 
     pub fn create() !TextField {
         return TextField{ .peer = try GuiWidget.init(lasting_allocator) };
@@ -233,7 +240,14 @@ pub const TextField = struct {
 pub const Button = struct {
     peer: *GuiWidget,
 
-    pub usingnamespace Events(Button);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
 
     pub fn create() !Button {
         return Button{ .peer = try GuiWidget.init(lasting_allocator) };
@@ -248,7 +262,14 @@ pub const Button = struct {
 pub const Container = struct {
     peer: *GuiWidget,
 
-    pub usingnamespace Events(Container);
+    const _events = Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
 
     pub fn create() !Container {
         return Container{ .peer = try GuiWidget.init(lasting_allocator) };
@@ -278,7 +299,7 @@ pub const Canvas = struct {
     pub const DrawContext = struct {};
 };
 
-fn drawWindow(cWindow: ?*c.GLFWwindow) callconv(.C) void {
+fn drawWindow(cWindow: ?*c.GLFWwindow) callconv(.c) void {
     const window = cWindow.?;
 
     var width: c_int = undefined;

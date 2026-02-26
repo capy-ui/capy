@@ -191,7 +191,7 @@ pub const _IManipulationEvents = extern union {
             self: *const _IManipulationEvents,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ManipulationDelta: *const fn(
             self: *const _IManipulationEvents,
             x: f32,
@@ -206,7 +206,7 @@ pub const _IManipulationEvents = extern union {
             cumulativeScale: f32,
             cumulativeExpansion: f32,
             cumulativeRotation: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ManipulationCompleted: *const fn(
             self: *const _IManipulationEvents,
             x: f32,
@@ -216,17 +216,17 @@ pub const _IManipulationEvents = extern union {
             cumulativeScale: f32,
             cumulativeExpansion: f32,
             cumulativeRotation: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ManipulationStarted(self: *const _IManipulationEvents, x: f32, y: f32) callconv(.Inline) HRESULT {
+    pub fn ManipulationStarted(self: *const _IManipulationEvents, x: f32, y: f32) HRESULT {
         return self.vtable.ManipulationStarted(self, x, y);
     }
-    pub fn ManipulationDelta(self: *const _IManipulationEvents, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.Inline) HRESULT {
+    pub fn ManipulationDelta(self: *const _IManipulationEvents, x: f32, y: f32, translationDeltaX: f32, translationDeltaY: f32, scaleDelta: f32, expansionDelta: f32, rotationDelta: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) HRESULT {
         return self.vtable.ManipulationDelta(self, x, y, translationDeltaX, translationDeltaY, scaleDelta, expansionDelta, rotationDelta, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
     }
-    pub fn ManipulationCompleted(self: *const _IManipulationEvents, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) callconv(.Inline) HRESULT {
+    pub fn ManipulationCompleted(self: *const _IManipulationEvents, x: f32, y: f32, cumulativeTranslationX: f32, cumulativeTranslationY: f32, cumulativeScale: f32, cumulativeExpansion: f32, cumulativeRotation: f32) HRESULT {
         return self.vtable.ManipulationCompleted(self, x, y, cumulativeTranslationX, cumulativeTranslationY, cumulativeScale, cumulativeExpansion, cumulativeRotation);
     }
 };
@@ -241,389 +241,389 @@ pub const IInertiaProcessor = extern union {
         get_InitialOriginX: *const fn(
             self: *const IInertiaProcessor,
             x: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialOriginX: *const fn(
             self: *const IInertiaProcessor,
             x: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialOriginY: *const fn(
             self: *const IInertiaProcessor,
             y: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialOriginY: *const fn(
             self: *const IInertiaProcessor,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialVelocityX: *const fn(
             self: *const IInertiaProcessor,
             x: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialVelocityX: *const fn(
             self: *const IInertiaProcessor,
             x: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialVelocityY: *const fn(
             self: *const IInertiaProcessor,
             y: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialVelocityY: *const fn(
             self: *const IInertiaProcessor,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialAngularVelocity: *const fn(
             self: *const IInertiaProcessor,
             velocity: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialAngularVelocity: *const fn(
             self: *const IInertiaProcessor,
             velocity: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialExpansionVelocity: *const fn(
             self: *const IInertiaProcessor,
             velocity: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialExpansionVelocity: *const fn(
             self: *const IInertiaProcessor,
             velocity: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialRadius: *const fn(
             self: *const IInertiaProcessor,
             radius: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialRadius: *const fn(
             self: *const IInertiaProcessor,
             radius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryLeft: *const fn(
             self: *const IInertiaProcessor,
             left: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryLeft: *const fn(
             self: *const IInertiaProcessor,
             left: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryTop: *const fn(
             self: *const IInertiaProcessor,
             top: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryTop: *const fn(
             self: *const IInertiaProcessor,
             top: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryRight: *const fn(
             self: *const IInertiaProcessor,
             right: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryRight: *const fn(
             self: *const IInertiaProcessor,
             right: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BoundaryBottom: *const fn(
             self: *const IInertiaProcessor,
             bottom: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BoundaryBottom: *const fn(
             self: *const IInertiaProcessor,
             bottom: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginLeft: *const fn(
             self: *const IInertiaProcessor,
             left: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginLeft: *const fn(
             self: *const IInertiaProcessor,
             left: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginTop: *const fn(
             self: *const IInertiaProcessor,
             top: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginTop: *const fn(
             self: *const IInertiaProcessor,
             top: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginRight: *const fn(
             self: *const IInertiaProcessor,
             right: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginRight: *const fn(
             self: *const IInertiaProcessor,
             right: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ElasticMarginBottom: *const fn(
             self: *const IInertiaProcessor,
             bottom: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ElasticMarginBottom: *const fn(
             self: *const IInertiaProcessor,
             bottom: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredDisplacement: *const fn(
             self: *const IInertiaProcessor,
             displacement: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredDisplacement: *const fn(
             self: *const IInertiaProcessor,
             displacement: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredRotation: *const fn(
             self: *const IInertiaProcessor,
             rotation: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredRotation: *const fn(
             self: *const IInertiaProcessor,
             rotation: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredExpansion: *const fn(
             self: *const IInertiaProcessor,
             expansion: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredExpansion: *const fn(
             self: *const IInertiaProcessor,
             expansion: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredDeceleration: *const fn(
             self: *const IInertiaProcessor,
             deceleration: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredDeceleration: *const fn(
             self: *const IInertiaProcessor,
             deceleration: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredAngularDeceleration: *const fn(
             self: *const IInertiaProcessor,
             deceleration: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredAngularDeceleration: *const fn(
             self: *const IInertiaProcessor,
             deceleration: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredExpansionDeceleration: *const fn(
             self: *const IInertiaProcessor,
             deceleration: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredExpansionDeceleration: *const fn(
             self: *const IInertiaProcessor,
             deceleration: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialTimestamp: *const fn(
             self: *const IInertiaProcessor,
             timestamp: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_InitialTimestamp: *const fn(
             self: *const IInertiaProcessor,
             timestamp: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IInertiaProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Process: *const fn(
             self: *const IInertiaProcessor,
             completed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessTime: *const fn(
             self: *const IInertiaProcessor,
             timestamp: u32,
             completed: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Complete: *const fn(
             self: *const IInertiaProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompleteTime: *const fn(
             self: *const IInertiaProcessor,
             timestamp: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_InitialOriginX(self: *const IInertiaProcessor, x: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_InitialOriginX(self: *const IInertiaProcessor, x: ?*f32) HRESULT {
         return self.vtable.get_InitialOriginX(self, x);
     }
-    pub fn put_InitialOriginX(self: *const IInertiaProcessor, x: f32) callconv(.Inline) HRESULT {
+    pub fn put_InitialOriginX(self: *const IInertiaProcessor, x: f32) HRESULT {
         return self.vtable.put_InitialOriginX(self, x);
     }
-    pub fn get_InitialOriginY(self: *const IInertiaProcessor, y: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_InitialOriginY(self: *const IInertiaProcessor, y: ?*f32) HRESULT {
         return self.vtable.get_InitialOriginY(self, y);
     }
-    pub fn put_InitialOriginY(self: *const IInertiaProcessor, y: f32) callconv(.Inline) HRESULT {
+    pub fn put_InitialOriginY(self: *const IInertiaProcessor, y: f32) HRESULT {
         return self.vtable.put_InitialOriginY(self, y);
     }
-    pub fn get_InitialVelocityX(self: *const IInertiaProcessor, x: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_InitialVelocityX(self: *const IInertiaProcessor, x: ?*f32) HRESULT {
         return self.vtable.get_InitialVelocityX(self, x);
     }
-    pub fn put_InitialVelocityX(self: *const IInertiaProcessor, x: f32) callconv(.Inline) HRESULT {
+    pub fn put_InitialVelocityX(self: *const IInertiaProcessor, x: f32) HRESULT {
         return self.vtable.put_InitialVelocityX(self, x);
     }
-    pub fn get_InitialVelocityY(self: *const IInertiaProcessor, y: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_InitialVelocityY(self: *const IInertiaProcessor, y: ?*f32) HRESULT {
         return self.vtable.get_InitialVelocityY(self, y);
     }
-    pub fn put_InitialVelocityY(self: *const IInertiaProcessor, y: f32) callconv(.Inline) HRESULT {
+    pub fn put_InitialVelocityY(self: *const IInertiaProcessor, y: f32) HRESULT {
         return self.vtable.put_InitialVelocityY(self, y);
     }
-    pub fn get_InitialAngularVelocity(self: *const IInertiaProcessor, velocity: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_InitialAngularVelocity(self: *const IInertiaProcessor, velocity: ?*f32) HRESULT {
         return self.vtable.get_InitialAngularVelocity(self, velocity);
     }
-    pub fn put_InitialAngularVelocity(self: *const IInertiaProcessor, velocity: f32) callconv(.Inline) HRESULT {
+    pub fn put_InitialAngularVelocity(self: *const IInertiaProcessor, velocity: f32) HRESULT {
         return self.vtable.put_InitialAngularVelocity(self, velocity);
     }
-    pub fn get_InitialExpansionVelocity(self: *const IInertiaProcessor, velocity: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_InitialExpansionVelocity(self: *const IInertiaProcessor, velocity: ?*f32) HRESULT {
         return self.vtable.get_InitialExpansionVelocity(self, velocity);
     }
-    pub fn put_InitialExpansionVelocity(self: *const IInertiaProcessor, velocity: f32) callconv(.Inline) HRESULT {
+    pub fn put_InitialExpansionVelocity(self: *const IInertiaProcessor, velocity: f32) HRESULT {
         return self.vtable.put_InitialExpansionVelocity(self, velocity);
     }
-    pub fn get_InitialRadius(self: *const IInertiaProcessor, radius: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_InitialRadius(self: *const IInertiaProcessor, radius: ?*f32) HRESULT {
         return self.vtable.get_InitialRadius(self, radius);
     }
-    pub fn put_InitialRadius(self: *const IInertiaProcessor, radius: f32) callconv(.Inline) HRESULT {
+    pub fn put_InitialRadius(self: *const IInertiaProcessor, radius: f32) HRESULT {
         return self.vtable.put_InitialRadius(self, radius);
     }
-    pub fn get_BoundaryLeft(self: *const IInertiaProcessor, left: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_BoundaryLeft(self: *const IInertiaProcessor, left: ?*f32) HRESULT {
         return self.vtable.get_BoundaryLeft(self, left);
     }
-    pub fn put_BoundaryLeft(self: *const IInertiaProcessor, left: f32) callconv(.Inline) HRESULT {
+    pub fn put_BoundaryLeft(self: *const IInertiaProcessor, left: f32) HRESULT {
         return self.vtable.put_BoundaryLeft(self, left);
     }
-    pub fn get_BoundaryTop(self: *const IInertiaProcessor, top: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_BoundaryTop(self: *const IInertiaProcessor, top: ?*f32) HRESULT {
         return self.vtable.get_BoundaryTop(self, top);
     }
-    pub fn put_BoundaryTop(self: *const IInertiaProcessor, top: f32) callconv(.Inline) HRESULT {
+    pub fn put_BoundaryTop(self: *const IInertiaProcessor, top: f32) HRESULT {
         return self.vtable.put_BoundaryTop(self, top);
     }
-    pub fn get_BoundaryRight(self: *const IInertiaProcessor, right: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_BoundaryRight(self: *const IInertiaProcessor, right: ?*f32) HRESULT {
         return self.vtable.get_BoundaryRight(self, right);
     }
-    pub fn put_BoundaryRight(self: *const IInertiaProcessor, right: f32) callconv(.Inline) HRESULT {
+    pub fn put_BoundaryRight(self: *const IInertiaProcessor, right: f32) HRESULT {
         return self.vtable.put_BoundaryRight(self, right);
     }
-    pub fn get_BoundaryBottom(self: *const IInertiaProcessor, bottom: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_BoundaryBottom(self: *const IInertiaProcessor, bottom: ?*f32) HRESULT {
         return self.vtable.get_BoundaryBottom(self, bottom);
     }
-    pub fn put_BoundaryBottom(self: *const IInertiaProcessor, bottom: f32) callconv(.Inline) HRESULT {
+    pub fn put_BoundaryBottom(self: *const IInertiaProcessor, bottom: f32) HRESULT {
         return self.vtable.put_BoundaryBottom(self, bottom);
     }
-    pub fn get_ElasticMarginLeft(self: *const IInertiaProcessor, left: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_ElasticMarginLeft(self: *const IInertiaProcessor, left: ?*f32) HRESULT {
         return self.vtable.get_ElasticMarginLeft(self, left);
     }
-    pub fn put_ElasticMarginLeft(self: *const IInertiaProcessor, left: f32) callconv(.Inline) HRESULT {
+    pub fn put_ElasticMarginLeft(self: *const IInertiaProcessor, left: f32) HRESULT {
         return self.vtable.put_ElasticMarginLeft(self, left);
     }
-    pub fn get_ElasticMarginTop(self: *const IInertiaProcessor, top: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_ElasticMarginTop(self: *const IInertiaProcessor, top: ?*f32) HRESULT {
         return self.vtable.get_ElasticMarginTop(self, top);
     }
-    pub fn put_ElasticMarginTop(self: *const IInertiaProcessor, top: f32) callconv(.Inline) HRESULT {
+    pub fn put_ElasticMarginTop(self: *const IInertiaProcessor, top: f32) HRESULT {
         return self.vtable.put_ElasticMarginTop(self, top);
     }
-    pub fn get_ElasticMarginRight(self: *const IInertiaProcessor, right: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_ElasticMarginRight(self: *const IInertiaProcessor, right: ?*f32) HRESULT {
         return self.vtable.get_ElasticMarginRight(self, right);
     }
-    pub fn put_ElasticMarginRight(self: *const IInertiaProcessor, right: f32) callconv(.Inline) HRESULT {
+    pub fn put_ElasticMarginRight(self: *const IInertiaProcessor, right: f32) HRESULT {
         return self.vtable.put_ElasticMarginRight(self, right);
     }
-    pub fn get_ElasticMarginBottom(self: *const IInertiaProcessor, bottom: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_ElasticMarginBottom(self: *const IInertiaProcessor, bottom: ?*f32) HRESULT {
         return self.vtable.get_ElasticMarginBottom(self, bottom);
     }
-    pub fn put_ElasticMarginBottom(self: *const IInertiaProcessor, bottom: f32) callconv(.Inline) HRESULT {
+    pub fn put_ElasticMarginBottom(self: *const IInertiaProcessor, bottom: f32) HRESULT {
         return self.vtable.put_ElasticMarginBottom(self, bottom);
     }
-    pub fn get_DesiredDisplacement(self: *const IInertiaProcessor, displacement: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_DesiredDisplacement(self: *const IInertiaProcessor, displacement: ?*f32) HRESULT {
         return self.vtable.get_DesiredDisplacement(self, displacement);
     }
-    pub fn put_DesiredDisplacement(self: *const IInertiaProcessor, displacement: f32) callconv(.Inline) HRESULT {
+    pub fn put_DesiredDisplacement(self: *const IInertiaProcessor, displacement: f32) HRESULT {
         return self.vtable.put_DesiredDisplacement(self, displacement);
     }
-    pub fn get_DesiredRotation(self: *const IInertiaProcessor, rotation: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_DesiredRotation(self: *const IInertiaProcessor, rotation: ?*f32) HRESULT {
         return self.vtable.get_DesiredRotation(self, rotation);
     }
-    pub fn put_DesiredRotation(self: *const IInertiaProcessor, rotation: f32) callconv(.Inline) HRESULT {
+    pub fn put_DesiredRotation(self: *const IInertiaProcessor, rotation: f32) HRESULT {
         return self.vtable.put_DesiredRotation(self, rotation);
     }
-    pub fn get_DesiredExpansion(self: *const IInertiaProcessor, expansion: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_DesiredExpansion(self: *const IInertiaProcessor, expansion: ?*f32) HRESULT {
         return self.vtable.get_DesiredExpansion(self, expansion);
     }
-    pub fn put_DesiredExpansion(self: *const IInertiaProcessor, expansion: f32) callconv(.Inline) HRESULT {
+    pub fn put_DesiredExpansion(self: *const IInertiaProcessor, expansion: f32) HRESULT {
         return self.vtable.put_DesiredExpansion(self, expansion);
     }
-    pub fn get_DesiredDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_DesiredDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) HRESULT {
         return self.vtable.get_DesiredDeceleration(self, deceleration);
     }
-    pub fn put_DesiredDeceleration(self: *const IInertiaProcessor, deceleration: f32) callconv(.Inline) HRESULT {
+    pub fn put_DesiredDeceleration(self: *const IInertiaProcessor, deceleration: f32) HRESULT {
         return self.vtable.put_DesiredDeceleration(self, deceleration);
     }
-    pub fn get_DesiredAngularDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_DesiredAngularDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) HRESULT {
         return self.vtable.get_DesiredAngularDeceleration(self, deceleration);
     }
-    pub fn put_DesiredAngularDeceleration(self: *const IInertiaProcessor, deceleration: f32) callconv(.Inline) HRESULT {
+    pub fn put_DesiredAngularDeceleration(self: *const IInertiaProcessor, deceleration: f32) HRESULT {
         return self.vtable.put_DesiredAngularDeceleration(self, deceleration);
     }
-    pub fn get_DesiredExpansionDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_DesiredExpansionDeceleration(self: *const IInertiaProcessor, deceleration: ?*f32) HRESULT {
         return self.vtable.get_DesiredExpansionDeceleration(self, deceleration);
     }
-    pub fn put_DesiredExpansionDeceleration(self: *const IInertiaProcessor, deceleration: f32) callconv(.Inline) HRESULT {
+    pub fn put_DesiredExpansionDeceleration(self: *const IInertiaProcessor, deceleration: f32) HRESULT {
         return self.vtable.put_DesiredExpansionDeceleration(self, deceleration);
     }
-    pub fn get_InitialTimestamp(self: *const IInertiaProcessor, timestamp: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_InitialTimestamp(self: *const IInertiaProcessor, timestamp: ?*u32) HRESULT {
         return self.vtable.get_InitialTimestamp(self, timestamp);
     }
-    pub fn put_InitialTimestamp(self: *const IInertiaProcessor, timestamp: u32) callconv(.Inline) HRESULT {
+    pub fn put_InitialTimestamp(self: *const IInertiaProcessor, timestamp: u32) HRESULT {
         return self.vtable.put_InitialTimestamp(self, timestamp);
     }
-    pub fn Reset(self: *const IInertiaProcessor) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IInertiaProcessor) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Process(self: *const IInertiaProcessor, completed: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn Process(self: *const IInertiaProcessor, completed: ?*BOOL) HRESULT {
         return self.vtable.Process(self, completed);
     }
-    pub fn ProcessTime(self: *const IInertiaProcessor, timestamp: u32, completed: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn ProcessTime(self: *const IInertiaProcessor, timestamp: u32, completed: ?*BOOL) HRESULT {
         return self.vtable.ProcessTime(self, timestamp, completed);
     }
-    pub fn Complete(self: *const IInertiaProcessor) callconv(.Inline) HRESULT {
+    pub fn Complete(self: *const IInertiaProcessor) HRESULT {
         return self.vtable.Complete(self);
     }
-    pub fn CompleteTime(self: *const IInertiaProcessor, timestamp: u32) callconv(.Inline) HRESULT {
+    pub fn CompleteTime(self: *const IInertiaProcessor, timestamp: u32) HRESULT {
         return self.vtable.CompleteTime(self, timestamp);
     }
 };
@@ -638,174 +638,174 @@ pub const IManipulationProcessor = extern union {
         get_SupportedManipulations: *const fn(
             self: *const IManipulationProcessor,
             manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SupportedManipulations: *const fn(
             self: *const IManipulationProcessor,
             manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PivotPointX: *const fn(
             self: *const IManipulationProcessor,
             pivotPointX: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PivotPointX: *const fn(
             self: *const IManipulationProcessor,
             pivotPointX: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PivotPointY: *const fn(
             self: *const IManipulationProcessor,
             pivotPointY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PivotPointY: *const fn(
             self: *const IManipulationProcessor,
             pivotPointY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PivotRadius: *const fn(
             self: *const IManipulationProcessor,
             pivotRadius: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_PivotRadius: *const fn(
             self: *const IManipulationProcessor,
             pivotRadius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CompleteManipulation: *const fn(
             self: *const IManipulationProcessor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessDown: *const fn(
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessMove: *const fn(
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessUp: *const fn(
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessDownWithTime: *const fn(
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
             timestamp: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessMoveWithTime: *const fn(
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
             timestamp: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessUpWithTime: *const fn(
             self: *const IManipulationProcessor,
             manipulatorId: u32,
             x: f32,
             y: f32,
             timestamp: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVelocityX: *const fn(
             self: *const IManipulationProcessor,
             velocityX: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVelocityY: *const fn(
             self: *const IManipulationProcessor,
             velocityY: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExpansionVelocity: *const fn(
             self: *const IManipulationProcessor,
             expansionVelocity: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAngularVelocity: *const fn(
             self: *const IManipulationProcessor,
             angularVelocity: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinimumScaleRotateRadius: *const fn(
             self: *const IManipulationProcessor,
             minRadius: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinimumScaleRotateRadius: *const fn(
             self: *const IManipulationProcessor,
             minRadius: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_SupportedManipulations(self: *const IManipulationProcessor, manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
+    pub fn get_SupportedManipulations(self: *const IManipulationProcessor, manipulations: ?*MANIPULATION_PROCESSOR_MANIPULATIONS) HRESULT {
         return self.vtable.get_SupportedManipulations(self, manipulations);
     }
-    pub fn put_SupportedManipulations(self: *const IManipulationProcessor, manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS) callconv(.Inline) HRESULT {
+    pub fn put_SupportedManipulations(self: *const IManipulationProcessor, manipulations: MANIPULATION_PROCESSOR_MANIPULATIONS) HRESULT {
         return self.vtable.put_SupportedManipulations(self, manipulations);
     }
-    pub fn get_PivotPointX(self: *const IManipulationProcessor, pivotPointX: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_PivotPointX(self: *const IManipulationProcessor, pivotPointX: ?*f32) HRESULT {
         return self.vtable.get_PivotPointX(self, pivotPointX);
     }
-    pub fn put_PivotPointX(self: *const IManipulationProcessor, pivotPointX: f32) callconv(.Inline) HRESULT {
+    pub fn put_PivotPointX(self: *const IManipulationProcessor, pivotPointX: f32) HRESULT {
         return self.vtable.put_PivotPointX(self, pivotPointX);
     }
-    pub fn get_PivotPointY(self: *const IManipulationProcessor, pivotPointY: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_PivotPointY(self: *const IManipulationProcessor, pivotPointY: ?*f32) HRESULT {
         return self.vtable.get_PivotPointY(self, pivotPointY);
     }
-    pub fn put_PivotPointY(self: *const IManipulationProcessor, pivotPointY: f32) callconv(.Inline) HRESULT {
+    pub fn put_PivotPointY(self: *const IManipulationProcessor, pivotPointY: f32) HRESULT {
         return self.vtable.put_PivotPointY(self, pivotPointY);
     }
-    pub fn get_PivotRadius(self: *const IManipulationProcessor, pivotRadius: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_PivotRadius(self: *const IManipulationProcessor, pivotRadius: ?*f32) HRESULT {
         return self.vtable.get_PivotRadius(self, pivotRadius);
     }
-    pub fn put_PivotRadius(self: *const IManipulationProcessor, pivotRadius: f32) callconv(.Inline) HRESULT {
+    pub fn put_PivotRadius(self: *const IManipulationProcessor, pivotRadius: f32) HRESULT {
         return self.vtable.put_PivotRadius(self, pivotRadius);
     }
-    pub fn CompleteManipulation(self: *const IManipulationProcessor) callconv(.Inline) HRESULT {
+    pub fn CompleteManipulation(self: *const IManipulationProcessor) HRESULT {
         return self.vtable.CompleteManipulation(self);
     }
-    pub fn ProcessDown(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
+    pub fn ProcessDown(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) HRESULT {
         return self.vtable.ProcessDown(self, manipulatorId, x, y);
     }
-    pub fn ProcessMove(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
+    pub fn ProcessMove(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) HRESULT {
         return self.vtable.ProcessMove(self, manipulatorId, x, y);
     }
-    pub fn ProcessUp(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) callconv(.Inline) HRESULT {
+    pub fn ProcessUp(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32) HRESULT {
         return self.vtable.ProcessUp(self, manipulatorId, x, y);
     }
-    pub fn ProcessDownWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
+    pub fn ProcessDownWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
         return self.vtable.ProcessDownWithTime(self, manipulatorId, x, y, timestamp);
     }
-    pub fn ProcessMoveWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
+    pub fn ProcessMoveWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
         return self.vtable.ProcessMoveWithTime(self, manipulatorId, x, y, timestamp);
     }
-    pub fn ProcessUpWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) callconv(.Inline) HRESULT {
+    pub fn ProcessUpWithTime(self: *const IManipulationProcessor, manipulatorId: u32, x: f32, y: f32, timestamp: u32) HRESULT {
         return self.vtable.ProcessUpWithTime(self, manipulatorId, x, y, timestamp);
     }
-    pub fn GetVelocityX(self: *const IManipulationProcessor, velocityX: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetVelocityX(self: *const IManipulationProcessor, velocityX: ?*f32) HRESULT {
         return self.vtable.GetVelocityX(self, velocityX);
     }
-    pub fn GetVelocityY(self: *const IManipulationProcessor, velocityY: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetVelocityY(self: *const IManipulationProcessor, velocityY: ?*f32) HRESULT {
         return self.vtable.GetVelocityY(self, velocityY);
     }
-    pub fn GetExpansionVelocity(self: *const IManipulationProcessor, expansionVelocity: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetExpansionVelocity(self: *const IManipulationProcessor, expansionVelocity: ?*f32) HRESULT {
         return self.vtable.GetExpansionVelocity(self, expansionVelocity);
     }
-    pub fn GetAngularVelocity(self: *const IManipulationProcessor, angularVelocity: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetAngularVelocity(self: *const IManipulationProcessor, angularVelocity: ?*f32) HRESULT {
         return self.vtable.GetAngularVelocity(self, angularVelocity);
     }
-    pub fn get_MinimumScaleRotateRadius(self: *const IManipulationProcessor, minRadius: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_MinimumScaleRotateRadius(self: *const IManipulationProcessor, minRadius: ?*f32) HRESULT {
         return self.vtable.get_MinimumScaleRotateRadius(self, minRadius);
     }
-    pub fn put_MinimumScaleRotateRadius(self: *const IManipulationProcessor, minRadius: f32) callconv(.Inline) HRESULT {
+    pub fn put_MinimumScaleRotateRadius(self: *const IManipulationProcessor, minRadius: f32) HRESULT {
         return self.vtable.put_MinimumScaleRotateRadius(self, minRadius);
     }
 };
@@ -859,35 +859,35 @@ pub extern "user32" fn GetTouchInputInfo(
     cInputs: u32,
     pInputs: [*]TOUCHINPUT,
     cbSize: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn CloseTouchInputHandle(
     hTouchInput: ?HTOUCHINPUT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn RegisterTouchWindow(
     hwnd: ?HWND,
     ulFlags: REGISTER_TOUCH_WINDOW_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn UnregisterTouchWindow(
     hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn IsTouchWindow(
     hwnd: ?HWND,
     pulFlags: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn GetGestureInfo(
     hGestureInfo: ?HGESTUREINFO,
     pGestureInfo: ?*GESTUREINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn GetGestureExtraArgs(
@@ -895,12 +895,12 @@ pub extern "user32" fn GetGestureExtraArgs(
     cbExtraArgs: u32,
     // TODO: what to do with BytesParamIndex 1?
     pExtraArgs: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn CloseGestureInfoHandle(
     hGestureInfo: ?HGESTUREINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn SetGestureConfig(
@@ -909,7 +909,7 @@ pub extern "user32" fn SetGestureConfig(
     cIDs: u32,
     pGestureConfig: [*]GESTURECONFIG,
     cbSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn GetGestureConfig(
@@ -919,7 +919,7 @@ pub extern "user32" fn GetGestureConfig(
     pcIDs: ?*u32,
     pGestureConfig: [*]GESTURECONFIG,
     cbSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

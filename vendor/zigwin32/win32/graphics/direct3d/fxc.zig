@@ -64,7 +64,7 @@ pub const pD3DCompile = *const fn(
     Flags2: u32,
     ppCode: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const pD3DPreprocess = *const fn(
     pSrcData: ?*const anyopaque,
@@ -74,7 +74,7 @@ pub const pD3DPreprocess = *const fn(
     pInclude: ?*ID3DInclude,
     ppCodeText: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const pD3DDisassemble = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -83,7 +83,7 @@ pub const pD3DDisassemble = *const fn(
     Flags: u32,
     szComments: ?[*:0]const u8,
     ppDisassembly: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const D3DCOMPILER_STRIP_FLAGS = enum(i32) {
     REFLECTION_DATA = 1,
@@ -149,13 +149,13 @@ pub const D3D_SHADER_DATA = extern struct {
 pub extern "d3dcompiler_47" fn D3DReadFileToBlob(
     pFileName: ?[*:0]const u16,
     ppContents: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DWriteBlobToFile(
     pBlob: ?*ID3DBlob,
     pFileName: ?[*:0]const u16,
     bOverwrite: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCompile(
     // TODO: what to do with BytesParamIndex 1?
@@ -170,7 +170,7 @@ pub extern "d3dcompiler_47" fn D3DCompile(
     Flags2: u32,
     ppCode: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCompile2(
     // TODO: what to do with BytesParamIndex 1?
@@ -189,7 +189,7 @@ pub extern "d3dcompiler_47" fn D3DCompile2(
     SecondaryDataSize: usize,
     ppCode: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCompileFromFile(
     pFileName: ?[*:0]const u16,
@@ -201,7 +201,7 @@ pub extern "d3dcompiler_47" fn D3DCompileFromFile(
     Flags2: u32,
     ppCode: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DPreprocess(
     // TODO: what to do with BytesParamIndex 1?
@@ -212,14 +212,14 @@ pub extern "d3dcompiler_47" fn D3DPreprocess(
     pInclude: ?*ID3DInclude,
     ppCodeText: ?*?*ID3DBlob,
     ppErrorMsgs: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetDebugInfo(
     // TODO: what to do with BytesParamIndex 1?
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppDebugInfo: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DReflect(
     // TODO: what to do with BytesParamIndex 1?
@@ -227,7 +227,7 @@ pub extern "d3dcompiler_47" fn D3DReflect(
     SrcDataSize: usize,
     pInterface: ?*const Guid,
     ppReflector: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DReflectLibrary(
     // TODO: what to do with BytesParamIndex 1?
@@ -235,7 +235,7 @@ pub extern "d3dcompiler_47" fn D3DReflectLibrary(
     SrcDataSize: usize,
     riid: ?*const Guid,
     ppReflector: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DDisassemble(
     // TODO: what to do with BytesParamIndex 1?
@@ -244,7 +244,7 @@ pub extern "d3dcompiler_47" fn D3DDisassemble(
     Flags: u32,
     szComments: ?[*:0]const u8,
     ppDisassembly: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DDisassembleRegion(
     // TODO: what to do with BytesParamIndex 1?
@@ -256,22 +256,22 @@ pub extern "d3dcompiler_47" fn D3DDisassembleRegion(
     NumInsts: usize,
     pFinishByteOffset: ?*usize,
     ppDisassembly: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCreateLinker(
     ppLinker: ?*?*ID3D11Linker,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DLoadModule(
     pSrcData: ?*const anyopaque,
     cbSrcDataSize: usize,
     ppModule: ?*?*ID3D11Module,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCreateFunctionLinkingGraph(
     uFlags: u32,
     ppFunctionLinkingGraph: ?*?*ID3D11FunctionLinkingGraph,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetTraceInstructionOffsets(
     // TODO: what to do with BytesParamIndex 1?
@@ -282,28 +282,28 @@ pub extern "d3dcompiler_47" fn D3DGetTraceInstructionOffsets(
     NumInsts: usize,
     pOffsets: ?[*]usize,
     pTotalInsts: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetInputSignatureBlob(
     // TODO: what to do with BytesParamIndex 1?
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetOutputSignatureBlob(
     // TODO: what to do with BytesParamIndex 1?
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetInputAndOutputSignatureBlob(
     // TODO: what to do with BytesParamIndex 1?
     pSrcData: ?*const anyopaque,
     SrcDataSize: usize,
     ppSignatureBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DStripShader(
     // TODO: what to do with BytesParamIndex 1?
@@ -311,7 +311,7 @@ pub extern "d3dcompiler_47" fn D3DStripShader(
     BytecodeLength: usize,
     uStripFlags: u32,
     ppStrippedBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DGetBlobPart(
     // TODO: what to do with BytesParamIndex 1?
@@ -320,7 +320,7 @@ pub extern "d3dcompiler_47" fn D3DGetBlobPart(
     Part: D3D_BLOB_PART,
     Flags: u32,
     ppPart: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DSetBlobPart(
     // TODO: what to do with BytesParamIndex 1?
@@ -332,19 +332,19 @@ pub extern "d3dcompiler_47" fn D3DSetBlobPart(
     pPart: ?*const anyopaque,
     PartSize: usize,
     ppNewShader: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCreateBlob(
     Size: usize,
     ppBlob: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DCompressShaders(
     uNumShaders: u32,
     pShaderData: [*]D3D_SHADER_DATA,
     uFlags: u32,
     ppCompressedData: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DDecompressShaders(
     // TODO: what to do with BytesParamIndex 1?
@@ -356,13 +356,13 @@ pub extern "d3dcompiler_47" fn D3DDecompressShaders(
     uFlags: u32,
     ppShaders: [*]?*ID3DBlob,
     pTotalShaders: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "d3dcompiler_47" fn D3DDisassemble10Effect(
     pEffect: ?*ID3D10Effect,
     Flags: u32,
     ppDisassembly: ?*?*ID3DBlob,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

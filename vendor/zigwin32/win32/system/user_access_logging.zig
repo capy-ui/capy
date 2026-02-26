@@ -21,24 +21,24 @@ pub const UAL_DATA_BLOB = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ualapi" fn UalStart(
     Data: ?*UAL_DATA_BLOB,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ualapi" fn UalStop(
     Data: ?*UAL_DATA_BLOB,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ualapi" fn UalInstrument(
     Data: ?*UAL_DATA_BLOB,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "ualapi" fn UalRegisterProduct(
     wszProductName: ?[*:0]const u16,
     wszRoleName: ?[*:0]const u16,
     wszGuid: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

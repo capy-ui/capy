@@ -75,11 +75,11 @@ pub const IWaaSAssessor = extern union {
         GetOSUpdateAssessment: *const fn(
             self: *const IWaaSAssessor,
             result: ?*OSUpdateAssessment,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) callconv(.Inline) HRESULT {
+    pub fn GetOSUpdateAssessment(self: *const IWaaSAssessor, result: ?*OSUpdateAssessment) HRESULT {
         return self.vtable.GetOSUpdateAssessment(self, result);
     }
 };

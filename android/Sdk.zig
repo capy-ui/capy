@@ -90,8 +90,10 @@ pub fn init(b: *Builder, user_config: ?UserConfig, toolchains: ToolchainVersions
     const host_tools = blk: {
         const zip_add = b.addExecutable(.{
             .name = "zip_add",
-            .root_source_file = b.path(sdkRoot() ++ "/tools/zip_add.zig"),
-            .target = b.resolveTargetQuery(.{}),
+            .root_module = b.createModule(.{
+                .root_source_file = b.path(sdkRoot() ++ "/tools/zip_add.zig"),
+                .target = b.resolveTargetQuery(.{}),
+            }),
         });
         zip_add.addCSourceFile(.{
             .file = b.path(sdkRoot() ++ "/vendor/kuba-zip/zip.c"),
@@ -468,10 +470,10 @@ pub fn createApp(
 ) CreateAppStep {
     const write_xml_step = sdk.b.addWriteFiles();
     const write_xml_file_source = write_xml_step.add("strings.xml", blk: {
-        var buf = std.ArrayList(u8).init(sdk.b.allocator);
-        errdefer buf.deinit();
+        var buf: std.ArrayList(u8) = .empty;
+        errdefer buf.deinit(sdk.b.allocator);
 
-        var writer = buf.writer();
+        var writer = buf.writer(sdk.b.allocator);
 
         writer.writeAll(
             \\<?xml version="1.0" encoding="utf-8"?>
@@ -495,15 +497,15 @@ pub fn createApp(
             \\
         ) catch unreachable;
 
-        break :blk buf.toOwnedSlice() catch unreachable;
+        break :blk buf.toOwnedSlice(sdk.b.allocator) catch unreachable;
     });
 
     const manifest_step = sdk.b.addWriteFiles();
     const manifest_file_source = manifest_step.add("AndroidManifest.xml", blk: {
-        var buf = std.ArrayList(u8).init(sdk.b.allocator);
-        errdefer buf.deinit();
+        var buf: std.ArrayList(u8) = .empty;
+        errdefer buf.deinit(sdk.b.allocator);
 
-        var writer = buf.writer();
+        var writer = buf.writer(sdk.b.allocator);
 
         @setEvalBranchQuota(1_000_000);
         writer.print(
@@ -540,7 +542,7 @@ pub fn createApp(
             .theme = theme,
         }) catch unreachable;
 
-        break :blk buf.toOwnedSlice() catch unreachable;
+        break :blk buf.toOwnedSlice(sdk.b.allocator) catch unreachable;
     });
 
     const resource_dir_step = CreateResourceDirectory.create(sdk.b);
@@ -613,8 +615,8 @@ pub fn createApp(
     const copy_to_zip_step = WriteToZip.init(sdk, unaligned_apk_file, unaligned_apk_name);
     copy_to_zip_step.run_step.step.dependOn(&make_unsigned_apk.step);
 
-    var libs = std.ArrayList(*std.Build.Step.Compile).init(sdk.b.allocator);
-    defer libs.deinit();
+    var libs: std.ArrayList(*std.Build.Step.Compile) = .empty;
+    defer libs.deinit(sdk.b.allocator);
 
     const build_options = BuildOptionStep.create(sdk.b);
     build_options.add([]const u8, "app_name", app_config.app_name);
@@ -711,7 +713,7 @@ pub fn createApp(
                 target_name,
                 //   build_options.getPackage("build_options"),
             );
-            libs.append(step) catch unreachable;
+            libs.append(sdk.b.allocator, step) catch unreachable;
 
             // https://developer.android.com/ndk/guides/abis#native-code-in-app-packages
             const so_dir = switch (target_name) {
@@ -736,7 +738,7 @@ pub fn createApp(
         .sdk = sdk,
         .first_step = &make_unsigned_apk.step,
         .final_step = &sign_step.step,
-        .libraries = libs.toOwnedSlice() catch unreachable,
+        .libraries = libs.toOwnedSlice(sdk.b.allocator) catch unreachable,
         .build_options = build_options,
         .package_name = sdk.b.dupe(app_config.package_name),
         .apk_file = apk_file.dupe(sdk.b),
@@ -762,13 +764,13 @@ const CreateResourceDirectory = struct {
                 .makeFn = CreateResourceDirectory.make,
             }),
             .directory = .{ .step = &self.step },
-            .resources = std.ArrayList(Resource).init(b.allocator),
+            .resources = .empty,
         };
         return self;
     }
 
     pub fn add(self: *Self, resource: Resource) void {
-        self.resources.append(Resource{
+        self.resources.append(self.builder.allocator, Resource{
             .path = self.builder.dupe(resource.path),
             .content = resource.content.dupe(self.builder),
         }) catch @panic("out of memory");
@@ -944,11 +946,14 @@ pub fn compileAppLibrary(
     target: Target,
     // build_options: std.Build.Pkg,
 ) *std.Build.Step.Compile {
-    const exe = sdk.b.addSharedLibrary(.{
+    const exe = sdk.b.addLibrary(.{
+        .linkage = .dynamic,
         .name = app_config.app_name,
-        .root_source_file = sdk.b.path(src_file),
-        .target = sdk.b.resolveTargetQuery(target.getTargetConfig().target),
-        .optimize = mode,
+        .root_module = sdk.b.createModule(.{
+            .root_source_file = sdk.b.path(src_file),
+            .target = sdk.b.resolveTargetQuery(target.getTargetConfig().target),
+            .optimize = mode,
+        }),
     });
     configureStep(
         sdk,
@@ -962,10 +967,10 @@ pub fn compileAppLibrary(
 fn createLibCFile(sdk: *const Sdk, version: AndroidVersion, folder_name: []const u8, include_dir: []const u8, sys_include_dir: []const u8, crt_dir: []const u8) !std.Build.LazyPath {
     const fname = sdk.b.fmt("android-{d}-{s}.conf", .{ @intFromEnum(version), folder_name });
 
-    var contents = std.ArrayList(u8).init(sdk.b.allocator);
-    errdefer contents.deinit();
+    var contents: std.ArrayList(u8) = .empty;
+    errdefer contents.deinit(sdk.b.allocator);
 
-    var writer = contents.writer();
+    var writer = contents.writer(sdk.b.allocator);
 
     //  The directory that contains `stdlib.h`.
     //  On POSIX-like systems, include directories be found with: `cc -E -Wp,-v -xc /dev/null
@@ -1149,7 +1154,7 @@ const BuildOptionStep = struct {
                 .owner = b,
                 .makeFn = make,
             }),
-            .file_content = std.ArrayList(u8).init(b.allocator),
+            .file_content = .empty,
             .package_file = std.Build.GeneratedFile{ .step = &options.step },
         };
         const build_options = b.addModule("build_options", .{
@@ -1172,7 +1177,7 @@ const BuildOptionStep = struct {
     }
 
     pub fn add(self: *Self, comptime T: type, name: []const u8, value: T) void {
-        const out = self.file_content.writer();
+        const out = self.file_content.writer(self.builder.allocator);
         switch (T) {
             []const []const u8 => {
                 out.print("pub const {}: []const []const u8 = &[_][]const u8{{\n", .{std.zig.fmtId(name)}) catch unreachable;

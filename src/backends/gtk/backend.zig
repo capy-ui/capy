@@ -29,7 +29,7 @@ pub fn init() common.BackendError!void {
 }
 
 pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(lib.internal.allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrintSentinel(lib.internal.allocator, fmt, args, 0) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };

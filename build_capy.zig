@@ -68,12 +68,9 @@ const WebServerStep = struct {
     };
 
     pub fn make(step: *std.Build.Step, options: std.Build.Step.MakeOptions) !void {
-        // Options are unused.
         _ = options;
 
         const self: *WebServerStep = @fieldParentPtr("step", step);
-        const allocator = step.owner.allocator;
-        _ = allocator;
 
         const address = std.net.Address.parseIp("::1", 8080) catch unreachable;
         var net_server = try address.listen(.{ .reuse_address = true });
@@ -81,18 +78,24 @@ const WebServerStep = struct {
         std.debug.print("Web server opened at http://localhost:8080/\n", .{});
 
         while (true) {
-            const res = try net_server.accept();
-            var read_buffer: [4096]u8 = undefined;
-            var server = Server.init(res, &read_buffer);
-            const thread = try std.Thread.spawn(.{}, handler, .{ self, step.owner, &server });
+            const conn = try net_server.accept();
+            const thread = try std.Thread.spawn(.{}, handler, .{ self, step.owner, conn });
             thread.detach();
         }
     }
 
-    fn handler(self: *WebServerStep, build: *std.Build, res: *Server) !void {
-        const allocator = build.allocator;
+    fn handler(self: *WebServerStep, build: *std.Build, conn: std.net.Server.Connection) void {
+        defer conn.stream.close();
 
-        var req = try res.receiveHead();
+        const allocator = build.allocator;
+        var read_buf: [8192]u8 = undefined;
+        var write_buf: [8192]u8 = undefined;
+        var stream_reader = conn.stream.reader(&read_buf);
+        var stream_writer = conn.stream.writer(&write_buf);
+        var server = Server.init(stream_reader.interface(), &stream_writer.interface);
+
+        var req = server.receiveHead() catch return;
+
         var arena = std.heap.ArenaAllocator.init(allocator);
         defer arena.deinit();
         const req_allocator = arena.allocator();
@@ -119,9 +122,7 @@ const WebServerStep = struct {
                 content_type = "application/javascript";
             }
         } else {
-            // else try the HTML files supplied by the application (in the 'html' project relative
-            // to the project root)
-            file_path = try std.fs.path.join(req_allocator, &.{ "html", path });
+            file_path = std.fs.path.join(req_allocator, &.{ "html", path }) catch return;
             content_type = "application/javascript";
         }
 
@@ -134,15 +135,15 @@ const WebServerStep = struct {
             if (file_content) |presupplied_content| {
                 break :blk presupplied_content;
             } else {
-                const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{ .mode = .read_only }) catch |err| blk2: {
+                const file: ?std.fs.File = std.fs.cwd().openFile(file_path, .{}) catch |err| blk2: {
                     switch (err) {
                         error.FileNotFound => break :blk2 null,
-                        else => return err,
+                        else => return,
                     }
                 };
                 if (file) |f| {
                     defer f.close();
-                    break :blk try f.readToEndAlloc(req_allocator, std.math.maxInt(usize));
+                    break :blk f.readToEndAlloc(req_allocator, std.math.maxInt(usize)) catch return;
                 } else {
                     status = .not_found;
                     break :blk "404 Not Found";
@@ -150,7 +151,7 @@ const WebServerStep = struct {
             }
         };
 
-        try req.respond(content, .{
+        req.respond(content, .{
             .status = status,
             .keep_alive = false,
             .extra_headers = &.{
@@ -158,11 +159,8 @@ const WebServerStep = struct {
                 .{ .name = "Content-Type", .value = content_type },
                 .{ .name = "Cross-Origin-Opener-Policy", .value = "same-origin" },
                 .{ .name = "Cross-Origin-Embedder-Policy", .value = "require-corp" },
-                // TODO: Content-Length ?
             },
-            .transfer_encoding = .none,
-        });
-        res.connection.stream.close();
+        }) catch return;
     }
 };
 
@@ -198,11 +196,11 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
                 //     .password = options.android.password,
                 // };
 
-                var libraries = std.ArrayList([]const u8).init(b.allocator);
-                try libraries.append("GLESv2");
-                try libraries.append("EGL");
-                try libraries.append("android");
-                try libraries.append("log");
+                var libraries: std.ArrayList([]const u8) = .empty;
+                try libraries.append(b.allocator, "GLESv2");
+                try libraries.append(b.allocator, "EGL");
+                try libraries.append(b.allocator, "android");
+                try libraries.append(b.allocator, "log");
 
                 const config = AndroidSdk.AppConfig{
                     .target_version = .android9,
@@ -292,9 +290,9 @@ pub fn runStep(step: *std.Build.Step.Compile, options: CapyRunOptions) !*std.Bui
 }
 
 comptime {
-    const supported_zig = std.SemanticVersion.parse("0.14.1") catch unreachable;
+    const supported_zig = std.SemanticVersion.parse("0.15.2") catch unreachable;
     const zig_version = @import("builtin").zig_version;
     if (zig_version.order(supported_zig) != .eq) {
-        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Zig 0.14.1 is required.", .{@import("builtin").zig_version}));
+        @compileError(std.fmt.comptimePrint("unsupported Zig version ({}). Zig 0.15.2 is required.", .{@import("builtin").zig_version}));
     }
 }

@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 // This is a stress test to see how well Capy performs with 300 buttons
 
 pub fn main() !void {
@@ -25,7 +23,7 @@ pub fn main() !void {
     }, .{});
     var i: usize = 0;
     while (i < NUM_BUTTONS) : (i += 1) {
-        const button_label = try std.fmt.allocPrintZ(label_allocator, "Button #{d}", .{i + 1});
+        const button_label = try std.fmt.allocPrintSentinel(label_allocator, "Button #{d}", .{i + 1}, 0);
         try grid.add(capy.button(.{ .label = button_label }));
     }
 

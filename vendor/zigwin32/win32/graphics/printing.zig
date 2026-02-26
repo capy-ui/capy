@@ -1515,17 +1515,17 @@ pub const IBidiRequest = extern union {
         SetSchema: *const fn(
             self: *const IBidiRequest,
             pszSchema: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInputData: *const fn(
             self: *const IBidiRequest,
             dwType: u32,
             pData: ?*const u8,
             uSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResult: *const fn(
             self: *const IBidiRequest,
             phr: ?*HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputData: *const fn(
             self: *const IBidiRequest,
             dwIndex: u32,
@@ -1533,27 +1533,27 @@ pub const IBidiRequest = extern union {
             pdwType: ?*u32,
             ppData: ?*?*u8,
             uSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumCount: *const fn(
             self: *const IBidiRequest,
             pdwTotal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetSchema(self: *const IBidiRequest, pszSchema: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetSchema(self: *const IBidiRequest, pszSchema: ?[*:0]const u16) HRESULT {
         return self.vtable.SetSchema(self, pszSchema);
     }
-    pub fn SetInputData(self: *const IBidiRequest, dwType: u32, pData: ?*const u8, uSize: u32) callconv(.Inline) HRESULT {
+    pub fn SetInputData(self: *const IBidiRequest, dwType: u32, pData: ?*const u8, uSize: u32) HRESULT {
         return self.vtable.SetInputData(self, dwType, pData, uSize);
     }
-    pub fn GetResult(self: *const IBidiRequest, phr: ?*HRESULT) callconv(.Inline) HRESULT {
+    pub fn GetResult(self: *const IBidiRequest, phr: ?*HRESULT) HRESULT {
         return self.vtable.GetResult(self, phr);
     }
-    pub fn GetOutputData(self: *const IBidiRequest, dwIndex: u32, ppszSchema: ?*?PWSTR, pdwType: ?*u32, ppData: ?*?*u8, uSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOutputData(self: *const IBidiRequest, dwIndex: u32, ppszSchema: ?*?PWSTR, pdwType: ?*u32, ppData: ?*?*u8, uSize: ?*u32) HRESULT {
         return self.vtable.GetOutputData(self, dwIndex, ppszSchema, pdwType, ppData, uSize);
     }
-    pub fn GetEnumCount(self: *const IBidiRequest, pdwTotal: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEnumCount(self: *const IBidiRequest, pdwTotal: ?*u32) HRESULT {
         return self.vtable.GetEnumCount(self, pdwTotal);
     }
 };
@@ -1566,25 +1566,25 @@ pub const IBidiRequestContainer = extern union {
         AddRequest: *const fn(
             self: *const IBidiRequestContainer,
             pRequest: ?*IBidiRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEnumObject: *const fn(
             self: *const IBidiRequestContainer,
             ppenum: ?*?*IEnumUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRequestCount: *const fn(
             self: *const IBidiRequestContainer,
             puCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddRequest(self: *const IBidiRequestContainer, pRequest: ?*IBidiRequest) callconv(.Inline) HRESULT {
+    pub fn AddRequest(self: *const IBidiRequestContainer, pRequest: ?*IBidiRequest) HRESULT {
         return self.vtable.AddRequest(self, pRequest);
     }
-    pub fn GetEnumObject(self: *const IBidiRequestContainer, ppenum: ?*?*IEnumUnknown) callconv(.Inline) HRESULT {
+    pub fn GetEnumObject(self: *const IBidiRequestContainer, ppenum: ?*?*IEnumUnknown) HRESULT {
         return self.vtable.GetEnumObject(self, ppenum);
     }
-    pub fn GetRequestCount(self: *const IBidiRequestContainer, puCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRequestCount(self: *const IBidiRequestContainer, puCount: ?*u32) HRESULT {
         return self.vtable.GetRequestCount(self, puCount);
     }
 };
@@ -1598,33 +1598,33 @@ pub const IBidiSpl = extern union {
             self: *const IBidiSpl,
             pszDeviceName: ?[*:0]const u16,
             dwAccess: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnbindDevice: *const fn(
             self: *const IBidiSpl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendRecv: *const fn(
             self: *const IBidiSpl,
             pszAction: ?[*:0]const u16,
             pRequest: ?*IBidiRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MultiSendRecv: *const fn(
             self: *const IBidiSpl,
             pszAction: ?[*:0]const u16,
             pRequestContainer: ?*IBidiRequestContainer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BindDevice(self: *const IBidiSpl, pszDeviceName: ?[*:0]const u16, dwAccess: u32) callconv(.Inline) HRESULT {
+    pub fn BindDevice(self: *const IBidiSpl, pszDeviceName: ?[*:0]const u16, dwAccess: u32) HRESULT {
         return self.vtable.BindDevice(self, pszDeviceName, dwAccess);
     }
-    pub fn UnbindDevice(self: *const IBidiSpl) callconv(.Inline) HRESULT {
+    pub fn UnbindDevice(self: *const IBidiSpl) HRESULT {
         return self.vtable.UnbindDevice(self);
     }
-    pub fn SendRecv(self: *const IBidiSpl, pszAction: ?[*:0]const u16, pRequest: ?*IBidiRequest) callconv(.Inline) HRESULT {
+    pub fn SendRecv(self: *const IBidiSpl, pszAction: ?[*:0]const u16, pRequest: ?*IBidiRequest) HRESULT {
         return self.vtable.SendRecv(self, pszAction, pRequest);
     }
-    pub fn MultiSendRecv(self: *const IBidiSpl, pszAction: ?[*:0]const u16, pRequestContainer: ?*IBidiRequestContainer) callconv(.Inline) HRESULT {
+    pub fn MultiSendRecv(self: *const IBidiSpl, pszAction: ?[*:0]const u16, pRequestContainer: ?*IBidiRequestContainer) HRESULT {
         return self.vtable.MultiSendRecv(self, pszAction, pRequestContainer);
     }
 };
@@ -1638,33 +1638,33 @@ pub const IBidiSpl2 = extern union {
             self: *const IBidiSpl2,
             pszDeviceName: ?[*:0]const u16,
             dwAccess: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnbindDevice: *const fn(
             self: *const IBidiSpl2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendRecvXMLString: *const fn(
             self: *const IBidiSpl2,
             bstrRequest: ?BSTR,
             pbstrResponse: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendRecvXMLStream: *const fn(
             self: *const IBidiSpl2,
             pSRequest: ?*IStream,
             ppSResponse: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn BindDevice(self: *const IBidiSpl2, pszDeviceName: ?[*:0]const u16, dwAccess: u32) callconv(.Inline) HRESULT {
+    pub fn BindDevice(self: *const IBidiSpl2, pszDeviceName: ?[*:0]const u16, dwAccess: u32) HRESULT {
         return self.vtable.BindDevice(self, pszDeviceName, dwAccess);
     }
-    pub fn UnbindDevice(self: *const IBidiSpl2) callconv(.Inline) HRESULT {
+    pub fn UnbindDevice(self: *const IBidiSpl2) HRESULT {
         return self.vtable.UnbindDevice(self);
     }
-    pub fn SendRecvXMLString(self: *const IBidiSpl2, bstrRequest: ?BSTR, pbstrResponse: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn SendRecvXMLString(self: *const IBidiSpl2, bstrRequest: ?BSTR, pbstrResponse: ?*?BSTR) HRESULT {
         return self.vtable.SendRecvXMLString(self, bstrRequest, pbstrResponse);
     }
-    pub fn SendRecvXMLStream(self: *const IBidiSpl2, pSRequest: ?*IStream, ppSResponse: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn SendRecvXMLStream(self: *const IBidiSpl2, pSRequest: ?*IStream, ppSResponse: ?*?*IStream) HRESULT {
         return self.vtable.SendRecvXMLStream(self, pSRequest, ppSResponse);
     }
 };
@@ -1691,55 +1691,55 @@ pub const IImgErrorInfo = extern union {
         GetDeveloperDescription: *const fn(
             self: *const IImgErrorInfo,
             pbstrDevDescription: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserErrorId: *const fn(
             self: *const IImgErrorInfo,
             pErrorId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserParameterCount: *const fn(
             self: *const IImgErrorInfo,
             pcUserParams: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserParameter: *const fn(
             self: *const IImgErrorInfo,
             cParam: u32,
             pbstrParam: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetUserFallback: *const fn(
             self: *const IImgErrorInfo,
             pbstrFallback: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExceptionId: *const fn(
             self: *const IImgErrorInfo,
             pExceptionId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DetachErrorInfo: *const fn(
             self: *const IImgErrorInfo,
             pErrorInfo: ?*ImgErrorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IErrorInfo: IErrorInfo,
     IUnknown: IUnknown,
-    pub fn GetDeveloperDescription(self: *const IImgErrorInfo, pbstrDevDescription: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDeveloperDescription(self: *const IImgErrorInfo, pbstrDevDescription: ?*?BSTR) HRESULT {
         return self.vtable.GetDeveloperDescription(self, pbstrDevDescription);
     }
-    pub fn GetUserErrorId(self: *const IImgErrorInfo, pErrorId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetUserErrorId(self: *const IImgErrorInfo, pErrorId: ?*Guid) HRESULT {
         return self.vtable.GetUserErrorId(self, pErrorId);
     }
-    pub fn GetUserParameterCount(self: *const IImgErrorInfo, pcUserParams: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetUserParameterCount(self: *const IImgErrorInfo, pcUserParams: ?*u32) HRESULT {
         return self.vtable.GetUserParameterCount(self, pcUserParams);
     }
-    pub fn GetUserParameter(self: *const IImgErrorInfo, cParam: u32, pbstrParam: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUserParameter(self: *const IImgErrorInfo, cParam: u32, pbstrParam: ?*?BSTR) HRESULT {
         return self.vtable.GetUserParameter(self, cParam, pbstrParam);
     }
-    pub fn GetUserFallback(self: *const IImgErrorInfo, pbstrFallback: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUserFallback(self: *const IImgErrorInfo, pbstrFallback: ?*?BSTR) HRESULT {
         return self.vtable.GetUserFallback(self, pbstrFallback);
     }
-    pub fn GetExceptionId(self: *const IImgErrorInfo, pExceptionId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetExceptionId(self: *const IImgErrorInfo, pExceptionId: ?*u32) HRESULT {
         return self.vtable.GetExceptionId(self, pExceptionId);
     }
-    pub fn DetachErrorInfo(self: *const IImgErrorInfo, pErrorInfo: ?*ImgErrorInfo) callconv(.Inline) HRESULT {
+    pub fn DetachErrorInfo(self: *const IImgErrorInfo, pErrorInfo: ?*ImgErrorInfo) HRESULT {
         return self.vtable.DetachErrorInfo(self, pErrorInfo);
     }
 };
@@ -1752,12 +1752,12 @@ pub const IImgCreateErrorInfo = extern union {
         AttachToErrorInfo: *const fn(
             self: *const IImgCreateErrorInfo,
             pErrorInfo: ?*ImgErrorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ICreateErrorInfo: ICreateErrorInfo,
     IUnknown: IUnknown,
-    pub fn AttachToErrorInfo(self: *const IImgCreateErrorInfo, pErrorInfo: ?*ImgErrorInfo) callconv(.Inline) HRESULT {
+    pub fn AttachToErrorInfo(self: *const IImgCreateErrorInfo, pErrorInfo: ?*ImgErrorInfo) HRESULT {
         return self.vtable.AttachToErrorInfo(self, pErrorInfo);
     }
 };
@@ -1810,7 +1810,7 @@ pub const IPrintReadStream = extern union {
             dlibMove: i64,
             dwOrigin: u32,
             plibNewPosition: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReadBytes: *const fn(
             self: *const IPrintReadStream,
             // TODO: what to do with BytesParamIndex 1?
@@ -1818,14 +1818,14 @@ pub const IPrintReadStream = extern union {
             cbRequested: u32,
             pcbRead: ?*u32,
             pbEndOfFile: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Seek(self: *const IPrintReadStream, dlibMove: i64, dwOrigin: u32, plibNewPosition: ?*u64) callconv(.Inline) HRESULT {
+    pub fn Seek(self: *const IPrintReadStream, dlibMove: i64, dwOrigin: u32, plibNewPosition: ?*u64) HRESULT {
         return self.vtable.Seek(self, dlibMove, dwOrigin, plibNewPosition);
     }
-    pub fn ReadBytes(self: *const IPrintReadStream, pvBuffer: ?*anyopaque, cbRequested: u32, pcbRead: ?*u32, pbEndOfFile: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn ReadBytes(self: *const IPrintReadStream, pvBuffer: ?*anyopaque, cbRequested: u32, pcbRead: ?*u32, pbEndOfFile: ?*BOOL) HRESULT {
         return self.vtable.ReadBytes(self, pvBuffer, cbRequested, pcbRead, pbEndOfFile);
     }
 };
@@ -1841,17 +1841,17 @@ pub const IPrintWriteStream = extern union {
             pvBuffer: ?*const anyopaque,
             cbBuffer: u32,
             pcbWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const IPrintWriteStream,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn WriteBytes(self: *const IPrintWriteStream, pvBuffer: ?*const anyopaque, cbBuffer: u32, pcbWritten: ?*u32) callconv(.Inline) HRESULT {
+    pub fn WriteBytes(self: *const IPrintWriteStream, pvBuffer: ?*const anyopaque, cbBuffer: u32, pcbWritten: ?*u32) HRESULT {
         return self.vtable.WriteBytes(self, pvBuffer, cbBuffer, pcbWritten);
     }
-    pub fn Close(self: *const IPrintWriteStream) callconv(.Inline) void {
+    pub fn Close(self: *const IPrintWriteStream) void {
         return self.vtable.Close(self);
     }
 };
@@ -1863,11 +1863,11 @@ pub const IPrintWriteStreamFlush = extern union {
         base: IUnknown.VTable,
         FlushData: *const fn(
             self: *const IPrintWriteStreamFlush,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FlushData(self: *const IPrintWriteStreamFlush) callconv(.Inline) HRESULT {
+    pub fn FlushData(self: *const IPrintWriteStreamFlush) HRESULT {
         return self.vtable.FlushData(self);
     }
 };
@@ -1880,18 +1880,18 @@ pub const IInterFilterCommunicator = extern union {
         RequestReader: *const fn(
             self: *const IInterFilterCommunicator,
             ppIReader: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestWriter: *const fn(
             self: *const IInterFilterCommunicator,
             ppIWriter: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestReader(self: *const IInterFilterCommunicator, ppIReader: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn RequestReader(self: *const IInterFilterCommunicator, ppIReader: ?*?*anyopaque) HRESULT {
         return self.vtable.RequestReader(self, ppIReader);
     }
-    pub fn RequestWriter(self: *const IInterFilterCommunicator, ppIWriter: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn RequestWriter(self: *const IInterFilterCommunicator, ppIWriter: ?*?*anyopaque) HRESULT {
         return self.vtable.RequestWriter(self, ppIWriter);
     }
 };
@@ -1905,17 +1905,17 @@ pub const IPrintPipelineManagerControl = extern union {
             self: *const IPrintPipelineManagerControl,
             hrReason: HRESULT,
             pReason: ?*IImgErrorInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FilterFinished: *const fn(
             self: *const IPrintPipelineManagerControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RequestShutdown(self: *const IPrintPipelineManagerControl, hrReason: HRESULT, pReason: ?*IImgErrorInfo) callconv(.Inline) HRESULT {
+    pub fn RequestShutdown(self: *const IPrintPipelineManagerControl, hrReason: HRESULT, pReason: ?*IImgErrorInfo) HRESULT {
         return self.vtable.RequestShutdown(self, hrReason, pReason);
     }
-    pub fn FilterFinished(self: *const IPrintPipelineManagerControl) callconv(.Inline) HRESULT {
+    pub fn FilterFinished(self: *const IPrintPipelineManagerControl) HRESULT {
         return self.vtable.FilterFinished(self);
     }
 };
@@ -1929,26 +1929,26 @@ pub const IPrintPipelinePropertyBag = extern union {
             self: *const IPrintPipelinePropertyBag,
             pszName: ?[*:0]const u16,
             pVar: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperty: *const fn(
             self: *const IPrintPipelinePropertyBag,
             pszName: ?[*:0]const u16,
             pVar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteProperty: *const fn(
             self: *const IPrintPipelinePropertyBag,
             pszName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16, pVar: ?*const VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16, pVar: ?*const VARIANT) HRESULT {
         return self.vtable.AddProperty(self, pszName, pVar);
     }
-    pub fn GetProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16, pVar: ?*VARIANT) HRESULT {
         return self.vtable.GetProperty(self, pszName, pVar);
     }
-    pub fn DeleteProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16) callconv(.Inline) BOOL {
+    pub fn DeleteProperty(self: *const IPrintPipelinePropertyBag, pszName: ?[*:0]const u16) BOOL {
         return self.vtable.DeleteProperty(self, pszName);
     }
 };
@@ -1961,11 +1961,11 @@ pub const IPrintPipelineProgressReport = extern union {
         ReportProgress: *const fn(
             self: *const IPrintPipelineProgressReport,
             update: EXpsJobConsumption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ReportProgress(self: *const IPrintPipelineProgressReport, update: EXpsJobConsumption) callconv(.Inline) HRESULT {
+    pub fn ReportProgress(self: *const IPrintPipelineProgressReport, update: EXpsJobConsumption) HRESULT {
         return self.vtable.ReportProgress(self, update);
     }
 };
@@ -1980,11 +1980,11 @@ pub const IPrintClassObjectFactory = extern union {
             pszPrinterName: ?[*:0]const u16,
             riid: ?*const Guid,
             ppNewObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPrintClassObject(self: *const IPrintClassObjectFactory, pszPrinterName: ?[*:0]const u16, riid: ?*const Guid, ppNewObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetPrintClassObject(self: *const IPrintClassObjectFactory, pszPrinterName: ?[*:0]const u16, riid: ?*const Guid, ppNewObject: ?*?*anyopaque) HRESULT {
         return self.vtable.GetPrintClassObject(self, pszPrinterName, riid, ppNewObject);
     }
 };
@@ -1999,23 +1999,23 @@ pub const IPrintPipelineFilter = extern union {
             pINegotiation: ?*IInterFilterCommunicator,
             pIPropertyBag: ?*IPrintPipelinePropertyBag,
             pIPipelineControl: ?*IPrintPipelineManagerControl,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ShutdownOperation: *const fn(
             self: *const IPrintPipelineFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StartOperation: *const fn(
             self: *const IPrintPipelineFilter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InitializeFilter(self: *const IPrintPipelineFilter, pINegotiation: ?*IInterFilterCommunicator, pIPropertyBag: ?*IPrintPipelinePropertyBag, pIPipelineControl: ?*IPrintPipelineManagerControl) callconv(.Inline) HRESULT {
+    pub fn InitializeFilter(self: *const IPrintPipelineFilter, pINegotiation: ?*IInterFilterCommunicator, pIPropertyBag: ?*IPrintPipelinePropertyBag, pIPipelineControl: ?*IPrintPipelineManagerControl) HRESULT {
         return self.vtable.InitializeFilter(self, pINegotiation, pIPropertyBag, pIPipelineControl);
     }
-    pub fn ShutdownOperation(self: *const IPrintPipelineFilter) callconv(.Inline) HRESULT {
+    pub fn ShutdownOperation(self: *const IPrintPipelineFilter) HRESULT {
         return self.vtable.ShutdownOperation(self);
     }
-    pub fn StartOperation(self: *const IPrintPipelineFilter) callconv(.Inline) HRESULT {
+    pub fn StartOperation(self: *const IPrintPipelineFilter) HRESULT {
         return self.vtable.StartOperation(self);
     }
 };
@@ -2028,11 +2028,11 @@ pub const IXpsDocumentProvider = extern union {
         GetXpsPart: *const fn(
             self: *const IXpsDocumentProvider,
             ppIXpsPart: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetXpsPart(self: *const IXpsDocumentProvider, ppIXpsPart: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetXpsPart(self: *const IXpsDocumentProvider, ppIXpsPart: ?*?*IUnknown) HRESULT {
         return self.vtable.GetXpsPart(self, ppIXpsPart);
     }
 };
@@ -2045,55 +2045,55 @@ pub const IXpsDocumentConsumer = extern union {
         SendXpsUnknown: *const fn(
             self: *const IXpsDocumentConsumer,
             pUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendXpsDocument: *const fn(
             self: *const IXpsDocumentConsumer,
             pIXpsDocument: ?*IXpsDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendFixedDocumentSequence: *const fn(
             self: *const IXpsDocumentConsumer,
             pIFixedDocumentSequence: ?*IFixedDocumentSequence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendFixedDocument: *const fn(
             self: *const IXpsDocumentConsumer,
             pIFixedDocument: ?*IFixedDocument,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendFixedPage: *const fn(
             self: *const IXpsDocumentConsumer,
             pIFixedPage: ?*IFixedPage,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseSender: *const fn(
             self: *const IXpsDocumentConsumer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNewEmptyPart: *const fn(
             self: *const IXpsDocumentConsumer,
             uri: ?[*:0]const u16,
             riid: ?*const Guid,
             ppNewObject: ?*?*anyopaque,
             ppWriteStream: ?*?*IPrintWriteStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SendXpsUnknown(self: *const IXpsDocumentConsumer, pUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SendXpsUnknown(self: *const IXpsDocumentConsumer, pUnknown: ?*IUnknown) HRESULT {
         return self.vtable.SendXpsUnknown(self, pUnknown);
     }
-    pub fn SendXpsDocument(self: *const IXpsDocumentConsumer, pIXpsDocument: ?*IXpsDocument) callconv(.Inline) HRESULT {
+    pub fn SendXpsDocument(self: *const IXpsDocumentConsumer, pIXpsDocument: ?*IXpsDocument) HRESULT {
         return self.vtable.SendXpsDocument(self, pIXpsDocument);
     }
-    pub fn SendFixedDocumentSequence(self: *const IXpsDocumentConsumer, pIFixedDocumentSequence: ?*IFixedDocumentSequence) callconv(.Inline) HRESULT {
+    pub fn SendFixedDocumentSequence(self: *const IXpsDocumentConsumer, pIFixedDocumentSequence: ?*IFixedDocumentSequence) HRESULT {
         return self.vtable.SendFixedDocumentSequence(self, pIFixedDocumentSequence);
     }
-    pub fn SendFixedDocument(self: *const IXpsDocumentConsumer, pIFixedDocument: ?*IFixedDocument) callconv(.Inline) HRESULT {
+    pub fn SendFixedDocument(self: *const IXpsDocumentConsumer, pIFixedDocument: ?*IFixedDocument) HRESULT {
         return self.vtable.SendFixedDocument(self, pIFixedDocument);
     }
-    pub fn SendFixedPage(self: *const IXpsDocumentConsumer, pIFixedPage: ?*IFixedPage) callconv(.Inline) HRESULT {
+    pub fn SendFixedPage(self: *const IXpsDocumentConsumer, pIFixedPage: ?*IFixedPage) HRESULT {
         return self.vtable.SendFixedPage(self, pIFixedPage);
     }
-    pub fn CloseSender(self: *const IXpsDocumentConsumer) callconv(.Inline) HRESULT {
+    pub fn CloseSender(self: *const IXpsDocumentConsumer) HRESULT {
         return self.vtable.CloseSender(self);
     }
-    pub fn GetNewEmptyPart(self: *const IXpsDocumentConsumer, uri: ?[*:0]const u16, riid: ?*const Guid, ppNewObject: ?*?*anyopaque, ppWriteStream: ?*?*IPrintWriteStream) callconv(.Inline) HRESULT {
+    pub fn GetNewEmptyPart(self: *const IXpsDocumentConsumer, uri: ?[*:0]const u16, riid: ?*const Guid, ppNewObject: ?*?*anyopaque, ppWriteStream: ?*?*IPrintWriteStream) HRESULT {
         return self.vtable.GetNewEmptyPart(self, uri, riid, ppNewObject, ppWriteStream);
     }
 };
@@ -2106,18 +2106,18 @@ pub const IXpsDocument = extern union {
         GetThumbnail: *const fn(
             self: *const IXpsDocument,
             ppThumbnail: ?*?*IPartThumbnail,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetThumbnail: *const fn(
             self: *const IXpsDocument,
             pThumbnail: ?*IPartThumbnail,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetThumbnail(self: *const IXpsDocument, ppThumbnail: ?*?*IPartThumbnail) callconv(.Inline) HRESULT {
+    pub fn GetThumbnail(self: *const IXpsDocument, ppThumbnail: ?*?*IPartThumbnail) HRESULT {
         return self.vtable.GetThumbnail(self, ppThumbnail);
     }
-    pub fn SetThumbnail(self: *const IXpsDocument, pThumbnail: ?*IPartThumbnail) callconv(.Inline) HRESULT {
+    pub fn SetThumbnail(self: *const IXpsDocument, pThumbnail: ?*IPartThumbnail) HRESULT {
         return self.vtable.SetThumbnail(self, pThumbnail);
     }
 };
@@ -2130,25 +2130,25 @@ pub const IFixedDocumentSequence = extern union {
         GetUri: *const fn(
             self: *const IFixedDocumentSequence,
             uri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintTicket: *const fn(
             self: *const IFixedDocumentSequence,
             ppPrintTicket: ?*?*IPartPrintTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrintTicket: *const fn(
             self: *const IFixedDocumentSequence,
             pPrintTicket: ?*IPartPrintTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUri(self: *const IFixedDocumentSequence, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUri(self: *const IFixedDocumentSequence, uri: ?*?BSTR) HRESULT {
         return self.vtable.GetUri(self, uri);
     }
-    pub fn GetPrintTicket(self: *const IFixedDocumentSequence, ppPrintTicket: ?*?*IPartPrintTicket) callconv(.Inline) HRESULT {
+    pub fn GetPrintTicket(self: *const IFixedDocumentSequence, ppPrintTicket: ?*?*IPartPrintTicket) HRESULT {
         return self.vtable.GetPrintTicket(self, ppPrintTicket);
     }
-    pub fn SetPrintTicket(self: *const IFixedDocumentSequence, pPrintTicket: ?*IPartPrintTicket) callconv(.Inline) HRESULT {
+    pub fn SetPrintTicket(self: *const IFixedDocumentSequence, pPrintTicket: ?*IPartPrintTicket) HRESULT {
         return self.vtable.SetPrintTicket(self, pPrintTicket);
     }
 };
@@ -2161,25 +2161,25 @@ pub const IFixedDocument = extern union {
         GetUri: *const fn(
             self: *const IFixedDocument,
             uri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintTicket: *const fn(
             self: *const IFixedDocument,
             ppPrintTicket: ?*?*IPartPrintTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrintTicket: *const fn(
             self: *const IFixedDocument,
             pPrintTicket: ?*IPartPrintTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUri(self: *const IFixedDocument, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUri(self: *const IFixedDocument, uri: ?*?BSTR) HRESULT {
         return self.vtable.GetUri(self, uri);
     }
-    pub fn GetPrintTicket(self: *const IFixedDocument, ppPrintTicket: ?*?*IPartPrintTicket) callconv(.Inline) HRESULT {
+    pub fn GetPrintTicket(self: *const IFixedDocument, ppPrintTicket: ?*?*IPartPrintTicket) HRESULT {
         return self.vtable.GetPrintTicket(self, ppPrintTicket);
     }
-    pub fn SetPrintTicket(self: *const IFixedDocument, pPrintTicket: ?*IPartPrintTicket) callconv(.Inline) HRESULT {
+    pub fn SetPrintTicket(self: *const IFixedDocument, pPrintTicket: ?*IPartPrintTicket) HRESULT {
         return self.vtable.SetPrintTicket(self, pPrintTicket);
     }
 };
@@ -2192,32 +2192,32 @@ pub const IPartBase = extern union {
         GetUri: *const fn(
             self: *const IPartBase,
             uri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStream: *const fn(
             self: *const IPartBase,
             ppStream: ?*?*IPrintReadStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPartCompression: *const fn(
             self: *const IPartBase,
             pCompression: ?*EXpsCompressionOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPartCompression: *const fn(
             self: *const IPartBase,
             compression: EXpsCompressionOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetUri(self: *const IPartBase, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetUri(self: *const IPartBase, uri: ?*?BSTR) HRESULT {
         return self.vtable.GetUri(self, uri);
     }
-    pub fn GetStream(self: *const IPartBase, ppStream: ?*?*IPrintReadStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IPartBase, ppStream: ?*?*IPrintReadStream) HRESULT {
         return self.vtable.GetStream(self, ppStream);
     }
-    pub fn GetPartCompression(self: *const IPartBase, pCompression: ?*EXpsCompressionOptions) callconv(.Inline) HRESULT {
+    pub fn GetPartCompression(self: *const IPartBase, pCompression: ?*EXpsCompressionOptions) HRESULT {
         return self.vtable.GetPartCompression(self, pCompression);
     }
-    pub fn SetPartCompression(self: *const IPartBase, compression: EXpsCompressionOptions) callconv(.Inline) HRESULT {
+    pub fn SetPartCompression(self: *const IPartBase, compression: EXpsCompressionOptions) HRESULT {
         return self.vtable.SetPartCompression(self, compression);
     }
 };
@@ -2230,55 +2230,55 @@ pub const IFixedPage = extern union {
         GetPrintTicket: *const fn(
             self: *const IFixedPage,
             ppPrintTicket: ?*?*IPartPrintTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPagePart: *const fn(
             self: *const IFixedPage,
             uri: ?[*:0]const u16,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWriteStream: *const fn(
             self: *const IFixedPage,
             ppWriteStream: ?*?*IPrintWriteStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPrintTicket: *const fn(
             self: *const IFixedPage,
             ppPrintTicket: ?*IPartPrintTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPagePart: *const fn(
             self: *const IFixedPage,
             pUnk: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteResource: *const fn(
             self: *const IFixedPage,
             uri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXpsPartIterator: *const fn(
             self: *const IFixedPage,
             pXpsPartIt: ?*?*IXpsPartIterator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPartBase: IPartBase,
     IUnknown: IUnknown,
-    pub fn GetPrintTicket(self: *const IFixedPage, ppPrintTicket: ?*?*IPartPrintTicket) callconv(.Inline) HRESULT {
+    pub fn GetPrintTicket(self: *const IFixedPage, ppPrintTicket: ?*?*IPartPrintTicket) HRESULT {
         return self.vtable.GetPrintTicket(self, ppPrintTicket);
     }
-    pub fn GetPagePart(self: *const IFixedPage, uri: ?[*:0]const u16, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetPagePart(self: *const IFixedPage, uri: ?[*:0]const u16, ppUnk: ?*?*IUnknown) HRESULT {
         return self.vtable.GetPagePart(self, uri, ppUnk);
     }
-    pub fn GetWriteStream(self: *const IFixedPage, ppWriteStream: ?*?*IPrintWriteStream) callconv(.Inline) HRESULT {
+    pub fn GetWriteStream(self: *const IFixedPage, ppWriteStream: ?*?*IPrintWriteStream) HRESULT {
         return self.vtable.GetWriteStream(self, ppWriteStream);
     }
-    pub fn SetPrintTicket(self: *const IFixedPage, ppPrintTicket: ?*IPartPrintTicket) callconv(.Inline) HRESULT {
+    pub fn SetPrintTicket(self: *const IFixedPage, ppPrintTicket: ?*IPartPrintTicket) HRESULT {
         return self.vtable.SetPrintTicket(self, ppPrintTicket);
     }
-    pub fn SetPagePart(self: *const IFixedPage, pUnk: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetPagePart(self: *const IFixedPage, pUnk: ?*IUnknown) HRESULT {
         return self.vtable.SetPagePart(self, pUnk);
     }
-    pub fn DeleteResource(self: *const IFixedPage, uri: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteResource(self: *const IFixedPage, uri: ?[*:0]const u16) HRESULT {
         return self.vtable.DeleteResource(self, uri);
     }
-    pub fn GetXpsPartIterator(self: *const IFixedPage, pXpsPartIt: ?*?*IXpsPartIterator) callconv(.Inline) HRESULT {
+    pub fn GetXpsPartIterator(self: *const IFixedPage, pXpsPartIt: ?*?*IXpsPartIterator) HRESULT {
         return self.vtable.GetXpsPartIterator(self, pXpsPartIt);
     }
 };
@@ -2291,19 +2291,19 @@ pub const IPartImage = extern union {
         GetImageProperties: *const fn(
             self: *const IPartImage,
             pContentType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetImageContent: *const fn(
             self: *const IPartImage,
             pContentType: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPartBase: IPartBase,
     IUnknown: IUnknown,
-    pub fn GetImageProperties(self: *const IPartImage, pContentType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetImageProperties(self: *const IPartImage, pContentType: ?*?BSTR) HRESULT {
         return self.vtable.GetImageProperties(self, pContentType);
     }
-    pub fn SetImageContent(self: *const IPartImage, pContentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetImageContent(self: *const IPartImage, pContentType: ?[*:0]const u16) HRESULT {
         return self.vtable.SetImageContent(self, pContentType);
     }
 };
@@ -2317,26 +2317,26 @@ pub const IPartFont = extern union {
             self: *const IPartFont,
             pContentType: ?*?BSTR,
             pFontOptions: ?*EXpsFontOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontContent: *const fn(
             self: *const IPartFont,
             pContentType: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontOptions: *const fn(
             self: *const IPartFont,
             options: EXpsFontOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPartBase: IPartBase,
     IUnknown: IUnknown,
-    pub fn GetFontProperties(self: *const IPartFont, pContentType: ?*?BSTR, pFontOptions: ?*EXpsFontOptions) callconv(.Inline) HRESULT {
+    pub fn GetFontProperties(self: *const IPartFont, pContentType: ?*?BSTR, pFontOptions: ?*EXpsFontOptions) HRESULT {
         return self.vtable.GetFontProperties(self, pContentType, pFontOptions);
     }
-    pub fn SetFontContent(self: *const IPartFont, pContentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFontContent(self: *const IPartFont, pContentType: ?[*:0]const u16) HRESULT {
         return self.vtable.SetFontContent(self, pContentType);
     }
-    pub fn SetFontOptions(self: *const IPartFont, options: EXpsFontOptions) callconv(.Inline) HRESULT {
+    pub fn SetFontOptions(self: *const IPartFont, options: EXpsFontOptions) HRESULT {
         return self.vtable.SetFontOptions(self, options);
     }
 };
@@ -2349,13 +2349,13 @@ pub const IPartFont2 = extern union {
         GetFontRestriction: *const fn(
             self: *const IPartFont2,
             pRestriction: ?*EXpsFontRestriction,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPartFont: IPartFont,
     IPartBase: IPartBase,
     IUnknown: IUnknown,
-    pub fn GetFontRestriction(self: *const IPartFont2, pRestriction: ?*EXpsFontRestriction) callconv(.Inline) HRESULT {
+    pub fn GetFontRestriction(self: *const IPartFont2, pRestriction: ?*EXpsFontRestriction) HRESULT {
         return self.vtable.GetFontRestriction(self, pRestriction);
     }
 };
@@ -2368,19 +2368,19 @@ pub const IPartThumbnail = extern union {
         GetThumbnailProperties: *const fn(
             self: *const IPartThumbnail,
             pContentType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetThumbnailContent: *const fn(
             self: *const IPartThumbnail,
             pContentType: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPartBase: IPartBase,
     IUnknown: IUnknown,
-    pub fn GetThumbnailProperties(self: *const IPartThumbnail, pContentType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetThumbnailProperties(self: *const IPartThumbnail, pContentType: ?*?BSTR) HRESULT {
         return self.vtable.GetThumbnailProperties(self, pContentType);
     }
-    pub fn SetThumbnailContent(self: *const IPartThumbnail, pContentType: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetThumbnailContent(self: *const IPartThumbnail, pContentType: ?[*:0]const u16) HRESULT {
         return self.vtable.SetThumbnailContent(self, pContentType);
     }
 };
@@ -2425,31 +2425,31 @@ pub const IXpsPartIterator = extern union {
         base: IUnknown.VTable,
         Reset: *const fn(
             self: *const IXpsPartIterator,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
         Current: *const fn(
             self: *const IXpsPartIterator,
             pUri: ?*?BSTR,
             ppXpsPart: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDone: *const fn(
             self: *const IXpsPartIterator,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         Next: *const fn(
             self: *const IXpsPartIterator,
-        ) callconv(@import("std").os.windows.WINAPI) void,
+        ) callconv(.winapi) void,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IXpsPartIterator) callconv(.Inline) void {
+    pub fn Reset(self: *const IXpsPartIterator) void {
         return self.vtable.Reset(self);
     }
-    pub fn Current(self: *const IXpsPartIterator, pUri: ?*?BSTR, ppXpsPart: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn Current(self: *const IXpsPartIterator, pUri: ?*?BSTR, ppXpsPart: ?*?*IUnknown) HRESULT {
         return self.vtable.Current(self, pUri, ppXpsPart);
     }
-    pub fn IsDone(self: *const IXpsPartIterator) callconv(.Inline) BOOL {
+    pub fn IsDone(self: *const IXpsPartIterator) BOOL {
         return self.vtable.IsDone(self);
     }
-    pub fn Next(self: *const IXpsPartIterator) callconv(.Inline) void {
+    pub fn Next(self: *const IXpsPartIterator) void {
         return self.vtable.Next(self);
     }
 };
@@ -2462,11 +2462,11 @@ pub const IPrintReadStreamFactory = extern union {
         GetStream: *const fn(
             self: *const IPrintReadStreamFactory,
             ppStream: ?*?*IPrintReadStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStream(self: *const IPrintReadStreamFactory, ppStream: ?*?*IPrintReadStream) callconv(.Inline) HRESULT {
+    pub fn GetStream(self: *const IPrintReadStreamFactory, ppStream: ?*?*IPrintReadStream) HRESULT {
         return self.vtable.GetStream(self, ppStream);
     }
 };
@@ -2480,11 +2480,11 @@ pub const IPartDiscardControl = extern union {
             self: *const IPartDiscardControl,
             uriSentinelPage: ?*?BSTR,
             uriPartToDiscard: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDiscardProperties(self: *const IPartDiscardControl, uriSentinelPage: ?*?BSTR, uriPartToDiscard: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDiscardProperties(self: *const IPartDiscardControl, uriSentinelPage: ?*?BSTR, uriPartToDiscard: ?*?BSTR) HRESULT {
         return self.vtable.GetDiscardProperties(self, uriSentinelPage, uriPartToDiscard);
     }
 };
@@ -2597,7 +2597,7 @@ pub const CPSUICBPARAM = extern struct {
 
 pub const _CPSUICALLBACK = *const fn(
     pCPSUICBParam: ?*CPSUICBPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const DLGPAGE = extern struct {
     cbSize: u16,
@@ -2651,7 +2651,7 @@ pub const PFNCOMPROPSHEET = *const fn(
     Function: u32,
     lParam1: LPARAM,
     lParam2: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 pub const PSPINFO = extern struct {
     cbSize: u16,
@@ -2689,7 +2689,7 @@ pub const PROPSHEETUI_GETICON_INFO = extern struct {
 pub const PFNPROPSHEETUI = *const fn(
     pPSUIInfo: ?*PROPSHEETUI_INFO,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PROPSHEETUI_INFO_HEADER = extern struct {
     cbSize: u16,
@@ -3905,20 +3905,20 @@ pub const PFN_DrvGetDriverSetting = *const fn(
     cbSize: u32,
     pcbNeeded: ?*u32,
     pdwOptionsReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_DrvUpgradeRegistrySetting = *const fn(
     hPrinter: ?HANDLE,
     pFeature: ?[*:0]const u8,
     pOption: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFN_DrvUpdateUISetting = *const fn(
     pdriverobj: ?*anyopaque,
     pOptItem: ?*anyopaque,
     dwPreviousSelection: u32,
     dwMode: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const SIMULATE_CAPS_1 = extern struct {
     dwLevel: u32,
@@ -3939,7 +3939,7 @@ pub const OEMUIOBJ = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const OEMCUIPCALLBACK = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const OEMCUIPCALLBACK = *const fn() callconv(.winapi) void;
 
 pub const OEMCUIPPARAM = extern struct {
     cbSize: u32,
@@ -4021,7 +4021,7 @@ pub const IPrintCoreHelper = extern union {
             cbSize: u32,
             pszFeatureRequested: ?[*:0]const u8,
             ppszOption: ?*?PSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOptions: *const fn(
             self: *const IPrintCoreHelper,
             pDevmode: ?*DEVMODEA,
@@ -4031,7 +4031,7 @@ pub const IPrintCoreHelper = extern union {
             cPairs: u32,
             pcPairsWritten: ?*u32,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumConstrainedOptions: *const fn(
             self: *const IPrintCoreHelper,
             pDevmode: ?*const DEVMODEA,
@@ -4039,7 +4039,7 @@ pub const IPrintCoreHelper = extern union {
             pszFeatureKeyword: ?[*:0]const u8,
             pConstrainedOptionList: ?*?*?*?PSTR,
             pdwNumOptions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WhyConstrained: *const fn(
             self: *const IPrintCoreHelper,
             // TODO: what to do with BytesParamIndex 1?
@@ -4049,28 +4049,28 @@ pub const IPrintCoreHelper = extern union {
             pszOptionKeyword: ?[*:0]const u8,
             ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION,
             pdwNumOptions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFeatures: *const fn(
             self: *const IPrintCoreHelper,
             pFeatureList: ?*?*?*?PSTR,
             pdwNumFeatures: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumOptions: *const fn(
             self: *const IPrintCoreHelper,
             pszFeatureKeyword: ?[*:0]const u8,
             pOptionList: ?*?*?*?PSTR,
             pdwNumOptions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFontSubstitution: *const fn(
             self: *const IPrintCoreHelper,
             pszTrueTypeFontName: ?[*:0]const u16,
             ppszDevFontName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFontSubstitution: *const fn(
             self: *const IPrintCoreHelper,
             pszTrueTypeFontName: ?[*:0]const u16,
             pszDevFontName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstanceOfMSXMLObject: *const fn(
             self: *const IPrintCoreHelper,
             rclsid: ?*const Guid,
@@ -4078,35 +4078,35 @@ pub const IPrintCoreHelper = extern union {
             dwClsContext: u32,
             riid: ?*const Guid,
             ppv: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetOption(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?PSTR) callconv(.Inline) HRESULT {
+    pub fn GetOption(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureRequested: ?[*:0]const u8, ppszOption: ?*?PSTR) HRESULT {
         return self.vtable.GetOption(self, pDevmode, cbSize, pszFeatureRequested, ppszOption);
     }
-    pub fn SetOptions(self: *const IPrintCoreHelper, pDevmode: ?*DEVMODEA, cbSize: u32, bResolveConflicts: BOOL, pFOPairs: ?*const PRINT_FEATURE_OPTION, cPairs: u32, pcPairsWritten: ?*u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const IPrintCoreHelper, pDevmode: ?*DEVMODEA, cbSize: u32, bResolveConflicts: BOOL, pFOPairs: ?*const PRINT_FEATURE_OPTION, cPairs: u32, pcPairsWritten: ?*u32, pdwResult: ?*u32) HRESULT {
         return self.vtable.SetOptions(self, pDevmode, cbSize, bResolveConflicts, pFOPairs, cPairs, pcPairsWritten, pdwResult);
     }
-    pub fn EnumConstrainedOptions(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnumConstrainedOptions(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pConstrainedOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) HRESULT {
         return self.vtable.EnumConstrainedOptions(self, pDevmode, cbSize, pszFeatureKeyword, pConstrainedOptionList, pdwNumOptions);
     }
-    pub fn WhyConstrained(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn WhyConstrained(self: *const IPrintCoreHelper, pDevmode: ?*const DEVMODEA, cbSize: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, ppFOConstraints: ?*const ?*PRINT_FEATURE_OPTION, pdwNumOptions: ?*u32) HRESULT {
         return self.vtable.WhyConstrained(self, pDevmode, cbSize, pszFeatureKeyword, pszOptionKeyword, ppFOConstraints, pdwNumOptions);
     }
-    pub fn EnumFeatures(self: *const IPrintCoreHelper, pFeatureList: ?*?*?*?PSTR, pdwNumFeatures: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnumFeatures(self: *const IPrintCoreHelper, pFeatureList: ?*?*?*?PSTR, pdwNumFeatures: ?*u32) HRESULT {
         return self.vtable.EnumFeatures(self, pFeatureList, pdwNumFeatures);
     }
-    pub fn EnumOptions(self: *const IPrintCoreHelper, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnumOptions(self: *const IPrintCoreHelper, pszFeatureKeyword: ?[*:0]const u8, pOptionList: ?*?*?*?PSTR, pdwNumOptions: ?*u32) HRESULT {
         return self.vtable.EnumOptions(self, pszFeatureKeyword, pOptionList, pdwNumOptions);
     }
-    pub fn GetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, ppszDevFontName: ?*?PWSTR) HRESULT {
         return self.vtable.GetFontSubstitution(self, pszTrueTypeFontName, ppszDevFontName);
     }
-    pub fn SetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, pszDevFontName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetFontSubstitution(self: *const IPrintCoreHelper, pszTrueTypeFontName: ?[*:0]const u16, pszDevFontName: ?[*:0]const u16) HRESULT {
         return self.vtable.SetFontSubstitution(self, pszTrueTypeFontName, pszDevFontName);
     }
-    pub fn CreateInstanceOfMSXMLObject(self: *const IPrintCoreHelper, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstanceOfMSXMLObject(self: *const IPrintCoreHelper, rclsid: ?*const Guid, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppv: ?*?*anyopaque) HRESULT {
         return self.vtable.CreateInstanceOfMSXMLObject(self, rclsid, pUnkOuter, dwClsContext, riid, ppv);
     }
 };
@@ -4122,20 +4122,20 @@ pub const IPrintCoreHelperUni = extern union {
             cbSize: u32,
             dwFlags: u32,
             ppSnapshotStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateDefaultGDLSnapshot: *const fn(
             self: *const IPrintCoreHelperUni,
             dwFlags: u32,
             ppSnapshotStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintCoreHelper: IPrintCoreHelper,
     IUnknown: IUnknown,
-    pub fn CreateGDLSnapshot(self: *const IPrintCoreHelperUni, pDevmode: ?*DEVMODEA, cbSize: u32, dwFlags: u32, ppSnapshotStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateGDLSnapshot(self: *const IPrintCoreHelperUni, pDevmode: ?*DEVMODEA, cbSize: u32, dwFlags: u32, ppSnapshotStream: ?*?*IStream) HRESULT {
         return self.vtable.CreateGDLSnapshot(self, pDevmode, cbSize, dwFlags, ppSnapshotStream);
     }
-    pub fn CreateDefaultGDLSnapshot(self: *const IPrintCoreHelperUni, dwFlags: u32, ppSnapshotStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn CreateDefaultGDLSnapshot(self: *const IPrintCoreHelperUni, dwFlags: u32, ppSnapshotStream: ?*?*IStream) HRESULT {
         return self.vtable.CreateDefaultGDLSnapshot(self, dwFlags, ppSnapshotStream);
     }
 };
@@ -4153,13 +4153,13 @@ pub const IPrintCoreHelperUni2 = extern union {
             pszCommandName: ?[*:0]const u16,
             ppCommandBytes: ?*?*u8,
             pcbCommandSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintCoreHelperUni: IPrintCoreHelperUni,
     IPrintCoreHelper: IPrintCoreHelper,
     IUnknown: IUnknown,
-    pub fn GetNamedCommand(self: *const IPrintCoreHelperUni2, pDevmode: ?*DEVMODEA, cbSize: u32, pszCommandName: ?[*:0]const u16, ppCommandBytes: ?*?*u8, pcbCommandSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetNamedCommand(self: *const IPrintCoreHelperUni2, pDevmode: ?*DEVMODEA, cbSize: u32, pszCommandName: ?[*:0]const u16, ppCommandBytes: ?*?*u8, pcbCommandSize: ?*u32) HRESULT {
         return self.vtable.GetNamedCommand(self, pDevmode, cbSize, pszCommandName, ppCommandBytes, pcbCommandSize);
     }
 };
@@ -4175,7 +4175,7 @@ pub const IPrintCoreHelperPS = extern union {
             pdwDataType: ?*u32,
             ppbData: ?*?*u8,
             pcbSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeatureAttribute: *const fn(
             self: *const IPrintCoreHelperPS,
             pszFeatureKeyword: ?[*:0]const u8,
@@ -4183,7 +4183,7 @@ pub const IPrintCoreHelperPS = extern union {
             pdwDataType: ?*u32,
             ppbData: ?*?*u8,
             pcbSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOptionAttribute: *const fn(
             self: *const IPrintCoreHelperPS,
             pszFeatureKeyword: ?[*:0]const u8,
@@ -4192,18 +4192,18 @@ pub const IPrintCoreHelperPS = extern union {
             pdwDataType: ?*u32,
             ppbData: ?*?*u8,
             pcbSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintCoreHelper: IPrintCoreHelper,
     IUnknown: IUnknown,
-    pub fn GetGlobalAttribute(self: *const IPrintCoreHelperPS, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGlobalAttribute(self: *const IPrintCoreHelperPS, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
         return self.vtable.GetGlobalAttribute(self, pszAttribute, pdwDataType, ppbData, pcbSize);
     }
-    pub fn GetFeatureAttribute(self: *const IPrintCoreHelperPS, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFeatureAttribute(self: *const IPrintCoreHelperPS, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
         return self.vtable.GetFeatureAttribute(self, pszFeatureKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
     }
-    pub fn GetOptionAttribute(self: *const IPrintCoreHelperPS, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOptionAttribute(self: *const IPrintCoreHelperPS, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, ppbData: ?*?*u8, pcbSize: ?*u32) HRESULT {
         return self.vtable.GetOptionAttribute(self, pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, ppbData, pcbSize);
     }
 };
@@ -4220,19 +4220,19 @@ pub const IPrintOemCommon = extern union {
             pBuffer: ?*anyopaque,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DevMode: *const fn(
             self: *const IPrintOemCommon,
             dwMode: u32,
             pOemDMParam: ?*OEMDMPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInfo(self: *const IPrintOemCommon, dwMode: u32, pBuffer: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetInfo(self: *const IPrintOemCommon, dwMode: u32, pBuffer: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.GetInfo(self, dwMode, pBuffer, cbSize, pcbNeeded);
     }
-    pub fn DevMode(self: *const IPrintOemCommon, dwMode: u32, pOemDMParam: ?*OEMDMPARAM) callconv(.Inline) HRESULT {
+    pub fn DevMode(self: *const IPrintOemCommon, dwMode: u32, pOemDMParam: ?*OEMDMPARAM) HRESULT {
         return self.vtable.DevMode(self, dwMode, pOemDMParam);
     }
 };
@@ -4245,29 +4245,29 @@ pub const IPrintOemUI = extern union {
         PublishDriverInterface: *const fn(
             self: *const IPrintOemUI,
             pIUnknown: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommonUIProp: *const fn(
             self: *const IPrintOemUI,
             dwMode: u32,
             pOemCUIPParam: ?*OEMCUIPPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DocumentPropertySheets: *const fn(
             self: *const IPrintOemUI,
             pPSUIInfo: ?*PROPSHEETUI_INFO,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DevicePropertySheets: *const fn(
             self: *const IPrintOemUI,
             pPSUIInfo: ?*PROPSHEETUI_INFO,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DevQueryPrintEx: *const fn(
             self: *const IPrintOemUI,
             poemuiobj: ?*OEMUIOBJ,
             pDQPInfo: ?*DEVQUERYPRINT_INFO,
             pPublicDM: ?*DEVMODEA,
             pOEMDM: ?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeviceCapabilitiesA: *const fn(
             self: *const IPrintOemUI,
             poemuiobj: ?*OEMUIOBJ,
@@ -4279,26 +4279,26 @@ pub const IPrintOemUI = extern union {
             pOEMDM: ?*anyopaque,
             dwOld: u32,
             dwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpgradePrinter: *const fn(
             self: *const IPrintOemUI,
             dwLevel: u32,
             pDriverUpgradeInfo: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrinterEvent: *const fn(
             self: *const IPrintOemUI,
             pPrinterName: ?PWSTR,
             iDriverEvent: i32,
             dwFlags: u32,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DriverEvent: *const fn(
             self: *const IPrintOemUI,
             dwDriverEvent: u32,
             dwLevel: u32,
             pDriverInfo: ?*u8,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryColorProfile: *const fn(
             self: *const IPrintOemUI,
             hPrinter: ?HANDLE,
@@ -4309,58 +4309,58 @@ pub const IPrintOemUI = extern union {
             pvProfileData: [*]u8,
             pcbProfileData: ?*u32,
             pflProfileData: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FontInstallerDlgProc: *const fn(
             self: *const IPrintOemUI,
             hWnd: ?HWND,
             usMsg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UpdateExternalFonts: *const fn(
             self: *const IPrintOemUI,
             hPrinter: ?HANDLE,
             hHeap: ?HANDLE,
             pwstrCartridges: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintOemCommon: IPrintOemCommon,
     IUnknown: IUnknown,
-    pub fn PublishDriverInterface(self: *const IPrintOemUI, pIUnknown: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn PublishDriverInterface(self: *const IPrintOemUI, pIUnknown: ?*IUnknown) HRESULT {
         return self.vtable.PublishDriverInterface(self, pIUnknown);
     }
-    pub fn CommonUIProp(self: *const IPrintOemUI, dwMode: u32, pOemCUIPParam: ?*OEMCUIPPARAM) callconv(.Inline) HRESULT {
+    pub fn CommonUIProp(self: *const IPrintOemUI, dwMode: u32, pOemCUIPParam: ?*OEMCUIPPARAM) HRESULT {
         return self.vtable.CommonUIProp(self, dwMode, pOemCUIPParam);
     }
-    pub fn DocumentPropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn DocumentPropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) HRESULT {
         return self.vtable.DocumentPropertySheets(self, pPSUIInfo, lParam);
     }
-    pub fn DevicePropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn DevicePropertySheets(self: *const IPrintOemUI, pPSUIInfo: ?*PROPSHEETUI_INFO, lParam: LPARAM) HRESULT {
         return self.vtable.DevicePropertySheets(self, pPSUIInfo, lParam);
     }
-    pub fn DevQueryPrintEx(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn DevQueryPrintEx(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, pDQPInfo: ?*DEVQUERYPRINT_INFO, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque) HRESULT {
         return self.vtable.DevQueryPrintEx(self, poemuiobj, pDQPInfo, pPublicDM, pOEMDM);
     }
-    pub fn DeviceCapabilitiesA(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DeviceCapabilitiesA(self: *const IPrintOemUI, poemuiobj: ?*OEMUIOBJ, hPrinter: ?HANDLE, pDeviceName: ?PWSTR, wCapability: u16, pOutput: ?*anyopaque, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, dwOld: u32, dwResult: ?*u32) HRESULT {
         return self.vtable.DeviceCapabilitiesA(self, poemuiobj, hPrinter, pDeviceName, wCapability, pOutput, pPublicDM, pOEMDM, dwOld, dwResult);
     }
-    pub fn UpgradePrinter(self: *const IPrintOemUI, dwLevel: u32, pDriverUpgradeInfo: ?*u8) callconv(.Inline) HRESULT {
+    pub fn UpgradePrinter(self: *const IPrintOemUI, dwLevel: u32, pDriverUpgradeInfo: ?*u8) HRESULT {
         return self.vtable.UpgradePrinter(self, dwLevel, pDriverUpgradeInfo);
     }
-    pub fn PrinterEvent(self: *const IPrintOemUI, pPrinterName: ?PWSTR, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn PrinterEvent(self: *const IPrintOemUI, pPrinterName: ?PWSTR, iDriverEvent: i32, dwFlags: u32, lParam: LPARAM) HRESULT {
         return self.vtable.PrinterEvent(self, pPrinterName, iDriverEvent, dwFlags, lParam);
     }
-    pub fn DriverEvent(self: *const IPrintOemUI, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn DriverEvent(self: *const IPrintOemUI, dwDriverEvent: u32, dwLevel: u32, pDriverInfo: ?*u8, lParam: LPARAM) HRESULT {
         return self.vtable.DriverEvent(self, dwDriverEvent, dwLevel, pDriverInfo, lParam);
     }
-    pub fn QueryColorProfile(self: *const IPrintOemUI, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QueryColorProfile(self: *const IPrintOemUI, hPrinter: ?HANDLE, poemuiobj: ?*OEMUIOBJ, pPublicDM: ?*DEVMODEA, pOEMDM: ?*anyopaque, ulQueryMode: u32, pvProfileData: [*]u8, pcbProfileData: ?*u32, pflProfileData: ?*u32) HRESULT {
         return self.vtable.QueryColorProfile(self, hPrinter, poemuiobj, pPublicDM, pOEMDM, ulQueryMode, pvProfileData, pcbProfileData, pflProfileData);
     }
-    pub fn FontInstallerDlgProc(self: *const IPrintOemUI, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn FontInstallerDlgProc(self: *const IPrintOemUI, hWnd: ?HWND, usMsg: u32, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.FontInstallerDlgProc(self, hWnd, usMsg, wParam, lParam);
     }
-    pub fn UpdateExternalFonts(self: *const IPrintOemUI, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn UpdateExternalFonts(self: *const IPrintOemUI, hPrinter: ?HANDLE, hHeap: ?HANDLE, pwstrCartridges: ?PWSTR) HRESULT {
         return self.vtable.UpdateExternalFonts(self, hPrinter, hHeap, pwstrCartridges);
     }
 };
@@ -4376,11 +4376,11 @@ pub const IPrintOemUI2 = extern union {
             pDevmode: ?*DEVMODEA,
             dwLevel: u32,
             lpAttributeInfo: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HideStandardUI: *const fn(
             self: *const IPrintOemUI2,
             dwMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DocumentEvent: *const fn(
             self: *const IPrintOemUI2,
             hPrinter: ?HANDLE,
@@ -4391,19 +4391,19 @@ pub const IPrintOemUI2 = extern union {
             cbOut: u32,
             pvOut: ?*anyopaque,
             piResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintOemUI: IPrintOemUI,
     IPrintOemCommon: IPrintOemCommon,
     IUnknown: IUnknown,
-    pub fn QueryJobAttributes(self: *const IPrintOemUI2, hPrinter: ?HANDLE, pDevmode: ?*DEVMODEA, dwLevel: u32, lpAttributeInfo: ?*u8) callconv(.Inline) HRESULT {
+    pub fn QueryJobAttributes(self: *const IPrintOemUI2, hPrinter: ?HANDLE, pDevmode: ?*DEVMODEA, dwLevel: u32, lpAttributeInfo: ?*u8) HRESULT {
         return self.vtable.QueryJobAttributes(self, hPrinter, pDevmode, dwLevel, lpAttributeInfo);
     }
-    pub fn HideStandardUI(self: *const IPrintOemUI2, dwMode: u32) callconv(.Inline) HRESULT {
+    pub fn HideStandardUI(self: *const IPrintOemUI2, dwMode: u32) HRESULT {
         return self.vtable.HideStandardUI(self, dwMode);
     }
-    pub fn DocumentEvent(self: *const IPrintOemUI2, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*anyopaque, cbOut: u32, pvOut: ?*anyopaque, piResult: ?*i32) callconv(.Inline) HRESULT {
+    pub fn DocumentEvent(self: *const IPrintOemUI2, hPrinter: ?HANDLE, hdc: ?HDC, iEsc: i32, cbIn: u32, pvIn: ?*anyopaque, cbOut: u32, pvOut: ?*anyopaque, piResult: ?*i32) HRESULT {
         return self.vtable.DocumentEvent(self, hPrinter, hdc, iEsc, cbIn, pvIn, cbOut, pvOut, piResult);
     }
 };
@@ -4421,7 +4421,7 @@ pub const IPrintOemUIMXDC = extern union {
             cbOEMDM: u32,
             pOEMDM: ?*const anyopaque,
             prclImageableArea: ?*RECTL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AdjustImageCompression: *const fn(
             self: *const IPrintOemUIMXDC,
             hPrinter: ?HANDLE,
@@ -4430,7 +4430,7 @@ pub const IPrintOemUIMXDC = extern union {
             cbOEMDM: u32,
             pOEMDM: ?*const anyopaque,
             pCompressionMode: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AdjustDPI: *const fn(
             self: *const IPrintOemUIMXDC,
             hPrinter: ?HANDLE,
@@ -4439,17 +4439,17 @@ pub const IPrintOemUIMXDC = extern union {
             cbOEMDM: u32,
             pOEMDM: ?*const anyopaque,
             pDPI: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AdjustImageableArea(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, prclImageableArea: ?*RECTL) callconv(.Inline) HRESULT {
+    pub fn AdjustImageableArea(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, prclImageableArea: ?*RECTL) HRESULT {
         return self.vtable.AdjustImageableArea(self, hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, prclImageableArea);
     }
-    pub fn AdjustImageCompression(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pCompressionMode: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AdjustImageCompression(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pCompressionMode: ?*i32) HRESULT {
         return self.vtable.AdjustImageCompression(self, hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pCompressionMode);
     }
-    pub fn AdjustDPI(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pDPI: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AdjustDPI(self: *const IPrintOemUIMXDC, hPrinter: ?HANDLE, cbDevMode: u32, pDevMode: ?*const DEVMODEA, cbOEMDM: u32, pOEMDM: ?*const anyopaque, pDPI: ?*i32) HRESULT {
         return self.vtable.AdjustDPI(self, hPrinter, cbDevMode, pDevMode, cbOEMDM, pOEMDM, pDPI);
     }
 };
@@ -4467,30 +4467,30 @@ pub const IPrintOemDriverUI = extern union {
             cbSize: u32,
             pcbNeeded: ?*u32,
             pdwOptionsReturned: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrvUpgradeRegistrySetting: *const fn(
             self: *const IPrintOemDriverUI,
             hPrinter: ?HANDLE,
             pFeature: ?[*:0]const u8,
             pOption: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrvUpdateUISetting: *const fn(
             self: *const IPrintOemDriverUI,
             pci: ?*anyopaque,
             pOptItem: ?*anyopaque,
             dwPreviousSelection: u32,
             dwMode: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn DrvGetDriverSetting(self: *const IPrintOemDriverUI, pci: ?*anyopaque, Feature: ?[*:0]const u8, pOutput: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn DrvGetDriverSetting(self: *const IPrintOemDriverUI, pci: ?*anyopaque, Feature: ?[*:0]const u8, pOutput: ?*anyopaque, cbSize: u32, pcbNeeded: ?*u32, pdwOptionsReturned: ?*u32) HRESULT {
         return self.vtable.DrvGetDriverSetting(self, pci, Feature, pOutput, cbSize, pcbNeeded, pdwOptionsReturned);
     }
-    pub fn DrvUpgradeRegistrySetting(self: *const IPrintOemDriverUI, hPrinter: ?HANDLE, pFeature: ?[*:0]const u8, pOption: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn DrvUpgradeRegistrySetting(self: *const IPrintOemDriverUI, hPrinter: ?HANDLE, pFeature: ?[*:0]const u8, pOption: ?[*:0]const u8) HRESULT {
         return self.vtable.DrvUpgradeRegistrySetting(self, hPrinter, pFeature, pOption);
     }
-    pub fn DrvUpdateUISetting(self: *const IPrintOemDriverUI, pci: ?*anyopaque, pOptItem: ?*anyopaque, dwPreviousSelection: u32, dwMode: u32) callconv(.Inline) HRESULT {
+    pub fn DrvUpdateUISetting(self: *const IPrintOemDriverUI, pci: ?*anyopaque, pOptItem: ?*anyopaque, dwPreviousSelection: u32, dwMode: u32) HRESULT {
         return self.vtable.DrvUpdateUISetting(self, pci, pOptItem, dwPreviousSelection, dwMode);
     }
 };
@@ -4511,7 +4511,7 @@ pub const IPrintCoreUI2 = extern union {
             pmszFeatureOptionBuf: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOptions: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4520,7 +4520,7 @@ pub const IPrintCoreUI2 = extern union {
             pmszFeatureOptionBuf: ?*i8,
             cbIn: u32,
             pdwResult: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumConstrainedOptions: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4530,7 +4530,7 @@ pub const IPrintCoreUI2 = extern union {
             pmszConstrainedOptionList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WhyConstrained: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4541,7 +4541,7 @@ pub const IPrintCoreUI2 = extern union {
             pmszReasonList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGlobalAttribute: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4552,7 +4552,7 @@ pub const IPrintCoreUI2 = extern union {
             pbData: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeatureAttribute: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4564,7 +4564,7 @@ pub const IPrintCoreUI2 = extern union {
             pbData: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOptionAttribute: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4577,7 +4577,7 @@ pub const IPrintCoreUI2 = extern union {
             pbData: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumFeatures: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4586,7 +4586,7 @@ pub const IPrintCoreUI2 = extern union {
             pmszFeatureList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumOptions: *const fn(
             self: *const IPrintCoreUI2,
             poemuiobj: ?*OEMUIOBJ,
@@ -4596,7 +4596,7 @@ pub const IPrintCoreUI2 = extern union {
             pmszOptionList: ?[*]u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QuerySimulationSupport: *const fn(
             self: *const IPrintCoreUI2,
             hPrinter: ?HANDLE,
@@ -4605,39 +4605,39 @@ pub const IPrintCoreUI2 = extern union {
             pCaps: ?*u8,
             cbSize: u32,
             pcbNeeded: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintOemDriverUI: IPrintOemDriverUI,
     IUnknown: IUnknown,
-    pub fn GetOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeaturesRequested: ?*i8, cbIn: u32, pmszFeatureOptionBuf: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeaturesRequested: ?*i8, cbIn: u32, pmszFeatureOptionBuf: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.GetOptions(self, poemuiobj, dwFlags, pmszFeaturesRequested, cbIn, pmszFeatureOptionBuf, cbSize, pcbNeeded);
     }
-    pub fn SetOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureOptionBuf: ?*i8, cbIn: u32, pdwResult: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SetOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureOptionBuf: ?*i8, cbIn: u32, pdwResult: ?*u32) HRESULT {
         return self.vtable.SetOptions(self, poemuiobj, dwFlags, pmszFeatureOptionBuf, cbIn, pdwResult);
     }
-    pub fn EnumConstrainedOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszConstrainedOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnumConstrainedOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszConstrainedOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.EnumConstrainedOptions(self, poemuiobj, dwFlags, pszFeatureKeyword, pmszConstrainedOptionList, cbSize, pcbNeeded);
     }
-    pub fn WhyConstrained(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pmszReasonList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn WhyConstrained(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pmszReasonList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.WhyConstrained(self, poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pmszReasonList, cbSize, pcbNeeded);
     }
-    pub fn GetGlobalAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGlobalAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.GetGlobalAttribute(self, poemuiobj, dwFlags, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
     }
-    pub fn GetFeatureAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFeatureAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.GetFeatureAttribute(self, poemuiobj, dwFlags, pszFeatureKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
     }
-    pub fn GetOptionAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetOptionAttribute(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pszOptionKeyword: ?[*:0]const u8, pszAttribute: ?[*:0]const u8, pdwDataType: ?*u32, pbData: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.GetOptionAttribute(self, poemuiobj, dwFlags, pszFeatureKeyword, pszOptionKeyword, pszAttribute, pdwDataType, pbData, cbSize, pcbNeeded);
     }
-    pub fn EnumFeatures(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnumFeatures(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pmszFeatureList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.EnumFeatures(self, poemuiobj, dwFlags, pmszFeatureList, cbSize, pcbNeeded);
     }
-    pub fn EnumOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn EnumOptions(self: *const IPrintCoreUI2, poemuiobj: ?*OEMUIOBJ, dwFlags: u32, pszFeatureKeyword: ?[*:0]const u8, pmszOptionList: ?[*]u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.EnumOptions(self, poemuiobj, dwFlags, pszFeatureKeyword, pmszOptionList, cbSize, pcbNeeded);
     }
-    pub fn QuerySimulationSupport(self: *const IPrintCoreUI2, hPrinter: ?HANDLE, dwLevel: u32, pCaps: ?*u8, cbSize: u32, pcbNeeded: ?*u32) callconv(.Inline) HRESULT {
+    pub fn QuerySimulationSupport(self: *const IPrintCoreUI2, hPrinter: ?HANDLE, dwLevel: u32, pCaps: ?*u8, cbSize: u32, pcbNeeded: ?*u32) HRESULT {
         return self.vtable.QuerySimulationSupport(self, hPrinter, dwLevel, pCaps, cbSize, pcbNeeded);
     }
 };
@@ -4659,7 +4659,7 @@ pub const IPrintTicketProvider = extern union {
             hPrinter: ?HANDLE,
             ppVersions: ?*?*i32,
             cVersions: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindPrinter: *const fn(
             self: *const IPrintTicketProvider,
             hPrinter: ?HANDLE,
@@ -4668,11 +4668,11 @@ pub const IPrintTicketProvider = extern union {
             pDevModeFlags: ?*u32,
             cNamespaces: ?*i32,
             ppNamespaces: ?*?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryDeviceNamespace: *const fn(
             self: *const IPrintTicketProvider,
             pDefaultNamespace: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertPrintTicketToDevMode: *const fn(
             self: *const IPrintTicketProvider,
             pPrintTicket: ?*IXMLDOMDocument2,
@@ -4680,44 +4680,44 @@ pub const IPrintTicketProvider = extern union {
             pDevmodeIn: ?*DEVMODEA,
             pcbDevmodeOut: ?*u32,
             ppDevmodeOut: ?*?*DEVMODEA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConvertDevModeToPrintTicket: *const fn(
             self: *const IPrintTicketProvider,
             cbDevmode: u32,
             pDevmode: ?*DEVMODEA,
             pPrintTicket: ?*IXMLDOMDocument2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintCapabilities: *const fn(
             self: *const IPrintTicketProvider,
             pPrintTicket: ?*IXMLDOMDocument2,
             ppCapabilities: ?*?*IXMLDOMDocument2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidatePrintTicket: *const fn(
             self: *const IPrintTicketProvider,
             pBaseTicket: ?*IXMLDOMDocument2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSupportedVersions(self: *const IPrintTicketProvider, hPrinter: ?HANDLE, ppVersions: ?*?*i32, cVersions: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetSupportedVersions(self: *const IPrintTicketProvider, hPrinter: ?HANDLE, ppVersions: ?*?*i32, cVersions: ?*i32) HRESULT {
         return self.vtable.GetSupportedVersions(self, hPrinter, ppVersions, cVersions);
     }
-    pub fn BindPrinter(self: *const IPrintTicketProvider, hPrinter: ?HANDLE, version: i32, pOptions: ?*SHIMOPTS, pDevModeFlags: ?*u32, cNamespaces: ?*i32, ppNamespaces: ?*?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn BindPrinter(self: *const IPrintTicketProvider, hPrinter: ?HANDLE, version: i32, pOptions: ?*SHIMOPTS, pDevModeFlags: ?*u32, cNamespaces: ?*i32, ppNamespaces: ?*?*?BSTR) HRESULT {
         return self.vtable.BindPrinter(self, hPrinter, version, pOptions, pDevModeFlags, cNamespaces, ppNamespaces);
     }
-    pub fn QueryDeviceNamespace(self: *const IPrintTicketProvider, pDefaultNamespace: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn QueryDeviceNamespace(self: *const IPrintTicketProvider, pDefaultNamespace: ?*?BSTR) HRESULT {
         return self.vtable.QueryDeviceNamespace(self, pDefaultNamespace);
     }
-    pub fn ConvertPrintTicketToDevMode(self: *const IPrintTicketProvider, pPrintTicket: ?*IXMLDOMDocument2, cbDevmodeIn: u32, pDevmodeIn: ?*DEVMODEA, pcbDevmodeOut: ?*u32, ppDevmodeOut: ?*?*DEVMODEA) callconv(.Inline) HRESULT {
+    pub fn ConvertPrintTicketToDevMode(self: *const IPrintTicketProvider, pPrintTicket: ?*IXMLDOMDocument2, cbDevmodeIn: u32, pDevmodeIn: ?*DEVMODEA, pcbDevmodeOut: ?*u32, ppDevmodeOut: ?*?*DEVMODEA) HRESULT {
         return self.vtable.ConvertPrintTicketToDevMode(self, pPrintTicket, cbDevmodeIn, pDevmodeIn, pcbDevmodeOut, ppDevmodeOut);
     }
-    pub fn ConvertDevModeToPrintTicket(self: *const IPrintTicketProvider, cbDevmode: u32, pDevmode: ?*DEVMODEA, pPrintTicket: ?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+    pub fn ConvertDevModeToPrintTicket(self: *const IPrintTicketProvider, cbDevmode: u32, pDevmode: ?*DEVMODEA, pPrintTicket: ?*IXMLDOMDocument2) HRESULT {
         return self.vtable.ConvertDevModeToPrintTicket(self, cbDevmode, pDevmode, pPrintTicket);
     }
-    pub fn GetPrintCapabilities(self: *const IPrintTicketProvider, pPrintTicket: ?*IXMLDOMDocument2, ppCapabilities: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+    pub fn GetPrintCapabilities(self: *const IPrintTicketProvider, pPrintTicket: ?*IXMLDOMDocument2, ppCapabilities: ?*?*IXMLDOMDocument2) HRESULT {
         return self.vtable.GetPrintCapabilities(self, pPrintTicket, ppCapabilities);
     }
-    pub fn ValidatePrintTicket(self: *const IPrintTicketProvider, pBaseTicket: ?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+    pub fn ValidatePrintTicket(self: *const IPrintTicketProvider, pBaseTicket: ?*IXMLDOMDocument2) HRESULT {
         return self.vtable.ValidatePrintTicket(self, pBaseTicket);
     }
 };
@@ -4731,21 +4731,21 @@ pub const IPrintTicketProvider2 = extern union {
             self: *const IPrintTicketProvider2,
             pPrintTicket: ?*IXMLDOMDocument2,
             ppDeviceCapabilities: ?*?*IXMLDOMDocument2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintDeviceResources: *const fn(
             self: *const IPrintTicketProvider2,
             pszLocaleName: ?[*:0]const u16,
             pPrintTicket: ?*IXMLDOMDocument2,
             ppDeviceResources: ?*?*IXMLDOMDocument2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintTicketProvider: IPrintTicketProvider,
     IUnknown: IUnknown,
-    pub fn GetPrintDeviceCapabilities(self: *const IPrintTicketProvider2, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceCapabilities: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+    pub fn GetPrintDeviceCapabilities(self: *const IPrintTicketProvider2, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceCapabilities: ?*?*IXMLDOMDocument2) HRESULT {
         return self.vtable.GetPrintDeviceCapabilities(self, pPrintTicket, ppDeviceCapabilities);
     }
-    pub fn GetPrintDeviceResources(self: *const IPrintTicketProvider2, pszLocaleName: ?[*:0]const u16, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceResources: ?*?*IXMLDOMDocument2) callconv(.Inline) HRESULT {
+    pub fn GetPrintDeviceResources(self: *const IPrintTicketProvider2, pszLocaleName: ?[*:0]const u16, pPrintTicket: ?*IXMLDOMDocument2, ppDeviceResources: ?*?*IXMLDOMDocument2) HRESULT {
         return self.vtable.GetPrintDeviceResources(self, pszLocaleName, pPrintTicket, ppDeviceResources);
     }
 };
@@ -4771,28 +4771,28 @@ pub const IPrintSchemaElement = extern union {
         get_XmlNode: *const fn(
             self: *const IPrintSchemaElement,
             ppXmlNode: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IPrintSchemaElement,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NamespaceUri: *const fn(
             self: *const IPrintSchemaElement,
             pbstrNamespaceUri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_XmlNode(self: *const IPrintSchemaElement, ppXmlNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get_XmlNode(self: *const IPrintSchemaElement, ppXmlNode: ?*?*IUnknown) HRESULT {
         return self.vtable.get_XmlNode(self, ppXmlNode);
     }
-    pub fn get_Name(self: *const IPrintSchemaElement, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IPrintSchemaElement, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_NamespaceUri(self: *const IPrintSchemaElement, pbstrNamespaceUri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_NamespaceUri(self: *const IPrintSchemaElement, pbstrNamespaceUri: ?*?BSTR) HRESULT {
         return self.vtable.get_NamespaceUri(self, pbstrNamespaceUri);
     }
 };
@@ -4806,13 +4806,13 @@ pub const IPrintSchemaDisplayableElement = extern union {
         get_DisplayName: *const fn(
             self: *const IPrintSchemaDisplayableElement,
             pbstrDisplayName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DisplayName(self: *const IPrintSchemaDisplayableElement, pbstrDisplayName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayName(self: *const IPrintSchemaDisplayableElement, pbstrDisplayName: ?*?BSTR) HRESULT {
         return self.vtable.get_DisplayName(self, pbstrDisplayName);
     }
 };
@@ -4837,31 +4837,31 @@ pub const IPrintSchemaOption = extern union {
         get_Selected: *const fn(
             self: *const IPrintSchemaOption,
             pbIsSelected: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Constrained: *const fn(
             self: *const IPrintSchemaOption,
             pSetting: ?*PrintSchemaConstrainedSetting,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyValue: *const fn(
             self: *const IPrintSchemaOption,
             bstrName: ?BSTR,
             bstrNamespaceUri: ?BSTR,
             ppXmlValueNode: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaDisplayableElement: IPrintSchemaDisplayableElement,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Selected(self: *const IPrintSchemaOption, pbIsSelected: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_Selected(self: *const IPrintSchemaOption, pbIsSelected: ?*BOOL) HRESULT {
         return self.vtable.get_Selected(self, pbIsSelected);
     }
-    pub fn get_Constrained(self: *const IPrintSchemaOption, pSetting: ?*PrintSchemaConstrainedSetting) callconv(.Inline) HRESULT {
+    pub fn get_Constrained(self: *const IPrintSchemaOption, pSetting: ?*PrintSchemaConstrainedSetting) HRESULT {
         return self.vtable.get_Constrained(self, pSetting);
     }
-    pub fn GetPropertyValue(self: *const IPrintSchemaOption, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppXmlValueNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetPropertyValue(self: *const IPrintSchemaOption, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppXmlValueNode: ?*?*IUnknown) HRESULT {
         return self.vtable.GetPropertyValue(self, bstrName, bstrNamespaceUri, ppXmlValueNode);
     }
 };
@@ -4875,12 +4875,12 @@ pub const IPrintSchemaPageMediaSizeOption = extern union {
         get_WidthInMicrons: *const fn(
             self: *const IPrintSchemaPageMediaSizeOption,
             pulWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_HeightInMicrons: *const fn(
             self: *const IPrintSchemaPageMediaSizeOption,
             pulHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaOption: IPrintSchemaOption,
@@ -4888,10 +4888,10 @@ pub const IPrintSchemaPageMediaSizeOption = extern union {
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_WidthInMicrons(self: *const IPrintSchemaPageMediaSizeOption, pulWidth: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_WidthInMicrons(self: *const IPrintSchemaPageMediaSizeOption, pulWidth: ?*u32) HRESULT {
         return self.vtable.get_WidthInMicrons(self, pulWidth);
     }
-    pub fn get_HeightInMicrons(self: *const IPrintSchemaPageMediaSizeOption, pulHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_HeightInMicrons(self: *const IPrintSchemaPageMediaSizeOption, pulHeight: ?*u32) HRESULT {
         return self.vtable.get_HeightInMicrons(self, pulHeight);
     }
 };
@@ -4905,7 +4905,7 @@ pub const IPrintSchemaNUpOption = extern union {
         get_PagesPerSheet: *const fn(
             self: *const IPrintSchemaNUpOption,
             pulPagesPerSheet: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaOption: IPrintSchemaOption,
@@ -4913,7 +4913,7 @@ pub const IPrintSchemaNUpOption = extern union {
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PagesPerSheet(self: *const IPrintSchemaNUpOption, pulPagesPerSheet: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_PagesPerSheet(self: *const IPrintSchemaNUpOption, pulPagesPerSheet: ?*u32) HRESULT {
         return self.vtable.get_PagesPerSheet(self, pulPagesPerSheet);
     }
 };
@@ -4934,28 +4934,28 @@ pub const IPrintSchemaOptionCollection = extern union {
         get_Count: *const fn(
             self: *const IPrintSchemaOptionCollection,
             pulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IPrintSchemaOptionCollection,
             ulIndex: u32,
             ppOption: ?*?*IPrintSchemaOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IPrintSchemaOptionCollection,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IPrintSchemaOptionCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IPrintSchemaOptionCollection, pulCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, pulCount);
     }
-    pub fn GetAt(self: *const IPrintSchemaOptionCollection, ulIndex: u32, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IPrintSchemaOptionCollection, ulIndex: u32, ppOption: ?*?*IPrintSchemaOption) HRESULT {
         return self.vtable.GetAt(self, ulIndex, ppOption);
     }
-    pub fn get__NewEnum(self: *const IPrintSchemaOptionCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IPrintSchemaOptionCollection, ppUnk: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppUnk);
     }
 };
@@ -4969,47 +4969,47 @@ pub const IPrintSchemaFeature = extern union {
         get_SelectedOption: *const fn(
             self: *const IPrintSchemaFeature,
             ppOption: ?*?*IPrintSchemaOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelectedOption: *const fn(
             self: *const IPrintSchemaFeature,
             pOption: ?*IPrintSchemaOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionType: *const fn(
             self: *const IPrintSchemaFeature,
             pSelectionType: ?*PrintSchemaSelectionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOption: *const fn(
             self: *const IPrintSchemaFeature,
             bstrName: ?BSTR,
             bstrNamespaceUri: ?BSTR,
             ppOption: ?*?*IPrintSchemaOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayUI: *const fn(
             self: *const IPrintSchemaFeature,
             pbShow: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaDisplayableElement: IPrintSchemaDisplayableElement,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_SelectedOption(self: *const IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+    pub fn get_SelectedOption(self: *const IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) HRESULT {
         return self.vtable.get_SelectedOption(self, ppOption);
     }
-    pub fn put_SelectedOption(self: *const IPrintSchemaFeature, pOption: ?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+    pub fn put_SelectedOption(self: *const IPrintSchemaFeature, pOption: ?*IPrintSchemaOption) HRESULT {
         return self.vtable.put_SelectedOption(self, pOption);
     }
-    pub fn get_SelectionType(self: *const IPrintSchemaFeature, pSelectionType: ?*PrintSchemaSelectionType) callconv(.Inline) HRESULT {
+    pub fn get_SelectionType(self: *const IPrintSchemaFeature, pSelectionType: ?*PrintSchemaSelectionType) HRESULT {
         return self.vtable.get_SelectionType(self, pSelectionType);
     }
-    pub fn GetOption(self: *const IPrintSchemaFeature, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+    pub fn GetOption(self: *const IPrintSchemaFeature, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppOption: ?*?*IPrintSchemaOption) HRESULT {
         return self.vtable.GetOption(self, bstrName, bstrNamespaceUri, ppOption);
     }
-    pub fn get_DisplayUI(self: *const IPrintSchemaFeature, pbShow: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_DisplayUI(self: *const IPrintSchemaFeature, pbShow: ?*BOOL) HRESULT {
         return self.vtable.get_DisplayUI(self, pbShow);
     }
 };
@@ -5023,53 +5023,53 @@ pub const IPrintSchemaPageImageableSize = extern union {
         get_ImageableSizeWidthInMicrons: *const fn(
             self: *const IPrintSchemaPageImageableSize,
             pulImageableSizeWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ImageableSizeHeightInMicrons: *const fn(
             self: *const IPrintSchemaPageImageableSize,
             pulImageableSizeHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OriginWidthInMicrons: *const fn(
             self: *const IPrintSchemaPageImageableSize,
             pulOriginWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OriginHeightInMicrons: *const fn(
             self: *const IPrintSchemaPageImageableSize,
             pulOriginHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtentWidthInMicrons: *const fn(
             self: *const IPrintSchemaPageImageableSize,
             pulExtentWidth: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtentHeightInMicrons: *const fn(
             self: *const IPrintSchemaPageImageableSize,
             pulExtentHeight: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_ImageableSizeWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulImageableSizeWidth: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ImageableSizeWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulImageableSizeWidth: ?*u32) HRESULT {
         return self.vtable.get_ImageableSizeWidthInMicrons(self, pulImageableSizeWidth);
     }
-    pub fn get_ImageableSizeHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulImageableSizeHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ImageableSizeHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulImageableSizeHeight: ?*u32) HRESULT {
         return self.vtable.get_ImageableSizeHeightInMicrons(self, pulImageableSizeHeight);
     }
-    pub fn get_OriginWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulOriginWidth: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_OriginWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulOriginWidth: ?*u32) HRESULT {
         return self.vtable.get_OriginWidthInMicrons(self, pulOriginWidth);
     }
-    pub fn get_OriginHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulOriginHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_OriginHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulOriginHeight: ?*u32) HRESULT {
         return self.vtable.get_OriginHeightInMicrons(self, pulOriginHeight);
     }
-    pub fn get_ExtentWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulExtentWidth: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ExtentWidthInMicrons(self: *const IPrintSchemaPageImageableSize, pulExtentWidth: ?*u32) HRESULT {
         return self.vtable.get_ExtentWidthInMicrons(self, pulExtentWidth);
     }
-    pub fn get_ExtentHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulExtentHeight: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ExtentHeightInMicrons(self: *const IPrintSchemaPageImageableSize, pulExtentHeight: ?*u32) HRESULT {
         return self.vtable.get_ExtentHeightInMicrons(self, pulExtentHeight);
     }
 };
@@ -5092,46 +5092,46 @@ pub const IPrintSchemaParameterDefinition = extern union {
         get_UserInputRequired: *const fn(
             self: *const IPrintSchemaParameterDefinition,
             pbIsRequired: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UnitType: *const fn(
             self: *const IPrintSchemaParameterDefinition,
             pbstrUnitType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataType: *const fn(
             self: *const IPrintSchemaParameterDefinition,
             pDataType: ?*PrintSchemaParameterDataType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RangeMin: *const fn(
             self: *const IPrintSchemaParameterDefinition,
             pRangeMin: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RangeMax: *const fn(
             self: *const IPrintSchemaParameterDefinition,
             pRangeMax: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaDisplayableElement: IPrintSchemaDisplayableElement,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_UserInputRequired(self: *const IPrintSchemaParameterDefinition, pbIsRequired: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_UserInputRequired(self: *const IPrintSchemaParameterDefinition, pbIsRequired: ?*BOOL) HRESULT {
         return self.vtable.get_UserInputRequired(self, pbIsRequired);
     }
-    pub fn get_UnitType(self: *const IPrintSchemaParameterDefinition, pbstrUnitType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UnitType(self: *const IPrintSchemaParameterDefinition, pbstrUnitType: ?*?BSTR) HRESULT {
         return self.vtable.get_UnitType(self, pbstrUnitType);
     }
-    pub fn get_DataType(self: *const IPrintSchemaParameterDefinition, pDataType: ?*PrintSchemaParameterDataType) callconv(.Inline) HRESULT {
+    pub fn get_DataType(self: *const IPrintSchemaParameterDefinition, pDataType: ?*PrintSchemaParameterDataType) HRESULT {
         return self.vtable.get_DataType(self, pDataType);
     }
-    pub fn get_RangeMin(self: *const IPrintSchemaParameterDefinition, pRangeMin: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RangeMin(self: *const IPrintSchemaParameterDefinition, pRangeMin: ?*i32) HRESULT {
         return self.vtable.get_RangeMin(self, pRangeMin);
     }
-    pub fn get_RangeMax(self: *const IPrintSchemaParameterDefinition, pRangeMax: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RangeMax(self: *const IPrintSchemaParameterDefinition, pRangeMax: ?*i32) HRESULT {
         return self.vtable.get_RangeMax(self, pRangeMax);
     }
 };
@@ -5145,21 +5145,21 @@ pub const IPrintSchemaParameterInitializer = extern union {
         get_Value: *const fn(
             self: *const IPrintSchemaParameterInitializer,
             pVar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const IPrintSchemaParameterInitializer,
             pVar: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Value(self: *const IPrintSchemaParameterInitializer, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const IPrintSchemaParameterInitializer, pVar: ?*VARIANT) HRESULT {
         return self.vtable.get_Value(self, pVar);
     }
-    pub fn put_Value(self: *const IPrintSchemaParameterInitializer, pVar: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const IPrintSchemaParameterInitializer, pVar: ?*VARIANT) HRESULT {
         return self.vtable.put_Value(self, pVar);
     }
 };
@@ -5173,62 +5173,62 @@ pub const IPrintSchemaCapabilities = extern union {
             self: *const IPrintSchemaCapabilities,
             bstrKeyName: ?BSTR,
             ppFeature: ?*?*IPrintSchemaFeature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeature: *const fn(
             self: *const IPrintSchemaCapabilities,
             bstrName: ?BSTR,
             bstrNamespaceUri: ?BSTR,
             ppFeature: ?*?*IPrintSchemaFeature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PageImageableSize: *const fn(
             self: *const IPrintSchemaCapabilities,
             ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobCopiesAllDocumentsMinValue: *const fn(
             self: *const IPrintSchemaCapabilities,
             pulJobCopiesAllDocumentsMinValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobCopiesAllDocumentsMaxValue: *const fn(
             self: *const IPrintSchemaCapabilities,
             pulJobCopiesAllDocumentsMaxValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSelectedOptionInPrintTicket: *const fn(
             self: *const IPrintSchemaCapabilities,
             pFeature: ?*IPrintSchemaFeature,
             ppOption: ?*?*IPrintSchemaOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOptions: *const fn(
             self: *const IPrintSchemaCapabilities,
             pFeature: ?*IPrintSchemaFeature,
             ppOptionCollection: ?*?*IPrintSchemaOptionCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetFeatureByKeyName(self: *const IPrintSchemaCapabilities, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+    pub fn GetFeatureByKeyName(self: *const IPrintSchemaCapabilities, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
         return self.vtable.GetFeatureByKeyName(self, bstrKeyName, ppFeature);
     }
-    pub fn GetFeature(self: *const IPrintSchemaCapabilities, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+    pub fn GetFeature(self: *const IPrintSchemaCapabilities, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
         return self.vtable.GetFeature(self, bstrName, bstrNamespaceUri, ppFeature);
     }
-    pub fn get_PageImageableSize(self: *const IPrintSchemaCapabilities, ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize) callconv(.Inline) HRESULT {
+    pub fn get_PageImageableSize(self: *const IPrintSchemaCapabilities, ppPageImageableSize: ?*?*IPrintSchemaPageImageableSize) HRESULT {
         return self.vtable.get_PageImageableSize(self, ppPageImageableSize);
     }
-    pub fn get_JobCopiesAllDocumentsMinValue(self: *const IPrintSchemaCapabilities, pulJobCopiesAllDocumentsMinValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_JobCopiesAllDocumentsMinValue(self: *const IPrintSchemaCapabilities, pulJobCopiesAllDocumentsMinValue: ?*u32) HRESULT {
         return self.vtable.get_JobCopiesAllDocumentsMinValue(self, pulJobCopiesAllDocumentsMinValue);
     }
-    pub fn get_JobCopiesAllDocumentsMaxValue(self: *const IPrintSchemaCapabilities, pulJobCopiesAllDocumentsMaxValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_JobCopiesAllDocumentsMaxValue(self: *const IPrintSchemaCapabilities, pulJobCopiesAllDocumentsMaxValue: ?*u32) HRESULT {
         return self.vtable.get_JobCopiesAllDocumentsMaxValue(self, pulJobCopiesAllDocumentsMaxValue);
     }
-    pub fn GetSelectedOptionInPrintTicket(self: *const IPrintSchemaCapabilities, pFeature: ?*IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) callconv(.Inline) HRESULT {
+    pub fn GetSelectedOptionInPrintTicket(self: *const IPrintSchemaCapabilities, pFeature: ?*IPrintSchemaFeature, ppOption: ?*?*IPrintSchemaOption) HRESULT {
         return self.vtable.GetSelectedOptionInPrintTicket(self, pFeature, ppOption);
     }
-    pub fn GetOptions(self: *const IPrintSchemaCapabilities, pFeature: ?*IPrintSchemaFeature, ppOptionCollection: ?*?*IPrintSchemaOptionCollection) callconv(.Inline) HRESULT {
+    pub fn GetOptions(self: *const IPrintSchemaCapabilities, pFeature: ?*IPrintSchemaFeature, ppOptionCollection: ?*?*IPrintSchemaOptionCollection) HRESULT {
         return self.vtable.GetOptions(self, pFeature, ppOptionCollection);
     }
 };
@@ -5243,14 +5243,14 @@ pub const IPrintSchemaCapabilities2 = extern union {
             bstrName: ?BSTR,
             bstrNamespaceUri: ?BSTR,
             ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaCapabilities: IPrintSchemaCapabilities,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetParameterDefinition(self: *const IPrintSchemaCapabilities2, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition) callconv(.Inline) HRESULT {
+    pub fn GetParameterDefinition(self: *const IPrintSchemaCapabilities2, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterDefinition: ?*?*IPrintSchemaParameterDefinition) HRESULT {
         return self.vtable.GetParameterDefinition(self, bstrName, bstrNamespaceUri, ppParameterDefinition);
     }
 };
@@ -5262,18 +5262,18 @@ pub const IPrintSchemaAsyncOperation = extern union {
         base: IDispatch.VTable,
         Start: *const fn(
             self: *const IPrintSchemaAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Cancel: *const fn(
             self: *const IPrintSchemaAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Start(self: *const IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IPrintSchemaAsyncOperation) HRESULT {
         return self.vtable.Start(self);
     }
-    pub fn Cancel(self: *const IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IPrintSchemaAsyncOperation) HRESULT {
         return self.vtable.Cancel(self);
     }
 };
@@ -5287,66 +5287,66 @@ pub const IPrintSchemaTicket = extern union {
             self: *const IPrintSchemaTicket,
             bstrKeyName: ?BSTR,
             ppFeature: ?*?*IPrintSchemaFeature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFeature: *const fn(
             self: *const IPrintSchemaTicket,
             bstrName: ?BSTR,
             bstrNamespaceUri: ?BSTR,
             ppFeature: ?*?*IPrintSchemaFeature,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ValidateAsync: *const fn(
             self: *const IPrintSchemaTicket,
             ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitAsync: *const fn(
             self: *const IPrintSchemaTicket,
             pPrintTicketCommit: ?*IPrintSchemaTicket,
             ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NotifyXmlChanged: *const fn(
             self: *const IPrintSchemaTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCapabilities: *const fn(
             self: *const IPrintSchemaTicket,
             ppCapabilities: ?*?*IPrintSchemaCapabilities,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_JobCopiesAllDocuments: *const fn(
             self: *const IPrintSchemaTicket,
             pulJobCopiesAllDocuments: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_JobCopiesAllDocuments: *const fn(
             self: *const IPrintSchemaTicket,
             ulJobCopiesAllDocuments: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetFeatureByKeyName(self: *const IPrintSchemaTicket, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+    pub fn GetFeatureByKeyName(self: *const IPrintSchemaTicket, bstrKeyName: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
         return self.vtable.GetFeatureByKeyName(self, bstrKeyName, ppFeature);
     }
-    pub fn GetFeature(self: *const IPrintSchemaTicket, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) callconv(.Inline) HRESULT {
+    pub fn GetFeature(self: *const IPrintSchemaTicket, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppFeature: ?*?*IPrintSchemaFeature) HRESULT {
         return self.vtable.GetFeature(self, bstrName, bstrNamespaceUri, ppFeature);
     }
-    pub fn ValidateAsync(self: *const IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+    pub fn ValidateAsync(self: *const IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) HRESULT {
         return self.vtable.ValidateAsync(self, ppAsyncOperation);
     }
-    pub fn CommitAsync(self: *const IPrintSchemaTicket, pPrintTicketCommit: ?*IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) callconv(.Inline) HRESULT {
+    pub fn CommitAsync(self: *const IPrintSchemaTicket, pPrintTicketCommit: ?*IPrintSchemaTicket, ppAsyncOperation: ?*?*IPrintSchemaAsyncOperation) HRESULT {
         return self.vtable.CommitAsync(self, pPrintTicketCommit, ppAsyncOperation);
     }
-    pub fn NotifyXmlChanged(self: *const IPrintSchemaTicket) callconv(.Inline) HRESULT {
+    pub fn NotifyXmlChanged(self: *const IPrintSchemaTicket) HRESULT {
         return self.vtable.NotifyXmlChanged(self);
     }
-    pub fn GetCapabilities(self: *const IPrintSchemaTicket, ppCapabilities: ?*?*IPrintSchemaCapabilities) callconv(.Inline) HRESULT {
+    pub fn GetCapabilities(self: *const IPrintSchemaTicket, ppCapabilities: ?*?*IPrintSchemaCapabilities) HRESULT {
         return self.vtable.GetCapabilities(self, ppCapabilities);
     }
-    pub fn get_JobCopiesAllDocuments(self: *const IPrintSchemaTicket, pulJobCopiesAllDocuments: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_JobCopiesAllDocuments(self: *const IPrintSchemaTicket, pulJobCopiesAllDocuments: ?*u32) HRESULT {
         return self.vtable.get_JobCopiesAllDocuments(self, pulJobCopiesAllDocuments);
     }
-    pub fn put_JobCopiesAllDocuments(self: *const IPrintSchemaTicket, ulJobCopiesAllDocuments: u32) callconv(.Inline) HRESULT {
+    pub fn put_JobCopiesAllDocuments(self: *const IPrintSchemaTicket, ulJobCopiesAllDocuments: u32) HRESULT {
         return self.vtable.put_JobCopiesAllDocuments(self, ulJobCopiesAllDocuments);
     }
 };
@@ -5361,14 +5361,14 @@ pub const IPrintSchemaTicket2 = extern union {
             bstrName: ?BSTR,
             bstrNamespaceUri: ?BSTR,
             ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintSchemaTicket: IPrintSchemaTicket,
     IPrintSchemaElement: IPrintSchemaElement,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetParameterInitializer(self: *const IPrintSchemaTicket2, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer) callconv(.Inline) HRESULT {
+    pub fn GetParameterInitializer(self: *const IPrintSchemaTicket2, bstrName: ?BSTR, bstrNamespaceUri: ?BSTR, ppParameterInitializer: ?*?*IPrintSchemaParameterInitializer) HRESULT {
         return self.vtable.GetParameterInitializer(self, bstrName, bstrNamespaceUri, ppParameterInitializer);
     }
 };
@@ -5382,12 +5382,12 @@ pub const IPrintSchemaAsyncOperationEvent = extern union {
             self: *const IPrintSchemaAsyncOperationEvent,
             pTicket: ?*IPrintSchemaTicket,
             hrOperation: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Completed(self: *const IPrintSchemaAsyncOperationEvent, pTicket: ?*IPrintSchemaTicket, hrOperation: HRESULT) callconv(.Inline) HRESULT {
+    pub fn Completed(self: *const IPrintSchemaAsyncOperationEvent, pTicket: ?*IPrintSchemaTicket, hrOperation: HRESULT) HRESULT {
         return self.vtable.Completed(self, pTicket, hrOperation);
     }
 };
@@ -5401,20 +5401,20 @@ pub const IPrinterScriptableSequentialStream = extern union {
             self: *const IPrinterScriptableSequentialStream,
             cbRead: i32,
             ppArray: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const IPrinterScriptableSequentialStream,
             pArray: ?*IDispatch,
             pcbWritten: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Read(self: *const IPrinterScriptableSequentialStream, cbRead: i32, ppArray: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Read(self: *const IPrinterScriptableSequentialStream, cbRead: i32, ppArray: ?*?*IDispatch) HRESULT {
         return self.vtable.Read(self, cbRead, ppArray);
     }
-    pub fn Write(self: *const IPrinterScriptableSequentialStream, pArray: ?*IDispatch, pcbWritten: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Write(self: *const IPrinterScriptableSequentialStream, pArray: ?*IDispatch, pcbWritten: ?*i32) HRESULT {
         return self.vtable.Write(self, pArray, pcbWritten);
     }
 };
@@ -5426,29 +5426,29 @@ pub const IPrinterScriptableStream = extern union {
         base: IPrinterScriptableSequentialStream.VTable,
         Commit: *const fn(
             self: *const IPrinterScriptableStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const IPrinterScriptableStream,
             lOffset: i32,
             streamSeek: STREAM_SEEK,
             plPosition: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSize: *const fn(
             self: *const IPrinterScriptableStream,
             lSize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrinterScriptableSequentialStream: IPrinterScriptableSequentialStream,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Commit(self: *const IPrinterScriptableStream) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const IPrinterScriptableStream) HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn Seek(self: *const IPrinterScriptableStream, lOffset: i32, streamSeek: STREAM_SEEK, plPosition: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Seek(self: *const IPrinterScriptableStream, lOffset: i32, streamSeek: STREAM_SEEK, plPosition: ?*i32) HRESULT {
         return self.vtable.Seek(self, lOffset, streamSeek, plPosition);
     }
-    pub fn SetSize(self: *const IPrinterScriptableStream, lSize: i32) callconv(.Inline) HRESULT {
+    pub fn SetSize(self: *const IPrinterScriptableStream, lSize: i32) HRESULT {
         return self.vtable.SetSize(self, lSize);
     }
 };
@@ -5462,86 +5462,86 @@ pub const IPrinterPropertyBag = extern union {
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             pbValue: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBool: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             bValue: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInt32: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             pnValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInt32: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             nValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetString: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             bstrValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBytes: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             pcbValue: ?*u32,
             ppValue: [*]?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBytes: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             cbValue: u32,
             pValue: [*:0]u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReadStream: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             ppValue: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWriteStream: *const fn(
             self: *const IPrinterPropertyBag,
             bstrName: ?BSTR,
             ppValue: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetBool(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pbValue: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBool(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pbValue: ?*BOOL) HRESULT {
         return self.vtable.GetBool(self, bstrName, pbValue);
     }
-    pub fn SetBool(self: *const IPrinterPropertyBag, bstrName: ?BSTR, bValue: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBool(self: *const IPrinterPropertyBag, bstrName: ?BSTR, bValue: BOOL) HRESULT {
         return self.vtable.SetBool(self, bstrName, bValue);
     }
-    pub fn GetInt32(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pnValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetInt32(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pnValue: ?*i32) HRESULT {
         return self.vtable.GetInt32(self, bstrName, pnValue);
     }
-    pub fn SetInt32(self: *const IPrinterPropertyBag, bstrName: ?BSTR, nValue: i32) callconv(.Inline) HRESULT {
+    pub fn SetInt32(self: *const IPrinterPropertyBag, bstrName: ?BSTR, nValue: i32) HRESULT {
         return self.vtable.SetInt32(self, bstrName, nValue);
     }
-    pub fn GetString(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetString(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
         return self.vtable.GetString(self, bstrName, pbstrValue);
     }
-    pub fn SetString(self: *const IPrinterPropertyBag, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetString(self: *const IPrinterPropertyBag, bstrName: ?BSTR, bstrValue: ?BSTR) HRESULT {
         return self.vtable.SetString(self, bstrName, bstrValue);
     }
-    pub fn GetBytes(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pcbValue: ?*u32, ppValue: [*]?*u8) callconv(.Inline) HRESULT {
+    pub fn GetBytes(self: *const IPrinterPropertyBag, bstrName: ?BSTR, pcbValue: ?*u32, ppValue: [*]?*u8) HRESULT {
         return self.vtable.GetBytes(self, bstrName, pcbValue, ppValue);
     }
-    pub fn SetBytes(self: *const IPrinterPropertyBag, bstrName: ?BSTR, cbValue: u32, pValue: [*:0]u8) callconv(.Inline) HRESULT {
+    pub fn SetBytes(self: *const IPrinterPropertyBag, bstrName: ?BSTR, cbValue: u32, pValue: [*:0]u8) HRESULT {
         return self.vtable.SetBytes(self, bstrName, cbValue, pValue);
     }
-    pub fn GetReadStream(self: *const IPrinterPropertyBag, bstrName: ?BSTR, ppValue: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetReadStream(self: *const IPrinterPropertyBag, bstrName: ?BSTR, ppValue: ?*?*IStream) HRESULT {
         return self.vtable.GetReadStream(self, bstrName, ppValue);
     }
-    pub fn GetWriteStream(self: *const IPrinterPropertyBag, bstrName: ?BSTR, ppValue: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetWriteStream(self: *const IPrinterPropertyBag, bstrName: ?BSTR, ppValue: ?*?*IStream) HRESULT {
         return self.vtable.GetWriteStream(self, bstrName, ppValue);
     }
 };
@@ -5555,84 +5555,84 @@ pub const IPrinterScriptablePropertyBag = extern union {
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             pbValue: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBool: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             bValue: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInt32: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             pnValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInt32: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             nValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetString: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             pbstrValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetString: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             bstrValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBytes: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             ppArray: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBytes: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             pArray: ?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReadStream: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             ppStream: ?*?*IPrinterScriptableStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWriteStream: *const fn(
             self: *const IPrinterScriptablePropertyBag,
             bstrName: ?BSTR,
             ppStream: ?*?*IPrinterScriptableStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetBool(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pbValue: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetBool(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pbValue: ?*BOOL) HRESULT {
         return self.vtable.GetBool(self, bstrName, pbValue);
     }
-    pub fn SetBool(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, bValue: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBool(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, bValue: BOOL) HRESULT {
         return self.vtable.SetBool(self, bstrName, bValue);
     }
-    pub fn GetInt32(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pnValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetInt32(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pnValue: ?*i32) HRESULT {
         return self.vtable.GetInt32(self, bstrName, pnValue);
     }
-    pub fn SetInt32(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, nValue: i32) callconv(.Inline) HRESULT {
+    pub fn SetInt32(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, nValue: i32) HRESULT {
         return self.vtable.SetInt32(self, bstrName, nValue);
     }
-    pub fn GetString(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pbstrValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetString(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pbstrValue: ?*?BSTR) HRESULT {
         return self.vtable.GetString(self, bstrName, pbstrValue);
     }
-    pub fn SetString(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, bstrValue: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetString(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, bstrValue: ?BSTR) HRESULT {
         return self.vtable.SetString(self, bstrName, bstrValue);
     }
-    pub fn GetBytes(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppArray: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn GetBytes(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppArray: ?*?*IDispatch) HRESULT {
         return self.vtable.GetBytes(self, bstrName, ppArray);
     }
-    pub fn SetBytes(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pArray: ?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn SetBytes(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, pArray: ?*IDispatch) HRESULT {
         return self.vtable.SetBytes(self, bstrName, pArray);
     }
-    pub fn GetReadStream(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) callconv(.Inline) HRESULT {
+    pub fn GetReadStream(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) HRESULT {
         return self.vtable.GetReadStream(self, bstrName, ppStream);
     }
-    pub fn GetWriteStream(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) callconv(.Inline) HRESULT {
+    pub fn GetWriteStream(self: *const IPrinterScriptablePropertyBag, bstrName: ?BSTR, ppStream: ?*?*IPrinterScriptableStream) HRESULT {
         return self.vtable.GetWriteStream(self, bstrName, ppStream);
     }
 };
@@ -5646,13 +5646,13 @@ pub const IPrinterScriptablePropertyBag2 = extern union {
             self: *const IPrinterScriptablePropertyBag2,
             bstrName: ?BSTR,
             ppXmlNode: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrinterScriptablePropertyBag: IPrinterScriptablePropertyBag,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetReadStreamAsXML(self: *const IPrinterScriptablePropertyBag2, bstrName: ?BSTR, ppXmlNode: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn GetReadStreamAsXML(self: *const IPrinterScriptablePropertyBag2, bstrName: ?BSTR, ppXmlNode: ?*?*IUnknown) HRESULT {
         return self.vtable.GetReadStreamAsXML(self, bstrName, ppXmlNode);
     }
 };
@@ -5666,34 +5666,34 @@ pub const IPrinterQueue = extern union {
         get_Handle: *const fn(
             self: *const IPrinterQueue,
             phPrinter: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IPrinterQueue,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendBidiQuery: *const fn(
             self: *const IPrinterQueue,
             bstrBidiQuery: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProperties: *const fn(
             self: *const IPrinterQueue,
             ppPropertyBag: ?*?*IPrinterPropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Handle(self: *const IPrinterQueue, phPrinter: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const IPrinterQueue, phPrinter: ?*?HANDLE) HRESULT {
         return self.vtable.get_Handle(self, phPrinter);
     }
-    pub fn get_Name(self: *const IPrinterQueue, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IPrinterQueue, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn SendBidiQuery(self: *const IPrinterQueue, bstrBidiQuery: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SendBidiQuery(self: *const IPrinterQueue, bstrBidiQuery: ?BSTR) HRESULT {
         return self.vtable.SendBidiQuery(self, bstrBidiQuery);
     }
-    pub fn GetProperties(self: *const IPrinterQueue, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
+    pub fn GetProperties(self: *const IPrinterQueue, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
         return self.vtable.GetProperties(self, ppPropertyBag);
     }
 };
@@ -5738,57 +5738,57 @@ pub const IPrintJob = extern union {
         get_Name: *const fn(
             self: *const IPrintJob,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IPrintJob,
             pulID: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrintedPages: *const fn(
             self: *const IPrintJob,
             pulPages: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TotalPages: *const fn(
             self: *const IPrintJob,
             pulPages: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const IPrintJob,
             pStatus: ?*PrintJobStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SubmissionTime: *const fn(
             self: *const IPrintJob,
             pSubmissionTime: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestCancel: *const fn(
             self: *const IPrintJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const IPrintJob, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IPrintJob, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_Id(self: *const IPrintJob, pulID: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IPrintJob, pulID: ?*u32) HRESULT {
         return self.vtable.get_Id(self, pulID);
     }
-    pub fn get_PrintedPages(self: *const IPrintJob, pulPages: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_PrintedPages(self: *const IPrintJob, pulPages: ?*u32) HRESULT {
         return self.vtable.get_PrintedPages(self, pulPages);
     }
-    pub fn get_TotalPages(self: *const IPrintJob, pulPages: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_TotalPages(self: *const IPrintJob, pulPages: ?*u32) HRESULT {
         return self.vtable.get_TotalPages(self, pulPages);
     }
-    pub fn get_Status(self: *const IPrintJob, pStatus: ?*PrintJobStatus) callconv(.Inline) HRESULT {
+    pub fn get_Status(self: *const IPrintJob, pStatus: ?*PrintJobStatus) HRESULT {
         return self.vtable.get_Status(self, pStatus);
     }
-    pub fn get_SubmissionTime(self: *const IPrintJob, pSubmissionTime: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_SubmissionTime(self: *const IPrintJob, pSubmissionTime: ?*f64) HRESULT {
         return self.vtable.get_SubmissionTime(self, pSubmissionTime);
     }
-    pub fn RequestCancel(self: *const IPrintJob) callconv(.Inline) HRESULT {
+    pub fn RequestCancel(self: *const IPrintJob) HRESULT {
         return self.vtable.RequestCancel(self);
     }
 };
@@ -5802,28 +5802,28 @@ pub const IPrintJobCollection = extern union {
         get_Count: *const fn(
             self: *const IPrintJobCollection,
             pulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IPrintJobCollection,
             ulIndex: u32,
             ppJob: ?*?*IPrintJob,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IPrintJobCollection,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IPrintJobCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IPrintJobCollection, pulCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, pulCount);
     }
-    pub fn GetAt(self: *const IPrintJobCollection, ulIndex: u32, ppJob: ?*?*IPrintJob) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IPrintJobCollection, ulIndex: u32, ppJob: ?*?*IPrintJob) HRESULT {
         return self.vtable.GetAt(self, ulIndex, ppJob);
     }
-    pub fn get__NewEnum(self: *const IPrintJobCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IPrintJobCollection, ppUnk: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppUnk);
     }
 };
@@ -5839,12 +5839,12 @@ pub const IPrinterQueueViewEvent = extern union {
             ulViewOffset: u32,
             ulViewSize: u32,
             ulCountJobsInPrintQueue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OnChanged(self: *const IPrinterQueueViewEvent, pCollection: ?*IPrintJobCollection, ulViewOffset: u32, ulViewSize: u32, ulCountJobsInPrintQueue: u32) callconv(.Inline) HRESULT {
+    pub fn OnChanged(self: *const IPrinterQueueViewEvent, pCollection: ?*IPrintJobCollection, ulViewOffset: u32, ulViewSize: u32, ulCountJobsInPrintQueue: u32) HRESULT {
         return self.vtable.OnChanged(self, pCollection, ulViewOffset, ulViewSize, ulCountJobsInPrintQueue);
     }
 };
@@ -5858,12 +5858,12 @@ pub const IPrinterQueueView = extern union {
             self: *const IPrinterQueueView,
             ulViewOffset: u32,
             ulViewSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetViewRange(self: *const IPrinterQueueView, ulViewOffset: u32, ulViewSize: u32) callconv(.Inline) HRESULT {
+    pub fn SetViewRange(self: *const IPrinterQueueView, ulViewOffset: u32, ulViewSize: u32) HRESULT {
         return self.vtable.SetViewRange(self, ulViewOffset, ulViewSize);
     }
 };
@@ -5877,12 +5877,12 @@ pub const IPrinterQueueEvent = extern union {
             self: *const IPrinterQueueEvent,
             bstrResponse: ?BSTR,
             hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OnBidiResponseReceived(self: *const IPrinterQueueEvent, bstrResponse: ?BSTR, hrStatus: HRESULT) callconv(.Inline) HRESULT {
+    pub fn OnBidiResponseReceived(self: *const IPrinterQueueEvent, bstrResponse: ?BSTR, hrStatus: HRESULT) HRESULT {
         return self.vtable.OnBidiResponseReceived(self, bstrResponse, hrStatus);
     }
 };
@@ -5896,11 +5896,11 @@ pub const IPrinterBidiSetRequestCallback = extern union {
             self: *const IPrinterBidiSetRequestCallback,
             bstrResponse: ?BSTR,
             hrStatus: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Completed(self: *const IPrinterBidiSetRequestCallback, bstrResponse: ?BSTR, hrStatus: HRESULT) callconv(.Inline) HRESULT {
+    pub fn Completed(self: *const IPrinterBidiSetRequestCallback, bstrResponse: ?BSTR, hrStatus: HRESULT) HRESULT {
         return self.vtable.Completed(self, bstrResponse, hrStatus);
     }
 };
@@ -5912,11 +5912,11 @@ pub const IPrinterExtensionAsyncOperation = extern union {
         base: IUnknown.VTable,
         Cancel: *const fn(
             self: *const IPrinterExtensionAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Cancel(self: *const IPrinterExtensionAsyncOperation) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IPrinterExtensionAsyncOperation) HRESULT {
         return self.vtable.Cancel(self);
     }
 };
@@ -5931,22 +5931,22 @@ pub const IPrinterQueue2 = extern union {
             bstrBidiRequest: ?BSTR,
             pCallback: ?*IPrinterBidiSetRequestCallback,
             ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrinterQueueView: *const fn(
             self: *const IPrinterQueue2,
             ulViewOffset: u32,
             ulViewSize: u32,
             ppJobView: ?*?*IPrinterQueueView,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrinterQueue: IPrinterQueue,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SendBidiSetRequestAsync(self: *const IPrinterQueue2, bstrBidiRequest: ?BSTR, pCallback: ?*IPrinterBidiSetRequestCallback, ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation) callconv(.Inline) HRESULT {
+    pub fn SendBidiSetRequestAsync(self: *const IPrinterQueue2, bstrBidiRequest: ?BSTR, pCallback: ?*IPrinterBidiSetRequestCallback, ppAsyncOperation: ?*?*IPrinterExtensionAsyncOperation) HRESULT {
         return self.vtable.SendBidiSetRequestAsync(self, bstrBidiRequest, pCallback, ppAsyncOperation);
     }
-    pub fn GetPrinterQueueView(self: *const IPrinterQueue2, ulViewOffset: u32, ulViewSize: u32, ppJobView: ?*?*IPrinterQueueView) callconv(.Inline) HRESULT {
+    pub fn GetPrinterQueueView(self: *const IPrinterQueue2, ulViewOffset: u32, ulViewSize: u32, ppJobView: ?*?*IPrinterQueueView) HRESULT {
         return self.vtable.GetPrinterQueueView(self, ulViewOffset, ulViewSize, ppJobView);
     }
 };
@@ -5960,36 +5960,36 @@ pub const IPrinterExtensionContext = extern union {
         get_PrinterQueue: *const fn(
             self: *const IPrinterExtensionContext,
             ppQueue: ?*?*IPrinterQueue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrintSchemaTicket: *const fn(
             self: *const IPrinterExtensionContext,
             ppTicket: ?*?*IPrintSchemaTicket,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DriverProperties: *const fn(
             self: *const IPrinterExtensionContext,
             ppPropertyBag: ?*?*IPrinterPropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserProperties: *const fn(
             self: *const IPrinterExtensionContext,
             ppPropertyBag: ?*?*IPrinterPropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PrinterQueue(self: *const IPrinterExtensionContext, ppQueue: ?*?*IPrinterQueue) callconv(.Inline) HRESULT {
+    pub fn get_PrinterQueue(self: *const IPrinterExtensionContext, ppQueue: ?*?*IPrinterQueue) HRESULT {
         return self.vtable.get_PrinterQueue(self, ppQueue);
     }
-    pub fn get_PrintSchemaTicket(self: *const IPrinterExtensionContext, ppTicket: ?*?*IPrintSchemaTicket) callconv(.Inline) HRESULT {
+    pub fn get_PrintSchemaTicket(self: *const IPrinterExtensionContext, ppTicket: ?*?*IPrintSchemaTicket) HRESULT {
         return self.vtable.get_PrintSchemaTicket(self, ppTicket);
     }
-    pub fn get_DriverProperties(self: *const IPrinterExtensionContext, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
+    pub fn get_DriverProperties(self: *const IPrinterExtensionContext, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
         return self.vtable.get_DriverProperties(self, ppPropertyBag);
     }
-    pub fn get_UserProperties(self: *const IPrinterExtensionContext, ppPropertyBag: ?*?*IPrinterPropertyBag) callconv(.Inline) HRESULT {
+    pub fn get_UserProperties(self: *const IPrinterExtensionContext, ppPropertyBag: ?*?*IPrinterPropertyBag) HRESULT {
         return self.vtable.get_UserProperties(self, ppPropertyBag);
     }
 };
@@ -6003,18 +6003,18 @@ pub const IPrinterExtensionRequest = extern union {
             self: *const IPrinterExtensionRequest,
             hrStatus: HRESULT,
             bstrLogMessage: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Complete: *const fn(
             self: *const IPrinterExtensionRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Cancel(self: *const IPrinterExtensionRequest, hrStatus: HRESULT, bstrLogMessage: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Cancel(self: *const IPrinterExtensionRequest, hrStatus: HRESULT, bstrLogMessage: ?BSTR) HRESULT {
         return self.vtable.Cancel(self, hrStatus, bstrLogMessage);
     }
-    pub fn Complete(self: *const IPrinterExtensionRequest) callconv(.Inline) HRESULT {
+    pub fn Complete(self: *const IPrinterExtensionRequest) HRESULT {
         return self.vtable.Complete(self);
     }
 };
@@ -6028,61 +6028,61 @@ pub const IPrinterExtensionEventArgs = extern union {
         get_BidiNotification: *const fn(
             self: *const IPrinterExtensionEventArgs,
             pbstrBidiNotification: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReasonId: *const fn(
             self: *const IPrinterExtensionEventArgs,
             pReasonId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Request: *const fn(
             self: *const IPrinterExtensionEventArgs,
             ppRequest: ?*?*IPrinterExtensionRequest,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SourceApplication: *const fn(
             self: *const IPrinterExtensionEventArgs,
             pbstrApplication: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DetailedReasonId: *const fn(
             self: *const IPrinterExtensionEventArgs,
             pDetailedReasonId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowModal: *const fn(
             self: *const IPrinterExtensionEventArgs,
             pbModal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_WindowParent: *const fn(
             self: *const IPrinterExtensionEventArgs,
             phwndParent: ?*?HANDLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrinterExtensionContext: IPrinterExtensionContext,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BidiNotification(self: *const IPrinterExtensionEventArgs, pbstrBidiNotification: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_BidiNotification(self: *const IPrinterExtensionEventArgs, pbstrBidiNotification: ?*?BSTR) HRESULT {
         return self.vtable.get_BidiNotification(self, pbstrBidiNotification);
     }
-    pub fn get_ReasonId(self: *const IPrinterExtensionEventArgs, pReasonId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_ReasonId(self: *const IPrinterExtensionEventArgs, pReasonId: ?*Guid) HRESULT {
         return self.vtable.get_ReasonId(self, pReasonId);
     }
-    pub fn get_Request(self: *const IPrinterExtensionEventArgs, ppRequest: ?*?*IPrinterExtensionRequest) callconv(.Inline) HRESULT {
+    pub fn get_Request(self: *const IPrinterExtensionEventArgs, ppRequest: ?*?*IPrinterExtensionRequest) HRESULT {
         return self.vtable.get_Request(self, ppRequest);
     }
-    pub fn get_SourceApplication(self: *const IPrinterExtensionEventArgs, pbstrApplication: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_SourceApplication(self: *const IPrinterExtensionEventArgs, pbstrApplication: ?*?BSTR) HRESULT {
         return self.vtable.get_SourceApplication(self, pbstrApplication);
     }
-    pub fn get_DetailedReasonId(self: *const IPrinterExtensionEventArgs, pDetailedReasonId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_DetailedReasonId(self: *const IPrinterExtensionEventArgs, pDetailedReasonId: ?*Guid) HRESULT {
         return self.vtable.get_DetailedReasonId(self, pDetailedReasonId);
     }
-    pub fn get_WindowModal(self: *const IPrinterExtensionEventArgs, pbModal: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_WindowModal(self: *const IPrinterExtensionEventArgs, pbModal: ?*BOOL) HRESULT {
         return self.vtable.get_WindowModal(self, pbModal);
     }
-    pub fn get_WindowParent(self: *const IPrinterExtensionEventArgs, phwndParent: ?*?HANDLE) callconv(.Inline) HRESULT {
+    pub fn get_WindowParent(self: *const IPrinterExtensionEventArgs, phwndParent: ?*?HANDLE) HRESULT {
         return self.vtable.get_WindowParent(self, phwndParent);
     }
 };
@@ -6096,28 +6096,28 @@ pub const IPrinterExtensionContextCollection = extern union {
         get_Count: *const fn(
             self: *const IPrinterExtensionContextCollection,
             pulCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAt: *const fn(
             self: *const IPrinterExtensionContextCollection,
             ulIndex: u32,
             ppContext: ?*?*IPrinterExtensionContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const IPrinterExtensionContextCollection,
             ppUnk: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const IPrinterExtensionContextCollection, pulCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IPrinterExtensionContextCollection, pulCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, pulCount);
     }
-    pub fn GetAt(self: *const IPrinterExtensionContextCollection, ulIndex: u32, ppContext: ?*?*IPrinterExtensionContext) callconv(.Inline) HRESULT {
+    pub fn GetAt(self: *const IPrinterExtensionContextCollection, ulIndex: u32, ppContext: ?*?*IPrinterExtensionContext) HRESULT {
         return self.vtable.GetAt(self, ulIndex, ppContext);
     }
-    pub fn get__NewEnum(self: *const IPrinterExtensionContextCollection, ppUnk: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const IPrinterExtensionContextCollection, ppUnk: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppUnk);
     }
 };
@@ -6130,19 +6130,19 @@ pub const IPrinterExtensionEvent = extern union {
         OnDriverEvent: *const fn(
             self: *const IPrinterExtensionEvent,
             pEventArgs: ?*IPrinterExtensionEventArgs,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnPrinterQueuesEnumerated: *const fn(
             self: *const IPrinterExtensionEvent,
             pContextCollection: ?*IPrinterExtensionContextCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn OnDriverEvent(self: *const IPrinterExtensionEvent, pEventArgs: ?*IPrinterExtensionEventArgs) callconv(.Inline) HRESULT {
+    pub fn OnDriverEvent(self: *const IPrinterExtensionEvent, pEventArgs: ?*IPrinterExtensionEventArgs) HRESULT {
         return self.vtable.OnDriverEvent(self, pEventArgs);
     }
-    pub fn OnPrinterQueuesEnumerated(self: *const IPrinterExtensionEvent, pContextCollection: ?*IPrinterExtensionContextCollection) callconv(.Inline) HRESULT {
+    pub fn OnPrinterQueuesEnumerated(self: *const IPrinterExtensionEvent, pContextCollection: ?*IPrinterExtensionContextCollection) HRESULT {
         return self.vtable.OnPrinterQueuesEnumerated(self, pContextCollection);
     }
 };
@@ -6155,17 +6155,17 @@ pub const IPrinterExtensionManager = extern union {
         EnableEvents: *const fn(
             self: *const IPrinterExtensionManager,
             printerDriverId: Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisableEvents: *const fn(
             self: *const IPrinterExtensionManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnableEvents(self: *const IPrinterExtensionManager, printerDriverId: Guid) callconv(.Inline) HRESULT {
+    pub fn EnableEvents(self: *const IPrinterExtensionManager, printerDriverId: Guid) HRESULT {
         return self.vtable.EnableEvents(self, printerDriverId);
     }
-    pub fn DisableEvents(self: *const IPrinterExtensionManager) callconv(.Inline) HRESULT {
+    pub fn DisableEvents(self: *const IPrinterExtensionManager) HRESULT {
         return self.vtable.DisableEvents(self);
     }
 };
@@ -6179,28 +6179,28 @@ pub const IPrinterScriptContext = extern union {
         get_DriverProperties: *const fn(
             self: *const IPrinterScriptContext,
             ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QueueProperties: *const fn(
             self: *const IPrinterScriptContext,
             ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_UserProperties: *const fn(
             self: *const IPrinterScriptContext,
             ppPropertyBag: ?*?*IPrinterScriptablePropertyBag,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DriverProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
+    pub fn get_DriverProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
         return self.vtable.get_DriverProperties(self, ppPropertyBag);
     }
-    pub fn get_QueueProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
+    pub fn get_QueueProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
         return self.vtable.get_QueueProperties(self, ppPropertyBag);
     }
-    pub fn get_UserProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) callconv(.Inline) HRESULT {
+    pub fn get_UserProperties(self: *const IPrinterScriptContext, ppPropertyBag: ?*?*IPrinterScriptablePropertyBag) HRESULT {
         return self.vtable.get_UserProperties(self, ppPropertyBag);
     }
 };
@@ -6230,17 +6230,17 @@ pub const IPrintAsyncNotifyDataObject = extern union {
             ppNotificationData: ?*?*u8,
             pSize: ?*u32,
             ppSchema: ?*?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseData: *const fn(
             self: *const IPrintAsyncNotifyDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AcquireData(self: *const IPrintAsyncNotifyDataObject, ppNotificationData: ?*?*u8, pSize: ?*u32, ppSchema: ?*?*Guid) callconv(.Inline) HRESULT {
+    pub fn AcquireData(self: *const IPrintAsyncNotifyDataObject, ppNotificationData: ?*?*u8, pSize: ?*u32, ppSchema: ?*?*Guid) HRESULT {
         return self.vtable.AcquireData(self, ppNotificationData, pSize, ppSchema);
     }
-    pub fn ReleaseData(self: *const IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+    pub fn ReleaseData(self: *const IPrintAsyncNotifyDataObject) HRESULT {
         return self.vtable.ReleaseData(self);
     }
 };
@@ -6254,18 +6254,18 @@ pub const IPrintAsyncNotifyChannel = extern union {
         SendNotification: *const fn(
             self: *const IPrintAsyncNotifyChannel,
             pData: ?*IPrintAsyncNotifyDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CloseChannel: *const fn(
             self: *const IPrintAsyncNotifyChannel,
             pData: ?*IPrintAsyncNotifyDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SendNotification(self: *const IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+    pub fn SendNotification(self: *const IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
         return self.vtable.SendNotification(self, pData);
     }
-    pub fn CloseChannel(self: *const IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+    pub fn CloseChannel(self: *const IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
         return self.vtable.CloseChannel(self, pData);
     }
 };
@@ -6280,19 +6280,19 @@ pub const IPrintAsyncNotifyCallback = extern union {
             self: *const IPrintAsyncNotifyCallback,
             pChannel: ?*IPrintAsyncNotifyChannel,
             pData: ?*IPrintAsyncNotifyDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChannelClosed: *const fn(
             self: *const IPrintAsyncNotifyCallback,
             pChannel: ?*IPrintAsyncNotifyChannel,
             pData: ?*IPrintAsyncNotifyDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnEventNotify(self: *const IPrintAsyncNotifyCallback, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+    pub fn OnEventNotify(self: *const IPrintAsyncNotifyCallback, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
         return self.vtable.OnEventNotify(self, pChannel, pData);
     }
-    pub fn ChannelClosed(self: *const IPrintAsyncNotifyCallback, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+    pub fn ChannelClosed(self: *const IPrintAsyncNotifyCallback, pChannel: ?*IPrintAsyncNotifyChannel, pData: ?*IPrintAsyncNotifyDataObject) HRESULT {
         return self.vtable.ChannelClosed(self, pChannel, pData);
     }
 };
@@ -6355,17 +6355,17 @@ pub const IPrintAsyncNotifyRegistration = extern union {
         base: IUnknown.VTable,
         RegisterForNotifications: *const fn(
             self: *const IPrintAsyncNotifyRegistration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterForNotifications: *const fn(
             self: *const IPrintAsyncNotifyRegistration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterForNotifications(self: *const IPrintAsyncNotifyRegistration) callconv(.Inline) HRESULT {
+    pub fn RegisterForNotifications(self: *const IPrintAsyncNotifyRegistration) HRESULT {
         return self.vtable.RegisterForNotifications(self);
     }
-    pub fn UnregisterForNotifications(self: *const IPrintAsyncNotifyRegistration) callconv(.Inline) HRESULT {
+    pub fn UnregisterForNotifications(self: *const IPrintAsyncNotifyRegistration) HRESULT {
         return self.vtable.UnregisterForNotifications(self);
     }
 };
@@ -6383,7 +6383,7 @@ pub const IPrintAsyncNotify = extern union {
             param3: PrintAsyncNotifyConversationStyle,
             param4: ?*IPrintAsyncNotifyCallback,
             param5: ?*?*IPrintAsyncNotifyChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreatePrintAsyncNotifyRegistration: *const fn(
             self: *const IPrintAsyncNotify,
             param0: ?*Guid,
@@ -6391,14 +6391,14 @@ pub const IPrintAsyncNotify = extern union {
             param2: PrintAsyncNotifyConversationStyle,
             param3: ?*IPrintAsyncNotifyCallback,
             param4: ?*?*IPrintAsyncNotifyRegistration,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreatePrintAsyncNotifyChannel(self: *const IPrintAsyncNotify, param0: u32, param1: ?*Guid, param2: PrintAsyncNotifyUserFilter, param3: PrintAsyncNotifyConversationStyle, param4: ?*IPrintAsyncNotifyCallback, param5: ?*?*IPrintAsyncNotifyChannel) callconv(.Inline) HRESULT {
+    pub fn CreatePrintAsyncNotifyChannel(self: *const IPrintAsyncNotify, param0: u32, param1: ?*Guid, param2: PrintAsyncNotifyUserFilter, param3: PrintAsyncNotifyConversationStyle, param4: ?*IPrintAsyncNotifyCallback, param5: ?*?*IPrintAsyncNotifyChannel) HRESULT {
         return self.vtable.CreatePrintAsyncNotifyChannel(self, param0, param1, param2, param3, param4, param5);
     }
-    pub fn CreatePrintAsyncNotifyRegistration(self: *const IPrintAsyncNotify, param0: ?*Guid, param1: PrintAsyncNotifyUserFilter, param2: PrintAsyncNotifyConversationStyle, param3: ?*IPrintAsyncNotifyCallback, param4: ?*?*IPrintAsyncNotifyRegistration) callconv(.Inline) HRESULT {
+    pub fn CreatePrintAsyncNotifyRegistration(self: *const IPrintAsyncNotify, param0: ?*Guid, param1: PrintAsyncNotifyUserFilter, param2: PrintAsyncNotifyConversationStyle, param3: ?*IPrintAsyncNotifyCallback, param4: ?*?*IPrintAsyncNotifyRegistration) HRESULT {
         return self.vtable.CreatePrintAsyncNotifyRegistration(self, param0, param1, param2, param3, param4);
     }
 };
@@ -6409,18 +6409,18 @@ pub const IPrintAsyncCookie = extern union {
         FinishAsyncCall: *const fn(
             self: *const IPrintAsyncCookie,
             param0: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelAsyncCall: *const fn(
             self: *const IPrintAsyncCookie,
             param0: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FinishAsyncCall(self: *const IPrintAsyncCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+    pub fn FinishAsyncCall(self: *const IPrintAsyncCookie, param0: HRESULT) HRESULT {
         return self.vtable.FinishAsyncCall(self, param0);
     }
-    pub fn CancelAsyncCall(self: *const IPrintAsyncCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+    pub fn CancelAsyncCall(self: *const IPrintAsyncCookie, param0: HRESULT) HRESULT {
         return self.vtable.CancelAsyncCall(self, param0);
     }
 };
@@ -6432,12 +6432,12 @@ pub const IPrintAsyncNewChannelCookie = extern union {
             self: *const IPrintAsyncNewChannelCookie,
             param0: ?*?*IPrintAsyncNotifyChannel,
             param1: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintAsyncCookie: IPrintAsyncCookie,
     IUnknown: IUnknown,
-    pub fn FinishAsyncCallWithData(self: *const IPrintAsyncNewChannelCookie, param0: ?*?*IPrintAsyncNotifyChannel, param1: u32) callconv(.Inline) HRESULT {
+    pub fn FinishAsyncCallWithData(self: *const IPrintAsyncNewChannelCookie, param0: ?*?*IPrintAsyncNotifyChannel, param1: u32) HRESULT {
         return self.vtable.FinishAsyncCallWithData(self, param0, param1);
     }
 };
@@ -6449,12 +6449,12 @@ pub const IAsyncGetSendNotificationCookie = extern union {
             self: *const IAsyncGetSendNotificationCookie,
             param0: ?*IPrintAsyncNotifyDataObject,
             param1: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintAsyncCookie: IPrintAsyncCookie,
     IUnknown: IUnknown,
-    pub fn FinishAsyncCallWithData(self: *const IAsyncGetSendNotificationCookie, param0: ?*IPrintAsyncNotifyDataObject, param1: BOOL) callconv(.Inline) HRESULT {
+    pub fn FinishAsyncCallWithData(self: *const IAsyncGetSendNotificationCookie, param0: ?*IPrintAsyncNotifyDataObject, param1: BOOL) HRESULT {
         return self.vtable.FinishAsyncCallWithData(self, param0, param1);
     }
 };
@@ -6465,25 +6465,25 @@ pub const IAsyncGetSrvReferralCookie = extern union {
         FinishAsyncCall: *const fn(
             self: *const IAsyncGetSrvReferralCookie,
             param0: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CancelAsyncCall: *const fn(
             self: *const IAsyncGetSrvReferralCookie,
             param0: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FinishAsyncCallWithData: *const fn(
             self: *const IAsyncGetSrvReferralCookie,
             param0: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FinishAsyncCall(self: *const IAsyncGetSrvReferralCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+    pub fn FinishAsyncCall(self: *const IAsyncGetSrvReferralCookie, param0: HRESULT) HRESULT {
         return self.vtable.FinishAsyncCall(self, param0);
     }
-    pub fn CancelAsyncCall(self: *const IAsyncGetSrvReferralCookie, param0: HRESULT) callconv(.Inline) HRESULT {
+    pub fn CancelAsyncCall(self: *const IAsyncGetSrvReferralCookie, param0: HRESULT) HRESULT {
         return self.vtable.CancelAsyncCall(self, param0);
     }
-    pub fn FinishAsyncCallWithData(self: *const IAsyncGetSrvReferralCookie, param0: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn FinishAsyncCallWithData(self: *const IAsyncGetSrvReferralCookie, param0: ?[*:0]const u16) HRESULT {
         return self.vtable.FinishAsyncCallWithData(self, param0);
     }
 };
@@ -6494,12 +6494,12 @@ pub const IPrintBidiAsyncNotifyRegistration = extern union {
         AsyncGetNewChannel: *const fn(
             self: *const IPrintBidiAsyncNotifyRegistration,
             param0: ?*IPrintAsyncNewChannelCookie,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintAsyncNotifyRegistration: IPrintAsyncNotifyRegistration,
     IUnknown: IUnknown,
-    pub fn AsyncGetNewChannel(self: *const IPrintBidiAsyncNotifyRegistration, param0: ?*IPrintAsyncNewChannelCookie) callconv(.Inline) HRESULT {
+    pub fn AsyncGetNewChannel(self: *const IPrintBidiAsyncNotifyRegistration, param0: ?*IPrintAsyncNewChannelCookie) HRESULT {
         return self.vtable.AsyncGetNewChannel(self, param0);
     }
 };
@@ -6510,12 +6510,12 @@ pub const IPrintUnidiAsyncNotifyRegistration = extern union {
         AsyncGetNotification: *const fn(
             self: *const IPrintUnidiAsyncNotifyRegistration,
             param0: ?*IAsyncGetSendNotificationCookie,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintAsyncNotifyRegistration: IPrintAsyncNotifyRegistration,
     IUnknown: IUnknown,
-    pub fn AsyncGetNotification(self: *const IPrintUnidiAsyncNotifyRegistration, param0: ?*IAsyncGetSendNotificationCookie) callconv(.Inline) HRESULT {
+    pub fn AsyncGetNotification(self: *const IPrintUnidiAsyncNotifyRegistration, param0: ?*IAsyncGetSendNotificationCookie) HRESULT {
         return self.vtable.AsyncGetNotification(self, param0);
     }
 };
@@ -6526,25 +6526,25 @@ pub const IPrintAsyncNotifyServerReferral = extern union {
         GetServerReferral: *const fn(
             self: *const IPrintAsyncNotifyServerReferral,
             param0: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AsyncGetServerReferral: *const fn(
             self: *const IPrintAsyncNotifyServerReferral,
             param0: ?*IAsyncGetSrvReferralCookie,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetServerReferral: *const fn(
             self: *const IPrintAsyncNotifyServerReferral,
             pRmtServerReferral: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*?PWSTR) HRESULT {
         return self.vtable.GetServerReferral(self, param0);
     }
-    pub fn AsyncGetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*IAsyncGetSrvReferralCookie) callconv(.Inline) HRESULT {
+    pub fn AsyncGetServerReferral(self: *const IPrintAsyncNotifyServerReferral, param0: ?*IAsyncGetSrvReferralCookie) HRESULT {
         return self.vtable.AsyncGetServerReferral(self, param0);
     }
-    pub fn SetServerReferral(self: *const IPrintAsyncNotifyServerReferral, pRmtServerReferral: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetServerReferral(self: *const IPrintAsyncNotifyServerReferral, pRmtServerReferral: ?[*:0]const u16) HRESULT {
         return self.vtable.SetServerReferral(self, pRmtServerReferral);
     }
 };
@@ -6556,42 +6556,42 @@ pub const IBidiAsyncNotifyChannel = extern union {
         base: IPrintAsyncNotifyChannel.VTable,
         CreateNotificationChannel: *const fn(
             self: *const IBidiAsyncNotifyChannel,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPrintName: *const fn(
             self: *const IBidiAsyncNotifyChannel,
             param0: ?*?*IPrintAsyncNotifyDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetChannelNotificationType: *const fn(
             self: *const IBidiAsyncNotifyChannel,
             param0: ?*?*IPrintAsyncNotifyDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AsyncGetNotificationSendResponse: *const fn(
             self: *const IBidiAsyncNotifyChannel,
             param0: ?*IPrintAsyncNotifyDataObject,
             param1: ?*IAsyncGetSendNotificationCookie,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AsyncCloseChannel: *const fn(
             self: *const IBidiAsyncNotifyChannel,
             param0: ?*IPrintAsyncNotifyDataObject,
             param1: ?*IPrintAsyncCookie,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IPrintAsyncNotifyChannel: IPrintAsyncNotifyChannel,
     IUnknown: IUnknown,
-    pub fn CreateNotificationChannel(self: *const IBidiAsyncNotifyChannel) callconv(.Inline) HRESULT {
+    pub fn CreateNotificationChannel(self: *const IBidiAsyncNotifyChannel) HRESULT {
         return self.vtable.CreateNotificationChannel(self);
     }
-    pub fn GetPrintName(self: *const IBidiAsyncNotifyChannel, param0: ?*?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+    pub fn GetPrintName(self: *const IBidiAsyncNotifyChannel, param0: ?*?*IPrintAsyncNotifyDataObject) HRESULT {
         return self.vtable.GetPrintName(self, param0);
     }
-    pub fn GetChannelNotificationType(self: *const IBidiAsyncNotifyChannel, param0: ?*?*IPrintAsyncNotifyDataObject) callconv(.Inline) HRESULT {
+    pub fn GetChannelNotificationType(self: *const IBidiAsyncNotifyChannel, param0: ?*?*IPrintAsyncNotifyDataObject) HRESULT {
         return self.vtable.GetChannelNotificationType(self, param0);
     }
-    pub fn AsyncGetNotificationSendResponse(self: *const IBidiAsyncNotifyChannel, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IAsyncGetSendNotificationCookie) callconv(.Inline) HRESULT {
+    pub fn AsyncGetNotificationSendResponse(self: *const IBidiAsyncNotifyChannel, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IAsyncGetSendNotificationCookie) HRESULT {
         return self.vtable.AsyncGetNotificationSendResponse(self, param0, param1);
     }
-    pub fn AsyncCloseChannel(self: *const IBidiAsyncNotifyChannel, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IPrintAsyncCookie) callconv(.Inline) HRESULT {
+    pub fn AsyncCloseChannel(self: *const IBidiAsyncNotifyChannel, param0: ?*IPrintAsyncNotifyDataObject, param1: ?*IPrintAsyncCookie) HRESULT {
         return self.vtable.AsyncCloseChannel(self, param0, param1);
     }
 };
@@ -6879,7 +6879,7 @@ pub const EMFPLAYPROC = *const fn(
     param0: ?HDC,
     param1: i32,
     param2: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const EBranchOfficeJobEventType = enum(i32) {
     InvalidJobState = 0,
@@ -7204,7 +7204,7 @@ pub const ROUTER_NOTIFY_CALLBACK = *const fn(
     pNofityInfo: ?*PRINTER_NOTIFY_INFO,
     fdwFlags: u32,
     pdwResult: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const NOTIFICATION_CALLBACK_COMMANDS = enum(i32) {
     NOTIFY = 0,
@@ -7259,11 +7259,11 @@ pub const IXpsRasterizerNotificationCallback = extern union {
         base: IUnknown.VTable,
         Continue: *const fn(
             self: *const IXpsRasterizerNotificationCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Continue(self: *const IXpsRasterizerNotificationCallback) callconv(.Inline) HRESULT {
+    pub fn Continue(self: *const IXpsRasterizerNotificationCallback) HRESULT {
         return self.vtable.Continue(self);
     }
 };
@@ -7288,18 +7288,18 @@ pub const IXpsRasterizer = extern union {
             height: i32,
             notificationCallback: ?*IXpsRasterizerNotificationCallback,
             bitmap: ?*?*IWICBitmap,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMinimalLineWidth: *const fn(
             self: *const IXpsRasterizer,
             width: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RasterizeRect(self: *const IXpsRasterizer, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?*?*IWICBitmap) callconv(.Inline) HRESULT {
+    pub fn RasterizeRect(self: *const IXpsRasterizer, x: i32, y: i32, width: i32, height: i32, notificationCallback: ?*IXpsRasterizerNotificationCallback, bitmap: ?*?*IWICBitmap) HRESULT {
         return self.vtable.RasterizeRect(self, x, y, width, height, notificationCallback, bitmap);
     }
-    pub fn SetMinimalLineWidth(self: *const IXpsRasterizer, width: i32) callconv(.Inline) HRESULT {
+    pub fn SetMinimalLineWidth(self: *const IXpsRasterizer, width: i32) HRESULT {
         return self.vtable.SetMinimalLineWidth(self, width);
     }
 };
@@ -7316,11 +7316,11 @@ pub const IXpsRasterizationFactory = extern union {
             nonTextRenderingMode: XPSRAS_RENDERING_MODE,
             textRenderingMode: XPSRAS_RENDERING_MODE,
             ppIXPSRasterizer: ?*?*IXpsRasterizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, ppIXPSRasterizer: ?*?*IXpsRasterizer) HRESULT {
         return self.vtable.CreateRasterizer(self, xpsPage, DPI, nonTextRenderingMode, textRenderingMode, ppIXPSRasterizer);
     }
 };
@@ -7347,11 +7347,11 @@ pub const IXpsRasterizationFactory1 = extern union {
             textRenderingMode: XPSRAS_RENDERING_MODE,
             pixelFormat: XPSRAS_PIXEL_FORMAT,
             ppIXPSRasterizer: ?*?*IXpsRasterizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory1, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory1, xpsPage: ?*IXpsOMPage, DPI: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, ppIXPSRasterizer: ?*?*IXpsRasterizer) HRESULT {
         return self.vtable.CreateRasterizer(self, xpsPage, DPI, nonTextRenderingMode, textRenderingMode, pixelFormat, ppIXPSRasterizer);
     }
 };
@@ -7378,11 +7378,11 @@ pub const IXpsRasterizationFactory2 = extern union {
             pixelFormat: XPSRAS_PIXEL_FORMAT,
             backgroundColor: XPSRAS_BACKGROUND_COLOR,
             ppIXpsRasterizer: ?*?*IXpsRasterizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory2, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?*?*IXpsRasterizer) callconv(.Inline) HRESULT {
+    pub fn CreateRasterizer(self: *const IXpsRasterizationFactory2, xpsPage: ?*IXpsOMPage, DPIX: f32, DPIY: f32, nonTextRenderingMode: XPSRAS_RENDERING_MODE, textRenderingMode: XPSRAS_RENDERING_MODE, pixelFormat: XPSRAS_PIXEL_FORMAT, backgroundColor: XPSRAS_BACKGROUND_COLOR, ppIXpsRasterizer: ?*?*IXpsRasterizer) HRESULT {
         return self.vtable.CreateRasterizer(self, xpsPage, DPIX, DPIY, nonTextRenderingMode, textRenderingMode, pixelFormat, backgroundColor, ppIXpsRasterizer);
     }
 };
@@ -7403,27 +7403,27 @@ pub const IPrintPreviewDxgiPackageTarget = extern union {
             self: *const IPrintPreviewDxgiPackageTarget,
             countType: PageCountType,
             count: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DrawPage: *const fn(
             self: *const IPrintPreviewDxgiPackageTarget,
             jobPageNumber: u32,
             pageImage: ?*IDXGISurface,
             dpiX: f32,
             dpiY: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InvalidatePreview: *const fn(
             self: *const IPrintPreviewDxgiPackageTarget,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetJobPageCount(self: *const IPrintPreviewDxgiPackageTarget, countType: PageCountType, count: u32) callconv(.Inline) HRESULT {
+    pub fn SetJobPageCount(self: *const IPrintPreviewDxgiPackageTarget, countType: PageCountType, count: u32) HRESULT {
         return self.vtable.SetJobPageCount(self, countType, count);
     }
-    pub fn DrawPage(self: *const IPrintPreviewDxgiPackageTarget, jobPageNumber: u32, pageImage: ?*IDXGISurface, dpiX: f32, dpiY: f32) callconv(.Inline) HRESULT {
+    pub fn DrawPage(self: *const IPrintPreviewDxgiPackageTarget, jobPageNumber: u32, pageImage: ?*IDXGISurface, dpiX: f32, dpiY: f32) HRESULT {
         return self.vtable.DrawPage(self, jobPageNumber, pageImage, dpiX, dpiY);
     }
-    pub fn InvalidatePreview(self: *const IPrintPreviewDxgiPackageTarget) callconv(.Inline) HRESULT {
+    pub fn InvalidatePreview(self: *const IPrintPreviewDxgiPackageTarget) HRESULT {
         return self.vtable.InvalidatePreview(self);
     }
 };
@@ -7446,23 +7446,23 @@ pub extern "compstui" fn CommonPropertySheetUIA(
     pfnPropSheetUI: ?PFNPROPSHEETUI,
     lParam: LPARAM,
     pResult: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "compstui" fn CommonPropertySheetUIW(
     hWndOwner: ?HWND,
     pfnPropSheetUI: ?PFNPROPSHEETUI,
     lParam: LPARAM,
     pResult: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "compstui" fn GetCPSUIUserData(
     hDlg: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 pub extern "compstui" fn SetCPSUIUserData(
     hDlg: ?HWND,
     CPSUIUserData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintersA(
     Flags: u32,
@@ -7473,7 +7473,7 @@ pub extern "winspool.drv" fn EnumPrintersA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintersW(
     Flags: u32,
@@ -7484,44 +7484,44 @@ pub extern "winspool.drv" fn EnumPrintersW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetSpoolFileHandle(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn CommitSpoolData(
     hPrinter: ?HANDLE,
     hSpoolFile: ?HANDLE,
     cbCommit: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn CloseSpoolFileHandle(
     hPrinter: ?HANDLE,
     hSpoolFile: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn OpenPrinterA(
     pPrinterName: ?PSTR,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn OpenPrinterW(
     pPrinterName: ?PWSTR,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ResetPrinterA(
     hPrinter: ?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ResetPrinterW(
     hPrinter: ?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetJobA(
     hPrinter: ?HANDLE,
@@ -7529,7 +7529,7 @@ pub extern "winspool.drv" fn SetJobA(
     Level: u32,
     pJob: ?*u8,
     Command: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetJobW(
     hPrinter: ?HANDLE,
@@ -7537,7 +7537,7 @@ pub extern "winspool.drv" fn SetJobW(
     Level: u32,
     pJob: ?*u8,
     Command: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetJobA(
     hPrinter: ?HANDLE,
@@ -7547,7 +7547,7 @@ pub extern "winspool.drv" fn GetJobA(
     pJob: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetJobW(
     hPrinter: ?HANDLE,
@@ -7557,7 +7557,7 @@ pub extern "winspool.drv" fn GetJobW(
     pJob: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumJobsA(
     hPrinter: ?HANDLE,
@@ -7569,7 +7569,7 @@ pub extern "winspool.drv" fn EnumJobsA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumJobsW(
     hPrinter: ?HANDLE,
@@ -7581,37 +7581,37 @@ pub extern "winspool.drv" fn EnumJobsW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterA(
     pName: ?PSTR,
     Level: u32,
     pPrinter: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn AddPrinterW(
     pName: ?PWSTR,
     Level: u32,
     pPrinter: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn DeletePrinter(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetPrinterA(
     hPrinter: ?HANDLE,
     Level: u32,
     pPrinter: ?*u8,
     Command: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetPrinterW(
     hPrinter: ?HANDLE,
     Level: u32,
     pPrinter: ?*u8,
     Command: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterA(
     hPrinter: ?HANDLE,
@@ -7620,7 +7620,7 @@ pub extern "winspool.drv" fn GetPrinterA(
     pPrinter: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterW(
     hPrinter: ?HANDLE,
@@ -7629,33 +7629,33 @@ pub extern "winspool.drv" fn GetPrinterW(
     pPrinter: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverA(
     pName: ?PSTR,
     Level: u32,
     pDriverInfo: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverW(
     pName: ?PWSTR,
     Level: u32,
     pDriverInfo: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverExA(
     pName: ?PSTR,
     Level: u32,
     lpbDriverInfo: ?*u8,
     dwFileCopyFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterDriverExW(
     pName: ?PWSTR,
     Level: u32,
     lpbDriverInfo: ?*u8,
     dwFileCopyFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrinterDriversA(
     pName: ?PSTR,
@@ -7666,7 +7666,7 @@ pub extern "winspool.drv" fn EnumPrinterDriversA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrinterDriversW(
     pName: ?PWSTR,
@@ -7677,7 +7677,7 @@ pub extern "winspool.drv" fn EnumPrinterDriversW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterDriverA(
     hPrinter: ?HANDLE,
@@ -7687,7 +7687,7 @@ pub extern "winspool.drv" fn GetPrinterDriverA(
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterDriverW(
     hPrinter: ?HANDLE,
@@ -7697,7 +7697,7 @@ pub extern "winspool.drv" fn GetPrinterDriverW(
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterDriverDirectoryA(
     pName: ?PSTR,
@@ -7707,7 +7707,7 @@ pub extern "winspool.drv" fn GetPrinterDriverDirectoryA(
     pDriverDirectory: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterDriverDirectoryW(
     pName: ?PWSTR,
@@ -7717,19 +7717,19 @@ pub extern "winspool.drv" fn GetPrinterDriverDirectoryW(
     pDriverDirectory: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterDriverA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pDriverName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterDriverW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pDriverName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterDriverExA(
     pName: ?PSTR,
@@ -7737,7 +7737,7 @@ pub extern "winspool.drv" fn DeletePrinterDriverExA(
     pDriverName: ?PSTR,
     dwDeleteFlag: u32,
     dwVersionFlag: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterDriverExW(
     pName: ?PWSTR,
@@ -7745,21 +7745,21 @@ pub extern "winspool.drv" fn DeletePrinterDriverExW(
     pDriverName: ?PWSTR,
     dwDeleteFlag: u32,
     dwVersionFlag: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrintProcessorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pPathName: ?PSTR,
     pPrintProcessorName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrintProcessorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pPathName: ?PWSTR,
     pPrintProcessorName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorsA(
     pName: ?PSTR,
@@ -7770,7 +7770,7 @@ pub extern "winspool.drv" fn EnumPrintProcessorsA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorsW(
     pName: ?PWSTR,
@@ -7781,7 +7781,7 @@ pub extern "winspool.drv" fn EnumPrintProcessorsW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrintProcessorDirectoryA(
     pName: ?PSTR,
@@ -7791,7 +7791,7 @@ pub extern "winspool.drv" fn GetPrintProcessorDirectoryA(
     pPrintProcessorInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrintProcessorDirectoryW(
     pName: ?PWSTR,
@@ -7801,7 +7801,7 @@ pub extern "winspool.drv" fn GetPrintProcessorDirectoryW(
     pPrintProcessorInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorDatatypesA(
     pName: ?PSTR,
@@ -7812,7 +7812,7 @@ pub extern "winspool.drv" fn EnumPrintProcessorDatatypesA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPrintProcessorDatatypesW(
     pName: ?PWSTR,
@@ -7823,35 +7823,35 @@ pub extern "winspool.drv" fn EnumPrintProcessorDatatypesW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrintProcessorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pPrintProcessorName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrintProcessorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pPrintProcessorName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn StartDocPrinterA(
     hPrinter: ?HANDLE,
     Level: u32,
     pDocInfo: ?*DOC_INFO_1A,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn StartDocPrinterW(
     hPrinter: ?HANDLE,
     Level: u32,
     pDocInfo: ?*DOC_INFO_1W,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn StartPagePrinter(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn WritePrinter(
     hPrinter: ?HANDLE,
@@ -7859,7 +7859,7 @@ pub extern "winspool.drv" fn WritePrinter(
     pBuf: ?*anyopaque,
     cbBuf: u32,
     pcWritten: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn FlushPrinter(
     hPrinter: ?HANDLE,
@@ -7868,15 +7868,15 @@ pub extern "winspool.drv" fn FlushPrinter(
     cbBuf: u32,
     pcWritten: ?*u32,
     cSleep: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EndPagePrinter(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AbortPrinter(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ReadPrinter(
     hPrinter: ?HANDLE,
@@ -7884,11 +7884,11 @@ pub extern "winspool.drv" fn ReadPrinter(
     pBuf: ?*anyopaque,
     cbBuf: u32,
     pNoBytesRead: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EndDocPrinter(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddJobA(
     hPrinter: ?HANDLE,
@@ -7897,7 +7897,7 @@ pub extern "winspool.drv" fn AddJobA(
     pData: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddJobW(
     hPrinter: ?HANDLE,
@@ -7906,17 +7906,17 @@ pub extern "winspool.drv" fn AddJobW(
     pData: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ScheduleJob(
     hPrinter: ?HANDLE,
     JobId: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn PrinterProperties(
     hWnd: ?HWND,
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DocumentPropertiesA(
     hWnd: ?HWND,
@@ -7925,7 +7925,7 @@ pub extern "winspool.drv" fn DocumentPropertiesA(
     pDevModeOutput: ?*DEVMODEA,
     pDevModeInput: ?*DEVMODEA,
     fMode: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "winspool.drv" fn DocumentPropertiesW(
     hWnd: ?HWND,
@@ -7934,7 +7934,7 @@ pub extern "winspool.drv" fn DocumentPropertiesW(
     pDevModeOutput: ?*DEVMODEW,
     pDevModeInput: ?*DEVMODEW,
     fMode: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "winspool.drv" fn AdvancedDocumentPropertiesA(
     hWnd: ?HWND,
@@ -7942,7 +7942,7 @@ pub extern "winspool.drv" fn AdvancedDocumentPropertiesA(
     pDeviceName: ?PSTR,
     pDevModeOutput: ?*DEVMODEA,
     pDevModeInput: ?*DEVMODEA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "winspool.drv" fn AdvancedDocumentPropertiesW(
     hWnd: ?HWND,
@@ -7950,7 +7950,7 @@ pub extern "winspool.drv" fn AdvancedDocumentPropertiesW(
     pDeviceName: ?PWSTR,
     pDevModeOutput: ?*DEVMODEW,
     pDevModeInput: ?*DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "winspool.drv" fn ExtDeviceMode(
     hWnd: ?HWND,
@@ -7961,7 +7961,7 @@ pub extern "winspool.drv" fn ExtDeviceMode(
     pDevModeInput: ?*DEVMODEA,
     pProfile: ?PSTR,
     fMode: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "winspool.drv" fn GetPrinterDataA(
     hPrinter: ?HANDLE,
@@ -7971,7 +7971,7 @@ pub extern "winspool.drv" fn GetPrinterDataA(
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn GetPrinterDataW(
     hPrinter: ?HANDLE,
@@ -7981,7 +7981,7 @@ pub extern "winspool.drv" fn GetPrinterDataW(
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn GetPrinterDataExA(
     hPrinter: ?HANDLE,
@@ -7992,7 +7992,7 @@ pub extern "winspool.drv" fn GetPrinterDataExA(
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn GetPrinterDataExW(
     hPrinter: ?HANDLE,
@@ -8003,7 +8003,7 @@ pub extern "winspool.drv" fn GetPrinterDataExW(
     pData: ?*u8,
     nSize: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrinterDataA(
     hPrinter: ?HANDLE,
@@ -8016,7 +8016,7 @@ pub extern "winspool.drv" fn EnumPrinterDataA(
     pData: ?[*:0]u8,
     cbData: u32,
     pcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrinterDataW(
     hPrinter: ?HANDLE,
@@ -8029,7 +8029,7 @@ pub extern "winspool.drv" fn EnumPrinterDataW(
     pData: ?[*:0]u8,
     cbData: u32,
     pcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrinterDataExA(
     hPrinter: ?HANDLE,
@@ -8039,7 +8039,7 @@ pub extern "winspool.drv" fn EnumPrinterDataExA(
     cbEnumValues: u32,
     pcbEnumValues: ?*u32,
     pnEnumValues: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrinterDataExW(
     hPrinter: ?HANDLE,
@@ -8049,7 +8049,7 @@ pub extern "winspool.drv" fn EnumPrinterDataExW(
     cbEnumValues: u32,
     pcbEnumValues: ?*u32,
     pnEnumValues: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrinterKeyA(
     hPrinter: ?HANDLE,
@@ -8058,7 +8058,7 @@ pub extern "winspool.drv" fn EnumPrinterKeyA(
     pSubkey: ?PSTR,
     cbSubkey: u32,
     pcbSubkey: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumPrinterKeyW(
     hPrinter: ?HANDLE,
@@ -8067,7 +8067,7 @@ pub extern "winspool.drv" fn EnumPrinterKeyW(
     pSubkey: ?PWSTR,
     cbSubkey: u32,
     pcbSubkey: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn SetPrinterDataA(
     hPrinter: ?HANDLE,
@@ -8076,7 +8076,7 @@ pub extern "winspool.drv" fn SetPrinterDataA(
     // TODO: what to do with BytesParamIndex 4?
     pData: ?*u8,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn SetPrinterDataW(
     hPrinter: ?HANDLE,
@@ -8085,7 +8085,7 @@ pub extern "winspool.drv" fn SetPrinterDataW(
     // TODO: what to do with BytesParamIndex 4?
     pData: ?*u8,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn SetPrinterDataExA(
     hPrinter: ?HANDLE,
@@ -8095,7 +8095,7 @@ pub extern "winspool.drv" fn SetPrinterDataExA(
     // TODO: what to do with BytesParamIndex 5?
     pData: ?*u8,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn SetPrinterDataExW(
     hPrinter: ?HANDLE,
@@ -8105,66 +8105,66 @@ pub extern "winspool.drv" fn SetPrinterDataExW(
     // TODO: what to do with BytesParamIndex 5?
     pData: ?*u8,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterDataA(
     hPrinter: ?HANDLE,
     pValueName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterDataW(
     hPrinter: ?HANDLE,
     pValueName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterDataExA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
     pValueName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterDataExW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
     pValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterKeyA(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeletePrinterKeyW(
     hPrinter: ?HANDLE,
     pKeyName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn WaitForPrinterChange(
     hPrinter: ?HANDLE,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn FindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwFilter: u32,
     fdwOptions: u32,
     pPrinterNotifyOptions: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn FindNextPrinterChangeNotification(
     hChange: ?HANDLE,
     pdwChange: ?*u32,
     pvReserved: ?*anyopaque,
     ppPrinterNotifyInfo: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn FreePrinterNotifyInfo(
     pPrinterNotifyInfo: ?*PRINTER_NOTIFY_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn FindClosePrinterChangeNotification(
     hChange: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn PrinterMessageBoxA(
     hPrinter: ?HANDLE,
@@ -8173,7 +8173,7 @@ pub extern "winspool.drv" fn PrinterMessageBoxA(
     pText: ?PSTR,
     pCaption: ?PSTR,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn PrinterMessageBoxW(
     hPrinter: ?HANDLE,
@@ -8182,33 +8182,33 @@ pub extern "winspool.drv" fn PrinterMessageBoxW(
     pText: ?PWSTR,
     pCaption: ?PWSTR,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn ClosePrinter(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddFormA(
     hPrinter: ?HANDLE,
     Level: u32,
     pForm: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddFormW(
     hPrinter: ?HANDLE,
     Level: u32,
     pForm: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeleteFormA(
     hPrinter: ?HANDLE,
     pFormName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeleteFormW(
     hPrinter: ?HANDLE,
     pFormName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetFormA(
     hPrinter: ?HANDLE,
@@ -8218,7 +8218,7 @@ pub extern "winspool.drv" fn GetFormA(
     pForm: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetFormW(
     hPrinter: ?HANDLE,
@@ -8228,21 +8228,21 @@ pub extern "winspool.drv" fn GetFormW(
     pForm: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetFormA(
     hPrinter: ?HANDLE,
     pFormName: ?PSTR,
     Level: u32,
     pForm: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetFormW(
     hPrinter: ?HANDLE,
     pFormName: ?PWSTR,
     Level: u32,
     pForm: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumFormsA(
     hPrinter: ?HANDLE,
@@ -8252,7 +8252,7 @@ pub extern "winspool.drv" fn EnumFormsA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumFormsW(
     hPrinter: ?HANDLE,
@@ -8262,7 +8262,7 @@ pub extern "winspool.drv" fn EnumFormsW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumMonitorsA(
     pName: ?PSTR,
@@ -8272,7 +8272,7 @@ pub extern "winspool.drv" fn EnumMonitorsA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumMonitorsW(
     pName: ?PWSTR,
@@ -8282,31 +8282,31 @@ pub extern "winspool.drv" fn EnumMonitorsW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddMonitorA(
     pName: ?PSTR,
     Level: u32,
     pMonitors: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddMonitorW(
     pName: ?PWSTR,
     Level: u32,
     pMonitors: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeleteMonitorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pMonitorName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeleteMonitorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pMonitorName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPortsA(
     pName: ?PSTR,
@@ -8316,7 +8316,7 @@ pub extern "winspool.drv" fn EnumPortsA(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn EnumPortsW(
     pName: ?PWSTR,
@@ -8326,43 +8326,43 @@ pub extern "winspool.drv" fn EnumPortsW(
     cbBuf: u32,
     pcbNeeded: ?*u32,
     pcReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPortA(
     pName: ?PSTR,
     hWnd: ?HWND,
     pMonitorName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPortW(
     pName: ?PWSTR,
     hWnd: ?HWND,
     pMonitorName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ConfigurePortA(
     pName: ?PSTR,
     hWnd: ?HWND,
     pPortName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ConfigurePortW(
     pName: ?PWSTR,
     hWnd: ?HWND,
     pPortName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePortA(
     pName: ?PSTR,
     hWnd: ?HWND,
     pPortName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePortW(
     pName: ?PWSTR,
     hWnd: ?HWND,
     pPortName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn XcvDataW(
     hXcv: ?HANDLE,
@@ -8375,122 +8375,122 @@ pub extern "winspool.drv" fn XcvDataW(
     cbOutputData: u32,
     pcbOutputNeeded: ?*u32,
     pdwStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetDefaultPrinterA(
     pszBuffer: ?[*:0]u8,
     pcchBuffer: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetDefaultPrinterW(
     pszBuffer: ?[*:0]u16,
     pcchBuffer: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetDefaultPrinterA(
     pszPrinter: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetDefaultPrinterW(
     pszPrinter: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetPortA(
     pName: ?PSTR,
     pPortName: ?PSTR,
     dwLevel: u32,
     pPortInfo: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn SetPortW(
     pName: ?PWSTR,
     pPortName: ?PWSTR,
     dwLevel: u32,
     pPortInfo: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterConnectionA(
     pName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterConnectionW(
     pName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterConnectionA(
     pName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterConnectionW(
     pName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn ConnectToPrinterDlg(
     hwnd: ?HWND,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn AddPrintProvidorA(
     pName: ?PSTR,
     Level: u32,
     pProvidorInfo: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrintProvidorW(
     pName: ?PWSTR,
     Level: u32,
     pProvidorInfo: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrintProvidorA(
     pName: ?PSTR,
     pEnvironment: ?PSTR,
     pPrintProvidorName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrintProvidorW(
     pName: ?PWSTR,
     pEnvironment: ?PWSTR,
     pPrintProvidorName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn IsValidDevmodeA(
     pDevmode: ?*DEVMODEA,
     DevmodeSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn IsValidDevmodeW(
     pDevmode: ?*DEVMODEW,
     DevmodeSize: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn OpenPrinter2A(
     pPrinterName: ?[*:0]const u8,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSA,
     pOptions: ?*PRINTER_OPTIONSA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn OpenPrinter2W(
     pPrinterName: ?[*:0]const u16,
     phPrinter: ?*?HANDLE,
     pDefault: ?*PRINTER_DEFAULTSW,
     pOptions: ?*PRINTER_OPTIONSW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterConnection2A(
     hWnd: ?HWND,
     pszName: ?[*:0]const u8,
     dwLevel: u32,
     pConnectionInfo: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn AddPrinterConnection2W(
     hWnd: ?HWND,
     pszName: ?[*:0]const u16,
     dwLevel: u32,
     pConnectionInfo: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn InstallPrinterDriverFromPackageA(
     pszServer: ?[*:0]const u8,
@@ -8498,7 +8498,7 @@ pub extern "winspool.drv" fn InstallPrinterDriverFromPackageA(
     pszDriverName: ?[*:0]const u8,
     pszEnvironment: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn InstallPrinterDriverFromPackageW(
     pszServer: ?[*:0]const u16,
@@ -8506,7 +8506,7 @@ pub extern "winspool.drv" fn InstallPrinterDriverFromPackageW(
     pszDriverName: ?[*:0]const u16,
     pszEnvironment: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn UploadPrinterDriverPackageA(
     pszServer: ?[*:0]const u8,
@@ -8516,7 +8516,7 @@ pub extern "winspool.drv" fn UploadPrinterDriverPackageA(
     hwnd: ?HWND,
     pszDestInfPath: [*:0]u8,
     pcchDestInfPath: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn UploadPrinterDriverPackageW(
     pszServer: ?[*:0]const u16,
@@ -8526,7 +8526,7 @@ pub extern "winspool.drv" fn UploadPrinterDriverPackageW(
     hwnd: ?HWND,
     pszDestInfPath: [*:0]u16,
     pcchDestInfPath: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn GetCorePrinterDriversA(
     pszServer: ?[*:0]const u8,
@@ -8534,7 +8534,7 @@ pub extern "winspool.drv" fn GetCorePrinterDriversA(
     pszzCoreDriverDependencies: ?[*:0]const u8,
     cCorePrinterDrivers: u32,
     pCorePrinterDrivers: [*]CORE_PRINTER_DRIVERA,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn GetCorePrinterDriversW(
     pszServer: ?[*:0]const u16,
@@ -8542,7 +8542,7 @@ pub extern "winspool.drv" fn GetCorePrinterDriversW(
     pszzCoreDriverDependencies: ?[*:0]const u16,
     cCorePrinterDrivers: u32,
     pCorePrinterDrivers: [*]CORE_PRINTER_DRIVERW,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // This function from dll 'winspool.drv' is being skipped because it has some sort of issue
 pub fn CorePrinterDriverInstalledA() void { @panic("this function is not working"); }
@@ -8558,7 +8558,7 @@ pub extern "winspool.drv" fn GetPrinterDriverPackagePathA(
     pszDriverPackageCab: ?[*:0]u8,
     cchDriverPackageCab: u32,
     pcchRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn GetPrinterDriverPackagePathW(
     pszServer: ?[*:0]const u16,
@@ -8568,26 +8568,26 @@ pub extern "winspool.drv" fn GetPrinterDriverPackagePathW(
     pszDriverPackageCab: ?[*:0]u16,
     cchDriverPackageCab: u32,
     pcchRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn DeletePrinterDriverPackageA(
     pszServer: ?[*:0]const u8,
     pszInfPath: ?[*:0]const u8,
     pszEnvironment: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn DeletePrinterDriverPackageW(
     pszServer: ?[*:0]const u16,
     pszInfPath: ?[*:0]const u16,
     pszEnvironment: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn ReportJobProcessingProgress(
     printerHandle: ?HANDLE,
     jobId: u32,
     jobOperation: EPrintXPSJobOperation,
     jobProgress: EPrintXPSJobProgress,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn GetPrinterDriver2A(
     hWnd: ?HWND,
@@ -8598,7 +8598,7 @@ pub extern "winspool.drv" fn GetPrinterDriver2A(
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrinterDriver2W(
     hWnd: ?HWND,
@@ -8609,57 +8609,57 @@ pub extern "winspool.drv" fn GetPrinterDriver2W(
     pDriverInfo: ?*u8,
     cbBuf: u32,
     pcbNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetPrintExecutionData(
     pData: ?*PRINT_EXECUTION_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn GetJobNamedPropertyValue(
     hPrinter: ?HANDLE,
     JobId: u32,
     pszName: ?[*:0]const u16,
     pValue: ?*PrintPropertyValue,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn FreePrintPropertyValue(
     pValue: ?*PrintPropertyValue,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "winspool.drv" fn FreePrintNamedPropertyArray(
     cProperties: u32,
     ppProperties: ?[*]?*PrintNamedProperty,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "winspool.drv" fn SetJobNamedProperty(
     hPrinter: ?HANDLE,
     JobId: u32,
     pProperty: ?*const PrintNamedProperty,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn DeleteJobNamedProperty(
     hPrinter: ?HANDLE,
     JobId: u32,
     pszName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn EnumJobNamedProperties(
     hPrinter: ?HANDLE,
     JobId: u32,
     pcProperties: ?*u32,
     ppProperties: ?*?*PrintNamedProperty,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "winspool.drv" fn GetPrintOutputInfo(
     hWnd: ?HWND,
     pszPrinter: ?[*:0]const u16,
     phFile: ?*?HANDLE,
     ppszOutputFile: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winspool.drv" fn DevQueryPrintEx(
     pDQPInfo: ?*DEVQUERYPRINT_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "winspool.drv" fn RegisterForPrintAsyncNotifications(
@@ -8669,12 +8669,12 @@ pub extern "winspool.drv" fn RegisterForPrintAsyncNotifications(
     eConversationStyle: PrintAsyncNotifyConversationStyle,
     pCallback: ?*IPrintAsyncNotifyCallback,
     phNotify: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "winspool.drv" fn UnRegisterForPrintAsyncNotifications(
     param0: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "winspool.drv" fn CreatePrintAsyncNotifyChannel(
@@ -8684,40 +8684,40 @@ pub extern "winspool.drv" fn CreatePrintAsyncNotifyChannel(
     eConversationStyle: PrintAsyncNotifyConversationStyle,
     pCallback: ?*IPrintAsyncNotifyCallback,
     ppIAsynchNotification: ?*?*IPrintAsyncNotifyChannel,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "gdi32" fn GdiGetSpoolFileHandle(
     pwszPrinterName: ?PWSTR,
     pDevmode: ?*DEVMODEW,
     pwszDocName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "gdi32" fn GdiDeleteSpoolFileHandle(
     SpoolFileHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "gdi32" fn GdiGetPageCount(
     SpoolFileHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "gdi32" fn GdiGetDC(
     SpoolFileHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) ?HDC;
+) callconv(.winapi) ?HDC;
 
 pub extern "gdi32" fn GdiGetPageHandle(
     SpoolFileHandle: ?HANDLE,
     Page: u32,
     pdwPageType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "gdi32" fn GdiStartDocEMF(
     SpoolFileHandle: ?HANDLE,
     pDocInfo: ?*DOCINFOW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "gdi32" fn GdiStartPageEMF(
     SpoolFileHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "gdi32" fn GdiPlayPageEMF(
     SpoolFileHandle: ?HANDLE,
@@ -8725,34 +8725,34 @@ pub extern "gdi32" fn GdiPlayPageEMF(
     prectDocument: ?*RECT,
     prectBorder: ?*RECT,
     prectClip: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "gdi32" fn GdiEndPageEMF(
     SpoolFileHandle: ?HANDLE,
     dwOptimization: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "gdi32" fn GdiEndDocEMF(
     SpoolFileHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "gdi32" fn GdiGetDevmodeForPage(
     SpoolFileHandle: ?HANDLE,
     dwPageNumber: u32,
     pCurrDM: ?*?*DEVMODEW,
     pLastDM: ?*?*DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "gdi32" fn GdiResetDCEMF(
     SpoolFileHandle: ?HANDLE,
     pCurrDM: ?*DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn GetJobAttributes(
     pPrinterName: ?PWSTR,
     pDevmode: ?*DEVMODEW,
     pAttributeInfo: ?*ATTRIBUTE_INFO_3,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn GetJobAttributesEx(
     pPrinterName: ?PWSTR,
@@ -8762,12 +8762,12 @@ pub extern "spoolss" fn GetJobAttributesEx(
     pAttributeInfo: ?*u8,
     nSize: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn CreatePrinterIC(
     hPrinter: ?HANDLE,
     pDevMode: ?*DEVMODEW,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "winspool.drv" fn PlayGdiScriptOnPrinterIC(
     hPrinterIC: ?HANDLE,
@@ -8778,31 +8778,31 @@ pub extern "winspool.drv" fn PlayGdiScriptOnPrinterIC(
     pOut: ?*u8,
     cOut: u32,
     ul: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DeletePrinterIC(
     hPrinterIC: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "winspool.drv" fn DevQueryPrint(
     hPrinter: ?HANDLE,
     pDevMode: ?*DEVMODEA,
     pResID: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn RevertToPrinterSelf(
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 pub extern "spoolss" fn ImpersonatePrinterClient(
     hToken: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn ReplyPrinterChangeNotification(
     hPrinter: ?HANDLE,
     fdwChangeFlags: u32,
     pdwResult: ?*u32,
     pPrinterNotifyInfo: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn ReplyPrinterChangeNotificationEx(
     hNotify: ?HANDLE,
@@ -8810,42 +8810,42 @@ pub extern "spoolss" fn ReplyPrinterChangeNotificationEx(
     fdwFlags: u32,
     pdwResult: ?*u32,
     pPrinterNotifyInfo: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn PartialReplyPrinterChangeNotification(
     hPrinter: ?HANDLE,
     pDataSrc: ?*PRINTER_NOTIFY_INFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn RouterAllocPrinterNotifyInfo(
     cPrinterNotifyInfoData: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*PRINTER_NOTIFY_INFO;
+) callconv(.winapi) ?*PRINTER_NOTIFY_INFO;
 
 pub extern "spoolss" fn RouterFreePrinterNotifyInfo(
     pInfo: ?*PRINTER_NOTIFY_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn RouterAllocBidiResponseContainer(
     Count: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*BIDI_RESPONSE_CONTAINER;
+) callconv(.winapi) ?*BIDI_RESPONSE_CONTAINER;
 
 pub extern "spoolss" fn RouterAllocBidiMem(
     NumBytes: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub extern "winspool.drv" fn RouterFreeBidiResponseContainer(
     pData: ?*BIDI_RESPONSE_CONTAINER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "spoolss" fn RouterFreeBidiMem(
     pMemPointer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "spoolss" fn AppendPrinterNotifyInfoData(
     pInfoDest: ?*PRINTER_NOTIFY_INFO,
     pDataSrc: ?*PRINTER_NOTIFY_INFO_DATA,
     fdwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn CallRouterFindFirstPrinterChangeNotification(
     hPrinterRPC: ?HANDLE,
@@ -8853,7 +8853,7 @@ pub extern "spoolss" fn CallRouterFindFirstPrinterChangeNotification(
     fdwOptions: u32,
     hNotify: ?HANDLE,
     pPrinterNotifyOptions: ?*PRINTER_NOTIFY_OPTIONS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "spoolss" fn ProvidorFindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
@@ -8862,11 +8862,11 @@ pub extern "spoolss" fn ProvidorFindFirstPrinterChangeNotification(
     hNotify: ?HANDLE,
     pPrinterNotifyOptions: ?*anyopaque,
     pvReserved1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn ProvidorFindClosePrinterChangeNotification(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn SpoolerFindFirstPrinterChangeNotification(
     hPrinter: ?HANDLE,
@@ -8877,35 +8877,35 @@ pub extern "spoolss" fn SpoolerFindFirstPrinterChangeNotification(
     pNotificationConfig: ?*anyopaque,
     phNotify: ?*?HANDLE,
     phEvent: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn SpoolerFindNextPrinterChangeNotification(
     hPrinter: ?HANDLE,
     pfdwChange: ?*u32,
     pPrinterNotifyOptions: ?*anyopaque,
     ppPrinterNotifyInfo: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn SpoolerRefreshPrinterChangeNotification(
     hPrinter: ?HANDLE,
     dwColor: u32,
     pOptions: ?*PRINTER_NOTIFY_OPTIONS,
     ppInfo: ?*?*PRINTER_NOTIFY_INFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn SpoolerFreePrinterNotifyInfo(
     pInfo: ?*PRINTER_NOTIFY_INFO,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "spoolss" fn SpoolerFindClosePrinterChangeNotification(
     hPrinter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn SpoolerCopyFileEvent(
     pszPrinterName: ?PWSTR,
     pszKey: ?PWSTR,
     dwCopyFileEvent: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "mscms" fn GenerateCopyFilePaths(
     pszPrinterName: ?[*:0]const u16,
@@ -8917,34 +8917,34 @@ pub extern "mscms" fn GenerateCopyFilePaths(
     pszTargetDir: [*:0]u16,
     pcchTargetDirSize: ?*u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "spoolss" fn SplPromptUIInUsersSession(
     hPrinter: ?HANDLE,
     JobId: u32,
     pUIParams: ?*SHOWUIPARAMS,
     pResponse: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "spoolss" fn SplIsSessionZero(
     hPrinter: ?HANDLE,
     JobId: u32,
     pIsSessionZero: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "spoolss" fn AddPrintDeviceObject(
     hPrinter: ?HANDLE,
     phDeviceObject: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "spoolss" fn UpdatePrintDeviceObject(
     hPrinter: ?HANDLE,
     hDeviceObject: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "spoolss" fn RemovePrintDeviceObject(
     hDeviceObject: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
