@@ -5049,75 +5049,75 @@ pub const WNDPROC = *const fn(
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 pub const DLGPROC = *const fn(
     param0: HWND,
     param1: u32,
     param2: WPARAM,
     param3: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 pub const TIMERPROC = *const fn(
     param0: HWND,
     param1: u32,
     param2: usize,
     param3: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WNDENUMPROC = *const fn(
     param0: HWND,
     param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const HOOKPROC = *const fn(
     code: i32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 pub const SENDASYNCPROC = *const fn(
     param0: HWND,
     param1: u32,
     param2: usize,
     param3: LRESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PROPENUMPROCA = *const fn(
     param0: HWND,
     param1: ?[*:0]const u8,
     param2: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PROPENUMPROCW = *const fn(
     param0: HWND,
     param1: ?[*:0]const u16,
     param2: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PROPENUMPROCEXA = *const fn(
     param0: HWND,
     param1: ?PSTR,
     param2: ?HANDLE,
     param3: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PROPENUMPROCEXW = *const fn(
     param0: HWND,
     param1: ?PWSTR,
     param2: ?HANDLE,
     param3: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const NAMEENUMPROCA = *const fn(
     param0: ?PSTR,
     param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const NAMEENUMPROCW = *const fn(
     param0: ?PWSTR,
     param1: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const CBT_CREATEWNDA = extern struct {
     lpcs: ?*CREATESTRUCTA,
@@ -5351,7 +5351,7 @@ pub const STYLESTRUCT = extern struct {
 
 pub const PREGISTERCLASSNAMEW = *const fn(
     param0: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOLEAN;
+) callconv(.winapi) BOOLEAN;
 
 pub const UPDATELAYEREDWINDOWINFO = extern struct {
     cbSize: u32,
@@ -5471,7 +5471,7 @@ pub const DROPSTRUCT = extern struct {
 
 pub const MSGBOXCALLBACK = *const fn(
     lpHelpInfo: ?*HELPINFO,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const MSGBOXPARAMSA = extern struct {
     cbSize: u32,
@@ -5846,7 +5846,7 @@ pub extern "user32" fn LoadStringA(
     uID: u32,
     lpBuffer: ?PSTR,
     cchBufferMax: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadStringW(
@@ -5854,52 +5854,52 @@ pub extern "user32" fn LoadStringW(
     uID: u32,
     lpBuffer: ?PWSTR,
     cchBufferMax: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wvsprintfA(
     param0: ?PSTR,
     param1: ?[*:0]const u8,
     arglist: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wvsprintfW(
     param0: ?PWSTR,
     param1: ?[*:0]const u16,
     arglist: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wsprintfA(
     param0: ?PSTR,
     param1: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn wsprintfW(
     param0: ?PWSTR,
     param1: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsHungAppWindow(
     hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn DisableProcessWindowsGhosting(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterWindowMessageA(
     lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterWindowMessageW(
     lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMessageA(
@@ -5907,7 +5907,7 @@ pub extern "user32" fn GetMessageA(
     hWnd: ?HWND,
     wMsgFilterMin: u32,
     wMsgFilterMax: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMessageW(
@@ -5915,26 +5915,26 @@ pub extern "user32" fn GetMessageW(
     hWnd: ?HWND,
     wMsgFilterMin: u32,
     wMsgFilterMax: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn TranslateMessage(
     lpMsg: ?*const MSG,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DispatchMessageA(
     lpMsg: ?*const MSG,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DispatchMessageW(
     lpMsg: ?*const MSG,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 pub extern "user32" fn SetMessageQueue(
     cMessagesMax: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PeekMessageA(
@@ -5943,7 +5943,7 @@ pub extern "user32" fn PeekMessageA(
     wMsgFilterMin: u32,
     wMsgFilterMax: u32,
     wRemoveMsg: PEEK_MESSAGE_REMOVE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PeekMessageW(
@@ -5952,28 +5952,28 @@ pub extern "user32" fn PeekMessageW(
     wMsgFilterMin: u32,
     wMsgFilterMax: u32,
     wRemoveMsg: PEEK_MESSAGE_REMOVE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMessagePos(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMessageTime(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMessageExtraInfo(
-) callconv(@import("std").os.windows.WINAPI) LPARAM;
+) callconv(.winapi) LPARAM;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn IsWow64Message(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMessageExtraInfo(
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LPARAM;
+) callconv(.winapi) LPARAM;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageA(
@@ -5981,7 +5981,7 @@ pub extern "user32" fn SendMessageA(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageW(
@@ -5989,7 +5989,7 @@ pub extern "user32" fn SendMessageW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageTimeoutA(
@@ -6000,7 +6000,7 @@ pub extern "user32" fn SendMessageTimeoutA(
     fuFlags: SEND_MESSAGE_TIMEOUT_FLAGS,
     uTimeout: u32,
     lpdwResult: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageTimeoutW(
@@ -6011,7 +6011,7 @@ pub extern "user32" fn SendMessageTimeoutW(
     fuFlags: SEND_MESSAGE_TIMEOUT_FLAGS,
     uTimeout: u32,
     lpdwResult: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendNotifyMessageA(
@@ -6019,7 +6019,7 @@ pub extern "user32" fn SendNotifyMessageA(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendNotifyMessageW(
@@ -6027,7 +6027,7 @@ pub extern "user32" fn SendNotifyMessageW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageCallbackA(
@@ -6037,7 +6037,7 @@ pub extern "user32" fn SendMessageCallbackA(
     lParam: LPARAM,
     lpResultCallBack: ?SENDASYNCPROC,
     dwData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendMessageCallbackW(
@@ -6047,21 +6047,21 @@ pub extern "user32" fn SendMessageCallbackW(
     lParam: LPARAM,
     lpResultCallBack: ?SENDASYNCPROC,
     dwData: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn RegisterDeviceNotificationA(
     hRecipient: ?HANDLE,
     NotificationFilter: ?*anyopaque,
     Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn RegisterDeviceNotificationW(
     hRecipient: ?HANDLE,
     NotificationFilter: ?*anyopaque,
     Flags: POWER_SETTING_REGISTER_NOTIFICATION_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PostMessageA(
@@ -6069,7 +6069,7 @@ pub extern "user32" fn PostMessageA(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PostMessageW(
@@ -6077,7 +6077,7 @@ pub extern "user32" fn PostMessageW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PostThreadMessageA(
@@ -6085,7 +6085,7 @@ pub extern "user32" fn PostThreadMessageA(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PostThreadMessageW(
@@ -6093,16 +6093,16 @@ pub extern "user32" fn PostThreadMessageW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ReplyMessage(
     lResult: LRESULT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn WaitMessage(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefWindowProcA(
@@ -6110,7 +6110,7 @@ pub extern "user32" fn DefWindowProcA(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefWindowProcW(
@@ -6118,12 +6118,12 @@ pub extern "user32" fn DefWindowProcW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PostQuitMessage(
     nExitCode: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CallWindowProcA(
@@ -6132,7 +6132,7 @@ pub extern "user32" fn CallWindowProcA(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CallWindowProcW(
@@ -6141,76 +6141,76 @@ pub extern "user32" fn CallWindowProcW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn InSendMessage(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn InSendMessageEx(
     lpReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterClassA(
     lpWndClass: ?*const WNDCLASSA,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterClassW(
     lpWndClass: ?*const WNDCLASSW,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn UnregisterClassA(
     lpClassName: ?[*:0]align(1) const u8,
     hInstance: ?HINSTANCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn UnregisterClassW(
     lpClassName: ?[*:0]align(1) const u16,
     hInstance: ?HINSTANCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassInfoA(
     hInstance: ?HINSTANCE,
     lpClassName: ?[*:0]const u8,
     lpWndClass: ?*WNDCLASSA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassInfoW(
     hInstance: ?HINSTANCE,
     lpClassName: ?[*:0]const u16,
     lpWndClass: ?*WNDCLASSW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterClassExA(
     param0: ?*const WNDCLASSEXA,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterClassExW(
     param0: ?*const WNDCLASSEXW,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassInfoExA(
     hInstance: ?HINSTANCE,
     lpszClass: ?[*:0]const u8,
     lpwcx: ?*WNDCLASSEXA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassInfoExW(
     hInstance: ?HINSTANCE,
     lpszClass: ?[*:0]const u16,
     lpwcx: ?*WNDCLASSEXW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateWindowExA(
@@ -6226,7 +6226,7 @@ pub extern "user32" fn CreateWindowExA(
     hMenu: ?HMENU,
     hInstance: ?HINSTANCE,
     lpParam: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateWindowExW(
@@ -6242,41 +6242,41 @@ pub extern "user32" fn CreateWindowExW(
     hMenu: ?HMENU,
     hInstance: ?HINSTANCE,
     lpParam: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsWindow(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsMenu(
     hMenu: ?HMENU,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsChild(
     hWndParent: ?HWND,
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DestroyWindow(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ShowWindow(
     hWnd: ?HWND,
     nCmdShow: SHOW_WINDOW_CMD,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn AnimateWindow(
     hWnd: ?HWND,
     dwTime: u32,
     dwFlags: ANIMATE_WINDOW_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn UpdateLayeredWindow(
@@ -6289,12 +6289,12 @@ pub extern "user32" fn UpdateLayeredWindow(
     crKey: u32,
     pblend: ?*BLENDFUNCTION,
     dwFlags: UPDATE_LAYERED_WINDOW_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "user32" fn UpdateLayeredWindowIndirect(
     hWnd: ?HWND,
     pULWInfo: ?*const UPDATELAYEREDWINDOWINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn GetLayeredWindowAttributes(
@@ -6302,7 +6302,7 @@ pub extern "user32" fn GetLayeredWindowAttributes(
     pcrKey: ?*u32,
     pbAlpha: ?*u8,
     pdwFlags: ?*LAYERED_WINDOW_ATTRIBUTES_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetLayeredWindowAttributes(
@@ -6310,40 +6310,40 @@ pub extern "user32" fn SetLayeredWindowAttributes(
     crKey: u32,
     bAlpha: u8,
     dwFlags: LAYERED_WINDOW_ATTRIBUTES_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ShowWindowAsync(
     hWnd: ?HWND,
     nCmdShow: SHOW_WINDOW_CMD,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn FlashWindow(
     hWnd: ?HWND,
     bInvert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn FlashWindowEx(
     pfwi: ?*FLASHWINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ShowOwnedPopups(
     hWnd: ?HWND,
     fShow: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OpenIcon(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CloseWindow(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MoveWindow(
@@ -6353,7 +6353,7 @@ pub extern "user32" fn MoveWindow(
     nWidth: i32,
     nHeight: i32,
     bRepaint: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowPos(
@@ -6364,36 +6364,36 @@ pub extern "user32" fn SetWindowPos(
     cx: i32,
     cy: i32,
     uFlags: SET_WINDOW_POS_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowPlacement(
     hWnd: ?HWND,
     lpwndpl: ?*WINDOWPLACEMENT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowPlacement(
     hWnd: ?HWND,
     lpwndpl: ?*const WINDOWPLACEMENT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn GetWindowDisplayAffinity(
     hWnd: ?HWND,
     pdwAffinity: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn SetWindowDisplayAffinity(
     hWnd: ?HWND,
     dwAffinity: WINDOW_DISPLAY_AFFINITY,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn BeginDeferWindowPos(
     nNumWindows: i32,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DeferWindowPos(
@@ -6405,36 +6405,36 @@ pub extern "user32" fn DeferWindowPos(
     cx: i32,
     cy: i32,
     uFlags: SET_WINDOW_POS_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EndDeferWindowPos(
     hWinPosInfo: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsWindowVisible(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsIconic(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn AnyPopup(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn BringWindowToTop(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsZoomed(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateDialogParamA(
@@ -6443,7 +6443,7 @@ pub extern "user32" fn CreateDialogParamA(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateDialogParamW(
@@ -6452,7 +6452,7 @@ pub extern "user32" fn CreateDialogParamW(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateDialogIndirectParamA(
@@ -6461,7 +6461,7 @@ pub extern "user32" fn CreateDialogIndirectParamA(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateDialogIndirectParamW(
@@ -6470,7 +6470,7 @@ pub extern "user32" fn CreateDialogIndirectParamW(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DialogBoxParamA(
@@ -6479,7 +6479,7 @@ pub extern "user32" fn DialogBoxParamA(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DialogBoxParamW(
@@ -6488,7 +6488,7 @@ pub extern "user32" fn DialogBoxParamW(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DialogBoxIndirectParamA(
@@ -6497,7 +6497,7 @@ pub extern "user32" fn DialogBoxIndirectParamA(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DialogBoxIndirectParamW(
@@ -6506,19 +6506,19 @@ pub extern "user32" fn DialogBoxIndirectParamW(
     hWndParent: ?HWND,
     lpDialogFunc: ?DLGPROC,
     dwInitParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EndDialog(
     hDlg: ?HWND,
     nResult: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetDlgItem(
     hDlg: ?HWND,
     nIDDlgItem: i32,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetDlgItemInt(
@@ -6526,7 +6526,7 @@ pub extern "user32" fn SetDlgItemInt(
     nIDDlgItem: i32,
     uValue: u32,
     bSigned: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetDlgItemInt(
@@ -6534,21 +6534,21 @@ pub extern "user32" fn GetDlgItemInt(
     nIDDlgItem: i32,
     lpTranslated: ?*BOOL,
     bSigned: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetDlgItemTextA(
     hDlg: ?HWND,
     nIDDlgItem: i32,
     lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetDlgItemTextW(
     hDlg: ?HWND,
     nIDDlgItem: i32,
     lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetDlgItemTextA(
@@ -6556,7 +6556,7 @@ pub extern "user32" fn GetDlgItemTextA(
     nIDDlgItem: i32,
     lpString: [*:0]u8,
     cchMax: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetDlgItemTextW(
@@ -6564,7 +6564,7 @@ pub extern "user32" fn GetDlgItemTextW(
     nIDDlgItem: i32,
     lpString: [*:0]u16,
     cchMax: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendDlgItemMessageA(
@@ -6573,7 +6573,7 @@ pub extern "user32" fn SendDlgItemMessageA(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SendDlgItemMessageW(
@@ -6582,37 +6582,37 @@ pub extern "user32" fn SendDlgItemMessageW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetNextDlgGroupItem(
     hDlg: ?HWND,
     hCtl: ?HWND,
     bPrevious: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetNextDlgTabItem(
     hDlg: ?HWND,
     hCtl: ?HWND,
     bPrevious: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetDlgCtrlID(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetDialogBaseUnits(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "user32" fn DefDlgProcA(
     hDlg: ?HWND,
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefDlgProcW(
@@ -6620,144 +6620,144 @@ pub extern "user32" fn DefDlgProcW(
     Msg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CallMsgFilterA(
     lpMsg: ?*MSG,
     nCode: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CallMsgFilterW(
     lpMsg: ?*MSG,
     nCode: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharToOemA(
     pSrc: ?[*:0]const u8,
     pDst: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharToOemW(
     pSrc: ?[*:0]const u16,
     pDst: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OemToCharA(
     pSrc: ?[*:0]const u8,
     pDst: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OemToCharW(
     pSrc: ?[*:0]const u8,
     pDst: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharToOemBuffA(
     lpszSrc: ?[*:0]const u8,
     lpszDst: [*:0]u8,
     cchDstLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharToOemBuffW(
     lpszSrc: ?[*:0]const u16,
     lpszDst: [*:0]u8,
     cchDstLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OemToCharBuffA(
     lpszSrc: ?[*:0]const u8,
     lpszDst: [*:0]u8,
     cchDstLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn OemToCharBuffW(
     lpszSrc: ?[*:0]const u8,
     lpszDst: [*:0]u16,
     cchDstLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharUpperA(
     lpsz: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharUpperW(
     lpsz: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharUpperBuffA(
     lpsz: [*:0]u8,
     cchLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharUpperBuffW(
     lpsz: [*:0]u16,
     cchLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharLowerA(
     lpsz: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharLowerW(
     lpsz: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharLowerBuffA(
     lpsz: [*:0]u8,
     cchLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharLowerBuffW(
     lpsz: [*:0]u16,
     cchLength: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharNextA(
     lpsz: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharNextW(
     lpsz: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharPrevA(
     lpszStart: ?[*:0]const u8,
     lpszCurrent: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharPrevW(
     lpszStart: ?[*:0]const u16,
     lpszCurrent: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharNextExA(
     CodePage: u16,
     lpCurrentChar: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CharPrevExA(
@@ -6765,51 +6765,51 @@ pub extern "user32" fn CharPrevExA(
     lpStart: ?[*:0]const u8,
     lpCurrentChar: ?[*:0]const u8,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?PSTR;
+) callconv(.winapi) ?PSTR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharAlphaA(
     ch: CHAR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharAlphaW(
     ch: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharAlphaNumericA(
     ch: CHAR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharAlphaNumericW(
     ch: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharUpperA(
     ch: CHAR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharUpperW(
     ch: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsCharLowerA(
     ch: CHAR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetInputState(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetQueueStatus(
     flags: QUEUE_STATUS_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn MsgWaitForMultipleObjects(
@@ -6818,7 +6818,7 @@ pub extern "user32" fn MsgWaitForMultipleObjects(
     fWaitAll: BOOL,
     dwMilliseconds: u32,
     dwWakeMask: QUEUE_STATUS_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn MsgWaitForMultipleObjectsEx(
@@ -6827,7 +6827,7 @@ pub extern "user32" fn MsgWaitForMultipleObjectsEx(
     dwMilliseconds: u32,
     dwWakeMask: QUEUE_STATUS_FLAGS,
     dwFlags: MSG_WAIT_FOR_MULTIPLE_OBJECTS_EX_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetTimer(
@@ -6835,7 +6835,7 @@ pub extern "user32" fn SetTimer(
     nIDEvent: usize,
     uElapse: u32,
     lpTimerFunc: ?TIMERPROC,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "user32" fn SetCoalescableTimer(
@@ -6844,113 +6844,113 @@ pub extern "user32" fn SetCoalescableTimer(
     uElapse: u32,
     lpTimerFunc: ?TIMERPROC,
     uToleranceDelay: u32,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn KillTimer(
     hWnd: ?HWND,
     uIDEvent: usize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsWindowUnicode(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadAcceleratorsA(
     hInstance: ?HINSTANCE,
     lpTableName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HACCEL;
+) callconv(.winapi) ?HACCEL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadAcceleratorsW(
     hInstance: ?HINSTANCE,
     lpTableName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HACCEL;
+) callconv(.winapi) ?HACCEL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateAcceleratorTableA(
     paccel: [*]ACCEL,
     cAccel: i32,
-) callconv(@import("std").os.windows.WINAPI) ?HACCEL;
+) callconv(.winapi) ?HACCEL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateAcceleratorTableW(
     paccel: [*]ACCEL,
     cAccel: i32,
-) callconv(@import("std").os.windows.WINAPI) ?HACCEL;
+) callconv(.winapi) ?HACCEL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DestroyAcceleratorTable(
     hAccel: ?HACCEL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CopyAcceleratorTableA(
     hAccelSrc: ?HACCEL,
     lpAccelDst: ?[*]ACCEL,
     cAccelEntries: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CopyAcceleratorTableW(
     hAccelSrc: ?HACCEL,
     lpAccelDst: ?[*]ACCEL,
     cAccelEntries: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn TranslateAcceleratorA(
     hWnd: ?HWND,
     hAccTable: ?HACCEL,
     lpMsg: ?*MSG,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn TranslateAcceleratorW(
     hWnd: ?HWND,
     hAccTable: ?HACCEL,
     lpMsg: ?*MSG,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetSystemMetrics(
     nIndex: SYSTEM_METRICS_INDEX,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadMenuA(
     hInstance: ?HINSTANCE,
     lpMenuName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadMenuW(
     hInstance: ?HINSTANCE,
     lpMenuName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadMenuIndirectA(
     lpMenuTemplate: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadMenuIndirectW(
     lpMenuTemplate: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenu(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMenu(
     hWnd: ?HWND,
     hMenu: ?HMENU,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "user32" fn ChangeMenuA(
     hMenu: ?HMENU,
@@ -6958,7 +6958,7 @@ pub extern "user32" fn ChangeMenuA(
     lpszNewItem: ?[*:0]const u8,
     cmdInsert: u32,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "user32" fn ChangeMenuW(
     hMenu: ?HMENU,
@@ -6966,7 +6966,7 @@ pub extern "user32" fn ChangeMenuW(
     lpszNewItem: ?[*:0]const u16,
     cmdInsert: u32,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn HiliteMenuItem(
@@ -6974,7 +6974,7 @@ pub extern "user32" fn HiliteMenuItem(
     hMenu: ?HMENU,
     uIDHiliteItem: u32,
     uHilite: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuStringA(
@@ -6983,7 +6983,7 @@ pub extern "user32" fn GetMenuStringA(
     lpString: ?[*:0]u8,
     cchMax: i32,
     flags: MENU_ITEM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuStringW(
@@ -6992,69 +6992,69 @@ pub extern "user32" fn GetMenuStringW(
     lpString: ?[*:0]u16,
     cchMax: i32,
     flags: MENU_ITEM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuState(
     hMenu: ?HMENU,
     uId: u32,
     uFlags: MENU_ITEM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DrawMenuBar(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetSystemMenu(
     hWnd: ?HWND,
     bRevert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateMenu(
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreatePopupMenu(
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DestroyMenu(
     hMenu: ?HMENU,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CheckMenuItem(
     hMenu: ?HMENU,
     uIDCheckItem: u32,
     uCheck: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnableMenuItem(
     hMenu: ?HMENU,
     uIDEnableItem: u32,
     uEnable: MENU_ITEM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetSubMenu(
     hMenu: ?HMENU,
     nPos: i32,
-) callconv(@import("std").os.windows.WINAPI) ?HMENU;
+) callconv(.winapi) ?HMENU;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuItemID(
     hMenu: ?HMENU,
     nPos: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuItemCount(
     hMenu: ?HMENU,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn InsertMenuA(
@@ -7063,7 +7063,7 @@ pub extern "user32" fn InsertMenuA(
     uFlags: MENU_ITEM_FLAGS,
     uIDNewItem: usize,
     lpNewItem: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn InsertMenuW(
@@ -7072,7 +7072,7 @@ pub extern "user32" fn InsertMenuW(
     uFlags: MENU_ITEM_FLAGS,
     uIDNewItem: usize,
     lpNewItem: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn AppendMenuA(
@@ -7080,7 +7080,7 @@ pub extern "user32" fn AppendMenuA(
     uFlags: MENU_ITEM_FLAGS,
     uIDNewItem: usize,
     lpNewItem: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn AppendMenuW(
@@ -7088,7 +7088,7 @@ pub extern "user32" fn AppendMenuW(
     uFlags: MENU_ITEM_FLAGS,
     uIDNewItem: usize,
     lpNewItem: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ModifyMenuA(
@@ -7097,7 +7097,7 @@ pub extern "user32" fn ModifyMenuA(
     uFlags: MENU_ITEM_FLAGS,
     uIDNewItem: usize,
     lpNewItem: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ModifyMenuW(
@@ -7106,21 +7106,21 @@ pub extern "user32" fn ModifyMenuW(
     uFlags: MENU_ITEM_FLAGS,
     uIDNewItem: usize,
     lpNewItem: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RemoveMenu(
     hMenu: ?HMENU,
     uPosition: u32,
     uFlags: MENU_ITEM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DeleteMenu(
     hMenu: ?HMENU,
     uPosition: u32,
     uFlags: MENU_ITEM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMenuItemBitmaps(
@@ -7129,11 +7129,11 @@ pub extern "user32" fn SetMenuItemBitmaps(
     uFlags: MENU_ITEM_FLAGS,
     hBitmapUnchecked: ?HBITMAP,
     hBitmapChecked: ?HBITMAP,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuCheckMarkDimensions(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn TrackPopupMenu(
@@ -7144,7 +7144,7 @@ pub extern "user32" fn TrackPopupMenu(
     nReserved: i32,
     hWnd: ?HWND,
     prcRect: ?*const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn TrackPopupMenuEx(
@@ -7154,7 +7154,7 @@ pub extern "user32" fn TrackPopupMenuEx(
     y: i32,
     hwnd: ?HWND,
     lptpm: ?*TPMPARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn CalculatePopupWindowPosition(
@@ -7163,23 +7163,23 @@ pub extern "user32" fn CalculatePopupWindowPosition(
     flags: u32,
     excludeRect: ?*RECT,
     popupWindowPosition: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuInfo(
     param0: ?HMENU,
     param1: ?*MENUINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMenuInfo(
     param0: ?HMENU,
     param1: ?*MENUINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EndMenu(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn InsertMenuItemA(
@@ -7187,7 +7187,7 @@ pub extern "user32" fn InsertMenuItemA(
     item: u32,
     fByPosition: BOOL,
     lpmi: ?*MENUITEMINFOA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn InsertMenuItemW(
@@ -7195,7 +7195,7 @@ pub extern "user32" fn InsertMenuItemW(
     item: u32,
     fByPosition: BOOL,
     lpmi: ?*MENUITEMINFOW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuItemInfoA(
@@ -7203,7 +7203,7 @@ pub extern "user32" fn GetMenuItemInfoA(
     item: u32,
     fByPosition: BOOL,
     lpmii: ?*MENUITEMINFOA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuItemInfoW(
@@ -7211,7 +7211,7 @@ pub extern "user32" fn GetMenuItemInfoW(
     item: u32,
     fByPosition: BOOL,
     lpmii: ?*MENUITEMINFOW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMenuItemInfoA(
@@ -7219,7 +7219,7 @@ pub extern "user32" fn SetMenuItemInfoA(
     item: u32,
     fByPositon: BOOL,
     lpmii: ?*MENUITEMINFOA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMenuItemInfoW(
@@ -7227,21 +7227,21 @@ pub extern "user32" fn SetMenuItemInfoW(
     item: u32,
     fByPositon: BOOL,
     lpmii: ?*MENUITEMINFOW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuDefaultItem(
     hMenu: ?HMENU,
     fByPos: u32,
     gmdiFlags: GET_MENU_DEFAULT_ITEM_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetMenuDefaultItem(
     hMenu: ?HMENU,
     uItem: u32,
     fByPos: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuItemRect(
@@ -7249,14 +7249,14 @@ pub extern "user32" fn GetMenuItemRect(
     hMenu: ?HMENU,
     uItem: u32,
     lprcItem: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MenuItemFromPoint(
     hWnd: ?HWND,
     hMenu: ?HMENU,
     ptScreen: POINT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "user32" fn DragObject(
     hwndParent: ?HWND,
@@ -7264,7 +7264,7 @@ pub extern "user32" fn DragObject(
     fmt: u32,
     data: usize,
     hcur: ?HCURSOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DrawIcon(
@@ -7272,32 +7272,32 @@ pub extern "user32" fn DrawIcon(
     X: i32,
     Y: i32,
     hIcon: ?HICON,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetForegroundWindow(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SwitchToThisWindow(
     hwnd: ?HWND,
     fUnknown: BOOL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetForegroundWindow(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn AllowSetForegroundWindow(
     dwProcessId: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LockSetForegroundWindow(
     uLockCode: FOREGROUND_WINDOW_LOCK_CODE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ScrollWindow(
@@ -7306,7 +7306,7 @@ pub extern "user32" fn ScrollWindow(
     YAmount: i32,
     lpRect: ?*const RECT,
     lpClipRect: ?*const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ScrollDC(
@@ -7317,7 +7317,7 @@ pub extern "user32" fn ScrollDC(
     lprcClip: ?*const RECT,
     hrgnUpdate: ?HRGN,
     lprcUpdate: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ScrollWindowEx(
@@ -7329,13 +7329,13 @@ pub extern "user32" fn ScrollWindowEx(
     hrgnUpdate: ?HRGN,
     prcUpdate: ?*RECT,
     flags: SHOW_WINDOW_CMD,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetScrollPos(
     hWnd: ?HWND,
     nBar: SCROLLBAR_CONSTANTS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetScrollRange(
@@ -7343,126 +7343,126 @@ pub extern "user32" fn GetScrollRange(
     nBar: SCROLLBAR_CONSTANTS,
     lpMinPos: ?*i32,
     lpMaxPos: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetPropA(
     hWnd: ?HWND,
     lpString: ?[*:0]const u8,
     hData: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetPropW(
     hWnd: ?HWND,
     lpString: ?[*:0]const u16,
     hData: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetPropA(
     hWnd: ?HWND,
     lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetPropW(
     hWnd: ?HWND,
     lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RemovePropA(
     hWnd: ?HWND,
     lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RemovePropW(
     hWnd: ?HWND,
     lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumPropsExA(
     hWnd: ?HWND,
     lpEnumFunc: ?PROPENUMPROCEXA,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumPropsExW(
     hWnd: ?HWND,
     lpEnumFunc: ?PROPENUMPROCEXW,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumPropsA(
     hWnd: ?HWND,
     lpEnumFunc: ?PROPENUMPROCA,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumPropsW(
     hWnd: ?HWND,
     lpEnumFunc: ?PROPENUMPROCW,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowTextA(
     hWnd: ?HWND,
     lpString: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowTextW(
     hWnd: ?HWND,
     lpString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowTextA(
     hWnd: ?HWND,
     lpString: [*:0]u8,
     nMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowTextW(
     hWnd: ?HWND,
     lpString: [*:0]u16,
     nMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowTextLengthA(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowTextLengthW(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClientRect(
     hWnd: ?HWND,
     lpRect: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowRect(
     hWnd: ?HWND,
     lpRect: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn AdjustWindowRect(
     lpRect: ?*RECT,
     dwStyle: WINDOW_STYLE,
     bMenu: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn AdjustWindowRectEx(
@@ -7470,7 +7470,7 @@ pub extern "user32" fn AdjustWindowRectEx(
     dwStyle: WINDOW_STYLE,
     bMenu: BOOL,
     dwExStyle: WINDOW_EX_STYLE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MessageBoxA(
@@ -7478,7 +7478,7 @@ pub extern "user32" fn MessageBoxA(
     lpText: ?[*:0]const u8,
     lpCaption: ?[*:0]const u8,
     uType: MESSAGEBOX_STYLE,
-) callconv(@import("std").os.windows.WINAPI) MESSAGEBOX_RESULT;
+) callconv(.winapi) MESSAGEBOX_RESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MessageBoxW(
@@ -7486,7 +7486,7 @@ pub extern "user32" fn MessageBoxW(
     lpText: ?[*:0]const u16,
     lpCaption: ?[*:0]const u16,
     uType: MESSAGEBOX_STYLE,
-) callconv(@import("std").os.windows.WINAPI) MESSAGEBOX_RESULT;
+) callconv(.winapi) MESSAGEBOX_RESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MessageBoxExA(
@@ -7495,7 +7495,7 @@ pub extern "user32" fn MessageBoxExA(
     lpCaption: ?[*:0]const u8,
     uType: MESSAGEBOX_STYLE,
     wLanguageId: u16,
-) callconv(@import("std").os.windows.WINAPI) MESSAGEBOX_RESULT;
+) callconv(.winapi) MESSAGEBOX_RESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MessageBoxExW(
@@ -7504,58 +7504,58 @@ pub extern "user32" fn MessageBoxExW(
     lpCaption: ?[*:0]const u16,
     uType: MESSAGEBOX_STYLE,
     wLanguageId: u16,
-) callconv(@import("std").os.windows.WINAPI) MESSAGEBOX_RESULT;
+) callconv(.winapi) MESSAGEBOX_RESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MessageBoxIndirectA(
     lpmbp: ?*const MSGBOXPARAMSA,
-) callconv(@import("std").os.windows.WINAPI) MESSAGEBOX_RESULT;
+) callconv(.winapi) MESSAGEBOX_RESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MessageBoxIndirectW(
     lpmbp: ?*const MSGBOXPARAMSW,
-) callconv(@import("std").os.windows.WINAPI) MESSAGEBOX_RESULT;
+) callconv(.winapi) MESSAGEBOX_RESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ShowCursor(
     bShow: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetCursorPos(
     X: i32,
     Y: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn SetPhysicalCursorPos(
     X: i32,
     Y: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetCursor(
     hCursor: ?HCURSOR,
-) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
+) callconv(.winapi) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetCursorPos(
     lpPoint: ?*POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetPhysicalCursorPos(
     lpPoint: ?*POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClipCursor(
     lpRect: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetCursor(
-) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
+) callconv(.winapi) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateCaret(
@@ -7563,130 +7563,130 @@ pub extern "user32" fn CreateCaret(
     hBitmap: ?HBITMAP,
     nWidth: i32,
     nHeight: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetCaretBlinkTime(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetCaretBlinkTime(
     uMSeconds: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DestroyCaret(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn HideCaret(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ShowCaret(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetCaretPos(
     X: i32,
     Y: i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetCaretPos(
     lpPoint: ?*POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn LogicalToPhysicalPoint(
     hWnd: ?HWND,
     lpPoint: ?*POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn PhysicalToLogicalPoint(
     hWnd: ?HWND,
     lpPoint: ?*POINT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn WindowFromPoint(
     Point: POINT,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn WindowFromPhysicalPoint(
     Point: POINT,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ChildWindowFromPoint(
     hWndParent: ?HWND,
     Point: POINT,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ClipCursor(
     lpRect: ?*const RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ChildWindowFromPointEx(
     hwnd: ?HWND,
     pt: POINT,
     flags: CWP_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetSysColor(
     nIndex: SYS_COLOR_INDEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetSysColors(
     cElements: i32,
     lpaElements: [*]const i32,
     lpaRgbValues: [*]const u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "user32" fn GetWindowWord(
     hWnd: ?HWND,
     nIndex: i32,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 pub extern "user32" fn SetWindowWord(
     hWnd: ?HWND,
     nIndex: i32,
     wNewWord: u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowLongA(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowLongW(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowLongA(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
     dwNewLong: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowLongW(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
     dwNewLong: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const GetWindowLongPtrA = switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => (struct {
@@ -7695,7 +7695,7 @@ pub const GetWindowLongPtrA = switch (@import("../zig.zig").arch) {
 pub extern "user32" fn GetWindowLongPtrA(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 }).GetWindowLongPtrA,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetWindowLongPtrA' is not supported on architecture " ++ @tagName(a)),
@@ -7708,7 +7708,7 @@ pub const GetWindowLongPtrW = switch (@import("../zig.zig").arch) {
 pub extern "user32" fn GetWindowLongPtrW(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 }).GetWindowLongPtrW,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetWindowLongPtrW' is not supported on architecture " ++ @tagName(a)),
@@ -7722,7 +7722,7 @@ pub extern "user32" fn SetWindowLongPtrA(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
     dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 }).SetWindowLongPtrA,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetWindowLongPtrA' is not supported on architecture " ++ @tagName(a)),
@@ -7736,7 +7736,7 @@ pub extern "user32" fn SetWindowLongPtrW(
     hWnd: ?HWND,
     nIndex: WINDOW_LONG_PTR_INDEX,
     dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) isize;
+) callconv(.winapi) isize;
 
 }).SetWindowLongPtrW,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetWindowLongPtrW' is not supported on architecture " ++ @tagName(a)),
@@ -7746,40 +7746,40 @@ pub extern "user32" fn SetWindowLongPtrW(
 pub extern "user32" fn GetClassWord(
     hWnd: ?HWND,
     nIndex: i32,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetClassWord(
     hWnd: ?HWND,
     nIndex: i32,
     wNewWord: u16,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassLongA(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassLongW(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetClassLongA(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
     dwNewLong: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetClassLongW(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
     dwNewLong: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const GetClassLongPtrA = switch (@import("../zig.zig").arch) {
 .X64, .Arm64 => (struct {
@@ -7788,7 +7788,7 @@ pub const GetClassLongPtrA = switch (@import("../zig.zig").arch) {
 pub extern "user32" fn GetClassLongPtrA(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 }).GetClassLongPtrA,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetClassLongPtrA' is not supported on architecture " ++ @tagName(a)),
@@ -7801,7 +7801,7 @@ pub const GetClassLongPtrW = switch (@import("../zig.zig").arch) {
 pub extern "user32" fn GetClassLongPtrW(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 }).GetClassLongPtrW,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'GetClassLongPtrW' is not supported on architecture " ++ @tagName(a)),
@@ -7815,7 +7815,7 @@ pub extern "user32" fn SetClassLongPtrA(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
     dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 }).SetClassLongPtrA,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetClassLongPtrA' is not supported on architecture " ++ @tagName(a)),
@@ -7829,7 +7829,7 @@ pub extern "user32" fn SetClassLongPtrW(
     hWnd: ?HWND,
     nIndex: GET_CLASS_LONG_INDEX,
     dwNewLong: isize,
-) callconv(@import("std").os.windows.WINAPI) usize;
+) callconv(.winapi) usize;
 
 }).SetClassLongPtrW,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'SetClassLongPtrW' is not supported on architecture " ++ @tagName(a)),
@@ -7838,46 +7838,46 @@ pub extern "user32" fn SetClassLongPtrW(
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetProcessDefaultLayout(
     pdwDefaultLayout: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetProcessDefaultLayout(
     dwDefaultLayout: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetDesktopWindow(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetParent(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetParent(
     hWndChild: ?HWND,
     hWndNewParent: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumChildWindows(
     hWndParent: ?HWND,
     lpEnumFunc: ?WNDENUMPROC,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn FindWindowA(
     lpClassName: ?[*:0]const u8,
     lpWindowName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn FindWindowW(
     lpClassName: ?[*:0]const u16,
     lpWindowName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn FindWindowExA(
@@ -7885,7 +7885,7 @@ pub extern "user32" fn FindWindowExA(
     hWndChildAfter: ?HWND,
     lpszClass: ?[*:0]const u8,
     lpszWindow: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn FindWindowExW(
@@ -7893,90 +7893,90 @@ pub extern "user32" fn FindWindowExW(
     hWndChildAfter: ?HWND,
     lpszClass: ?[*:0]const u16,
     lpszWindow: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetShellWindow(
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RegisterShellHookWindow(
     hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DeregisterShellHookWindow(
     hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumWindows(
     lpEnumFunc: ?WNDENUMPROC,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn EnumThreadWindows(
     dwThreadId: u32,
     lpfn: ?WNDENUMPROC,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassNameA(
     hWnd: ?HWND,
     lpClassName: [*:0]u8,
     nMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetClassNameW(
     hWnd: ?HWND,
     lpClassName: [*:0]u16,
     nMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetTopWindow(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowThreadProcessId(
     hWnd: ?HWND,
     lpdwProcessId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn IsGUIThread(
     bConvert: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetLastActivePopup(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindow(
     hWnd: ?HWND,
     uCmd: GET_WINDOW_CMD,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 pub extern "user32" fn SetWindowsHookA(
     nFilterType: i32,
     pfnFilterProc: ?HOOKPROC,
-) callconv(@import("std").os.windows.WINAPI) ?HHOOK;
+) callconv(.winapi) ?HHOOK;
 
 pub extern "user32" fn SetWindowsHookW(
     nFilterType: i32,
     pfnFilterProc: ?HOOKPROC,
-) callconv(@import("std").os.windows.WINAPI) ?HHOOK;
+) callconv(.winapi) ?HHOOK;
 
 pub extern "user32" fn UnhookWindowsHook(
     nCode: i32,
     pfnFilterProc: ?HOOKPROC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowsHookExA(
@@ -7984,7 +7984,7 @@ pub extern "user32" fn SetWindowsHookExA(
     lpfn: ?HOOKPROC,
     hmod: ?HINSTANCE,
     dwThreadId: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HHOOK;
+) callconv(.winapi) ?HHOOK;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetWindowsHookExW(
@@ -7992,12 +7992,12 @@ pub extern "user32" fn SetWindowsHookExW(
     lpfn: ?HOOKPROC,
     hmod: ?HINSTANCE,
     dwThreadId: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HHOOK;
+) callconv(.winapi) ?HHOOK;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn UnhookWindowsHookEx(
     hhk: ?HHOOK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CallNextHookEx(
@@ -8005,7 +8005,7 @@ pub extern "user32" fn CallNextHookEx(
     nCode: i32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CheckMenuRadioItem(
@@ -8014,29 +8014,29 @@ pub extern "user32" fn CheckMenuRadioItem(
     last: u32,
     check: u32,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadCursorA(
     hInstance: ?HINSTANCE,
     lpCursorName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
+) callconv(.winapi) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadCursorW(
     hInstance: ?HINSTANCE,
     lpCursorName: ?[*:0]align(1) const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
+) callconv(.winapi) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadCursorFromFileA(
     lpFileName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
+) callconv(.winapi) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadCursorFromFileW(
     lpFileName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
+) callconv(.winapi) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateCursor(
@@ -8047,30 +8047,30 @@ pub extern "user32" fn CreateCursor(
     nHeight: i32,
     pvANDPlane: ?*const anyopaque,
     pvXORPlane: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HCURSOR;
+) callconv(.winapi) ?HCURSOR;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DestroyCursor(
     hCursor: ?HCURSOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SetSystemCursor(
     hcur: ?HCURSOR,
     id: SYSTEM_CURSOR_ID,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadIconA(
     hInstance: ?HINSTANCE,
     lpIconName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HICON;
+) callconv(.winapi) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadIconW(
     hInstance: ?HINSTANCE,
     lpIconName: ?[*:0]align(1) const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HICON;
+) callconv(.winapi) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PrivateExtractIconsA(
@@ -8082,7 +8082,7 @@ pub extern "user32" fn PrivateExtractIconsA(
     piconid: ?[*]u32,
     nIcons: u32,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn PrivateExtractIconsW(
@@ -8094,7 +8094,7 @@ pub extern "user32" fn PrivateExtractIconsW(
     piconid: ?[*]u32,
     nIcons: u32,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateIcon(
@@ -8105,18 +8105,18 @@ pub extern "user32" fn CreateIcon(
     cBitsPixel: u8,
     lpbANDbits: [*:0]const u8,
     lpbXORbits: [*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HICON;
+) callconv(.winapi) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DestroyIcon(
     hIcon: ?HICON,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LookupIconIdFromDirectory(
     presbits: ?*u8,
     fIcon: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LookupIconIdFromDirectoryEx(
@@ -8125,7 +8125,7 @@ pub extern "user32" fn LookupIconIdFromDirectoryEx(
     cxDesired: i32,
     cyDesired: i32,
     Flags: IMAGE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateIconFromResource(
@@ -8134,7 +8134,7 @@ pub extern "user32" fn CreateIconFromResource(
     dwResSize: u32,
     fIcon: BOOL,
     dwVer: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HICON;
+) callconv(.winapi) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateIconFromResourceEx(
@@ -8146,7 +8146,7 @@ pub extern "user32" fn CreateIconFromResourceEx(
     cxDesired: i32,
     cyDesired: i32,
     Flags: IMAGE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?HICON;
+) callconv(.winapi) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadImageA(
@@ -8156,7 +8156,7 @@ pub extern "user32" fn LoadImageA(
     cx: i32,
     cy: i32,
     fuLoad: IMAGE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn LoadImageW(
@@ -8166,7 +8166,7 @@ pub extern "user32" fn LoadImageW(
     cx: i32,
     cy: i32,
     fuLoad: IMAGE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CopyImage(
@@ -8175,7 +8175,7 @@ pub extern "user32" fn CopyImage(
     cx: i32,
     cy: i32,
     flags: IMAGE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?HANDLE;
+) callconv(.winapi) ?HANDLE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DrawIconEx(
@@ -8188,60 +8188,60 @@ pub extern "user32" fn DrawIconEx(
     istepIfAniCur: u32,
     hbrFlickerFreeDraw: ?HBRUSH,
     diFlags: DI_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateIconIndirect(
     piconinfo: ?*ICONINFO,
-) callconv(@import("std").os.windows.WINAPI) ?HICON;
+) callconv(.winapi) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CopyIcon(
     hIcon: ?HICON,
-) callconv(@import("std").os.windows.WINAPI) ?HICON;
+) callconv(.winapi) ?HICON;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetIconInfo(
     hIcon: ?HICON,
     piconinfo: ?*ICONINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetIconInfoExA(
     hicon: ?HICON,
     piconinfo: ?*ICONINFOEXA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetIconInfoExW(
     hicon: ?HICON,
     piconinfo: ?*ICONINFOEXW,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsDialogMessageA(
     hDlg: ?HWND,
     lpMsg: ?*MSG,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn IsDialogMessageW(
     hDlg: ?HWND,
     lpMsg: ?*MSG,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn MapDialogRect(
     hDlg: ?HWND,
     lpRect: ?*RECT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetScrollInfo(
     hwnd: ?HWND,
     nBar: SCROLLBAR_CONSTANTS,
     lpsi: ?*SCROLLINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefFrameProcA(
@@ -8250,7 +8250,7 @@ pub extern "user32" fn DefFrameProcA(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefFrameProcW(
@@ -8259,7 +8259,7 @@ pub extern "user32" fn DefFrameProcW(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefMDIChildProcA(
@@ -8267,7 +8267,7 @@ pub extern "user32" fn DefMDIChildProcA(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn DefMDIChildProcW(
@@ -8275,18 +8275,18 @@ pub extern "user32" fn DefMDIChildProcW(
     uMsg: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) LRESULT;
+) callconv(.winapi) LRESULT;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn TranslateMDISysAccel(
     hWndClient: ?HWND,
     lpMsg: ?*MSG,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn ArrangeIconicWindows(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateMDIWindowA(
@@ -8300,7 +8300,7 @@ pub extern "user32" fn CreateMDIWindowA(
     hWndParent: ?HWND,
     hInstance: ?HINSTANCE,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CreateMDIWindowW(
@@ -8314,7 +8314,7 @@ pub extern "user32" fn CreateMDIWindowW(
     hWndParent: ?HWND,
     hInstance: ?HINSTANCE,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn TileWindows(
@@ -8323,7 +8323,7 @@ pub extern "user32" fn TileWindows(
     lpRect: ?*const RECT,
     cKids: u32,
     lpKids: ?[*]const ?HWND,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn CascadeWindows(
@@ -8332,7 +8332,7 @@ pub extern "user32" fn CascadeWindows(
     lpRect: ?*const RECT,
     cKids: u32,
     lpKids: ?[*]const ?HWND,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SystemParametersInfoA(
@@ -8340,7 +8340,7 @@ pub extern "user32" fn SystemParametersInfoA(
     uiParam: u32,
     pvParam: ?*anyopaque,
     fWinIni: SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn SystemParametersInfoW(
@@ -8348,75 +8348,75 @@ pub extern "user32" fn SystemParametersInfoW(
     uiParam: u32,
     pvParam: ?*anyopaque,
     fWinIni: SYSTEM_PARAMETERS_INFO_UPDATE_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn SoundSentry(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "user32" fn SetDebugErrorLevel(
     dwLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn InternalGetWindowText(
     hWnd: ?HWND,
     pString: [*:0]u16,
     cchMaxCount: i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "user32" fn CancelShutdown(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetGUIThreadInfo(
     idThread: u32,
     pgui: ?*GUITHREADINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn SetProcessDPIAware(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn IsProcessDPIAware(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "user32" fn InheritWindowMonitor(
     hwnd: ?HWND,
     hwndInherit: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowModuleFileNameA(
     hwnd: ?HWND,
     pszFileName: [*:0]u8,
     cchFileNameMax: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowModuleFileNameW(
     hwnd: ?HWND,
     pszFileName: [*:0]u16,
     cchFileNameMax: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetCursorInfo(
     pci: ?*CURSORINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetWindowInfo(
     hwnd: ?HWND,
     pwi: ?*WINDOWINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetTitleBarInfo(
     hwnd: ?HWND,
     pti: ?*TITLEBARINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetMenuBarInfo(
@@ -8424,39 +8424,39 @@ pub extern "user32" fn GetMenuBarInfo(
     idObject: OBJECT_IDENTIFIER,
     idItem: i32,
     pmbi: ?*MENUBARINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn GetScrollBarInfo(
     hwnd: ?HWND,
     idObject: OBJECT_IDENTIFIER,
     psbi: ?*SCROLLBARINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetAncestor(
     hwnd: ?HWND,
     gaFlags: GET_ANCESTOR_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RealChildWindowFromPoint(
     hwndParent: ?HWND,
     ptParentClientCoords: POINT,
-) callconv(@import("std").os.windows.WINAPI) ?HWND;
+) callconv(.winapi) ?HWND;
 
 pub extern "user32" fn RealGetWindowClassA(
     hwnd: ?HWND,
     ptszClassName: [*:0]u8,
     cchClassNameMax: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn RealGetWindowClassW(
     hwnd: ?HWND,
     ptszClassName: [*:0]u16,
     cchClassNameMax: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetAltTabInfoA(
@@ -8465,7 +8465,7 @@ pub extern "user32" fn GetAltTabInfoA(
     pati: ?*ALTTABINFO,
     pszItemText: ?[*:0]u8,
     cchItemText: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "user32" fn GetAltTabInfoW(
@@ -8474,13 +8474,13 @@ pub extern "user32" fn GetAltTabInfoW(
     pati: ?*ALTTABINFO,
     pszItemText: ?[*:0]u16,
     cchItemText: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ChangeWindowMessageFilter(
     message: u32,
     dwFlag: CHANGE_WINDOW_MESSAGE_FILTER_FLAGS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "user32" fn ChangeWindowMessageFilterEx(
@@ -8488,19 +8488,19 @@ pub extern "user32" fn ChangeWindowMessageFilterEx(
     message: u32,
     action: WINDOW_MESSAGE_FILTER_ACTION,
     pChangeFilterStruct: ?*CHANGEFILTERSTRUCT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mrmsupport" fn CreateResourceIndexer(
     projectRoot: ?[*:0]const u16,
     extensionDllPath: ?[*:0]const u16,
     ppResourceIndexer: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mrmsupport" fn DestroyResourceIndexer(
     resourceIndexer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mrmsupport" fn IndexFilePath(
@@ -8509,14 +8509,14 @@ pub extern "mrmsupport" fn IndexFilePath(
     ppResourceUri: ?*?PWSTR,
     pQualifierCount: ?*u32,
     ppQualifiers: [*]?*IndexedResourceQualifier,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "mrmsupport" fn DestroyIndexedResults(
     resourceUri: ?PWSTR,
     qualifierCount: u32,
     qualifiers: ?[*]IndexedResourceQualifier,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "mrmsupport" fn MrmCreateResourceIndexer(
     packageFamilyName: ?[*:0]const u16,
@@ -8524,7 +8524,7 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexer(
     platformVersion: MrmPlatformVersion,
     defaultQualifiers: ?[*:0]const u16,
     indexer: ?*MrmResourceIndexerHandle,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousSchemaFile(
     projectRoot: ?[*:0]const u16,
@@ -8532,7 +8532,7 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousSchemaFile(
     defaultQualifiers: ?[*:0]const u16,
     schemaFile: ?[*:0]const u16,
     indexer: ?*MrmResourceIndexerHandle,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousPriFile(
     projectRoot: ?[*:0]const u16,
@@ -8540,7 +8540,7 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousPriFile(
     defaultQualifiers: ?[*:0]const u16,
     priFile: ?[*:0]const u16,
     indexer: ?*MrmResourceIndexerHandle,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousSchemaData(
     projectRoot: ?[*:0]const u16,
@@ -8550,7 +8550,7 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousSchemaData(
     schemaXmlData: ?*u8,
     schemaXmlSize: u32,
     indexer: ?*MrmResourceIndexerHandle,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousPriData(
     projectRoot: ?[*:0]const u16,
@@ -8560,7 +8560,7 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexerFromPreviousPriData(
     priData: ?*u8,
     priSize: u32,
     indexer: ?*MrmResourceIndexerHandle,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceIndexerWithFlags(
     packageFamilyName: ?[*:0]const u16,
@@ -8569,14 +8569,14 @@ pub extern "mrmsupport" fn MrmCreateResourceIndexerWithFlags(
     defaultQualifiers: ?[*:0]const u16,
     flags: MrmIndexerFlags,
     indexer: ?*MrmResourceIndexerHandle,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmIndexString(
     indexer: MrmResourceIndexerHandle,
     resourceUri: ?[*:0]const u16,
     resourceString: ?[*:0]const u16,
     qualifiers: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmIndexEmbeddedData(
     indexer: MrmResourceIndexerHandle,
@@ -8585,31 +8585,31 @@ pub extern "mrmsupport" fn MrmIndexEmbeddedData(
     embeddedData: ?*const u8,
     embeddedDataSize: u32,
     qualifiers: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmIndexFile(
     indexer: MrmResourceIndexerHandle,
     resourceUri: ?[*:0]const u16,
     filePath: ?[*:0]const u16,
     qualifiers: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmIndexFileAutoQualifiers(
     indexer: MrmResourceIndexerHandle,
     filePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmIndexResourceContainerAutoQualifiers(
     indexer: MrmResourceIndexerHandle,
     containerPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceFile(
     indexer: MrmResourceIndexerHandle,
     packagingMode: MrmPackagingMode,
     packagingOptions: MrmPackagingOptions,
     outputDirectory: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceFileWithChecksum(
     indexer: MrmResourceIndexerHandle,
@@ -8617,7 +8617,7 @@ pub extern "mrmsupport" fn MrmCreateResourceFileWithChecksum(
     packagingOptions: MrmPackagingOptions,
     checksum: u32,
     outputDirectory: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateResourceFileInMemory(
     indexer: MrmResourceIndexerHandle,
@@ -8625,28 +8625,28 @@ pub extern "mrmsupport" fn MrmCreateResourceFileInMemory(
     packagingOptions: MrmPackagingOptions,
     outputPriData: ?*?*u8,
     outputPriSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmPeekResourceIndexerMessages(
     handle: MrmResourceIndexerHandle,
     messages: [*]?*MrmResourceIndexerMessage,
     numMsgs: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmDestroyIndexerAndMessages(
     indexer: MrmResourceIndexerHandle,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmFreeMemory(
     data: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmDumpPriFile(
     indexFileName: ?[*:0]const u16,
     schemaPriFile: ?[*:0]const u16,
     dumpType: MrmDumpType,
     outputXmlFile: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmDumpPriFileInMemory(
     indexFileName: ?[*:0]const u16,
@@ -8654,7 +8654,7 @@ pub extern "mrmsupport" fn MrmDumpPriFileInMemory(
     dumpType: MrmDumpType,
     outputXmlData: ?*?*u8,
     outputXmlSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmDumpPriDataInMemory(
     // TODO: what to do with BytesParamIndex 1?
@@ -8666,25 +8666,25 @@ pub extern "mrmsupport" fn MrmDumpPriDataInMemory(
     dumpType: MrmDumpType,
     outputXmlData: ?*?*u8,
     outputXmlSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateConfig(
     platformVersion: MrmPlatformVersion,
     defaultQualifiers: ?[*:0]const u16,
     outputXmlFile: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmCreateConfigInMemory(
     platformVersion: MrmPlatformVersion,
     defaultQualifiers: ?[*:0]const u16,
     outputXmlData: ?*?*u8,
     outputXmlSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "mrmsupport" fn MrmGetPriFileContentChecksum(
     priFile: ?[*:0]const u16,
     checksum: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

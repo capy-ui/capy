@@ -57,42 +57,42 @@ pub const IRendezvousSession = extern union {
         get_State: *const fn(
             self: *const IRendezvousSession,
             pSessionState: ?*RENDEZVOUS_SESSION_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteUser: *const fn(
             self: *const IRendezvousSession,
             bstrUserName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: *const fn(
             self: *const IRendezvousSession,
             pFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SendContextData: *const fn(
             self: *const IRendezvousSession,
             bstrData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Terminate: *const fn(
             self: *const IRendezvousSession,
             hr: HRESULT,
             bstrAppData: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn get_State(self: *const IRendezvousSession, pSessionState: ?*RENDEZVOUS_SESSION_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const IRendezvousSession, pSessionState: ?*RENDEZVOUS_SESSION_STATE) HRESULT {
         return self.vtable.get_State(self, pSessionState);
     }
-    pub fn get_RemoteUser(self: *const IRendezvousSession, bstrUserName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RemoteUser(self: *const IRendezvousSession, bstrUserName: ?*?BSTR) HRESULT {
         return self.vtable.get_RemoteUser(self, bstrUserName);
     }
-    pub fn get_Flags(self: *const IRendezvousSession, pFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const IRendezvousSession, pFlags: ?*i32) HRESULT {
         return self.vtable.get_Flags(self, pFlags);
     }
-    pub fn SendContextData(self: *const IRendezvousSession, bstrData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SendContextData(self: *const IRendezvousSession, bstrData: ?BSTR) HRESULT {
         return self.vtable.SendContextData(self, bstrData);
     }
-    pub fn Terminate(self: *const IRendezvousSession, hr: HRESULT, bstrAppData: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Terminate(self: *const IRendezvousSession, hr: HRESULT, bstrAppData: ?BSTR) HRESULT {
         return self.vtable.Terminate(self, hr, bstrAppData);
     }
 };
@@ -118,11 +118,11 @@ pub const IRendezvousApplication = extern union {
         SetRendezvousSession: *const fn(
             self: *const IRendezvousApplication,
             pRendezvousSession: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetRendezvousSession(self: *const IRendezvousApplication, pRendezvousSession: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetRendezvousSession(self: *const IRendezvousApplication, pRendezvousSession: ?*IUnknown) HRESULT {
         return self.vtable.SetRendezvousSession(self, pRendezvousSession);
     }
 };

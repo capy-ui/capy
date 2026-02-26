@@ -967,7 +967,7 @@ pub const JET_PFNSTATUS = *const fn(
     snp: u32,
     snt: u32,
     pv: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const JET_RSTMAP_A = extern struct {
     szDatabaseName: ?PSTR,
@@ -1008,7 +1008,7 @@ pub const JET_CALLBACK = *const fn(
     pvArg2: ?*anyopaque,
     pvContext: ?*anyopaque,
     ulUnused: JET_API_PTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const JET_SNPROG = extern struct {
     cbStruct: u32,
@@ -1863,7 +1863,7 @@ pub const JET_PFNDURABLECOMMITCALLBACK = *const fn(
     instance: JET_INSTANCE,
     pCommitIdSeen: ?*JET_COMMIT_ID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 
 
@@ -1954,7 +1954,7 @@ pub const JET_PFNREALLOC = *const fn(
     pvContext: ?*anyopaque,
     pv: ?*anyopaque,
     cb: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 
 
@@ -2162,48 +2162,48 @@ pub const JET_RECSIZE2 = switch(@import("../zig.zig").arch) {
 //--------------------------------------------------------------------------------
 pub extern "esent" fn JetInit(
     pinstance: ?*JET_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetInit2(
     pinstance: ?*JET_INSTANCE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetInit3A(
     pinstance: ?*JET_INSTANCE,
     prstInfo: ?*JET_RSTINFO_A,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetInit3W(
     pinstance: ?*JET_INSTANCE,
     prstInfo: ?*JET_RSTINFO_W,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateInstanceA(
     pinstance: ?*JET_INSTANCE,
     szInstanceName: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateInstanceW(
     pinstance: ?*JET_INSTANCE,
     szInstanceName: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateInstance2A(
     pinstance: ?*JET_INSTANCE,
     szInstanceName: ?*i8,
     szDisplayName: ?*i8,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateInstance2W(
     pinstance: ?*JET_INSTANCE,
     szInstanceName: ?*u16,
     szDisplayName: ?*u16,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetInstanceMiscInfo(
     instance: JET_INSTANCE,
@@ -2211,35 +2211,35 @@ pub extern "esent" fn JetGetInstanceMiscInfo(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetTerm(
     instance: JET_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetTerm2(
     instance: JET_INSTANCE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetStopService(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetStopServiceInstance(
     instance: JET_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetStopServiceInstance2(
     instance: JET_INSTANCE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetStopBackup(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetStopBackupInstance(
     instance: JET_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // This function from dll 'ESENT' is being skipped because it has some sort of issue
 pub fn JetSetSystemParameterA() void { @panic("this function is not working"); }
@@ -2255,7 +2255,7 @@ pub extern "esent" fn JetGetSystemParameterA(
     // TODO: what to do with BytesParamIndex 5?
     szParam: ?*i8,
     cbMax: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetSystemParameterW(
     instance: JET_INSTANCE,
@@ -2265,59 +2265,59 @@ pub extern "esent" fn JetGetSystemParameterW(
     // TODO: what to do with BytesParamIndex 5?
     szParam: ?*u16,
     cbMax: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEnableMultiInstanceA(
     psetsysparam: ?[*]JET_SETSYSPARAM_A,
     csetsysparam: u32,
     pcsetsucceed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEnableMultiInstanceW(
     psetsysparam: ?[*]JET_SETSYSPARAM_W,
     csetsysparam: u32,
     pcsetsucceed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetThreadStats(
     // TODO: what to do with BytesParamIndex 1?
     pvResult: ?*anyopaque,
     cbMax: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBeginSessionA(
     instance: JET_INSTANCE,
     psesid: ?*?JET_SESID,
     szUserName: ?*i8,
     szPassword: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBeginSessionW(
     instance: JET_INSTANCE,
     psesid: ?*?JET_SESID,
     szUserName: ?*u16,
     szPassword: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDupSession(
     sesid: ?JET_SESID,
     psesid: ?*?JET_SESID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEndSession(
     sesid: ?JET_SESID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetVersion(
     sesid: ?JET_SESID,
     pwVersion: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetIdle(
     sesid: ?JET_SESID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateDatabaseA(
     sesid: ?JET_SESID,
@@ -2325,7 +2325,7 @@ pub extern "esent" fn JetCreateDatabaseA(
     szConnect: ?*i8,
     pdbid: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateDatabaseW(
     sesid: ?JET_SESID,
@@ -2333,7 +2333,7 @@ pub extern "esent" fn JetCreateDatabaseW(
     szConnect: ?*u16,
     pdbid: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateDatabase2A(
     sesid: ?JET_SESID,
@@ -2341,7 +2341,7 @@ pub extern "esent" fn JetCreateDatabase2A(
     cpgDatabaseSizeMax: u32,
     pdbid: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateDatabase2W(
     sesid: ?JET_SESID,
@@ -2349,55 +2349,55 @@ pub extern "esent" fn JetCreateDatabase2W(
     cpgDatabaseSizeMax: u32,
     pdbid: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetAttachDatabaseA(
     sesid: ?JET_SESID,
     szFilename: ?*i8,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetAttachDatabaseW(
     sesid: ?JET_SESID,
     szFilename: ?*u16,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetAttachDatabase2A(
     sesid: ?JET_SESID,
     szFilename: ?*i8,
     cpgDatabaseSizeMax: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetAttachDatabase2W(
     sesid: ?JET_SESID,
     szFilename: ?*u16,
     cpgDatabaseSizeMax: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDetachDatabaseA(
     sesid: ?JET_SESID,
     szFilename: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDetachDatabaseW(
     sesid: ?JET_SESID,
     szFilename: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDetachDatabase2A(
     sesid: ?JET_SESID,
     szFilename: ?*i8,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDetachDatabase2W(
     sesid: ?JET_SESID,
     szFilename: ?*u16,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetObjectInfoA(
     sesid: ?JET_SESID,
@@ -2409,7 +2409,7 @@ pub extern "esent" fn JetGetObjectInfoA(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetObjectInfoW(
     sesid: ?JET_SESID,
@@ -2421,7 +2421,7 @@ pub extern "esent" fn JetGetObjectInfoW(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTableInfoA(
     sesid: ?JET_SESID,
@@ -2430,7 +2430,7 @@ pub extern "esent" fn JetGetTableInfoA(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTableInfoW(
     sesid: ?JET_SESID,
@@ -2439,7 +2439,7 @@ pub extern "esent" fn JetGetTableInfoW(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableA(
     sesid: ?JET_SESID,
@@ -2448,7 +2448,7 @@ pub extern "esent" fn JetCreateTableA(
     lPages: u32,
     lDensity: u32,
     ptableid: ?*JET_TABLEID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableW(
     sesid: ?JET_SESID,
@@ -2457,81 +2457,81 @@ pub extern "esent" fn JetCreateTableW(
     lPages: u32,
     lDensity: u32,
     ptableid: ?*JET_TABLEID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndexA(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndexW(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndex2A(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE2_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndex2W(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE2_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndex3A(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE3_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndex3W(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE3_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndex4A(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE4_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateTableColumnIndex4W(
     sesid: ?JET_SESID,
     dbid: u32,
     ptablecreate: ?*JET_TABLECREATE4_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteTableA(
     sesid: ?JET_SESID,
     dbid: u32,
     szTableName: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteTableW(
     sesid: ?JET_SESID,
     dbid: u32,
     szTableName: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRenameTableA(
     sesid: ?JET_SESID,
     dbid: u32,
     szName: ?*i8,
     szNameNew: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRenameTableW(
     sesid: ?JET_SESID,
     dbid: u32,
     szName: ?*u16,
     szNameNew: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTableColumnInfoA(
     sesid: ?JET_SESID,
@@ -2541,7 +2541,7 @@ pub extern "esent" fn JetGetTableColumnInfoA(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTableColumnInfoW(
     sesid: ?JET_SESID,
@@ -2551,7 +2551,7 @@ pub extern "esent" fn JetGetTableColumnInfoW(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetColumnInfoA(
     sesid: ?JET_SESID,
@@ -2562,7 +2562,7 @@ pub extern "esent" fn JetGetColumnInfoA(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetColumnInfoW(
     sesid: ?JET_SESID,
@@ -2573,7 +2573,7 @@ pub extern "esent" fn JetGetColumnInfoW(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetAddColumnA(
     sesid: ?JET_SESID,
@@ -2584,7 +2584,7 @@ pub extern "esent" fn JetAddColumnA(
     pvDefault: ?*const anyopaque,
     cbDefault: u32,
     pcolumnid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetAddColumnW(
     sesid: ?JET_SESID,
@@ -2595,33 +2595,33 @@ pub extern "esent" fn JetAddColumnW(
     pvDefault: ?*const anyopaque,
     cbDefault: u32,
     pcolumnid: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteColumnA(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szColumnName: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteColumnW(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szColumnName: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteColumn2A(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szColumnName: ?*i8,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteColumn2W(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szColumnName: ?*u16,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRenameColumnA(
     sesid: ?JET_SESID,
@@ -2629,7 +2629,7 @@ pub extern "esent" fn JetRenameColumnA(
     szName: ?*i8,
     szNameNew: ?*i8,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRenameColumnW(
     sesid: ?JET_SESID,
@@ -2637,7 +2637,7 @@ pub extern "esent" fn JetRenameColumnW(
     szName: ?*u16,
     szNameNew: ?*u16,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetColumnDefaultValueA(
     sesid: ?JET_SESID,
@@ -2648,7 +2648,7 @@ pub extern "esent" fn JetSetColumnDefaultValueA(
     pvData: ?*const anyopaque,
     cbData: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetColumnDefaultValueW(
     sesid: ?JET_SESID,
@@ -2659,7 +2659,7 @@ pub extern "esent" fn JetSetColumnDefaultValueW(
     pvData: ?*const anyopaque,
     cbData: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTableIndexInfoA(
     sesid: ?JET_SESID,
@@ -2669,7 +2669,7 @@ pub extern "esent" fn JetGetTableIndexInfoA(
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTableIndexInfoW(
     sesid: ?JET_SESID,
@@ -2679,7 +2679,7 @@ pub extern "esent" fn JetGetTableIndexInfoW(
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetIndexInfoA(
     sesid: ?JET_SESID,
@@ -2690,7 +2690,7 @@ pub extern "esent" fn JetGetIndexInfoA(
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetIndexInfoW(
     sesid: ?JET_SESID,
@@ -2701,7 +2701,7 @@ pub extern "esent" fn JetGetIndexInfoW(
     pvResult: ?*anyopaque,
     cbResult: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndexA(
     sesid: ?JET_SESID,
@@ -2712,7 +2712,7 @@ pub extern "esent" fn JetCreateIndexA(
     szKey: ?[*:0]const u8,
     cbKey: u32,
     lDensity: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndexW(
     sesid: ?JET_SESID,
@@ -2723,93 +2723,93 @@ pub extern "esent" fn JetCreateIndexW(
     szKey: ?[*:0]const u16,
     cbKey: u32,
     lDensity: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndex2A(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pindexcreate: [*]JET_INDEXCREATE_A,
     cIndexCreate: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndex2W(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pindexcreate: [*]JET_INDEXCREATE_W,
     cIndexCreate: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndex3A(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pindexcreate: [*]JET_INDEXCREATE2_A,
     cIndexCreate: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndex3W(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pindexcreate: [*]JET_INDEXCREATE2_W,
     cIndexCreate: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndex4A(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pindexcreate: [*]JET_INDEXCREATE3_A,
     cIndexCreate: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCreateIndex4W(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pindexcreate: [*]JET_INDEXCREATE3_W,
     cIndexCreate: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteIndexA(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDeleteIndexW(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBeginTransaction(
     sesid: ?JET_SESID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBeginTransaction2(
     sesid: ?JET_SESID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBeginTransaction3(
     sesid: ?JET_SESID,
     trxid: i64,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCommitTransaction(
     sesid: ?JET_SESID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCommitTransaction2(
     sesid: ?JET_SESID,
     grbit: u32,
     cmsecDurableCommit: u32,
     pCommitId: ?*JET_COMMIT_ID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRollback(
     sesid: ?JET_SESID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetDatabaseInfoA(
     sesid: ?JET_SESID,
@@ -2818,7 +2818,7 @@ pub extern "esent" fn JetGetDatabaseInfoA(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetDatabaseInfoW(
     sesid: ?JET_SESID,
@@ -2827,7 +2827,7 @@ pub extern "esent" fn JetGetDatabaseInfoW(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetDatabaseFileInfoA(
     szDatabaseName: ?*i8,
@@ -2835,7 +2835,7 @@ pub extern "esent" fn JetGetDatabaseFileInfoA(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetDatabaseFileInfoW(
     szDatabaseName: ?*u16,
@@ -2843,7 +2843,7 @@ pub extern "esent" fn JetGetDatabaseFileInfoW(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenDatabaseA(
     sesid: ?JET_SESID,
@@ -2851,7 +2851,7 @@ pub extern "esent" fn JetOpenDatabaseA(
     szConnect: ?*i8,
     pdbid: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenDatabaseW(
     sesid: ?JET_SESID,
@@ -2859,13 +2859,13 @@ pub extern "esent" fn JetOpenDatabaseW(
     szConnect: ?*u16,
     pdbid: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCloseDatabase(
     sesid: ?JET_SESID,
     dbid: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenTableA(
     sesid: ?JET_SESID,
@@ -2876,7 +2876,7 @@ pub extern "esent" fn JetOpenTableA(
     cbParameters: u32,
     grbit: u32,
     ptableid: ?*JET_TABLEID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenTableW(
     sesid: ?JET_SESID,
@@ -2887,29 +2887,29 @@ pub extern "esent" fn JetOpenTableW(
     cbParameters: u32,
     grbit: u32,
     ptableid: ?*JET_TABLEID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetTableSequential(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetResetTableSequential(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCloseTable(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDelete(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetUpdate(
     sesid: ?JET_SESID,
@@ -2918,7 +2918,7 @@ pub extern "esent" fn JetUpdate(
     pvBookmark: ?*anyopaque,
     cbBookmark: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetUpdate2(
     sesid: ?JET_SESID,
@@ -2928,7 +2928,7 @@ pub extern "esent" fn JetUpdate2(
     cbBookmark: u32,
     pcbActual: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEscrowUpdate(
     sesid: ?JET_SESID,
@@ -2942,7 +2942,7 @@ pub extern "esent" fn JetEscrowUpdate(
     cbOldMax: u32,
     pcbOldActual: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRetrieveColumn(
     sesid: ?JET_SESID,
@@ -2954,14 +2954,14 @@ pub extern "esent" fn JetRetrieveColumn(
     pcbActual: ?*u32,
     grbit: u32,
     pretinfo: ?*JET_RETINFO,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRetrieveColumns(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pretrievecolumn: ?[*]JET_RETRIEVECOLUMN,
     cretrievecolumn: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEnumerateColumns(
     sesid: ?JET_SESID,
@@ -2974,21 +2974,21 @@ pub extern "esent" fn JetEnumerateColumns(
     pvReallocContext: ?*anyopaque,
     cbDataMost: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetRecordSize(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     precsize: ?*JET_RECSIZE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetRecordSize2(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     precsize: ?*JET_RECSIZE2,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetColumn(
     sesid: ?JET_SESID,
@@ -2999,20 +2999,20 @@ pub extern "esent" fn JetSetColumn(
     cbData: u32,
     grbit: u32,
     psetinfo: ?*JET_SETINFO,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetColumns(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     psetcolumn: ?[*]JET_SETCOLUMN,
     csetcolumn: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetPrepareUpdate(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     prep: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetRecordPosition(
     sesid: ?JET_SESID,
@@ -3020,13 +3020,13 @@ pub extern "esent" fn JetGetRecordPosition(
     // TODO: what to do with BytesParamIndex 3?
     precpos: ?*JET_RECPOS,
     cbRecpos: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGotoPosition(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     precpos: ?*JET_RECPOS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetCursorInfo(
     sesid: ?JET_SESID,
@@ -3035,14 +3035,14 @@ pub extern "esent" fn JetGetCursorInfo(
     pvResult: ?*anyopaque,
     cbMax: u32,
     InfoLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDupCursor(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     ptableid: ?*JET_TABLEID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetCurrentIndexA(
     sesid: ?JET_SESID,
@@ -3050,7 +3050,7 @@ pub extern "esent" fn JetGetCurrentIndexA(
     // TODO: what to do with BytesParamIndex 3?
     szIndexName: ?*i8,
     cbIndexName: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetCurrentIndexW(
     sesid: ?JET_SESID,
@@ -3058,33 +3058,33 @@ pub extern "esent" fn JetGetCurrentIndexW(
     // TODO: what to do with BytesParamIndex 3?
     szIndexName: ?*u16,
     cbIndexName: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndexA(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*i8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndexW(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndex2A(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*i8,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndex2W(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     szIndexName: ?*u16,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndex3A(
     sesid: ?JET_SESID,
@@ -3092,7 +3092,7 @@ pub extern "esent" fn JetSetCurrentIndex3A(
     szIndexName: ?*i8,
     grbit: u32,
     itagSequence: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndex3W(
     sesid: ?JET_SESID,
@@ -3100,7 +3100,7 @@ pub extern "esent" fn JetSetCurrentIndex3W(
     szIndexName: ?*u16,
     grbit: u32,
     itagSequence: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndex4A(
     sesid: ?JET_SESID,
@@ -3109,7 +3109,7 @@ pub extern "esent" fn JetSetCurrentIndex4A(
     pindexid: ?*JET_INDEXID,
     grbit: u32,
     itagSequence: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCurrentIndex4W(
     sesid: ?JET_SESID,
@@ -3118,14 +3118,14 @@ pub extern "esent" fn JetSetCurrentIndex4W(
     pindexid: ?*JET_INDEXID,
     grbit: u32,
     itagSequence: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetMove(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     cRow: i32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetCursorFilter(
     sesid: ?JET_SESID,
@@ -3133,13 +3133,13 @@ pub extern "esent" fn JetSetCursorFilter(
     rgColumnFilters: [*]JET_INDEX_COLUMN,
     cColumnFilters: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLock(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetMakeKey(
     sesid: ?JET_SESID,
@@ -3148,13 +3148,13 @@ pub extern "esent" fn JetMakeKey(
     pvData: ?*const anyopaque,
     cbData: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSeek(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetPrereadKeys(
     sesid: ?JET_SESID,
@@ -3164,7 +3164,7 @@ pub extern "esent" fn JetPrereadKeys(
     ckeys: i32,
     pckeysPreread: ?*i32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetPrereadIndexRanges(
     sesid: ?JET_SESID,
@@ -3175,7 +3175,7 @@ pub extern "esent" fn JetPrereadIndexRanges(
     rgcolumnidPreread: [*]const u32,
     ccolumnidPreread: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetBookmark(
     sesid: ?JET_SESID,
@@ -3184,7 +3184,7 @@ pub extern "esent" fn JetGetBookmark(
     pvBookmark: ?*anyopaque,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetSecondaryIndexBookmark(
     sesid: ?JET_SESID,
@@ -3198,7 +3198,7 @@ pub extern "esent" fn JetGetSecondaryIndexBookmark(
     cbPrimaryBookmarkMax: u32,
     pcbPrimaryBookmarkActual: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCompactA(
     sesid: ?JET_SESID,
@@ -3207,7 +3207,7 @@ pub extern "esent" fn JetCompactA(
     pfnStatus: ?JET_PFNSTATUS,
     pconvert: ?*CONVERT_A,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCompactW(
     sesid: ?JET_SESID,
@@ -3216,7 +3216,7 @@ pub extern "esent" fn JetCompactW(
     pfnStatus: ?JET_PFNSTATUS,
     pconvert: ?*CONVERT_W,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDefragmentA(
     sesid: ?JET_SESID,
@@ -3225,7 +3225,7 @@ pub extern "esent" fn JetDefragmentA(
     pcPasses: ?*u32,
     pcSeconds: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDefragmentW(
     sesid: ?JET_SESID,
@@ -3234,7 +3234,7 @@ pub extern "esent" fn JetDefragmentW(
     pcPasses: ?*u32,
     pcSeconds: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDefragment2A(
     sesid: ?JET_SESID,
@@ -3244,7 +3244,7 @@ pub extern "esent" fn JetDefragment2A(
     pcSeconds: ?*u32,
     callback: ?JET_CALLBACK,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDefragment2W(
     sesid: ?JET_SESID,
@@ -3254,7 +3254,7 @@ pub extern "esent" fn JetDefragment2W(
     pcSeconds: ?*u32,
     callback: ?JET_CALLBACK,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDefragment3A(
     sesid: ?JET_SESID,
@@ -3265,7 +3265,7 @@ pub extern "esent" fn JetDefragment3A(
     callback: ?JET_CALLBACK,
     pvContext: ?*anyopaque,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetDefragment3W(
     sesid: ?JET_SESID,
@@ -3276,28 +3276,28 @@ pub extern "esent" fn JetDefragment3W(
     callback: ?JET_CALLBACK,
     pvContext: ?*anyopaque,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetDatabaseSizeA(
     sesid: ?JET_SESID,
     szDatabaseName: ?*i8,
     cpg: u32,
     pcpgReal: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetDatabaseSizeW(
     sesid: ?JET_SESID,
     szDatabaseName: ?*u16,
     cpg: u32,
     pcpgReal: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGrowDatabase(
     sesid: ?JET_SESID,
     dbid: u32,
     cpg: u32,
     pcpgReal: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetResizeDatabase(
     sesid: ?JET_SESID,
@@ -3305,16 +3305,16 @@ pub extern "esent" fn JetResizeDatabase(
     cpgTarget: u32,
     pcpgActual: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetSessionContext(
     sesid: ?JET_SESID,
     ulContext: JET_API_PTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetResetSessionContext(
     sesid: ?JET_SESID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGotoBookmark(
     sesid: ?JET_SESID,
@@ -3322,7 +3322,7 @@ pub extern "esent" fn JetGotoBookmark(
     // TODO: what to do with BytesParamIndex 3?
     pvBookmark: ?*anyopaque,
     cbBookmark: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGotoSecondaryIndexBookmark(
     sesid: ?JET_SESID,
@@ -3334,7 +3334,7 @@ pub extern "esent" fn JetGotoSecondaryIndexBookmark(
     pvPrimaryBookmark: ?*anyopaque,
     cbPrimaryBookmark: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetIntersectIndexes(
     sesid: ?JET_SESID,
@@ -3342,12 +3342,12 @@ pub extern "esent" fn JetIntersectIndexes(
     cindexrange: u32,
     precordlist: ?*JET_RECORDLIST,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetComputeStats(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenTempTable(
     sesid: ?JET_SESID,
@@ -3356,7 +3356,7 @@ pub extern "esent" fn JetOpenTempTable(
     grbit: u32,
     ptableid: ?*JET_TABLEID,
     prgcolumnid: [*]u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenTempTable2(
     sesid: ?JET_SESID,
@@ -3366,7 +3366,7 @@ pub extern "esent" fn JetOpenTempTable2(
     grbit: u32,
     ptableid: ?*JET_TABLEID,
     prgcolumnid: [*]u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenTempTable3(
     sesid: ?JET_SESID,
@@ -3376,92 +3376,92 @@ pub extern "esent" fn JetOpenTempTable3(
     grbit: u32,
     ptableid: ?*JET_TABLEID,
     prgcolumnid: [*]u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenTemporaryTable(
     sesid: ?JET_SESID,
     popentemporarytable: ?*JET_OPENTEMPORARYTABLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenTemporaryTable2(
     sesid: ?JET_SESID,
     popentemporarytable: ?*JET_OPENTEMPORARYTABLE2,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBackupA(
     szBackupPath: ?*i8,
     grbit: u32,
     pfnStatus: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBackupW(
     szBackupPath: ?*u16,
     grbit: u32,
     pfnStatus: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBackupInstanceA(
     instance: JET_INSTANCE,
     szBackupPath: ?*i8,
     grbit: u32,
     pfnStatus: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBackupInstanceW(
     instance: JET_INSTANCE,
     szBackupPath: ?*u16,
     grbit: u32,
     pfnStatus: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRestoreA(
     szSource: ?*i8,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRestoreW(
     szSource: ?*u16,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRestore2A(
     sz: ?*i8,
     szDest: ?*i8,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRestore2W(
     sz: ?*u16,
     szDest: ?*u16,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRestoreInstanceA(
     instance: JET_INSTANCE,
     sz: ?*i8,
     szDest: ?*i8,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRestoreInstanceW(
     instance: JET_INSTANCE,
     sz: ?*u16,
     szDest: ?*u16,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetIndexRange(
     sesid: ?JET_SESID,
     tableidSrc: JET_TABLEID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetIndexRecordCount(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pcrec: ?*u32,
     crecMax: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRetrieveKey(
     sesid: ?JET_SESID,
@@ -3471,30 +3471,30 @@ pub extern "esent" fn JetRetrieveKey(
     cbMax: u32,
     pcbActual: ?*u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBeginExternalBackup(
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetBeginExternalBackupInstance(
     instance: JET_INSTANCE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetAttachInfoA(
     // TODO: what to do with BytesParamIndex 1?
     szzDatabases: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetAttachInfoW(
     // TODO: what to do with BytesParamIndex 1?
     wszzDatabases: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetAttachInfoInstanceA(
     instance: JET_INSTANCE,
@@ -3502,7 +3502,7 @@ pub extern "esent" fn JetGetAttachInfoInstanceA(
     szzDatabases: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetAttachInfoInstanceW(
     instance: JET_INSTANCE,
@@ -3510,21 +3510,21 @@ pub extern "esent" fn JetGetAttachInfoInstanceW(
     szzDatabases: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenFileA(
     szFileName: ?*i8,
     phfFile: ?*JET_HANDLE,
     pulFileSizeLow: ?*u32,
     pulFileSizeHigh: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenFileW(
     szFileName: ?*u16,
     phfFile: ?*JET_HANDLE,
     pulFileSizeLow: ?*u32,
     pulFileSizeHigh: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenFileInstanceA(
     instance: JET_INSTANCE,
@@ -3532,7 +3532,7 @@ pub extern "esent" fn JetOpenFileInstanceA(
     phfFile: ?*JET_HANDLE,
     pulFileSizeLow: ?*u32,
     pulFileSizeHigh: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOpenFileInstanceW(
     instance: JET_INSTANCE,
@@ -3540,7 +3540,7 @@ pub extern "esent" fn JetOpenFileInstanceW(
     phfFile: ?*JET_HANDLE,
     pulFileSizeLow: ?*u32,
     pulFileSizeHigh: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetReadFile(
     hfFile: JET_HANDLE,
@@ -3548,7 +3548,7 @@ pub extern "esent" fn JetReadFile(
     pv: ?*anyopaque,
     cb: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetReadFileInstance(
     instance: JET_INSTANCE,
@@ -3557,30 +3557,30 @@ pub extern "esent" fn JetReadFileInstance(
     pv: ?*anyopaque,
     cb: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCloseFile(
     hfFile: JET_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetCloseFileInstance(
     instance: JET_INSTANCE,
     hfFile: JET_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoA(
     // TODO: what to do with BytesParamIndex 1?
     szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoW(
     // TODO: what to do with BytesParamIndex 1?
     szzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoInstanceA(
     instance: JET_INSTANCE,
@@ -3588,7 +3588,7 @@ pub extern "esent" fn JetGetLogInfoInstanceA(
     szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoInstanceW(
     instance: JET_INSTANCE,
@@ -3596,7 +3596,7 @@ pub extern "esent" fn JetGetLogInfoInstanceW(
     wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoInstance2A(
     instance: JET_INSTANCE,
@@ -3605,7 +3605,7 @@ pub extern "esent" fn JetGetLogInfoInstance2A(
     cbMax: u32,
     pcbActual: ?*u32,
     pLogInfo: ?*JET_LOGINFO_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLogInfoInstance2W(
     instance: JET_INSTANCE,
@@ -3614,7 +3614,7 @@ pub extern "esent" fn JetGetLogInfoInstance2W(
     cbMax: u32,
     pcbActual: ?*u32,
     pLogInfo: ?*JET_LOGINFO_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTruncateLogInfoInstanceA(
     instance: JET_INSTANCE,
@@ -3622,7 +3622,7 @@ pub extern "esent" fn JetGetTruncateLogInfoInstanceA(
     szzLogs: ?*i8,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetTruncateLogInfoInstanceW(
     instance: JET_INSTANCE,
@@ -3630,26 +3630,26 @@ pub extern "esent" fn JetGetTruncateLogInfoInstanceW(
     wszzLogs: ?*u16,
     cbMax: u32,
     pcbActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetTruncateLog(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetTruncateLogInstance(
     instance: JET_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEndExternalBackup(
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEndExternalBackupInstance(
     instance: JET_INSTANCE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetEndExternalBackupInstance2(
     instance: JET_INSTANCE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetExternalRestoreA(
     szCheckpointFilePath: ?*i8,
@@ -3660,7 +3660,7 @@ pub extern "esent" fn JetExternalRestoreA(
     genLow: i32,
     genHigh: i32,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetExternalRestoreW(
     szCheckpointFilePath: ?*u16,
@@ -3671,7 +3671,7 @@ pub extern "esent" fn JetExternalRestoreW(
     genLow: i32,
     genHigh: i32,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetExternalRestore2A(
     szCheckpointFilePath: ?*i8,
@@ -3684,7 +3684,7 @@ pub extern "esent" fn JetExternalRestore2A(
     szTargetInstanceLogPath: ?*i8,
     szTargetInstanceCheckpointPath: ?*i8,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetExternalRestore2W(
     szCheckpointFilePath: ?*u16,
@@ -3697,7 +3697,7 @@ pub extern "esent" fn JetExternalRestore2W(
     szTargetInstanceLogPath: ?*u16,
     szTargetInstanceCheckpointPath: ?*u16,
     pfn: ?JET_PFNSTATUS,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetRegisterCallback(
     sesid: ?JET_SESID,
@@ -3706,111 +3706,111 @@ pub extern "esent" fn JetRegisterCallback(
     pCallback: ?JET_CALLBACK,
     pvContext: ?*anyopaque,
     phCallbackId: ?*JET_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetUnregisterCallback(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     cbtyp: u32,
     hCallbackId: JET_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetInstanceInfoA(
     pcInstanceInfo: ?*u32,
     paInstanceInfo: ?*?*JET_INSTANCE_INFO_A,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetInstanceInfoW(
     pcInstanceInfo: ?*u32,
     paInstanceInfo: ?*?*JET_INSTANCE_INFO_W,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetFreeBuffer(
     pbBuf: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetLS(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     ls: JET_LS,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetLS(
     sesid: ?JET_SESID,
     tableid: JET_TABLEID,
     pls: ?*JET_LS,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotPrepare(
     psnapId: ?*JET_OSSNAPID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotPrepareInstance(
     snapId: JET_OSSNAPID,
     instance: JET_INSTANCE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotFreezeA(
     snapId: JET_OSSNAPID,
     pcInstanceInfo: ?*u32,
     paInstanceInfo: ?*?*JET_INSTANCE_INFO_A,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotFreezeW(
     snapId: JET_OSSNAPID,
     pcInstanceInfo: ?*u32,
     paInstanceInfo: ?*?*JET_INSTANCE_INFO_W,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotThaw(
     snapId: JET_OSSNAPID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotAbort(
     snapId: JET_OSSNAPID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotTruncateLog(
     snapId: JET_OSSNAPID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotTruncateLogInstance(
     snapId: JET_OSSNAPID,
     instance: JET_INSTANCE,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotGetFreezeInfoA(
     snapId: JET_OSSNAPID,
     pcInstanceInfo: ?*u32,
     paInstanceInfo: ?*?*JET_INSTANCE_INFO_A,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotGetFreezeInfoW(
     snapId: JET_OSSNAPID,
     pcInstanceInfo: ?*u32,
     paInstanceInfo: ?*?*JET_INSTANCE_INFO_W,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetOSSnapshotEnd(
     snapId: JET_OSSNAPID,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetConfigureProcessForCrashDump(
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetErrorInfoW(
     pvContext: ?*anyopaque,
@@ -3819,7 +3819,7 @@ pub extern "esent" fn JetGetErrorInfoW(
     cbMax: u32,
     InfoLevel: u32,
     grbit: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetSetSessionParameter(
     sesid: ?JET_SESID,
@@ -3827,7 +3827,7 @@ pub extern "esent" fn JetSetSessionParameter(
     // TODO: what to do with BytesParamIndex 3?
     pvParam: ?*anyopaque,
     cbParam: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "esent" fn JetGetSessionParameter(
     sesid: ?JET_SESID,
@@ -3835,7 +3835,7 @@ pub extern "esent" fn JetGetSessionParameter(
     pvParam: [*]u8,
     cbParamMax: u32,
     pcbParamActual: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 
 //--------------------------------------------------------------------------------

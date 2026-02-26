@@ -862,7 +862,7 @@ pub const WSMAN_SHELL_COMPLETION_FUNCTION = *const fn(
     command: ?*WSMAN_COMMAND,
     operationHandle: ?*WSMAN_OPERATION,
     data: ?*WSMAN_RESPONSE_DATA,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_SHELL_ASYNC = extern struct {
     operationContext: ?*anyopaque,
@@ -901,25 +901,25 @@ pub const WSMAN_PLUGIN_REQUEST = extern struct {
 
 pub const WSMAN_PLUGIN_RELEASE_SHELL_CONTEXT = *const fn(
     shellContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_RELEASE_COMMAND_CONTEXT = *const fn(
     shellContext: ?*anyopaque,
     commandContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_STARTUP = *const fn(
     flags: u32,
     applicationIdentification: ?[*:0]const u16,
     extraInfo: ?[*:0]const u16,
     pluginContext: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const WSMAN_PLUGIN_SHUTDOWN = *const fn(
     pluginContext: ?*anyopaque,
     flags: u32,
     reason: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const WSMAN_PLUGIN_SHELL = *const fn(
     pluginContext: ?*anyopaque,
@@ -927,7 +927,7 @@ pub const WSMAN_PLUGIN_SHELL = *const fn(
     flags: u32,
     startupInfo: ?*WSMAN_SHELL_STARTUP_INFO_V11,
     inboundShellInformation: ?*WSMAN_DATA,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_COMMAND = *const fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
@@ -935,7 +935,7 @@ pub const WSMAN_PLUGIN_COMMAND = *const fn(
     shellContext: ?*anyopaque,
     commandLine: ?[*:0]const u16,
     arguments: ?*WSMAN_COMMAND_ARG_SET,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_SEND = *const fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
@@ -944,7 +944,7 @@ pub const WSMAN_PLUGIN_SEND = *const fn(
     commandContext: ?*anyopaque,
     stream: ?[*:0]const u16,
     inboundData: ?*WSMAN_DATA,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_RECEIVE = *const fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
@@ -952,7 +952,7 @@ pub const WSMAN_PLUGIN_RECEIVE = *const fn(
     shellContext: ?*anyopaque,
     commandContext: ?*anyopaque,
     streamSet: ?*WSMAN_STREAM_ID_SET,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_SIGNAL = *const fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
@@ -960,7 +960,7 @@ pub const WSMAN_PLUGIN_SIGNAL = *const fn(
     shellContext: ?*anyopaque,
     commandContext: ?*anyopaque,
     code: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_CONNECT = *const fn(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
@@ -968,7 +968,7 @@ pub const WSMAN_PLUGIN_CONNECT = *const fn(
     shellContext: ?*anyopaque,
     commandContext: ?*anyopaque,
     inboundConnectInformation: ?*WSMAN_DATA,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_AUTHZ_QUOTA = extern struct {
     maxAllowedConcurrentShells: u32,
@@ -981,7 +981,7 @@ pub const WSMAN_PLUGIN_AUTHORIZE_USER = *const fn(
     pluginContext: ?*anyopaque,
     senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = *const fn(
     pluginContext: ?*anyopaque,
@@ -990,17 +990,17 @@ pub const WSMAN_PLUGIN_AUTHORIZE_OPERATION = *const fn(
     operation: u32,
     action: ?[*:0]const u16,
     resourceUri: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_QUERY_QUOTA = *const fn(
     pluginContext: ?*anyopaque,
     senderDetails: ?*WSMAN_SENDER_DETAILS,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WSMAN_PLUGIN_AUTHORIZE_RELEASE_CONTEXT = *const fn(
     userAuthorizationContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 const CLSID_WSMan_Value = Guid.initString("bced617b-ec03-420b-8508-977dc7a686bd");
 pub const CLSID_WSMan = &CLSID_WSMan_Value;
@@ -1098,35 +1098,35 @@ pub const IWSMan = extern union {
             flags: i32,
             connectionOptions: ?*IDispatch,
             session: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateConnectionOptions: *const fn(
             self: *const IWSMan,
             connectionOptions: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommandLine: *const fn(
             self: *const IWSMan,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: *const fn(
             self: *const IWSMan,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateSession(self: *const IWSMan, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn CreateSession(self: *const IWSMan, connection: ?BSTR, flags: i32, connectionOptions: ?*IDispatch, session: ?*?*IDispatch) HRESULT {
         return self.vtable.CreateSession(self, connection, flags, connectionOptions, session);
     }
-    pub fn CreateConnectionOptions(self: *const IWSMan, connectionOptions: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn CreateConnectionOptions(self: *const IWSMan, connectionOptions: ?*?*IDispatch) HRESULT {
         return self.vtable.CreateConnectionOptions(self, connectionOptions);
     }
-    pub fn get_CommandLine(self: *const IWSMan, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CommandLine(self: *const IWSMan, value: ?*?BSTR) HRESULT {
         return self.vtable.get_CommandLine(self, value);
     }
-    pub fn get_Error(self: *const IWSMan, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSMan, value: ?*?BSTR) HRESULT {
         return self.vtable.get_Error(self, value);
     }
 };
@@ -1141,147 +1141,147 @@ pub const IWSManEx = extern union {
             self: *const IWSManEx,
             strResourceLocator: ?BSTR,
             newResourceLocator: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUTF8: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagCredUsernamePassword: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagSkipCACheck: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagSkipCNCheck: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUseDigest: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUseNegotiate: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUseBasic: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUseKerberos: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagNoEncryption: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagEnableSPNServerPort: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUseNoAuthentication: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagNonXmlText: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagReturnEPR: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagReturnObjectAndEPR: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorMessage: *const fn(
             self: *const IWSManEx,
             errorNumber: u32,
             errorMessage: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagHierarchyDeep: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagHierarchyShallow: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagHierarchyDeepBasePropsOnly: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagReturnObject: *const fn(
             self: *const IWSManEx,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSMan: IWSMan,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn CreateResourceLocator(self: *const IWSManEx, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn CreateResourceLocator(self: *const IWSManEx, strResourceLocator: ?BSTR, newResourceLocator: ?*?*IDispatch) HRESULT {
         return self.vtable.CreateResourceLocator(self, strResourceLocator, newResourceLocator);
     }
-    pub fn SessionFlagUTF8(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUTF8(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUTF8(self, flags);
     }
-    pub fn SessionFlagCredUsernamePassword(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagCredUsernamePassword(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagCredUsernamePassword(self, flags);
     }
-    pub fn SessionFlagSkipCACheck(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagSkipCACheck(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagSkipCACheck(self, flags);
     }
-    pub fn SessionFlagSkipCNCheck(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagSkipCNCheck(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagSkipCNCheck(self, flags);
     }
-    pub fn SessionFlagUseDigest(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseDigest(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseDigest(self, flags);
     }
-    pub fn SessionFlagUseNegotiate(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseNegotiate(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseNegotiate(self, flags);
     }
-    pub fn SessionFlagUseBasic(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseBasic(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseBasic(self, flags);
     }
-    pub fn SessionFlagUseKerberos(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseKerberos(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseKerberos(self, flags);
     }
-    pub fn SessionFlagNoEncryption(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagNoEncryption(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagNoEncryption(self, flags);
     }
-    pub fn SessionFlagEnableSPNServerPort(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagEnableSPNServerPort(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagEnableSPNServerPort(self, flags);
     }
-    pub fn SessionFlagUseNoAuthentication(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseNoAuthentication(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseNoAuthentication(self, flags);
     }
-    pub fn EnumerationFlagNonXmlText(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagNonXmlText(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagNonXmlText(self, flags);
     }
-    pub fn EnumerationFlagReturnEPR(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagReturnEPR(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagReturnEPR(self, flags);
     }
-    pub fn EnumerationFlagReturnObjectAndEPR(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagReturnObjectAndEPR(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagReturnObjectAndEPR(self, flags);
     }
-    pub fn GetErrorMessage(self: *const IWSManEx, errorNumber: u32, errorMessage: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetErrorMessage(self: *const IWSManEx, errorNumber: u32, errorMessage: ?*?BSTR) HRESULT {
         return self.vtable.GetErrorMessage(self, errorNumber, errorMessage);
     }
-    pub fn EnumerationFlagHierarchyDeep(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagHierarchyDeep(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagHierarchyDeep(self, flags);
     }
-    pub fn EnumerationFlagHierarchyShallow(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagHierarchyShallow(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagHierarchyShallow(self, flags);
     }
-    pub fn EnumerationFlagHierarchyDeepBasePropsOnly(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagHierarchyDeepBasePropsOnly(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagHierarchyDeepBasePropsOnly(self, flags);
     }
-    pub fn EnumerationFlagReturnObject(self: *const IWSManEx, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagReturnObject(self: *const IWSManEx, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagReturnObject(self, flags);
     }
 };
@@ -1295,14 +1295,14 @@ pub const IWSManEx2 = extern union {
         SessionFlagUseClientCertificate: *const fn(
             self: *const IWSManEx2,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSManEx: IWSManEx,
     IWSMan: IWSMan,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SessionFlagUseClientCertificate(self: *const IWSManEx2, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseClientCertificate(self: *const IWSManEx2, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseClientCertificate(self, flags);
     }
 };
@@ -1316,31 +1316,31 @@ pub const IWSManEx3 = extern union {
         SessionFlagUTF16: *const fn(
             self: *const IWSManEx3,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUseCredSsp: *const fn(
             self: *const IWSManEx3,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagAssociationInstance: *const fn(
             self: *const IWSManEx3,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerationFlagAssociatedInstance: *const fn(
             self: *const IWSManEx3,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagSkipRevocationCheck: *const fn(
             self: *const IWSManEx3,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagAllowNegotiateImplicitCredentials: *const fn(
             self: *const IWSManEx3,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SessionFlagUseSsl: *const fn(
             self: *const IWSManEx3,
             flags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSManEx2: IWSManEx2,
@@ -1348,25 +1348,25 @@ pub const IWSManEx3 = extern union {
     IWSMan: IWSMan,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SessionFlagUTF16(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUTF16(self: *const IWSManEx3, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUTF16(self, flags);
     }
-    pub fn SessionFlagUseCredSsp(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseCredSsp(self: *const IWSManEx3, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseCredSsp(self, flags);
     }
-    pub fn EnumerationFlagAssociationInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagAssociationInstance(self: *const IWSManEx3, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagAssociationInstance(self, flags);
     }
-    pub fn EnumerationFlagAssociatedInstance(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn EnumerationFlagAssociatedInstance(self: *const IWSManEx3, flags: ?*i32) HRESULT {
         return self.vtable.EnumerationFlagAssociatedInstance(self, flags);
     }
-    pub fn SessionFlagSkipRevocationCheck(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagSkipRevocationCheck(self: *const IWSManEx3, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagSkipRevocationCheck(self, flags);
     }
-    pub fn SessionFlagAllowNegotiateImplicitCredentials(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagAllowNegotiateImplicitCredentials(self: *const IWSManEx3, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagAllowNegotiateImplicitCredentials(self, flags);
     }
-    pub fn SessionFlagUseSsl(self: *const IWSManEx3, flags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SessionFlagUseSsl(self: *const IWSManEx3, flags: ?*i32) HRESULT {
         return self.vtable.SessionFlagUseSsl(self, flags);
     }
 };
@@ -1381,28 +1381,28 @@ pub const IWSManConnectionOptions = extern union {
         get_UserName: *const fn(
             self: *const IWSManConnectionOptions,
             name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_UserName: *const fn(
             self: *const IWSManConnectionOptions,
             name: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Password: *const fn(
             self: *const IWSManConnectionOptions,
             password: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_UserName(self: *const IWSManConnectionOptions, name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_UserName(self: *const IWSManConnectionOptions, name: ?*?BSTR) HRESULT {
         return self.vtable.get_UserName(self, name);
     }
-    pub fn put_UserName(self: *const IWSManConnectionOptions, name: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_UserName(self: *const IWSManConnectionOptions, name: ?BSTR) HRESULT {
         return self.vtable.put_UserName(self, name);
     }
-    pub fn put_Password(self: *const IWSManConnectionOptions, password: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Password(self: *const IWSManConnectionOptions, password: ?BSTR) HRESULT {
         return self.vtable.put_Password(self, password);
     }
 };
@@ -1417,21 +1417,21 @@ pub const IWSManConnectionOptionsEx = extern union {
         get_CertificateThumbprint: *const fn(
             self: *const IWSManConnectionOptionsEx,
             thumbprint: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CertificateThumbprint: *const fn(
             self: *const IWSManConnectionOptionsEx,
             thumbprint: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSManConnectionOptions: IWSManConnectionOptions,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?*?BSTR) HRESULT {
         return self.vtable.get_CertificateThumbprint(self, thumbprint);
     }
-    pub fn put_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_CertificateThumbprint(self: *const IWSManConnectionOptionsEx, thumbprint: ?BSTR) HRESULT {
         return self.vtable.put_CertificateThumbprint(self, thumbprint);
     }
 };
@@ -1448,63 +1448,63 @@ pub const IWSManConnectionOptionsEx2 = extern union {
             authenticationMechanism: i32,
             userName: ?BSTR,
             password: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProxyIEConfig: *const fn(
             self: *const IWSManConnectionOptionsEx2,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProxyWinHttpConfig: *const fn(
             self: *const IWSManConnectionOptionsEx2,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProxyAutoDetect: *const fn(
             self: *const IWSManConnectionOptionsEx2,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProxyNoProxyServer: *const fn(
             self: *const IWSManConnectionOptionsEx2,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProxyAuthenticationUseNegotiate: *const fn(
             self: *const IWSManConnectionOptionsEx2,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProxyAuthenticationUseBasic: *const fn(
             self: *const IWSManConnectionOptionsEx2,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProxyAuthenticationUseDigest: *const fn(
             self: *const IWSManConnectionOptionsEx2,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWSManConnectionOptionsEx: IWSManConnectionOptionsEx,
     IWSManConnectionOptions: IWSManConnectionOptions,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetProxy(self: *const IWSManConnectionOptionsEx2, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetProxy(self: *const IWSManConnectionOptionsEx2, accessType: i32, authenticationMechanism: i32, userName: ?BSTR, password: ?BSTR) HRESULT {
         return self.vtable.SetProxy(self, accessType, authenticationMechanism, userName, password);
     }
-    pub fn ProxyIEConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyIEConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) HRESULT {
         return self.vtable.ProxyIEConfig(self, value);
     }
-    pub fn ProxyWinHttpConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyWinHttpConfig(self: *const IWSManConnectionOptionsEx2, value: ?*i32) HRESULT {
         return self.vtable.ProxyWinHttpConfig(self, value);
     }
-    pub fn ProxyAutoDetect(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAutoDetect(self: *const IWSManConnectionOptionsEx2, value: ?*i32) HRESULT {
         return self.vtable.ProxyAutoDetect(self, value);
     }
-    pub fn ProxyNoProxyServer(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyNoProxyServer(self: *const IWSManConnectionOptionsEx2, value: ?*i32) HRESULT {
         return self.vtable.ProxyNoProxyServer(self, value);
     }
-    pub fn ProxyAuthenticationUseNegotiate(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAuthenticationUseNegotiate(self: *const IWSManConnectionOptionsEx2, value: ?*i32) HRESULT {
         return self.vtable.ProxyAuthenticationUseNegotiate(self, value);
     }
-    pub fn ProxyAuthenticationUseBasic(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAuthenticationUseBasic(self: *const IWSManConnectionOptionsEx2, value: ?*i32) HRESULT {
         return self.vtable.ProxyAuthenticationUseBasic(self, value);
     }
-    pub fn ProxyAuthenticationUseDigest(self: *const IWSManConnectionOptionsEx2, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn ProxyAuthenticationUseDigest(self: *const IWSManConnectionOptionsEx2, value: ?*i32) HRESULT {
         return self.vtable.ProxyAuthenticationUseDigest(self, value);
     }
 };
@@ -1520,26 +1520,26 @@ pub const IWSManSession = extern union {
             resourceUri: VARIANT,
             flags: i32,
             resource: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Put: *const fn(
             self: *const IWSManSession,
             resourceUri: VARIANT,
             resource: ?BSTR,
             flags: i32,
             resultResource: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Create: *const fn(
             self: *const IWSManSession,
             resourceUri: VARIANT,
             resource: ?BSTR,
             flags: i32,
             newUri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const IWSManSession,
             resourceUri: VARIANT,
             flags: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Invoke: *const fn(
             self: *const IWSManSession,
             actionUri: ?BSTR,
@@ -1547,7 +1547,7 @@ pub const IWSManSession = extern union {
             parameters: ?BSTR,
             flags: i32,
             result: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enumerate: *const fn(
             self: *const IWSManSession,
             resourceUri: VARIANT,
@@ -1555,75 +1555,75 @@ pub const IWSManSession = extern union {
             dialect: ?BSTR,
             flags: i32,
             resultSet: ?*?*IDispatch,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Identify: *const fn(
             self: *const IWSManSession,
             flags: i32,
             result: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: *const fn(
             self: *const IWSManSession,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BatchItems: *const fn(
             self: *const IWSManSession,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BatchItems: *const fn(
             self: *const IWSManSession,
             value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timeout: *const fn(
             self: *const IWSManSession,
             value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Timeout: *const fn(
             self: *const IWSManSession,
             value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Get(self: *const IWSManSession, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Get(self: *const IWSManSession, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) HRESULT {
         return self.vtable.Get(self, resourceUri, flags, resource);
     }
-    pub fn Put(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Put(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, resultResource: ?*?BSTR) HRESULT {
         return self.vtable.Put(self, resourceUri, resource, flags, resultResource);
     }
-    pub fn Create(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Create(self: *const IWSManSession, resourceUri: VARIANT, resource: ?BSTR, flags: i32, newUri: ?*?BSTR) HRESULT {
         return self.vtable.Create(self, resourceUri, resource, flags, newUri);
     }
-    pub fn Delete(self: *const IWSManSession, resourceUri: VARIANT, flags: i32) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IWSManSession, resourceUri: VARIANT, flags: i32) HRESULT {
         return self.vtable.Delete(self, resourceUri, flags);
     }
-    pub fn Invoke(self: *const IWSManSession, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Invoke(self: *const IWSManSession, actionUri: ?BSTR, resourceUri: VARIANT, parameters: ?BSTR, flags: i32, result: ?*?BSTR) HRESULT {
         return self.vtable.Invoke(self, actionUri, resourceUri, parameters, flags, result);
     }
-    pub fn Enumerate(self: *const IWSManSession, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) callconv(.Inline) HRESULT {
+    pub fn Enumerate(self: *const IWSManSession, resourceUri: VARIANT, filter: ?BSTR, dialect: ?BSTR, flags: i32, resultSet: ?*?*IDispatch) HRESULT {
         return self.vtable.Enumerate(self, resourceUri, filter, dialect, flags, resultSet);
     }
-    pub fn Identify(self: *const IWSManSession, flags: i32, result: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn Identify(self: *const IWSManSession, flags: i32, result: ?*?BSTR) HRESULT {
         return self.vtable.Identify(self, flags, result);
     }
-    pub fn get_Error(self: *const IWSManSession, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSManSession, value: ?*?BSTR) HRESULT {
         return self.vtable.get_Error(self, value);
     }
-    pub fn get_BatchItems(self: *const IWSManSession, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BatchItems(self: *const IWSManSession, value: ?*i32) HRESULT {
         return self.vtable.get_BatchItems(self, value);
     }
-    pub fn put_BatchItems(self: *const IWSManSession, value: i32) callconv(.Inline) HRESULT {
+    pub fn put_BatchItems(self: *const IWSManSession, value: i32) HRESULT {
         return self.vtable.put_BatchItems(self, value);
     }
-    pub fn get_Timeout(self: *const IWSManSession, value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Timeout(self: *const IWSManSession, value: ?*i32) HRESULT {
         return self.vtable.get_Timeout(self, value);
     }
-    pub fn put_Timeout(self: *const IWSManSession, value: i32) callconv(.Inline) HRESULT {
+    pub fn put_Timeout(self: *const IWSManSession, value: i32) HRESULT {
         return self.vtable.put_Timeout(self, value);
     }
 };
@@ -1637,28 +1637,28 @@ pub const IWSManEnumerator = extern union {
         ReadItem: *const fn(
             self: *const IWSManEnumerator,
             resource: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AtEndOfStream: *const fn(
             self: *const IWSManEnumerator,
             eos: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: *const fn(
             self: *const IWSManEnumerator,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ReadItem(self: *const IWSManEnumerator, resource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ReadItem(self: *const IWSManEnumerator, resource: ?*?BSTR) HRESULT {
         return self.vtable.ReadItem(self, resource);
     }
-    pub fn get_AtEndOfStream(self: *const IWSManEnumerator, eos: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AtEndOfStream(self: *const IWSManEnumerator, eos: ?*i16) HRESULT {
         return self.vtable.get_AtEndOfStream(self, eos);
     }
-    pub fn get_Error(self: *const IWSManEnumerator, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSManEnumerator, value: ?*?BSTR) HRESULT {
         return self.vtable.get_Error(self, value);
     }
 };
@@ -1673,105 +1673,105 @@ pub const IWSManResourceLocator = extern union {
         put_ResourceURI: *const fn(
             self: *const IWSManResourceLocator,
             uri: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourceURI: *const fn(
             self: *const IWSManResourceLocator,
             uri: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddSelector: *const fn(
             self: *const IWSManResourceLocator,
             resourceSelName: ?BSTR,
             selValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearSelectors: *const fn(
             self: *const IWSManResourceLocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentPath: *const fn(
             self: *const IWSManResourceLocator,
             text: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentPath: *const fn(
             self: *const IWSManResourceLocator,
             text: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FragmentDialect: *const fn(
             self: *const IWSManResourceLocator,
             text: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FragmentDialect: *const fn(
             self: *const IWSManResourceLocator,
             text: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddOption: *const fn(
             self: *const IWSManResourceLocator,
             OptionName: ?BSTR,
             OptionValue: VARIANT,
             mustComply: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MustUnderstandOptions: *const fn(
             self: *const IWSManResourceLocator,
             mustUnderstand: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MustUnderstandOptions: *const fn(
             self: *const IWSManResourceLocator,
             mustUnderstand: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearOptions: *const fn(
             self: *const IWSManResourceLocator,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Error: *const fn(
             self: *const IWSManResourceLocator,
             value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_ResourceURI(self: *const IWSManResourceLocator, uri: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_ResourceURI(self: *const IWSManResourceLocator, uri: ?BSTR) HRESULT {
         return self.vtable.put_ResourceURI(self, uri);
     }
-    pub fn get_ResourceURI(self: *const IWSManResourceLocator, uri: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ResourceURI(self: *const IWSManResourceLocator, uri: ?*?BSTR) HRESULT {
         return self.vtable.get_ResourceURI(self, uri);
     }
-    pub fn AddSelector(self: *const IWSManResourceLocator, resourceSelName: ?BSTR, selValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddSelector(self: *const IWSManResourceLocator, resourceSelName: ?BSTR, selValue: VARIANT) HRESULT {
         return self.vtable.AddSelector(self, resourceSelName, selValue);
     }
-    pub fn ClearSelectors(self: *const IWSManResourceLocator) callconv(.Inline) HRESULT {
+    pub fn ClearSelectors(self: *const IWSManResourceLocator) HRESULT {
         return self.vtable.ClearSelectors(self);
     }
-    pub fn get_FragmentPath(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FragmentPath(self: *const IWSManResourceLocator, text: ?*?BSTR) HRESULT {
         return self.vtable.get_FragmentPath(self, text);
     }
-    pub fn put_FragmentPath(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FragmentPath(self: *const IWSManResourceLocator, text: ?BSTR) HRESULT {
         return self.vtable.put_FragmentPath(self, text);
     }
-    pub fn get_FragmentDialect(self: *const IWSManResourceLocator, text: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FragmentDialect(self: *const IWSManResourceLocator, text: ?*?BSTR) HRESULT {
         return self.vtable.get_FragmentDialect(self, text);
     }
-    pub fn put_FragmentDialect(self: *const IWSManResourceLocator, text: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_FragmentDialect(self: *const IWSManResourceLocator, text: ?BSTR) HRESULT {
         return self.vtable.put_FragmentDialect(self, text);
     }
-    pub fn AddOption(self: *const IWSManResourceLocator, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) callconv(.Inline) HRESULT {
+    pub fn AddOption(self: *const IWSManResourceLocator, OptionName: ?BSTR, OptionValue: VARIANT, mustComply: BOOL) HRESULT {
         return self.vtable.AddOption(self, OptionName, OptionValue, mustComply);
     }
-    pub fn put_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: BOOL) HRESULT {
         return self.vtable.put_MustUnderstandOptions(self, mustUnderstand);
     }
-    pub fn get_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_MustUnderstandOptions(self: *const IWSManResourceLocator, mustUnderstand: ?*BOOL) HRESULT {
         return self.vtable.get_MustUnderstandOptions(self, mustUnderstand);
     }
-    pub fn ClearOptions(self: *const IWSManResourceLocator) callconv(.Inline) HRESULT {
+    pub fn ClearOptions(self: *const IWSManResourceLocator) HRESULT {
         return self.vtable.ClearOptions(self);
     }
-    pub fn get_Error(self: *const IWSManResourceLocator, value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Error(self: *const IWSManResourceLocator, value: ?*?BSTR) HRESULT {
         return self.vtable.get_Error(self, value);
     }
 };
@@ -1797,12 +1797,12 @@ pub const IWSManInternal = extern union {
             resourceUri: VARIANT,
             flags: i32,
             resource: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ConfigSDDL(self: *const IWSManInternal, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn ConfigSDDL(self: *const IWSManInternal, session: ?*IDispatch, resourceUri: VARIANT, flags: i32, resource: ?*?BSTR) HRESULT {
         return self.vtable.ConfigSDDL(self, session, resourceUri, flags, resource);
     }
 };
@@ -1815,13 +1815,13 @@ pub const IWSManInternal = extern union {
 pub extern "wsmsvc" fn WSManInitialize(
     flags: u32,
     apiHandle: ?*?*WSMAN_API,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManDeinitialize(
     apiHandle: ?*WSMAN_API,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManGetErrorMessage(
@@ -1832,7 +1832,7 @@ pub extern "wsmsvc" fn WSManGetErrorMessage(
     messageLength: u32,
     message: ?[*:0]u16,
     messageLengthUsed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManCreateSession(
@@ -1842,27 +1842,27 @@ pub extern "wsmsvc" fn WSManCreateSession(
     serverAuthenticationCredentials: ?*WSMAN_AUTHENTICATION_CREDENTIALS,
     proxyInfo: ?*WSMAN_PROXY_INFO,
     session: ?*?*WSMAN_SESSION,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManCloseSession(
     session: ?*WSMAN_SESSION,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManSetSessionOption(
     session: ?*WSMAN_SESSION,
     option: WSManSessionOption,
     data: ?*WSMAN_DATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManGetSessionOptionAsDword(
     session: ?*WSMAN_SESSION,
     option: WSManSessionOption,
     value: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManGetSessionOptionAsString(
@@ -1871,13 +1871,13 @@ pub extern "wsmsvc" fn WSManGetSessionOptionAsString(
     stringLength: u32,
     string: ?[*:0]u16,
     stringLengthUsed: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManCloseOperation(
     operationHandle: ?*WSMAN_OPERATION,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManCreateShell(
@@ -1889,7 +1889,7 @@ pub extern "wsmsvc" fn WSManCreateShell(
     createXml: ?*WSMAN_DATA,
     @"async": ?*WSMAN_SHELL_ASYNC,
     shell: ?*?*WSMAN_SHELL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManRunShellCommand(
@@ -1900,7 +1900,7 @@ pub extern "wsmsvc" fn WSManRunShellCommand(
     options: ?*WSMAN_OPTION_SET,
     @"async": ?*WSMAN_SHELL_ASYNC,
     command: ?*?*WSMAN_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManSignalShell(
@@ -1910,7 +1910,7 @@ pub extern "wsmsvc" fn WSManSignalShell(
     code: ?[*:0]const u16,
     @"async": ?*WSMAN_SHELL_ASYNC,
     signalOperation: ?*?*WSMAN_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManReceiveShellOutput(
@@ -1920,7 +1920,7 @@ pub extern "wsmsvc" fn WSManReceiveShellOutput(
     desiredStreamSet: ?*WSMAN_STREAM_ID_SET,
     @"async": ?*WSMAN_SHELL_ASYNC,
     receiveOperation: ?*?*WSMAN_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManSendShellInput(
@@ -1932,21 +1932,21 @@ pub extern "wsmsvc" fn WSManSendShellInput(
     endOfStream: BOOL,
     @"async": ?*WSMAN_SHELL_ASYNC,
     sendOperation: ?*?*WSMAN_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManCloseCommand(
     commandHandle: ?*WSMAN_COMMAND,
     flags: u32,
     @"async": ?*WSMAN_SHELL_ASYNC,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManCloseShell(
     shellHandle: ?*WSMAN_SHELL,
     flags: u32,
     @"async": ?*WSMAN_SHELL_ASYNC,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wsmsvc" fn WSManCreateShellEx(
@@ -1959,7 +1959,7 @@ pub extern "wsmsvc" fn WSManCreateShellEx(
     createXml: ?*WSMAN_DATA,
     @"async": ?*WSMAN_SHELL_ASYNC,
     shell: ?*?*WSMAN_SHELL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wsmsvc" fn WSManRunShellCommandEx(
@@ -1971,7 +1971,7 @@ pub extern "wsmsvc" fn WSManRunShellCommandEx(
     options: ?*WSMAN_OPTION_SET,
     @"async": ?*WSMAN_SHELL_ASYNC,
     command: ?*?*WSMAN_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wsmsvc" fn WSManDisconnectShell(
@@ -1979,21 +1979,21 @@ pub extern "wsmsvc" fn WSManDisconnectShell(
     flags: u32,
     disconnectInfo: ?*WSMAN_SHELL_DISCONNECT_INFO,
     @"async": ?*WSMAN_SHELL_ASYNC,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wsmsvc" fn WSManReconnectShell(
     shell: ?*WSMAN_SHELL,
     flags: u32,
     @"async": ?*WSMAN_SHELL_ASYNC,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wsmsvc" fn WSManReconnectShellCommand(
     commandHandle: ?*WSMAN_COMMAND,
     flags: u32,
     @"async": ?*WSMAN_SHELL_ASYNC,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wsmsvc" fn WSManConnectShell(
@@ -2005,7 +2005,7 @@ pub extern "wsmsvc" fn WSManConnectShell(
     connectXml: ?*WSMAN_DATA,
     @"async": ?*WSMAN_SHELL_ASYNC,
     shell: ?*?*WSMAN_SHELL,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wsmsvc" fn WSManConnectShellCommand(
@@ -2016,14 +2016,14 @@ pub extern "wsmsvc" fn WSManConnectShellCommand(
     connectXml: ?*WSMAN_DATA,
     @"async": ?*WSMAN_SHELL_ASYNC,
     command: ?*?*WSMAN_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginReportContext(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
     context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginReceiveResult(
@@ -2033,7 +2033,7 @@ pub extern "wsmsvc" fn WSManPluginReceiveResult(
     streamResult: ?*WSMAN_DATA,
     commandState: ?[*:0]const u16,
     exitCode: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginOperationComplete(
@@ -2041,30 +2041,30 @@ pub extern "wsmsvc" fn WSManPluginOperationComplete(
     flags: u32,
     errorCode: u32,
     extendedInformation: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginGetOperationParameters(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
     flags: u32,
     data: ?*WSMAN_DATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wsmsvc" fn WSManPluginGetConfiguration(
     pluginContext: ?*anyopaque,
     flags: u32,
     data: ?*WSMAN_DATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wsmsvc" fn WSManPluginReportCompletion(
     pluginContext: ?*anyopaque,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginFreeRequestDetails(
     requestDetails: ?*WSMAN_PLUGIN_REQUEST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginAuthzUserComplete(
@@ -2075,7 +2075,7 @@ pub extern "wsmsvc" fn WSManPluginAuthzUserComplete(
     userIsAdministrator: BOOL,
     errorCode: u32,
     extendedErrorInformation: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginAuthzOperationComplete(
@@ -2084,7 +2084,7 @@ pub extern "wsmsvc" fn WSManPluginAuthzOperationComplete(
     userAuthorizationContext: ?*anyopaque,
     errorCode: u32,
     extendedErrorInformation: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wsmsvc" fn WSManPluginAuthzQueryQuotaComplete(
@@ -2093,7 +2093,7 @@ pub extern "wsmsvc" fn WSManPluginAuthzQueryQuotaComplete(
     quota: ?*WSMAN_AUTHZ_QUOTA,
     errorCode: u32,
     extendedErrorInformation: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

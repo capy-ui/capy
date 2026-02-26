@@ -16,11 +16,11 @@ pub const PeerType = *@import("common.zig").GuiWidget;
 const Events = @import("common.zig").Events;
 
 pub fn showNativeMessageDialog(msgType: shared.MessageType, comptime fmt: []const u8, args: anytype) void {
-    const msg = std.fmt.allocPrintZ(lib.internal.scratch_allocator, fmt, args) catch {
+    const msg = std.fmt.allocPrintSentinel(lib.internal.allocator, fmt, args, 0) catch {
         std.log.err("Could not launch message dialog, original text: " ++ fmt, args);
         return;
     };
-    defer lib.internal.scratch_allocator.free(msg);
+    defer lib.internal.allocator.free(msg);
     std.log.info("native message dialog (TODO): ({}) {s}", .{ msgType, msg });
 }
 
@@ -170,8 +170,8 @@ pub const backendExport = struct {
     ) void {
         const level_txt = comptime message_level.asText();
         const prefix2 = if (scope == .default) ": " else "(" ++ @tagName(scope) ++ "): ";
-        const text = std.fmt.allocPrint(lib.internal.scratch_allocator, level_txt ++ prefix2 ++ format ++ "\n", args) catch return;
-        defer lib.internal.scratch_allocator.free(text);
+        const text = std.fmt.allocPrint(lib.internal.allocator, level_txt ++ prefix2 ++ format ++ "\n", args) catch return;
+        defer lib.internal.allocator.free(text);
 
         js.print(text);
     }
@@ -186,7 +186,7 @@ pub const backendExport = struct {
         while (true) {}
     }
 
-    pub export fn _start() callconv(.C) void {
+    pub export fn _start() callconv(.c) void {
         executeMain();
     }
 };

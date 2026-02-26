@@ -120,26 +120,26 @@ pub const ILocationReport = extern union {
         GetSensorID: *const fn(
             self: *const ILocationReport,
             pSensorID: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimestamp: *const fn(
             self: *const ILocationReport,
             pCreationTime: ?*SYSTEMTIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const ILocationReport,
             pKey: ?*const PROPERTYKEY,
             pValue: ?*PROPVARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSensorID(self: *const ILocationReport, pSensorID: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetSensorID(self: *const ILocationReport, pSensorID: ?*Guid) HRESULT {
         return self.vtable.GetSensorID(self, pSensorID);
     }
-    pub fn GetTimestamp(self: *const ILocationReport, pCreationTime: ?*SYSTEMTIME) callconv(.Inline) HRESULT {
+    pub fn GetTimestamp(self: *const ILocationReport, pCreationTime: ?*SYSTEMTIME) HRESULT {
         return self.vtable.GetTimestamp(self, pCreationTime);
     }
-    pub fn GetValue(self: *const ILocationReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const ILocationReport, pKey: ?*const PROPERTYKEY, pValue: ?*PROPVARIANT) HRESULT {
         return self.vtable.GetValue(self, pKey, pValue);
     }
 };
@@ -153,40 +153,40 @@ pub const ILatLongReport = extern union {
         GetLatitude: *const fn(
             self: *const ILatLongReport,
             pLatitude: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLongitude: *const fn(
             self: *const ILatLongReport,
             pLongitude: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetErrorRadius: *const fn(
             self: *const ILatLongReport,
             pErrorRadius: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAltitude: *const fn(
             self: *const ILatLongReport,
             pAltitude: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAltitudeError: *const fn(
             self: *const ILatLongReport,
             pAltitudeError: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ILocationReport: ILocationReport,
     IUnknown: IUnknown,
-    pub fn GetLatitude(self: *const ILatLongReport, pLatitude: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetLatitude(self: *const ILatLongReport, pLatitude: ?*f64) HRESULT {
         return self.vtable.GetLatitude(self, pLatitude);
     }
-    pub fn GetLongitude(self: *const ILatLongReport, pLongitude: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetLongitude(self: *const ILatLongReport, pLongitude: ?*f64) HRESULT {
         return self.vtable.GetLongitude(self, pLongitude);
     }
-    pub fn GetErrorRadius(self: *const ILatLongReport, pErrorRadius: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetErrorRadius(self: *const ILatLongReport, pErrorRadius: ?*f64) HRESULT {
         return self.vtable.GetErrorRadius(self, pErrorRadius);
     }
-    pub fn GetAltitude(self: *const ILatLongReport, pAltitude: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetAltitude(self: *const ILatLongReport, pAltitude: ?*f64) HRESULT {
         return self.vtable.GetAltitude(self, pAltitude);
     }
-    pub fn GetAltitudeError(self: *const ILatLongReport, pAltitudeError: ?*f64) callconv(.Inline) HRESULT {
+    pub fn GetAltitudeError(self: *const ILatLongReport, pAltitudeError: ?*f64) HRESULT {
         return self.vtable.GetAltitudeError(self, pAltitudeError);
     }
 };
@@ -200,54 +200,54 @@ pub const ICivicAddressReport = extern union {
         GetAddressLine1: *const fn(
             self: *const ICivicAddressReport,
             pbstrAddress1: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAddressLine2: *const fn(
             self: *const ICivicAddressReport,
             pbstrAddress2: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCity: *const fn(
             self: *const ICivicAddressReport,
             pbstrCity: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStateProvince: *const fn(
             self: *const ICivicAddressReport,
             pbstrStateProvince: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPostalCode: *const fn(
             self: *const ICivicAddressReport,
             pbstrPostalCode: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCountryRegion: *const fn(
             self: *const ICivicAddressReport,
             pbstrCountryRegion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDetailLevel: *const fn(
             self: *const ICivicAddressReport,
             pDetailLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ILocationReport: ILocationReport,
     IUnknown: IUnknown,
-    pub fn GetAddressLine1(self: *const ICivicAddressReport, pbstrAddress1: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetAddressLine1(self: *const ICivicAddressReport, pbstrAddress1: ?*?BSTR) HRESULT {
         return self.vtable.GetAddressLine1(self, pbstrAddress1);
     }
-    pub fn GetAddressLine2(self: *const ICivicAddressReport, pbstrAddress2: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetAddressLine2(self: *const ICivicAddressReport, pbstrAddress2: ?*?BSTR) HRESULT {
         return self.vtable.GetAddressLine2(self, pbstrAddress2);
     }
-    pub fn GetCity(self: *const ICivicAddressReport, pbstrCity: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetCity(self: *const ICivicAddressReport, pbstrCity: ?*?BSTR) HRESULT {
         return self.vtable.GetCity(self, pbstrCity);
     }
-    pub fn GetStateProvince(self: *const ICivicAddressReport, pbstrStateProvince: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetStateProvince(self: *const ICivicAddressReport, pbstrStateProvince: ?*?BSTR) HRESULT {
         return self.vtable.GetStateProvince(self, pbstrStateProvince);
     }
-    pub fn GetPostalCode(self: *const ICivicAddressReport, pbstrPostalCode: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetPostalCode(self: *const ICivicAddressReport, pbstrPostalCode: ?*?BSTR) HRESULT {
         return self.vtable.GetPostalCode(self, pbstrPostalCode);
     }
-    pub fn GetCountryRegion(self: *const ICivicAddressReport, pbstrCountryRegion: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetCountryRegion(self: *const ICivicAddressReport, pbstrCountryRegion: ?*?BSTR) HRESULT {
         return self.vtable.GetCountryRegion(self, pbstrCountryRegion);
     }
-    pub fn GetDetailLevel(self: *const ICivicAddressReport, pDetailLevel: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDetailLevel(self: *const ICivicAddressReport, pDetailLevel: ?*u32) HRESULT {
         return self.vtable.GetDetailLevel(self, pDetailLevel);
     }
 };
@@ -263,76 +263,76 @@ pub const ILocation = extern union {
             pEvents: ?*ILocationEvents,
             reportType: ?*const Guid,
             dwRequestedReportInterval: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnregisterForReport: *const fn(
             self: *const ILocation,
             reportType: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReport: *const fn(
             self: *const ILocation,
             reportType: ?*const Guid,
             ppLocationReport: ?*?*ILocationReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReportStatus: *const fn(
             self: *const ILocation,
             reportType: ?*const Guid,
             pStatus: ?*LOCATION_REPORT_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReportInterval: *const fn(
             self: *const ILocation,
             reportType: ?*const Guid,
             pMilliseconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetReportInterval: *const fn(
             self: *const ILocation,
             reportType: ?*const Guid,
             millisecondsRequested: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDesiredAccuracy: *const fn(
             self: *const ILocation,
             reportType: ?*const Guid,
             pDesiredAccuracy: ?*LOCATION_DESIRED_ACCURACY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDesiredAccuracy: *const fn(
             self: *const ILocation,
             reportType: ?*const Guid,
             desiredAccuracy: LOCATION_DESIRED_ACCURACY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestPermissions: *const fn(
             self: *const ILocation,
             hParent: ?HWND,
             pReportTypes: [*]Guid,
             count: u32,
             fModal: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn RegisterForReport(self: *const ILocation, pEvents: ?*ILocationEvents, reportType: ?*const Guid, dwRequestedReportInterval: u32) callconv(.Inline) HRESULT {
+    pub fn RegisterForReport(self: *const ILocation, pEvents: ?*ILocationEvents, reportType: ?*const Guid, dwRequestedReportInterval: u32) HRESULT {
         return self.vtable.RegisterForReport(self, pEvents, reportType, dwRequestedReportInterval);
     }
-    pub fn UnregisterForReport(self: *const ILocation, reportType: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn UnregisterForReport(self: *const ILocation, reportType: ?*const Guid) HRESULT {
         return self.vtable.UnregisterForReport(self, reportType);
     }
-    pub fn GetReport(self: *const ILocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
+    pub fn GetReport(self: *const ILocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) HRESULT {
         return self.vtable.GetReport(self, reportType, ppLocationReport);
     }
-    pub fn GetReportStatus(self: *const ILocation, reportType: ?*const Guid, pStatus: ?*LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetReportStatus(self: *const ILocation, reportType: ?*const Guid, pStatus: ?*LOCATION_REPORT_STATUS) HRESULT {
         return self.vtable.GetReportStatus(self, reportType, pStatus);
     }
-    pub fn GetReportInterval(self: *const ILocation, reportType: ?*const Guid, pMilliseconds: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetReportInterval(self: *const ILocation, reportType: ?*const Guid, pMilliseconds: ?*u32) HRESULT {
         return self.vtable.GetReportInterval(self, reportType, pMilliseconds);
     }
-    pub fn SetReportInterval(self: *const ILocation, reportType: ?*const Guid, millisecondsRequested: u32) callconv(.Inline) HRESULT {
+    pub fn SetReportInterval(self: *const ILocation, reportType: ?*const Guid, millisecondsRequested: u32) HRESULT {
         return self.vtable.SetReportInterval(self, reportType, millisecondsRequested);
     }
-    pub fn GetDesiredAccuracy(self: *const ILocation, reportType: ?*const Guid, pDesiredAccuracy: ?*LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
+    pub fn GetDesiredAccuracy(self: *const ILocation, reportType: ?*const Guid, pDesiredAccuracy: ?*LOCATION_DESIRED_ACCURACY) HRESULT {
         return self.vtable.GetDesiredAccuracy(self, reportType, pDesiredAccuracy);
     }
-    pub fn SetDesiredAccuracy(self: *const ILocation, reportType: ?*const Guid, desiredAccuracy: LOCATION_DESIRED_ACCURACY) callconv(.Inline) HRESULT {
+    pub fn SetDesiredAccuracy(self: *const ILocation, reportType: ?*const Guid, desiredAccuracy: LOCATION_DESIRED_ACCURACY) HRESULT {
         return self.vtable.SetDesiredAccuracy(self, reportType, desiredAccuracy);
     }
-    pub fn RequestPermissions(self: *const ILocation, hParent: ?HWND, pReportTypes: [*]Guid, count: u32, fModal: BOOL) callconv(.Inline) HRESULT {
+    pub fn RequestPermissions(self: *const ILocation, hParent: ?HWND, pReportTypes: [*]Guid, count: u32, fModal: BOOL) HRESULT {
         return self.vtable.RequestPermissions(self, hParent, pReportTypes, count, fModal);
     }
 };
@@ -345,17 +345,17 @@ pub const ILocationPower = extern union {
         base: IUnknown.VTable,
         Connect: *const fn(
             self: *const ILocationPower,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const ILocationPower,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Connect(self: *const ILocationPower) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const ILocationPower) HRESULT {
         return self.vtable.Connect(self);
     }
-    pub fn Disconnect(self: *const ILocationPower) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const ILocationPower) HRESULT {
         return self.vtable.Disconnect(self);
     }
 };
@@ -370,19 +370,19 @@ pub const IDefaultLocation = extern union {
             self: *const IDefaultLocation,
             reportType: ?*const Guid,
             pLocationReport: ?*ILocationReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetReport: *const fn(
             self: *const IDefaultLocation,
             reportType: ?*const Guid,
             ppLocationReport: ?*?*ILocationReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetReport(self: *const IDefaultLocation, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
+    pub fn SetReport(self: *const IDefaultLocation, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) HRESULT {
         return self.vtable.SetReport(self, reportType, pLocationReport);
     }
-    pub fn GetReport(self: *const IDefaultLocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) callconv(.Inline) HRESULT {
+    pub fn GetReport(self: *const IDefaultLocation, reportType: ?*const Guid, ppLocationReport: ?*?*ILocationReport) HRESULT {
         return self.vtable.GetReport(self, reportType, ppLocationReport);
     }
 };
@@ -397,19 +397,19 @@ pub const ILocationEvents = extern union {
             self: *const ILocationEvents,
             reportType: ?*const Guid,
             pLocationReport: ?*ILocationReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnStatusChanged: *const fn(
             self: *const ILocationEvents,
             reportType: ?*const Guid,
             newStatus: LOCATION_REPORT_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnLocationChanged(self: *const ILocationEvents, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) callconv(.Inline) HRESULT {
+    pub fn OnLocationChanged(self: *const ILocationEvents, reportType: ?*const Guid, pLocationReport: ?*ILocationReport) HRESULT {
         return self.vtable.OnLocationChanged(self, reportType, pLocationReport);
     }
-    pub fn OnStatusChanged(self: *const ILocationEvents, reportType: ?*const Guid, newStatus: LOCATION_REPORT_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnStatusChanged(self: *const ILocationEvents, reportType: ?*const Guid, newStatus: LOCATION_REPORT_STATUS) HRESULT {
         return self.vtable.OnStatusChanged(self, reportType, newStatus);
     }
 };
@@ -423,52 +423,52 @@ pub const IDispLatLongReport = extern union {
         get_Latitude: *const fn(
             self: *const IDispLatLongReport,
             pVal: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Longitude: *const fn(
             self: *const IDispLatLongReport,
             pVal: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ErrorRadius: *const fn(
             self: *const IDispLatLongReport,
             pVal: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Altitude: *const fn(
             self: *const IDispLatLongReport,
             pVal: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AltitudeError: *const fn(
             self: *const IDispLatLongReport,
             pVal: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: *const fn(
             self: *const IDispLatLongReport,
             pVal: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Latitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_Latitude(self: *const IDispLatLongReport, pVal: ?*f64) HRESULT {
         return self.vtable.get_Latitude(self, pVal);
     }
-    pub fn get_Longitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_Longitude(self: *const IDispLatLongReport, pVal: ?*f64) HRESULT {
         return self.vtable.get_Longitude(self, pVal);
     }
-    pub fn get_ErrorRadius(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_ErrorRadius(self: *const IDispLatLongReport, pVal: ?*f64) HRESULT {
         return self.vtable.get_ErrorRadius(self, pVal);
     }
-    pub fn get_Altitude(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_Altitude(self: *const IDispLatLongReport, pVal: ?*f64) HRESULT {
         return self.vtable.get_Altitude(self, pVal);
     }
-    pub fn get_AltitudeError(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_AltitudeError(self: *const IDispLatLongReport, pVal: ?*f64) HRESULT {
         return self.vtable.get_AltitudeError(self, pVal);
     }
-    pub fn get_Timestamp(self: *const IDispLatLongReport, pVal: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_Timestamp(self: *const IDispLatLongReport, pVal: ?*f64) HRESULT {
         return self.vtable.get_Timestamp(self, pVal);
     }
 };
@@ -482,68 +482,68 @@ pub const IDispCivicAddressReport = extern union {
         get_AddressLine1: *const fn(
             self: *const IDispCivicAddressReport,
             pAddress1: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AddressLine2: *const fn(
             self: *const IDispCivicAddressReport,
             pAddress2: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_City: *const fn(
             self: *const IDispCivicAddressReport,
             pCity: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StateProvince: *const fn(
             self: *const IDispCivicAddressReport,
             pStateProvince: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PostalCode: *const fn(
             self: *const IDispCivicAddressReport,
             pPostalCode: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CountryRegion: *const fn(
             self: *const IDispCivicAddressReport,
             pCountryRegion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DetailLevel: *const fn(
             self: *const IDispCivicAddressReport,
             pDetailLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Timestamp: *const fn(
             self: *const IDispCivicAddressReport,
             pVal: ?*f64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AddressLine1(self: *const IDispCivicAddressReport, pAddress1: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AddressLine1(self: *const IDispCivicAddressReport, pAddress1: ?*?BSTR) HRESULT {
         return self.vtable.get_AddressLine1(self, pAddress1);
     }
-    pub fn get_AddressLine2(self: *const IDispCivicAddressReport, pAddress2: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_AddressLine2(self: *const IDispCivicAddressReport, pAddress2: ?*?BSTR) HRESULT {
         return self.vtable.get_AddressLine2(self, pAddress2);
     }
-    pub fn get_City(self: *const IDispCivicAddressReport, pCity: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_City(self: *const IDispCivicAddressReport, pCity: ?*?BSTR) HRESULT {
         return self.vtable.get_City(self, pCity);
     }
-    pub fn get_StateProvince(self: *const IDispCivicAddressReport, pStateProvince: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_StateProvince(self: *const IDispCivicAddressReport, pStateProvince: ?*?BSTR) HRESULT {
         return self.vtable.get_StateProvince(self, pStateProvince);
     }
-    pub fn get_PostalCode(self: *const IDispCivicAddressReport, pPostalCode: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PostalCode(self: *const IDispCivicAddressReport, pPostalCode: ?*?BSTR) HRESULT {
         return self.vtable.get_PostalCode(self, pPostalCode);
     }
-    pub fn get_CountryRegion(self: *const IDispCivicAddressReport, pCountryRegion: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CountryRegion(self: *const IDispCivicAddressReport, pCountryRegion: ?*?BSTR) HRESULT {
         return self.vtable.get_CountryRegion(self, pCountryRegion);
     }
-    pub fn get_DetailLevel(self: *const IDispCivicAddressReport, pDetailLevel: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_DetailLevel(self: *const IDispCivicAddressReport, pDetailLevel: ?*u32) HRESULT {
         return self.vtable.get_DetailLevel(self, pDetailLevel);
     }
-    pub fn get_Timestamp(self: *const IDispCivicAddressReport, pVal: ?*f64) callconv(.Inline) HRESULT {
+    pub fn get_Timestamp(self: *const IDispCivicAddressReport, pVal: ?*f64) HRESULT {
         return self.vtable.get_Timestamp(self, pVal);
     }
 };
@@ -556,65 +556,65 @@ pub const ILocationReportFactory = extern union {
         ListenForReports: *const fn(
             self: *const ILocationReportFactory,
             requestedReportInterval: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         StopListeningForReports: *const fn(
             self: *const ILocationReportFactory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const ILocationReportFactory,
             pVal: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReportInterval: *const fn(
             self: *const ILocationReportFactory,
             pMilliseconds: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ReportInterval: *const fn(
             self: *const ILocationReportFactory,
             millisecondsRequested: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DesiredAccuracy: *const fn(
             self: *const ILocationReportFactory,
             pDesiredAccuracy: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DesiredAccuracy: *const fn(
             self: *const ILocationReportFactory,
             desiredAccuracy: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RequestPermissions: *const fn(
             self: *const ILocationReportFactory,
             hWnd: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn ListenForReports(self: *const ILocationReportFactory, requestedReportInterval: u32) callconv(.Inline) HRESULT {
+    pub fn ListenForReports(self: *const ILocationReportFactory, requestedReportInterval: u32) HRESULT {
         return self.vtable.ListenForReports(self, requestedReportInterval);
     }
-    pub fn StopListeningForReports(self: *const ILocationReportFactory) callconv(.Inline) HRESULT {
+    pub fn StopListeningForReports(self: *const ILocationReportFactory) HRESULT {
         return self.vtable.StopListeningForReports(self);
     }
-    pub fn get_Status(self: *const ILocationReportFactory, pVal: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Status(self: *const ILocationReportFactory, pVal: ?*u32) HRESULT {
         return self.vtable.get_Status(self, pVal);
     }
-    pub fn get_ReportInterval(self: *const ILocationReportFactory, pMilliseconds: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_ReportInterval(self: *const ILocationReportFactory, pMilliseconds: ?*u32) HRESULT {
         return self.vtable.get_ReportInterval(self, pMilliseconds);
     }
-    pub fn put_ReportInterval(self: *const ILocationReportFactory, millisecondsRequested: u32) callconv(.Inline) HRESULT {
+    pub fn put_ReportInterval(self: *const ILocationReportFactory, millisecondsRequested: u32) HRESULT {
         return self.vtable.put_ReportInterval(self, millisecondsRequested);
     }
-    pub fn get_DesiredAccuracy(self: *const ILocationReportFactory, pDesiredAccuracy: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_DesiredAccuracy(self: *const ILocationReportFactory, pDesiredAccuracy: ?*u32) HRESULT {
         return self.vtable.get_DesiredAccuracy(self, pDesiredAccuracy);
     }
-    pub fn put_DesiredAccuracy(self: *const ILocationReportFactory, desiredAccuracy: u32) callconv(.Inline) HRESULT {
+    pub fn put_DesiredAccuracy(self: *const ILocationReportFactory, desiredAccuracy: u32) HRESULT {
         return self.vtable.put_DesiredAccuracy(self, desiredAccuracy);
     }
-    pub fn RequestPermissions(self: *const ILocationReportFactory, hWnd: ?*u32) callconv(.Inline) HRESULT {
+    pub fn RequestPermissions(self: *const ILocationReportFactory, hWnd: ?*u32) HRESULT {
         return self.vtable.RequestPermissions(self, hWnd);
     }
 };
@@ -628,13 +628,13 @@ pub const ILatLongReportFactory = extern union {
         get_LatLongReport: *const fn(
             self: *const ILatLongReportFactory,
             pVal: ?*?*IDispLatLongReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ILocationReportFactory: ILocationReportFactory,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LatLongReport(self: *const ILatLongReportFactory, pVal: ?*?*IDispLatLongReport) callconv(.Inline) HRESULT {
+    pub fn get_LatLongReport(self: *const ILatLongReportFactory, pVal: ?*?*IDispLatLongReport) HRESULT {
         return self.vtable.get_LatLongReport(self, pVal);
     }
 };
@@ -648,13 +648,13 @@ pub const ICivicAddressReportFactory = extern union {
         get_CivicAddressReport: *const fn(
             self: *const ICivicAddressReportFactory,
             pVal: ?*?*IDispCivicAddressReport,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ILocationReportFactory: ILocationReportFactory,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CivicAddressReport(self: *const ICivicAddressReportFactory, pVal: ?*?*IDispCivicAddressReport) callconv(.Inline) HRESULT {
+    pub fn get_CivicAddressReport(self: *const ICivicAddressReportFactory, pVal: ?*?*IDispCivicAddressReport) HRESULT {
         return self.vtable.get_CivicAddressReport(self, pVal);
     }
 };

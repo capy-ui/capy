@@ -17,12 +17,12 @@ pub const IRadialControllerInterop = extern union {
             hwnd: ?HWND,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateForWindow(self: *const IRadialControllerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateForWindow(self: *const IRadialControllerInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) HRESULT {
         return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
 };
@@ -38,12 +38,12 @@ pub const IRadialControllerConfigurationInterop = extern union {
             hwnd: ?HWND,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn GetForWindow(self: *const IRadialControllerConfigurationInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetForWindow(self: *const IRadialControllerConfigurationInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) HRESULT {
         return self.vtable.GetForWindow(self, hwnd, riid, ppv);
     }
 };
@@ -58,12 +58,12 @@ pub const IRadialControllerIndependentInputSourceInterop = extern union {
             hwnd: ?HWND,
             riid: ?*const Guid,
             ppv: **anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IInspectable: IInspectable,
     IUnknown: IUnknown,
-    pub fn CreateForWindow(self: *const IRadialControllerIndependentInputSourceInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateForWindow(self: *const IRadialControllerIndependentInputSourceInterop, hwnd: ?HWND, riid: ?*const Guid, ppv: **anyopaque) HRESULT {
         return self.vtable.CreateForWindow(self, hwnd, riid, ppv);
     }
 };

@@ -11,7 +11,16 @@ pub const FlatButton = struct {
     label: [:0]const u8 = "",
     enabled: bool = true,
 
-    pub usingnamespace backend.Events(FlatButton);
+    const _events = backend.Events(@This());
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const setOpacity = _events.setOpacity;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const deinit = _events.deinit;
 
     pub fn create() !FlatButton {
         const canvas = try backend.Canvas.create();

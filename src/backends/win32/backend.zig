@@ -22,7 +22,7 @@ const MSG = win32.MSG;
 const WPARAM = win32.WPARAM;
 const LPARAM = win32.LPARAM;
 const LRESULT = win32.LRESULT;
-const WINAPI = std.os.windows.WINAPI;
+const WINAPI = std.builtin.CallingConvention.winapi;
 
 // Common Control: Tabs
 const TCM_FIRST = 0x1300;
@@ -181,7 +181,17 @@ pub const Window = struct {
     restore_placement: win32.WINDOWPLACEMENT = undefined,
 
     const className = L("capyWClass");
-    pub usingnamespace Events(Window);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     fn relayoutChild(hwnd: HWND, lp: LPARAM) callconv(WINAPI) c_int {
         const parent = @as(HWND, @ptrFromInt(@as(usize, @bitCast(lp))));
@@ -269,9 +279,7 @@ pub const Window = struct {
         return Window{
             .hwnd = hwnd,
             .root_menu = null,
-            .menu_item_callbacks = std.ArrayList(?*const fn () void).init(
-                lib.internal.allocator,
-            ),
+            .menu_item_callbacks = .empty,
         };
     }
 
@@ -317,14 +325,14 @@ pub const Window = struct {
                     self.menu_item_callbacks.items.len,
                     item.config.label,
                 );
-                try self.menu_item_callbacks.append(item.config.onClick);
+                try self.menu_item_callbacks.append(lib.internal.allocator, item.config.onClick);
             }
         }
     }
 
     fn clearAndFreeMenus(self: *Window) void {
         _ = win32.DestroyMenu(self.root_menu);
-        self.menu_item_callbacks.clearAndFree();
+        self.menu_item_callbacks.clearAndFree(lib.internal.allocator);
         self.root_menu = null;
     }
 
@@ -340,7 +348,7 @@ pub const Window = struct {
         if (win32.SetMenu(self.hwnd, root_menu) != 0) {
             self.root_menu = root_menu;
         } else {
-            self.menu_item_callbacks.clearAndFree();
+            self.menu_item_callbacks.clearAndFree(lib.internal.allocator);
         }
     }
 
@@ -646,11 +654,10 @@ pub fn Events(comptime T: type) type {
                     const dci = Canvas.DrawContextImpl{
                         .render_target = render_target,
                         .brush = default_brush,
-                        .path = std.ArrayList(Canvas.DrawContextImpl.PathElement)
-                            .init(lib.internal.allocator),
+                        .path = .empty,
                     };
                     var dc = @import("../../backend.zig").DrawContext{ .impl = dci };
-                    defer dc.impl.path.deinit();
+                    defer dc.impl.path.deinit(lib.internal.allocator);
 
                     render_target.ID2D1RenderTarget.BeginDraw();
                     render_target.ID2D1RenderTarget.Clear(&win32.D2D_COLOR_F{ .r = 1, .g = 1, .b = 1, .a = 0 });
@@ -761,7 +768,17 @@ pub const Canvas = struct {
     peer: HWND,
     data: usize = 0,
 
-    pub usingnamespace Events(Canvas);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub const DrawContextImpl = struct {
         path: std.ArrayList(PathElement),
@@ -957,9 +974,19 @@ pub const Canvas = struct {
 pub const TextField = struct {
     peer: HWND,
     /// Cache of the text field's text converted to UTF-8
-    text_utf8: std.ArrayList(u8) = std.ArrayList(u8).init(lib.internal.allocator),
+    text_utf8: std.ArrayList(u8) = .empty,
 
-    pub usingnamespace Events(TextField);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub fn create() !TextField {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1004,9 +1031,11 @@ pub const TextField = struct {
         const realLen = @as(usize, @intCast(win32.GetWindowTextW(self.peer, buf.ptr, len + 1)));
         const utf16Slice = buf[0..realLen];
 
-        self.text_utf8.clearAndFree();
-        std.unicode.utf16LeToUtf8ArrayList(&self.text_utf8, utf16Slice) catch @panic("OOM");
-        self.text_utf8.append(0) catch @panic("OOM");
+        self.text_utf8.clearAndFree(lib.internal.allocator);
+        const utf8 = std.unicode.utf16LeToUtf8Alloc(lib.internal.allocator, utf16Slice) catch @panic("OOM");
+        defer lib.internal.allocator.free(utf8);
+        self.text_utf8.appendSlice(lib.internal.allocator, utf8) catch @panic("OOM");
+        self.text_utf8.append(lib.internal.allocator, 0) catch @panic("OOM");
         return self.text_utf8.items[0 .. self.text_utf8.items.len - 1 :0];
     }
 
@@ -1019,7 +1048,17 @@ pub const TextArea = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(TextArea);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub fn create() !TextArea {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1085,7 +1124,17 @@ pub const Button = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(Button);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub fn create() !Button {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1141,7 +1190,17 @@ pub const CheckBox = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(CheckBox);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub fn create() !CheckBox {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1198,7 +1257,17 @@ pub const Slider = struct {
     max: f32 = 100,
     stepSize: f32 = 1,
 
-    pub usingnamespace Events(Slider);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub fn create() !Slider {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1264,7 +1333,17 @@ pub const Label = struct {
     peer: HWND,
     arena: std.heap.ArenaAllocator,
 
-    pub usingnamespace Events(Label);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     pub fn create() !Label {
         const hwnd = win32.CreateWindowExW(win32.WS_EX_LEFT, // dwExtStyle
@@ -1322,7 +1401,17 @@ pub const TabContainer = struct {
     peerList: std.ArrayList(PeerType),
     shownPeer: ?PeerType = null,
 
-    pub usingnamespace Events(TabContainer);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     var classRegistered = false;
 
@@ -1395,7 +1484,7 @@ pub const TabContainer = struct {
             .peer = wrapperHwnd,
             .tabControl = hwnd,
             .arena = std.heap.ArenaAllocator.init(lib.internal.allocator),
-            .peerList = std.ArrayList(PeerType).init(lib.internal.allocator),
+            .peerList = .empty,
         };
     }
 
@@ -1415,7 +1504,7 @@ pub const TabContainer = struct {
     pub fn insert(self: *TabContainer, position: usize, peer: PeerType) usize {
         const item = win32Backend.TCITEMA{ .mask = 0 };
         const newIndex = win32Backend.TabCtrl_InsertItemW(self.tabControl, @as(c_int, @intCast(position)), &item);
-        self.peerList.append(peer) catch @panic("OOM");
+        self.peerList.append(lib.internal.allocator, peer) catch @panic("OOM");
 
         if (self.shownPeer == null) {
             _ = win32.SetParent(peer, self.peer);
@@ -1458,7 +1547,17 @@ pub const ScrollView = struct {
     child: ?HWND = null,
     widget: ?*lib.Widget = null,
 
-    pub usingnamespace Events(ScrollView);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     var classRegistered = false;
 
@@ -1559,7 +1658,7 @@ pub const ScrollView = struct {
         const height = parent.bottom - parent.top;
 
         // Resize the child component to its preferred size (while keeping its current position)
-        const preferred = self.widget.?.getPreferredSize(lib.Size.init(std.math.maxInt(u32), std.math.maxInt(u32)));
+        const preferred = self.widget.?.getPreferredSize(lib.Size.init(std.math.floatMax(f32), std.math.floatMax(f32)));
 
         const child = win32.GetWindow(hwnd, win32.GW_CHILD);
         _ = win32.MoveWindow(
@@ -1601,7 +1700,17 @@ const ContainerStruct = struct { hwnd: HWND, count: usize, index: usize };
 pub const Container = struct {
     peer: HWND,
 
-    pub usingnamespace Events(Container);
+    const _events = Events(@This());
+    pub const process = _events.process;
+    pub const setupEvents = _events.setupEvents;
+    pub const setUserData = _events.setUserData;
+    pub const setCallback = _events.setCallback;
+    pub const requestDraw = _events.requestDraw;
+    pub const getWidth = _events.getWidth;
+    pub const getHeight = _events.getHeight;
+    pub const getPreferredSize = _events.getPreferredSize;
+    pub const setOpacity = _events.setOpacity;
+    pub const deinit = _events.deinit;
 
     var classRegistered = false;
 

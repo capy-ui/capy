@@ -9,9 +9,21 @@ peer: *c.GtkWidget,
 // duplicate text to keep the same behaviour as other backends
 dup_text: std.ArrayList(u8),
 
-pub usingnamespace common.Events(TextField);
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
 
-fn gtkTextChanged(peer: *c.GtkWidget, userdata: usize) callconv(.C) void {
+fn gtkTextChanged(peer: *c.GtkWidget, userdata: usize) callconv(.c) void {
     _ = userdata;
     const data = common.getEventUserData(peer);
     if (data.user.changedTextHandler) |handler| {
@@ -23,7 +35,7 @@ pub fn create() common.BackendError!TextField {
     const textField = c.gtk_entry_new() orelse return common.BackendError.UnknownError;
     try TextField.setupEvents(textField);
     _ = c.g_signal_connect_data(textField, "changed", @as(c.GCallback, @ptrCast(&gtkTextChanged)), null, @as(c.GClosureNotify, null), c.G_CONNECT_AFTER);
-    return TextField{ .peer = textField, .dup_text = std.ArrayList(u8).init(lib.internal.allocator) };
+    return TextField{ .peer = textField, .dup_text = .empty };
 }
 
 pub fn setText(self: *TextField, text: []const u8) void {
@@ -36,8 +48,8 @@ pub fn setText(self: *TextField, text: []const u8) void {
 
     const buffer = c.gtk_entry_get_buffer(@as(*c.GtkEntry, @ptrCast(self.peer)));
     self.dup_text.clearRetainingCapacity();
-    self.dup_text.appendSlice(text) catch return;
-    self.dup_text.append(0) catch return; // add sentinel so it becomes a NUL-terminated UTF-8 string
+    self.dup_text.appendSlice(lib.internal.allocator, text) catch return;
+    self.dup_text.append(lib.internal.allocator, 0) catch return; // add sentinel so it becomes a NUL-terminated UTF-8 string
 
     c.gtk_entry_buffer_set_text(buffer, self.dup_text.items.ptr, numChars);
 }
@@ -54,5 +66,5 @@ pub fn setReadOnly(self: *TextField, readOnly: bool) void {
 }
 
 pub fn _deinit(self: *const TextField) void {
-    self.dup_text.deinit();
+    self.dup_text.deinit(lib.internal.allocator);
 }

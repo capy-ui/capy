@@ -328,7 +328,7 @@ pub extern "advapi32" fn InitiateSystemShutdownA(
     dwTimeout: u32,
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitiateSystemShutdownW(
@@ -337,17 +337,17 @@ pub extern "advapi32" fn InitiateSystemShutdownW(
     dwTimeout: u32,
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AbortSystemShutdownA(
     lpMachineName: ?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn AbortSystemShutdownW(
     lpMachineName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitiateSystemShutdownExA(
@@ -357,7 +357,7 @@ pub extern "advapi32" fn InitiateSystemShutdownExA(
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
     dwReason: SHUTDOWN_REASON,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "advapi32" fn InitiateSystemShutdownExW(
@@ -367,7 +367,7 @@ pub extern "advapi32" fn InitiateSystemShutdownExW(
     bForceAppsClosed: BOOL,
     bRebootAfterShutdown: BOOL,
     dwReason: SHUTDOWN_REASON,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn InitiateShutdownA(
@@ -376,7 +376,7 @@ pub extern "advapi32" fn InitiateShutdownA(
     dwGracePeriod: u32,
     dwShutdownFlags: SHUTDOWN_FLAGS,
     dwReason: SHUTDOWN_REASON,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "advapi32" fn InitiateShutdownW(
@@ -385,40 +385,40 @@ pub extern "advapi32" fn InitiateShutdownW(
     dwGracePeriod: u32,
     dwShutdownFlags: SHUTDOWN_FLAGS,
     dwReason: SHUTDOWN_REASON,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "advapi32" fn CheckForHiberboot(
     pHiberboot: ?*BOOLEAN,
     bClearFlag: BOOLEAN,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn ExitWindowsEx(
     uFlags: EXIT_WINDOWS_FLAGS,
     dwReason: SHUTDOWN_REASON,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn LockWorkStation(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ShutdownBlockReasonCreate(
     hWnd: ?HWND,
     pwszReason: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ShutdownBlockReasonQuery(
     hWnd: ?HWND,
     pwszBuff: ?[*:0]u16,
     pcchBuff: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "user32" fn ShutdownBlockReasonDestroy(
     hWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

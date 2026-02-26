@@ -478,198 +478,198 @@ pub const IOfflineFilesEvents = extern union {
             self: *const IOfflineFilesEvents,
             pszOldPath: ?[*:0]const u16,
             pszNewPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CacheIsFull: *const fn(
             self: *const IOfflineFilesEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CacheIsCorrupted: *const fn(
             self: *const IOfflineFilesEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Enabled: *const fn(
             self: *const IOfflineFilesEvents,
             bEnabled: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EncryptionChanged: *const fn(
             self: *const IOfflineFilesEvents,
             bWasEncrypted: BOOL,
             bWasPartial: BOOL,
             bIsEncrypted: BOOL,
             bIsPartial: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncBegin: *const fn(
             self: *const IOfflineFilesEvents,
             rSyncId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncFileResult: *const fn(
             self: *const IOfflineFilesEvents,
             rSyncId: ?*const Guid,
             pszFile: ?[*:0]const u16,
             hrResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncConflictRecAdded: *const fn(
             self: *const IOfflineFilesEvents,
             pszConflictPath: ?[*:0]const u16,
             pftConflictDateTime: ?*const FILETIME,
             ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncConflictRecUpdated: *const fn(
             self: *const IOfflineFilesEvents,
             pszConflictPath: ?[*:0]const u16,
             pftConflictDateTime: ?*const FILETIME,
             ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncConflictRecRemoved: *const fn(
             self: *const IOfflineFilesEvents,
             pszConflictPath: ?[*:0]const u16,
             pftConflictDateTime: ?*const FILETIME,
             ConflictSyncState: OFFLINEFILES_SYNC_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncEnd: *const fn(
             self: *const IOfflineFilesEvents,
             rSyncId: ?*const Guid,
             hrResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NetTransportArrived: *const fn(
             self: *const IOfflineFilesEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         NoNetTransports: *const fn(
             self: *const IOfflineFilesEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemDisconnected: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemReconnected: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemAvailableOffline: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemNotAvailableOffline: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemPinned: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemNotPinned: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemModified: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
             bModifiedData: BOOL,
             bModifiedAttributes: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemAddedToCache: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemDeletedFromCache: *const fn(
             self: *const IOfflineFilesEvents,
             pszPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemRenamed: *const fn(
             self: *const IOfflineFilesEvents,
             pszOldPath: ?[*:0]const u16,
             pszNewPath: ?[*:0]const u16,
             ItemType: OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DataLost: *const fn(
             self: *const IOfflineFilesEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Ping: *const fn(
             self: *const IOfflineFilesEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CacheMoved(self: *const IOfflineFilesEvents, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn CacheMoved(self: *const IOfflineFilesEvents, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16) HRESULT {
         return self.vtable.CacheMoved(self, pszOldPath, pszNewPath);
     }
-    pub fn CacheIsFull(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+    pub fn CacheIsFull(self: *const IOfflineFilesEvents) HRESULT {
         return self.vtable.CacheIsFull(self);
     }
-    pub fn CacheIsCorrupted(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+    pub fn CacheIsCorrupted(self: *const IOfflineFilesEvents) HRESULT {
         return self.vtable.CacheIsCorrupted(self);
     }
-    pub fn Enabled(self: *const IOfflineFilesEvents, bEnabled: BOOL) callconv(.Inline) HRESULT {
+    pub fn Enabled(self: *const IOfflineFilesEvents, bEnabled: BOOL) HRESULT {
         return self.vtable.Enabled(self, bEnabled);
     }
-    pub fn EncryptionChanged(self: *const IOfflineFilesEvents, bWasEncrypted: BOOL, bWasPartial: BOOL, bIsEncrypted: BOOL, bIsPartial: BOOL) callconv(.Inline) HRESULT {
+    pub fn EncryptionChanged(self: *const IOfflineFilesEvents, bWasEncrypted: BOOL, bWasPartial: BOOL, bIsEncrypted: BOOL, bIsPartial: BOOL) HRESULT {
         return self.vtable.EncryptionChanged(self, bWasEncrypted, bWasPartial, bIsEncrypted, bIsPartial);
     }
-    pub fn SyncBegin(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn SyncBegin(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid) HRESULT {
         return self.vtable.SyncBegin(self, rSyncId);
     }
-    pub fn SyncFileResult(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid, pszFile: ?[*:0]const u16, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn SyncFileResult(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid, pszFile: ?[*:0]const u16, hrResult: HRESULT) HRESULT {
         return self.vtable.SyncFileResult(self, rSyncId, pszFile, hrResult);
     }
-    pub fn SyncConflictRecAdded(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
+    pub fn SyncConflictRecAdded(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) HRESULT {
         return self.vtable.SyncConflictRecAdded(self, pszConflictPath, pftConflictDateTime, ConflictSyncState);
     }
-    pub fn SyncConflictRecUpdated(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
+    pub fn SyncConflictRecUpdated(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) HRESULT {
         return self.vtable.SyncConflictRecUpdated(self, pszConflictPath, pftConflictDateTime, ConflictSyncState);
     }
-    pub fn SyncConflictRecRemoved(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) callconv(.Inline) HRESULT {
+    pub fn SyncConflictRecRemoved(self: *const IOfflineFilesEvents, pszConflictPath: ?[*:0]const u16, pftConflictDateTime: ?*const FILETIME, ConflictSyncState: OFFLINEFILES_SYNC_STATE) HRESULT {
         return self.vtable.SyncConflictRecRemoved(self, pszConflictPath, pftConflictDateTime, ConflictSyncState);
     }
-    pub fn SyncEnd(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn SyncEnd(self: *const IOfflineFilesEvents, rSyncId: ?*const Guid, hrResult: HRESULT) HRESULT {
         return self.vtable.SyncEnd(self, rSyncId, hrResult);
     }
-    pub fn NetTransportArrived(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+    pub fn NetTransportArrived(self: *const IOfflineFilesEvents) HRESULT {
         return self.vtable.NetTransportArrived(self);
     }
-    pub fn NoNetTransports(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+    pub fn NoNetTransports(self: *const IOfflineFilesEvents) HRESULT {
         return self.vtable.NoNetTransports(self);
     }
-    pub fn ItemDisconnected(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemDisconnected(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemDisconnected(self, pszPath, ItemType);
     }
-    pub fn ItemReconnected(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemReconnected(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemReconnected(self, pszPath, ItemType);
     }
-    pub fn ItemAvailableOffline(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemAvailableOffline(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemAvailableOffline(self, pszPath, ItemType);
     }
-    pub fn ItemNotAvailableOffline(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemNotAvailableOffline(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemNotAvailableOffline(self, pszPath, ItemType);
     }
-    pub fn ItemPinned(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemPinned(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemPinned(self, pszPath, ItemType);
     }
-    pub fn ItemNotPinned(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemNotPinned(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemNotPinned(self, pszPath, ItemType);
     }
-    pub fn ItemModified(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL) callconv(.Inline) HRESULT {
+    pub fn ItemModified(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL) HRESULT {
         return self.vtable.ItemModified(self, pszPath, ItemType, bModifiedData, bModifiedAttributes);
     }
-    pub fn ItemAddedToCache(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemAddedToCache(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemAddedToCache(self, pszPath, ItemType);
     }
-    pub fn ItemDeletedFromCache(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemDeletedFromCache(self: *const IOfflineFilesEvents, pszPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemDeletedFromCache(self, pszPath, ItemType);
     }
-    pub fn ItemRenamed(self: *const IOfflineFilesEvents, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn ItemRenamed(self: *const IOfflineFilesEvents, pszOldPath: ?[*:0]const u16, pszNewPath: ?[*:0]const u16, ItemType: OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.ItemRenamed(self, pszOldPath, pszNewPath, ItemType);
     }
-    pub fn DataLost(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+    pub fn DataLost(self: *const IOfflineFilesEvents) HRESULT {
         return self.vtable.DataLost(self);
     }
-    pub fn Ping(self: *const IOfflineFilesEvents) callconv(.Inline) HRESULT {
+    pub fn Ping(self: *const IOfflineFilesEvents) HRESULT {
         return self.vtable.Ping(self);
     }
 };
@@ -682,62 +682,62 @@ pub const IOfflineFilesEvents2 = extern union {
         base: IOfflineFilesEvents.VTable,
         ItemReconnectBegin: *const fn(
             self: *const IOfflineFilesEvents2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemReconnectEnd: *const fn(
             self: *const IOfflineFilesEvents2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CacheEvictBegin: *const fn(
             self: *const IOfflineFilesEvents2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CacheEvictEnd: *const fn(
             self: *const IOfflineFilesEvents2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BackgroundSyncBegin: *const fn(
             self: *const IOfflineFilesEvents2,
             dwSyncControlFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BackgroundSyncEnd: *const fn(
             self: *const IOfflineFilesEvents2,
             dwSyncControlFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PolicyChangeDetected: *const fn(
             self: *const IOfflineFilesEvents2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PreferenceChangeDetected: *const fn(
             self: *const IOfflineFilesEvents2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SettingsChangesApplied: *const fn(
             self: *const IOfflineFilesEvents2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesEvents: IOfflineFilesEvents,
     IUnknown: IUnknown,
-    pub fn ItemReconnectBegin(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+    pub fn ItemReconnectBegin(self: *const IOfflineFilesEvents2) HRESULT {
         return self.vtable.ItemReconnectBegin(self);
     }
-    pub fn ItemReconnectEnd(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+    pub fn ItemReconnectEnd(self: *const IOfflineFilesEvents2) HRESULT {
         return self.vtable.ItemReconnectEnd(self);
     }
-    pub fn CacheEvictBegin(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+    pub fn CacheEvictBegin(self: *const IOfflineFilesEvents2) HRESULT {
         return self.vtable.CacheEvictBegin(self);
     }
-    pub fn CacheEvictEnd(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+    pub fn CacheEvictEnd(self: *const IOfflineFilesEvents2) HRESULT {
         return self.vtable.CacheEvictEnd(self);
     }
-    pub fn BackgroundSyncBegin(self: *const IOfflineFilesEvents2, dwSyncControlFlags: u32) callconv(.Inline) HRESULT {
+    pub fn BackgroundSyncBegin(self: *const IOfflineFilesEvents2, dwSyncControlFlags: u32) HRESULT {
         return self.vtable.BackgroundSyncBegin(self, dwSyncControlFlags);
     }
-    pub fn BackgroundSyncEnd(self: *const IOfflineFilesEvents2, dwSyncControlFlags: u32) callconv(.Inline) HRESULT {
+    pub fn BackgroundSyncEnd(self: *const IOfflineFilesEvents2, dwSyncControlFlags: u32) HRESULT {
         return self.vtable.BackgroundSyncEnd(self, dwSyncControlFlags);
     }
-    pub fn PolicyChangeDetected(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+    pub fn PolicyChangeDetected(self: *const IOfflineFilesEvents2) HRESULT {
         return self.vtable.PolicyChangeDetected(self);
     }
-    pub fn PreferenceChangeDetected(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+    pub fn PreferenceChangeDetected(self: *const IOfflineFilesEvents2) HRESULT {
         return self.vtable.PreferenceChangeDetected(self);
     }
-    pub fn SettingsChangesApplied(self: *const IOfflineFilesEvents2) callconv(.Inline) HRESULT {
+    pub fn SettingsChangesApplied(self: *const IOfflineFilesEvents2) HRESULT {
         return self.vtable.SettingsChangesApplied(self);
     }
 };
@@ -756,28 +756,28 @@ pub const IOfflineFilesEvents3 = extern union {
             bModifiedData: BOOL,
             bModifiedAttributes: BOOL,
             pzsOldPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrefetchFileBegin: *const fn(
             self: *const IOfflineFilesEvents3,
             pszPath: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrefetchFileEnd: *const fn(
             self: *const IOfflineFilesEvents3,
             pszPath: ?[*:0]const u16,
             hrResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesEvents2: IOfflineFilesEvents2,
     IOfflineFilesEvents: IOfflineFilesEvents,
     IUnknown: IUnknown,
-    pub fn TransparentCacheItemNotify(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16, EventType: OFFLINEFILES_EVENTS, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL, pzsOldPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn TransparentCacheItemNotify(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16, EventType: OFFLINEFILES_EVENTS, ItemType: OFFLINEFILES_ITEM_TYPE, bModifiedData: BOOL, bModifiedAttributes: BOOL, pzsOldPath: ?[*:0]const u16) HRESULT {
         return self.vtable.TransparentCacheItemNotify(self, pszPath, EventType, ItemType, bModifiedData, bModifiedAttributes, pzsOldPath);
     }
-    pub fn PrefetchFileBegin(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn PrefetchFileBegin(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16) HRESULT {
         return self.vtable.PrefetchFileBegin(self, pszPath);
     }
-    pub fn PrefetchFileEnd(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn PrefetchFileEnd(self: *const IOfflineFilesEvents3, pszPath: ?[*:0]const u16, hrResult: HRESULT) HRESULT {
         return self.vtable.PrefetchFileEnd(self, pszPath, hrResult);
     }
 };
@@ -789,23 +789,23 @@ pub const IOfflineFilesEvents4 = extern union {
         base: IOfflineFilesEvents3.VTable,
         PrefetchCloseHandleBegin: *const fn(
             self: *const IOfflineFilesEvents4,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PrefetchCloseHandleEnd: *const fn(
             self: *const IOfflineFilesEvents4,
             dwClosedHandleCount: u32,
             dwOpenHandleCount: u32,
             hrResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesEvents3: IOfflineFilesEvents3,
     IOfflineFilesEvents2: IOfflineFilesEvents2,
     IOfflineFilesEvents: IOfflineFilesEvents,
     IUnknown: IUnknown,
-    pub fn PrefetchCloseHandleBegin(self: *const IOfflineFilesEvents4) callconv(.Inline) HRESULT {
+    pub fn PrefetchCloseHandleBegin(self: *const IOfflineFilesEvents4) HRESULT {
         return self.vtable.PrefetchCloseHandleBegin(self);
     }
-    pub fn PrefetchCloseHandleEnd(self: *const IOfflineFilesEvents4, dwClosedHandleCount: u32, dwOpenHandleCount: u32, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn PrefetchCloseHandleEnd(self: *const IOfflineFilesEvents4, dwClosedHandleCount: u32, dwOpenHandleCount: u32, hrResult: HRESULT) HRESULT {
         return self.vtable.PrefetchCloseHandleEnd(self, dwClosedHandleCount, dwOpenHandleCount, hrResult);
     }
 };
@@ -820,29 +820,29 @@ pub const IOfflineFilesEventsFilter = extern union {
             self: *const IOfflineFilesEventsFilter,
             ppszFilter: ?*?PWSTR,
             pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIncludedEvents: *const fn(
             self: *const IOfflineFilesEventsFilter,
             cElements: u32,
             prgEvents: [*]OFFLINEFILES_EVENTS,
             pcEvents: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetExcludedEvents: *const fn(
             self: *const IOfflineFilesEventsFilter,
             cElements: u32,
             prgEvents: [*]OFFLINEFILES_EVENTS,
             pcEvents: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPathFilter(self: *const IOfflineFilesEventsFilter, ppszFilter: ?*?PWSTR, pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH) callconv(.Inline) HRESULT {
+    pub fn GetPathFilter(self: *const IOfflineFilesEventsFilter, ppszFilter: ?*?PWSTR, pMatch: ?*OFFLINEFILES_PATHFILTER_MATCH) HRESULT {
         return self.vtable.GetPathFilter(self, ppszFilter, pMatch);
     }
-    pub fn GetIncludedEvents(self: *const IOfflineFilesEventsFilter, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIncludedEvents(self: *const IOfflineFilesEventsFilter, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) HRESULT {
         return self.vtable.GetIncludedEvents(self, cElements, prgEvents, pcEvents);
     }
-    pub fn GetExcludedEvents(self: *const IOfflineFilesEventsFilter, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetExcludedEvents(self: *const IOfflineFilesEventsFilter, cElements: u32, prgEvents: [*]OFFLINEFILES_EVENTS, pcEvents: ?*u32) HRESULT {
         return self.vtable.GetExcludedEvents(self, cElements, prgEvents, pcEvents);
     }
 };
@@ -856,18 +856,18 @@ pub const IOfflineFilesErrorInfo = extern union {
         GetRawData: *const fn(
             self: *const IOfflineFilesErrorInfo,
             ppBlob: ?*?*BYTE_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const IOfflineFilesErrorInfo,
             ppszDescription: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRawData(self: *const IOfflineFilesErrorInfo, ppBlob: ?*?*BYTE_BLOB) callconv(.Inline) HRESULT {
+    pub fn GetRawData(self: *const IOfflineFilesErrorInfo, ppBlob: ?*?*BYTE_BLOB) HRESULT {
         return self.vtable.GetRawData(self, ppBlob);
     }
-    pub fn GetDescription(self: *const IOfflineFilesErrorInfo, ppszDescription: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const IOfflineFilesErrorInfo, ppszDescription: ?*?PWSTR) HRESULT {
         return self.vtable.GetDescription(self, ppszDescription);
     }
 };
@@ -881,26 +881,26 @@ pub const IOfflineFilesSyncErrorItemInfo = extern union {
         GetFileAttributes: *const fn(
             self: *const IOfflineFilesSyncErrorItemInfo,
             pdwAttributes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileTimes: *const fn(
             self: *const IOfflineFilesSyncErrorItemInfo,
             pftLastWrite: ?*FILETIME,
             pftChange: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileSize: *const fn(
             self: *const IOfflineFilesSyncErrorItemInfo,
             pSize: ?*LARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFileAttributes(self: *const IOfflineFilesSyncErrorItemInfo, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFileAttributes(self: *const IOfflineFilesSyncErrorItemInfo, pdwAttributes: ?*u32) HRESULT {
         return self.vtable.GetFileAttributes(self, pdwAttributes);
     }
-    pub fn GetFileTimes(self: *const IOfflineFilesSyncErrorItemInfo, pftLastWrite: ?*FILETIME, pftChange: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetFileTimes(self: *const IOfflineFilesSyncErrorItemInfo, pftLastWrite: ?*FILETIME, pftChange: ?*FILETIME) HRESULT {
         return self.vtable.GetFileTimes(self, pftLastWrite, pftChange);
     }
-    pub fn GetFileSize(self: *const IOfflineFilesSyncErrorItemInfo, pSize: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn GetFileSize(self: *const IOfflineFilesSyncErrorItemInfo, pSize: ?*LARGE_INTEGER) HRESULT {
         return self.vtable.GetFileSize(self, pSize);
     }
 };
@@ -914,58 +914,58 @@ pub const IOfflineFilesSyncErrorInfo = extern union {
         GetSyncOperation: *const fn(
             self: *const IOfflineFilesSyncErrorInfo,
             pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetItemChangeFlags: *const fn(
             self: *const IOfflineFilesSyncErrorInfo,
             pdwItemChangeFlags: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InfoEnumerated: *const fn(
             self: *const IOfflineFilesSyncErrorInfo,
             pbLocalEnumerated: ?*BOOL,
             pbRemoteEnumerated: ?*BOOL,
             pbOriginalEnumerated: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InfoAvailable: *const fn(
             self: *const IOfflineFilesSyncErrorInfo,
             pbLocalInfo: ?*BOOL,
             pbRemoteInfo: ?*BOOL,
             pbOriginalInfo: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalInfo: *const fn(
             self: *const IOfflineFilesSyncErrorInfo,
             ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRemoteInfo: *const fn(
             self: *const IOfflineFilesSyncErrorInfo,
             ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOriginalInfo: *const fn(
             self: *const IOfflineFilesSyncErrorInfo,
             ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesErrorInfo: IOfflineFilesErrorInfo,
     IUnknown: IUnknown,
-    pub fn GetSyncOperation(self: *const IOfflineFilesSyncErrorInfo, pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION) callconv(.Inline) HRESULT {
+    pub fn GetSyncOperation(self: *const IOfflineFilesSyncErrorInfo, pSyncOp: ?*OFFLINEFILES_SYNC_OPERATION) HRESULT {
         return self.vtable.GetSyncOperation(self, pSyncOp);
     }
-    pub fn GetItemChangeFlags(self: *const IOfflineFilesSyncErrorInfo, pdwItemChangeFlags: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetItemChangeFlags(self: *const IOfflineFilesSyncErrorInfo, pdwItemChangeFlags: ?*u32) HRESULT {
         return self.vtable.GetItemChangeFlags(self, pdwItemChangeFlags);
     }
-    pub fn InfoEnumerated(self: *const IOfflineFilesSyncErrorInfo, pbLocalEnumerated: ?*BOOL, pbRemoteEnumerated: ?*BOOL, pbOriginalEnumerated: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn InfoEnumerated(self: *const IOfflineFilesSyncErrorInfo, pbLocalEnumerated: ?*BOOL, pbRemoteEnumerated: ?*BOOL, pbOriginalEnumerated: ?*BOOL) HRESULT {
         return self.vtable.InfoEnumerated(self, pbLocalEnumerated, pbRemoteEnumerated, pbOriginalEnumerated);
     }
-    pub fn InfoAvailable(self: *const IOfflineFilesSyncErrorInfo, pbLocalInfo: ?*BOOL, pbRemoteInfo: ?*BOOL, pbOriginalInfo: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn InfoAvailable(self: *const IOfflineFilesSyncErrorInfo, pbLocalInfo: ?*BOOL, pbRemoteInfo: ?*BOOL, pbOriginalInfo: ?*BOOL) HRESULT {
         return self.vtable.InfoAvailable(self, pbLocalInfo, pbRemoteInfo, pbOriginalInfo);
     }
-    pub fn GetLocalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+    pub fn GetLocalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) HRESULT {
         return self.vtable.GetLocalInfo(self, ppInfo);
     }
-    pub fn GetRemoteInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+    pub fn GetRemoteInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) HRESULT {
         return self.vtable.GetRemoteInfo(self, ppInfo);
     }
-    pub fn GetOriginalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) callconv(.Inline) HRESULT {
+    pub fn GetOriginalInfo(self: *const IOfflineFilesSyncErrorInfo, ppInfo: ?*?*IOfflineFilesSyncErrorItemInfo) HRESULT {
         return self.vtable.GetOriginalInfo(self, ppInfo);
     }
 };
@@ -979,25 +979,25 @@ pub const IOfflineFilesProgress = extern union {
         Begin: *const fn(
             self: *const IOfflineFilesProgress,
             pbAbort: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         QueryAbort: *const fn(
             self: *const IOfflineFilesProgress,
             pbAbort: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         End: *const fn(
             self: *const IOfflineFilesProgress,
             hrResult: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Begin(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn Begin(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) HRESULT {
         return self.vtable.Begin(self, pbAbort);
     }
-    pub fn QueryAbort(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn QueryAbort(self: *const IOfflineFilesProgress, pbAbort: ?*BOOL) HRESULT {
         return self.vtable.QueryAbort(self, pbAbort);
     }
-    pub fn End(self: *const IOfflineFilesProgress, hrResult: HRESULT) callconv(.Inline) HRESULT {
+    pub fn End(self: *const IOfflineFilesProgress, hrResult: HRESULT) HRESULT {
         return self.vtable.End(self, hrResult);
     }
 };
@@ -1012,21 +1012,21 @@ pub const IOfflineFilesSimpleProgress = extern union {
             self: *const IOfflineFilesSimpleProgress,
             pszFile: ?[*:0]const u16,
             pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ItemResult: *const fn(
             self: *const IOfflineFilesSimpleProgress,
             pszFile: ?[*:0]const u16,
             hrResult: HRESULT,
             pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesProgress: IOfflineFilesProgress,
     IUnknown: IUnknown,
-    pub fn ItemBegin(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn ItemBegin(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
         return self.vtable.ItemBegin(self, pszFile, pResponse);
     }
-    pub fn ItemResult(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn ItemResult(self: *const IOfflineFilesSimpleProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
         return self.vtable.ItemResult(self, pszFile, hrResult, pResponse);
     }
 };
@@ -1041,22 +1041,22 @@ pub const IOfflineFilesSyncProgress = extern union {
             self: *const IOfflineFilesSyncProgress,
             pszFile: ?[*:0]const u16,
             pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SyncItemResult: *const fn(
             self: *const IOfflineFilesSyncProgress,
             pszFile: ?[*:0]const u16,
             hrResult: HRESULT,
             pErrorInfo: ?*IOfflineFilesSyncErrorInfo,
             pResponse: ?*OFFLINEFILES_OP_RESPONSE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesProgress: IOfflineFilesProgress,
     IUnknown: IUnknown,
-    pub fn SyncItemBegin(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn SyncItemBegin(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
         return self.vtable.SyncItemBegin(self, pszFile, pResponse);
     }
-    pub fn SyncItemResult(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pErrorInfo: ?*IOfflineFilesSyncErrorInfo, pResponse: ?*OFFLINEFILES_OP_RESPONSE) callconv(.Inline) HRESULT {
+    pub fn SyncItemResult(self: *const IOfflineFilesSyncProgress, pszFile: ?[*:0]const u16, hrResult: HRESULT, pErrorInfo: ?*IOfflineFilesSyncErrorInfo, pResponse: ?*OFFLINEFILES_OP_RESPONSE) HRESULT {
         return self.vtable.SyncItemResult(self, pszFile, hrResult, pErrorInfo, pResponse);
     }
 };
@@ -1075,11 +1075,11 @@ pub const IOfflineFilesSyncConflictHandler = extern union {
             fChangeDetails: u32,
             pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE,
             ppszNewName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ResolveConflict(self: *const IOfflineFilesSyncConflictHandler, pszPath: ?[*:0]const u16, fStateKnown: u32, state: OFFLINEFILES_SYNC_STATE, fChangeDetails: u32, pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE, ppszNewName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn ResolveConflict(self: *const IOfflineFilesSyncConflictHandler, pszPath: ?[*:0]const u16, fStateKnown: u32, state: OFFLINEFILES_SYNC_STATE, fChangeDetails: u32, pConflictResolution: ?*OFFLINEFILES_SYNC_CONFLICT_RESOLVE, ppszNewName: ?*?PWSTR) HRESULT {
         return self.vtable.ResolveConflict(self, pszPath, fStateKnown, state, fChangeDetails, pConflictResolution, ppszNewName);
     }
 };
@@ -1094,29 +1094,29 @@ pub const IOfflineFilesItemFilter = extern union {
             self: *const IOfflineFilesItemFilter,
             pullFlags: ?*u64,
             pullMask: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimeFilter: *const fn(
             self: *const IOfflineFilesItemFilter,
             pftTime: ?*FILETIME,
             pbEvalTimeOfDay: ?*BOOL,
             pTimeType: ?*OFFLINEFILES_ITEM_TIME,
             pCompare: ?*OFFLINEFILES_COMPARE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPatternFilter: *const fn(
             self: *const IOfflineFilesItemFilter,
             pszPattern: [*:0]u16,
             cchPattern: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFilterFlags(self: *const IOfflineFilesItemFilter, pullFlags: ?*u64, pullMask: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetFilterFlags(self: *const IOfflineFilesItemFilter, pullFlags: ?*u64, pullMask: ?*u64) HRESULT {
         return self.vtable.GetFilterFlags(self, pullFlags, pullMask);
     }
-    pub fn GetTimeFilter(self: *const IOfflineFilesItemFilter, pftTime: ?*FILETIME, pbEvalTimeOfDay: ?*BOOL, pTimeType: ?*OFFLINEFILES_ITEM_TIME, pCompare: ?*OFFLINEFILES_COMPARE) callconv(.Inline) HRESULT {
+    pub fn GetTimeFilter(self: *const IOfflineFilesItemFilter, pftTime: ?*FILETIME, pbEvalTimeOfDay: ?*BOOL, pTimeType: ?*OFFLINEFILES_ITEM_TIME, pCompare: ?*OFFLINEFILES_COMPARE) HRESULT {
         return self.vtable.GetTimeFilter(self, pftTime, pbEvalTimeOfDay, pTimeType, pCompare);
     }
-    pub fn GetPatternFilter(self: *const IOfflineFilesItemFilter, pszPattern: [*:0]u16, cchPattern: u32) callconv(.Inline) HRESULT {
+    pub fn GetPatternFilter(self: *const IOfflineFilesItemFilter, pszPattern: [*:0]u16, cchPattern: u32) HRESULT {
         return self.vtable.GetPatternFilter(self, pszPattern, cchPattern);
     }
 };
@@ -1130,39 +1130,39 @@ pub const IOfflineFilesItem = extern union {
         GetItemType: *const fn(
             self: *const IOfflineFilesItem,
             pItemType: ?*OFFLINEFILES_ITEM_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPath: *const fn(
             self: *const IOfflineFilesItem,
             ppszPath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetParentItem: *const fn(
             self: *const IOfflineFilesItem,
             ppItem: ?*?*IOfflineFilesItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const IOfflineFilesItem,
             dwQueryFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsMarkedForDeletion: *const fn(
             self: *const IOfflineFilesItem,
             pbMarkedForDeletion: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetItemType(self: *const IOfflineFilesItem, pItemType: ?*OFFLINEFILES_ITEM_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetItemType(self: *const IOfflineFilesItem, pItemType: ?*OFFLINEFILES_ITEM_TYPE) HRESULT {
         return self.vtable.GetItemType(self, pItemType);
     }
-    pub fn GetPath(self: *const IOfflineFilesItem, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IOfflineFilesItem, ppszPath: ?*?PWSTR) HRESULT {
         return self.vtable.GetPath(self, ppszPath);
     }
-    pub fn GetParentItem(self: *const IOfflineFilesItem, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
+    pub fn GetParentItem(self: *const IOfflineFilesItem, ppItem: ?*?*IOfflineFilesItem) HRESULT {
         return self.vtable.GetParentItem(self, ppItem);
     }
-    pub fn Refresh(self: *const IOfflineFilesItem, dwQueryFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const IOfflineFilesItem, dwQueryFlags: u32) HRESULT {
         return self.vtable.Refresh(self, dwQueryFlags);
     }
-    pub fn IsMarkedForDeletion(self: *const IOfflineFilesItem, pbMarkedForDeletion: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsMarkedForDeletion(self: *const IOfflineFilesItem, pbMarkedForDeletion: ?*BOOL) HRESULT {
         return self.vtable.IsMarkedForDeletion(self, pbMarkedForDeletion);
     }
 };
@@ -1212,19 +1212,19 @@ pub const IOfflineFilesFileItem = extern union {
         IsSparse: *const fn(
             self: *const IOfflineFilesFileItem,
             pbIsSparse: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsEncrypted: *const fn(
             self: *const IOfflineFilesFileItem,
             pbIsEncrypted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesItem: IOfflineFilesItem,
     IUnknown: IUnknown,
-    pub fn IsSparse(self: *const IOfflineFilesFileItem, pbIsSparse: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsSparse(self: *const IOfflineFilesFileItem, pbIsSparse: ?*BOOL) HRESULT {
         return self.vtable.IsSparse(self, pbIsSparse);
     }
-    pub fn IsEncrypted(self: *const IOfflineFilesFileItem, pbIsEncrypted: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsEncrypted(self: *const IOfflineFilesFileItem, pbIsEncrypted: ?*BOOL) HRESULT {
         return self.vtable.IsEncrypted(self, pbIsEncrypted);
     }
 };
@@ -1240,31 +1240,31 @@ pub const IEnumOfflineFilesItems = extern union {
             celt: u32,
             rgelt: [*]?*IOfflineFilesItem,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumOfflineFilesItems,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumOfflineFilesItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumOfflineFilesItems,
             ppenum: ?*?*IEnumOfflineFilesItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumOfflineFilesItems, celt: u32, rgelt: [*]?*IOfflineFilesItem, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumOfflineFilesItems, celt: u32, rgelt: [*]?*IOfflineFilesItem, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumOfflineFilesItems, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumOfflineFilesItems, celt: u32) HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumOfflineFilesItems) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumOfflineFilesItems, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumOfflineFilesItems, ppenum: ?*?*IEnumOfflineFilesItems) HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -1279,7 +1279,7 @@ pub const IOfflineFilesItemContainer = extern union {
             self: *const IOfflineFilesItemContainer,
             dwQueryFlags: u32,
             ppenum: ?*?*IEnumOfflineFilesItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumItemsEx: *const fn(
             self: *const IOfflineFilesItemContainer,
             pIncludeFileFilter: ?*IOfflineFilesItemFilter,
@@ -1289,14 +1289,14 @@ pub const IOfflineFilesItemContainer = extern union {
             dwEnumFlags: u32,
             dwQueryFlags: u32,
             ppenum: ?*?*IEnumOfflineFilesItems,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EnumItems(self: *const IOfflineFilesItemContainer, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+    pub fn EnumItems(self: *const IOfflineFilesItemContainer, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) HRESULT {
         return self.vtable.EnumItems(self, dwQueryFlags, ppenum);
     }
-    pub fn EnumItemsEx(self: *const IOfflineFilesItemContainer, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwEnumFlags: u32, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) callconv(.Inline) HRESULT {
+    pub fn EnumItemsEx(self: *const IOfflineFilesItemContainer, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwEnumFlags: u32, dwQueryFlags: u32, ppenum: ?*?*IEnumOfflineFilesItems) HRESULT {
         return self.vtable.EnumItemsEx(self, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwEnumFlags, dwQueryFlags, ppenum);
     }
 };
@@ -1310,46 +1310,46 @@ pub const IOfflineFilesChangeInfo = extern union {
         IsDirty: *const fn(
             self: *const IOfflineFilesChangeInfo,
             pbDirty: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDeletedOffline: *const fn(
             self: *const IOfflineFilesChangeInfo,
             pbDeletedOffline: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsCreatedOffline: *const fn(
             self: *const IOfflineFilesChangeInfo,
             pbCreatedOffline: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLocallyModifiedData: *const fn(
             self: *const IOfflineFilesChangeInfo,
             pbLocallyModifiedData: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLocallyModifiedAttributes: *const fn(
             self: *const IOfflineFilesChangeInfo,
             pbLocallyModifiedAttributes: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsLocallyModifiedTime: *const fn(
             self: *const IOfflineFilesChangeInfo,
             pbLocallyModifiedTime: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsDirty(self: *const IOfflineFilesChangeInfo, pbDirty: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsDirty(self: *const IOfflineFilesChangeInfo, pbDirty: ?*BOOL) HRESULT {
         return self.vtable.IsDirty(self, pbDirty);
     }
-    pub fn IsDeletedOffline(self: *const IOfflineFilesChangeInfo, pbDeletedOffline: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsDeletedOffline(self: *const IOfflineFilesChangeInfo, pbDeletedOffline: ?*BOOL) HRESULT {
         return self.vtable.IsDeletedOffline(self, pbDeletedOffline);
     }
-    pub fn IsCreatedOffline(self: *const IOfflineFilesChangeInfo, pbCreatedOffline: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsCreatedOffline(self: *const IOfflineFilesChangeInfo, pbCreatedOffline: ?*BOOL) HRESULT {
         return self.vtable.IsCreatedOffline(self, pbCreatedOffline);
     }
-    pub fn IsLocallyModifiedData(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedData: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsLocallyModifiedData(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedData: ?*BOOL) HRESULT {
         return self.vtable.IsLocallyModifiedData(self, pbLocallyModifiedData);
     }
-    pub fn IsLocallyModifiedAttributes(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedAttributes: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsLocallyModifiedAttributes(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedAttributes: ?*BOOL) HRESULT {
         return self.vtable.IsLocallyModifiedAttributes(self, pbLocallyModifiedAttributes);
     }
-    pub fn IsLocallyModifiedTime(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedTime: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsLocallyModifiedTime(self: *const IOfflineFilesChangeInfo, pbLocallyModifiedTime: ?*BOOL) HRESULT {
         return self.vtable.IsLocallyModifiedTime(self, pbLocallyModifiedTime);
     }
 };
@@ -1363,18 +1363,18 @@ pub const IOfflineFilesDirtyInfo = extern union {
         LocalDirtyByteCount: *const fn(
             self: *const IOfflineFilesDirtyInfo,
             pDirtyByteCount: ?*LARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoteDirtyByteCount: *const fn(
             self: *const IOfflineFilesDirtyInfo,
             pDirtyByteCount: ?*LARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn LocalDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn LocalDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) HRESULT {
         return self.vtable.LocalDirtyByteCount(self, pDirtyByteCount);
     }
-    pub fn RemoteDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn RemoteDirtyByteCount(self: *const IOfflineFilesDirtyInfo, pDirtyByteCount: ?*LARGE_INTEGER) HRESULT {
         return self.vtable.RemoteDirtyByteCount(self, pDirtyByteCount);
     }
 };
@@ -1389,7 +1389,7 @@ pub const IOfflineFilesFileSysInfo = extern union {
             self: *const IOfflineFilesFileSysInfo,
             copy: OFFLINEFILES_ITEM_COPY,
             pdwAttributes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetTimes: *const fn(
             self: *const IOfflineFilesFileSysInfo,
             copy: OFFLINEFILES_ITEM_COPY,
@@ -1397,22 +1397,22 @@ pub const IOfflineFilesFileSysInfo = extern union {
             pftLastWriteTime: ?*FILETIME,
             pftChangeTime: ?*FILETIME,
             pftLastAccessTime: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFileSize: *const fn(
             self: *const IOfflineFilesFileSysInfo,
             copy: OFFLINEFILES_ITEM_COPY,
             pSize: ?*LARGE_INTEGER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAttributes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pdwAttributes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAttributes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pdwAttributes: ?*u32) HRESULT {
         return self.vtable.GetAttributes(self, copy, pdwAttributes);
     }
-    pub fn GetTimes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pftCreationTime: ?*FILETIME, pftLastWriteTime: ?*FILETIME, pftChangeTime: ?*FILETIME, pftLastAccessTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetTimes(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pftCreationTime: ?*FILETIME, pftLastWriteTime: ?*FILETIME, pftChangeTime: ?*FILETIME, pftLastAccessTime: ?*FILETIME) HRESULT {
         return self.vtable.GetTimes(self, copy, pftCreationTime, pftLastWriteTime, pftChangeTime, pftLastAccessTime);
     }
-    pub fn GetFileSize(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pSize: ?*LARGE_INTEGER) callconv(.Inline) HRESULT {
+    pub fn GetFileSize(self: *const IOfflineFilesFileSysInfo, copy: OFFLINEFILES_ITEM_COPY, pSize: ?*LARGE_INTEGER) HRESULT {
         return self.vtable.GetFileSize(self, copy, pSize);
     }
 };
@@ -1426,43 +1426,43 @@ pub const IOfflineFilesPinInfo = extern union {
         IsPinned: *const fn(
             self: *const IOfflineFilesPinInfo,
             pbPinned: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPinnedForUser: *const fn(
             self: *const IOfflineFilesPinInfo,
             pbPinnedForUser: ?*BOOL,
             pbInherit: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPinnedForUserByPolicy: *const fn(
             self: *const IOfflineFilesPinInfo,
             pbPinnedForUser: ?*BOOL,
             pbInherit: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPinnedForComputer: *const fn(
             self: *const IOfflineFilesPinInfo,
             pbPinnedForComputer: ?*BOOL,
             pbInherit: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPinnedForFolderRedirection: *const fn(
             self: *const IOfflineFilesPinInfo,
             pbPinnedForFolderRedirection: ?*BOOL,
             pbInherit: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsPinned(self: *const IOfflineFilesPinInfo, pbPinned: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsPinned(self: *const IOfflineFilesPinInfo, pbPinned: ?*BOOL) HRESULT {
         return self.vtable.IsPinned(self, pbPinned);
     }
-    pub fn IsPinnedForUser(self: *const IOfflineFilesPinInfo, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsPinnedForUser(self: *const IOfflineFilesPinInfo, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
         return self.vtable.IsPinnedForUser(self, pbPinnedForUser, pbInherit);
     }
-    pub fn IsPinnedForUserByPolicy(self: *const IOfflineFilesPinInfo, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsPinnedForUserByPolicy(self: *const IOfflineFilesPinInfo, pbPinnedForUser: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
         return self.vtable.IsPinnedForUserByPolicy(self, pbPinnedForUser, pbInherit);
     }
-    pub fn IsPinnedForComputer(self: *const IOfflineFilesPinInfo, pbPinnedForComputer: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsPinnedForComputer(self: *const IOfflineFilesPinInfo, pbPinnedForComputer: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
         return self.vtable.IsPinnedForComputer(self, pbPinnedForComputer, pbInherit);
     }
-    pub fn IsPinnedForFolderRedirection(self: *const IOfflineFilesPinInfo, pbPinnedForFolderRedirection: ?*BOOL, pbInherit: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsPinnedForFolderRedirection(self: *const IOfflineFilesPinInfo, pbPinnedForFolderRedirection: ?*BOOL, pbInherit: ?*BOOL) HRESULT {
         return self.vtable.IsPinnedForFolderRedirection(self, pbPinnedForFolderRedirection, pbInherit);
     }
 };
@@ -1476,12 +1476,12 @@ pub const IOfflineFilesPinInfo2 = extern union {
         IsPartlyPinned: *const fn(
             self: *const IOfflineFilesPinInfo2,
             pbPartlyPinned: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesPinInfo: IOfflineFilesPinInfo,
     IUnknown: IUnknown,
-    pub fn IsPartlyPinned(self: *const IOfflineFilesPinInfo2, pbPartlyPinned: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsPartlyPinned(self: *const IOfflineFilesPinInfo2, pbPartlyPinned: ?*BOOL) HRESULT {
         return self.vtable.IsPartlyPinned(self, pbPartlyPinned);
     }
 };
@@ -1495,11 +1495,11 @@ pub const IOfflineFilesTransparentCacheInfo = extern union {
         IsTransparentlyCached: *const fn(
             self: *const IOfflineFilesTransparentCacheInfo,
             pbTransparentlyCached: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsTransparentlyCached(self: *const IOfflineFilesTransparentCacheInfo, pbTransparentlyCached: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsTransparentlyCached(self: *const IOfflineFilesTransparentCacheInfo, pbTransparentlyCached: ?*BOOL) HRESULT {
         return self.vtable.IsTransparentlyCached(self, pbTransparentlyCached);
     }
 };
@@ -1513,11 +1513,11 @@ pub const IOfflineFilesGhostInfo = extern union {
         IsGhosted: *const fn(
             self: *const IOfflineFilesGhostInfo,
             pbGhosted: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsGhosted(self: *const IOfflineFilesGhostInfo, pbGhosted: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsGhosted(self: *const IOfflineFilesGhostInfo, pbGhosted: ?*BOOL) HRESULT {
         return self.vtable.IsGhosted(self, pbGhosted);
     }
 };
@@ -1532,38 +1532,38 @@ pub const IOfflineFilesConnectionInfo = extern union {
             self: *const IOfflineFilesConnectionInfo,
             pConnectState: ?*OFFLINEFILES_CONNECT_STATE,
             pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConnectState: *const fn(
             self: *const IOfflineFilesConnectionInfo,
             hwndParent: ?HWND,
             dwFlags: u32,
             ConnectState: OFFLINEFILES_CONNECT_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransitionOnline: *const fn(
             self: *const IOfflineFilesConnectionInfo,
             hwndParent: ?HWND,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         TransitionOffline: *const fn(
             self: *const IOfflineFilesConnectionInfo,
             hwndParent: ?HWND,
             dwFlags: u32,
             bForceOpenFilesClosed: BOOL,
             pbOpenFilesPreventedTransition: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetConnectState(self: *const IOfflineFilesConnectionInfo, pConnectState: ?*OFFLINEFILES_CONNECT_STATE, pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON) callconv(.Inline) HRESULT {
+    pub fn GetConnectState(self: *const IOfflineFilesConnectionInfo, pConnectState: ?*OFFLINEFILES_CONNECT_STATE, pOfflineReason: ?*OFFLINEFILES_OFFLINE_REASON) HRESULT {
         return self.vtable.GetConnectState(self, pConnectState, pOfflineReason);
     }
-    pub fn SetConnectState(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, ConnectState: OFFLINEFILES_CONNECT_STATE) callconv(.Inline) HRESULT {
+    pub fn SetConnectState(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, ConnectState: OFFLINEFILES_CONNECT_STATE) HRESULT {
         return self.vtable.SetConnectState(self, hwndParent, dwFlags, ConnectState);
     }
-    pub fn TransitionOnline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn TransitionOnline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32) HRESULT {
         return self.vtable.TransitionOnline(self, hwndParent, dwFlags);
     }
-    pub fn TransitionOffline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, bForceOpenFilesClosed: BOOL, pbOpenFilesPreventedTransition: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn TransitionOffline(self: *const IOfflineFilesConnectionInfo, hwndParent: ?HWND, dwFlags: u32, bForceOpenFilesClosed: BOOL, pbOpenFilesPreventedTransition: ?*BOOL) HRESULT {
         return self.vtable.TransitionOffline(self, hwndParent, dwFlags, bForceOpenFilesClosed, pbOpenFilesPreventedTransition);
     }
 };
@@ -1577,25 +1577,25 @@ pub const IOfflineFilesShareInfo = extern union {
         GetShareItem: *const fn(
             self: *const IOfflineFilesShareInfo,
             ppShareItem: ?*?*IOfflineFilesShareItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetShareCachingMode: *const fn(
             self: *const IOfflineFilesShareInfo,
             pCachingMode: ?*OFFLINEFILES_CACHING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsShareDfsJunction: *const fn(
             self: *const IOfflineFilesShareInfo,
             pbIsDfsJunction: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetShareItem(self: *const IOfflineFilesShareInfo, ppShareItem: ?*?*IOfflineFilesShareItem) callconv(.Inline) HRESULT {
+    pub fn GetShareItem(self: *const IOfflineFilesShareInfo, ppShareItem: ?*?*IOfflineFilesShareItem) HRESULT {
         return self.vtable.GetShareItem(self, ppShareItem);
     }
-    pub fn GetShareCachingMode(self: *const IOfflineFilesShareInfo, pCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.Inline) HRESULT {
+    pub fn GetShareCachingMode(self: *const IOfflineFilesShareInfo, pCachingMode: ?*OFFLINEFILES_CACHING_MODE) HRESULT {
         return self.vtable.GetShareCachingMode(self, pCachingMode);
     }
-    pub fn IsShareDfsJunction(self: *const IOfflineFilesShareInfo, pbIsDfsJunction: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsShareDfsJunction(self: *const IOfflineFilesShareInfo, pbIsDfsJunction: ?*BOOL) HRESULT {
         return self.vtable.IsShareDfsJunction(self, pbIsDfsJunction);
     }
 };
@@ -1609,11 +1609,11 @@ pub const IOfflineFilesSuspend = extern union {
         SuspendRoot: *const fn(
             self: *const IOfflineFilesSuspend,
             bSuspend: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SuspendRoot(self: *const IOfflineFilesSuspend, bSuspend: BOOL) callconv(.Inline) HRESULT {
+    pub fn SuspendRoot(self: *const IOfflineFilesSuspend, bSuspend: BOOL) HRESULT {
         return self.vtable.SuspendRoot(self, bSuspend);
     }
 };
@@ -1628,11 +1628,11 @@ pub const IOfflineFilesSuspendInfo = extern union {
             self: *const IOfflineFilesSuspendInfo,
             pbSuspended: ?*BOOL,
             pbSuspendedRoot: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsSuspended(self: *const IOfflineFilesSuspendInfo, pbSuspended: ?*BOOL, pbSuspendedRoot: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsSuspended(self: *const IOfflineFilesSuspendInfo, pbSuspended: ?*BOOL, pbSuspendedRoot: ?*BOOL) HRESULT {
         return self.vtable.IsSuspended(self, pbSuspended, pbSuspendedRoot);
     }
 };
@@ -1646,71 +1646,71 @@ pub const IOfflineFilesSetting = extern union {
         GetName: *const fn(
             self: *const IOfflineFilesSetting,
             ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValueType: *const fn(
             self: *const IOfflineFilesSetting,
             pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreference: *const fn(
             self: *const IOfflineFilesSetting,
             pvarValue: ?*VARIANT,
             dwScope: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreferenceScope: *const fn(
             self: *const IOfflineFilesSetting,
             pdwScope: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPreference: *const fn(
             self: *const IOfflineFilesSetting,
             pvarValue: ?*const VARIANT,
             dwScope: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeletePreference: *const fn(
             self: *const IOfflineFilesSetting,
             dwScope: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicy: *const fn(
             self: *const IOfflineFilesSetting,
             pvarValue: ?*VARIANT,
             dwScope: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPolicyScope: *const fn(
             self: *const IOfflineFilesSetting,
             pdwScope: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetValue: *const fn(
             self: *const IOfflineFilesSetting,
             pvarValue: ?*VARIANT,
             pbSetByPolicy: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetName(self: *const IOfflineFilesSetting, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetName(self: *const IOfflineFilesSetting, ppszName: ?*?PWSTR) HRESULT {
         return self.vtable.GetName(self, ppszName);
     }
-    pub fn GetValueType(self: *const IOfflineFilesSetting, pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE) callconv(.Inline) HRESULT {
+    pub fn GetValueType(self: *const IOfflineFilesSetting, pType: ?*OFFLINEFILES_SETTING_VALUE_TYPE) HRESULT {
         return self.vtable.GetValueType(self, pType);
     }
-    pub fn GetPreference(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
+    pub fn GetPreference(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, dwScope: u32) HRESULT {
         return self.vtable.GetPreference(self, pvarValue, dwScope);
     }
-    pub fn GetPreferenceScope(self: *const IOfflineFilesSetting, pdwScope: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPreferenceScope(self: *const IOfflineFilesSetting, pdwScope: ?*u32) HRESULT {
         return self.vtable.GetPreferenceScope(self, pdwScope);
     }
-    pub fn SetPreference(self: *const IOfflineFilesSetting, pvarValue: ?*const VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
+    pub fn SetPreference(self: *const IOfflineFilesSetting, pvarValue: ?*const VARIANT, dwScope: u32) HRESULT {
         return self.vtable.SetPreference(self, pvarValue, dwScope);
     }
-    pub fn DeletePreference(self: *const IOfflineFilesSetting, dwScope: u32) callconv(.Inline) HRESULT {
+    pub fn DeletePreference(self: *const IOfflineFilesSetting, dwScope: u32) HRESULT {
         return self.vtable.DeletePreference(self, dwScope);
     }
-    pub fn GetPolicy(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, dwScope: u32) callconv(.Inline) HRESULT {
+    pub fn GetPolicy(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, dwScope: u32) HRESULT {
         return self.vtable.GetPolicy(self, pvarValue, dwScope);
     }
-    pub fn GetPolicyScope(self: *const IOfflineFilesSetting, pdwScope: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPolicyScope(self: *const IOfflineFilesSetting, pdwScope: ?*u32) HRESULT {
         return self.vtable.GetPolicyScope(self, pdwScope);
     }
-    pub fn GetValue(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, pbSetByPolicy: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetValue(self: *const IOfflineFilesSetting, pvarValue: ?*VARIANT, pbSetByPolicy: ?*BOOL) HRESULT {
         return self.vtable.GetValue(self, pvarValue, pbSetByPolicy);
     }
 };
@@ -1726,31 +1726,31 @@ pub const IEnumOfflineFilesSettings = extern union {
             celt: u32,
             rgelt: [*]?*IOfflineFilesSetting,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumOfflineFilesSettings,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumOfflineFilesSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumOfflineFilesSettings,
             ppenum: ?*?*IEnumOfflineFilesSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumOfflineFilesSettings, celt: u32, rgelt: [*]?*IOfflineFilesSetting, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumOfflineFilesSettings, celt: u32, rgelt: [*]?*IOfflineFilesSetting, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, rgelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumOfflineFilesSettings, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumOfflineFilesSettings, celt: u32) HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumOfflineFilesSettings) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumOfflineFilesSettings, ppenum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumOfflineFilesSettings, ppenum: ?*?*IEnumOfflineFilesSettings) HRESULT {
         return self.vtable.Clone(self, ppenum);
     }
 };
@@ -1771,7 +1771,7 @@ pub const IOfflineFilesCache = extern union {
             pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler,
             pIProgress: ?*IOfflineFilesSyncProgress,
             pSyncId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItems: *const fn(
             self: *const IOfflineFilesCache,
             rgpszPaths: [*]?PWSTR,
@@ -1779,7 +1779,7 @@ pub const IOfflineFilesCache = extern union {
             dwFlags: u32,
             bAsync: BOOL,
             pIProgress: ?*IOfflineFilesSimpleProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItemsForUser: *const fn(
             self: *const IOfflineFilesCache,
             pszUser: ?[*:0]const u16,
@@ -1788,7 +1788,7 @@ pub const IOfflineFilesCache = extern union {
             dwFlags: u32,
             bAsync: BOOL,
             pIProgress: ?*IOfflineFilesSimpleProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pin: *const fn(
             self: *const IOfflineFilesCache,
             hwndParent: ?HWND,
@@ -1798,7 +1798,7 @@ pub const IOfflineFilesCache = extern union {
             bAsync: BOOL,
             dwPinControlFlags: u32,
             pIProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unpin: *const fn(
             self: *const IOfflineFilesCache,
             hwndParent: ?HWND,
@@ -1808,12 +1808,12 @@ pub const IOfflineFilesCache = extern union {
             bAsync: BOOL,
             dwPinControlFlags: u32,
             pIProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEncryptionStatus: *const fn(
             self: *const IOfflineFilesCache,
             pbEncrypted: ?*BOOL,
             pbPartial: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Encrypt: *const fn(
             self: *const IOfflineFilesCache,
             hwndParent: ?HWND,
@@ -1821,13 +1821,13 @@ pub const IOfflineFilesCache = extern union {
             dwEncryptionControlFlags: u32,
             bAsync: BOOL,
             pIProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindItem: *const fn(
             self: *const IOfflineFilesCache,
             pszPath: ?[*:0]const u16,
             dwQueryFlags: u32,
             ppItem: ?*?*IOfflineFilesItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindItemEx: *const fn(
             self: *const IOfflineFilesCache,
             pszPath: ?[*:0]const u16,
@@ -1837,17 +1837,17 @@ pub const IOfflineFilesCache = extern union {
             pExcludeDirFilter: ?*IOfflineFilesItemFilter,
             dwQueryFlags: u32,
             ppItem: ?*?*IOfflineFilesItem,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RenameItem: *const fn(
             self: *const IOfflineFilesCache,
             pszPathOriginal: ?[*:0]const u16,
             pszPathNew: ?[*:0]const u16,
             bReplaceIfExists: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocation: *const fn(
             self: *const IOfflineFilesCache,
             ppszPath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDiskSpaceInformation: *const fn(
             self: *const IOfflineFilesCache,
             pcbVolumeTotal: ?*u64,
@@ -1855,84 +1855,84 @@ pub const IOfflineFilesCache = extern union {
             pcbUsed: ?*u64,
             pcbUnpinnedLimit: ?*u64,
             pcbUnpinnedUsed: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDiskSpaceLimits: *const fn(
             self: *const IOfflineFilesCache,
             cbLimit: u64,
             cbUnpinnedLimit: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ProcessAdminPinPolicy: *const fn(
             self: *const IOfflineFilesCache,
             pPinProgress: ?*IOfflineFilesSyncProgress,
             pUnpinProgress: ?*IOfflineFilesSyncProgress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSettingObject: *const fn(
             self: *const IOfflineFilesCache,
             pszSettingName: ?[*:0]const u16,
             ppSetting: ?*?*IOfflineFilesSetting,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumSettingObjects: *const fn(
             self: *const IOfflineFilesCache,
             ppEnum: ?*?*IEnumOfflineFilesSettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPathCacheable: *const fn(
             self: *const IOfflineFilesCache,
             pszPath: ?[*:0]const u16,
             pbCacheable: ?*BOOL,
             pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Synchronize(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bAsync: BOOL, dwSyncControl: u32, pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler, pIProgress: ?*IOfflineFilesSyncProgress, pSyncId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn Synchronize(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bAsync: BOOL, dwSyncControl: u32, pISyncConflictHandler: ?*IOfflineFilesSyncConflictHandler, pIProgress: ?*IOfflineFilesSyncProgress, pSyncId: ?*Guid) HRESULT {
         return self.vtable.Synchronize(self, hwndParent, rgpszPaths, cPaths, bAsync, dwSyncControl, pISyncConflictHandler, pIProgress, pSyncId);
     }
-    pub fn DeleteItems(self: *const IOfflineFilesCache, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.Inline) HRESULT {
+    pub fn DeleteItems(self: *const IOfflineFilesCache, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) HRESULT {
         return self.vtable.DeleteItems(self, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
     }
-    pub fn DeleteItemsForUser(self: *const IOfflineFilesCache, pszUser: ?[*:0]const u16, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) callconv(.Inline) HRESULT {
+    pub fn DeleteItemsForUser(self: *const IOfflineFilesCache, pszUser: ?[*:0]const u16, rgpszPaths: [*]?PWSTR, cPaths: u32, dwFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSimpleProgress) HRESULT {
         return self.vtable.DeleteItemsForUser(self, pszUser, rgpszPaths, cPaths, dwFlags, bAsync, pIProgress);
     }
-    pub fn Pin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+    pub fn Pin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) HRESULT {
         return self.vtable.Pin(self, hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
     }
-    pub fn Unpin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+    pub fn Unpin(self: *const IOfflineFilesCache, hwndParent: ?HWND, rgpszPaths: [*]?PWSTR, cPaths: u32, bDeep: BOOL, bAsync: BOOL, dwPinControlFlags: u32, pIProgress: ?*IOfflineFilesSyncProgress) HRESULT {
         return self.vtable.Unpin(self, hwndParent, rgpszPaths, cPaths, bDeep, bAsync, dwPinControlFlags, pIProgress);
     }
-    pub fn GetEncryptionStatus(self: *const IOfflineFilesCache, pbEncrypted: ?*BOOL, pbPartial: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn GetEncryptionStatus(self: *const IOfflineFilesCache, pbEncrypted: ?*BOOL, pbPartial: ?*BOOL) HRESULT {
         return self.vtable.GetEncryptionStatus(self, pbEncrypted, pbPartial);
     }
-    pub fn Encrypt(self: *const IOfflineFilesCache, hwndParent: ?HWND, bEncrypt: BOOL, dwEncryptionControlFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+    pub fn Encrypt(self: *const IOfflineFilesCache, hwndParent: ?HWND, bEncrypt: BOOL, dwEncryptionControlFlags: u32, bAsync: BOOL, pIProgress: ?*IOfflineFilesSyncProgress) HRESULT {
         return self.vtable.Encrypt(self, hwndParent, bEncrypt, dwEncryptionControlFlags, bAsync, pIProgress);
     }
-    pub fn FindItem(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
+    pub fn FindItem(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) HRESULT {
         return self.vtable.FindItem(self, pszPath, dwQueryFlags, ppItem);
     }
-    pub fn FindItemEx(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) callconv(.Inline) HRESULT {
+    pub fn FindItemEx(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pIncludeFileFilter: ?*IOfflineFilesItemFilter, pIncludeDirFilter: ?*IOfflineFilesItemFilter, pExcludeFileFilter: ?*IOfflineFilesItemFilter, pExcludeDirFilter: ?*IOfflineFilesItemFilter, dwQueryFlags: u32, ppItem: ?*?*IOfflineFilesItem) HRESULT {
         return self.vtable.FindItemEx(self, pszPath, pIncludeFileFilter, pIncludeDirFilter, pExcludeFileFilter, pExcludeDirFilter, dwQueryFlags, ppItem);
     }
-    pub fn RenameItem(self: *const IOfflineFilesCache, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.Inline) HRESULT {
+    pub fn RenameItem(self: *const IOfflineFilesCache, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) HRESULT {
         return self.vtable.RenameItem(self, pszPathOriginal, pszPathNew, bReplaceIfExists);
     }
-    pub fn GetLocation(self: *const IOfflineFilesCache, ppszPath: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetLocation(self: *const IOfflineFilesCache, ppszPath: ?*?PWSTR) HRESULT {
         return self.vtable.GetLocation(self, ppszPath);
     }
-    pub fn GetDiskSpaceInformation(self: *const IOfflineFilesCache, pcbVolumeTotal: ?*u64, pcbLimit: ?*u64, pcbUsed: ?*u64, pcbUnpinnedLimit: ?*u64, pcbUnpinnedUsed: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetDiskSpaceInformation(self: *const IOfflineFilesCache, pcbVolumeTotal: ?*u64, pcbLimit: ?*u64, pcbUsed: ?*u64, pcbUnpinnedLimit: ?*u64, pcbUnpinnedUsed: ?*u64) HRESULT {
         return self.vtable.GetDiskSpaceInformation(self, pcbVolumeTotal, pcbLimit, pcbUsed, pcbUnpinnedLimit, pcbUnpinnedUsed);
     }
-    pub fn SetDiskSpaceLimits(self: *const IOfflineFilesCache, cbLimit: u64, cbUnpinnedLimit: u64) callconv(.Inline) HRESULT {
+    pub fn SetDiskSpaceLimits(self: *const IOfflineFilesCache, cbLimit: u64, cbUnpinnedLimit: u64) HRESULT {
         return self.vtable.SetDiskSpaceLimits(self, cbLimit, cbUnpinnedLimit);
     }
-    pub fn ProcessAdminPinPolicy(self: *const IOfflineFilesCache, pPinProgress: ?*IOfflineFilesSyncProgress, pUnpinProgress: ?*IOfflineFilesSyncProgress) callconv(.Inline) HRESULT {
+    pub fn ProcessAdminPinPolicy(self: *const IOfflineFilesCache, pPinProgress: ?*IOfflineFilesSyncProgress, pUnpinProgress: ?*IOfflineFilesSyncProgress) HRESULT {
         return self.vtable.ProcessAdminPinPolicy(self, pPinProgress, pUnpinProgress);
     }
-    pub fn GetSettingObject(self: *const IOfflineFilesCache, pszSettingName: ?[*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) callconv(.Inline) HRESULT {
+    pub fn GetSettingObject(self: *const IOfflineFilesCache, pszSettingName: ?[*:0]const u16, ppSetting: ?*?*IOfflineFilesSetting) HRESULT {
         return self.vtable.GetSettingObject(self, pszSettingName, ppSetting);
     }
-    pub fn EnumSettingObjects(self: *const IOfflineFilesCache, ppEnum: ?*?*IEnumOfflineFilesSettings) callconv(.Inline) HRESULT {
+    pub fn EnumSettingObjects(self: *const IOfflineFilesCache, ppEnum: ?*?*IEnumOfflineFilesSettings) HRESULT {
         return self.vtable.EnumSettingObjects(self, ppEnum);
     }
-    pub fn IsPathCacheable(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pbCacheable: ?*BOOL, pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE) callconv(.Inline) HRESULT {
+    pub fn IsPathCacheable(self: *const IOfflineFilesCache, pszPath: ?[*:0]const u16, pbCacheable: ?*BOOL, pShareCachingMode: ?*OFFLINEFILES_CACHING_MODE) HRESULT {
         return self.vtable.IsPathCacheable(self, pszPath, pbCacheable, pShareCachingMode);
     }
 };
@@ -1948,12 +1948,12 @@ pub const IOfflineFilesCache2 = extern union {
             pszPathOriginal: ?[*:0]const u16,
             pszPathNew: ?[*:0]const u16,
             bReplaceIfExists: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IOfflineFilesCache: IOfflineFilesCache,
     IUnknown: IUnknown,
-    pub fn RenameItemEx(self: *const IOfflineFilesCache2, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) callconv(.Inline) HRESULT {
+    pub fn RenameItemEx(self: *const IOfflineFilesCache2, pszPathOriginal: ?[*:0]const u16, pszPathNew: ?[*:0]const u16, bReplaceIfExists: BOOL) HRESULT {
         return self.vtable.RenameItemEx(self, pszPathOriginal, pszPathNew, bReplaceIfExists);
     }
 };
@@ -1966,24 +1966,24 @@ pub const IOfflineFilesCache2 = extern union {
 pub extern "cscapi" fn OfflineFilesEnable(
     bEnable: BOOL,
     pbRebootRequired: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cscapi" fn OfflineFilesStart(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cscapi" fn OfflineFilesQueryStatus(
     pbActive: ?*BOOL,
     pbEnabled: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cscapi" fn OfflineFilesQueryStatusEx(
     pbActive: ?*BOOL,
     pbEnabled: ?*BOOL,
     pbAvailable: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

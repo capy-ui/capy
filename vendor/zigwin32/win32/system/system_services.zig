@@ -3835,7 +3835,7 @@ pub const PUMS_SCHEDULER_ENTRY_POINT = *const fn(
     Reason: RTL_UMS_SCHEDULER_REASON,
     ActivationPayload: usize,
     SchedulerParam: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 
@@ -5474,7 +5474,7 @@ pub const PIMAGE_TLS_CALLBACK = *const fn(
     DllHandle: ?*anyopaque,
     Reason: u32,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const IMAGE_TLS_DIRECTORY64 = extern struct {
     StartAddressOfRawData: u64 align(4),
@@ -5944,13 +5944,13 @@ pub const HEAP_OPTIMIZE_RESOURCES_INFORMATION = extern struct {
 
 pub const WORKERCALLBACKFUNC = *const fn(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const APC_CALLBACK_FUNCTION = *const fn(
     param0: u32,
     param1: ?*anyopaque,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const ACTIVATION_CONTEXT_INFO_CLASS = enum(i32) {
     ActivationContextBasicInformation = 1,
@@ -6271,11 +6271,11 @@ pub const PTERMINATION_HANDLER = switch(@import("../zig.zig").arch) {
     .Arm64 => *const fn(
         _abnormal_termination: BOOLEAN,
         EstablisherFrame: u64,
-    ) callconv(@import("std").os.windows.WINAPI) void,
+    ) callconv(.winapi) void,
     .X64 => *const fn(
         _abnormal_termination: BOOLEAN,
         EstablisherFrame: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) void,
+    ) callconv(.winapi) void,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig").arch) {
@@ -6284,20 +6284,20 @@ pub const POUT_OF_PROCESS_FUNCTION_TABLE_CALLBACK = switch(@import("../zig.zig")
         TableAddress: ?*anyopaque,
         Entries: ?*u32,
         Functions: ?*?*IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
+    ) callconv(.winapi) u32,
     .X64 => *const fn(
         Process: ?HANDLE,
         TableAddress: ?*anyopaque,
         Entries: ?*u32,
         Functions: ?*?*IMAGE_RUNTIME_FUNCTION_ENTRY,
-    ) callconv(@import("std").os.windows.WINAPI) u32,
+    ) callconv(.winapi) u32,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const PEXCEPTION_FILTER = switch(@import("../zig.zig").arch) {
     .X64, .Arm64 => *const fn(
         ExceptionPointers: ?*EXCEPTION_POINTERS,
         EstablisherFrame: ?*anyopaque,
-    ) callconv(@import("std").os.windows.WINAPI) i32,
+    ) callconv(.winapi) i32,
     else => usize, // NOTE: this should be a @compileError but can't because of https://github.com/ziglang/zig/issues/9682
 };
 pub const REARRANGE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
@@ -6317,7 +6317,7 @@ pub const REARRANGE_FILE_DATA32 = switch(@import("../zig.zig").arch) {
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "user32" fn UnregisterDeviceNotification(
     Handle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

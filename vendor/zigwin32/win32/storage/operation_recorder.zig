@@ -97,12 +97,12 @@ pub const OPERATION_END_PARAMETERS = extern struct {
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "advapi32" fn OperationStart(
     OperationStartParams: ?*OPERATION_START_PARAMETERS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "advapi32" fn OperationEnd(
     OperationEndParams: ?*OPERATION_END_PARAMETERS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

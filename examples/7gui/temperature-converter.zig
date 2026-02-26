@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 var celsius = capy.Atom([]const u8).of("0");
 var fahrenheit = capy.Atom([]const u8).of("-40");
 

@@ -119,7 +119,7 @@ pub const RM_FILTER_INFO = extern struct {
 
 pub const RM_WRITE_STATUS_CALLBACK = *const fn(
     nPercentComplete: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------
@@ -130,18 +130,18 @@ pub extern "rstrtmgr" fn RmStartSession(
     pSessionHandle: ?*u32,
     dwSessionFlags: u32,
     strSessionKey: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmJoinSession(
     pSessionHandle: ?*u32,
     strSessionKey: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmEndSession(
     dwSessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmRegisterResources(
@@ -152,7 +152,7 @@ pub extern "rstrtmgr" fn RmRegisterResources(
     rgApplications: ?[*]RM_UNIQUE_PROCESS,
     nServices: u32,
     rgsServiceNames: ?[*]?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmGetList(
@@ -161,26 +161,26 @@ pub extern "rstrtmgr" fn RmGetList(
     pnProcInfo: ?*u32,
     rgAffectedApps: ?[*]RM_PROCESS_INFO,
     lpdwRebootReasons: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmShutdown(
     dwSessionHandle: u32,
     lActionFlags: u32,
     fnStatus: ?RM_WRITE_STATUS_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmRestart(
     dwSessionHandle: u32,
     dwRestartFlags: u32,
     fnStatus: ?RM_WRITE_STATUS_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmCancelCurrentTask(
     dwSessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmAddFilter(
@@ -189,7 +189,7 @@ pub extern "rstrtmgr" fn RmAddFilter(
     pProcess: ?*RM_UNIQUE_PROCESS,
     strServiceShortName: ?[*:0]const u16,
     FilterAction: RM_FILTER_ACTION,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmRemoveFilter(
@@ -197,7 +197,7 @@ pub extern "rstrtmgr" fn RmRemoveFilter(
     strModuleName: ?[*:0]const u16,
     pProcess: ?*RM_UNIQUE_PROCESS,
     strServiceShortName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "rstrtmgr" fn RmGetFilterList(
@@ -206,7 +206,7 @@ pub extern "rstrtmgr" fn RmGetFilterList(
     pbFilterBuf: ?*u8,
     cbFilterBuf: u32,
     cbFilterBufNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

@@ -186,18 +186,18 @@ pub const ISecurityInformation = extern union {
         GetObjectInformation: *const fn(
             self: *const ISecurityInformation,
             pObjectInfo: ?*SI_OBJECT_INFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecurity: *const fn(
             self: *const ISecurityInformation,
             RequestedInformation: OBJECT_SECURITY_INFORMATION,
             ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR,
             fDefault: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSecurity: *const fn(
             self: *const ISecurityInformation,
             SecurityInformation: OBJECT_SECURITY_INFORMATION,
             pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAccessRights: *const fn(
             self: *const ISecurityInformation,
             pguidObjectType: ?*const Guid,
@@ -205,46 +205,46 @@ pub const ISecurityInformation = extern union {
             ppAccess: ?*?*SI_ACCESS,
             pcAccesses: ?*u32,
             piDefaultAccess: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MapGeneric: *const fn(
             self: *const ISecurityInformation,
             pguidObjectType: ?*const Guid,
             pAceFlags: ?*u8,
             pMask: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInheritTypes: *const fn(
             self: *const ISecurityInformation,
             ppInheritTypes: ?*?*SI_INHERIT_TYPE,
             pcInheritTypes: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PropertySheetPageCallback: *const fn(
             self: *const ISecurityInformation,
             hwnd: ?HWND,
             uMsg: PSPCB_MESSAGE,
             uPage: SI_PAGE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetObjectInformation(self: *const ISecurityInformation, pObjectInfo: ?*SI_OBJECT_INFO) callconv(.Inline) HRESULT {
+    pub fn GetObjectInformation(self: *const ISecurityInformation, pObjectInfo: ?*SI_OBJECT_INFO) HRESULT {
         return self.vtable.GetObjectInformation(self, pObjectInfo);
     }
-    pub fn GetSecurity(self: *const ISecurityInformation, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR, fDefault: BOOL) callconv(.Inline) HRESULT {
+    pub fn GetSecurity(self: *const ISecurityInformation, RequestedInformation: OBJECT_SECURITY_INFORMATION, ppSecurityDescriptor: ?*?PSECURITY_DESCRIPTOR, fDefault: BOOL) HRESULT {
         return self.vtable.GetSecurity(self, RequestedInformation, ppSecurityDescriptor, fDefault);
     }
-    pub fn SetSecurity(self: *const ISecurityInformation, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?PSECURITY_DESCRIPTOR) callconv(.Inline) HRESULT {
+    pub fn SetSecurity(self: *const ISecurityInformation, SecurityInformation: OBJECT_SECURITY_INFORMATION, pSecurityDescriptor: ?PSECURITY_DESCRIPTOR) HRESULT {
         return self.vtable.SetSecurity(self, SecurityInformation, pSecurityDescriptor);
     }
-    pub fn GetAccessRights(self: *const ISecurityInformation, pguidObjectType: ?*const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: ?*?*SI_ACCESS, pcAccesses: ?*u32, piDefaultAccess: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAccessRights(self: *const ISecurityInformation, pguidObjectType: ?*const Guid, dwFlags: SECURITY_INFO_PAGE_FLAGS, ppAccess: ?*?*SI_ACCESS, pcAccesses: ?*u32, piDefaultAccess: ?*u32) HRESULT {
         return self.vtable.GetAccessRights(self, pguidObjectType, dwFlags, ppAccess, pcAccesses, piDefaultAccess);
     }
-    pub fn MapGeneric(self: *const ISecurityInformation, pguidObjectType: ?*const Guid, pAceFlags: ?*u8, pMask: ?*u32) callconv(.Inline) HRESULT {
+    pub fn MapGeneric(self: *const ISecurityInformation, pguidObjectType: ?*const Guid, pAceFlags: ?*u8, pMask: ?*u32) HRESULT {
         return self.vtable.MapGeneric(self, pguidObjectType, pAceFlags, pMask);
     }
-    pub fn GetInheritTypes(self: *const ISecurityInformation, ppInheritTypes: ?*?*SI_INHERIT_TYPE, pcInheritTypes: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetInheritTypes(self: *const ISecurityInformation, ppInheritTypes: ?*?*SI_INHERIT_TYPE, pcInheritTypes: ?*u32) HRESULT {
         return self.vtable.GetInheritTypes(self, ppInheritTypes, pcInheritTypes);
     }
-    pub fn PropertySheetPageCallback(self: *const ISecurityInformation, hwnd: ?HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
+    pub fn PropertySheetPageCallback(self: *const ISecurityInformation, hwnd: ?HWND, uMsg: PSPCB_MESSAGE, uPage: SI_PAGE_TYPE) HRESULT {
         return self.vtable.PropertySheetPageCallback(self, hwnd, uMsg, uPage);
     }
 };
@@ -258,20 +258,20 @@ pub const ISecurityInformation2 = extern union {
         IsDaclCanonical: *const fn(
             self: *const ISecurityInformation2,
             pDacl: ?*ACL,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
         LookupSids: *const fn(
             self: *const ISecurityInformation2,
             cSids: u32,
             rgpSids: ?*?PSID,
             ppdo: ?*?*IDataObject,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsDaclCanonical(self: *const ISecurityInformation2, pDacl: ?*ACL) callconv(.Inline) BOOL {
+    pub fn IsDaclCanonical(self: *const ISecurityInformation2, pDacl: ?*ACL) BOOL {
         return self.vtable.IsDaclCanonical(self, pDacl);
     }
-    pub fn LookupSids(self: *const ISecurityInformation2, cSids: u32, rgpSids: ?*?PSID, ppdo: ?*?*IDataObject) callconv(.Inline) HRESULT {
+    pub fn LookupSids(self: *const ISecurityInformation2, cSids: u32, rgpSids: ?*?PSID, ppdo: ?*?*IDataObject) HRESULT {
         return self.vtable.LookupSids(self, cSids, rgpSids, ppdo);
     }
 };
@@ -304,11 +304,11 @@ pub const IEffectivePermission = extern union {
             pcObjectTypeListLength: ?*u32,
             ppGrantedAccessList: ?*?*u32,
             pcGrantedAccessListLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetEffectivePermission(self: *const IEffectivePermission, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?PSECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEffectivePermission(self: *const IEffectivePermission, pguidObjectType: ?*const Guid, pUserSid: ?PSID, pszServerName: ?[*:0]const u16, pSD: ?PSECURITY_DESCRIPTOR, ppObjectTypeList: ?*?*OBJECT_TYPE_LIST, pcObjectTypeListLength: ?*u32, ppGrantedAccessList: ?*?*u32, pcGrantedAccessListLength: ?*u32) HRESULT {
         return self.vtable.GetEffectivePermission(self, pguidObjectType, pUserSid, pszServerName, pSD, ppObjectTypeList, pcObjectTypeListLength, ppGrantedAccessList, pcGrantedAccessListLength);
     }
 };
@@ -324,11 +324,11 @@ pub const ISecurityObjectTypeInfo = extern union {
             si: u32,
             pACL: ?*ACL,
             ppInheritArray: ?*?*INHERITED_FROMA,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetInheritSource(self: *const ISecurityObjectTypeInfo, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) callconv(.Inline) HRESULT {
+    pub fn GetInheritSource(self: *const ISecurityObjectTypeInfo, si: u32, pACL: ?*ACL, ppInheritArray: ?*?*INHERITED_FROMA) HRESULT {
         return self.vtable.GetInheritSource(self, si, pACL, ppInheritArray);
     }
 };
@@ -342,19 +342,19 @@ pub const ISecurityInformation3 = extern union {
         GetFullResourceName: *const fn(
             self: *const ISecurityInformation3,
             ppszResourceName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenElevatedEditor: *const fn(
             self: *const ISecurityInformation3,
             hWnd: ?HWND,
             uPage: SI_PAGE_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetFullResourceName(self: *const ISecurityInformation3, ppszResourceName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFullResourceName(self: *const ISecurityInformation3, ppszResourceName: ?*?PWSTR) HRESULT {
         return self.vtable.GetFullResourceName(self, ppszResourceName);
     }
-    pub fn OpenElevatedEditor(self: *const ISecurityInformation3, hWnd: ?HWND, uPage: SI_PAGE_TYPE) callconv(.Inline) HRESULT {
+    pub fn OpenElevatedEditor(self: *const ISecurityInformation3, hWnd: ?HWND, uPage: SI_PAGE_TYPE) HRESULT {
         return self.vtable.OpenElevatedEditor(self, hWnd, uPage);
     }
 };
@@ -386,11 +386,11 @@ pub const ISecurityInformation4 = extern union {
             self: *const ISecurityInformation4,
             pSecurityObjects: ?*?*SECURITY_OBJECT,
             pSecurityObjectCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSecondarySecurity(self: *const ISecurityInformation4, pSecurityObjects: ?*?*SECURITY_OBJECT, pSecurityObjectCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSecondarySecurity(self: *const ISecurityInformation4, pSecurityObjects: ?*?*SECURITY_OBJECT, pSecurityObjectCount: ?*u32) HRESULT {
         return self.vtable.GetSecondarySecurity(self, pSecurityObjects, pSecurityObjectCount);
     }
 };
@@ -417,11 +417,11 @@ pub const IEffectivePermission2 = extern union {
             pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION,
             pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION,
             pEffpermResultLists: [*]EFFPERM_RESULT_LIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ComputeEffectivePermissionWithSecondarySecurity(self: *const IEffectivePermission2, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) callconv(.Inline) HRESULT {
+    pub fn ComputeEffectivePermissionWithSecondarySecurity(self: *const IEffectivePermission2, pSid: ?PSID, pDeviceSid: ?PSID, pszServerName: ?[*:0]const u16, pSecurityObjects: [*]SECURITY_OBJECT, dwSecurityObjectCount: u32, pUserGroups: ?*TOKEN_GROUPS, pAuthzUserGroupsOperations: ?*AUTHZ_SID_OPERATION, pDeviceGroups: ?*TOKEN_GROUPS, pAuthzDeviceGroupsOperations: ?*AUTHZ_SID_OPERATION, pAuthzUserClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzUserClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pAuthzDeviceClaims: ?*AUTHZ_SECURITY_ATTRIBUTES_INFORMATION, pAuthzDeviceClaimsOperations: ?*AUTHZ_SECURITY_ATTRIBUTE_OPERATION, pEffpermResultLists: [*]EFFPERM_RESULT_LIST) HRESULT {
         return self.vtable.ComputeEffectivePermissionWithSecondarySecurity(self, pSid, pDeviceSid, pszServerName, pSecurityObjects, dwSecurityObjectCount, pUserGroups, pAuthzUserGroupsOperations, pDeviceGroups, pAuthzDeviceGroupsOperations, pAuthzUserClaims, pAuthzUserClaimsOperations, pAuthzDeviceClaims, pAuthzDeviceClaimsOperations, pEffpermResultLists);
     }
 };
@@ -433,20 +433,20 @@ pub const IEffectivePermission2 = extern union {
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "aclui" fn CreateSecurityPage(
     psi: ?*ISecurityInformation,
-) callconv(@import("std").os.windows.WINAPI) ?HPROPSHEETPAGE;
+) callconv(.winapi) ?HPROPSHEETPAGE;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "aclui" fn EditSecurity(
     hwndOwner: ?HWND,
     psi: ?*ISecurityInformation,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "aclui" fn EditSecurityAdvanced(
     hwndOwner: ?HWND,
     psi: ?*ISecurityInformation,
     uSIPage: SI_PAGE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

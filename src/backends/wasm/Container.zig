@@ -8,7 +8,17 @@ const Container = @This();
 
 peer: *GuiWidget,
 
-pub usingnamespace Events(Container);
+const _events = Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const processEvent = _events.processEvent;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
+pub const deinit = _events.deinit;
 
 pub fn create() !Container {
     return Container{
@@ -23,7 +33,7 @@ pub fn create() !Container {
 
 pub fn add(self: *Container, peer: *GuiWidget) void {
     js.appendElement(self.peer.element, peer.element);
-    self.peer.children.append(peer) catch @panic("OOM");
+    self.peer.children.append(self.peer.allocator, peer) catch @panic("OOM");
 }
 
 pub fn remove(self: *const Container, peer: *GuiWidget) void {

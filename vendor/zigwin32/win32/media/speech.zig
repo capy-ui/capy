@@ -320,10 +320,10 @@ pub const ISpNotifyCallback = extern union {
             self: *const ISpNotifyCallback,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
-    pub fn NotifyCallback(self: *const ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn NotifyCallback(self: *const ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.NotifyCallback(self, wParam, lParam);
     }
 };
@@ -331,7 +331,7 @@ pub const ISpNotifyCallback = extern union {
 pub const SPNOTIFYCALLBACK = *const fn(
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 const IID_ISpNotifySource_Value = Guid.initString("5eff4aef-8487-11d2-961c-00c04f8ee628");
 pub const IID_ISpNotifySource = &IID_ISpNotifySource_Value;
@@ -341,58 +341,58 @@ pub const ISpNotifySource = extern union {
         SetNotifySink: *const fn(
             self: *const ISpNotifySource,
             pNotifySink: ?*ISpNotifySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotifyWindowMessage: *const fn(
             self: *const ISpNotifySource,
             hWnd: ?HWND,
             Msg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotifyCallbackFunction: *const fn(
             self: *const ISpNotifySource,
             pfnCallback: ?*?SPNOTIFYCALLBACK,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotifyCallbackInterface: *const fn(
             self: *const ISpNotifySource,
             pSpCallback: ?*ISpNotifyCallback,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNotifyWin32Event: *const fn(
             self: *const ISpNotifySource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitForNotifyEvent: *const fn(
             self: *const ISpNotifySource,
             dwMilliseconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNotifyEventHandle: *const fn(
             self: *const ISpNotifySource,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetNotifySink(self: *const ISpNotifySource, pNotifySink: ?*ISpNotifySink) callconv(.Inline) HRESULT {
+    pub fn SetNotifySink(self: *const ISpNotifySource, pNotifySink: ?*ISpNotifySink) HRESULT {
         return self.vtable.SetNotifySink(self, pNotifySink);
     }
-    pub fn SetNotifyWindowMessage(self: *const ISpNotifySource, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn SetNotifyWindowMessage(self: *const ISpNotifySource, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.SetNotifyWindowMessage(self, hWnd, Msg, wParam, lParam);
     }
-    pub fn SetNotifyCallbackFunction(self: *const ISpNotifySource, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn SetNotifyCallbackFunction(self: *const ISpNotifySource, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.SetNotifyCallbackFunction(self, pfnCallback, wParam, lParam);
     }
-    pub fn SetNotifyCallbackInterface(self: *const ISpNotifySource, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn SetNotifyCallbackInterface(self: *const ISpNotifySource, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.SetNotifyCallbackInterface(self, pSpCallback, wParam, lParam);
     }
-    pub fn SetNotifyWin32Event(self: *const ISpNotifySource) callconv(.Inline) HRESULT {
+    pub fn SetNotifyWin32Event(self: *const ISpNotifySource) HRESULT {
         return self.vtable.SetNotifyWin32Event(self);
     }
-    pub fn WaitForNotifyEvent(self: *const ISpNotifySource, dwMilliseconds: u32) callconv(.Inline) HRESULT {
+    pub fn WaitForNotifyEvent(self: *const ISpNotifySource, dwMilliseconds: u32) HRESULT {
         return self.vtable.WaitForNotifyEvent(self, dwMilliseconds);
     }
-    pub fn GetNotifyEventHandle(self: *const ISpNotifySource) callconv(.Inline) ?HANDLE {
+    pub fn GetNotifyEventHandle(self: *const ISpNotifySource) ?HANDLE {
         return self.vtable.GetNotifyEventHandle(self);
     }
 };
@@ -404,11 +404,11 @@ pub const ISpNotifySink = extern union {
         base: IUnknown.VTable,
         Notify: *const fn(
             self: *const ISpNotifySink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Notify(self: *const ISpNotifySink) callconv(.Inline) HRESULT {
+    pub fn Notify(self: *const ISpNotifySink) HRESULT {
         return self.vtable.Notify(self);
     }
 };
@@ -424,51 +424,51 @@ pub const ISpNotifyTranslator = extern union {
             Msg: u32,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitCallback: *const fn(
             self: *const ISpNotifyTranslator,
             pfnCallback: ?*?SPNOTIFYCALLBACK,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitSpNotifyCallback: *const fn(
             self: *const ISpNotifyTranslator,
             pSpCallback: ?*ISpNotifyCallback,
             wParam: WPARAM,
             lParam: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InitWin32Event: *const fn(
             self: *const ISpNotifyTranslator,
             hEvent: ?HANDLE,
             fCloseHandleOnRelease: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Wait: *const fn(
             self: *const ISpNotifyTranslator,
             dwMilliseconds: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEventHandle: *const fn(
             self: *const ISpNotifyTranslator,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
     };
     vtable: *const VTable,
     ISpNotifySink: ISpNotifySink,
     IUnknown: IUnknown,
-    pub fn InitWindowMessage(self: *const ISpNotifyTranslator, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn InitWindowMessage(self: *const ISpNotifyTranslator, hWnd: ?HWND, Msg: u32, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.InitWindowMessage(self, hWnd, Msg, wParam, lParam);
     }
-    pub fn InitCallback(self: *const ISpNotifyTranslator, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn InitCallback(self: *const ISpNotifyTranslator, pfnCallback: ?*?SPNOTIFYCALLBACK, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.InitCallback(self, pfnCallback, wParam, lParam);
     }
-    pub fn InitSpNotifyCallback(self: *const ISpNotifyTranslator, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) callconv(.Inline) HRESULT {
+    pub fn InitSpNotifyCallback(self: *const ISpNotifyTranslator, pSpCallback: ?*ISpNotifyCallback, wParam: WPARAM, lParam: LPARAM) HRESULT {
         return self.vtable.InitSpNotifyCallback(self, pSpCallback, wParam, lParam);
     }
-    pub fn InitWin32Event(self: *const ISpNotifyTranslator, hEvent: ?HANDLE, fCloseHandleOnRelease: BOOL) callconv(.Inline) HRESULT {
+    pub fn InitWin32Event(self: *const ISpNotifyTranslator, hEvent: ?HANDLE, fCloseHandleOnRelease: BOOL) HRESULT {
         return self.vtable.InitWin32Event(self, hEvent, fCloseHandleOnRelease);
     }
-    pub fn Wait(self: *const ISpNotifyTranslator, dwMilliseconds: u32) callconv(.Inline) HRESULT {
+    pub fn Wait(self: *const ISpNotifyTranslator, dwMilliseconds: u32) HRESULT {
         return self.vtable.Wait(self, dwMilliseconds);
     }
-    pub fn GetEventHandle(self: *const ISpNotifyTranslator) callconv(.Inline) ?HANDLE {
+    pub fn GetEventHandle(self: *const ISpNotifyTranslator) ?HANDLE {
         return self.vtable.GetEventHandle(self);
     }
 };
@@ -483,98 +483,98 @@ pub const ISpDataKey = extern union {
             pszValueName: ?[*:0]const u16,
             cbData: u32,
             pData: ?*const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetData: *const fn(
             self: *const ISpDataKey,
             pszValueName: ?[*:0]const u16,
             pcbData: ?*u32,
             pData: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStringValue: *const fn(
             self: *const ISpDataKey,
             pszValueName: ?[*:0]const u16,
             pszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringValue: *const fn(
             self: *const ISpDataKey,
             pszValueName: ?[*:0]const u16,
             ppszValue: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDWORD: *const fn(
             self: *const ISpDataKey,
             pszValueName: ?[*:0]const u16,
             dwValue: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDWORD: *const fn(
             self: *const ISpDataKey,
             pszValueName: ?[*:0]const u16,
             pdwValue: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenKey: *const fn(
             self: *const ISpDataKey,
             pszSubKeyName: ?[*:0]const u16,
             ppSubKey: ?*?*ISpDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateKey: *const fn(
             self: *const ISpDataKey,
             pszSubKey: ?[*:0]const u16,
             ppSubKey: ?*?*ISpDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteKey: *const fn(
             self: *const ISpDataKey,
             pszSubKey: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteValue: *const fn(
             self: *const ISpDataKey,
             pszValueName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumKeys: *const fn(
             self: *const ISpDataKey,
             Index: u32,
             ppszSubKeyName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumValues: *const fn(
             self: *const ISpDataKey,
             Index: u32,
             ppszValueName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetData(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, cbData: u32, pData: ?*const u8) callconv(.Inline) HRESULT {
+    pub fn SetData(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, cbData: u32, pData: ?*const u8) HRESULT {
         return self.vtable.SetData(self, pszValueName, cbData, pData);
     }
-    pub fn GetData(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pcbData: ?*u32, pData: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pcbData: ?*u32, pData: ?*u8) HRESULT {
         return self.vtable.GetData(self, pszValueName, pcbData, pData);
     }
-    pub fn SetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pszValue: ?[*:0]const u16) HRESULT {
         return self.vtable.SetStringValue(self, pszValueName, pszValue);
     }
-    pub fn GetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, ppszValue: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, ppszValue: ?*?PWSTR) HRESULT {
         return self.vtable.GetStringValue(self, pszValueName, ppszValue);
     }
-    pub fn SetDWORD(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, dwValue: u32) callconv(.Inline) HRESULT {
+    pub fn SetDWORD(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, dwValue: u32) HRESULT {
         return self.vtable.SetDWORD(self, pszValueName, dwValue);
     }
-    pub fn GetDWORD(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pdwValue: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDWORD(self: *const ISpDataKey, pszValueName: ?[*:0]const u16, pdwValue: ?*u32) HRESULT {
         return self.vtable.GetDWORD(self, pszValueName, pdwValue);
     }
-    pub fn OpenKey(self: *const ISpDataKey, pszSubKeyName: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) callconv(.Inline) HRESULT {
+    pub fn OpenKey(self: *const ISpDataKey, pszSubKeyName: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) HRESULT {
         return self.vtable.OpenKey(self, pszSubKeyName, ppSubKey);
     }
-    pub fn CreateKey(self: *const ISpDataKey, pszSubKey: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) callconv(.Inline) HRESULT {
+    pub fn CreateKey(self: *const ISpDataKey, pszSubKey: ?[*:0]const u16, ppSubKey: ?*?*ISpDataKey) HRESULT {
         return self.vtable.CreateKey(self, pszSubKey, ppSubKey);
     }
-    pub fn DeleteKey(self: *const ISpDataKey, pszSubKey: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteKey(self: *const ISpDataKey, pszSubKey: ?[*:0]const u16) HRESULT {
         return self.vtable.DeleteKey(self, pszSubKey);
     }
-    pub fn DeleteValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn DeleteValue(self: *const ISpDataKey, pszValueName: ?[*:0]const u16) HRESULT {
         return self.vtable.DeleteValue(self, pszValueName);
     }
-    pub fn EnumKeys(self: *const ISpDataKey, Index: u32, ppszSubKeyName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn EnumKeys(self: *const ISpDataKey, Index: u32, ppszSubKeyName: ?*?PWSTR) HRESULT {
         return self.vtable.EnumKeys(self, Index, ppszSubKeyName);
     }
-    pub fn EnumValues(self: *const ISpDataKey, Index: u32, ppszValueName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn EnumValues(self: *const ISpDataKey, Index: u32, ppszValueName: ?*?PWSTR) HRESULT {
         return self.vtable.EnumValues(self, Index, ppszValueName);
     }
 };
@@ -588,12 +588,12 @@ pub const ISpRegDataKey = extern union {
             self: *const ISpRegDataKey,
             hkey: ?HKEY,
             fReadOnly: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpDataKey: ISpDataKey,
     IUnknown: IUnknown,
-    pub fn SetKey(self: *const ISpRegDataKey, hkey: ?HKEY, fReadOnly: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetKey(self: *const ISpRegDataKey, hkey: ?HKEY, fReadOnly: BOOL) HRESULT {
         return self.vtable.SetKey(self, hkey, fReadOnly);
     }
 };
@@ -607,50 +607,50 @@ pub const ISpObjectTokenCategory = extern union {
             self: *const ISpObjectTokenCategory,
             pszCategoryId: ?[*:0]const u16,
             fCreateIfNotExist: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const ISpObjectTokenCategory,
             ppszCoMemCategoryId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataKey: *const fn(
             self: *const ISpObjectTokenCategory,
             spdkl: SPDATAKEYLOCATION,
             ppDataKey: ?*?*ISpDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumTokens: *const fn(
             self: *const ISpObjectTokenCategory,
             pzsReqAttribs: ?[*:0]const u16,
             pszOptAttribs: ?[*:0]const u16,
             ppEnum: ?*?*IEnumSpObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDefaultTokenId: *const fn(
             self: *const ISpObjectTokenCategory,
             pszTokenId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultTokenId: *const fn(
             self: *const ISpObjectTokenCategory,
             ppszCoMemTokenId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpDataKey: ISpDataKey,
     IUnknown: IUnknown,
-    pub fn SetId(self: *const ISpObjectTokenCategory, pszCategoryId: ?[*:0]const u16, fCreateIfNotExist: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetId(self: *const ISpObjectTokenCategory, pszCategoryId: ?[*:0]const u16, fCreateIfNotExist: BOOL) HRESULT {
         return self.vtable.SetId(self, pszCategoryId, fCreateIfNotExist);
     }
-    pub fn GetId(self: *const ISpObjectTokenCategory, ppszCoMemCategoryId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const ISpObjectTokenCategory, ppszCoMemCategoryId: ?*?PWSTR) HRESULT {
         return self.vtable.GetId(self, ppszCoMemCategoryId);
     }
-    pub fn GetDataKey(self: *const ISpObjectTokenCategory, spdkl: SPDATAKEYLOCATION, ppDataKey: ?*?*ISpDataKey) callconv(.Inline) HRESULT {
+    pub fn GetDataKey(self: *const ISpObjectTokenCategory, spdkl: SPDATAKEYLOCATION, ppDataKey: ?*?*ISpDataKey) HRESULT {
         return self.vtable.GetDataKey(self, spdkl, ppDataKey);
     }
-    pub fn EnumTokens(self: *const ISpObjectTokenCategory, pzsReqAttribs: ?[*:0]const u16, pszOptAttribs: ?[*:0]const u16, ppEnum: ?*?*IEnumSpObjectTokens) callconv(.Inline) HRESULT {
+    pub fn EnumTokens(self: *const ISpObjectTokenCategory, pzsReqAttribs: ?[*:0]const u16, pszOptAttribs: ?[*:0]const u16, ppEnum: ?*?*IEnumSpObjectTokens) HRESULT {
         return self.vtable.EnumTokens(self, pzsReqAttribs, pszOptAttribs, ppEnum);
     }
-    pub fn SetDefaultTokenId(self: *const ISpObjectTokenCategory, pszTokenId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetDefaultTokenId(self: *const ISpObjectTokenCategory, pszTokenId: ?[*:0]const u16) HRESULT {
         return self.vtable.SetDefaultTokenId(self, pszTokenId);
     }
-    pub fn GetDefaultTokenId(self: *const ISpObjectTokenCategory, ppszCoMemTokenId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetDefaultTokenId(self: *const ISpObjectTokenCategory, ppszCoMemTokenId: ?*?PWSTR) HRESULT {
         return self.vtable.GetDefaultTokenId(self, ppszCoMemTokenId);
     }
 };
@@ -665,22 +665,22 @@ pub const ISpObjectToken = extern union {
             pszCategoryId: ?[*:0]const u16,
             pszTokenId: ?[*:0]const u16,
             fCreateIfNotExist: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetId: *const fn(
             self: *const ISpObjectToken,
             ppszCoMemTokenId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCategory: *const fn(
             self: *const ISpObjectToken,
             ppTokenCategory: ?*?*ISpObjectTokenCategory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const ISpObjectToken,
             pUnkOuter: ?*IUnknown,
             dwClsContext: u32,
             riid: ?*const Guid,
             ppvObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStorageFileName: *const fn(
             self: *const ISpObjectToken,
             clsidCaller: ?*const Guid,
@@ -688,17 +688,17 @@ pub const ISpObjectToken = extern union {
             pszFileNameSpecifier: ?[*:0]const u16,
             nFolder: u32,
             ppszFilePath: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStorageFileName: *const fn(
             self: *const ISpObjectToken,
             clsidCaller: ?*const Guid,
             pszKeyName: ?[*:0]const u16,
             fDeleteFile: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ISpObjectToken,
             pclsidCaller: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUISupported: *const fn(
             self: *const ISpObjectToken,
             pszTypeOfUI: ?[*:0]const u16,
@@ -706,7 +706,7 @@ pub const ISpObjectToken = extern union {
             cbExtraData: u32,
             punkObject: ?*IUnknown,
             pfSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpObjectToken,
             hwndParent: ?HWND,
@@ -715,44 +715,44 @@ pub const ISpObjectToken = extern union {
             pvExtraData: ?*anyopaque,
             cbExtraData: u32,
             punkObject: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchesAttributes: *const fn(
             self: *const ISpObjectToken,
             pszAttributes: ?[*:0]const u16,
             pfMatches: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpDataKey: ISpDataKey,
     IUnknown: IUnknown,
-    pub fn SetId(self: *const ISpObjectToken, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, fCreateIfNotExist: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetId(self: *const ISpObjectToken, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, fCreateIfNotExist: BOOL) HRESULT {
         return self.vtable.SetId(self, pszCategoryId, pszTokenId, fCreateIfNotExist);
     }
-    pub fn GetId(self: *const ISpObjectToken, ppszCoMemTokenId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetId(self: *const ISpObjectToken, ppszCoMemTokenId: ?*?PWSTR) HRESULT {
         return self.vtable.GetId(self, ppszCoMemTokenId);
     }
-    pub fn GetCategory(self: *const ISpObjectToken, ppTokenCategory: ?*?*ISpObjectTokenCategory) callconv(.Inline) HRESULT {
+    pub fn GetCategory(self: *const ISpObjectToken, ppTokenCategory: ?*?*ISpObjectTokenCategory) HRESULT {
         return self.vtable.GetCategory(self, ppTokenCategory);
     }
-    pub fn CreateInstance(self: *const ISpObjectToken, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ISpObjectToken, pUnkOuter: ?*IUnknown, dwClsContext: u32, riid: ?*const Guid, ppvObject: ?*?*anyopaque) HRESULT {
         return self.vtable.CreateInstance(self, pUnkOuter, dwClsContext, riid, ppvObject);
     }
-    pub fn GetStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszValueName: ?[*:0]const u16, pszFileNameSpecifier: ?[*:0]const u16, nFolder: u32, ppszFilePath: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszValueName: ?[*:0]const u16, pszFileNameSpecifier: ?[*:0]const u16, nFolder: u32, ppszFilePath: ?*?PWSTR) HRESULT {
         return self.vtable.GetStorageFileName(self, clsidCaller, pszValueName, pszFileNameSpecifier, nFolder, ppszFilePath);
     }
-    pub fn RemoveStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszKeyName: ?[*:0]const u16, fDeleteFile: BOOL) callconv(.Inline) HRESULT {
+    pub fn RemoveStorageFileName(self: *const ISpObjectToken, clsidCaller: ?*const Guid, pszKeyName: ?[*:0]const u16, fDeleteFile: BOOL) HRESULT {
         return self.vtable.RemoveStorageFileName(self, clsidCaller, pszKeyName, fDeleteFile);
     }
-    pub fn Remove(self: *const ISpObjectToken, pclsidCaller: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISpObjectToken, pclsidCaller: ?*const Guid) HRESULT {
         return self.vtable.Remove(self, pclsidCaller);
     }
-    pub fn IsUISupported(self: *const ISpObjectToken, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsUISupported(self: *const ISpObjectToken, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown, pfSupported: ?*BOOL) HRESULT {
         return self.vtable.IsUISupported(self, pszTypeOfUI, pvExtraData, cbExtraData, punkObject, pfSupported);
     }
-    pub fn DisplayUI(self: *const ISpObjectToken, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn DisplayUI(self: *const ISpObjectToken, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, punkObject: ?*IUnknown) HRESULT {
         return self.vtable.DisplayUI(self, hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData, punkObject);
     }
-    pub fn MatchesAttributes(self: *const ISpObjectToken, pszAttributes: ?[*:0]const u16, pfMatches: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn MatchesAttributes(self: *const ISpObjectToken, pszAttributes: ?[*:0]const u16, pfMatches: ?*BOOL) HRESULT {
         return self.vtable.MatchesAttributes(self, pszAttributes, pfMatches);
     }
 };
@@ -767,13 +767,13 @@ pub const ISpObjectTokenInit = extern union {
             pszCategoryId: ?[*:0]const u16,
             pszTokenId: ?[*:0]const u16,
             pDataKey: ?*ISpDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpObjectToken: ISpObjectToken,
     ISpDataKey: ISpDataKey,
     IUnknown: IUnknown,
-    pub fn InitFromDataKey(self: *const ISpObjectTokenInit, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, pDataKey: ?*ISpDataKey) callconv(.Inline) HRESULT {
+    pub fn InitFromDataKey(self: *const ISpObjectTokenInit, pszCategoryId: ?[*:0]const u16, pszTokenId: ?[*:0]const u16, pDataKey: ?*ISpDataKey) HRESULT {
         return self.vtable.InitFromDataKey(self, pszCategoryId, pszTokenId, pDataKey);
     }
 };
@@ -788,46 +788,46 @@ pub const IEnumSpObjectTokens = extern union {
             celt: u32,
             pelt: ?*?*ISpObjectToken,
             pceltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumSpObjectTokens,
             celt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumSpObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumSpObjectTokens,
             ppEnum: ?*?*IEnumSpObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const IEnumSpObjectTokens,
             Index: u32,
             ppToken: ?*?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCount: *const fn(
             self: *const IEnumSpObjectTokens,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumSpObjectTokens, celt: u32, pelt: ?*?*ISpObjectToken, pceltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumSpObjectTokens, celt: u32, pelt: ?*?*ISpObjectToken, pceltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, celt, pelt, pceltFetched);
     }
-    pub fn Skip(self: *const IEnumSpObjectTokens, celt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumSpObjectTokens, celt: u32) HRESULT {
         return self.vtable.Skip(self, celt);
     }
-    pub fn Reset(self: *const IEnumSpObjectTokens) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumSpObjectTokens) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumSpObjectTokens, ppEnum: ?*?*IEnumSpObjectTokens) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumSpObjectTokens, ppEnum: ?*?*IEnumSpObjectTokens) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
-    pub fn Item(self: *const IEnumSpObjectTokens, Index: u32, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const IEnumSpObjectTokens, Index: u32, ppToken: ?*?*ISpObjectToken) HRESULT {
         return self.vtable.Item(self, Index, ppToken);
     }
-    pub fn GetCount(self: *const IEnumSpObjectTokens, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCount(self: *const IEnumSpObjectTokens, pCount: ?*u32) HRESULT {
         return self.vtable.GetCount(self, pCount);
     }
 };
@@ -840,18 +840,18 @@ pub const ISpObjectWithToken = extern union {
         SetObjectToken: *const fn(
             self: *const ISpObjectWithToken,
             pToken: ?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectToken: *const fn(
             self: *const ISpObjectWithToken,
             ppToken: ?*?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetObjectToken(self: *const ISpObjectWithToken, pToken: ?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn SetObjectToken(self: *const ISpObjectWithToken, pToken: ?*ISpObjectToken) HRESULT {
         return self.vtable.SetObjectToken(self, pToken);
     }
-    pub fn GetObjectToken(self: *const ISpObjectWithToken, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn GetObjectToken(self: *const ISpObjectWithToken, ppToken: ?*?*ISpObjectToken) HRESULT {
         return self.vtable.GetObjectToken(self, ppToken);
     }
 };
@@ -865,7 +865,7 @@ pub const ISpResourceManager = extern union {
             self: *const ISpResourceManager,
             guidServiceId: ?*const Guid,
             pUnkObject: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObject: *const fn(
             self: *const ISpResourceManager,
             guidServiceId: ?*const Guid,
@@ -873,15 +873,15 @@ pub const ISpResourceManager = extern union {
             ObjectIID: ?*const Guid,
             fReleaseWhenLastExternalRefReleased: BOOL,
             ppObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IServiceProvider: IServiceProvider,
     IUnknown: IUnknown,
-    pub fn SetObject(self: *const ISpResourceManager, guidServiceId: ?*const Guid, pUnkObject: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn SetObject(self: *const ISpResourceManager, guidServiceId: ?*const Guid, pUnkObject: ?*IUnknown) HRESULT {
         return self.vtable.SetObject(self, guidServiceId, pUnkObject);
     }
-    pub fn GetObject(self: *const ISpResourceManager, guidServiceId: ?*const Guid, ObjectCLSID: ?*const Guid, ObjectIID: ?*const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObject(self: *const ISpResourceManager, guidServiceId: ?*const Guid, ObjectCLSID: ?*const Guid, ObjectIID: ?*const Guid, fReleaseWhenLastExternalRefReleased: BOOL, ppObject: ?*?*anyopaque) HRESULT {
         return self.vtable.GetObject(self, guidServiceId, ObjectCLSID, ObjectIID, fReleaseWhenLastExternalRefReleased, ppObject);
     }
 };
@@ -1116,28 +1116,28 @@ pub const ISpEventSource = extern union {
             self: *const ISpEventSource,
             ullEventInterest: u64,
             ullQueuedInterest: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEvents: *const fn(
             self: *const ISpEventSource,
             ulCount: u32,
             pEventArray: ?*SPEVENT,
             pulFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInfo: *const fn(
             self: *const ISpEventSource,
             pInfo: ?*SPEVENTSOURCEINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpNotifySource: ISpNotifySource,
     IUnknown: IUnknown,
-    pub fn SetInterest(self: *const ISpEventSource, ullEventInterest: u64, ullQueuedInterest: u64) callconv(.Inline) HRESULT {
+    pub fn SetInterest(self: *const ISpEventSource, ullEventInterest: u64, ullQueuedInterest: u64) HRESULT {
         return self.vtable.SetInterest(self, ullEventInterest, ullQueuedInterest);
     }
-    pub fn GetEvents(self: *const ISpEventSource, ulCount: u32, pEventArray: ?*SPEVENT, pulFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEvents(self: *const ISpEventSource, ulCount: u32, pEventArray: ?*SPEVENT, pulFetched: ?*u32) HRESULT {
         return self.vtable.GetEvents(self, ulCount, pEventArray, pulFetched);
     }
-    pub fn GetInfo(self: *const ISpEventSource, pInfo: ?*SPEVENTSOURCEINFO) callconv(.Inline) HRESULT {
+    pub fn GetInfo(self: *const ISpEventSource, pInfo: ?*SPEVENTSOURCEINFO) HRESULT {
         return self.vtable.GetInfo(self, pInfo);
     }
 };
@@ -1152,13 +1152,13 @@ pub const ISpEventSource2 = extern union {
             ulCount: u32,
             pEventArray: ?*SPEVENTEX,
             pulFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpEventSource: ISpEventSource,
     ISpNotifySource: ISpNotifySource,
     IUnknown: IUnknown,
-    pub fn GetEventsEx(self: *const ISpEventSource2, ulCount: u32, pEventArray: ?*SPEVENTEX, pulFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetEventsEx(self: *const ISpEventSource2, ulCount: u32, pEventArray: ?*SPEVENTEX, pulFetched: ?*u32) HRESULT {
         return self.vtable.GetEventsEx(self, ulCount, pEventArray, pulFetched);
     }
 };
@@ -1172,18 +1172,18 @@ pub const ISpEventSink = extern union {
             self: *const ISpEventSink,
             pEventArray: ?*const SPEVENT,
             ulCount: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetEventInterest: *const fn(
             self: *const ISpEventSink,
             pullEventInterest: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddEvents(self: *const ISpEventSink, pEventArray: ?*const SPEVENT, ulCount: u32) callconv(.Inline) HRESULT {
+    pub fn AddEvents(self: *const ISpEventSink, pEventArray: ?*const SPEVENT, ulCount: u32) HRESULT {
         return self.vtable.AddEvents(self, pEventArray, ulCount);
     }
-    pub fn GetEventInterest(self: *const ISpEventSink, pullEventInterest: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetEventInterest(self: *const ISpEventSink, pullEventInterest: ?*u64) HRESULT {
         return self.vtable.GetEventInterest(self, pullEventInterest);
     }
 };
@@ -1197,13 +1197,13 @@ pub const ISpStreamFormat = extern union {
             self: *const ISpStreamFormat,
             pguidFormatId: ?*Guid,
             ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn GetFormat(self: *const ISpStreamFormat, pguidFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const ISpStreamFormat, pguidFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) HRESULT {
         return self.vtable.GetFormat(self, pguidFormatId, ppCoMemWaveFormatEx);
     }
 };
@@ -1231,11 +1231,11 @@ pub const ISpStream = extern union {
             pStream: ?*IStream,
             rguidFormat: ?*const Guid,
             pWaveFormatEx: ?*const WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBaseStream: *const fn(
             self: *const ISpStream,
             ppStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BindToFile: *const fn(
             self: *const ISpStream,
             pszFileName: ?[*:0]const u16,
@@ -1243,26 +1243,26 @@ pub const ISpStream = extern union {
             pFormatId: ?*const Guid,
             pWaveFormatEx: ?*const WAVEFORMATEX,
             ullEventInterest: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ISpStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpStreamFormat: ISpStreamFormat,
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn SetBaseStream(self: *const ISpStream, pStream: ?*IStream, rguidFormat: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetBaseStream(self: *const ISpStream, pStream: ?*IStream, rguidFormat: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
         return self.vtable.SetBaseStream(self, pStream, rguidFormat, pWaveFormatEx);
     }
-    pub fn GetBaseStream(self: *const ISpStream, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetBaseStream(self: *const ISpStream, ppStream: ?*?*IStream) HRESULT {
         return self.vtable.GetBaseStream(self, ppStream);
     }
-    pub fn BindToFile(self: *const ISpStream, pszFileName: ?[*:0]const u16, eMode: SPFILEMODE, pFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX, ullEventInterest: u64) callconv(.Inline) HRESULT {
+    pub fn BindToFile(self: *const ISpStream, pszFileName: ?[*:0]const u16, eMode: SPFILEMODE, pFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX, ullEventInterest: u64) HRESULT {
         return self.vtable.BindToFile(self, pszFileName, eMode, pFormatId, pWaveFormatEx, ullEventInterest);
     }
-    pub fn Close(self: *const ISpStream) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ISpStream) HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -1277,51 +1277,51 @@ pub const ISpStreamFormatConverter = extern union {
             pStream: ?*ISpStreamFormat,
             fSetFormatToBaseStreamFormat: BOOL,
             fWriteToBaseStream: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBaseStream: *const fn(
             self: *const ISpStreamFormatConverter,
             ppStream: ?*?*ISpStreamFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFormat: *const fn(
             self: *const ISpStreamFormatConverter,
             rguidFormatIdOfConvertedStream: ?*const Guid,
             pWaveFormatExOfConvertedStream: ?*const WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetSeekPosition: *const fn(
             self: *const ISpStreamFormatConverter,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleConvertedToBaseOffset: *const fn(
             self: *const ISpStreamFormatConverter,
             ullOffsetConvertedStream: u64,
             pullOffsetBaseStream: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleBaseToConvertedOffset: *const fn(
             self: *const ISpStreamFormatConverter,
             ullOffsetBaseStream: u64,
             pullOffsetConvertedStream: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpStreamFormat: ISpStreamFormat,
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn SetBaseStream(self: *const ISpStreamFormatConverter, pStream: ?*ISpStreamFormat, fSetFormatToBaseStreamFormat: BOOL, fWriteToBaseStream: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetBaseStream(self: *const ISpStreamFormatConverter, pStream: ?*ISpStreamFormat, fSetFormatToBaseStreamFormat: BOOL, fWriteToBaseStream: BOOL) HRESULT {
         return self.vtable.SetBaseStream(self, pStream, fSetFormatToBaseStreamFormat, fWriteToBaseStream);
     }
-    pub fn GetBaseStream(self: *const ISpStreamFormatConverter, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
+    pub fn GetBaseStream(self: *const ISpStreamFormatConverter, ppStream: ?*?*ISpStreamFormat) HRESULT {
         return self.vtable.GetBaseStream(self, ppStream);
     }
-    pub fn SetFormat(self: *const ISpStreamFormatConverter, rguidFormatIdOfConvertedStream: ?*const Guid, pWaveFormatExOfConvertedStream: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetFormat(self: *const ISpStreamFormatConverter, rguidFormatIdOfConvertedStream: ?*const Guid, pWaveFormatExOfConvertedStream: ?*const WAVEFORMATEX) HRESULT {
         return self.vtable.SetFormat(self, rguidFormatIdOfConvertedStream, pWaveFormatExOfConvertedStream);
     }
-    pub fn ResetSeekPosition(self: *const ISpStreamFormatConverter) callconv(.Inline) HRESULT {
+    pub fn ResetSeekPosition(self: *const ISpStreamFormatConverter) HRESULT {
         return self.vtable.ResetSeekPosition(self);
     }
-    pub fn ScaleConvertedToBaseOffset(self: *const ISpStreamFormatConverter, ullOffsetConvertedStream: u64, pullOffsetBaseStream: ?*u64) callconv(.Inline) HRESULT {
+    pub fn ScaleConvertedToBaseOffset(self: *const ISpStreamFormatConverter, ullOffsetConvertedStream: u64, pullOffsetBaseStream: ?*u64) HRESULT {
         return self.vtable.ScaleConvertedToBaseOffset(self, ullOffsetConvertedStream, pullOffsetBaseStream);
     }
-    pub fn ScaleBaseToConvertedOffset(self: *const ISpStreamFormatConverter, ullOffsetBaseStream: u64, pullOffsetConvertedStream: ?*u64) callconv(.Inline) HRESULT {
+    pub fn ScaleBaseToConvertedOffset(self: *const ISpStreamFormatConverter, ullOffsetBaseStream: u64, pullOffsetConvertedStream: ?*u64) HRESULT {
         return self.vtable.ScaleBaseToConvertedOffset(self, ullOffsetBaseStream, pullOffsetConvertedStream);
     }
 };
@@ -1362,85 +1362,85 @@ pub const ISpAudio = extern union {
             self: *const ISpAudio,
             NewState: SPAUDIOSTATE,
             ullReserved: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFormat: *const fn(
             self: *const ISpAudio,
             rguidFmtId: ?*const Guid,
             pWaveFormatEx: ?*const WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ISpAudio,
             pStatus: ?*SPAUDIOSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBufferInfo: *const fn(
             self: *const ISpAudio,
             pBuffInfo: ?*const SPAUDIOBUFFERINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferInfo: *const fn(
             self: *const ISpAudio,
             pBuffInfo: ?*SPAUDIOBUFFERINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDefaultFormat: *const fn(
             self: *const ISpAudio,
             pFormatId: ?*Guid,
             ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EventHandle: *const fn(
             self: *const ISpAudio,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
         GetVolumeLevel: *const fn(
             self: *const ISpAudio,
             pLevel: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVolumeLevel: *const fn(
             self: *const ISpAudio,
             Level: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBufferNotifySize: *const fn(
             self: *const ISpAudio,
             pcbSize: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBufferNotifySize: *const fn(
             self: *const ISpAudio,
             cbSize: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpStreamFormat: ISpStreamFormat,
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn SetState(self: *const ISpAudio, NewState: SPAUDIOSTATE, ullReserved: u64) callconv(.Inline) HRESULT {
+    pub fn SetState(self: *const ISpAudio, NewState: SPAUDIOSTATE, ullReserved: u64) HRESULT {
         return self.vtable.SetState(self, NewState, ullReserved);
     }
-    pub fn SetFormat(self: *const ISpAudio, rguidFmtId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetFormat(self: *const ISpAudio, rguidFmtId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
         return self.vtable.SetFormat(self, rguidFmtId, pWaveFormatEx);
     }
-    pub fn GetStatus(self: *const ISpAudio, pStatus: ?*SPAUDIOSTATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const ISpAudio, pStatus: ?*SPAUDIOSTATUS) HRESULT {
         return self.vtable.GetStatus(self, pStatus);
     }
-    pub fn SetBufferInfo(self: *const ISpAudio, pBuffInfo: ?*const SPAUDIOBUFFERINFO) callconv(.Inline) HRESULT {
+    pub fn SetBufferInfo(self: *const ISpAudio, pBuffInfo: ?*const SPAUDIOBUFFERINFO) HRESULT {
         return self.vtable.SetBufferInfo(self, pBuffInfo);
     }
-    pub fn GetBufferInfo(self: *const ISpAudio, pBuffInfo: ?*SPAUDIOBUFFERINFO) callconv(.Inline) HRESULT {
+    pub fn GetBufferInfo(self: *const ISpAudio, pBuffInfo: ?*SPAUDIOBUFFERINFO) HRESULT {
         return self.vtable.GetBufferInfo(self, pBuffInfo);
     }
-    pub fn GetDefaultFormat(self: *const ISpAudio, pFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetDefaultFormat(self: *const ISpAudio, pFormatId: ?*Guid, ppCoMemWaveFormatEx: ?*?*WAVEFORMATEX) HRESULT {
         return self.vtable.GetDefaultFormat(self, pFormatId, ppCoMemWaveFormatEx);
     }
-    pub fn EventHandle(self: *const ISpAudio) callconv(.Inline) ?HANDLE {
+    pub fn EventHandle(self: *const ISpAudio) ?HANDLE {
         return self.vtable.EventHandle(self);
     }
-    pub fn GetVolumeLevel(self: *const ISpAudio, pLevel: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVolumeLevel(self: *const ISpAudio, pLevel: ?*u32) HRESULT {
         return self.vtable.GetVolumeLevel(self, pLevel);
     }
-    pub fn SetVolumeLevel(self: *const ISpAudio, Level: u32) callconv(.Inline) HRESULT {
+    pub fn SetVolumeLevel(self: *const ISpAudio, Level: u32) HRESULT {
         return self.vtable.SetVolumeLevel(self, Level);
     }
-    pub fn GetBufferNotifySize(self: *const ISpAudio, pcbSize: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBufferNotifySize(self: *const ISpAudio, pcbSize: ?*u32) HRESULT {
         return self.vtable.GetBufferNotifySize(self, pcbSize);
     }
-    pub fn SetBufferNotifySize(self: *const ISpAudio, cbSize: u32) callconv(.Inline) HRESULT {
+    pub fn SetBufferNotifySize(self: *const ISpAudio, cbSize: u32) HRESULT {
         return self.vtable.SetBufferNotifySize(self, cbSize);
     }
 };
@@ -1453,23 +1453,23 @@ pub const ISpMMSysAudio = extern union {
         GetDeviceId: *const fn(
             self: *const ISpMMSysAudio,
             puDeviceId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDeviceId: *const fn(
             self: *const ISpMMSysAudio,
             uDeviceId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMMHandle: *const fn(
             self: *const ISpMMSysAudio,
             pHandle: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLineId: *const fn(
             self: *const ISpMMSysAudio,
             puLineId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLineId: *const fn(
             self: *const ISpMMSysAudio,
             uLineId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpAudio: ISpAudio,
@@ -1477,19 +1477,19 @@ pub const ISpMMSysAudio = extern union {
     IStream: IStream,
     ISequentialStream: ISequentialStream,
     IUnknown: IUnknown,
-    pub fn GetDeviceId(self: *const ISpMMSysAudio, puDeviceId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDeviceId(self: *const ISpMMSysAudio, puDeviceId: ?*u32) HRESULT {
         return self.vtable.GetDeviceId(self, puDeviceId);
     }
-    pub fn SetDeviceId(self: *const ISpMMSysAudio, uDeviceId: u32) callconv(.Inline) HRESULT {
+    pub fn SetDeviceId(self: *const ISpMMSysAudio, uDeviceId: u32) HRESULT {
         return self.vtable.SetDeviceId(self, uDeviceId);
     }
-    pub fn GetMMHandle(self: *const ISpMMSysAudio, pHandle: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetMMHandle(self: *const ISpMMSysAudio, pHandle: ?*?*anyopaque) HRESULT {
         return self.vtable.GetMMHandle(self, pHandle);
     }
-    pub fn GetLineId(self: *const ISpMMSysAudio, puLineId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLineId(self: *const ISpMMSysAudio, puLineId: ?*u32) HRESULT {
         return self.vtable.GetLineId(self, puLineId);
     }
-    pub fn SetLineId(self: *const ISpMMSysAudio, uLineId: u32) callconv(.Inline) HRESULT {
+    pub fn SetLineId(self: *const ISpMMSysAudio, uLineId: u32) HRESULT {
         return self.vtable.SetLineId(self, uLineId);
     }
 };
@@ -1502,18 +1502,18 @@ pub const ISpTranscript = extern union {
         GetTranscript: *const fn(
             self: *const ISpTranscript,
             ppszTranscript: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AppendTranscript: *const fn(
             self: *const ISpTranscript,
             pszTranscript: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetTranscript(self: *const ISpTranscript, ppszTranscript: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetTranscript(self: *const ISpTranscript, ppszTranscript: ?*?PWSTR) HRESULT {
         return self.vtable.GetTranscript(self, ppszTranscript);
     }
-    pub fn AppendTranscript(self: *const ISpTranscript, pszTranscript: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AppendTranscript(self: *const ISpTranscript, pszTranscript: ?[*:0]const u16) HRESULT {
         return self.vtable.AppendTranscript(self, pszTranscript);
     }
 };
@@ -1846,57 +1846,57 @@ pub const ISpLexicon = extern union {
             LangID: u16,
             dwFlags: u32,
             pWordPronunciationList: ?*SPWORDPRONUNCIATIONLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPronunciation: *const fn(
             self: *const ISpLexicon,
             pszWord: ?[*:0]const u16,
             LangID: u16,
             ePartOfSpeech: SPPARTOFSPEECH,
             pszPronunciation: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemovePronunciation: *const fn(
             self: *const ISpLexicon,
             pszWord: ?[*:0]const u16,
             LangID: u16,
             ePartOfSpeech: SPPARTOFSPEECH,
             pszPronunciation: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGeneration: *const fn(
             self: *const ISpLexicon,
             pdwGeneration: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGenerationChange: *const fn(
             self: *const ISpLexicon,
             dwFlags: u32,
             pdwGeneration: ?*u32,
             pWordList: ?*SPWORDLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWords: *const fn(
             self: *const ISpLexicon,
             dwFlags: u32,
             pdwGeneration: ?*u32,
             pdwCookie: ?*u32,
             pWordList: ?*SPWORDLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPronunciations(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, dwFlags: u32, pWordPronunciationList: ?*SPWORDPRONUNCIATIONLIST) callconv(.Inline) HRESULT {
+    pub fn GetPronunciations(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, dwFlags: u32, pWordPronunciationList: ?*SPWORDPRONUNCIATIONLIST) HRESULT {
         return self.vtable.GetPronunciations(self, pszWord, LangID, dwFlags, pWordPronunciationList);
     }
-    pub fn AddPronunciation(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) callconv(.Inline) HRESULT {
+    pub fn AddPronunciation(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) HRESULT {
         return self.vtable.AddPronunciation(self, pszWord, LangID, ePartOfSpeech, pszPronunciation);
     }
-    pub fn RemovePronunciation(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) callconv(.Inline) HRESULT {
+    pub fn RemovePronunciation(self: *const ISpLexicon, pszWord: ?[*:0]const u16, LangID: u16, ePartOfSpeech: SPPARTOFSPEECH, pszPronunciation: ?*u16) HRESULT {
         return self.vtable.RemovePronunciation(self, pszWord, LangID, ePartOfSpeech, pszPronunciation);
     }
-    pub fn GetGeneration(self: *const ISpLexicon, pdwGeneration: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGeneration(self: *const ISpLexicon, pdwGeneration: ?*u32) HRESULT {
         return self.vtable.GetGeneration(self, pdwGeneration);
     }
-    pub fn GetGenerationChange(self: *const ISpLexicon, dwFlags: u32, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
+    pub fn GetGenerationChange(self: *const ISpLexicon, dwFlags: u32, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
         return self.vtable.GetGenerationChange(self, dwFlags, pdwGeneration, pWordList);
     }
-    pub fn GetWords(self: *const ISpLexicon, dwFlags: u32, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
+    pub fn GetWords(self: *const ISpLexicon, dwFlags: u32, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
         return self.vtable.GetWords(self, dwFlags, pdwGeneration, pdwCookie, pWordList);
     }
 };
@@ -1910,12 +1910,12 @@ pub const ISpContainerLexicon = extern union {
             self: *const ISpContainerLexicon,
             pAddLexicon: ?*ISpLexicon,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpLexicon: ISpLexicon,
     IUnknown: IUnknown,
-    pub fn AddLexicon(self: *const ISpContainerLexicon, pAddLexicon: ?*ISpLexicon, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn AddLexicon(self: *const ISpContainerLexicon, pAddLexicon: ?*ISpLexicon, dwFlags: u32) HRESULT {
         return self.vtable.AddLexicon(self, pAddLexicon, dwFlags);
     }
 };
@@ -1964,70 +1964,70 @@ pub const ISpShortcut = extern union {
             LangID: u16,
             pszSpoken: ?[*:0]const u16,
             shType: SPSHORTCUTTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveShortcut: *const fn(
             self: *const ISpShortcut,
             pszDisplay: ?[*:0]const u16,
             LangID: u16,
             pszSpoken: ?[*:0]const u16,
             shType: SPSHORTCUTTYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetShortcuts: *const fn(
             self: *const ISpShortcut,
             LangID: u16,
             pShortcutpairList: ?*SPSHORTCUTPAIRLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGeneration: *const fn(
             self: *const ISpShortcut,
             pdwGeneration: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWordsFromGenerationChange: *const fn(
             self: *const ISpShortcut,
             pdwGeneration: ?*u32,
             pWordList: ?*SPWORDLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWords: *const fn(
             self: *const ISpShortcut,
             pdwGeneration: ?*u32,
             pdwCookie: ?*u32,
             pWordList: ?*SPWORDLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetShortcutsForGeneration: *const fn(
             self: *const ISpShortcut,
             pdwGeneration: ?*u32,
             pdwCookie: ?*u32,
             pShortcutpairList: ?*SPSHORTCUTPAIRLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGenerationChange: *const fn(
             self: *const ISpShortcut,
             pdwGeneration: ?*u32,
             pShortcutpairList: ?*SPSHORTCUTPAIRLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddShortcut(self: *const ISpShortcut, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) callconv(.Inline) HRESULT {
+    pub fn AddShortcut(self: *const ISpShortcut, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) HRESULT {
         return self.vtable.AddShortcut(self, pszDisplay, LangID, pszSpoken, shType);
     }
-    pub fn RemoveShortcut(self: *const ISpShortcut, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) callconv(.Inline) HRESULT {
+    pub fn RemoveShortcut(self: *const ISpShortcut, pszDisplay: ?[*:0]const u16, LangID: u16, pszSpoken: ?[*:0]const u16, shType: SPSHORTCUTTYPE) HRESULT {
         return self.vtable.RemoveShortcut(self, pszDisplay, LangID, pszSpoken, shType);
     }
-    pub fn GetShortcuts(self: *const ISpShortcut, LangID: u16, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) callconv(.Inline) HRESULT {
+    pub fn GetShortcuts(self: *const ISpShortcut, LangID: u16, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) HRESULT {
         return self.vtable.GetShortcuts(self, LangID, pShortcutpairList);
     }
-    pub fn GetGeneration(self: *const ISpShortcut, pdwGeneration: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGeneration(self: *const ISpShortcut, pdwGeneration: ?*u32) HRESULT {
         return self.vtable.GetGeneration(self, pdwGeneration);
     }
-    pub fn GetWordsFromGenerationChange(self: *const ISpShortcut, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
+    pub fn GetWordsFromGenerationChange(self: *const ISpShortcut, pdwGeneration: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
         return self.vtable.GetWordsFromGenerationChange(self, pdwGeneration, pWordList);
     }
-    pub fn GetWords(self: *const ISpShortcut, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) callconv(.Inline) HRESULT {
+    pub fn GetWords(self: *const ISpShortcut, pdwGeneration: ?*u32, pdwCookie: ?*u32, pWordList: ?*SPWORDLIST) HRESULT {
         return self.vtable.GetWords(self, pdwGeneration, pdwCookie, pWordList);
     }
-    pub fn GetShortcutsForGeneration(self: *const ISpShortcut, pdwGeneration: ?*u32, pdwCookie: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) callconv(.Inline) HRESULT {
+    pub fn GetShortcutsForGeneration(self: *const ISpShortcut, pdwGeneration: ?*u32, pdwCookie: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) HRESULT {
         return self.vtable.GetShortcutsForGeneration(self, pdwGeneration, pdwCookie, pShortcutpairList);
     }
-    pub fn GetGenerationChange(self: *const ISpShortcut, pdwGeneration: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) callconv(.Inline) HRESULT {
+    pub fn GetGenerationChange(self: *const ISpShortcut, pdwGeneration: ?*u32, pShortcutpairList: ?*SPSHORTCUTPAIRLIST) HRESULT {
         return self.vtable.GetGenerationChange(self, pdwGeneration, pShortcutpairList);
     }
 };
@@ -2041,20 +2041,20 @@ pub const ISpPhoneConverter = extern union {
             self: *const ISpPhoneConverter,
             pszPhone: ?[*:0]const u16,
             pId: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IdToPhone: *const fn(
             self: *const ISpPhoneConverter,
             pId: ?*u16,
             pszPhone: ?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpObjectWithToken: ISpObjectWithToken,
     IUnknown: IUnknown,
-    pub fn PhoneToId(self: *const ISpPhoneConverter, pszPhone: ?[*:0]const u16, pId: ?*u16) callconv(.Inline) HRESULT {
+    pub fn PhoneToId(self: *const ISpPhoneConverter, pszPhone: ?[*:0]const u16, pId: ?*u16) HRESULT {
         return self.vtable.PhoneToId(self, pszPhone, pId);
     }
-    pub fn IdToPhone(self: *const ISpPhoneConverter, pId: ?*u16, pszPhone: ?PWSTR) callconv(.Inline) HRESULT {
+    pub fn IdToPhone(self: *const ISpPhoneConverter, pId: ?*u16, pszPhone: ?PWSTR) HRESULT {
         return self.vtable.IdToPhone(self, pId, pszPhone);
     }
 };
@@ -2067,45 +2067,45 @@ pub const ISpPhoneticAlphabetConverter = extern union {
         GetLangId: *const fn(
             self: *const ISpPhoneticAlphabetConverter,
             pLangID: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLangId: *const fn(
             self: *const ISpPhoneticAlphabetConverter,
             LangID: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SAPI2UPS: *const fn(
             self: *const ISpPhoneticAlphabetConverter,
             pszSAPIId: ?*const u16,
             pszUPSId: [*:0]u16,
             cMaxLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UPS2SAPI: *const fn(
             self: *const ISpPhoneticAlphabetConverter,
             pszUPSId: ?*const u16,
             pszSAPIId: [*:0]u16,
             cMaxLength: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxConvertLength: *const fn(
             self: *const ISpPhoneticAlphabetConverter,
             cSrcLength: u32,
             bSAPI2UPS: BOOL,
             pcMaxDestLength: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetLangId(self: *const ISpPhoneticAlphabetConverter, pLangID: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetLangId(self: *const ISpPhoneticAlphabetConverter, pLangID: ?*u16) HRESULT {
         return self.vtable.GetLangId(self, pLangID);
     }
-    pub fn SetLangId(self: *const ISpPhoneticAlphabetConverter, LangID: u16) callconv(.Inline) HRESULT {
+    pub fn SetLangId(self: *const ISpPhoneticAlphabetConverter, LangID: u16) HRESULT {
         return self.vtable.SetLangId(self, LangID);
     }
-    pub fn SAPI2UPS(self: *const ISpPhoneticAlphabetConverter, pszSAPIId: ?*const u16, pszUPSId: [*:0]u16, cMaxLength: u32) callconv(.Inline) HRESULT {
+    pub fn SAPI2UPS(self: *const ISpPhoneticAlphabetConverter, pszSAPIId: ?*const u16, pszUPSId: [*:0]u16, cMaxLength: u32) HRESULT {
         return self.vtable.SAPI2UPS(self, pszSAPIId, pszUPSId, cMaxLength);
     }
-    pub fn UPS2SAPI(self: *const ISpPhoneticAlphabetConverter, pszUPSId: ?*const u16, pszSAPIId: [*:0]u16, cMaxLength: u32) callconv(.Inline) HRESULT {
+    pub fn UPS2SAPI(self: *const ISpPhoneticAlphabetConverter, pszUPSId: ?*const u16, pszSAPIId: [*:0]u16, cMaxLength: u32) HRESULT {
         return self.vtable.UPS2SAPI(self, pszUPSId, pszSAPIId, cMaxLength);
     }
-    pub fn GetMaxConvertLength(self: *const ISpPhoneticAlphabetConverter, cSrcLength: u32, bSAPI2UPS: BOOL, pcMaxDestLength: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxConvertLength(self: *const ISpPhoneticAlphabetConverter, cSrcLength: u32, bSAPI2UPS: BOOL, pcMaxDestLength: ?*u32) HRESULT {
         return self.vtable.GetMaxConvertLength(self, cSrcLength, bSAPI2UPS, pcMaxDestLength);
     }
 };
@@ -2118,18 +2118,18 @@ pub const ISpPhoneticAlphabetSelection = extern union {
         IsAlphabetUPS: *const fn(
             self: *const ISpPhoneticAlphabetSelection,
             pfIsUPS: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlphabetToUPS: *const fn(
             self: *const ISpPhoneticAlphabetSelection,
             fForceUPS: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn IsAlphabetUPS(self: *const ISpPhoneticAlphabetSelection, pfIsUPS: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsAlphabetUPS(self: *const ISpPhoneticAlphabetSelection, pfIsUPS: ?*BOOL) HRESULT {
         return self.vtable.IsAlphabetUPS(self, pfIsUPS);
     }
-    pub fn SetAlphabetToUPS(self: *const ISpPhoneticAlphabetSelection, fForceUPS: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetAlphabetToUPS(self: *const ISpPhoneticAlphabetSelection, fForceUPS: BOOL) HRESULT {
         return self.vtable.SetAlphabetToUPS(self, fForceUPS);
     }
 };
@@ -2261,106 +2261,106 @@ pub const ISpVoice = extern union {
             self: *const ISpVoice,
             pUnkOutput: ?*IUnknown,
             fAllowFormatChanges: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputObjectToken: *const fn(
             self: *const ISpVoice,
             ppObjectToken: ?*?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOutputStream: *const fn(
             self: *const ISpVoice,
             ppStream: ?*?*ISpStreamFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const ISpVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const ISpVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVoice: *const fn(
             self: *const ISpVoice,
             pToken: ?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVoice: *const fn(
             self: *const ISpVoice,
             ppToken: ?*?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Speak: *const fn(
             self: *const ISpVoice,
             pwcs: ?[*:0]const u16,
             dwFlags: u32,
             pulStreamNumber: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SpeakStream: *const fn(
             self: *const ISpVoice,
             pStream: ?*IStream,
             dwFlags: u32,
             pulStreamNumber: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ISpVoice,
             pStatus: ?*SPVOICESTATUS,
             ppszLastBookmark: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const ISpVoice,
             pItemType: ?[*:0]const u16,
             lNumItems: i32,
             pulNumSkipped: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPriority: *const fn(
             self: *const ISpVoice,
             ePriority: SPVPRIORITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPriority: *const fn(
             self: *const ISpVoice,
             pePriority: ?*SPVPRIORITY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAlertBoundary: *const fn(
             self: *const ISpVoice,
             eBoundary: SPEVENTENUM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlertBoundary: *const fn(
             self: *const ISpVoice,
             peBoundary: ?*SPEVENTENUM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRate: *const fn(
             self: *const ISpVoice,
             RateAdjust: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRate: *const fn(
             self: *const ISpVoice,
             pRateAdjust: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVolume: *const fn(
             self: *const ISpVoice,
             usVolume: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolume: *const fn(
             self: *const ISpVoice,
             pusVolume: ?*u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitUntilDone: *const fn(
             self: *const ISpVoice,
             msTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSyncSpeakTimeout: *const fn(
             self: *const ISpVoice,
             msTimeout: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSyncSpeakTimeout: *const fn(
             self: *const ISpVoice,
             pmsTimeout: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SpeakCompleteEvent: *const fn(
             self: *const ISpVoice,
-        ) callconv(@import("std").os.windows.WINAPI) ?HANDLE,
+        ) callconv(.winapi) ?HANDLE,
         IsUISupported: *const fn(
             self: *const ISpVoice,
             pszTypeOfUI: ?[*:0]const u16,
             pvExtraData: ?*anyopaque,
             cbExtraData: u32,
             pfSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpVoice,
             hwndParent: ?HWND,
@@ -2368,85 +2368,85 @@ pub const ISpVoice = extern union {
             pszTypeOfUI: ?[*:0]const u16,
             pvExtraData: ?*anyopaque,
             cbExtraData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpEventSource: ISpEventSource,
     ISpNotifySource: ISpNotifySource,
     IUnknown: IUnknown,
-    pub fn SetOutput(self: *const ISpVoice, pUnkOutput: ?*IUnknown, fAllowFormatChanges: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetOutput(self: *const ISpVoice, pUnkOutput: ?*IUnknown, fAllowFormatChanges: BOOL) HRESULT {
         return self.vtable.SetOutput(self, pUnkOutput, fAllowFormatChanges);
     }
-    pub fn GetOutputObjectToken(self: *const ISpVoice, ppObjectToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn GetOutputObjectToken(self: *const ISpVoice, ppObjectToken: ?*?*ISpObjectToken) HRESULT {
         return self.vtable.GetOutputObjectToken(self, ppObjectToken);
     }
-    pub fn GetOutputStream(self: *const ISpVoice, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
+    pub fn GetOutputStream(self: *const ISpVoice, ppStream: ?*?*ISpStreamFormat) HRESULT {
         return self.vtable.GetOutputStream(self, ppStream);
     }
-    pub fn Pause(self: *const ISpVoice) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const ISpVoice) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const ISpVoice) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const ISpVoice) HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn SetVoice(self: *const ISpVoice, pToken: ?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn SetVoice(self: *const ISpVoice, pToken: ?*ISpObjectToken) HRESULT {
         return self.vtable.SetVoice(self, pToken);
     }
-    pub fn GetVoice(self: *const ISpVoice, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn GetVoice(self: *const ISpVoice, ppToken: ?*?*ISpObjectToken) HRESULT {
         return self.vtable.GetVoice(self, ppToken);
     }
-    pub fn Speak(self: *const ISpVoice, pwcs: ?[*:0]const u16, dwFlags: u32, pulStreamNumber: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Speak(self: *const ISpVoice, pwcs: ?[*:0]const u16, dwFlags: u32, pulStreamNumber: ?*u32) HRESULT {
         return self.vtable.Speak(self, pwcs, dwFlags, pulStreamNumber);
     }
-    pub fn SpeakStream(self: *const ISpVoice, pStream: ?*IStream, dwFlags: u32, pulStreamNumber: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SpeakStream(self: *const ISpVoice, pStream: ?*IStream, dwFlags: u32, pulStreamNumber: ?*u32) HRESULT {
         return self.vtable.SpeakStream(self, pStream, dwFlags, pulStreamNumber);
     }
-    pub fn GetStatus(self: *const ISpVoice, pStatus: ?*SPVOICESTATUS, ppszLastBookmark: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const ISpVoice, pStatus: ?*SPVOICESTATUS, ppszLastBookmark: ?*?PWSTR) HRESULT {
         return self.vtable.GetStatus(self, pStatus, ppszLastBookmark);
     }
-    pub fn Skip(self: *const ISpVoice, pItemType: ?[*:0]const u16, lNumItems: i32, pulNumSkipped: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const ISpVoice, pItemType: ?[*:0]const u16, lNumItems: i32, pulNumSkipped: ?*u32) HRESULT {
         return self.vtable.Skip(self, pItemType, lNumItems, pulNumSkipped);
     }
-    pub fn SetPriority(self: *const ISpVoice, ePriority: SPVPRIORITY) callconv(.Inline) HRESULT {
+    pub fn SetPriority(self: *const ISpVoice, ePriority: SPVPRIORITY) HRESULT {
         return self.vtable.SetPriority(self, ePriority);
     }
-    pub fn GetPriority(self: *const ISpVoice, pePriority: ?*SPVPRIORITY) callconv(.Inline) HRESULT {
+    pub fn GetPriority(self: *const ISpVoice, pePriority: ?*SPVPRIORITY) HRESULT {
         return self.vtable.GetPriority(self, pePriority);
     }
-    pub fn SetAlertBoundary(self: *const ISpVoice, eBoundary: SPEVENTENUM) callconv(.Inline) HRESULT {
+    pub fn SetAlertBoundary(self: *const ISpVoice, eBoundary: SPEVENTENUM) HRESULT {
         return self.vtable.SetAlertBoundary(self, eBoundary);
     }
-    pub fn GetAlertBoundary(self: *const ISpVoice, peBoundary: ?*SPEVENTENUM) callconv(.Inline) HRESULT {
+    pub fn GetAlertBoundary(self: *const ISpVoice, peBoundary: ?*SPEVENTENUM) HRESULT {
         return self.vtable.GetAlertBoundary(self, peBoundary);
     }
-    pub fn SetRate(self: *const ISpVoice, RateAdjust: i32) callconv(.Inline) HRESULT {
+    pub fn SetRate(self: *const ISpVoice, RateAdjust: i32) HRESULT {
         return self.vtable.SetRate(self, RateAdjust);
     }
-    pub fn GetRate(self: *const ISpVoice, pRateAdjust: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetRate(self: *const ISpVoice, pRateAdjust: ?*i32) HRESULT {
         return self.vtable.GetRate(self, pRateAdjust);
     }
-    pub fn SetVolume(self: *const ISpVoice, usVolume: u16) callconv(.Inline) HRESULT {
+    pub fn SetVolume(self: *const ISpVoice, usVolume: u16) HRESULT {
         return self.vtable.SetVolume(self, usVolume);
     }
-    pub fn GetVolume(self: *const ISpVoice, pusVolume: ?*u16) callconv(.Inline) HRESULT {
+    pub fn GetVolume(self: *const ISpVoice, pusVolume: ?*u16) HRESULT {
         return self.vtable.GetVolume(self, pusVolume);
     }
-    pub fn WaitUntilDone(self: *const ISpVoice, msTimeout: u32) callconv(.Inline) HRESULT {
+    pub fn WaitUntilDone(self: *const ISpVoice, msTimeout: u32) HRESULT {
         return self.vtable.WaitUntilDone(self, msTimeout);
     }
-    pub fn SetSyncSpeakTimeout(self: *const ISpVoice, msTimeout: u32) callconv(.Inline) HRESULT {
+    pub fn SetSyncSpeakTimeout(self: *const ISpVoice, msTimeout: u32) HRESULT {
         return self.vtable.SetSyncSpeakTimeout(self, msTimeout);
     }
-    pub fn GetSyncSpeakTimeout(self: *const ISpVoice, pmsTimeout: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSyncSpeakTimeout(self: *const ISpVoice, pmsTimeout: ?*u32) HRESULT {
         return self.vtable.GetSyncSpeakTimeout(self, pmsTimeout);
     }
-    pub fn SpeakCompleteEvent(self: *const ISpVoice) callconv(.Inline) ?HANDLE {
+    pub fn SpeakCompleteEvent(self: *const ISpVoice) ?HANDLE {
         return self.vtable.SpeakCompleteEvent(self);
     }
-    pub fn IsUISupported(self: *const ISpVoice, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsUISupported(self: *const ISpVoice, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) HRESULT {
         return self.vtable.IsUISupported(self, pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
     }
-    pub fn DisplayUI(self: *const ISpVoice, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) callconv(.Inline) HRESULT {
+    pub fn DisplayUI(self: *const ISpVoice, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) HRESULT {
         return self.vtable.DisplayUI(self, hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
     }
 };
@@ -2459,11 +2459,11 @@ pub const ISpPhrase = extern union {
         GetPhrase: *const fn(
             self: *const ISpPhrase,
             ppCoMemPhrase: ?*?*SPPHRASE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSerializedPhrase: *const fn(
             self: *const ISpPhrase,
             ppCoMemPhrase: ?*?*SPSERIALIZEDPHRASE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetText: *const fn(
             self: *const ISpPhrase,
             ulStart: u32,
@@ -2471,24 +2471,24 @@ pub const ISpPhrase = extern union {
             fUseTextReplacements: BOOL,
             ppszCoMemText: ?*?PWSTR,
             pbDisplayAttributes: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Discard: *const fn(
             self: *const ISpPhrase,
             dwValueTypes: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetPhrase(self: *const ISpPhrase, ppCoMemPhrase: ?*?*SPPHRASE) callconv(.Inline) HRESULT {
+    pub fn GetPhrase(self: *const ISpPhrase, ppCoMemPhrase: ?*?*SPPHRASE) HRESULT {
         return self.vtable.GetPhrase(self, ppCoMemPhrase);
     }
-    pub fn GetSerializedPhrase(self: *const ISpPhrase, ppCoMemPhrase: ?*?*SPSERIALIZEDPHRASE) callconv(.Inline) HRESULT {
+    pub fn GetSerializedPhrase(self: *const ISpPhrase, ppCoMemPhrase: ?*?*SPSERIALIZEDPHRASE) HRESULT {
         return self.vtable.GetSerializedPhrase(self, ppCoMemPhrase);
     }
-    pub fn GetText(self: *const ISpPhrase, ulStart: u32, ulCount: u32, fUseTextReplacements: BOOL, ppszCoMemText: ?*?PWSTR, pbDisplayAttributes: ?*u8) callconv(.Inline) HRESULT {
+    pub fn GetText(self: *const ISpPhrase, ulStart: u32, ulCount: u32, fUseTextReplacements: BOOL, ppszCoMemText: ?*?PWSTR, pbDisplayAttributes: ?*u8) HRESULT {
         return self.vtable.GetText(self, ulStart, ulCount, fUseTextReplacements, ppszCoMemText, pbDisplayAttributes);
     }
-    pub fn Discard(self: *const ISpPhrase, dwValueTypes: u32) callconv(.Inline) HRESULT {
+    pub fn Discard(self: *const ISpPhrase, dwValueTypes: u32) HRESULT {
         return self.vtable.Discard(self, dwValueTypes);
     }
 };
@@ -2504,18 +2504,18 @@ pub const ISpPhraseAlt = extern union {
             pulStartElementInParent: ?*u32,
             pcElementsInParent: ?*u32,
             pcElementsInAlt: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const ISpPhraseAlt,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpPhrase: ISpPhrase,
     IUnknown: IUnknown,
-    pub fn GetAltInfo(self: *const ISpPhraseAlt, ppParent: ?*?*ISpPhrase, pulStartElementInParent: ?*u32, pcElementsInParent: ?*u32, pcElementsInAlt: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAltInfo(self: *const ISpPhraseAlt, ppParent: ?*?*ISpPhrase, pulStartElementInParent: ?*u32, pcElementsInParent: ?*u32, pcElementsInAlt: ?*u32) HRESULT {
         return self.vtable.GetAltInfo(self, ppParent, pulStartElementInParent, pcElementsInParent, pcElementsInAlt);
     }
-    pub fn Commit(self: *const ISpPhraseAlt) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const ISpPhraseAlt) HRESULT {
         return self.vtable.Commit(self);
     }
 };
@@ -2536,28 +2536,28 @@ pub const ISpPhrase2 = extern union {
             self: *const ISpPhrase2,
             ppszCoMemXMLResult: ?*?PWSTR,
             Options: SPXMLRESULTOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXMLErrorInfo: *const fn(
             self: *const ISpPhrase2,
             pSemanticErrorInfo: ?*SPSEMANTICERRORINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudio: *const fn(
             self: *const ISpPhrase2,
             ulStartElement: u32,
             cElements: u32,
             ppStream: ?*?*ISpStreamFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpPhrase: ISpPhrase,
     IUnknown: IUnknown,
-    pub fn GetXMLResult(self: *const ISpPhrase2, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetXMLResult(self: *const ISpPhrase2, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) HRESULT {
         return self.vtable.GetXMLResult(self, ppszCoMemXMLResult, Options);
     }
-    pub fn GetXMLErrorInfo(self: *const ISpPhrase2, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) callconv(.Inline) HRESULT {
+    pub fn GetXMLErrorInfo(self: *const ISpPhrase2, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) HRESULT {
         return self.vtable.GetXMLErrorInfo(self, pSemanticErrorInfo);
     }
-    pub fn GetAudio(self: *const ISpPhrase2, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
+    pub fn GetAudio(self: *const ISpPhrase2, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) HRESULT {
         return self.vtable.GetAudio(self, ulStartElement, cElements, ppStream);
     }
 };
@@ -2581,7 +2581,7 @@ pub const ISpRecoResult = extern union {
         GetResultTimes: *const fn(
             self: *const ISpRecoResult,
             pTimes: ?*SPRECORESULTTIMES,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAlternates: *const fn(
             self: *const ISpRecoResult,
             ulStartElement: u32,
@@ -2589,56 +2589,56 @@ pub const ISpRecoResult = extern union {
             ulRequestCount: u32,
             ppPhrases: [*]?*ISpPhraseAlt,
             pcPhrasesReturned: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudio: *const fn(
             self: *const ISpRecoResult,
             ulStartElement: u32,
             cElements: u32,
             ppStream: ?*?*ISpStreamFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SpeakAudio: *const fn(
             self: *const ISpRecoResult,
             ulStartElement: u32,
             cElements: u32,
             dwFlags: u32,
             pulStreamNumber: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Serialize: *const fn(
             self: *const ISpRecoResult,
             ppCoMemSerializedResult: ?*?*SPSERIALIZEDRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ScaleAudio: *const fn(
             self: *const ISpRecoResult,
             pAudioFormatId: ?*const Guid,
             pWaveFormatEx: ?*const WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecoContext: *const fn(
             self: *const ISpRecoResult,
             ppRecoContext: ?*?*ISpRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpPhrase: ISpPhrase,
     IUnknown: IUnknown,
-    pub fn GetResultTimes(self: *const ISpRecoResult, pTimes: ?*SPRECORESULTTIMES) callconv(.Inline) HRESULT {
+    pub fn GetResultTimes(self: *const ISpRecoResult, pTimes: ?*SPRECORESULTTIMES) HRESULT {
         return self.vtable.GetResultTimes(self, pTimes);
     }
-    pub fn GetAlternates(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, ulRequestCount: u32, ppPhrases: [*]?*ISpPhraseAlt, pcPhrasesReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAlternates(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, ulRequestCount: u32, ppPhrases: [*]?*ISpPhraseAlt, pcPhrasesReturned: ?*u32) HRESULT {
         return self.vtable.GetAlternates(self, ulStartElement, cElements, ulRequestCount, ppPhrases, pcPhrasesReturned);
     }
-    pub fn GetAudio(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
+    pub fn GetAudio(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, ppStream: ?*?*ISpStreamFormat) HRESULT {
         return self.vtable.GetAudio(self, ulStartElement, cElements, ppStream);
     }
-    pub fn SpeakAudio(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, dwFlags: u32, pulStreamNumber: ?*u32) callconv(.Inline) HRESULT {
+    pub fn SpeakAudio(self: *const ISpRecoResult, ulStartElement: u32, cElements: u32, dwFlags: u32, pulStreamNumber: ?*u32) HRESULT {
         return self.vtable.SpeakAudio(self, ulStartElement, cElements, dwFlags, pulStreamNumber);
     }
-    pub fn Serialize(self: *const ISpRecoResult, ppCoMemSerializedResult: ?*?*SPSERIALIZEDRESULT) callconv(.Inline) HRESULT {
+    pub fn Serialize(self: *const ISpRecoResult, ppCoMemSerializedResult: ?*?*SPSERIALIZEDRESULT) HRESULT {
         return self.vtable.Serialize(self, ppCoMemSerializedResult);
     }
-    pub fn ScaleAudio(self: *const ISpRecoResult, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn ScaleAudio(self: *const ISpRecoResult, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
         return self.vtable.ScaleAudio(self, pAudioFormatId, pWaveFormatEx);
     }
-    pub fn GetRecoContext(self: *const ISpRecoResult, ppRecoContext: ?*?*ISpRecoContext) callconv(.Inline) HRESULT {
+    pub fn GetRecoContext(self: *const ISpRecoResult, ppRecoContext: ?*?*ISpRecoContext) HRESULT {
         return self.vtable.GetRecoContext(self, ppRecoContext);
     }
 };
@@ -2661,31 +2661,31 @@ pub const ISpRecoResult2 = extern union {
             self: *const ISpRecoResult2,
             pPhraseAlt: ?*ISpPhraseAlt,
             ppNewResult: ?*?*ISpRecoResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitText: *const fn(
             self: *const ISpRecoResult2,
             ulStartElement: u32,
             cElements: u32,
             pszCorrectedData: ?[*:0]const u16,
             eCommitFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextFeedback: *const fn(
             self: *const ISpRecoResult2,
             pszFeedback: ?[*:0]const u16,
             fSuccessful: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpRecoResult: ISpRecoResult,
     ISpPhrase: ISpPhrase,
     IUnknown: IUnknown,
-    pub fn CommitAlternate(self: *const ISpRecoResult2, pPhraseAlt: ?*ISpPhraseAlt, ppNewResult: ?*?*ISpRecoResult) callconv(.Inline) HRESULT {
+    pub fn CommitAlternate(self: *const ISpRecoResult2, pPhraseAlt: ?*ISpPhraseAlt, ppNewResult: ?*?*ISpRecoResult) HRESULT {
         return self.vtable.CommitAlternate(self, pPhraseAlt, ppNewResult);
     }
-    pub fn CommitText(self: *const ISpRecoResult2, ulStartElement: u32, cElements: u32, pszCorrectedData: ?[*:0]const u16, eCommitFlags: u32) callconv(.Inline) HRESULT {
+    pub fn CommitText(self: *const ISpRecoResult2, ulStartElement: u32, cElements: u32, pszCorrectedData: ?[*:0]const u16, eCommitFlags: u32) HRESULT {
         return self.vtable.CommitText(self, ulStartElement, cElements, pszCorrectedData, eCommitFlags);
     }
-    pub fn SetTextFeedback(self: *const ISpRecoResult2, pszFeedback: ?[*:0]const u16, fSuccessful: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetTextFeedback(self: *const ISpRecoResult2, pszFeedback: ?[*:0]const u16, fSuccessful: BOOL) HRESULT {
         return self.vtable.SetTextFeedback(self, pszFeedback, fSuccessful);
     }
 };
@@ -2699,20 +2699,20 @@ pub const ISpXMLRecoResult = extern union {
             self: *const ISpXMLRecoResult,
             ppszCoMemXMLResult: ?*?PWSTR,
             Options: SPXMLRESULTOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXMLErrorInfo: *const fn(
             self: *const ISpXMLRecoResult,
             pSemanticErrorInfo: ?*SPSEMANTICERRORINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpRecoResult: ISpRecoResult,
     ISpPhrase: ISpPhrase,
     IUnknown: IUnknown,
-    pub fn GetXMLResult(self: *const ISpXMLRecoResult, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) callconv(.Inline) HRESULT {
+    pub fn GetXMLResult(self: *const ISpXMLRecoResult, ppszCoMemXMLResult: ?*?PWSTR, Options: SPXMLRESULTOPTIONS) HRESULT {
         return self.vtable.GetXMLResult(self, ppszCoMemXMLResult, Options);
     }
-    pub fn GetXMLErrorInfo(self: *const ISpXMLRecoResult, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) callconv(.Inline) HRESULT {
+    pub fn GetXMLErrorInfo(self: *const ISpXMLRecoResult, pSemanticErrorInfo: ?*SPSEMANTICERRORINFO) HRESULT {
         return self.vtable.GetXMLErrorInfo(self, pSemanticErrorInfo);
     }
 };
@@ -2807,7 +2807,7 @@ pub const ISpGrammarBuilder = extern union {
         ResetGrammar: *const fn(
             self: *const ISpGrammarBuilder,
             NewLanguage: u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRule: *const fn(
             self: *const ISpGrammarBuilder,
             pszRuleName: ?[*:0]const u16,
@@ -2815,16 +2815,16 @@ pub const ISpGrammarBuilder = extern union {
             dwAttributes: u32,
             fCreateIfNotExist: BOOL,
             phInitialState: ?*?*SPSTATEHANDLE__,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ClearRule: *const fn(
             self: *const ISpGrammarBuilder,
             hState: ?*SPSTATEHANDLE__,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateNewState: *const fn(
             self: *const ISpGrammarBuilder,
             hState: ?*SPSTATEHANDLE__,
             phState: ?*?*SPSTATEHANDLE__,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddWordTransition: *const fn(
             self: *const ISpGrammarBuilder,
             hFromState: ?*SPSTATEHANDLE__,
@@ -2834,7 +2834,7 @@ pub const ISpGrammarBuilder = extern union {
             eWordType: SPGRAMMARWORDTYPE,
             Weight: f32,
             pPropInfo: ?*const SPPROPERTYINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRuleTransition: *const fn(
             self: *const ISpGrammarBuilder,
             hFromState: ?*SPSTATEHANDLE__,
@@ -2842,42 +2842,42 @@ pub const ISpGrammarBuilder = extern union {
             hRule: ?*SPSTATEHANDLE__,
             Weight: f32,
             pPropInfo: ?*const SPPROPERTYINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddResource: *const fn(
             self: *const ISpGrammarBuilder,
             hRuleState: ?*SPSTATEHANDLE__,
             pszResourceName: ?[*:0]const u16,
             pszResourceValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const ISpGrammarBuilder,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ResetGrammar(self: *const ISpGrammarBuilder, NewLanguage: u16) callconv(.Inline) HRESULT {
+    pub fn ResetGrammar(self: *const ISpGrammarBuilder, NewLanguage: u16) HRESULT {
         return self.vtable.ResetGrammar(self, NewLanguage);
     }
-    pub fn GetRule(self: *const ISpGrammarBuilder, pszRuleName: ?[*:0]const u16, dwRuleId: u32, dwAttributes: u32, fCreateIfNotExist: BOOL, phInitialState: ?*?*SPSTATEHANDLE__) callconv(.Inline) HRESULT {
+    pub fn GetRule(self: *const ISpGrammarBuilder, pszRuleName: ?[*:0]const u16, dwRuleId: u32, dwAttributes: u32, fCreateIfNotExist: BOOL, phInitialState: ?*?*SPSTATEHANDLE__) HRESULT {
         return self.vtable.GetRule(self, pszRuleName, dwRuleId, dwAttributes, fCreateIfNotExist, phInitialState);
     }
-    pub fn ClearRule(self: *const ISpGrammarBuilder, hState: ?*SPSTATEHANDLE__) callconv(.Inline) HRESULT {
+    pub fn ClearRule(self: *const ISpGrammarBuilder, hState: ?*SPSTATEHANDLE__) HRESULT {
         return self.vtable.ClearRule(self, hState);
     }
-    pub fn CreateNewState(self: *const ISpGrammarBuilder, hState: ?*SPSTATEHANDLE__, phState: ?*?*SPSTATEHANDLE__) callconv(.Inline) HRESULT {
+    pub fn CreateNewState(self: *const ISpGrammarBuilder, hState: ?*SPSTATEHANDLE__, phState: ?*?*SPSTATEHANDLE__) HRESULT {
         return self.vtable.CreateNewState(self, hState, phState);
     }
-    pub fn AddWordTransition(self: *const ISpGrammarBuilder, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, pszSeparators: ?[*:0]const u16, eWordType: SPGRAMMARWORDTYPE, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) callconv(.Inline) HRESULT {
+    pub fn AddWordTransition(self: *const ISpGrammarBuilder, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, pszSeparators: ?[*:0]const u16, eWordType: SPGRAMMARWORDTYPE, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) HRESULT {
         return self.vtable.AddWordTransition(self, hFromState, hToState, psz, pszSeparators, eWordType, Weight, pPropInfo);
     }
-    pub fn AddRuleTransition(self: *const ISpGrammarBuilder, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, hRule: ?*SPSTATEHANDLE__, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) callconv(.Inline) HRESULT {
+    pub fn AddRuleTransition(self: *const ISpGrammarBuilder, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, hRule: ?*SPSTATEHANDLE__, Weight: f32, pPropInfo: ?*const SPPROPERTYINFO) HRESULT {
         return self.vtable.AddRuleTransition(self, hFromState, hToState, hRule, Weight, pPropInfo);
     }
-    pub fn AddResource(self: *const ISpGrammarBuilder, hRuleState: ?*SPSTATEHANDLE__, pszResourceName: ?[*:0]const u16, pszResourceValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn AddResource(self: *const ISpGrammarBuilder, hRuleState: ?*SPSTATEHANDLE__, pszResourceName: ?[*:0]const u16, pszResourceValue: ?[*:0]const u16) HRESULT {
         return self.vtable.AddResource(self, hRuleState, pszResourceName, pszResourceValue);
     }
-    pub fn Commit(self: *const ISpGrammarBuilder, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const ISpGrammarBuilder, dwReserved: u32) HRESULT {
         return self.vtable.Commit(self, dwReserved);
     }
 };
@@ -2897,22 +2897,22 @@ pub const ISpRecoGrammar = extern union {
         GetGrammarId: *const fn(
             self: *const ISpRecoGrammar,
             pullGrammarId: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecoContext: *const fn(
             self: *const ISpRecoGrammar,
             ppRecoCtxt: ?*?*ISpRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCmdFromFile: *const fn(
             self: *const ISpRecoGrammar,
             pszFileName: ?[*:0]const u16,
             Options: SPLOADOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCmdFromObject: *const fn(
             self: *const ISpRecoGrammar,
             rcid: ?*const Guid,
             pszGrammarName: ?[*:0]const u16,
             Options: SPLOADOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCmdFromResource: *const fn(
             self: *const ISpRecoGrammar,
             hModule: ?HINSTANCE,
@@ -2920,12 +2920,12 @@ pub const ISpRecoGrammar = extern union {
             pszResourceType: ?[*:0]const u16,
             wLanguage: u16,
             Options: SPLOADOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCmdFromMemory: *const fn(
             self: *const ISpRecoGrammar,
             pGrammar: ?*const SPBINARYGRAMMAR,
             Options: SPLOADOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCmdFromProprietaryGrammar: *const fn(
             self: *const ISpRecoGrammar,
             rguidParam: ?*const Guid,
@@ -2933,114 +2933,114 @@ pub const ISpRecoGrammar = extern union {
             pvDataPrarm: ?*const anyopaque,
             cbDataSize: u32,
             Options: SPLOADOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRuleState: *const fn(
             self: *const ISpRecoGrammar,
             pszName: ?[*:0]const u16,
             pReserved: ?*anyopaque,
             NewState: SPRULESTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRuleIdState: *const fn(
             self: *const ISpRecoGrammar,
             ulRuleId: u32,
             NewState: SPRULESTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadDictation: *const fn(
             self: *const ISpRecoGrammar,
             pszTopicName: ?[*:0]const u16,
             Options: SPLOADOPTIONS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UnloadDictation: *const fn(
             self: *const ISpRecoGrammar,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDictationState: *const fn(
             self: *const ISpRecoGrammar,
             NewState: SPRULESTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWordSequenceData: *const fn(
             self: *const ISpRecoGrammar,
             pText: ?[*:0]const u16,
             cchText: u32,
             pInfo: ?*const SPTEXTSELECTIONINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextSelection: *const fn(
             self: *const ISpRecoGrammar,
             pInfo: ?*const SPTEXTSELECTIONINFO,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPronounceable: *const fn(
             self: *const ISpRecoGrammar,
             pszWord: ?[*:0]const u16,
             pWordPronounceable: ?*SPWORDPRONOUNCEABLE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGrammarState: *const fn(
             self: *const ISpRecoGrammar,
             eGrammarState: SPGRAMMARSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveCmd: *const fn(
             self: *const ISpRecoGrammar,
             pStream: ?*IStream,
             ppszCoMemErrorText: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGrammarState: *const fn(
             self: *const ISpRecoGrammar,
             peGrammarState: ?*SPGRAMMARSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpGrammarBuilder: ISpGrammarBuilder,
     IUnknown: IUnknown,
-    pub fn GetGrammarId(self: *const ISpRecoGrammar, pullGrammarId: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetGrammarId(self: *const ISpRecoGrammar, pullGrammarId: ?*u64) HRESULT {
         return self.vtable.GetGrammarId(self, pullGrammarId);
     }
-    pub fn GetRecoContext(self: *const ISpRecoGrammar, ppRecoCtxt: ?*?*ISpRecoContext) callconv(.Inline) HRESULT {
+    pub fn GetRecoContext(self: *const ISpRecoGrammar, ppRecoCtxt: ?*?*ISpRecoContext) HRESULT {
         return self.vtable.GetRecoContext(self, ppRecoCtxt);
     }
-    pub fn LoadCmdFromFile(self: *const ISpRecoGrammar, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
+    pub fn LoadCmdFromFile(self: *const ISpRecoGrammar, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS) HRESULT {
         return self.vtable.LoadCmdFromFile(self, pszFileName, Options);
     }
-    pub fn LoadCmdFromObject(self: *const ISpRecoGrammar, rcid: ?*const Guid, pszGrammarName: ?[*:0]const u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
+    pub fn LoadCmdFromObject(self: *const ISpRecoGrammar, rcid: ?*const Guid, pszGrammarName: ?[*:0]const u16, Options: SPLOADOPTIONS) HRESULT {
         return self.vtable.LoadCmdFromObject(self, rcid, pszGrammarName, Options);
     }
-    pub fn LoadCmdFromResource(self: *const ISpRecoGrammar, hModule: ?HINSTANCE, pszResourceName: ?[*:0]const u16, pszResourceType: ?[*:0]const u16, wLanguage: u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
+    pub fn LoadCmdFromResource(self: *const ISpRecoGrammar, hModule: ?HINSTANCE, pszResourceName: ?[*:0]const u16, pszResourceType: ?[*:0]const u16, wLanguage: u16, Options: SPLOADOPTIONS) HRESULT {
         return self.vtable.LoadCmdFromResource(self, hModule, pszResourceName, pszResourceType, wLanguage, Options);
     }
-    pub fn LoadCmdFromMemory(self: *const ISpRecoGrammar, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
+    pub fn LoadCmdFromMemory(self: *const ISpRecoGrammar, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS) HRESULT {
         return self.vtable.LoadCmdFromMemory(self, pGrammar, Options);
     }
-    pub fn LoadCmdFromProprietaryGrammar(self: *const ISpRecoGrammar, rguidParam: ?*const Guid, pszStringParam: ?[*:0]const u16, pvDataPrarm: ?*const anyopaque, cbDataSize: u32, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
+    pub fn LoadCmdFromProprietaryGrammar(self: *const ISpRecoGrammar, rguidParam: ?*const Guid, pszStringParam: ?[*:0]const u16, pvDataPrarm: ?*const anyopaque, cbDataSize: u32, Options: SPLOADOPTIONS) HRESULT {
         return self.vtable.LoadCmdFromProprietaryGrammar(self, rguidParam, pszStringParam, pvDataPrarm, cbDataSize, Options);
     }
-    pub fn SetRuleState(self: *const ISpRecoGrammar, pszName: ?[*:0]const u16, pReserved: ?*anyopaque, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
+    pub fn SetRuleState(self: *const ISpRecoGrammar, pszName: ?[*:0]const u16, pReserved: ?*anyopaque, NewState: SPRULESTATE) HRESULT {
         return self.vtable.SetRuleState(self, pszName, pReserved, NewState);
     }
-    pub fn SetRuleIdState(self: *const ISpRecoGrammar, ulRuleId: u32, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
+    pub fn SetRuleIdState(self: *const ISpRecoGrammar, ulRuleId: u32, NewState: SPRULESTATE) HRESULT {
         return self.vtable.SetRuleIdState(self, ulRuleId, NewState);
     }
-    pub fn LoadDictation(self: *const ISpRecoGrammar, pszTopicName: ?[*:0]const u16, Options: SPLOADOPTIONS) callconv(.Inline) HRESULT {
+    pub fn LoadDictation(self: *const ISpRecoGrammar, pszTopicName: ?[*:0]const u16, Options: SPLOADOPTIONS) HRESULT {
         return self.vtable.LoadDictation(self, pszTopicName, Options);
     }
-    pub fn UnloadDictation(self: *const ISpRecoGrammar) callconv(.Inline) HRESULT {
+    pub fn UnloadDictation(self: *const ISpRecoGrammar) HRESULT {
         return self.vtable.UnloadDictation(self);
     }
-    pub fn SetDictationState(self: *const ISpRecoGrammar, NewState: SPRULESTATE) callconv(.Inline) HRESULT {
+    pub fn SetDictationState(self: *const ISpRecoGrammar, NewState: SPRULESTATE) HRESULT {
         return self.vtable.SetDictationState(self, NewState);
     }
-    pub fn SetWordSequenceData(self: *const ISpRecoGrammar, pText: ?[*:0]const u16, cchText: u32, pInfo: ?*const SPTEXTSELECTIONINFO) callconv(.Inline) HRESULT {
+    pub fn SetWordSequenceData(self: *const ISpRecoGrammar, pText: ?[*:0]const u16, cchText: u32, pInfo: ?*const SPTEXTSELECTIONINFO) HRESULT {
         return self.vtable.SetWordSequenceData(self, pText, cchText, pInfo);
     }
-    pub fn SetTextSelection(self: *const ISpRecoGrammar, pInfo: ?*const SPTEXTSELECTIONINFO) callconv(.Inline) HRESULT {
+    pub fn SetTextSelection(self: *const ISpRecoGrammar, pInfo: ?*const SPTEXTSELECTIONINFO) HRESULT {
         return self.vtable.SetTextSelection(self, pInfo);
     }
-    pub fn IsPronounceable(self: *const ISpRecoGrammar, pszWord: ?[*:0]const u16, pWordPronounceable: ?*SPWORDPRONOUNCEABLE) callconv(.Inline) HRESULT {
+    pub fn IsPronounceable(self: *const ISpRecoGrammar, pszWord: ?[*:0]const u16, pWordPronounceable: ?*SPWORDPRONOUNCEABLE) HRESULT {
         return self.vtable.IsPronounceable(self, pszWord, pWordPronounceable);
     }
-    pub fn SetGrammarState(self: *const ISpRecoGrammar, eGrammarState: SPGRAMMARSTATE) callconv(.Inline) HRESULT {
+    pub fn SetGrammarState(self: *const ISpRecoGrammar, eGrammarState: SPGRAMMARSTATE) HRESULT {
         return self.vtable.SetGrammarState(self, eGrammarState);
     }
-    pub fn SaveCmd(self: *const ISpRecoGrammar, pStream: ?*IStream, ppszCoMemErrorText: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn SaveCmd(self: *const ISpRecoGrammar, pStream: ?*IStream, ppszCoMemErrorText: ?*?PWSTR) HRESULT {
         return self.vtable.SaveCmd(self, pStream, ppszCoMemErrorText);
     }
-    pub fn GetGrammarState(self: *const ISpRecoGrammar, peGrammarState: ?*SPGRAMMARSTATE) callconv(.Inline) HRESULT {
+    pub fn GetGrammarState(self: *const ISpRecoGrammar, peGrammarState: ?*SPGRAMMARSTATE) HRESULT {
         return self.vtable.GetGrammarState(self, peGrammarState);
     }
 };
@@ -3078,18 +3078,18 @@ pub const ISpGrammarBuilder2 = extern union {
             hToState: ?*SPSTATEHANDLE__,
             psz: ?[*:0]const u16,
             eMatchMode: SPMATCHINGMODE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPhoneticAlphabet: *const fn(
             self: *const ISpGrammarBuilder2,
             phoneticALphabet: PHONETICALPHABET,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddTextSubset(self: *const ISpGrammarBuilder2, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, eMatchMode: SPMATCHINGMODE) callconv(.Inline) HRESULT {
+    pub fn AddTextSubset(self: *const ISpGrammarBuilder2, hFromState: ?*SPSTATEHANDLE__, hToState: ?*SPSTATEHANDLE__, psz: ?[*:0]const u16, eMatchMode: SPMATCHINGMODE) HRESULT {
         return self.vtable.AddTextSubset(self, hFromState, hToState, psz, eMatchMode);
     }
-    pub fn SetPhoneticAlphabet(self: *const ISpGrammarBuilder2, phoneticALphabet: PHONETICALPHABET) callconv(.Inline) HRESULT {
+    pub fn SetPhoneticAlphabet(self: *const ISpGrammarBuilder2, phoneticALphabet: PHONETICALPHABET) HRESULT {
         return self.vtable.SetPhoneticAlphabet(self, phoneticALphabet);
     }
 };
@@ -3103,70 +3103,70 @@ pub const ISpRecoGrammar2 = extern union {
             self: *const ISpRecoGrammar2,
             ppCoMemRules: ?*?*SPRULE,
             puNumRules: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCmdFromFile2: *const fn(
             self: *const ISpRecoGrammar2,
             pszFileName: ?[*:0]const u16,
             Options: SPLOADOPTIONS,
             pszSharingUri: ?[*:0]const u16,
             pszBaseUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         LoadCmdFromMemory2: *const fn(
             self: *const ISpRecoGrammar2,
             pGrammar: ?*const SPBINARYGRAMMAR,
             Options: SPLOADOPTIONS,
             pszSharingUri: ?[*:0]const u16,
             pszBaseUri: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRulePriority: *const fn(
             self: *const ISpRecoGrammar2,
             pszRuleName: ?[*:0]const u16,
             ulRuleId: u32,
             nRulePriority: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRuleWeight: *const fn(
             self: *const ISpRecoGrammar2,
             pszRuleName: ?[*:0]const u16,
             ulRuleId: u32,
             flWeight: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDictationWeight: *const fn(
             self: *const ISpRecoGrammar2,
             flWeight: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetGrammarLoader: *const fn(
             self: *const ISpRecoGrammar2,
             pLoader: ?*ISpeechResourceLoader,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSMLSecurityManager: *const fn(
             self: *const ISpRecoGrammar2,
             pSMLSecurityManager: ?*IInternetSecurityManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRules(self: *const ISpRecoGrammar2, ppCoMemRules: ?*?*SPRULE, puNumRules: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetRules(self: *const ISpRecoGrammar2, ppCoMemRules: ?*?*SPRULE, puNumRules: ?*u32) HRESULT {
         return self.vtable.GetRules(self, ppCoMemRules, puNumRules);
     }
-    pub fn LoadCmdFromFile2(self: *const ISpRecoGrammar2, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn LoadCmdFromFile2(self: *const ISpRecoGrammar2, pszFileName: ?[*:0]const u16, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) HRESULT {
         return self.vtable.LoadCmdFromFile2(self, pszFileName, Options, pszSharingUri, pszBaseUri);
     }
-    pub fn LoadCmdFromMemory2(self: *const ISpRecoGrammar2, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn LoadCmdFromMemory2(self: *const ISpRecoGrammar2, pGrammar: ?*const SPBINARYGRAMMAR, Options: SPLOADOPTIONS, pszSharingUri: ?[*:0]const u16, pszBaseUri: ?[*:0]const u16) HRESULT {
         return self.vtable.LoadCmdFromMemory2(self, pGrammar, Options, pszSharingUri, pszBaseUri);
     }
-    pub fn SetRulePriority(self: *const ISpRecoGrammar2, pszRuleName: ?[*:0]const u16, ulRuleId: u32, nRulePriority: i32) callconv(.Inline) HRESULT {
+    pub fn SetRulePriority(self: *const ISpRecoGrammar2, pszRuleName: ?[*:0]const u16, ulRuleId: u32, nRulePriority: i32) HRESULT {
         return self.vtable.SetRulePriority(self, pszRuleName, ulRuleId, nRulePriority);
     }
-    pub fn SetRuleWeight(self: *const ISpRecoGrammar2, pszRuleName: ?[*:0]const u16, ulRuleId: u32, flWeight: f32) callconv(.Inline) HRESULT {
+    pub fn SetRuleWeight(self: *const ISpRecoGrammar2, pszRuleName: ?[*:0]const u16, ulRuleId: u32, flWeight: f32) HRESULT {
         return self.vtable.SetRuleWeight(self, pszRuleName, ulRuleId, flWeight);
     }
-    pub fn SetDictationWeight(self: *const ISpRecoGrammar2, flWeight: f32) callconv(.Inline) HRESULT {
+    pub fn SetDictationWeight(self: *const ISpRecoGrammar2, flWeight: f32) HRESULT {
         return self.vtable.SetDictationWeight(self, flWeight);
     }
-    pub fn SetGrammarLoader(self: *const ISpRecoGrammar2, pLoader: ?*ISpeechResourceLoader) callconv(.Inline) HRESULT {
+    pub fn SetGrammarLoader(self: *const ISpRecoGrammar2, pLoader: ?*ISpeechResourceLoader) HRESULT {
         return self.vtable.SetGrammarLoader(self, pLoader);
     }
-    pub fn SetSMLSecurityManager(self: *const ISpRecoGrammar2, pSMLSecurityManager: ?*IInternetSecurityManager) callconv(.Inline) HRESULT {
+    pub fn SetSMLSecurityManager(self: *const ISpRecoGrammar2, pSMLSecurityManager: ?*IInternetSecurityManager) HRESULT {
         return self.vtable.SetSMLSecurityManager(self, pSMLSecurityManager);
     }
 };
@@ -3184,29 +3184,29 @@ pub const ISpeechResourceLoader = extern union {
             pbstrMIMEType: ?*?BSTR,
             pfModified: ?*i16,
             pbstrRedirectUrl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocalCopy: *const fn(
             self: *const ISpeechResourceLoader,
             bstrResourceUri: ?BSTR,
             pbstrLocalPath: ?*?BSTR,
             pbstrMIMEType: ?*?BSTR,
             pbstrRedirectUrl: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ReleaseLocalCopy: *const fn(
             self: *const ISpeechResourceLoader,
             pbstrLocalPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn LoadResource(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, fAlwaysReload: i16, pStream: ?*?*IUnknown, pbstrMIMEType: ?*?BSTR, pfModified: ?*i16, pbstrRedirectUrl: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn LoadResource(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, fAlwaysReload: i16, pStream: ?*?*IUnknown, pbstrMIMEType: ?*?BSTR, pfModified: ?*i16, pbstrRedirectUrl: ?*?BSTR) HRESULT {
         return self.vtable.LoadResource(self, bstrResourceUri, fAlwaysReload, pStream, pbstrMIMEType, pfModified, pbstrRedirectUrl);
     }
-    pub fn GetLocalCopy(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, pbstrLocalPath: ?*?BSTR, pbstrMIMEType: ?*?BSTR, pbstrRedirectUrl: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetLocalCopy(self: *const ISpeechResourceLoader, bstrResourceUri: ?BSTR, pbstrLocalPath: ?*?BSTR, pbstrMIMEType: ?*?BSTR, pbstrRedirectUrl: ?*?BSTR) HRESULT {
         return self.vtable.GetLocalCopy(self, bstrResourceUri, pbstrLocalPath, pbstrMIMEType, pbstrRedirectUrl);
     }
-    pub fn ReleaseLocalCopy(self: *const ISpeechResourceLoader, pbstrLocalPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn ReleaseLocalCopy(self: *const ISpeechResourceLoader, pbstrLocalPath: ?BSTR) HRESULT {
         return self.vtable.ReleaseLocalCopy(self, pbstrLocalPath);
     }
 };
@@ -3244,142 +3244,142 @@ pub const ISpRecoContext = extern union {
         GetRecognizer: *const fn(
             self: *const ISpRecoContext,
             ppRecognizer: ?*?*ISpRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGrammar: *const fn(
             self: *const ISpRecoContext,
             ullGrammarId: u64,
             ppGrammar: ?*?*ISpRecoGrammar,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ISpRecoContext,
             pStatus: ?*SPRECOCONTEXTSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxAlternates: *const fn(
             self: *const ISpRecoContext,
             pcAlternates: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxAlternates: *const fn(
             self: *const ISpRecoContext,
             cAlternates: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAudioOptions: *const fn(
             self: *const ISpRecoContext,
             Options: SPAUDIOOPTIONS,
             pAudioFormatId: ?*const Guid,
             pWaveFormatEx: ?*const WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioOptions: *const fn(
             self: *const ISpRecoContext,
             pOptions: ?*SPAUDIOOPTIONS,
             pAudioFormatId: ?*Guid,
             ppCoMemWFEX: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeserializeResult: *const fn(
             self: *const ISpRecoContext,
             pSerializedResult: ?*const SPSERIALIZEDRESULT,
             ppResult: ?*?*ISpRecoResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Bookmark: *const fn(
             self: *const ISpRecoContext,
             Options: SPBOOKMARKOPTIONS,
             ullStreamPosition: u64,
             lparamEvent: LPARAM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAdaptationData: *const fn(
             self: *const ISpRecoContext,
             pAdaptationData: ?[*:0]const u16,
             cch: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const ISpRecoContext,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const ISpRecoContext,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVoice: *const fn(
             self: *const ISpRecoContext,
             pVoice: ?*ISpVoice,
             fAllowFormatChanges: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVoice: *const fn(
             self: *const ISpRecoContext,
             ppVoice: ?*?*ISpVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVoicePurgeEvent: *const fn(
             self: *const ISpRecoContext,
             ullEventInterest: u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVoicePurgeEvent: *const fn(
             self: *const ISpRecoContext,
             pullEventInterest: ?*u64,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetContextState: *const fn(
             self: *const ISpRecoContext,
             eContextState: SPCONTEXTSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContextState: *const fn(
             self: *const ISpRecoContext,
             peContextState: ?*SPCONTEXTSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpEventSource: ISpEventSource,
     ISpNotifySource: ISpNotifySource,
     IUnknown: IUnknown,
-    pub fn GetRecognizer(self: *const ISpRecoContext, ppRecognizer: ?*?*ISpRecognizer) callconv(.Inline) HRESULT {
+    pub fn GetRecognizer(self: *const ISpRecoContext, ppRecognizer: ?*?*ISpRecognizer) HRESULT {
         return self.vtable.GetRecognizer(self, ppRecognizer);
     }
-    pub fn CreateGrammar(self: *const ISpRecoContext, ullGrammarId: u64, ppGrammar: ?*?*ISpRecoGrammar) callconv(.Inline) HRESULT {
+    pub fn CreateGrammar(self: *const ISpRecoContext, ullGrammarId: u64, ppGrammar: ?*?*ISpRecoGrammar) HRESULT {
         return self.vtable.CreateGrammar(self, ullGrammarId, ppGrammar);
     }
-    pub fn GetStatus(self: *const ISpRecoContext, pStatus: ?*SPRECOCONTEXTSTATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const ISpRecoContext, pStatus: ?*SPRECOCONTEXTSTATUS) HRESULT {
         return self.vtable.GetStatus(self, pStatus);
     }
-    pub fn GetMaxAlternates(self: *const ISpRecoContext, pcAlternates: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMaxAlternates(self: *const ISpRecoContext, pcAlternates: ?*u32) HRESULT {
         return self.vtable.GetMaxAlternates(self, pcAlternates);
     }
-    pub fn SetMaxAlternates(self: *const ISpRecoContext, cAlternates: u32) callconv(.Inline) HRESULT {
+    pub fn SetMaxAlternates(self: *const ISpRecoContext, cAlternates: u32) HRESULT {
         return self.vtable.SetMaxAlternates(self, cAlternates);
     }
-    pub fn SetAudioOptions(self: *const ISpRecoContext, Options: SPAUDIOOPTIONS, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetAudioOptions(self: *const ISpRecoContext, Options: SPAUDIOOPTIONS, pAudioFormatId: ?*const Guid, pWaveFormatEx: ?*const WAVEFORMATEX) HRESULT {
         return self.vtable.SetAudioOptions(self, Options, pAudioFormatId, pWaveFormatEx);
     }
-    pub fn GetAudioOptions(self: *const ISpRecoContext, pOptions: ?*SPAUDIOOPTIONS, pAudioFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetAudioOptions(self: *const ISpRecoContext, pOptions: ?*SPAUDIOOPTIONS, pAudioFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) HRESULT {
         return self.vtable.GetAudioOptions(self, pOptions, pAudioFormatId, ppCoMemWFEX);
     }
-    pub fn DeserializeResult(self: *const ISpRecoContext, pSerializedResult: ?*const SPSERIALIZEDRESULT, ppResult: ?*?*ISpRecoResult) callconv(.Inline) HRESULT {
+    pub fn DeserializeResult(self: *const ISpRecoContext, pSerializedResult: ?*const SPSERIALIZEDRESULT, ppResult: ?*?*ISpRecoResult) HRESULT {
         return self.vtable.DeserializeResult(self, pSerializedResult, ppResult);
     }
-    pub fn Bookmark(self: *const ISpRecoContext, Options: SPBOOKMARKOPTIONS, ullStreamPosition: u64, lparamEvent: LPARAM) callconv(.Inline) HRESULT {
+    pub fn Bookmark(self: *const ISpRecoContext, Options: SPBOOKMARKOPTIONS, ullStreamPosition: u64, lparamEvent: LPARAM) HRESULT {
         return self.vtable.Bookmark(self, Options, ullStreamPosition, lparamEvent);
     }
-    pub fn SetAdaptationData(self: *const ISpRecoContext, pAdaptationData: ?[*:0]const u16, cch: u32) callconv(.Inline) HRESULT {
+    pub fn SetAdaptationData(self: *const ISpRecoContext, pAdaptationData: ?[*:0]const u16, cch: u32) HRESULT {
         return self.vtable.SetAdaptationData(self, pAdaptationData, cch);
     }
-    pub fn Pause(self: *const ISpRecoContext, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const ISpRecoContext, dwReserved: u32) HRESULT {
         return self.vtable.Pause(self, dwReserved);
     }
-    pub fn Resume(self: *const ISpRecoContext, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const ISpRecoContext, dwReserved: u32) HRESULT {
         return self.vtable.Resume(self, dwReserved);
     }
-    pub fn SetVoice(self: *const ISpRecoContext, pVoice: ?*ISpVoice, fAllowFormatChanges: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetVoice(self: *const ISpRecoContext, pVoice: ?*ISpVoice, fAllowFormatChanges: BOOL) HRESULT {
         return self.vtable.SetVoice(self, pVoice, fAllowFormatChanges);
     }
-    pub fn GetVoice(self: *const ISpRecoContext, ppVoice: ?*?*ISpVoice) callconv(.Inline) HRESULT {
+    pub fn GetVoice(self: *const ISpRecoContext, ppVoice: ?*?*ISpVoice) HRESULT {
         return self.vtable.GetVoice(self, ppVoice);
     }
-    pub fn SetVoicePurgeEvent(self: *const ISpRecoContext, ullEventInterest: u64) callconv(.Inline) HRESULT {
+    pub fn SetVoicePurgeEvent(self: *const ISpRecoContext, ullEventInterest: u64) HRESULT {
         return self.vtable.SetVoicePurgeEvent(self, ullEventInterest);
     }
-    pub fn GetVoicePurgeEvent(self: *const ISpRecoContext, pullEventInterest: ?*u64) callconv(.Inline) HRESULT {
+    pub fn GetVoicePurgeEvent(self: *const ISpRecoContext, pullEventInterest: ?*u64) HRESULT {
         return self.vtable.GetVoicePurgeEvent(self, pullEventInterest);
     }
-    pub fn SetContextState(self: *const ISpRecoContext, eContextState: SPCONTEXTSTATE) callconv(.Inline) HRESULT {
+    pub fn SetContextState(self: *const ISpRecoContext, eContextState: SPCONTEXTSTATE) HRESULT {
         return self.vtable.SetContextState(self, eContextState);
     }
-    pub fn GetContextState(self: *const ISpRecoContext, peContextState: ?*SPCONTEXTSTATE) callconv(.Inline) HRESULT {
+    pub fn GetContextState(self: *const ISpRecoContext, peContextState: ?*SPCONTEXTSTATE) HRESULT {
         return self.vtable.GetContextState(self, peContextState);
     }
 };
@@ -3447,11 +3447,11 @@ pub const ISpRecoContext2 = extern union {
         SetGrammarOptions: *const fn(
             self: *const ISpRecoContext2,
             eGrammarOptions: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGrammarOptions: *const fn(
             self: *const ISpRecoContext2,
             peGrammarOptions: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAdaptationData2: *const fn(
             self: *const ISpRecoContext2,
             pAdaptationData: ?[*:0]const u16,
@@ -3459,17 +3459,17 @@ pub const ISpRecoContext2 = extern union {
             pTopicName: ?[*:0]const u16,
             eAdaptationSettings: u32,
             eRelevance: SPADAPTATIONRELEVANCE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetGrammarOptions(self: *const ISpRecoContext2, eGrammarOptions: u32) callconv(.Inline) HRESULT {
+    pub fn SetGrammarOptions(self: *const ISpRecoContext2, eGrammarOptions: u32) HRESULT {
         return self.vtable.SetGrammarOptions(self, eGrammarOptions);
     }
-    pub fn GetGrammarOptions(self: *const ISpRecoContext2, peGrammarOptions: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetGrammarOptions(self: *const ISpRecoContext2, peGrammarOptions: ?*u32) HRESULT {
         return self.vtable.GetGrammarOptions(self, peGrammarOptions);
     }
-    pub fn SetAdaptationData2(self: *const ISpRecoContext2, pAdaptationData: ?[*:0]const u16, cch: u32, pTopicName: ?[*:0]const u16, eAdaptationSettings: u32, eRelevance: SPADAPTATIONRELEVANCE) callconv(.Inline) HRESULT {
+    pub fn SetAdaptationData2(self: *const ISpRecoContext2, pAdaptationData: ?[*:0]const u16, cch: u32, pTopicName: ?[*:0]const u16, eAdaptationSettings: u32, eRelevance: SPADAPTATIONRELEVANCE) HRESULT {
         return self.vtable.SetAdaptationData2(self, pAdaptationData, cch, pTopicName, eAdaptationSettings, eRelevance);
     }
 };
@@ -3483,35 +3483,35 @@ pub const ISpProperties = extern union {
             self: *const ISpProperties,
             pName: ?[*:0]const u16,
             lValue: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyNum: *const fn(
             self: *const ISpProperties,
             pName: ?[*:0]const u16,
             plValue: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPropertyString: *const fn(
             self: *const ISpProperties,
             pName: ?[*:0]const u16,
             pValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyString: *const fn(
             self: *const ISpProperties,
             pName: ?[*:0]const u16,
             ppCoMemValue: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetPropertyNum(self: *const ISpProperties, pName: ?[*:0]const u16, lValue: i32) callconv(.Inline) HRESULT {
+    pub fn SetPropertyNum(self: *const ISpProperties, pName: ?[*:0]const u16, lValue: i32) HRESULT {
         return self.vtable.SetPropertyNum(self, pName, lValue);
     }
-    pub fn GetPropertyNum(self: *const ISpProperties, pName: ?[*:0]const u16, plValue: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyNum(self: *const ISpProperties, pName: ?[*:0]const u16, plValue: ?*i32) HRESULT {
         return self.vtable.GetPropertyNum(self, pName, plValue);
     }
-    pub fn SetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, pValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, pValue: ?[*:0]const u16) HRESULT {
         return self.vtable.SetPropertyString(self, pName, pValue);
     }
-    pub fn GetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, ppCoMemValue: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetPropertyString(self: *const ISpProperties, pName: ?[*:0]const u16, ppCoMemValue: ?*?PWSTR) HRESULT {
         return self.vtable.GetPropertyString(self, pName, ppCoMemValue);
     }
 };
@@ -3555,64 +3555,64 @@ pub const ISpRecognizer = extern union {
         SetRecognizer: *const fn(
             self: *const ISpRecognizer,
             pRecognizer: ?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecognizer: *const fn(
             self: *const ISpRecognizer,
             ppRecognizer: ?*?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetInput: *const fn(
             self: *const ISpRecognizer,
             pUnkInput: ?*IUnknown,
             fAllowFormatChanges: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputObjectToken: *const fn(
             self: *const ISpRecognizer,
             ppToken: ?*?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInputStream: *const fn(
             self: *const ISpRecognizer,
             ppStream: ?*?*ISpStreamFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRecoContext: *const fn(
             self: *const ISpRecognizer,
             ppNewCtxt: ?*?*ISpRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecoProfile: *const fn(
             self: *const ISpRecognizer,
             ppToken: ?*?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRecoProfile: *const fn(
             self: *const ISpRecognizer,
             pToken: ?*ISpObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsSharedInstance: *const fn(
             self: *const ISpRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecoState: *const fn(
             self: *const ISpRecognizer,
             pState: ?*SPRECOSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRecoState: *const fn(
             self: *const ISpRecognizer,
             NewState: SPRECOSTATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const ISpRecognizer,
             pStatus: ?*SPRECOGNIZERSTATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const ISpRecognizer,
             WaveFormatType: SPWAVEFORMATTYPE,
             pFormatId: ?*Guid,
             ppCoMemWFEX: ?*?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUISupported: *const fn(
             self: *const ISpRecognizer,
             pszTypeOfUI: ?[*:0]const u16,
             pvExtraData: ?*anyopaque,
             cbExtraData: u32,
             pfSupported: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpRecognizer,
             hwndParent: ?HWND,
@@ -3620,61 +3620,61 @@ pub const ISpRecognizer = extern union {
             pszTypeOfUI: ?[*:0]const u16,
             pvExtraData: ?*anyopaque,
             cbExtraData: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EmulateRecognition: *const fn(
             self: *const ISpRecognizer,
             pPhrase: ?*ISpPhrase,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpProperties: ISpProperties,
     IUnknown: IUnknown,
-    pub fn SetRecognizer(self: *const ISpRecognizer, pRecognizer: ?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn SetRecognizer(self: *const ISpRecognizer, pRecognizer: ?*ISpObjectToken) HRESULT {
         return self.vtable.SetRecognizer(self, pRecognizer);
     }
-    pub fn GetRecognizer(self: *const ISpRecognizer, ppRecognizer: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn GetRecognizer(self: *const ISpRecognizer, ppRecognizer: ?*?*ISpObjectToken) HRESULT {
         return self.vtable.GetRecognizer(self, ppRecognizer);
     }
-    pub fn SetInput(self: *const ISpRecognizer, pUnkInput: ?*IUnknown, fAllowFormatChanges: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetInput(self: *const ISpRecognizer, pUnkInput: ?*IUnknown, fAllowFormatChanges: BOOL) HRESULT {
         return self.vtable.SetInput(self, pUnkInput, fAllowFormatChanges);
     }
-    pub fn GetInputObjectToken(self: *const ISpRecognizer, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn GetInputObjectToken(self: *const ISpRecognizer, ppToken: ?*?*ISpObjectToken) HRESULT {
         return self.vtable.GetInputObjectToken(self, ppToken);
     }
-    pub fn GetInputStream(self: *const ISpRecognizer, ppStream: ?*?*ISpStreamFormat) callconv(.Inline) HRESULT {
+    pub fn GetInputStream(self: *const ISpRecognizer, ppStream: ?*?*ISpStreamFormat) HRESULT {
         return self.vtable.GetInputStream(self, ppStream);
     }
-    pub fn CreateRecoContext(self: *const ISpRecognizer, ppNewCtxt: ?*?*ISpRecoContext) callconv(.Inline) HRESULT {
+    pub fn CreateRecoContext(self: *const ISpRecognizer, ppNewCtxt: ?*?*ISpRecoContext) HRESULT {
         return self.vtable.CreateRecoContext(self, ppNewCtxt);
     }
-    pub fn GetRecoProfile(self: *const ISpRecognizer, ppToken: ?*?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn GetRecoProfile(self: *const ISpRecognizer, ppToken: ?*?*ISpObjectToken) HRESULT {
         return self.vtable.GetRecoProfile(self, ppToken);
     }
-    pub fn SetRecoProfile(self: *const ISpRecognizer, pToken: ?*ISpObjectToken) callconv(.Inline) HRESULT {
+    pub fn SetRecoProfile(self: *const ISpRecognizer, pToken: ?*ISpObjectToken) HRESULT {
         return self.vtable.SetRecoProfile(self, pToken);
     }
-    pub fn IsSharedInstance(self: *const ISpRecognizer) callconv(.Inline) HRESULT {
+    pub fn IsSharedInstance(self: *const ISpRecognizer) HRESULT {
         return self.vtable.IsSharedInstance(self);
     }
-    pub fn GetRecoState(self: *const ISpRecognizer, pState: ?*SPRECOSTATE) callconv(.Inline) HRESULT {
+    pub fn GetRecoState(self: *const ISpRecognizer, pState: ?*SPRECOSTATE) HRESULT {
         return self.vtable.GetRecoState(self, pState);
     }
-    pub fn SetRecoState(self: *const ISpRecognizer, NewState: SPRECOSTATE) callconv(.Inline) HRESULT {
+    pub fn SetRecoState(self: *const ISpRecognizer, NewState: SPRECOSTATE) HRESULT {
         return self.vtable.SetRecoState(self, NewState);
     }
-    pub fn GetStatus(self: *const ISpRecognizer, pStatus: ?*SPRECOGNIZERSTATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const ISpRecognizer, pStatus: ?*SPRECOGNIZERSTATUS) HRESULT {
         return self.vtable.GetStatus(self, pStatus);
     }
-    pub fn GetFormat(self: *const ISpRecognizer, WaveFormatType: SPWAVEFORMATTYPE, pFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const ISpRecognizer, WaveFormatType: SPWAVEFORMATTYPE, pFormatId: ?*Guid, ppCoMemWFEX: ?*?*WAVEFORMATEX) HRESULT {
         return self.vtable.GetFormat(self, WaveFormatType, pFormatId, ppCoMemWFEX);
     }
-    pub fn IsUISupported(self: *const ISpRecognizer, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn IsUISupported(self: *const ISpRecognizer, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32, pfSupported: ?*BOOL) HRESULT {
         return self.vtable.IsUISupported(self, pszTypeOfUI, pvExtraData, cbExtraData, pfSupported);
     }
-    pub fn DisplayUI(self: *const ISpRecognizer, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) callconv(.Inline) HRESULT {
+    pub fn DisplayUI(self: *const ISpRecognizer, hwndParent: ?HWND, pszTitle: ?[*:0]const u16, pszTypeOfUI: ?[*:0]const u16, pvExtraData: ?*anyopaque, cbExtraData: u32) HRESULT {
         return self.vtable.DisplayUI(self, hwndParent, pszTitle, pszTypeOfUI, pvExtraData, cbExtraData);
     }
-    pub fn EmulateRecognition(self: *const ISpRecognizer, pPhrase: ?*ISpPhrase) callconv(.Inline) HRESULT {
+    pub fn EmulateRecognition(self: *const ISpRecognizer, pPhrase: ?*ISpPhrase) HRESULT {
         return self.vtable.EmulateRecognition(self, pPhrase);
     }
 };
@@ -3689,20 +3689,20 @@ pub const ISpSerializeState = extern union {
             ppbData: ?*?*u8,
             pulSize: ?*u32,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSerializedState: *const fn(
             self: *const ISpSerializeState,
             pbData: ?*u8,
             ulSize: u32,
             dwReserved: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetSerializedState(self: *const ISpSerializeState, ppbData: ?*?*u8, pulSize: ?*u32, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn GetSerializedState(self: *const ISpSerializeState, ppbData: ?*?*u8, pulSize: ?*u32, dwReserved: u32) HRESULT {
         return self.vtable.GetSerializedState(self, ppbData, pulSize, dwReserved);
     }
-    pub fn SetSerializedState(self: *const ISpSerializeState, pbData: ?*u8, ulSize: u32, dwReserved: u32) callconv(.Inline) HRESULT {
+    pub fn SetSerializedState(self: *const ISpSerializeState, pbData: ?*u8, ulSize: u32, dwReserved: u32) HRESULT {
         return self.vtable.SetSerializedState(self, pbData, ulSize, dwReserved);
     }
 };
@@ -3716,25 +3716,25 @@ pub const ISpRecognizer2 = extern union {
             self: *const ISpRecognizer2,
             pPhrase: ?*ISpPhrase,
             dwCompareFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTrainingState: *const fn(
             self: *const ISpRecognizer2,
             fDoingTraining: BOOL,
             fAdaptFromTrainingData: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ResetAcousticModelAdaptation: *const fn(
             self: *const ISpRecognizer2,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn EmulateRecognitionEx(self: *const ISpRecognizer2, pPhrase: ?*ISpPhrase, dwCompareFlags: u32) callconv(.Inline) HRESULT {
+    pub fn EmulateRecognitionEx(self: *const ISpRecognizer2, pPhrase: ?*ISpPhrase, dwCompareFlags: u32) HRESULT {
         return self.vtable.EmulateRecognitionEx(self, pPhrase, dwCompareFlags);
     }
-    pub fn SetTrainingState(self: *const ISpRecognizer2, fDoingTraining: BOOL, fAdaptFromTrainingData: BOOL) callconv(.Inline) HRESULT {
+    pub fn SetTrainingState(self: *const ISpRecognizer2, fDoingTraining: BOOL, fAdaptFromTrainingData: BOOL) HRESULT {
         return self.vtable.SetTrainingState(self, fDoingTraining, fAdaptFromTrainingData);
     }
-    pub fn ResetAcousticModelAdaptation(self: *const ISpRecognizer2) callconv(.Inline) HRESULT {
+    pub fn ResetAcousticModelAdaptation(self: *const ISpRecognizer2) HRESULT {
         return self.vtable.ResetAcousticModelAdaptation(self);
     }
 };
@@ -3756,7 +3756,7 @@ pub const ISpEnginePronunciation = extern union {
             pszRightContext: ?[*:0]const u16,
             LangID: u16,
             pNormalizationList: ?*SPNORMALIZATIONLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPronunciations: *const fn(
             self: *const ISpEnginePronunciation,
             pszWord: ?[*:0]const u16,
@@ -3764,14 +3764,14 @@ pub const ISpEnginePronunciation = extern union {
             pszRightContext: ?[*:0]const u16,
             LangID: u16,
             pEnginePronunciationList: ?*SPWORDPRONUNCIATIONLIST,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Normalize(self: *const ISpEnginePronunciation, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pNormalizationList: ?*SPNORMALIZATIONLIST) callconv(.Inline) HRESULT {
+    pub fn Normalize(self: *const ISpEnginePronunciation, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pNormalizationList: ?*SPNORMALIZATIONLIST) HRESULT {
         return self.vtable.Normalize(self, pszWord, pszLeftContext, pszRightContext, LangID, pNormalizationList);
     }
-    pub fn GetPronunciations(self: *const ISpEnginePronunciation, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pEnginePronunciationList: ?*SPWORDPRONUNCIATIONLIST) callconv(.Inline) HRESULT {
+    pub fn GetPronunciations(self: *const ISpEnginePronunciation, pszWord: ?[*:0]const u16, pszLeftContext: ?[*:0]const u16, pszRightContext: ?[*:0]const u16, LangID: u16, pEnginePronunciationList: ?*SPWORDPRONUNCIATIONLIST) HRESULT {
         return self.vtable.GetPronunciations(self, pszWord, pszLeftContext, pszRightContext, LangID, pEnginePronunciationList);
     }
 };
@@ -3798,18 +3798,18 @@ pub const ISpDisplayAlternates = extern union {
             cRequestCount: u32,
             ppCoMemPhrases: ?*?*SPDISPLAYPHRASE,
             pcPhrasesReturned: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFullStopTrailSpace: *const fn(
             self: *const ISpDisplayAlternates,
             ulTrailSpace: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDisplayAlternates(self: *const ISpDisplayAlternates, pPhrase: ?*const SPDISPLAYPHRASE, cRequestCount: u32, ppCoMemPhrases: ?*?*SPDISPLAYPHRASE, pcPhrasesReturned: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetDisplayAlternates(self: *const ISpDisplayAlternates, pPhrase: ?*const SPDISPLAYPHRASE, cRequestCount: u32, ppCoMemPhrases: ?*?*SPDISPLAYPHRASE, pcPhrasesReturned: ?*u32) HRESULT {
         return self.vtable.GetDisplayAlternates(self, pPhrase, cRequestCount, ppCoMemPhrases, pcPhrasesReturned);
     }
-    pub fn SetFullStopTrailSpace(self: *const ISpDisplayAlternates, ulTrailSpace: u32) callconv(.Inline) HRESULT {
+    pub fn SetFullStopTrailSpace(self: *const ISpDisplayAlternates, ulTrailSpace: u32) HRESULT {
         return self.vtable.SetFullStopTrailSpace(self, ulTrailSpace);
     }
 };
@@ -5289,98 +5289,98 @@ pub const ISpeechDataKey = extern union {
             self: *const ISpeechDataKey,
             ValueName: ?BSTR,
             Value: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBinaryValue: *const fn(
             self: *const ISpeechDataKey,
             ValueName: ?BSTR,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetStringValue: *const fn(
             self: *const ISpeechDataKey,
             ValueName: ?BSTR,
             Value: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringValue: *const fn(
             self: *const ISpeechDataKey,
             ValueName: ?BSTR,
             Value: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLongValue: *const fn(
             self: *const ISpeechDataKey,
             ValueName: ?BSTR,
             Value: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLongValue: *const fn(
             self: *const ISpeechDataKey,
             ValueName: ?BSTR,
             Value: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenKey: *const fn(
             self: *const ISpeechDataKey,
             SubKeyName: ?BSTR,
             SubKey: ?*?*ISpeechDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateKey: *const fn(
             self: *const ISpeechDataKey,
             SubKeyName: ?BSTR,
             SubKey: ?*?*ISpeechDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteKey: *const fn(
             self: *const ISpeechDataKey,
             SubKeyName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteValue: *const fn(
             self: *const ISpeechDataKey,
             ValueName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumKeys: *const fn(
             self: *const ISpeechDataKey,
             Index: i32,
             SubKeyName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumValues: *const fn(
             self: *const ISpeechDataKey,
             Index: i32,
             ValueName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetBinaryValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetBinaryValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: VARIANT) HRESULT {
         return self.vtable.SetBinaryValue(self, ValueName, Value);
     }
-    pub fn GetBinaryValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetBinaryValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*VARIANT) HRESULT {
         return self.vtable.GetBinaryValue(self, ValueName, Value);
     }
-    pub fn SetStringValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetStringValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?BSTR) HRESULT {
         return self.vtable.SetStringValue(self, ValueName, Value);
     }
-    pub fn GetStringValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetStringValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*?BSTR) HRESULT {
         return self.vtable.GetStringValue(self, ValueName, Value);
     }
-    pub fn SetLongValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: i32) callconv(.Inline) HRESULT {
+    pub fn SetLongValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: i32) HRESULT {
         return self.vtable.SetLongValue(self, ValueName, Value);
     }
-    pub fn GetLongValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetLongValue(self: *const ISpeechDataKey, ValueName: ?BSTR, Value: ?*i32) HRESULT {
         return self.vtable.GetLongValue(self, ValueName, Value);
     }
-    pub fn OpenKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+    pub fn OpenKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) HRESULT {
         return self.vtable.OpenKey(self, SubKeyName, SubKey);
     }
-    pub fn CreateKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+    pub fn CreateKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR, SubKey: ?*?*ISpeechDataKey) HRESULT {
         return self.vtable.CreateKey(self, SubKeyName, SubKey);
     }
-    pub fn DeleteKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteKey(self: *const ISpeechDataKey, SubKeyName: ?BSTR) HRESULT {
         return self.vtable.DeleteKey(self, SubKeyName);
     }
-    pub fn DeleteValue(self: *const ISpeechDataKey, ValueName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn DeleteValue(self: *const ISpeechDataKey, ValueName: ?BSTR) HRESULT {
         return self.vtable.DeleteValue(self, ValueName);
     }
-    pub fn EnumKeys(self: *const ISpeechDataKey, Index: i32, SubKeyName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn EnumKeys(self: *const ISpeechDataKey, Index: i32, SubKeyName: ?*?BSTR) HRESULT {
         return self.vtable.EnumKeys(self, Index, SubKeyName);
     }
-    pub fn EnumValues(self: *const ISpeechDataKey, Index: i32, ValueName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn EnumValues(self: *const ISpeechDataKey, Index: i32, ValueName: ?*?BSTR) HRESULT {
         return self.vtable.EnumValues(self, Index, ValueName);
     }
 };
@@ -5394,43 +5394,43 @@ pub const ISpeechObjectToken = extern union {
         get_Id: *const fn(
             self: *const ISpeechObjectToken,
             ObjectId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataKey: *const fn(
             self: *const ISpeechObjectToken,
             DataKey: ?*?*ISpeechDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Category: *const fn(
             self: *const ISpeechObjectToken,
             Category: ?*?*ISpeechObjectTokenCategory,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDescription: *const fn(
             self: *const ISpeechObjectToken,
             Locale: i32,
             Description: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetId: *const fn(
             self: *const ISpeechObjectToken,
             Id: ?BSTR,
             CategoryID: ?BSTR,
             CreateIfNotExist: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttribute: *const fn(
             self: *const ISpeechObjectToken,
             AttributeName: ?BSTR,
             AttributeValue: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateInstance: *const fn(
             self: *const ISpeechObjectToken,
             pUnkOuter: ?*IUnknown,
             ClsContext: SpeechTokenContext,
             Object: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const ISpeechObjectToken,
             ObjectStorageCLSID: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStorageFileName: *const fn(
             self: *const ISpeechObjectToken,
             ObjectStorageCLSID: ?BSTR,
@@ -5438,20 +5438,20 @@ pub const ISpeechObjectToken = extern union {
             FileName: ?BSTR,
             Folder: SpeechTokenShellFolder,
             FilePath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveStorageFileName: *const fn(
             self: *const ISpeechObjectToken,
             ObjectStorageCLSID: ?BSTR,
             KeyName: ?BSTR,
             DeleteFileA: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUISupported: *const fn(
             self: *const ISpeechObjectToken,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
             Object: ?*IUnknown,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpeechObjectToken,
             hWnd: i32,
@@ -5459,53 +5459,53 @@ pub const ISpeechObjectToken = extern union {
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
             Object: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MatchesAttributes: *const fn(
             self: *const ISpeechObjectToken,
             Attributes: ?BSTR,
             Matches: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const ISpeechObjectToken, ObjectId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpeechObjectToken, ObjectId: ?*?BSTR) HRESULT {
         return self.vtable.get_Id(self, ObjectId);
     }
-    pub fn get_DataKey(self: *const ISpeechObjectToken, DataKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+    pub fn get_DataKey(self: *const ISpeechObjectToken, DataKey: ?*?*ISpeechDataKey) HRESULT {
         return self.vtable.get_DataKey(self, DataKey);
     }
-    pub fn get_Category(self: *const ISpeechObjectToken, Category: ?*?*ISpeechObjectTokenCategory) callconv(.Inline) HRESULT {
+    pub fn get_Category(self: *const ISpeechObjectToken, Category: ?*?*ISpeechObjectTokenCategory) HRESULT {
         return self.vtable.get_Category(self, Category);
     }
-    pub fn GetDescription(self: *const ISpeechObjectToken, Locale: i32, Description: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetDescription(self: *const ISpeechObjectToken, Locale: i32, Description: ?*?BSTR) HRESULT {
         return self.vtable.GetDescription(self, Locale, Description);
     }
-    pub fn SetId(self: *const ISpeechObjectToken, Id: ?BSTR, CategoryID: ?BSTR, CreateIfNotExist: i16) callconv(.Inline) HRESULT {
+    pub fn SetId(self: *const ISpeechObjectToken, Id: ?BSTR, CategoryID: ?BSTR, CreateIfNotExist: i16) HRESULT {
         return self.vtable.SetId(self, Id, CategoryID, CreateIfNotExist);
     }
-    pub fn GetAttribute(self: *const ISpeechObjectToken, AttributeName: ?BSTR, AttributeValue: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetAttribute(self: *const ISpeechObjectToken, AttributeName: ?BSTR, AttributeValue: ?*?BSTR) HRESULT {
         return self.vtable.GetAttribute(self, AttributeName, AttributeValue);
     }
-    pub fn CreateInstance(self: *const ISpeechObjectToken, pUnkOuter: ?*IUnknown, ClsContext: SpeechTokenContext, Object: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateInstance(self: *const ISpeechObjectToken, pUnkOuter: ?*IUnknown, ClsContext: SpeechTokenContext, Object: ?*?*IUnknown) HRESULT {
         return self.vtable.CreateInstance(self, pUnkOuter, ClsContext, Object);
     }
-    pub fn Remove(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR) HRESULT {
         return self.vtable.Remove(self, ObjectStorageCLSID);
     }
-    pub fn GetStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, FileName: ?BSTR, Folder: SpeechTokenShellFolder, FilePath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, FileName: ?BSTR, Folder: SpeechTokenShellFolder, FilePath: ?*?BSTR) HRESULT {
         return self.vtable.GetStorageFileName(self, ObjectStorageCLSID, KeyName, FileName, Folder, FilePath);
     }
-    pub fn RemoveStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, DeleteFileA: i16) callconv(.Inline) HRESULT {
+    pub fn RemoveStorageFileName(self: *const ISpeechObjectToken, ObjectStorageCLSID: ?BSTR, KeyName: ?BSTR, DeleteFileA: i16) HRESULT {
         return self.vtable.RemoveStorageFileName(self, ObjectStorageCLSID, KeyName, DeleteFileA);
     }
-    pub fn IsUISupported(self: *const ISpeechObjectToken, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown, Supported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsUISupported(self: *const ISpeechObjectToken, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown, Supported: ?*i16) HRESULT {
         return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Object, Supported);
     }
-    pub fn DisplayUI(self: *const ISpeechObjectToken, hWnd: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn DisplayUI(self: *const ISpeechObjectToken, hWnd: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Object: ?*IUnknown) HRESULT {
         return self.vtable.DisplayUI(self, hWnd, Title, TypeOfUI, ExtraData, Object);
     }
-    pub fn MatchesAttributes(self: *const ISpeechObjectToken, Attributes: ?BSTR, Matches: ?*i16) callconv(.Inline) HRESULT {
+    pub fn MatchesAttributes(self: *const ISpeechObjectToken, Attributes: ?BSTR, Matches: ?*i16) HRESULT {
         return self.vtable.MatchesAttributes(self, Attributes, Matches);
     }
 };
@@ -5519,28 +5519,28 @@ pub const ISpeechObjectTokens = extern union {
         get_Count: *const fn(
             self: *const ISpeechObjectTokens,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechObjectTokens,
             Index: i32,
             Token: ?*?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechObjectTokens,
             ppEnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechObjectTokens, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechObjectTokens, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechObjectTokens, Index: i32, Token: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechObjectTokens, Index: i32, Token: ?*?*ISpeechObjectToken) HRESULT {
         return self.vtable.Item(self, Index, Token);
     }
-    pub fn get__NewEnum(self: *const ISpeechObjectTokens, ppEnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechObjectTokens, ppEnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, ppEnumVARIANT);
     }
 };
@@ -5554,53 +5554,53 @@ pub const ISpeechObjectTokenCategory = extern union {
         get_Id: *const fn(
             self: *const ISpeechObjectTokenCategory,
             Id: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Default: *const fn(
             self: *const ISpeechObjectTokenCategory,
             TokenId: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Default: *const fn(
             self: *const ISpeechObjectTokenCategory,
             TokenId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetId: *const fn(
             self: *const ISpeechObjectTokenCategory,
             Id: ?BSTR,
             CreateIfNotExist: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDataKey: *const fn(
             self: *const ISpeechObjectTokenCategory,
             Location: SpeechDataKeyLocation,
             DataKey: ?*?*ISpeechDataKey,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnumerateTokens: *const fn(
             self: *const ISpeechObjectTokenCategory,
             RequiredAttributes: ?BSTR,
             OptionalAttributes: ?BSTR,
             Tokens: ?*?*ISpeechObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const ISpeechObjectTokenCategory, Id: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpeechObjectTokenCategory, Id: ?*?BSTR) HRESULT {
         return self.vtable.get_Id(self, Id);
     }
-    pub fn put_Default(self: *const ISpeechObjectTokenCategory, TokenId: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Default(self: *const ISpeechObjectTokenCategory, TokenId: ?BSTR) HRESULT {
         return self.vtable.put_Default(self, TokenId);
     }
-    pub fn get_Default(self: *const ISpeechObjectTokenCategory, TokenId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Default(self: *const ISpeechObjectTokenCategory, TokenId: ?*?BSTR) HRESULT {
         return self.vtable.get_Default(self, TokenId);
     }
-    pub fn SetId(self: *const ISpeechObjectTokenCategory, Id: ?BSTR, CreateIfNotExist: i16) callconv(.Inline) HRESULT {
+    pub fn SetId(self: *const ISpeechObjectTokenCategory, Id: ?BSTR, CreateIfNotExist: i16) HRESULT {
         return self.vtable.SetId(self, Id, CreateIfNotExist);
     }
-    pub fn GetDataKey(self: *const ISpeechObjectTokenCategory, Location: SpeechDataKeyLocation, DataKey: ?*?*ISpeechDataKey) callconv(.Inline) HRESULT {
+    pub fn GetDataKey(self: *const ISpeechObjectTokenCategory, Location: SpeechDataKeyLocation, DataKey: ?*?*ISpeechDataKey) HRESULT {
         return self.vtable.GetDataKey(self, Location, DataKey);
     }
-    pub fn EnumerateTokens(self: *const ISpeechObjectTokenCategory, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, Tokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+    pub fn EnumerateTokens(self: *const ISpeechObjectTokenCategory, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, Tokens: ?*?*ISpeechObjectTokens) HRESULT {
         return self.vtable.EnumerateTokens(self, RequiredAttributes, OptionalAttributes, Tokens);
     }
 };
@@ -5614,52 +5614,52 @@ pub const ISpeechAudioBufferInfo = extern union {
         get_MinNotification: *const fn(
             self: *const ISpeechAudioBufferInfo,
             MinNotification: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MinNotification: *const fn(
             self: *const ISpeechAudioBufferInfo,
             MinNotification: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferSize: *const fn(
             self: *const ISpeechAudioBufferInfo,
             BufferSize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferSize: *const fn(
             self: *const ISpeechAudioBufferInfo,
             BufferSize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventBias: *const fn(
             self: *const ISpeechAudioBufferInfo,
             EventBias: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventBias: *const fn(
             self: *const ISpeechAudioBufferInfo,
             EventBias: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_MinNotification(self: *const ISpeechAudioBufferInfo, MinNotification: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MinNotification(self: *const ISpeechAudioBufferInfo, MinNotification: ?*i32) HRESULT {
         return self.vtable.get_MinNotification(self, MinNotification);
     }
-    pub fn put_MinNotification(self: *const ISpeechAudioBufferInfo, MinNotification: i32) callconv(.Inline) HRESULT {
+    pub fn put_MinNotification(self: *const ISpeechAudioBufferInfo, MinNotification: i32) HRESULT {
         return self.vtable.put_MinNotification(self, MinNotification);
     }
-    pub fn get_BufferSize(self: *const ISpeechAudioBufferInfo, BufferSize: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BufferSize(self: *const ISpeechAudioBufferInfo, BufferSize: ?*i32) HRESULT {
         return self.vtable.get_BufferSize(self, BufferSize);
     }
-    pub fn put_BufferSize(self: *const ISpeechAudioBufferInfo, BufferSize: i32) callconv(.Inline) HRESULT {
+    pub fn put_BufferSize(self: *const ISpeechAudioBufferInfo, BufferSize: i32) HRESULT {
         return self.vtable.put_BufferSize(self, BufferSize);
     }
-    pub fn get_EventBias(self: *const ISpeechAudioBufferInfo, EventBias: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EventBias(self: *const ISpeechAudioBufferInfo, EventBias: ?*i32) HRESULT {
         return self.vtable.get_EventBias(self, EventBias);
     }
-    pub fn put_EventBias(self: *const ISpeechAudioBufferInfo, EventBias: i32) callconv(.Inline) HRESULT {
+    pub fn put_EventBias(self: *const ISpeechAudioBufferInfo, EventBias: i32) HRESULT {
         return self.vtable.put_EventBias(self, EventBias);
     }
 };
@@ -5673,44 +5673,44 @@ pub const ISpeechAudioStatus = extern union {
         get_FreeBufferSpace: *const fn(
             self: *const ISpeechAudioStatus,
             FreeBufferSpace: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NonBlockingIO: *const fn(
             self: *const ISpeechAudioStatus,
             NonBlockingIO: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISpeechAudioStatus,
             State: ?*SpeechAudioState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentSeekPosition: *const fn(
             self: *const ISpeechAudioStatus,
             CurrentSeekPosition: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentDevicePosition: *const fn(
             self: *const ISpeechAudioStatus,
             CurrentDevicePosition: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_FreeBufferSpace(self: *const ISpeechAudioStatus, FreeBufferSpace: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_FreeBufferSpace(self: *const ISpeechAudioStatus, FreeBufferSpace: ?*i32) HRESULT {
         return self.vtable.get_FreeBufferSpace(self, FreeBufferSpace);
     }
-    pub fn get_NonBlockingIO(self: *const ISpeechAudioStatus, NonBlockingIO: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_NonBlockingIO(self: *const ISpeechAudioStatus, NonBlockingIO: ?*i32) HRESULT {
         return self.vtable.get_NonBlockingIO(self, NonBlockingIO);
     }
-    pub fn get_State(self: *const ISpeechAudioStatus, State: ?*SpeechAudioState) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISpeechAudioStatus, State: ?*SpeechAudioState) HRESULT {
         return self.vtable.get_State(self, State);
     }
-    pub fn get_CurrentSeekPosition(self: *const ISpeechAudioStatus, CurrentSeekPosition: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CurrentSeekPosition(self: *const ISpeechAudioStatus, CurrentSeekPosition: ?*VARIANT) HRESULT {
         return self.vtable.get_CurrentSeekPosition(self, CurrentSeekPosition);
     }
-    pub fn get_CurrentDevicePosition(self: *const ISpeechAudioStatus, CurrentDevicePosition: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CurrentDevicePosition(self: *const ISpeechAudioStatus, CurrentDevicePosition: ?*VARIANT) HRESULT {
         return self.vtable.get_CurrentDevicePosition(self, CurrentDevicePosition);
     }
 };
@@ -5724,50 +5724,50 @@ pub const ISpeechAudioFormat = extern union {
         get_Type: *const fn(
             self: *const ISpeechAudioFormat,
             AudioFormat: ?*SpeechAudioFormatType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: *const fn(
             self: *const ISpeechAudioFormat,
             AudioFormat: SpeechAudioFormatType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Guid: *const fn(
             self: *const ISpeechAudioFormat,
             Guid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Guid: *const fn(
             self: *const ISpeechAudioFormat,
             Guid: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWaveFormatEx: *const fn(
             self: *const ISpeechAudioFormat,
             SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWaveFormatEx: *const fn(
             self: *const ISpeechAudioFormat,
             SpeechWaveFormatEx: ?*ISpeechWaveFormatEx,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const ISpeechAudioFormat, AudioFormat: ?*SpeechAudioFormatType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ISpeechAudioFormat, AudioFormat: ?*SpeechAudioFormatType) HRESULT {
         return self.vtable.get_Type(self, AudioFormat);
     }
-    pub fn put_Type(self: *const ISpeechAudioFormat, AudioFormat: SpeechAudioFormatType) callconv(.Inline) HRESULT {
+    pub fn put_Type(self: *const ISpeechAudioFormat, AudioFormat: SpeechAudioFormatType) HRESULT {
         return self.vtable.put_Type(self, AudioFormat);
     }
-    pub fn get_Guid(self: *const ISpeechAudioFormat, _param_Guid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Guid(self: *const ISpeechAudioFormat, _param_Guid: ?*?BSTR) HRESULT {
         return self.vtable.get_Guid(self, _param_Guid);
     }
-    pub fn put_Guid(self: *const ISpeechAudioFormat, _param_Guid: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Guid(self: *const ISpeechAudioFormat, _param_Guid: ?BSTR) HRESULT {
         return self.vtable.put_Guid(self, _param_Guid);
     }
-    pub fn GetWaveFormatEx(self: *const ISpeechAudioFormat, SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx) callconv(.Inline) HRESULT {
+    pub fn GetWaveFormatEx(self: *const ISpeechAudioFormat, SpeechWaveFormatEx: ?*?*ISpeechWaveFormatEx) HRESULT {
         return self.vtable.GetWaveFormatEx(self, SpeechWaveFormatEx);
     }
-    pub fn SetWaveFormatEx(self: *const ISpeechAudioFormat, SpeechWaveFormatEx: ?*ISpeechWaveFormatEx) callconv(.Inline) HRESULT {
+    pub fn SetWaveFormatEx(self: *const ISpeechAudioFormat, SpeechWaveFormatEx: ?*ISpeechWaveFormatEx) HRESULT {
         return self.vtable.SetWaveFormatEx(self, SpeechWaveFormatEx);
     }
 };
@@ -5781,116 +5781,116 @@ pub const ISpeechWaveFormatEx = extern union {
         get_FormatTag: *const fn(
             self: *const ISpeechWaveFormatEx,
             FormatTag: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FormatTag: *const fn(
             self: *const ISpeechWaveFormatEx,
             FormatTag: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Channels: *const fn(
             self: *const ISpeechWaveFormatEx,
             Channels: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Channels: *const fn(
             self: *const ISpeechWaveFormatEx,
             Channels: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SamplesPerSec: *const fn(
             self: *const ISpeechWaveFormatEx,
             SamplesPerSec: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SamplesPerSec: *const fn(
             self: *const ISpeechWaveFormatEx,
             SamplesPerSec: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AvgBytesPerSec: *const fn(
             self: *const ISpeechWaveFormatEx,
             AvgBytesPerSec: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AvgBytesPerSec: *const fn(
             self: *const ISpeechWaveFormatEx,
             AvgBytesPerSec: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BlockAlign: *const fn(
             self: *const ISpeechWaveFormatEx,
             BlockAlign: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BlockAlign: *const fn(
             self: *const ISpeechWaveFormatEx,
             BlockAlign: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BitsPerSample: *const fn(
             self: *const ISpeechWaveFormatEx,
             BitsPerSample: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BitsPerSample: *const fn(
             self: *const ISpeechWaveFormatEx,
             BitsPerSample: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ExtraData: *const fn(
             self: *const ISpeechWaveFormatEx,
             ExtraData: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ExtraData: *const fn(
             self: *const ISpeechWaveFormatEx,
             ExtraData: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_FormatTag(self: *const ISpeechWaveFormatEx, FormatTag: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_FormatTag(self: *const ISpeechWaveFormatEx, FormatTag: ?*i16) HRESULT {
         return self.vtable.get_FormatTag(self, FormatTag);
     }
-    pub fn put_FormatTag(self: *const ISpeechWaveFormatEx, FormatTag: i16) callconv(.Inline) HRESULT {
+    pub fn put_FormatTag(self: *const ISpeechWaveFormatEx, FormatTag: i16) HRESULT {
         return self.vtable.put_FormatTag(self, FormatTag);
     }
-    pub fn get_Channels(self: *const ISpeechWaveFormatEx, Channels: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Channels(self: *const ISpeechWaveFormatEx, Channels: ?*i16) HRESULT {
         return self.vtable.get_Channels(self, Channels);
     }
-    pub fn put_Channels(self: *const ISpeechWaveFormatEx, Channels: i16) callconv(.Inline) HRESULT {
+    pub fn put_Channels(self: *const ISpeechWaveFormatEx, Channels: i16) HRESULT {
         return self.vtable.put_Channels(self, Channels);
     }
-    pub fn get_SamplesPerSec(self: *const ISpeechWaveFormatEx, SamplesPerSec: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SamplesPerSec(self: *const ISpeechWaveFormatEx, SamplesPerSec: ?*i32) HRESULT {
         return self.vtable.get_SamplesPerSec(self, SamplesPerSec);
     }
-    pub fn put_SamplesPerSec(self: *const ISpeechWaveFormatEx, SamplesPerSec: i32) callconv(.Inline) HRESULT {
+    pub fn put_SamplesPerSec(self: *const ISpeechWaveFormatEx, SamplesPerSec: i32) HRESULT {
         return self.vtable.put_SamplesPerSec(self, SamplesPerSec);
     }
-    pub fn get_AvgBytesPerSec(self: *const ISpeechWaveFormatEx, AvgBytesPerSec: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AvgBytesPerSec(self: *const ISpeechWaveFormatEx, AvgBytesPerSec: ?*i32) HRESULT {
         return self.vtable.get_AvgBytesPerSec(self, AvgBytesPerSec);
     }
-    pub fn put_AvgBytesPerSec(self: *const ISpeechWaveFormatEx, AvgBytesPerSec: i32) callconv(.Inline) HRESULT {
+    pub fn put_AvgBytesPerSec(self: *const ISpeechWaveFormatEx, AvgBytesPerSec: i32) HRESULT {
         return self.vtable.put_AvgBytesPerSec(self, AvgBytesPerSec);
     }
-    pub fn get_BlockAlign(self: *const ISpeechWaveFormatEx, BlockAlign: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_BlockAlign(self: *const ISpeechWaveFormatEx, BlockAlign: ?*i16) HRESULT {
         return self.vtable.get_BlockAlign(self, BlockAlign);
     }
-    pub fn put_BlockAlign(self: *const ISpeechWaveFormatEx, BlockAlign: i16) callconv(.Inline) HRESULT {
+    pub fn put_BlockAlign(self: *const ISpeechWaveFormatEx, BlockAlign: i16) HRESULT {
         return self.vtable.put_BlockAlign(self, BlockAlign);
     }
-    pub fn get_BitsPerSample(self: *const ISpeechWaveFormatEx, BitsPerSample: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_BitsPerSample(self: *const ISpeechWaveFormatEx, BitsPerSample: ?*i16) HRESULT {
         return self.vtable.get_BitsPerSample(self, BitsPerSample);
     }
-    pub fn put_BitsPerSample(self: *const ISpeechWaveFormatEx, BitsPerSample: i16) callconv(.Inline) HRESULT {
+    pub fn put_BitsPerSample(self: *const ISpeechWaveFormatEx, BitsPerSample: i16) HRESULT {
         return self.vtable.put_BitsPerSample(self, BitsPerSample);
     }
-    pub fn get_ExtraData(self: *const ISpeechWaveFormatEx, ExtraData: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ExtraData(self: *const ISpeechWaveFormatEx, ExtraData: ?*VARIANT) HRESULT {
         return self.vtable.get_ExtraData(self, ExtraData);
     }
-    pub fn put_ExtraData(self: *const ISpeechWaveFormatEx, ExtraData: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_ExtraData(self: *const ISpeechWaveFormatEx, ExtraData: VARIANT) HRESULT {
         return self.vtable.put_ExtraData(self, ExtraData);
     }
 };
@@ -5904,45 +5904,45 @@ pub const ISpeechBaseStream = extern union {
         get_Format: *const fn(
             self: *const ISpeechBaseStream,
             AudioFormat: ?*?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Format: *const fn(
             self: *const ISpeechBaseStream,
             AudioFormat: ?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Read: *const fn(
             self: *const ISpeechBaseStream,
             Buffer: ?*VARIANT,
             NumberOfBytes: i32,
             BytesRead: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Write: *const fn(
             self: *const ISpeechBaseStream,
             Buffer: VARIANT,
             BytesWritten: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Seek: *const fn(
             self: *const ISpeechBaseStream,
             Position: VARIANT,
             Origin: SpeechStreamSeekPositionType,
             NewPosition: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Format(self: *const ISpeechBaseStream, AudioFormat: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn get_Format(self: *const ISpeechBaseStream, AudioFormat: ?*?*ISpeechAudioFormat) HRESULT {
         return self.vtable.get_Format(self, AudioFormat);
     }
-    pub fn putref_Format(self: *const ISpeechBaseStream, AudioFormat: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn putref_Format(self: *const ISpeechBaseStream, AudioFormat: ?*ISpeechAudioFormat) HRESULT {
         return self.vtable.putref_Format(self, AudioFormat);
     }
-    pub fn Read(self: *const ISpeechBaseStream, Buffer: ?*VARIANT, NumberOfBytes: i32, BytesRead: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Read(self: *const ISpeechBaseStream, Buffer: ?*VARIANT, NumberOfBytes: i32, BytesRead: ?*i32) HRESULT {
         return self.vtable.Read(self, Buffer, NumberOfBytes, BytesRead);
     }
-    pub fn Write(self: *const ISpeechBaseStream, Buffer: VARIANT, BytesWritten: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Write(self: *const ISpeechBaseStream, Buffer: VARIANT, BytesWritten: ?*i32) HRESULT {
         return self.vtable.Write(self, Buffer, BytesWritten);
     }
-    pub fn Seek(self: *const ISpeechBaseStream, Position: VARIANT, Origin: SpeechStreamSeekPositionType, NewPosition: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Seek(self: *const ISpeechBaseStream, Position: VARIANT, Origin: SpeechStreamSeekPositionType, NewPosition: ?*VARIANT) HRESULT {
         return self.vtable.Seek(self, Position, Origin, NewPosition);
     }
 };
@@ -5957,19 +5957,19 @@ pub const ISpeechFileStream = extern union {
             FileName: ?BSTR,
             FileMode: SpeechStreamFileMode,
             DoEvents: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Close: *const fn(
             self: *const ISpeechFileStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechBaseStream: ISpeechBaseStream,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn Open(self: *const ISpeechFileStream, FileName: ?BSTR, FileMode: SpeechStreamFileMode, DoEvents: i16) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const ISpeechFileStream, FileName: ?BSTR, FileMode: SpeechStreamFileMode, DoEvents: i16) HRESULT {
         return self.vtable.Open(self, FileName, FileMode, DoEvents);
     }
-    pub fn Close(self: *const ISpeechFileStream) callconv(.Inline) HRESULT {
+    pub fn Close(self: *const ISpeechFileStream) HRESULT {
         return self.vtable.Close(self);
     }
 };
@@ -5982,20 +5982,20 @@ pub const ISpeechMemoryStream = extern union {
         SetData: *const fn(
             self: *const ISpeechMemoryStream,
             Data: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetData: *const fn(
             self: *const ISpeechMemoryStream,
             pData: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechBaseStream: ISpeechBaseStream,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetData(self: *const ISpeechMemoryStream, Data: VARIANT) callconv(.Inline) HRESULT {
+    pub fn SetData(self: *const ISpeechMemoryStream, Data: VARIANT) HRESULT {
         return self.vtable.SetData(self, Data);
     }
-    pub fn GetData(self: *const ISpeechMemoryStream, pData: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn GetData(self: *const ISpeechMemoryStream, pData: ?*VARIANT) HRESULT {
         return self.vtable.GetData(self, pData);
     }
 };
@@ -6009,20 +6009,20 @@ pub const ISpeechCustomStream = extern union {
         get_BaseStream: *const fn(
             self: *const ISpeechCustomStream,
             ppUnkStream: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_BaseStream: *const fn(
             self: *const ISpeechCustomStream,
             pUnkStream: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechBaseStream: ISpeechBaseStream,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_BaseStream(self: *const ISpeechCustomStream, ppUnkStream: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get_BaseStream(self: *const ISpeechCustomStream, ppUnkStream: ?*?*IUnknown) HRESULT {
         return self.vtable.get_BaseStream(self, ppUnkStream);
     }
-    pub fn putref_BaseStream(self: *const ISpeechCustomStream, pUnkStream: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn putref_BaseStream(self: *const ISpeechCustomStream, pUnkStream: ?*IUnknown) HRESULT {
         return self.vtable.putref_BaseStream(self, pUnkStream);
     }
 };
@@ -6036,76 +6036,76 @@ pub const ISpeechAudio = extern union {
         get_Status: *const fn(
             self: *const ISpeechAudio,
             Status: ?*?*ISpeechAudioStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferInfo: *const fn(
             self: *const ISpeechAudio,
             BufferInfo: ?*?*ISpeechAudioBufferInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DefaultFormat: *const fn(
             self: *const ISpeechAudio,
             StreamFormat: ?*?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Volume: *const fn(
             self: *const ISpeechAudio,
             Volume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Volume: *const fn(
             self: *const ISpeechAudio,
             Volume: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BufferNotifySize: *const fn(
             self: *const ISpeechAudio,
             BufferNotifySize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_BufferNotifySize: *const fn(
             self: *const ISpeechAudio,
             BufferNotifySize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventHandle: *const fn(
             self: *const ISpeechAudio,
             EventHandle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetState: *const fn(
             self: *const ISpeechAudio,
             State: SpeechAudioState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechBaseStream: ISpeechBaseStream,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Status(self: *const ISpeechAudio, Status: ?*?*ISpeechAudioStatus) callconv(.Inline) HRESULT {
+    pub fn get_Status(self: *const ISpeechAudio, Status: ?*?*ISpeechAudioStatus) HRESULT {
         return self.vtable.get_Status(self, Status);
     }
-    pub fn get_BufferInfo(self: *const ISpeechAudio, BufferInfo: ?*?*ISpeechAudioBufferInfo) callconv(.Inline) HRESULT {
+    pub fn get_BufferInfo(self: *const ISpeechAudio, BufferInfo: ?*?*ISpeechAudioBufferInfo) HRESULT {
         return self.vtable.get_BufferInfo(self, BufferInfo);
     }
-    pub fn get_DefaultFormat(self: *const ISpeechAudio, StreamFormat: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn get_DefaultFormat(self: *const ISpeechAudio, StreamFormat: ?*?*ISpeechAudioFormat) HRESULT {
         return self.vtable.get_DefaultFormat(self, StreamFormat);
     }
-    pub fn get_Volume(self: *const ISpeechAudio, Volume: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Volume(self: *const ISpeechAudio, Volume: ?*i32) HRESULT {
         return self.vtable.get_Volume(self, Volume);
     }
-    pub fn put_Volume(self: *const ISpeechAudio, Volume: i32) callconv(.Inline) HRESULT {
+    pub fn put_Volume(self: *const ISpeechAudio, Volume: i32) HRESULT {
         return self.vtable.put_Volume(self, Volume);
     }
-    pub fn get_BufferNotifySize(self: *const ISpeechAudio, BufferNotifySize: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_BufferNotifySize(self: *const ISpeechAudio, BufferNotifySize: ?*i32) HRESULT {
         return self.vtable.get_BufferNotifySize(self, BufferNotifySize);
     }
-    pub fn put_BufferNotifySize(self: *const ISpeechAudio, BufferNotifySize: i32) callconv(.Inline) HRESULT {
+    pub fn put_BufferNotifySize(self: *const ISpeechAudio, BufferNotifySize: i32) HRESULT {
         return self.vtable.put_BufferNotifySize(self, BufferNotifySize);
     }
-    pub fn get_EventHandle(self: *const ISpeechAudio, EventHandle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_EventHandle(self: *const ISpeechAudio, EventHandle: ?*i32) HRESULT {
         return self.vtable.get_EventHandle(self, EventHandle);
     }
-    pub fn SetState(self: *const ISpeechAudio, State: SpeechAudioState) callconv(.Inline) HRESULT {
+    pub fn SetState(self: *const ISpeechAudio, State: SpeechAudioState) HRESULT {
         return self.vtable.SetState(self, State);
     }
 };
@@ -6119,46 +6119,46 @@ pub const ISpeechMMSysAudio = extern union {
         get_DeviceId: *const fn(
             self: *const ISpeechMMSysAudio,
             DeviceId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_DeviceId: *const fn(
             self: *const ISpeechMMSysAudio,
             DeviceId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LineId: *const fn(
             self: *const ISpeechMMSysAudio,
             LineId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LineId: *const fn(
             self: *const ISpeechMMSysAudio,
             LineId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MMHandle: *const fn(
             self: *const ISpeechMMSysAudio,
             Handle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechAudio: ISpeechAudio,
     ISpeechBaseStream: ISpeechBaseStream,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DeviceId(self: *const ISpeechMMSysAudio, DeviceId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DeviceId(self: *const ISpeechMMSysAudio, DeviceId: ?*i32) HRESULT {
         return self.vtable.get_DeviceId(self, DeviceId);
     }
-    pub fn put_DeviceId(self: *const ISpeechMMSysAudio, DeviceId: i32) callconv(.Inline) HRESULT {
+    pub fn put_DeviceId(self: *const ISpeechMMSysAudio, DeviceId: i32) HRESULT {
         return self.vtable.put_DeviceId(self, DeviceId);
     }
-    pub fn get_LineId(self: *const ISpeechMMSysAudio, LineId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LineId(self: *const ISpeechMMSysAudio, LineId: ?*i32) HRESULT {
         return self.vtable.get_LineId(self, LineId);
     }
-    pub fn put_LineId(self: *const ISpeechMMSysAudio, LineId: i32) callconv(.Inline) HRESULT {
+    pub fn put_LineId(self: *const ISpeechMMSysAudio, LineId: i32) HRESULT {
         return self.vtable.put_LineId(self, LineId);
     }
-    pub fn get_MMHandle(self: *const ISpeechMMSysAudio, Handle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MMHandle(self: *const ISpeechMMSysAudio, Handle: ?*i32) HRESULT {
         return self.vtable.get_MMHandle(self, Handle);
     }
 };
@@ -6172,260 +6172,260 @@ pub const ISpeechVoice = extern union {
         get_Status: *const fn(
             self: *const ISpeechVoice,
             Status: ?*?*ISpeechVoiceStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Voice: *const fn(
             self: *const ISpeechVoice,
             Voice: ?*?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Voice: *const fn(
             self: *const ISpeechVoice,
             Voice: ?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioOutput: *const fn(
             self: *const ISpeechVoice,
             AudioOutput: ?*?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AudioOutput: *const fn(
             self: *const ISpeechVoice,
             AudioOutput: ?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioOutputStream: *const fn(
             self: *const ISpeechVoice,
             AudioOutputStream: ?*?*ISpeechBaseStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AudioOutputStream: *const fn(
             self: *const ISpeechVoice,
             AudioOutputStream: ?*ISpeechBaseStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rate: *const fn(
             self: *const ISpeechVoice,
             Rate: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Rate: *const fn(
             self: *const ISpeechVoice,
             Rate: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Volume: *const fn(
             self: *const ISpeechVoice,
             Volume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Volume: *const fn(
             self: *const ISpeechVoice,
             Volume: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowAudioOutputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechVoice,
             Allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowAudioOutputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechVoice,
             Allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventInterests: *const fn(
             self: *const ISpeechVoice,
             EventInterestFlags: ?*SpeechVoiceEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventInterests: *const fn(
             self: *const ISpeechVoice,
             EventInterestFlags: SpeechVoiceEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Priority: *const fn(
             self: *const ISpeechVoice,
             Priority: SpeechVoicePriority,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Priority: *const fn(
             self: *const ISpeechVoice,
             Priority: ?*SpeechVoicePriority,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AlertBoundary: *const fn(
             self: *const ISpeechVoice,
             Boundary: SpeechVoiceEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AlertBoundary: *const fn(
             self: *const ISpeechVoice,
             Boundary: ?*SpeechVoiceEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SynchronousSpeakTimeout: *const fn(
             self: *const ISpeechVoice,
             msTimeout: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SynchronousSpeakTimeout: *const fn(
             self: *const ISpeechVoice,
             msTimeout: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Speak: *const fn(
             self: *const ISpeechVoice,
             Text: ?BSTR,
             Flags: SpeechVoiceSpeakFlags,
             StreamNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SpeakStream: *const fn(
             self: *const ISpeechVoice,
             Stream: ?*ISpeechBaseStream,
             Flags: SpeechVoiceSpeakFlags,
             StreamNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const ISpeechVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const ISpeechVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const ISpeechVoice,
             Type: ?BSTR,
             NumItems: i32,
             NumSkipped: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVoices: *const fn(
             self: *const ISpeechVoice,
             RequiredAttributes: ?BSTR,
             OptionalAttributes: ?BSTR,
             ObjectTokens: ?*?*ISpeechObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioOutputs: *const fn(
             self: *const ISpeechVoice,
             RequiredAttributes: ?BSTR,
             OptionalAttributes: ?BSTR,
             ObjectTokens: ?*?*ISpeechObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WaitUntilDone: *const fn(
             self: *const ISpeechVoice,
             msTimeout: i32,
             Done: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SpeakCompleteEvent: *const fn(
             self: *const ISpeechVoice,
             Handle: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUISupported: *const fn(
             self: *const ISpeechVoice,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpeechVoice,
             hWndParent: i32,
             Title: ?BSTR,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Status(self: *const ISpeechVoice, Status: ?*?*ISpeechVoiceStatus) callconv(.Inline) HRESULT {
+    pub fn get_Status(self: *const ISpeechVoice, Status: ?*?*ISpeechVoiceStatus) HRESULT {
         return self.vtable.get_Status(self, Status);
     }
-    pub fn get_Voice(self: *const ISpeechVoice, Voice: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn get_Voice(self: *const ISpeechVoice, Voice: ?*?*ISpeechObjectToken) HRESULT {
         return self.vtable.get_Voice(self, Voice);
     }
-    pub fn putref_Voice(self: *const ISpeechVoice, Voice: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn putref_Voice(self: *const ISpeechVoice, Voice: ?*ISpeechObjectToken) HRESULT {
         return self.vtable.putref_Voice(self, Voice);
     }
-    pub fn get_AudioOutput(self: *const ISpeechVoice, AudioOutput: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn get_AudioOutput(self: *const ISpeechVoice, AudioOutput: ?*?*ISpeechObjectToken) HRESULT {
         return self.vtable.get_AudioOutput(self, AudioOutput);
     }
-    pub fn putref_AudioOutput(self: *const ISpeechVoice, AudioOutput: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn putref_AudioOutput(self: *const ISpeechVoice, AudioOutput: ?*ISpeechObjectToken) HRESULT {
         return self.vtable.putref_AudioOutput(self, AudioOutput);
     }
-    pub fn get_AudioOutputStream(self: *const ISpeechVoice, AudioOutputStream: ?*?*ISpeechBaseStream) callconv(.Inline) HRESULT {
+    pub fn get_AudioOutputStream(self: *const ISpeechVoice, AudioOutputStream: ?*?*ISpeechBaseStream) HRESULT {
         return self.vtable.get_AudioOutputStream(self, AudioOutputStream);
     }
-    pub fn putref_AudioOutputStream(self: *const ISpeechVoice, AudioOutputStream: ?*ISpeechBaseStream) callconv(.Inline) HRESULT {
+    pub fn putref_AudioOutputStream(self: *const ISpeechVoice, AudioOutputStream: ?*ISpeechBaseStream) HRESULT {
         return self.vtable.putref_AudioOutputStream(self, AudioOutputStream);
     }
-    pub fn get_Rate(self: *const ISpeechVoice, Rate: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Rate(self: *const ISpeechVoice, Rate: ?*i32) HRESULT {
         return self.vtable.get_Rate(self, Rate);
     }
-    pub fn put_Rate(self: *const ISpeechVoice, Rate: i32) callconv(.Inline) HRESULT {
+    pub fn put_Rate(self: *const ISpeechVoice, Rate: i32) HRESULT {
         return self.vtable.put_Rate(self, Rate);
     }
-    pub fn get_Volume(self: *const ISpeechVoice, Volume: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Volume(self: *const ISpeechVoice, Volume: ?*i32) HRESULT {
         return self.vtable.get_Volume(self, Volume);
     }
-    pub fn put_Volume(self: *const ISpeechVoice, Volume: i32) callconv(.Inline) HRESULT {
+    pub fn put_Volume(self: *const ISpeechVoice, Volume: i32) HRESULT {
         return self.vtable.put_Volume(self, Volume);
     }
-    pub fn put_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: i16) HRESULT {
         return self.vtable.put_AllowAudioOutputFormatChangesOnNextSet(self, Allow);
     }
-    pub fn get_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowAudioOutputFormatChangesOnNextSet(self: *const ISpeechVoice, Allow: ?*i16) HRESULT {
         return self.vtable.get_AllowAudioOutputFormatChangesOnNextSet(self, Allow);
     }
-    pub fn get_EventInterests(self: *const ISpeechVoice, EventInterestFlags: ?*SpeechVoiceEvents) callconv(.Inline) HRESULT {
+    pub fn get_EventInterests(self: *const ISpeechVoice, EventInterestFlags: ?*SpeechVoiceEvents) HRESULT {
         return self.vtable.get_EventInterests(self, EventInterestFlags);
     }
-    pub fn put_EventInterests(self: *const ISpeechVoice, EventInterestFlags: SpeechVoiceEvents) callconv(.Inline) HRESULT {
+    pub fn put_EventInterests(self: *const ISpeechVoice, EventInterestFlags: SpeechVoiceEvents) HRESULT {
         return self.vtable.put_EventInterests(self, EventInterestFlags);
     }
-    pub fn put_Priority(self: *const ISpeechVoice, Priority: SpeechVoicePriority) callconv(.Inline) HRESULT {
+    pub fn put_Priority(self: *const ISpeechVoice, Priority: SpeechVoicePriority) HRESULT {
         return self.vtable.put_Priority(self, Priority);
     }
-    pub fn get_Priority(self: *const ISpeechVoice, Priority: ?*SpeechVoicePriority) callconv(.Inline) HRESULT {
+    pub fn get_Priority(self: *const ISpeechVoice, Priority: ?*SpeechVoicePriority) HRESULT {
         return self.vtable.get_Priority(self, Priority);
     }
-    pub fn put_AlertBoundary(self: *const ISpeechVoice, Boundary: SpeechVoiceEvents) callconv(.Inline) HRESULT {
+    pub fn put_AlertBoundary(self: *const ISpeechVoice, Boundary: SpeechVoiceEvents) HRESULT {
         return self.vtable.put_AlertBoundary(self, Boundary);
     }
-    pub fn get_AlertBoundary(self: *const ISpeechVoice, Boundary: ?*SpeechVoiceEvents) callconv(.Inline) HRESULT {
+    pub fn get_AlertBoundary(self: *const ISpeechVoice, Boundary: ?*SpeechVoiceEvents) HRESULT {
         return self.vtable.get_AlertBoundary(self, Boundary);
     }
-    pub fn put_SynchronousSpeakTimeout(self: *const ISpeechVoice, msTimeout: i32) callconv(.Inline) HRESULT {
+    pub fn put_SynchronousSpeakTimeout(self: *const ISpeechVoice, msTimeout: i32) HRESULT {
         return self.vtable.put_SynchronousSpeakTimeout(self, msTimeout);
     }
-    pub fn get_SynchronousSpeakTimeout(self: *const ISpeechVoice, msTimeout: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SynchronousSpeakTimeout(self: *const ISpeechVoice, msTimeout: ?*i32) HRESULT {
         return self.vtable.get_SynchronousSpeakTimeout(self, msTimeout);
     }
-    pub fn Speak(self: *const ISpeechVoice, Text: ?BSTR, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Speak(self: *const ISpeechVoice, Text: ?BSTR, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
         return self.vtable.Speak(self, Text, Flags, StreamNumber);
     }
-    pub fn SpeakStream(self: *const ISpeechVoice, Stream: ?*ISpeechBaseStream, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SpeakStream(self: *const ISpeechVoice, Stream: ?*ISpeechBaseStream, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
         return self.vtable.SpeakStream(self, Stream, Flags, StreamNumber);
     }
-    pub fn Pause(self: *const ISpeechVoice) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const ISpeechVoice) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const ISpeechVoice) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const ISpeechVoice) HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn Skip(self: *const ISpeechVoice, Type: ?BSTR, NumItems: i32, NumSkipped: ?*i32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const ISpeechVoice, Type: ?BSTR, NumItems: i32, NumSkipped: ?*i32) HRESULT {
         return self.vtable.Skip(self, Type, NumItems, NumSkipped);
     }
-    pub fn GetVoices(self: *const ISpeechVoice, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+    pub fn GetVoices(self: *const ISpeechVoice, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
         return self.vtable.GetVoices(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
-    pub fn GetAudioOutputs(self: *const ISpeechVoice, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+    pub fn GetAudioOutputs(self: *const ISpeechVoice, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
         return self.vtable.GetAudioOutputs(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
-    pub fn WaitUntilDone(self: *const ISpeechVoice, msTimeout: i32, Done: ?*i16) callconv(.Inline) HRESULT {
+    pub fn WaitUntilDone(self: *const ISpeechVoice, msTimeout: i32, Done: ?*i16) HRESULT {
         return self.vtable.WaitUntilDone(self, msTimeout, Done);
     }
-    pub fn SpeakCompleteEvent(self: *const ISpeechVoice, Handle: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SpeakCompleteEvent(self: *const ISpeechVoice, Handle: ?*i32) HRESULT {
         return self.vtable.SpeakCompleteEvent(self, Handle);
     }
-    pub fn IsUISupported(self: *const ISpeechVoice, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsUISupported(self: *const ISpeechVoice, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) HRESULT {
         return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Supported);
     }
-    pub fn DisplayUI(self: *const ISpeechVoice, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) callconv(.Inline) HRESULT {
+    pub fn DisplayUI(self: *const ISpeechVoice, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) HRESULT {
         return self.vtable.DisplayUI(self, hWndParent, Title, TypeOfUI, ExtraData);
     }
 };
@@ -6439,100 +6439,100 @@ pub const ISpeechVoiceStatus = extern union {
         get_CurrentStreamNumber: *const fn(
             self: *const ISpeechVoiceStatus,
             StreamNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastStreamNumberQueued: *const fn(
             self: *const ISpeechVoiceStatus,
             StreamNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastHResult: *const fn(
             self: *const ISpeechVoiceStatus,
             HResult: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RunningState: *const fn(
             self: *const ISpeechVoiceStatus,
             State: ?*SpeechRunState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputWordPosition: *const fn(
             self: *const ISpeechVoiceStatus,
             Position: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputWordLength: *const fn(
             self: *const ISpeechVoiceStatus,
             Length: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputSentencePosition: *const fn(
             self: *const ISpeechVoiceStatus,
             Position: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InputSentenceLength: *const fn(
             self: *const ISpeechVoiceStatus,
             Length: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastBookmark: *const fn(
             self: *const ISpeechVoiceStatus,
             Bookmark: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LastBookmarkId: *const fn(
             self: *const ISpeechVoiceStatus,
             BookmarkId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhonemeId: *const fn(
             self: *const ISpeechVoiceStatus,
             PhoneId: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VisemeId: *const fn(
             self: *const ISpeechVoiceStatus,
             VisemeId: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CurrentStreamNumber(self: *const ISpeechVoiceStatus, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_CurrentStreamNumber(self: *const ISpeechVoiceStatus, StreamNumber: ?*i32) HRESULT {
         return self.vtable.get_CurrentStreamNumber(self, StreamNumber);
     }
-    pub fn get_LastStreamNumberQueued(self: *const ISpeechVoiceStatus, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LastStreamNumberQueued(self: *const ISpeechVoiceStatus, StreamNumber: ?*i32) HRESULT {
         return self.vtable.get_LastStreamNumberQueued(self, StreamNumber);
     }
-    pub fn get_LastHResult(self: *const ISpeechVoiceStatus, HResult: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LastHResult(self: *const ISpeechVoiceStatus, HResult: ?*i32) HRESULT {
         return self.vtable.get_LastHResult(self, HResult);
     }
-    pub fn get_RunningState(self: *const ISpeechVoiceStatus, State: ?*SpeechRunState) callconv(.Inline) HRESULT {
+    pub fn get_RunningState(self: *const ISpeechVoiceStatus, State: ?*SpeechRunState) HRESULT {
         return self.vtable.get_RunningState(self, State);
     }
-    pub fn get_InputWordPosition(self: *const ISpeechVoiceStatus, Position: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_InputWordPosition(self: *const ISpeechVoiceStatus, Position: ?*i32) HRESULT {
         return self.vtable.get_InputWordPosition(self, Position);
     }
-    pub fn get_InputWordLength(self: *const ISpeechVoiceStatus, Length: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_InputWordLength(self: *const ISpeechVoiceStatus, Length: ?*i32) HRESULT {
         return self.vtable.get_InputWordLength(self, Length);
     }
-    pub fn get_InputSentencePosition(self: *const ISpeechVoiceStatus, Position: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_InputSentencePosition(self: *const ISpeechVoiceStatus, Position: ?*i32) HRESULT {
         return self.vtable.get_InputSentencePosition(self, Position);
     }
-    pub fn get_InputSentenceLength(self: *const ISpeechVoiceStatus, Length: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_InputSentenceLength(self: *const ISpeechVoiceStatus, Length: ?*i32) HRESULT {
         return self.vtable.get_InputSentenceLength(self, Length);
     }
-    pub fn get_LastBookmark(self: *const ISpeechVoiceStatus, Bookmark: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LastBookmark(self: *const ISpeechVoiceStatus, Bookmark: ?*?BSTR) HRESULT {
         return self.vtable.get_LastBookmark(self, Bookmark);
     }
-    pub fn get_LastBookmarkId(self: *const ISpeechVoiceStatus, BookmarkId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LastBookmarkId(self: *const ISpeechVoiceStatus, BookmarkId: ?*i32) HRESULT {
         return self.vtable.get_LastBookmarkId(self, BookmarkId);
     }
-    pub fn get_PhonemeId(self: *const ISpeechVoiceStatus, PhoneId: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_PhonemeId(self: *const ISpeechVoiceStatus, PhoneId: ?*i16) HRESULT {
         return self.vtable.get_PhonemeId(self, PhoneId);
     }
-    pub fn get_VisemeId(self: *const ISpeechVoiceStatus, VisemeId: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_VisemeId(self: *const ISpeechVoiceStatus, VisemeId: ?*i16) HRESULT {
         return self.vtable.get_VisemeId(self, VisemeId);
     }
 };
@@ -6556,219 +6556,219 @@ pub const ISpeechRecognizer = extern union {
         putref_Recognizer: *const fn(
             self: *const ISpeechRecognizer,
             Recognizer: ?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Recognizer: *const fn(
             self: *const ISpeechRecognizer,
             Recognizer: ?*?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowAudioInputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechRecognizer,
             Allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowAudioInputFormatChangesOnNextSet: *const fn(
             self: *const ISpeechRecognizer,
             Allow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AudioInput: *const fn(
             self: *const ISpeechRecognizer,
             AudioInput: ?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInput: *const fn(
             self: *const ISpeechRecognizer,
             AudioInput: ?*?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AudioInputStream: *const fn(
             self: *const ISpeechRecognizer,
             AudioInputStream: ?*ISpeechBaseStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInputStream: *const fn(
             self: *const ISpeechRecognizer,
             AudioInputStream: ?*?*ISpeechBaseStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsShared: *const fn(
             self: *const ISpeechRecognizer,
             Shared: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: *const fn(
             self: *const ISpeechRecognizer,
             State: SpeechRecognizerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISpeechRecognizer,
             State: ?*SpeechRecognizerState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Status: *const fn(
             self: *const ISpeechRecognizer,
             Status: ?*?*ISpeechRecognizerStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Profile: *const fn(
             self: *const ISpeechRecognizer,
             Profile: ?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Profile: *const fn(
             self: *const ISpeechRecognizer,
             Profile: ?*?*ISpeechObjectToken,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EmulateRecognition: *const fn(
             self: *const ISpeechRecognizer,
             TextElements: VARIANT,
             ElementDisplayAttributes: ?*VARIANT,
             LanguageId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateRecoContext: *const fn(
             self: *const ISpeechRecognizer,
             NewContext: ?*?*ISpeechRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const ISpeechRecognizer,
             Type: SpeechFormatType,
             Format: ?*?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPropertyNumber: *const fn(
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: i32,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyNumber: *const fn(
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: ?*i32,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPropertyString: *const fn(
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: ?BSTR,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyString: *const fn(
             self: *const ISpeechRecognizer,
             Name: ?BSTR,
             Value: ?*?BSTR,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsUISupported: *const fn(
             self: *const ISpeechRecognizer,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
             Supported: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DisplayUI: *const fn(
             self: *const ISpeechRecognizer,
             hWndParent: i32,
             Title: ?BSTR,
             TypeOfUI: ?BSTR,
             ExtraData: ?*const VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRecognizers: *const fn(
             self: *const ISpeechRecognizer,
             RequiredAttributes: ?BSTR,
             OptionalAttributes: ?BSTR,
             ObjectTokens: ?*?*ISpeechObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAudioInputs: *const fn(
             self: *const ISpeechRecognizer,
             RequiredAttributes: ?BSTR,
             OptionalAttributes: ?BSTR,
             ObjectTokens: ?*?*ISpeechObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProfiles: *const fn(
             self: *const ISpeechRecognizer,
             RequiredAttributes: ?BSTR,
             OptionalAttributes: ?BSTR,
             ObjectTokens: ?*?*ISpeechObjectTokens,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn putref_Recognizer(self: *const ISpeechRecognizer, Recognizer: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn putref_Recognizer(self: *const ISpeechRecognizer, Recognizer: ?*ISpeechObjectToken) HRESULT {
         return self.vtable.putref_Recognizer(self, Recognizer);
     }
-    pub fn get_Recognizer(self: *const ISpeechRecognizer, Recognizer: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn get_Recognizer(self: *const ISpeechRecognizer, Recognizer: ?*?*ISpeechObjectToken) HRESULT {
         return self.vtable.get_Recognizer(self, Recognizer);
     }
-    pub fn put_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: i16) HRESULT {
         return self.vtable.put_AllowAudioInputFormatChangesOnNextSet(self, Allow);
     }
-    pub fn get_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowAudioInputFormatChangesOnNextSet(self: *const ISpeechRecognizer, Allow: ?*i16) HRESULT {
         return self.vtable.get_AllowAudioInputFormatChangesOnNextSet(self, Allow);
     }
-    pub fn putref_AudioInput(self: *const ISpeechRecognizer, AudioInput: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn putref_AudioInput(self: *const ISpeechRecognizer, AudioInput: ?*ISpeechObjectToken) HRESULT {
         return self.vtable.putref_AudioInput(self, AudioInput);
     }
-    pub fn get_AudioInput(self: *const ISpeechRecognizer, AudioInput: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn get_AudioInput(self: *const ISpeechRecognizer, AudioInput: ?*?*ISpeechObjectToken) HRESULT {
         return self.vtable.get_AudioInput(self, AudioInput);
     }
-    pub fn putref_AudioInputStream(self: *const ISpeechRecognizer, AudioInputStream: ?*ISpeechBaseStream) callconv(.Inline) HRESULT {
+    pub fn putref_AudioInputStream(self: *const ISpeechRecognizer, AudioInputStream: ?*ISpeechBaseStream) HRESULT {
         return self.vtable.putref_AudioInputStream(self, AudioInputStream);
     }
-    pub fn get_AudioInputStream(self: *const ISpeechRecognizer, AudioInputStream: ?*?*ISpeechBaseStream) callconv(.Inline) HRESULT {
+    pub fn get_AudioInputStream(self: *const ISpeechRecognizer, AudioInputStream: ?*?*ISpeechBaseStream) HRESULT {
         return self.vtable.get_AudioInputStream(self, AudioInputStream);
     }
-    pub fn get_IsShared(self: *const ISpeechRecognizer, Shared: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_IsShared(self: *const ISpeechRecognizer, Shared: ?*i16) HRESULT {
         return self.vtable.get_IsShared(self, Shared);
     }
-    pub fn put_State(self: *const ISpeechRecognizer, State: SpeechRecognizerState) callconv(.Inline) HRESULT {
+    pub fn put_State(self: *const ISpeechRecognizer, State: SpeechRecognizerState) HRESULT {
         return self.vtable.put_State(self, State);
     }
-    pub fn get_State(self: *const ISpeechRecognizer, State: ?*SpeechRecognizerState) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISpeechRecognizer, State: ?*SpeechRecognizerState) HRESULT {
         return self.vtable.get_State(self, State);
     }
-    pub fn get_Status(self: *const ISpeechRecognizer, Status: ?*?*ISpeechRecognizerStatus) callconv(.Inline) HRESULT {
+    pub fn get_Status(self: *const ISpeechRecognizer, Status: ?*?*ISpeechRecognizerStatus) HRESULT {
         return self.vtable.get_Status(self, Status);
     }
-    pub fn putref_Profile(self: *const ISpeechRecognizer, Profile: ?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn putref_Profile(self: *const ISpeechRecognizer, Profile: ?*ISpeechObjectToken) HRESULT {
         return self.vtable.putref_Profile(self, Profile);
     }
-    pub fn get_Profile(self: *const ISpeechRecognizer, Profile: ?*?*ISpeechObjectToken) callconv(.Inline) HRESULT {
+    pub fn get_Profile(self: *const ISpeechRecognizer, Profile: ?*?*ISpeechObjectToken) HRESULT {
         return self.vtable.get_Profile(self, Profile);
     }
-    pub fn EmulateRecognition(self: *const ISpeechRecognizer, TextElements: VARIANT, ElementDisplayAttributes: ?*VARIANT, LanguageId: i32) callconv(.Inline) HRESULT {
+    pub fn EmulateRecognition(self: *const ISpeechRecognizer, TextElements: VARIANT, ElementDisplayAttributes: ?*VARIANT, LanguageId: i32) HRESULT {
         return self.vtable.EmulateRecognition(self, TextElements, ElementDisplayAttributes, LanguageId);
     }
-    pub fn CreateRecoContext(self: *const ISpeechRecognizer, NewContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+    pub fn CreateRecoContext(self: *const ISpeechRecognizer, NewContext: ?*?*ISpeechRecoContext) HRESULT {
         return self.vtable.CreateRecoContext(self, NewContext);
     }
-    pub fn GetFormat(self: *const ISpeechRecognizer, Type: SpeechFormatType, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const ISpeechRecognizer, Type: SpeechFormatType, Format: ?*?*ISpeechAudioFormat) HRESULT {
         return self.vtable.GetFormat(self, Type, Format);
     }
-    pub fn SetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: i32, Supported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn SetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: i32, Supported: ?*i16) HRESULT {
         return self.vtable.SetPropertyNumber(self, Name, Value, Supported);
     }
-    pub fn GetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*i32, Supported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn GetPropertyNumber(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*i32, Supported: ?*i16) HRESULT {
         return self.vtable.GetPropertyNumber(self, Name, Value, Supported);
     }
-    pub fn SetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn SetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?BSTR, Supported: ?*i16) HRESULT {
         return self.vtable.SetPropertyString(self, Name, Value, Supported);
     }
-    pub fn GetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*?BSTR, Supported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn GetPropertyString(self: *const ISpeechRecognizer, Name: ?BSTR, Value: ?*?BSTR, Supported: ?*i16) HRESULT {
         return self.vtable.GetPropertyString(self, Name, Value, Supported);
     }
-    pub fn IsUISupported(self: *const ISpeechRecognizer, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) callconv(.Inline) HRESULT {
+    pub fn IsUISupported(self: *const ISpeechRecognizer, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT, Supported: ?*i16) HRESULT {
         return self.vtable.IsUISupported(self, TypeOfUI, ExtraData, Supported);
     }
-    pub fn DisplayUI(self: *const ISpeechRecognizer, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) callconv(.Inline) HRESULT {
+    pub fn DisplayUI(self: *const ISpeechRecognizer, hWndParent: i32, Title: ?BSTR, TypeOfUI: ?BSTR, ExtraData: ?*const VARIANT) HRESULT {
         return self.vtable.DisplayUI(self, hWndParent, Title, TypeOfUI, ExtraData);
     }
-    pub fn GetRecognizers(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+    pub fn GetRecognizers(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
         return self.vtable.GetRecognizers(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
-    pub fn GetAudioInputs(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+    pub fn GetAudioInputs(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
         return self.vtable.GetAudioInputs(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
-    pub fn GetProfiles(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) callconv(.Inline) HRESULT {
+    pub fn GetProfiles(self: *const ISpeechRecognizer, RequiredAttributes: ?BSTR, OptionalAttributes: ?BSTR, ObjectTokens: ?*?*ISpeechObjectTokens) HRESULT {
         return self.vtable.GetProfiles(self, RequiredAttributes, OptionalAttributes, ObjectTokens);
     }
 };
@@ -6782,52 +6782,52 @@ pub const ISpeechRecognizerStatus = extern union {
         get_AudioStatus: *const fn(
             self: *const ISpeechRecognizerStatus,
             AudioStatus: ?*?*ISpeechAudioStatus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStreamPosition: *const fn(
             self: *const ISpeechRecognizerStatus,
             pCurrentStreamPos: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CurrentStreamNumber: *const fn(
             self: *const ISpeechRecognizerStatus,
             StreamNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfActiveRules: *const fn(
             self: *const ISpeechRecognizerStatus,
             NumberOfActiveRules: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClsidEngine: *const fn(
             self: *const ISpeechRecognizerStatus,
             ClsidEngine: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SupportedLanguages: *const fn(
             self: *const ISpeechRecognizerStatus,
             SupportedLanguages: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AudioStatus(self: *const ISpeechRecognizerStatus, AudioStatus: ?*?*ISpeechAudioStatus) callconv(.Inline) HRESULT {
+    pub fn get_AudioStatus(self: *const ISpeechRecognizerStatus, AudioStatus: ?*?*ISpeechAudioStatus) HRESULT {
         return self.vtable.get_AudioStatus(self, AudioStatus);
     }
-    pub fn get_CurrentStreamPosition(self: *const ISpeechRecognizerStatus, pCurrentStreamPos: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_CurrentStreamPosition(self: *const ISpeechRecognizerStatus, pCurrentStreamPos: ?*VARIANT) HRESULT {
         return self.vtable.get_CurrentStreamPosition(self, pCurrentStreamPos);
     }
-    pub fn get_CurrentStreamNumber(self: *const ISpeechRecognizerStatus, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_CurrentStreamNumber(self: *const ISpeechRecognizerStatus, StreamNumber: ?*i32) HRESULT {
         return self.vtable.get_CurrentStreamNumber(self, StreamNumber);
     }
-    pub fn get_NumberOfActiveRules(self: *const ISpeechRecognizerStatus, NumberOfActiveRules: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_NumberOfActiveRules(self: *const ISpeechRecognizerStatus, NumberOfActiveRules: ?*i32) HRESULT {
         return self.vtable.get_NumberOfActiveRules(self, NumberOfActiveRules);
     }
-    pub fn get_ClsidEngine(self: *const ISpeechRecognizerStatus, ClsidEngine: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_ClsidEngine(self: *const ISpeechRecognizerStatus, ClsidEngine: ?*?BSTR) HRESULT {
         return self.vtable.get_ClsidEngine(self, ClsidEngine);
     }
-    pub fn get_SupportedLanguages(self: *const ISpeechRecognizerStatus, SupportedLanguages: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_SupportedLanguages(self: *const ISpeechRecognizerStatus, SupportedLanguages: ?*VARIANT) HRESULT {
         return self.vtable.get_SupportedLanguages(self, SupportedLanguages);
     }
 };
@@ -6841,198 +6841,198 @@ pub const ISpeechRecoContext = extern union {
         get_Recognizer: *const fn(
             self: *const ISpeechRecoContext,
             Recognizer: ?*?*ISpeechRecognizer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioInputInterferenceStatus: *const fn(
             self: *const ISpeechRecoContext,
             Interference: ?*SpeechInterference,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequestedUIType: *const fn(
             self: *const ISpeechRecoContext,
             UIType: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_Voice: *const fn(
             self: *const ISpeechRecoContext,
             Voice: ?*ISpeechVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Voice: *const fn(
             self: *const ISpeechRecoContext,
             Voice: ?*?*ISpeechVoice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AllowVoiceFormatMatchingOnNextSet: *const fn(
             self: *const ISpeechRecoContext,
             Allow: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AllowVoiceFormatMatchingOnNextSet: *const fn(
             self: *const ISpeechRecoContext,
             pAllow: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_VoicePurgeEvent: *const fn(
             self: *const ISpeechRecoContext,
             EventInterest: SpeechRecoEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VoicePurgeEvent: *const fn(
             self: *const ISpeechRecoContext,
             EventInterest: ?*SpeechRecoEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_EventInterests: *const fn(
             self: *const ISpeechRecoContext,
             EventInterest: SpeechRecoEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EventInterests: *const fn(
             self: *const ISpeechRecoContext,
             EventInterest: ?*SpeechRecoEvents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_CmdMaxAlternates: *const fn(
             self: *const ISpeechRecoContext,
             MaxAlternates: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CmdMaxAlternates: *const fn(
             self: *const ISpeechRecoContext,
             MaxAlternates: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: *const fn(
             self: *const ISpeechRecoContext,
             State: SpeechRecoContextState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISpeechRecoContext,
             State: ?*SpeechRecoContextState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RetainedAudio: *const fn(
             self: *const ISpeechRecoContext,
             Option: SpeechRetainedAudioOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedAudio: *const fn(
             self: *const ISpeechRecoContext,
             Option: ?*SpeechRetainedAudioOptions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_RetainedAudioFormat: *const fn(
             self: *const ISpeechRecoContext,
             Format: ?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedAudioFormat: *const fn(
             self: *const ISpeechRecoContext,
             Format: ?*?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const ISpeechRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const ISpeechRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateGrammar: *const fn(
             self: *const ISpeechRecoContext,
             GrammarId: VARIANT,
             Grammar: ?*?*ISpeechRecoGrammar,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateResultFromMemory: *const fn(
             self: *const ISpeechRecoContext,
             ResultBlock: ?*VARIANT,
             Result: ?*?*ISpeechRecoResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Bookmark: *const fn(
             self: *const ISpeechRecoContext,
             Options: SpeechBookmarkOptions,
             StreamPos: VARIANT,
             BookmarkId: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAdaptationData: *const fn(
             self: *const ISpeechRecoContext,
             AdaptationString: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Recognizer(self: *const ISpeechRecoContext, Recognizer: ?*?*ISpeechRecognizer) callconv(.Inline) HRESULT {
+    pub fn get_Recognizer(self: *const ISpeechRecoContext, Recognizer: ?*?*ISpeechRecognizer) HRESULT {
         return self.vtable.get_Recognizer(self, Recognizer);
     }
-    pub fn get_AudioInputInterferenceStatus(self: *const ISpeechRecoContext, Interference: ?*SpeechInterference) callconv(.Inline) HRESULT {
+    pub fn get_AudioInputInterferenceStatus(self: *const ISpeechRecoContext, Interference: ?*SpeechInterference) HRESULT {
         return self.vtable.get_AudioInputInterferenceStatus(self, Interference);
     }
-    pub fn get_RequestedUIType(self: *const ISpeechRecoContext, UIType: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_RequestedUIType(self: *const ISpeechRecoContext, UIType: ?*?BSTR) HRESULT {
         return self.vtable.get_RequestedUIType(self, UIType);
     }
-    pub fn putref_Voice(self: *const ISpeechRecoContext, Voice: ?*ISpeechVoice) callconv(.Inline) HRESULT {
+    pub fn putref_Voice(self: *const ISpeechRecoContext, Voice: ?*ISpeechVoice) HRESULT {
         return self.vtable.putref_Voice(self, Voice);
     }
-    pub fn get_Voice(self: *const ISpeechRecoContext, Voice: ?*?*ISpeechVoice) callconv(.Inline) HRESULT {
+    pub fn get_Voice(self: *const ISpeechRecoContext, Voice: ?*?*ISpeechVoice) HRESULT {
         return self.vtable.get_Voice(self, Voice);
     }
-    pub fn put_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, Allow: i16) callconv(.Inline) HRESULT {
+    pub fn put_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, Allow: i16) HRESULT {
         return self.vtable.put_AllowVoiceFormatMatchingOnNextSet(self, Allow);
     }
-    pub fn get_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, pAllow: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_AllowVoiceFormatMatchingOnNextSet(self: *const ISpeechRecoContext, pAllow: ?*i16) HRESULT {
         return self.vtable.get_AllowVoiceFormatMatchingOnNextSet(self, pAllow);
     }
-    pub fn put_VoicePurgeEvent(self: *const ISpeechRecoContext, EventInterest: SpeechRecoEvents) callconv(.Inline) HRESULT {
+    pub fn put_VoicePurgeEvent(self: *const ISpeechRecoContext, EventInterest: SpeechRecoEvents) HRESULT {
         return self.vtable.put_VoicePurgeEvent(self, EventInterest);
     }
-    pub fn get_VoicePurgeEvent(self: *const ISpeechRecoContext, EventInterest: ?*SpeechRecoEvents) callconv(.Inline) HRESULT {
+    pub fn get_VoicePurgeEvent(self: *const ISpeechRecoContext, EventInterest: ?*SpeechRecoEvents) HRESULT {
         return self.vtable.get_VoicePurgeEvent(self, EventInterest);
     }
-    pub fn put_EventInterests(self: *const ISpeechRecoContext, EventInterest: SpeechRecoEvents) callconv(.Inline) HRESULT {
+    pub fn put_EventInterests(self: *const ISpeechRecoContext, EventInterest: SpeechRecoEvents) HRESULT {
         return self.vtable.put_EventInterests(self, EventInterest);
     }
-    pub fn get_EventInterests(self: *const ISpeechRecoContext, EventInterest: ?*SpeechRecoEvents) callconv(.Inline) HRESULT {
+    pub fn get_EventInterests(self: *const ISpeechRecoContext, EventInterest: ?*SpeechRecoEvents) HRESULT {
         return self.vtable.get_EventInterests(self, EventInterest);
     }
-    pub fn put_CmdMaxAlternates(self: *const ISpeechRecoContext, MaxAlternates: i32) callconv(.Inline) HRESULT {
+    pub fn put_CmdMaxAlternates(self: *const ISpeechRecoContext, MaxAlternates: i32) HRESULT {
         return self.vtable.put_CmdMaxAlternates(self, MaxAlternates);
     }
-    pub fn get_CmdMaxAlternates(self: *const ISpeechRecoContext, MaxAlternates: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_CmdMaxAlternates(self: *const ISpeechRecoContext, MaxAlternates: ?*i32) HRESULT {
         return self.vtable.get_CmdMaxAlternates(self, MaxAlternates);
     }
-    pub fn put_State(self: *const ISpeechRecoContext, State: SpeechRecoContextState) callconv(.Inline) HRESULT {
+    pub fn put_State(self: *const ISpeechRecoContext, State: SpeechRecoContextState) HRESULT {
         return self.vtable.put_State(self, State);
     }
-    pub fn get_State(self: *const ISpeechRecoContext, State: ?*SpeechRecoContextState) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISpeechRecoContext, State: ?*SpeechRecoContextState) HRESULT {
         return self.vtable.get_State(self, State);
     }
-    pub fn put_RetainedAudio(self: *const ISpeechRecoContext, Option: SpeechRetainedAudioOptions) callconv(.Inline) HRESULT {
+    pub fn put_RetainedAudio(self: *const ISpeechRecoContext, Option: SpeechRetainedAudioOptions) HRESULT {
         return self.vtable.put_RetainedAudio(self, Option);
     }
-    pub fn get_RetainedAudio(self: *const ISpeechRecoContext, Option: ?*SpeechRetainedAudioOptions) callconv(.Inline) HRESULT {
+    pub fn get_RetainedAudio(self: *const ISpeechRecoContext, Option: ?*SpeechRetainedAudioOptions) HRESULT {
         return self.vtable.get_RetainedAudio(self, Option);
     }
-    pub fn putref_RetainedAudioFormat(self: *const ISpeechRecoContext, Format: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn putref_RetainedAudioFormat(self: *const ISpeechRecoContext, Format: ?*ISpeechAudioFormat) HRESULT {
         return self.vtable.putref_RetainedAudioFormat(self, Format);
     }
-    pub fn get_RetainedAudioFormat(self: *const ISpeechRecoContext, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn get_RetainedAudioFormat(self: *const ISpeechRecoContext, Format: ?*?*ISpeechAudioFormat) HRESULT {
         return self.vtable.get_RetainedAudioFormat(self, Format);
     }
-    pub fn Pause(self: *const ISpeechRecoContext) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const ISpeechRecoContext) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const ISpeechRecoContext) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const ISpeechRecoContext) HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn CreateGrammar(self: *const ISpeechRecoContext, GrammarId: VARIANT, Grammar: ?*?*ISpeechRecoGrammar) callconv(.Inline) HRESULT {
+    pub fn CreateGrammar(self: *const ISpeechRecoContext, GrammarId: VARIANT, Grammar: ?*?*ISpeechRecoGrammar) HRESULT {
         return self.vtable.CreateGrammar(self, GrammarId, Grammar);
     }
-    pub fn CreateResultFromMemory(self: *const ISpeechRecoContext, ResultBlock: ?*VARIANT, Result: ?*?*ISpeechRecoResult) callconv(.Inline) HRESULT {
+    pub fn CreateResultFromMemory(self: *const ISpeechRecoContext, ResultBlock: ?*VARIANT, Result: ?*?*ISpeechRecoResult) HRESULT {
         return self.vtable.CreateResultFromMemory(self, ResultBlock, Result);
     }
-    pub fn Bookmark(self: *const ISpeechRecoContext, Options: SpeechBookmarkOptions, StreamPos: VARIANT, BookmarkId: VARIANT) callconv(.Inline) HRESULT {
+    pub fn Bookmark(self: *const ISpeechRecoContext, Options: SpeechBookmarkOptions, StreamPos: VARIANT, BookmarkId: VARIANT) HRESULT {
         return self.vtable.Bookmark(self, Options, StreamPos, BookmarkId);
     }
-    pub fn SetAdaptationData(self: *const ISpeechRecoContext, AdaptationString: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn SetAdaptationData(self: *const ISpeechRecoContext, AdaptationString: ?BSTR) HRESULT {
         return self.vtable.SetAdaptationData(self, AdaptationString);
     }
 };
@@ -7046,42 +7046,42 @@ pub const ISpeechRecoGrammar = extern union {
         get_Id: *const fn(
             self: *const ISpeechRecoGrammar,
             Id: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RecoContext: *const fn(
             self: *const ISpeechRecoGrammar,
             RecoContext: ?*?*ISpeechRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_State: *const fn(
             self: *const ISpeechRecoGrammar,
             State: SpeechGrammarState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISpeechRecoGrammar,
             State: ?*SpeechGrammarState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rules: *const fn(
             self: *const ISpeechRecoGrammar,
             Rules: ?*?*ISpeechGrammarRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const ISpeechRecoGrammar,
             NewLanguage: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CmdLoadFromFile: *const fn(
             self: *const ISpeechRecoGrammar,
             FileName: ?BSTR,
             LoadOption: SpeechLoadOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CmdLoadFromObject: *const fn(
             self: *const ISpeechRecoGrammar,
             ClassId: ?BSTR,
             GrammarName: ?BSTR,
             LoadOption: SpeechLoadOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CmdLoadFromResource: *const fn(
             self: *const ISpeechRecoGrammar,
             hModule: i32,
@@ -7089,115 +7089,115 @@ pub const ISpeechRecoGrammar = extern union {
             ResourceType: VARIANT,
             LanguageId: i32,
             LoadOption: SpeechLoadOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CmdLoadFromMemory: *const fn(
             self: *const ISpeechRecoGrammar,
             GrammarData: VARIANT,
             LoadOption: SpeechLoadOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CmdLoadFromProprietaryGrammar: *const fn(
             self: *const ISpeechRecoGrammar,
             ProprietaryGuid: ?BSTR,
             ProprietaryString: ?BSTR,
             ProprietaryData: VARIANT,
             LoadOption: SpeechLoadOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CmdSetRuleState: *const fn(
             self: *const ISpeechRecoGrammar,
             Name: ?BSTR,
             State: SpeechRuleState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CmdSetRuleIdState: *const fn(
             self: *const ISpeechRecoGrammar,
             RuleId: i32,
             State: SpeechRuleState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DictationLoad: *const fn(
             self: *const ISpeechRecoGrammar,
             TopicName: ?BSTR,
             LoadOption: SpeechLoadOption,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DictationUnload: *const fn(
             self: *const ISpeechRecoGrammar,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DictationSetState: *const fn(
             self: *const ISpeechRecoGrammar,
             State: SpeechRuleState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetWordSequenceData: *const fn(
             self: *const ISpeechRecoGrammar,
             Text: ?BSTR,
             TextLength: i32,
             Info: ?*ISpeechTextSelectionInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextSelection: *const fn(
             self: *const ISpeechRecoGrammar,
             Info: ?*ISpeechTextSelectionInformation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsPronounceable: *const fn(
             self: *const ISpeechRecoGrammar,
             Word: ?BSTR,
             WordPronounceable: ?*SpeechWordPronounceable,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Id(self: *const ISpeechRecoGrammar, Id: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpeechRecoGrammar, Id: ?*VARIANT) HRESULT {
         return self.vtable.get_Id(self, Id);
     }
-    pub fn get_RecoContext(self: *const ISpeechRecoGrammar, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+    pub fn get_RecoContext(self: *const ISpeechRecoGrammar, RecoContext: ?*?*ISpeechRecoContext) HRESULT {
         return self.vtable.get_RecoContext(self, RecoContext);
     }
-    pub fn put_State(self: *const ISpeechRecoGrammar, State: SpeechGrammarState) callconv(.Inline) HRESULT {
+    pub fn put_State(self: *const ISpeechRecoGrammar, State: SpeechGrammarState) HRESULT {
         return self.vtable.put_State(self, State);
     }
-    pub fn get_State(self: *const ISpeechRecoGrammar, State: ?*SpeechGrammarState) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISpeechRecoGrammar, State: ?*SpeechGrammarState) HRESULT {
         return self.vtable.get_State(self, State);
     }
-    pub fn get_Rules(self: *const ISpeechRecoGrammar, Rules: ?*?*ISpeechGrammarRules) callconv(.Inline) HRESULT {
+    pub fn get_Rules(self: *const ISpeechRecoGrammar, Rules: ?*?*ISpeechGrammarRules) HRESULT {
         return self.vtable.get_Rules(self, Rules);
     }
-    pub fn Reset(self: *const ISpeechRecoGrammar, NewLanguage: i32) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const ISpeechRecoGrammar, NewLanguage: i32) HRESULT {
         return self.vtable.Reset(self, NewLanguage);
     }
-    pub fn CmdLoadFromFile(self: *const ISpeechRecoGrammar, FileName: ?BSTR, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
+    pub fn CmdLoadFromFile(self: *const ISpeechRecoGrammar, FileName: ?BSTR, LoadOption: SpeechLoadOption) HRESULT {
         return self.vtable.CmdLoadFromFile(self, FileName, LoadOption);
     }
-    pub fn CmdLoadFromObject(self: *const ISpeechRecoGrammar, ClassId: ?BSTR, GrammarName: ?BSTR, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
+    pub fn CmdLoadFromObject(self: *const ISpeechRecoGrammar, ClassId: ?BSTR, GrammarName: ?BSTR, LoadOption: SpeechLoadOption) HRESULT {
         return self.vtable.CmdLoadFromObject(self, ClassId, GrammarName, LoadOption);
     }
-    pub fn CmdLoadFromResource(self: *const ISpeechRecoGrammar, hModule: i32, ResourceName: VARIANT, ResourceType: VARIANT, LanguageId: i32, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
+    pub fn CmdLoadFromResource(self: *const ISpeechRecoGrammar, hModule: i32, ResourceName: VARIANT, ResourceType: VARIANT, LanguageId: i32, LoadOption: SpeechLoadOption) HRESULT {
         return self.vtable.CmdLoadFromResource(self, hModule, ResourceName, ResourceType, LanguageId, LoadOption);
     }
-    pub fn CmdLoadFromMemory(self: *const ISpeechRecoGrammar, GrammarData: VARIANT, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
+    pub fn CmdLoadFromMemory(self: *const ISpeechRecoGrammar, GrammarData: VARIANT, LoadOption: SpeechLoadOption) HRESULT {
         return self.vtable.CmdLoadFromMemory(self, GrammarData, LoadOption);
     }
-    pub fn CmdLoadFromProprietaryGrammar(self: *const ISpeechRecoGrammar, ProprietaryGuid: ?BSTR, ProprietaryString: ?BSTR, ProprietaryData: VARIANT, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
+    pub fn CmdLoadFromProprietaryGrammar(self: *const ISpeechRecoGrammar, ProprietaryGuid: ?BSTR, ProprietaryString: ?BSTR, ProprietaryData: VARIANT, LoadOption: SpeechLoadOption) HRESULT {
         return self.vtable.CmdLoadFromProprietaryGrammar(self, ProprietaryGuid, ProprietaryString, ProprietaryData, LoadOption);
     }
-    pub fn CmdSetRuleState(self: *const ISpeechRecoGrammar, Name: ?BSTR, State: SpeechRuleState) callconv(.Inline) HRESULT {
+    pub fn CmdSetRuleState(self: *const ISpeechRecoGrammar, Name: ?BSTR, State: SpeechRuleState) HRESULT {
         return self.vtable.CmdSetRuleState(self, Name, State);
     }
-    pub fn CmdSetRuleIdState(self: *const ISpeechRecoGrammar, RuleId: i32, State: SpeechRuleState) callconv(.Inline) HRESULT {
+    pub fn CmdSetRuleIdState(self: *const ISpeechRecoGrammar, RuleId: i32, State: SpeechRuleState) HRESULT {
         return self.vtable.CmdSetRuleIdState(self, RuleId, State);
     }
-    pub fn DictationLoad(self: *const ISpeechRecoGrammar, TopicName: ?BSTR, LoadOption: SpeechLoadOption) callconv(.Inline) HRESULT {
+    pub fn DictationLoad(self: *const ISpeechRecoGrammar, TopicName: ?BSTR, LoadOption: SpeechLoadOption) HRESULT {
         return self.vtable.DictationLoad(self, TopicName, LoadOption);
     }
-    pub fn DictationUnload(self: *const ISpeechRecoGrammar) callconv(.Inline) HRESULT {
+    pub fn DictationUnload(self: *const ISpeechRecoGrammar) HRESULT {
         return self.vtable.DictationUnload(self);
     }
-    pub fn DictationSetState(self: *const ISpeechRecoGrammar, State: SpeechRuleState) callconv(.Inline) HRESULT {
+    pub fn DictationSetState(self: *const ISpeechRecoGrammar, State: SpeechRuleState) HRESULT {
         return self.vtable.DictationSetState(self, State);
     }
-    pub fn SetWordSequenceData(self: *const ISpeechRecoGrammar, Text: ?BSTR, TextLength: i32, Info: ?*ISpeechTextSelectionInformation) callconv(.Inline) HRESULT {
+    pub fn SetWordSequenceData(self: *const ISpeechRecoGrammar, Text: ?BSTR, TextLength: i32, Info: ?*ISpeechTextSelectionInformation) HRESULT {
         return self.vtable.SetWordSequenceData(self, Text, TextLength, Info);
     }
-    pub fn SetTextSelection(self: *const ISpeechRecoGrammar, Info: ?*ISpeechTextSelectionInformation) callconv(.Inline) HRESULT {
+    pub fn SetTextSelection(self: *const ISpeechRecoGrammar, Info: ?*ISpeechTextSelectionInformation) HRESULT {
         return self.vtable.SetTextSelection(self, Info);
     }
-    pub fn IsPronounceable(self: *const ISpeechRecoGrammar, Word: ?BSTR, WordPronounceable: ?*SpeechWordPronounceable) callconv(.Inline) HRESULT {
+    pub fn IsPronounceable(self: *const ISpeechRecoGrammar, Word: ?BSTR, WordPronounceable: ?*SpeechWordPronounceable) HRESULT {
         return self.vtable.IsPronounceable(self, Word, WordPronounceable);
     }
 };
@@ -7222,57 +7222,57 @@ pub const ISpeechGrammarRule = extern union {
         get_Attributes: *const fn(
             self: *const ISpeechGrammarRule,
             Attributes: ?*SpeechRuleAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_InitialState: *const fn(
             self: *const ISpeechGrammarRule,
             State: ?*?*ISpeechGrammarRuleState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISpeechGrammarRule,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const ISpeechGrammarRule,
             Id: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clear: *const fn(
             self: *const ISpeechGrammarRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddResource: *const fn(
             self: *const ISpeechGrammarRule,
             ResourceName: ?BSTR,
             ResourceValue: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddState: *const fn(
             self: *const ISpeechGrammarRule,
             State: ?*?*ISpeechGrammarRuleState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Attributes(self: *const ISpeechGrammarRule, Attributes: ?*SpeechRuleAttributes) callconv(.Inline) HRESULT {
+    pub fn get_Attributes(self: *const ISpeechGrammarRule, Attributes: ?*SpeechRuleAttributes) HRESULT {
         return self.vtable.get_Attributes(self, Attributes);
     }
-    pub fn get_InitialState(self: *const ISpeechGrammarRule, State: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
+    pub fn get_InitialState(self: *const ISpeechGrammarRule, State: ?*?*ISpeechGrammarRuleState) HRESULT {
         return self.vtable.get_InitialState(self, State);
     }
-    pub fn get_Name(self: *const ISpeechGrammarRule, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISpeechGrammarRule, Name: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, Name);
     }
-    pub fn get_Id(self: *const ISpeechGrammarRule, Id: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpeechGrammarRule, Id: ?*i32) HRESULT {
         return self.vtable.get_Id(self, Id);
     }
-    pub fn Clear(self: *const ISpeechGrammarRule) callconv(.Inline) HRESULT {
+    pub fn Clear(self: *const ISpeechGrammarRule) HRESULT {
         return self.vtable.Clear(self);
     }
-    pub fn AddResource(self: *const ISpeechGrammarRule, ResourceName: ?BSTR, ResourceValue: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddResource(self: *const ISpeechGrammarRule, ResourceName: ?BSTR, ResourceValue: ?BSTR) HRESULT {
         return self.vtable.AddResource(self, ResourceName, ResourceValue);
     }
-    pub fn AddState(self: *const ISpeechGrammarRule, State: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
+    pub fn AddState(self: *const ISpeechGrammarRule, State: ?*?*ISpeechGrammarRuleState) HRESULT {
         return self.vtable.AddState(self, State);
     }
 };
@@ -7286,68 +7286,68 @@ pub const ISpeechGrammarRules = extern union {
         get_Count: *const fn(
             self: *const ISpeechGrammarRules,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindRule: *const fn(
             self: *const ISpeechGrammarRules,
             RuleNameOrId: VARIANT,
             Rule: ?*?*ISpeechGrammarRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechGrammarRules,
             Index: i32,
             Rule: ?*?*ISpeechGrammarRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechGrammarRules,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dynamic: *const fn(
             self: *const ISpeechGrammarRules,
             Dynamic: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const ISpeechGrammarRules,
             RuleName: ?BSTR,
             Attributes: SpeechRuleAttributes,
             RuleId: i32,
             Rule: ?*?*ISpeechGrammarRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const ISpeechGrammarRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitAndSave: *const fn(
             self: *const ISpeechGrammarRules,
             ErrorText: ?*?BSTR,
             SaveStream: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechGrammarRules, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechGrammarRules, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn FindRule(self: *const ISpeechGrammarRules, RuleNameOrId: VARIANT, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+    pub fn FindRule(self: *const ISpeechGrammarRules, RuleNameOrId: VARIANT, Rule: ?*?*ISpeechGrammarRule) HRESULT {
         return self.vtable.FindRule(self, RuleNameOrId, Rule);
     }
-    pub fn Item(self: *const ISpeechGrammarRules, Index: i32, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechGrammarRules, Index: i32, Rule: ?*?*ISpeechGrammarRule) HRESULT {
         return self.vtable.Item(self, Index, Rule);
     }
-    pub fn get__NewEnum(self: *const ISpeechGrammarRules, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechGrammarRules, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
-    pub fn get_Dynamic(self: *const ISpeechGrammarRules, Dynamic: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_Dynamic(self: *const ISpeechGrammarRules, Dynamic: ?*i16) HRESULT {
         return self.vtable.get_Dynamic(self, Dynamic);
     }
-    pub fn Add(self: *const ISpeechGrammarRules, RuleName: ?BSTR, Attributes: SpeechRuleAttributes, RuleId: i32, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const ISpeechGrammarRules, RuleName: ?BSTR, Attributes: SpeechRuleAttributes, RuleId: i32, Rule: ?*?*ISpeechGrammarRule) HRESULT {
         return self.vtable.Add(self, RuleName, Attributes, RuleId, Rule);
     }
-    pub fn Commit(self: *const ISpeechGrammarRules) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const ISpeechGrammarRules) HRESULT {
         return self.vtable.Commit(self);
     }
-    pub fn CommitAndSave(self: *const ISpeechGrammarRules, ErrorText: ?*?BSTR, SaveStream: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn CommitAndSave(self: *const ISpeechGrammarRules, ErrorText: ?*?BSTR, SaveStream: ?*VARIANT) HRESULT {
         return self.vtable.CommitAndSave(self, ErrorText, SaveStream);
     }
 };
@@ -7361,12 +7361,12 @@ pub const ISpeechGrammarRuleState = extern union {
         get_Rule: *const fn(
             self: *const ISpeechGrammarRuleState,
             Rule: ?*?*ISpeechGrammarRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Transitions: *const fn(
             self: *const ISpeechGrammarRuleState,
             Transitions: ?*?*ISpeechGrammarRuleStateTransitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddWordTransition: *const fn(
             self: *const ISpeechGrammarRuleState,
             DestState: ?*ISpeechGrammarRuleState,
@@ -7377,7 +7377,7 @@ pub const ISpeechGrammarRuleState = extern union {
             PropertyId: i32,
             PropertyValue: ?*VARIANT,
             Weight: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddRuleTransition: *const fn(
             self: *const ISpeechGrammarRuleState,
             DestinationState: ?*ISpeechGrammarRuleState,
@@ -7386,7 +7386,7 @@ pub const ISpeechGrammarRuleState = extern union {
             PropertyId: i32,
             PropertyValue: ?*VARIANT,
             Weight: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddSpecialTransition: *const fn(
             self: *const ISpeechGrammarRuleState,
             DestinationState: ?*ISpeechGrammarRuleState,
@@ -7395,24 +7395,24 @@ pub const ISpeechGrammarRuleState = extern union {
             PropertyId: i32,
             PropertyValue: ?*VARIANT,
             Weight: f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Rule(self: *const ISpeechGrammarRuleState, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+    pub fn get_Rule(self: *const ISpeechGrammarRuleState, Rule: ?*?*ISpeechGrammarRule) HRESULT {
         return self.vtable.get_Rule(self, Rule);
     }
-    pub fn get_Transitions(self: *const ISpeechGrammarRuleState, Transitions: ?*?*ISpeechGrammarRuleStateTransitions) callconv(.Inline) HRESULT {
+    pub fn get_Transitions(self: *const ISpeechGrammarRuleState, Transitions: ?*?*ISpeechGrammarRuleStateTransitions) HRESULT {
         return self.vtable.get_Transitions(self, Transitions);
     }
-    pub fn AddWordTransition(self: *const ISpeechGrammarRuleState, DestState: ?*ISpeechGrammarRuleState, Words: ?BSTR, Separators: ?BSTR, Type: SpeechGrammarWordType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) callconv(.Inline) HRESULT {
+    pub fn AddWordTransition(self: *const ISpeechGrammarRuleState, DestState: ?*ISpeechGrammarRuleState, Words: ?BSTR, Separators: ?BSTR, Type: SpeechGrammarWordType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) HRESULT {
         return self.vtable.AddWordTransition(self, DestState, Words, Separators, Type, PropertyName, PropertyId, PropertyValue, Weight);
     }
-    pub fn AddRuleTransition(self: *const ISpeechGrammarRuleState, DestinationState: ?*ISpeechGrammarRuleState, Rule: ?*ISpeechGrammarRule, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) callconv(.Inline) HRESULT {
+    pub fn AddRuleTransition(self: *const ISpeechGrammarRuleState, DestinationState: ?*ISpeechGrammarRuleState, Rule: ?*ISpeechGrammarRule, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) HRESULT {
         return self.vtable.AddRuleTransition(self, DestinationState, Rule, PropertyName, PropertyId, PropertyValue, Weight);
     }
-    pub fn AddSpecialTransition(self: *const ISpeechGrammarRuleState, DestinationState: ?*ISpeechGrammarRuleState, Type: SpeechSpecialTransitionType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) callconv(.Inline) HRESULT {
+    pub fn AddSpecialTransition(self: *const ISpeechGrammarRuleState, DestinationState: ?*ISpeechGrammarRuleState, Type: SpeechSpecialTransitionType, PropertyName: ?BSTR, PropertyId: i32, PropertyValue: ?*VARIANT, Weight: f32) HRESULT {
         return self.vtable.AddSpecialTransition(self, DestinationState, Type, PropertyName, PropertyId, PropertyValue, Weight);
     }
 };
@@ -7426,68 +7426,68 @@ pub const ISpeechGrammarRuleStateTransition = extern union {
         get_Type: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Type: ?*SpeechGrammarRuleStateTransitionType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Text: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Text: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Rule: ?*?*ISpeechGrammarRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Weight: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             Weight: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyName: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             PropertyName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyId: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             PropertyId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PropertyValue: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             PropertyValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NextState: *const fn(
             self: *const ISpeechGrammarRuleStateTransition,
             NextState: ?*?*ISpeechGrammarRuleState,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const ISpeechGrammarRuleStateTransition, Type: ?*SpeechGrammarRuleStateTransitionType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ISpeechGrammarRuleStateTransition, Type: ?*SpeechGrammarRuleStateTransitionType) HRESULT {
         return self.vtable.get_Type(self, Type);
     }
-    pub fn get_Text(self: *const ISpeechGrammarRuleStateTransition, Text: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Text(self: *const ISpeechGrammarRuleStateTransition, Text: ?*?BSTR) HRESULT {
         return self.vtable.get_Text(self, Text);
     }
-    pub fn get_Rule(self: *const ISpeechGrammarRuleStateTransition, Rule: ?*?*ISpeechGrammarRule) callconv(.Inline) HRESULT {
+    pub fn get_Rule(self: *const ISpeechGrammarRuleStateTransition, Rule: ?*?*ISpeechGrammarRule) HRESULT {
         return self.vtable.get_Rule(self, Rule);
     }
-    pub fn get_Weight(self: *const ISpeechGrammarRuleStateTransition, Weight: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Weight(self: *const ISpeechGrammarRuleStateTransition, Weight: ?*VARIANT) HRESULT {
         return self.vtable.get_Weight(self, Weight);
     }
-    pub fn get_PropertyName(self: *const ISpeechGrammarRuleStateTransition, PropertyName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_PropertyName(self: *const ISpeechGrammarRuleStateTransition, PropertyName: ?*?BSTR) HRESULT {
         return self.vtable.get_PropertyName(self, PropertyName);
     }
-    pub fn get_PropertyId(self: *const ISpeechGrammarRuleStateTransition, PropertyId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PropertyId(self: *const ISpeechGrammarRuleStateTransition, PropertyId: ?*i32) HRESULT {
         return self.vtable.get_PropertyId(self, PropertyId);
     }
-    pub fn get_PropertyValue(self: *const ISpeechGrammarRuleStateTransition, PropertyValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PropertyValue(self: *const ISpeechGrammarRuleStateTransition, PropertyValue: ?*VARIANT) HRESULT {
         return self.vtable.get_PropertyValue(self, PropertyValue);
     }
-    pub fn get_NextState(self: *const ISpeechGrammarRuleStateTransition, NextState: ?*?*ISpeechGrammarRuleState) callconv(.Inline) HRESULT {
+    pub fn get_NextState(self: *const ISpeechGrammarRuleStateTransition, NextState: ?*?*ISpeechGrammarRuleState) HRESULT {
         return self.vtable.get_NextState(self, NextState);
     }
 };
@@ -7501,28 +7501,28 @@ pub const ISpeechGrammarRuleStateTransitions = extern union {
         get_Count: *const fn(
             self: *const ISpeechGrammarRuleStateTransitions,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechGrammarRuleStateTransitions,
             Index: i32,
             Transition: ?*?*ISpeechGrammarRuleStateTransition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechGrammarRuleStateTransitions,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechGrammarRuleStateTransitions, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechGrammarRuleStateTransitions, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechGrammarRuleStateTransitions, Index: i32, Transition: ?*?*ISpeechGrammarRuleStateTransition) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechGrammarRuleStateTransitions, Index: i32, Transition: ?*?*ISpeechGrammarRuleStateTransition) HRESULT {
         return self.vtable.Item(self, Index, Transition);
     }
-    pub fn get__NewEnum(self: *const ISpeechGrammarRuleStateTransitions, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechGrammarRuleStateTransitions, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -7536,68 +7536,68 @@ pub const ISpeechTextSelectionInformation = extern union {
         put_ActiveOffset: *const fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActiveOffset: *const fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ActiveLength: *const fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveLength: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActiveLength: *const fn(
             self: *const ISpeechTextSelectionInformation,
             ActiveLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelectionOffset: *const fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionOffset: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionOffset: *const fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SelectionLength: *const fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionLength: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SelectionLength: *const fn(
             self: *const ISpeechTextSelectionInformation,
             SelectionLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn put_ActiveOffset(self: *const ISpeechTextSelectionInformation, ActiveOffset: i32) callconv(.Inline) HRESULT {
+    pub fn put_ActiveOffset(self: *const ISpeechTextSelectionInformation, ActiveOffset: i32) HRESULT {
         return self.vtable.put_ActiveOffset(self, ActiveOffset);
     }
-    pub fn get_ActiveOffset(self: *const ISpeechTextSelectionInformation, ActiveOffset: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ActiveOffset(self: *const ISpeechTextSelectionInformation, ActiveOffset: ?*i32) HRESULT {
         return self.vtable.get_ActiveOffset(self, ActiveOffset);
     }
-    pub fn put_ActiveLength(self: *const ISpeechTextSelectionInformation, ActiveLength: i32) callconv(.Inline) HRESULT {
+    pub fn put_ActiveLength(self: *const ISpeechTextSelectionInformation, ActiveLength: i32) HRESULT {
         return self.vtable.put_ActiveLength(self, ActiveLength);
     }
-    pub fn get_ActiveLength(self: *const ISpeechTextSelectionInformation, ActiveLength: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ActiveLength(self: *const ISpeechTextSelectionInformation, ActiveLength: ?*i32) HRESULT {
         return self.vtable.get_ActiveLength(self, ActiveLength);
     }
-    pub fn put_SelectionOffset(self: *const ISpeechTextSelectionInformation, SelectionOffset: i32) callconv(.Inline) HRESULT {
+    pub fn put_SelectionOffset(self: *const ISpeechTextSelectionInformation, SelectionOffset: i32) HRESULT {
         return self.vtable.put_SelectionOffset(self, SelectionOffset);
     }
-    pub fn get_SelectionOffset(self: *const ISpeechTextSelectionInformation, SelectionOffset: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SelectionOffset(self: *const ISpeechTextSelectionInformation, SelectionOffset: ?*i32) HRESULT {
         return self.vtable.get_SelectionOffset(self, SelectionOffset);
     }
-    pub fn put_SelectionLength(self: *const ISpeechTextSelectionInformation, SelectionLength: i32) callconv(.Inline) HRESULT {
+    pub fn put_SelectionLength(self: *const ISpeechTextSelectionInformation, SelectionLength: i32) HRESULT {
         return self.vtable.put_SelectionLength(self, SelectionLength);
     }
-    pub fn get_SelectionLength(self: *const ISpeechTextSelectionInformation, SelectionLength: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SelectionLength(self: *const ISpeechTextSelectionInformation, SelectionLength: ?*i32) HRESULT {
         return self.vtable.get_SelectionLength(self, SelectionLength);
     }
 };
@@ -7611,86 +7611,86 @@ pub const ISpeechRecoResult = extern union {
         get_RecoContext: *const fn(
             self: *const ISpeechRecoResult,
             RecoContext: ?*?*ISpeechRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Times: *const fn(
             self: *const ISpeechRecoResult,
             Times: ?*?*ISpeechRecoResultTimes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AudioFormat: *const fn(
             self: *const ISpeechRecoResult,
             Format: ?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioFormat: *const fn(
             self: *const ISpeechRecoResult,
             Format: ?*?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: *const fn(
             self: *const ISpeechRecoResult,
             PhraseInfo: ?*?*ISpeechPhraseInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Alternates: *const fn(
             self: *const ISpeechRecoResult,
             RequestCount: i32,
             StartElement: i32,
             Elements: i32,
             Alternates: ?*?*ISpeechPhraseAlternates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Audio: *const fn(
             self: *const ISpeechRecoResult,
             StartElement: i32,
             Elements: i32,
             Stream: ?*?*ISpeechMemoryStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SpeakAudio: *const fn(
             self: *const ISpeechRecoResult,
             StartElement: i32,
             Elements: i32,
             Flags: SpeechVoiceSpeakFlags,
             StreamNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveToMemory: *const fn(
             self: *const ISpeechRecoResult,
             ResultBlock: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DiscardResultInfo: *const fn(
             self: *const ISpeechRecoResult,
             ValueTypes: SpeechDiscardType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RecoContext(self: *const ISpeechRecoResult, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+    pub fn get_RecoContext(self: *const ISpeechRecoResult, RecoContext: ?*?*ISpeechRecoContext) HRESULT {
         return self.vtable.get_RecoContext(self, RecoContext);
     }
-    pub fn get_Times(self: *const ISpeechRecoResult, Times: ?*?*ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
+    pub fn get_Times(self: *const ISpeechRecoResult, Times: ?*?*ISpeechRecoResultTimes) HRESULT {
         return self.vtable.get_Times(self, Times);
     }
-    pub fn putref_AudioFormat(self: *const ISpeechRecoResult, Format: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn putref_AudioFormat(self: *const ISpeechRecoResult, Format: ?*ISpeechAudioFormat) HRESULT {
         return self.vtable.putref_AudioFormat(self, Format);
     }
-    pub fn get_AudioFormat(self: *const ISpeechRecoResult, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn get_AudioFormat(self: *const ISpeechRecoResult, Format: ?*?*ISpeechAudioFormat) HRESULT {
         return self.vtable.get_AudioFormat(self, Format);
     }
-    pub fn get_PhraseInfo(self: *const ISpeechRecoResult, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+    pub fn get_PhraseInfo(self: *const ISpeechRecoResult, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
         return self.vtable.get_PhraseInfo(self, PhraseInfo);
     }
-    pub fn Alternates(self: *const ISpeechRecoResult, RequestCount: i32, StartElement: i32, Elements: i32, _param_Alternates: ?*?*ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
+    pub fn Alternates(self: *const ISpeechRecoResult, RequestCount: i32, StartElement: i32, Elements: i32, _param_Alternates: ?*?*ISpeechPhraseAlternates) HRESULT {
         return self.vtable.Alternates(self, RequestCount, StartElement, Elements, _param_Alternates);
     }
-    pub fn Audio(self: *const ISpeechRecoResult, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) callconv(.Inline) HRESULT {
+    pub fn Audio(self: *const ISpeechRecoResult, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) HRESULT {
         return self.vtable.Audio(self, StartElement, Elements, Stream);
     }
-    pub fn SpeakAudio(self: *const ISpeechRecoResult, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SpeakAudio(self: *const ISpeechRecoResult, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
         return self.vtable.SpeakAudio(self, StartElement, Elements, Flags, StreamNumber);
     }
-    pub fn SaveToMemory(self: *const ISpeechRecoResult, ResultBlock: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SaveToMemory(self: *const ISpeechRecoResult, ResultBlock: ?*VARIANT) HRESULT {
         return self.vtable.SaveToMemory(self, ResultBlock);
     }
-    pub fn DiscardResultInfo(self: *const ISpeechRecoResult, ValueTypes: SpeechDiscardType) callconv(.Inline) HRESULT {
+    pub fn DiscardResultInfo(self: *const ISpeechRecoResult, ValueTypes: SpeechDiscardType) HRESULT {
         return self.vtable.DiscardResultInfo(self, ValueTypes);
     }
 };
@@ -7704,13 +7704,13 @@ pub const ISpeechRecoResult2 = extern union {
             self: *const ISpeechRecoResult2,
             Feedback: ?BSTR,
             WasSuccessful: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechRecoResult: ISpeechRecoResult,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn SetTextFeedback(self: *const ISpeechRecoResult2, Feedback: ?BSTR, WasSuccessful: i16) callconv(.Inline) HRESULT {
+    pub fn SetTextFeedback(self: *const ISpeechRecoResult2, Feedback: ?BSTR, WasSuccessful: i16) HRESULT {
         return self.vtable.SetTextFeedback(self, Feedback, WasSuccessful);
     }
 };
@@ -7724,36 +7724,36 @@ pub const ISpeechRecoResultTimes = extern union {
         get_StreamTime: *const fn(
             self: *const ISpeechRecoResultTimes,
             Time: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: *const fn(
             self: *const ISpeechRecoResultTimes,
             Length: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TickCount: *const fn(
             self: *const ISpeechRecoResultTimes,
             TickCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OffsetFromStart: *const fn(
             self: *const ISpeechRecoResultTimes,
             OffsetFromStart: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_StreamTime(self: *const ISpeechRecoResultTimes, Time: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_StreamTime(self: *const ISpeechRecoResultTimes, Time: ?*VARIANT) HRESULT {
         return self.vtable.get_StreamTime(self, Time);
     }
-    pub fn get_Length(self: *const ISpeechRecoResultTimes, Length: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Length(self: *const ISpeechRecoResultTimes, Length: ?*VARIANT) HRESULT {
         return self.vtable.get_Length(self, Length);
     }
-    pub fn get_TickCount(self: *const ISpeechRecoResultTimes, TickCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_TickCount(self: *const ISpeechRecoResultTimes, TickCount: ?*i32) HRESULT {
         return self.vtable.get_TickCount(self, TickCount);
     }
-    pub fn get_OffsetFromStart(self: *const ISpeechRecoResultTimes, OffsetFromStart: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_OffsetFromStart(self: *const ISpeechRecoResultTimes, OffsetFromStart: ?*VARIANT) HRESULT {
         return self.vtable.get_OffsetFromStart(self, OffsetFromStart);
     }
 };
@@ -7767,42 +7767,42 @@ pub const ISpeechPhraseAlternate = extern union {
         get_RecoResult: *const fn(
             self: *const ISpeechPhraseAlternate,
             RecoResult: ?*?*ISpeechRecoResult,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartElementInResult: *const fn(
             self: *const ISpeechPhraseAlternate,
             StartElement: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElementsInResult: *const fn(
             self: *const ISpeechPhraseAlternate,
             NumberOfElements: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: *const fn(
             self: *const ISpeechPhraseAlternate,
             PhraseInfo: ?*?*ISpeechPhraseInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Commit: *const fn(
             self: *const ISpeechPhraseAlternate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RecoResult(self: *const ISpeechPhraseAlternate, RecoResult: ?*?*ISpeechRecoResult) callconv(.Inline) HRESULT {
+    pub fn get_RecoResult(self: *const ISpeechPhraseAlternate, RecoResult: ?*?*ISpeechRecoResult) HRESULT {
         return self.vtable.get_RecoResult(self, RecoResult);
     }
-    pub fn get_StartElementInResult(self: *const ISpeechPhraseAlternate, StartElement: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_StartElementInResult(self: *const ISpeechPhraseAlternate, StartElement: ?*i32) HRESULT {
         return self.vtable.get_StartElementInResult(self, StartElement);
     }
-    pub fn get_NumberOfElementsInResult(self: *const ISpeechPhraseAlternate, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_NumberOfElementsInResult(self: *const ISpeechPhraseAlternate, NumberOfElements: ?*i32) HRESULT {
         return self.vtable.get_NumberOfElementsInResult(self, NumberOfElements);
     }
-    pub fn get_PhraseInfo(self: *const ISpeechPhraseAlternate, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+    pub fn get_PhraseInfo(self: *const ISpeechPhraseAlternate, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
         return self.vtable.get_PhraseInfo(self, PhraseInfo);
     }
-    pub fn Commit(self: *const ISpeechPhraseAlternate) callconv(.Inline) HRESULT {
+    pub fn Commit(self: *const ISpeechPhraseAlternate) HRESULT {
         return self.vtable.Commit(self);
     }
 };
@@ -7816,28 +7816,28 @@ pub const ISpeechPhraseAlternates = extern union {
         get_Count: *const fn(
             self: *const ISpeechPhraseAlternates,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechPhraseAlternates,
             Index: i32,
             PhraseAlternate: ?*?*ISpeechPhraseAlternate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechPhraseAlternates,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechPhraseAlternates, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechPhraseAlternates, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechPhraseAlternates, Index: i32, PhraseAlternate: ?*?*ISpeechPhraseAlternate) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechPhraseAlternates, Index: i32, PhraseAlternate: ?*?*ISpeechPhraseAlternate) HRESULT {
         return self.vtable.Item(self, Index, PhraseAlternate);
     }
-    pub fn get__NewEnum(self: *const ISpeechPhraseAlternates, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechPhraseAlternates, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -7851,135 +7851,135 @@ pub const ISpeechPhraseInfo = extern union {
         get_LanguageId: *const fn(
             self: *const ISpeechPhraseInfo,
             LanguageId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GrammarId: *const fn(
             self: *const ISpeechPhraseInfo,
             GrammarId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_StartTime: *const fn(
             self: *const ISpeechPhraseInfo,
             StartTime: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioStreamPosition: *const fn(
             self: *const ISpeechPhraseInfo,
             AudioStreamPosition: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeBytes: *const fn(
             self: *const ISpeechPhraseInfo,
             pAudioSizeBytes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedSizeBytes: *const fn(
             self: *const ISpeechPhraseInfo,
             RetainedSizeBytes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeTime: *const fn(
             self: *const ISpeechPhraseInfo,
             AudioSizeTime: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Rule: *const fn(
             self: *const ISpeechPhraseInfo,
             Rule: ?*?*ISpeechPhraseRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Properties: *const fn(
             self: *const ISpeechPhraseInfo,
             Properties: ?*?*ISpeechPhraseProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Elements: *const fn(
             self: *const ISpeechPhraseInfo,
             Elements: ?*?*ISpeechPhraseElements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Replacements: *const fn(
             self: *const ISpeechPhraseInfo,
             Replacements: ?*?*ISpeechPhraseReplacements,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineId: *const fn(
             self: *const ISpeechPhraseInfo,
             EngineIdGuid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EnginePrivateData: *const fn(
             self: *const ISpeechPhraseInfo,
             PrivateData: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveToMemory: *const fn(
             self: *const ISpeechPhraseInfo,
             PhraseBlock: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetText: *const fn(
             self: *const ISpeechPhraseInfo,
             StartElement: i32,
             Elements: i32,
             UseReplacements: i16,
             Text: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDisplayAttributes: *const fn(
             self: *const ISpeechPhraseInfo,
             StartElement: i32,
             Elements: i32,
             UseReplacements: i16,
             DisplayAttributes: ?*SpeechDisplayAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LanguageId(self: *const ISpeechPhraseInfo, LanguageId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LanguageId(self: *const ISpeechPhraseInfo, LanguageId: ?*i32) HRESULT {
         return self.vtable.get_LanguageId(self, LanguageId);
     }
-    pub fn get_GrammarId(self: *const ISpeechPhraseInfo, GrammarId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_GrammarId(self: *const ISpeechPhraseInfo, GrammarId: ?*VARIANT) HRESULT {
         return self.vtable.get_GrammarId(self, GrammarId);
     }
-    pub fn get_StartTime(self: *const ISpeechPhraseInfo, StartTime: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_StartTime(self: *const ISpeechPhraseInfo, StartTime: ?*VARIANT) HRESULT {
         return self.vtable.get_StartTime(self, StartTime);
     }
-    pub fn get_AudioStreamPosition(self: *const ISpeechPhraseInfo, AudioStreamPosition: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_AudioStreamPosition(self: *const ISpeechPhraseInfo, AudioStreamPosition: ?*VARIANT) HRESULT {
         return self.vtable.get_AudioStreamPosition(self, AudioStreamPosition);
     }
-    pub fn get_AudioSizeBytes(self: *const ISpeechPhraseInfo, pAudioSizeBytes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AudioSizeBytes(self: *const ISpeechPhraseInfo, pAudioSizeBytes: ?*i32) HRESULT {
         return self.vtable.get_AudioSizeBytes(self, pAudioSizeBytes);
     }
-    pub fn get_RetainedSizeBytes(self: *const ISpeechPhraseInfo, RetainedSizeBytes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RetainedSizeBytes(self: *const ISpeechPhraseInfo, RetainedSizeBytes: ?*i32) HRESULT {
         return self.vtable.get_RetainedSizeBytes(self, RetainedSizeBytes);
     }
-    pub fn get_AudioSizeTime(self: *const ISpeechPhraseInfo, AudioSizeTime: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AudioSizeTime(self: *const ISpeechPhraseInfo, AudioSizeTime: ?*i32) HRESULT {
         return self.vtable.get_AudioSizeTime(self, AudioSizeTime);
     }
-    pub fn get_Rule(self: *const ISpeechPhraseInfo, Rule: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
+    pub fn get_Rule(self: *const ISpeechPhraseInfo, Rule: ?*?*ISpeechPhraseRule) HRESULT {
         return self.vtable.get_Rule(self, Rule);
     }
-    pub fn get_Properties(self: *const ISpeechPhraseInfo, Properties: ?*?*ISpeechPhraseProperties) callconv(.Inline) HRESULT {
+    pub fn get_Properties(self: *const ISpeechPhraseInfo, Properties: ?*?*ISpeechPhraseProperties) HRESULT {
         return self.vtable.get_Properties(self, Properties);
     }
-    pub fn get_Elements(self: *const ISpeechPhraseInfo, Elements: ?*?*ISpeechPhraseElements) callconv(.Inline) HRESULT {
+    pub fn get_Elements(self: *const ISpeechPhraseInfo, Elements: ?*?*ISpeechPhraseElements) HRESULT {
         return self.vtable.get_Elements(self, Elements);
     }
-    pub fn get_Replacements(self: *const ISpeechPhraseInfo, Replacements: ?*?*ISpeechPhraseReplacements) callconv(.Inline) HRESULT {
+    pub fn get_Replacements(self: *const ISpeechPhraseInfo, Replacements: ?*?*ISpeechPhraseReplacements) HRESULT {
         return self.vtable.get_Replacements(self, Replacements);
     }
-    pub fn get_EngineId(self: *const ISpeechPhraseInfo, EngineIdGuid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_EngineId(self: *const ISpeechPhraseInfo, EngineIdGuid: ?*?BSTR) HRESULT {
         return self.vtable.get_EngineId(self, EngineIdGuid);
     }
-    pub fn get_EnginePrivateData(self: *const ISpeechPhraseInfo, PrivateData: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_EnginePrivateData(self: *const ISpeechPhraseInfo, PrivateData: ?*VARIANT) HRESULT {
         return self.vtable.get_EnginePrivateData(self, PrivateData);
     }
-    pub fn SaveToMemory(self: *const ISpeechPhraseInfo, PhraseBlock: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SaveToMemory(self: *const ISpeechPhraseInfo, PhraseBlock: ?*VARIANT) HRESULT {
         return self.vtable.SaveToMemory(self, PhraseBlock);
     }
-    pub fn GetText(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, Text: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetText(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, Text: ?*?BSTR) HRESULT {
         return self.vtable.GetText(self, StartElement, Elements, UseReplacements, Text);
     }
-    pub fn GetDisplayAttributes(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.Inline) HRESULT {
+    pub fn GetDisplayAttributes(self: *const ISpeechPhraseInfo, StartElement: i32, Elements: i32, UseReplacements: i16, DisplayAttributes: ?*SpeechDisplayAttributes) HRESULT {
         return self.vtable.GetDisplayAttributes(self, StartElement, Elements, UseReplacements, DisplayAttributes);
     }
 };
@@ -7993,108 +7993,108 @@ pub const ISpeechPhraseElement = extern union {
         get_AudioTimeOffset: *const fn(
             self: *const ISpeechPhraseElement,
             AudioTimeOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeTime: *const fn(
             self: *const ISpeechPhraseElement,
             AudioSizeTime: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioStreamOffset: *const fn(
             self: *const ISpeechPhraseElement,
             AudioStreamOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioSizeBytes: *const fn(
             self: *const ISpeechPhraseElement,
             AudioSizeBytes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedStreamOffset: *const fn(
             self: *const ISpeechPhraseElement,
             RetainedStreamOffset: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RetainedSizeBytes: *const fn(
             self: *const ISpeechPhraseElement,
             RetainedSizeBytes: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayText: *const fn(
             self: *const ISpeechPhraseElement,
             DisplayText: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LexicalForm: *const fn(
             self: *const ISpeechPhraseElement,
             LexicalForm: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Pronunciation: *const fn(
             self: *const ISpeechPhraseElement,
             Pronunciation: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DisplayAttributes: *const fn(
             self: *const ISpeechPhraseElement,
             DisplayAttributes: ?*SpeechDisplayAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RequiredConfidence: *const fn(
             self: *const ISpeechPhraseElement,
             RequiredConfidence: ?*SpeechEngineConfidence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ActualConfidence: *const fn(
             self: *const ISpeechPhraseElement,
             ActualConfidence: ?*SpeechEngineConfidence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineConfidence: *const fn(
             self: *const ISpeechPhraseElement,
             EngineConfidence: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_AudioTimeOffset(self: *const ISpeechPhraseElement, AudioTimeOffset: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AudioTimeOffset(self: *const ISpeechPhraseElement, AudioTimeOffset: ?*i32) HRESULT {
         return self.vtable.get_AudioTimeOffset(self, AudioTimeOffset);
     }
-    pub fn get_AudioSizeTime(self: *const ISpeechPhraseElement, AudioSizeTime: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AudioSizeTime(self: *const ISpeechPhraseElement, AudioSizeTime: ?*i32) HRESULT {
         return self.vtable.get_AudioSizeTime(self, AudioSizeTime);
     }
-    pub fn get_AudioStreamOffset(self: *const ISpeechPhraseElement, AudioStreamOffset: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AudioStreamOffset(self: *const ISpeechPhraseElement, AudioStreamOffset: ?*i32) HRESULT {
         return self.vtable.get_AudioStreamOffset(self, AudioStreamOffset);
     }
-    pub fn get_AudioSizeBytes(self: *const ISpeechPhraseElement, AudioSizeBytes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_AudioSizeBytes(self: *const ISpeechPhraseElement, AudioSizeBytes: ?*i32) HRESULT {
         return self.vtable.get_AudioSizeBytes(self, AudioSizeBytes);
     }
-    pub fn get_RetainedStreamOffset(self: *const ISpeechPhraseElement, RetainedStreamOffset: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RetainedStreamOffset(self: *const ISpeechPhraseElement, RetainedStreamOffset: ?*i32) HRESULT {
         return self.vtable.get_RetainedStreamOffset(self, RetainedStreamOffset);
     }
-    pub fn get_RetainedSizeBytes(self: *const ISpeechPhraseElement, RetainedSizeBytes: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_RetainedSizeBytes(self: *const ISpeechPhraseElement, RetainedSizeBytes: ?*i32) HRESULT {
         return self.vtable.get_RetainedSizeBytes(self, RetainedSizeBytes);
     }
-    pub fn get_DisplayText(self: *const ISpeechPhraseElement, DisplayText: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DisplayText(self: *const ISpeechPhraseElement, DisplayText: ?*?BSTR) HRESULT {
         return self.vtable.get_DisplayText(self, DisplayText);
     }
-    pub fn get_LexicalForm(self: *const ISpeechPhraseElement, LexicalForm: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_LexicalForm(self: *const ISpeechPhraseElement, LexicalForm: ?*?BSTR) HRESULT {
         return self.vtable.get_LexicalForm(self, LexicalForm);
     }
-    pub fn get_Pronunciation(self: *const ISpeechPhraseElement, Pronunciation: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Pronunciation(self: *const ISpeechPhraseElement, Pronunciation: ?*VARIANT) HRESULT {
         return self.vtable.get_Pronunciation(self, Pronunciation);
     }
-    pub fn get_DisplayAttributes(self: *const ISpeechPhraseElement, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.Inline) HRESULT {
+    pub fn get_DisplayAttributes(self: *const ISpeechPhraseElement, DisplayAttributes: ?*SpeechDisplayAttributes) HRESULT {
         return self.vtable.get_DisplayAttributes(self, DisplayAttributes);
     }
-    pub fn get_RequiredConfidence(self: *const ISpeechPhraseElement, RequiredConfidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
+    pub fn get_RequiredConfidence(self: *const ISpeechPhraseElement, RequiredConfidence: ?*SpeechEngineConfidence) HRESULT {
         return self.vtable.get_RequiredConfidence(self, RequiredConfidence);
     }
-    pub fn get_ActualConfidence(self: *const ISpeechPhraseElement, ActualConfidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
+    pub fn get_ActualConfidence(self: *const ISpeechPhraseElement, ActualConfidence: ?*SpeechEngineConfidence) HRESULT {
         return self.vtable.get_ActualConfidence(self, ActualConfidence);
     }
-    pub fn get_EngineConfidence(self: *const ISpeechPhraseElement, EngineConfidence: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_EngineConfidence(self: *const ISpeechPhraseElement, EngineConfidence: ?*f32) HRESULT {
         return self.vtable.get_EngineConfidence(self, EngineConfidence);
     }
 };
@@ -8108,28 +8108,28 @@ pub const ISpeechPhraseElements = extern union {
         get_Count: *const fn(
             self: *const ISpeechPhraseElements,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechPhraseElements,
             Index: i32,
             Element: ?*?*ISpeechPhraseElement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechPhraseElements,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechPhraseElements, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechPhraseElements, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechPhraseElements, Index: i32, Element: ?*?*ISpeechPhraseElement) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechPhraseElements, Index: i32, Element: ?*?*ISpeechPhraseElement) HRESULT {
         return self.vtable.Item(self, Index, Element);
     }
-    pub fn get__NewEnum(self: *const ISpeechPhraseElements, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechPhraseElements, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -8143,36 +8143,36 @@ pub const ISpeechPhraseReplacement = extern union {
         get_DisplayAttributes: *const fn(
             self: *const ISpeechPhraseReplacement,
             DisplayAttributes: ?*SpeechDisplayAttributes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Text: *const fn(
             self: *const ISpeechPhraseReplacement,
             Text: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstElement: *const fn(
             self: *const ISpeechPhraseReplacement,
             FirstElement: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElements: *const fn(
             self: *const ISpeechPhraseReplacement,
             NumberOfElements: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DisplayAttributes(self: *const ISpeechPhraseReplacement, DisplayAttributes: ?*SpeechDisplayAttributes) callconv(.Inline) HRESULT {
+    pub fn get_DisplayAttributes(self: *const ISpeechPhraseReplacement, DisplayAttributes: ?*SpeechDisplayAttributes) HRESULT {
         return self.vtable.get_DisplayAttributes(self, DisplayAttributes);
     }
-    pub fn get_Text(self: *const ISpeechPhraseReplacement, Text: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Text(self: *const ISpeechPhraseReplacement, Text: ?*?BSTR) HRESULT {
         return self.vtable.get_Text(self, Text);
     }
-    pub fn get_FirstElement(self: *const ISpeechPhraseReplacement, FirstElement: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_FirstElement(self: *const ISpeechPhraseReplacement, FirstElement: ?*i32) HRESULT {
         return self.vtable.get_FirstElement(self, FirstElement);
     }
-    pub fn get_NumberOfElements(self: *const ISpeechPhraseReplacement, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_NumberOfElements(self: *const ISpeechPhraseReplacement, NumberOfElements: ?*i32) HRESULT {
         return self.vtable.get_NumberOfElements(self, NumberOfElements);
     }
 };
@@ -8186,28 +8186,28 @@ pub const ISpeechPhraseReplacements = extern union {
         get_Count: *const fn(
             self: *const ISpeechPhraseReplacements,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechPhraseReplacements,
             Index: i32,
             Reps: ?*?*ISpeechPhraseReplacement,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechPhraseReplacements,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechPhraseReplacements, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechPhraseReplacements, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechPhraseReplacements, Index: i32, Reps: ?*?*ISpeechPhraseReplacement) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechPhraseReplacements, Index: i32, Reps: ?*?*ISpeechPhraseReplacement) HRESULT {
         return self.vtable.Item(self, Index, Reps);
     }
-    pub fn get__NewEnum(self: *const ISpeechPhraseReplacements, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechPhraseReplacements, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -8221,76 +8221,76 @@ pub const ISpeechPhraseProperty = extern union {
         get_Name: *const fn(
             self: *const ISpeechPhraseProperty,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const ISpeechPhraseProperty,
             Id: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const ISpeechPhraseProperty,
             Value: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstElement: *const fn(
             self: *const ISpeechPhraseProperty,
             FirstElement: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElements: *const fn(
             self: *const ISpeechPhraseProperty,
             NumberOfElements: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineConfidence: *const fn(
             self: *const ISpeechPhraseProperty,
             Confidence: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Confidence: *const fn(
             self: *const ISpeechPhraseProperty,
             Confidence: ?*SpeechEngineConfidence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: *const fn(
             self: *const ISpeechPhraseProperty,
             ParentProperty: ?*?*ISpeechPhraseProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: *const fn(
             self: *const ISpeechPhraseProperty,
             Children: ?*?*ISpeechPhraseProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ISpeechPhraseProperty, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISpeechPhraseProperty, Name: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, Name);
     }
-    pub fn get_Id(self: *const ISpeechPhraseProperty, Id: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpeechPhraseProperty, Id: ?*i32) HRESULT {
         return self.vtable.get_Id(self, Id);
     }
-    pub fn get_Value(self: *const ISpeechPhraseProperty, Value: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ISpeechPhraseProperty, Value: ?*VARIANT) HRESULT {
         return self.vtable.get_Value(self, Value);
     }
-    pub fn get_FirstElement(self: *const ISpeechPhraseProperty, FirstElement: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_FirstElement(self: *const ISpeechPhraseProperty, FirstElement: ?*i32) HRESULT {
         return self.vtable.get_FirstElement(self, FirstElement);
     }
-    pub fn get_NumberOfElements(self: *const ISpeechPhraseProperty, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_NumberOfElements(self: *const ISpeechPhraseProperty, NumberOfElements: ?*i32) HRESULT {
         return self.vtable.get_NumberOfElements(self, NumberOfElements);
     }
-    pub fn get_EngineConfidence(self: *const ISpeechPhraseProperty, Confidence: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_EngineConfidence(self: *const ISpeechPhraseProperty, Confidence: ?*f32) HRESULT {
         return self.vtable.get_EngineConfidence(self, Confidence);
     }
-    pub fn get_Confidence(self: *const ISpeechPhraseProperty, Confidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
+    pub fn get_Confidence(self: *const ISpeechPhraseProperty, Confidence: ?*SpeechEngineConfidence) HRESULT {
         return self.vtable.get_Confidence(self, Confidence);
     }
-    pub fn get_Parent(self: *const ISpeechPhraseProperty, ParentProperty: ?*?*ISpeechPhraseProperty) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const ISpeechPhraseProperty, ParentProperty: ?*?*ISpeechPhraseProperty) HRESULT {
         return self.vtable.get_Parent(self, ParentProperty);
     }
-    pub fn get_Children(self: *const ISpeechPhraseProperty, Children: ?*?*ISpeechPhraseProperties) callconv(.Inline) HRESULT {
+    pub fn get_Children(self: *const ISpeechPhraseProperty, Children: ?*?*ISpeechPhraseProperties) HRESULT {
         return self.vtable.get_Children(self, Children);
     }
 };
@@ -8304,28 +8304,28 @@ pub const ISpeechPhraseProperties = extern union {
         get_Count: *const fn(
             self: *const ISpeechPhraseProperties,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechPhraseProperties,
             Index: i32,
             Property: ?*?*ISpeechPhraseProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechPhraseProperties,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechPhraseProperties, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechPhraseProperties, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechPhraseProperties, Index: i32, Property: ?*?*ISpeechPhraseProperty) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechPhraseProperties, Index: i32, Property: ?*?*ISpeechPhraseProperty) HRESULT {
         return self.vtable.Item(self, Index, Property);
     }
-    pub fn get__NewEnum(self: *const ISpeechPhraseProperties, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechPhraseProperties, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -8339,68 +8339,68 @@ pub const ISpeechPhraseRule = extern union {
         get_Name: *const fn(
             self: *const ISpeechPhraseRule,
             Name: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const ISpeechPhraseRule,
             Id: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FirstElement: *const fn(
             self: *const ISpeechPhraseRule,
             FirstElement: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NumberOfElements: *const fn(
             self: *const ISpeechPhraseRule,
             NumberOfElements: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Parent: *const fn(
             self: *const ISpeechPhraseRule,
             Parent: ?*?*ISpeechPhraseRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Children: *const fn(
             self: *const ISpeechPhraseRule,
             Children: ?*?*ISpeechPhraseRules,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Confidence: *const fn(
             self: *const ISpeechPhraseRule,
             ActualConfidence: ?*SpeechEngineConfidence,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_EngineConfidence: *const fn(
             self: *const ISpeechPhraseRule,
             EngineConfidence: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ISpeechPhraseRule, Name: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISpeechPhraseRule, Name: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, Name);
     }
-    pub fn get_Id(self: *const ISpeechPhraseRule, Id: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const ISpeechPhraseRule, Id: ?*i32) HRESULT {
         return self.vtable.get_Id(self, Id);
     }
-    pub fn get_FirstElement(self: *const ISpeechPhraseRule, FirstElement: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_FirstElement(self: *const ISpeechPhraseRule, FirstElement: ?*i32) HRESULT {
         return self.vtable.get_FirstElement(self, FirstElement);
     }
-    pub fn get_NumberOfElements(self: *const ISpeechPhraseRule, NumberOfElements: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_NumberOfElements(self: *const ISpeechPhraseRule, NumberOfElements: ?*i32) HRESULT {
         return self.vtable.get_NumberOfElements(self, NumberOfElements);
     }
-    pub fn get_Parent(self: *const ISpeechPhraseRule, Parent: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
+    pub fn get_Parent(self: *const ISpeechPhraseRule, Parent: ?*?*ISpeechPhraseRule) HRESULT {
         return self.vtable.get_Parent(self, Parent);
     }
-    pub fn get_Children(self: *const ISpeechPhraseRule, Children: ?*?*ISpeechPhraseRules) callconv(.Inline) HRESULT {
+    pub fn get_Children(self: *const ISpeechPhraseRule, Children: ?*?*ISpeechPhraseRules) HRESULT {
         return self.vtable.get_Children(self, Children);
     }
-    pub fn get_Confidence(self: *const ISpeechPhraseRule, ActualConfidence: ?*SpeechEngineConfidence) callconv(.Inline) HRESULT {
+    pub fn get_Confidence(self: *const ISpeechPhraseRule, ActualConfidence: ?*SpeechEngineConfidence) HRESULT {
         return self.vtable.get_Confidence(self, ActualConfidence);
     }
-    pub fn get_EngineConfidence(self: *const ISpeechPhraseRule, EngineConfidence: ?*f32) callconv(.Inline) HRESULT {
+    pub fn get_EngineConfidence(self: *const ISpeechPhraseRule, EngineConfidence: ?*f32) HRESULT {
         return self.vtable.get_EngineConfidence(self, EngineConfidence);
     }
 };
@@ -8414,28 +8414,28 @@ pub const ISpeechPhraseRules = extern union {
         get_Count: *const fn(
             self: *const ISpeechPhraseRules,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechPhraseRules,
             Index: i32,
             Rule: ?*?*ISpeechPhraseRule,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechPhraseRules,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechPhraseRules, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechPhraseRules, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechPhraseRules, Index: i32, Rule: ?*?*ISpeechPhraseRule) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechPhraseRules, Index: i32, Rule: ?*?*ISpeechPhraseRule) HRESULT {
         return self.vtable.Item(self, Index, Rule);
     }
-    pub fn get__NewEnum(self: *const ISpeechPhraseRules, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechPhraseRules, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -8449,79 +8449,79 @@ pub const ISpeechLexicon = extern union {
         get_GenerationId: *const fn(
             self: *const ISpeechLexicon,
             GenerationId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetWords: *const fn(
             self: *const ISpeechLexicon,
             Flags: SpeechLexiconType,
             GenerationID: ?*i32,
             Words: ?*?*ISpeechLexiconWords,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPronunciation: *const fn(
             self: *const ISpeechLexicon,
             bstrWord: ?BSTR,
             LangId: i32,
             PartOfSpeech: SpeechPartOfSpeech,
             bstrPronunciation: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddPronunciationByPhoneIds: *const fn(
             self: *const ISpeechLexicon,
             bstrWord: ?BSTR,
             LangId: i32,
             PartOfSpeech: SpeechPartOfSpeech,
             PhoneIds: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemovePronunciation: *const fn(
             self: *const ISpeechLexicon,
             bstrWord: ?BSTR,
             LangId: i32,
             PartOfSpeech: SpeechPartOfSpeech,
             bstrPronunciation: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemovePronunciationByPhoneIds: *const fn(
             self: *const ISpeechLexicon,
             bstrWord: ?BSTR,
             LangId: i32,
             PartOfSpeech: SpeechPartOfSpeech,
             PhoneIds: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPronunciations: *const fn(
             self: *const ISpeechLexicon,
             bstrWord: ?BSTR,
             LangId: i32,
             TypeFlags: SpeechLexiconType,
             ppPronunciations: ?*?*ISpeechLexiconPronunciations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetGenerationChange: *const fn(
             self: *const ISpeechLexicon,
             GenerationID: ?*i32,
             ppWords: ?*?*ISpeechLexiconWords,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_GenerationId(self: *const ISpeechLexicon, GenerationId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_GenerationId(self: *const ISpeechLexicon, GenerationId: ?*i32) HRESULT {
         return self.vtable.get_GenerationId(self, GenerationId);
     }
-    pub fn GetWords(self: *const ISpeechLexicon, Flags: SpeechLexiconType, GenerationID: ?*i32, Words: ?*?*ISpeechLexiconWords) callconv(.Inline) HRESULT {
+    pub fn GetWords(self: *const ISpeechLexicon, Flags: SpeechLexiconType, GenerationID: ?*i32, Words: ?*?*ISpeechLexiconWords) HRESULT {
         return self.vtable.GetWords(self, Flags, GenerationID, Words);
     }
-    pub fn AddPronunciation(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddPronunciation(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) HRESULT {
         return self.vtable.AddPronunciation(self, bstrWord, LangId, PartOfSpeech, bstrPronunciation);
     }
-    pub fn AddPronunciationByPhoneIds(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn AddPronunciationByPhoneIds(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) HRESULT {
         return self.vtable.AddPronunciationByPhoneIds(self, bstrWord, LangId, PartOfSpeech, PhoneIds);
     }
-    pub fn RemovePronunciation(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn RemovePronunciation(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, bstrPronunciation: ?BSTR) HRESULT {
         return self.vtable.RemovePronunciation(self, bstrWord, LangId, PartOfSpeech, bstrPronunciation);
     }
-    pub fn RemovePronunciationByPhoneIds(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemovePronunciationByPhoneIds(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, PartOfSpeech: SpeechPartOfSpeech, PhoneIds: ?*VARIANT) HRESULT {
         return self.vtable.RemovePronunciationByPhoneIds(self, bstrWord, LangId, PartOfSpeech, PhoneIds);
     }
-    pub fn GetPronunciations(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, TypeFlags: SpeechLexiconType, ppPronunciations: ?*?*ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
+    pub fn GetPronunciations(self: *const ISpeechLexicon, bstrWord: ?BSTR, LangId: i32, TypeFlags: SpeechLexiconType, ppPronunciations: ?*?*ISpeechLexiconPronunciations) HRESULT {
         return self.vtable.GetPronunciations(self, bstrWord, LangId, TypeFlags, ppPronunciations);
     }
-    pub fn GetGenerationChange(self: *const ISpeechLexicon, GenerationID: ?*i32, ppWords: ?*?*ISpeechLexiconWords) callconv(.Inline) HRESULT {
+    pub fn GetGenerationChange(self: *const ISpeechLexicon, GenerationID: ?*i32, ppWords: ?*?*ISpeechLexiconWords) HRESULT {
         return self.vtable.GetGenerationChange(self, GenerationID, ppWords);
     }
 };
@@ -8535,28 +8535,28 @@ pub const ISpeechLexiconWords = extern union {
         get_Count: *const fn(
             self: *const ISpeechLexiconWords,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechLexiconWords,
             Index: i32,
             Word: ?*?*ISpeechLexiconWord,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechLexiconWords,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechLexiconWords, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechLexiconWords, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechLexiconWords, Index: i32, Word: ?*?*ISpeechLexiconWord) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechLexiconWords, Index: i32, Word: ?*?*ISpeechLexiconWord) HRESULT {
         return self.vtable.Item(self, Index, Word);
     }
-    pub fn get__NewEnum(self: *const ISpeechLexiconWords, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechLexiconWords, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -8570,36 +8570,36 @@ pub const ISpeechLexiconWord = extern union {
         get_LangId: *const fn(
             self: *const ISpeechLexiconWord,
             LangId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const ISpeechLexiconWord,
             WordType: ?*SpeechWordType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Word: *const fn(
             self: *const ISpeechLexiconWord,
             Word: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Pronunciations: *const fn(
             self: *const ISpeechLexiconWord,
             Pronunciations: ?*?*ISpeechLexiconPronunciations,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LangId(self: *const ISpeechLexiconWord, LangId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LangId(self: *const ISpeechLexiconWord, LangId: ?*i32) HRESULT {
         return self.vtable.get_LangId(self, LangId);
     }
-    pub fn get_Type(self: *const ISpeechLexiconWord, WordType: ?*SpeechWordType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ISpeechLexiconWord, WordType: ?*SpeechWordType) HRESULT {
         return self.vtable.get_Type(self, WordType);
     }
-    pub fn get_Word(self: *const ISpeechLexiconWord, Word: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Word(self: *const ISpeechLexiconWord, Word: ?*?BSTR) HRESULT {
         return self.vtable.get_Word(self, Word);
     }
-    pub fn get_Pronunciations(self: *const ISpeechLexiconWord, Pronunciations: ?*?*ISpeechLexiconPronunciations) callconv(.Inline) HRESULT {
+    pub fn get_Pronunciations(self: *const ISpeechLexiconWord, Pronunciations: ?*?*ISpeechLexiconPronunciations) HRESULT {
         return self.vtable.get_Pronunciations(self, Pronunciations);
     }
 };
@@ -8613,28 +8613,28 @@ pub const ISpeechLexiconPronunciations = extern union {
         get_Count: *const fn(
             self: *const ISpeechLexiconPronunciations,
             Count: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Item: *const fn(
             self: *const ISpeechLexiconPronunciations,
             Index: i32,
             Pronunciation: ?*?*ISpeechLexiconPronunciation,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISpeechLexiconPronunciations,
             EnumVARIANT: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISpeechLexiconPronunciations, Count: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISpeechLexiconPronunciations, Count: ?*i32) HRESULT {
         return self.vtable.get_Count(self, Count);
     }
-    pub fn Item(self: *const ISpeechLexiconPronunciations, Index: i32, Pronunciation: ?*?*ISpeechLexiconPronunciation) callconv(.Inline) HRESULT {
+    pub fn Item(self: *const ISpeechLexiconPronunciations, Index: i32, Pronunciation: ?*?*ISpeechLexiconPronunciation) HRESULT {
         return self.vtable.Item(self, Index, Pronunciation);
     }
-    pub fn get__NewEnum(self: *const ISpeechLexiconPronunciations, EnumVARIANT: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISpeechLexiconPronunciations, EnumVARIANT: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, EnumVARIANT);
     }
 };
@@ -8648,44 +8648,44 @@ pub const ISpeechLexiconPronunciation = extern union {
         get_Type: *const fn(
             self: *const ISpeechLexiconPronunciation,
             LexiconType: ?*SpeechLexiconType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LangId: *const fn(
             self: *const ISpeechLexiconPronunciation,
             LangId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PartOfSpeech: *const fn(
             self: *const ISpeechLexiconPronunciation,
             PartOfSpeech: ?*SpeechPartOfSpeech,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhoneIds: *const fn(
             self: *const ISpeechLexiconPronunciation,
             PhoneIds: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Symbolic: *const fn(
             self: *const ISpeechLexiconPronunciation,
             Symbolic: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Type(self: *const ISpeechLexiconPronunciation, LexiconType: ?*SpeechLexiconType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ISpeechLexiconPronunciation, LexiconType: ?*SpeechLexiconType) HRESULT {
         return self.vtable.get_Type(self, LexiconType);
     }
-    pub fn get_LangId(self: *const ISpeechLexiconPronunciation, LangId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LangId(self: *const ISpeechLexiconPronunciation, LangId: ?*i32) HRESULT {
         return self.vtable.get_LangId(self, LangId);
     }
-    pub fn get_PartOfSpeech(self: *const ISpeechLexiconPronunciation, PartOfSpeech: ?*SpeechPartOfSpeech) callconv(.Inline) HRESULT {
+    pub fn get_PartOfSpeech(self: *const ISpeechLexiconPronunciation, PartOfSpeech: ?*SpeechPartOfSpeech) HRESULT {
         return self.vtable.get_PartOfSpeech(self, PartOfSpeech);
     }
-    pub fn get_PhoneIds(self: *const ISpeechLexiconPronunciation, PhoneIds: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PhoneIds(self: *const ISpeechLexiconPronunciation, PhoneIds: ?*VARIANT) HRESULT {
         return self.vtable.get_PhoneIds(self, PhoneIds);
     }
-    pub fn get_Symbolic(self: *const ISpeechLexiconPronunciation, Symbolic: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Symbolic(self: *const ISpeechLexiconPronunciation, Symbolic: ?*?BSTR) HRESULT {
         return self.vtable.get_Symbolic(self, Symbolic);
     }
 };
@@ -8699,7 +8699,7 @@ pub const ISpeechXMLRecoResult = extern union {
             self: *const ISpeechXMLRecoResult,
             Options: SPXMLRESULTOPTIONS,
             pResult: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXMLErrorInfo: *const fn(
             self: *const ISpeechXMLRecoResult,
             LineNumber: ?*i32,
@@ -8708,16 +8708,16 @@ pub const ISpeechXMLRecoResult = extern union {
             Description: ?*?BSTR,
             ResultCode: ?*i32,
             IsError: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISpeechRecoResult: ISpeechRecoResult,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn GetXMLResult(self: *const ISpeechXMLRecoResult, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetXMLResult(self: *const ISpeechXMLRecoResult, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) HRESULT {
         return self.vtable.GetXMLResult(self, Options, pResult);
     }
-    pub fn GetXMLErrorInfo(self: *const ISpeechXMLRecoResult, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*i32, IsError: ?*i16) callconv(.Inline) HRESULT {
+    pub fn GetXMLErrorInfo(self: *const ISpeechXMLRecoResult, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*i32, IsError: ?*i16) HRESULT {
         return self.vtable.GetXMLErrorInfo(self, LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
     }
 };
@@ -8731,59 +8731,59 @@ pub const ISpeechRecoResultDispatch = extern union {
         get_RecoContext: *const fn(
             self: *const ISpeechRecoResultDispatch,
             RecoContext: ?*?*ISpeechRecoContext,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Times: *const fn(
             self: *const ISpeechRecoResultDispatch,
             Times: ?*?*ISpeechRecoResultTimes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         putref_AudioFormat: *const fn(
             self: *const ISpeechRecoResultDispatch,
             Format: ?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AudioFormat: *const fn(
             self: *const ISpeechRecoResultDispatch,
             Format: ?*?*ISpeechAudioFormat,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PhraseInfo: *const fn(
             self: *const ISpeechRecoResultDispatch,
             PhraseInfo: ?*?*ISpeechPhraseInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Alternates: *const fn(
             self: *const ISpeechRecoResultDispatch,
             RequestCount: i32,
             StartElement: i32,
             Elements: i32,
             Alternates: ?*?*ISpeechPhraseAlternates,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Audio: *const fn(
             self: *const ISpeechRecoResultDispatch,
             StartElement: i32,
             Elements: i32,
             Stream: ?*?*ISpeechMemoryStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SpeakAudio: *const fn(
             self: *const ISpeechRecoResultDispatch,
             StartElement: i32,
             Elements: i32,
             Flags: SpeechVoiceSpeakFlags,
             StreamNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveToMemory: *const fn(
             self: *const ISpeechRecoResultDispatch,
             ResultBlock: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DiscardResultInfo: *const fn(
             self: *const ISpeechRecoResultDispatch,
             ValueTypes: SpeechDiscardType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXMLResult: *const fn(
             self: *const ISpeechRecoResultDispatch,
             Options: SPXMLRESULTOPTIONS,
             pResult: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetXMLErrorInfo: *const fn(
             self: *const ISpeechRecoResultDispatch,
             LineNumber: ?*i32,
@@ -8792,53 +8792,53 @@ pub const ISpeechRecoResultDispatch = extern union {
             Description: ?*?BSTR,
             ResultCode: ?*HRESULT,
             IsError: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetTextFeedback: *const fn(
             self: *const ISpeechRecoResultDispatch,
             Feedback: ?BSTR,
             WasSuccessful: i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_RecoContext(self: *const ISpeechRecoResultDispatch, RecoContext: ?*?*ISpeechRecoContext) callconv(.Inline) HRESULT {
+    pub fn get_RecoContext(self: *const ISpeechRecoResultDispatch, RecoContext: ?*?*ISpeechRecoContext) HRESULT {
         return self.vtable.get_RecoContext(self, RecoContext);
     }
-    pub fn get_Times(self: *const ISpeechRecoResultDispatch, Times: ?*?*ISpeechRecoResultTimes) callconv(.Inline) HRESULT {
+    pub fn get_Times(self: *const ISpeechRecoResultDispatch, Times: ?*?*ISpeechRecoResultTimes) HRESULT {
         return self.vtable.get_Times(self, Times);
     }
-    pub fn putref_AudioFormat(self: *const ISpeechRecoResultDispatch, Format: ?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn putref_AudioFormat(self: *const ISpeechRecoResultDispatch, Format: ?*ISpeechAudioFormat) HRESULT {
         return self.vtable.putref_AudioFormat(self, Format);
     }
-    pub fn get_AudioFormat(self: *const ISpeechRecoResultDispatch, Format: ?*?*ISpeechAudioFormat) callconv(.Inline) HRESULT {
+    pub fn get_AudioFormat(self: *const ISpeechRecoResultDispatch, Format: ?*?*ISpeechAudioFormat) HRESULT {
         return self.vtable.get_AudioFormat(self, Format);
     }
-    pub fn get_PhraseInfo(self: *const ISpeechRecoResultDispatch, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+    pub fn get_PhraseInfo(self: *const ISpeechRecoResultDispatch, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
         return self.vtable.get_PhraseInfo(self, PhraseInfo);
     }
-    pub fn Alternates(self: *const ISpeechRecoResultDispatch, RequestCount: i32, StartElement: i32, Elements: i32, _param_Alternates: ?*?*ISpeechPhraseAlternates) callconv(.Inline) HRESULT {
+    pub fn Alternates(self: *const ISpeechRecoResultDispatch, RequestCount: i32, StartElement: i32, Elements: i32, _param_Alternates: ?*?*ISpeechPhraseAlternates) HRESULT {
         return self.vtable.Alternates(self, RequestCount, StartElement, Elements, _param_Alternates);
     }
-    pub fn Audio(self: *const ISpeechRecoResultDispatch, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) callconv(.Inline) HRESULT {
+    pub fn Audio(self: *const ISpeechRecoResultDispatch, StartElement: i32, Elements: i32, Stream: ?*?*ISpeechMemoryStream) HRESULT {
         return self.vtable.Audio(self, StartElement, Elements, Stream);
     }
-    pub fn SpeakAudio(self: *const ISpeechRecoResultDispatch, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn SpeakAudio(self: *const ISpeechRecoResultDispatch, StartElement: i32, Elements: i32, Flags: SpeechVoiceSpeakFlags, StreamNumber: ?*i32) HRESULT {
         return self.vtable.SpeakAudio(self, StartElement, Elements, Flags, StreamNumber);
     }
-    pub fn SaveToMemory(self: *const ISpeechRecoResultDispatch, ResultBlock: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SaveToMemory(self: *const ISpeechRecoResultDispatch, ResultBlock: ?*VARIANT) HRESULT {
         return self.vtable.SaveToMemory(self, ResultBlock);
     }
-    pub fn DiscardResultInfo(self: *const ISpeechRecoResultDispatch, ValueTypes: SpeechDiscardType) callconv(.Inline) HRESULT {
+    pub fn DiscardResultInfo(self: *const ISpeechRecoResultDispatch, ValueTypes: SpeechDiscardType) HRESULT {
         return self.vtable.DiscardResultInfo(self, ValueTypes);
     }
-    pub fn GetXMLResult(self: *const ISpeechRecoResultDispatch, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn GetXMLResult(self: *const ISpeechRecoResultDispatch, Options: SPXMLRESULTOPTIONS, pResult: ?*?BSTR) HRESULT {
         return self.vtable.GetXMLResult(self, Options, pResult);
     }
-    pub fn GetXMLErrorInfo(self: *const ISpeechRecoResultDispatch, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*HRESULT, IsError: ?*i16) callconv(.Inline) HRESULT {
+    pub fn GetXMLErrorInfo(self: *const ISpeechRecoResultDispatch, LineNumber: ?*i32, ScriptLine: ?*?BSTR, Source: ?*?BSTR, Description: ?*?BSTR, ResultCode: ?*HRESULT, IsError: ?*i16) HRESULT {
         return self.vtable.GetXMLErrorInfo(self, LineNumber, ScriptLine, Source, Description, ResultCode, IsError);
     }
-    pub fn SetTextFeedback(self: *const ISpeechRecoResultDispatch, Feedback: ?BSTR, WasSuccessful: i16) callconv(.Inline) HRESULT {
+    pub fn SetTextFeedback(self: *const ISpeechRecoResultDispatch, Feedback: ?BSTR, WasSuccessful: i16) HRESULT {
         return self.vtable.SetTextFeedback(self, Feedback, WasSuccessful);
     }
 };
@@ -8852,12 +8852,12 @@ pub const ISpeechPhraseInfoBuilder = extern union {
             self: *const ISpeechPhraseInfoBuilder,
             PhraseInMemory: ?*VARIANT,
             PhraseInfo: ?*?*ISpeechPhraseInfo,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn RestorePhraseFromMemory(self: *const ISpeechPhraseInfoBuilder, PhraseInMemory: ?*VARIANT, PhraseInfo: ?*?*ISpeechPhraseInfo) callconv(.Inline) HRESULT {
+    pub fn RestorePhraseFromMemory(self: *const ISpeechPhraseInfoBuilder, PhraseInMemory: ?*VARIANT, PhraseInfo: ?*?*ISpeechPhraseInfo) HRESULT {
         return self.vtable.RestorePhraseFromMemory(self, PhraseInMemory, PhraseInfo);
     }
 };
@@ -8871,36 +8871,36 @@ pub const ISpeechPhoneConverter = extern union {
         get_LanguageId: *const fn(
             self: *const ISpeechPhoneConverter,
             LanguageId: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LanguageId: *const fn(
             self: *const ISpeechPhoneConverter,
             LanguageId: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         PhoneToId: *const fn(
             self: *const ISpeechPhoneConverter,
             Phonemes: ?BSTR,
             IdArray: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IdToPhone: *const fn(
             self: *const ISpeechPhoneConverter,
             IdArray: VARIANT,
             Phonemes: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_LanguageId(self: *const ISpeechPhoneConverter, LanguageId: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_LanguageId(self: *const ISpeechPhoneConverter, LanguageId: ?*i32) HRESULT {
         return self.vtable.get_LanguageId(self, LanguageId);
     }
-    pub fn put_LanguageId(self: *const ISpeechPhoneConverter, LanguageId: i32) callconv(.Inline) HRESULT {
+    pub fn put_LanguageId(self: *const ISpeechPhoneConverter, LanguageId: i32) HRESULT {
         return self.vtable.put_LanguageId(self, LanguageId);
     }
-    pub fn PhoneToId(self: *const ISpeechPhoneConverter, Phonemes: ?BSTR, IdArray: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn PhoneToId(self: *const ISpeechPhoneConverter, Phonemes: ?BSTR, IdArray: ?*VARIANT) HRESULT {
         return self.vtable.PhoneToId(self, Phonemes, IdArray);
     }
-    pub fn IdToPhone(self: *const ISpeechPhoneConverter, IdArray: VARIANT, Phonemes: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn IdToPhone(self: *const ISpeechPhoneConverter, IdArray: VARIANT, Phonemes: ?*?BSTR) HRESULT {
         return self.vtable.IdToPhone(self, IdArray, Phonemes);
     }
 };

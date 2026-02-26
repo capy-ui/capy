@@ -24,19 +24,19 @@ pub extern "ntdll" fn RtlInitializeCorrelationVector(
     CorrelationVector: ?*CORRELATION_VECTOR,
     Version: i32,
     Guid: ?*const Guid,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "ntdll" fn RtlIncrementCorrelationVector(
     CorrelationVector: ?*CORRELATION_VECTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "ntdll" fn RtlExtendCorrelationVector(
     CorrelationVector: ?*CORRELATION_VECTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "ntdll" fn RtlValidateCorrelationVector(
     Vector: ?*CORRELATION_VECTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

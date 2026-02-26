@@ -3,7 +3,6 @@ const backend = @import("backend.zig");
 const internal = @import("internal.zig");
 const listener = @import("listener.zig");
 const Widget = @import("widget.zig").Widget;
-// const ImageData = @import("image.zig").ImageData;
 const MenuBar = @import("components/Menu.zig").MenuBar;
 const Size = @import("data.zig").Size;
 const Atom = @import("data.zig").Atom;
@@ -151,10 +150,6 @@ pub const Window = struct {
     pub fn setTitle(self: *Window, title: [:0]const u8) void {
         self.peer.setTitle(title);
     }
-
-    // pub fn setIcon(self: *Window, icon: *ImageData) void {
-    //     self.peer.setIcon(icon.data.peer);
-    // }
 
     pub fn setMenuBar(self: *Window, bar: MenuBar) void {
         self.peer.setMenuBar(bar);

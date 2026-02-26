@@ -205,7 +205,7 @@ pub const DRMCALLBACK = *const fn(
     param1: HRESULT,
     param2: ?*anyopaque,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
@@ -215,11 +215,11 @@ pub extern "msdrm" fn DRMSetGlobalOptions(
     eGlobalOptions: DRMGLOBALOPTIONS,
     pvdata: ?*anyopaque,
     dwlen: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetClientVersion(
     pDRMClientVersionInfo: ?*DRM_CLIENT_VERSION_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMInitEnvironment(
     eSecurityProviderType: DRMSECURITYPROVIDERTYPE,
@@ -229,7 +229,7 @@ pub extern "msdrm" fn DRMInitEnvironment(
     wszMachineCredentials: ?PWSTR,
     phEnv: ?*u32,
     phDefaultLibrary: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMLoadLibrary(
     hEnv: u32,
@@ -237,7 +237,7 @@ pub extern "msdrm" fn DRMLoadLibrary(
     wszLibraryProvider: ?PWSTR,
     wszCredentials: ?PWSTR,
     phLibrary: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateEnablingPrincipal(
     hEnv: u32,
@@ -246,39 +246,39 @@ pub extern "msdrm" fn DRMCreateEnablingPrincipal(
     pidPrincipal: ?*DRMID,
     wszCredentials: ?PWSTR,
     phEnablingPrincipal: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCloseHandle(
     handle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCloseEnvironmentHandle(
     hEnv: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDuplicateHandle(
     hToCopy: u32,
     phCopy: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDuplicateEnvironmentHandle(
     hToCopy: u32,
     phCopy: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMRegisterRevocationList(
     hEnv: u32,
     wszRevocationList: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCheckSecurity(
     hEnv: u32,
     cLevel: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMRegisterContent(
     fRegister: BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMEncrypt(
     hCryptoProvider: u32,
@@ -287,7 +287,7 @@ pub extern "msdrm" fn DRMEncrypt(
     pbInData: ?*u8,
     pcNumOutBytes: ?*u32,
     pbOutData: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDecrypt(
     hCryptoProvider: u32,
@@ -296,7 +296,7 @@ pub extern "msdrm" fn DRMDecrypt(
     pbInData: ?*u8,
     pcNumOutBytes: ?*u32,
     pbOutData: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateBoundLicense(
     hEnv: u32,
@@ -304,7 +304,7 @@ pub extern "msdrm" fn DRMCreateBoundLicense(
     wszLicenseChain: ?PWSTR,
     phBoundLicense: ?*u32,
     phErrorLog: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateEnablingBitsDecryptor(
     hBoundLicense: u32,
@@ -312,7 +312,7 @@ pub extern "msdrm" fn DRMCreateEnablingBitsDecryptor(
     hAuxLib: u32,
     wszAuxPlug: ?PWSTR,
     phDecryptor: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateEnablingBitsEncryptor(
     hBoundLicense: u32,
@@ -320,7 +320,7 @@ pub extern "msdrm" fn DRMCreateEnablingBitsEncryptor(
     hAuxLib: u32,
     wszAuxPlug: ?PWSTR,
     phEncryptor: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMAttest(
     hEnablingPrincipal: u32,
@@ -328,13 +328,13 @@ pub extern "msdrm" fn DRMAttest(
     eType: DRMATTESTTYPE,
     pcAttestedBlob: ?*u32,
     wszAttestedBlob: [*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetTime(
     hEnv: u32,
     eTimerIdType: DRMTIMETYPE,
     poTimeObject: ?*SYSTEMTIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetInfo(
     handle: u32,
@@ -342,7 +342,7 @@ pub extern "msdrm" fn DRMGetInfo(
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
     pbBuffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetEnvironmentInfo(
     handle: u32,
@@ -350,32 +350,32 @@ pub extern "msdrm" fn DRMGetEnvironmentInfo(
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
     pbBuffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetProcAddress(
     hLibrary: u32,
     wszProcName: ?PWSTR,
     ppfnProcAddress: ?*?FARPROC,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetBoundLicenseObjectCount(
     hQueryRoot: u32,
     wszSubObjectType: ?PWSTR,
     pcSubObjects: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetBoundLicenseObject(
     hQueryRoot: u32,
     wszSubObjectType: ?PWSTR,
     iWhich: u32,
     phSubObject: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetBoundLicenseAttributeCount(
     hQueryRoot: u32,
     wszAttribute: ?PWSTR,
     pcAttributes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetBoundLicenseAttribute(
     hQueryRoot: u32,
@@ -384,7 +384,7 @@ pub extern "msdrm" fn DRMGetBoundLicenseAttribute(
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
     pbBuffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateClientSession(
     pfnCallback: ?DRMCALLBACK,
@@ -392,13 +392,13 @@ pub extern "msdrm" fn DRMCreateClientSession(
     wszGroupIDProviderType: ?PWSTR,
     wszGroupID: ?PWSTR,
     phClient: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMIsActivated(
     hClient: u32,
     uFlags: u32,
     pActServInfo: ?*DRM_ACTSERV_INFO,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMActivate(
     hClient: u32,
@@ -407,7 +407,7 @@ pub extern "msdrm" fn DRMActivate(
     pActServInfo: ?*DRM_ACTSERV_INFO,
     pvContext: ?*anyopaque,
     hParentWnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetServiceLocation(
     hClient: u32,
@@ -416,7 +416,7 @@ pub extern "msdrm" fn DRMGetServiceLocation(
     wszIssuanceLicense: ?PWSTR,
     puServiceURLLength: ?*u32,
     wszServiceURL: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateLicenseStorageSession(
     hEnv: u32,
@@ -425,20 +425,20 @@ pub extern "msdrm" fn DRMCreateLicenseStorageSession(
     uFlags: u32,
     wszIssuanceLicense: ?PWSTR,
     phLicenseStorage: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMAddLicense(
     hLicenseStorage: u32,
     uFlags: u32,
     wszLicense: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMAcquireAdvisories(
     hLicenseStorage: u32,
     wszLicense: ?PWSTR,
     wszURL: ?PWSTR,
     pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMEnumerateLicense(
     hSession: u32,
@@ -447,7 +447,7 @@ pub extern "msdrm" fn DRMEnumerateLicense(
     pfSharedFlag: ?*BOOL,
     puCertificateDataLen: ?*u32,
     wszCertificateData: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMAcquireLicense(
     hSession: u32,
@@ -457,21 +457,21 @@ pub extern "msdrm" fn DRMAcquireLicense(
     wszCustomData: ?PWSTR,
     wszURL: ?PWSTR,
     pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDeleteLicense(
     hSession: u32,
     wszLicenseId: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCloseSession(
     hSession: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDuplicateSession(
     hSessionIn: u32,
     phSessionOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetSecurityProvider(
     uFlags: u32,
@@ -479,7 +479,7 @@ pub extern "msdrm" fn DRMGetSecurityProvider(
     wszType: ?[*:0]u16,
     puPathLen: ?*u32,
     wszPath: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMEncode(
     wszAlgID: ?PWSTR,
@@ -487,49 +487,49 @@ pub extern "msdrm" fn DRMEncode(
     pbDecodedData: ?*u8,
     puEncodedStringLen: ?*u32,
     wszEncodedString: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDecode(
     wszAlgID: ?PWSTR,
     wszEncodedString: ?PWSTR,
     puDecodedDataLen: ?*u32,
     pbDecodedData: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMConstructCertificateChain(
     cCertificates: u32,
     rgwszCertificates: [*]?PWSTR,
     pcChain: ?*u32,
     wszChain: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMParseUnboundLicense(
     wszCertificate: ?PWSTR,
     phQueryRoot: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCloseQueryHandle(
     hQuery: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUnboundLicenseObjectCount(
     hQueryRoot: u32,
     wszSubObjectType: ?PWSTR,
     pcSubObjects: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUnboundLicenseObject(
     hQueryRoot: u32,
     wszSubObjectType: ?PWSTR,
     iIndex: u32,
     phSubQuery: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUnboundLicenseAttributeCount(
     hQueryRoot: u32,
     wszAttributeType: ?PWSTR,
     pcAttributes: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUnboundLicenseAttribute(
     hQueryRoot: u32,
@@ -538,19 +538,19 @@ pub extern "msdrm" fn DRMGetUnboundLicenseAttribute(
     peEncoding: ?*DRMENCODINGTYPE,
     pcBuffer: ?*u32,
     pbBuffer: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetCertificateChainCount(
     wszChain: ?PWSTR,
     pcCertCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDeconstructCertificateChain(
     wszChain: ?PWSTR,
     iWhich: u32,
     pcCert: ?*u32,
     wszCert: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMVerify(
     wszData: ?PWSTR,
@@ -561,14 +561,14 @@ pub extern "msdrm" fn DRMVerify(
     wszPrincipal: ?[*:0]u16,
     pcManifest: ?*u32,
     wszManifest: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateUser(
     wszUserName: ?PWSTR,
     wszUserId: ?PWSTR,
     wszUserIdType: ?PWSTR,
     phUser: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateRight(
     wszRightName: ?PWSTR,
@@ -578,7 +578,7 @@ pub extern "msdrm" fn DRMCreateRight(
     pwszExtendedInfoName: ?[*]?PWSTR,
     pwszExtendedInfoValue: ?[*]?PWSTR,
     phRight: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMCreateIssuanceLicense(
     pstTimeFrom: ?*SYSTEMTIME,
@@ -589,17 +589,17 @@ pub extern "msdrm" fn DRMCreateIssuanceLicense(
     wszIssuanceLicense: ?PWSTR,
     hBoundLicense: u32,
     phIssuanceLicense: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMAddRightWithUser(
     hIssuanceLicense: u32,
     hRight: u32,
     hUser: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMClearAllRights(
     hIssuanceLicense: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetMetaData(
     hIssuanceLicense: u32,
@@ -609,7 +609,7 @@ pub extern "msdrm" fn DRMSetMetaData(
     wszSKUIdType: ?PWSTR,
     wszContentType: ?PWSTR,
     wszContentName: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetUsagePolicy(
     hIssuanceLicense: u32,
@@ -623,7 +623,7 @@ pub extern "msdrm" fn DRMSetUsagePolicy(
     wszDigestAlgorithm: ?PWSTR,
     pbDigest: ?*u8,
     cbDigest: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetRevocationPoint(
     hIssuanceLicense: u32,
@@ -634,14 +634,14 @@ pub extern "msdrm" fn DRMSetRevocationPoint(
     pstFrequency: ?*SYSTEMTIME,
     wszName: ?PWSTR,
     wszPublicKey: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetApplicationSpecificData(
     hIssuanceLicense: u32,
     fDelete: BOOL,
     wszName: ?PWSTR,
     wszValue: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetNameAndDescription(
     hIssuanceLicense: u32,
@@ -649,18 +649,18 @@ pub extern "msdrm" fn DRMSetNameAndDescription(
     lcid: u32,
     wszName: ?PWSTR,
     wszDescription: ?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMSetIntervalTime(
     hIssuanceLicense: u32,
     cDays: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetIssuanceLicenseTemplate(
     hIssuanceLicense: u32,
     puIssuanceLicenseTemplateLength: ?*u32,
     wszIssuanceLicenseTemplate: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetSignedIssuanceLicense(
     hEnv: u32,
@@ -673,7 +673,7 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicense(
     pfnCallback: ?DRMCALLBACK,
     wszURL: ?PWSTR,
     pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "msdrm" fn DRMGetSignedIssuanceLicenseEx(
@@ -689,16 +689,16 @@ pub extern "msdrm" fn DRMGetSignedIssuanceLicenseEx(
     hBoundLicenseCLC: u32,
     pfnCallback: ?DRMCALLBACK,
     pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMClosePubHandle(
     hPub: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMDuplicatePubHandle(
     hPubIn: u32,
     phPubOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUserInfo(
     hUser: u32,
@@ -708,7 +708,7 @@ pub extern "msdrm" fn DRMGetUserInfo(
     wszUserId: ?[*:0]u16,
     puUserIdTypeLength: ?*u32,
     wszUserIdType: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetRightInfo(
     hRight: u32,
@@ -716,7 +716,7 @@ pub extern "msdrm" fn DRMGetRightInfo(
     wszRightName: ?[*:0]u16,
     pstFrom: ?*SYSTEMTIME,
     pstUntil: ?*SYSTEMTIME,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetRightExtendedInfo(
     hRight: u32,
@@ -725,20 +725,20 @@ pub extern "msdrm" fn DRMGetRightExtendedInfo(
     wszExtendedInfoName: ?[*:0]u16,
     puExtendedInfoValueLength: ?*u32,
     wszExtendedInfoValue: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUsers(
     hIssuanceLicense: u32,
     uIndex: u32,
     phUser: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUserRights(
     hIssuanceLicense: u32,
     hUser: u32,
     uIndex: u32,
     phRight: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetMetaData(
     hIssuanceLicense: u32,
@@ -754,7 +754,7 @@ pub extern "msdrm" fn DRMGetMetaData(
     wszContentType: ?[*:0]u16,
     puContentNameLength: ?*u32,
     wszContentName: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetApplicationSpecificData(
     hIssuanceLicense: u32,
@@ -763,7 +763,7 @@ pub extern "msdrm" fn DRMGetApplicationSpecificData(
     wszName: ?[*:0]u16,
     puValueLength: ?*u32,
     wszValue: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetIssuanceLicenseInfo(
     hIssuanceLicense: u32,
@@ -776,7 +776,7 @@ pub extern "msdrm" fn DRMGetIssuanceLicenseInfo(
     wszDistributionPointURL: ?[*:0]u16,
     phOwner: ?*u32,
     pfOfficial: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetRevocationPoint(
     hIssuanceLicense: u32,
@@ -791,7 +791,7 @@ pub extern "msdrm" fn DRMGetRevocationPoint(
     wszName: ?[*:0]u16,
     puPublicKeyLength: ?*u32,
     wszPublicKey: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetUsagePolicy(
     hIssuanceLicense: u32,
@@ -810,7 +810,7 @@ pub extern "msdrm" fn DRMGetUsagePolicy(
     wszDigestAlgorithm: ?[*:0]u16,
     pcbDigest: ?*u32,
     pbDigest: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetNameAndDescription(
     hIssuanceLicense: u32,
@@ -820,33 +820,33 @@ pub extern "msdrm" fn DRMGetNameAndDescription(
     wszName: ?[*:0]u16,
     puDescriptionLength: ?*u32,
     wszDescription: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetOwnerLicense(
     hIssuanceLicense: u32,
     puOwnerLicenseLength: ?*u32,
     wszOwnerLicense: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMGetIntervalTime(
     hIssuanceLicense: u32,
     pcDays: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "msdrm" fn DRMRepair(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msdrm" fn DRMRegisterProtectedWindow(
     hEnv: u32,
     hwnd: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msdrm" fn DRMIsWindowProtected(
     hwnd: ?HWND,
     pfProtected: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
@@ -857,7 +857,7 @@ pub extern "msdrm" fn DRMAcquireIssuanceLicenseTemplate(
     pwszTemplateIds: ?[*]?PWSTR,
     wszUrl: ?PWSTR,
     pvContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

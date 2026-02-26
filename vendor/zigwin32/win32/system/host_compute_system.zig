@@ -58,7 +58,7 @@ pub const HcsOperationTypeCrash = HCS_OPERATION_TYPE.Crash;
 pub const HCS_OPERATION_COMPLETION = *const fn(
     operation: HCS_OPERATION,
     context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const HCS_EVENT_TYPE = enum(i32) {
     Invalid = 0,
@@ -129,7 +129,7 @@ pub const HcsEventOptionEnableOperationCallbacks = HCS_EVENT_OPTIONS{ .EnableOpe
 pub const HCS_EVENT_CALLBACK = *const fn(
     event: ?*HCS_EVENT,
     context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const HCS_NOTIFICATION_FLAGS = enum(i32) {
     Success = 0,
@@ -188,7 +188,7 @@ pub const HCS_NOTIFICATION_CALLBACK = *const fn(
     context: ?*anyopaque,
     notificationStatus: HRESULT,
     notificationData: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const HCS_PROCESS_INFORMATION = extern struct {
     ProcessId: u32,
@@ -219,86 +219,86 @@ pub const HCS_CREATE_OPTIONS_1 = extern struct {
 pub extern "computecore" fn HcsEnumerateComputeSystems(
     query: ?[*:0]const u16,
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsEnumerateComputeSystemsInNamespace(
     idNamespace: ?[*:0]const u16,
     query: ?[*:0]const u16,
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCreateOperation(
     context: ?*const anyopaque,
     callback: ?HCS_OPERATION_COMPLETION,
-) callconv(@import("std").os.windows.WINAPI) HCS_OPERATION;
+) callconv(.winapi) HCS_OPERATION;
 
 pub extern "computecore" fn HcsCloseOperation(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "computecore" fn HcsGetOperationContext(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub extern "computecore" fn HcsSetOperationContext(
     operation: HCS_OPERATION,
     context: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetComputeSystemFromOperation(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) HCS_SYSTEM;
+) callconv(.winapi) HCS_SYSTEM;
 
 pub extern "computecore" fn HcsGetProcessFromOperation(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) HCS_PROCESS;
+) callconv(.winapi) HCS_PROCESS;
 
 pub extern "computecore" fn HcsGetOperationType(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) HCS_OPERATION_TYPE;
+) callconv(.winapi) HCS_OPERATION_TYPE;
 
 pub extern "computecore" fn HcsGetOperationId(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) u64;
+) callconv(.winapi) u64;
 
 pub extern "computecore" fn HcsGetOperationResult(
     operation: HCS_OPERATION,
     resultDocument: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetOperationResultAndProcessInfo(
     operation: HCS_OPERATION,
     processInformation: ?*HCS_PROCESS_INFORMATION,
     resultDocument: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetProcessorCompatibilityFromSavedState(
     RuntimeFileName: ?[*:0]const u16,
     ProcessorFeaturesString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsWaitForOperationResult(
     operation: HCS_OPERATION,
     timeoutMs: u32,
     resultDocument: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsWaitForOperationResultAndProcessInfo(
     operation: HCS_OPERATION,
     timeoutMs: u32,
     processInformation: ?*HCS_PROCESS_INFORMATION,
     resultDocument: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsSetOperationCallback(
     operation: HCS_OPERATION,
     context: ?*const anyopaque,
     callback: ?HCS_OPERATION_COMPLETION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCancelOperation(
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCreateComputeSystem(
     id: ?[*:0]const u16,
@@ -306,7 +306,7 @@ pub extern "computecore" fn HcsCreateComputeSystem(
     operation: HCS_OPERATION,
     securityDescriptor: ?*const SECURITY_DESCRIPTOR,
     computeSystem: ?*HCS_SYSTEM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCreateComputeSystemInNamespace(
     idNamespace: ?[*:0]const u16,
@@ -315,92 +315,92 @@ pub extern "computecore" fn HcsCreateComputeSystemInNamespace(
     operation: HCS_OPERATION,
     options: ?*const HCS_CREATE_OPTIONS,
     computeSystem: ?*HCS_SYSTEM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsOpenComputeSystem(
     id: ?[*:0]const u16,
     requestedAccess: u32,
     computeSystem: ?*HCS_SYSTEM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsOpenComputeSystemInNamespace(
     idNamespace: ?[*:0]const u16,
     id: ?[*:0]const u16,
     requestedAccess: u32,
     computeSystem: ?*HCS_SYSTEM,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCloseComputeSystem(
     computeSystem: HCS_SYSTEM,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "computecore" fn HcsStartComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsShutDownComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsTerminateComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCrashComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsPauseComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsResumeComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsSaveComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetComputeSystemProperties(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     propertyQuery: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsModifyComputeSystem(
     computeSystem: HCS_SYSTEM,
     operation: HCS_OPERATION,
     configuration: ?[*:0]const u16,
     identity: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsWaitForComputeSystemExit(
     computeSystem: HCS_SYSTEM,
     timeoutMs: u32,
     result: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsSetComputeSystemCallback(
     computeSystem: HCS_SYSTEM,
     callbackOptions: HCS_EVENT_OPTIONS,
     context: ?*const anyopaque,
     callback: ?HCS_EVENT_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCreateProcess(
     computeSystem: HCS_SYSTEM,
@@ -408,167 +408,167 @@ pub extern "computecore" fn HcsCreateProcess(
     operation: HCS_OPERATION,
     securityDescriptor: ?*const SECURITY_DESCRIPTOR,
     process: ?*HCS_PROCESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsOpenProcess(
     computeSystem: HCS_SYSTEM,
     processId: u32,
     requestedAccess: u32,
     process: ?*HCS_PROCESS,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCloseProcess(
     process: HCS_PROCESS,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "computecore" fn HcsTerminateProcess(
     process: HCS_PROCESS,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsSignalProcess(
     process: HCS_PROCESS,
     operation: HCS_OPERATION,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetProcessInfo(
     process: HCS_PROCESS,
     operation: HCS_OPERATION,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetProcessProperties(
     process: HCS_PROCESS,
     operation: HCS_OPERATION,
     propertyQuery: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsModifyProcess(
     process: HCS_PROCESS,
     operation: HCS_OPERATION,
     settings: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsSetProcessCallback(
     process: HCS_PROCESS,
     callbackOptions: HCS_EVENT_OPTIONS,
     context: ?*anyopaque,
     callback: ?HCS_EVENT_CALLBACK,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsWaitForProcessExit(
     computeSystem: HCS_PROCESS,
     timeoutMs: u32,
     result: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGetServiceProperties(
     propertyQuery: ?[*:0]const u16,
     result: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsModifyServiceSettings(
     settings: ?[*:0]const u16,
     result: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsSubmitWerReport(
     settings: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCreateEmptyGuestStateFile(
     guestStateFilePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsCreateEmptyRuntimeStateFile(
     runtimeStateFilePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGrantVmAccess(
     vmId: ?[*:0]const u16,
     filePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsRevokeVmAccess(
     vmId: ?[*:0]const u16,
     filePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsGrantVmGroupAccess(
     filePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computecore" fn HcsRevokeVmGroupAccess(
     filePath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsImportLayer(
     layerPath: ?[*:0]const u16,
     sourceFolderPath: ?[*:0]const u16,
     layerData: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsExportLayer(
     layerPath: ?[*:0]const u16,
     exportFolderPath: ?[*:0]const u16,
     layerData: ?[*:0]const u16,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsExportLegacyWritableLayer(
     writableLayerMountPath: ?[*:0]const u16,
     writableLayerFolderPath: ?[*:0]const u16,
     exportFolderPath: ?[*:0]const u16,
     layerData: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsDestroyLayer(
     layerPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsSetupBaseOSLayer(
     layerPath: ?[*:0]const u16,
     vhdHandle: ?HANDLE,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsInitializeWritableLayer(
     writableLayerPath: ?[*:0]const u16,
     layerData: ?[*:0]const u16,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsInitializeLegacyWritableLayer(
     writableLayerMountPath: ?[*:0]const u16,
     writableLayerFolderPath: ?[*:0]const u16,
     layerData: ?[*:0]const u16,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsAttachLayerStorageFilter(
     layerPath: ?[*:0]const u16,
     layerData: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsDetachLayerStorageFilter(
     layerPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsFormatWritableLayerVhd(
     vhdHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsGetLayerVhdMountPath(
     vhdHandle: ?HANDLE,
     mountPath: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "computestorage" fn HcsSetupBaseOSVolume(
     layerPath: ?[*:0]const u16,
     volumePath: ?[*:0]const u16,
     options: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

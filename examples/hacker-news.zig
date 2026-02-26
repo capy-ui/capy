@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 const ListModel = struct {
     /// size is a data wrapper so that we can change it (e.g. implement infinite scrolling)
     size: capy.Atom(usize) = capy.Atom(usize).of(10),
@@ -9,7 +7,7 @@ const ListModel = struct {
 
     pub fn getComponent(self: *ListModel, index: usize) *capy.Label {
         return capy.label(.{
-            .text = std.fmt.allocPrintZ(self.arena.allocator(), "Label #{d}", .{index + 1}) catch unreachable,
+            .text = std.fmt.allocPrintSentinel(self.arena.allocator(), "Label #{d}", .{index + 1}, 0) catch unreachable,
         });
     }
 };

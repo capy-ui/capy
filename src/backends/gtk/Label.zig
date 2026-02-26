@@ -9,7 +9,19 @@ peer: *c.GtkWidget,
 /// Temporary value invalidated once setText_uiThread is called
 nullTerminated: ?[:0]const u8 = null,
 
-pub usingnamespace common.Events(Label);
+const _events = common.Events(@This());
+pub const setupEvents = _events.setupEvents;
+pub const copyEventUserData = _events.copyEventUserData;
+pub const deinit = _events.deinit;
+pub const setUserData = _events.setUserData;
+pub const setCallback = _events.setCallback;
+pub const setOpacity = _events.setOpacity;
+pub const requestDraw = _events.requestDraw;
+pub const getX = _events.getX;
+pub const getY = _events.getY;
+pub const getWidth = _events.getWidth;
+pub const getHeight = _events.getHeight;
+pub const getPreferredSize = _events.getPreferredSize;
 
 pub fn create() common.BackendError!Label {
     const label = c.gtk_label_new("") orelse return common.BackendError.UnknownError;
@@ -26,7 +38,7 @@ const RunOpts = struct {
     text: [:0]const u8,
 };
 
-fn setText_uiThread(userdata: ?*anyopaque) callconv(.C) c_int {
+fn setText_uiThread(userdata: ?*anyopaque) callconv(.c) c_int {
     const runOpts = @as(*RunOpts, @ptrCast(@alignCast(userdata.?)));
     const nullTerminated = runOpts.text;
     defer lib.internal.allocator.free(nullTerminated);

@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 const Ball = struct {
     x: f32,
     y: f32,
@@ -28,15 +26,15 @@ pub fn main() !void {
     defer capy.deinit();
 
     defer totalEnergy.deinit();
-    balls = std.ArrayList(Ball).init(capy.internal.allocator);
-    defer balls.deinit();
+    balls = .empty;
+    defer balls.deinit(capy.internal.allocator);
 
     // Generate random balls
     var prng = std.Random.DefaultPrng.init(@as(u64, @bitCast(std.time.milliTimestamp())));
     const random = prng.random();
     var i: usize = 0;
     while (i < 100) : (i += 1) {
-        try balls.append(Ball{
+        try balls.append(capy.internal.allocator, Ball{
             .x = random.float(f32) * 500,
             .y = random.float(f32) * 500,
             .velX = random.float(f32) * 100,
@@ -227,6 +225,6 @@ fn simulationThread(window: *capy.Window) !void {
         totalEnergy.set(total);
 
         try canvas.requestDraw();
-        std.time.sleep(16 * std.time.ns_per_ms);
+        std.Thread.sleep(16 * std.time.ns_per_ms);
     }
 }

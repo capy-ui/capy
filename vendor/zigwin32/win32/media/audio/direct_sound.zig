@@ -466,14 +466,14 @@ pub const LPDSENUMCALLBACKA = *const fn(
     param1: ?[*:0]const u8,
     param2: ?[*:0]const u8,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const LPDSENUMCALLBACKW = *const fn(
     param0: ?*Guid,
     param1: ?[*:0]const u16,
     param2: ?[*:0]const u16,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 const IID_IDirectSound_Value = Guid.initString("279afa83-4981-11ce-a521-0020af0be560");
 pub const IID_IDirectSound = &IID_IDirectSound_Value;
@@ -485,61 +485,61 @@ pub const IDirectSound = extern union {
             pcDSBufferDesc: ?*DSBUFFERDESC,
             ppDSBuffer: ?*?*IDirectSoundBuffer,
             pUnkOuter: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectSound,
             pDSCaps: ?*DSCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DuplicateSoundBuffer: *const fn(
             self: *const IDirectSound,
             pDSBufferOriginal: ?*IDirectSoundBuffer,
             ppDSBufferDuplicate: ?*?*IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCooperativeLevel: *const fn(
             self: *const IDirectSound,
             hwnd: ?HWND,
             dwLevel: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Compact: *const fn(
             self: *const IDirectSound,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSpeakerConfig: *const fn(
             self: *const IDirectSound,
             pdwSpeakerConfig: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetSpeakerConfig: *const fn(
             self: *const IDirectSound,
             dwSpeakerConfig: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectSound,
             pcGuidDevice: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateSoundBuffer(self: *const IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC, ppDSBuffer: ?*?*IDirectSoundBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateSoundBuffer(self: *const IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC, ppDSBuffer: ?*?*IDirectSoundBuffer, pUnkOuter: ?*IUnknown) HRESULT {
         return self.vtable.CreateSoundBuffer(self, pcDSBufferDesc, ppDSBuffer, pUnkOuter);
     }
-    pub fn GetCaps(self: *const IDirectSound, pDSCaps: ?*DSCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectSound, pDSCaps: ?*DSCAPS) HRESULT {
         return self.vtable.GetCaps(self, pDSCaps);
     }
-    pub fn DuplicateSoundBuffer(self: *const IDirectSound, pDSBufferOriginal: ?*IDirectSoundBuffer, ppDSBufferDuplicate: ?*?*IDirectSoundBuffer) callconv(.Inline) HRESULT {
+    pub fn DuplicateSoundBuffer(self: *const IDirectSound, pDSBufferOriginal: ?*IDirectSoundBuffer, ppDSBufferDuplicate: ?*?*IDirectSoundBuffer) HRESULT {
         return self.vtable.DuplicateSoundBuffer(self, pDSBufferOriginal, ppDSBufferDuplicate);
     }
-    pub fn SetCooperativeLevel(self: *const IDirectSound, hwnd: ?HWND, dwLevel: u32) callconv(.Inline) HRESULT {
+    pub fn SetCooperativeLevel(self: *const IDirectSound, hwnd: ?HWND, dwLevel: u32) HRESULT {
         return self.vtable.SetCooperativeLevel(self, hwnd, dwLevel);
     }
-    pub fn Compact(self: *const IDirectSound) callconv(.Inline) HRESULT {
+    pub fn Compact(self: *const IDirectSound) HRESULT {
         return self.vtable.Compact(self);
     }
-    pub fn GetSpeakerConfig(self: *const IDirectSound, pdwSpeakerConfig: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSpeakerConfig(self: *const IDirectSound, pdwSpeakerConfig: ?*u32) HRESULT {
         return self.vtable.GetSpeakerConfig(self, pdwSpeakerConfig);
     }
-    pub fn SetSpeakerConfig(self: *const IDirectSound, dwSpeakerConfig: u32) callconv(.Inline) HRESULT {
+    pub fn SetSpeakerConfig(self: *const IDirectSound, dwSpeakerConfig: u32) HRESULT {
         return self.vtable.SetSpeakerConfig(self, dwSpeakerConfig);
     }
-    pub fn Initialize(self: *const IDirectSound, pcGuidDevice: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectSound, pcGuidDevice: ?*const Guid) HRESULT {
         return self.vtable.Initialize(self, pcGuidDevice);
     }
 };
@@ -552,12 +552,12 @@ pub const IDirectSound8 = extern union {
         VerifyCertification: *const fn(
             self: *const IDirectSound8,
             pdwCertified: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectSound: IDirectSound,
     IUnknown: IUnknown,
-    pub fn VerifyCertification(self: *const IDirectSound8, pdwCertified: ?*u32) callconv(.Inline) HRESULT {
+    pub fn VerifyCertification(self: *const IDirectSound8, pdwCertified: ?*u32) HRESULT {
         return self.vtable.VerifyCertification(self, pdwCertified);
     }
 };
@@ -570,40 +570,40 @@ pub const IDirectSoundBuffer = extern union {
         GetCaps: *const fn(
             self: *const IDirectSoundBuffer,
             pDSBufferCaps: ?*DSBCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPosition: *const fn(
             self: *const IDirectSoundBuffer,
             pdwCurrentPlayCursor: ?*u32,
             pdwCurrentWriteCursor: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IDirectSoundBuffer,
             // TODO: what to do with BytesParamIndex 1?
             pwfxFormat: ?*WAVEFORMATEX,
             dwSizeAllocated: u32,
             pdwSizeWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVolume: *const fn(
             self: *const IDirectSoundBuffer,
             plVolume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPan: *const fn(
             self: *const IDirectSoundBuffer,
             plPan: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFrequency: *const fn(
             self: *const IDirectSoundBuffer,
             pdwFrequency: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDirectSoundBuffer,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectSoundBuffer,
             pDirectSound: ?*IDirectSound,
             pcDSBufferDesc: ?*DSBUFFERDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IDirectSoundBuffer,
             dwOffset: u32,
@@ -613,36 +613,36 @@ pub const IDirectSoundBuffer = extern union {
             ppvAudioPtr2: ?*?*anyopaque,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Play: *const fn(
             self: *const IDirectSoundBuffer,
             dwReserved1: u32,
             dwPriority: u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetCurrentPosition: *const fn(
             self: *const IDirectSoundBuffer,
             dwNewPosition: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFormat: *const fn(
             self: *const IDirectSoundBuffer,
             pcfxFormat: ?*WAVEFORMATEX,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVolume: *const fn(
             self: *const IDirectSoundBuffer,
             lVolume: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPan: *const fn(
             self: *const IDirectSoundBuffer,
             lPan: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetFrequency: *const fn(
             self: *const IDirectSoundBuffer,
             dwFrequency: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectSoundBuffer,
             // TODO: what to do with BytesParamIndex 1?
@@ -651,65 +651,65 @@ pub const IDirectSoundBuffer = extern union {
             // TODO: what to do with BytesParamIndex 3?
             pvAudioPtr2: ?*anyopaque,
             dwAudioBytes2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Restore: *const fn(
             self: *const IDirectSoundBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectSoundBuffer, pDSBufferCaps: ?*DSBCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectSoundBuffer, pDSBufferCaps: ?*DSBCAPS) HRESULT {
         return self.vtable.GetCaps(self, pDSBufferCaps);
     }
-    pub fn GetCurrentPosition(self: *const IDirectSoundBuffer, pdwCurrentPlayCursor: ?*u32, pdwCurrentWriteCursor: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPosition(self: *const IDirectSoundBuffer, pdwCurrentPlayCursor: ?*u32, pdwCurrentWriteCursor: ?*u32) HRESULT {
         return self.vtable.GetCurrentPosition(self, pdwCurrentPlayCursor, pdwCurrentWriteCursor);
     }
-    pub fn GetFormat(self: *const IDirectSoundBuffer, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const IDirectSoundBuffer, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) HRESULT {
         return self.vtable.GetFormat(self, pwfxFormat, dwSizeAllocated, pdwSizeWritten);
     }
-    pub fn GetVolume(self: *const IDirectSoundBuffer, plVolume: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVolume(self: *const IDirectSoundBuffer, plVolume: ?*i32) HRESULT {
         return self.vtable.GetVolume(self, plVolume);
     }
-    pub fn GetPan(self: *const IDirectSoundBuffer, plPan: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetPan(self: *const IDirectSoundBuffer, plPan: ?*i32) HRESULT {
         return self.vtable.GetPan(self, plPan);
     }
-    pub fn GetFrequency(self: *const IDirectSoundBuffer, pdwFrequency: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFrequency(self: *const IDirectSoundBuffer, pdwFrequency: ?*u32) HRESULT {
         return self.vtable.GetFrequency(self, pdwFrequency);
     }
-    pub fn GetStatus(self: *const IDirectSoundBuffer, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDirectSoundBuffer, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn Initialize(self: *const IDirectSoundBuffer, pDirectSound: ?*IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectSoundBuffer, pDirectSound: ?*IDirectSound, pcDSBufferDesc: ?*DSBUFFERDESC) HRESULT {
         return self.vtable.Initialize(self, pDirectSound, pcDSBufferDesc);
     }
-    pub fn Lock(self: *const IDirectSoundBuffer, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectSoundBuffer, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) HRESULT {
         return self.vtable.Lock(self, dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
     }
-    pub fn Play(self: *const IDirectSoundBuffer, dwReserved1: u32, dwPriority: u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Play(self: *const IDirectSoundBuffer, dwReserved1: u32, dwPriority: u32, dwFlags: u32) HRESULT {
         return self.vtable.Play(self, dwReserved1, dwPriority, dwFlags);
     }
-    pub fn SetCurrentPosition(self: *const IDirectSoundBuffer, dwNewPosition: u32) callconv(.Inline) HRESULT {
+    pub fn SetCurrentPosition(self: *const IDirectSoundBuffer, dwNewPosition: u32) HRESULT {
         return self.vtable.SetCurrentPosition(self, dwNewPosition);
     }
-    pub fn SetFormat(self: *const IDirectSoundBuffer, pcfxFormat: ?*WAVEFORMATEX) callconv(.Inline) HRESULT {
+    pub fn SetFormat(self: *const IDirectSoundBuffer, pcfxFormat: ?*WAVEFORMATEX) HRESULT {
         return self.vtable.SetFormat(self, pcfxFormat);
     }
-    pub fn SetVolume(self: *const IDirectSoundBuffer, lVolume: i32) callconv(.Inline) HRESULT {
+    pub fn SetVolume(self: *const IDirectSoundBuffer, lVolume: i32) HRESULT {
         return self.vtable.SetVolume(self, lVolume);
     }
-    pub fn SetPan(self: *const IDirectSoundBuffer, lPan: i32) callconv(.Inline) HRESULT {
+    pub fn SetPan(self: *const IDirectSoundBuffer, lPan: i32) HRESULT {
         return self.vtable.SetPan(self, lPan);
     }
-    pub fn SetFrequency(self: *const IDirectSoundBuffer, dwFrequency: u32) callconv(.Inline) HRESULT {
+    pub fn SetFrequency(self: *const IDirectSoundBuffer, dwFrequency: u32) HRESULT {
         return self.vtable.SetFrequency(self, dwFrequency);
     }
-    pub fn Stop(self: *const IDirectSoundBuffer) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IDirectSoundBuffer) HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Unlock(self: *const IDirectSoundBuffer, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectSoundBuffer, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) HRESULT {
         return self.vtable.Unlock(self, pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
     }
-    pub fn Restore(self: *const IDirectSoundBuffer) callconv(.Inline) HRESULT {
+    pub fn Restore(self: *const IDirectSoundBuffer) HRESULT {
         return self.vtable.Restore(self);
     }
 };
@@ -724,31 +724,31 @@ pub const IDirectSoundBuffer8 = extern union {
             dwEffectsCount: u32,
             pDSFXDesc: ?[*]DSEFFECTDESC,
             pdwResultCodes: ?[*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AcquireResources: *const fn(
             self: *const IDirectSoundBuffer8,
             dwFlags: u32,
             dwEffectsCount: u32,
             pdwResultCodes: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectInPath: *const fn(
             self: *const IDirectSoundBuffer8,
             rguidObject: ?*const Guid,
             dwIndex: u32,
             rguidInterface: ?*const Guid,
             ppObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectSoundBuffer: IDirectSoundBuffer,
     IUnknown: IUnknown,
-    pub fn SetFX(self: *const IDirectSoundBuffer8, dwEffectsCount: u32, pDSFXDesc: ?[*]DSEFFECTDESC, pdwResultCodes: ?[*]u32) callconv(.Inline) HRESULT {
+    pub fn SetFX(self: *const IDirectSoundBuffer8, dwEffectsCount: u32, pDSFXDesc: ?[*]DSEFFECTDESC, pdwResultCodes: ?[*]u32) HRESULT {
         return self.vtable.SetFX(self, dwEffectsCount, pDSFXDesc, pdwResultCodes);
     }
-    pub fn AcquireResources(self: *const IDirectSoundBuffer8, dwFlags: u32, dwEffectsCount: u32, pdwResultCodes: [*]u32) callconv(.Inline) HRESULT {
+    pub fn AcquireResources(self: *const IDirectSoundBuffer8, dwFlags: u32, dwEffectsCount: u32, pdwResultCodes: [*]u32) HRESULT {
         return self.vtable.AcquireResources(self, dwFlags, dwEffectsCount, pdwResultCodes);
     }
-    pub fn GetObjectInPath(self: *const IDirectSoundBuffer8, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObjectInPath(self: *const IDirectSoundBuffer8, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) HRESULT {
         return self.vtable.GetObjectInPath(self, rguidObject, dwIndex, rguidInterface, ppObject);
     }
 };
@@ -761,47 +761,47 @@ pub const IDirectSound3DListener = extern union {
         GetAllParameters: *const fn(
             self: *const IDirectSound3DListener,
             pListener: ?*DS3DLISTENER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDistanceFactor: *const fn(
             self: *const IDirectSound3DListener,
             pflDistanceFactor: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDopplerFactor: *const fn(
             self: *const IDirectSound3DListener,
             pflDopplerFactor: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetOrientation: *const fn(
             self: *const IDirectSound3DListener,
             pvOrientFront: ?*D3DVECTOR,
             pvOrientTop: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPosition: *const fn(
             self: *const IDirectSound3DListener,
             pvPosition: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetRolloffFactor: *const fn(
             self: *const IDirectSound3DListener,
             pflRolloffFactor: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVelocity: *const fn(
             self: *const IDirectSound3DListener,
             pvVelocity: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllParameters: *const fn(
             self: *const IDirectSound3DListener,
             pcListener: ?*DS3DLISTENER,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDistanceFactor: *const fn(
             self: *const IDirectSound3DListener,
             flDistanceFactor: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDopplerFactor: *const fn(
             self: *const IDirectSound3DListener,
             flDopplerFactor: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetOrientation: *const fn(
             self: *const IDirectSound3DListener,
             xFront: f32,
@@ -811,75 +811,75 @@ pub const IDirectSound3DListener = extern union {
             yTop: f32,
             zTop: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPosition: *const fn(
             self: *const IDirectSound3DListener,
             x: f32,
             y: f32,
             z: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetRolloffFactor: *const fn(
             self: *const IDirectSound3DListener,
             flRolloffFactor: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVelocity: *const fn(
             self: *const IDirectSound3DListener,
             x: f32,
             y: f32,
             z: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitDeferredSettings: *const fn(
             self: *const IDirectSound3DListener,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAllParameters(self: *const IDirectSound3DListener, pListener: ?*DS3DLISTENER) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSound3DListener, pListener: ?*DS3DLISTENER) HRESULT {
         return self.vtable.GetAllParameters(self, pListener);
     }
-    pub fn GetDistanceFactor(self: *const IDirectSound3DListener, pflDistanceFactor: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetDistanceFactor(self: *const IDirectSound3DListener, pflDistanceFactor: ?*f32) HRESULT {
         return self.vtable.GetDistanceFactor(self, pflDistanceFactor);
     }
-    pub fn GetDopplerFactor(self: *const IDirectSound3DListener, pflDopplerFactor: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetDopplerFactor(self: *const IDirectSound3DListener, pflDopplerFactor: ?*f32) HRESULT {
         return self.vtable.GetDopplerFactor(self, pflDopplerFactor);
     }
-    pub fn GetOrientation(self: *const IDirectSound3DListener, pvOrientFront: ?*D3DVECTOR, pvOrientTop: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+    pub fn GetOrientation(self: *const IDirectSound3DListener, pvOrientFront: ?*D3DVECTOR, pvOrientTop: ?*D3DVECTOR) HRESULT {
         return self.vtable.GetOrientation(self, pvOrientFront, pvOrientTop);
     }
-    pub fn GetPosition(self: *const IDirectSound3DListener, pvPosition: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+    pub fn GetPosition(self: *const IDirectSound3DListener, pvPosition: ?*D3DVECTOR) HRESULT {
         return self.vtable.GetPosition(self, pvPosition);
     }
-    pub fn GetRolloffFactor(self: *const IDirectSound3DListener, pflRolloffFactor: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetRolloffFactor(self: *const IDirectSound3DListener, pflRolloffFactor: ?*f32) HRESULT {
         return self.vtable.GetRolloffFactor(self, pflRolloffFactor);
     }
-    pub fn GetVelocity(self: *const IDirectSound3DListener, pvVelocity: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+    pub fn GetVelocity(self: *const IDirectSound3DListener, pvVelocity: ?*D3DVECTOR) HRESULT {
         return self.vtable.GetVelocity(self, pvVelocity);
     }
-    pub fn SetAllParameters(self: *const IDirectSound3DListener, pcListener: ?*DS3DLISTENER, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSound3DListener, pcListener: ?*DS3DLISTENER, dwApply: u32) HRESULT {
         return self.vtable.SetAllParameters(self, pcListener, dwApply);
     }
-    pub fn SetDistanceFactor(self: *const IDirectSound3DListener, flDistanceFactor: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetDistanceFactor(self: *const IDirectSound3DListener, flDistanceFactor: f32, dwApply: u32) HRESULT {
         return self.vtable.SetDistanceFactor(self, flDistanceFactor, dwApply);
     }
-    pub fn SetDopplerFactor(self: *const IDirectSound3DListener, flDopplerFactor: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetDopplerFactor(self: *const IDirectSound3DListener, flDopplerFactor: f32, dwApply: u32) HRESULT {
         return self.vtable.SetDopplerFactor(self, flDopplerFactor, dwApply);
     }
-    pub fn SetOrientation(self: *const IDirectSound3DListener, xFront: f32, yFront: f32, zFront: f32, xTop: f32, yTop: f32, zTop: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetOrientation(self: *const IDirectSound3DListener, xFront: f32, yFront: f32, zFront: f32, xTop: f32, yTop: f32, zTop: f32, dwApply: u32) HRESULT {
         return self.vtable.SetOrientation(self, xFront, yFront, zFront, xTop, yTop, zTop, dwApply);
     }
-    pub fn SetPosition(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetPosition(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
         return self.vtable.SetPosition(self, x, y, z, dwApply);
     }
-    pub fn SetRolloffFactor(self: *const IDirectSound3DListener, flRolloffFactor: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetRolloffFactor(self: *const IDirectSound3DListener, flRolloffFactor: f32, dwApply: u32) HRESULT {
         return self.vtable.SetRolloffFactor(self, flRolloffFactor, dwApply);
     }
-    pub fn SetVelocity(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetVelocity(self: *const IDirectSound3DListener, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
         return self.vtable.SetVelocity(self, x, y, z, dwApply);
     }
-    pub fn CommitDeferredSettings(self: *const IDirectSound3DListener) callconv(.Inline) HRESULT {
+    pub fn CommitDeferredSettings(self: *const IDirectSound3DListener) HRESULT {
         return self.vtable.CommitDeferredSettings(self);
     }
 };
@@ -892,147 +892,147 @@ pub const IDirectSound3DBuffer = extern union {
         GetAllParameters: *const fn(
             self: *const IDirectSound3DBuffer,
             pDs3dBuffer: ?*DS3DBUFFER,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConeAngles: *const fn(
             self: *const IDirectSound3DBuffer,
             pdwInsideConeAngle: ?*u32,
             pdwOutsideConeAngle: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConeOrientation: *const fn(
             self: *const IDirectSound3DBuffer,
             pvOrientation: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetConeOutsideVolume: *const fn(
             self: *const IDirectSound3DBuffer,
             plConeOutsideVolume: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMaxDistance: *const fn(
             self: *const IDirectSound3DBuffer,
             pflMaxDistance: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMinDistance: *const fn(
             self: *const IDirectSound3DBuffer,
             pflMinDistance: ?*f32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMode: *const fn(
             self: *const IDirectSound3DBuffer,
             pdwMode: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPosition: *const fn(
             self: *const IDirectSound3DBuffer,
             pvPosition: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVelocity: *const fn(
             self: *const IDirectSound3DBuffer,
             pvVelocity: ?*D3DVECTOR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetAllParameters: *const fn(
             self: *const IDirectSound3DBuffer,
             pcDs3dBuffer: ?*DS3DBUFFER,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConeAngles: *const fn(
             self: *const IDirectSound3DBuffer,
             dwInsideConeAngle: u32,
             dwOutsideConeAngle: u32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConeOrientation: *const fn(
             self: *const IDirectSound3DBuffer,
             x: f32,
             y: f32,
             z: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetConeOutsideVolume: *const fn(
             self: *const IDirectSound3DBuffer,
             lConeOutsideVolume: i32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMaxDistance: *const fn(
             self: *const IDirectSound3DBuffer,
             flMaxDistance: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMinDistance: *const fn(
             self: *const IDirectSound3DBuffer,
             flMinDistance: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMode: *const fn(
             self: *const IDirectSound3DBuffer,
             dwMode: u32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPosition: *const fn(
             self: *const IDirectSound3DBuffer,
             x: f32,
             y: f32,
             z: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVelocity: *const fn(
             self: *const IDirectSound3DBuffer,
             x: f32,
             y: f32,
             z: f32,
             dwApply: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetAllParameters(self: *const IDirectSound3DBuffer, pDs3dBuffer: ?*DS3DBUFFER) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSound3DBuffer, pDs3dBuffer: ?*DS3DBUFFER) HRESULT {
         return self.vtable.GetAllParameters(self, pDs3dBuffer);
     }
-    pub fn GetConeAngles(self: *const IDirectSound3DBuffer, pdwInsideConeAngle: ?*u32, pdwOutsideConeAngle: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetConeAngles(self: *const IDirectSound3DBuffer, pdwInsideConeAngle: ?*u32, pdwOutsideConeAngle: ?*u32) HRESULT {
         return self.vtable.GetConeAngles(self, pdwInsideConeAngle, pdwOutsideConeAngle);
     }
-    pub fn GetConeOrientation(self: *const IDirectSound3DBuffer, pvOrientation: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+    pub fn GetConeOrientation(self: *const IDirectSound3DBuffer, pvOrientation: ?*D3DVECTOR) HRESULT {
         return self.vtable.GetConeOrientation(self, pvOrientation);
     }
-    pub fn GetConeOutsideVolume(self: *const IDirectSound3DBuffer, plConeOutsideVolume: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetConeOutsideVolume(self: *const IDirectSound3DBuffer, plConeOutsideVolume: ?*i32) HRESULT {
         return self.vtable.GetConeOutsideVolume(self, plConeOutsideVolume);
     }
-    pub fn GetMaxDistance(self: *const IDirectSound3DBuffer, pflMaxDistance: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetMaxDistance(self: *const IDirectSound3DBuffer, pflMaxDistance: ?*f32) HRESULT {
         return self.vtable.GetMaxDistance(self, pflMaxDistance);
     }
-    pub fn GetMinDistance(self: *const IDirectSound3DBuffer, pflMinDistance: ?*f32) callconv(.Inline) HRESULT {
+    pub fn GetMinDistance(self: *const IDirectSound3DBuffer, pflMinDistance: ?*f32) HRESULT {
         return self.vtable.GetMinDistance(self, pflMinDistance);
     }
-    pub fn GetMode(self: *const IDirectSound3DBuffer, pdwMode: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetMode(self: *const IDirectSound3DBuffer, pdwMode: ?*u32) HRESULT {
         return self.vtable.GetMode(self, pdwMode);
     }
-    pub fn GetPosition(self: *const IDirectSound3DBuffer, pvPosition: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+    pub fn GetPosition(self: *const IDirectSound3DBuffer, pvPosition: ?*D3DVECTOR) HRESULT {
         return self.vtable.GetPosition(self, pvPosition);
     }
-    pub fn GetVelocity(self: *const IDirectSound3DBuffer, pvVelocity: ?*D3DVECTOR) callconv(.Inline) HRESULT {
+    pub fn GetVelocity(self: *const IDirectSound3DBuffer, pvVelocity: ?*D3DVECTOR) HRESULT {
         return self.vtable.GetVelocity(self, pvVelocity);
     }
-    pub fn SetAllParameters(self: *const IDirectSound3DBuffer, pcDs3dBuffer: ?*DS3DBUFFER, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSound3DBuffer, pcDs3dBuffer: ?*DS3DBUFFER, dwApply: u32) HRESULT {
         return self.vtable.SetAllParameters(self, pcDs3dBuffer, dwApply);
     }
-    pub fn SetConeAngles(self: *const IDirectSound3DBuffer, dwInsideConeAngle: u32, dwOutsideConeAngle: u32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetConeAngles(self: *const IDirectSound3DBuffer, dwInsideConeAngle: u32, dwOutsideConeAngle: u32, dwApply: u32) HRESULT {
         return self.vtable.SetConeAngles(self, dwInsideConeAngle, dwOutsideConeAngle, dwApply);
     }
-    pub fn SetConeOrientation(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetConeOrientation(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
         return self.vtable.SetConeOrientation(self, x, y, z, dwApply);
     }
-    pub fn SetConeOutsideVolume(self: *const IDirectSound3DBuffer, lConeOutsideVolume: i32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetConeOutsideVolume(self: *const IDirectSound3DBuffer, lConeOutsideVolume: i32, dwApply: u32) HRESULT {
         return self.vtable.SetConeOutsideVolume(self, lConeOutsideVolume, dwApply);
     }
-    pub fn SetMaxDistance(self: *const IDirectSound3DBuffer, flMaxDistance: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetMaxDistance(self: *const IDirectSound3DBuffer, flMaxDistance: f32, dwApply: u32) HRESULT {
         return self.vtable.SetMaxDistance(self, flMaxDistance, dwApply);
     }
-    pub fn SetMinDistance(self: *const IDirectSound3DBuffer, flMinDistance: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetMinDistance(self: *const IDirectSound3DBuffer, flMinDistance: f32, dwApply: u32) HRESULT {
         return self.vtable.SetMinDistance(self, flMinDistance, dwApply);
     }
-    pub fn SetMode(self: *const IDirectSound3DBuffer, dwMode: u32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetMode(self: *const IDirectSound3DBuffer, dwMode: u32, dwApply: u32) HRESULT {
         return self.vtable.SetMode(self, dwMode, dwApply);
     }
-    pub fn SetPosition(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetPosition(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
         return self.vtable.SetPosition(self, x, y, z, dwApply);
     }
-    pub fn SetVelocity(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) callconv(.Inline) HRESULT {
+    pub fn SetVelocity(self: *const IDirectSound3DBuffer, x: f32, y: f32, z: f32, dwApply: u32) HRESULT {
         return self.vtable.SetVelocity(self, x, y, z, dwApply);
     }
 };
@@ -1047,25 +1047,25 @@ pub const IDirectSoundCapture = extern union {
             pcDSCBufferDesc: ?*DSCBUFFERDESC,
             ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer,
             pUnkOuter: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCaps: *const fn(
             self: *const IDirectSoundCapture,
             pDSCCaps: ?*DSCCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectSoundCapture,
             pcGuidDevice: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateCaptureBuffer(self: *const IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC, ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer, pUnkOuter: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateCaptureBuffer(self: *const IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC, ppDSCBuffer: ?*?*IDirectSoundCaptureBuffer, pUnkOuter: ?*IUnknown) HRESULT {
         return self.vtable.CreateCaptureBuffer(self, pcDSCBufferDesc, ppDSCBuffer, pUnkOuter);
     }
-    pub fn GetCaps(self: *const IDirectSoundCapture, pDSCCaps: ?*DSCCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectSoundCapture, pDSCCaps: ?*DSCCAPS) HRESULT {
         return self.vtable.GetCaps(self, pDSCCaps);
     }
-    pub fn Initialize(self: *const IDirectSoundCapture, pcGuidDevice: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectSoundCapture, pcGuidDevice: ?*const Guid) HRESULT {
         return self.vtable.Initialize(self, pcGuidDevice);
     }
 };
@@ -1078,28 +1078,28 @@ pub const IDirectSoundCaptureBuffer = extern union {
         GetCaps: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             pDSCBCaps: ?*DSCBCAPS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrentPosition: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             pdwCapturePosition: ?*u32,
             pdwReadPosition: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFormat: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             // TODO: what to do with BytesParamIndex 1?
             pwfxFormat: ?*WAVEFORMATEX,
             dwSizeAllocated: u32,
             pdwSizeWritten: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Initialize: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             pDirectSoundCapture: ?*IDirectSoundCapture,
             pcDSCBufferDesc: ?*DSCBUFFERDESC,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Lock: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             dwOffset: u32,
@@ -1109,14 +1109,14 @@ pub const IDirectSoundCaptureBuffer = extern union {
             ppvAudioPtr2: ?*?*anyopaque,
             pdwAudioBytes2: ?*u32,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Start: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Stop: *const fn(
             self: *const IDirectSoundCaptureBuffer,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlock: *const fn(
             self: *const IDirectSoundCaptureBuffer,
             // TODO: what to do with BytesParamIndex 1?
@@ -1125,35 +1125,35 @@ pub const IDirectSoundCaptureBuffer = extern union {
             // TODO: what to do with BytesParamIndex 3?
             pvAudioPtr2: ?*anyopaque,
             dwAudioBytes2: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetCaps(self: *const IDirectSoundCaptureBuffer, pDSCBCaps: ?*DSCBCAPS) callconv(.Inline) HRESULT {
+    pub fn GetCaps(self: *const IDirectSoundCaptureBuffer, pDSCBCaps: ?*DSCBCAPS) HRESULT {
         return self.vtable.GetCaps(self, pDSCBCaps);
     }
-    pub fn GetCurrentPosition(self: *const IDirectSoundCaptureBuffer, pdwCapturePosition: ?*u32, pdwReadPosition: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetCurrentPosition(self: *const IDirectSoundCaptureBuffer, pdwCapturePosition: ?*u32, pdwReadPosition: ?*u32) HRESULT {
         return self.vtable.GetCurrentPosition(self, pdwCapturePosition, pdwReadPosition);
     }
-    pub fn GetFormat(self: *const IDirectSoundCaptureBuffer, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetFormat(self: *const IDirectSoundCaptureBuffer, pwfxFormat: ?*WAVEFORMATEX, dwSizeAllocated: u32, pdwSizeWritten: ?*u32) HRESULT {
         return self.vtable.GetFormat(self, pwfxFormat, dwSizeAllocated, pdwSizeWritten);
     }
-    pub fn GetStatus(self: *const IDirectSoundCaptureBuffer, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDirectSoundCaptureBuffer, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn Initialize(self: *const IDirectSoundCaptureBuffer, pDirectSoundCapture: ?*IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectSoundCaptureBuffer, pDirectSoundCapture: ?*IDirectSoundCapture, pcDSCBufferDesc: ?*DSCBUFFERDESC) HRESULT {
         return self.vtable.Initialize(self, pDirectSoundCapture, pcDSCBufferDesc);
     }
-    pub fn Lock(self: *const IDirectSoundCaptureBuffer, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Lock(self: *const IDirectSoundCaptureBuffer, dwOffset: u32, dwBytes: u32, ppvAudioPtr1: ?*?*anyopaque, pdwAudioBytes1: ?*u32, ppvAudioPtr2: ?*?*anyopaque, pdwAudioBytes2: ?*u32, dwFlags: u32) HRESULT {
         return self.vtable.Lock(self, dwOffset, dwBytes, ppvAudioPtr1, pdwAudioBytes1, ppvAudioPtr2, pdwAudioBytes2, dwFlags);
     }
-    pub fn Start(self: *const IDirectSoundCaptureBuffer, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn Start(self: *const IDirectSoundCaptureBuffer, dwFlags: u32) HRESULT {
         return self.vtable.Start(self, dwFlags);
     }
-    pub fn Stop(self: *const IDirectSoundCaptureBuffer) callconv(.Inline) HRESULT {
+    pub fn Stop(self: *const IDirectSoundCaptureBuffer) HRESULT {
         return self.vtable.Stop(self);
     }
-    pub fn Unlock(self: *const IDirectSoundCaptureBuffer, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) callconv(.Inline) HRESULT {
+    pub fn Unlock(self: *const IDirectSoundCaptureBuffer, pvAudioPtr1: ?*anyopaque, dwAudioBytes1: u32, pvAudioPtr2: ?*anyopaque, dwAudioBytes2: u32) HRESULT {
         return self.vtable.Unlock(self, pvAudioPtr1, dwAudioBytes1, pvAudioPtr2, dwAudioBytes2);
     }
 };
@@ -1169,20 +1169,20 @@ pub const IDirectSoundCaptureBuffer8 = extern union {
             dwIndex: u32,
             rguidInterface: ?*const Guid,
             ppObject: ?*?*anyopaque,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFXStatus: *const fn(
             self: *const IDirectSoundCaptureBuffer8,
             dwEffectsCount: u32,
             pdwFXStatus: [*]u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDirectSoundCaptureBuffer: IDirectSoundCaptureBuffer,
     IUnknown: IUnknown,
-    pub fn GetObjectInPath(self: *const IDirectSoundCaptureBuffer8, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) callconv(.Inline) HRESULT {
+    pub fn GetObjectInPath(self: *const IDirectSoundCaptureBuffer8, rguidObject: ?*const Guid, dwIndex: u32, rguidInterface: ?*const Guid, ppObject: ?*?*anyopaque) HRESULT {
         return self.vtable.GetObjectInPath(self, rguidObject, dwIndex, rguidInterface, ppObject);
     }
-    pub fn GetFXStatus(self: *const IDirectSoundCaptureBuffer8, dwEffectsCount: u32, pdwFXStatus: [*]u32) callconv(.Inline) HRESULT {
+    pub fn GetFXStatus(self: *const IDirectSoundCaptureBuffer8, dwEffectsCount: u32, pdwFXStatus: [*]u32) HRESULT {
         return self.vtable.GetFXStatus(self, dwEffectsCount, pdwFXStatus);
     }
 };
@@ -1196,11 +1196,11 @@ pub const IDirectSoundNotify = extern union {
             self: *const IDirectSoundNotify,
             dwPositionNotifies: u32,
             pcPositionNotifies: [*]DSBPOSITIONNOTIFY,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetNotificationPositions(self: *const IDirectSoundNotify, dwPositionNotifies: u32, pcPositionNotifies: [*]DSBPOSITIONNOTIFY) callconv(.Inline) HRESULT {
+    pub fn SetNotificationPositions(self: *const IDirectSoundNotify, dwPositionNotifies: u32, pcPositionNotifies: [*]DSBPOSITIONNOTIFY) HRESULT {
         return self.vtable.SetNotificationPositions(self, dwPositionNotifies, pcPositionNotifies);
     }
 };
@@ -1218,18 +1218,18 @@ pub const IDirectSoundFXGargle = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXGargle,
             pcDsFxGargle: ?*DSFXGargle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXGargle,
             pDsFxGargle: ?*DSFXGargle,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXGargle, pcDsFxGargle: ?*DSFXGargle) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXGargle, pcDsFxGargle: ?*DSFXGargle) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxGargle);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXGargle, pDsFxGargle: ?*DSFXGargle) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXGargle, pDsFxGargle: ?*DSFXGargle) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxGargle);
     }
 };
@@ -1252,18 +1252,18 @@ pub const IDirectSoundFXChorus = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXChorus,
             pcDsFxChorus: ?*DSFXChorus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXChorus,
             pDsFxChorus: ?*DSFXChorus,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXChorus, pcDsFxChorus: ?*DSFXChorus) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXChorus, pcDsFxChorus: ?*DSFXChorus) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxChorus);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXChorus, pDsFxChorus: ?*DSFXChorus) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXChorus, pDsFxChorus: ?*DSFXChorus) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxChorus);
     }
 };
@@ -1286,18 +1286,18 @@ pub const IDirectSoundFXFlanger = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXFlanger,
             pcDsFxFlanger: ?*DSFXFlanger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXFlanger,
             pDsFxFlanger: ?*DSFXFlanger,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXFlanger, pcDsFxFlanger: ?*DSFXFlanger) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXFlanger, pcDsFxFlanger: ?*DSFXFlanger) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxFlanger);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXFlanger, pDsFxFlanger: ?*DSFXFlanger) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXFlanger, pDsFxFlanger: ?*DSFXFlanger) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxFlanger);
     }
 };
@@ -1318,18 +1318,18 @@ pub const IDirectSoundFXEcho = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXEcho,
             pcDsFxEcho: ?*DSFXEcho,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXEcho,
             pDsFxEcho: ?*DSFXEcho,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXEcho, pcDsFxEcho: ?*DSFXEcho) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXEcho, pcDsFxEcho: ?*DSFXEcho) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxEcho);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXEcho, pDsFxEcho: ?*DSFXEcho) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXEcho, pDsFxEcho: ?*DSFXEcho) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxEcho);
     }
 };
@@ -1350,18 +1350,18 @@ pub const IDirectSoundFXDistortion = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXDistortion,
             pcDsFxDistortion: ?*DSFXDistortion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXDistortion,
             pDsFxDistortion: ?*DSFXDistortion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXDistortion, pcDsFxDistortion: ?*DSFXDistortion) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXDistortion, pcDsFxDistortion: ?*DSFXDistortion) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxDistortion);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXDistortion, pDsFxDistortion: ?*DSFXDistortion) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXDistortion, pDsFxDistortion: ?*DSFXDistortion) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxDistortion);
     }
 };
@@ -1383,18 +1383,18 @@ pub const IDirectSoundFXCompressor = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXCompressor,
             pcDsFxCompressor: ?*DSFXCompressor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXCompressor,
             pDsFxCompressor: ?*DSFXCompressor,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXCompressor, pcDsFxCompressor: ?*DSFXCompressor) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXCompressor, pcDsFxCompressor: ?*DSFXCompressor) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxCompressor);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXCompressor, pDsFxCompressor: ?*DSFXCompressor) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXCompressor, pDsFxCompressor: ?*DSFXCompressor) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxCompressor);
     }
 };
@@ -1413,18 +1413,18 @@ pub const IDirectSoundFXParamEq = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXParamEq,
             pcDsFxParamEq: ?*DSFXParamEq,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXParamEq,
             pDsFxParamEq: ?*DSFXParamEq,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXParamEq, pcDsFxParamEq: ?*DSFXParamEq) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXParamEq, pcDsFxParamEq: ?*DSFXParamEq) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxParamEq);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXParamEq, pDsFxParamEq: ?*DSFXParamEq) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXParamEq, pDsFxParamEq: ?*DSFXParamEq) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxParamEq);
     }
 };
@@ -1452,46 +1452,46 @@ pub const IDirectSoundFXI3DL2Reverb = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXI3DL2Reverb,
             pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXI3DL2Reverb,
             pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetPreset: *const fn(
             self: *const IDirectSoundFXI3DL2Reverb,
             dwPreset: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPreset: *const fn(
             self: *const IDirectSoundFXI3DL2Reverb,
             pdwPreset: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetQuality: *const fn(
             self: *const IDirectSoundFXI3DL2Reverb,
             lQuality: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetQuality: *const fn(
             self: *const IDirectSoundFXI3DL2Reverb,
             plQuality: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pcDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxI3DL2Reverb);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXI3DL2Reverb, pDsFxI3DL2Reverb: ?*DSFXI3DL2Reverb) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxI3DL2Reverb);
     }
-    pub fn SetPreset(self: *const IDirectSoundFXI3DL2Reverb, dwPreset: u32) callconv(.Inline) HRESULT {
+    pub fn SetPreset(self: *const IDirectSoundFXI3DL2Reverb, dwPreset: u32) HRESULT {
         return self.vtable.SetPreset(self, dwPreset);
     }
-    pub fn GetPreset(self: *const IDirectSoundFXI3DL2Reverb, pdwPreset: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPreset(self: *const IDirectSoundFXI3DL2Reverb, pdwPreset: ?*u32) HRESULT {
         return self.vtable.GetPreset(self, pdwPreset);
     }
-    pub fn SetQuality(self: *const IDirectSoundFXI3DL2Reverb, lQuality: i32) callconv(.Inline) HRESULT {
+    pub fn SetQuality(self: *const IDirectSoundFXI3DL2Reverb, lQuality: i32) HRESULT {
         return self.vtable.SetQuality(self, lQuality);
     }
-    pub fn GetQuality(self: *const IDirectSoundFXI3DL2Reverb, plQuality: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetQuality(self: *const IDirectSoundFXI3DL2Reverb, plQuality: ?*i32) HRESULT {
         return self.vtable.GetQuality(self, plQuality);
     }
 };
@@ -1511,18 +1511,18 @@ pub const IDirectSoundFXWavesReverb = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundFXWavesReverb,
             pcDsFxWavesReverb: ?*DSFXWavesReverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundFXWavesReverb,
             pDsFxWavesReverb: ?*DSFXWavesReverb,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundFXWavesReverb, pcDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundFXWavesReverb, pcDsFxWavesReverb: ?*DSFXWavesReverb) HRESULT {
         return self.vtable.SetAllParameters(self, pcDsFxWavesReverb);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundFXWavesReverb, pDsFxWavesReverb: ?*DSFXWavesReverb) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundFXWavesReverb, pDsFxWavesReverb: ?*DSFXWavesReverb) HRESULT {
         return self.vtable.GetAllParameters(self, pDsFxWavesReverb);
     }
 };
@@ -1541,31 +1541,31 @@ pub const IDirectSoundCaptureFXAec = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundCaptureFXAec,
             pDscFxAec: ?*DSCFXAec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundCaptureFXAec,
             pDscFxAec: ?*DSCFXAec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDirectSoundCaptureFXAec,
             pdwStatus: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IDirectSoundCaptureFXAec,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundCaptureFXAec, pDscFxAec: ?*DSCFXAec) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundCaptureFXAec, pDscFxAec: ?*DSCFXAec) HRESULT {
         return self.vtable.SetAllParameters(self, pDscFxAec);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundCaptureFXAec, pDscFxAec: ?*DSCFXAec) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundCaptureFXAec, pDscFxAec: ?*DSCFXAec) HRESULT {
         return self.vtable.GetAllParameters(self, pDscFxAec);
     }
-    pub fn GetStatus(self: *const IDirectSoundCaptureFXAec, pdwStatus: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDirectSoundCaptureFXAec, pdwStatus: ?*u32) HRESULT {
         return self.vtable.GetStatus(self, pdwStatus);
     }
-    pub fn Reset(self: *const IDirectSoundCaptureFXAec) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IDirectSoundCaptureFXAec) HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -1582,24 +1582,24 @@ pub const IDirectSoundCaptureFXNoiseSuppress = extern union {
         SetAllParameters: *const fn(
             self: *const IDirectSoundCaptureFXNoiseSuppress,
             pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAllParameters: *const fn(
             self: *const IDirectSoundCaptureFXNoiseSuppress,
             pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IDirectSoundCaptureFXNoiseSuppress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetAllParameters(self: *const IDirectSoundCaptureFXNoiseSuppress, pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
+    pub fn SetAllParameters(self: *const IDirectSoundCaptureFXNoiseSuppress, pcDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) HRESULT {
         return self.vtable.SetAllParameters(self, pcDscFxNoiseSuppress);
     }
-    pub fn GetAllParameters(self: *const IDirectSoundCaptureFXNoiseSuppress, pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) callconv(.Inline) HRESULT {
+    pub fn GetAllParameters(self: *const IDirectSoundCaptureFXNoiseSuppress, pDscFxNoiseSuppress: ?*DSCFXNoiseSuppress) HRESULT {
         return self.vtable.GetAllParameters(self, pDscFxNoiseSuppress);
     }
-    pub fn Reset(self: *const IDirectSoundCaptureFXNoiseSuppress) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IDirectSoundCaptureFXNoiseSuppress) HRESULT {
         return self.vtable.Reset(self);
     }
 };
@@ -1619,11 +1619,11 @@ pub const IDirectSoundFullDuplex = extern union {
             dwLevel: u32,
             lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8,
             lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IDirectSoundFullDuplex, pCaptureGuid: ?*const Guid, pRenderGuid: ?*const Guid, lpDscBufferDesc: ?*DSCBUFFERDESC, lpDsBufferDesc: ?*DSBUFFERDESC, hWnd: ?HWND, dwLevel: u32, lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IDirectSoundFullDuplex, pCaptureGuid: ?*const Guid, pRenderGuid: ?*const Guid, lpDscBufferDesc: ?*DSCBUFFERDESC, lpDsBufferDesc: ?*DSBUFFERDESC, hWnd: ?HWND, dwLevel: u32, lplpDirectSoundCaptureBuffer8: ?*?*IDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8: ?*?*IDirectSoundBuffer8) HRESULT {
         return self.vtable.Initialize(self, pCaptureGuid, pRenderGuid, lpDscBufferDesc, lpDsBufferDesc, hWnd, dwLevel, lplpDirectSoundCaptureBuffer8, lplpDirectSoundBuffer8);
     }
 };
@@ -1636,45 +1636,45 @@ pub extern "dsound" fn DirectSoundCreate(
     pcGuidDevice: ?*const Guid,
     ppDS: ?*?*IDirectSound,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundEnumerateA(
     pDSEnumCallback: ?LPDSENUMCALLBACKA,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundEnumerateW(
     pDSEnumCallback: ?LPDSENUMCALLBACKW,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundCaptureCreate(
     pcGuidDevice: ?*const Guid,
     ppDSC: ?*?*IDirectSoundCapture,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundCaptureEnumerateA(
     pDSEnumCallback: ?LPDSENUMCALLBACKA,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundCaptureEnumerateW(
     pDSEnumCallback: ?LPDSENUMCALLBACKW,
     pContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundCreate8(
     pcGuidDevice: ?*const Guid,
     ppDS8: ?*?*IDirectSound8,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundCaptureCreate8(
     pcGuidDevice: ?*const Guid,
     ppDSC8: ?*?*IDirectSoundCapture,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn DirectSoundFullDuplexCreate(
     pcGuidCaptureDevice: ?*const Guid,
@@ -1687,12 +1687,12 @@ pub extern "dsound" fn DirectSoundFullDuplexCreate(
     ppDSCBuffer8: ?*?*IDirectSoundCaptureBuffer8,
     ppDSBuffer8: ?*?*IDirectSoundBuffer8,
     pUnkOuter: ?*IUnknown,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "dsound" fn GetDeviceID(
     pGuidSrc: ?*const Guid,
     pGuidDest: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------

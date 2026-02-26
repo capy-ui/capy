@@ -859,13 +859,13 @@ pub const LAYERPLANEDESCRIPTOR = extern struct {
 
 pub const PFNGLARRAYELEMENTEXTPROC = *const fn(
     i: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLDRAWARRAYSEXTPROC = *const fn(
     mode: u32,
     first: i32,
     count: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLVERTEXPOINTEREXTPROC = *const fn(
     size: i32,
@@ -873,14 +873,14 @@ pub const PFNGLVERTEXPOINTEREXTPROC = *const fn(
     stride: i32,
     count: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLNORMALPOINTEREXTPROC = *const fn(
     type: u32,
     stride: i32,
     count: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLCOLORPOINTEREXTPROC = *const fn(
     size: i32,
@@ -888,14 +888,14 @@ pub const PFNGLCOLORPOINTEREXTPROC = *const fn(
     stride: i32,
     count: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLINDEXPOINTEREXTPROC = *const fn(
     type: u32,
     stride: i32,
     count: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLTEXCOORDPOINTEREXTPROC = *const fn(
     size: i32,
@@ -903,24 +903,24 @@ pub const PFNGLTEXCOORDPOINTEREXTPROC = *const fn(
     stride: i32,
     count: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLEDGEFLAGPOINTEREXTPROC = *const fn(
     stride: i32,
     count: i32,
     pointer: ?*const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLGETPOINTERVEXTPROC = *const fn(
     pname: u32,
     params: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLARRAYELEMENTARRAYEXTPROC = *const fn(
     mode: u32,
     count: i32,
     pi: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLDRAWRANGEELEMENTSWINPROC = *const fn(
     mode: u32,
@@ -929,14 +929,14 @@ pub const PFNGLDRAWRANGEELEMENTSWINPROC = *const fn(
     count: i32,
     type: u32,
     indices: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLADDSWAPHINTRECTWINPROC = *const fn(
     x: i32,
     y: i32,
     width: i32,
     height: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLCOLORTABLEEXTPROC = *const fn(
     target: u32,
@@ -945,7 +945,7 @@ pub const PFNGLCOLORTABLEEXTPROC = *const fn(
     format: u32,
     type: u32,
     data: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLCOLORSUBTABLEEXTPROC = *const fn(
     target: u32,
@@ -954,26 +954,26 @@ pub const PFNGLCOLORSUBTABLEEXTPROC = *const fn(
     format: u32,
     type: u32,
     data: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLGETCOLORTABLEEXTPROC = *const fn(
     target: u32,
     format: u32,
     type: u32,
     data: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLGETCOLORTABLEPARAMETERIVEXTPROC = *const fn(
     target: u32,
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PFNGLGETCOLORTABLEPARAMETERFVEXTPROC = *const fn(
     target: u32,
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUnurbs = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -989,57 +989,57 @@ pub const GLUtesselator = extern struct {
 
 pub const GLUquadricErrorProc = *const fn(
     param0: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessBeginProc = *const fn(
     param0: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessEdgeFlagProc = *const fn(
     param0: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessVertexProc = *const fn(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessEndProc = *const fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessErrorProc = *const fn(
     param0: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessCombineProc = *const fn(
     param0: ?*f64,
     param1: ?*?*anyopaque,
     param2: ?*f32,
     param3: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessBeginDataProc = *const fn(
     param0: u32,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessEdgeFlagDataProc = *const fn(
     param0: u8,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessVertexDataProc = *const fn(
     param0: ?*anyopaque,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessEndDataProc = *const fn(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessErrorDataProc = *const fn(
     param0: u32,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUtessCombineDataProc = *const fn(
     param0: ?*f64,
@@ -1047,11 +1047,11 @@ pub const GLUtessCombineDataProc = *const fn(
     param2: ?*f32,
     param3: ?*?*anyopaque,
     param4: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const GLUnurbsErrorProc = *const fn(
     param0: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------
@@ -1061,7 +1061,7 @@ pub const GLUnurbsErrorProc = *const fn(
 pub extern "gdi32" fn ChoosePixelFormat(
     hdc: ?HDC,
     ppfd: ?*const PIXELFORMATDESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn DescribePixelFormat(
@@ -1070,19 +1070,19 @@ pub extern "gdi32" fn DescribePixelFormat(
     nBytes: u32,
     // TODO: what to do with BytesParamIndex 2?
     ppfd: ?*PIXELFORMATDESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn GetPixelFormat(
     hdc: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SetPixelFormat(
     hdc: ?HDC,
     format: i32,
     ppfd: ?*const PIXELFORMATDESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn GetEnhMetaFilePixelFormat(
@@ -1090,55 +1090,55 @@ pub extern "gdi32" fn GetEnhMetaFilePixelFormat(
     cbBuffer: u32,
     // TODO: what to do with BytesParamIndex 1?
     ppfd: ?*PIXELFORMATDESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglCopyContext(
     param0: ?HGLRC,
     param1: ?HGLRC,
     param2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglCreateContext(
     param0: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) ?HGLRC;
+) callconv(.winapi) ?HGLRC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglCreateLayerContext(
     param0: ?HDC,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) ?HGLRC;
+) callconv(.winapi) ?HGLRC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglDeleteContext(
     param0: ?HGLRC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglGetCurrentContext(
-) callconv(@import("std").os.windows.WINAPI) ?HGLRC;
+) callconv(.winapi) ?HGLRC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglGetCurrentDC(
-) callconv(@import("std").os.windows.WINAPI) ?HDC;
+) callconv(.winapi) ?HDC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglGetProcAddress(
     param0: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?PROC;
+) callconv(.winapi) ?PROC;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglMakeCurrent(
     param0: ?HDC,
     param1: ?HGLRC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglShareLists(
     param0: ?HGLRC,
     param1: ?HGLRC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglUseFontBitmapsA(
@@ -1146,7 +1146,7 @@ pub extern "opengl32" fn wglUseFontBitmapsA(
     param1: u32,
     param2: u32,
     param3: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglUseFontBitmapsW(
@@ -1154,12 +1154,12 @@ pub extern "opengl32" fn wglUseFontBitmapsW(
     param1: u32,
     param2: u32,
     param3: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "gdi32" fn SwapBuffers(
     param0: ?HDC,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglUseFontOutlinesA(
@@ -1171,7 +1171,7 @@ pub extern "opengl32" fn wglUseFontOutlinesA(
     param5: f32,
     param6: i32,
     param7: ?*GLYPHMETRICSFLOAT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglUseFontOutlinesW(
@@ -1183,7 +1183,7 @@ pub extern "opengl32" fn wglUseFontOutlinesW(
     param5: f32,
     param6: i32,
     param7: ?*GLYPHMETRICSFLOAT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglDescribeLayerPlane(
@@ -1192,7 +1192,7 @@ pub extern "opengl32" fn wglDescribeLayerPlane(
     param2: i32,
     param3: u32,
     param4: ?*LAYERPLANEDESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglSetLayerPaletteEntries(
@@ -1201,7 +1201,7 @@ pub extern "opengl32" fn wglSetLayerPaletteEntries(
     param2: i32,
     param3: i32,
     param4: ?*const u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglGetLayerPaletteEntries(
@@ -1210,49 +1210,49 @@ pub extern "opengl32" fn wglGetLayerPaletteEntries(
     param2: i32,
     param3: i32,
     param4: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglRealizeLayerPalette(
     param0: ?HDC,
     param1: i32,
     param2: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "opengl32" fn wglSwapLayerBuffers(
     param0: ?HDC,
     param1: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "opengl32" fn glAccum(
     op: u32,
     value: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glAlphaFunc(
     func: u32,
     ref: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glAreTexturesResident(
     n: i32,
     textures: ?*const u32,
     residences: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(.winapi) u8;
 
 pub extern "opengl32" fn glArrayElement(
     i: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glBegin(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glBindTexture(
     target: u32,
     texture: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glBitmap(
     width: i32,
@@ -1262,244 +1262,244 @@ pub extern "opengl32" fn glBitmap(
     xmove: f32,
     ymove: f32,
     bitmap: ?*const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glBlendFunc(
     sfactor: u32,
     dfactor: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCallList(
     list: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCallLists(
     n: i32,
     type: u32,
     lists: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glClear(
     mask: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glClearAccum(
     red: f32,
     green: f32,
     blue: f32,
     alpha: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glClearColor(
     red: f32,
     green: f32,
     blue: f32,
     alpha: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glClearDepth(
     depth: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glClearIndex(
     c: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glClearStencil(
     s: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glClipPlane(
     plane: u32,
     equation: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3b(
     red: i8,
     green: i8,
     blue: i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3bv(
     v: ?*const i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3d(
     red: f64,
     green: f64,
     blue: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3f(
     red: f32,
     green: f32,
     blue: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3i(
     red: i32,
     green: i32,
     blue: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3s(
     red: i16,
     green: i16,
     blue: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3ub(
     red: u8,
     green: u8,
     blue: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3ubv(
     v: ?*const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3ui(
     red: u32,
     green: u32,
     blue: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3uiv(
     v: ?*const u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3us(
     red: u16,
     green: u16,
     blue: u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor3usv(
     v: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4b(
     red: i8,
     green: i8,
     blue: i8,
     alpha: i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4bv(
     v: ?*const i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4d(
     red: f64,
     green: f64,
     blue: f64,
     alpha: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4f(
     red: f32,
     green: f32,
     blue: f32,
     alpha: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4i(
     red: i32,
     green: i32,
     blue: i32,
     alpha: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4s(
     red: i16,
     green: i16,
     blue: i16,
     alpha: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4ub(
     red: u8,
     green: u8,
     blue: u8,
     alpha: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4ubv(
     v: ?*const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4ui(
     red: u32,
     green: u32,
     blue: u32,
     alpha: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4uiv(
     v: ?*const u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4us(
     red: u16,
     green: u16,
     blue: u16,
     alpha: u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColor4usv(
     v: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColorMask(
     red: u8,
     green: u8,
     blue: u8,
     alpha: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColorMaterial(
     face: u32,
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glColorPointer(
     size: i32,
     type: u32,
     stride: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCopyPixels(
     x: i32,
@@ -1507,7 +1507,7 @@ pub extern "opengl32" fn glCopyPixels(
     width: i32,
     height: i32,
     type: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCopyTexImage1D(
     target: u32,
@@ -1517,7 +1517,7 @@ pub extern "opengl32" fn glCopyTexImage1D(
     y: i32,
     width: i32,
     border: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCopyTexImage2D(
     target: u32,
@@ -1528,7 +1528,7 @@ pub extern "opengl32" fn glCopyTexImage2D(
     width: i32,
     height: i32,
     border: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCopyTexSubImage1D(
     target: u32,
@@ -1537,7 +1537,7 @@ pub extern "opengl32" fn glCopyTexSubImage1D(
     x: i32,
     y: i32,
     width: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCopyTexSubImage2D(
     target: u32,
@@ -1548,59 +1548,59 @@ pub extern "opengl32" fn glCopyTexSubImage2D(
     y: i32,
     width: i32,
     height: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glCullFace(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDeleteLists(
     list: u32,
     range: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDeleteTextures(
     n: i32,
     textures: ?*const u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDepthFunc(
     func: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDepthMask(
     flag: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDepthRange(
     zNear: f64,
     zFar: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDisable(
     cap: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDisableClientState(
     array: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDrawArrays(
     mode: u32,
     first: i32,
     count: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDrawBuffer(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDrawElements(
     mode: u32,
     count: i32,
     type: u32,
     indices: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glDrawPixels(
     width: i32,
@@ -1608,74 +1608,74 @@ pub extern "opengl32" fn glDrawPixels(
     format: u32,
     type: u32,
     pixels: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEdgeFlag(
     flag: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEdgeFlagPointer(
     stride: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEdgeFlagv(
     flag: ?*const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEnable(
     cap: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEnableClientState(
     array: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEnd(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEndList(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord1d(
     u: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord1dv(
     u: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord1f(
     u: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord1fv(
     u: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord2d(
     u: f64,
     v: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord2dv(
     u: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord2f(
     u: f32,
     v: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalCoord2fv(
     u: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalMesh1(
     mode: u32,
     i1: i32,
     i2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalMesh2(
     mode: u32,
@@ -1683,52 +1683,52 @@ pub extern "opengl32" fn glEvalMesh2(
     i2: i32,
     j1: i32,
     j2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalPoint1(
     i: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glEvalPoint2(
     i: i32,
     j: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFeedbackBuffer(
     size: i32,
     type: u32,
     buffer: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFinish(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFlush(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFogf(
     pname: u32,
     param1: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFogfv(
     pname: u32,
     params: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFogi(
     pname: u32,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFogiv(
     pname: u32,
     params: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFrontFace(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glFrustum(
     left: f64,
@@ -1737,144 +1737,144 @@ pub extern "opengl32" fn glFrustum(
     top: f64,
     zNear: f64,
     zFar: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGenLists(
     range: i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "opengl32" fn glGenTextures(
     n: i32,
     textures: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetBooleanv(
     pname: u32,
     params: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetClipPlane(
     plane: u32,
     equation: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetDoublev(
     pname: u32,
     params: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetError(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "opengl32" fn glGetFloatv(
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetIntegerv(
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetLightfv(
     light: u32,
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetLightiv(
     light: u32,
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetMapdv(
     target: u32,
     query: u32,
     v: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetMapfv(
     target: u32,
     query: u32,
     v: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetMapiv(
     target: u32,
     query: u32,
     v: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetMaterialfv(
     face: u32,
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetMaterialiv(
     face: u32,
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetPixelMapfv(
     map: u32,
     values: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetPixelMapuiv(
     map: u32,
     values: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetPixelMapusv(
     map: u32,
     values: ?*u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetPointerv(
     pname: u32,
     params: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetPolygonStipple(
     mask: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetString(
     name: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+) callconv(.winapi) ?*u8;
 
 pub extern "opengl32" fn glGetTexEnvfv(
     target: u32,
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexEnviv(
     target: u32,
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexGendv(
     coord: u32,
     pname: u32,
     params: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexGenfv(
     coord: u32,
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexGeniv(
     coord: u32,
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexImage(
     target: u32,
@@ -1882,185 +1882,185 @@ pub extern "opengl32" fn glGetTexImage(
     format: u32,
     type: u32,
     pixels: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexLevelParameterfv(
     target: u32,
     level: i32,
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexLevelParameteriv(
     target: u32,
     level: i32,
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexParameterfv(
     target: u32,
     pname: u32,
     params: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glGetTexParameteriv(
     target: u32,
     pname: u32,
     params: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glHint(
     target: u32,
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexMask(
     mask: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexPointer(
     type: u32,
     stride: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexd(
     c: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexdv(
     c: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexf(
     c: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexfv(
     c: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexi(
     c: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexiv(
     c: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexs(
     c: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexsv(
     c: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexub(
     c: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIndexubv(
     c: ?*const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glInitNames(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glInterleavedArrays(
     format: u32,
     stride: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glIsEnabled(
     cap: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(.winapi) u8;
 
 pub extern "opengl32" fn glIsList(
     list: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(.winapi) u8;
 
 pub extern "opengl32" fn glIsTexture(
     texture: u32,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(.winapi) u8;
 
 pub extern "opengl32" fn glLightModelf(
     pname: u32,
     param1: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLightModelfv(
     pname: u32,
     params: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLightModeli(
     pname: u32,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLightModeliv(
     pname: u32,
     params: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLightf(
     light: u32,
     pname: u32,
     param2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLightfv(
     light: u32,
     pname: u32,
     params: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLighti(
     light: u32,
     pname: u32,
     param2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLightiv(
     light: u32,
     pname: u32,
     params: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLineStipple(
     factor: i32,
     pattern: u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLineWidth(
     width: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glListBase(
     base: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLoadIdentity(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLoadMatrixd(
     m: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLoadMatrixf(
     m: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLoadName(
     name: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glLogicOp(
     opcode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMap1d(
     target: u32,
@@ -2069,7 +2069,7 @@ pub extern "opengl32" fn glMap1d(
     stride: i32,
     order: i32,
     points: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMap1f(
     target: u32,
@@ -2078,7 +2078,7 @@ pub extern "opengl32" fn glMap1f(
     stride: i32,
     order: i32,
     points: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMap2d(
     target: u32,
@@ -2091,7 +2091,7 @@ pub extern "opengl32" fn glMap2d(
     vstride: i32,
     vorder: i32,
     points: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMap2f(
     target: u32,
@@ -2104,19 +2104,19 @@ pub extern "opengl32" fn glMap2f(
     vstride: i32,
     vorder: i32,
     points: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMapGrid1d(
     un: i32,
     u1: f64,
     u2: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMapGrid1f(
     un: i32,
     u1: f32,
     u2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMapGrid2d(
     un: i32,
@@ -2125,7 +2125,7 @@ pub extern "opengl32" fn glMapGrid2d(
     vn: i32,
     v1: f64,
     v2: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMapGrid2f(
     un: i32,
@@ -2134,104 +2134,104 @@ pub extern "opengl32" fn glMapGrid2f(
     vn: i32,
     v1: f32,
     v2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMaterialf(
     face: u32,
     pname: u32,
     param2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMaterialfv(
     face: u32,
     pname: u32,
     params: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMateriali(
     face: u32,
     pname: u32,
     param2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMaterialiv(
     face: u32,
     pname: u32,
     params: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMatrixMode(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMultMatrixd(
     m: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glMultMatrixf(
     m: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNewList(
     list: u32,
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3b(
     nx: i8,
     ny: i8,
     nz: i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3bv(
     v: ?*const i8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3d(
     nx: f64,
     ny: f64,
     nz: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3f(
     nx: f32,
     ny: f32,
     nz: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3i(
     nx: i32,
     ny: i32,
     nz: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3s(
     nx: i16,
     ny: i16,
     nz: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormal3sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glNormalPointer(
     type: u32,
     stride: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glOrtho(
     left: f64,
@@ -2240,229 +2240,229 @@ pub extern "opengl32" fn glOrtho(
     top: f64,
     zNear: f64,
     zFar: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPassThrough(
     token: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelMapfv(
     map: u32,
     mapsize: i32,
     values: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelMapuiv(
     map: u32,
     mapsize: i32,
     values: ?*const u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelMapusv(
     map: u32,
     mapsize: i32,
     values: ?*const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelStoref(
     pname: u32,
     param1: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelStorei(
     pname: u32,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelTransferf(
     pname: u32,
     param1: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelTransferi(
     pname: u32,
     param1: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPixelZoom(
     xfactor: f32,
     yfactor: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPointSize(
     size: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPolygonMode(
     face: u32,
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPolygonOffset(
     factor: f32,
     units: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPolygonStipple(
     mask: ?*const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPopAttrib(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPopClientAttrib(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPopMatrix(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPopName(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPrioritizeTextures(
     n: i32,
     textures: ?*const u32,
     priorities: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPushAttrib(
     mask: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPushClientAttrib(
     mask: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPushMatrix(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glPushName(
     name: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2d(
     x: f64,
     y: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2f(
     x: f32,
     y: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2i(
     x: i32,
     y: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2s(
     x: i16,
     y: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos2sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3d(
     x: f64,
     y: f64,
     z: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3f(
     x: f32,
     y: f32,
     z: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3i(
     x: i32,
     y: i32,
     z: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3s(
     x: i16,
     y: i16,
     z: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos3sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4d(
     x: f64,
     y: f64,
     z: f64,
     w: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4f(
     x: f32,
     y: f32,
     z: f32,
     w: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4i(
     x: i32,
     y: i32,
     z: i32,
     w: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4s(
     x: i16,
     y: i16,
     z: i16,
     w: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRasterPos4sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glReadBuffer(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glReadPixels(
     x: i32,
@@ -2472,336 +2472,336 @@ pub extern "opengl32" fn glReadPixels(
     format: u32,
     type: u32,
     pixels: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRectd(
     x1: f64,
     y1: f64,
     x2: f64,
     y2: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRectdv(
     v1: ?*const f64,
     v2: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRectf(
     x1: f32,
     y1: f32,
     x2: f32,
     y2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRectfv(
     v1: ?*const f32,
     v2: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRecti(
     x1: i32,
     y1: i32,
     x2: i32,
     y2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRectiv(
     v1: ?*const i32,
     v2: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRects(
     x1: i16,
     y1: i16,
     x2: i16,
     y2: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRectsv(
     v1: ?*const i16,
     v2: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRenderMode(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "opengl32" fn glRotated(
     angle: f64,
     x: f64,
     y: f64,
     z: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glRotatef(
     angle: f32,
     x: f32,
     y: f32,
     z: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glScaled(
     x: f64,
     y: f64,
     z: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glScalef(
     x: f32,
     y: f32,
     z: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glScissor(
     x: i32,
     y: i32,
     width: i32,
     height: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glSelectBuffer(
     size: i32,
     buffer: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glShadeModel(
     mode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glStencilFunc(
     func: u32,
     ref: i32,
     mask: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glStencilMask(
     mask: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glStencilOp(
     fail: u32,
     zfail: u32,
     zpass: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1d(
     s: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1f(
     s: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1i(
     s: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1s(
     s: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord1sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2d(
     s: f64,
     t: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2f(
     s: f32,
     t: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2i(
     s: i32,
     t: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2s(
     s: i16,
     t: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord2sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3d(
     s: f64,
     t: f64,
     r: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3f(
     s: f32,
     t: f32,
     r: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3i(
     s: i32,
     t: i32,
     r: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3s(
     s: i16,
     t: i16,
     r: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord3sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4d(
     s: f64,
     t: f64,
     r: f64,
     q: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4f(
     s: f32,
     t: f32,
     r: f32,
     q: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4i(
     s: i32,
     t: i32,
     r: i32,
     q: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4s(
     s: i16,
     t: i16,
     r: i16,
     q: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoord4sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexCoordPointer(
     size: i32,
     type: u32,
     stride: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexEnvf(
     target: u32,
     pname: u32,
     param2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexEnvfv(
     target: u32,
     pname: u32,
     params: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexEnvi(
     target: u32,
     pname: u32,
     param2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexEnviv(
     target: u32,
     pname: u32,
     params: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexGend(
     coord: u32,
     pname: u32,
     param2: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexGendv(
     coord: u32,
     pname: u32,
     params: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexGenf(
     coord: u32,
     pname: u32,
     param2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexGenfv(
     coord: u32,
     pname: u32,
     params: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexGeni(
     coord: u32,
     pname: u32,
     param2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexGeniv(
     coord: u32,
     pname: u32,
     params: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexImage1D(
     target: u32,
@@ -2812,7 +2812,7 @@ pub extern "opengl32" fn glTexImage1D(
     format: u32,
     type: u32,
     pixels: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexImage2D(
     target: u32,
@@ -2824,31 +2824,31 @@ pub extern "opengl32" fn glTexImage2D(
     format: u32,
     type: u32,
     pixels: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexParameterf(
     target: u32,
     pname: u32,
     param2: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexParameterfv(
     target: u32,
     pname: u32,
     params: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexParameteri(
     target: u32,
     pname: u32,
     param2: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexParameteriv(
     target: u32,
     pname: u32,
     params: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexSubImage1D(
     target: u32,
@@ -2858,7 +2858,7 @@ pub extern "opengl32" fn glTexSubImage1D(
     format: u32,
     type: u32,
     pixels: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTexSubImage2D(
     target: u32,
@@ -2870,179 +2870,179 @@ pub extern "opengl32" fn glTexSubImage2D(
     format: u32,
     type: u32,
     pixels: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTranslated(
     x: f64,
     y: f64,
     z: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glTranslatef(
     x: f32,
     y: f32,
     z: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2d(
     x: f64,
     y: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2f(
     x: f32,
     y: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2i(
     x: i32,
     y: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2s(
     x: i16,
     y: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex2sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3d(
     x: f64,
     y: f64,
     z: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3f(
     x: f32,
     y: f32,
     z: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3i(
     x: i32,
     y: i32,
     z: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3s(
     x: i16,
     y: i16,
     z: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex3sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4d(
     x: f64,
     y: f64,
     z: f64,
     w: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4dv(
     v: ?*const f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4f(
     x: f32,
     y: f32,
     z: f32,
     w: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4fv(
     v: ?*const f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4i(
     x: i32,
     y: i32,
     z: i32,
     w: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4iv(
     v: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4s(
     x: i16,
     y: i16,
     z: i16,
     w: i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertex4sv(
     v: ?*const i16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glVertexPointer(
     size: i32,
     type: u32,
     stride: i32,
     pointer: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "opengl32" fn glViewport(
     x: i32,
     y: i32,
     width: i32,
     height: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluErrorString(
     errCode: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+) callconv(.winapi) ?*u8;
 
 pub extern "glu32" fn gluErrorUnicodeStringEXT(
     errCode: u32,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 pub extern "glu32" fn gluGetString(
     name: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*u8;
+) callconv(.winapi) ?*u8;
 
 pub extern "glu32" fn gluOrtho2D(
     left: f64,
     right: f64,
     bottom: f64,
     top: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluPerspective(
     fovy: f64,
     aspect: f64,
     zNear: f64,
     zFar: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluPickMatrix(
     x: f64,
@@ -3050,7 +3050,7 @@ pub extern "glu32" fn gluPickMatrix(
     width: f64,
     height: f64,
     viewport: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluLookAt(
     eyex: f64,
@@ -3062,7 +3062,7 @@ pub extern "glu32" fn gluLookAt(
     upx: f64,
     upy: f64,
     upz: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluProject(
     objx: f64,
@@ -3074,7 +3074,7 @@ pub extern "glu32" fn gluProject(
     winx: ?*f64,
     winy: ?*f64,
     winz: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "glu32" fn gluUnProject(
     winx: f64,
@@ -3086,7 +3086,7 @@ pub extern "glu32" fn gluUnProject(
     objx: ?*f64,
     objy: ?*f64,
     objz: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "glu32" fn gluScaleImage(
     format: u32,
@@ -3098,7 +3098,7 @@ pub extern "glu32" fn gluScaleImage(
     heightout: i32,
     typeout: u32,
     dataout: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "glu32" fn gluBuild1DMipmaps(
     target: u32,
@@ -3107,7 +3107,7 @@ pub extern "glu32" fn gluBuild1DMipmaps(
     format: u32,
     type: u32,
     data: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "glu32" fn gluBuild2DMipmaps(
     target: u32,
@@ -3117,34 +3117,34 @@ pub extern "glu32" fn gluBuild2DMipmaps(
     format: u32,
     type: u32,
     data: ?*const anyopaque,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub extern "glu32" fn gluNewQuadric(
-) callconv(@import("std").os.windows.WINAPI) ?*GLUquadric;
+) callconv(.winapi) ?*GLUquadric;
 
 pub extern "glu32" fn gluDeleteQuadric(
     state: ?*GLUquadric,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluQuadricNormals(
     quadObject: ?*GLUquadric,
     normals: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluQuadricTexture(
     quadObject: ?*GLUquadric,
     textureCoords: u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluQuadricOrientation(
     quadObject: ?*GLUquadric,
     orientation: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluQuadricDrawStyle(
     quadObject: ?*GLUquadric,
     drawStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluCylinder(
     qobj: ?*GLUquadric,
@@ -3153,7 +3153,7 @@ pub extern "glu32" fn gluCylinder(
     height: f64,
     slices: i32,
     stacks: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluDisk(
     qobj: ?*GLUquadric,
@@ -3161,7 +3161,7 @@ pub extern "glu32" fn gluDisk(
     outerRadius: f64,
     slices: i32,
     loops: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluPartialDisk(
     qobj: ?*GLUquadric,
@@ -3171,106 +3171,106 @@ pub extern "glu32" fn gluPartialDisk(
     loops: i32,
     startAngle: f64,
     sweepAngle: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluSphere(
     qobj: ?*GLUquadric,
     radius: f64,
     slices: i32,
     stacks: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluQuadricCallback(
     qobj: ?*GLUquadric,
     which: u32,
     @"fn": isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluNewTess(
-) callconv(@import("std").os.windows.WINAPI) ?*GLUtesselator;
+) callconv(.winapi) ?*GLUtesselator;
 
 pub extern "glu32" fn gluDeleteTess(
     tess: ?*GLUtesselator,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessBeginPolygon(
     tess: ?*GLUtesselator,
     polygon_data: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessBeginContour(
     tess: ?*GLUtesselator,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessVertex(
     tess: ?*GLUtesselator,
     coords: ?*f64,
     data: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessEndContour(
     tess: ?*GLUtesselator,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessEndPolygon(
     tess: ?*GLUtesselator,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessProperty(
     tess: ?*GLUtesselator,
     which: u32,
     value: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessNormal(
     tess: ?*GLUtesselator,
     x: f64,
     y: f64,
     z: f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluTessCallback(
     tess: ?*GLUtesselator,
     which: u32,
     @"fn": isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluGetTessProperty(
     tess: ?*GLUtesselator,
     which: u32,
     value: ?*f64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluNewNurbsRenderer(
-) callconv(@import("std").os.windows.WINAPI) ?*GLUnurbs;
+) callconv(.winapi) ?*GLUnurbs;
 
 pub extern "glu32" fn gluDeleteNurbsRenderer(
     nobj: ?*GLUnurbs,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluBeginSurface(
     nobj: ?*GLUnurbs,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluBeginCurve(
     nobj: ?*GLUnurbs,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluEndCurve(
     nobj: ?*GLUnurbs,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluEndSurface(
     nobj: ?*GLUnurbs,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluBeginTrim(
     nobj: ?*GLUnurbs,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluEndTrim(
     nobj: ?*GLUnurbs,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluPwlCurve(
     nobj: ?*GLUnurbs,
@@ -3278,7 +3278,7 @@ pub extern "glu32" fn gluPwlCurve(
     array: ?*f32,
     stride: i32,
     type: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluNurbsCurve(
     nobj: ?*GLUnurbs,
@@ -3288,7 +3288,7 @@ pub extern "glu32" fn gluNurbsCurve(
     ctlarray: ?*f32,
     order: i32,
     type: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluNurbsSurface(
     nobj: ?*GLUnurbs,
@@ -3302,45 +3302,45 @@ pub extern "glu32" fn gluNurbsSurface(
     sorder: i32,
     torder: i32,
     type: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluLoadSamplingMatrices(
     nobj: ?*GLUnurbs,
     modelMatrix: ?*const f32,
     projMatrix: ?*const f32,
     viewport: ?*const i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluNurbsProperty(
     nobj: ?*GLUnurbs,
     property: u32,
     value: f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluGetNurbsProperty(
     nobj: ?*GLUnurbs,
     property: u32,
     value: ?*f32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluNurbsCallback(
     nobj: ?*GLUnurbs,
     which: u32,
     @"fn": isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluBeginPolygon(
     tess: ?*GLUtesselator,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluNextContour(
     tess: ?*GLUtesselator,
     type: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "glu32" fn gluEndPolygon(
     tess: ?*GLUtesselator,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------

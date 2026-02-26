@@ -213,7 +213,7 @@ pub const NCB = switch(@import("../zig.zig").arch) {
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "netapi32" fn Netbios(
     pncb: ?*NCB,
-) callconv(@import("std").os.windows.WINAPI) u8;
+) callconv(.winapi) u8;
 
 
 //--------------------------------------------------------------------------------

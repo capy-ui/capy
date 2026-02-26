@@ -1,7 +1,5 @@
 const capy = @import("capy");
 const std = @import("std");
-pub usingnamespace capy.cross_platform;
-
 // Override the allocator used by Capy
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
 pub const capy_allocator = gpa.allocator();

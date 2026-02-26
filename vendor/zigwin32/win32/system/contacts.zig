@@ -127,48 +127,48 @@ pub const IContactManager = extern union {
             self: *const IContactManager,
             pszAppName: ?[*:0]const u16,
             pszAppVersion: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Load: *const fn(
             self: *const IContactManager,
             pszContactID: ?[*:0]const u16,
             ppContact: ?*?*IContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MergeContactIDs: *const fn(
             self: *const IContactManager,
             pszNewContactID: ?[*:0]const u16,
             pszOldContactID: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetMeContact: *const fn(
             self: *const IContactManager,
             ppMeContact: ?*?*IContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetMeContact: *const fn(
             self: *const IContactManager,
             pMeContact: ?*IContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContactCollection: *const fn(
             self: *const IContactManager,
             ppContactCollection: ?*?*IContactCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Initialize(self: *const IContactManager, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Initialize(self: *const IContactManager, pszAppName: ?[*:0]const u16, pszAppVersion: ?[*:0]const u16) HRESULT {
         return self.vtable.Initialize(self, pszAppName, pszAppVersion);
     }
-    pub fn Load(self: *const IContactManager, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
+    pub fn Load(self: *const IContactManager, pszContactID: ?[*:0]const u16, ppContact: ?*?*IContact) HRESULT {
         return self.vtable.Load(self, pszContactID, ppContact);
     }
-    pub fn MergeContactIDs(self: *const IContactManager, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn MergeContactIDs(self: *const IContactManager, pszNewContactID: ?[*:0]const u16, pszOldContactID: ?[*:0]const u16) HRESULT {
         return self.vtable.MergeContactIDs(self, pszNewContactID, pszOldContactID);
     }
-    pub fn GetMeContact(self: *const IContactManager, ppMeContact: ?*?*IContact) callconv(.Inline) HRESULT {
+    pub fn GetMeContact(self: *const IContactManager, ppMeContact: ?*?*IContact) HRESULT {
         return self.vtable.GetMeContact(self, ppMeContact);
     }
-    pub fn SetMeContact(self: *const IContactManager, pMeContact: ?*IContact) callconv(.Inline) HRESULT {
+    pub fn SetMeContact(self: *const IContactManager, pMeContact: ?*IContact) HRESULT {
         return self.vtable.SetMeContact(self, pMeContact);
     }
-    pub fn GetContactCollection(self: *const IContactManager, ppContactCollection: ?*?*IContactCollection) callconv(.Inline) HRESULT {
+    pub fn GetContactCollection(self: *const IContactManager, ppContactCollection: ?*?*IContactCollection) HRESULT {
         return self.vtable.GetContactCollection(self, ppContactCollection);
     }
 };
@@ -181,24 +181,24 @@ pub const IContactCollection = extern union {
         base: IUnknown.VTable,
         Reset: *const fn(
             self: *const IContactCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IContactCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetCurrent: *const fn(
             self: *const IContactCollection,
             ppContact: ?*?*IContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IContactCollection) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IContactCollection) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Next(self: *const IContactCollection) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IContactCollection) HRESULT {
         return self.vtable.Next(self);
     }
-    pub fn GetCurrent(self: *const IContactCollection, ppContact: ?*?*IContact) callconv(.Inline) HRESULT {
+    pub fn GetCurrent(self: *const IContactCollection, ppContact: ?*?*IContact) HRESULT {
         return self.vtable.GetCurrent(self, ppContact);
     }
 };
@@ -216,13 +216,13 @@ pub const IContactProperties = extern union {
             pszValue: [*:0]u16,
             cchValue: u32,
             pdwcchPropertyValueRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDate: *const fn(
             self: *const IContactProperties,
             pszPropertyName: ?[*:0]const u16,
             dwFlags: u32,
             pftDateTime: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetBinary: *const fn(
             self: *const IContactProperties,
             pszPropertyName: ?[*:0]const u16,
@@ -231,7 +231,7 @@ pub const IContactProperties = extern union {
             cchContentType: u32,
             pdwcchContentTypeRequired: ?*u32,
             ppStream: ?*?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLabels: *const fn(
             self: *const IContactProperties,
             pszArrayElementName: ?[*:0]const u16,
@@ -239,33 +239,33 @@ pub const IContactProperties = extern union {
             pszLabels: [*:0]u16,
             cchLabels: u32,
             pdwcchLabelsRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetString: *const fn(
             self: *const IContactProperties,
             pszPropertyName: ?[*:0]const u16,
             dwFlags: u32,
             pszValue: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetDate: *const fn(
             self: *const IContactProperties,
             pszPropertyName: ?[*:0]const u16,
             dwFlags: u32,
             ftDateTime: FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetBinary: *const fn(
             self: *const IContactProperties,
             pszPropertyName: ?[*:0]const u16,
             dwFlags: u32,
             pszContentType: ?[*:0]const u16,
             pStream: ?*IStream,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetLabels: *const fn(
             self: *const IContactProperties,
             pszArrayElementName: ?[*:0]const u16,
             dwFlags: u32,
             dwLabelCount: u32,
             ppszLabels: [*]?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateArrayNode: *const fn(
             self: *const IContactProperties,
             pszArrayName: ?[*:0]const u16,
@@ -274,22 +274,22 @@ pub const IContactProperties = extern union {
             pszNewArrayElementName: [*:0]u16,
             cchNewArrayElementName: u32,
             pdwcchNewArrayElementNameRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteProperty: *const fn(
             self: *const IContactProperties,
             pszPropertyName: ?[*:0]const u16,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteArrayNode: *const fn(
             self: *const IContactProperties,
             pszArrayElementName: ?[*:0]const u16,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteLabels: *const fn(
             self: *const IContactProperties,
             pszArrayElementName: ?[*:0]const u16,
             dwFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyCollection: *const fn(
             self: *const IContactProperties,
             ppPropertyCollection: ?*?*IContactPropertyCollection,
@@ -298,47 +298,47 @@ pub const IContactProperties = extern union {
             dwLabelCount: u32,
             ppszLabels: [*]?PWSTR,
             fAnyLabelMatches: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: [*:0]u16, cchValue: u32, pdwcchPropertyValueRequired: ?*u32) HRESULT {
         return self.vtable.GetString(self, pszPropertyName, dwFlags, pszValue, cchValue, pdwcchPropertyValueRequired);
     }
-    pub fn GetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pftDateTime: ?*FILETIME) HRESULT {
         return self.vtable.GetDate(self, pszPropertyName, dwFlags, pftDateTime);
     }
-    pub fn GetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) callconv(.Inline) HRESULT {
+    pub fn GetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: [*:0]u16, cchContentType: u32, pdwcchContentTypeRequired: ?*u32, ppStream: ?*?*IStream) HRESULT {
         return self.vtable.GetBinary(self, pszPropertyName, dwFlags, pszContentType, cchContentType, pdwcchContentTypeRequired, ppStream);
     }
-    pub fn GetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, pszLabels: [*:0]u16, cchLabels: u32, pdwcchLabelsRequired: ?*u32) HRESULT {
         return self.vtable.GetLabels(self, pszArrayElementName, dwFlags, pszLabels, cchLabels, pdwcchLabelsRequired);
     }
-    pub fn SetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetString(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszValue: ?[*:0]const u16) HRESULT {
         return self.vtable.SetString(self, pszPropertyName, dwFlags, pszValue);
     }
-    pub fn SetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) callconv(.Inline) HRESULT {
+    pub fn SetDate(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, ftDateTime: FILETIME) HRESULT {
         return self.vtable.SetDate(self, pszPropertyName, dwFlags, ftDateTime);
     }
-    pub fn SetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) callconv(.Inline) HRESULT {
+    pub fn SetBinary(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32, pszContentType: ?[*:0]const u16, pStream: ?*IStream) HRESULT {
         return self.vtable.SetBinary(self, pszPropertyName, dwFlags, pszContentType, pStream);
     }
-    pub fn SetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) callconv(.Inline) HRESULT {
+    pub fn SetLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32, dwLabelCount: u32, ppszLabels: [*]?PWSTR) HRESULT {
         return self.vtable.SetLabels(self, pszArrayElementName, dwFlags, dwLabelCount, ppszLabels);
     }
-    pub fn CreateArrayNode(self: *const IContactProperties, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) callconv(.Inline) HRESULT {
+    pub fn CreateArrayNode(self: *const IContactProperties, pszArrayName: ?[*:0]const u16, dwFlags: u32, fAppend: BOOL, pszNewArrayElementName: [*:0]u16, cchNewArrayElementName: u32, pdwcchNewArrayElementNameRequired: ?*u32) HRESULT {
         return self.vtable.CreateArrayNode(self, pszArrayName, dwFlags, fAppend, pszNewArrayElementName, cchNewArrayElementName, pdwcchNewArrayElementNameRequired);
     }
-    pub fn DeleteProperty(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteProperty(self: *const IContactProperties, pszPropertyName: ?[*:0]const u16, dwFlags: u32) HRESULT {
         return self.vtable.DeleteProperty(self, pszPropertyName, dwFlags);
     }
-    pub fn DeleteArrayNode(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteArrayNode(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) HRESULT {
         return self.vtable.DeleteArrayNode(self, pszArrayElementName, dwFlags);
     }
-    pub fn DeleteLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) callconv(.Inline) HRESULT {
+    pub fn DeleteLabels(self: *const IContactProperties, pszArrayElementName: ?[*:0]const u16, dwFlags: u32) HRESULT {
         return self.vtable.DeleteLabels(self, pszArrayElementName, dwFlags);
     }
-    pub fn GetPropertyCollection(self: *const IContactProperties, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) callconv(.Inline) HRESULT {
+    pub fn GetPropertyCollection(self: *const IContactProperties, ppPropertyCollection: ?*?*IContactPropertyCollection, dwFlags: u32, pszMultiValueName: ?[*:0]const u16, dwLabelCount: u32, ppszLabels: [*]?PWSTR, fAnyLabelMatches: BOOL) HRESULT {
         return self.vtable.GetPropertyCollection(self, ppPropertyCollection, dwFlags, pszMultiValueName, dwLabelCount, ppszLabels, fAnyLabelMatches);
     }
 };
@@ -354,27 +354,27 @@ pub const IContact = extern union {
             pszContactID: [*:0]u16,
             cchContactID: u32,
             pdwcchContactIDRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPath: *const fn(
             self: *const IContact,
             pszPath: [*:0]u16,
             cchPath: u32,
             pdwcchPathRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitChanges: *const fn(
             self: *const IContact,
             dwCommitFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetContactID(self: *const IContact, pszContactID: [*:0]u16, cchContactID: u32, pdwcchContactIDRequired: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetContactID(self: *const IContact, pszContactID: [*:0]u16, cchContactID: u32, pdwcchContactIDRequired: ?*u32) HRESULT {
         return self.vtable.GetContactID(self, pszContactID, cchContactID, pdwcchContactIDRequired);
     }
-    pub fn GetPath(self: *const IContact, pszPath: [*:0]u16, cchPath: u32, pdwcchPathRequired: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPath(self: *const IContact, pszPath: [*:0]u16, cchPath: u32, pdwcchPathRequired: ?*u32) HRESULT {
         return self.vtable.GetPath(self, pszPath, cchPath, pdwcchPathRequired);
     }
-    pub fn CommitChanges(self: *const IContact, dwCommitFlags: u32) callconv(.Inline) HRESULT {
+    pub fn CommitChanges(self: *const IContact, dwCommitFlags: u32) HRESULT {
         return self.vtable.CommitChanges(self, dwCommitFlags);
     }
 };
@@ -387,56 +387,56 @@ pub const IContactPropertyCollection = extern union {
         base: IUnknown.VTable,
         Reset: *const fn(
             self: *const IContactPropertyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Next: *const fn(
             self: *const IContactPropertyCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyName: *const fn(
             self: *const IContactPropertyCollection,
             pszPropertyName: [*:0]u16,
             cchPropertyName: u32,
             pdwcchPropertyNameRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyType: *const fn(
             self: *const IContactPropertyCollection,
             pdwType: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyVersion: *const fn(
             self: *const IContactPropertyCollection,
             pdwVersion: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyModificationDate: *const fn(
             self: *const IContactPropertyCollection,
             pftModificationDate: ?*FILETIME,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetPropertyArrayElementID: *const fn(
             self: *const IContactPropertyCollection,
             pszArrayElementID: [*:0]u16,
             cchArrayElementID: u32,
             pdwcchArrayElementIDRequired: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Reset(self: *const IContactPropertyCollection) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IContactPropertyCollection) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Next(self: *const IContactPropertyCollection) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IContactPropertyCollection) HRESULT {
         return self.vtable.Next(self);
     }
-    pub fn GetPropertyName(self: *const IContactPropertyCollection, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyName(self: *const IContactPropertyCollection, pszPropertyName: [*:0]u16, cchPropertyName: u32, pdwcchPropertyNameRequired: ?*u32) HRESULT {
         return self.vtable.GetPropertyName(self, pszPropertyName, cchPropertyName, pdwcchPropertyNameRequired);
     }
-    pub fn GetPropertyType(self: *const IContactPropertyCollection, pdwType: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyType(self: *const IContactPropertyCollection, pdwType: ?*u32) HRESULT {
         return self.vtable.GetPropertyType(self, pdwType);
     }
-    pub fn GetPropertyVersion(self: *const IContactPropertyCollection, pdwVersion: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyVersion(self: *const IContactPropertyCollection, pdwVersion: ?*u32) HRESULT {
         return self.vtable.GetPropertyVersion(self, pdwVersion);
     }
-    pub fn GetPropertyModificationDate(self: *const IContactPropertyCollection, pftModificationDate: ?*FILETIME) callconv(.Inline) HRESULT {
+    pub fn GetPropertyModificationDate(self: *const IContactPropertyCollection, pftModificationDate: ?*FILETIME) HRESULT {
         return self.vtable.GetPropertyModificationDate(self, pftModificationDate);
     }
-    pub fn GetPropertyArrayElementID(self: *const IContactPropertyCollection, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetPropertyArrayElementID(self: *const IContactPropertyCollection, pszArrayElementID: [*:0]u16, cchArrayElementID: u32, pdwcchArrayElementIDRequired: ?*u32) HRESULT {
         return self.vtable.GetPropertyArrayElementID(self, pszArrayElementID, cchArrayElementID, pdwcchArrayElementIDRequired);
     }
 };
@@ -471,120 +471,120 @@ pub const IContactAggregationManager = extern union {
             self: *const IContactAggregationManager,
             plMajorVersion: ?*i32,
             plMinorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateOrOpenGroup: *const fn(
             self: *const IContactAggregationManager,
             pGroupName: ?[*:0]const u16,
             options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS,
             pCreatedGroup: ?*BOOL,
             ppGroup: ?*?*IContactAggregationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateExternalContact: *const fn(
             self: *const IContactAggregationManager,
             ppItem: ?*?*IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateServerPerson: *const fn(
             self: *const IContactAggregationManager,
             ppServerPerson: ?*?*IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateServerContactLink: *const fn(
             self: *const IContactAggregationManager,
             ppServerContactLink: ?*?*IContactAggregationLink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Flush: *const fn(
             self: *const IContactAggregationManager,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenAggregateContact: *const fn(
             self: *const IContactAggregationManager,
             pItemId: ?[*:0]const u16,
             ppItem: ?*?*IContactAggregationAggregate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenContact: *const fn(
             self: *const IContactAggregationManager,
             pItemId: ?[*:0]const u16,
             ppItem: ?*?*IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenServerContactLink: *const fn(
             self: *const IContactAggregationManager,
             pItemId: ?[*:0]const u16,
             ppItem: ?*?*IContactAggregationLink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenServerPerson: *const fn(
             self: *const IContactAggregationManager,
             pItemId: ?[*:0]const u16,
             ppItem: ?*?*IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Contacts: *const fn(
             self: *const IContactAggregationManager,
             options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
             ppItems: ?*?*IContactAggregationContactCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_AggregateContacts: *const fn(
             self: *const IContactAggregationManager,
             options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
             ppAggregates: ?*?*IContactAggregationAggregateCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Groups: *const fn(
             self: *const IContactAggregationManager,
             options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
             ppGroups: ?*?*IContactAggregationGroupCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPersons: *const fn(
             self: *const IContactAggregationManager,
             ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ServerContactLinks: *const fn(
             self: *const IContactAggregationManager,
             pPersonItemId: ?[*:0]const u16,
             ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetVersionInfo(self: *const IContactAggregationManager, plMajorVersion: ?*i32, plMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetVersionInfo(self: *const IContactAggregationManager, plMajorVersion: ?*i32, plMinorVersion: ?*i32) HRESULT {
         return self.vtable.GetVersionInfo(self, plMajorVersion, plMinorVersion);
     }
-    pub fn CreateOrOpenGroup(self: *const IContactAggregationManager, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+    pub fn CreateOrOpenGroup(self: *const IContactAggregationManager, pGroupName: ?[*:0]const u16, options: CONTACT_AGGREGATION_CREATE_OR_OPEN_OPTIONS, pCreatedGroup: ?*BOOL, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
         return self.vtable.CreateOrOpenGroup(self, pGroupName, options, pCreatedGroup, ppGroup);
     }
-    pub fn CreateExternalContact(self: *const IContactAggregationManager, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn CreateExternalContact(self: *const IContactAggregationManager, ppItem: ?*?*IContactAggregationContact) HRESULT {
         return self.vtable.CreateExternalContact(self, ppItem);
     }
-    pub fn CreateServerPerson(self: *const IContactAggregationManager, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn CreateServerPerson(self: *const IContactAggregationManager, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
         return self.vtable.CreateServerPerson(self, ppServerPerson);
     }
-    pub fn CreateServerContactLink(self: *const IContactAggregationManager, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+    pub fn CreateServerContactLink(self: *const IContactAggregationManager, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
         return self.vtable.CreateServerContactLink(self, ppServerContactLink);
     }
-    pub fn Flush(self: *const IContactAggregationManager) callconv(.Inline) HRESULT {
+    pub fn Flush(self: *const IContactAggregationManager) HRESULT {
         return self.vtable.Flush(self);
     }
-    pub fn OpenAggregateContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+    pub fn OpenAggregateContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationAggregate) HRESULT {
         return self.vtable.OpenAggregateContact(self, pItemId, ppItem);
     }
-    pub fn OpenContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn OpenContact(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationContact) HRESULT {
         return self.vtable.OpenContact(self, pItemId, ppItem);
     }
-    pub fn OpenServerContactLink(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+    pub fn OpenServerContactLink(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationLink) HRESULT {
         return self.vtable.OpenServerContactLink(self, pItemId, ppItem);
     }
-    pub fn OpenServerPerson(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn OpenServerPerson(self: *const IContactAggregationManager, pItemId: ?[*:0]const u16, ppItem: ?*?*IContactAggregationServerPerson) HRESULT {
         return self.vtable.OpenServerPerson(self, pItemId, ppItem);
     }
-    pub fn get_Contacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
+    pub fn get_Contacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppItems: ?*?*IContactAggregationContactCollection) HRESULT {
         return self.vtable.get_Contacts(self, options, ppItems);
     }
-    pub fn get_AggregateContacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
+    pub fn get_AggregateContacts(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppAggregates: ?*?*IContactAggregationAggregateCollection) HRESULT {
         return self.vtable.get_AggregateContacts(self, options, ppAggregates);
     }
-    pub fn get_Groups(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
+    pub fn get_Groups(self: *const IContactAggregationManager, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) HRESULT {
         return self.vtable.get_Groups(self, options, ppGroups);
     }
-    pub fn get_ServerPersons(self: *const IContactAggregationManager, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) callconv(.Inline) HRESULT {
+    pub fn get_ServerPersons(self: *const IContactAggregationManager, ppServerPersonCollection: ?*?*IContactAggregationServerPersonCollection) HRESULT {
         return self.vtable.get_ServerPersons(self, ppServerPersonCollection);
     }
-    pub fn get_ServerContactLinks(self: *const IContactAggregationManager, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) callconv(.Inline) HRESULT {
+    pub fn get_ServerContactLinks(self: *const IContactAggregationManager, pPersonItemId: ?[*:0]const u16, ppServerContactLinkCollection: ?*?*IContactAggregationLinkCollection) HRESULT {
         return self.vtable.get_ServerContactLinks(self, pPersonItemId, ppServerContactLinkCollection);
     }
 };
@@ -596,142 +596,142 @@ pub const IContactAggregationContact = extern union {
         base: IUnknown.VTable,
         Delete: *const fn(
             self: *const IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         MoveToAggregate: *const fn(
             self: *const IContactAggregationContact,
             pAggregateId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unlink: *const fn(
             self: *const IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountId: *const fn(
             self: *const IContactAggregationContact,
             ppAccountId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AccountId: *const fn(
             self: *const IContactAggregationContact,
             pAccountId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateId: *const fn(
             self: *const IContactAggregationContact,
             ppAggregateId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationContact,
             ppItemId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsMe: *const fn(
             self: *const IContactAggregationContact,
             pIsMe: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsExternal: *const fn(
             self: *const IContactAggregationContact,
             pIsExternal: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceId: *const fn(
             self: *const IContactAggregationContact,
             pNetworkSourceId: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceId: *const fn(
             self: *const IContactAggregationContact,
             networkSourceId: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceIdString: *const fn(
             self: *const IContactAggregationContact,
             ppNetworkSourceId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceIdString: *const fn(
             self: *const IContactAggregationContact,
             pNetworkSourceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteObjectId: *const fn(
             self: *const IContactAggregationContact,
             ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteObjectId: *const fn(
             self: *const IContactAggregationContact,
             pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SyncIdentityHash: *const fn(
             self: *const IContactAggregationContact,
             ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SyncIdentityHash: *const fn(
             self: *const IContactAggregationContact,
             pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Delete(self: *const IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IContactAggregationContact) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Save(self: *const IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IContactAggregationContact) HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn MoveToAggregate(self: *const IContactAggregationContact, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn MoveToAggregate(self: *const IContactAggregationContact, pAggregateId: ?[*:0]const u16) HRESULT {
         return self.vtable.MoveToAggregate(self, pAggregateId);
     }
-    pub fn Unlink(self: *const IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn Unlink(self: *const IContactAggregationContact) HRESULT {
         return self.vtable.Unlink(self);
     }
-    pub fn get_AccountId(self: *const IContactAggregationContact, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_AccountId(self: *const IContactAggregationContact, ppAccountId: ?*?PWSTR) HRESULT {
         return self.vtable.get_AccountId(self, ppAccountId);
     }
-    pub fn put_AccountId(self: *const IContactAggregationContact, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_AccountId(self: *const IContactAggregationContact, pAccountId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_AccountId(self, pAccountId);
     }
-    pub fn get_AggregateId(self: *const IContactAggregationContact, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_AggregateId(self: *const IContactAggregationContact, ppAggregateId: ?*?PWSTR) HRESULT {
         return self.vtable.get_AggregateId(self, ppAggregateId);
     }
-    pub fn get_Id(self: *const IContactAggregationContact, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IContactAggregationContact, ppItemId: ?*?PWSTR) HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
-    pub fn get_IsMe(self: *const IContactAggregationContact, pIsMe: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsMe(self: *const IContactAggregationContact, pIsMe: ?*BOOL) HRESULT {
         return self.vtable.get_IsMe(self, pIsMe);
     }
-    pub fn get_IsExternal(self: *const IContactAggregationContact, pIsExternal: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsExternal(self: *const IContactAggregationContact, pIsExternal: ?*BOOL) HRESULT {
         return self.vtable.get_IsExternal(self, pIsExternal);
     }
-    pub fn get_NetworkSourceId(self: *const IContactAggregationContact, pNetworkSourceId: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_NetworkSourceId(self: *const IContactAggregationContact, pNetworkSourceId: ?*u32) HRESULT {
         return self.vtable.get_NetworkSourceId(self, pNetworkSourceId);
     }
-    pub fn put_NetworkSourceId(self: *const IContactAggregationContact, networkSourceId: u32) callconv(.Inline) HRESULT {
+    pub fn put_NetworkSourceId(self: *const IContactAggregationContact, networkSourceId: u32) HRESULT {
         return self.vtable.put_NetworkSourceId(self, networkSourceId);
     }
-    pub fn get_NetworkSourceIdString(self: *const IContactAggregationContact, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_NetworkSourceIdString(self: *const IContactAggregationContact, ppNetworkSourceId: ?*?PWSTR) HRESULT {
         return self.vtable.get_NetworkSourceIdString(self, ppNetworkSourceId);
     }
-    pub fn put_NetworkSourceIdString(self: *const IContactAggregationContact, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_NetworkSourceIdString(self: *const IContactAggregationContact, pNetworkSourceId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_NetworkSourceIdString(self, pNetworkSourceId);
     }
-    pub fn get_RemoteObjectId(self: *const IContactAggregationContact, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn get_RemoteObjectId(self: *const IContactAggregationContact, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.get_RemoteObjectId(self, ppRemoteObjectId);
     }
-    pub fn put_RemoteObjectId(self: *const IContactAggregationContact, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn put_RemoteObjectId(self: *const IContactAggregationContact, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.put_RemoteObjectId(self, pRemoteObjectId);
     }
-    pub fn get_SyncIdentityHash(self: *const IContactAggregationContact, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn get_SyncIdentityHash(self: *const IContactAggregationContact, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.get_SyncIdentityHash(self, ppSyncIdentityHash);
     }
-    pub fn put_SyncIdentityHash(self: *const IContactAggregationContact, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn put_SyncIdentityHash(self: *const IContactAggregationContact, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.put_SyncIdentityHash(self, pSyncIdentityHash);
     }
 };
@@ -744,46 +744,46 @@ pub const IContactAggregationContactCollection = extern union {
         FindFirst: *const fn(
             self: *const IContactAggregationContactCollection,
             ppItem: ?*?*IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNext: *const fn(
             self: *const IContactAggregationContactCollection,
             ppItem: ?*?*IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByIdentityHash: *const fn(
             self: *const IContactAggregationContactCollection,
             pSourceType: ?[*:0]const u16,
             pAccountId: ?[*:0]const u16,
             pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
             ppItem: ?*?*IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IContactAggregationContactCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByRemoteId: *const fn(
             self: *const IContactAggregationContactCollection,
             pSourceType: ?[*:0]const u16,
             pAccountId: ?[*:0]const u16,
             pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
             ppItem: ?*?*IContactAggregationContact,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindFirst(self: *const IContactAggregationContactCollection, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn FindFirst(self: *const IContactAggregationContactCollection, ppItem: ?*?*IContactAggregationContact) HRESULT {
         return self.vtable.FindFirst(self, ppItem);
     }
-    pub fn FindNext(self: *const IContactAggregationContactCollection, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn FindNext(self: *const IContactAggregationContactCollection, ppItem: ?*?*IContactAggregationContact) HRESULT {
         return self.vtable.FindNext(self, ppItem);
     }
-    pub fn FindFirstByIdentityHash(self: *const IContactAggregationContactCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn FindFirstByIdentityHash(self: *const IContactAggregationContactCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pIdentityHash: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) HRESULT {
         return self.vtable.FindFirstByIdentityHash(self, pSourceType, pAccountId, pIdentityHash, ppItem);
     }
-    pub fn get_Count(self: *const IContactAggregationContactCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IContactAggregationContactCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
-    pub fn FindFirstByRemoteId(self: *const IContactAggregationContactCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) callconv(.Inline) HRESULT {
+    pub fn FindFirstByRemoteId(self: *const IContactAggregationContactCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB, ppItem: ?*?*IContactAggregationContact) HRESULT {
         return self.vtable.FindFirstByRemoteId(self, pSourceType, pAccountId, pRemoteObjectId, ppItem);
     }
 };
@@ -795,73 +795,73 @@ pub const IContactAggregationAggregate = extern union {
         base: IUnknown.VTable,
         Save: *const fn(
             self: *const IContactAggregationAggregate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetComponentItems: *const fn(
             self: *const IContactAggregationAggregate,
             pComponentItems: ?*?*IContactAggregationContactCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Link: *const fn(
             self: *const IContactAggregationAggregate,
             pAggregateId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Groups: *const fn(
             self: *const IContactAggregationAggregate,
             options: CONTACT_AGGREGATION_COLLECTION_OPTIONS,
             ppGroups: ?*?*IContactAggregationGroupCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLink: *const fn(
             self: *const IContactAggregationAggregate,
             ppAntiLink: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLink: *const fn(
             self: *const IContactAggregationAggregate,
             pAntiLink: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FavoriteOrder: *const fn(
             self: *const IContactAggregationAggregate,
             pFavoriteOrder: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FavoriteOrder: *const fn(
             self: *const IContactAggregationAggregate,
             favoriteOrder: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationAggregate,
             ppItemId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Save(self: *const IContactAggregationAggregate) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IContactAggregationAggregate) HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn GetComponentItems(self: *const IContactAggregationAggregate, pComponentItems: ?*?*IContactAggregationContactCollection) callconv(.Inline) HRESULT {
+    pub fn GetComponentItems(self: *const IContactAggregationAggregate, pComponentItems: ?*?*IContactAggregationContactCollection) HRESULT {
         return self.vtable.GetComponentItems(self, pComponentItems);
     }
-    pub fn Link(self: *const IContactAggregationAggregate, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Link(self: *const IContactAggregationAggregate, pAggregateId: ?[*:0]const u16) HRESULT {
         return self.vtable.Link(self, pAggregateId);
     }
-    pub fn get_Groups(self: *const IContactAggregationAggregate, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) callconv(.Inline) HRESULT {
+    pub fn get_Groups(self: *const IContactAggregationAggregate, options: CONTACT_AGGREGATION_COLLECTION_OPTIONS, ppGroups: ?*?*IContactAggregationGroupCollection) HRESULT {
         return self.vtable.get_Groups(self, options, ppGroups);
     }
-    pub fn get_AntiLink(self: *const IContactAggregationAggregate, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_AntiLink(self: *const IContactAggregationAggregate, ppAntiLink: ?*?PWSTR) HRESULT {
         return self.vtable.get_AntiLink(self, ppAntiLink);
     }
-    pub fn put_AntiLink(self: *const IContactAggregationAggregate, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_AntiLink(self: *const IContactAggregationAggregate, pAntiLink: ?[*:0]const u16) HRESULT {
         return self.vtable.put_AntiLink(self, pAntiLink);
     }
-    pub fn get_FavoriteOrder(self: *const IContactAggregationAggregate, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_FavoriteOrder(self: *const IContactAggregationAggregate, pFavoriteOrder: ?*u32) HRESULT {
         return self.vtable.get_FavoriteOrder(self, pFavoriteOrder);
     }
-    pub fn put_FavoriteOrder(self: *const IContactAggregationAggregate, favoriteOrder: u32) callconv(.Inline) HRESULT {
+    pub fn put_FavoriteOrder(self: *const IContactAggregationAggregate, favoriteOrder: u32) HRESULT {
         return self.vtable.put_FavoriteOrder(self, favoriteOrder);
     }
-    pub fn get_Id(self: *const IContactAggregationAggregate, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IContactAggregationAggregate, ppItemId: ?*?PWSTR) HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
 };
@@ -874,34 +874,34 @@ pub const IContactAggregationAggregateCollection = extern union {
         FindFirst: *const fn(
             self: *const IContactAggregationAggregateCollection,
             ppAggregate: ?*?*IContactAggregationAggregate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByAntiLinkId: *const fn(
             self: *const IContactAggregationAggregateCollection,
             pAntiLinkId: ?[*:0]const u16,
             ppAggregate: ?*?*IContactAggregationAggregate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNext: *const fn(
             self: *const IContactAggregationAggregateCollection,
             ppAggregate: ?*?*IContactAggregationAggregate,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IContactAggregationAggregateCollection,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindFirst(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+    pub fn FindFirst(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) HRESULT {
         return self.vtable.FindFirst(self, ppAggregate);
     }
-    pub fn FindFirstByAntiLinkId(self: *const IContactAggregationAggregateCollection, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+    pub fn FindFirstByAntiLinkId(self: *const IContactAggregationAggregateCollection, pAntiLinkId: ?[*:0]const u16, ppAggregate: ?*?*IContactAggregationAggregate) HRESULT {
         return self.vtable.FindFirstByAntiLinkId(self, pAntiLinkId, ppAggregate);
     }
-    pub fn FindNext(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) callconv(.Inline) HRESULT {
+    pub fn FindNext(self: *const IContactAggregationAggregateCollection, ppAggregate: ?*?*IContactAggregationAggregate) HRESULT {
         return self.vtable.FindNext(self, ppAggregate);
     }
-    pub fn get_Count(self: *const IContactAggregationAggregateCollection, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IContactAggregationAggregateCollection, pCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
 };
@@ -913,79 +913,79 @@ pub const IContactAggregationGroup = extern union {
         base: IUnknown.VTable,
         Delete: *const fn(
             self: *const IContactAggregationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IContactAggregationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Add: *const fn(
             self: *const IContactAggregationGroup,
             pAggregateId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Remove: *const fn(
             self: *const IContactAggregationGroup,
             pAggregateId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Members: *const fn(
             self: *const IContactAggregationGroup,
             ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GlobalObjectId: *const fn(
             self: *const IContactAggregationGroup,
             pGlobalObjectId: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GlobalObjectId: *const fn(
             self: *const IContactAggregationGroup,
             pGlobalObjectId: ?*const Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationGroup,
             ppItemId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const IContactAggregationGroup,
             ppName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const IContactAggregationGroup,
             pName: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Delete(self: *const IContactAggregationGroup) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IContactAggregationGroup) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Save(self: *const IContactAggregationGroup) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IContactAggregationGroup) HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn Add(self: *const IContactAggregationGroup, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Add(self: *const IContactAggregationGroup, pAggregateId: ?[*:0]const u16) HRESULT {
         return self.vtable.Add(self, pAggregateId);
     }
-    pub fn Remove(self: *const IContactAggregationGroup, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn Remove(self: *const IContactAggregationGroup, pAggregateId: ?[*:0]const u16) HRESULT {
         return self.vtable.Remove(self, pAggregateId);
     }
-    pub fn get_Members(self: *const IContactAggregationGroup, ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection) callconv(.Inline) HRESULT {
+    pub fn get_Members(self: *const IContactAggregationGroup, ppAggregateContactCollection: ?*?*IContactAggregationAggregateCollection) HRESULT {
         return self.vtable.get_Members(self, ppAggregateContactCollection);
     }
-    pub fn get_GlobalObjectId(self: *const IContactAggregationGroup, pGlobalObjectId: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn get_GlobalObjectId(self: *const IContactAggregationGroup, pGlobalObjectId: ?*Guid) HRESULT {
         return self.vtable.get_GlobalObjectId(self, pGlobalObjectId);
     }
-    pub fn put_GlobalObjectId(self: *const IContactAggregationGroup, pGlobalObjectId: ?*const Guid) callconv(.Inline) HRESULT {
+    pub fn put_GlobalObjectId(self: *const IContactAggregationGroup, pGlobalObjectId: ?*const Guid) HRESULT {
         return self.vtable.put_GlobalObjectId(self, pGlobalObjectId);
     }
-    pub fn get_Id(self: *const IContactAggregationGroup, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IContactAggregationGroup, ppItemId: ?*?PWSTR) HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
-    pub fn get_Name(self: *const IContactAggregationGroup, ppName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const IContactAggregationGroup, ppName: ?*?PWSTR) HRESULT {
         return self.vtable.get_Name(self, ppName);
     }
-    pub fn put_Name(self: *const IContactAggregationGroup, pName: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const IContactAggregationGroup, pName: ?[*:0]const u16) HRESULT {
         return self.vtable.put_Name(self, pName);
     }
 };
@@ -998,34 +998,34 @@ pub const IContactAggregationGroupCollection = extern union {
         FindFirst: *const fn(
             self: *const IContactAggregationGroupCollection,
             ppGroup: ?*?*IContactAggregationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByGlobalObjectId: *const fn(
             self: *const IContactAggregationGroupCollection,
             pGlobalObjectId: ?*const Guid,
             ppGroup: ?*?*IContactAggregationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNext: *const fn(
             self: *const IContactAggregationGroupCollection,
             ppGroup: ?*?*IContactAggregationGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IContactAggregationGroupCollection,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindFirst(self: *const IContactAggregationGroupCollection, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+    pub fn FindFirst(self: *const IContactAggregationGroupCollection, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
         return self.vtable.FindFirst(self, ppGroup);
     }
-    pub fn FindFirstByGlobalObjectId(self: *const IContactAggregationGroupCollection, pGlobalObjectId: ?*const Guid, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+    pub fn FindFirstByGlobalObjectId(self: *const IContactAggregationGroupCollection, pGlobalObjectId: ?*const Guid, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
         return self.vtable.FindFirstByGlobalObjectId(self, pGlobalObjectId, ppGroup);
     }
-    pub fn FindNext(self: *const IContactAggregationGroupCollection, ppGroup: ?*?*IContactAggregationGroup) callconv(.Inline) HRESULT {
+    pub fn FindNext(self: *const IContactAggregationGroupCollection, ppGroup: ?*?*IContactAggregationGroup) HRESULT {
         return self.vtable.FindNext(self, ppGroup);
     }
-    pub fn get_Count(self: *const IContactAggregationGroupCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IContactAggregationGroupCollection, pCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
 };
@@ -1037,137 +1037,137 @@ pub const IContactAggregationLink = extern union {
         base: IUnknown.VTable,
         Delete: *const fn(
             self: *const IContactAggregationLink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IContactAggregationLink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AccountId: *const fn(
             self: *const IContactAggregationLink,
             ppAccountId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AccountId: *const fn(
             self: *const IContactAggregationLink,
             pAccountId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationLink,
             ppItemId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsLinkResolved: *const fn(
             self: *const IContactAggregationLink,
             pIsLinkResolved: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsLinkResolved: *const fn(
             self: *const IContactAggregationLink,
             isLinkResolved: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkSourceIdString: *const fn(
             self: *const IContactAggregationLink,
             ppNetworkSourceId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_NetworkSourceIdString: *const fn(
             self: *const IContactAggregationLink,
             pNetworkSourceId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RemoteObjectId: *const fn(
             self: *const IContactAggregationLink,
             ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_RemoteObjectId: *const fn(
             self: *const IContactAggregationLink,
             pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPerson: *const fn(
             self: *const IContactAggregationLink,
             ppServerPersonId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerPerson: *const fn(
             self: *const IContactAggregationLink,
             pServerPersonId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ServerPersonBaseline: *const fn(
             self: *const IContactAggregationLink,
             ppServerPersonId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ServerPersonBaseline: *const fn(
             self: *const IContactAggregationLink,
             pServerPersonId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SyncIdentityHash: *const fn(
             self: *const IContactAggregationLink,
             ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_SyncIdentityHash: *const fn(
             self: *const IContactAggregationLink,
             pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Delete(self: *const IContactAggregationLink) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IContactAggregationLink) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Save(self: *const IContactAggregationLink) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IContactAggregationLink) HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn get_AccountId(self: *const IContactAggregationLink, ppAccountId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_AccountId(self: *const IContactAggregationLink, ppAccountId: ?*?PWSTR) HRESULT {
         return self.vtable.get_AccountId(self, ppAccountId);
     }
-    pub fn put_AccountId(self: *const IContactAggregationLink, pAccountId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_AccountId(self: *const IContactAggregationLink, pAccountId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_AccountId(self, pAccountId);
     }
-    pub fn get_Id(self: *const IContactAggregationLink, ppItemId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IContactAggregationLink, ppItemId: ?*?PWSTR) HRESULT {
         return self.vtable.get_Id(self, ppItemId);
     }
-    pub fn get_IsLinkResolved(self: *const IContactAggregationLink, pIsLinkResolved: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsLinkResolved(self: *const IContactAggregationLink, pIsLinkResolved: ?*BOOL) HRESULT {
         return self.vtable.get_IsLinkResolved(self, pIsLinkResolved);
     }
-    pub fn put_IsLinkResolved(self: *const IContactAggregationLink, isLinkResolved: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_IsLinkResolved(self: *const IContactAggregationLink, isLinkResolved: BOOL) HRESULT {
         return self.vtable.put_IsLinkResolved(self, isLinkResolved);
     }
-    pub fn get_NetworkSourceIdString(self: *const IContactAggregationLink, ppNetworkSourceId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_NetworkSourceIdString(self: *const IContactAggregationLink, ppNetworkSourceId: ?*?PWSTR) HRESULT {
         return self.vtable.get_NetworkSourceIdString(self, ppNetworkSourceId);
     }
-    pub fn put_NetworkSourceIdString(self: *const IContactAggregationLink, pNetworkSourceId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_NetworkSourceIdString(self: *const IContactAggregationLink, pNetworkSourceId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_NetworkSourceIdString(self, pNetworkSourceId);
     }
-    pub fn get_RemoteObjectId(self: *const IContactAggregationLink, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn get_RemoteObjectId(self: *const IContactAggregationLink, ppRemoteObjectId: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.get_RemoteObjectId(self, ppRemoteObjectId);
     }
-    pub fn put_RemoteObjectId(self: *const IContactAggregationLink, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn put_RemoteObjectId(self: *const IContactAggregationLink, pRemoteObjectId: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.put_RemoteObjectId(self, pRemoteObjectId);
     }
-    pub fn get_ServerPerson(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_ServerPerson(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) HRESULT {
         return self.vtable.get_ServerPerson(self, ppServerPersonId);
     }
-    pub fn put_ServerPerson(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_ServerPerson(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_ServerPerson(self, pServerPersonId);
     }
-    pub fn get_ServerPersonBaseline(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_ServerPersonBaseline(self: *const IContactAggregationLink, ppServerPersonId: ?*?PWSTR) HRESULT {
         return self.vtable.get_ServerPersonBaseline(self, ppServerPersonId);
     }
-    pub fn put_ServerPersonBaseline(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_ServerPersonBaseline(self: *const IContactAggregationLink, pServerPersonId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_ServerPersonBaseline(self, pServerPersonId);
     }
-    pub fn get_SyncIdentityHash(self: *const IContactAggregationLink, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn get_SyncIdentityHash(self: *const IContactAggregationLink, ppSyncIdentityHash: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.get_SyncIdentityHash(self, ppSyncIdentityHash);
     }
-    pub fn put_SyncIdentityHash(self: *const IContactAggregationLink, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn put_SyncIdentityHash(self: *const IContactAggregationLink, pSyncIdentityHash: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.put_SyncIdentityHash(self, pSyncIdentityHash);
     }
 };
@@ -1180,36 +1180,36 @@ pub const IContactAggregationLinkCollection = extern union {
         FindFirst: *const fn(
             self: *const IContactAggregationLinkCollection,
             ppServerContactLink: ?*?*IContactAggregationLink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByRemoteId: *const fn(
             self: *const IContactAggregationLinkCollection,
             pSourceType: ?[*:0]const u16,
             pAccountId: ?[*:0]const u16,
             pRemoteId: ?*const CONTACT_AGGREGATION_BLOB,
             ppServerContactLink: ?*?*IContactAggregationLink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNext: *const fn(
             self: *const IContactAggregationLinkCollection,
             ppServerContactLink: ?*?*IContactAggregationLink,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IContactAggregationLinkCollection,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindFirst(self: *const IContactAggregationLinkCollection, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+    pub fn FindFirst(self: *const IContactAggregationLinkCollection, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
         return self.vtable.FindFirst(self, ppServerContactLink);
     }
-    pub fn FindFirstByRemoteId(self: *const IContactAggregationLinkCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteId: ?*const CONTACT_AGGREGATION_BLOB, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+    pub fn FindFirstByRemoteId(self: *const IContactAggregationLinkCollection, pSourceType: ?[*:0]const u16, pAccountId: ?[*:0]const u16, pRemoteId: ?*const CONTACT_AGGREGATION_BLOB, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
         return self.vtable.FindFirstByRemoteId(self, pSourceType, pAccountId, pRemoteId, ppServerContactLink);
     }
-    pub fn FindNext(self: *const IContactAggregationLinkCollection, ppServerContactLink: ?*?*IContactAggregationLink) callconv(.Inline) HRESULT {
+    pub fn FindNext(self: *const IContactAggregationLinkCollection, ppServerContactLink: ?*?*IContactAggregationLink) HRESULT {
         return self.vtable.FindNext(self, ppServerContactLink);
     }
-    pub fn get_Count(self: *const IContactAggregationLinkCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IContactAggregationLinkCollection, pCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
 };
@@ -1221,185 +1221,185 @@ pub const IContactAggregationServerPerson = extern union {
         base: IUnknown.VTable,
         Delete: *const fn(
             self: *const IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Save: *const fn(
             self: *const IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AggregateId: *const fn(
             self: *const IContactAggregationServerPerson,
             ppAggregateId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AggregateId: *const fn(
             self: *const IContactAggregationServerPerson,
             pAggregateId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLink: *const fn(
             self: *const IContactAggregationServerPerson,
             ppAntiLink: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLink: *const fn(
             self: *const IContactAggregationServerPerson,
             pAntiLink: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AntiLinkBaseline: *const fn(
             self: *const IContactAggregationServerPerson,
             ppAntiLink: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_AntiLinkBaseline: *const fn(
             self: *const IContactAggregationServerPerson,
             pAntiLink: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FavoriteOrder: *const fn(
             self: *const IContactAggregationServerPerson,
             pFavoriteOrder: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FavoriteOrder: *const fn(
             self: *const IContactAggregationServerPerson,
             favoriteOrder: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FavoriteOrderBaseline: *const fn(
             self: *const IContactAggregationServerPerson,
             pFavoriteOrder: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_FavoriteOrderBaseline: *const fn(
             self: *const IContactAggregationServerPerson,
             favoriteOrder: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Groups: *const fn(
             self: *const IContactAggregationServerPerson,
             pGroups: ?*?*CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Groups: *const fn(
             self: *const IContactAggregationServerPerson,
             pGroups: ?*const CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_GroupsBaseline: *const fn(
             self: *const IContactAggregationServerPerson,
             ppGroups: ?*?*CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_GroupsBaseline: *const fn(
             self: *const IContactAggregationServerPerson,
             pGroups: ?*const CONTACT_AGGREGATION_BLOB,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Id: *const fn(
             self: *const IContactAggregationServerPerson,
             ppId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_IsTombstone: *const fn(
             self: *const IContactAggregationServerPerson,
             pIsTombstone: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_IsTombstone: *const fn(
             self: *const IContactAggregationServerPerson,
             isTombstone: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_LinkedAggregateId: *const fn(
             self: *const IContactAggregationServerPerson,
             ppLinkedAggregateId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_LinkedAggregateId: *const fn(
             self: *const IContactAggregationServerPerson,
             pLinkedAggregateId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ObjectId: *const fn(
             self: *const IContactAggregationServerPerson,
             ppObjectId: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_ObjectId: *const fn(
             self: *const IContactAggregationServerPerson,
             pObjectId: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Delete(self: *const IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const IContactAggregationServerPerson) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Save(self: *const IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn Save(self: *const IContactAggregationServerPerson) HRESULT {
         return self.vtable.Save(self);
     }
-    pub fn get_AggregateId(self: *const IContactAggregationServerPerson, ppAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_AggregateId(self: *const IContactAggregationServerPerson, ppAggregateId: ?*?PWSTR) HRESULT {
         return self.vtable.get_AggregateId(self, ppAggregateId);
     }
-    pub fn put_AggregateId(self: *const IContactAggregationServerPerson, pAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_AggregateId(self: *const IContactAggregationServerPerson, pAggregateId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_AggregateId(self, pAggregateId);
     }
-    pub fn get_AntiLink(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_AntiLink(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) HRESULT {
         return self.vtable.get_AntiLink(self, ppAntiLink);
     }
-    pub fn put_AntiLink(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_AntiLink(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) HRESULT {
         return self.vtable.put_AntiLink(self, pAntiLink);
     }
-    pub fn get_AntiLinkBaseline(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_AntiLinkBaseline(self: *const IContactAggregationServerPerson, ppAntiLink: ?*?PWSTR) HRESULT {
         return self.vtable.get_AntiLinkBaseline(self, ppAntiLink);
     }
-    pub fn put_AntiLinkBaseline(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_AntiLinkBaseline(self: *const IContactAggregationServerPerson, pAntiLink: ?[*:0]const u16) HRESULT {
         return self.vtable.put_AntiLinkBaseline(self, pAntiLink);
     }
-    pub fn get_FavoriteOrder(self: *const IContactAggregationServerPerson, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_FavoriteOrder(self: *const IContactAggregationServerPerson, pFavoriteOrder: ?*u32) HRESULT {
         return self.vtable.get_FavoriteOrder(self, pFavoriteOrder);
     }
-    pub fn put_FavoriteOrder(self: *const IContactAggregationServerPerson, favoriteOrder: u32) callconv(.Inline) HRESULT {
+    pub fn put_FavoriteOrder(self: *const IContactAggregationServerPerson, favoriteOrder: u32) HRESULT {
         return self.vtable.put_FavoriteOrder(self, favoriteOrder);
     }
-    pub fn get_FavoriteOrderBaseline(self: *const IContactAggregationServerPerson, pFavoriteOrder: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_FavoriteOrderBaseline(self: *const IContactAggregationServerPerson, pFavoriteOrder: ?*u32) HRESULT {
         return self.vtable.get_FavoriteOrderBaseline(self, pFavoriteOrder);
     }
-    pub fn put_FavoriteOrderBaseline(self: *const IContactAggregationServerPerson, favoriteOrder: u32) callconv(.Inline) HRESULT {
+    pub fn put_FavoriteOrderBaseline(self: *const IContactAggregationServerPerson, favoriteOrder: u32) HRESULT {
         return self.vtable.put_FavoriteOrderBaseline(self, favoriteOrder);
     }
-    pub fn get_Groups(self: *const IContactAggregationServerPerson, pGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn get_Groups(self: *const IContactAggregationServerPerson, pGroups: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.get_Groups(self, pGroups);
     }
-    pub fn put_Groups(self: *const IContactAggregationServerPerson, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn put_Groups(self: *const IContactAggregationServerPerson, pGroups: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.put_Groups(self, pGroups);
     }
-    pub fn get_GroupsBaseline(self: *const IContactAggregationServerPerson, ppGroups: ?*?*CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn get_GroupsBaseline(self: *const IContactAggregationServerPerson, ppGroups: ?*?*CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.get_GroupsBaseline(self, ppGroups);
     }
-    pub fn put_GroupsBaseline(self: *const IContactAggregationServerPerson, pGroups: ?*const CONTACT_AGGREGATION_BLOB) callconv(.Inline) HRESULT {
+    pub fn put_GroupsBaseline(self: *const IContactAggregationServerPerson, pGroups: ?*const CONTACT_AGGREGATION_BLOB) HRESULT {
         return self.vtable.put_GroupsBaseline(self, pGroups);
     }
-    pub fn get_Id(self: *const IContactAggregationServerPerson, ppId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_Id(self: *const IContactAggregationServerPerson, ppId: ?*?PWSTR) HRESULT {
         return self.vtable.get_Id(self, ppId);
     }
-    pub fn get_IsTombstone(self: *const IContactAggregationServerPerson, pIsTombstone: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_IsTombstone(self: *const IContactAggregationServerPerson, pIsTombstone: ?*BOOL) HRESULT {
         return self.vtable.get_IsTombstone(self, pIsTombstone);
     }
-    pub fn put_IsTombstone(self: *const IContactAggregationServerPerson, isTombstone: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_IsTombstone(self: *const IContactAggregationServerPerson, isTombstone: BOOL) HRESULT {
         return self.vtable.put_IsTombstone(self, isTombstone);
     }
-    pub fn get_LinkedAggregateId(self: *const IContactAggregationServerPerson, ppLinkedAggregateId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_LinkedAggregateId(self: *const IContactAggregationServerPerson, ppLinkedAggregateId: ?*?PWSTR) HRESULT {
         return self.vtable.get_LinkedAggregateId(self, ppLinkedAggregateId);
     }
-    pub fn put_LinkedAggregateId(self: *const IContactAggregationServerPerson, pLinkedAggregateId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_LinkedAggregateId(self: *const IContactAggregationServerPerson, pLinkedAggregateId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_LinkedAggregateId(self, pLinkedAggregateId);
     }
-    pub fn get_ObjectId(self: *const IContactAggregationServerPerson, ppObjectId: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn get_ObjectId(self: *const IContactAggregationServerPerson, ppObjectId: ?*?PWSTR) HRESULT {
         return self.vtable.get_ObjectId(self, ppObjectId);
     }
-    pub fn put_ObjectId(self: *const IContactAggregationServerPerson, pObjectId: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn put_ObjectId(self: *const IContactAggregationServerPerson, pObjectId: ?[*:0]const u16) HRESULT {
         return self.vtable.put_ObjectId(self, pObjectId);
     }
 };
@@ -1412,50 +1412,50 @@ pub const IContactAggregationServerPersonCollection = extern union {
         FindFirst: *const fn(
             self: *const IContactAggregationServerPersonCollection,
             ppServerPerson: ?*?*IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByServerId: *const fn(
             self: *const IContactAggregationServerPersonCollection,
             pServerId: ?[*:0]const u16,
             ppServerPerson: ?*?*IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByAggregateId: *const fn(
             self: *const IContactAggregationServerPersonCollection,
             pAggregateId: ?[*:0]const u16,
             ppServerPerson: ?*?*IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindFirstByLinkedAggregateId: *const fn(
             self: *const IContactAggregationServerPersonCollection,
             pAggregateId: ?[*:0]const u16,
             ppServerPerson: ?*?*IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         FindNext: *const fn(
             self: *const IContactAggregationServerPersonCollection,
             ppServerPerson: ?*?*IContactAggregationServerPerson,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Count: *const fn(
             self: *const IContactAggregationServerPersonCollection,
             pCount: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn FindFirst(self: *const IContactAggregationServerPersonCollection, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn FindFirst(self: *const IContactAggregationServerPersonCollection, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
         return self.vtable.FindFirst(self, ppServerPerson);
     }
-    pub fn FindFirstByServerId(self: *const IContactAggregationServerPersonCollection, pServerId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn FindFirstByServerId(self: *const IContactAggregationServerPersonCollection, pServerId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
         return self.vtable.FindFirstByServerId(self, pServerId, ppServerPerson);
     }
-    pub fn FindFirstByAggregateId(self: *const IContactAggregationServerPersonCollection, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn FindFirstByAggregateId(self: *const IContactAggregationServerPersonCollection, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
         return self.vtable.FindFirstByAggregateId(self, pAggregateId, ppServerPerson);
     }
-    pub fn FindFirstByLinkedAggregateId(self: *const IContactAggregationServerPersonCollection, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn FindFirstByLinkedAggregateId(self: *const IContactAggregationServerPersonCollection, pAggregateId: ?[*:0]const u16, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
         return self.vtable.FindFirstByLinkedAggregateId(self, pAggregateId, ppServerPerson);
     }
-    pub fn FindNext(self: *const IContactAggregationServerPersonCollection, ppServerPerson: ?*?*IContactAggregationServerPerson) callconv(.Inline) HRESULT {
+    pub fn FindNext(self: *const IContactAggregationServerPersonCollection, ppServerPerson: ?*?*IContactAggregationServerPerson) HRESULT {
         return self.vtable.FindNext(self, ppServerPerson);
     }
-    pub fn get_Count(self: *const IContactAggregationServerPersonCollection, pCount: ?*u32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const IContactAggregationServerPersonCollection, pCount: ?*u32) HRESULT {
         return self.vtable.get_Count(self, pCount);
     }
 };

@@ -1,7 +1,10 @@
 const std = @import("std");
 const zigwin32 = @import("zigwin32");
 
-pub usingnamespace std.os.windows.kernel32;
+// TODO: `pub usingnamespace std.os.windows.kernel32;` was removed.
+// If any kernel32 functions are needed, forward them explicitly here.
+// Analysis shows no kernel32 functions are currently accessed through this module
+// (they are accessed via zigwin32.everything instead).
 // pub usingnamespace zigwin32.user32;
 
 pub const HINSTANCE = std.os.windows.HINSTANCE;
@@ -12,7 +15,7 @@ pub const LRESULT = std.os.windows.LRESULT;
 pub const HRESULT = std.os.windows.HRESULT;
 pub const RECT = std.os.windows.RECT;
 pub const LPRECT = *RECT;
-pub const WINAPI = std.os.windows.WINAPI;
+pub const WINAPI = std.builtin.CallingConvention.winapi;
 pub const HDC = std.os.windows.HDC;
 pub const HBRUSH = std.os.windows.HBRUSH;
 pub const HMENU = std.os.windows.HMENU;
@@ -403,18 +406,18 @@ pub const GpStatus = enum(c_int) { Ok, GenericError, InvalidParameter, OutOfMemo
 
 pub const DebugEventLevel = enum(c_int) { DebugEventLevelFatal, DebugEventLevelWarning };
 
-pub const DebugEventProc = *const fn (level: DebugEventLevel, message: [*]const u8) callconv(.C) void;
+pub const DebugEventProc = *const fn (level: DebugEventLevel, message: [*]const u8) callconv(.c) void;
 pub const GdiplusStartupInput = extern struct {
     GdiplusVersion: u32 = 1,
     DebugEventCallback: ?DebugEventProc = null,
     SuppressBackgroundThread: BOOL = 0,
     SuppressExternalCodecs: BOOL = 0,
-    GdiplusStartupInput: ?*const fn (debugEventCallback: DebugEventProc, suppressBackgroundThread: BOOL, supressExternalCodecs: BOOL) callconv(.C) void = null,
+    GdiplusStartupInput: ?*const fn (debugEventCallback: DebugEventProc, suppressBackgroundThread: BOOL, supressExternalCodecs: BOOL) callconv(.c) void = null,
 };
 
 pub const GdiplusStartupOutput = extern struct {
-    NotificationHookProc: *const fn () callconv(.C) void, // TODO
-    NotificationUnhookProc: *const fn () callconv(.C) void, // TODO
+    NotificationHookProc: *const fn () callconv(.c) void, // TODO
+    NotificationUnhookProc: *const fn () callconv(.c) void, // TODO
 };
 
 pub extern "gdiplus" fn GdipCreateFromHDC(hdc: HDC, graphics: *GpGraphics) callconv(WINAPI) GpStatus;

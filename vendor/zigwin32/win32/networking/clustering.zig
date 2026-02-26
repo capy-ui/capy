@@ -1046,33 +1046,33 @@ pub const CREATE_CLUSTER_NAME_ACCOUNT = extern struct {
 pub const PCLUSAPI_GET_NODE_CLUSTER_STATE = *const fn(
     lpszNodeName: ?[*:0]const u16,
     pdwClusterState: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_OPEN_CLUSTER = *const fn(
     lpszClusterName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_OPEN_CLUSTER_EX = *const fn(
     lpszClusterName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_CLOSE_CLUSTER = *const fn(
     hCluster: ?*_HCLUSTER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_SetClusterName = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszNewClusterName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_INFORMATION = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszClusterName: [*:0]u16,
     lpcchClusterName: ?*u32,
     lpClusterInfo: ?*CLUSTERVERSIONINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -1081,30 +1081,30 @@ pub const PCLUSAPI_GET_CLUSTER_QUORUM_RESOURCE = *const fn(
     lpszDeviceName: [*:0]u16,
     lpcchDeviceName: ?*u32,
     lpdwMaxQuorumLogSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SET_CLUSTER_QUORUM_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
     lpszDeviceName: ?[*:0]const u16,
     dwMaxQuoLogSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_BACKUP_CLUSTER_DATABASE = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszPathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_RESTORE_CLUSTER_DATABASE = *const fn(
     lpszPathName: ?[*:0]const u16,
     bForce: BOOL,
     lpszQuorumDriveLetter: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SET_CLUSTER_NETWORK_PRIORITY_ORDER = *const fn(
     hCluster: ?*_HCLUSTER,
     NetworkCount: u32,
     NetworkList: [*]?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = *const fn(
     lpszClusterName: ?[*:0]const u16,
@@ -1113,7 +1113,7 @@ pub const PCLUSAPI_SET_CLUSTER_SERVICE_ACCOUNT_PASSWORD = *const fn(
     // TODO: what to do with BytesParamIndex 4?
     lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
     lpcbReturnStatusBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_CONTROL = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -1126,7 +1126,7 @@ pub const PCLUSAPI_CLUSTER_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_UPGRADE_PHASE = enum(i32) {
     Initialize = 1,
@@ -1144,14 +1144,14 @@ pub const ClusterUpgradePhaseUpgradeComplete = CLUSTER_UPGRADE_PHASE.UpgradeComp
 pub const PCLUSTER_UPGRADE_PROGRESS_CALLBACK = *const fn(
     pvCallbackArg: ?*anyopaque,
     eUpgradePhase: CLUSTER_UPGRADE_PHASE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_CLUSTER_UPGRADE = *const fn(
     hCluster: ?*_HCLUSTER,
     perform: BOOL,
     pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_CHANGE = enum(i32) {
     NODE_STATE = 1,
@@ -1509,19 +1509,19 @@ pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT_V2 = *const fn(
     Filters: ?*NOTIFY_FILTER_AND_TYPE,
     dwFilterCount: u32,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
+) callconv(.winapi) ?*_HCHANGE;
 
 pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY_V2 = *const fn(
     hChange: ?*_HCHANGE,
     Filter: NOTIFY_FILTER_AND_TYPE,
     hObject: ?HANDLE,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_NOTIFY_EVENT_HANDLE_V2 = *const fn(
     hChange: ?*_HCHANGE,
     lphTargetEvent: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = *const fn(
     hChange: ?*_HCHANGE,
@@ -1538,21 +1538,21 @@ pub const PCLUSAPI_GET_CLUSTER_NOTIFY_V2 = *const fn(
     lpszType: ?PWSTR,
     lpcchType: ?*u32,
     dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CREATE_CLUSTER_NOTIFY_PORT = *const fn(
     hChange: ?*_HCHANGE,
     hCluster: ?*_HCLUSTER,
     dwFilter: u32,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
+) callconv(.winapi) ?*_HCHANGE;
 
 pub const PCLUSAPI_REGISTER_CLUSTER_NOTIFY = *const fn(
     hChange: ?*_HCHANGE,
     dwFilterType: u32,
     hObject: ?HANDLE,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_NOTIFY = *const fn(
     hChange: ?*_HCHANGE,
@@ -1561,11 +1561,11 @@ pub const PCLUSAPI_GET_CLUSTER_NOTIFY = *const fn(
     lpszName: ?[*:0]u16,
     lpcchName: ?*u32,
     dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLOSE_CLUSTER_NOTIFY_PORT = *const fn(
     hChange: ?*_HCHANGE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const CLUSTER_ENUM = enum(i32) {
     NODE = 1,
@@ -1593,11 +1593,11 @@ pub const CLUSTER_ENUM_ALL = CLUSTER_ENUM.ALL;
 pub const PCLUSAPI_CLUSTER_OPEN_ENUM = *const fn(
     hCluster: ?*_HCLUSTER,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUM;
+) callconv(.winapi) ?*_HCLUSENUM;
 
 pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT = *const fn(
     hEnum: ?*_HCLUSENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_ENUM = *const fn(
     hEnum: ?*_HCLUSENUM,
@@ -1605,60 +1605,60 @@ pub const PCLUSAPI_CLUSTER_ENUM = *const fn(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_CLOSE_ENUM = *const fn(
     hEnum: ?*_HCLUSENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_OPEN_ENUM_EX = *const fn(
     hCluster: ?*_HCLUSTER,
     dwType: u32,
     pOptions: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUMEX;
+) callconv(.winapi) ?*_HCLUSENUMEX;
 
 pub const PCLUSAPI_CLUSTER_GET_ENUM_COUNT_EX = *const fn(
     hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_ENUM_EX = *const fn(
     hClusterEnum: ?*_HCLUSENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_CLOSE_ENUM_EX = *const fn(
     hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CREATE_CLUSTER_GROUP_GROUPSET = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+) callconv(.winapi) ?*_HGROUPSET;
 
 pub const PCLUSAPI_OPEN_CLUSTER_GROUP_GROUPSET = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+) callconv(.winapi) ?*_HGROUPSET;
 
 pub const PCLUSAPI_CLOSE_CLUSTER_GROUP_GROUPSET = *const fn(
     hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_DELETE_CLUSTER_GROUP_GROUPSET = *const fn(
     hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_GROUP_GROUPSET = *const fn(
     hGroupSet: ?*_HGROUPSET,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_GROUP_GROUPSET = *const fn(
     hGroupSet: ?*_HGROUPSET,
     hGroupName: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = *const fn(
     hGroupSet: ?*_HGROUPSET,
@@ -1671,63 +1671,63 @@ pub const PCLUSAPI_CLUSTER_GROUP_GROUPSET_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ADD_CLUSTER_GROUP_DEPENDENCY = *const fn(
     hDependentGroup: ?*_HGROUP,
     hProviderGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SET_GROUP_DEPENDENCY_EXPRESSION = *const fn(
     hGroupSet: ?*_HGROUP,
     lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_DEPENDENCY = *const fn(
     hGroup: ?*_HGROUP,
     hDependsOn: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ADD_CLUSTER_GROUP_GROUPSET_DEPENDENCY = *const fn(
     hDependentGroupSet: ?*_HGROUPSET,
     hProviderGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SET_CLUSTER_GROUP_GROUPSET_DEPENDENCY_EXPRESSION = *const fn(
     hGroupSet: ?*_HGROUPSET,
     lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_GROUPSET_DEPENDENCY = *const fn(
     hGroupSet: ?*_HGROUPSET,
     hDependsOn: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ADD_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = *const fn(
     hDependentGroup: ?*_HGROUP,
     hProviderGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_CLUSTER_GROUP_TO_GROUP_GROUPSET_DEPENDENCY = *const fn(
     hGroup: ?*_HGROUP,
     hDependsOn: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP_GROUPSET = *const fn(
     hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_ADD_CROSS_CLUSTER_GROUPSET_DEPENDENCY = *const fn(
     hDependentGroupSet: ?*_HGROUPSET,
     lpRemoteClusterName: ?[*:0]const u16,
     lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_CROSS_CLUSTER_GROUPSET_DEPENDENCY = *const fn(
     hDependentGroupSet: ?*_HGROUPSET,
     lpRemoteClusterName: ?[*:0]const u16,
     lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_AVAILABILITY_SET_CONFIG = extern struct {
     dwVersion: u32,
@@ -1740,30 +1740,30 @@ pub const PCLUSAPI_CREATE_CLUSTER_AVAILABILITY_SET = *const fn(
     hCluster: ?*_HCLUSTER,
     lpAvailabilitySetName: ?[*:0]const u16,
     pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+) callconv(.winapi) ?*_HGROUPSET;
 
 pub const PCLUSAPI_CLUSTER_CREATE_AFFINITY_RULE = *const fn(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     ruleType: CLUS_AFFINITY_RULE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_REMOVE_AFFINITY_RULE = *const fn(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_ADD_GROUP_TO_AFFINITY_RULE = *const fn(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_REMOVE_GROUP_FROM_AFFINITY_RULE = *const fn(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -1777,7 +1777,7 @@ pub const PCLUSAPI_CLUSTER_AFFINITY_RULE_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_NODE_ENUM = enum(i32) {
     NETINTERFACES = 1,
@@ -1853,83 +1853,83 @@ pub const NodeStatusMax = CLUSTER_NODE_STATUS.Max;
 pub const PCLUSAPI_OPEN_CLUSTER_NODE = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub const PCLUSAPI_OPEN_CLUSTER_NODE_EX = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub const PCLUSAPI_OPEN_NODE_BY_ID = *const fn(
     hCluster: ?*_HCLUSTER,
     nodeId: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub const PCLUSAPI_CLOSE_CLUSTER_NODE = *const fn(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_GET_CLUSTER_NODE_STATE = *const fn(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NODE_STATE;
+) callconv(.winapi) CLUSTER_NODE_STATE;
 
 pub const PCLUSAPI_GET_CLUSTER_NODE_ID = *const fn(
     hNode: ?*_HNODE,
     lpszNodeId: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_FROM_NODE = *const fn(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_PAUSE_CLUSTER_NODE = *const fn(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_RESUME_CLUSTER_NODE = *const fn(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_EVICT_CLUSTER_NODE = *const fn(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM = *const fn(
     hNode: ?*_HNODE,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUM;
+) callconv(.winapi) ?*_HNODEENUM;
 
 pub const PCLUSAPI_CLUSTER_NODE_OPEN_ENUM_EX = *const fn(
     hNode: ?*_HNODE,
     dwType: u32,
     pOptions: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUMEX;
+) callconv(.winapi) ?*_HNODEENUMEX;
 
 pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT_EX = *const fn(
     hNodeEnum: ?*_HNODEENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NODE_ENUM_EX = *const fn(
     hNodeEnum: ?*_HNODEENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM_EX = *const fn(
     hNodeEnum: ?*_HNODEENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NODE_GET_ENUM_COUNT = *const fn(
     hNodeEnum: ?*_HNODEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NODE_CLOSE_ENUM = *const fn(
     hNodeEnum: ?*_HNODEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NODE_ENUM = *const fn(
     hNodeEnum: ?*_HNODEENUM,
@@ -1937,19 +1937,19 @@ pub const PCLUSAPI_CLUSTER_NODE_ENUM = *const fn(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_EVICT_CLUSTER_NODE_EX = *const fn(
     hNode: ?*_HNODE,
     dwTimeOut: u32,
     phrCleanupStatus: ?*HRESULT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_RESOURCE_TYPE_KEY = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszTypeName: ?[*:0]const u16,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 pub const CLUSTER_GROUP_ENUM = enum(i32) {
     CONTAINS = 1,
@@ -2030,26 +2030,26 @@ pub const CLUSTER_RESOURCE_ENUM_ITEM = extern struct {
 pub const PCLUSAPI_CREATE_CLUSTER_GROUP = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 pub const PCLUSAPI_OPEN_CLUSTER_GROUP = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 pub const PCLUSAPI_OPEN_CLUSTER_GROUP_EX = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 pub const PCLUSAPI_PAUSE_CLUSTER_NODE_EX = *const fn(
     hNode: ?*_HNODE,
     bDrainNode: BOOL,
     dwPauseFlags: u32,
     hNodeDrainTarget: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_NODE_RESUME_FAILBACK_TYPE = enum(i32) {
     DoNotFailbackGroups = 0,
@@ -2066,13 +2066,13 @@ pub const PCLUSAPI_RESUME_CLUSTER_NODE_EX = *const fn(
     hNode: ?*_HNODE,
     eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
     dwResumeFlagsReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CREATE_CLUSTER_GROUPEX = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
     pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -2083,22 +2083,22 @@ pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM_EX = *const fn(
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUMEX;
+) callconv(.winapi) ?*_HGROUPENUMEX;
 
 pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT_EX = *const fn(
     hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_GROUP_ENUM_EX = *const fn(
     hGroupEnumEx: ?*_HGROUPENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM_EX = *const fn(
     hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -2109,83 +2109,83 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM_EX = *const fn(
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUMEX;
+) callconv(.winapi) ?*_HRESENUMEX;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT_EX = *const fn(
     hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM_EX = *const fn(
     hResourceEnumEx: ?*_HRESENUMEX,
     dwIndex: u32,
     pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM_EX = *const fn(
     hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_RESTART_CLUSTER_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLOSE_CLUSTER_GROUP = *const fn(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_GET_CLUSTER_FROM_GROUP = *const fn(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_GET_CLUSTER_GROUP_STATE = *const fn(
     hGroup: ?*_HGROUP,
     lpszNodeName: ?[*:0]u16,
     lpcchNodeName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_GROUP_STATE;
+) callconv(.winapi) CLUSTER_GROUP_STATE;
 
 pub const PCLUSAPI_SET_CLUSTER_GROUP_NAME = *const fn(
     hGroup: ?*_HGROUP,
     lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SET_CLUSTER_GROUP_NODE_LIST = *const fn(
     hGroup: ?*_HGROUP,
     NodeCount: u32,
     NodeList: ?[*]?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ONLINE_CLUSTER_GROUP = *const fn(
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_MOVE_CLUSTER_GROUP = *const fn(
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_OFFLINE_CLUSTER_GROUP = *const fn(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_DELETE_CLUSTER_GROUP = *const fn(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_DESTROY_CLUSTER_GROUP = *const fn(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_GROUP_OPEN_ENUM = *const fn(
     hGroup: ?*_HGROUP,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUM;
+) callconv(.winapi) ?*_HGROUPENUM;
 
 pub const PCLUSAPI_CLUSTER_GROUP_GET_ENUM_COUNT = *const fn(
     hGroupEnum: ?*_HGROUPENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_GROUP_ENUM = *const fn(
     hGroupEnum: ?*_HGROUPENUM,
@@ -2193,11 +2193,11 @@ pub const PCLUSAPI_CLUSTER_GROUP_ENUM = *const fn(
     lpdwType: ?*u32,
     lpszResourceName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_GROUP_CLOSE_ENUM = *const fn(
     hGroupEnum: ?*_HGROUPENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_RESOURCE_STATE = enum(i32) {
     StateUnknown = -1,
@@ -2265,31 +2265,31 @@ pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE = *const fn(
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszResourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PCLUSAPI_OPEN_CLUSTER_RESOURCE_EX = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszResourceName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PCLUSAPI_CLOSE_CLUSTER_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_GET_CLUSTER_FROM_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = *const fn(
     hResource: ?*_HRESOURCE,
@@ -2297,90 +2297,90 @@ pub const PCLUSAPI_GET_CLUSTER_RESOURCE_STATE = *const fn(
     lpcchNodeName: ?*u32,
     lpszGroupName: ?[*:0]u16,
     lpcchGroupName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_RESOURCE_STATE;
+) callconv(.winapi) CLUSTER_RESOURCE_STATE;
 
 pub const PCLUSAPI_SET_CLUSTER_RESOURCE_NAME = *const fn(
     hResource: ?*_HRESOURCE,
     lpszResourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_FAIL_CLUSTER_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ONLINE_CLUSTER_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_OFFLINE_CLUSTER_RESOURCE = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP = *const fn(
     hResource: ?*_HRESOURCE,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CHANGE_CLUSTER_RESOURCE_GROUP_EX = *const fn(
     hResource: ?*_HRESOURCE,
     hGroup: ?*_HGROUP,
     Flags: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_NODE = *const fn(
     hResource: ?*_HRESOURCE,
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_NODE = *const fn(
     hResource: ?*_HRESOURCE,
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ADD_CLUSTER_RESOURCE_DEPENDENCY = *const fn(
     hResource: ?*_HRESOURCE,
     hDependsOn: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_CLUSTER_RESOURCE_DEPENDENCY = *const fn(
     hResource: ?*_HRESOURCE,
     hDependsOn: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = *const fn(
     hResource: ?*_HRESOURCE,
     lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_RESOURCE_DEPENDENCY_EXPRESSION = *const fn(
     hResource: ?*_HRESOURCE,
     lpszDependencyExpression: ?[*:0]u16,
     lpcchDependencyExpression: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ADD_RESOURCE_TO_CLUSTER_SHARED_VOLUMES = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_RESOURCE_FROM_CLUSTER_SHARED_VOLUMES = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_IS_FILE_ON_CLUSTER_SHARED_VOLUME = *const fn(
     lpszPathName: ?[*:0]const u16,
     pbFileIsOnSharedVolume: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_SHARED_VOLUME_SET_SNAPSHOT_STATE = *const fn(
     guidSnapshotSet: Guid,
     lpszVolumeName: ?[*:0]const u16,
     state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CAN_RESOURCE_BE_DEPENDENT = *const fn(
     hResource: ?*_HRESOURCE,
     hResourceDependent: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = *const fn(
     hResource: ?*_HRESOURCE,
@@ -2393,7 +2393,7 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -2407,7 +2407,7 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = *const fn(
     hGroup: ?*_HGROUP,
@@ -2420,7 +2420,7 @@ pub const PCLUSAPI_CLUSTER_GROUP_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NODE_CONTROL = *const fn(
     hNode: ?*_HNODE,
@@ -2433,13 +2433,13 @@ pub const PCLUSAPI_CLUSTER_NODE_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_RESOURCE_NETWORK_NAME = *const fn(
     hResource: ?*_HRESOURCE,
     lpBuffer: [*:0]u16,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const CLUSTER_PROPERTY_TYPE = enum(i32) {
     UNKNOWN = -1,
@@ -4242,11 +4242,11 @@ pub const CLUSTER_RESOURCE_TYPE_ENUM_ALL = CLUSTER_RESOURCE_TYPE_ENUM.ALL;
 pub const PCLUSAPI_CLUSTER_RESOURCE_OPEN_ENUM = *const fn(
     hResource: ?*_HRESOURCE,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUM;
+) callconv(.winapi) ?*_HRESENUM;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_GET_ENUM_COUNT = *const fn(
     hResEnum: ?*_HRESENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = *const fn(
     hResEnum: ?*_HRESENUM,
@@ -4254,11 +4254,11 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_ENUM = *const fn(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_CLOSE_ENUM = *const fn(
     hResEnum: ?*_HRESENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -4267,22 +4267,22 @@ pub const PCLUSAPI_CREATE_CLUSTER_RESOURCE_TYPE = *const fn(
     lpszResourceTypeDll: ?[*:0]const u16,
     dwLooksAlivePollInterval: u32,
     dwIsAlivePollInterval: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_DELETE_CLUSTER_RESOURCE_TYPE = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_OPEN_ENUM = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESTYPEENUM;
+) callconv(.winapi) ?*_HRESTYPEENUM;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_GET_ENUM_COUNT = *const fn(
     hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = *const fn(
     hResTypeEnum: ?*_HRESTYPEENUM,
@@ -4290,11 +4290,11 @@ pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_ENUM = *const fn(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_RESOURCE_TYPE_CLOSE_ENUM = *const fn(
     hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_NETWORK_ENUM = enum(i32) {
     NETINTERFACES = 1,
@@ -4330,31 +4330,31 @@ pub const ClusterNetworkRoleInternalAndClient = CLUSTER_NETWORK_ROLE.InternalAnd
 pub const PCLUSAPI_OPEN_CLUSTER_NETWORK = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszNetworkName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
+) callconv(.winapi) ?*_HNETWORK;
 
 pub const PCLUSAPI_OPEN_CLUSTER_NETWORK_EX = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszNetworkName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
+) callconv(.winapi) ?*_HNETWORK;
 
 pub const PCLUSAPI_CLOSE_CLUSTER_NETWORK = *const fn(
     hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_GET_CLUSTER_FROM_NETWORK = *const fn(
     hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_CLUSTER_NETWORK_OPEN_ENUM = *const fn(
     hNetwork: ?*_HNETWORK,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORKENUM;
+) callconv(.winapi) ?*_HNETWORKENUM;
 
 pub const PCLUSAPI_CLUSTER_NETWORK_GET_ENUM_COUNT = *const fn(
     hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = *const fn(
     hNetworkEnum: ?*_HNETWORKENUM,
@@ -4362,26 +4362,26 @@ pub const PCLUSAPI_CLUSTER_NETWORK_ENUM = *const fn(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NETWORK_CLOSE_ENUM = *const fn(
     hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_NETWORK_STATE = *const fn(
     hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETWORK_STATE;
+) callconv(.winapi) CLUSTER_NETWORK_STATE;
 
 pub const PCLUSAPI_SET_CLUSTER_NETWORK_NAME = *const fn(
     hNetwork: ?*_HNETWORK,
     lpszName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_NETWORK_ID = *const fn(
     hNetwork: ?*_HNETWORK,
     lpszNetworkId: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = *const fn(
     hNetwork: ?*_HNETWORK,
@@ -4394,7 +4394,7 @@ pub const PCLUSAPI_CLUSTER_NETWORK_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_NETINTERFACE_STATE = enum(i32) {
     StateUnknown = -1,
@@ -4412,14 +4412,14 @@ pub const ClusterNetInterfaceUp = CLUSTER_NETINTERFACE_STATE.Up;
 pub const PCLUSAPI_OPEN_CLUSTER_NET_INTERFACE = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszInterfaceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
+) callconv(.winapi) ?*_HNETINTERFACE;
 
 pub const PCLUSAPI_OPEN_CLUSTER_NETINTERFACE_EX = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszNetInterfaceName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
+) callconv(.winapi) ?*_HNETINTERFACE;
 
 pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -4427,19 +4427,19 @@ pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE = *const fn(
     lpszNetworkName: ?[*:0]const u16,
     lpszInterfaceName: ?[*:0]u16,
     lpcchInterfaceName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLOSE_CLUSTER_NET_INTERFACE = *const fn(
     hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_GET_CLUSTER_FROM_NET_INTERFACE = *const fn(
     hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_STATE = *const fn(
     hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETINTERFACE_STATE;
+) callconv(.winapi) CLUSTER_NETINTERFACE_STATE;
 
 pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = *const fn(
     hNetInterface: ?*_HNETINTERFACE,
@@ -4452,37 +4452,37 @@ pub const PCLUSAPI_CLUSTER_NET_INTERFACE_CONTROL = *const fn(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_GET_CLUSTER_KEY = *const fn(
     hCluster: ?*_HCLUSTER,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 pub const PCLUSAPI_GET_CLUSTER_GROUP_KEY = *const fn(
     hGroup: ?*_HGROUP,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 pub const PCLUSAPI_GET_CLUSTER_RESOURCE_KEY = *const fn(
     hResource: ?*_HRESOURCE,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 pub const PCLUSAPI_GET_CLUSTER_NODE_KEY = *const fn(
     hNode: ?*_HNODE,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 pub const PCLUSAPI_GET_CLUSTER_NETWORK_KEY = *const fn(
     hNetwork: ?*_HNETWORK,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 pub const PCLUSAPI_GET_CLUSTER_NET_INTERFACE_KEY = *const fn(
     hNetInterface: ?*_HNETINTERFACE,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = *const fn(
     hKey: ?HKEY,
@@ -4492,23 +4492,23 @@ pub const PCLUSAPI_CLUSTER_REG_CREATE_KEY = *const fn(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     phkResult: ?*?HKEY,
     lpdwDisposition: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_OPEN_KEY = *const fn(
     hKey: ?HKEY,
     lpszSubKey: ?[*:0]const u16,
     samDesired: u32,
     phkResult: ?*?HKEY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_DELETE_KEY = *const fn(
     hKey: ?HKEY,
     lpszSubKey: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_CLOSE_KEY = *const fn(
     hKey: ?HKEY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = *const fn(
     hKey: ?HKEY,
@@ -4516,7 +4516,7 @@ pub const PCLUSAPI_CLUSTER_REG_ENUM_KEY = *const fn(
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
     lpftLastWriteTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = *const fn(
     hKey: ?HKEY,
@@ -4524,12 +4524,12 @@ pub const PCLUSAPI_CLUSTER_REG_SET_VALUE = *const fn(
     dwType: u32,
     lpData: ?*const u8,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_REG_DELETE_VALUE = *const fn(
     hKey: ?HKEY,
     lpszValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = *const fn(
     hKey: ?HKEY,
@@ -4538,7 +4538,7 @@ pub const PCLUSAPI_CLUSTER_REG_QUERY_VALUE = *const fn(
     // TODO: what to do with BytesParamIndex 4?
     lpData: ?*u8,
     lpcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = *const fn(
     hKey: ?HKEY,
@@ -4549,7 +4549,7 @@ pub const PCLUSAPI_CLUSTER_REG_ENUM_VALUE = *const fn(
     // TODO: what to do with BytesParamIndex 6?
     lpData: ?*u8,
     lpcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = *const fn(
     hKey: ?HKEY,
@@ -4560,7 +4560,7 @@ pub const PCLUSAPI_CLUSTER_REG_QUERY_INFO_KEY = *const fn(
     lpcbMaxValueLen: ?*u32,
     lpcbSecurityDescriptor: ?*u32,
     lpftLastWriteTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = *const fn(
     hKey: ?HKEY,
@@ -4568,23 +4568,23 @@ pub const PCLUSAPI_CLUSTER_REG_GET_KEY_SECURITY = *const fn(
     // TODO: what to do with BytesParamIndex 3?
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_SET_KEY_SECURITY = *const fn(
     hKey: ?HKEY,
     SecurityInformation: u32,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_SYNC_DATABASE = *const fn(
     hCluster: ?*_HCLUSTER,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSAPI_CLUSTER_REG_CREATE_BATCH = *const fn(
     hKey: ?HKEY,
     pHREGBATCH: ?*?*_HREGBATCH,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_BATCH_ADD_COMMAND = *const fn(
     hRegBatch: ?*_HREGBATCH,
@@ -4594,74 +4594,74 @@ pub const PCLUSTER_REG_BATCH_ADD_COMMAND = *const fn(
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*const anyopaque,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_CLOSE_BATCH = *const fn(
     hRegBatch: ?*_HREGBATCH,
     bCommit: BOOL,
     failedCommandNumber: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_BATCH_READ_COMMAND = *const fn(
     hBatchNotification: ?*_HREGBATCHNOTIFICATION,
     pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_BATCH_CLOSE_NOTIFICATION = *const fn(
     hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_CREATE_BATCH_NOTIFY_PORT = *const fn(
     hKey: ?HKEY,
     phBatchNotifyPort: ?*?*_HREGBATCHPORT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_CLOSE_BATCH_NOTIFY_PORT = *const fn(
     hBatchNotifyPort: ?*_HREGBATCHPORT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_GET_BATCH_NOTIFICATION = *const fn(
     hBatchNotify: ?*_HREGBATCHPORT,
     phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_CREATE_READ_BATCH = *const fn(
     hKey: ?HKEY,
     phRegReadBatch: ?*?*_HREGREADBATCH,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_READ_BATCH_ADD_COMMAND = *const fn(
     hRegReadBatch: ?*_HREGREADBATCH,
     wzSubkeyName: ?[*:0]const u16,
     wzValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_CLOSE_READ_BATCH = *const fn(
     hRegReadBatch: ?*_HREGREADBATCH,
     phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_CLOSE_READ_BATCH_EX = *const fn(
     hRegReadBatch: ?*_HREGREADBATCH,
     flags: u32,
     phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_READ_BATCH_REPLY_NEXT_COMMAND = *const fn(
     hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
     pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_REG_CLOSE_READ_BATCH_REPLY = *const fn(
     hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 pub const PCLUSTER_SET_ACCOUNT_ACCESS = *const fn(
     hCluster: ?*_HCLUSTER,
     szAccountSID: ?[*:0]const u16,
     dwAccess: u32,
     dwControlType: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_SETUP_PHASE = enum(i32) {
     Initialize = 1,
@@ -4750,37 +4750,37 @@ pub const PCLUSTER_SETUP_PROGRESS_CALLBACK = *const fn(
     dwPercentComplete: u32,
     lpszObjectName: ?[*:0]const u16,
     dwStatus: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_CREATE_CLUSTER = *const fn(
     pConfig: ?*CREATE_CLUSTER_CONFIG,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_CREATE_CLUSTER_CNOLESS = *const fn(
     pConfig: ?*CREATE_CLUSTER_CONFIG,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 pub const PCLUSAPI_CREATE_CLUSTER_NAME_ACCOUNT = *const fn(
     hCluster: ?*_HCLUSTER,
     pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_REMOVE_CLUSTER_NAME_ACCOUNT = *const fn(
     hCluster: ?*_HCLUSTER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_ADD_CLUSTER_NODE = *const fn(
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -4788,14 +4788,14 @@ pub const PCLUSAPI_ADD_CLUSTER_NODE_EX = *const fn(
     dwFlags: u32,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub const PCLUSAPI_DESTROY_CLUSTER = *const fn(
     hCluster: ?*_HCLUSTER,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
     fdeleteVirtualComputerObjects: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PLACEMENT_OPTIONS = enum(i32) {
     MIN_VALUE = 0,
@@ -5024,16 +5024,16 @@ pub const RESOURCE_STATUS_EX = extern struct {
 pub const PSET_RESOURCE_STATUS_ROUTINE_EX = *const fn(
     ResourceHandle: isize,
     ResourceStatus: ?*RESOURCE_STATUS_EX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PSET_RESOURCE_STATUS_ROUTINE = *const fn(
     ResourceHandle: isize,
     ResourceStatus: ?*RESOURCE_STATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PQUORUM_RESOURCE_LOST = *const fn(
     Resource: isize,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const LOG_LEVEL = enum(i32) {
     INFORMATION = 0,
@@ -5050,47 +5050,47 @@ pub const PLOG_EVENT_ROUTINE = *const fn(
     ResourceHandle: isize,
     LogLevel: LOG_LEVEL,
     FormatString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const POPEN_ROUTINE = *const fn(
     ResourceName: ?[*:0]const u16,
     ResourceKey: ?HKEY,
     ResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub const PCLOSE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PONLINE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
     EventHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const POFFLINE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PTERMINATE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PIS_ALIVE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PLOOKS_ALIVE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PARBITRATE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
     LostQuorumResource: ?PQUORUM_RESOURCE_LOST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRELEASE_ROUTINE = *const fn(
     Resource: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESOURCE_CONTROL_ROUTINE = *const fn(
     Resource: ?*anyopaque,
@@ -5100,7 +5100,7 @@ pub const PRESOURCE_CONTROL_ROUTINE = *const fn(
     OutBuffer: ?*anyopaque,
     OutBufferSize: u32,
     BytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESOURCE_TYPE_CONTROL_ROUTINE = *const fn(
     ResourceTypeName: ?[*:0]const u16,
@@ -5110,14 +5110,14 @@ pub const PRESOURCE_TYPE_CONTROL_ROUTINE = *const fn(
     OutBuffer: ?*anyopaque,
     OutBufferSize: u32,
     BytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const POPEN_V2_ROUTINE = *const fn(
     ResourceName: ?[*:0]const u16,
     ResourceKey: ?HKEY,
     ResourceHandle: isize,
     OpenFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub const PONLINE_V2_ROUTINE = *const fn(
     Resource: ?*anyopaque,
@@ -5127,7 +5127,7 @@ pub const PONLINE_V2_ROUTINE = *const fn(
     InBuffer: ?*u8,
     InBufferSize: u32,
     Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const POFFLINE_V2_ROUTINE = *const fn(
     Resource: ?*anyopaque,
@@ -5137,12 +5137,12 @@ pub const POFFLINE_V2_ROUTINE = *const fn(
     InBuffer: ?*u8,
     InBufferSize: u32,
     Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCANCEL_ROUTINE = *const fn(
     Resource: ?*anyopaque,
     CancelFlags_RESERVED: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PBEGIN_RESCALL_ROUTINE = *const fn(
     Resource: ?*anyopaque,
@@ -5154,7 +5154,7 @@ pub const PBEGIN_RESCALL_ROUTINE = *const fn(
     BytesReturned: ?*u32,
     context: i64,
     ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PBEGIN_RESTYPECALL_ROUTINE = *const fn(
     ResourceTypeName: ?[*:0]const u16,
@@ -5166,7 +5166,7 @@ pub const PBEGIN_RESTYPECALL_ROUTINE = *const fn(
     BytesReturned: ?*u32,
     context: i64,
     ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const RESOURCE_EXIT_STATE = enum(i32) {
     Continue = 0,
@@ -5188,7 +5188,7 @@ pub const PBEGIN_RESCALL_AS_USER_ROUTINE = *const fn(
     BytesReturned: ?*u32,
     context: i64,
     ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = *const fn(
     ResourceTypeName: ?[*:0]const u16,
@@ -5201,7 +5201,7 @@ pub const PBEGIN_RESTYPECALL_AS_USER_ROUTINE = *const fn(
     BytesReturned: ?*u32,
     context: i64,
     ReturnedAsynchronously: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLRES_V1_FUNCTIONS = extern struct {
     Open: ?POPEN_ROUTINE,
@@ -5318,7 +5318,7 @@ pub const PSTARTUP_ROUTINE = *const fn(
     SetResourceStatus: ?PSET_RESOURCE_STATUS_ROUTINE,
     LogEvent: ?PLOG_EVENT_ROUTINE,
     FunctionTable: ?*?*CLRES_FUNCTION_TABLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const FAILURE_TYPE = enum(i32) {
     GENERAL = 0,
@@ -5342,79 +5342,79 @@ pub const PSET_RESOURCE_LOCKED_MODE_ROUTINE = *const fn(
     ResourceHandle: isize,
     LockedModeEnabled: BOOL,
     LockedModeReason: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PSIGNAL_FAILURE_ROUTINE = *const fn(
     ResourceHandle: isize,
     FailureType: FAILURE_TYPE,
     ApplicationSpecificErrorCode: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PSET_RESOURCE_INMEMORY_NODELOCAL_PROPERTIES_ROUTINE = *const fn(
     ResourceHandle: isize,
     propertyListBuffer: ?*u8,
     propertyListBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PEND_CONTROL_CALL = *const fn(
     context: i64,
     status: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PEND_TYPE_CONTROL_CALL = *const fn(
     context: i64,
     status: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PEXTEND_RES_CONTROL_CALL = *const fn(
     context: i64,
     newTimeoutInMs: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PEXTEND_RES_TYPE_CONTROL_CALL = *const fn(
     context: i64,
     newTimeoutInMs: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRAISE_RES_TYPE_NOTIFICATION = *const fn(
     ResourceType: ?[*:0]const u16,
     // TODO: what to do with BytesParamIndex 2?
     pPayload: ?*const u8,
     payloadSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCHANGE_RESOURCE_PROCESS_FOR_DUMPS = *const fn(
     resource: isize,
     processName: ?[*:0]const u16,
     processId: u32,
     isAdd: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCHANGE_RES_TYPE_PROCESS_FOR_DUMPS = *const fn(
     resourceTypeName: ?[*:0]const u16,
     processName: ?[*:0]const u16,
     processId: u32,
     isAdd: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PSET_INTERNAL_STATE = *const fn(
     param0: isize,
     stateType: CLUSTER_RESOURCE_APPLICATION_STATE,
     active: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PSET_RESOURCE_LOCKED_MODE_EX_ROUTINE = *const fn(
     ResourceHandle: isize,
     LockedModeEnabled: BOOL,
     LockedModeReason: u32,
     LockedModeFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PREQUEST_DUMP_ROUTINE = *const fn(
     ResourceHandle: isize,
     DumpDueToCallInProgress: BOOL,
     DumpDelayInMs: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLRES_CALLBACK_FUNCTION_TABLE = extern struct {
     LogEvent: ?PLOG_EVENT_ROUTINE,
@@ -5440,7 +5440,7 @@ pub const PSTARTUP_EX_ROUTINE = *const fn(
     MaxVersionSupported: u32,
     MonitorCallbackFunctions: ?*CLRES_CALLBACK_FUNCTION_TABLE,
     ResourceDllInterfaceFunctions: ?*?*CLRES_FUNCTION_TABLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const RESOURCE_MONITOR_STATE = enum(i32) {
     Initializing = 0,
@@ -5510,31 +5510,31 @@ pub const CLUSTER_HEALTH_FAULT_ARRAY = extern struct {
 pub const PRESUTIL_START_RESOURCE_SERVICE = *const fn(
     pszServiceName: ?[*:0]const u16,
     phServiceHandle: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_VERIFY_RESOURCE_SERVICE = *const fn(
     pszServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_STOP_RESOURCE_SERVICE = *const fn(
     pszServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_VERIFY_SERVICE = *const fn(
     hServiceHandle: SC_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_STOP_SERVICE = *const fn(
     hServiceHandle: SC_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_CREATE_DIRECTORY_TREE = *const fn(
     pszPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_IS_PATH_VALID = *const fn(
     pszPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PRESUTIL_ENUM_PROPERTIES = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
@@ -5543,7 +5543,7 @@ pub const PRESUTIL_ENUM_PROPERTIES = *const fn(
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5552,7 +5552,7 @@ pub const PRESUTIL_ENUM_PRIVATE_PROPERTIES = *const fn(
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5562,7 +5562,7 @@ pub const PRESUTIL_GET_PROPERTIES = *const fn(
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_ALL_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5572,7 +5572,7 @@ pub const PRESUTIL_GET_ALL_PROPERTIES = *const fn(
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PRIVATE_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5581,14 +5581,14 @@ pub const PRESUTIL_GET_PRIVATE_PROPERTIES = *const fn(
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PROPERTY_SIZE = *const fn(
     hkeyClusterKey: ?HKEY,
     pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
     pcbOutPropertyListSize: ?*u32,
     pnPropertyCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PROPERTY = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5596,7 +5596,7 @@ pub const PRESUTIL_GET_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 3?
     pOutPropertyItem: ?*?*anyopaque,
     pcbOutPropertyItemSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_VERIFY_PROPERTY_TABLE = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
@@ -5606,7 +5606,7 @@ pub const PRESUTIL_VERIFY_PROPERTY_TABLE = *const fn(
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_PROPERTY_TABLE = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5617,7 +5617,7 @@ pub const PRESUTIL_SET_PROPERTY_TABLE = *const fn(
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_PROPERTY_TABLE_EX = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5628,7 +5628,7 @@ pub const PRESUTIL_SET_PROPERTY_TABLE_EX = *const fn(
     cbInPropertyListSize: u32,
     bForceWrite: BOOL,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5638,7 +5638,7 @@ pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK = *const fn(
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5649,7 +5649,7 @@ pub const PRESUTIL_SET_PROPERTY_PARAMETER_BLOCK_EX = *const fn(
     cbInPropertyListSize: u32,
     bForceWrite: BOOL,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5657,7 +5657,7 @@ pub const PRESUTIL_SET_UNKNOWN_PROPERTIES = *const fn(
     // TODO: what to do with BytesParamIndex 3?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5665,7 +5665,7 @@ pub const PRESUTIL_GET_PROPERTIES_TO_PARAMETER_BLOCK = *const fn(
     pOutParams: ?*u8,
     bCheckForRequiredProperties: BOOL,
     pszNameOfPropInError: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
@@ -5675,19 +5675,19 @@ pub const PRESUTIL_PROPERTY_LIST_FROM_PARAMETER_BLOCK = *const fn(
     pInParams: ?*const u8,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_DUP_PARAMETER_BLOCK = *const fn(
     pOutParams: ?*u8,
     pInParams: ?*const u8,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FREE_PARAMETER_BLOCK = *const fn(
     pOutParams: ?*u8,
     pInParams: ?*const u8,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5696,24 +5696,24 @@ pub const PRESUTIL_ADD_UNKNOWN_PROPERTIES = *const fn(
     pcbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_PRIVATE_PROPERTY_LIST = *const fn(
     hkeyClusterKey: ?HKEY,
     // TODO: what to do with BytesParamIndex 2?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_VERIFY_PRIVATE_PROPERTY_LIST = *const fn(
     // TODO: what to do with BytesParamIndex 1?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_DUP_STRING = *const fn(
     pszInString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 pub const PRESUTIL_GET_BINARY_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5721,32 +5721,32 @@ pub const PRESUTIL_GET_BINARY_VALUE = *const fn(
     // TODO: what to do with BytesParamIndex 3?
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 pub const PRESUTIL_GET_EXPAND_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     bExpand: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 pub const PRESUTIL_GET_DWORD_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pdwOutValue: ?*u32,
     dwDefaultValue: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_QWORD_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pqwOutValue: ?*u64,
     qwDefaultValue: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_BINARY_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5757,21 +5757,21 @@ pub const PRESUTIL_SET_BINARY_VALUE = *const fn(
     // TODO: what to do with BytesParamIndex 5?
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
     ppszOutString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_EXPAND_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
     ppszOutString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_MULTI_SZ_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
@@ -5782,21 +5782,21 @@ pub const PRESUTIL_SET_MULTI_SZ_VALUE = *const fn(
     // TODO: what to do with BytesParamIndex 5?
     ppszOutValue: ?*?PWSTR,
     pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_DWORD_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     dwNewValue: u32,
     pdwOutValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_QWORD_VALUE = *const fn(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
     qwNewValue: u64,
     pqwOutValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_BINARY_PROPERTY = *const fn(
     ppbOutValue: ?*?*u8,
@@ -5808,7 +5808,7 @@ pub const PRESUTIL_GET_BINARY_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 6?
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_SZ_PROPERTY = *const fn(
     ppszOutValue: ?*?PWSTR,
@@ -5817,7 +5817,7 @@ pub const PRESUTIL_GET_SZ_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 4?
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = *const fn(
     ppszOutValue: ?*?PWSTR,
@@ -5829,7 +5829,7 @@ pub const PRESUTIL_GET_MULTI_SZ_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 6?
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_DWORD_PROPERTY = *const fn(
     pdwOutValue: ?*u32,
@@ -5839,7 +5839,7 @@ pub const PRESUTIL_GET_DWORD_PROPERTY = *const fn(
     dwMaximum: u32,
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_LONG_PROPERTY = *const fn(
     plOutValue: ?*i32,
@@ -5849,7 +5849,7 @@ pub const PRESUTIL_GET_LONG_PROPERTY = *const fn(
     lMaximum: i32,
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_FILETIME_PROPERTY = *const fn(
     pftOutValue: ?*FILETIME,
@@ -5859,32 +5859,32 @@ pub const PRESUTIL_GET_FILETIME_PROPERTY = *const fn(
     ftMaximum: FILETIME,
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_ENVIRONMENT_WITH_NET_NAME = *const fn(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 pub const PRESUTIL_FREE_ENVIRONMENT = *const fn(
     lpEnvironment: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_EXPAND_ENVIRONMENT_STRINGS = *const fn(
     pszSrc: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 pub const PRESUTIL_SET_RESOURCE_SERVICE_ENVIRONMENT = *const fn(
     pszServiceName: ?[*:0]const u16,
     hResource: ?*_HRESOURCE,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_REMOVE_RESOURCE_SERVICE_ENVIRONMENT = *const fn(
     pszServiceName: ?[*:0]const u16,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = *const fn(
     pszServiceName: ?[*:0]const u16,
@@ -5892,7 +5892,7 @@ pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS = *const fn(
     phService: ?*isize,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_SZ_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5900,7 +5900,7 @@ pub const PRESUTIL_FIND_SZ_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5908,7 +5908,7 @@ pub const PRESUTIL_FIND_EXPAND_SZ_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5916,7 +5916,7 @@ pub const PRESUTIL_FIND_EXPANDED_SZ_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_DWORD_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5924,7 +5924,7 @@ pub const PRESUTIL_FIND_DWORD_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pdwPropertyValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_BINARY_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5934,7 +5934,7 @@ pub const PRESUTIL_FIND_BINARY_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 4?
     pbPropertyValue: ?*?*u8,
     pcbPropertyValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5944,7 +5944,7 @@ pub const PRESUTIL_FIND_MULTI_SZ_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 4?
     pszPropertyValue: ?*?PWSTR,
     pcbPropertyValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_LONG_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5952,7 +5952,7 @@ pub const PRESUTIL_FIND_LONG_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     plPropertyValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5960,7 +5960,7 @@ pub const PRESUTIL_FIND_ULARGEINTEGER_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     plPropertyValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_FILETIME_PROPERTY = *const fn(
     // TODO: what to do with BytesParamIndex 1?
@@ -5968,7 +5968,7 @@ pub const PRESUTIL_FIND_FILETIME_PROPERTY = *const fn(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pftPropertyValue: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUS_WORKER = extern struct {
     hThread: ?HANDLE,
@@ -5978,70 +5978,70 @@ pub const CLUS_WORKER = extern struct {
 pub const PWORKER_START_ROUTINE = *const fn(
     pWorker: ?*CLUS_WORKER,
     lpThreadParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPI_CLUS_WORKER_CREATE = *const fn(
     lpWorker: ?*CLUS_WORKER,
     lpStartAddress: ?PWORKER_START_ROUTINE,
     lpParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSAPIClusWorkerCheckTerminate = *const fn(
     lpWorker: ?*CLUS_WORKER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSAPI_CLUS_WORKER_TERMINATE = *const fn(
     lpWorker: ?*CLUS_WORKER,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const LPRESOURCE_CALLBACK = *const fn(
     param0: ?*_HRESOURCE,
     param1: ?*_HRESOURCE,
     param2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPRESOURCE_CALLBACK_EX = *const fn(
     param0: ?*_HCLUSTER,
     param1: ?*_HRESOURCE,
     param2: ?*_HRESOURCE,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPGROUP_CALLBACK_EX = *const fn(
     param0: ?*_HCLUSTER,
     param1: ?*_HGROUP,
     param2: ?*_HGROUP,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const LPNODE_CALLBACK = *const fn(
     param0: ?*_HCLUSTER,
     param1: ?*_HNODE,
     param2: CLUSTER_NODE_STATE,
     param3: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_RESOURCES_EQUAL = *const fn(
     hSelf: ?*_HRESOURCE,
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PRESUTIL_RESOURCE_TYPES_EQUAL = *const fn(
     lpszResourceTypeName: ?[*:0]const u16,
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PRESUTIL_IS_RESOURCE_CLASS_EQUAL = *const fn(
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PRESUTIL_ENUM_RESOURCES = *const fn(
     hSelf: ?*_HRESOURCE,
     lpszResTypeName: ?[*:0]const u16,
     pResCallBack: ?LPRESOURCE_CALLBACK,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_ENUM_RESOURCES_EX = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -6049,31 +6049,31 @@ pub const PRESUTIL_ENUM_RESOURCES_EX = *const fn(
     lpszResTypeName: ?[*:0]const u16,
     pResCallBack: ?LPRESOURCE_CALLBACK_EX,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_RESOURCE_DEPENDENCY = *const fn(
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME = *const fn(
     hCluster: ?*_HCLUSTER,
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
     bRecurse: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS = *const fn(
     hCluster: ?*_HCLUSTER,
     hSelf: ?HANDLE,
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     bRecurse: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY = *const fn(
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = *const fn(
     hResource: ?*_HRESOURCE,
@@ -6083,14 +6083,14 @@ pub const PRESUTIL_GET_RESOURCE_DEPENDENTIP_ADDRESS_PROPS = *const fn(
     pcchSubnetMask: ?*u32,
     pszNetwork: [*:0]u16,
     pcchNetwork: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_FIND_DEPENDENT_DISK_RESOURCE_DRIVE_LETTER = *const fn(
     hCluster: ?*_HCLUSTER,
     hResource: ?*_HRESOURCE,
     pszDriveLetter: [*:0]u16,
     pcchDriveLetter: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = *const fn(
     dwServicePid: u32,
@@ -6098,7 +6098,7 @@ pub const PRESUTIL_TERMINATE_SERVICE_PROCESS_FROM_RES_DLL = *const fn(
     pdwResourceState: ?*u32,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_PROPERTY_FORMATS = *const fn(
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
@@ -6107,20 +6107,20 @@ pub const PRESUTIL_GET_PROPERTY_FORMATS = *const fn(
     cbPropertyFormatListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES = *const fn(
     hCluster: ?*_HCLUSTER,
     phClusterNameResource: ?*?*_HRESOURCE,
     phClusterIPAddressResource: ?*?*_HRESOURCE,
     phClusterQuorumResource: ?*?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_RESOURCE_NAME = *const fn(
     hResource: ?*_HRESOURCE,
     pszResourceName: [*:0]u16,
     pcchResourceNameInOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUSTER_ROLE = enum(i32) {
     DHCP = 0,
@@ -6200,19 +6200,19 @@ pub const ClusterRoleUnclustered = CLUSTER_ROLE_STATE.Unclustered;
 
 pub const PCLUSTER_IS_PATH_ON_SHARED_VOLUME = *const fn(
     lpszPathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSTER_GET_VOLUME_PATH_NAME = *const fn(
     lpszFileName: ?[*:0]const u16,
     lpszVolumePathName: ?PWSTR,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSTER_GET_VOLUME_NAME_FOR_VOLUME_MOUNT_POINT = *const fn(
     lpszVolumeMountPoint: ?[*:0]const u16,
     lpszVolumeName: ?PWSTR,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = *const fn(
     lpszFileName: ?[*:0]const u16,
@@ -6220,11 +6220,11 @@ pub const PCLUSTER_PREPARE_SHARED_VOLUME_FOR_BACKUP = *const fn(
     lpcchVolumePathName: ?*u32,
     lpszVolumeName: ?PWSTR,
     lpcchVolumeName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSTER_CLEAR_BACKUP_STATE_FOR_SHARED_VOLUME = *const fn(
     lpszVolumePathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = *const fn(
     pszServiceName: ?[*:0]const u16,
@@ -6233,7 +6233,7 @@ pub const PRESUTIL_SET_RESOURCE_SERVICE_START_PARAMETERS_EX = *const fn(
     dwDesiredAccess: u32,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_ENUM_RESOURCES_EX2 = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -6242,13 +6242,13 @@ pub const PRESUTIL_ENUM_RESOURCES_EX2 = *const fn(
     pResCallBack: ?LPRESOURCE_CALLBACK_EX,
     pParameter: ?*anyopaque,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_EX = *const fn(
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -6256,7 +6256,7 @@ pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_NAME_EX = *const fn(
     lpszResourceType: ?[*:0]const u16,
     bRecurse: BOOL,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = *const fn(
     hCluster: ?*_HCLUSTER,
@@ -6264,13 +6264,13 @@ pub const PRESUTIL_GET_RESOURCE_DEPENDENCY_BY_CLASS_EX = *const fn(
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     bRecurse: BOOL,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_RESOURCE_NAME_DEPENDENCY_EX = *const fn(
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = *const fn(
     hClusterIn: ?*_HCLUSTER,
@@ -6278,7 +6278,7 @@ pub const PRESUTIL_GET_CORE_CLUSTER_RESOURCES_EX = *const fn(
     phClusterIPAddressResourceOut: ?*?*_HRESOURCE,
     phClusterQuorumResourceOut: ?*?*_HRESOURCE,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const _HCLUSCRYPTPROVIDER = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -6289,7 +6289,7 @@ pub const POPEN_CLUSTER_CRYPT_PROVIDER = *const fn(
     lpszProvider: ?*i8,
     dwType: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
 
 pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = *const fn(
     lpszResource: ?[*:0]const u16,
@@ -6297,11 +6297,11 @@ pub const POPEN_CLUSTER_CRYPT_PROVIDEREX = *const fn(
     lpszProvider: ?*i8,
     dwType: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
 
 pub const PCLOSE_CLUSTER_CRYPT_PROVIDER = *const fn(
     hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSTER_ENCRYPT = *const fn(
     hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
@@ -6309,7 +6309,7 @@ pub const PCLUSTER_ENCRYPT = *const fn(
     cbData: u32,
     ppData: ?*?*u8,
     pcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PCLUSTER_DECRYPT = *const fn(
     hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
@@ -6317,17 +6317,17 @@ pub const PCLUSTER_DECRYPT = *const fn(
     cbCryptInput: u32,
     ppCryptOutput: ?*?*u8,
     pcbCryptOutput: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PFREE_CLUSTER_CRYPT = *const fn(
     pCryptInfo: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRES_UTIL_VERIFY_SHUTDOWN_SAFE = *const fn(
     flags: u32,
     reason: u32,
     pResult: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PaxosTagCStruct = extern struct {
     __padding__PaxosTagVtable: u64,
@@ -6360,29 +6360,29 @@ pub const PREGISTER_APPINSTANCE = *const fn(
     ProcessHandle: ?HANDLE,
     AppInstanceId: ?*Guid,
     ChildrenInheritAppInstance: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PREGISTER_APPINSTANCE_VERSION = *const fn(
     AppInstanceId: ?*Guid,
     InstanceVersionHigh: u64,
     InstanceVersionLow: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PQUERY_APPINSTANCE_VERSION = *const fn(
     AppInstanceId: ?*Guid,
     InstanceVersionHigh: ?*u64,
     InstanceVersionLow: ?*u64,
     VersionStatus: ?*NTSTATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PRESET_ALL_APPINSTANCE_VERSIONS = *const fn(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const SET_APP_INSTANCE_CSV_FLAGS = *const fn(
     ProcessHandle: ?HANDLE,
     Mask: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CLUADMEX_OBJECT_TYPE = enum(i32) {
     NONE = 0,
@@ -6413,29 +6413,29 @@ pub const IGetClusterUIInfo = extern union {
             self: *const IGetClusterUIInfo,
             lpszName: ?BSTR,
             pcchName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetLocale: *const fn(
             self: *const IGetClusterUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) u32,
+        ) callconv(.winapi) u32,
         GetFont: *const fn(
             self: *const IGetClusterUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) ?HFONT,
+        ) callconv(.winapi) ?HFONT,
         GetIcon: *const fn(
             self: *const IGetClusterUIInfo,
-        ) callconv(@import("std").os.windows.WINAPI) ?HICON,
+        ) callconv(.winapi) ?HICON,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClusterName(self: *const IGetClusterUIInfo, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetClusterName(self: *const IGetClusterUIInfo, lpszName: ?BSTR, pcchName: ?*i32) HRESULT {
         return self.vtable.GetClusterName(self, lpszName, pcchName);
     }
-    pub fn GetLocale(self: *const IGetClusterUIInfo) callconv(.Inline) u32 {
+    pub fn GetLocale(self: *const IGetClusterUIInfo) u32 {
         return self.vtable.GetLocale(self);
     }
-    pub fn GetFont(self: *const IGetClusterUIInfo) callconv(.Inline) ?HFONT {
+    pub fn GetFont(self: *const IGetClusterUIInfo) ?HFONT {
         return self.vtable.GetFont(self);
     }
-    pub fn GetIcon(self: *const IGetClusterUIInfo) callconv(.Inline) ?HICON {
+    pub fn GetIcon(self: *const IGetClusterUIInfo) ?HICON {
         return self.vtable.GetIcon(self);
     }
 };
@@ -6450,23 +6450,23 @@ pub const IGetClusterDataInfo = extern union {
             self: *const IGetClusterDataInfo,
             lpszName: ?BSTR,
             pcchName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetClusterHandle: *const fn(
             self: *const IGetClusterDataInfo,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER,
+        ) callconv(.winapi) ?*_HCLUSTER,
         GetObjectCount: *const fn(
             self: *const IGetClusterDataInfo,
-        ) callconv(@import("std").os.windows.WINAPI) i32,
+        ) callconv(.winapi) i32,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetClusterName(self: *const IGetClusterDataInfo, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetClusterName(self: *const IGetClusterDataInfo, lpszName: ?BSTR, pcchName: ?*i32) HRESULT {
         return self.vtable.GetClusterName(self, lpszName, pcchName);
     }
-    pub fn GetClusterHandle(self: *const IGetClusterDataInfo) callconv(.Inline) ?*_HCLUSTER {
+    pub fn GetClusterHandle(self: *const IGetClusterDataInfo) ?*_HCLUSTER {
         return self.vtable.GetClusterHandle(self);
     }
-    pub fn GetObjectCount(self: *const IGetClusterDataInfo) callconv(.Inline) i32 {
+    pub fn GetObjectCount(self: *const IGetClusterDataInfo) i32 {
         return self.vtable.GetObjectCount(self);
     }
 };
@@ -6482,18 +6482,18 @@ pub const IGetClusterObjectInfo = extern union {
             lObjIndex: i32,
             lpszName: ?BSTR,
             pcchName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetObjectType: *const fn(
             self: *const IGetClusterObjectInfo,
             lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) CLUADMEX_OBJECT_TYPE,
+        ) callconv(.winapi) CLUADMEX_OBJECT_TYPE,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetObjectName(self: *const IGetClusterObjectInfo, lObjIndex: i32, lpszName: ?BSTR, pcchName: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetObjectName(self: *const IGetClusterObjectInfo, lObjIndex: i32, lpszName: ?BSTR, pcchName: ?*i32) HRESULT {
         return self.vtable.GetObjectName(self, lObjIndex, lpszName, pcchName);
     }
-    pub fn GetObjectType(self: *const IGetClusterObjectInfo, lObjIndex: i32) callconv(.Inline) CLUADMEX_OBJECT_TYPE {
+    pub fn GetObjectType(self: *const IGetClusterObjectInfo, lObjIndex: i32) CLUADMEX_OBJECT_TYPE {
         return self.vtable.GetObjectType(self, lObjIndex);
     }
 };
@@ -6507,11 +6507,11 @@ pub const IGetClusterNodeInfo = extern union {
         GetNodeHandle: *const fn(
             self: *const IGetClusterNodeInfo,
             lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HNODE,
+        ) callconv(.winapi) ?*_HNODE,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNodeHandle(self: *const IGetClusterNodeInfo, lObjIndex: i32) callconv(.Inline) ?*_HNODE {
+    pub fn GetNodeHandle(self: *const IGetClusterNodeInfo, lObjIndex: i32) ?*_HNODE {
         return self.vtable.GetNodeHandle(self, lObjIndex);
     }
 };
@@ -6525,11 +6525,11 @@ pub const IGetClusterGroupInfo = extern union {
         GetGroupHandle: *const fn(
             self: *const IGetClusterGroupInfo,
             lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP,
+        ) callconv(.winapi) ?*_HGROUP,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetGroupHandle(self: *const IGetClusterGroupInfo, lObjIndex: i32) callconv(.Inline) ?*_HGROUP {
+    pub fn GetGroupHandle(self: *const IGetClusterGroupInfo, lObjIndex: i32) ?*_HGROUP {
         return self.vtable.GetGroupHandle(self, lObjIndex);
     }
 };
@@ -6543,29 +6543,29 @@ pub const IGetClusterResourceInfo = extern union {
         GetResourceHandle: *const fn(
             self: *const IGetClusterResourceInfo,
             lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE,
+        ) callconv(.winapi) ?*_HRESOURCE,
         GetResourceTypeName: *const fn(
             self: *const IGetClusterResourceInfo,
             lObjIndex: i32,
             lpszResTypeName: ?BSTR,
             pcchResTypeName: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetResourceNetworkName: *const fn(
             self: *const IGetClusterResourceInfo,
             lObjIndex: i32,
             lpszNetName: ?BSTR,
             pcchNetName: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) BOOL,
+        ) callconv(.winapi) BOOL,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetResourceHandle(self: *const IGetClusterResourceInfo, lObjIndex: i32) callconv(.Inline) ?*_HRESOURCE {
+    pub fn GetResourceHandle(self: *const IGetClusterResourceInfo, lObjIndex: i32) ?*_HRESOURCE {
         return self.vtable.GetResourceHandle(self, lObjIndex);
     }
-    pub fn GetResourceTypeName(self: *const IGetClusterResourceInfo, lObjIndex: i32, lpszResTypeName: ?BSTR, pcchResTypeName: ?*i32) callconv(.Inline) HRESULT {
+    pub fn GetResourceTypeName(self: *const IGetClusterResourceInfo, lObjIndex: i32, lpszResTypeName: ?BSTR, pcchResTypeName: ?*i32) HRESULT {
         return self.vtable.GetResourceTypeName(self, lObjIndex, lpszResTypeName, pcchResTypeName);
     }
-    pub fn GetResourceNetworkName(self: *const IGetClusterResourceInfo, lObjIndex: i32, lpszNetName: ?BSTR, pcchNetName: ?*u32) callconv(.Inline) BOOL {
+    pub fn GetResourceNetworkName(self: *const IGetClusterResourceInfo, lObjIndex: i32, lpszNetName: ?BSTR, pcchNetName: ?*u32) BOOL {
         return self.vtable.GetResourceNetworkName(self, lObjIndex, lpszNetName, pcchNetName);
     }
 };
@@ -6579,11 +6579,11 @@ pub const IGetClusterNetworkInfo = extern union {
         GetNetworkHandle: *const fn(
             self: *const IGetClusterNetworkInfo,
             lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK,
+        ) callconv(.winapi) ?*_HNETWORK,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNetworkHandle(self: *const IGetClusterNetworkInfo, lObjIndex: i32) callconv(.Inline) ?*_HNETWORK {
+    pub fn GetNetworkHandle(self: *const IGetClusterNetworkInfo, lObjIndex: i32) ?*_HNETWORK {
         return self.vtable.GetNetworkHandle(self, lObjIndex);
     }
 };
@@ -6597,11 +6597,11 @@ pub const IGetClusterNetInterfaceInfo = extern union {
         GetNetInterfaceHandle: *const fn(
             self: *const IGetClusterNetInterfaceInfo,
             lObjIndex: i32,
-        ) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE,
+        ) callconv(.winapi) ?*_HNETINTERFACE,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetNetInterfaceHandle(self: *const IGetClusterNetInterfaceInfo, lObjIndex: i32) callconv(.Inline) ?*_HNETINTERFACE {
+    pub fn GetNetInterfaceHandle(self: *const IGetClusterNetInterfaceInfo, lObjIndex: i32) ?*_HNETINTERFACE {
         return self.vtable.GetNetInterfaceHandle(self, lObjIndex);
     }
 };
@@ -6615,11 +6615,11 @@ pub const IWCPropertySheetCallback = extern union {
         AddPropertySheetPage: *const fn(
             self: *const IWCPropertySheetCallback,
             hpage: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddPropertySheetPage(self: *const IWCPropertySheetCallback, hpage: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddPropertySheetPage(self: *const IWCPropertySheetCallback, hpage: ?*i32) HRESULT {
         return self.vtable.AddPropertySheetPage(self, hpage);
     }
 };
@@ -6634,11 +6634,11 @@ pub const IWEExtendPropertySheet = extern union {
             self: *const IWEExtendPropertySheet,
             piData: ?*IUnknown,
             piCallback: ?*IWCPropertySheetCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreatePropertySheetPages(self: *const IWEExtendPropertySheet, piData: ?*IUnknown, piCallback: ?*IWCPropertySheetCallback) callconv(.Inline) HRESULT {
+    pub fn CreatePropertySheetPages(self: *const IWEExtendPropertySheet, piData: ?*IUnknown, piCallback: ?*IWCPropertySheetCallback) HRESULT {
         return self.vtable.CreatePropertySheetPages(self, piData, piCallback);
     }
 };
@@ -6652,19 +6652,19 @@ pub const IWCWizardCallback = extern union {
         AddWizardPage: *const fn(
             self: *const IWCWizardCallback,
             hpage: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableNext: *const fn(
             self: *const IWCWizardCallback,
             hpage: ?*i32,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddWizardPage(self: *const IWCWizardCallback, hpage: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddWizardPage(self: *const IWCWizardCallback, hpage: ?*i32) HRESULT {
         return self.vtable.AddWizardPage(self, hpage);
     }
-    pub fn EnableNext(self: *const IWCWizardCallback, hpage: ?*i32, bEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn EnableNext(self: *const IWCWizardCallback, hpage: ?*i32, bEnable: BOOL) HRESULT {
         return self.vtable.EnableNext(self, hpage, bEnable);
     }
 };
@@ -6679,11 +6679,11 @@ pub const IWEExtendWizard = extern union {
             self: *const IWEExtendWizard,
             piData: ?*IUnknown,
             piCallback: ?*IWCWizardCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateWizardPages(self: *const IWEExtendWizard, piData: ?*IUnknown, piCallback: ?*IWCWizardCallback) callconv(.Inline) HRESULT {
+    pub fn CreateWizardPages(self: *const IWEExtendWizard, piData: ?*IUnknown, piCallback: ?*IWCWizardCallback) HRESULT {
         return self.vtable.CreateWizardPages(self, piData, piCallback);
     }
 };
@@ -6701,11 +6701,11 @@ pub const IWCContextMenuCallback = extern union {
             nCommandID: u32,
             nSubmenuCommandID: u32,
             uFlags: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddExtensionMenuItem(self: *const IWCContextMenuCallback, lpszName: ?BSTR, lpszStatusBarText: ?BSTR, nCommandID: u32, nSubmenuCommandID: u32, uFlags: u32) callconv(.Inline) HRESULT {
+    pub fn AddExtensionMenuItem(self: *const IWCContextMenuCallback, lpszName: ?BSTR, lpszStatusBarText: ?BSTR, nCommandID: u32, nSubmenuCommandID: u32, uFlags: u32) HRESULT {
         return self.vtable.AddExtensionMenuItem(self, lpszName, lpszStatusBarText, nCommandID, nSubmenuCommandID, uFlags);
     }
 };
@@ -6720,11 +6720,11 @@ pub const IWEExtendContextMenu = extern union {
             self: *const IWEExtendContextMenu,
             piData: ?*IUnknown,
             piCallback: ?*IWCContextMenuCallback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddContextMenuItems(self: *const IWEExtendContextMenu, piData: ?*IUnknown, piCallback: ?*IWCContextMenuCallback) callconv(.Inline) HRESULT {
+    pub fn AddContextMenuItems(self: *const IWEExtendContextMenu, piData: ?*IUnknown, piCallback: ?*IWCContextMenuCallback) HRESULT {
         return self.vtable.AddContextMenuItems(self, piData, piCallback);
     }
 };
@@ -6739,11 +6739,11 @@ pub const IWEInvokeCommand = extern union {
             self: *const IWEInvokeCommand,
             nCommandID: u32,
             piData: ?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn InvokeCommand(self: *const IWEInvokeCommand, nCommandID: u32, piData: ?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn InvokeCommand(self: *const IWEInvokeCommand, nCommandID: u32, piData: ?*IUnknown) HRESULT {
         return self.vtable.InvokeCommand(self, nCommandID, piData);
     }
 };
@@ -6757,19 +6757,19 @@ pub const IWCWizard97Callback = extern union {
         AddWizard97Page: *const fn(
             self: *const IWCWizard97Callback,
             hpage: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         EnableNext: *const fn(
             self: *const IWCWizard97Callback,
             hpage: ?*i32,
             bEnable: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn AddWizard97Page(self: *const IWCWizard97Callback, hpage: ?*i32) callconv(.Inline) HRESULT {
+    pub fn AddWizard97Page(self: *const IWCWizard97Callback, hpage: ?*i32) HRESULT {
         return self.vtable.AddWizard97Page(self, hpage);
     }
-    pub fn EnableNext(self: *const IWCWizard97Callback, hpage: ?*i32, bEnable: BOOL) callconv(.Inline) HRESULT {
+    pub fn EnableNext(self: *const IWCWizard97Callback, hpage: ?*i32, bEnable: BOOL) HRESULT {
         return self.vtable.EnableNext(self, hpage, bEnable);
     }
 };
@@ -6784,11 +6784,11 @@ pub const IWEExtendWizard97 = extern union {
             self: *const IWEExtendWizard97,
             piData: ?*IUnknown,
             piCallback: ?*IWCWizard97Callback,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateWizard97Pages(self: *const IWEExtendWizard97, piData: ?*IUnknown, piCallback: ?*IWCWizard97Callback) callconv(.Inline) HRESULT {
+    pub fn CreateWizard97Pages(self: *const IWEExtendWizard97, piData: ?*IUnknown, piCallback: ?*IWCWizard97Callback) HRESULT {
         return self.vtable.CreateWizard97Pages(self, piData, piCallback);
     }
 };
@@ -6922,28 +6922,28 @@ pub const ISClusApplication = extern union {
         get_DomainNames: *const fn(
             self: *const ISClusApplication,
             ppDomains: ?*?*ISDomainNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_ClusterNames: *const fn(
             self: *const ISClusApplication,
             bstrDomainName: ?BSTR,
             ppClusters: ?*?*ISClusterNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OpenCluster: *const fn(
             self: *const ISClusApplication,
             bstrClusterName: ?BSTR,
             pCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_DomainNames(self: *const ISClusApplication, ppDomains: ?*?*ISDomainNames) callconv(.Inline) HRESULT {
+    pub fn get_DomainNames(self: *const ISClusApplication, ppDomains: ?*?*ISDomainNames) HRESULT {
         return self.vtable.get_DomainNames(self, ppDomains);
     }
-    pub fn get_ClusterNames(self: *const ISClusApplication, bstrDomainName: ?BSTR, ppClusters: ?*?*ISClusterNames) callconv(.Inline) HRESULT {
+    pub fn get_ClusterNames(self: *const ISClusApplication, bstrDomainName: ?BSTR, ppClusters: ?*?*ISClusterNames) HRESULT {
         return self.vtable.get_ClusterNames(self, bstrDomainName, ppClusters);
     }
-    pub fn OpenCluster(self: *const ISClusApplication, bstrClusterName: ?BSTR, pCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
+    pub fn OpenCluster(self: *const ISClusApplication, bstrClusterName: ?BSTR, pCluster: ?*?*ISCluster) HRESULT {
         return self.vtable.OpenCluster(self, bstrClusterName, pCluster);
     }
 };
@@ -6957,34 +6957,34 @@ pub const ISDomainNames = extern union {
         get_Count: *const fn(
             self: *const ISDomainNames,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISDomainNames,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISDomainNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISDomainNames,
             varIndex: VARIANT,
             pbstrDomainName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISDomainNames, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISDomainNames, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISDomainNames, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISDomainNames, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISDomainNames) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISDomainNames) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISDomainNames, varIndex: VARIANT, pbstrDomainName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISDomainNames, varIndex: VARIANT, pbstrDomainName: ?*?BSTR) HRESULT {
         return self.vtable.get_Item(self, varIndex, pbstrDomainName);
     }
 };
@@ -6998,42 +6998,42 @@ pub const ISClusterNames = extern union {
         get_Count: *const fn(
             self: *const ISClusterNames,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusterNames,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusterNames,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusterNames,
             varIndex: VARIANT,
             pbstrClusterName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DomainName: *const fn(
             self: *const ISClusterNames,
             pbstrDomainName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusterNames, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusterNames, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusterNames, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusterNames, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusterNames) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusterNames) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusterNames, varIndex: VARIANT, pbstrClusterName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusterNames, varIndex: VARIANT, pbstrClusterName: ?*?BSTR) HRESULT {
         return self.vtable.get_Item(self, varIndex, pbstrClusterName);
     }
-    pub fn get_DomainName(self: *const ISClusterNames, pbstrDomainName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DomainName(self: *const ISClusterNames, pbstrDomainName: ?*?BSTR) HRESULT {
         return self.vtable.get_DomainName(self, pbstrDomainName);
     }
 };
@@ -7047,12 +7047,12 @@ pub const ISClusRefObject = extern union {
         get_Handle: *const fn(
             self: *const ISClusRefObject,
             phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Handle(self: *const ISClusRefObject, phandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const ISClusRefObject, phandle: ?*usize) HRESULT {
         return self.vtable.get_Handle(self, phandle);
     }
 };
@@ -7066,84 +7066,84 @@ pub const ISClusVersion = extern union {
         get_Name: *const fn(
             self: *const ISClusVersion,
             pbstrClusterName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MajorVersion: *const fn(
             self: *const ISClusVersion,
             pnMajorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MinorVersion: *const fn(
             self: *const ISClusVersion,
             pnMinorVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_BuildNumber: *const fn(
             self: *const ISClusVersion,
             pnBuildNumber: ?*i16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VendorId: *const fn(
             self: *const ISClusVersion,
             pbstrVendorId: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CSDVersion: *const fn(
             self: *const ISClusVersion,
             pbstrCSDVersion: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClusterHighestVersion: *const fn(
             self: *const ISClusVersion,
             pnClusterHighestVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClusterLowestVersion: *const fn(
             self: *const ISClusVersion,
             pnClusterLowestVersion: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Flags: *const fn(
             self: *const ISClusVersion,
             pnFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MixedVersion: *const fn(
             self: *const ISClusVersion,
             pvarMixedVersion: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ISClusVersion, pbstrClusterName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusVersion, pbstrClusterName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrClusterName);
     }
-    pub fn get_MajorVersion(self: *const ISClusVersion, pnMajorVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MajorVersion(self: *const ISClusVersion, pnMajorVersion: ?*i32) HRESULT {
         return self.vtable.get_MajorVersion(self, pnMajorVersion);
     }
-    pub fn get_MinorVersion(self: *const ISClusVersion, pnMinorVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MinorVersion(self: *const ISClusVersion, pnMinorVersion: ?*i32) HRESULT {
         return self.vtable.get_MinorVersion(self, pnMinorVersion);
     }
-    pub fn get_BuildNumber(self: *const ISClusVersion, pnBuildNumber: ?*i16) callconv(.Inline) HRESULT {
+    pub fn get_BuildNumber(self: *const ISClusVersion, pnBuildNumber: ?*i16) HRESULT {
         return self.vtable.get_BuildNumber(self, pnBuildNumber);
     }
-    pub fn get_VendorId(self: *const ISClusVersion, pbstrVendorId: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_VendorId(self: *const ISClusVersion, pbstrVendorId: ?*?BSTR) HRESULT {
         return self.vtable.get_VendorId(self, pbstrVendorId);
     }
-    pub fn get_CSDVersion(self: *const ISClusVersion, pbstrCSDVersion: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_CSDVersion(self: *const ISClusVersion, pbstrCSDVersion: ?*?BSTR) HRESULT {
         return self.vtable.get_CSDVersion(self, pbstrCSDVersion);
     }
-    pub fn get_ClusterHighestVersion(self: *const ISClusVersion, pnClusterHighestVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ClusterHighestVersion(self: *const ISClusVersion, pnClusterHighestVersion: ?*i32) HRESULT {
         return self.vtable.get_ClusterHighestVersion(self, pnClusterHighestVersion);
     }
-    pub fn get_ClusterLowestVersion(self: *const ISClusVersion, pnClusterLowestVersion: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ClusterLowestVersion(self: *const ISClusVersion, pnClusterLowestVersion: ?*i32) HRESULT {
         return self.vtable.get_ClusterLowestVersion(self, pnClusterLowestVersion);
     }
-    pub fn get_Flags(self: *const ISClusVersion, pnFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const ISClusVersion, pnFlags: ?*i32) HRESULT {
         return self.vtable.get_Flags(self, pnFlags);
     }
-    pub fn get_MixedVersion(self: *const ISClusVersion, pvarMixedVersion: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_MixedVersion(self: *const ISClusVersion, pvarMixedVersion: ?*VARIANT) HRESULT {
         return self.vtable.get_MixedVersion(self, pvarMixedVersion);
     }
 };
@@ -7157,171 +7157,171 @@ pub const ISCluster = extern union {
         get_CommonProperties: *const fn(
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
             self: *const ISCluster,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const ISCluster,
             phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Open: *const fn(
             self: *const ISCluster,
             bstrClusterName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISCluster,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const ISCluster,
             bstrClusterName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Version: *const fn(
             self: *const ISCluster,
             ppClusVersion: ?*?*ISClusVersion,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuorumResource: *const fn(
             self: *const ISCluster,
             pClusterResource: ?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuorumResource: *const fn(
             self: *const ISCluster,
             pClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuorumLogSize: *const fn(
             self: *const ISCluster,
             pnLogSize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuorumLogSize: *const fn(
             self: *const ISCluster,
             nLogSize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_QuorumPath: *const fn(
             self: *const ISCluster,
             ppPath: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_QuorumPath: *const fn(
             self: *const ISCluster,
             pPath: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Nodes: *const fn(
             self: *const ISCluster,
             ppNodes: ?*?*ISClusNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourceGroups: *const fn(
             self: *const ISCluster,
             ppClusterResourceGroups: ?*?*ISClusResGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Resources: *const fn(
             self: *const ISCluster,
             ppClusterResources: ?*?*ISClusResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourceTypes: *const fn(
             self: *const ISCluster,
             ppResourceTypes: ?*?*ISClusResTypes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Networks: *const fn(
             self: *const ISCluster,
             ppNetworks: ?*?*ISClusNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetInterfaces: *const fn(
             self: *const ISCluster,
             ppNetInterfaces: ?*?*ISClusNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISCluster, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Handle(self: *const ISCluster, phandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const ISCluster, phandle: ?*usize) HRESULT {
         return self.vtable.get_Handle(self, phandle);
     }
-    pub fn Open(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn Open(self: *const ISCluster, bstrClusterName: ?BSTR) HRESULT {
         return self.vtable.Open(self, bstrClusterName);
     }
-    pub fn get_Name(self: *const ISCluster, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISCluster, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const ISCluster, bstrClusterName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const ISCluster, bstrClusterName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrClusterName);
     }
-    pub fn get_Version(self: *const ISCluster, ppClusVersion: ?*?*ISClusVersion) callconv(.Inline) HRESULT {
+    pub fn get_Version(self: *const ISCluster, ppClusVersion: ?*?*ISClusVersion) HRESULT {
         return self.vtable.get_Version(self, ppClusVersion);
     }
-    pub fn put_QuorumResource(self: *const ISCluster, pClusterResource: ?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn put_QuorumResource(self: *const ISCluster, pClusterResource: ?*ISClusResource) HRESULT {
         return self.vtable.put_QuorumResource(self, pClusterResource);
     }
-    pub fn get_QuorumResource(self: *const ISCluster, pClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn get_QuorumResource(self: *const ISCluster, pClusterResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.get_QuorumResource(self, pClusterResource);
     }
-    pub fn get_QuorumLogSize(self: *const ISCluster, pnLogSize: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_QuorumLogSize(self: *const ISCluster, pnLogSize: ?*i32) HRESULT {
         return self.vtable.get_QuorumLogSize(self, pnLogSize);
     }
-    pub fn put_QuorumLogSize(self: *const ISCluster, nLogSize: i32) callconv(.Inline) HRESULT {
+    pub fn put_QuorumLogSize(self: *const ISCluster, nLogSize: i32) HRESULT {
         return self.vtable.put_QuorumLogSize(self, nLogSize);
     }
-    pub fn get_QuorumPath(self: *const ISCluster, ppPath: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_QuorumPath(self: *const ISCluster, ppPath: ?*?BSTR) HRESULT {
         return self.vtable.get_QuorumPath(self, ppPath);
     }
-    pub fn put_QuorumPath(self: *const ISCluster, pPath: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_QuorumPath(self: *const ISCluster, pPath: ?BSTR) HRESULT {
         return self.vtable.put_QuorumPath(self, pPath);
     }
-    pub fn get_Nodes(self: *const ISCluster, ppNodes: ?*?*ISClusNodes) callconv(.Inline) HRESULT {
+    pub fn get_Nodes(self: *const ISCluster, ppNodes: ?*?*ISClusNodes) HRESULT {
         return self.vtable.get_Nodes(self, ppNodes);
     }
-    pub fn get_ResourceGroups(self: *const ISCluster, ppClusterResourceGroups: ?*?*ISClusResGroups) callconv(.Inline) HRESULT {
+    pub fn get_ResourceGroups(self: *const ISCluster, ppClusterResourceGroups: ?*?*ISClusResGroups) HRESULT {
         return self.vtable.get_ResourceGroups(self, ppClusterResourceGroups);
     }
-    pub fn get_Resources(self: *const ISCluster, ppClusterResources: ?*?*ISClusResources) callconv(.Inline) HRESULT {
+    pub fn get_Resources(self: *const ISCluster, ppClusterResources: ?*?*ISClusResources) HRESULT {
         return self.vtable.get_Resources(self, ppClusterResources);
     }
-    pub fn get_ResourceTypes(self: *const ISCluster, ppResourceTypes: ?*?*ISClusResTypes) callconv(.Inline) HRESULT {
+    pub fn get_ResourceTypes(self: *const ISCluster, ppResourceTypes: ?*?*ISClusResTypes) HRESULT {
         return self.vtable.get_ResourceTypes(self, ppResourceTypes);
     }
-    pub fn get_Networks(self: *const ISCluster, ppNetworks: ?*?*ISClusNetworks) callconv(.Inline) HRESULT {
+    pub fn get_Networks(self: *const ISCluster, ppNetworks: ?*?*ISClusNetworks) HRESULT {
         return self.vtable.get_Networks(self, ppNetworks);
     }
-    pub fn get_NetInterfaces(self: *const ISCluster, ppNetInterfaces: ?*?*ISClusNetInterfaces) callconv(.Inline) HRESULT {
+    pub fn get_NetInterfaces(self: *const ISCluster, ppNetInterfaces: ?*?*ISClusNetInterfaces) HRESULT {
         return self.vtable.get_NetInterfaces(self, ppNetInterfaces);
     }
 };
@@ -7335,110 +7335,110 @@ pub const ISClusNode = extern union {
         get_CommonProperties: *const fn(
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
             self: *const ISClusNode,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISClusNode,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const ISClusNode,
             phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NodeID: *const fn(
             self: *const ISClusNode,
             pbstrNodeID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISClusNode,
             dwState: ?*CLUSTER_NODE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Pause: *const fn(
             self: *const ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Resume: *const fn(
             self: *const ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Evict: *const fn(
             self: *const ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ResourceGroups: *const fn(
             self: *const ISClusNode,
             ppResourceGroups: ?*?*ISClusResGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cluster: *const fn(
             self: *const ISClusNode,
             ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetInterfaces: *const fn(
             self: *const ISClusNode,
             ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonROProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISClusNode, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Name(self: *const ISClusNode, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusNode, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_Handle(self: *const ISClusNode, phandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const ISClusNode, phandle: ?*usize) HRESULT {
         return self.vtable.get_Handle(self, phandle);
     }
-    pub fn get_NodeID(self: *const ISClusNode, pbstrNodeID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_NodeID(self: *const ISClusNode, pbstrNodeID: ?*?BSTR) HRESULT {
         return self.vtable.get_NodeID(self, pbstrNodeID);
     }
-    pub fn get_State(self: *const ISClusNode, dwState: ?*CLUSTER_NODE_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISClusNode, dwState: ?*CLUSTER_NODE_STATE) HRESULT {
         return self.vtable.get_State(self, dwState);
     }
-    pub fn Pause(self: *const ISClusNode) callconv(.Inline) HRESULT {
+    pub fn Pause(self: *const ISClusNode) HRESULT {
         return self.vtable.Pause(self);
     }
-    pub fn Resume(self: *const ISClusNode) callconv(.Inline) HRESULT {
+    pub fn Resume(self: *const ISClusNode) HRESULT {
         return self.vtable.Resume(self);
     }
-    pub fn Evict(self: *const ISClusNode) callconv(.Inline) HRESULT {
+    pub fn Evict(self: *const ISClusNode) HRESULT {
         return self.vtable.Evict(self);
     }
-    pub fn get_ResourceGroups(self: *const ISClusNode, ppResourceGroups: ?*?*ISClusResGroups) callconv(.Inline) HRESULT {
+    pub fn get_ResourceGroups(self: *const ISClusNode, ppResourceGroups: ?*?*ISClusResGroups) HRESULT {
         return self.vtable.get_ResourceGroups(self, ppResourceGroups);
     }
-    pub fn get_Cluster(self: *const ISClusNode, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
+    pub fn get_Cluster(self: *const ISClusNode, ppCluster: ?*?*ISCluster) HRESULT {
         return self.vtable.get_Cluster(self, ppCluster);
     }
-    pub fn get_NetInterfaces(self: *const ISClusNode, ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces) callconv(.Inline) HRESULT {
+    pub fn get_NetInterfaces(self: *const ISClusNode, ppClusNetInterfaces: ?*?*ISClusNodeNetInterfaces) HRESULT {
         return self.vtable.get_NetInterfaces(self, ppClusNetInterfaces);
     }
 };
@@ -7452,34 +7452,34 @@ pub const ISClusNodes = extern union {
         get_Count: *const fn(
             self: *const ISClusNodes,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusNodes,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusNodes, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusNodes, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusNodes) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusNodes) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppNode);
     }
 };
@@ -7493,92 +7493,92 @@ pub const ISClusNetwork = extern union {
         get_CommonProperties: *const fn(
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
             self: *const ISClusNetwork,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const ISClusNetwork,
             phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISClusNetwork,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const ISClusNetwork,
             bstrNetworkName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetworkID: *const fn(
             self: *const ISClusNetwork,
             pbstrNetworkID: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISClusNetwork,
             dwState: ?*CLUSTER_NETWORK_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_NetInterfaces: *const fn(
             self: *const ISClusNetwork,
             ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cluster: *const fn(
             self: *const ISClusNetwork,
             ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISClusNetwork, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Handle(self: *const ISClusNetwork, phandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const ISClusNetwork, phandle: ?*usize) HRESULT {
         return self.vtable.get_Handle(self, phandle);
     }
-    pub fn get_Name(self: *const ISClusNetwork, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusNetwork, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const ISClusNetwork, bstrNetworkName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const ISClusNetwork, bstrNetworkName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrNetworkName);
     }
-    pub fn get_NetworkID(self: *const ISClusNetwork, pbstrNetworkID: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_NetworkID(self: *const ISClusNetwork, pbstrNetworkID: ?*?BSTR) HRESULT {
         return self.vtable.get_NetworkID(self, pbstrNetworkID);
     }
-    pub fn get_State(self: *const ISClusNetwork, dwState: ?*CLUSTER_NETWORK_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISClusNetwork, dwState: ?*CLUSTER_NETWORK_STATE) HRESULT {
         return self.vtable.get_State(self, dwState);
     }
-    pub fn get_NetInterfaces(self: *const ISClusNetwork, ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces) callconv(.Inline) HRESULT {
+    pub fn get_NetInterfaces(self: *const ISClusNetwork, ppClusNetInterfaces: ?*?*ISClusNetworkNetInterfaces) HRESULT {
         return self.vtable.get_NetInterfaces(self, ppClusNetInterfaces);
     }
-    pub fn get_Cluster(self: *const ISClusNetwork, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
+    pub fn get_Cluster(self: *const ISClusNetwork, ppCluster: ?*?*ISCluster) HRESULT {
         return self.vtable.get_Cluster(self, ppCluster);
     }
 };
@@ -7592,34 +7592,34 @@ pub const ISClusNetworks = extern union {
         get_Count: *const fn(
             self: *const ISClusNetworks,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusNetworks,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusNetworks,
             varIndex: VARIANT,
             ppClusNetwork: ?*?*ISClusNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNetworks, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusNetworks, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusNetworks, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusNetworks, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusNetworks) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusNetworks) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusNetworks, varIndex: VARIANT, ppClusNetwork: ?*?*ISClusNetwork) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusNetworks, varIndex: VARIANT, ppClusNetwork: ?*?*ISClusNetwork) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusNetwork);
     }
 };
@@ -7633,68 +7633,68 @@ pub const ISClusNetInterface = extern union {
         get_CommonProperties: *const fn(
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
             self: *const ISClusNetInterface,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISClusNetInterface,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const ISClusNetInterface,
             phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISClusNetInterface,
             dwState: ?*CLUSTER_NETINTERFACE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cluster: *const fn(
             self: *const ISClusNetInterface,
             ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISClusNetInterface, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Name(self: *const ISClusNetInterface, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusNetInterface, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_Handle(self: *const ISClusNetInterface, phandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const ISClusNetInterface, phandle: ?*usize) HRESULT {
         return self.vtable.get_Handle(self, phandle);
     }
-    pub fn get_State(self: *const ISClusNetInterface, dwState: ?*CLUSTER_NETINTERFACE_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISClusNetInterface, dwState: ?*CLUSTER_NETINTERFACE_STATE) HRESULT {
         return self.vtable.get_State(self, dwState);
     }
-    pub fn get_Cluster(self: *const ISClusNetInterface, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
+    pub fn get_Cluster(self: *const ISClusNetInterface, ppCluster: ?*?*ISCluster) HRESULT {
         return self.vtable.get_Cluster(self, ppCluster);
     }
 };
@@ -7708,34 +7708,34 @@ pub const ISClusNetInterfaces = extern union {
         get_Count: *const fn(
             self: *const ISClusNetInterfaces,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusNetInterfaces,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusNetInterfaces,
             varIndex: VARIANT,
             ppClusNetInterface: ?*?*ISClusNetInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNetInterfaces, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusNetInterfaces, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusNetInterfaces, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusNetInterfaces, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusNetInterfaces) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusNetInterfaces) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
     }
 };
@@ -7749,34 +7749,34 @@ pub const ISClusNodeNetInterfaces = extern union {
         get_Count: *const fn(
             self: *const ISClusNodeNetInterfaces,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusNodeNetInterfaces,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusNodeNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusNodeNetInterfaces,
             varIndex: VARIANT,
             ppClusNetInterface: ?*?*ISClusNetInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNodeNetInterfaces, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusNodeNetInterfaces, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusNodeNetInterfaces, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusNodeNetInterfaces, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusNodeNetInterfaces) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusNodeNetInterfaces) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusNodeNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusNodeNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
     }
 };
@@ -7790,34 +7790,34 @@ pub const ISClusNetworkNetInterfaces = extern union {
         get_Count: *const fn(
             self: *const ISClusNetworkNetInterfaces,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusNetworkNetInterfaces,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusNetworkNetInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusNetworkNetInterfaces,
             varIndex: VARIANT,
             ppClusNetInterface: ?*?*ISClusNetInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusNetworkNetInterfaces, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusNetworkNetInterfaces, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusNetworkNetInterfaces, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusNetworkNetInterfaces, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusNetworkNetInterfaces) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusNetworkNetInterfaces) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusNetworkNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusNetworkNetInterfaces, varIndex: VARIANT, ppClusNetInterface: ?*?*ISClusNetInterface) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusNetInterface);
     }
 };
@@ -7831,132 +7831,132 @@ pub const ISClusResGroup = extern union {
         get_CommonProperties: *const fn(
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
             self: *const ISClusResGroup,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const ISClusResGroup,
             phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISClusResGroup,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const ISClusResGroup,
             bstrGroupName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISClusResGroup,
             dwState: ?*CLUSTER_GROUP_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerNode: *const fn(
             self: *const ISClusResGroup,
             ppOwnerNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Resources: *const fn(
             self: *const ISClusResGroup,
             ppClusterGroupResources: ?*?*ISClusResGroupResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PreferredOwnerNodes: *const fn(
             self: *const ISClusResGroup,
             ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Online: *const fn(
             self: *const ISClusResGroup,
             varTimeout: VARIANT,
             varNode: VARIANT,
             pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Move: *const fn(
             self: *const ISClusResGroup,
             varTimeout: VARIANT,
             varNode: VARIANT,
             pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Offline: *const fn(
             self: *const ISClusResGroup,
             varTimeout: VARIANT,
             pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cluster: *const fn(
             self: *const ISClusResGroup,
             ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonROProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISClusResGroup, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Handle(self: *const ISClusResGroup, phandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const ISClusResGroup, phandle: ?*usize) HRESULT {
         return self.vtable.get_Handle(self, phandle);
     }
-    pub fn get_Name(self: *const ISClusResGroup, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusResGroup, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const ISClusResGroup, bstrGroupName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const ISClusResGroup, bstrGroupName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrGroupName);
     }
-    pub fn get_State(self: *const ISClusResGroup, dwState: ?*CLUSTER_GROUP_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISClusResGroup, dwState: ?*CLUSTER_GROUP_STATE) HRESULT {
         return self.vtable.get_State(self, dwState);
     }
-    pub fn get_OwnerNode(self: *const ISClusResGroup, ppOwnerNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn get_OwnerNode(self: *const ISClusResGroup, ppOwnerNode: ?*?*ISClusNode) HRESULT {
         return self.vtable.get_OwnerNode(self, ppOwnerNode);
     }
-    pub fn get_Resources(self: *const ISClusResGroup, ppClusterGroupResources: ?*?*ISClusResGroupResources) callconv(.Inline) HRESULT {
+    pub fn get_Resources(self: *const ISClusResGroup, ppClusterGroupResources: ?*?*ISClusResGroupResources) HRESULT {
         return self.vtable.get_Resources(self, ppClusterGroupResources);
     }
-    pub fn get_PreferredOwnerNodes(self: *const ISClusResGroup, ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes) callconv(.Inline) HRESULT {
+    pub fn get_PreferredOwnerNodes(self: *const ISClusResGroup, ppOwnerNodes: ?*?*ISClusResGroupPreferredOwnerNodes) HRESULT {
         return self.vtable.get_PreferredOwnerNodes(self, ppOwnerNodes);
     }
-    pub fn Delete(self: *const ISClusResGroup) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const ISClusResGroup) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Online(self: *const ISClusResGroup, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Online(self: *const ISClusResGroup, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) HRESULT {
         return self.vtable.Online(self, varTimeout, varNode, pvarPending);
     }
-    pub fn Move(self: *const ISClusResGroup, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Move(self: *const ISClusResGroup, varTimeout: VARIANT, varNode: VARIANT, pvarPending: ?*VARIANT) HRESULT {
         return self.vtable.Move(self, varTimeout, varNode, pvarPending);
     }
-    pub fn Offline(self: *const ISClusResGroup, varTimeout: VARIANT, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Offline(self: *const ISClusResGroup, varTimeout: VARIANT, pvarPending: ?*VARIANT) HRESULT {
         return self.vtable.Offline(self, varTimeout, pvarPending);
     }
-    pub fn get_Cluster(self: *const ISClusResGroup, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
+    pub fn get_Cluster(self: *const ISClusResGroup, ppCluster: ?*?*ISCluster) HRESULT {
         return self.vtable.get_Cluster(self, ppCluster);
     }
 };
@@ -7970,49 +7970,49 @@ pub const ISClusResGroups = extern union {
         get_Count: *const fn(
             self: *const ISClusResGroups,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResGroups,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResGroups,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResGroups,
             varIndex: VARIANT,
             ppClusResGroup: ?*?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusResGroups,
             bstrResourceGroupName: ?BSTR,
             ppResourceGroup: ?*?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const ISClusResGroups,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResGroups, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResGroups, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResGroups, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResGroups, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResGroups) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResGroups) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResGroups, varIndex: VARIANT, ppClusResGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResGroups, varIndex: VARIANT, ppClusResGroup: ?*?*ISClusResGroup) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusResGroup);
     }
-    pub fn CreateItem(self: *const ISClusResGroups, bstrResourceGroupName: ?BSTR, ppResourceGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusResGroups, bstrResourceGroupName: ?BSTR, ppResourceGroup: ?*?*ISClusResGroup) HRESULT {
         return self.vtable.CreateItem(self, bstrResourceGroupName, ppResourceGroup);
     }
-    pub fn DeleteItem(self: *const ISClusResGroups, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const ISClusResGroups, varIndex: VARIANT) HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
     }
 };
@@ -8026,253 +8026,253 @@ pub const ISClusResource = extern union {
         get_CommonProperties: *const fn(
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
             self: *const ISClusResource,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Handle: *const fn(
             self: *const ISClusResource,
             phandle: ?*usize,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISClusResource,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Name: *const fn(
             self: *const ISClusResource,
             bstrResourceName: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_State: *const fn(
             self: *const ISClusResource,
             dwState: ?*CLUSTER_RESOURCE_STATE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CoreFlag: *const fn(
             self: *const ISClusResource,
             dwCoreFlag: ?*CLUS_FLAGS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         BecomeQuorumResource: *const fn(
             self: *const ISClusResource,
             bstrDevicePath: ?BSTR,
             lMaxLogSize: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Fail: *const fn(
             self: *const ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Online: *const fn(
             self: *const ISClusResource,
             nTimeout: i32,
             pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Offline: *const fn(
             self: *const ISClusResource,
             nTimeout: i32,
             pvarPending: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ChangeResourceGroup: *const fn(
             self: *const ISClusResource,
             pResourceGroup: ?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddResourceNode: *const fn(
             self: *const ISClusResource,
             pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveResourceNode: *const fn(
             self: *const ISClusResource,
             pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CanResourceBeDependent: *const fn(
             self: *const ISClusResource,
             pResource: ?*ISClusResource,
             pvarDependent: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PossibleOwnerNodes: *const fn(
             self: *const ISClusResource,
             ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dependencies: *const fn(
             self: *const ISClusResource,
             ppResDependencies: ?*?*ISClusResDependencies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Dependents: *const fn(
             self: *const ISClusResource,
             ppResDependents: ?*?*ISClusResDependents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Group: *const fn(
             self: *const ISClusResource,
             ppResGroup: ?*?*ISClusResGroup,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_OwnerNode: *const fn(
             self: *const ISClusResource,
             ppOwnerNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cluster: *const fn(
             self: *const ISClusResource,
             ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ClassInfo: *const fn(
             self: *const ISClusResource,
             prcClassInfo: ?*CLUSTER_RESOURCE_CLASS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Disk: *const fn(
             self: *const ISClusResource,
             ppDisk: ?*?*ISClusDisk,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_RegistryKeys: *const fn(
             self: *const ISClusResource,
             ppRegistryKeys: ?*?*ISClusRegistryKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CryptoKeys: *const fn(
             self: *const ISClusResource,
             ppCryptoKeys: ?*?*ISClusCryptoKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TypeName: *const fn(
             self: *const ISClusResource,
             pbstrTypeName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const ISClusResource,
             ppResourceType: ?*?*ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaintenanceMode: *const fn(
             self: *const ISClusResource,
             pbMaintenanceMode: ?*BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_MaintenanceMode: *const fn(
             self: *const ISClusResource,
             bMaintenanceMode: BOOL,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonROProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISClusResource, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Handle(self: *const ISClusResource, phandle: ?*usize) callconv(.Inline) HRESULT {
+    pub fn get_Handle(self: *const ISClusResource, phandle: ?*usize) HRESULT {
         return self.vtable.get_Handle(self, phandle);
     }
-    pub fn get_Name(self: *const ISClusResource, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusResource, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn put_Name(self: *const ISClusResource, bstrResourceName: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn put_Name(self: *const ISClusResource, bstrResourceName: ?BSTR) HRESULT {
         return self.vtable.put_Name(self, bstrResourceName);
     }
-    pub fn get_State(self: *const ISClusResource, dwState: ?*CLUSTER_RESOURCE_STATE) callconv(.Inline) HRESULT {
+    pub fn get_State(self: *const ISClusResource, dwState: ?*CLUSTER_RESOURCE_STATE) HRESULT {
         return self.vtable.get_State(self, dwState);
     }
-    pub fn get_CoreFlag(self: *const ISClusResource, dwCoreFlag: ?*CLUS_FLAGS) callconv(.Inline) HRESULT {
+    pub fn get_CoreFlag(self: *const ISClusResource, dwCoreFlag: ?*CLUS_FLAGS) HRESULT {
         return self.vtable.get_CoreFlag(self, dwCoreFlag);
     }
-    pub fn BecomeQuorumResource(self: *const ISClusResource, bstrDevicePath: ?BSTR, lMaxLogSize: i32) callconv(.Inline) HRESULT {
+    pub fn BecomeQuorumResource(self: *const ISClusResource, bstrDevicePath: ?BSTR, lMaxLogSize: i32) HRESULT {
         return self.vtable.BecomeQuorumResource(self, bstrDevicePath, lMaxLogSize);
     }
-    pub fn Delete(self: *const ISClusResource) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const ISClusResource) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn Fail(self: *const ISClusResource) callconv(.Inline) HRESULT {
+    pub fn Fail(self: *const ISClusResource) HRESULT {
         return self.vtable.Fail(self);
     }
-    pub fn Online(self: *const ISClusResource, nTimeout: i32, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Online(self: *const ISClusResource, nTimeout: i32, pvarPending: ?*VARIANT) HRESULT {
         return self.vtable.Online(self, nTimeout, pvarPending);
     }
-    pub fn Offline(self: *const ISClusResource, nTimeout: i32, pvarPending: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn Offline(self: *const ISClusResource, nTimeout: i32, pvarPending: ?*VARIANT) HRESULT {
         return self.vtable.Offline(self, nTimeout, pvarPending);
     }
-    pub fn ChangeResourceGroup(self: *const ISClusResource, pResourceGroup: ?*ISClusResGroup) callconv(.Inline) HRESULT {
+    pub fn ChangeResourceGroup(self: *const ISClusResource, pResourceGroup: ?*ISClusResGroup) HRESULT {
         return self.vtable.ChangeResourceGroup(self, pResourceGroup);
     }
-    pub fn AddResourceNode(self: *const ISClusResource, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn AddResourceNode(self: *const ISClusResource, pNode: ?*ISClusNode) HRESULT {
         return self.vtable.AddResourceNode(self, pNode);
     }
-    pub fn RemoveResourceNode(self: *const ISClusResource, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn RemoveResourceNode(self: *const ISClusResource, pNode: ?*ISClusNode) HRESULT {
         return self.vtable.RemoveResourceNode(self, pNode);
     }
-    pub fn CanResourceBeDependent(self: *const ISClusResource, pResource: ?*ISClusResource, pvarDependent: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn CanResourceBeDependent(self: *const ISClusResource, pResource: ?*ISClusResource, pvarDependent: ?*VARIANT) HRESULT {
         return self.vtable.CanResourceBeDependent(self, pResource, pvarDependent);
     }
-    pub fn get_PossibleOwnerNodes(self: *const ISClusResource, ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes) callconv(.Inline) HRESULT {
+    pub fn get_PossibleOwnerNodes(self: *const ISClusResource, ppOwnerNodes: ?*?*ISClusResPossibleOwnerNodes) HRESULT {
         return self.vtable.get_PossibleOwnerNodes(self, ppOwnerNodes);
     }
-    pub fn get_Dependencies(self: *const ISClusResource, ppResDependencies: ?*?*ISClusResDependencies) callconv(.Inline) HRESULT {
+    pub fn get_Dependencies(self: *const ISClusResource, ppResDependencies: ?*?*ISClusResDependencies) HRESULT {
         return self.vtable.get_Dependencies(self, ppResDependencies);
     }
-    pub fn get_Dependents(self: *const ISClusResource, ppResDependents: ?*?*ISClusResDependents) callconv(.Inline) HRESULT {
+    pub fn get_Dependents(self: *const ISClusResource, ppResDependents: ?*?*ISClusResDependents) HRESULT {
         return self.vtable.get_Dependents(self, ppResDependents);
     }
-    pub fn get_Group(self: *const ISClusResource, ppResGroup: ?*?*ISClusResGroup) callconv(.Inline) HRESULT {
+    pub fn get_Group(self: *const ISClusResource, ppResGroup: ?*?*ISClusResGroup) HRESULT {
         return self.vtable.get_Group(self, ppResGroup);
     }
-    pub fn get_OwnerNode(self: *const ISClusResource, ppOwnerNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn get_OwnerNode(self: *const ISClusResource, ppOwnerNode: ?*?*ISClusNode) HRESULT {
         return self.vtable.get_OwnerNode(self, ppOwnerNode);
     }
-    pub fn get_Cluster(self: *const ISClusResource, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
+    pub fn get_Cluster(self: *const ISClusResource, ppCluster: ?*?*ISCluster) HRESULT {
         return self.vtable.get_Cluster(self, ppCluster);
     }
-    pub fn get_ClassInfo(self: *const ISClusResource, prcClassInfo: ?*CLUSTER_RESOURCE_CLASS) callconv(.Inline) HRESULT {
+    pub fn get_ClassInfo(self: *const ISClusResource, prcClassInfo: ?*CLUSTER_RESOURCE_CLASS) HRESULT {
         return self.vtable.get_ClassInfo(self, prcClassInfo);
     }
-    pub fn get_Disk(self: *const ISClusResource, ppDisk: ?*?*ISClusDisk) callconv(.Inline) HRESULT {
+    pub fn get_Disk(self: *const ISClusResource, ppDisk: ?*?*ISClusDisk) HRESULT {
         return self.vtable.get_Disk(self, ppDisk);
     }
-    pub fn get_RegistryKeys(self: *const ISClusResource, ppRegistryKeys: ?*?*ISClusRegistryKeys) callconv(.Inline) HRESULT {
+    pub fn get_RegistryKeys(self: *const ISClusResource, ppRegistryKeys: ?*?*ISClusRegistryKeys) HRESULT {
         return self.vtable.get_RegistryKeys(self, ppRegistryKeys);
     }
-    pub fn get_CryptoKeys(self: *const ISClusResource, ppCryptoKeys: ?*?*ISClusCryptoKeys) callconv(.Inline) HRESULT {
+    pub fn get_CryptoKeys(self: *const ISClusResource, ppCryptoKeys: ?*?*ISClusCryptoKeys) HRESULT {
         return self.vtable.get_CryptoKeys(self, ppCryptoKeys);
     }
-    pub fn get_TypeName(self: *const ISClusResource, pbstrTypeName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_TypeName(self: *const ISClusResource, pbstrTypeName: ?*?BSTR) HRESULT {
         return self.vtable.get_TypeName(self, pbstrTypeName);
     }
-    pub fn get_Type(self: *const ISClusResource, ppResourceType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ISClusResource, ppResourceType: ?*?*ISClusResType) HRESULT {
         return self.vtable.get_Type(self, ppResourceType);
     }
-    pub fn get_MaintenanceMode(self: *const ISClusResource, pbMaintenanceMode: ?*BOOL) callconv(.Inline) HRESULT {
+    pub fn get_MaintenanceMode(self: *const ISClusResource, pbMaintenanceMode: ?*BOOL) HRESULT {
         return self.vtable.get_MaintenanceMode(self, pbMaintenanceMode);
     }
-    pub fn put_MaintenanceMode(self: *const ISClusResource, bMaintenanceMode: BOOL) callconv(.Inline) HRESULT {
+    pub fn put_MaintenanceMode(self: *const ISClusResource, bMaintenanceMode: BOOL) HRESULT {
         return self.vtable.put_MaintenanceMode(self, bMaintenanceMode);
     }
 };
@@ -8286,65 +8286,65 @@ pub const ISClusResDependencies = extern union {
         get_Count: *const fn(
             self: *const ISClusResDependencies,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResDependencies,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResDependencies,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResDependencies,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusResDependencies,
             bstrResourceName: ?BSTR,
             bstrResourceType: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const ISClusResDependencies,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItem: *const fn(
             self: *const ISClusResDependencies,
             pResource: ?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusResDependencies,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResDependencies, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResDependencies, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResDependencies, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResDependencies, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResDependencies) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResDependencies) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResDependencies, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResDependencies, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
-    pub fn CreateItem(self: *const ISClusResDependencies, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusResDependencies, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
     }
-    pub fn DeleteItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const ISClusResDependencies, varIndex: VARIANT) HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
     }
-    pub fn AddItem(self: *const ISClusResDependencies, pResource: ?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const ISClusResDependencies, pResource: ?*ISClusResource) HRESULT {
         return self.vtable.AddItem(self, pResource);
     }
-    pub fn RemoveItem(self: *const ISClusResDependencies, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusResDependencies, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
 };
@@ -8358,51 +8358,51 @@ pub const ISClusResGroupResources = extern union {
         get_Count: *const fn(
             self: *const ISClusResGroupResources,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResGroupResources,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResGroupResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResGroupResources,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusResGroupResources,
             bstrResourceName: ?BSTR,
             bstrResourceType: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const ISClusResGroupResources,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResGroupResources, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResGroupResources, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResGroupResources, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResGroupResources, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResGroupResources) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResGroupResources) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResGroupResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResGroupResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
-    pub fn CreateItem(self: *const ISClusResGroupResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusResGroupResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
     }
-    pub fn DeleteItem(self: *const ISClusResGroupResources, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const ISClusResGroupResources, varIndex: VARIANT) HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
     }
 };
@@ -8416,51 +8416,51 @@ pub const ISClusResTypeResources = extern union {
         get_Count: *const fn(
             self: *const ISClusResTypeResources,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResTypeResources,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResTypeResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResTypeResources,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusResTypeResources,
             bstrResourceName: ?BSTR,
             bstrGroupName: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const ISClusResTypeResources,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResTypeResources, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResTypeResources, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResTypeResources, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResTypeResources, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResTypeResources) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResTypeResources) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResTypeResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResTypeResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
-    pub fn CreateItem(self: *const ISClusResTypeResources, bstrResourceName: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusResTypeResources, bstrResourceName: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.CreateItem(self, bstrResourceName, bstrGroupName, dwFlags, ppClusterResource);
     }
-    pub fn DeleteItem(self: *const ISClusResTypeResources, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const ISClusResTypeResources, varIndex: VARIANT) HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
     }
 };
@@ -8474,20 +8474,20 @@ pub const ISClusResources = extern union {
         get_Count: *const fn(
             self: *const ISClusResources,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResources,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResources,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusResources,
             bstrResourceName: ?BSTR,
@@ -8495,31 +8495,31 @@ pub const ISClusResources = extern union {
             bstrGroupName: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const ISClusResources,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResources, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResources, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResources, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResources, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResources) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResources) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResources, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
-    pub fn CreateItem(self: *const ISClusResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusResources, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, bstrGroupName: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, bstrGroupName, dwFlags, ppClusterResource);
     }
-    pub fn DeleteItem(self: *const ISClusResources, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const ISClusResources, varIndex: VARIANT) HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
     }
 };
@@ -8533,70 +8533,70 @@ pub const ISClusResGroupPreferredOwnerNodes = extern union {
         get_Count: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         InsertItem: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
             pNode: ?*ISClusNode,
             nPosition: i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
             pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveChanges: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItem: *const fn(
             self: *const ISClusResGroupPreferredOwnerNodes,
             pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResGroupPreferredOwnerNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResGroupPreferredOwnerNodes, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResGroupPreferredOwnerNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResGroupPreferredOwnerNodes, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResGroupPreferredOwnerNodes) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppNode);
     }
-    pub fn InsertItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode, nPosition: i32) callconv(.Inline) HRESULT {
+    pub fn InsertItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode, nPosition: i32) HRESULT {
         return self.vtable.InsertItem(self, pNode, nPosition);
     }
-    pub fn RemoveItem(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusResGroupPreferredOwnerNodes, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
-    pub fn get_Modified(self: *const ISClusResGroupPreferredOwnerNodes, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Modified(self: *const ISClusResGroupPreferredOwnerNodes, pvarModified: ?*VARIANT) HRESULT {
         return self.vtable.get_Modified(self, pvarModified);
     }
-    pub fn SaveChanges(self: *const ISClusResGroupPreferredOwnerNodes) callconv(.Inline) HRESULT {
+    pub fn SaveChanges(self: *const ISClusResGroupPreferredOwnerNodes) HRESULT {
         return self.vtable.SaveChanges(self);
     }
-    pub fn AddItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const ISClusResGroupPreferredOwnerNodes, pNode: ?*ISClusNode) HRESULT {
         return self.vtable.AddItem(self, pNode);
     }
 };
@@ -8610,56 +8610,56 @@ pub const ISClusResPossibleOwnerNodes = extern union {
         get_Count: *const fn(
             self: *const ISClusResPossibleOwnerNodes,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResPossibleOwnerNodes,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResPossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResPossibleOwnerNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItem: *const fn(
             self: *const ISClusResPossibleOwnerNodes,
             pNode: ?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusResPossibleOwnerNodes,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const ISClusResPossibleOwnerNodes,
             pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResPossibleOwnerNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResPossibleOwnerNodes, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResPossibleOwnerNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResPossibleOwnerNodes, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResPossibleOwnerNodes) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResPossibleOwnerNodes) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResPossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResPossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppNode);
     }
-    pub fn AddItem(self: *const ISClusResPossibleOwnerNodes, pNode: ?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const ISClusResPossibleOwnerNodes, pNode: ?*ISClusNode) HRESULT {
         return self.vtable.AddItem(self, pNode);
     }
-    pub fn RemoveItem(self: *const ISClusResPossibleOwnerNodes, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusResPossibleOwnerNodes, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
-    pub fn get_Modified(self: *const ISClusResPossibleOwnerNodes, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Modified(self: *const ISClusResPossibleOwnerNodes, pvarModified: ?*VARIANT) HRESULT {
         return self.vtable.get_Modified(self, pvarModified);
     }
 };
@@ -8673,34 +8673,34 @@ pub const ISClusResTypePossibleOwnerNodes = extern union {
         get_Count: *const fn(
             self: *const ISClusResTypePossibleOwnerNodes,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResTypePossibleOwnerNodes,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResTypePossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResTypePossibleOwnerNodes,
             varIndex: VARIANT,
             ppNode: ?*?*ISClusNode,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResTypePossibleOwnerNodes, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResTypePossibleOwnerNodes, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResTypePossibleOwnerNodes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResTypePossibleOwnerNodes, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResTypePossibleOwnerNodes) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResTypePossibleOwnerNodes) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResTypePossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResTypePossibleOwnerNodes, varIndex: VARIANT, ppNode: ?*?*ISClusNode) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppNode);
     }
 };
@@ -8714,82 +8714,82 @@ pub const ISClusResType = extern union {
         get_CommonProperties: *const fn(
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateProperties: *const fn(
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_CommonROProperties: *const fn(
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PrivateROProperties: *const fn(
             self: *const ISClusResType,
             ppProperties: ?*?*ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Name: *const fn(
             self: *const ISClusResType,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Delete: *const fn(
             self: *const ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Cluster: *const fn(
             self: *const ISClusResType,
             ppCluster: ?*?*ISCluster,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Resources: *const fn(
             self: *const ISClusResType,
             ppClusterResTypeResources: ?*?*ISClusResTypeResources,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PossibleOwnerNodes: *const fn(
             self: *const ISClusResType,
             ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_AvailableDisks: *const fn(
             self: *const ISClusResType,
             ppAvailableDisks: ?*?*ISClusDisks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_CommonProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonProperties(self, ppProperties);
     }
-    pub fn get_PrivateProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateProperties(self, ppProperties);
     }
-    pub fn get_CommonROProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_CommonROProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_CommonROProperties(self, ppProperties);
     }
-    pub fn get_PrivateROProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn get_PrivateROProperties(self: *const ISClusResType, ppProperties: ?*?*ISClusProperties) HRESULT {
         return self.vtable.get_PrivateROProperties(self, ppProperties);
     }
-    pub fn get_Name(self: *const ISClusResType, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusResType, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn Delete(self: *const ISClusResType) callconv(.Inline) HRESULT {
+    pub fn Delete(self: *const ISClusResType) HRESULT {
         return self.vtable.Delete(self);
     }
-    pub fn get_Cluster(self: *const ISClusResType, ppCluster: ?*?*ISCluster) callconv(.Inline) HRESULT {
+    pub fn get_Cluster(self: *const ISClusResType, ppCluster: ?*?*ISCluster) HRESULT {
         return self.vtable.get_Cluster(self, ppCluster);
     }
-    pub fn get_Resources(self: *const ISClusResType, ppClusterResTypeResources: ?*?*ISClusResTypeResources) callconv(.Inline) HRESULT {
+    pub fn get_Resources(self: *const ISClusResType, ppClusterResTypeResources: ?*?*ISClusResTypeResources) HRESULT {
         return self.vtable.get_Resources(self, ppClusterResTypeResources);
     }
-    pub fn get_PossibleOwnerNodes(self: *const ISClusResType, ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes) callconv(.Inline) HRESULT {
+    pub fn get_PossibleOwnerNodes(self: *const ISClusResType, ppOwnerNodes: ?*?*ISClusResTypePossibleOwnerNodes) HRESULT {
         return self.vtable.get_PossibleOwnerNodes(self, ppOwnerNodes);
     }
-    pub fn get_AvailableDisks(self: *const ISClusResType, ppAvailableDisks: ?*?*ISClusDisks) callconv(.Inline) HRESULT {
+    pub fn get_AvailableDisks(self: *const ISClusResType, ppAvailableDisks: ?*?*ISClusDisks) HRESULT {
         return self.vtable.get_AvailableDisks(self, ppAvailableDisks);
     }
 };
@@ -8803,20 +8803,20 @@ pub const ISClusResTypes = extern union {
         get_Count: *const fn(
             self: *const ISClusResTypes,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResTypes,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResTypes,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResTypes,
             varIndex: VARIANT,
             ppClusResType: ?*?*ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusResTypes,
             bstrResourceTypeName: ?BSTR,
@@ -8825,31 +8825,31 @@ pub const ISClusResTypes = extern union {
             dwLooksAlivePollInterval: i32,
             dwIsAlivePollInterval: i32,
             ppResourceType: ?*?*ISClusResType,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const ISClusResTypes,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResTypes, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResTypes, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResTypes, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResTypes, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResTypes) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResTypes) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResTypes, varIndex: VARIANT, ppClusResType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResTypes, varIndex: VARIANT, ppClusResType: ?*?*ISClusResType) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusResType);
     }
-    pub fn CreateItem(self: *const ISClusResTypes, bstrResourceTypeName: ?BSTR, bstrDisplayName: ?BSTR, bstrResourceTypeDll: ?BSTR, dwLooksAlivePollInterval: i32, dwIsAlivePollInterval: i32, ppResourceType: ?*?*ISClusResType) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusResTypes, bstrResourceTypeName: ?BSTR, bstrDisplayName: ?BSTR, bstrResourceTypeDll: ?BSTR, dwLooksAlivePollInterval: i32, dwIsAlivePollInterval: i32, ppResourceType: ?*?*ISClusResType) HRESULT {
         return self.vtable.CreateItem(self, bstrResourceTypeName, bstrDisplayName, bstrResourceTypeDll, dwLooksAlivePollInterval, dwIsAlivePollInterval, ppResourceType);
     }
-    pub fn DeleteItem(self: *const ISClusResTypes, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const ISClusResTypes, varIndex: VARIANT) HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
     }
 };
@@ -8863,122 +8863,122 @@ pub const ISClusProperty = extern union {
         get_Name: *const fn(
             self: *const ISClusProperty,
             pbstrName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: *const fn(
             self: *const ISClusProperty,
             pLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ValueCount: *const fn(
             self: *const ISClusProperty,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Values: *const fn(
             self: *const ISClusProperty,
             ppClusterPropertyValues: ?*?*ISClusPropertyValues,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Value: *const fn(
             self: *const ISClusProperty,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const ISClusProperty,
             varValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const ISClusProperty,
             pType: ?*CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: *const fn(
             self: *const ISClusProperty,
             Type: CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Format: *const fn(
             self: *const ISClusProperty,
             pFormat: ?*CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Format: *const fn(
             self: *const ISClusProperty,
             Format: CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: *const fn(
             self: *const ISClusProperty,
             pvarReadOnly: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Private: *const fn(
             self: *const ISClusProperty,
             pvarPrivate: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Common: *const fn(
             self: *const ISClusProperty,
             pvarCommon: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const ISClusProperty,
             pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UseDefaultValue: *const fn(
             self: *const ISClusProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Name(self: *const ISClusProperty, pbstrName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Name(self: *const ISClusProperty, pbstrName: ?*?BSTR) HRESULT {
         return self.vtable.get_Name(self, pbstrName);
     }
-    pub fn get_Length(self: *const ISClusProperty, pLength: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Length(self: *const ISClusProperty, pLength: ?*i32) HRESULT {
         return self.vtable.get_Length(self, pLength);
     }
-    pub fn get_ValueCount(self: *const ISClusProperty, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_ValueCount(self: *const ISClusProperty, pCount: ?*i32) HRESULT {
         return self.vtable.get_ValueCount(self, pCount);
     }
-    pub fn get_Values(self: *const ISClusProperty, ppClusterPropertyValues: ?*?*ISClusPropertyValues) callconv(.Inline) HRESULT {
+    pub fn get_Values(self: *const ISClusProperty, ppClusterPropertyValues: ?*?*ISClusPropertyValues) HRESULT {
         return self.vtable.get_Values(self, ppClusterPropertyValues);
     }
-    pub fn get_Value(self: *const ISClusProperty, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ISClusProperty, pvarValue: ?*VARIANT) HRESULT {
         return self.vtable.get_Value(self, pvarValue);
     }
-    pub fn put_Value(self: *const ISClusProperty, varValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const ISClusProperty, varValue: VARIANT) HRESULT {
         return self.vtable.put_Value(self, varValue);
     }
-    pub fn get_Type(self: *const ISClusProperty, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ISClusProperty, pType: ?*CLUSTER_PROPERTY_TYPE) HRESULT {
         return self.vtable.get_Type(self, pType);
     }
-    pub fn put_Type(self: *const ISClusProperty, Type: CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_Type(self: *const ISClusProperty, Type: CLUSTER_PROPERTY_TYPE) HRESULT {
         return self.vtable.put_Type(self, Type);
     }
-    pub fn get_Format(self: *const ISClusProperty, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
+    pub fn get_Format(self: *const ISClusProperty, pFormat: ?*CLUSTER_PROPERTY_FORMAT) HRESULT {
         return self.vtable.get_Format(self, pFormat);
     }
-    pub fn put_Format(self: *const ISClusProperty, Format: CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
+    pub fn put_Format(self: *const ISClusProperty, Format: CLUSTER_PROPERTY_FORMAT) HRESULT {
         return self.vtable.put_Format(self, Format);
     }
-    pub fn get_ReadOnly(self: *const ISClusProperty, pvarReadOnly: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ReadOnly(self: *const ISClusProperty, pvarReadOnly: ?*VARIANT) HRESULT {
         return self.vtable.get_ReadOnly(self, pvarReadOnly);
     }
-    pub fn get_Private(self: *const ISClusProperty, pvarPrivate: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Private(self: *const ISClusProperty, pvarPrivate: ?*VARIANT) HRESULT {
         return self.vtable.get_Private(self, pvarPrivate);
     }
-    pub fn get_Common(self: *const ISClusProperty, pvarCommon: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Common(self: *const ISClusProperty, pvarCommon: ?*VARIANT) HRESULT {
         return self.vtable.get_Common(self, pvarCommon);
     }
-    pub fn get_Modified(self: *const ISClusProperty, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Modified(self: *const ISClusProperty, pvarModified: ?*VARIANT) HRESULT {
         return self.vtable.get_Modified(self, pvarModified);
     }
-    pub fn UseDefaultValue(self: *const ISClusProperty) callconv(.Inline) HRESULT {
+    pub fn UseDefaultValue(self: *const ISClusProperty) HRESULT {
         return self.vtable.UseDefaultValue(self);
     }
 };
@@ -8992,76 +8992,76 @@ pub const ISClusPropertyValue = extern union {
         get_Value: *const fn(
             self: *const ISClusPropertyValue,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Value: *const fn(
             self: *const ISClusPropertyValue,
             varValue: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Type: *const fn(
             self: *const ISClusPropertyValue,
             pType: ?*CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Type: *const fn(
             self: *const ISClusPropertyValue,
             Type: CLUSTER_PROPERTY_TYPE,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Format: *const fn(
             self: *const ISClusPropertyValue,
             pFormat: ?*CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         put_Format: *const fn(
             self: *const ISClusPropertyValue,
             Format: CLUSTER_PROPERTY_FORMAT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Length: *const fn(
             self: *const ISClusPropertyValue,
             pLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DataCount: *const fn(
             self: *const ISClusPropertyValue,
             pCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Data: *const fn(
             self: *const ISClusPropertyValue,
             ppClusterPropertyValueData: ?*?*ISClusPropertyValueData,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Value(self: *const ISClusPropertyValue, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Value(self: *const ISClusPropertyValue, pvarValue: ?*VARIANT) HRESULT {
         return self.vtable.get_Value(self, pvarValue);
     }
-    pub fn put_Value(self: *const ISClusPropertyValue, varValue: VARIANT) callconv(.Inline) HRESULT {
+    pub fn put_Value(self: *const ISClusPropertyValue, varValue: VARIANT) HRESULT {
         return self.vtable.put_Value(self, varValue);
     }
-    pub fn get_Type(self: *const ISClusPropertyValue, pType: ?*CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
+    pub fn get_Type(self: *const ISClusPropertyValue, pType: ?*CLUSTER_PROPERTY_TYPE) HRESULT {
         return self.vtable.get_Type(self, pType);
     }
-    pub fn put_Type(self: *const ISClusPropertyValue, Type: CLUSTER_PROPERTY_TYPE) callconv(.Inline) HRESULT {
+    pub fn put_Type(self: *const ISClusPropertyValue, Type: CLUSTER_PROPERTY_TYPE) HRESULT {
         return self.vtable.put_Type(self, Type);
     }
-    pub fn get_Format(self: *const ISClusPropertyValue, pFormat: ?*CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
+    pub fn get_Format(self: *const ISClusPropertyValue, pFormat: ?*CLUSTER_PROPERTY_FORMAT) HRESULT {
         return self.vtable.get_Format(self, pFormat);
     }
-    pub fn put_Format(self: *const ISClusPropertyValue, Format: CLUSTER_PROPERTY_FORMAT) callconv(.Inline) HRESULT {
+    pub fn put_Format(self: *const ISClusPropertyValue, Format: CLUSTER_PROPERTY_FORMAT) HRESULT {
         return self.vtable.put_Format(self, Format);
     }
-    pub fn get_Length(self: *const ISClusPropertyValue, pLength: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Length(self: *const ISClusPropertyValue, pLength: ?*i32) HRESULT {
         return self.vtable.get_Length(self, pLength);
     }
-    pub fn get_DataCount(self: *const ISClusPropertyValue, pCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DataCount(self: *const ISClusPropertyValue, pCount: ?*i32) HRESULT {
         return self.vtable.get_DataCount(self, pCount);
     }
-    pub fn get_Data(self: *const ISClusPropertyValue, ppClusterPropertyValueData: ?*?*ISClusPropertyValueData) callconv(.Inline) HRESULT {
+    pub fn get_Data(self: *const ISClusPropertyValue, ppClusterPropertyValueData: ?*?*ISClusPropertyValueData) HRESULT {
         return self.vtable.get_Data(self, ppClusterPropertyValueData);
     }
 };
@@ -9075,44 +9075,44 @@ pub const ISClusPropertyValues = extern union {
         get_Count: *const fn(
             self: *const ISClusPropertyValues,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusPropertyValues,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusPropertyValues,
             varIndex: VARIANT,
             ppPropertyValue: ?*?*ISClusPropertyValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusPropertyValues,
             bstrName: ?BSTR,
             varValue: VARIANT,
             ppPropertyValue: ?*?*ISClusPropertyValue,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusPropertyValues,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusPropertyValues, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusPropertyValues, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusPropertyValues, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusPropertyValues, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const ISClusPropertyValues, varIndex: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusPropertyValues, varIndex: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppPropertyValue);
     }
-    pub fn CreateItem(self: *const ISClusPropertyValues, bstrName: ?BSTR, varValue: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusPropertyValues, bstrName: ?BSTR, varValue: VARIANT, ppPropertyValue: ?*?*ISClusPropertyValue) HRESULT {
         return self.vtable.CreateItem(self, bstrName, varValue, ppPropertyValue);
     }
-    pub fn RemoveItem(self: *const ISClusPropertyValues, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusPropertyValues, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
 };
@@ -9126,89 +9126,89 @@ pub const ISClusProperties = extern union {
         get_Count: *const fn(
             self: *const ISClusProperties,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusProperties,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusProperties,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusProperties,
             varIndex: VARIANT,
             ppClusProperty: ?*?*ISClusProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusProperties,
             bstrName: ?BSTR,
             varValue: VARIANT,
             pProperty: ?*?*ISClusProperty,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         UseDefaultValue: *const fn(
             self: *const ISClusProperties,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SaveChanges: *const fn(
             self: *const ISClusProperties,
             pvarStatusCode: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ReadOnly: *const fn(
             self: *const ISClusProperties,
             pvarReadOnly: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Private: *const fn(
             self: *const ISClusProperties,
             pvarPrivate: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Common: *const fn(
             self: *const ISClusProperties,
             pvarCommon: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Modified: *const fn(
             self: *const ISClusProperties,
             pvarModified: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusProperties, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusProperties, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusProperties, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusProperties, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusProperties) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusProperties) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusProperties, varIndex: VARIANT, ppClusProperty: ?*?*ISClusProperty) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusProperties, varIndex: VARIANT, ppClusProperty: ?*?*ISClusProperty) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusProperty);
     }
-    pub fn CreateItem(self: *const ISClusProperties, bstrName: ?BSTR, varValue: VARIANT, pProperty: ?*?*ISClusProperty) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusProperties, bstrName: ?BSTR, varValue: VARIANT, pProperty: ?*?*ISClusProperty) HRESULT {
         return self.vtable.CreateItem(self, bstrName, varValue, pProperty);
     }
-    pub fn UseDefaultValue(self: *const ISClusProperties, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn UseDefaultValue(self: *const ISClusProperties, varIndex: VARIANT) HRESULT {
         return self.vtable.UseDefaultValue(self, varIndex);
     }
-    pub fn SaveChanges(self: *const ISClusProperties, pvarStatusCode: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn SaveChanges(self: *const ISClusProperties, pvarStatusCode: ?*VARIANT) HRESULT {
         return self.vtable.SaveChanges(self, pvarStatusCode);
     }
-    pub fn get_ReadOnly(self: *const ISClusProperties, pvarReadOnly: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_ReadOnly(self: *const ISClusProperties, pvarReadOnly: ?*VARIANT) HRESULT {
         return self.vtable.get_ReadOnly(self, pvarReadOnly);
     }
-    pub fn get_Private(self: *const ISClusProperties, pvarPrivate: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Private(self: *const ISClusProperties, pvarPrivate: ?*VARIANT) HRESULT {
         return self.vtable.get_Private(self, pvarPrivate);
     }
-    pub fn get_Common(self: *const ISClusProperties, pvarCommon: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Common(self: *const ISClusProperties, pvarCommon: ?*VARIANT) HRESULT {
         return self.vtable.get_Common(self, pvarCommon);
     }
-    pub fn get_Modified(self: *const ISClusProperties, pvarModified: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Modified(self: *const ISClusProperties, pvarModified: ?*VARIANT) HRESULT {
         return self.vtable.get_Modified(self, pvarModified);
     }
 };
@@ -9222,43 +9222,43 @@ pub const ISClusPropertyValueData = extern union {
         get_Count: *const fn(
             self: *const ISClusPropertyValueData,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusPropertyValueData,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusPropertyValueData,
             varIndex: VARIANT,
             pvarValue: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusPropertyValueData,
             varValue: VARIANT,
             pvarData: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusPropertyValueData,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusPropertyValueData, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusPropertyValueData, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusPropertyValueData, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusPropertyValueData, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const ISClusPropertyValueData, varIndex: VARIANT, pvarValue: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusPropertyValueData, varIndex: VARIANT, pvarValue: ?*VARIANT) HRESULT {
         return self.vtable.get_Item(self, varIndex, pvarValue);
     }
-    pub fn CreateItem(self: *const ISClusPropertyValueData, varValue: VARIANT, pvarData: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusPropertyValueData, varValue: VARIANT, pvarData: ?*VARIANT) HRESULT {
         return self.vtable.CreateItem(self, varValue, pvarData);
     }
-    pub fn RemoveItem(self: *const ISClusPropertyValueData, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusPropertyValueData, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
 };
@@ -9272,60 +9272,60 @@ pub const ISClusPartition = extern union {
         get_Flags: *const fn(
             self: *const ISClusPartition,
             plFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceName: *const fn(
             self: *const ISClusPartition,
             pbstrDeviceName: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumeLabel: *const fn(
             self: *const ISClusPartition,
             pbstrVolumeLabel: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_SerialNumber: *const fn(
             self: *const ISClusPartition,
             plSerialNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_MaximumComponentLength: *const fn(
             self: *const ISClusPartition,
             plMaximumComponentLength: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileSystemFlags: *const fn(
             self: *const ISClusPartition,
             plFileSystemFlags: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FileSystem: *const fn(
             self: *const ISClusPartition,
             pbstrFileSystem: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Flags(self: *const ISClusPartition, plFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Flags(self: *const ISClusPartition, plFlags: ?*i32) HRESULT {
         return self.vtable.get_Flags(self, plFlags);
     }
-    pub fn get_DeviceName(self: *const ISClusPartition, pbstrDeviceName: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_DeviceName(self: *const ISClusPartition, pbstrDeviceName: ?*?BSTR) HRESULT {
         return self.vtable.get_DeviceName(self, pbstrDeviceName);
     }
-    pub fn get_VolumeLabel(self: *const ISClusPartition, pbstrVolumeLabel: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_VolumeLabel(self: *const ISClusPartition, pbstrVolumeLabel: ?*?BSTR) HRESULT {
         return self.vtable.get_VolumeLabel(self, pbstrVolumeLabel);
     }
-    pub fn get_SerialNumber(self: *const ISClusPartition, plSerialNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_SerialNumber(self: *const ISClusPartition, plSerialNumber: ?*i32) HRESULT {
         return self.vtable.get_SerialNumber(self, plSerialNumber);
     }
-    pub fn get_MaximumComponentLength(self: *const ISClusPartition, plMaximumComponentLength: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_MaximumComponentLength(self: *const ISClusPartition, plMaximumComponentLength: ?*i32) HRESULT {
         return self.vtable.get_MaximumComponentLength(self, plMaximumComponentLength);
     }
-    pub fn get_FileSystemFlags(self: *const ISClusPartition, plFileSystemFlags: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_FileSystemFlags(self: *const ISClusPartition, plFileSystemFlags: ?*i32) HRESULT {
         return self.vtable.get_FileSystemFlags(self, plFileSystemFlags);
     }
-    pub fn get_FileSystem(self: *const ISClusPartition, pbstrFileSystem: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_FileSystem(self: *const ISClusPartition, pbstrFileSystem: ?*?BSTR) HRESULT {
         return self.vtable.get_FileSystem(self, pbstrFileSystem);
     }
 };
@@ -9340,45 +9340,45 @@ pub const ISClusPartitionEx = extern union {
         get_TotalSize: *const fn(
             self: *const ISClusPartitionEx,
             plTotalSize: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_FreeSpace: *const fn(
             self: *const ISClusPartitionEx,
             plFreeSpace: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DeviceNumber: *const fn(
             self: *const ISClusPartitionEx,
             plDeviceNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PartitionNumber: *const fn(
             self: *const ISClusPartitionEx,
             plPartitionNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_VolumeGuid: *const fn(
             self: *const ISClusPartitionEx,
             pbstrVolumeGuid: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     ISClusPartition: ISClusPartition,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_TotalSize(self: *const ISClusPartitionEx, plTotalSize: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_TotalSize(self: *const ISClusPartitionEx, plTotalSize: ?*i32) HRESULT {
         return self.vtable.get_TotalSize(self, plTotalSize);
     }
-    pub fn get_FreeSpace(self: *const ISClusPartitionEx, plFreeSpace: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_FreeSpace(self: *const ISClusPartitionEx, plFreeSpace: ?*i32) HRESULT {
         return self.vtable.get_FreeSpace(self, plFreeSpace);
     }
-    pub fn get_DeviceNumber(self: *const ISClusPartitionEx, plDeviceNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DeviceNumber(self: *const ISClusPartitionEx, plDeviceNumber: ?*i32) HRESULT {
         return self.vtable.get_DeviceNumber(self, plDeviceNumber);
     }
-    pub fn get_PartitionNumber(self: *const ISClusPartitionEx, plPartitionNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_PartitionNumber(self: *const ISClusPartitionEx, plPartitionNumber: ?*i32) HRESULT {
         return self.vtable.get_PartitionNumber(self, plPartitionNumber);
     }
-    pub fn get_VolumeGuid(self: *const ISClusPartitionEx, pbstrVolumeGuid: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_VolumeGuid(self: *const ISClusPartitionEx, pbstrVolumeGuid: ?*?BSTR) HRESULT {
         return self.vtable.get_VolumeGuid(self, pbstrVolumeGuid);
     }
 };
@@ -9392,28 +9392,28 @@ pub const ISClusPartitions = extern union {
         get_Count: *const fn(
             self: *const ISClusPartitions,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusPartitions,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusPartitions,
             varIndex: VARIANT,
             ppPartition: ?*?*ISClusPartition,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusPartitions, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusPartitions, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusPartitions, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusPartitions, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const ISClusPartitions, varIndex: VARIANT, ppPartition: ?*?*ISClusPartition) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusPartitions, varIndex: VARIANT, ppPartition: ?*?*ISClusPartition) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppPartition);
     }
 };
@@ -9427,36 +9427,36 @@ pub const ISClusDisk = extern union {
         get_Signature: *const fn(
             self: *const ISClusDisk,
             plSignature: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_ScsiAddress: *const fn(
             self: *const ISClusDisk,
             ppScsiAddress: ?*?*ISClusScsiAddress,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_DiskNumber: *const fn(
             self: *const ISClusDisk,
             plDiskNumber: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Partitions: *const fn(
             self: *const ISClusDisk,
             ppPartitions: ?*?*ISClusPartitions,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Signature(self: *const ISClusDisk, plSignature: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Signature(self: *const ISClusDisk, plSignature: ?*i32) HRESULT {
         return self.vtable.get_Signature(self, plSignature);
     }
-    pub fn get_ScsiAddress(self: *const ISClusDisk, ppScsiAddress: ?*?*ISClusScsiAddress) callconv(.Inline) HRESULT {
+    pub fn get_ScsiAddress(self: *const ISClusDisk, ppScsiAddress: ?*?*ISClusScsiAddress) HRESULT {
         return self.vtable.get_ScsiAddress(self, ppScsiAddress);
     }
-    pub fn get_DiskNumber(self: *const ISClusDisk, plDiskNumber: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_DiskNumber(self: *const ISClusDisk, plDiskNumber: ?*i32) HRESULT {
         return self.vtable.get_DiskNumber(self, plDiskNumber);
     }
-    pub fn get_Partitions(self: *const ISClusDisk, ppPartitions: ?*?*ISClusPartitions) callconv(.Inline) HRESULT {
+    pub fn get_Partitions(self: *const ISClusDisk, ppPartitions: ?*?*ISClusPartitions) HRESULT {
         return self.vtable.get_Partitions(self, ppPartitions);
     }
 };
@@ -9470,28 +9470,28 @@ pub const ISClusDisks = extern union {
         get_Count: *const fn(
             self: *const ISClusDisks,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusDisks,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusDisks,
             varIndex: VARIANT,
             ppDisk: ?*?*ISClusDisk,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusDisks, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusDisks, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusDisks, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusDisks, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn get_Item(self: *const ISClusDisks, varIndex: VARIANT, ppDisk: ?*?*ISClusDisk) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusDisks, varIndex: VARIANT, ppDisk: ?*?*ISClusDisk) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppDisk);
     }
 };
@@ -9505,36 +9505,36 @@ pub const ISClusScsiAddress = extern union {
         get_PortNumber: *const fn(
             self: *const ISClusScsiAddress,
             pvarPortNumber: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_PathId: *const fn(
             self: *const ISClusScsiAddress,
             pvarPathId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_TargetId: *const fn(
             self: *const ISClusScsiAddress,
             pvarTargetId: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get_Lun: *const fn(
             self: *const ISClusScsiAddress,
             pvarLun: ?*VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_PortNumber(self: *const ISClusScsiAddress, pvarPortNumber: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PortNumber(self: *const ISClusScsiAddress, pvarPortNumber: ?*VARIANT) HRESULT {
         return self.vtable.get_PortNumber(self, pvarPortNumber);
     }
-    pub fn get_PathId(self: *const ISClusScsiAddress, pvarPathId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_PathId(self: *const ISClusScsiAddress, pvarPathId: ?*VARIANT) HRESULT {
         return self.vtable.get_PathId(self, pvarPathId);
     }
-    pub fn get_TargetId(self: *const ISClusScsiAddress, pvarTargetId: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_TargetId(self: *const ISClusScsiAddress, pvarTargetId: ?*VARIANT) HRESULT {
         return self.vtable.get_TargetId(self, pvarTargetId);
     }
-    pub fn get_Lun(self: *const ISClusScsiAddress, pvarLun: ?*VARIANT) callconv(.Inline) HRESULT {
+    pub fn get_Lun(self: *const ISClusScsiAddress, pvarLun: ?*VARIANT) HRESULT {
         return self.vtable.get_Lun(self, pvarLun);
     }
 };
@@ -9548,48 +9548,48 @@ pub const ISClusRegistryKeys = extern union {
         get_Count: *const fn(
             self: *const ISClusRegistryKeys,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusRegistryKeys,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusRegistryKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusRegistryKeys,
             varIndex: VARIANT,
             pbstrRegistryKey: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItem: *const fn(
             self: *const ISClusRegistryKeys,
             bstrRegistryKey: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusRegistryKeys,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusRegistryKeys, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusRegistryKeys, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusRegistryKeys, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusRegistryKeys, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusRegistryKeys) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusRegistryKeys) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusRegistryKeys, varIndex: VARIANT, pbstrRegistryKey: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusRegistryKeys, varIndex: VARIANT, pbstrRegistryKey: ?*?BSTR) HRESULT {
         return self.vtable.get_Item(self, varIndex, pbstrRegistryKey);
     }
-    pub fn AddItem(self: *const ISClusRegistryKeys, bstrRegistryKey: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const ISClusRegistryKeys, bstrRegistryKey: ?BSTR) HRESULT {
         return self.vtable.AddItem(self, bstrRegistryKey);
     }
-    pub fn RemoveItem(self: *const ISClusRegistryKeys, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusRegistryKeys, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
 };
@@ -9603,48 +9603,48 @@ pub const ISClusCryptoKeys = extern union {
         get_Count: *const fn(
             self: *const ISClusCryptoKeys,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusCryptoKeys,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusCryptoKeys,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusCryptoKeys,
             varIndex: VARIANT,
             pbstrCyrptoKey: ?*?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItem: *const fn(
             self: *const ISClusCryptoKeys,
             bstrCryptoKey: ?BSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusCryptoKeys,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusCryptoKeys, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusCryptoKeys, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusCryptoKeys, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusCryptoKeys, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusCryptoKeys) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusCryptoKeys) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusCryptoKeys, varIndex: VARIANT, pbstrCyrptoKey: ?*?BSTR) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusCryptoKeys, varIndex: VARIANT, pbstrCyrptoKey: ?*?BSTR) HRESULT {
         return self.vtable.get_Item(self, varIndex, pbstrCyrptoKey);
     }
-    pub fn AddItem(self: *const ISClusCryptoKeys, bstrCryptoKey: ?BSTR) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const ISClusCryptoKeys, bstrCryptoKey: ?BSTR) HRESULT {
         return self.vtable.AddItem(self, bstrCryptoKey);
     }
-    pub fn RemoveItem(self: *const ISClusCryptoKeys, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusCryptoKeys, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
 };
@@ -9658,65 +9658,65 @@ pub const ISClusResDependents = extern union {
         get_Count: *const fn(
             self: *const ISClusResDependents,
             plCount: ?*i32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         // TODO: this function has a "SpecialName", should Zig do anything with this?
         get__NewEnum: *const fn(
             self: *const ISClusResDependents,
             retval: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Refresh: *const fn(
             self: *const ISClusResDependents,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         get_Item: *const fn(
             self: *const ISClusResDependents,
             varIndex: VARIANT,
             ppClusResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CreateItem: *const fn(
             self: *const ISClusResDependents,
             bstrResourceName: ?BSTR,
             bstrResourceType: ?BSTR,
             dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS,
             ppClusterResource: ?*?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteItem: *const fn(
             self: *const ISClusResDependents,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         AddItem: *const fn(
             self: *const ISClusResDependents,
             pResource: ?*ISClusResource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         RemoveItem: *const fn(
             self: *const ISClusResDependents,
             varIndex: VARIANT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IDispatch: IDispatch,
     IUnknown: IUnknown,
-    pub fn get_Count(self: *const ISClusResDependents, plCount: ?*i32) callconv(.Inline) HRESULT {
+    pub fn get_Count(self: *const ISClusResDependents, plCount: ?*i32) HRESULT {
         return self.vtable.get_Count(self, plCount);
     }
-    pub fn get__NewEnum(self: *const ISClusResDependents, retval: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn get__NewEnum(self: *const ISClusResDependents, retval: ?*?*IUnknown) HRESULT {
         return self.vtable.get__NewEnum(self, retval);
     }
-    pub fn Refresh(self: *const ISClusResDependents) callconv(.Inline) HRESULT {
+    pub fn Refresh(self: *const ISClusResDependents) HRESULT {
         return self.vtable.Refresh(self);
     }
-    pub fn get_Item(self: *const ISClusResDependents, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn get_Item(self: *const ISClusResDependents, varIndex: VARIANT, ppClusResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.get_Item(self, varIndex, ppClusResource);
     }
-    pub fn CreateItem(self: *const ISClusResDependents, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn CreateItem(self: *const ISClusResDependents, bstrResourceName: ?BSTR, bstrResourceType: ?BSTR, dwFlags: CLUSTER_RESOURCE_CREATE_FLAGS, ppClusterResource: ?*?*ISClusResource) HRESULT {
         return self.vtable.CreateItem(self, bstrResourceName, bstrResourceType, dwFlags, ppClusterResource);
     }
-    pub fn DeleteItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn DeleteItem(self: *const ISClusResDependents, varIndex: VARIANT) HRESULT {
         return self.vtable.DeleteItem(self, varIndex);
     }
-    pub fn AddItem(self: *const ISClusResDependents, pResource: ?*ISClusResource) callconv(.Inline) HRESULT {
+    pub fn AddItem(self: *const ISClusResDependents, pResource: ?*ISClusResource) HRESULT {
         return self.vtable.AddItem(self, pResource);
     }
-    pub fn RemoveItem(self: *const ISClusResDependents, varIndex: VARIANT) callconv(.Inline) HRESULT {
+    pub fn RemoveItem(self: *const ISClusResDependents, varIndex: VARIANT) HRESULT {
         return self.vtable.RemoveItem(self, varIndex);
     }
 };
@@ -9729,30 +9729,30 @@ pub const ISClusResDependents = extern union {
 pub extern "clusapi" fn GetNodeClusterState(
     lpszNodeName: ?[*:0]const u16,
     pdwClusterState: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenCluster(
     lpszClusterName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterEx(
     lpszClusterName: ?[*:0]const u16,
     DesiredAccess: u32,
     GrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CloseCluster(
     hCluster: ?*_HCLUSTER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn SetClusterName(
     hCluster: ?*_HCLUSTER,
     lpszNewClusterName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterInformation(
@@ -9760,7 +9760,7 @@ pub extern "clusapi" fn GetClusterInformation(
     lpszClusterName: [*:0]u16,
     lpcchClusterName: ?*u32,
     lpClusterInfo: ?*CLUSTERVERSIONINFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterQuorumResource(
@@ -9770,34 +9770,34 @@ pub extern "clusapi" fn GetClusterQuorumResource(
     lpszDeviceName: [*:0]u16,
     lpcchDeviceName: ?*u32,
     lpdwMaxQuorumLogSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn SetClusterQuorumResource(
     hResource: ?*_HRESOURCE,
     lpszDeviceName: ?[*:0]const u16,
     dwMaxQuoLogSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "clusapi" fn BackupClusterDatabase(
     hCluster: ?*_HCLUSTER,
     lpszPathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "clusapi" fn RestoreClusterDatabase(
     lpszPathName: ?[*:0]const u16,
     bForce: BOOL,
     lpszQuorumDriveLetter: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "clusapi" fn SetClusterNetworkPriorityOrder(
     hCluster: ?*_HCLUSTER,
     NetworkCount: u32,
     NetworkList: [*]?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "clusapi" fn SetClusterServiceAccountPassword(
@@ -9807,7 +9807,7 @@ pub extern "clusapi" fn SetClusterServiceAccountPassword(
     // TODO: what to do with BytesParamIndex 4?
     lpReturnStatusBuffer: ?*CLUSTER_SET_PASSWORD_STATUS,
     lpcbReturnStatusBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterControl(
@@ -9821,7 +9821,7 @@ pub extern "clusapi" fn ClusterControl(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterUpgradeFunctionalLevel(
@@ -9829,7 +9829,7 @@ pub extern "clusapi" fn ClusterUpgradeFunctionalLevel(
     perform: BOOL,
     pfnProgressCallback: ?PCLUSTER_UPGRADE_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn CreateClusterNotifyPortV2(
@@ -9838,7 +9838,7 @@ pub extern "clusapi" fn CreateClusterNotifyPortV2(
     Filters: ?*NOTIFY_FILTER_AND_TYPE,
     dwFilterCount: u32,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
+) callconv(.winapi) ?*_HCHANGE;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn RegisterClusterNotifyV2(
@@ -9846,13 +9846,13 @@ pub extern "clusapi" fn RegisterClusterNotifyV2(
     Filter: NOTIFY_FILTER_AND_TYPE,
     hObject: ?HANDLE,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn GetNotifyEventHandle(
     hChange: ?*_HCHANGE,
     lphTargetEvent: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn GetClusterNotifyV2(
@@ -9871,7 +9871,7 @@ pub extern "clusapi" fn GetClusterNotifyV2(
     lpszType: ?[*:0]u16,
     lpcchType: ?*u32,
     dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CreateClusterNotifyPort(
@@ -9879,7 +9879,7 @@ pub extern "clusapi" fn CreateClusterNotifyPort(
     hCluster: ?*_HCLUSTER,
     dwFilter: u32,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCHANGE;
+) callconv(.winapi) ?*_HCHANGE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn RegisterClusterNotify(
@@ -9887,7 +9887,7 @@ pub extern "clusapi" fn RegisterClusterNotify(
     dwFilterType: u32,
     hObject: ?HANDLE,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNotify(
@@ -9897,23 +9897,23 @@ pub extern "clusapi" fn GetClusterNotify(
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
     dwMilliseconds: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CloseClusterNotifyPort(
     hChange: ?*_HCHANGE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterOpenEnum(
     hCluster: ?*_HCLUSTER,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUM;
+) callconv(.winapi) ?*_HCLUSENUM;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterGetEnumCount(
     hEnum: ?*_HCLUSENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterEnum(
@@ -9922,24 +9922,24 @@ pub extern "clusapi" fn ClusterEnum(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterCloseEnum(
     hEnum: ?*_HCLUSENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterOpenEnumEx(
     hCluster: ?*_HCLUSTER,
     dwType: u32,
     pOptions: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSENUMEX;
+) callconv(.winapi) ?*_HCLUSENUMEX;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterGetEnumCountEx(
     hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterEnumEx(
@@ -9947,52 +9947,52 @@ pub extern "clusapi" fn ClusterEnumEx(
     dwIndex: u32,
     pItem: ?*CLUSTER_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterCloseEnumEx(
     hClusterEnum: ?*_HCLUSENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn CreateClusterGroupSet(
     hCluster: ?*_HCLUSTER,
     groupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+) callconv(.winapi) ?*_HGROUPSET;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn OpenClusterGroupSet(
     hCluster: ?*_HCLUSTER,
     lpszGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+) callconv(.winapi) ?*_HGROUPSET;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn CloseClusterGroupSet(
     hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn DeleteClusterGroupSet(
     hGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterAddGroupToGroupSet(
     hGroupSet: ?*_HGROUPSET,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ClusterAddGroupToGroupSetWithDomains(
     hGroupSet: ?*_HGROUPSET,
     hGroup: ?*_HGROUP,
     faultDomain: u32,
     updateDomain: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterRemoveGroupFromGroupSet(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterGroupSetControl(
@@ -10006,65 +10006,65 @@ pub extern "clusapi" fn ClusterGroupSetControl(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn AddClusterGroupDependency(
     hDependentGroup: ?*_HGROUP,
     hProviderGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn SetGroupDependencyExpression(
     hGroup: ?*_HGROUP,
     lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn RemoveClusterGroupDependency(
     hGroup: ?*_HGROUP,
     hDependsOn: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn AddClusterGroupSetDependency(
     hDependentGroupSet: ?*_HGROUPSET,
     hProviderGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn SetClusterGroupSetDependencyExpression(
     hGroupSet: ?*_HGROUPSET,
     lpszDependencyExprssion: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn RemoveClusterGroupSetDependency(
     hGroupSet: ?*_HGROUPSET,
     hDependsOn: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn AddClusterGroupToGroupSetDependency(
     hDependentGroup: ?*_HGROUP,
     hProviderGroupSet: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn RemoveClusterGroupToGroupSetDependency(
     hGroup: ?*_HGROUP,
     hDependsOn: ?*_HGROUPSET,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterGroupSetOpenEnum(
     hCluster: ?*_HCLUSTER,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSETENUM;
+) callconv(.winapi) ?*_HGROUPSETENUM;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterGroupSetGetEnumCount(
     hGroupSetEnum: ?*_HGROUPSETENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterGroupSetEnum(
@@ -10072,59 +10072,59 @@ pub extern "clusapi" fn ClusterGroupSetEnum(
     dwIndex: u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterGroupSetCloseEnum(
     hGroupSetEnum: ?*_HGROUPSETENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn AddCrossClusterGroupSetDependency(
     hDependentGroupSet: ?*_HGROUPSET,
     lpRemoteClusterName: ?[*:0]const u16,
     lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn RemoveCrossClusterGroupSetDependency(
     hDependentGroupSet: ?*_HGROUPSET,
     lpRemoteClusterName: ?[*:0]const u16,
     lpRemoteGroupSetName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn CreateClusterAvailabilitySet(
     hCluster: ?*_HCLUSTER,
     lpAvailabilitySetName: ?[*:0]const u16,
     pAvailabilitySetConfig: ?*CLUSTER_AVAILABILITY_SET_CONFIG,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPSET;
+) callconv(.winapi) ?*_HGROUPSET;
 
 pub extern "clusapi" fn ClusterNodeReplacement(
     hCluster: ?*_HCLUSTER,
     lpszNodeNameCurrent: ?[*:0]const u16,
     lpszNodeNameNew: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ClusterCreateAffinityRule(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     ruleType: CLUS_AFFINITY_RULE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ClusterRemoveAffinityRule(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ClusterAddGroupToAffinityRule(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ClusterRemoveGroupFromAffinityRule(
     hCluster: ?*_HCLUSTER,
     ruleName: ?[*:0]const u16,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ClusterAffinityRuleControl(
     hCluster: ?*_HCLUSTER,
@@ -10138,13 +10138,13 @@ pub extern "clusapi" fn ClusterAffinityRuleControl(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterNode(
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterNodeEx(
@@ -10152,56 +10152,56 @@ pub extern "clusapi" fn OpenClusterNodeEx(
     lpszNodeName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub extern "clusapi" fn OpenClusterNodeById(
     hCluster: ?*_HCLUSTER,
     nodeId: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CloseClusterNode(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNodeState(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NODE_STATE;
+) callconv(.winapi) CLUSTER_NODE_STATE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNodeId(
     hNode: ?*_HNODE,
     lpszNodeId: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterFromNode(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn PauseClusterNode(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ResumeClusterNode(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn EvictClusterNode(
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterNetInterfaceOpenEnum(
     hCluster: ?*_HCLUSTER,
     lpszNodeName: ?[*:0]const u16,
     lpszNetworkName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACEENUM;
+) callconv(.winapi) ?*_HNETINTERFACEENUM;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterNetInterfaceEnum(
@@ -10209,30 +10209,30 @@ pub extern "clusapi" fn ClusterNetInterfaceEnum(
     dwIndex: u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterNetInterfaceCloseEnum(
     hNetInterfaceEnum: ?*_HNETINTERFACEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeOpenEnum(
     hNode: ?*_HNODE,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUM;
+) callconv(.winapi) ?*_HNODEENUM;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeOpenEnumEx(
     hNode: ?*_HNODE,
     dwType: u32,
     pOptions: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODEENUMEX;
+) callconv(.winapi) ?*_HNODEENUMEX;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeGetEnumCountEx(
     hNodeEnum: ?*_HNODEENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeEnumEx(
@@ -10240,22 +10240,22 @@ pub extern "clusapi" fn ClusterNodeEnumEx(
     dwIndex: u32,
     pItem: ?*CLUSTER_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeCloseEnumEx(
     hNodeEnum: ?*_HNODEENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeGetEnumCount(
     hNodeEnum: ?*_HNODEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeCloseEnum(
     hNodeEnum: ?*_HNODEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeEnum(
@@ -10264,33 +10264,33 @@ pub extern "clusapi" fn ClusterNodeEnum(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn EvictClusterNodeEx(
     hNode: ?*_HNODE,
     dwTimeOut: u32,
     phrCleanupStatus: ?*HRESULT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterResourceTypeKey(
     hCluster: ?*_HCLUSTER,
     lpszTypeName: ?[*:0]const u16,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CreateClusterGroup(
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterGroup(
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterGroupEx(
@@ -10298,7 +10298,7 @@ pub extern "clusapi" fn OpenClusterGroupEx(
     lpszGroupName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn PauseClusterNodeEx(
@@ -10306,21 +10306,21 @@ pub extern "clusapi" fn PauseClusterNodeEx(
     bDrainNode: BOOL,
     dwPauseFlags: u32,
     hNodeDrainTarget: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ResumeClusterNodeEx(
     hNode: ?*_HNODE,
     eResumeFailbackType: CLUSTER_NODE_RESUME_FAILBACK_TYPE,
     dwResumeFlagsReserved: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn CreateClusterGroupEx(
     hCluster: ?*_HCLUSTER,
     lpszGroupName: ?[*:0]const u16,
     pGroupInfo: ?*CLUSTER_CREATE_GROUP_INFO,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterGroupOpenEnumEx(
@@ -10332,12 +10332,12 @@ pub extern "clusapi" fn ClusterGroupOpenEnumEx(
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUMEX;
+) callconv(.winapi) ?*_HGROUPENUMEX;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterGroupGetEnumCountEx(
     hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterGroupEnumEx(
@@ -10345,12 +10345,12 @@ pub extern "clusapi" fn ClusterGroupEnumEx(
     dwIndex: u32,
     pItem: ?*CLUSTER_GROUP_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterGroupCloseEnumEx(
     hGroupEnumEx: ?*_HGROUPENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterResourceOpenEnumEx(
@@ -10362,12 +10362,12 @@ pub extern "clusapi" fn ClusterResourceOpenEnumEx(
     lpszRoProperties: ?[*:0]const u16,
     cbRoProperties: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUMEX;
+) callconv(.winapi) ?*_HRESENUMEX;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterResourceGetEnumCountEx(
     hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterResourceEnumEx(
@@ -10375,12 +10375,12 @@ pub extern "clusapi" fn ClusterResourceEnumEx(
     dwIndex: u32,
     pItem: ?*CLUSTER_RESOURCE_ENUM_ITEM,
     cbItem: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterResourceCloseEnumEx(
     hResourceEnumEx: ?*_HRESENUMEX,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn OnlineClusterGroupEx(
@@ -10390,7 +10390,7 @@ pub extern "clusapi" fn OnlineClusterGroupEx(
     // TODO: what to do with BytesParamIndex 4?
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn OfflineClusterGroupEx(
@@ -10399,7 +10399,7 @@ pub extern "clusapi" fn OfflineClusterGroupEx(
     // TODO: what to do with BytesParamIndex 3?
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn OnlineClusterResourceEx(
@@ -10408,7 +10408,7 @@ pub extern "clusapi" fn OnlineClusterResourceEx(
     // TODO: what to do with BytesParamIndex 3?
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn OfflineClusterResourceEx(
@@ -10417,7 +10417,7 @@ pub extern "clusapi" fn OfflineClusterResourceEx(
     // TODO: what to do with BytesParamIndex 3?
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn MoveClusterGroupEx(
@@ -10427,87 +10427,87 @@ pub extern "clusapi" fn MoveClusterGroupEx(
     // TODO: what to do with BytesParamIndex 4?
     lpInBuffer: ?*u8,
     cbInBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn CancelClusterGroupOperation(
     hGroup: ?*_HGROUP,
     dwCancelFlags_RESERVED: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn RestartClusterResource(
     hResource: ?*_HRESOURCE,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CloseClusterGroup(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterFromGroup(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterGroupState(
     hGroup: ?*_HGROUP,
     lpszNodeName: ?[*:0]u16,
     lpcchNodeName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_GROUP_STATE;
+) callconv(.winapi) CLUSTER_GROUP_STATE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn SetClusterGroupName(
     hGroup: ?*_HGROUP,
     lpszGroupName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn SetClusterGroupNodeList(
     hGroup: ?*_HGROUP,
     NodeCount: u32,
     NodeList: ?[*]?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OnlineClusterGroup(
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn MoveClusterGroup(
     hGroup: ?*_HGROUP,
     hDestinationNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OfflineClusterGroup(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn DeleteClusterGroup(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn DestroyClusterGroup(
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterGroupOpenEnum(
     hGroup: ?*_HGROUP,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUPENUM;
+) callconv(.winapi) ?*_HGROUPENUM;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterGroupGetEnumCount(
     hGroupEnum: ?*_HGROUPENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterGroupEnum(
@@ -10516,12 +10516,12 @@ pub extern "clusapi" fn ClusterGroupEnum(
     lpdwType: ?*u32,
     lpszResourceName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterGroupCloseEnum(
     hGroupEnum: ?*_HGROUPENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CreateClusterResource(
@@ -10529,13 +10529,13 @@ pub extern "clusapi" fn CreateClusterResource(
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterResource(
     hCluster: ?*_HCLUSTER,
     lpszResourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterResourceEx(
@@ -10543,22 +10543,22 @@ pub extern "clusapi" fn OpenClusterResourceEx(
     lpszResourceName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CloseClusterResource(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterFromResource(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn DeleteClusterResource(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterResourceState(
@@ -10567,106 +10567,106 @@ pub extern "clusapi" fn GetClusterResourceState(
     lpcchNodeName: ?*u32,
     lpszGroupName: ?[*:0]u16,
     lpcchGroupName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_RESOURCE_STATE;
+) callconv(.winapi) CLUSTER_RESOURCE_STATE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn SetClusterResourceName(
     hResource: ?*_HRESOURCE,
     lpszResourceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn FailClusterResource(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OnlineClusterResource(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OfflineClusterResource(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ChangeClusterResourceGroup(
     hResource: ?*_HRESOURCE,
     hGroup: ?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn ChangeClusterResourceGroupEx(
     hResource: ?*_HRESOURCE,
     hGroup: ?*_HGROUP,
     Flags: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn AddClusterResourceNode(
     hResource: ?*_HRESOURCE,
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn RemoveClusterResourceNode(
     hResource: ?*_HRESOURCE,
     hNode: ?*_HNODE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn AddClusterResourceDependency(
     hResource: ?*_HRESOURCE,
     hDependsOn: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn RemoveClusterResourceDependency(
     hResource: ?*_HRESOURCE,
     hDependsOn: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn SetClusterResourceDependencyExpression(
     hResource: ?*_HRESOURCE,
     lpszDependencyExpression: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterResourceDependencyExpression(
     hResource: ?*_HRESOURCE,
     lpszDependencyExpression: ?[*:0]u16,
     lpcchDependencyExpression: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn AddResourceToClusterSharedVolumes(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn RemoveResourceFromClusterSharedVolumes(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn IsFileOnClusterSharedVolume(
     lpszPathName: ?[*:0]const u16,
     pbFileIsOnSharedVolume: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterSharedVolumeSetSnapshotState(
     guidSnapshotSet: Guid,
     lpszVolumeName: ?[*:0]const u16,
     state: CLUSTER_SHARED_VOLUME_SNAPSHOT_STATE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CanResourceBeDependent(
     hResource: ?*_HRESOURCE,
     hResourceDependent: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceControl(
@@ -10680,7 +10680,7 @@ pub extern "clusapi" fn ClusterResourceControl(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterResourceControlAsUser(
@@ -10694,7 +10694,7 @@ pub extern "clusapi" fn ClusterResourceControlAsUser(
     lpOutBuffer: ?*anyopaque,
     cbOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceTypeControl(
@@ -10709,7 +10709,7 @@ pub extern "clusapi" fn ClusterResourceTypeControl(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterResourceTypeControlAsUser(
@@ -10724,7 +10724,7 @@ pub extern "clusapi" fn ClusterResourceTypeControlAsUser(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterGroupControl(
@@ -10738,7 +10738,7 @@ pub extern "clusapi" fn ClusterGroupControl(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNodeControl(
@@ -10752,25 +10752,25 @@ pub extern "clusapi" fn ClusterNodeControl(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterResourceNetworkName(
     hResource: ?*_HRESOURCE,
     lpBuffer: [*:0]u16,
     nSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceOpenEnum(
     hResource: ?*_HRESOURCE,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESENUM;
+) callconv(.winapi) ?*_HRESENUM;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceGetEnumCount(
     hResEnum: ?*_HRESENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceEnum(
@@ -10779,12 +10779,12 @@ pub extern "clusapi" fn ClusterResourceEnum(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceCloseEnum(
     hResEnum: ?*_HRESENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CreateClusterResourceType(
@@ -10794,25 +10794,25 @@ pub extern "clusapi" fn CreateClusterResourceType(
     lpszResourceTypeDll: ?[*:0]const u16,
     dwLooksAlivePollInterval: u32,
     dwIsAlivePollInterval: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn DeleteClusterResourceType(
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceTypeOpenEnum(
     hCluster: ?*_HCLUSTER,
     lpszResourceTypeName: ?[*:0]const u16,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESTYPEENUM;
+) callconv(.winapi) ?*_HRESTYPEENUM;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceTypeGetEnumCount(
     hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceTypeEnum(
@@ -10821,18 +10821,18 @@ pub extern "clusapi" fn ClusterResourceTypeEnum(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterResourceTypeCloseEnum(
     hResTypeEnum: ?*_HRESTYPEENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterNetwork(
     hCluster: ?*_HCLUSTER,
     lpszNetworkName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
+) callconv(.winapi) ?*_HNETWORK;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterNetworkEx(
@@ -10840,28 +10840,28 @@ pub extern "clusapi" fn OpenClusterNetworkEx(
     lpszNetworkName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORK;
+) callconv(.winapi) ?*_HNETWORK;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CloseClusterNetwork(
     hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterFromNetwork(
     hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNetworkOpenEnum(
     hNetwork: ?*_HNETWORK,
     dwType: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETWORKENUM;
+) callconv(.winapi) ?*_HNETWORKENUM;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNetworkGetEnumCount(
     hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNetworkEnum(
@@ -10870,30 +10870,30 @@ pub extern "clusapi" fn ClusterNetworkEnum(
     lpdwType: ?*u32,
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNetworkCloseEnum(
     hNetworkEnum: ?*_HNETWORKENUM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNetworkState(
     hNetwork: ?*_HNETWORK,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETWORK_STATE;
+) callconv(.winapi) CLUSTER_NETWORK_STATE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn SetClusterNetworkName(
     hNetwork: ?*_HNETWORK,
     lpszName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNetworkId(
     hNetwork: ?*_HNETWORK,
     lpszNetworkId: [*:0]u16,
     lpcchName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNetworkControl(
@@ -10907,13 +10907,13 @@ pub extern "clusapi" fn ClusterNetworkControl(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterNetInterface(
     hCluster: ?*_HCLUSTER,
     lpszInterfaceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
+) callconv(.winapi) ?*_HNETINTERFACE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn OpenClusterNetInterfaceEx(
@@ -10921,7 +10921,7 @@ pub extern "clusapi" fn OpenClusterNetInterfaceEx(
     lpszInterfaceName: ?[*:0]const u16,
     dwDesiredAccess: u32,
     lpdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNETINTERFACE;
+) callconv(.winapi) ?*_HNETINTERFACE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNetInterface(
@@ -10930,22 +10930,22 @@ pub extern "clusapi" fn GetClusterNetInterface(
     lpszNetworkName: ?[*:0]const u16,
     lpszInterfaceName: [*:0]u16,
     lpcchInterfaceName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CloseClusterNetInterface(
     hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterFromNetInterface(
     hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNetInterfaceState(
     hNetInterface: ?*_HNETINTERFACE,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_NETINTERFACE_STATE;
+) callconv(.winapi) CLUSTER_NETINTERFACE_STATE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterNetInterfaceControl(
@@ -10959,43 +10959,43 @@ pub extern "clusapi" fn ClusterNetInterfaceControl(
     lpOutBuffer: ?*anyopaque,
     nOutBufferSize: u32,
     lpBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterKey(
     hCluster: ?*_HCLUSTER,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterGroupKey(
     hGroup: ?*_HGROUP,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterResourceKey(
     hResource: ?*_HRESOURCE,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNodeKey(
     hNode: ?*_HNODE,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNetworkKey(
     hNetwork: ?*_HNETWORK,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn GetClusterNetInterfaceKey(
     hNetInterface: ?*_HNETINTERFACE,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegCreateKey(
@@ -11006,7 +11006,7 @@ pub extern "clusapi" fn ClusterRegCreateKey(
     lpSecurityAttributes: ?*SECURITY_ATTRIBUTES,
     phkResult: ?*?HKEY,
     lpdwDisposition: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegOpenKey(
@@ -11014,18 +11014,18 @@ pub extern "clusapi" fn ClusterRegOpenKey(
     lpszSubKey: ?[*:0]const u16,
     samDesired: u32,
     phkResult: ?*?HKEY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegDeleteKey(
     hKey: ?HKEY,
     lpszSubKey: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegCloseKey(
     hKey: ?HKEY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegEnumKey(
@@ -11034,7 +11034,7 @@ pub extern "clusapi" fn ClusterRegEnumKey(
     lpszName: [*:0]u16,
     lpcchName: ?*u32,
     lpftLastWriteTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegSetValue(
@@ -11043,13 +11043,13 @@ pub extern "clusapi" fn ClusterRegSetValue(
     dwType: u32,
     lpData: ?*const u8,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegDeleteValue(
     hKey: ?HKEY,
     lpszValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegQueryValue(
@@ -11059,7 +11059,7 @@ pub extern "clusapi" fn ClusterRegQueryValue(
     // TODO: what to do with BytesParamIndex 4?
     lpData: ?*u8,
     lpcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegEnumValue(
@@ -11071,7 +11071,7 @@ pub extern "clusapi" fn ClusterRegEnumValue(
     // TODO: what to do with BytesParamIndex 6?
     lpData: ?*u8,
     lpcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegQueryInfoKey(
@@ -11083,7 +11083,7 @@ pub extern "clusapi" fn ClusterRegQueryInfoKey(
     lpcbMaxValueLen: ?*u32,
     lpcbSecurityDescriptor: ?*u32,
     lpftLastWriteTime: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegGetKeySecurity(
@@ -11092,26 +11092,26 @@ pub extern "clusapi" fn ClusterRegGetKeySecurity(
     // TODO: what to do with BytesParamIndex 3?
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
     lpcbSecurityDescriptor: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegSetKeySecurity(
     hKey: ?HKEY,
     SecurityInformation: u32,
     pSecurityDescriptor: ?PSECURITY_DESCRIPTOR,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterRegSyncDatabase(
     hCluster: ?*_HCLUSTER,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegCreateBatch(
     hKey: ?HKEY,
     pHREGBATCH: ?*?*_HREGBATCH,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegBatchAddCommand(
@@ -11122,86 +11122,86 @@ pub extern "clusapi" fn ClusterRegBatchAddCommand(
     // TODO: what to do with BytesParamIndex 5?
     lpData: ?*const anyopaque,
     cbData: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegCloseBatch(
     hRegBatch: ?*_HREGBATCH,
     bCommit: BOOL,
     failedCommandNumber: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterRegCloseBatchEx(
     hRegBatch: ?*_HREGBATCH,
     flags: u32,
     failedCommandNumber: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegBatchReadCommand(
     hBatchNotification: ?*_HREGBATCHNOTIFICATION,
     pBatchCommand: ?*CLUSTER_BATCH_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegBatchCloseNotification(
     hBatchNotification: ?*_HREGBATCHNOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegCreateBatchNotifyPort(
     hKey: ?HKEY,
     phBatchNotifyPort: ?*?*_HREGBATCHPORT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegCloseBatchNotifyPort(
     hBatchNotifyPort: ?*_HREGBATCHPORT,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn ClusterRegGetBatchNotification(
     hBatchNotify: ?*_HREGBATCHPORT,
     phBatchNotification: ?*?*_HREGBATCHNOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterRegCreateReadBatch(
     hKey: ?HKEY,
     phRegReadBatch: ?*?*_HREGREADBATCH,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterRegReadBatchAddCommand(
     hRegReadBatch: ?*_HREGREADBATCH,
     wzSubkeyName: ?[*:0]const u16,
     wzValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterRegCloseReadBatch(
     hRegReadBatch: ?*_HREGREADBATCH,
     phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterRegCloseReadBatchEx(
     hRegReadBatch: ?*_HREGREADBATCH,
     flags: u32,
     phRegReadBatchReply: ?*?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterRegReadBatchReplyNextCommand(
     hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
     pBatchCommand: ?*CLUSTER_READ_BATCH_COMMAND,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "clusapi" fn ClusterRegCloseReadBatchReply(
     hRegReadBatchReply: ?*_HREGREADBATCHREPLY,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn ClusterSetAccountAccess(
@@ -11209,14 +11209,14 @@ pub extern "clusapi" fn ClusterSetAccountAccess(
     szAccountSID: ?[*:0]const u16,
     dwAccess: u32,
     dwControlType: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn CreateCluster(
     pConfig: ?*CREATE_CLUSTER_CONFIG,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSTER;
+) callconv(.winapi) ?*_HCLUSTER;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn CreateClusterNameAccount(
@@ -11224,39 +11224,39 @@ pub extern "clusapi" fn CreateClusterNameAccount(
     pConfig: ?*CREATE_CLUSTER_NAME_ACCOUNT,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn RemoveClusterNameAccount(
     hCluster: ?*_HCLUSTER,
     bDeleteComputerObjects: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn DetermineCNOResTypeFromNodelist(
     cNodes: u32,
     ppszNodeNames: ?*?PWSTR,
     pCNOResType: ?*CLUSTER_MGMT_POINT_RESTYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn DetermineCNOResTypeFromCluster(
     hCluster: ?*_HCLUSTER,
     pCNOResType: ?*CLUSTER_MGMT_POINT_RESTYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn DetermineClusterCloudTypeFromNodelist(
     cNodes: u32,
     ppszNodeNames: ?*?PWSTR,
     pCloudType: ?*CLUSTER_CLOUD_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn DetermineClusterCloudTypeFromCluster(
     hCluster: ?*_HCLUSTER,
     pCloudType: ?*CLUSTER_CLOUD_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn GetNodeCloudTypeDW(
     ppszNodeName: ?[*:0]const u16,
     NodeCloudType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "clusapi" fn RegisterClusterResourceTypeNotifyV2(
@@ -11265,7 +11265,7 @@ pub extern "clusapi" fn RegisterClusterResourceTypeNotifyV2(
     Flags: i64,
     resTypeName: ?[*:0]const u16,
     dwNotifyKey: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn AddClusterNode(
@@ -11273,7 +11273,7 @@ pub extern "clusapi" fn AddClusterNode(
     lpszNodeName: ?[*:0]const u16,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub extern "clusapi" fn AddClusterStorageNode(
     hCluster: ?*_HCLUSTER,
@@ -11282,7 +11282,7 @@ pub extern "clusapi" fn AddClusterStorageNode(
     pvCallbackArg: ?*anyopaque,
     lpszClusterStorageNodeDescription: ?[*:0]const u16,
     lpszClusterStorageNodeLocation: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "clusapi" fn AddClusterNodeEx(
     hCluster: ?*_HCLUSTER,
@@ -11290,14 +11290,14 @@ pub extern "clusapi" fn AddClusterNodeEx(
     dwFlags: u32,
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*_HNODE;
+) callconv(.winapi) ?*_HNODE;
 
 pub extern "clusapi" fn RemoveClusterStorageNode(
     hCluster: ?*_HCLUSTER,
     lpszClusterStorageEnclosureName: ?[*:0]const u16,
     dwTimeout: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "clusapi" fn DestroyCluster(
@@ -11305,84 +11305,84 @@ pub extern "clusapi" fn DestroyCluster(
     pfnProgressCallback: ?PCLUSTER_SETUP_PROGRESS_CALLBACK,
     pvCallbackArg: ?*anyopaque,
     fdeleteVirtualComputerObjects: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn InitializeClusterHealthFault(
     clusterHealthFault: ?*CLUSTER_HEALTH_FAULT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn InitializeClusterHealthFaultArray(
     clusterHealthFaultArray: ?*CLUSTER_HEALTH_FAULT_ARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn FreeClusterHealthFault(
     clusterHealthFault: ?*CLUSTER_HEALTH_FAULT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn FreeClusterHealthFaultArray(
     clusterHealthFaultArray: ?*CLUSTER_HEALTH_FAULT_ARRAY,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ClusGetClusterHealthFaults(
     hCluster: ?*_HCLUSTER,
     objects: ?*CLUSTER_HEALTH_FAULT_ARRAY,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ClusRemoveClusterHealthFault(
     hCluster: ?*_HCLUSTER,
     id: ?[*:0]const u16,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ClusAddClusterHealthFault(
     hCluster: ?*_HCLUSTER,
     failure: ?*CLUSTER_HEALTH_FAULT,
     param2: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilStartResourceService(
     pszServiceName: ?[*:0]const u16,
     phServiceHandle: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilVerifyResourceService(
     pszServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilStopResourceService(
     pszServiceName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilVerifyService(
     hServiceHandle: SC_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilStopService(
     hServiceHandle: SC_HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilCreateDirectoryTree(
     pszPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilIsPathValid(
     pszPath: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilEnumProperties(
@@ -11392,7 +11392,7 @@ pub extern "resutils" fn ResUtilEnumProperties(
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilEnumPrivateProperties(
@@ -11402,7 +11402,7 @@ pub extern "resutils" fn ResUtilEnumPrivateProperties(
     cbOutPropertiesSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetProperties(
@@ -11413,7 +11413,7 @@ pub extern "resutils" fn ResUtilGetProperties(
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetAllProperties(
@@ -11424,7 +11424,7 @@ pub extern "resutils" fn ResUtilGetAllProperties(
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetPrivateProperties(
@@ -11434,7 +11434,7 @@ pub extern "resutils" fn ResUtilGetPrivateProperties(
     cbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetPropertySize(
@@ -11442,7 +11442,7 @@ pub extern "resutils" fn ResUtilGetPropertySize(
     pPropertyTableItem: ?*const RESUTIL_PROPERTY_ITEM,
     pcbOutPropertyListSize: ?*u32,
     pnPropertyCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetProperty(
@@ -11451,7 +11451,7 @@ pub extern "resutils" fn ResUtilGetProperty(
     // TODO: what to do with BytesParamIndex 3?
     pOutPropertyItem: ?*?*anyopaque,
     pcbOutPropertyItemSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilVerifyPropertyTable(
@@ -11462,7 +11462,7 @@ pub extern "resutils" fn ResUtilVerifyPropertyTable(
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetPropertyTable(
@@ -11474,7 +11474,7 @@ pub extern "resutils" fn ResUtilSetPropertyTable(
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetPropertyTableEx(
@@ -11486,7 +11486,7 @@ pub extern "resutils" fn ResUtilSetPropertyTableEx(
     cbInPropertyListSize: u32,
     bForceWrite: BOOL,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetPropertyParameterBlock(
@@ -11497,7 +11497,7 @@ pub extern "resutils" fn ResUtilSetPropertyParameterBlock(
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetPropertyParameterBlockEx(
@@ -11509,7 +11509,7 @@ pub extern "resutils" fn ResUtilSetPropertyParameterBlockEx(
     cbInPropertyListSize: u32,
     bForceWrite: BOOL,
     pOutParams: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetUnknownProperties(
@@ -11518,7 +11518,7 @@ pub extern "resutils" fn ResUtilSetUnknownProperties(
     // TODO: what to do with BytesParamIndex 3?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetPropertiesToParameterBlock(
@@ -11527,7 +11527,7 @@ pub extern "resutils" fn ResUtilGetPropertiesToParameterBlock(
     pOutParams: ?*u8,
     bCheckForRequiredProperties: BOOL,
     pszNameOfPropInError: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilPropertyListFromParameterBlock(
@@ -11538,21 +11538,21 @@ pub extern "resutils" fn ResUtilPropertyListFromParameterBlock(
     pInParams: ?*const u8,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilDupParameterBlock(
     pOutParams: ?*u8,
     pInParams: ?*const u8,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFreeParameterBlock(
     pOutParams: ?*u8,
     pInParams: ?*const u8,
     pPropertyTable: ?*const RESUTIL_PROPERTY_ITEM,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilAddUnknownProperties(
@@ -11562,7 +11562,7 @@ pub extern "resutils" fn ResUtilAddUnknownProperties(
     pcbOutPropertyListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetPrivatePropertyList(
@@ -11570,19 +11570,19 @@ pub extern "resutils" fn ResUtilSetPrivatePropertyList(
     // TODO: what to do with BytesParamIndex 2?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilVerifyPrivatePropertyList(
     // TODO: what to do with BytesParamIndex 1?
     pInPropertyList: ?*const anyopaque,
     cbInPropertyListSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilDupString(
     pszInString: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetBinaryValue(
@@ -11591,13 +11591,13 @@ pub extern "resutils" fn ResUtilGetBinaryValue(
     // TODO: what to do with BytesParamIndex 3?
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetSzValue(
     hkeyClusterKey: ?HKEY,
     pszValueName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetDwordValue(
@@ -11605,7 +11605,7 @@ pub extern "resutils" fn ResUtilGetDwordValue(
     pszValueName: ?[*:0]const u16,
     pdwOutValue: ?*u32,
     dwDefaultValue: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetQwordValue(
@@ -11613,7 +11613,7 @@ pub extern "resutils" fn ResUtilGetQwordValue(
     pszValueName: ?[*:0]const u16,
     pqwOutValue: ?*u64,
     qwDefaultValue: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetBinaryValue(
@@ -11625,7 +11625,7 @@ pub extern "resutils" fn ResUtilSetBinaryValue(
     // TODO: what to do with BytesParamIndex 5?
     ppbOutValue: ?*?*u8,
     pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetSzValue(
@@ -11633,7 +11633,7 @@ pub extern "resutils" fn ResUtilSetSzValue(
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
     ppszOutString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetExpandSzValue(
@@ -11641,7 +11641,7 @@ pub extern "resutils" fn ResUtilSetExpandSzValue(
     pszValueName: ?[*:0]const u16,
     pszNewValue: ?[*:0]const u16,
     ppszOutString: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetMultiSzValue(
@@ -11653,7 +11653,7 @@ pub extern "resutils" fn ResUtilSetMultiSzValue(
     // TODO: what to do with BytesParamIndex 5?
     ppszOutValue: ?*?PWSTR,
     pcbOutValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetDwordValue(
@@ -11661,7 +11661,7 @@ pub extern "resutils" fn ResUtilSetDwordValue(
     pszValueName: ?[*:0]const u16,
     dwNewValue: u32,
     pdwOutValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetQwordValue(
@@ -11669,7 +11669,7 @@ pub extern "resutils" fn ResUtilSetQwordValue(
     pszValueName: ?[*:0]const u16,
     qwNewValue: u64,
     pqwOutValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilSetValueEx(
@@ -11680,7 +11680,7 @@ pub extern "resutils" fn ResUtilSetValueEx(
     valueData: ?*const u8,
     valueSize: u32,
     flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetBinaryProperty(
@@ -11693,7 +11693,7 @@ pub extern "resutils" fn ResUtilGetBinaryProperty(
     // TODO: what to do with BytesParamIndex 6?
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetSzProperty(
@@ -11703,7 +11703,7 @@ pub extern "resutils" fn ResUtilGetSzProperty(
     // TODO: what to do with BytesParamIndex 4?
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetMultiSzProperty(
@@ -11716,7 +11716,7 @@ pub extern "resutils" fn ResUtilGetMultiSzProperty(
     // TODO: what to do with BytesParamIndex 6?
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetDwordProperty(
@@ -11727,7 +11727,7 @@ pub extern "resutils" fn ResUtilGetDwordProperty(
     dwMaximum: u32,
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetLongProperty(
@@ -11738,7 +11738,7 @@ pub extern "resutils" fn ResUtilGetLongProperty(
     lMaximum: i32,
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetFileTimeProperty(
@@ -11749,22 +11749,22 @@ pub extern "resutils" fn ResUtilGetFileTimeProperty(
     ftMaximum: FILETIME,
     ppPropertyList: ?*?*u8,
     pcbPropertyListSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetEnvironmentWithNetName(
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFreeEnvironment(
     lpEnvironment: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilExpandEnvironmentStrings(
     pszSrc: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?PWSTR;
+) callconv(.winapi) ?PWSTR;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetResourceServiceEnvironment(
@@ -11772,14 +11772,14 @@ pub extern "resutils" fn ResUtilSetResourceServiceEnvironment(
     hResource: ?*_HRESOURCE,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilRemoveResourceServiceEnvironment(
     pszServiceName: ?[*:0]const u16,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilSetResourceServiceStartParameters(
@@ -11788,7 +11788,7 @@ pub extern "resutils" fn ResUtilSetResourceServiceStartParameters(
     phService: ?*isize,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindSzProperty(
@@ -11797,7 +11797,7 @@ pub extern "resutils" fn ResUtilFindSzProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindExpandSzProperty(
@@ -11806,7 +11806,7 @@ pub extern "resutils" fn ResUtilFindExpandSzProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindExpandedSzProperty(
@@ -11815,7 +11815,7 @@ pub extern "resutils" fn ResUtilFindExpandedSzProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pszPropertyValue: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindDwordProperty(
@@ -11824,7 +11824,7 @@ pub extern "resutils" fn ResUtilFindDwordProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pdwPropertyValue: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindBinaryProperty(
@@ -11835,7 +11835,7 @@ pub extern "resutils" fn ResUtilFindBinaryProperty(
     // TODO: what to do with BytesParamIndex 4?
     pbPropertyValue: ?*?*u8,
     pcbPropertyValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindMultiSzProperty(
@@ -11846,7 +11846,7 @@ pub extern "resutils" fn ResUtilFindMultiSzProperty(
     // TODO: what to do with BytesParamIndex 4?
     pszPropertyValue: ?*?PWSTR,
     pcbPropertyValueSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindLongProperty(
@@ -11855,7 +11855,7 @@ pub extern "resutils" fn ResUtilFindLongProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     plPropertyValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ResUtilFindULargeIntegerProperty(
@@ -11864,7 +11864,7 @@ pub extern "resutils" fn ResUtilFindULargeIntegerProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     plPropertyValue: ?*u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindFileTimeProperty(
@@ -11873,30 +11873,30 @@ pub extern "resutils" fn ResUtilFindFileTimeProperty(
     cbPropertyListSize: u32,
     pszPropertyName: ?[*:0]const u16,
     pftPropertyValue: ?*FILETIME,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ClusWorkerCreate(
     lpWorker: ?*CLUS_WORKER,
     lpStartAddress: ?PWORKER_START_ROUTINE,
     lpParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ClusWorkerCheckTerminate(
     lpWorker: ?*CLUS_WORKER,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "resutils" fn ClusWorkerTerminate(
     lpWorker: ?*CLUS_WORKER,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ClusWorkerTerminateEx(
     ClusWorker: ?*CLUS_WORKER,
     TimeoutInMilliseconds: u32,
     WaitOnly: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ClusWorkersTerminate(
@@ -11904,25 +11904,25 @@ pub extern "resutils" fn ClusWorkersTerminate(
     ClusWorkersCount: usize,
     TimeoutInMilliseconds: u32,
     WaitOnly: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilResourcesEqual(
     hSelf: ?*_HRESOURCE,
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilResourceTypesEqual(
     lpszResourceTypeName: ?[*:0]const u16,
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilIsResourceClassEqual(
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     hResource: ?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilEnumResources(
@@ -11930,7 +11930,7 @@ pub extern "resutils" fn ResUtilEnumResources(
     lpszResTypeName: ?[*:0]const u16,
     pResCallBack: ?LPRESOURCE_CALLBACK,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilEnumResourcesEx(
@@ -11939,13 +11939,13 @@ pub extern "resutils" fn ResUtilEnumResourcesEx(
     lpszResTypeName: ?[*:0]const u16,
     pResCallBack: ?LPRESOURCE_CALLBACK_EX,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetResourceDependency(
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetResourceDependencyByName(
@@ -11953,7 +11953,7 @@ pub extern "resutils" fn ResUtilGetResourceDependencyByName(
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
     bRecurse: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetResourceDependencyByClass(
@@ -11961,13 +11961,13 @@ pub extern "resutils" fn ResUtilGetResourceDependencyByClass(
     hSelf: ?HANDLE,
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     bRecurse: BOOL,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetResourceNameDependency(
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetResourceDependentIPAddressProps(
@@ -11978,7 +11978,7 @@ pub extern "resutils" fn ResUtilGetResourceDependentIPAddressProps(
     pcchSubnetMask: ?*u32,
     pszNetwork: [*:0]u16,
     pcchNetwork: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilFindDependentDiskResourceDriveLetter(
@@ -11986,7 +11986,7 @@ pub extern "resutils" fn ResUtilFindDependentDiskResourceDriveLetter(
     hResource: ?*_HRESOURCE,
     pszDriveLetter: [*:0]u16,
     pcchDriveLetter: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilTerminateServiceProcessFromResDll(
@@ -11995,7 +11995,7 @@ pub extern "resutils" fn ResUtilTerminateServiceProcessFromResDll(
     pdwResourceState: ?*u32,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetPropertyFormats(
@@ -12005,7 +12005,7 @@ pub extern "resutils" fn ResUtilGetPropertyFormats(
     cbPropertyFormatListSize: u32,
     pcbBytesReturned: ?*u32,
     pcbRequired: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetCoreClusterResources(
@@ -12013,39 +12013,39 @@ pub extern "resutils" fn ResUtilGetCoreClusterResources(
     phClusterNameResource: ?*?*_HRESOURCE,
     phClusterIPAddressResource: ?*?*_HRESOURCE,
     phClusterQuorumResource: ?*?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetResourceName(
     hResource: ?*_HRESOURCE,
     pszResourceName: [*:0]u16,
     pcchResourceNameInOut: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ResUtilGetClusterRoleState(
     hCluster: ?*_HCLUSTER,
     eClusterRole: CLUSTER_ROLE,
-) callconv(@import("std").os.windows.WINAPI) CLUSTER_ROLE_STATE;
+) callconv(.winapi) CLUSTER_ROLE_STATE;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ClusterIsPathOnSharedVolume(
     lpszPathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ClusterGetVolumePathName(
     lpszFileName: ?[*:0]const u16,
     lpszVolumePathName: ?PWSTR,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ClusterGetVolumeNameForVolumeMountPoint(
     lpszVolumeMountPoint: ?[*:0]const u16,
     lpszVolumeName: ?PWSTR,
     cchBufferLength: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ClusterPrepareSharedVolumeForBackup(
@@ -12054,12 +12054,12 @@ pub extern "resutils" fn ClusterPrepareSharedVolumeForBackup(
     lpcchVolumePathName: ?*u32,
     lpszVolumeName: ?PWSTR,
     lpcchVolumeName: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2008'
 pub extern "resutils" fn ClusterClearBackupStateForSharedVolume(
     lpszVolumePathName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilSetResourceServiceStartParametersEx(
@@ -12069,7 +12069,7 @@ pub extern "resutils" fn ResUtilSetResourceServiceStartParametersEx(
     dwDesiredAccess: u32,
     pfnLogEvent: ?PLOG_EVENT_ROUTINE,
     hResourceHandle: isize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilEnumResourcesEx2(
@@ -12079,14 +12079,14 @@ pub extern "resutils" fn ResUtilEnumResourcesEx2(
     pResCallBack: ?LPRESOURCE_CALLBACK_EX,
     pParameter: ?*anyopaque,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilGetResourceDependencyEx(
     hSelf: ?HANDLE,
     lpszResourceType: ?[*:0]const u16,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilGetResourceDependencyByNameEx(
@@ -12095,7 +12095,7 @@ pub extern "resutils" fn ResUtilGetResourceDependencyByNameEx(
     lpszResourceType: ?[*:0]const u16,
     bRecurse: BOOL,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilGetResourceDependencyByClassEx(
@@ -12104,14 +12104,14 @@ pub extern "resutils" fn ResUtilGetResourceDependencyByClassEx(
     prci: ?*CLUS_RESOURCE_CLASS_INFO,
     bRecurse: BOOL,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilGetResourceNameDependencyEx(
     lpszResourceName: ?[*:0]const u16,
     lpszResourceType: ?[*:0]const u16,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HRESOURCE;
+) callconv(.winapi) ?*_HRESOURCE;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ResUtilGetCoreClusterResourcesEx(
@@ -12119,7 +12119,7 @@ pub extern "resutils" fn ResUtilGetCoreClusterResourcesEx(
     phClusterNameResourceOut: ?*?*_HRESOURCE,
     phClusterQuorumResourceOut: ?*?*_HRESOURCE,
     dwDesiredAccess: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn OpenClusterCryptProvider(
@@ -12127,7 +12127,7 @@ pub extern "resutils" fn OpenClusterCryptProvider(
     lpszProvider: ?*i8,
     dwType: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
 
 pub extern "resutils" fn OpenClusterCryptProviderEx(
     lpszResource: ?[*:0]const u16,
@@ -12135,12 +12135,12 @@ pub extern "resutils" fn OpenClusterCryptProviderEx(
     lpszProvider: ?*i8,
     dwType: u32,
     dwFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*_HCLUSCRYPTPROVIDER;
+) callconv(.winapi) ?*_HCLUSCRYPTPROVIDER;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn CloseClusterCryptProvider(
     hClusCryptProvider: ?*_HCLUSCRYPTPROVIDER,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ClusterEncrypt(
@@ -12149,7 +12149,7 @@ pub extern "resutils" fn ClusterEncrypt(
     cbData: u32,
     ppData: ?*?*u8,
     pcbData: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn ClusterDecrypt(
@@ -12158,49 +12158,49 @@ pub extern "resutils" fn ClusterDecrypt(
     cbCryptInput: u32,
     ppCryptOutput: ?*?*u8,
     pcbCryptOutput: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "resutils" fn FreeClusterCrypt(
     pCryptInfo: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilVerifyShutdownSafe(
     flags: u32,
     reason: u32,
     pResult: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ResUtilPaxosComparer(
     left: ?*const PaxosTagCStruct,
     right: ?*const PaxosTagCStruct,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "resutils" fn ResUtilLeftPaxosIsLessThanRight(
     left: ?*const PaxosTagCStruct,
     right: ?*const PaxosTagCStruct,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "resutils" fn ResUtilsDeleteKeyTree(
     key: ?HKEY,
     keyName: ?[*:0]const u16,
     treatNoKeyAsError: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilGroupsEqual(
     hSelf: ?*_HGROUP,
     hGroup: ?*_HGROUP,
     pEqual: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilEnumGroups(
     hCluster: ?*_HCLUSTER,
     hSelf: ?*_HGROUP,
     pResCallBack: ?LPGROUP_CALLBACK_EX,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilEnumGroupsEx(
     hCluster: ?*_HCLUSTER,
@@ -12208,74 +12208,74 @@ pub extern "resutils" fn ResUtilEnumGroupsEx(
     groupType: CLUSGROUP_TYPE,
     pResCallBack: ?LPGROUP_CALLBACK_EX,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilDupGroup(
     group: ?*_HGROUP,
     copy: ?*?*_HGROUP,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilGetClusterGroupType(
     hGroup: ?*_HGROUP,
     groupType: ?*CLUSGROUP_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilGetCoreGroup(
     hCluster: ?*_HCLUSTER,
-) callconv(@import("std").os.windows.WINAPI) ?*_HGROUP;
+) callconv(.winapi) ?*_HGROUP;
 
 pub extern "resutils" fn ResUtilResourceDepEnum(
     hSelf: ?*_HRESOURCE,
     enumType: u32,
     pResCallBack: ?LPRESOURCE_CALLBACK_EX,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilDupResource(
     group: ?*_HRESOURCE,
     copy: ?*?*_HRESOURCE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilGetClusterId(
     hCluster: ?*_HCLUSTER,
     guid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "resutils" fn ResUtilNodeEnum(
     hCluster: ?*_HCLUSTER,
     pNodeCallBack: ?LPNODE_CALLBACK,
     pParameter: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2012'
 pub extern "ntlanman" fn RegisterAppInstance(
     ProcessHandle: ?HANDLE,
     AppInstanceId: ?*Guid,
     ChildrenInheritAppInstance: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "ntlanman" fn RegisterAppInstanceVersion(
     AppInstanceId: ?*Guid,
     InstanceVersionHigh: u64,
     InstanceVersionLow: u64,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "ntlanman" fn QueryAppInstanceVersion(
     AppInstanceId: ?*Guid,
     InstanceVersionHigh: ?*u64,
     InstanceVersionLow: ?*u64,
     VersionStatus: ?*NTSTATUS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "ntlanman" fn ResetAllAppInstanceVersions(
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windowsServer2016'
 pub extern "ntlanman" fn SetAppInstanceCsvFlags(
     ProcessHandle: ?HANDLE,
     Mask: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

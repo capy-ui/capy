@@ -3401,7 +3401,7 @@ pub const wlan_notification_security_end = WLAN_NOTIFICATION_SECURITY.end;
 pub const WLAN_NOTIFICATION_CALLBACK = *const fn(
     param0: ?*L2_NOTIFICATION_DATA,
     param1: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const WLAN_OPCODE_VALUE_TYPE = enum(i32) {
     query_only = 0,
@@ -3773,7 +3773,7 @@ pub const WFD_OPEN_SESSION_COMPLETE_CALLBACK = *const fn(
     guidSessionInterface: Guid,
     dwError: u32,
     dwReasonCode: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const ONEX_AUTH_IDENTITY = enum(i32) {
     None = 0,
@@ -4008,43 +4008,43 @@ pub const IDot11AdHocManager = extern union {
             pSecurity: ?*IDot11AdHocSecuritySettings,
             pContextGuid: ?*Guid,
             pIAdHoc: ?*?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         CommitCreatedNetwork: *const fn(
             self: *const IDot11AdHocManager,
             pIAdHoc: ?*IDot11AdHocNetwork,
             fSaveProfile: BOOLEAN,
             fMakeSavedProfileUserSpecific: BOOLEAN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIEnumDot11AdHocNetworks: *const fn(
             self: *const IDot11AdHocManager,
             pContextGuid: ?*Guid,
             ppEnum: ?*?*IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIEnumDot11AdHocInterfaces: *const fn(
             self: *const IDot11AdHocManager,
             ppEnum: ?*?*IEnumDot11AdHocInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetwork: *const fn(
             self: *const IDot11AdHocManager,
             NetworkSignature: ?*Guid,
             pNetwork: ?*?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateNetwork(self: *const IDot11AdHocManager, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn CreateNetwork(self: *const IDot11AdHocManager, Name: ?[*:0]const u16, Password: ?[*:0]const u16, GeographicalId: i32, pInterface: ?*IDot11AdHocInterface, pSecurity: ?*IDot11AdHocSecuritySettings, pContextGuid: ?*Guid, pIAdHoc: ?*?*IDot11AdHocNetwork) HRESULT {
         return self.vtable.CreateNetwork(self, Name, Password, GeographicalId, pInterface, pSecurity, pContextGuid, pIAdHoc);
     }
-    pub fn CommitCreatedNetwork(self: *const IDot11AdHocManager, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
+    pub fn CommitCreatedNetwork(self: *const IDot11AdHocManager, pIAdHoc: ?*IDot11AdHocNetwork, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) HRESULT {
         return self.vtable.CommitCreatedNetwork(self, pIAdHoc, fSaveProfile, fMakeSavedProfileUserSpecific);
     }
-    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocManager, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocManager, pContextGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) HRESULT {
         return self.vtable.GetIEnumDot11AdHocNetworks(self, pContextGuid, ppEnum);
     }
-    pub fn GetIEnumDot11AdHocInterfaces(self: *const IDot11AdHocManager, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+    pub fn GetIEnumDot11AdHocInterfaces(self: *const IDot11AdHocManager, ppEnum: ?*?*IEnumDot11AdHocInterfaces) HRESULT {
         return self.vtable.GetIEnumDot11AdHocInterfaces(self, ppEnum);
     }
-    pub fn GetNetwork(self: *const IDot11AdHocManager, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn GetNetwork(self: *const IDot11AdHocManager, NetworkSignature: ?*Guid, pNetwork: ?*?*IDot11AdHocNetwork) HRESULT {
         return self.vtable.GetNetwork(self, NetworkSignature, pNetwork);
     }
 };
@@ -4058,32 +4058,32 @@ pub const IDot11AdHocManagerNotificationSink = extern union {
         OnNetworkAdd: *const fn(
             self: *const IDot11AdHocManagerNotificationSink,
             pIAdHocNetwork: ?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnNetworkRemove: *const fn(
             self: *const IDot11AdHocManagerNotificationSink,
             Signature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnInterfaceAdd: *const fn(
             self: *const IDot11AdHocManagerNotificationSink,
             pIAdHocInterface: ?*IDot11AdHocInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnInterfaceRemove: *const fn(
             self: *const IDot11AdHocManagerNotificationSink,
             Signature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnNetworkAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocNetwork: ?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn OnNetworkAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocNetwork: ?*IDot11AdHocNetwork) HRESULT {
         return self.vtable.OnNetworkAdd(self, pIAdHocNetwork);
     }
-    pub fn OnNetworkRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn OnNetworkRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) HRESULT {
         return self.vtable.OnNetworkRemove(self, Signature);
     }
-    pub fn OnInterfaceAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocInterface: ?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
+    pub fn OnInterfaceAdd(self: *const IDot11AdHocManagerNotificationSink, pIAdHocInterface: ?*IDot11AdHocInterface) HRESULT {
         return self.vtable.OnInterfaceAdd(self, pIAdHocInterface);
     }
-    pub fn OnInterfaceRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn OnInterfaceRemove(self: *const IDot11AdHocManagerNotificationSink, Signature: ?*Guid) HRESULT {
         return self.vtable.OnInterfaceRemove(self, Signature);
     }
 };
@@ -4099,31 +4099,31 @@ pub const IEnumDot11AdHocNetworks = extern union {
             cElt: u32,
             rgElt: [*]?*IDot11AdHocNetwork,
             pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumDot11AdHocNetworks,
             cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumDot11AdHocNetworks,
             ppEnum: ?*?*IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDot11AdHocNetworks, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumDot11AdHocNetworks, cElt: u32, rgElt: [*]?*IDot11AdHocNetwork, pcEltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
-    pub fn Skip(self: *const IEnumDot11AdHocNetworks, cElt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumDot11AdHocNetworks, cElt: u32) HRESULT {
         return self.vtable.Skip(self, cElt);
     }
-    pub fn Reset(self: *const IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumDot11AdHocNetworks) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumDot11AdHocNetworks, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumDot11AdHocNetworks, ppEnum: ?*?*IEnumDot11AdHocNetworks) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -4137,90 +4137,90 @@ pub const IDot11AdHocNetwork = extern union {
         GetStatus: *const fn(
             self: *const IDot11AdHocNetwork,
             eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSSID: *const fn(
             self: *const IDot11AdHocNetwork,
             ppszwSSID: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         HasProfile: *const fn(
             self: *const IDot11AdHocNetwork,
             pf11d: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetProfileName: *const fn(
             self: *const IDot11AdHocNetwork,
             ppszwProfileName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         DeleteProfile: *const fn(
             self: *const IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignalQuality: *const fn(
             self: *const IDot11AdHocNetwork,
             puStrengthValue: ?*u32,
             puStrengthMax: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSecuritySetting: *const fn(
             self: *const IDot11AdHocNetwork,
             pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetContextGuid: *const fn(
             self: *const IDot11AdHocNetwork,
             pContextGuid: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetSignature: *const fn(
             self: *const IDot11AdHocNetwork,
             pSignature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetInterface: *const fn(
             self: *const IDot11AdHocNetwork,
             pAdHocInterface: ?*?*IDot11AdHocInterface,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const IDot11AdHocNetwork,
             Passphrase: ?[*:0]const u16,
             GeographicalId: i32,
             fSaveProfile: BOOLEAN,
             fMakeSavedProfileUserSpecific: BOOLEAN,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Disconnect: *const fn(
             self: *const IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetStatus(self: *const IDot11AdHocNetwork, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDot11AdHocNetwork, eStatus: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
         return self.vtable.GetStatus(self, eStatus);
     }
-    pub fn GetSSID(self: *const IDot11AdHocNetwork, ppszwSSID: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetSSID(self: *const IDot11AdHocNetwork, ppszwSSID: ?*?PWSTR) HRESULT {
         return self.vtable.GetSSID(self, ppszwSSID);
     }
-    pub fn HasProfile(self: *const IDot11AdHocNetwork, pf11d: ?*u8) callconv(.Inline) HRESULT {
+    pub fn HasProfile(self: *const IDot11AdHocNetwork, pf11d: ?*u8) HRESULT {
         return self.vtable.HasProfile(self, pf11d);
     }
-    pub fn GetProfileName(self: *const IDot11AdHocNetwork, ppszwProfileName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetProfileName(self: *const IDot11AdHocNetwork, ppszwProfileName: ?*?PWSTR) HRESULT {
         return self.vtable.GetProfileName(self, ppszwProfileName);
     }
-    pub fn DeleteProfile(self: *const IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn DeleteProfile(self: *const IDot11AdHocNetwork) HRESULT {
         return self.vtable.DeleteProfile(self);
     }
-    pub fn GetSignalQuality(self: *const IDot11AdHocNetwork, puStrengthValue: ?*u32, puStrengthMax: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetSignalQuality(self: *const IDot11AdHocNetwork, puStrengthValue: ?*u32, puStrengthMax: ?*u32) HRESULT {
         return self.vtable.GetSignalQuality(self, puStrengthValue, puStrengthMax);
     }
-    pub fn GetSecuritySetting(self: *const IDot11AdHocNetwork, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn GetSecuritySetting(self: *const IDot11AdHocNetwork, pAdHocSecuritySetting: ?*?*IDot11AdHocSecuritySettings) HRESULT {
         return self.vtable.GetSecuritySetting(self, pAdHocSecuritySetting);
     }
-    pub fn GetContextGuid(self: *const IDot11AdHocNetwork, pContextGuid: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetContextGuid(self: *const IDot11AdHocNetwork, pContextGuid: ?*Guid) HRESULT {
         return self.vtable.GetContextGuid(self, pContextGuid);
     }
-    pub fn GetSignature(self: *const IDot11AdHocNetwork, pSignature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetSignature(self: *const IDot11AdHocNetwork, pSignature: ?*Guid) HRESULT {
         return self.vtable.GetSignature(self, pSignature);
     }
-    pub fn GetInterface(self: *const IDot11AdHocNetwork, pAdHocInterface: ?*?*IDot11AdHocInterface) callconv(.Inline) HRESULT {
+    pub fn GetInterface(self: *const IDot11AdHocNetwork, pAdHocInterface: ?*?*IDot11AdHocInterface) HRESULT {
         return self.vtable.GetInterface(self, pAdHocInterface);
     }
-    pub fn Connect(self: *const IDot11AdHocNetwork, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IDot11AdHocNetwork, Passphrase: ?[*:0]const u16, GeographicalId: i32, fSaveProfile: BOOLEAN, fMakeSavedProfileUserSpecific: BOOLEAN) HRESULT {
         return self.vtable.Connect(self, Passphrase, GeographicalId, fSaveProfile, fMakeSavedProfileUserSpecific);
     }
-    pub fn Disconnect(self: *const IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn Disconnect(self: *const IDot11AdHocNetwork) HRESULT {
         return self.vtable.Disconnect(self);
     }
 };
@@ -4234,18 +4234,18 @@ pub const IDot11AdHocNetworkNotificationSink = extern union {
         OnStatusChange: *const fn(
             self: *const IDot11AdHocNetworkNotificationSink,
             eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         OnConnectFail: *const fn(
             self: *const IDot11AdHocNetworkNotificationSink,
             eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnStatusChange(self: *const IDot11AdHocNetworkNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnStatusChange(self: *const IDot11AdHocNetworkNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
         return self.vtable.OnStatusChange(self, eStatus);
     }
-    pub fn OnConnectFail(self: *const IDot11AdHocNetworkNotificationSink, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) callconv(.Inline) HRESULT {
+    pub fn OnConnectFail(self: *const IDot11AdHocNetworkNotificationSink, eFailReason: DOT11_ADHOC_CONNECT_FAIL_REASON) HRESULT {
         return self.vtable.OnConnectFail(self, eFailReason);
     }
 };
@@ -4259,68 +4259,68 @@ pub const IDot11AdHocInterface = extern union {
         GetDeviceSignature: *const fn(
             self: *const IDot11AdHocInterface,
             pSignature: ?*Guid,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetFriendlyName: *const fn(
             self: *const IDot11AdHocInterface,
             ppszName: ?*?PWSTR,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsDot11d: *const fn(
             self: *const IDot11AdHocInterface,
             pf11d: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsAdHocCapable: *const fn(
             self: *const IDot11AdHocInterface,
             pfAdHocCapable: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         IsRadioOn: *const fn(
             self: *const IDot11AdHocInterface,
             pfIsRadioOn: ?*u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetActiveNetwork: *const fn(
             self: *const IDot11AdHocInterface,
             ppNetwork: ?*?*IDot11AdHocNetwork,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIEnumSecuritySettings: *const fn(
             self: *const IDot11AdHocInterface,
             ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIEnumDot11AdHocNetworks: *const fn(
             self: *const IDot11AdHocInterface,
             pFilterGuid: ?*Guid,
             ppEnum: ?*?*IEnumDot11AdHocNetworks,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStatus: *const fn(
             self: *const IDot11AdHocInterface,
             pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDeviceSignature(self: *const IDot11AdHocInterface, pSignature: ?*Guid) callconv(.Inline) HRESULT {
+    pub fn GetDeviceSignature(self: *const IDot11AdHocInterface, pSignature: ?*Guid) HRESULT {
         return self.vtable.GetDeviceSignature(self, pSignature);
     }
-    pub fn GetFriendlyName(self: *const IDot11AdHocInterface, ppszName: ?*?PWSTR) callconv(.Inline) HRESULT {
+    pub fn GetFriendlyName(self: *const IDot11AdHocInterface, ppszName: ?*?PWSTR) HRESULT {
         return self.vtable.GetFriendlyName(self, ppszName);
     }
-    pub fn IsDot11d(self: *const IDot11AdHocInterface, pf11d: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsDot11d(self: *const IDot11AdHocInterface, pf11d: ?*u8) HRESULT {
         return self.vtable.IsDot11d(self, pf11d);
     }
-    pub fn IsAdHocCapable(self: *const IDot11AdHocInterface, pfAdHocCapable: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsAdHocCapable(self: *const IDot11AdHocInterface, pfAdHocCapable: ?*u8) HRESULT {
         return self.vtable.IsAdHocCapable(self, pfAdHocCapable);
     }
-    pub fn IsRadioOn(self: *const IDot11AdHocInterface, pfIsRadioOn: ?*u8) callconv(.Inline) HRESULT {
+    pub fn IsRadioOn(self: *const IDot11AdHocInterface, pfIsRadioOn: ?*u8) HRESULT {
         return self.vtable.IsRadioOn(self, pfIsRadioOn);
     }
-    pub fn GetActiveNetwork(self: *const IDot11AdHocInterface, ppNetwork: ?*?*IDot11AdHocNetwork) callconv(.Inline) HRESULT {
+    pub fn GetActiveNetwork(self: *const IDot11AdHocInterface, ppNetwork: ?*?*IDot11AdHocNetwork) HRESULT {
         return self.vtable.GetActiveNetwork(self, ppNetwork);
     }
-    pub fn GetIEnumSecuritySettings(self: *const IDot11AdHocInterface, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn GetIEnumSecuritySettings(self: *const IDot11AdHocInterface, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) HRESULT {
         return self.vtable.GetIEnumSecuritySettings(self, ppEnum);
     }
-    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocInterface, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) callconv(.Inline) HRESULT {
+    pub fn GetIEnumDot11AdHocNetworks(self: *const IDot11AdHocInterface, pFilterGuid: ?*Guid, ppEnum: ?*?*IEnumDot11AdHocNetworks) HRESULT {
         return self.vtable.GetIEnumDot11AdHocNetworks(self, pFilterGuid, ppEnum);
     }
-    pub fn GetStatus(self: *const IDot11AdHocInterface, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn GetStatus(self: *const IDot11AdHocInterface, pState: ?*DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
         return self.vtable.GetStatus(self, pState);
     }
 };
@@ -4336,31 +4336,31 @@ pub const IEnumDot11AdHocInterfaces = extern union {
             cElt: u32,
             rgElt: [*]?*IDot11AdHocInterface,
             pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumDot11AdHocInterfaces,
             cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumDot11AdHocInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumDot11AdHocInterfaces,
             ppEnum: ?*?*IEnumDot11AdHocInterfaces,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDot11AdHocInterfaces, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumDot11AdHocInterfaces, cElt: u32, rgElt: [*]?*IDot11AdHocInterface, pcEltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
-    pub fn Skip(self: *const IEnumDot11AdHocInterfaces, cElt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumDot11AdHocInterfaces, cElt: u32) HRESULT {
         return self.vtable.Skip(self, cElt);
     }
-    pub fn Reset(self: *const IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumDot11AdHocInterfaces) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumDot11AdHocInterfaces, ppEnum: ?*?*IEnumDot11AdHocInterfaces) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumDot11AdHocInterfaces, ppEnum: ?*?*IEnumDot11AdHocInterfaces) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -4376,31 +4376,31 @@ pub const IEnumDot11AdHocSecuritySettings = extern union {
             cElt: u32,
             rgElt: [*]?*IDot11AdHocSecuritySettings,
             pcEltFetched: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Skip: *const fn(
             self: *const IEnumDot11AdHocSecuritySettings,
             cElt: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Reset: *const fn(
             self: *const IEnumDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Clone: *const fn(
             self: *const IEnumDot11AdHocSecuritySettings,
             ppEnum: ?*?*IEnumDot11AdHocSecuritySettings,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn Next(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) callconv(.Inline) HRESULT {
+    pub fn Next(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32, rgElt: [*]?*IDot11AdHocSecuritySettings, pcEltFetched: ?*u32) HRESULT {
         return self.vtable.Next(self, cElt, rgElt, pcEltFetched);
     }
-    pub fn Skip(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32) callconv(.Inline) HRESULT {
+    pub fn Skip(self: *const IEnumDot11AdHocSecuritySettings, cElt: u32) HRESULT {
         return self.vtable.Skip(self, cElt);
     }
-    pub fn Reset(self: *const IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn Reset(self: *const IEnumDot11AdHocSecuritySettings) HRESULT {
         return self.vtable.Reset(self);
     }
-    pub fn Clone(self: *const IEnumDot11AdHocSecuritySettings, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) callconv(.Inline) HRESULT {
+    pub fn Clone(self: *const IEnumDot11AdHocSecuritySettings, ppEnum: ?*?*IEnumDot11AdHocSecuritySettings) HRESULT {
         return self.vtable.Clone(self, ppEnum);
     }
 };
@@ -4414,18 +4414,18 @@ pub const IDot11AdHocSecuritySettings = extern union {
         GetDot11AuthAlgorithm: *const fn(
             self: *const IDot11AdHocSecuritySettings,
             pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetDot11CipherAlgorithm: *const fn(
             self: *const IDot11AdHocSecuritySettings,
             pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetDot11AuthAlgorithm(self: *const IDot11AdHocSecuritySettings, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) callconv(.Inline) HRESULT {
+    pub fn GetDot11AuthAlgorithm(self: *const IDot11AdHocSecuritySettings, pAuth: ?*DOT11_ADHOC_AUTH_ALGORITHM) HRESULT {
         return self.vtable.GetDot11AuthAlgorithm(self, pAuth);
     }
-    pub fn GetDot11CipherAlgorithm(self: *const IDot11AdHocSecuritySettings, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) callconv(.Inline) HRESULT {
+    pub fn GetDot11CipherAlgorithm(self: *const IDot11AdHocSecuritySettings, pCipher: ?*DOT11_ADHOC_CIPHER_ALGORITHM) HRESULT {
         return self.vtable.GetDot11CipherAlgorithm(self, pCipher);
     }
 };
@@ -4439,11 +4439,11 @@ pub const IDot11AdHocInterfaceNotificationSink = extern union {
         OnConnectionStatusChange: *const fn(
             self: *const IDot11AdHocInterfaceNotificationSink,
             eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn OnConnectionStatusChange(self: *const IDot11AdHocInterfaceNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) callconv(.Inline) HRESULT {
+    pub fn OnConnectionStatusChange(self: *const IDot11AdHocInterfaceNotificationSink, eStatus: DOT11_ADHOC_NETWORK_CONNECTION_STATUS) HRESULT {
         return self.vtable.OnConnectionStatusChange(self, eStatus);
     }
 };
@@ -4597,11 +4597,11 @@ pub const WDIAG_IHV_WLAN_ID = extern struct {
 pub const DOT11EXT_ALLOCATE_BUFFER = *const fn(
     dwByteCount: u32,
     ppvBuffer: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_FREE_BUFFER = *const fn(
     pvMemory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = *const fn(
     hDot11SvcHandle: ?HANDLE,
@@ -4610,7 +4610,7 @@ pub const DOT11EXT_SET_PROFILE_CUSTOM_USER_DATA = *const fn(
     dwDataSize: u32,
     // TODO: what to do with BytesParamIndex 3?
     pvData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = *const fn(
     hDot11SvcHandle: ?HANDLE,
@@ -4618,26 +4618,26 @@ pub const DOT11EXT_GET_PROFILE_CUSTOM_USER_DATA = *const fn(
     dwSessionID: u32,
     pdwDataSize: ?*u32,
     ppvData: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_CURRENT_PROFILE = *const fn(
     hDot11SvcHandle: ?HANDLE,
     hConnectSession: ?HANDLE,
     pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
     pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SEND_UI_REQUEST = *const fn(
     hDot11SvcHandle: ?HANDLE,
     pIhvUIRequest: ?*DOT11EXT_IHV_UI_REQUEST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_PRE_ASSOCIATE_COMPLETION = *const fn(
     hDot11SvcHandle: ?HANDLE,
     hConnectSession: ?HANDLE,
     dwReasonCode: u32,
     dwWin32Error: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_POST_ASSOCIATE_COMPLETION = *const fn(
     hDot11SvcHandle: ?HANDLE,
@@ -4645,12 +4645,12 @@ pub const DOT11EXT_POST_ASSOCIATE_COMPLETION = *const fn(
     pPeer: ?*?*u8,
     dwReasonCode: u32,
     dwWin32Error: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SEND_NOTIFICATION = *const fn(
     hDot11SvcHandle: ?HANDLE,
     pNotificationData: ?*L2_NOTIFICATION_DATA,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SEND_PACKET = *const fn(
     hDot11SvcHandle: ?HANDLE,
@@ -4658,7 +4658,7 @@ pub const DOT11EXT_SEND_PACKET = *const fn(
     // TODO: what to do with BytesParamIndex 1?
     pvPacket: ?*anyopaque,
     hSendCompletion: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_ETHERTYPE_HANDLING = *const fn(
     hDot11SvcHandle: ?HANDLE,
@@ -4667,43 +4667,43 @@ pub const DOT11EXT_SET_ETHERTYPE_HANDLING = *const fn(
     pExemption: ?[*]DOT11_PRIVACY_EXEMPTION,
     uNumOfRegistration: u32,
     pusRegistration: ?[*:0]u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_AUTH_ALGORITHM = *const fn(
     hDot11SvcHandle: ?HANDLE,
     dwAuthAlgo: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_UNICAST_CIPHER_ALGORITHM = *const fn(
     hDot11SvcHandle: ?HANDLE,
     dwUnicastCipherAlgo: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_MULTICAST_CIPHER_ALGORITHM = *const fn(
     hDot11SvcHandle: ?HANDLE,
     dwMulticastCipherAlgo: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_DEFAULT_KEY = *const fn(
     hDot11SvcHandle: ?HANDLE,
     pKey: ?*DOT11_CIPHER_DEFAULT_KEY_VALUE,
     dot11Direction: DOT11_DIRECTION,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_KEY_MAPPING_KEY = *const fn(
     hDot11SvcHandle: ?HANDLE,
     pKey: ?*DOT11_CIPHER_KEY_MAPPING_KEY_VALUE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_DEFAULT_KEY_ID = *const fn(
     hDot11SvcHandle: ?HANDLE,
     uDefaultKeyId: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_EXCLUDE_UNENCRYPTED = *const fn(
     hDot11SvcHandle: ?HANDLE,
     bExcludeUnencrypted: BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = *const fn(
     hDot11SvcHandle: ?HANDLE,
@@ -4713,40 +4713,40 @@ pub const DOT11EXT_NIC_SPECIFIC_EXTENSION = *const fn(
     pdwOutBufferSize: ?*u32,
     // TODO: what to do with BytesParamIndex 3?
     pvOutBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_ONEX_START = *const fn(
     hDot11SvcHandle: ?HANDLE,
     pEapAttributes: ?*EAP_ATTRIBUTES,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_ONEX_STOP = *const fn(
     hDot11SvcHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_PROCESS_ONEX_PACKET = *const fn(
     hDot11SvcHandle: ?HANDLE,
     dwInPacketSize: u32,
     // TODO: what to do with BytesParamIndex 1?
     pvInPacket: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_REQUEST_VIRTUAL_STATION = *const fn(
     hDot11PrimaryHandle: ?HANDLE,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_RELEASE_VIRTUAL_STATION = *const fn(
     hDot11PrimaryHandle: ?HANDLE,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_QUERY_VIRTUAL_STATION_PROPERTIES = *const fn(
     hDot11SvcHandle: ?HANDLE,
     pbIsVirtualStation: ?*BOOL,
     pgPrimary: ?*Guid,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = *const fn(
     hDot11SvcHandle: ?HANDLE,
@@ -4754,36 +4754,36 @@ pub const DOT11EXT_SET_VIRTUAL_STATION_AP_PROPERTIES = *const fn(
     dwNumProperties: u32,
     pProperties: [*]DOT11EXT_VIRTUAL_STATION_AP_PROPERTY,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_GET_VERSION_INFO = *const fn(
     pDot11IHVVersionInfo: ?*DOT11_IHV_VERSION_INFO,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_INIT_SERVICE = *const fn(
     dwVerNumUsed: u32,
     pDot11ExtAPI: ?*DOT11EXT_APIS,
     pvReserved: ?*anyopaque,
     pDot11IHVHandlers: ?*DOT11EXT_IHV_HANDLERS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_INIT_VIRTUAL_STATION = *const fn(
     pDot11ExtVSAPI: ?*DOT11EXT_VIRTUAL_STATION_APIS,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_DEINIT_SERVICE = *const fn(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const DOT11EXTIHV_INIT_ADAPTER = *const fn(
     pDot11Adapter: ?*DOT11_ADAPTER,
     hDot11SvcHandle: ?HANDLE,
     phIhvExtAdapter: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_DEINIT_ADAPTER = *const fn(
     hIhvExtAdapter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = *const fn(
     hIhvExtAdapter: ?HANDLE,
@@ -4793,11 +4793,11 @@ pub const DOT11EXTIHV_PERFORM_PRE_ASSOCIATE = *const fn(
     pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
     pConnectableBssid: ?*DOT11_BSS_LIST,
     pdwReasonCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_ADAPTER_RESET = *const fn(
     hIhvExtAdapter: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = *const fn(
     hIhvExtAdapter: ?HANDLE,
@@ -4806,13 +4806,13 @@ pub const DOT11EXTIHV_PERFORM_POST_ASSOCIATE = *const fn(
     uDot11AssocParamsBytes: u32,
     // TODO: what to do with BytesParamIndex 3?
     pDot11AssocParams: ?*DOT11_ASSOCIATION_COMPLETION_PARAMETERS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_STOP_POST_ASSOCIATE = *const fn(
     hIhvExtAdapter: ?HANDLE,
     pPeer: ?*?*u8,
     dot11AssocStatus: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_VALIDATE_PROFILE = *const fn(
     hIhvExtAdapter: ?HANDLE,
@@ -4820,7 +4820,7 @@ pub const DOT11EXTIHV_VALIDATE_PROFILE = *const fn(
     pIhvConnProfile: ?*DOT11EXT_IHV_CONNECTIVITY_PROFILE,
     pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
     pdwReasonCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = *const fn(
     hIhvExtAdapter: ?HANDLE,
@@ -4829,7 +4829,7 @@ pub const DOT11EXTIHV_PERFORM_CAPABILITY_MATCH = *const fn(
     pIhvSecProfile: ?*DOT11EXT_IHV_SECURITY_PROFILE,
     pConnectableBssid: ?*DOT11_BSS_LIST,
     pdwReasonCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = *const fn(
     hIhvExtAdapter: ?HANDLE,
@@ -4838,12 +4838,12 @@ pub const DOT11EXTIHV_CREATE_DISCOVERY_PROFILES = *const fn(
     pConnectableBssid: ?*DOT11_BSS_LIST,
     pIhvDiscoveryProfileList: ?*DOT11EXT_IHV_DISCOVERY_PROFILE_LIST,
     pdwReasonCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_PROCESS_SESSION_CHANGE = *const fn(
     uEventType: u32,
     pSessionNotification: ?*WTSSESSION_NOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_RECEIVE_INDICATION = *const fn(
     hIhvExtAdapter: ?HANDLE,
@@ -4851,42 +4851,42 @@ pub const DOT11EXTIHV_RECEIVE_INDICATION = *const fn(
     uBufferLength: u32,
     // TODO: what to do with BytesParamIndex 2?
     pvBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_RECEIVE_PACKET = *const fn(
     hIhvExtAdapter: ?HANDLE,
     dwInBufferSize: u32,
     // TODO: what to do with BytesParamIndex 1?
     pvInBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_SEND_PACKET_COMPLETION = *const fn(
     hSendCompletion: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_IS_UI_REQUEST_PENDING = *const fn(
     guidUIRequest: Guid,
     pbIsRequestPending: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_PROCESS_UI_RESPONSE = *const fn(
     guidUIRequest: Guid,
     dwByteCount: u32,
     // TODO: what to do with BytesParamIndex 1?
     pvResponseBuffer: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_QUERY_UI_REQUEST = *const fn(
     hIhvExtAdapter: ?HANDLE,
     connectionPhase: DOT11EXT_IHV_CONNECTION_PHASE,
     ppIhvUIRequest: ?*?*DOT11EXT_IHV_UI_REQUEST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_ONEX_INDICATE_RESULT = *const fn(
     hIhvExtAdapter: ?HANDLE,
     msOneXResult: DOT11_MSONEX_RESULT,
     pDot11MsOneXResultParams: ?*DOT11_MSONEX_RESULT_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXTIHV_CONTROL = *const fn(
     hIhvExtAdapter: ?HANDLE,
@@ -4897,7 +4897,7 @@ pub const DOT11EXTIHV_CONTROL = *const fn(
     // TODO: what to do with BytesParamIndex 3?
     pOutBuffer: ?*u8,
     pdwBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const DOT11EXT_APIS = extern struct {
     Dot11ExtAllocateBuffer: ?DOT11EXT_ALLOCATE_BUFFER,
@@ -4963,20 +4963,20 @@ pub extern "wlanapi" fn WlanOpenHandle(
     pReserved: ?*anyopaque,
     pdwNegotiatedVersion: ?*u32,
     phClientHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanCloseHandle(
     hClientHandle: ?HANDLE,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanEnumInterfaces(
     hClientHandle: ?HANDLE,
     pReserved: ?*anyopaque,
     ppInterfaceList: ?*?*WLAN_INTERFACE_INFO_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetAutoConfigParameter(
@@ -4986,7 +4986,7 @@ pub extern "wlanapi" fn WlanSetAutoConfigParameter(
     // TODO: what to do with BytesParamIndex 2?
     pData: ?*const anyopaque,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanQueryAutoConfigParameter(
@@ -4996,7 +4996,7 @@ pub extern "wlanapi" fn WlanQueryAutoConfigParameter(
     pdwDataSize: ?*u32,
     ppData: ?*?*anyopaque,
     pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetInterfaceCapability(
@@ -5004,7 +5004,7 @@ pub extern "wlanapi" fn WlanGetInterfaceCapability(
     pInterfaceGuid: ?*const Guid,
     pReserved: ?*anyopaque,
     ppCapability: ?*?*WLAN_INTERFACE_CAPABILITY,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetInterface(
@@ -5015,7 +5015,7 @@ pub extern "wlanapi" fn WlanSetInterface(
     // TODO: what to do with BytesParamIndex 3?
     pData: ?*const anyopaque,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanQueryInterface(
@@ -5026,7 +5026,7 @@ pub extern "wlanapi" fn WlanQueryInterface(
     pdwDataSize: ?*u32,
     ppData: ?*?*anyopaque,
     pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanIhvControl(
@@ -5040,7 +5040,7 @@ pub extern "wlanapi" fn WlanIhvControl(
     // TODO: what to do with BytesParamIndex 5?
     pOutBuffer: ?*anyopaque,
     pdwBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanScan(
@@ -5049,7 +5049,7 @@ pub extern "wlanapi" fn WlanScan(
     pDot11Ssid: ?*const DOT11_SSID,
     pIeData: ?*const WLAN_RAW_DATA,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetAvailableNetworkList(
@@ -5058,7 +5058,7 @@ pub extern "wlanapi" fn WlanGetAvailableNetworkList(
     dwFlags: u32,
     pReserved: ?*anyopaque,
     ppAvailableNetworkList: ?*?*WLAN_AVAILABLE_NETWORK_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wlanapi" fn WlanGetAvailableNetworkList2(
     hClientHandle: ?HANDLE,
@@ -5066,7 +5066,7 @@ pub extern "wlanapi" fn WlanGetAvailableNetworkList2(
     dwFlags: u32,
     pReserved: ?*anyopaque,
     ppAvailableNetworkList: ?*?*WLAN_AVAILABLE_NETWORK_LIST_V2,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetNetworkBssList(
@@ -5077,7 +5077,7 @@ pub extern "wlanapi" fn WlanGetNetworkBssList(
     bSecurityEnabled: BOOL,
     pReserved: ?*anyopaque,
     ppWlanBssList: ?*?*WLAN_BSS_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanConnect(
@@ -5085,21 +5085,21 @@ pub extern "wlanapi" fn WlanConnect(
     pInterfaceGuid: ?*const Guid,
     pConnectionParameters: ?*const WLAN_CONNECTION_PARAMETERS,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wlanapi" fn WlanConnect2(
     hClientHandle: ?HANDLE,
     pInterfaceGuid: ?*const Guid,
     pConnectionParameters: ?*const WLAN_CONNECTION_PARAMETERS_V2,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanDisconnect(
     hClientHandle: ?HANDLE,
     pInterfaceGuid: ?*const Guid,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanRegisterNotification(
@@ -5110,7 +5110,7 @@ pub extern "wlanapi" fn WlanRegisterNotification(
     pCallbackContext: ?*anyopaque,
     pReserved: ?*anyopaque,
     pdwPrevNotifSource: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfile(
@@ -5121,7 +5121,7 @@ pub extern "wlanapi" fn WlanGetProfile(
     pstrProfileXml: ?*?PWSTR,
     pdwFlags: ?*u32,
     pdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileEapUserData(
@@ -5134,7 +5134,7 @@ pub extern "wlanapi" fn WlanSetProfileEapUserData(
     // TODO: what to do with BytesParamIndex 5?
     pbEapUserData: ?*const u8,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileEapXmlUserData(
@@ -5144,7 +5144,7 @@ pub extern "wlanapi" fn WlanSetProfileEapXmlUserData(
     dwFlags: WLAN_SET_EAPHOST_FLAGS,
     strEapXmlUserData: ?[*:0]const u16,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfile(
@@ -5156,7 +5156,7 @@ pub extern "wlanapi" fn WlanSetProfile(
     bOverwrite: BOOL,
     pReserved: ?*anyopaque,
     pdwReasonCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanDeleteProfile(
@@ -5164,7 +5164,7 @@ pub extern "wlanapi" fn WlanDeleteProfile(
     pInterfaceGuid: ?*const Guid,
     strProfileName: ?[*:0]const u16,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanRenameProfile(
@@ -5173,7 +5173,7 @@ pub extern "wlanapi" fn WlanRenameProfile(
     strOldProfileName: ?[*:0]const u16,
     strNewProfileName: ?[*:0]const u16,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfileList(
@@ -5181,7 +5181,7 @@ pub extern "wlanapi" fn WlanGetProfileList(
     pInterfaceGuid: ?*const Guid,
     pReserved: ?*anyopaque,
     ppProfileList: ?*?*WLAN_PROFILE_INFO_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileList(
@@ -5190,7 +5190,7 @@ pub extern "wlanapi" fn WlanSetProfileList(
     dwItems: u32,
     strProfileNames: [*]?PWSTR,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfilePosition(
@@ -5199,7 +5199,7 @@ pub extern "wlanapi" fn WlanSetProfilePosition(
     strProfileName: ?[*:0]const u16,
     dwPosition: u32,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetProfileCustomUserData(
@@ -5210,7 +5210,7 @@ pub extern "wlanapi" fn WlanSetProfileCustomUserData(
     // TODO: what to do with BytesParamIndex 3?
     pData: ?*const u8,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetProfileCustomUserData(
@@ -5220,7 +5220,7 @@ pub extern "wlanapi" fn WlanGetProfileCustomUserData(
     pReserved: ?*anyopaque,
     pdwDataSize: ?*u32,
     ppData: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetFilterList(
@@ -5228,7 +5228,7 @@ pub extern "wlanapi" fn WlanSetFilterList(
     wlanFilterListType: WLAN_FILTER_LIST_TYPE,
     pNetworkList: ?*const DOT11_NETWORK_LIST,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetFilterList(
@@ -5236,7 +5236,7 @@ pub extern "wlanapi" fn WlanGetFilterList(
     wlanFilterListType: WLAN_FILTER_LIST_TYPE,
     pReserved: ?*anyopaque,
     ppNetworkList: ?*?*DOT11_NETWORK_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetPsdIEDataList(
@@ -5244,7 +5244,7 @@ pub extern "wlanapi" fn WlanSetPsdIEDataList(
     strFormat: ?[*:0]const u16,
     pPsdIEDataList: ?*const WLAN_RAW_DATA_LIST,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSaveTemporaryProfile(
@@ -5255,7 +5255,7 @@ pub extern "wlanapi" fn WlanSaveTemporaryProfile(
     dwFlags: u32,
     bOverWrite: BOOL,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wlanapi" fn WlanDeviceServiceCommand(
     hClientHandle: ?HANDLE,
@@ -5269,18 +5269,18 @@ pub extern "wlanapi" fn WlanDeviceServiceCommand(
     // TODO: what to do with BytesParamIndex 6?
     pOutBuffer: ?*anyopaque,
     pdwBytesReturned: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wlanapi" fn WlanGetSupportedDeviceServices(
     hClientHandle: ?HANDLE,
     pInterfaceGuid: ?*const Guid,
     ppDevSvcGuidList: ?*?*WLAN_DEVICE_SERVICE_GUID_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub extern "wlanapi" fn WlanRegisterDeviceServiceNotification(
     hClientHandle: ?HANDLE,
     pDevSvcGuidList: ?*const WLAN_DEVICE_SERVICE_GUID_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanExtractPsdIEDataList(
@@ -5291,7 +5291,7 @@ pub extern "wlanapi" fn WlanExtractPsdIEDataList(
     strFormat: ?[*:0]const u16,
     pReserved: ?*anyopaque,
     ppPsdIEDataList: ?*?*WLAN_RAW_DATA_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanReasonCodeToString(
@@ -5299,24 +5299,24 @@ pub extern "wlanapi" fn WlanReasonCodeToString(
     dwBufferSize: u32,
     pStringBuffer: [*]u16,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanAllocateMemory(
     dwMemorySize: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanFreeMemory(
     pMemory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanSetSecuritySettings(
     hClientHandle: ?HANDLE,
     SecurableObject: WLAN_SECURABLE_OBJECT,
     strModifiedSDDL: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanapi" fn WlanGetSecuritySettings(
@@ -5325,7 +5325,7 @@ pub extern "wlanapi" fn WlanGetSecuritySettings(
     pValueType: ?*WLAN_OPCODE_VALUE_TYPE,
     pstrCurrentSDDL: ?*?PWSTR,
     pdwGrantedAccess: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "wlanui" fn WlanUIEditProfile(
@@ -5336,35 +5336,35 @@ pub extern "wlanui" fn WlanUIEditProfile(
     wlStartPage: WL_DISPLAY_PAGES,
     pReserved: ?*anyopaque,
     pWlanReasonCode: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkStartUsing(
     hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkStopUsing(
     hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkForceStart(
     hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkForceStop(
     hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQueryProperty(
@@ -5374,7 +5374,7 @@ pub extern "wlanapi" fn WlanHostedNetworkQueryProperty(
     ppvData: ?*?*anyopaque,
     pWlanOpcodeValueType: ?*WLAN_OPCODE_VALUE_TYPE,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkSetProperty(
@@ -5385,28 +5385,28 @@ pub extern "wlanapi" fn WlanHostedNetworkSetProperty(
     pvData: ?*anyopaque,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkInitSettings(
     hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkRefreshSecuritySettings(
     hClientHandle: ?HANDLE,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQueryStatus(
     hClientHandle: ?HANDLE,
     ppWlanHostedNetworkStatus: ?*?*WLAN_HOSTED_NETWORK_STATUS,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkSetSecondaryKey(
@@ -5418,7 +5418,7 @@ pub extern "wlanapi" fn WlanHostedNetworkSetSecondaryKey(
     bPersistent: BOOL,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanHostedNetworkQuerySecondaryKey(
@@ -5429,26 +5429,26 @@ pub extern "wlanapi" fn WlanHostedNetworkQuerySecondaryKey(
     pbPersistent: ?*BOOL,
     pFailReason: ?*WLAN_HOSTED_NETWORK_REASON,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "wlanapi" fn WlanRegisterVirtualStationNotification(
     hClientHandle: ?HANDLE,
     bRegister: BOOL,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDOpenHandle(
     dwClientVersion: u32,
     pdwNegotiatedVersion: ?*u32,
     phClientHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCloseHandle(
     hClientHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDStartOpenSession(
@@ -5457,12 +5457,12 @@ pub extern "wlanapi" fn WFDStartOpenSession(
     pvContext: ?*anyopaque,
     pfnCallback: ?WFD_OPEN_SESSION_COMPLETE_CALLBACK,
     phSessionHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCancelOpenSession(
     hSessionHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDOpenLegacySession(
@@ -5470,17 +5470,17 @@ pub extern "wlanapi" fn WFDOpenLegacySession(
     pLegacyMacAddress: ?*?*u8,
     phSessionHandle: ?*?HANDLE,
     pGuidSessionInterface: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDCloseSession(
     hSessionHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wlanapi" fn WFDUpdateDeviceVisibility(
     pDeviceAddress: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 //--------------------------------------------------------------------------------

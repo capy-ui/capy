@@ -31,7 +31,7 @@ pub const ImageData = struct {
             .width = width,
             .height = height,
             .stride = stride,
-            .peer = try backend.ImageData.from(width, height, stride, cs, bytes),
+            .peer = if (backend.ImageData != void) try backend.ImageData.from(width, height, stride, cs, bytes) else {},
             .data = bytes,
             .allocator = allocator,
         };
@@ -39,31 +39,20 @@ pub const ImageData = struct {
 
     pub fn fromFile(allocator: std.mem.Allocator, path: []const u8) !ImageData {
         const file = try std.fs.cwd().openFile(path, .{ .mode = .read_only });
-        var stream = std.io.StreamSource{ .file = file };
+        var file_read_buf: [4096]u8 = undefined;
+        var stream = zigimg.io.ReadStream.initFile(file, &file_read_buf);
         return readFromStream(allocator, &stream);
     }
 
     /// Load from a png file using a buffer (which can be provided by @embedFile)
     pub fn fromBuffer(allocator: std.mem.Allocator, buf: []const u8) !ImageData {
-        // var img = try zigimg.Image.fromMemory(allocator, buf);
-        // // defer img.deinit();
-        // const bytes = img.rawBytes();
-        // return try ImageData.fromBytes(
-        //     @as(u32, @intCast(img.width)),
-        //     @as(u32, @intCast(img.height)),
-        //     @as(u32, @intCast(img.rowByteSize())),
-        //     .RGBA,
-        //     bytes,
-        //     allocator,
-        // );
-
-        var stream = std.io.StreamSource{ .const_buffer = std.io.fixedBufferStream(buf) };
+        var stream = zigimg.io.ReadStream.initMemory(buf);
         return readFromStream(allocator, &stream);
     }
 
     // TODO: on WASM, let the browser do the job of loading image data, so we can reduce the WASM bundle size
     // TODO: basically, use <img> on Web
-    pub fn readFromStream(allocator: std.mem.Allocator, stream: *std.io.StreamSource) !ImageData {
+    pub fn readFromStream(allocator: std.mem.Allocator, stream: *zigimg.io.ReadStream) !ImageData {
         var arena = std.heap.ArenaAllocator.init(allocator);
         defer arena.deinit();
 
@@ -78,8 +67,10 @@ pub const ImageData = struct {
                 &processors,
             ),
         );
-        //defer img.deinit();
-        const bytes = img.rawBytes();
+        defer img.deinit(allocator);
+        const raw_bytes = img.rawBytes();
+        const bytes = try allocator.dupe(u8, raw_bytes);
+        errdefer allocator.free(bytes);
         return try ImageData.fromBytes(
             @as(u32, @intCast(img.width)),
             @as(u32, @intCast(img.height)),
@@ -98,5 +89,29 @@ pub const ImageData = struct {
         self.* = undefined;
     }
 };
+
+test "ImageData.fromFile loads png" {
+    var img = try ImageData.fromFile(std.testing.allocator, "assets/ziglogo.png");
+    defer img.deinit();
+    // ziglogo.png must have non-zero dimensions
+    try std.testing.expect(img.width > 0);
+    try std.testing.expect(img.height > 0);
+    // Data slice must be at least width * height * bytes_per_pixel (RGBA = 4)
+    try std.testing.expect(img.data.len >= img.stride * img.height);
+}
+
+test "ImageData.fromFile dimensions are consistent" {
+    var img = try ImageData.fromFile(std.testing.allocator, "assets/ziglogo.png");
+    defer img.deinit();
+    // Stride must be at least width * 4 (RGBA)
+    try std.testing.expect(img.stride >= img.width * 4);
+    // Total data must cover all rows
+    try std.testing.expectEqual(img.stride * img.height, @as(u32, @intCast(img.data.len)));
+}
+
+test "ImageData.fromFile returns error for missing file" {
+    const result = ImageData.fromFile(std.testing.allocator, "assets/nonexistent.png");
+    try std.testing.expectError(error.FileNotFound, result);
+}
 
 pub const ScalableVectorData = struct {};

@@ -76,7 +76,7 @@ pub fn Events(comptime T: type) type {
             is_modifier: c.guint,
         };
 
-        fn gtkKeyPress(controller: *c.GtkEventControllerKey, keyval: c.guint, keycode: c.guint, state: c.GdkModifierType, _: usize) callconv(.C) c.gboolean {
+        fn gtkKeyPress(controller: *c.GtkEventControllerKey, keyval: c.guint, keycode: c.guint, state: c.GdkModifierType, _: usize) callconv(.c) c.gboolean {
             _ = state;
             const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
@@ -123,7 +123,7 @@ pub fn Events(comptime T: type) type {
             return window;
         }
 
-        fn gtkButtonPress(controller: *c.GtkEventControllerLegacy, event: *c.GdkEvent, _: usize) callconv(.C) c.gboolean {
+        fn gtkButtonPress(controller: *c.GtkEventControllerLegacy, event: *c.GdkEvent, _: usize) callconv(.c) c.gboolean {
             const event_type = c.gdk_event_get_event_type(event);
             if (event_type != c.GDK_BUTTON_PRESS and event_type != c.GDK_BUTTON_RELEASE)
                 return 0;
@@ -170,7 +170,7 @@ pub fn Events(comptime T: type) type {
             return 0;
         }
 
-        fn gtkMouseMotion(controller: *c.GtkEventControllerMotion, x: f64, y: f64, _: usize) callconv(.C) c.gboolean {
+        fn gtkMouseMotion(controller: *c.GtkEventControllerMotion, x: f64, y: f64, _: usize) callconv(.c) c.gboolean {
             const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
 
@@ -187,7 +187,7 @@ pub fn Events(comptime T: type) type {
             return 0;
         }
 
-        fn gtkMouseScroll(controller: *c.GtkEventControllerScroll, delta_x: f64, delta_y: f64, _: usize) callconv(.C) void {
+        fn gtkMouseScroll(controller: *c.GtkEventControllerScroll, delta_x: f64, delta_y: f64, _: usize) callconv(.c) void {
             const peer = c.gtk_event_controller_get_widget(@ptrCast(controller));
             const data = getEventUserData(peer);
             const dx: f32 = @floatCast(delta_x);

@@ -14,11 +14,11 @@ pub const ILearningModelOperatorProviderNative = extern union {
         GetRegistry: *const fn(
             self: *const ILearningModelOperatorProviderNative,
             ppOperatorRegistry: ?*?*IMLOperatorRegistry,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetRegistry(self: *const ILearningModelOperatorProviderNative, ppOperatorRegistry: ?*?*IMLOperatorRegistry) callconv(.Inline) HRESULT {
+    pub fn GetRegistry(self: *const ILearningModelOperatorProviderNative, ppOperatorRegistry: ?*?*IMLOperatorRegistry) HRESULT {
         return self.vtable.GetRegistry(self, ppOperatorRegistry);
     }
 };
@@ -32,18 +32,18 @@ pub const ITensorNative = extern union {
             self: *const ITensorNative,
             value: [*]?*u8,
             capacity: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetD3D12Resource: *const fn(
             self: *const ITensorNative,
             result: ?*?*ID3D12Resource,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn GetBuffer(self: *const ITensorNative, value: [*]?*u8, capacity: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetBuffer(self: *const ITensorNative, value: [*]?*u8, capacity: ?*u32) HRESULT {
         return self.vtable.GetBuffer(self, value, capacity);
     }
-    pub fn GetD3D12Resource(self: *const ITensorNative, result: ?*?*ID3D12Resource) callconv(.Inline) HRESULT {
+    pub fn GetD3D12Resource(self: *const ITensorNative, result: ?*?*ID3D12Resource) HRESULT {
         return self.vtable.GetD3D12Resource(self, result);
     }
 };
@@ -59,11 +59,11 @@ pub const ITensorStaticsNative = extern union {
             shape: ?*i64,
             shapeCount: i32,
             result: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateFromD3D12Resource(self: *const ITensorStaticsNative, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateFromD3D12Resource(self: *const ITensorStaticsNative, value: ?*ID3D12Resource, shape: ?*i64, shapeCount: i32, result: ?*?*IUnknown) HRESULT {
         return self.vtable.CreateFromD3D12Resource(self, value, shape, shapeCount, result);
     }
 };
@@ -77,11 +77,11 @@ pub const ILearningModelDeviceFactoryNative = extern union {
             self: *const ILearningModelDeviceFactoryNative,
             value: ?*ID3D12CommandQueue,
             result: ?*?*IUnknown,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn CreateFromD3D12CommandQueue(self: *const ILearningModelDeviceFactoryNative, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) callconv(.Inline) HRESULT {
+    pub fn CreateFromD3D12CommandQueue(self: *const ILearningModelDeviceFactoryNative, value: ?*ID3D12CommandQueue, result: ?*?*IUnknown) HRESULT {
         return self.vtable.CreateFromD3D12CommandQueue(self, value, result);
     }
 };
@@ -94,11 +94,11 @@ pub const ILearningModelSessionOptionsNative = extern union {
         SetIntraOpNumThreadsOverride: *const fn(
             self: *const ILearningModelSessionOptionsNative,
             intraOpNumThreads: u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetIntraOpNumThreadsOverride(self: *const ILearningModelSessionOptionsNative, intraOpNumThreads: u32) callconv(.Inline) HRESULT {
+    pub fn SetIntraOpNumThreadsOverride(self: *const ILearningModelSessionOptionsNative, intraOpNumThreads: u32) HRESULT {
         return self.vtable.SetIntraOpNumThreadsOverride(self, intraOpNumThreads);
     }
 };

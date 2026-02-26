@@ -23,7 +23,7 @@ pub extern "ntdll" fn RtlGetNonVolatileToken(
     NvBuffer: ?*anyopaque,
     Size: usize,
     NvToken: ?*?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 }).RtlGetNonVolatileToken,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlGetNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
@@ -34,7 +34,7 @@ pub const RtlFreeNonVolatileToken = switch (@import("../../zig.zig").arch) {
 
 pub extern "ntdll" fn RtlFreeNonVolatileToken(
     NvToken: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 }).RtlFreeNonVolatileToken,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFreeNonVolatileToken' is not supported on architecture " ++ @tagName(a)),
@@ -49,7 +49,7 @@ pub extern "ntdll" fn RtlFlushNonVolatileMemory(
     NvBuffer: ?*anyopaque,
     Size: usize,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 }).RtlFlushNonVolatileMemory,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFlushNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
@@ -60,7 +60,7 @@ pub const RtlDrainNonVolatileFlush = switch (@import("../../zig.zig").arch) {
 
 pub extern "ntdll" fn RtlDrainNonVolatileFlush(
     NvToken: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 }).RtlDrainNonVolatileFlush,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlDrainNonVolatileFlush' is not supported on architecture " ++ @tagName(a)),
@@ -77,7 +77,7 @@ pub extern "ntdll" fn RtlWriteNonVolatileMemory(
     Source: ?*const anyopaque,
     Size: usize,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 }).RtlWriteNonVolatileMemory,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlWriteNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
@@ -93,7 +93,7 @@ pub extern "ntdll" fn RtlFillNonVolatileMemory(
     Size: usize,
     Value: u8,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 }).RtlFillNonVolatileMemory,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFillNonVolatileMemory' is not supported on architecture " ++ @tagName(a)),
@@ -107,7 +107,7 @@ pub extern "ntdll" fn RtlFlushNonVolatileMemoryRanges(
     NvRanges: [*]NV_MEMORY_RANGE,
     NumRanges: usize,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 }).RtlFlushNonVolatileMemoryRanges,
     else => |a| if (@import("builtin").is_test) void else @compileError("function 'RtlFlushNonVolatileMemoryRanges' is not supported on architecture " ++ @tagName(a)),

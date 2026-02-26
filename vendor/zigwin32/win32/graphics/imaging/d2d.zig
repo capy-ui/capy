@@ -17,29 +17,29 @@ pub const IWICImageEncoder = extern union {
             pImage: ?*ID2D1Image,
             pFrameEncode: ?*IWICBitmapFrameEncode,
             pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteFrameThumbnail: *const fn(
             self: *const IWICImageEncoder,
             pImage: ?*ID2D1Image,
             pFrameEncode: ?*IWICBitmapFrameEncode,
             pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         WriteThumbnail: *const fn(
             self: *const IWICImageEncoder,
             pImage: ?*ID2D1Image,
             pEncoder: ?*IWICBitmapEncoder,
             pImageParameters: ?*const WICImageParameters,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn WriteFrame(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
+    pub fn WriteFrame(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) HRESULT {
         return self.vtable.WriteFrame(self, pImage, pFrameEncode, pImageParameters);
     }
-    pub fn WriteFrameThumbnail(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
+    pub fn WriteFrameThumbnail(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pFrameEncode: ?*IWICBitmapFrameEncode, pImageParameters: ?*const WICImageParameters) HRESULT {
         return self.vtable.WriteFrameThumbnail(self, pImage, pFrameEncode, pImageParameters);
     }
-    pub fn WriteThumbnail(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pEncoder: ?*IWICBitmapEncoder, pImageParameters: ?*const WICImageParameters) callconv(.Inline) HRESULT {
+    pub fn WriteThumbnail(self: *const IWICImageEncoder, pImage: ?*ID2D1Image, pEncoder: ?*IWICBitmapEncoder, pImageParameters: ?*const WICImageParameters) HRESULT {
         return self.vtable.WriteThumbnail(self, pImage, pEncoder, pImageParameters);
     }
 };
@@ -54,12 +54,12 @@ pub const IWICImagingFactory2 = extern union {
             self: *const IWICImagingFactory2,
             pD2DDevice: ?*ID2D1Device,
             ppWICImageEncoder: ?*?*IWICImageEncoder,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IWICImagingFactory: IWICImagingFactory,
     IUnknown: IUnknown,
-    pub fn CreateImageEncoder(self: *const IWICImagingFactory2, pD2DDevice: ?*ID2D1Device, ppWICImageEncoder: ?*?*IWICImageEncoder) callconv(.Inline) HRESULT {
+    pub fn CreateImageEncoder(self: *const IWICImagingFactory2, pD2DDevice: ?*ID2D1Device, ppWICImageEncoder: ?*?*IWICImageEncoder) HRESULT {
         return self.vtable.CreateImageEncoder(self, pD2DDevice, ppWICImageEncoder);
     }
 };

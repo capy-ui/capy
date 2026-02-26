@@ -128,7 +128,7 @@ pub const WCM_DATAPLAN_STATUS = extern struct {
 
 pub const ONDEMAND_NOTIFICATION_CALLBACK = *const fn(
     param0: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const NET_INTERFACE_CONTEXT = extern struct {
     InterfaceIndex: u32,
@@ -153,7 +153,7 @@ pub extern "wcmapi" fn WcmQueryProperty(
     pReserved: ?*anyopaque,
     pdwDataSize: ?*u32,
     ppData: ?*?*u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmSetProperty(
@@ -163,13 +163,13 @@ pub extern "wcmapi" fn WcmSetProperty(
     pReserved: ?*anyopaque,
     dwDataSize: u32,
     pbData: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmGetProfileList(
     pReserved: ?*anyopaque,
     ppProfileList: ?*?*WCM_PROFILE_INFO_LIST,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmSetProfileList(
@@ -177,30 +177,30 @@ pub extern "wcmapi" fn WcmSetProfileList(
     dwPosition: u32,
     fIgnoreUnknownProfiles: BOOL,
     pReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "wcmapi" fn WcmFreeMemory(
     pMemory: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ondemandconnroutehelper" fn OnDemandGetRoutingHint(
     destinationHostName: ?[*:0]const u16,
     interfaceIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ondemandconnroutehelper" fn OnDemandRegisterNotification(
     callback: ?ONDEMAND_NOTIFICATION_CALLBACK,
     callbackContext: ?*anyopaque,
     registrationHandle: ?*?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "ondemandconnroutehelper" fn OnDemandUnRegisterNotification(
     registrationHandle: ?HANDLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ondemandconnroutehelper" fn GetInterfaceContextTableForHostName(
@@ -211,12 +211,12 @@ pub extern "ondemandconnroutehelper" fn GetInterfaceContextTableForHostName(
     ConnectionProfileFilterRawData: ?*u8,
     ConnectionProfileFilterRawDataSize: u32,
     InterfaceContextTable: ?*?*NET_INTERFACE_CONTEXT_TABLE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "ondemandconnroutehelper" fn FreeInterfaceContextTable(
     InterfaceContextTable: ?*NET_INTERFACE_CONTEXT_TABLE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 
 //--------------------------------------------------------------------------------

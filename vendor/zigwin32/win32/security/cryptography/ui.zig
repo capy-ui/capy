@@ -375,14 +375,14 @@ pub const PFNCMFILTERPROC = *const fn(
     param1: LPARAM,
     param2: u32,
     param3: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const PFNCMHOOKPROC = *const fn(
     hwndDialog: ?HWND,
     message: u32,
     wParam: WPARAM,
     lParam: LPARAM,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const CERT_SELECT_STRUCT_A = extern struct {
     dwSize: u32,
@@ -493,7 +493,7 @@ pub const PFNTRUSTHELPER = *const fn(
     lCustData: LPARAM,
     fLeafCertificate: BOOL,
     pbTrustBlob: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub const CERT_VERIFY_CERTIFICATE_TRUST = extern struct {
     cbSize: u32,
@@ -527,7 +527,7 @@ pub const PFNCFILTERPROC = *const fn(
     pCertContext: ?*const CERT_CONTEXT,
     pfInitialSelectedCert: ?*BOOL,
     pvCallbackData: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub const CERT_SELECTUI_INPUT = extern struct {
     hStore: ?HCERTSTORE,
@@ -714,7 +714,7 @@ pub extern "cryptui" fn CryptUIDlgViewContext(
     pwszTitle: ?[*:0]const u16,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIDlgSelectCertificateFromStore(
@@ -725,19 +725,19 @@ pub extern "cryptui" fn CryptUIDlgSelectCertificateFromStore(
     dwDontUseColumn: u32,
     dwFlags: u32,
     pvReserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*CERT_CONTEXT;
+) callconv(.winapi) ?*CERT_CONTEXT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "cryptui" fn CertSelectionGetSerializedBlob(
     pcsi: ?*CERT_SELECTUI_INPUT,
     ppOutBuffer: ?*?*anyopaque,
     pulOutBufferSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIDlgCertMgr(
     pCryptUICertMgr: ?*CRYPTUI_CERT_MGR_STRUCT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIWizDigitalSign(
@@ -746,24 +746,24 @@ pub extern "cryptui" fn CryptUIWizDigitalSign(
     pwszWizardTitle: ?[*:0]const u16,
     pDigitalSignInfo: ?*CRYPTUI_WIZ_DIGITAL_SIGN_INFO,
     ppSignContext: ?*?*CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIWizFreeDigitalSignContext(
     pSignContext: ?*CRYPTUI_WIZ_DIGITAL_SIGN_CONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIDlgViewCertificateW(
     pCertViewInfo: ?*CRYPTUI_VIEWCERTIFICATE_STRUCTW,
     pfPropertiesChanged: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIDlgViewCertificateA(
     pCertViewInfo: ?*CRYPTUI_VIEWCERTIFICATE_STRUCTA,
     pfPropertiesChanged: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIWizExport(
@@ -772,7 +772,7 @@ pub extern "cryptui" fn CryptUIWizExport(
     pwszWizardTitle: ?[*:0]const u16,
     pExportInfo: ?*CRYPTUI_WIZ_EXPORT_INFO,
     pvoid: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cryptui" fn CryptUIWizImport(
@@ -781,7 +781,7 @@ pub extern "cryptui" fn CryptUIWizImport(
     pwszWizardTitle: ?[*:0]const u16,
     pImportSrc: ?*CRYPTUI_WIZ_IMPORT_SRC_INFO,
     hDestCertStore: ?HCERTSTORE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

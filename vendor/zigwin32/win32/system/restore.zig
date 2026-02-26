@@ -86,13 +86,13 @@ pub const STATEMGRSTATUS = extern struct {
 pub extern "sfc" fn SRSetRestorePointA(
     pRestorePtSpec: ?*RESTOREPOINTINFOA,
     pSMgrStatus: ?*STATEMGRSTATUS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "sfc" fn SRSetRestorePointW(
     pRestorePtSpec: ?*RESTOREPOINTINFOW,
     pSMgrStatus: ?*STATEMGRSTATUS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

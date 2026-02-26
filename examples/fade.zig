@@ -1,7 +1,5 @@
 const std = @import("std");
 const capy = @import("capy");
-pub usingnamespace capy.cross_platform;
-
 var opacity = capy.Atom(f32).of(1.0);
 
 // TODO: switch back to *capy.Button_Impl when ziglang/zig#12325 is fixed

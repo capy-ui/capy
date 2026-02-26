@@ -1763,14 +1763,14 @@ pub const PSP_FILE_CALLBACK_A = *const fn(
     Notification: u32,
     Param1: usize,
     Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 pub const PSP_FILE_CALLBACK_W = *const fn(
     Context: ?*anyopaque,
     Notification: u32,
     Param1: usize,
     Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 
@@ -1812,7 +1812,7 @@ pub const SP_SELECTDEVICE_PARAMS_A = extern struct {
 pub const PDETECT_PROGRESS_NOTIFY = *const fn(
     ProgressNotifyParam: ?*anyopaque,
     DetectComplete: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 
@@ -1842,7 +1842,7 @@ pub const PSP_DETSIG_CMPPROC = *const fn(
     NewDeviceData: ?*SP_DEVINFO_DATA,
     ExistingDeviceData: ?*SP_DEVINFO_DATA,
     CompareContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 
@@ -2228,7 +2228,7 @@ pub const PCM_NOTIFY_CALLBACK = *const fn(
     // TODO: what to do with BytesParamIndex 4?
     EventData: ?*CM_NOTIFY_EVENT_DATA,
     EventDataSize: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 
 
@@ -3264,7 +3264,7 @@ pub extern "setupapi" fn SetupGetInfInformationA(
     ReturnBuffer: ?*SP_INF_INFORMATION,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetInfInformationW(
@@ -3274,7 +3274,7 @@ pub extern "setupapi" fn SetupGetInfInformationW(
     ReturnBuffer: ?*SP_INF_INFORMATION,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryInfFileInformationA(
@@ -3283,7 +3283,7 @@ pub extern "setupapi" fn SetupQueryInfFileInformationA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryInfFileInformationW(
@@ -3292,7 +3292,7 @@ pub extern "setupapi" fn SetupQueryInfFileInformationW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryInfOriginalFileInformationA(
@@ -3300,7 +3300,7 @@ pub extern "setupapi" fn SetupQueryInfOriginalFileInformationA(
     InfIndex: u32,
     AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     OriginalFileInfo: ?*SP_ORIGINAL_FILE_INFO_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryInfOriginalFileInformationW(
@@ -3308,7 +3308,7 @@ pub extern "setupapi" fn SetupQueryInfOriginalFileInformationW(
     InfIndex: u32,
     AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     OriginalFileInfo: ?*SP_ORIGINAL_FILE_INFO_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryInfVersionInformationA(
@@ -3318,7 +3318,7 @@ pub extern "setupapi" fn SetupQueryInfVersionInformationA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryInfVersionInformationW(
@@ -3328,7 +3328,7 @@ pub extern "setupapi" fn SetupQueryInfVersionInformationW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupGetInfDriverStoreLocationA(
@@ -3338,7 +3338,7 @@ pub extern "setupapi" fn SetupGetInfDriverStoreLocationA(
     ReturnBuffer: [*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupGetInfDriverStoreLocationW(
@@ -3348,7 +3348,7 @@ pub extern "setupapi" fn SetupGetInfDriverStoreLocationW(
     ReturnBuffer: [*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupGetInfPublishedNameA(
@@ -3356,7 +3356,7 @@ pub extern "setupapi" fn SetupGetInfPublishedNameA(
     ReturnBuffer: [*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupGetInfPublishedNameW(
@@ -3364,7 +3364,7 @@ pub extern "setupapi" fn SetupGetInfPublishedNameW(
     ReturnBuffer: [*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetInfFileListA(
@@ -3373,7 +3373,7 @@ pub extern "setupapi" fn SetupGetInfFileListA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetInfFileListW(
@@ -3382,7 +3382,7 @@ pub extern "setupapi" fn SetupGetInfFileListW(
     ReturnBuffer: [*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupOpenInfFileW(
@@ -3390,7 +3390,7 @@ pub extern "setupapi" fn SetupOpenInfFileW(
     InfClass: ?[*:0]const u16,
     InfStyle: u32,
     ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupOpenInfFileA(
@@ -3398,30 +3398,30 @@ pub extern "setupapi" fn SetupOpenInfFileA(
     InfClass: ?[*:0]const u8,
     InfStyle: u32,
     ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupOpenMasterInf(
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupOpenAppendInfFileW(
     FileName: ?[*:0]const u16,
     InfHandle: ?*anyopaque,
     ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupOpenAppendInfFileA(
     FileName: ?[*:0]const u8,
     InfHandle: ?*anyopaque,
     ErrorLine: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCloseInfFile(
     InfHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFindFirstLineA(
@@ -3429,7 +3429,7 @@ pub extern "setupapi" fn SetupFindFirstLineA(
     Section: ?[*:0]const u8,
     Key: ?[*:0]const u8,
     Context: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFindFirstLineW(
@@ -3437,27 +3437,27 @@ pub extern "setupapi" fn SetupFindFirstLineW(
     Section: ?[*:0]const u16,
     Key: ?[*:0]const u16,
     Context: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFindNextLine(
     ContextIn: ?*INFCONTEXT,
     ContextOut: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFindNextMatchLineA(
     ContextIn: ?*INFCONTEXT,
     Key: ?[*:0]const u8,
     ContextOut: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFindNextMatchLineW(
     ContextIn: ?*INFCONTEXT,
     Key: ?[*:0]const u16,
     ContextOut: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetLineByIndexA(
@@ -3465,7 +3465,7 @@ pub extern "setupapi" fn SetupGetLineByIndexA(
     Section: ?[*:0]const u8,
     Index: u32,
     Context: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetLineByIndexW(
@@ -3473,19 +3473,19 @@ pub extern "setupapi" fn SetupGetLineByIndexW(
     Section: ?[*:0]const u16,
     Index: u32,
     Context: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetLineCountA(
     InfHandle: ?*anyopaque,
     Section: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetLineCountW(
     InfHandle: ?*anyopaque,
     Section: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetLineTextA(
@@ -3496,7 +3496,7 @@ pub extern "setupapi" fn SetupGetLineTextA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetLineTextW(
@@ -3507,12 +3507,12 @@ pub extern "setupapi" fn SetupGetLineTextW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFieldCount(
     Context: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetStringFieldA(
@@ -3521,7 +3521,7 @@ pub extern "setupapi" fn SetupGetStringFieldA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetStringFieldW(
@@ -3530,14 +3530,14 @@ pub extern "setupapi" fn SetupGetStringFieldW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetIntField(
     Context: ?*INFCONTEXT,
     FieldIndex: u32,
     IntegerValue: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetMultiSzFieldA(
@@ -3546,7 +3546,7 @@ pub extern "setupapi" fn SetupGetMultiSzFieldA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetMultiSzFieldW(
@@ -3555,7 +3555,7 @@ pub extern "setupapi" fn SetupGetMultiSzFieldW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetBinaryField(
@@ -3565,7 +3565,7 @@ pub extern "setupapi" fn SetupGetBinaryField(
     ReturnBuffer: ?*u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileCompressionInfoA(
@@ -3574,7 +3574,7 @@ pub extern "setupapi" fn SetupGetFileCompressionInfoA(
     SourceFileSize: ?*u32,
     TargetFileSize: ?*u32,
     CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileCompressionInfoW(
@@ -3583,7 +3583,7 @@ pub extern "setupapi" fn SetupGetFileCompressionInfoW(
     SourceFileSize: ?*u32,
     TargetFileSize: ?*u32,
     CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileCompressionInfoExA(
@@ -3594,7 +3594,7 @@ pub extern "setupapi" fn SetupGetFileCompressionInfoExA(
     SourceFileSize: ?*u32,
     TargetFileSize: ?*u32,
     CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileCompressionInfoExW(
@@ -3605,21 +3605,21 @@ pub extern "setupapi" fn SetupGetFileCompressionInfoExW(
     SourceFileSize: ?*u32,
     TargetFileSize: ?*u32,
     CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDecompressOrCopyFileA(
     SourceFileName: ?[*:0]const u8,
     TargetFileName: ?[*:0]const u8,
     CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDecompressOrCopyFileW(
     SourceFileName: ?[*:0]const u16,
     TargetFileName: ?[*:0]const u16,
     CompressionType: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetSourceFileLocationA(
@@ -3630,7 +3630,7 @@ pub extern "setupapi" fn SetupGetSourceFileLocationA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetSourceFileLocationW(
@@ -3641,7 +3641,7 @@ pub extern "setupapi" fn SetupGetSourceFileLocationW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetSourceFileSizeA(
@@ -3651,7 +3651,7 @@ pub extern "setupapi" fn SetupGetSourceFileSizeA(
     Section: ?[*:0]const u8,
     FileSize: ?*u32,
     RoundingFactor: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetSourceFileSizeW(
@@ -3661,7 +3661,7 @@ pub extern "setupapi" fn SetupGetSourceFileSizeW(
     Section: ?[*:0]const u16,
     FileSize: ?*u32,
     RoundingFactor: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetTargetPathA(
@@ -3671,7 +3671,7 @@ pub extern "setupapi" fn SetupGetTargetPathA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetTargetPathW(
@@ -3681,75 +3681,75 @@ pub extern "setupapi" fn SetupGetTargetPathW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetSourceListA(
     Flags: u32,
     SourceList: [*]?PSTR,
     SourceCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetSourceListW(
     Flags: u32,
     SourceList: [*]?PWSTR,
     SourceCount: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCancelTemporarySourceList(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddToSourceListA(
     Flags: u32,
     Source: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddToSourceListW(
     Flags: u32,
     Source: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveFromSourceListA(
     Flags: u32,
     Source: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveFromSourceListW(
     Flags: u32,
     Source: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQuerySourceListA(
     Flags: u32,
     List: ?*?*?PSTR,
     Count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQuerySourceListW(
     Flags: u32,
     List: ?*?*?PWSTR,
     Count: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFreeSourceListA(
     List: [*]?*?PSTR,
     Count: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupFreeSourceListW(
     List: [*]?*?PWSTR,
     Count: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupPromptForDiskA(
@@ -3763,7 +3763,7 @@ pub extern "setupapi" fn SetupPromptForDiskA(
     PathBuffer: ?[*:0]u8,
     PathBufferSize: u32,
     PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupPromptForDiskW(
@@ -3777,7 +3777,7 @@ pub extern "setupapi" fn SetupPromptForDiskW(
     PathBuffer: ?[*:0]u16,
     PathBufferSize: u32,
     PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCopyErrorA(
@@ -3792,7 +3792,7 @@ pub extern "setupapi" fn SetupCopyErrorA(
     PathBuffer: ?[*:0]u8,
     PathBufferSize: u32,
     PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCopyErrorW(
@@ -3807,7 +3807,7 @@ pub extern "setupapi" fn SetupCopyErrorW(
     PathBuffer: ?[*:0]u16,
     PathBufferSize: u32,
     PathRequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRenameErrorA(
@@ -3817,7 +3817,7 @@ pub extern "setupapi" fn SetupRenameErrorA(
     TargetFile: ?[*:0]const u8,
     Win32ErrorCode: u32,
     Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRenameErrorW(
@@ -3827,7 +3827,7 @@ pub extern "setupapi" fn SetupRenameErrorW(
     TargetFile: ?[*:0]const u16,
     Win32ErrorCode: u32,
     Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDeleteErrorA(
@@ -3836,7 +3836,7 @@ pub extern "setupapi" fn SetupDeleteErrorA(
     File: ?[*:0]const u8,
     Win32ErrorCode: u32,
     Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDeleteErrorW(
@@ -3845,7 +3845,7 @@ pub extern "setupapi" fn SetupDeleteErrorW(
     File: ?[*:0]const u16,
     Win32ErrorCode: u32,
     Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupBackupErrorA(
@@ -3855,7 +3855,7 @@ pub extern "setupapi" fn SetupBackupErrorA(
     TargetFile: ?[*:0]const u8,
     Win32ErrorCode: u32,
     Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupBackupErrorW(
@@ -3865,21 +3865,21 @@ pub extern "setupapi" fn SetupBackupErrorW(
     TargetFile: ?[*:0]const u16,
     Win32ErrorCode: u32,
     Style: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetDirectoryIdA(
     InfHandle: ?*anyopaque,
     Id: u32,
     Directory: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetDirectoryIdW(
     InfHandle: ?*anyopaque,
     Id: u32,
     Directory: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetDirectoryIdExA(
@@ -3889,7 +3889,7 @@ pub extern "setupapi" fn SetupSetDirectoryIdExA(
     Flags: u32,
     Reserved1: u32,
     Reserved2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetDirectoryIdExW(
@@ -3899,7 +3899,7 @@ pub extern "setupapi" fn SetupSetDirectoryIdExW(
     Flags: u32,
     Reserved1: u32,
     Reserved2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetSourceInfoA(
@@ -3909,7 +3909,7 @@ pub extern "setupapi" fn SetupGetSourceInfoA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetSourceInfoW(
@@ -3919,7 +3919,7 @@ pub extern "setupapi" fn SetupGetSourceInfoW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFileA(
@@ -3931,7 +3931,7 @@ pub extern "setupapi" fn SetupInstallFileA(
     CopyStyle: SP_COPY_STYLE,
     CopyMsgHandler: ?PSP_FILE_CALLBACK_A,
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFileW(
@@ -3943,7 +3943,7 @@ pub extern "setupapi" fn SetupInstallFileW(
     CopyStyle: SP_COPY_STYLE,
     CopyMsgHandler: ?PSP_FILE_CALLBACK_W,
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFileExA(
@@ -3956,7 +3956,7 @@ pub extern "setupapi" fn SetupInstallFileExA(
     CopyMsgHandler: ?PSP_FILE_CALLBACK_A,
     Context: ?*anyopaque,
     FileWasInUse: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFileExW(
@@ -3969,40 +3969,40 @@ pub extern "setupapi" fn SetupInstallFileExW(
     CopyMsgHandler: ?PSP_FILE_CALLBACK_W,
     Context: ?*anyopaque,
     FileWasInUse: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupOpenFileQueue(
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCloseFileQueue(
     QueueHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetFileQueueAlternatePlatformA(
     QueueHandle: ?*anyopaque,
     AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     AlternateDefaultCatalogFile: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetFileQueueAlternatePlatformW(
     QueueHandle: ?*anyopaque,
     AlternatePlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     AlternateDefaultCatalogFile: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetPlatformPathOverrideA(
     Override: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetPlatformPathOverrideW(
     Override: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueCopyA(
@@ -4015,7 +4015,7 @@ pub extern "setupapi" fn SetupQueueCopyA(
     TargetDirectory: ?[*:0]const u8,
     TargetFilename: ?[*:0]const u8,
     CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueCopyW(
@@ -4028,17 +4028,17 @@ pub extern "setupapi" fn SetupQueueCopyW(
     TargetDirectory: ?[*:0]const u16,
     TargetFilename: ?[*:0]const u16,
     CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueCopyIndirectA(
     CopyParams: ?*SP_FILE_COPY_PARAMS_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueCopyIndirectW(
     CopyParams: ?*SP_FILE_COPY_PARAMS_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueDefaultCopyA(
@@ -4048,7 +4048,7 @@ pub extern "setupapi" fn SetupQueueDefaultCopyA(
     SourceFilename: ?[*:0]const u8,
     TargetFilename: ?[*:0]const u8,
     CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueDefaultCopyW(
@@ -4058,7 +4058,7 @@ pub extern "setupapi" fn SetupQueueDefaultCopyW(
     SourceFilename: ?[*:0]const u16,
     TargetFilename: ?[*:0]const u16,
     CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueCopySectionA(
@@ -4068,7 +4068,7 @@ pub extern "setupapi" fn SetupQueueCopySectionA(
     ListInfHandle: ?*anyopaque,
     Section: ?[*:0]const u8,
     CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueCopySectionW(
@@ -4078,21 +4078,21 @@ pub extern "setupapi" fn SetupQueueCopySectionW(
     ListInfHandle: ?*anyopaque,
     Section: ?[*:0]const u16,
     CopyStyle: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueDeleteA(
     QueueHandle: ?*anyopaque,
     PathPart1: ?[*:0]const u8,
     PathPart2: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueDeleteW(
     QueueHandle: ?*anyopaque,
     PathPart1: ?[*:0]const u16,
     PathPart2: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueDeleteSectionA(
@@ -4100,7 +4100,7 @@ pub extern "setupapi" fn SetupQueueDeleteSectionA(
     InfHandle: ?*anyopaque,
     ListInfHandle: ?*anyopaque,
     Section: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueDeleteSectionW(
@@ -4108,7 +4108,7 @@ pub extern "setupapi" fn SetupQueueDeleteSectionW(
     InfHandle: ?*anyopaque,
     ListInfHandle: ?*anyopaque,
     Section: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueRenameA(
@@ -4117,7 +4117,7 @@ pub extern "setupapi" fn SetupQueueRenameA(
     SourceFilename: ?[*:0]const u8,
     TargetPath: ?[*:0]const u8,
     TargetFilename: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueRenameW(
@@ -4126,7 +4126,7 @@ pub extern "setupapi" fn SetupQueueRenameW(
     SourceFilename: ?[*:0]const u16,
     TargetPath: ?[*:0]const u16,
     TargetFilename: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueRenameSectionA(
@@ -4134,7 +4134,7 @@ pub extern "setupapi" fn SetupQueueRenameSectionA(
     InfHandle: ?*anyopaque,
     ListInfHandle: ?*anyopaque,
     Section: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueueRenameSectionW(
@@ -4142,7 +4142,7 @@ pub extern "setupapi" fn SetupQueueRenameSectionW(
     InfHandle: ?*anyopaque,
     ListInfHandle: ?*anyopaque,
     Section: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCommitFileQueueA(
@@ -4150,7 +4150,7 @@ pub extern "setupapi" fn SetupCommitFileQueueA(
     QueueHandle: ?*anyopaque,
     MsgHandler: ?PSP_FILE_CALLBACK_A,
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCommitFileQueueW(
@@ -4158,7 +4158,7 @@ pub extern "setupapi" fn SetupCommitFileQueueW(
     QueueHandle: ?*anyopaque,
     MsgHandler: ?PSP_FILE_CALLBACK_W,
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupScanFileQueueA(
@@ -4168,7 +4168,7 @@ pub extern "setupapi" fn SetupScanFileQueueA(
     CallbackRoutine: ?PSP_FILE_CALLBACK_A,
     CallbackContext: ?*anyopaque,
     Result: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupScanFileQueueW(
@@ -4178,27 +4178,27 @@ pub extern "setupapi" fn SetupScanFileQueueW(
     CallbackRoutine: ?PSP_FILE_CALLBACK_W,
     CallbackContext: ?*anyopaque,
     Result: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileQueueCount(
     FileQueue: ?*anyopaque,
     SubQueueFileOp: u32,
     NumOperations: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetFileQueueFlags(
     FileQueue: ?*anyopaque,
     Flags: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetFileQueueFlags(
     FileQueue: ?*anyopaque,
     FlagMask: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCopyOEMInfA(
@@ -4210,7 +4210,7 @@ pub extern "setupapi" fn SetupCopyOEMInfA(
     DestinationInfFileNameSize: u32,
     RequiredSize: ?*u32,
     DestinationInfFileNameComponent: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCopyOEMInfW(
@@ -4222,42 +4222,42 @@ pub extern "setupapi" fn SetupCopyOEMInfW(
     DestinationInfFileNameSize: u32,
     RequiredSize: ?*u32,
     DestinationInfFileNameComponent: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupUninstallOEMInfA(
     InfFileName: ?[*:0]const u8,
     Flags: u32,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupUninstallOEMInfW(
     InfFileName: ?[*:0]const u16,
     Flags: u32,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupUninstallNewlyCopiedInfs(
     FileQueue: ?*anyopaque,
     Flags: u32,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCreateDiskSpaceListA(
     Reserved1: ?*anyopaque,
     Reserved2: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCreateDiskSpaceListW(
     Reserved1: ?*anyopaque,
     Reserved2: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDuplicateDiskSpaceListA(
@@ -4265,7 +4265,7 @@ pub extern "setupapi" fn SetupDuplicateDiskSpaceListA(
     Reserved1: ?*anyopaque,
     Reserved2: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDuplicateDiskSpaceListW(
@@ -4273,12 +4273,12 @@ pub extern "setupapi" fn SetupDuplicateDiskSpaceListW(
     Reserved1: ?*anyopaque,
     Reserved2: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDestroyDiskSpaceList(
     DiskSpace: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryDrivesInDiskSpaceListA(
@@ -4286,7 +4286,7 @@ pub extern "setupapi" fn SetupQueryDrivesInDiskSpaceListA(
     ReturnBuffer: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryDrivesInDiskSpaceListW(
@@ -4294,7 +4294,7 @@ pub extern "setupapi" fn SetupQueryDrivesInDiskSpaceListW(
     ReturnBuffer: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQuerySpaceRequiredOnDriveA(
@@ -4303,7 +4303,7 @@ pub extern "setupapi" fn SetupQuerySpaceRequiredOnDriveA(
     SpaceRequired: ?*i64,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQuerySpaceRequiredOnDriveW(
@@ -4312,7 +4312,7 @@ pub extern "setupapi" fn SetupQuerySpaceRequiredOnDriveW(
     SpaceRequired: ?*i64,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAdjustDiskSpaceListA(
@@ -4321,7 +4321,7 @@ pub extern "setupapi" fn SetupAdjustDiskSpaceListA(
     Amount: i64,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAdjustDiskSpaceListW(
@@ -4330,7 +4330,7 @@ pub extern "setupapi" fn SetupAdjustDiskSpaceListW(
     Amount: i64,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddToDiskSpaceListA(
@@ -4340,7 +4340,7 @@ pub extern "setupapi" fn SetupAddToDiskSpaceListA(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddToDiskSpaceListW(
@@ -4350,7 +4350,7 @@ pub extern "setupapi" fn SetupAddToDiskSpaceListW(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddSectionToDiskSpaceListA(
@@ -4361,7 +4361,7 @@ pub extern "setupapi" fn SetupAddSectionToDiskSpaceListA(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddSectionToDiskSpaceListW(
@@ -4372,7 +4372,7 @@ pub extern "setupapi" fn SetupAddSectionToDiskSpaceListW(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddInstallSectionToDiskSpaceListA(
@@ -4382,7 +4382,7 @@ pub extern "setupapi" fn SetupAddInstallSectionToDiskSpaceListA(
     SectionName: ?[*:0]const u8,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupAddInstallSectionToDiskSpaceListW(
@@ -4392,7 +4392,7 @@ pub extern "setupapi" fn SetupAddInstallSectionToDiskSpaceListW(
     SectionName: ?[*:0]const u16,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveFromDiskSpaceListA(
@@ -4401,7 +4401,7 @@ pub extern "setupapi" fn SetupRemoveFromDiskSpaceListA(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveFromDiskSpaceListW(
@@ -4410,7 +4410,7 @@ pub extern "setupapi" fn SetupRemoveFromDiskSpaceListW(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveSectionFromDiskSpaceListA(
@@ -4421,7 +4421,7 @@ pub extern "setupapi" fn SetupRemoveSectionFromDiskSpaceListA(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveSectionFromDiskSpaceListW(
@@ -4432,7 +4432,7 @@ pub extern "setupapi" fn SetupRemoveSectionFromDiskSpaceListW(
     Operation: SETUP_FILE_OPERATION,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveInstallSectionFromDiskSpaceListA(
@@ -4442,7 +4442,7 @@ pub extern "setupapi" fn SetupRemoveInstallSectionFromDiskSpaceListA(
     SectionName: ?[*:0]const u8,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveInstallSectionFromDiskSpaceListW(
@@ -4452,7 +4452,7 @@ pub extern "setupapi" fn SetupRemoveInstallSectionFromDiskSpaceListW(
     SectionName: ?[*:0]const u16,
     Reserved1: ?*anyopaque,
     Reserved2: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupIterateCabinetA(
@@ -4460,7 +4460,7 @@ pub extern "setupapi" fn SetupIterateCabinetA(
     Reserved: u32,
     MsgHandler: ?PSP_FILE_CALLBACK_A,
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupIterateCabinetW(
@@ -4468,19 +4468,19 @@ pub extern "setupapi" fn SetupIterateCabinetW(
     Reserved: u32,
     MsgHandler: ?PSP_FILE_CALLBACK_W,
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupPromptReboot(
     FileQueue: ?*anyopaque,
     Owner: ?HWND,
     ScanOnly: BOOL,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInitDefaultQueueCallback(
     OwnerWindow: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInitDefaultQueueCallbackEx(
@@ -4489,12 +4489,12 @@ pub extern "setupapi" fn SetupInitDefaultQueueCallbackEx(
     ProgressMessage: u32,
     Reserved1: u32,
     Reserved2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupTermDefaultQueueCallback(
     Context: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDefaultQueueCallbackA(
@@ -4502,7 +4502,7 @@ pub extern "setupapi" fn SetupDefaultQueueCallbackA(
     Notification: u32,
     Param1: usize,
     Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDefaultQueueCallbackW(
@@ -4510,7 +4510,7 @@ pub extern "setupapi" fn SetupDefaultQueueCallbackW(
     Notification: u32,
     Param1: usize,
     Param2: usize,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFromInfSectionA(
@@ -4525,7 +4525,7 @@ pub extern "setupapi" fn SetupInstallFromInfSectionA(
     Context: ?*anyopaque,
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFromInfSectionW(
@@ -4540,7 +4540,7 @@ pub extern "setupapi" fn SetupInstallFromInfSectionW(
     Context: ?*anyopaque,
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFilesFromInfSectionA(
@@ -4550,7 +4550,7 @@ pub extern "setupapi" fn SetupInstallFilesFromInfSectionA(
     SectionName: ?[*:0]const u8,
     SourceRootPath: ?[*:0]const u8,
     CopyFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallFilesFromInfSectionW(
@@ -4560,21 +4560,21 @@ pub extern "setupapi" fn SetupInstallFilesFromInfSectionW(
     SectionName: ?[*:0]const u16,
     SourceRootPath: ?[*:0]const u16,
     CopyFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallServicesFromInfSectionA(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u8,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallServicesFromInfSectionW(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u16,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallServicesFromInfSectionExA(
@@ -4585,7 +4585,7 @@ pub extern "setupapi" fn SetupInstallServicesFromInfSectionExA(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Reserved1: ?*anyopaque,
     Reserved2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInstallServicesFromInfSectionExW(
@@ -4596,7 +4596,7 @@ pub extern "setupapi" fn SetupInstallServicesFromInfSectionExW(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Reserved1: ?*anyopaque,
     Reserved2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn InstallHinfSectionA(
@@ -4604,7 +4604,7 @@ pub extern "setupapi" fn InstallHinfSectionA(
     ModuleHandle: ?HINSTANCE,
     CommandLine: ?[*:0]const u8,
     ShowCommand: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn InstallHinfSectionW(
@@ -4612,24 +4612,24 @@ pub extern "setupapi" fn InstallHinfSectionW(
     ModuleHandle: ?HINSTANCE,
     CommandLine: ?[*:0]const u16,
     ShowCommand: i32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInitializeFileLogA(
     LogFileName: ?[*:0]const u8,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupInitializeFileLogW(
     LogFileName: ?[*:0]const u16,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?*anyopaque;
+) callconv(.winapi) ?*anyopaque;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupTerminateFileLog(
     FileLogHandle: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupLogFileA(
@@ -4642,7 +4642,7 @@ pub extern "setupapi" fn SetupLogFileA(
     DiskDescription: ?[*:0]const u8,
     OtherInfo: ?[*:0]const u8,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupLogFileW(
@@ -4655,21 +4655,21 @@ pub extern "setupapi" fn SetupLogFileW(
     DiskDescription: ?[*:0]const u16,
     OtherInfo: ?[*:0]const u16,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveFileLogEntryA(
     FileLogHandle: ?*anyopaque,
     LogSectionName: ?[*:0]const u8,
     TargetFilename: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupRemoveFileLogEntryW(
     FileLogHandle: ?*anyopaque,
     LogSectionName: ?[*:0]const u16,
     TargetFilename: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryFileLogA(
@@ -4680,7 +4680,7 @@ pub extern "setupapi" fn SetupQueryFileLogA(
     DataOut: ?[*:0]u8,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupQueryFileLogW(
@@ -4691,37 +4691,37 @@ pub extern "setupapi" fn SetupQueryFileLogW(
     DataOut: ?[*:0]u16,
     ReturnBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupOpenLog(
     Erase: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupLogErrorA(
     MessageString: ?[*:0]const u8,
     Severity: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupLogErrorW(
     MessageString: ?[*:0]const u16,
     Severity: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupCloseLog(
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupGetThreadLogToken(
-) callconv(@import("std").os.windows.WINAPI) u64;
+) callconv(.winapi) u64;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupSetThreadLogToken(
     LogToken: u64,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupWriteTextLog(
@@ -4729,7 +4729,7 @@ pub extern "setupapi" fn SetupWriteTextLog(
     Category: u32,
     Flags: u32,
     MessageStr: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupWriteTextLogError(
@@ -4738,7 +4738,7 @@ pub extern "setupapi" fn SetupWriteTextLogError(
     LogFlags: u32,
     Error: u32,
     MessageStr: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupWriteTextLogInfLine(
@@ -4746,44 +4746,44 @@ pub extern "setupapi" fn SetupWriteTextLogInfLine(
     Flags: u32,
     InfHandle: ?*anyopaque,
     Context: ?*INFCONTEXT,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub extern "setupapi" fn SetupGetBackupInformationA(
     QueueHandle: ?*anyopaque,
     BackupParams: ?*SP_BACKUP_QUEUE_PARAMS_V2_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "setupapi" fn SetupGetBackupInformationW(
     QueueHandle: ?*anyopaque,
     BackupParams: ?*SP_BACKUP_QUEUE_PARAMS_V2_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "setupapi" fn SetupPrepareQueueForRestoreA(
     QueueHandle: ?*anyopaque,
     BackupPath: ?[*:0]const u8,
     RestoreFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "setupapi" fn SetupPrepareQueueForRestoreW(
     QueueHandle: ?*anyopaque,
     BackupPath: ?[*:0]const u16,
     RestoreFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupSetNonInteractiveMode(
     NonInteractiveFlag: BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupGetNonInteractiveMode(
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoList(
     ClassGuid: ?*const Guid,
     hwndParent: ?HWND,
-) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
+) callconv(.winapi) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoListExA(
@@ -4791,7 +4791,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoListExA(
     hwndParent: ?HWND,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
+) callconv(.winapi) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoListExW(
@@ -4799,25 +4799,25 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoListExW(
     hwndParent: ?HWND,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
+) callconv(.winapi) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInfoListClass(
     DeviceInfoSet: HDEVINFO,
     ClassGuid: ?*Guid,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInfoListDetailA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoSetDetailData: ?*SP_DEVINFO_LIST_DETAIL_DATA_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInfoListDetailW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoSetDetailData: ?*SP_DEVINFO_LIST_DETAIL_DATA_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoA(
@@ -4828,7 +4828,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoA(
     hwndParent: ?HWND,
     CreationFlags: u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInfoW(
@@ -4839,7 +4839,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInfoW(
     hwndParent: ?HWND,
     CreationFlags: u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInfoA(
@@ -4848,7 +4848,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInfoA(
     hwndParent: ?HWND,
     OpenFlags: u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInfoW(
@@ -4857,7 +4857,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInfoW(
     hwndParent: ?HWND,
     OpenFlags: u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstanceIdA(
@@ -4866,7 +4866,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInstanceIdA(
     DeviceInstanceId: ?[*:0]u8,
     DeviceInstanceIdSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstanceIdW(
@@ -4875,25 +4875,25 @@ pub extern "setupapi" fn SetupDiGetDeviceInstanceIdW(
     DeviceInstanceId: ?[*:0]u16,
     DeviceInstanceIdSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDeviceInfo(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDeviceInfo(
     DeviceInfoSet: HDEVINFO,
     MemberIndex: u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDestroyDeviceInfoList(
     DeviceInfoSet: HDEVINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDeviceInterfaces(
@@ -4902,7 +4902,7 @@ pub extern "setupapi" fn SetupDiEnumDeviceInterfaces(
     InterfaceClassGuid: ?*const Guid,
     MemberIndex: u32,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceA(
@@ -4912,7 +4912,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceA(
     ReferenceString: ?[*:0]const u8,
     CreationFlags: u32,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceW(
@@ -4922,7 +4922,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceW(
     ReferenceString: ?[*:0]const u16,
     CreationFlags: u32,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInterfaceA(
@@ -4930,7 +4930,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInterfaceA(
     DevicePath: ?[*:0]const u8,
     OpenFlags: u32,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInterfaceW(
@@ -4938,7 +4938,7 @@ pub extern "setupapi" fn SetupDiOpenDeviceInterfaceW(
     DevicePath: ?[*:0]const u16,
     OpenFlags: u32,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceAlias(
@@ -4946,19 +4946,19 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceAlias(
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     AliasInterfaceClassGuid: ?*const Guid,
     AliasDeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDeviceInterfaceData(
     DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRemoveDeviceInterface(
     DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailA(
@@ -4969,7 +4969,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailA(
     DeviceInterfaceDetailDataSize: u32,
     RequiredSize: ?*u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailW(
@@ -4980,13 +4980,13 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfaceDetailW(
     DeviceInterfaceDetailDataSize: u32,
     RequiredSize: ?*u32,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallDeviceInterfaces(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiSetDeviceInterfaceDefault(
@@ -4994,7 +4994,7 @@ pub extern "setupapi" fn SetupDiSetDeviceInterfaceDefault(
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Flags: u32,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRegisterDeviceInfo(
@@ -5004,19 +5004,19 @@ pub extern "setupapi" fn SetupDiRegisterDeviceInfo(
     CompareProc: ?PSP_DETSIG_CMPPROC,
     CompareContext: ?*anyopaque,
     DupDeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiBuildDriverInfoList(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverType: SETUP_DI_BUILD_DRIVER_DRIVER_TYPE,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCancelDriverInfoSearch(
     DeviceInfoSet: HDEVINFO,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDriverInfoA(
@@ -5025,7 +5025,7 @@ pub extern "setupapi" fn SetupDiEnumDriverInfoA(
     DriverType: u32,
     MemberIndex: u32,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiEnumDriverInfoW(
@@ -5034,35 +5034,35 @@ pub extern "setupapi" fn SetupDiEnumDriverInfoW(
     DriverType: u32,
     MemberIndex: u32,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetSelectedDriverA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetSelectedDriverW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetSelectedDriverA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetSelectedDriverW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInfoDetailA(
@@ -5073,7 +5073,7 @@ pub extern "setupapi" fn SetupDiGetDriverInfoDetailA(
     DriverInfoDetailData: ?*SP_DRVINFO_DETAIL_DATA_A,
     DriverInfoDetailDataSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInfoDetailW(
@@ -5084,14 +5084,14 @@ pub extern "setupapi" fn SetupDiGetDriverInfoDetailW(
     DriverInfoDetailData: ?*SP_DRVINFO_DETAIL_DATA_W,
     DriverInfoDetailDataSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDestroyDriverInfoList(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevsA(
@@ -5099,7 +5099,7 @@ pub extern "setupapi" fn SetupDiGetClassDevsA(
     Enumerator: ?[*:0]const u8,
     hwndParent: ?HWND,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
+) callconv(.winapi) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevsW(
@@ -5107,7 +5107,7 @@ pub extern "setupapi" fn SetupDiGetClassDevsW(
     Enumerator: ?[*:0]const u16,
     hwndParent: ?HWND,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
+) callconv(.winapi) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevsExA(
@@ -5118,7 +5118,7 @@ pub extern "setupapi" fn SetupDiGetClassDevsExA(
     DeviceInfoSet: HDEVINFO,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
+) callconv(.winapi) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevsExW(
@@ -5129,7 +5129,7 @@ pub extern "setupapi" fn SetupDiGetClassDevsExW(
     DeviceInfoSet: HDEVINFO,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HDEVINFO;
+) callconv(.winapi) HDEVINFO;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetINFClassA(
@@ -5138,7 +5138,7 @@ pub extern "setupapi" fn SetupDiGetINFClassA(
     ClassName: [*:0]u8,
     ClassNameSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetINFClassW(
@@ -5147,7 +5147,7 @@ pub extern "setupapi" fn SetupDiGetINFClassW(
     ClassName: [*:0]u16,
     ClassNameSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiBuildClassInfoList(
@@ -5155,7 +5155,7 @@ pub extern "setupapi" fn SetupDiBuildClassInfoList(
     ClassGuidList: ?[*]Guid,
     ClassGuidListSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiBuildClassInfoListExA(
@@ -5165,7 +5165,7 @@ pub extern "setupapi" fn SetupDiBuildClassInfoListExA(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiBuildClassInfoListExW(
@@ -5175,7 +5175,7 @@ pub extern "setupapi" fn SetupDiBuildClassInfoListExW(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDescriptionA(
@@ -5183,7 +5183,7 @@ pub extern "setupapi" fn SetupDiGetClassDescriptionA(
     ClassDescription: [*:0]u8,
     ClassDescriptionSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDescriptionW(
@@ -5191,7 +5191,7 @@ pub extern "setupapi" fn SetupDiGetClassDescriptionW(
     ClassDescription: [*:0]u16,
     ClassDescriptionSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDescriptionExA(
@@ -5201,7 +5201,7 @@ pub extern "setupapi" fn SetupDiGetClassDescriptionExA(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDescriptionExW(
@@ -5211,67 +5211,67 @@ pub extern "setupapi" fn SetupDiGetClassDescriptionExW(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCallClassInstaller(
     InstallFunction: u32,
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSelectDevice(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSelectBestCompatDrv(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallDevice(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallDriverFiles(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRegisterCoDeviceInstallers(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiRemoveDevice(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiUnremoveDevice(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "setupapi" fn SetupDiRestartDevices(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiChangeState(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallClassA(
@@ -5279,7 +5279,7 @@ pub extern "setupapi" fn SetupDiInstallClassA(
     InfFileName: ?[*:0]const u8,
     Flags: u32,
     FileQueue: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallClassW(
@@ -5287,7 +5287,7 @@ pub extern "setupapi" fn SetupDiInstallClassW(
     InfFileName: ?[*:0]const u16,
     Flags: u32,
     FileQueue: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallClassExA(
@@ -5298,7 +5298,7 @@ pub extern "setupapi" fn SetupDiInstallClassExA(
     InterfaceClassGuid: ?*const Guid,
     Reserved1: ?*anyopaque,
     Reserved2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiInstallClassExW(
@@ -5309,13 +5309,13 @@ pub extern "setupapi" fn SetupDiInstallClassExW(
     InterfaceClassGuid: ?*const Guid,
     Reserved1: ?*anyopaque,
     Reserved2: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenClassRegKey(
     ClassGuid: ?*const Guid,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenClassRegKeyExA(
@@ -5324,7 +5324,7 @@ pub extern "setupapi" fn SetupDiOpenClassRegKeyExA(
     Flags: u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenClassRegKeyExW(
@@ -5333,7 +5333,7 @@ pub extern "setupapi" fn SetupDiOpenClassRegKeyExW(
     Flags: u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyA(
@@ -5343,7 +5343,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyA(
     samDesired: u32,
     InfHandle: ?*anyopaque,
     InfSectionName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyW(
@@ -5353,7 +5353,7 @@ pub extern "setupapi" fn SetupDiCreateDeviceInterfaceRegKeyW(
     samDesired: u32,
     InfHandle: ?*anyopaque,
     InfSectionName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDeviceInterfaceRegKey(
@@ -5361,14 +5361,14 @@ pub extern "setupapi" fn SetupDiOpenDeviceInterfaceRegKey(
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Reserved: u32,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDeviceInterfaceRegKey(
     DeviceInfoSet: HDEVINFO,
     DeviceInterfaceData: ?*SP_DEVICE_INTERFACE_DATA,
     Reserved: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDevRegKeyA(
@@ -5379,7 +5379,7 @@ pub extern "setupapi" fn SetupDiCreateDevRegKeyA(
     KeyType: u32,
     InfHandle: ?*anyopaque,
     InfSectionName: ?[*:0]const u8,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiCreateDevRegKeyW(
@@ -5390,7 +5390,7 @@ pub extern "setupapi" fn SetupDiCreateDevRegKeyW(
     KeyType: u32,
     InfHandle: ?*anyopaque,
     InfSectionName: ?[*:0]const u16,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiOpenDevRegKey(
@@ -5400,7 +5400,7 @@ pub extern "setupapi" fn SetupDiOpenDevRegKey(
     HwProfile: u32,
     KeyType: u32,
     samDesired: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HKEY;
+) callconv(.winapi) ?HKEY;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDeleteDevRegKey(
@@ -5409,7 +5409,7 @@ pub extern "setupapi" fn SetupDiDeleteDevRegKey(
     Scope: u32,
     HwProfile: u32,
     KeyType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetHwProfileList(
@@ -5417,7 +5417,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileList(
     HwProfileListSize: u32,
     RequiredSize: ?*u32,
     CurrentlyActiveIndex: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetHwProfileListExA(
@@ -5427,7 +5427,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileListExA(
     CurrentlyActiveIndex: ?*u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetHwProfileListExW(
@@ -5437,7 +5437,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileListExW(
     CurrentlyActiveIndex: ?*u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDevicePropertyKeys(
@@ -5447,7 +5447,7 @@ pub extern "setupapi" fn SetupDiGetDevicePropertyKeys(
     PropertyKeyCount: u32,
     RequiredPropertyKeyCount: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDevicePropertyW(
@@ -5460,7 +5460,7 @@ pub extern "setupapi" fn SetupDiGetDevicePropertyW(
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiSetDevicePropertyW(
@@ -5472,7 +5472,7 @@ pub extern "setupapi" fn SetupDiSetDevicePropertyW(
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyKeys(
@@ -5482,7 +5482,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyKeys(
     PropertyKeyCount: u32,
     RequiredPropertyKeyCount: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyW(
@@ -5495,7 +5495,7 @@ pub extern "setupapi" fn SetupDiGetDeviceInterfacePropertyW(
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiSetDeviceInterfacePropertyW(
@@ -5507,7 +5507,7 @@ pub extern "setupapi" fn SetupDiSetDeviceInterfacePropertyW(
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetClassPropertyKeys(
@@ -5516,7 +5516,7 @@ pub extern "setupapi" fn SetupDiGetClassPropertyKeys(
     PropertyKeyCount: u32,
     RequiredPropertyKeyCount: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetClassPropertyKeysExW(
@@ -5527,7 +5527,7 @@ pub extern "setupapi" fn SetupDiGetClassPropertyKeysExW(
     Flags: u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetClassPropertyW(
@@ -5539,7 +5539,7 @@ pub extern "setupapi" fn SetupDiGetClassPropertyW(
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiGetClassPropertyExW(
@@ -5553,7 +5553,7 @@ pub extern "setupapi" fn SetupDiGetClassPropertyExW(
     Flags: u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiSetClassPropertyW(
@@ -5564,7 +5564,7 @@ pub extern "setupapi" fn SetupDiSetClassPropertyW(
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiSetClassPropertyExW(
@@ -5577,7 +5577,7 @@ pub extern "setupapi" fn SetupDiSetClassPropertyExW(
     Flags: u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyA(
@@ -5589,7 +5589,7 @@ pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyA(
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyW(
@@ -5601,7 +5601,7 @@ pub extern "setupapi" fn SetupDiGetDeviceRegistryPropertyW(
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetClassRegistryPropertyA(
@@ -5614,7 +5614,7 @@ pub extern "setupapi" fn SetupDiGetClassRegistryPropertyA(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetClassRegistryPropertyW(
@@ -5627,7 +5627,7 @@ pub extern "setupapi" fn SetupDiGetClassRegistryPropertyW(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyA(
@@ -5637,7 +5637,7 @@ pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyA(
     // TODO: what to do with BytesParamIndex 4?
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyW(
@@ -5647,7 +5647,7 @@ pub extern "setupapi" fn SetupDiSetDeviceRegistryPropertyW(
     // TODO: what to do with BytesParamIndex 4?
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiSetClassRegistryPropertyA(
@@ -5658,7 +5658,7 @@ pub extern "setupapi" fn SetupDiSetClassRegistryPropertyA(
     PropertyBufferSize: u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiSetClassRegistryPropertyW(
@@ -5669,21 +5669,21 @@ pub extern "setupapi" fn SetupDiSetClassRegistryPropertyW(
     PropertyBufferSize: u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstallParamsA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDeviceInstallParamsW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassInstallParamsA(
@@ -5693,7 +5693,7 @@ pub extern "setupapi" fn SetupDiGetClassInstallParamsA(
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassInstallParamsW(
@@ -5703,21 +5703,21 @@ pub extern "setupapi" fn SetupDiGetClassInstallParamsW(
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceInstallParamsA(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDeviceInstallParamsW(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DeviceInstallParams: ?*SP_DEVINSTALL_PARAMS_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetClassInstallParamsA(
@@ -5726,7 +5726,7 @@ pub extern "setupapi" fn SetupDiSetClassInstallParamsA(
     // TODO: what to do with BytesParamIndex 3?
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetClassInstallParamsW(
@@ -5735,7 +5735,7 @@ pub extern "setupapi" fn SetupDiSetClassInstallParamsW(
     // TODO: what to do with BytesParamIndex 3?
     ClassInstallParams: ?*SP_CLASSINSTALL_HEADER,
     ClassInstallParamsSize: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInstallParamsA(
@@ -5743,7 +5743,7 @@ pub extern "setupapi" fn SetupDiGetDriverInstallParamsA(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetDriverInstallParamsW(
@@ -5751,7 +5751,7 @@ pub extern "setupapi" fn SetupDiGetDriverInstallParamsW(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDriverInstallParamsA(
@@ -5759,7 +5759,7 @@ pub extern "setupapi" fn SetupDiSetDriverInstallParamsA(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetDriverInstallParamsW(
@@ -5767,14 +5767,14 @@ pub extern "setupapi" fn SetupDiSetDriverInstallParamsW(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_W,
     DriverInstallParams: ?*SP_DRVINSTALL_PARAMS,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiLoadClassIcon(
     ClassGuid: ?*const Guid,
     LargeIcon: ?*?HICON,
     MiniIconIndex: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "setupapi" fn SetupDiLoadDeviceIcon(
@@ -5784,7 +5784,7 @@ pub extern "setupapi" fn SetupDiLoadDeviceIcon(
     cyIcon: u32,
     Flags: u32,
     hIcon: ?*?HICON,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDrawMiniIcon(
@@ -5792,44 +5792,44 @@ pub extern "setupapi" fn SetupDiDrawMiniIcon(
     rc: RECT,
     MiniIconIndex: i32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) i32;
+) callconv(.winapi) i32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassBitmapIndex(
     ClassGuid: ?*const Guid,
     MiniIconIndex: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassImageList(
     ClassImageListData: ?*SP_CLASSIMAGELIST_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassImageListExA(
     ClassImageListData: ?*SP_CLASSIMAGELIST_DATA,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassImageListExW(
     ClassImageListData: ?*SP_CLASSIMAGELIST_DATA,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassImageIndex(
     ClassImageListData: ?*SP_CLASSIMAGELIST_DATA,
     ClassGuid: ?*const Guid,
     ImageIndex: ?*i32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiDestroyClassImageList(
     ClassImageListData: ?*SP_CLASSIMAGELIST_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsA(
@@ -5839,7 +5839,7 @@ pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsA(
     PropertySheetHeaderPageListSize: u32,
     RequiredSize: ?*u32,
     PropertySheetType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsW(
@@ -5849,20 +5849,20 @@ pub extern "setupapi" fn SetupDiGetClassDevPropertySheetsW(
     PropertySheetHeaderPageListSize: u32,
     RequiredSize: ?*u32,
     PropertySheetType: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiAskForOEMDisk(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSelectOEMDrv(
     hwndParent: ?HWND,
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassNameFromGuidA(
@@ -5870,7 +5870,7 @@ pub extern "setupapi" fn SetupDiClassNameFromGuidA(
     ClassName: [*:0]u8,
     ClassNameSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassNameFromGuidW(
@@ -5878,7 +5878,7 @@ pub extern "setupapi" fn SetupDiClassNameFromGuidW(
     ClassName: [*:0]u16,
     ClassNameSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassNameFromGuidExA(
@@ -5888,7 +5888,7 @@ pub extern "setupapi" fn SetupDiClassNameFromGuidExA(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassNameFromGuidExW(
@@ -5898,7 +5898,7 @@ pub extern "setupapi" fn SetupDiClassNameFromGuidExW(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassGuidsFromNameA(
@@ -5906,7 +5906,7 @@ pub extern "setupapi" fn SetupDiClassGuidsFromNameA(
     ClassGuidList: [*]Guid,
     ClassGuidListSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassGuidsFromNameW(
@@ -5914,7 +5914,7 @@ pub extern "setupapi" fn SetupDiClassGuidsFromNameW(
     ClassGuidList: [*]Guid,
     ClassGuidListSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassGuidsFromNameExA(
@@ -5924,7 +5924,7 @@ pub extern "setupapi" fn SetupDiClassGuidsFromNameExA(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiClassGuidsFromNameExW(
@@ -5934,7 +5934,7 @@ pub extern "setupapi" fn SetupDiClassGuidsFromNameExW(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameA(
@@ -5942,7 +5942,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameA(
     FriendlyName: [*:0]u8,
     FriendlyNameSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameW(
@@ -5950,7 +5950,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameW(
     FriendlyName: [*:0]u16,
     FriendlyNameSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameExA(
@@ -5960,7 +5960,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameExA(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u8,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameExW(
@@ -5970,7 +5970,7 @@ pub extern "setupapi" fn SetupDiGetHwProfileFriendlyNameExW(
     RequiredSize: ?*u32,
     MachineName: ?[*:0]const u16,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "setupapi" fn SetupDiGetWizardPage(
     DeviceInfoSet: HDEVINFO,
@@ -5978,19 +5978,19 @@ pub extern "setupapi" fn SetupDiGetWizardPage(
     InstallWizardData: ?*SP_INSTALLWIZARD_DATA,
     PageType: u32,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) ?HPROPSHEETPAGE;
+) callconv(.winapi) ?HPROPSHEETPAGE;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetSelectedDevice(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiSetSelectedDevice(
     DeviceInfoSet: HDEVINFO,
     DeviceInfoData: ?*SP_DEVINFO_DATA,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "setupapi" fn SetupDiGetActualModelsSectionA(
     Context: ?*INFCONTEXT,
@@ -5999,7 +5999,7 @@ pub extern "setupapi" fn SetupDiGetActualModelsSectionA(
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "setupapi" fn SetupDiGetActualModelsSectionW(
     Context: ?*INFCONTEXT,
@@ -6008,7 +6008,7 @@ pub extern "setupapi" fn SetupDiGetActualModelsSectionW(
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetActualSectionToInstallA(
@@ -6018,7 +6018,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallA(
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
     Extension: ?*?PSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "setupapi" fn SetupDiGetActualSectionToInstallW(
@@ -6028,7 +6028,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallW(
     InfSectionWithExtSize: u32,
     RequiredSize: ?*u32,
     Extension: ?*?PWSTR,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetActualSectionToInstallExA(
@@ -6040,7 +6040,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallExA(
     RequiredSize: ?*u32,
     Extension: ?*?PSTR,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetActualSectionToInstallExW(
@@ -6052,7 +6052,7 @@ pub extern "setupapi" fn SetupDiGetActualSectionToInstallExW(
     RequiredSize: ?*u32,
     Extension: ?*?PWSTR,
     Reserved: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupEnumInfSectionsA(
@@ -6061,7 +6061,7 @@ pub extern "setupapi" fn SetupEnumInfSectionsA(
     Buffer: ?[*:0]u8,
     Size: u32,
     SizeNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupEnumInfSectionsW(
@@ -6070,21 +6070,21 @@ pub extern "setupapi" fn SetupEnumInfSectionsW(
     Buffer: ?[*:0]u16,
     Size: u32,
     SizeNeeded: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupVerifyInfFileA(
     InfName: ?[*:0]const u8,
     AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     InfSignerInfo: ?*SP_INF_SIGNER_INFO_V2_A,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupVerifyInfFileW(
     InfName: ?[*:0]const u16,
     AltPlatformInfo: ?*SP_ALTPLATFORM_INFO_V2,
     InfSignerInfo: ?*SP_INF_SIGNER_INFO_V2_W,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetCustomDevicePropertyA(
@@ -6097,7 +6097,7 @@ pub extern "setupapi" fn SetupDiGetCustomDevicePropertyA(
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "setupapi" fn SetupDiGetCustomDevicePropertyW(
@@ -6110,21 +6110,21 @@ pub extern "setupapi" fn SetupDiGetCustomDevicePropertyW(
     PropertyBuffer: ?*u8,
     PropertyBufferSize: u32,
     RequiredSize: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "setupapi" fn SetupConfigureWmiFromInfSectionA(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u8,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windowsServer2003'
 pub extern "setupapi" fn SetupConfigureWmiFromInfSectionW(
     InfHandle: ?*anyopaque,
     SectionName: ?[*:0]const u16,
     Flags: u32,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_Empty_Log_Conf(
@@ -6132,7 +6132,7 @@ pub extern "cfgmgr32" fn CM_Add_Empty_Log_Conf(
     dnDevInst: u32,
     Priority: PRIORITY,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_Empty_Log_Conf_Ex(
@@ -6141,27 +6141,27 @@ pub extern "cfgmgr32" fn CM_Add_Empty_Log_Conf_Ex(
     Priority: PRIORITY,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Add_IDA(
     dnDevInst: u32,
     pszID: ?PSTR,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_IDW(
     dnDevInst: u32,
     pszID: ?PWSTR,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Add_ID_ExA(
     dnDevInst: u32,
     pszID: ?PSTR,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_ID_ExW(
@@ -6169,14 +6169,14 @@ pub extern "cfgmgr32" fn CM_Add_ID_ExW(
     pszID: ?PWSTR,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Add_Range(
     ullStartValue: u64,
     ullEndValue: u64,
     rlh: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_Res_Des(
@@ -6187,7 +6187,7 @@ pub extern "cfgmgr32" fn CM_Add_Res_Des(
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Add_Res_Des_Ex(
@@ -6199,32 +6199,32 @@ pub extern "cfgmgr32" fn CM_Add_Res_Des_Ex(
     ResourceLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Connect_MachineA(
     UNCServerName: ?[*:0]const u8,
     phMachine: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Connect_MachineW(
     UNCServerName: ?[*:0]const u16,
     phMachine: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Create_DevNodeA(
     pdnDevInst: ?*u32,
     pDeviceID: ?*i8,
     dnParent: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Create_DevNodeW(
     pdnDevInst: ?*u32,
     pDeviceID: ?*u16,
     dnParent: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Create_DevNode_ExA(
     pdnDevInst: ?*u32,
@@ -6232,7 +6232,7 @@ pub extern "cfgmgr32" fn CM_Create_DevNode_ExA(
     dnParent: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Create_DevNode_ExW(
     pdnDevInst: ?*u32,
@@ -6240,45 +6240,45 @@ pub extern "cfgmgr32" fn CM_Create_DevNode_ExW(
     dnParent: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Create_Range_List(
     prlh: ?*usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Delete_Class_Key(
     ClassGuid: ?*Guid,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Delete_Class_Key_Ex(
     ClassGuid: ?*Guid,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Delete_DevNode_Key(
     dnDevNode: u32,
     ulHardwareProfile: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Delete_DevNode_Key_Ex(
     dnDevNode: u32,
     ulHardwareProfile: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Delete_Range(
     ullStartValue: u64,
     ullEndValue: u64,
     rlh: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Detect_Resource_Conflict(
     dnDevInst: u32,
@@ -6288,7 +6288,7 @@ pub extern "cfgmgr32" fn CM_Detect_Resource_Conflict(
     ResourceLen: u32,
     pbConflictDetected: ?*BOOL,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Detect_Resource_Conflict_Ex(
     dnDevInst: u32,
@@ -6299,49 +6299,49 @@ pub extern "cfgmgr32" fn CM_Detect_Resource_Conflict_Ex(
     pbConflictDetected: ?*BOOL,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Disable_DevNode(
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Disable_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Disconnect_Machine(
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Dup_Range_List(
     rlhOld: usize,
     rlhNew: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Enable_DevNode(
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Enable_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Enumerate_Classes(
     ulClassIndex: u32,
     ClassGuid: ?*Guid,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Enumerate_Classes_Ex(
@@ -6349,14 +6349,14 @@ pub extern "cfgmgr32" fn CM_Enumerate_Classes_Ex(
     ClassGuid: ?*Guid,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Enumerate_EnumeratorsA(
     ulEnumIndex: u32,
     Buffer: [*:0]u8,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Enumerate_EnumeratorsW(
@@ -6364,7 +6364,7 @@ pub extern "cfgmgr32" fn CM_Enumerate_EnumeratorsW(
     Buffer: [*:0]u16,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Enumerate_Enumerators_ExA(
     ulEnumIndex: u32,
@@ -6372,7 +6372,7 @@ pub extern "cfgmgr32" fn CM_Enumerate_Enumerators_ExA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Enumerate_Enumerators_ExW(
@@ -6381,7 +6381,7 @@ pub extern "cfgmgr32" fn CM_Enumerate_Enumerators_ExW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Find_Range(
     pullStart: ?*u64,
@@ -6391,7 +6391,7 @@ pub extern "cfgmgr32" fn CM_Find_Range(
     ullEnd: u64,
     rlh: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_First_Range(
     rlh: usize,
@@ -6399,37 +6399,37 @@ pub extern "cfgmgr32" fn CM_First_Range(
     pullEnd: ?*u64,
     preElement: ?*usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Free_Log_Conf(
     lcLogConfToBeFreed: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Free_Log_Conf_Ex(
     lcLogConfToBeFreed: usize,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Free_Log_Conf_Handle(
     lcLogConf: usize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Free_Range_List(
     rlh: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Free_Res_Des(
     prdResDes: ?*usize,
     rdResDes: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Free_Res_Des_Ex(
@@ -6437,19 +6437,19 @@ pub extern "cfgmgr32" fn CM_Free_Res_Des_Ex(
     rdResDes: usize,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Free_Res_Des_Handle(
     rdResDes: usize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Child(
     pdnDevInst: ?*u32,
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Child_Ex(
@@ -6457,21 +6457,21 @@ pub extern "cfgmgr32" fn CM_Get_Child_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_NameA(
     ClassGuid: ?*Guid,
     Buffer: ?[*:0]u8,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_NameW(
     ClassGuid: ?*Guid,
     Buffer: ?[*:0]u16,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_Name_ExA(
     ClassGuid: ?*Guid,
@@ -6479,7 +6479,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Name_ExA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_Name_ExW(
     ClassGuid: ?*Guid,
@@ -6487,21 +6487,21 @@ pub extern "cfgmgr32" fn CM_Get_Class_Name_ExW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_Key_NameA(
     ClassGuid: ?*Guid,
     pszKeyName: ?[*:0]u8,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_Key_NameW(
     ClassGuid: ?*Guid,
     pszKeyName: ?[*:0]u16,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_Key_Name_ExA(
     ClassGuid: ?*Guid,
@@ -6509,7 +6509,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Key_Name_ExA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_Key_Name_ExW(
     ClassGuid: ?*Guid,
@@ -6517,14 +6517,14 @@ pub extern "cfgmgr32" fn CM_Get_Class_Key_Name_ExW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Depth(
     pulDepth: ?*u32,
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Depth_Ex(
@@ -6532,14 +6532,14 @@ pub extern "cfgmgr32" fn CM_Get_Depth_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_IDA(
     dnDevInst: u32,
     Buffer: [*:0]u8,
     BufferLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_IDW(
@@ -6547,7 +6547,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_IDW(
     Buffer: [*:0]u16,
     BufferLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_ID_ExA(
     dnDevInst: u32,
@@ -6555,7 +6555,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_ExA(
     BufferLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_ExW(
@@ -6564,7 +6564,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_ExW(
     BufferLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_ListA(
@@ -6572,7 +6572,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_ListA(
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_ListW(
@@ -6580,7 +6580,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_ListW(
     Buffer: [*]u16,
     BufferLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_ID_List_ExA(
     pszFilter: ?[*:0]const u8,
@@ -6588,7 +6588,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_List_ExA(
     BufferLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_List_ExW(
@@ -6597,28 +6597,28 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_List_ExW(
     BufferLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_List_SizeA(
     pulLen: ?*u32,
     pszFilter: ?[*:0]const u8,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_List_SizeW(
     pulLen: ?*u32,
     pszFilter: ?[*:0]const u16,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_ID_List_Size_ExA(
     pulLen: ?*u32,
     pszFilter: ?[*:0]const u8,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_List_Size_ExW(
@@ -6626,14 +6626,14 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_List_Size_ExW(
     pszFilter: ?[*:0]const u16,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_Size(
     pulLen: ?*u32,
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_ID_Size_Ex(
@@ -6641,7 +6641,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_ID_Size_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Get_DevNode_PropertyW(
@@ -6652,7 +6652,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_PropertyW(
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Get_DevNode_Property_ExW(
@@ -6664,7 +6664,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Property_ExW(
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Get_DevNode_Property_Keys(
@@ -6672,7 +6672,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Property_Keys(
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Get_DevNode_Property_Keys_Ex(
@@ -6681,7 +6681,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Property_Keys_Ex(
     PropertyKeyCount: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_PropertyA(
     dnDevInst: u32,
@@ -6691,7 +6691,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_PropertyA(
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_PropertyW(
@@ -6702,7 +6702,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_PropertyW(
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_Property_ExA(
     dnDevInst: u32,
@@ -6713,7 +6713,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_Property_ExA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_Property_ExW(
     dnDevInst: u32,
@@ -6724,7 +6724,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Registry_Property_ExW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_PropertyA(
     dnDevInst: u32,
@@ -6734,7 +6734,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_PropertyA(
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_PropertyW(
     dnDevInst: u32,
@@ -6744,7 +6744,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_PropertyW(
     Buffer: ?*anyopaque,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_Property_ExA(
     dnDevInst: u32,
@@ -6755,7 +6755,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_Property_ExA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_Property_ExW(
     dnDevInst: u32,
@@ -6766,7 +6766,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Custom_Property_ExW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_DevNode_Status(
@@ -6774,7 +6774,7 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Status(
     pulProblemNumber: ?*u32,
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_DevNode_Status_Ex(
@@ -6783,14 +6783,14 @@ pub extern "cfgmgr32" fn CM_Get_DevNode_Status_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_First_Log_Conf(
     plcLogConf: ?*usize,
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_First_Log_Conf_Ex(
@@ -6798,44 +6798,44 @@ pub extern "cfgmgr32" fn CM_Get_First_Log_Conf_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Global_State(
     pulState: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Global_State_Ex(
     pulState: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_InfoA(
     ulIndex: u32,
     pHWProfileInfo: ?*HWProfileInfo_sA,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_Info_ExA(
     ulIndex: u32,
     pHWProfileInfo: ?*HWProfileInfo_sA,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_InfoW(
     ulIndex: u32,
     pHWProfileInfo: ?*HWProfileInfo_sW,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Hardware_Profile_Info_ExW(
     ulIndex: u32,
     pHWProfileInfo: ?*HWProfileInfo_sW,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_FlagsA(
@@ -6843,7 +6843,7 @@ pub extern "cfgmgr32" fn CM_Get_HW_Prof_FlagsA(
     ulHardwareProfile: u32,
     pulValue: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_FlagsW(
@@ -6851,7 +6851,7 @@ pub extern "cfgmgr32" fn CM_Get_HW_Prof_FlagsW(
     ulHardwareProfile: u32,
     pulValue: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExA(
@@ -6860,7 +6860,7 @@ pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExA(
     pulValue: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExW(
@@ -6869,7 +6869,7 @@ pub extern "cfgmgr32" fn CM_Get_HW_Prof_Flags_ExW(
     pulValue: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_AliasA(
     pszDeviceInterface: ?[*:0]const u8,
@@ -6877,7 +6877,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_AliasA(
     pszAliasDeviceInterface: [*:0]u8,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_AliasW(
@@ -6886,7 +6886,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_AliasW(
     pszAliasDeviceInterface: [*:0]u16,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_Alias_ExA(
     pszDeviceInterface: ?[*:0]const u8,
@@ -6895,7 +6895,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_Alias_ExA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_Alias_ExW(
     pszDeviceInterface: ?[*:0]const u16,
@@ -6904,7 +6904,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_Alias_ExW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListA(
@@ -6913,7 +6913,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListA(
     Buffer: [*]u8,
     BufferLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListW(
@@ -6922,7 +6922,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_ListW(
     Buffer: [*]u16,
     BufferLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExA(
     InterfaceClassGuid: ?*Guid,
@@ -6931,7 +6931,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExA(
     BufferLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExW(
     InterfaceClassGuid: ?*Guid,
@@ -6940,7 +6940,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_ExW(
     BufferLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_SizeA(
@@ -6948,7 +6948,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_SizeA(
     InterfaceClassGuid: ?*Guid,
     pDeviceID: ?*i8,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_SizeW(
@@ -6956,7 +6956,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_SizeW(
     InterfaceClassGuid: ?*Guid,
     pDeviceID: ?*u16,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExA(
     pulLen: ?*u32,
@@ -6964,7 +6964,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExA(
     pDeviceID: ?*i8,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExW(
     pulLen: ?*u32,
@@ -6972,7 +6972,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_List_Size_ExW(
     pDeviceID: ?*u16,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_PropertyW(
@@ -6983,7 +6983,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_PropertyW(
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_ExW(
@@ -6995,7 +6995,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_ExW(
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_KeysW(
@@ -7003,7 +7003,7 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_KeysW(
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_Keys_ExW(
@@ -7012,14 +7012,14 @@ pub extern "cfgmgr32" fn CM_Get_Device_Interface_Property_Keys_ExW(
     PropertyKeyCount: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Log_Conf_Priority(
     lcLogConf: usize,
     pPriority: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Log_Conf_Priority_Ex(
@@ -7027,14 +7027,14 @@ pub extern "cfgmgr32" fn CM_Get_Log_Conf_Priority_Ex(
     pPriority: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Next_Log_Conf(
     plcLogConf: ?*usize,
     lcLogConf: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Next_Log_Conf_Ex(
@@ -7042,14 +7042,14 @@ pub extern "cfgmgr32" fn CM_Get_Next_Log_Conf_Ex(
     lcLogConf: usize,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Parent(
     pdnDevInst: ?*u32,
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Parent_Ex(
@@ -7057,7 +7057,7 @@ pub extern "cfgmgr32" fn CM_Get_Parent_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Res_Des_Data(
@@ -7066,7 +7066,7 @@ pub extern "cfgmgr32" fn CM_Get_Res_Des_Data(
     Buffer: ?*anyopaque,
     BufferLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Res_Des_Data_Ex(
@@ -7076,14 +7076,14 @@ pub extern "cfgmgr32" fn CM_Get_Res_Des_Data_Ex(
     BufferLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Res_Des_Data_Size(
     pulSize: ?*u32,
     rdResDes: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Res_Des_Data_Size_Ex(
@@ -7091,14 +7091,14 @@ pub extern "cfgmgr32" fn CM_Get_Res_Des_Data_Size_Ex(
     rdResDes: usize,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Sibling(
     pdnDevInst: ?*u32,
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Sibling_Ex(
@@ -7106,62 +7106,62 @@ pub extern "cfgmgr32" fn CM_Get_Sibling_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Version(
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Version_Ex(
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) u16;
+) callconv(.winapi) u16;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cfgmgr32" fn CM_Is_Version_Available(
     wVersion: u16,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.1.2600'
 pub extern "cfgmgr32" fn CM_Is_Version_Available_Ex(
     wVersion: u16,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "cfgmgr32" fn CM_Intersect_Range_List(
     rlhOld1: usize,
     rlhOld2: usize,
     rlhNew: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Invert_Range_List(
     rlhOld: usize,
     rlhNew: usize,
     ullMaxValue: u64,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Locate_DevNodeA(
     pdnDevInst: ?*u32,
     pDeviceID: ?*i8,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Locate_DevNodeW(
     pdnDevInst: ?*u32,
     pDeviceID: ?*u16,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Locate_DevNode_ExA(
     pdnDevInst: ?*u32,
     pDeviceID: ?*i8,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Locate_DevNode_ExW(
@@ -7169,14 +7169,14 @@ pub extern "cfgmgr32" fn CM_Locate_DevNode_ExW(
     pDeviceID: ?*u16,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Merge_Range_List(
     rlhOld1: usize,
     rlhOld2: usize,
     rlhNew: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Modify_Res_Des(
@@ -7187,7 +7187,7 @@ pub extern "cfgmgr32" fn CM_Modify_Res_Des(
     ResourceData: ?*anyopaque,
     ResourceLen: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Modify_Res_Des_Ex(
@@ -7199,27 +7199,27 @@ pub extern "cfgmgr32" fn CM_Modify_Res_Des_Ex(
     ResourceLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Move_DevNode(
     dnFromDevInst: u32,
     dnToDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Move_DevNode_Ex(
     dnFromDevInst: u32,
     dnToDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Next_Range(
     preElement: ?*usize,
     pullStart: ?*u64,
     pullEnd: ?*u64,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Next_Res_Des(
@@ -7228,7 +7228,7 @@ pub extern "cfgmgr32" fn CM_Get_Next_Res_Des(
     ForResource: u32,
     pResourceID: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Next_Res_Des_Ex(
@@ -7238,7 +7238,7 @@ pub extern "cfgmgr32" fn CM_Get_Next_Res_Des_Ex(
     pResourceID: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Open_Class_KeyA(
     ClassGuid: ?*Guid,
@@ -7247,7 +7247,7 @@ pub extern "cfgmgr32" fn CM_Open_Class_KeyA(
     Disposition: u32,
     phkClass: ?*?HKEY,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Open_Class_KeyW(
@@ -7257,7 +7257,7 @@ pub extern "cfgmgr32" fn CM_Open_Class_KeyW(
     Disposition: u32,
     phkClass: ?*?HKEY,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Open_Class_Key_ExA(
     ClassGuid: ?*Guid,
@@ -7267,7 +7267,7 @@ pub extern "cfgmgr32" fn CM_Open_Class_Key_ExA(
     phkClass: ?*?HKEY,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Open_Class_Key_ExW(
     ClassGuid: ?*Guid,
@@ -7277,7 +7277,7 @@ pub extern "cfgmgr32" fn CM_Open_Class_Key_ExW(
     phkClass: ?*?HKEY,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Open_DevNode_Key(
@@ -7287,7 +7287,7 @@ pub extern "cfgmgr32" fn CM_Open_DevNode_Key(
     Disposition: u32,
     phkDevice: ?*?HKEY,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Open_DevNode_Key_Ex(
     dnDevNode: u32,
@@ -7297,7 +7297,7 @@ pub extern "cfgmgr32" fn CM_Open_DevNode_Key_Ex(
     phkDevice: ?*?HKEY,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Open_Device_Interface_KeyA(
@@ -7306,7 +7306,7 @@ pub extern "cfgmgr32" fn CM_Open_Device_Interface_KeyA(
     Disposition: u32,
     phkDeviceInterface: ?*?HKEY,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Open_Device_Interface_KeyW(
@@ -7315,7 +7315,7 @@ pub extern "cfgmgr32" fn CM_Open_Device_Interface_KeyW(
     Disposition: u32,
     phkDeviceInterface: ?*?HKEY,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Open_Device_Interface_Key_ExA(
@@ -7325,7 +7325,7 @@ pub extern "cfgmgr32" fn CM_Open_Device_Interface_Key_ExA(
     phkDeviceInterface: ?*?HKEY,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Open_Device_Interface_Key_ExW(
@@ -7335,32 +7335,32 @@ pub extern "cfgmgr32" fn CM_Open_Device_Interface_Key_ExW(
     phkDeviceInterface: ?*?HKEY,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Delete_Device_Interface_KeyA(
     pszDeviceInterface: ?[*:0]const u8,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Delete_Device_Interface_KeyW(
     pszDeviceInterface: ?[*:0]const u16,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Delete_Device_Interface_Key_ExA(
     pszDeviceInterface: ?[*:0]const u8,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Delete_Device_Interface_Key_ExW(
     pszDeviceInterface: ?[*:0]const u16,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Data(
     // TODO: what to do with BytesParamIndex 1?
@@ -7369,7 +7369,7 @@ pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Data(
     dnDevInst: u32,
     ResourceID: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Data_Ex(
     // TODO: what to do with BytesParamIndex 1?
@@ -7379,14 +7379,14 @@ pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Data_Ex(
     ResourceID: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Size(
     pulSize: ?*u32,
     dnDevInst: u32,
     ResourceID: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Size_Ex(
     pulSize: ?*u32,
@@ -7394,18 +7394,18 @@ pub extern "cfgmgr32" fn CM_Query_Arbitrator_Free_Size_Ex(
     ResourceID: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Remove_SubTree(
     dnAncestor: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_Remove_SubTree_Ex(
     dnAncestor: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTreeA(
     dnAncestor: u32,
@@ -7413,7 +7413,7 @@ pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTreeA(
     pszVetoName: ?[*:0]u8,
     ulNameLength: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTreeW(
@@ -7422,7 +7422,7 @@ pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTreeW(
     pszVetoName: ?[*:0]u16,
     ulNameLength: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTree_ExA(
     dnAncestor: u32,
@@ -7431,7 +7431,7 @@ pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTree_ExA(
     ulNameLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTree_ExW(
@@ -7441,7 +7441,7 @@ pub extern "cfgmgr32" fn CM_Query_And_Remove_SubTree_ExW(
     ulNameLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Request_Device_EjectA(
     dnDevInst: u32,
@@ -7449,7 +7449,7 @@ pub extern "cfgmgr32" fn CM_Request_Device_EjectA(
     pszVetoName: ?[*:0]u8,
     ulNameLength: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Request_Device_Eject_ExA(
     dnDevInst: u32,
@@ -7458,7 +7458,7 @@ pub extern "cfgmgr32" fn CM_Request_Device_Eject_ExA(
     ulNameLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Request_Device_EjectW(
@@ -7467,7 +7467,7 @@ pub extern "cfgmgr32" fn CM_Request_Device_EjectW(
     pszVetoName: ?[*:0]u16,
     ulNameLength: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Request_Device_Eject_ExW(
@@ -7477,20 +7477,20 @@ pub extern "cfgmgr32" fn CM_Request_Device_Eject_ExW(
     ulNameLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Reenumerate_DevNode(
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Reenumerate_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Register_Device_InterfaceA(
     dnDevInst: u32,
@@ -7499,7 +7499,7 @@ pub extern "cfgmgr32" fn CM_Register_Device_InterfaceA(
     pszDeviceInterface: [*:0]u8,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Register_Device_InterfaceW(
     dnDevInst: u32,
@@ -7508,7 +7508,7 @@ pub extern "cfgmgr32" fn CM_Register_Device_InterfaceW(
     pszDeviceInterface: [*:0]u16,
     pulLength: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Register_Device_Interface_ExA(
     dnDevInst: u32,
@@ -7518,7 +7518,7 @@ pub extern "cfgmgr32" fn CM_Register_Device_Interface_ExA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Register_Device_Interface_ExW(
     dnDevInst: u32,
@@ -7528,7 +7528,7 @@ pub extern "cfgmgr32" fn CM_Register_Device_Interface_ExW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Set_DevNode_Problem_Ex(
@@ -7536,58 +7536,58 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Problem_Ex(
     ulProblem: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Set_DevNode_Problem(
     dnDevInst: u32,
     ulProblem: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Unregister_Device_InterfaceA(
     pszDeviceInterface: ?[*:0]const u8,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Unregister_Device_InterfaceW(
     pszDeviceInterface: ?[*:0]const u16,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Unregister_Device_Interface_ExA(
     pszDeviceInterface: ?[*:0]const u8,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Unregister_Device_Interface_ExW(
     pszDeviceInterface: ?[*:0]const u16,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Register_Device_Driver(
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Register_Device_Driver_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Remove_SubTree(
     dnAncestor: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Remove_SubTree_Ex(
     dnAncestor: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Set_DevNode_PropertyW(
@@ -7598,7 +7598,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_PropertyW(
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Set_DevNode_Property_ExW(
@@ -7610,7 +7610,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Property_ExW(
     PropertyBufferSize: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_PropertyA(
     dnDevInst: u32,
@@ -7619,7 +7619,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_PropertyA(
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_PropertyW(
@@ -7629,7 +7629,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_PropertyW(
     Buffer: ?*anyopaque,
     ulLength: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExA(
     dnDevInst: u32,
@@ -7639,7 +7639,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExA(
     ulLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExW(
     dnDevInst: u32,
@@ -7649,7 +7649,7 @@ pub extern "cfgmgr32" fn CM_Set_DevNode_Registry_Property_ExW(
     ulLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Set_Device_Interface_PropertyW(
@@ -7660,7 +7660,7 @@ pub extern "cfgmgr32" fn CM_Set_Device_Interface_PropertyW(
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Set_Device_Interface_Property_ExW(
@@ -7672,41 +7672,41 @@ pub extern "cfgmgr32" fn CM_Set_Device_Interface_Property_ExW(
     PropertyBufferSize: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Is_Dock_Station_Present(
     pbPresent: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Is_Dock_Station_Present_Ex(
     pbPresent: ?*BOOL,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Request_Eject_PC(
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Request_Eject_PC_Ex(
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_FlagsA(
     pDeviceID: ?*i8,
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_FlagsW(
     pDeviceID: ?*u16,
     ulConfig: u32,
     ulValue: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExA(
     pDeviceID: ?*i8,
@@ -7714,7 +7714,7 @@ pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExA(
     ulValue: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExW(
     pDeviceID: ?*u16,
@@ -7722,58 +7722,58 @@ pub extern "cfgmgr32" fn CM_Set_HW_Prof_Flags_ExW(
     ulValue: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Setup_DevNode(
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Setup_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Test_Range_Available(
     ullStartValue: u64,
     ullEndValue: u64,
     rlh: usize,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Uninstall_DevNode(
     dnDevInst: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Uninstall_DevNode_Ex(
     dnDevInst: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Run_Detection(
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Run_Detection_Ex(
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof(
     ulHardwareProfile: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_HW_Prof_Ex(
     ulHardwareProfile: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Query_Resource_Conflict_List(
@@ -7785,31 +7785,31 @@ pub extern "cfgmgr32" fn CM_Query_Resource_Conflict_List(
     ResourceLen: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Free_Resource_Conflict_Handle(
     clConflictList: usize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Resource_Conflict_Count(
     clConflictList: usize,
     pulCount: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Resource_Conflict_DetailsA(
     clConflictList: usize,
     ulIndex: u32,
     pConflictDetails: ?*CONFLICT_DETAILS_A,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Resource_Conflict_DetailsW(
     clConflictList: usize,
     ulIndex: u32,
     pConflictDetails: ?*CONFLICT_DETAILS_W,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Get_Class_PropertyW(
@@ -7820,7 +7820,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_PropertyW(
     PropertyBuffer: ?*u8,
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Get_Class_Property_ExW(
@@ -7832,7 +7832,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Property_ExW(
     PropertyBufferSize: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Get_Class_Property_Keys(
@@ -7840,7 +7840,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Property_Keys(
     PropertyKeyArray: ?[*]DEVPROPKEY,
     PropertyKeyCount: ?*u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Get_Class_Property_Keys_Ex(
@@ -7849,7 +7849,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Property_Keys_Ex(
     PropertyKeyCount: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "cfgmgr32" fn CM_Set_Class_PropertyW(
@@ -7860,7 +7860,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_PropertyW(
     PropertyBuffer: ?*const u8,
     PropertyBufferSize: u32,
     ulFlags: u32,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "cfgmgr32" fn CM_Set_Class_Property_ExW(
@@ -7872,7 +7872,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_Property_ExW(
     PropertyBufferSize: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Get_Class_Registry_PropertyA(
     ClassGuid: ?*Guid,
@@ -7883,7 +7883,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Registry_PropertyA(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Get_Class_Registry_PropertyW(
@@ -7895,7 +7895,7 @@ pub extern "cfgmgr32" fn CM_Get_Class_Registry_PropertyW(
     pulLength: ?*u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyA(
     ClassGuid: ?*Guid,
@@ -7905,7 +7905,7 @@ pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyA(
     ulLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyW(
@@ -7916,11 +7916,11 @@ pub extern "cfgmgr32" fn CM_Set_Class_Registry_PropertyW(
     ulLength: u32,
     ulFlags: u32,
     hMachine: isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 pub extern "cfgmgr32" fn CMP_WaitNoPendingInstallEvents(
     dwTimeout: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn CM_Register_Notification(
@@ -7928,18 +7928,18 @@ pub extern "cfgmgr32" fn CM_Register_Notification(
     pContext: ?*anyopaque,
     pCallback: ?PCM_NOTIFY_CALLBACK,
     pNotifyContext: ?*isize,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "cfgmgr32" fn CM_Unregister_Notification(
     NotifyContext: ?HCMNOTIFICATION,
-) callconv(@import("std").os.windows.WINAPI) CONFIGRET;
+) callconv(.winapi) CONFIGRET;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "cfgmgr32" fn CM_MapCrToWin32Err(
     CmReturnCode: CONFIGRET,
     DefaultErr: u32,
-) callconv(@import("std").os.windows.WINAPI) u32;
+) callconv(.winapi) u32;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "newdev" fn UpdateDriverForPlugAndPlayDevicesA(
@@ -7948,7 +7948,7 @@ pub extern "newdev" fn UpdateDriverForPlugAndPlayDevicesA(
     FullInfPath: ?[*:0]const u8,
     InstallFlags: u32,
     bRebootRequired: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows5.0'
 pub extern "newdev" fn UpdateDriverForPlugAndPlayDevicesW(
@@ -7957,7 +7957,7 @@ pub extern "newdev" fn UpdateDriverForPlugAndPlayDevicesW(
     FullInfPath: ?[*:0]const u16,
     InstallFlags: u32,
     bRebootRequired: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiInstallDevice(
@@ -7967,7 +7967,7 @@ pub extern "newdev" fn DiInstallDevice(
     DriverInfoData: ?*SP_DRVINFO_DATA_V2_A,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiInstallDriverW(
@@ -7975,7 +7975,7 @@ pub extern "newdev" fn DiInstallDriverW(
     InfPath: ?[*:0]const u16,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiInstallDriverA(
@@ -7983,7 +7983,7 @@ pub extern "newdev" fn DiInstallDriverA(
     InfPath: ?[*:0]const u8,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "newdev" fn DiUninstallDevice(
@@ -7992,7 +7992,7 @@ pub extern "newdev" fn DiUninstallDevice(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "newdev" fn DiUninstallDriverW(
@@ -8000,14 +8000,14 @@ pub extern "newdev" fn DiUninstallDriverW(
     InfPath: ?[*:0]const u16,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "newdev" fn DiUninstallDriverA(
     hwndParent: ?HWND,
     InfPath: ?[*:0]const u8,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiShowUpdateDevice(
@@ -8016,7 +8016,7 @@ pub extern "newdev" fn DiShowUpdateDevice(
     DeviceInfoData: ?*SP_DEVINFO_DATA,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 // TODO: this type is limited to platform 'windows6.0.6000'
 pub extern "newdev" fn DiRollbackDriver(
@@ -8025,14 +8025,14 @@ pub extern "newdev" fn DiRollbackDriver(
     hwndParent: ?HWND,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 pub extern "newdev" fn DiShowUpdateDriver(
     hwndParent: ?HWND,
     FilePath: ?[*:0]const u16,
     Flags: u32,
     NeedReboot: ?*BOOL,
-) callconv(@import("std").os.windows.WINAPI) BOOL;
+) callconv(.winapi) BOOL;
 
 
 //--------------------------------------------------------------------------------

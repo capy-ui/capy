@@ -577,54 +577,54 @@ pub const IWCNDevice = extern union {
             Type: WCN_PASSWORD_TYPE,
             dwPasswordLength: u32,
             pbPassword: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Connect: *const fn(
             self: *const IWCNDevice,
             pNotify: ?*IWCNConnectNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetAttribute: *const fn(
             self: *const IWCNDevice,
             AttributeType: WCN_ATTRIBUTE_TYPE,
             dwMaxBufferSize: u32,
             pbBuffer: [*:0]u8,
             pdwBufferUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetIntegerAttribute: *const fn(
             self: *const IWCNDevice,
             AttributeType: WCN_ATTRIBUTE_TYPE,
             puInteger: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetStringAttribute: *const fn(
             self: *const IWCNDevice,
             AttributeType: WCN_ATTRIBUTE_TYPE,
             cchMaxString: u32,
             wszString: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetNetworkProfile: *const fn(
             self: *const IWCNDevice,
             cchMaxStringLength: u32,
             wszProfile: [*:0]u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNetworkProfile: *const fn(
             self: *const IWCNDevice,
             pszProfileXml: ?[*:0]const u16,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         GetVendorExtension: *const fn(
             self: *const IWCNDevice,
             pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
             dwMaxBufferSize: u32,
             pbBuffer: [*:0]u8,
             pdwBufferUsed: ?*u32,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetVendorExtension: *const fn(
             self: *const IWCNDevice,
             pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC,
             cbBuffer: u32,
             pbBuffer: [*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         Unadvise: *const fn(
             self: *const IWCNDevice,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         SetNFCPasswordParams: *const fn(
             self: *const IWCNDevice,
             Type: WCN_PASSWORD_TYPE,
@@ -635,41 +635,41 @@ pub const IWCNDevice = extern union {
             pbRemotePublicKeyHash: ?[*:0]const u8,
             dwDHKeyBlobLength: u32,
             pbDHKeyBlob: ?[*:0]const u8,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn SetPassword(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetPassword(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwPasswordLength: u32, pbPassword: [*:0]const u8) HRESULT {
         return self.vtable.SetPassword(self, Type, dwPasswordLength, pbPassword);
     }
-    pub fn Connect(self: *const IWCNDevice, pNotify: ?*IWCNConnectNotify) callconv(.Inline) HRESULT {
+    pub fn Connect(self: *const IWCNDevice, pNotify: ?*IWCNConnectNotify) HRESULT {
         return self.vtable.Connect(self, pNotify);
     }
-    pub fn GetAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) HRESULT {
         return self.vtable.GetAttribute(self, AttributeType, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
     }
-    pub fn GetIntegerAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetIntegerAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, puInteger: ?*u32) HRESULT {
         return self.vtable.GetIntegerAttribute(self, AttributeType, puInteger);
     }
-    pub fn GetStringAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, cchMaxString: u32, wszString: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetStringAttribute(self: *const IWCNDevice, AttributeType: WCN_ATTRIBUTE_TYPE, cchMaxString: u32, wszString: [*:0]u16) HRESULT {
         return self.vtable.GetStringAttribute(self, AttributeType, cchMaxString, wszString);
     }
-    pub fn GetNetworkProfile(self: *const IWCNDevice, cchMaxStringLength: u32, wszProfile: [*:0]u16) callconv(.Inline) HRESULT {
+    pub fn GetNetworkProfile(self: *const IWCNDevice, cchMaxStringLength: u32, wszProfile: [*:0]u16) HRESULT {
         return self.vtable.GetNetworkProfile(self, cchMaxStringLength, wszProfile);
     }
-    pub fn SetNetworkProfile(self: *const IWCNDevice, pszProfileXml: ?[*:0]const u16) callconv(.Inline) HRESULT {
+    pub fn SetNetworkProfile(self: *const IWCNDevice, pszProfileXml: ?[*:0]const u16) HRESULT {
         return self.vtable.SetNetworkProfile(self, pszProfileXml);
     }
-    pub fn GetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) callconv(.Inline) HRESULT {
+    pub fn GetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, dwMaxBufferSize: u32, pbBuffer: [*:0]u8, pdwBufferUsed: ?*u32) HRESULT {
         return self.vtable.GetVendorExtension(self, pVendorExtSpec, dwMaxBufferSize, pbBuffer, pdwBufferUsed);
     }
-    pub fn SetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetVendorExtension(self: *const IWCNDevice, pVendorExtSpec: ?*const WCN_VENDOR_EXTENSION_SPEC, cbBuffer: u32, pbBuffer: [*:0]const u8) HRESULT {
         return self.vtable.SetVendorExtension(self, pVendorExtSpec, cbBuffer, pbBuffer);
     }
-    pub fn Unadvise(self: *const IWCNDevice) callconv(.Inline) HRESULT {
+    pub fn Unadvise(self: *const IWCNDevice) HRESULT {
         return self.vtable.Unadvise(self);
     }
-    pub fn SetNFCPasswordParams(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwOOBPasswordID: u32, dwPasswordLength: u32, pbPassword: ?[*:0]const u8, dwRemotePublicKeyHashLength: u32, pbRemotePublicKeyHash: ?[*:0]const u8, dwDHKeyBlobLength: u32, pbDHKeyBlob: ?[*:0]const u8) callconv(.Inline) HRESULT {
+    pub fn SetNFCPasswordParams(self: *const IWCNDevice, Type: WCN_PASSWORD_TYPE, dwOOBPasswordID: u32, dwPasswordLength: u32, pbPassword: ?[*:0]const u8, dwRemotePublicKeyHashLength: u32, pbRemotePublicKeyHash: ?[*:0]const u8, dwDHKeyBlobLength: u32, pbDHKeyBlob: ?[*:0]const u8) HRESULT {
         return self.vtable.SetNFCPasswordParams(self, Type, dwOOBPasswordID, dwPasswordLength, pbPassword, dwRemotePublicKeyHashLength, pbRemotePublicKeyHash, dwDHKeyBlobLength, pbDHKeyBlob);
     }
 };
@@ -682,18 +682,18 @@ pub const IWCNConnectNotify = extern union {
         base: IUnknown.VTable,
         ConnectSucceeded: *const fn(
             self: *const IWCNConnectNotify,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
         ConnectFailed: *const fn(
             self: *const IWCNConnectNotify,
             hrFailure: HRESULT,
-        ) callconv(@import("std").os.windows.WINAPI) HRESULT,
+        ) callconv(.winapi) HRESULT,
     };
     vtable: *const VTable,
     IUnknown: IUnknown,
-    pub fn ConnectSucceeded(self: *const IWCNConnectNotify) callconv(.Inline) HRESULT {
+    pub fn ConnectSucceeded(self: *const IWCNConnectNotify) HRESULT {
         return self.vtable.ConnectSucceeded(self);
     }
-    pub fn ConnectFailed(self: *const IWCNConnectNotify, hrFailure: HRESULT) callconv(.Inline) HRESULT {
+    pub fn ConnectFailed(self: *const IWCNConnectNotify, hrFailure: HRESULT) HRESULT {
         return self.vtable.ConnectFailed(self, hrFailure);
     }
 };

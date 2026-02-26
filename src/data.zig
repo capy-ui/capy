@@ -5,6 +5,70 @@ const global_allocator = internal.allocator;
 const trait = @import("trait.zig");
 const AnimationController = @import("AnimationController.zig");
 
+/// Compat wrapper: std.SinglyLinkedList in 0.15.2 became intrusive (no data payload).
+/// This recreates the old generic SinglyLinkedList(T) API with a Node that has a .data field.
+fn SinglyLinkedList(comptime T: type) type {
+    return struct {
+        const Self = @This();
+
+        pub const Node = struct {
+            data: T,
+            _node: std.SinglyLinkedList.Node = .{},
+
+            pub fn getNext(self: *const Node) ?*Node {
+                if (self._node.next) |inner_next| {
+                    return @fieldParentPtr("_node", inner_next);
+                }
+                return null;
+            }
+        };
+
+        first: ?*Node = null,
+
+        fn nodeFromInner(inner_node: *std.SinglyLinkedList.Node) *Node {
+            return @fieldParentPtr("_node", inner_node);
+        }
+
+        pub fn prepend(self: *Self, node: *Node) void {
+            if (self.first) |existing_first| {
+                node._node.next = &existing_first._node;
+            } else {
+                node._node.next = null;
+            }
+            self.first = node;
+        }
+
+        pub fn remove(self: *Self, target: *Node) void {
+            // If removing the first node
+            if (self.first == target) {
+                self.first = target.getNext();
+                target._node.next = null;
+                return;
+            }
+            // Walk the list to find the predecessor
+            var current = self.first;
+            while (current) |node| {
+                if (node.getNext() == target) {
+                    node._node.next = target._node.next;
+                    target._node.next = null;
+                    return;
+                }
+                current = node.getNext();
+            }
+        }
+
+        pub fn len(self: Self) usize {
+            var count: usize = 0;
+            var current = self.first;
+            while (current) |node| {
+                count += 1;
+                current = node.getNext();
+            }
+            return count;
+        }
+    };
+}
+
 /// Linear interpolation between floats a and b with factor t.
 fn lerpFloat(a: anytype, b: @TypeOf(a), t: f64) @TypeOf(a) {
     return a * (1 - @as(@TypeOf(a), @floatCast(t))) + b * @as(@TypeOf(a), @floatCast(t));
@@ -195,8 +259,8 @@ pub fn Atom(comptime T: type) type {
             link_id: u16,
         };
 
-        const ChangeListenerList = std.SinglyLinkedList(ChangeListenerListData);
-        const BindingList = std.SinglyLinkedList(Binding);
+        const ChangeListenerList = SinglyLinkedList(ChangeListenerListData);
+        const BindingList = SinglyLinkedList(Binding);
 
         fn computeChecksum(value: T) u8 {
             const Crc = std.hash.crc.Crc8Wcdma;
@@ -392,7 +456,7 @@ pub fn Atom(comptime T: type) type {
             var nullable_node = self.onChange.first;
             while (nullable_node) |node| {
                 if (node.data.id == id) return true;
-                nullable_node = node.next;
+                nullable_node = node.getNext();
             }
             return false;
         }
@@ -416,7 +480,7 @@ pub fn Atom(comptime T: type) type {
             var nullable_node = self.onChange.first;
             while (nullable_node) |node| {
                 if (node.data.id == id) target_node = node;
-                nullable_node = node.next;
+                nullable_node = node.getNext();
             }
 
             if (target_node) |node| {
@@ -443,9 +507,9 @@ pub fn Atom(comptime T: type) type {
                     if (node2.data.link_id == link_id) {
                         link_id += 1;
                     }
-                    nullableNode2 = node2.next;
+                    nullableNode2 = node2.getNext();
                 }
-                nullableNode = node.next;
+                nullableNode = node.getNext();
             }
 
             nullableNode = other.bindings.first;
@@ -454,7 +518,7 @@ pub fn Atom(comptime T: type) type {
                 if (node.data.link_id == link_id) {
                     link_id += 1;
                 }
-                nullableNode = node.next;
+                nullableNode = node.getNext();
             }
 
             return link_id;
@@ -487,9 +551,9 @@ pub fn Atom(comptime T: type) type {
                     if (node2.data.link_id == link_id) {
                         node2.data.bound_to = self;
                     }
-                    otherNode = node2.next;
+                    otherNode = node2.getNext();
                 }
-                nullableNode = node.next;
+                nullableNode = node.getNext();
             }
         }
 
@@ -571,7 +635,7 @@ pub fn Atom(comptime T: type) type {
                 var nullableNode = self.bindings.first;
                 while (nullableNode) |node| {
                     node.data.bound_to.set(value);
-                    nullableNode = node.next;
+                    nullableNode = node.getNext();
                 }
             }
         }
@@ -711,7 +775,7 @@ pub fn Atom(comptime T: type) type {
                 if (node.data.listener.type == .Change) {
                     node.data.listener.function(value, node.data.listener.userdata);
                 }
-                nullableNode = node.next;
+                nullableNode = node.getNext();
             }
         }
 
@@ -719,7 +783,7 @@ pub fn Atom(comptime T: type) type {
             {
                 var nullableNode = self.bindings.first;
                 while (nullableNode) |node| {
-                    nullableNode = node.next;
+                    nullableNode = node.getNext();
                     global_allocator.destroy(node);
                 }
             }
@@ -729,7 +793,7 @@ pub fn Atom(comptime T: type) type {
             {
                 var nullableNode = self.onChange.first;
                 while (nullableNode) |node| {
-                    nullableNode = node.next;
+                    nullableNode = node.getNext();
                     if (node.data.listener.type == .Destroy) {
                         node.data.listener.function(undefined, node.data.listener.userdata);
                     }
@@ -764,7 +828,7 @@ pub fn ListAtom(comptime T: type) type {
             type: enum { Change, Destroy } = .Change,
         };
 
-        const ChangeListenerList = std.SinglyLinkedList(ChangeListener);
+        const ChangeListenerList = SinglyLinkedList(ChangeListener);
 
         // Possible events to be handled by ListAtom:
         // - list size changed
@@ -932,15 +996,18 @@ pub fn ListAtom(comptime T: type) type {
             try std.testing.expectEqual(2, slice.len);
         }
 
-        pub fn map(self: *Self, comptime U: type, func: *const fn (T) U) *ListAtom(U) {
-            _ = self;
-            _ = func;
-            return undefined;
+        pub fn map(self: *Self, comptime U: type, func: *const fn (T) U) ListAtom(U) {
+            self.lock.lockShared();
+            defer self.lock.unlockShared();
+
+            var result = ListAtom(U).init(self.allocator);
+            for (self.backing_list.items) |item| {
+                result.append(func(item)) catch unreachable;
+            }
+            return result;
         }
 
         test map {
-            if (true) return error.SkipZigTest;
-
             var list = ListAtom([]const u8).init(std.testing.allocator);
             defer list.deinit();
 
@@ -974,7 +1041,7 @@ pub fn ListAtom(comptime T: type) type {
                 if (node.data.type == .Change) {
                     node.data.function(self, node.data.userdata);
                 }
-                nullableNode = node.next;
+                nullableNode = node.getNext();
             }
         }
 
@@ -985,7 +1052,7 @@ pub fn ListAtom(comptime T: type) type {
             {
                 var nullableNode = self.onChange.first;
                 while (nullableNode) |node| {
-                    nullableNode = node.next;
+                    nullableNode = node.getNext();
                     if (node.data.type == .Destroy) {
                         node.data.function(self, node.data.userdata);
                     }

@@ -666,7 +666,7 @@ pub const WINBIO_ASYNC_RESULT = extern struct {
 
 pub const PWINBIO_ASYNC_COMPLETION_CALLBACK = *const fn(
     AsyncResult: ?*WINBIO_ASYNC_RESULT,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PWINBIO_VERIFY_CALLBACK = *const fn(
     VerifyCallbackContext: ?*anyopaque,
@@ -674,7 +674,7 @@ pub const PWINBIO_VERIFY_CALLBACK = *const fn(
     UnitId: u32,
     Match: BOOLEAN,
     RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PWINBIO_IDENTIFY_CALLBACK = *const fn(
     IdentifyCallbackContext: ?*anyopaque,
@@ -683,25 +683,25 @@ pub const PWINBIO_IDENTIFY_CALLBACK = *const fn(
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
     RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PWINBIO_LOCATE_SENSOR_CALLBACK = *const fn(
     LocateCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     UnitId: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PWINBIO_ENROLL_CAPTURE_CALLBACK = *const fn(
     EnrollCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PWINBIO_EVENT_CALLBACK = *const fn(
     EventCallbackContext: ?*anyopaque,
     OperationStatus: HRESULT,
     Event: ?*WINBIO_EVENT,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const PWINBIO_CAPTURE_CALLBACK = *const fn(
     CaptureCallbackContext: ?*anyopaque,
@@ -711,7 +711,7 @@ pub const PWINBIO_CAPTURE_CALLBACK = *const fn(
     Sample: ?*WINBIO_BIR,
     SampleSize: usize,
     RejectDetail: u32,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 pub const _WINIBIO_SENSOR_CONTEXT = extern struct {
     placeholder: usize, // TODO: why is this type empty?
@@ -755,97 +755,97 @@ pub const WINBIO_ADAPTER_INTERFACE_VERSION = extern struct {
 };
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ATTACH_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_ATTACH_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_DETACH_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_DETACH_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CLEAR_CONTEXT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_CLEAR_CONTEXT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_STATUS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_QUERY_STATUS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_RESET_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_RESET_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_SET_MODE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_SET_MODE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_SET_INDICATOR_STATUS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_SET_INDICATOR_STATUS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_GET_INDICATOR_STATUS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_GET_INDICATOR_STATUS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_START_CAPTURE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_START_CAPTURE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_FINISH_CAPTURE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_FINISH_CAPTURE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_EXPORT_SENSOR_DATA_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CANCEL_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_CANCEL_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_PUSH_DATA_TO_ENGINE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CONTROL_UNIT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_CONTROL_UNIT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_CONTROL_UNIT_PRIVILEGED_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_NOTIFY_POWER_CHANGE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_PIPELINE_INIT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_PIPELINE_INIT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_PIPELINE_CLEANUP_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_PIPELINE_CLEANUP_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ACTIVATE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_ACTIVATE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_DEACTIVATE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_DEACTIVATE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_QUERY_EXTENDED_INFO_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_QUERY_CALIBRATION_FORMATS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_SET_CALIBRATION_FORMAT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_ACCEPT_CALIBRATION_DATA_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_ASYNC_IMPORT_RAW_BUFFER_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_ASYNC_IMPORT_SECURE_BUFFER_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_QUERY_PRIVATE_SENSOR_TYPE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_CONNECT_SECURE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_CONNECT_SECURE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_START_CAPTURE_EX_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_START_NOTIFY_WAKE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_START_NOTIFY_WAKE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_SENSOR_FINISH_NOTIFY_WAKE_FN = *const fn() callconv(.winapi) void;
 
 pub const WINBIO_SENSOR_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -887,130 +887,130 @@ pub const WINBIO_SENSOR_INTERFACE = extern struct {
 
 pub const PWINBIO_QUERY_SENSOR_INTERFACE_FN = *const fn(
     SensorInterface: ?*?*WINBIO_SENSOR_INTERFACE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ATTACH_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_ATTACH_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_DETACH_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_DETACH_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CLEAR_CONTEXT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_CLEAR_CONTEXT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_QUERY_PREFERRED_FORMAT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_QUERY_INDEX_VECTOR_SIZE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_QUERY_HASH_ALGORITHMS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_SET_HASH_ALGORITHM_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_QUERY_SAMPLE_HINT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_ACCEPT_SAMPLE_DATA_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_EXPORT_ENGINE_DATA_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_VERIFY_FEATURE_SET_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CREATE_ENROLLMENT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_CREATE_ENROLLMENT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_UPDATE_ENROLLMENT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_UPDATE_ENROLLMENT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_GET_ENROLLMENT_STATUS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_GET_ENROLLMENT_HASH_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_CHECK_FOR_DUPLICATE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_COMMIT_ENROLLMENT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_DISCARD_ENROLLMENT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CONTROL_UNIT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_CONTROL_UNIT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_CONTROL_UNIT_PRIVILEGED_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_NOTIFY_POWER_CHANGE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_RESERVED_1_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_RESERVED_1_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_PIPELINE_INIT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_PIPELINE_INIT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_PIPELINE_CLEANUP_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_PIPELINE_CLEANUP_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ACTIVATE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_ACTIVATE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_DEACTIVATE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_DEACTIVATE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_QUERY_EXTENDED_INFO_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_ALL_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_IDENTIFY_ALL_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_SET_ENROLLMENT_SELECTOR_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_SET_ENROLLMENT_PARAMETERS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_QUERY_EXTENDED_ENROLLMENT_STATUS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_REFRESH_CACHE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_REFRESH_CACHE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_SELECT_CALIBRATION_FORMAT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_QUERY_CALIBRATION_DATA_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_SET_ACCOUNT_POLICY_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CREATE_KEY_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_CREATE_KEY_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_SECURE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_ACCEPT_PRIVATE_SENSOR_TYPE_INFO_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_CREATE_ENROLLMENT_AUTHENTICATED_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_ENGINE_IDENTIFY_FEATURE_SET_AUTHENTICATED_FN = *const fn() callconv(.winapi) void;
 
 pub const WINBIO_ENGINE_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1062,97 +1062,97 @@ pub const WINBIO_ENGINE_INTERFACE = extern struct {
 
 pub const PWINBIO_QUERY_ENGINE_INTERFACE_FN = *const fn(
     EngineInterface: ?*?*WINBIO_ENGINE_INTERFACE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ATTACH_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_ATTACH_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_DETACH_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_DETACH_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CLEAR_CONTEXT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_CLEAR_CONTEXT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CREATE_DATABASE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_CREATE_DATABASE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ERASE_DATABASE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_ERASE_DATABASE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_OPEN_DATABASE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_OPEN_DATABASE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CLOSE_DATABASE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_CLOSE_DATABASE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_DATA_FORMAT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_GET_DATA_FORMAT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_DATABASE_SIZE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_GET_DATABASE_SIZE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ADD_RECORD_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_ADD_RECORD_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_DELETE_RECORD_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_DELETE_RECORD_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_QUERY_BY_SUBJECT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_QUERY_BY_SUBJECT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_QUERY_BY_CONTENT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_QUERY_BY_CONTENT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_RECORD_COUNT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_GET_RECORD_COUNT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_FIRST_RECORD_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_FIRST_RECORD_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_NEXT_RECORD_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_NEXT_RECORD_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_GET_CURRENT_RECORD_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CONTROL_UNIT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_CONTROL_UNIT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_CONTROL_UNIT_PRIVILEGED_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_NOTIFY_POWER_CHANGE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_PIPELINE_INIT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_PIPELINE_INIT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_PIPELINE_CLEANUP_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_PIPELINE_CLEANUP_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_ACTIVATE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_ACTIVATE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_DEACTIVATE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_DEACTIVATE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_QUERY_EXTENDED_INFO_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_NOTIFY_DATABASE_CHANGE_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_RESERVED_1_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_RESERVED_1_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_RESERVED_2_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_RESERVED_2_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_UPDATE_RECORD_BEGIN_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_STORAGE_UPDATE_RECORD_COMMIT_FN = *const fn() callconv(.winapi) void;
 
 pub const WINBIO_STORAGE_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1193,61 +1193,61 @@ pub const WINBIO_STORAGE_INTERFACE = extern struct {
 
 pub const PWINBIO_QUERY_STORAGE_INTERFACE_FN = *const fn(
     StorageInterface: ?*?*WINBIO_STORAGE_INTERFACE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_SET_UNIT_STATUS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_CLEAR_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_BEGIN_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_NEXT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_IMPORT_END_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_BEGIN_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_NEXT_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_CACHE_EXPORT_END_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_1_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_2_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_STORAGE_RESERVED_3_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_ALLOCATE_MEMORY_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_FREE_MEMORY_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_GET_PROPERTY_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_LOCK_AND_VALIDATE_SECURE_BUFFER_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_RELEASE_SECURE_BUFFER_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_QUERY_AUTHORIZED_ENROLLMENTS_FN = *const fn() callconv(.winapi) void;
 
 // TODO: this function pointer causes dependency loop problems, so it's stubbed out
-pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = *const fn() callconv(@import("std").os.windows.WINAPI) void;
+pub const PIBIO_FRAMEWORK_VSM_DECRYPT_SAMPLE_FN = *const fn() callconv(.winapi) void;
 
 pub const WINBIO_FRAMEWORK_INTERFACE = extern struct {
     Version: WINBIO_ADAPTER_INTERFACE_VERSION,
@@ -1407,21 +1407,21 @@ pub extern "winbio" fn WinBioEnumServiceProviders(
     Factor: u32,
     BspSchemaArray: ?*?*WINBIO_BSP_SCHEMA,
     BspCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumBiometricUnits(
     Factor: u32,
     UnitSchemaArray: ?*?*WINBIO_UNIT_SCHEMA,
     UnitCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumDatabases(
     Factor: u32,
     StorageSchemaArray: ?*?*WINBIO_STORAGE_SCHEMA,
     StorageCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncOpenFramework(
@@ -1432,36 +1432,36 @@ pub extern "winbio" fn WinBioAsyncOpenFramework(
     UserData: ?*anyopaque,
     AsynchronousOpen: BOOL,
     FrameworkHandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioCloseFramework(
     FrameworkHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncEnumServiceProviders(
     FrameworkHandle: u32,
     Factor: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncEnumBiometricUnits(
     FrameworkHandle: u32,
     Factor: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncEnumDatabases(
     FrameworkHandle: u32,
     Factor: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncMonitorFrameworkChanges(
     FrameworkHandle: u32,
     ChangeTypes: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioOpenSession(
@@ -1472,7 +1472,7 @@ pub extern "winbio" fn WinBioOpenSession(
     UnitCount: usize,
     DatabaseId: ?*Guid,
     SessionHandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.0'
 pub extern "winbio" fn WinBioAsyncOpenSession(
@@ -1489,12 +1489,12 @@ pub extern "winbio" fn WinBioAsyncOpenSession(
     UserData: ?*anyopaque,
     AsynchronousOpen: BOOL,
     SessionHandle: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCloseSession(
     SessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioVerify(
@@ -1504,7 +1504,7 @@ pub extern "winbio" fn WinBioVerify(
     UnitId: ?*u32,
     Match: ?*u8,
     RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioVerifyWithCallback(
@@ -1513,7 +1513,7 @@ pub extern "winbio" fn WinBioVerifyWithCallback(
     SubFactor: u8,
     VerifyCallback: ?PWINBIO_VERIFY_CALLBACK,
     VerifyCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioIdentify(
@@ -1522,75 +1522,75 @@ pub extern "winbio" fn WinBioIdentify(
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: ?*u8,
     RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioIdentifyWithCallback(
     SessionHandle: u32,
     IdentifyCallback: ?PWINBIO_IDENTIFY_CALLBACK,
     IdentifyCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioWait(
     SessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCancel(
     SessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLocateSensor(
     SessionHandle: u32,
     UnitId: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLocateSensorWithCallback(
     SessionHandle: u32,
     LocateCallback: ?PWINBIO_LOCATE_SENSOR_CALLBACK,
     LocateCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollBegin(
     SessionHandle: u32,
     SubFactor: u8,
     UnitId: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioEnrollSelect(
     SessionHandle: u32,
     SelectorValue: u64,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollCapture(
     SessionHandle: u32,
     RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollCaptureWithCallback(
     SessionHandle: u32,
     EnrollCallback: ?PWINBIO_ENROLL_CAPTURE_CALLBACK,
     EnrollCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollCommit(
     SessionHandle: u32,
     Identity: ?*WINBIO_IDENTITY,
     IsNewTemplate: ?*u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnrollDiscard(
     SessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioEnumEnrollments(
@@ -1599,16 +1599,16 @@ pub extern "winbio" fn WinBioEnumEnrollments(
     Identity: ?*WINBIO_IDENTITY,
     SubFactorArray: ?*?*u8,
     SubFactorCount: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winbio" fn WinBioImproveBegin(
     SessionHandle: u32,
     UnitId: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 pub extern "winbio" fn WinBioImproveEnd(
     SessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRegisterEventMonitor(
@@ -1616,18 +1616,18 @@ pub extern "winbio" fn WinBioRegisterEventMonitor(
     EventMask: u32,
     EventCallback: ?PWINBIO_EVENT_CALLBACK,
     EventCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioUnregisterEventMonitor(
     SessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioMonitorPresence(
     SessionHandle: u32,
     UnitId: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCaptureSample(
@@ -1638,7 +1638,7 @@ pub extern "winbio" fn WinBioCaptureSample(
     Sample: ?*?*WINBIO_BIR,
     SampleSize: ?*usize,
     RejectDetail: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioCaptureSampleWithCallback(
@@ -1647,7 +1647,7 @@ pub extern "winbio" fn WinBioCaptureSampleWithCallback(
     Flags: u8,
     CaptureCallback: ?PWINBIO_CAPTURE_CALLBACK,
     CaptureCallbackContext: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioDeleteTemplate(
@@ -1655,19 +1655,19 @@ pub extern "winbio" fn WinBioDeleteTemplate(
     UnitId: u32,
     Identity: ?*WINBIO_IDENTITY,
     SubFactor: u8,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLockUnit(
     SessionHandle: u32,
     UnitId: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioUnlockUnit(
     SessionHandle: u32,
     UnitId: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioControlUnit(
@@ -1683,7 +1683,7 @@ pub extern "winbio" fn WinBioControlUnit(
     ReceiveBufferSize: usize,
     ReceiveDataSize: ?*usize,
     OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioControlUnitPrivileged(
@@ -1699,7 +1699,7 @@ pub extern "winbio" fn WinBioControlUnitPrivileged(
     ReceiveBufferSize: usize,
     ReceiveDataSize: ?*usize,
     OperationStatus: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetProperty(
@@ -1711,7 +1711,7 @@ pub extern "winbio" fn WinBioGetProperty(
     SubFactor: u8,
     PropertyBuffer: ?*?*anyopaque,
     PropertyBufferSize: ?*usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioSetProperty(
@@ -1724,12 +1724,12 @@ pub extern "winbio" fn WinBioSetProperty(
     // TODO: what to do with BytesParamIndex 7?
     PropertyBuffer: ?*anyopaque,
     PropertyBufferSize: usize,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioFree(
     Address: ?*anyopaque,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows8.1'
 pub extern "winbio" fn WinBioSetCredential(
@@ -1738,65 +1738,65 @@ pub extern "winbio" fn WinBioSetCredential(
     Credential: ?*u8,
     CredentialSize: usize,
     Format: WINBIO_CREDENTIAL_FORMAT,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRemoveCredential(
     Identity: WINBIO_IDENTITY,
     Type: WINBIO_CREDENTIAL_TYPE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRemoveAllCredentials(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioRemoveAllDomainCredentials(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetCredentialState(
     Identity: WINBIO_IDENTITY,
     Type: WINBIO_CREDENTIAL_TYPE,
     CredentialState: ?*WINBIO_CREDENTIAL_STATE,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioLogonIdentifiedUser(
     SessionHandle: u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows10.0.10240'
 pub extern "winbio" fn WinBioGetEnrolledFactors(
     AccountOwner: ?*WINBIO_IDENTITY,
     EnrolledFactors: ?*u32,
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetEnabledSetting(
     Value: ?*u8,
     Source: ?*WINBIO_SETTING_SOURCE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetLogonSetting(
     Value: ?*u8,
     Source: ?*WINBIO_SETTING_SOURCE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioGetDomainLogonSetting(
     Value: ?*u8,
     Source: ?*WINBIO_SETTING_SOURCE,
-) callconv(@import("std").os.windows.WINAPI) void;
+) callconv(.winapi) void;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioAcquireFocus(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 // TODO: this type is limited to platform 'windows6.1'
 pub extern "winbio" fn WinBioReleaseFocus(
-) callconv(@import("std").os.windows.WINAPI) HRESULT;
+) callconv(.winapi) HRESULT;
 
 
 //--------------------------------------------------------------------------------
